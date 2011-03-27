@@ -261,7 +261,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertNull(sentence.getVerbString());
-		assertNull(sentence.getSubject(1));
+		assertEquals(1, sentence.getSubjectCount());
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class ConversationParserTest {
 		sentence = ConversationParser.parse("give me 4 fishes");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
-		assertNull(sentence.getSubject(1));
+		assertEquals(0, sentence.getSubjectCount());
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObject(0).getMainWord());
 		assertEquals("fish", sentence.getObjectName());
@@ -289,7 +289,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerbString());
-		assertNull(sentence.getSubject(1));
+		assertEquals(1, sentence.getSubjectCount());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice", sentence.getObject(0).getMainWord());
 		assertEquals("ice cream", sentence.getObjectName());
@@ -300,7 +300,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("you", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerbString());
-		assertNull(sentence.getSubject(1));
+		assertEquals(1, sentence.getSubjectCount());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice", sentence.getObject(0).getMainWord());
 		assertEquals("ice cream", sentence.getObjectName());
@@ -316,7 +316,7 @@ public class ConversationParserTest {
 		final Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
-		assertNull(sentence.getSubject(1));
+		assertEquals(0, sentence.getSubjectCount());
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("buy fish!", sentence.getNormalized());
@@ -545,7 +545,7 @@ public class ConversationParserTest {
 		assertEquals(30, sentence.getExpressions().get(0).getAmount());
 
 		assertEquals(0, sentence.getSubjectCount());
-		assertNull(sentence.getSubject(0));
+		assertEquals(0, sentence.getSubjectCount());
 		assertEquals(0, sentence.getVerbCount());
 		assertNull(sentence.getVerb(0));
 		assertEquals(0, sentence.getObjectCount());
