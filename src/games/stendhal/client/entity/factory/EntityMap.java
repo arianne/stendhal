@@ -97,10 +97,11 @@ public final class EntityMap {
 		register("growing_entity_spawner", null, null, GrainField.class);
 
 		register("useable_entity", null, null, UseableEntity.class);
+		// deprecated start
 		register("gold_source", null, null, UseableEntity.class);
 		register("fish_source", null, null, UseableEntity.class);
 		register("well_source", null, null, UseableEntity.class);
-		register("water_source", null, null, UseableEntity.class);
+		// deprecated end
 
 		register("area", null, null, InvisibleEntity.class);
 

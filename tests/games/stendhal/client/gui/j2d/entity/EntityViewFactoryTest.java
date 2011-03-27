@@ -47,12 +47,9 @@ public class EntityViewFactoryTest {
 		assertEquals(EntityViewFactory.getViewClass("door", null, null), Door2DView.class);
 	
 		assertEquals(EntityViewFactory.getViewClass("fire", null, null), UseableEntity2DView.class);
-		assertEquals(EntityViewFactory.getViewClass("fish_source", null, null), FishSource2DView.class);
 
 		
 		assertEquals(EntityViewFactory.getViewClass("gate", null, null), Gate2DView.class);
-		
-		assertEquals(EntityViewFactory.getViewClass("gold_source", null, null), GoldSource2DView.class);
 		
 		assertEquals(EntityViewFactory.getViewClass("growing_entity_spawner", null, null), GrainField2DView.class);
 		
@@ -107,8 +104,6 @@ public class EntityViewFactoryTest {
 		assertEquals(EntityViewFactory.getViewClass("item", "ring", null), UseableRing2DView.class);
 		
 		assertEquals(EntityViewFactory.getViewClass("walkblocker", null, null), WalkBlocker2DView.class);
-		assertEquals(EntityViewFactory.getViewClass("well_source", null, null), WellSource2DView.class);
-	
 		
 	}
 }
