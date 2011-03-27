@@ -282,7 +282,11 @@ public final class Expression {
      * @return the main word of the expression.
      */
     public String getMainWord() {
-        return mainWord;
+    	if (mainWord == null) {
+    		return "";
+    	} else {
+    		return mainWord;
+    	}
     }
 
     /**
@@ -435,7 +439,7 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return true if two expression match false otherwise
+     * @return true if two expression match, false otherwise
      */
     public boolean matches(final Expression other) {
         if (other != null) {
@@ -466,12 +470,12 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return true if two expression match false otherwise
+     * @return true if two expression match, false otherwise
      */
     public boolean matchesNormalized(final Expression other) {
         if (other != null) {
             // If there is no override by an ExpressionMatcher in 'other', use the
-            // default rule and compare the normalized strings.
+            // default rule and compare the normalised strings.
             if (other.matcher == null) {
                 if (getNormalized().equals(other.getNormalized())) {
                     return true;
@@ -496,14 +500,16 @@ public final class Expression {
      *
      * @param other
      *            Expression
-     * @return true if two expression match false otherwise
+     * @return true if two expression match, false otherwise
      */
     public boolean matchesNormalizedSimilar(final Expression other) {
         if (other != null) {
             // If there is no override by an ExpressionMatcher in 'other', use the
-            // default rule and compare the normalized strings.
+            // default rule and compare the normalised strings and main words.
             if (other.matcher == null) {
                 if (SimilarExprMatcher.isSimilar(getNormalized(), other.getNormalized(), 0.1)) {
+                    return true;
+                } else if (SimilarExprMatcher.isSimilar(getMainWord(), other.getMainWord(), 0.1)) {
                     return true;
                 }
             }
@@ -557,7 +563,7 @@ public final class Expression {
      *
      * @param str
      * @param matchString
-     * @return true if two expression match false otherwise
+     * @return true if two expression match, false otherwise
      */
     public static boolean matchesJokerString(final String str, final String matchString) {
         if (str.equals(JOKER)) {
