@@ -90,6 +90,9 @@ public class CloakCollectorTest {
 				"You haven't seen one before? Well, it's a elf cloak. So, will you find them all?",
 				getReply(npc));
 
+		en.stepTest(monica, "pink cloak");
+		assertEquals("I don't know pink cloak. Can you name me another cloak please?", getReply(npc));
+
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals(cc.respondToQuestAcception(), getReply(npc));
 		assertFalse(npc.isTalking());

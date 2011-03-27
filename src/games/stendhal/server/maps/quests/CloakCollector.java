@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -91,18 +92,23 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-						StringBuilder stringBuilder = new StringBuilder();
-						stringBuilder.append("You haven't seen one before? Well, it's a ");
-
-						if (item == null) {
-							stringBuilder.append(itemName);
+						Expression obj = sentence.getObject(0);
+						if (obj!=null && !obj.getNormalized().equals(itemName)) {
+							raiser.say("I don't know " + obj.getOriginal() + ". Can you name me another cloak please?");
 						} else {
-							stringBuilder.append(ItemTools.itemNameToDisplayName(item.getItemSubclass()));
-						}
+							final Item item = SingletonRepository.getEntityManager().getItem(itemName);
+							StringBuilder stringBuilder = new StringBuilder();
+							stringBuilder.append("You haven't seen one before? Well, it's a ");
 
-						stringBuilder.append(". So, will you find them all?");
-						raiser.say(stringBuilder.toString());
+							if (item == null) {
+								stringBuilder.append(itemName);
+							} else {
+								stringBuilder.append(ItemTools.itemNameToDisplayName(item.getItemSubclass()));
+							}
+
+							stringBuilder.append(". So, will you find them all?");
+							raiser.say(stringBuilder.toString());
+						}
 					}
 
 					@Override

@@ -132,7 +132,6 @@ public class CloakCollector2Test {
 	
 	@Test
 	public final void doQuest() {
-		
 		SingletonRepository.getNPCList().add(new SpeakerNPC(NPC));
 		final CloakCollector2 cc = new CloakCollector2();
 		cc.addToWorld();
@@ -157,10 +156,10 @@ public class CloakCollector2Test {
 				+ ". Sorry if that's not much help, it's all I know! So, will you find them all?";
 			assertEquals(expected, getReply(npc));
 		}
-		
+
 		// does not exist
 		en.stepTest(player, "pink cloak");
-		assertEquals(null, getReply(npc));
+		assertEquals("I don't know pink cloak. Can you name me another cloak please?", getReply(npc));
 
 		en.stepTest(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("Brilliant! I'm all excited again! Bye!", getReply(npc));
