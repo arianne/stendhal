@@ -155,7 +155,6 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 			player.equipOrPutOnGround(item);
 			player.incObtainedForItem(item.getName(), item.getQuantity());
-			SingletonRepository.getAchievementNotifier().onObtain(player);
 			player.sendPrivateText("You were lucky and filled "
 					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
 		} else {
