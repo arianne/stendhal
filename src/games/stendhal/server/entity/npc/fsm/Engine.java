@@ -13,6 +13,7 @@ import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -154,7 +155,7 @@ public class Engine {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
+	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
 		if (triggers == null) {
 			throw new IllegalArgumentException("triggers list must not be null");

@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -480,7 +481,7 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition,
+	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, triggers, condition, false, nextState, reply, action);
 	}
@@ -504,7 +505,7 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final List<String> triggers, final ChatCondition condition, boolean secondary,
+	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition, boolean secondary,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, triggers, condition, secondary, nextState, reply, action);
 	}
@@ -550,7 +551,7 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates[] states, final List<String> triggers,
+	public void add(final ConversationStates[] states, final Collection<String> triggers,
 			final ChatCondition condition, final ConversationStates nextState, final String reply,
 			final ChatAction action) {
 		for (final ConversationStates state : states) {
@@ -559,7 +560,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 
-	public void add(final ConversationStates state, final List<String> triggers, final ConversationStates nextState,
+	public void add(final ConversationStates state, final Collection<String> triggers, final ConversationStates nextState,
 			final String reply, final ChatAction action) {
 		for (final String trigger : triggers) {
 			add(state, trigger, null, nextState, reply, action);
@@ -681,7 +682,7 @@ public class SpeakerNPC extends NPC {
 	 * @param triggers
 	 * @param text
 	 */
-	public void addReply(final List<String> triggers, final String text) {
+	public void addReply(final Collection<String> triggers, final String text) {
 		add(ConversationStates.ATTENDING, triggers,
 				ConversationStates.ATTENDING, text, null);
 	}
@@ -713,7 +714,7 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(final List<String> triggers, final String text, final ChatAction action) {
+	public void addReply(final Collection<String> triggers, final String text, final ChatAction action) {
 		add(ConversationStates.ATTENDING, triggers, null,
 				ConversationStates.ATTENDING, text, action);
 
@@ -760,7 +761,7 @@ public class SpeakerNPC extends NPC {
 	 * @param triggers - player's keywords for npc emotion
 	 * @param npcAction - npc's emotion
 	 */
-	public void addEmotion(final List<String> triggers, final String npcAction) {
+	public void addEmotion(final Collection<String> triggers, final String npcAction) {
 		add(ConversationStates.IDLE, triggers,
 				ConversationStates.IDLE, null, new NPCEmoteAction(npcAction));
 		add(ConversationStates.ATTENDING, triggers,
