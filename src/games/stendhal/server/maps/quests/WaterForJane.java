@@ -71,7 +71,7 @@ public class WaterForJane extends AbstractQuest {
 				questTrigger, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"I'm terribly thirsty, could you possibly get me some fresh water please?",
+				"*whispers* I'm terribly thirsty, could you possibly get me some fresh water please?",
 				null);
 		
 		// player can repeat quest
@@ -79,7 +79,7 @@ public class WaterForJane extends AbstractQuest {
 				questTrigger, 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
-				"My throat is dry again, could you fetch me a little more water?",
+				"*whispers* My throat is dry again, could you fetch me a little more water?",
 				null);	
 		
 		// player can't repeat quest
@@ -87,7 +87,7 @@ public class WaterForJane extends AbstractQuest {
 				questTrigger, 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
-				"Thank you, I don't need anything right now.",
+				"*whispers* Thank you, I don't need anything right now.",
 				null);	
 		
 		// if the quest is active we deal with the response to quest/water in a following step
@@ -97,7 +97,7 @@ public class WaterForJane extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Thank you!",
+				"Thank you! Natural spring water is best, back home I get mine in the mountains.",
 				new SetQuestAction(QUEST_SLOT, 0, "start"));
 		
 		// Player says no, they've lost karma
@@ -167,7 +167,7 @@ public class WaterForJane extends AbstractQuest {
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("water"))),
 				ConversationStates.ATTENDING, 
-				"I'm waiting for you to bring me some water.",
+				"*whispers* I'm waiting for you to bring me some water.",
 				null);
 	}
 	
@@ -193,13 +193,13 @@ public class WaterForJane extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Jane is thirsty.");
+		res.add("Poor Jane is thirsty from lying out in the hot Athor sun all day.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("I told Jane I didn't want to fetch water for her.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
-			res.add("I agreed to fetch some water.");
+			res.add("I agreed to fetch some water to quench Jane's thirst.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") || isCompleted(player)) {
 			res.add("I found a source of fresh water.");
