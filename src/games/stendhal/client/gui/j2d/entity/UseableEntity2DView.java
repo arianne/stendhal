@@ -137,7 +137,11 @@ class UseableEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(action.getRepresentation());
+		if (entity.getRPObject().has("menu")) {
+			list.add(entity.getRPObject().get("menu"));
+		} else {
+			list.add(action.getRepresentation());
+		}
 
 		super.buildActions(list);
 	}
@@ -161,7 +165,10 @@ class UseableEntity2DView extends Entity2DView {
 	 *            The action.
 	 */
 	@Override
-	public void onAction(final ActionType at) {
+	public void onAction(ActionType at) {
+		if (at == null) {
+			at = action;
+		}
 		if (isReleased()) {
 			return;
 		}
