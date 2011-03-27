@@ -53,12 +53,11 @@ class MapPanel extends JComponent {
 	/**
 	 * The color of other players (white).
 	 */
-	
-	
+
 	/** width of the minimap. */
-	private static final int WIDTH = 128;
+	private static final int MAP_WIDTH = 128;
 	/** height of the minimap. */
-	private static final int HEIGHT = 128;
+	private static final int MAP_HEIGHT = 128;
 	/** height of the title */
 	private static final int TITLE_HEIGHT = 15;
 	/** Minimum scale of the map; the minimum size of one tile in pixels */
@@ -66,6 +65,7 @@ class MapPanel extends JComponent {
 	
 	private final StendhalClient client;
 	private final MapPanelController controller;
+
 	/**
 	 * The player X coordinate.
 	 */
@@ -124,7 +124,7 @@ class MapPanel extends JComponent {
 		this.controller = controller;
 		// black area outside the map
 		setBackground(Color.black);
-		updateSize(new Dimension(WIDTH, HEIGHT + TITLE_HEIGHT));
+		updateSize(new Dimension(MAP_WIDTH, MAP_HEIGHT + TITLE_HEIGHT));
 		setOpaque(true);
 		
 		// handle clicks for moving.
@@ -306,9 +306,9 @@ class MapPanel extends JComponent {
 		// calculate the size and scale of the map
 		final int mapWidth = cd.getWidth();
 		final int mapHeight = cd.getHeight();
-		final int scale = Math.max(MINIMUM_SCALE, Math.min(HEIGHT / mapHeight, WIDTH / mapWidth));
-		final int width = Math.min(WIDTH, mapWidth * scale);
-		final int height = Math.min(HEIGHT, mapHeight * scale);
+		final int scale = Math.max(MINIMUM_SCALE, Math.min(MAP_HEIGHT / mapHeight, MAP_WIDTH / mapWidth));
+		final int width = Math.min(MAP_WIDTH, mapWidth * scale);
+		final int height = Math.min(MAP_HEIGHT, mapHeight * scale);
 		
 		// this.getGraphicsConfiguration is not thread safe
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
@@ -342,7 +342,7 @@ class MapPanel extends JComponent {
 				MapPanel.this.scale = scale;
 				MapPanel.this.width = width;
 				MapPanel.this.height = height;
-				updateSize(new Dimension(WIDTH, height + TITLE_HEIGHT));
+				updateSize(new Dimension(MAP_WIDTH, height + TITLE_HEIGHT));
 				updateView();
 			}
 		});
