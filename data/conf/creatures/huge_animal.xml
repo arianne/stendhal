@@ -39,7 +39,7 @@
 
  <creature name="giant kobold">
     <type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:4"/>
-    <description></description>
+    <description>You see a giant kobold. Though generally playful it doesn't quite know it's own strength. When it asks for a hug, it's best to decline that offer.</description>
     <attributes>
       <atk value="440"/>
       <def value="57"/>
