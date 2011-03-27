@@ -217,6 +217,7 @@ public class StatsPanelController {
 	 * @param slot
 	 * @param object
 	 */
+	@SuppressWarnings("null")
 	private void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
 		String id = object.get("id"); 
@@ -236,13 +237,13 @@ public class StatsPanelController {
 			// Then the quantity has arrived in previous event
 			add = true;
 		}
-	
+
 		if (add) {
 			set.put(object.get("id"), object);
 			updateMoney();
 		}
 	}
-	
+
 	/**
 	 * Called when items are removed from a potential money slot.
 	 * 
