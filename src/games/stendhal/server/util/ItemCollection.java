@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -123,8 +123,8 @@ public class ItemCollection extends TreeMap<String, Integer> {
     public List<String> toStringList() {
         final List<String> result = new LinkedList<String>();
 
-        for (final Map.Entry<String, Integer> item : entrySet()) {
-            result.add(Grammar.quantityplnoun(item.getValue(), item.getKey()));
+        for (final Map.Entry<String, Integer> entry : entrySet()) {
+            result.add(Grammar.quantityplnoun(entry.getValue(), entry.getKey()));
         }
 
         return result;
