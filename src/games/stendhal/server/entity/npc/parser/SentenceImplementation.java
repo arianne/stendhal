@@ -546,10 +546,17 @@ public final class SentenceImplementation extends Sentence {
                     if ((curType != null) && (nextType != null)) {
                         // left-merge composite nouns and nouns with preceding adjectives or verbs
                         if (isCompoundNoun(curType, nextType, precedingVerb)) {
-                            // special case for "ice cream" -> "ice"
-                            if (curr.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
+                            // special case for "ice cream" -> "ice" and "teddy bear" -> "teddy"
+                        	// (may be better to handle elsewhere in the game code)
+                            if ((curr.getMainWord().equals("ice") && next.getMainWord().equals("cream")) ||
+                            	(curr.getMainWord().equals("teddy") && next.getMainWord().equals("bear"))) {
                                 curr.mergeRight(next, true);
                                 expressions.remove(next);
+
+                                // special case to transform "ice cream" into the item name "icecream"
+                                if (curr.getMainWord().equals("ice")) {
+                                	curr.setNormalized("icecream");
+                                }
                             } else {
                                 next.mergeLeft(curr, true);
                                 expressions.remove(curr);

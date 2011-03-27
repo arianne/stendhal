@@ -284,17 +284,23 @@ public class ConversationParserTest {
 		assertEquals("fish", sentence.getObject(0).getMainWord());
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("buy fish!", sentence.getNormalized());
+	}
 
-		sentence = ConversationParser.parse("i would like to have an ice cream");
+	/**
+	 * Tests for ice cream.
+	 */
+	@Test
+	public final void testIceCream() {
+		Sentence sentence = ConversationParser.parse("i would like to have an ice cream");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals(1, sentence.getSubjectCount());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("ice", sentence.getObject(0).getMainWord());
-		assertEquals("ice cream", sentence.getObjectName());
-		assertEquals("i buy ice cream!", sentence.getNormalized());
-		assertEquals("i/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
+		assertEquals("icecream", sentence.getObject(0).getMainWord());
+		assertEquals("icecream", sentence.getObjectName());
+		assertEquals("i buy icecream!", sentence.getNormalized());
+		assertEquals("i/SUB-PRO buy/VER-CON icecream/OBJ!", sentence.toString());
 
 		sentence = ConversationParser.parse("would you like to have an ice cream?");
 		assertFalse(sentence.hasError());
@@ -302,10 +308,35 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals(1, sentence.getSubjectCount());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("ice", sentence.getObject(0).getMainWord());
-		assertEquals("ice cream", sentence.getObjectName());
-		assertEquals("you buy ice cream!", sentence.getNormalized());
-		assertEquals("you/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
+		assertEquals("icecream", sentence.getObject(0).getMainWord());
+		assertEquals("icecream", sentence.getObjectName());
+		assertEquals("you buy icecream!", sentence.getNormalized());
+		assertEquals("you/SUB-PRO buy/VER-CON icecream/OBJ!", sentence.toString());
+	}
+
+	/**
+	 * Tests for teddy bears.
+	 */
+	@Test
+	public final void testTeddyBear() {
+		Sentence sentence = ConversationParser.parse("I love my teddy bear.");
+		assertFalse(sentence.hasError());
+		assertEquals("i", sentence.getSubject(0).getNormalized());
+		assertEquals("love", sentence.getVerbString());
+		assertEquals(1, sentence.getSubjectCount());
+		assertEquals(1, sentence.getObjectCount());
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("teddy", sentence.getObject(0).getMainWord());
+		assertEquals("my teddy bear", sentence.getObjectName());
+		assertEquals("i love my teddy bear.", sentence.getNormalized());
+		assertEquals("i/SUB-PRO love/VER my teddy bear/OBJ.", sentence.toString());
+
+		sentence = ConversationParser.parse("teddy bear");
+		assertFalse(sentence.hasError());
+		assertEquals("teddy", sentence.getTriggerExpression().getMainWord());
+		assertEquals("teddy bear", sentence.getTriggerExpression().getNormalized());
+		assertEquals("teddy bear", sentence.getNormalized());
+		assertEquals("teddy bear/OBJ", sentence.toString());
 	}
 
 	/**

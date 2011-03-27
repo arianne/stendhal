@@ -65,8 +65,7 @@ public class PlinksToyTest {
 	 * Tests for quest.
 	 */
 	@Test
-	public void testQuest() {
-		
+	public void testQuest() {	
 		npc = SingletonRepository.getNPCList().get("Plink");
 		en = npc.getEngine();
 		
@@ -82,6 +81,11 @@ public class PlinksToyTest {
 		en.step(player, "hi");
 		assertEquals("*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?", getReply(npc));
 		en.step(player, "teddy");
+		assertEquals("Teddy is my favourite toy! Please will you bring him back?", getReply(npc));
+		en.step(player, "no");
+		assertEquals("*sniff* But... but... PLEASE! *cries*", getReply(npc));
+
+		en.step(player, "teddy bear");
 		assertEquals("Teddy is my favourite toy! Please will you bring him back?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("*sniff* Thanks a lot! *smile*", getReply(npc));
