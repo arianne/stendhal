@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -55,4 +57,21 @@ public class ConversationPhrases {
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye", "goodbye",
 			"farewell", "cya", "adios");
 
+	/** combine a string collection (list) with additional strings */
+	public static final List<String> combine(Collection<String> list, String ...args) {
+		List<String> ret = new ArrayList<String>(list);
+
+		for(String s : args) {
+			ret.add(s);
+		}
+
+		return ret;
+	}
+
+	/** combine a string collection with another collection */
+	public static final List<String> combine(Collection<String> list1, Collection<String> list2) {
+		List<String> ret = new ArrayList<String>(list1);
+		ret.addAll(list2);
+		return ret;
+	}
 }
