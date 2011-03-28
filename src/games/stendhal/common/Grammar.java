@@ -313,6 +313,7 @@ public class Grammar {
 			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
 					"loaves of ");
 		} else if (result.equals("beer")
+				|| result.equals("water")
 				|| result.equals("fierywater")
 				|| result.equals("milk")
 				|| result.endsWith("potion")
