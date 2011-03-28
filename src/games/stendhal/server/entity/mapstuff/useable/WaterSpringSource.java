@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -142,6 +143,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 		if (successful) {
 			final String itemName = items[Rand.rand(items.length)];
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
+			int amount = 1;
 			if (itemName.equals("water"))
 					 {
 				/*
@@ -152,7 +154,9 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			}
 
 			player.equipOrPutOnGround(item);
-			player.sendPrivateText("You were lucky and filled an empty flask with water.");
+			player.sendPrivateText("You were lucky and filled "
+					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
+			
 		} else {
 			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's broken.");
 		}
