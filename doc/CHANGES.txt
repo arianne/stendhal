@@ -25,7 +25,8 @@ Changelog
 - improvements in understanding item names when talking with merchandizers, e.g. "solid plate shields"
 - fixed "porcino" singular and made NPC parser understand (some) misspelled words like "porcinis"
 - non-exact answer matching in the fishermans license quiz
-- reconise the expressions "ice cream" and "teddy bear"
+- recognise the expressions "ice cream" and "teddy bear"
+- fix display texts for "ice cream"
 
 0.92: Achievements and Expedition Groups
 26th February 2011
