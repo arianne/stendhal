@@ -97,7 +97,7 @@ public class WaterForJane extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Thank you! Natural spring water is best, back home I get mine in the mountains.",
+				"Thank you! Natural spring water is best, back home I get mine at a waterfall.",
 				new SetQuestAction(QUEST_SLOT, 0, "start"));
 		
 		// Player says no, they've lost karma
@@ -131,7 +131,7 @@ public class WaterForJane extends AbstractQuest {
 					Arrays.asList("water", "clean", "check"),
 					new NotCondition(new PlayerHasItemWithHimCondition("water")),
 					ConversationStates.ATTENDING, 
-					"You can gather water from natural mountain springs. If you bring it to me I can check the purity for you.",
+					"You can gather water from natural mountain springs or bigger springs like next to waterfalls. If you bring it to me I can check the purity for you.",
 					null);
 
 	}
