@@ -13,6 +13,8 @@ import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -89,7 +91,41 @@ public class Engine {
 	 */
 	public void add(final ConversationStates state, final String triggerString, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
-		add(state, triggerString, null, condition, secondary, nextState, reply, action);
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, Arrays.asList(triggerString), null, condition, reply, action);
+
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
+	}
+
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 * 
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param triggerStrings
+	 *            a list of inputs for this transition, must not be null
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple sentence reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
+		if (triggerStrings == null) {
+			throw new IllegalArgumentException("trigger list must not be null");
+		}
+
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, triggerStrings, null, condition, reply, action);
+
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
 	}
 
 	/**
@@ -104,45 +140,22 @@ public class Engine {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(final ConversationStates state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
+	public void addMatching(final ConversationStates state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
-		// normalise trigger expressions using the conversation parser
-		final Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, Arrays.asList(triggerString), matcher, condition, reply, action);
 
-		// look for already existing rule with identical input parameters
-		final Transition existing = get(state, triggerExpression, condition);
-
-		if (existing != null) {
-			final String existingReply = existing.getReply();
-			final PostTransitionAction existingAction = existing.getAction();
-
-			// Concatenate the previous and the new reply texts if the new one is not there already.
-			if ((existingReply != null) && (reply != null) && !existingReply.contains(reply)) {
-				existing.setReply(existingReply + " " + reply);
-			} else {
-				existing.setReply(reply);
-			}
-
-			// check for ambiguous state transitions
-			if (((action == null) && (existingAction == null))
-					|| ((action != null) && action.equals(existingAction))) {
-				return; // no action or equal to an already existing action
-			} else {
-				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
-				+ " existingAction='" + existingAction + "' newAction='" + action + "'");
-			}
-		}
-
-		stateTransitionTable.add(new Transition(state, triggerExpression, condition, secondary, nextState, reply, action));
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
 	}
 
 	/**
 	 * Adds a new set of transitions to the FSM.
-	 * 
 	 * @param state
 	 *            the starting state of the FSM
-	 * @param triggers
+	 * @param triggerStrings
 	 *            a list of inputs for this transition, must not be null
+	 * @param matcher
+	 *			  Expression matcher
 	 * @param condition
 	 *            null or condition that has to return true for this transition
 	 *            to be considered
@@ -155,14 +168,93 @@ public class Engine {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition,
+	public void addMatching(final ConversationStates state, final Collection<String> triggerStrings, final ExpressionMatcher matcher, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
-		if (triggers == null) {
-			throw new IllegalArgumentException("triggers list must not be null");
+		if (triggerStrings == null) {
+			throw new IllegalArgumentException("trigger list must not be null");
 		}
-		for (final String trigger : triggers) {
-			add(state, trigger, condition, secondary, nextState, reply, action);
+
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, triggerStrings, matcher, condition, reply, action);
+
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
+	}
+
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 * @param triggerExpressions
+	 *            a list of trigger expressions for this transition, must not be null
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple sentence reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(Collection<Expression> triggerExpressions, final ConversationStates state, final ChatCondition condition,
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
+		if (triggerExpressions!=null && !triggerExpressions.isEmpty()) {
+			stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action));
 		}
+	}
+
+	/**
+	 * Create a collection of trigger expressions from trigger strings
+	 * while checking for duplicate transitions.
+	 * @param state
+	 * @param triggerStrings
+	 * @param matcher
+	 * @param condition
+	 * @param reply
+	 * @param action
+	 * @return
+	 */
+	private Collection<Expression> createUniqueTriggerExpressions(
+			final ConversationStates state,
+			final Collection<String> triggerStrings,
+			final ExpressionMatcher matcher, final ChatCondition condition,
+			final String reply, final ChatAction action) {
+		Collection<Expression> triggerExpressions = new ArrayList<Expression>();
+
+		for(final String triggerString : triggerStrings) {
+			// normalise trigger expressions using the conversation parser
+			final Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString, matcher);
+
+			// look for already existing rule with identical input parameters
+			final Transition existing = get(state, triggerExpression, condition);
+
+			if (existing != null) {
+				final String existingReply = existing.getReply();
+				final PostTransitionAction existingAction = existing.getAction();
+
+				// Concatenate the previous and the new reply texts if the new one is not there already.
+				if ((existingReply != null) && (reply != null) && !existingReply.contains(reply)) {
+					existing.setReply(existingReply + " " + reply);
+				} else {
+					existing.setReply(reply);
+				}
+
+				// check for ambiguous state transitions
+				if (((action == null) && (existingAction == null))
+						|| ((action != null) && action.equals(existingAction))) {
+					return null; // no action or equal to an already existing action
+				} else {
+					logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
+					+ " existingAction='" + existingAction + "' newAction='" + action + "'");
+				}
+			}
+
+			triggerExpressions.add(triggerExpression);
+		}
+
+		return triggerExpressions;
 	}
 
 	/**
@@ -275,10 +367,12 @@ public class Engine {
 
 		@Override
 		public boolean add(final Transition otherTrans) {
-			for (final Transition transition : this) {
-				if (transition.matchesNormalizedWithCondition(otherTrans.getState(),
-						otherTrans.getTrigger(), otherTrans.getCondition())) {
-					return false;
+			for(final Transition transition : this) {
+				for(Expression otherTriggerExpr : otherTrans.getTriggers()) {
+					if (transition.matchesNormalizedWithCondition(otherTrans.getState(),
+							otherTriggerExpr, otherTrans.getCondition())) {
+						return false;
+					}
 				}
 			}
 

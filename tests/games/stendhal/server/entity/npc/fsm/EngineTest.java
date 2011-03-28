@@ -59,7 +59,7 @@ public class EngineTest {
 	public void testAddSingleStringEmptyCondition() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ConversationStates state = IDLE;
-		
+
 		final String triggers = "boo";
 
 		final ConversationStates nextState = ConversationStates.ATTENDING;
@@ -74,7 +74,7 @@ public class EngineTest {
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
 	}
-	
+
 	/**
 	 * Tests for addBothActionsNull.
 	 */
@@ -82,52 +82,48 @@ public class EngineTest {
 	public void testaddBothActionsNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		assertTrue(en.getTransitions().isEmpty());
-		en.add(IDLE, null, null, null, false, IDLE, null, null);
+		en.add(IDLE, (String)null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, false, IDLE, null, null);
+		en.add(IDLE, (String)null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
 	}
-	
+
 	/**
 	 * Tests for addExistingActionNull.
 	 */
 	@Test
 	public void testaddExistingActionNull() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
-		
-		en.add(IDLE, null, null, null, false, IDLE, null, null);
-		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, false, IDLE, null, new ChatAction() {
 
+		en.add(IDLE, (String)null, null, false, IDLE, null, null);
+		assertThat(en.getTransitions().size(), is(1));
+		en.add(IDLE, (String)null, null, false, IDLE, null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		});
 		assertThat(en.getTransitions().size(), is(2));
-		
 	}
-	
+
 	/**
 	 * Tests for addnewNullAction.
 	 */
 	@Test
 	public void testaddnewNullAction() throws Exception {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
-		
-		
-		en.add(IDLE, null, null, null, false, IDLE, null, new ChatAction() {
 
+
+		en.add(IDLE, (String)null, null, false, IDLE, null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		});
 		assertThat(en.getTransitions().size(), is(1));
-		en.add(IDLE, null, null, null, false, IDLE, null, null);
-		
+		en.add(IDLE, (String)null, null, false, IDLE, null, null);
+
 		assertThat(en.getTransitions().size(), is(2));
-		
 	}
-	
+
 	/**
 	 * Tests for addSameAction.
 	 */
@@ -140,14 +136,13 @@ public class EngineTest {
 				// empty method
 			}
 		};
-		en.add(IDLE, null, null, null, false, IDLE, null, chatAction);
+		en.add(IDLE, (String)null, null, false, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
-		
-		en.add(IDLE, null, null, null, false, IDLE, null, chatAction);
+
+		en.add(IDLE, (String)null, null, false, IDLE, null, chatAction);
 		assertThat(en.getTransitions().size(), is(1));
-		
 	}
-	
+
 	/**
 	 * Tests for addNotSameAction.
 	 */
@@ -166,14 +161,12 @@ public class EngineTest {
 				// empty method
 			}
 		};
-		en.add(IDLE, null, null, null, false, IDLE, null, chatAction1);
+		en.add(IDLE, (String)null, null, false, IDLE, null, chatAction1);
 		assertThat(en.getTransitions().size(), is(1));
-		
-		en.add(IDLE, null, null, null, false, IDLE, null, chatAction2);
+
+		en.add(IDLE, (String)null, null, false, IDLE, null, chatAction2);
 		assertThat(en.getTransitions().size(), is(2));
-		
 	}
-	
 
 	/**
 	 * Tests for addSingleStringValidCondition.
@@ -185,7 +178,7 @@ public class EngineTest {
 		final Engine en = new Engine(bob);
 		ConversationStates state = IDLE;
 		ConversationStates nextState = ATTENDING;
-		
+
 		final String triggers = "boo";
 
 		final ChatCondition cc = new ChatCondition() {
@@ -195,7 +188,6 @@ public class EngineTest {
 			}
 		};
 
-		
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {

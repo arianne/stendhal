@@ -6,6 +6,7 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -70,14 +71,16 @@ public class DumpTransitions extends ScriptImpl {
 		for (final Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> "
 					+ getStateName(transition.getNextState()));
-			final String transitionName = getExtendedTransitionName(transition);
-			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
+
+			for(Expression expr : transition.getTriggers()) {
+				final String transitionName = getExtendedTransitionName(transition, expr.toString());
+
+				dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
+			}
 		}
 	}
 
-	private static String getExtendedTransitionName(final Transition transition) {
-		String transitionName = transition.getTrigger().toString();
-
+	private static String getExtendedTransitionName(final Transition transition, String transitionName) {
 		if (transition.getCondition() != null) {
 			if (!transition.isPreferred()) {
 				transitionName = "-" + transitionName;

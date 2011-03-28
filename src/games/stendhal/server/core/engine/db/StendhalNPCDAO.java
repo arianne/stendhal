@@ -15,6 +15,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
+import games.stendhal.server.entity.npc.parser.Expression;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -59,7 +60,7 @@ public class StendhalNPCDAO {
 	}
 
 	/**
-	 * gets the answer to the "job" question in ATTENTING state.
+	 * gets the answer to the "job" question in ATTENDING state.
 	 *
 	 * @param npc SpeakerNPC object
 	 * @return the answer to the job question or null in case there is no job specified
@@ -68,8 +69,10 @@ public class StendhalNPCDAO {
 		List<Transition> transitions = npc.getEngine().getTransitions();
 		for (Transition transition : transitions) {
 			if (transition.getState() == ConversationStates.ATTENDING) {
-				if (transition.getTrigger().getOriginal().equals("job")) {
-					return transition.getReply();
+				for(Expression triggerExpr : transition.getTriggers()) {
+					if (triggerExpr.getOriginal().equals("job")) {
+						return transition.getReply();
+					}
 				}
 			}
 		}

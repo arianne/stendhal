@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TransitionGraphEvent;
 import games.stendhal.server.util.UniqueIdentifierMap;
@@ -88,14 +89,16 @@ public class DumpTransitionsEx extends ScriptImpl {
 		for (final Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> "
 					+ getStateName(transition.getNextState()));
-			final String transitionName = getExtendedTransitionName(transition);
-			dumpedTable.append(" [ label = \"" + transitionName.replace("{", "\\{").replace("}", "\\}") + "\" ];\r\n");
+
+			for(Expression expr : transition.getTriggers()) {
+				final String transitionName = getExtendedTransitionName(transition, expr.toString());
+
+				dumpedTable.append(" [ label = \"" + transitionName.replace("{", "\\{").replace("}", "\\}") + "\" ];\r\n");
+			}
 		}
 	}
 
-	private String getExtendedTransitionName(final Transition transition) {
-		String transitionName = transition.getTrigger().toString();
-
+	private String getExtendedTransitionName(final Transition transition, String transitionName) {
 		if (transition.getCondition() != null) {
 			String key = conditions.add(transition.getCondition());
 

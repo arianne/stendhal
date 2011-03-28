@@ -16,6 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -49,7 +52,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testTransition() {
-		new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 	}
 
 	/**
@@ -57,7 +60,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testMatches() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertTrue(t.matches(someconst, ConversationParser.parse("trigger")));
 		assertFalse(t.matches(idle_0, ConversationParser.parse("trigger")));
 		assertFalse(t.matches(idle_0, ConversationParser.parse(null)));
@@ -69,7 +72,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testMatchesNormalized() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertTrue(t.matchesNormalized(someconst, ConversationParser.parse("trigger")));
 		assertFalse(t.matchesNormalized(idle_0, ConversationParser.parse("trigger")));
 		assertFalse(t.matchesNormalized(idle_0, ConversationParser.parse(null)));
@@ -81,7 +84,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testMatchesSimilar() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertTrue(t.matchesSimilar(someconst, ConversationParser.parse("triggerx")));
 		assertFalse(t.matchesSimilar(someconst, ConversationParser.parse("xxxtriggerxxx")));
 		assertFalse(t.matchesSimilar(idle_0, ConversationParser.parse("triggerx")));
@@ -94,26 +97,26 @@ public class TransitionTest {
 	@Test
 	public final void testIsAbsoluteJump() {
 		Transition t = new Transition(ConversationStates.ANY,
-				ConversationParser.createTriggerExpression("trigger"),
+				Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 				null, false, idle_0, null, null);
 		assertTrue(t.matchesWild(ConversationParser.parse("trigger")));
 
-		t = new Transition(ConversationStates.ANY, ConversationParser.createTriggerExpression("TRiggER"), null, false, idle_0, null, null);
+		t = new Transition(ConversationStates.ANY, Arrays.asList(ConversationParser.createTriggerExpression("TRiggER")), null, false, idle_0, null, null);
 		assertFalse(t.matchesWild(ConversationParser.parse("trigger")));
 
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("Trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("Trigger")),
 				null, false, idle_0, null, null);
 		assertFalse(t.matchesWild(ConversationParser.parse("trigger")));
 
 		t = new Transition(ConversationStates.ANY,
-				ConversationParser.createTriggerExpression("trigger"),
+				Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 				null, false, idle_0, null, null);
 		assertTrue(t.matchesWildNormalized(ConversationParser.parse("trigger")));
 
-		t = new Transition(ConversationStates.ANY, ConversationParser.createTriggerExpression("TRiggER"), null, false, idle_0, null, null);
+		t = new Transition(ConversationStates.ANY, Arrays.asList(ConversationParser.createTriggerExpression("TRiggER")), null, false, idle_0, null, null);
 		assertTrue(t.matchesWildNormalized(ConversationParser.parse("trigger")));
 
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("Trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("Trigger")),
 				null, false, idle_0, null, null);
 		assertFalse(t.matchesWildNormalized(ConversationParser.parse("trigger")));
 	}
@@ -123,14 +126,14 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testIsConditionFulfilled() {
-		Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 				new AlwaysTrueCondition(), false, idle_0, null, null);
 		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 				new NotCondition(new AlwaysTrueCondition()), false, idle_0, null, null);
 		assertFalse(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
@@ -141,7 +144,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetAction() {
-		Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 										null, false, idle_0, null, null);
 		assertNull(t.getAction());
 		final PostTransitionAction postTransitionAction = new PostTransitionAction() {
@@ -150,7 +153,7 @@ public class TransitionTest {
 				// do nothing
 			}
 		};
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 							null, false, idle_0, null, postTransitionAction);
 		assertEquals(postTransitionAction, t.getAction());
 	}
@@ -160,7 +163,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetCondition() {
-		Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 										null, false, idle_0, null, null);
 		assertNull(t.getCondition());
 		final ChatCondition cond = new ChatCondition() {
@@ -168,7 +171,7 @@ public class TransitionTest {
 				return false;
 			}
 		};
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 							cond, false, idle_0, null, null);
 		assertEquals(cond, t.getCondition());
 	}
@@ -178,10 +181,10 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetNextState() {
-		Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 										null, false, idle_0, null, null);
 		assertEquals(idle_0, t.getNextState());
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 							null, false, ConversationStates.ATTENDING, null, null);
 		assertEquals(ConversationStates.ATTENDING, t.getNextState());
 	}
@@ -191,10 +194,10 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetSetReply() {
-		Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"),
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")),
 										null, false, idle_0, null, null);
 		assertNull(t.getReply());
-		t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, "output", null);
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, "output", null);
 		assertEquals("output", t.getReply());
 		t.setReply("blabla");
 		assertEquals("blabla", t.getReply());
@@ -205,7 +208,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetState() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertEquals(someconst, t.getState());
 	}
 
@@ -214,8 +217,8 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testGetTrigger() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
-		assertEquals("trigger", t.getTrigger().getNormalized());
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
+		assertEquals("trigger", t.getTriggers().iterator().next().getNormalized());
 	}
 
 	/**
@@ -223,7 +226,7 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testToString() {
-		final Transition t = new Transition(someconst, ConversationParser.createTriggerExpression("trigger"), null, false, idle_0, null, null);
+		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
 		assertEquals("[INFORMATION_9,trigger,IDLE,null]", t.toString());
 	}
 
