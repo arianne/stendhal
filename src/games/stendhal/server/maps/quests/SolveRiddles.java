@@ -93,7 +93,12 @@ public class SolveRiddles extends AbstractQuest {
 		 */
 		public boolean matches(String riddle, Sentence sentence) {
 			final Sentence answer = sentence.parseAsMatchingSource();
-
+			if (answer == null || riddleMap == null || riddleMap.get(riddle) == null) {
+				logger.error("SolvingRiddles$Riddle.matches: riddle=" + riddle + " answer=" + answer + " riddleMap=" + riddleMap);
+				if (riddleMap != null) {
+					logger.error("riddleMap.get(riddle)=" + riddleMap.get(riddle));
+				}
+			}
 			for (String correct : riddleMap.get(riddle)) {
 				final Sentence expected = ConversationParser.parse(correct, new SimilarExprMatcher());
 				if (answer.matchesFull(expected)) {
