@@ -93,11 +93,13 @@ public class SolveRiddles extends AbstractQuest {
 		 */
 		public boolean matches(String riddle, Sentence sentence) {
 			final Sentence answer = sentence.parseAsMatchingSource();
-			if (answer == null || riddleMap == null || riddleMap.get(riddle) == null) {
-				logger.error("SolvingRiddles$Riddle.matches: riddle=" + riddle + " answer=" + answer + " riddleMap=" + riddleMap);
-				if (riddleMap != null) {
-					logger.error("riddleMap.get(riddle)=" + riddleMap.get(riddle));
-				}
+
+			// if the riddle is unknown, teleport the player out.
+			// this can happen if the riddle was removed from the xml file
+			// (or if the character is copied to a testserver with a different file)
+			if (riddleMap.get(riddle) == null) {
+				logger.warn("Accepting any answer for unknown riddle: " + riddle);
+				return true;
 			}
 			for (String correct : riddleMap.get(riddle)) {
 				final Sentence expected = ConversationParser.parse(correct, new SimilarExprMatcher());
