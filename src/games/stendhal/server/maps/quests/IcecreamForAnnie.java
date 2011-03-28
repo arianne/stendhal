@@ -44,7 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Quest to buy icecream for a little girl.
+ * Quest to buy ice cream for a little girl.
  * You have to get approval from her mother before giving it to her
  *
  * @author kymara
@@ -85,7 +85,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Mummy says I mustn't talk to you any more. You're a stranger.",
 				null);
 		
-		// player didn't get icecream, meanie
+		// player didn't get ice cream, meanie
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
@@ -95,17 +95,17 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Hello. I'm hungry.",
 				null);
 		
-		// player got icecream and spoke to mummy
+		// player got ice cream and spoke to mummy
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestInStateCondition(QUEST_SLOT, "mummy"),
 						new PlayerHasItemWithHimCondition("icecream")),
 				ConversationStates.QUESTION_1, 
-				"Yummy! Is that icecream for me?",
+				"Yummy! Is that ice cream for me?",
 				null);
 		
-		// player spoke to mummy and hasn't got icecream
+		// player spoke to mummy and hasn't got ice cream
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
@@ -140,7 +140,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?",
+				"I'm hungry! I'd like an ice cream, please. Vanilla, with a chocolate flake. Will you get me one?",
 				null);
 		
 		// shouldn't happen
@@ -156,7 +156,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
-				"I hope another icecream wouldn't be greedy. Can you get me one?",
+				"I hope another ice cream wouldn't be greedy. Can you get me one?",
 				null);	
 		
 		// player can't repeat quest
@@ -164,18 +164,18 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
-				"I've had too much icecream. I feel sick.",
+				"I've had too much ice cream. I feel sick.",
 				null);	
 		
-		// player should be bringing icecream not asking about the quest
+		// player should be bringing ice cream not asking about the quest
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "eating;"))),
 				ConversationStates.ATTENDING,	
-				"Waaaaaaaa! Where is my icecream ....",
+				"Waaaaaaaa! Where is my ice cream ....",
 				null);
 		
-		// Player agrees to get the icecream
+		// Player agrees to get the ice cream
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, 
 				null,
@@ -191,7 +191,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Ok, I'll ask my mummy instead.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
-		// Player has got icecream and spoken to mummy
+		// Player has got ice cream and spoken to mummy
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("icecream"));
 		reward.add(new EquipItemAction("present"));
@@ -207,12 +207,12 @@ public class IcecreamForAnnie extends AbstractQuest {
 				"Thank you EVER so much! You are very kind. Here, take this present.",
 				new MultipleActions(reward));
 		
-		// player did have icecream but put it on ground after question?
+		// player did have ice cream but put it on ground after question?
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, 
 				new NotCondition(new PlayerHasItemWithHimCondition("icecream")),
 				ConversationStates.ATTENDING, 
-				"Hey, where's my icecream gone?!",
+				"Hey, where's my ice cream gone?!",
 				null);
 		
 		// Player says no, they've lost karma
@@ -235,7 +235,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 					ConversationStates.ATTENDING, "Hello, nice to meet you.",
 					null);
 
-		// player is supposed to begetting icecream
+		// player is supposed to begetting ice cream
 		mummyNPC.add(ConversationStates.IDLE, 
 					ConversationPhrases.GREETING_MESSAGES, 
 					new AndCondition(new GreetingMatchesNameCondition(mummyNPC.getName()),
@@ -255,8 +255,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
-				"Icecream for Annie",
-				"The best surprise for a litte girl like Annie is a cool icecream on summer days while playing on the playground.",
+				"Ice cream for Annie",
+				"The best surprise for a litte girl like Annie is a cool ice cream on summer days while playing on the playground.",
 				true);
 		icecreamStep();
 		meetMummyStep();
@@ -275,19 +275,19 @@ public class IcecreamForAnnie extends AbstractQuest {
 			res.add("I don't like sweet little girls.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start","mummy") || isCompleted(player)) {
-			res.add("Little Annie wants an icecream.");
+			res.add("Little Annie wants an ice cream.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start","mummy") && player.isEquipped("icecream") || isCompleted(player)) {
-			res.add("I found a tasty icecream for Annie.");
+			res.add("I found a tasty ice cream for Annie.");
 		}
         if ("mummy".equals(questState) || isCompleted(player)) {
-            res.add("I spoke to Mrs Jones, she agreed I could give an icecream to her daughter.");        
+            res.add("I spoke to Mrs Jones, she agreed I could give an ice cream to her daughter.");        
         }
         if (isCompleted(player)) {
             if (isRepeatable(player)) {
-                res.add("I took icecream to Annie, she gave me a present. Perhaps she'd like another now.");
+                res.add("I took ice cream to Annie, she gave me a present. Perhaps she'd like another now.");
             } else {
-                res.add("Annie is eating the icecream I gave her, and she gave me a present in return.");
+                res.add("Annie is eating the ice cream I gave her, and she gave me a present in return.");
             }			
 		}
 		return res;

@@ -89,7 +89,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "offer");
 		assertEquals("I'm a little girl, I haven't anything to offer.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?", getReply(npc));
+		assertEquals("I'm hungry! I'd like an ice cream, please. Vanilla, with a chocolate flake. Will you get me one?", getReply(npc));
 		en.step(player, "ok");
 		assertEquals("Thank you!", getReply(npc));
 		assertThat(player.getKarma(), greaterThan(oldkarma));
@@ -100,7 +100,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "hi");
 		assertEquals("Hello. I'm hungry.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Waaaaaaaa! Where is my icecream ....", getReply(npc));
+		assertEquals("Waaaaaaaa! Where is my ice cream ....", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));
 
@@ -111,19 +111,19 @@ public class IcecreamForAnnieTest {
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
-		assertEquals("Hi. Can I #offer you an icecream?", getReply(npc));
+		assertEquals("Hi. Can I #offer you an ice cream?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("An ice cream will cost 30. Do you want to buy it?", getReply(npc));
 		en.step(player, "no");
 
 		en.step(player, "offer");
-		assertEquals("I sell icecream.", getReply(npc));
+		assertEquals("I sell ice cream.", getReply(npc));
 		assertTrue(en.step(player, "buy 0 icecreams"));
-		assertEquals("Sorry, how many icecreams do you want to buy?!", getReply(npc));
-		en.step(player, "buy icecream");
-		assertEquals("An icecream will cost 30. Do you want to buy it?", getReply(npc));
+		assertEquals("Sorry, how many ice creams do you want to buy?!", getReply(npc));
+		en.step(player, "buy ice cream");
+		assertEquals("An ice cream will cost 30. Do you want to buy it?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Congratulations! Here is your icecream!", getReply(npc));
+		assertEquals("Congratulations! Here is your ice cream!", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye, enjoy your day!", getReply(npc));
 		assertTrue(player.isEquipped("icecream"));
@@ -151,7 +151,7 @@ public class IcecreamForAnnieTest {
 		final int xp = player.getXP();
 		final double karma = player.getKarma();
 		en.step(player, "hi");
-		assertEquals("Yummy! Is that icecream for me?", getReply(npc));
+		assertEquals("Yummy! Is that ice cream for me?", getReply(npc));
 		en.step(player, "yes");
 		// [15:06] kymara earns 500 experience points. 
 		assertFalse(player.isEquipped("icecream"));
@@ -166,7 +166,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "hi");
 		assertEquals("Hello.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I've had too much icecream. I feel sick.", getReply(npc));
+		assertEquals("I've had too much ice cream. I feel sick.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));
 
@@ -180,7 +180,7 @@ public class IcecreamForAnnieTest {
 		en.step(player, "hi");
 		assertEquals("Hello.", getReply(npc));
 		en.step(player, "task");
-		assertEquals("I hope another icecream wouldn't be greedy. Can you get me one?", getReply(npc));
+		assertEquals("I hope another ice cream wouldn't be greedy. Can you get me one?", getReply(npc));
 		en.step(player, "no");
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		assertThat(player.getKarma(), lessThan(newKarma));

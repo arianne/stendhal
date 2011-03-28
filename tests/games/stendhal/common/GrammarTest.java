@@ -161,6 +161,8 @@ public class GrammarTest {
 		assertEquals("suit of iron armor", Grammar.fullForm("iron armor"));
 		assertEquals("pair of iron legs", Grammar.fullForm("iron legs"));
 		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
+
+		assertEquals("ice cream", Grammar.fullForm("icecream"));
 	}
 
 	/**
@@ -173,7 +175,6 @@ public class GrammarTest {
 		assertEquals("A s", Grammar.A_noun("s"));
 		assertEquals("An a", Grammar.A_noun("a"));
 		assertEquals("A ", Grammar.A_noun(""));
-
 	}
 
 	/**

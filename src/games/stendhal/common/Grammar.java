@@ -363,7 +363,11 @@ public class Grammar {
 			result = lowString;
 		}
 
-		return result;
+		return fixItemNames(result);
+	}
+
+	public static String fixItemNames(final String str) {
+		return str.replace("icecream", "ice cream");
 	}
 
 	/**
@@ -967,14 +971,15 @@ public class Grammar {
 		if (collection == null) {
 			return "";
 		}
-
 		final String[] elements = collection.toArray(new String[collection.size()]);
+		String ret;
+
 		if (elements.length == 0) {
-			return "";
+			ret = "";
 		} else if (elements.length == 1) {
-			return quoteHash(elements[0]);
+			ret = quoteHash(elements[0]);
 		} else if (elements.length == 2) {
-			return quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
+			ret = quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
 		} else {
 			final StringBuilder sb = new StringBuilder();
 
@@ -983,8 +988,10 @@ public class Grammar {
 			}
 			sb.append("and " + quoteHash(elements[elements.length - 1]));
 
-			return sb.toString();
+			ret = sb.toString();
 		}
+
+		return fixItemNames(ret);
 	}
 	
 	/**

@@ -62,9 +62,9 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi. Can I #offer you an icecream?");
-				addJob("I sell delicious icecreams.");
-				addHelp("I can #offer you a refreshing icecream.");
+				addGreeting("Hi. Can I #offer you an ice cream?");
+				addJob("I sell delicious ice creams.");
+				addHelp("I can #offer you a refreshing ice cream.");
 				addQuest("Mine's a simple life, I don't need a lot.");
 				
 				add(ConversationStates.ATTENDING, 
@@ -74,7 +74,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 					null, 
 					new ChatAction() {
 						public void fire(final Player player,final Sentence sentence, final EventRaiser npc) {
-							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy icecream");
+							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy ice cream");
 							}
 						} );
 
@@ -88,7 +88,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 		npc.setEntityClass("icecreamsellernpc");
 		npc.setPosition(73, 54);
 		npc.initHP(100);
-		npc.setDescription("Sam has a job, all kids dream of. He sells icecream. Yummi!");
+		npc.setDescription("Sam has a job, all kids dream of. He sells ice cream. Yummi!");
 		zone.add(npc);
 	}
 }
