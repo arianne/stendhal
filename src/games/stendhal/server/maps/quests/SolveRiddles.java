@@ -267,6 +267,7 @@ public class SolveRiddles extends AbstractQuest {
 						player.sendPrivateText(NotificationType.POSITIVE, "You solved the riddle correctly and earned " + xpreward + " XP.");
 						player.addXP(xpreward);
 						player.notifyWorldAboutChanges();
+						npc.setCurrentState(ConversationStates.IDLE);
 					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(triggerText)) {
 						npc.say("The old order of things has passed away ... ");
 						npc.setCurrentState(ConversationStates.IDLE);
