@@ -3350,10 +3350,7 @@ Southeast: Docks
  
 
  <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">
- 			<entity x="75" y="62">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
-		</entity>
+
  </zone>
 
  <zone name="0_ados_coast_s" level="0" x="500896" y="500256" file="Level 0/ados/coast_s.tmx">

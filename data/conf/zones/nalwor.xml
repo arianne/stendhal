@@ -714,6 +714,11 @@ below average.
 
 	<zone name="0_nalwor_river_sw" level="0" x="500128" y="500384"
 		file="Level 0/nalwor/river_sw.tmx">
+		 	
+		 	<entity x="87" y="83">
+				<implementation
+					class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
+			</entity>
 	</zone>
 
 	<zone name="0_nalwor_river_s" level="0" x="500256" y="500384"
