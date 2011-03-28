@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.useable;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -94,8 +93,8 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	@Override
 	protected boolean isPrepared(final Player player) {
         /*
-        * The player 'throws' money into the well, like a wishing well donation.
-        * Check they have it before they use the well.
+        * The player can fill an empty flask at the spring.
+        * Check they have it before they can start filling it up.
 		*/
 		if (player.isEquipped("flask")) {
 			return true;
@@ -143,7 +142,6 @@ public class WaterSpringSource extends PlayerActivityEntity {
 		if (successful) {
 			final String itemName = items[Rand.rand(items.length)];
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-			int amount = 1;
 			if (itemName.equals("water"))
 					 {
 				/*
@@ -154,10 +152,9 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			}
 
 			player.equipOrPutOnGround(item);
-			player.sendPrivateText("You were lucky and filled "
-					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
+			player.sendPrivateText("You were lucky and filled an empty flask with water.");
 		} else {
-			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's gone.");
+			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's broken.");
 		}
 	}
 
@@ -171,6 +168,6 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	protected void onStarted(final Player player) {
 		// remove flask from player as they try to fill it.
 		player.drop("flask");
-		player.sendPrivateText("You started to fill a flask with fresh spring water. Hopefully it will not slip away!");
+		player.sendPrivateText("You started to fill fresh spring water into an empty flask. It will hopefully not slip out of your hand!");
 	}
 }
