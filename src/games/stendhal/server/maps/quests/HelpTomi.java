@@ -31,7 +31,6 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -101,7 +100,7 @@ public class HelpTomi extends AbstractQuest {
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("ice sword"))),
 			ConversationStates.ATTENDING, 
 			"my ice? ice plz", null);
-		
+
 		// says quest or ice and doesn't have an ice sword and has brought one in the past
 		npc.add(ConversationStates.ATTENDING,
 			questTrigger,
@@ -164,11 +163,10 @@ public class HelpTomi extends AbstractQuest {
 				"Help Tomi",
 				"Tomi, a boy being tortured in the hot hell, sweats all over his body. The only thing which can help him is... ICE!",
 				true);
-	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
-		questTrigger.add(extraTrigger);
+	    questTrigger = ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger);
 		step1();
-
 	}
+
 	@Override
 	public String getName() {
 		return "HelpTomi";
