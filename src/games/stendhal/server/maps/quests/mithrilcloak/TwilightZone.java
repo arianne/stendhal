@@ -72,7 +72,7 @@ class TwilightZone {
 				null);
 
 		// responding to question of how many they want, with a number
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+		npc.addMatching(ConversationStates.QUEST_ITEM_QUESTION,
 				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(1, 5000),

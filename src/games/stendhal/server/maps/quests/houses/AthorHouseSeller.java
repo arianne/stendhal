@@ -69,7 +69,7 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 				 null);
 		
 		// handle house numbers 101 to 108
-		add(ConversationStates.QUEST_OFFERED,
+		addMatching(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),

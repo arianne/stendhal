@@ -159,7 +159,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Too bad. I would have had a nice reward for you.", null);
 
-		fisherman.add(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
+		fisherman.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {

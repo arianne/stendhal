@@ -91,7 +91,7 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 				 null);
 		
 		// handle house numbers getLowestHouseNumber() - getHighestHouseNumber()
-		add(ConversationStates.QUEST_OFFERED,
+		addMatching(ConversationStates.QUEST_OFFERED,
 				 // match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),

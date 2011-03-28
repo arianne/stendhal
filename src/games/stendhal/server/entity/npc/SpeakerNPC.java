@@ -459,9 +459,9 @@ public class SpeakerNPC extends NPC {
 	 * @param reply
 	 * @param action
 	 */
-	public void add(final ConversationStates state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
+	public void addMatching(final ConversationStates state, final String trigger, final ExpressionMatcher matcher, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, trigger, matcher, condition, false, nextState, reply, action);
+		engine.addMatching(state, trigger, matcher, condition, false, nextState, reply, action);
 	}
 
 	/**
@@ -469,7 +469,7 @@ public class SpeakerNPC extends NPC {
 	 *
 	 * @param state
 	 *            the starting state of the FSM
-	 * @param triggers
+	 * @param triggerStrings
 	 *            a list of inputs for this transition
 	 * @param condition
 	 *            null or condition that has to return true for this transition
@@ -481,9 +481,9 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition,
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, triggers, condition, false, nextState, reply, action);
+		engine.add(state, triggerStrings, condition, false, nextState, reply, action);
 	}
 
 	/**
@@ -491,7 +491,7 @@ public class SpeakerNPC extends NPC {
 	 *
 	 * @param state
 	 *            the starting state of the FSM
-	 * @param triggers
+	 * @param triggerStrings
 	 *            a list of inputs for this transition
 	 * @param condition
 	 *            null or condition that has to return true for this transition
@@ -505,9 +505,9 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates state, final Collection<String> triggers, final ChatCondition condition, boolean secondary,
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition, boolean secondary,
 			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, triggers, condition, secondary, nextState, reply, action);
+		engine.add(state, triggerStrings, condition, secondary, nextState, reply, action);
 	}
 
 	/**
@@ -539,7 +539,7 @@ public class SpeakerNPC extends NPC {
 	 *
 	 * @param states
 	 *            the starting states of the FSM
-	 * @param triggers
+	 * @param triggerStrings
 	 *            a list of inputs for this transition
 	 * @param condition
 	 *            null or condition that has to return true for this transition
@@ -551,20 +551,18 @@ public class SpeakerNPC extends NPC {
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
-	public void add(final ConversationStates[] states, final Collection<String> triggers,
+	public void add(final ConversationStates[] states, final Collection<String> triggerStrings,
 			final ChatCondition condition, final ConversationStates nextState, final String reply,
 			final ChatAction action) {
 		for (final ConversationStates state : states) {
-			add(state, triggers, condition, nextState, reply, action);
+			add(state, triggerStrings, condition, nextState, reply, action);
 		}
 	}
 
 
-	public void add(final ConversationStates state, final Collection<String> triggers, final ConversationStates nextState,
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ConversationStates nextState,
 			final String reply, final ChatAction action) {
-		for (final String trigger : triggers) {
-			add(state, trigger, null, nextState, reply, action);
-		}
+		add(state, triggerStrings, null, nextState, reply, action);
 	}
 
 	public void listenTo(final Player player, final String text) {
@@ -679,11 +677,11 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * @param triggers
+	 * @param triggerStrings
 	 * @param text
 	 */
-	public void addReply(final Collection<String> triggers, final String text) {
-		add(ConversationStates.ATTENDING, triggers,
+	public void addReply(final Collection<String> triggerStrings, final String text) {
+		add(ConversationStates.ATTENDING, triggerStrings,
 				ConversationStates.ATTENDING, text, null);
 	}
 
@@ -710,12 +708,12 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Makes NPC say a text and/or do an action when a trigger is said.
 	 *
-	 * @param triggers
+	 * @param triggerStrings
 	 * @param text
 	 * @param action
 	 */
-	public void addReply(final Collection<String> triggers, final String text, final ChatAction action) {
-		add(ConversationStates.ATTENDING, triggers, null,
+	public void addReply(final Collection<String> triggerStrings, final String text, final ChatAction action) {
+		add(ConversationStates.ATTENDING, triggerStrings, null,
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
@@ -758,13 +756,13 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * make npc's emotion
-	 * @param triggers - player's keywords for npc emotion
+	 * @param triggerStrings - player's keywords for npc emotion
 	 * @param npcAction - npc's emotion
 	 */
-	public void addEmotion(final Collection<String> triggers, final String npcAction) {
-		add(ConversationStates.IDLE, triggers,
+	public void addEmotion(final Collection<String> triggerStrings, final String npcAction) {
+		add(ConversationStates.IDLE, triggerStrings,
 				ConversationStates.IDLE, null, new NPCEmoteAction(npcAction));
-		add(ConversationStates.ATTENDING, triggers,
+		add(ConversationStates.ATTENDING, triggerStrings,
 				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
 
 	}

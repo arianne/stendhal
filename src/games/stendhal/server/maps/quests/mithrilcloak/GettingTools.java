@@ -186,7 +186,7 @@ class GettingTools {
 				null);
 
 		// respond to question of how many eggshells are desired. terry expects a number or some kind
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
+		npc.addMatching(ConversationStates.QUEST_ITEM_QUESTION,
 				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(1, 5000),

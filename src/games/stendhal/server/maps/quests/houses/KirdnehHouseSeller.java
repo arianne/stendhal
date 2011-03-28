@@ -68,7 +68,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 				 null);
 		
 		// handle house numbers 26 to 49
-		add(ConversationStates.QUEST_OFFERED,
+		addMatching(ConversationStates.QUEST_OFFERED,
 				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),

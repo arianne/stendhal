@@ -81,7 +81,7 @@ class Honeymoon {
 					}
 				});
 		// player says room number
-		linda.add(ConversationStates.QUESTION_1,
+		linda.addMatching(ConversationStates.QUESTION_1,
 				// match for all numbers as trigger expression
 				ExpressionType.NUMERAL, new JokerExprMatcher(),
 				new TextHasNumberCondition(1, 15),

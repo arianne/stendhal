@@ -210,7 +210,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 					}
 				});
 
-		fisherman.add(ConversationStates.QUESTION_1, Expression.JOKER, new JokerExprMatcher(),
+		fisherman.addMatching(ConversationStates.QUESTION_1, Expression.JOKER, new JokerExprMatcher(),
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {

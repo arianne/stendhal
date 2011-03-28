@@ -83,7 +83,7 @@ add(ConversationStates.ATTENDING,
 		null);
 
 // handle house numbers 1 to 25
-add(ConversationStates.QUEST_OFFERED,
+addMatching(ConversationStates.QUEST_OFFERED,
 		// match for all numbers as trigger expression
 		ExpressionType.NUMERAL, new JokerExprMatcher(),
 		new TextHasNumberCondition(getLowestHouseNumber(), getHighestHouseNumber()),
