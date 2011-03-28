@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.fsm.TransitionList;
 import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +45,7 @@ public class DumpConditions extends ScriptImpl {
 		final Set<ConversationStates> states = transitions.getSourceStates();
 
 		for (final ConversationStates state : states) {
-			final Set<Expression> triggers = transitions.getTriggersForState(state);
+			final Collection<Expression> triggers = transitions.getTriggersForState(state);
 			for (final Expression trigger : triggers) {
 				final List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
 						state, trigger);
