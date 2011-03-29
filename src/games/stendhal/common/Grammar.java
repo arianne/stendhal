@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 200-2011 - Stendhal                    *
+ *                    (C) Copyright 2009-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -273,7 +273,7 @@ public class Grammar {
 	 *            prefix, that may be present in plural form
 	 * @return noun starting with prefix
 	 */
-	private static String addPrefixIfNotAlreadyThere(final String noun,
+	static String addPrefixIfNotAlreadyThere(final String noun,
 			final String prefixSingular, final String prefixPlural) {
 		if (noun.startsWith(prefixSingular)) {
 			return noun;
@@ -285,184 +285,33 @@ public class Grammar {
 	}
 
 	/**
-	 * prefix a noun with an expression like "piece of".
+	 * Prefix a noun with an expression like "piece of".
 	 * 
 	 * @param noun
 	 * @return noun with prefix
 	 */
 	public static String fullForm(final String noun) {
 		final String lowString = noun.toLowerCase(Locale.ENGLISH);
-		String result = lowString.replace("#", "");
+		String str = lowString.replace("#", "");
 
-		if (result.equals("meat") || result.equals("ham")
-				|| result.equals("cheese") || result.equals("wood")
-				|| result.equals("paper") || result.equals("iron")
-				|| result.equals("chicken") || result.equals("coal")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "piece of ",
-					"pieces of ");
-		} else if (result.endsWith(" ore")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ",
-					"nuggets of ");
-		} else if (result.equals("flour") || result.equals("sugar")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sack of ",
-					"sacks of ");
-		} else if (result.equals("grain")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sheaf of ",
-					"sheaves of ");
-		} else if (result.equals("bread")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
-					"loaves of ");
-		} else if (result.equals("beer")
-				|| result.equals("water")
-				|| result.equals("fierywater")
-				|| result.equals("milk")
-				|| result.endsWith("potion")
-				|| result.endsWith("poison")
-				|| result.endsWith("antidote")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
-					"bottles of ");
-		} else if (result.equals("butter")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "stick of ",
-					"sticks of ");
-		} else if (result.equals("garlic")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "bulb of ",
-						"bulbs of ");
-		} else if (result.equals("honey")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "jar of ",
-					"jars of ");
-		} else if (result.equals("wine")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "glass of ",
-					"glasses of ");
-		} else if (result.equals("tea")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "cup of ",
-					"cups of ");
-		} else if (result.startsWith("book ")) {
-			result = result.substring(5) + " book";
-		} else if (result.equals("arandula")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ",
-					"sprigs of ");
-		} else if (result.equals("mandragora")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "root of ",
-					"roots of ");
-		} else if (result.indexOf(" armor") > -1) {
-			result = addPrefixIfNotAlreadyThere(lowString, "suit of ",
-					"suits of ");
-		} else if (result.endsWith(" legs") || result.endsWith(" boots")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "pair of ",
-					"pairs of ");
-		} else if (result.equals("daisies")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "bunch of ",
-                                                "bunches of ");
-		} else if (result.equals("oil")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "can of ",
-                                                "cans of ");
-		} else if (result.endsWith(" thread")) {
-				result = addPrefixIfNotAlreadyThere(lowString, "spool of ",
-					"spools of ");
+		if (str.startsWith("book ")) {
+			str = str.substring(5) + " book";
+		} else if (str.indexOf(" armor") > -1) {
+			str = addPrefixIfNotAlreadyThere(lowString, "suit of ", "suits of ");
 		} else {
-			result = lowString;
+			str = PrefixManager.s_instance.fullForm(str, lowString);
 		}
 
-		return fixItemNames(result);
-	}
-
-	public static String fixItemNames(final String str) {
-		return str.replace("icecream", "ice cream");
+		return fixItemNames(str);
 	}
 
 	/**
-	 * PrefixProcessor is used to process prefix texts in a text string.
+	 * Replace internal item names bye their display name.
+	 * @param str
+	 * @return fixed string
 	 */
-	private static class PrefixExtractor {
-
-		private String txt;
-
-		public PrefixExtractor(final String text) {
-			txt = text;
-		}
-
-		public String toString() {
-			return txt;
-		}
-
-		/**
-		 * Removes a prefix, if present.
-		 * If the prefix was found at the beginning of the object name, it is removed.
-		 * Otherwise txt remaines unchanged.
-		 * 
-		 * @param prefix
-		 * @return true if a prefix was removed
-		 */
-		public boolean removePrefix(final String prefix) {
-			boolean changed;
-
-			if (txt.startsWith(prefix)) {
-				txt = txt.substring(prefix.length());
-				changed = true;
-			} else {
-				changed = false;
-			}
-
-			return changed;
-		}
-
-		/**
-		 * Extracts noun from a string, that may be prefixed with a singular
-		 * expression like "piece of", ...
-		 * The result is stored in txt.
-		 * 
-		 * @return true on any change of txt
-		 */
-		private boolean extractNounSingular() {
-			boolean changed = false;
-
-			changed |= removePrefix("piece of ");
-			changed |= removePrefix("nugget of ");
-			changed |= removePrefix("sack of ");
-			changed |= removePrefix("sheaf of ");
-			changed |= removePrefix("loaf of ");
-			changed |= removePrefix("stick of ");
-			changed |= removePrefix("bulb of ");
-			changed |= removePrefix("bottle of ");
-			changed |= removePrefix("jar of ");
-			changed |= removePrefix("sprig of ");
-			changed |= removePrefix("root of ");
-			changed |= removePrefix("suit of ");
-			changed |= removePrefix("pair of ");
-			changed |= removePrefix("glass of ");
-			changed |= removePrefix("cup of ");
-
-			return changed;
-		}
-
-		/**
-		 * Extracts noun from a string, that may be prefixed with a plural expression
-		 * like "piece of", ...
-		 * The result is stored in txt.
-		 * 
-		 * @return true on any change of txt
-		 */
-		private boolean extractNounPlural() {
-			boolean changed = false;
-
-			changed |= removePrefix("pieces of ");
-			changed |= removePrefix("nuggets of ");
-			changed |= removePrefix("sacks of ");
-			changed |= removePrefix("sheaves of ");
-			changed |= removePrefix("loaves of ");
-			changed |= removePrefix("sticks of ");
-			changed |= removePrefix("bottles of ");
-			changed |= removePrefix("bulbs of ");
-			changed |= removePrefix("jars of ");
-			changed |= removePrefix("sprigs of ");
-			changed |= removePrefix("roots of ");
-			changed |= removePrefix("suits of ");
-			changed |= removePrefix("pairs of ");
-			changed |= removePrefix("glasses of ");
-			changed |= removePrefix("cups of ");
-
-			return changed;
-		}
+	public static String fixItemNames(final String str) {
+		return str.replace("icecream", "ice cream");
 	}
 
 	/**
