@@ -40,16 +40,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Quest to fetch water for a thirsty woman.
+ * Quest to fetch water for a thirsty person.
  * You have to check it is clean with someone knowledgeable first
  *
  * @author kymara
  */
 
-public class WaterForJane extends AbstractQuest {
+public class WaterForXhiphin extends AbstractQuest {
 
 	// constants
-	private static final String QUEST_SLOT = "water_for_jane";
+	private static final String QUEST_SLOT = "water_for_xhiphin";
 	
 	private static final String extraTrigger = "water";
 	private List<String> questTrigger;
@@ -64,14 +64,14 @@ public class WaterForJane extends AbstractQuest {
 	}
 	
 	private void requestStep() {
-		final SpeakerNPC npc = npcs.get("Jane");
+		final SpeakerNPC npc = npcs.get("Xhiphin Zohos");
 		
 		// player asks about quest for first time (or rejected)
 		npc.add(ConversationStates.ATTENDING,
 				questTrigger, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
-				"*whispers* I'm terribly thirsty, could you possibly get me some fresh water please?",
+				"I'm really thirsty, could you possibly get me some fresh water please?",
 				null);
 		
 		// player can repeat quest
@@ -79,7 +79,7 @@ public class WaterForJane extends AbstractQuest {
 				questTrigger, 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
-				"*whispers* My throat is dry again, could you fetch me a little more water?",
+				"My throat is dry again from all this talking, could you fetch me a little more water?",
 				null);	
 		
 		// player can't repeat quest
@@ -87,7 +87,7 @@ public class WaterForJane extends AbstractQuest {
 				questTrigger, 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
-				"*whispers* Thank you, I don't need anything right now.",
+				"Thank you, I don't need anything right now.",
 				null);	
 		
 		// if the quest is active we deal with the response to quest/water in a following step
@@ -97,7 +97,7 @@ public class WaterForJane extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Thank you! Natural spring water is best, back home I get mine at a waterfall.",
+				"Thank you! Natural spring water is best, the river that runs from Fado to Nal'wor might provide a source.",
 				new SetQuestAction(QUEST_SLOT, 0, "start"));
 		
 		// Player says no, they've lost karma
@@ -114,7 +114,7 @@ public class WaterForJane extends AbstractQuest {
 	
 	private void checkWaterStep() {
 		// haven't decided for sure it will be this NPC, just a placeholder
-		final SpeakerNPC waterNPC = npcs.get("Dr. Feelgood");
+		final SpeakerNPC waterNPC = npcs.get("Stefan");
 
 		// player gets water checked
 		// mark infostring of item to show it's good
@@ -138,7 +138,7 @@ public class WaterForJane extends AbstractQuest {
 
 	
 	private void finishStep() {
-		final SpeakerNPC npc = npcs.get("Jane");
+		final SpeakerNPC npc = npcs.get("Xhiphin Zohos");
 		
 		// Player has got water 
 		// optionally check if it was actually 
@@ -157,7 +157,7 @@ public class WaterForJane extends AbstractQuest {
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("water")),
 				ConversationStates.ATTENDING, 
-				"Thank you ever so much! This water feels deliciously cool. Here, take these potions.",
+				"Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.",
 				new MultipleActions(reward));
 		
         // add the other possibilities
@@ -167,7 +167,7 @@ public class WaterForJane extends AbstractQuest {
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("water"))),
 				ConversationStates.ATTENDING, 
-				"*whispers* I'm waiting for you to bring me some water.",
+				"I'm waiting for you to bring me some water, this sun is so hot.",
 				null);
 	}
 	
@@ -176,8 +176,8 @@ public class WaterForJane extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo(
-				"Water For Jane",
-				"Jane wants some nice fresh water.",
+				"Water For Xhiphin Zohos",
+				"Xhiphin Zohos wants some nice fresh water.",
 				true);
 	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		questTrigger.add(extraTrigger);
@@ -193,13 +193,13 @@ public class WaterForJane extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Poor Jane is thirsty from lying out in the hot Athor sun all day.");
+		res.add("Xhiphin Zohos is thirsty from standing out in the warm sun all day.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
-			res.add("I told Jane I didn't want to fetch water for her.");
+			res.add("I told Xhiphin Zohos I didn't want to fetch water for him.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
-			res.add("I agreed to fetch some water to quench Jane's thirst.");
+			res.add("I agreed to fetch some water to quench Xhiphin Zohos's thirst.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") || isCompleted(player)) {
 			res.add("I found a source of fresh water.");
@@ -207,9 +207,9 @@ public class WaterForJane extends AbstractQuest {
 		// checked water was clean?
         if (isCompleted(player)) {
             if (isRepeatable(player)) {
-                res.add("I took the water to Jane a while ago.");
+                res.add("I took the water to Xhiphin Zohos a while ago.");
             } else {
-                res.add("I took the water to Jane recently and she gave me some potions.");
+                res.add("I took the water to Xhiphin Zohos recently and he gave me some potions.");
             }			
 		}
 		return res;
@@ -217,13 +217,12 @@ public class WaterForJane extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "WaterForJane";
+		return "WaterForXhiphin";
 	}
 	
-	// Getting to Athor is not too feasible till this level
 	@Override
 	public int getMinLevel() {
-		return 20;
+		return 5;
 	}
 	
 	@Override
