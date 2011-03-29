@@ -52,8 +52,6 @@ public class WaterForXhiphin extends AbstractQuest {
 	private static final String QUEST_SLOT = "water_for_xhiphin";
 	
 	private static final String extraTrigger = "water";
-	private List<String> questTrigger;
-
 	/** The delay between repeating quests.
 	 * 7200 minutes */
 	private static final int REQUIRED_MINUTES = 7200;
@@ -68,7 +66,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player asks about quest for first time (or rejected)
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
 				"I'm really thirsty, could you possibly get me some fresh water please?",
@@ -76,7 +74,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player can repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
 				"My throat is dry again from all this talking, could you fetch me a little more water?",
@@ -84,7 +82,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player can't repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
 				"Thank you, I don't need anything right now.",
@@ -152,7 +150,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(5.0));
 		
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("water")),
@@ -162,7 +160,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
         // add the other possibilities
 		npc.add(ConversationStates.ATTENDING,
-				questTrigger, 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("water"))),
@@ -179,8 +177,6 @@ public class WaterForXhiphin extends AbstractQuest {
 				"Water For Xhiphin Zohos",
 				"Xhiphin Zohos wants some nice fresh water.",
 				true);
-	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
-		questTrigger.add(extraTrigger);
 		requestStep();
 		checkWaterStep();
 		finishStep();
