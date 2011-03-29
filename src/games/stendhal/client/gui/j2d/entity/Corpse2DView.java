@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
@@ -31,6 +32,8 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
+
+import marauroa.common.game.RPSlot;
 
 /**
  * The 2D view of a corpse.
@@ -216,9 +219,12 @@ class Corpse2DView extends Entity2DView {
 		switch (at) {
 		case INSPECT:
 			boolean addListener = slotWindow == null;
-			slotWindow = inspector.inspectMe(entity,
-					((Corpse) entity).getContent(), slotWindow, 2, 2);
+			RPSlot content = ((Corpse) entity).getContent();
+			slotWindow = inspector.inspectMe(entity, content, slotWindow, 2, 2);
 			SlotWindow window = slotWindow;
+			if (window != null) {
+				prepareInspectAutoClose(window, entity, content);
+			}
 			/*
 			 * Register a listener for window closing so that we can
 			 * drop the reference to the closed window and let the
@@ -250,6 +256,32 @@ class Corpse2DView extends Entity2DView {
 		}
 	}
 	
+	/**
+	 * Attach a listener to the inspector window, so that the window will be
+	 * closed when all of the contents of the inspected slot are removed.
+	 * 
+	 * @param window inspector window
+	 * @param entity inspected entity
+	 * @param slot inspected slot
+	 */
+	private void prepareInspectAutoClose(final SlotWindow window, final IEntity entity, final RPSlot slot) {
+		entity.addContentChangeListener(new ContentChangeListener() {
+			public void contentAdded(RPSlot added) {
+				// Unused
+			}
+
+			public void contentRemoved(RPSlot removed) {
+				if (slot.size() == removed.size()) {
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							window.close();
+						}
+					});
+				}
+			}
+		});
+	}
+
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
