@@ -27,6 +27,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Graphics2D;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -35,7 +36,6 @@ import javax.swing.SwingUtilities;
  * The 2D view of a corpse.
  */
 class Corpse2DView extends Entity2DView {
-
 
 	/**
 	 * The corpse height.
@@ -57,6 +57,11 @@ class Corpse2DView extends Entity2DView {
 	 */
 	private volatile SlotWindow slotWindow;
 
+	/** 
+	 * Has the corpse been opened once on an auto raise?
+	 */
+	private boolean autoOpenedAlready = false;
+	
 	/**
 	 * Create a 2D view of an entity.
 	 */
@@ -244,7 +249,7 @@ class Corpse2DView extends Entity2DView {
 			break;
 		}
 	}
-
+	
 	/**
 	 * Release any view resources. This view should not be used after this is
 	 * called.
@@ -286,5 +291,31 @@ class Corpse2DView extends Entity2DView {
 			return StendhalCursor.BAG;
 		}
 		return StendhalCursor.LOCKED_BAG;
+	}
+
+	/* (non-Javadoc)
+	 * @see games.stendhal.client.gui.j2d.entity.Entity2DView#draw(java.awt.Graphics2D)
+	 */
+	@Override
+	public void draw(Graphics2D g2d) {
+		super.draw(g2d);
+		autoRaiseWindowIfDesired();
+	}
+
+	/** 
+	 * Immediately opens the corpse window if the player deserves the kill (is corpse owner) 
+	 * and has that setting specified
+	 */
+	public void autoRaiseWindowIfDesired() {
+		Corpse corpse = (Corpse) entity;
+		boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoraisecorpse", "true"));
+		if (autoRaiseCorpse) {
+			if (!autoOpenedAlready) {
+				autoOpenedAlready = true;
+				if ((corpse.getCorpseOwner() != null) && corpse.getCorpseOwner().equals(User.getCharacterName())) {
+					onAction(ActionType.INSPECT);
+				}
+			}
+		}
 	}
 }

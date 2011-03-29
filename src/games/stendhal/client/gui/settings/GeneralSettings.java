@@ -74,6 +74,20 @@ class GeneralSettings {
 		});
 		page.add(showBloodToggle);
 		
+		// raising corpses
+		JCheckBox autoRaiseToggle = new JCheckBox("Auto raise corpses");
+		autoRaiseToggle.setToolTipText("Automatically raise the loot window for corpses of creatures you can loot");
+		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoraisecorpse", "true"));
+		autoRaiseToggle.setSelected(selected);
+
+		autoRaiseToggle.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
+				WtWindowManager.getInstance().setProperty("gamescreen.autoraisecorpse", Boolean.toString(enabled));
+			}
+		});
+		page.add(autoRaiseToggle);
+		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
 	
