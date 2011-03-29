@@ -12,11 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -27,11 +31,13 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -51,10 +57,16 @@ public class WaterForXhiphin extends AbstractQuest {
 	// constants
 	private static final String QUEST_SLOT = "water_for_xhiphin";
 	
-	private static final String extraTrigger = "water";
+	/** To combine with the quest triggers */
+	private static final String EXTRA_TRIGGER = "water";
+	
 	/** The delay between repeating quests.
 	 * 7200 minutes */
 	private static final int REQUIRED_MINUTES = 7200;
+	
+	/** How the water is marked as clean */
+	private static final String CLEAN_WATER_INFOSTRING = "clean";
+
 
 	@Override
 	public String getSlotName() {
@@ -66,7 +78,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player asks about quest for first time (or rejected)
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, 
 				"I'm really thirsty, could you possibly get me some fresh water please?",
@@ -74,7 +86,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player can repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 				ConversationStates.QUEST_OFFERED, 
 				"My throat is dry again from all this talking, could you fetch me a little more water?",
@@ -82,7 +94,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 		// player can't repeat quest
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
 				"Thank you, I don't need anything right now.",
@@ -111,18 +123,31 @@ public class WaterForXhiphin extends AbstractQuest {
 		
 	
 	private void checkWaterStep() {
-		// haven't decided for sure it will be this NPC, just a placeholder
 		final SpeakerNPC waterNPC = npcs.get("Stefan");
 
 		// player gets water checked
 		// mark infostring of item to show it's good
+		final List<ChatAction> actions = new LinkedList<ChatAction>();
+		// for now Stefan is just able to check one water at a time (even from a stack) and he always says it's fine and clean
+		// if you go to him with one checked and one unchecked he might just check the checked one again - depends what sits first in bag
+		actions.add(new DropItemAction("water",1));
+		actions.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final Item water = SingletonRepository.getEntityManager().getItem("water");
+				water.setInfoString(CLEAN_WATER_INFOSTRING);
+				water.setDescription("You see a bottle of fresh spring water. It's really tasty and fresh. Stefan checked it.");
+				// remember the description
+				water.setPersistent(true);
+				player.equipOrPutOnGround(water);
+			}
+		});
 		waterNPC.add(ConversationStates.ATTENDING, 
 					Arrays.asList("water", "clean", "check"),
 					new PlayerHasItemWithHimCondition("water"),
 					ConversationStates.ATTENDING, 
 					"That water looks clean to me! It must be from a pure source.",
 					// take the item and give them a new one with an infostring or mark all?
-					null);
+					new MultipleActions(actions));
 		
 		// player asks about water but doesn't have it with them
 		waterNPC.add(ConversationStates.ATTENDING, 
@@ -138,10 +163,10 @@ public class WaterForXhiphin extends AbstractQuest {
 	private void finishStep() {
 		final SpeakerNPC npc = npcs.get("Xhiphin Zohos");
 		
-		// Player has got water 
-		// optionally check if it was actually 
+		// Player has got water and it has been checked
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("water"));
+		// make sure we drop the checked water not any other water
+		reward.add(new DropInfostringItemAction("water", CLEAN_WATER_INFOSTRING));
 		reward.add(new EquipItemAction("potion", 3));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new IncrementQuestAction(QUEST_SLOT, 2, 1) );
@@ -150,24 +175,40 @@ public class WaterForXhiphin extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(5.0));
 		
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
-						new PlayerHasItemWithHimCondition("water")),
+						new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING)),
 				ConversationStates.ATTENDING, 
 				"Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.",
 				new MultipleActions(reward));
 		
-        // add the other possibilities
+        // player returns with no water at all. 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, extraTrigger), 
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new PlayerHasItemWithHimCondition("water"))),
 				ConversationStates.ATTENDING, 
-				"I'm waiting for you to bring me some water, this sun is so hot.",
+				"I'm waiting for you to bring me some drinking water, this sun is so hot.",
 				null);
+		
+        // add the other possibilities
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new PlayerHasItemWithHimCondition("water"),
+						new NotCondition(new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING))),
+				ConversationStates.ATTENDING, 
+				"Hmm... it's not that I don't trust you, but I'm not sure that water is okay to drink. Could you go and ask #Stefan to #check it please?",
+				null);
+		
+		npc.addReply("Stefan", "Stefan is a chef over in the restaurant at Fado Hotel. I'd trust him to check if anything is safe to eat or drink, he's a professional.");
+		npc.addReply("check", "Sorry, I'm no expert on food or drink myself, try asking #Stefan.");
+
 	}
+	
 	
 
 	@Override
@@ -190,15 +231,18 @@ public class WaterForXhiphin extends AbstractQuest {
 			return res;
 		}
 		res.add("Xhiphin Zohos is thirsty from standing out in the warm sun all day.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String questState = player.getQuest(QUEST_SLOT, 0);
 		if ("rejected".equals(questState)) {
 			res.add("I told Xhiphin Zohos I didn't want to fetch water for him.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start") || isCompleted(player)) {
 			res.add("I agreed to fetch some water to quench Xhiphin Zohos's thirst.");
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") || isCompleted(player)) {
-			res.add("I found a source of fresh water.");
+		if (player.isQuestInState(QUEST_SLOT, "start") && player.isEquipped("water") && new NotCondition(new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING)).fire(player, null, null) || isCompleted(player)) {
+			res.add("I found a source of fresh water, but I can't be completely sure it's safe for Xhiphin to drink.");
+		}
+		if (new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING).fire(player, null, null) || isCompleted(player)) {
+			res.add("Stefan, the chest in Fado hotel, checked the water I collected and it is clean and safe to drink.");
 		}
 		// checked water was clean?
         if (isCompleted(player)) {
