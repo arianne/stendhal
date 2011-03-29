@@ -338,11 +338,11 @@ class Corpse2DView extends Entity2DView {
 	 * Immediately opens the corpse window if the player deserves the kill (is corpse owner) 
 	 * and has that setting specified
 	 */
-	public void autoRaiseWindowIfDesired() {
+	private void autoRaiseWindowIfDesired() {
 		Corpse corpse = (Corpse) entity;
-		boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoraisecorpse", "true"));
-		if (autoRaiseCorpse) {
-			if (!autoOpenedAlready) {
+		if (!autoOpenedAlready) {
+			boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoraisecorpse", "true"));
+			if (autoRaiseCorpse) {
 				autoOpenedAlready = true;
 				if ((corpse.getCorpseOwner() != null) && corpse.getCorpseOwner().equals(User.getCharacterName())) {
 					onAction(ActionType.INSPECT);
