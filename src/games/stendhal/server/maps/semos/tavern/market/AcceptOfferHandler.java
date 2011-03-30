@@ -100,7 +100,7 @@ public class AcceptOfferHandler extends OfferHandler {
 				((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
 			} else {
 				// Trade failed for some reason. Check why, and inform the player
-				if (!m.getOffers().contains(offer)) {
+				if (!m.contains(offer)) {
 					int quantity = getQuantity(offer.getItem());
 					npc.say("I'm sorry, but " + Grammar.thatthose(quantity) + " "
 							+ Grammar.quantityplnoun(quantity, offer.getItem().getName(), "the")

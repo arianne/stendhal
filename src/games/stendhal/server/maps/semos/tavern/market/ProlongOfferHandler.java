@@ -65,7 +65,7 @@ public class ProlongOfferHandler extends OfferHandler {
 						int quantity = getQuantity(o.getItem());
 						StringBuilder message = new StringBuilder();
 						
-						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).getOffers().contains(o)) {
+						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).contains(o)) {
 							message.append("Your offer of ");
 							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
 							message.append(" would expire in ");

@@ -60,7 +60,7 @@ public class RemoveOfferHandler extends OfferHandler {
 					if(o.getOfferer().equals(player.getName())) {
 						setOffer(o);
 						// Ask for confirmation only if the offer is still active
-						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).getOffers().contains(o)) {
+						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).contains(o)) {
 							int quantity = getQuantity(o.getItem());
 							npc.say("Do you want to remove your offer of " + Grammar.quantityplnoun(quantity, o.getItem().getName(), "one") + "?");
 							npc.setCurrentState(ConversationStates.QUESTION_1);

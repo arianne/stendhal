@@ -31,6 +31,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.game.RPObject.ID;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.AfterClass;
@@ -74,7 +75,7 @@ public class MarketTest {
 		assertEquals(bob, item.getContainer());
 		Offer offer = market.createOffer(bob, item, 10, 1);
 		
-		assertTrue(market.getOffers().contains(offer));
+		assertTrue(market.contains(offer));
 		assertFalse(offer.getItem().getContainer().equals(bob));
 		assertTrue(offer.getItem().getContainer().equals(offer));
 		assertNull(bob.getFirstEquipped("axe"));
@@ -208,6 +209,7 @@ public class MarketTest {
 		erniesMoney.setQuantity(price);
 		Player george = PlayerTestHelper.createPlayer("george");
 		Offer offer = new Offer(item, price, george);
+		offer.setID(new ID(1, "shop"));
 
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
 		ernie.equipToInventoryOnly(erniesMoney);
@@ -337,7 +339,7 @@ public class MarketTest {
 		Offer offer = market.createOffer(bob, item, 10, 1);
 		
 		market.expireOffer(offer);
-		assertFalse(market.getOffers().contains(offer));
+		assertFalse(market.contains(offer));
 		assertTrue(market.getExpiredOffers().contains(offer));
 	}
 	
@@ -357,7 +359,7 @@ public class MarketTest {
 		
 		market.expireOffer(offer);
 		market.removeExpiredOffer(offer);
-		assertFalse(market.getOffers().contains(offer));
+		assertFalse(market.contains(offer));
 		assertFalse(market.getExpiredOffers().contains(offer));
 	}
 	
@@ -376,7 +378,7 @@ public class MarketTest {
 		Offer offer = market.createOffer(bob, item, 10, 1);
 		
 		market.removeOffer(offer, bob);
-		assertFalse(market.getOffers().contains(offer));
+		assertFalse(market.contains(offer));
 		assertFalse(market.getExpiredOffers().contains(offer));
 		assertTrue(bob.getFirstEquipped("axe") != null);
 	}
@@ -399,7 +401,7 @@ public class MarketTest {
 		market.expireOffer(offer);
 		market.removeOffer(offer, bob);
 		
-		assertFalse(market.getOffers().contains(offer));
+		assertFalse(market.contains(offer));
 		assertFalse(market.getExpiredOffers().contains(offer));
 		assertTrue(bob.getFirstEquipped("axe") != null);
 	}
@@ -424,7 +426,7 @@ public class MarketTest {
 		market.removeOffer(offer, bob);
 		bob.drop(item);
 		
-		assertFalse(market.getOffers().contains(offer));
+		assertFalse(market.contains(offer));
 		assertFalse(market.getExpiredOffers().contains(offer));
 		assertNull(bob.getFirstEquipped("axe"));
 	}
@@ -539,7 +541,7 @@ public class MarketTest {
 		
 		market.prolongOffer(bob, offer);
 		assertTrue(market.getOffersOlderThan(1000).size() == 0);
-		assertTrue(market.getOffers().size() == 1);
+		assertTrue(market.countOffersOfPlayer(bob) == 1);
 	}
 	
 	/**
@@ -560,7 +562,7 @@ public class MarketTest {
 		
 		market.prolongOffer(bob, offer);
 		assertTrue(market.getOffersOlderThan(1000).size() == 0);
-		assertTrue(market.getOffers().size() == 1);
+		assertTrue(market.countOffersOfPlayer(bob) == 1);
 		assertTrue(market.getExpiredOffers().size() == 0);
 	}
 	
@@ -583,7 +585,7 @@ public class MarketTest {
 		
 		market.prolongOffer(bob, offer);
 		
-		assertTrue(market.getOffers().size() == 0);
+		assertTrue(market.countOffersOfPlayer(bob) == 0);
 		assertTrue(market.getExpiredOffers().size() == 0);
 	}
 	

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MarketManagerNPC extends SpeakerNPC {
+	
 	private Map<String,Map<String,Offer>> offerMap = new HashMap<String, Map<String, Offer>>();
 	
 	MarketManagerNPC(String name) {
@@ -40,6 +41,8 @@ public final class MarketManagerNPC extends SpeakerNPC {
 	
 	@Override
 	protected void onGoodbye(RPEntity player) {
+		//clean the offer map on leaving of a player
+		offerMap.clear();
 		setDirection(Direction.DOWN);
 	}
 

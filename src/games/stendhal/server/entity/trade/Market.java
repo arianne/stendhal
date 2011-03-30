@@ -60,7 +60,6 @@ public class Market extends PassiveEntity {
 	 */
 	public static final String EXPIRED_OFFERS_SLOT_NAME = "expired_offers";
 	
-	private final List<Offer> offers = new LinkedList<Offer>();
 	private final List<Offer> expiredOffers = new LinkedList<Offer>();
 	
 	/**
@@ -113,7 +112,6 @@ public class Market extends PassiveEntity {
 					continue;
 				}
 				
-				this.offers.add(offer);
 				this.getSlot(OFFERS_SLOT_NAME).add(offer);
 			}
 		}
@@ -196,7 +194,6 @@ public class Market extends PassiveEntity {
 		}
 		
 		Offer offer = new Offer(item, money, offerer);
-		getOffers().add(offer);
 		RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 		slot.add(offer);
 		getZone().storeToDatabase();
@@ -212,7 +209,7 @@ public class Market extends PassiveEntity {
 	 * @param acceptingPlayer
 	 */
 	public boolean acceptOffer(final Offer offer, final Player acceptingPlayer) {
-		if (getOffers().contains(offer)) {
+		if (getSlot(OFFERS_SLOT_NAME).has(offer.getID())) {
 			int price = offer.getPrice().intValue();
 			// Take the money; free items should always succeed
 			if ((price == 0) || acceptingPlayer.drop("money", price)) {
@@ -223,7 +220,6 @@ public class Market extends PassiveEntity {
 				boolean reward = offer.shouldReward(acceptingPlayer) && price > 0; 
 				final Earning earning = new Earning(offer.getPrice(), offer.getOfferer(), reward);
 				this.getSlot(EARNINGS_SLOT_NAME).add(earning);
-				offers.remove(offer);
 				this.getSlot(OFFERS_SLOT_NAME).remove(offer.getID());
 				if (reward) {
 					applyTradingBonus(acceptingPlayer);
@@ -302,7 +298,8 @@ public class Market extends PassiveEntity {
 	 */
 	public int countOffersOfPlayer(Player offerer) {
 		int count = 0;
-		for (Offer offer : this.offers) {
+		for(RPObject object : this.getSlot(OFFERS_SLOT_NAME)) {
+			Offer offer = (Offer) object;
 			if(offer.getOfferer().equals(offerer.getName())) {
 				count = count + 1;
 			}
@@ -320,7 +317,6 @@ public class Market extends PassiveEntity {
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 		p.equipOrPutOnGround(item);
 		
-		getOffers().remove(o);
 		getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		
 		getExpiredOffers().remove(o);
@@ -344,7 +340,6 @@ public class Market extends PassiveEntity {
 	 * @param o the offer to expire
 	 */
 	public void expireOffer(Offer o) {
-		this.getOffers().remove(o);
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		this.expiredOffers.add(o);
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(o);
@@ -352,13 +347,6 @@ public class Market extends PassiveEntity {
 		new GameEvent("market", "expire-offer", o.getOfferer(), o.getItem().getName(), o.getPrice().toString()).raise();
 	}
 
-	/**
-	 * @return all available offers in the market
-	 */
-	public List<Offer> getOffers() {
-		return offers;
-	}
-	
 	/**
 	 * @return all currently expired offers in the market
 	 */
@@ -393,10 +381,9 @@ public class Market extends PassiveEntity {
 		if (this.expiredOffers.remove(offer)) {
 			// It had expired. Move to active offers slot.  
 			this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offer.getID());
-			getOffers().add(offer);
 			RPSlot slot = this.getSlot(OFFERS_SLOT_NAME);
 			slot.add(offer);
-		} else if (!this.offers.contains(offer)) {
+		} else if (!getSlot(OFFERS_SLOT_NAME).has(offer.getID())) {
 			// Such an offer does not exist anymore
 			return null;
 		}
@@ -412,6 +399,10 @@ public class Market extends PassiveEntity {
 	 * @return list of offers that are older than the specified time
 	 */
 	public List<Offer> getOffersOlderThan(int seconds) {
+		Set<Offer> offers = new HashSet<Offer>();
+		for(RPObject o : getSlot(OFFERS_SLOT_NAME)) {
+			offers.add((Offer) o);
+		}
 		return getOlderThan(offers, seconds);
 	}
 	
@@ -470,5 +461,13 @@ public class Market extends PassiveEntity {
 		}
 		
 		return quantity;
+	}
+
+	/**
+	 * @param o
+	 * @return true iff the Offer o is in this market's offers
+	 */
+	public boolean contains(Offer o) {
+		return getSlot(OFFERS_SLOT_NAME).has(o.getID());
 	}
 }
