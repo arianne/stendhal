@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -80,13 +81,13 @@ final class PrefixManager
 
 
 	private void register(final String prefixSingular, final String prefixPlural, final String noun) {
-		prefixMap.put(noun, new PrefixEntry(prefixSingular, prefixPlural, false));
+		prefixMap.put(noun, new PrefixEntry(noun, prefixSingular, prefixPlural));
 
 		registerPrefix(prefixSingular, prefixPlural);
 	}
 
 	private void registerEnd(final String prefixSingular, final String prefixPlural, final String endString) {
-		prefixMap.put(endString, new PrefixEntry(prefixSingular, prefixPlural, true));
+		prefixEndList.add(new PrefixEntry(endString, prefixSingular, prefixPlural));
 
 		registerPrefix(prefixSingular, prefixPlural);
 	}
@@ -100,16 +101,13 @@ final class PrefixManager
 	public String fullForm(final String str, final String lowString) {
 		String ret = lowString;
 
-		for(Map.Entry<String, PrefixEntry> e : prefixMap.entrySet()) {
-			final PrefixEntry entry = e.getValue();
+		PrefixEntry found = prefixMap.get(str);
 
-			if (entry.endsWith) {
-				if (str.endsWith(e.getKey())) {
-					ret = Grammar.addPrefixIfNotAlreadyThere(ret, entry.prefixSingular, entry.prefixPlural);
-					break;
-				}
-			} else {
-				if (str.equals(e.getKey())) {
+		if (found != null) {
+			ret = Grammar.addPrefixIfNotAlreadyThere(ret, found.prefixSingular, found.prefixPlural);
+		} else {
+			for(PrefixEntry entry : prefixEndList) {
+				if (str.endsWith(entry.keyword)) {
 					ret = Grammar.addPrefixIfNotAlreadyThere(ret, entry.prefixSingular, entry.prefixPlural);
 					break;
 				}
@@ -129,18 +127,19 @@ final class PrefixManager
 
 
 	private static class PrefixEntry {
+		public final String keyword;
 		public final String prefixSingular;
 		public final String prefixPlural;
-		public final boolean endsWith;
 
-		public PrefixEntry(final String prefixSingular, final String prefixPlural, final boolean endsWith) {
+		public PrefixEntry(final String keyword, final String prefixSingular, final String prefixPlural) {
+			this.keyword = keyword;
 			this.prefixSingular = prefixSingular;
 			this.prefixPlural = prefixPlural;
-			this.endsWith = endsWith;
 		}
 	}
 
 	private Map<String, PrefixEntry> prefixMap = new HashMap<String, PrefixEntry>();
+	private Collection<PrefixEntry> prefixEndList = new ArrayList<PrefixEntry>();
 
 	private Collection<String> singularPrefixes = new HashSet<String>();
 	private Collection<String> pluralPrefixes = new HashSet<String>();
