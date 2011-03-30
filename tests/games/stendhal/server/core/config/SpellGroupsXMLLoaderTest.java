@@ -28,6 +28,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -82,6 +83,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(entity.getRate(),is(Integer.valueOf(1)));
 		assertThat(entity.getRegen(),is(Integer.valueOf(100)));
 		assertThat(entity.getClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
+		entity.setID(new ID(1, "some_zone"));	
 		RPObject object = new SpellTransformer().transform(entity);
 		assertThat(object, is((RPObject)entity));
 	}

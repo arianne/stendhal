@@ -1,8 +1,8 @@
 package games.stendhal.server.core.engine.transformer;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.spell.Spell;
 import marauroa.common.game.RPObject;
-import games.stendhal.server.core.engine.transformer.Transformer;
-import games.stendhal.server.entity.spell.HealingSpell;
 /**
  * Transformer for spells
  * 
@@ -11,7 +11,12 @@ import games.stendhal.server.entity.spell.HealingSpell;
 public class SpellTransformer implements Transformer {
 
 	public RPObject transform(RPObject object) {
-		return new HealingSpell(object);
+		Spell spell = SingletonRepository.getEntityManager().getSpell(object.get("subclass"));
+		if(spell != null) {
+			//preserve the id of the transformed spell
+			spell.setID(object.getID());
+		}
+		return spell;
 	}
 
 }
