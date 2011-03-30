@@ -222,7 +222,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * 
 	 * @param title
 	 */
-	protected void setTitle(String title) {
+	public void setTitle(String title) {
 		/*
 		 * Work around JLabel drawing ellipsis when it's short of space. To
 		 * avoid titles like "cor..." for corpses.
