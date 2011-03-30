@@ -24,7 +24,7 @@ import java.util.Map;
 final class PrefixManager
 {
 	/**
-	 * Initialise the map of words and prefix expressions.
+	 * Initialise the map of nouns and prefix expressions.
 	 */
 	public PrefixManager() {
 		register("piece of ", "pieces of ", "meat");
@@ -36,47 +36,37 @@ final class PrefixManager
 		register("piece of ", "pieces of ", "chicken");
 		register("piece of ", "pieces of ", "coal");
 
-		registerEnd("nugget of ", "nuggets of ", " ore");
-
 		register("sack of ", "sacks of ", "flour");
 		register("sack of ", "sacks of ", "sugar");
 
 		register("sheaf of ", "sheaves of ", "grain");
-
 		register("loaf of ", "loaves of ", "bread");
+		register("stick of ", "sticks of ", "butter");
+		register("bulb of ", "bulbs of ", "garlic");
+		register("jar of ", "jars of ", "honey");
+		register("glass of ", "glasses of ", "wine");
+		register("cup of ", "cups of ", "tea");
+		register("sprig of ", "sprigs of ", "arandula");
+		register("root of ", "roots of ", "mandragora");
+		register("bunch of ", "bunches of ", "daisies");
+		register("can of ", "cans of ", "oil");
 
 		register("bottle of ", "bottles of ", "beer");
 		register("bottle of ", "bottles of ", "water");
 		register("bottle of ", "bottles of ", "fierywater");
 		register("bottle of ", "bottles of ", "milk");
+
 		registerEnd("bottle of ", "bottles of ", "potion");
 		registerEnd("bottle of ", "bottles of ", "poison");
 		registerEnd("bottle of ", "bottles of ", "antidote");
-
-		register("stick of ", "sticks of ", "butter");
-
-		register("bulb of ", "bulbs of ", "garlic");
-
-		register("jar of ", "jars of ", "honey");
-
-		register("glass of ", "glasses of ", "wine");
-
-		register("cup of ", "cups of ", "tea");
-
-		register("sprig of ", "sprigs of ", "arandula");
-
-		register("root of ", "roots of ", "mandragora");
-
-		registerPrefix("suit of ", "suits of "); // "armor"
+		registerEnd("nugget of ", "nuggets of ", " ore");
 
 		registerEnd("pair of ", "pairs of ", " legs");
 		registerEnd("pair of ", "pairs of ", " boots");
 
-		register("bunch of ", "bunches of ", "daisies");
-
-		register("can of ", "cans of ", "oil");
-
 		registerEnd("spool of ", "spools of ", " thread");
+
+		registerPrefix("suit of ", "suits of "); // "armor"
 	}
 
 
@@ -98,13 +88,19 @@ final class PrefixManager
 	}
 
 
+	/**
+	 * Prefix one of the registered nouns with an expression like "piece of".
+	 * 
+	 * @param str noun to process
+	 * @return noun with prefix
+	 */
 	public String fullForm(final String str, final String lowString) {
 		String ret = lowString;
 
 		PrefixEntry found = prefixMap.get(str);
 
 		if (found != null) {
-			ret = Grammar.addPrefixIfNotAlreadyThere(ret, found.prefixSingular, found.prefixPlural);
+			ret = found.prefixSingular + ret;
 		} else {
 			for(PrefixEntry entry : prefixEndList) {
 				if (str.endsWith(entry.keyword)) {
@@ -117,10 +113,16 @@ final class PrefixManager
 		return ret;
 	}
 
+	/**
+	 * @return collection of all registered singular prefixes.
+	 */
 	public Collection<String> getSingularPrefixes() {
 		return singularPrefixes;
 	}
 
+	/**
+	 * @return collection of all registered plural prefixes.
+	 */
 	public Collection<String> getPluralPrefixes() {
 		return pluralPrefixes;
 	}
