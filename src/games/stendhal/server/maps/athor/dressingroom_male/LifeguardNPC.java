@@ -78,7 +78,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 
 				addReply(
 						Arrays.asList("suntan", "cream", "suntan cream"),
-				"david's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
+				"Pam's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
 
 				addReply("arandula", "Arandula is a herb which is growing around Semos.");
 
