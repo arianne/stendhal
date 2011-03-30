@@ -13,15 +13,28 @@
 package games.stendhal.server.entity.spell.effect;
 
 import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
-
-public class DamageEffect extends AbstractEffect {
+/**
+ * An effect to cause magical damage with a spell
+ * 
+ * @author madmetzger
+ */
+public class DamageEffect extends AbstractEffect implements TurnListener {
 
 	private static final Logger LOGGER = Logger.getLogger(DamageEffect.class);
+	
+	/** the entity getting damaged */
+	private RPEntity rpEntityToDamage;
+	
+	/** the player issuing the effect */
+	private Player damageOrigin;
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
 			double lifesteal, int rate, int regen) {
@@ -36,8 +49,17 @@ public class DamageEffect extends AbstractEffect {
 		}
 	}
 	
-	private void actInternal(Player caster, RPEntity target) {
+	public void onTurnReached(int currentTurn) {
 		//TODO implement DamageEffect action
+	}
+
+	
+	private void actInternal(Player caster, RPEntity target) {
+		// remember caster and target
+		rpEntityToDamage = target;
+		damageOrigin = caster;
+		// use turn notifier to enable for damage over a certain amount of time
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
 
 }
