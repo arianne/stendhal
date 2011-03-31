@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,10 +105,10 @@ public class FishermanNPC implements ZoneConfigurator {
 				// in the middle of an active conversation.
 				class SpecialProducerBehaviour extends ProducerBehaviour { 
 					SpecialProducerBehaviour(final String productionActivity,
-                        final String productName, final Map<String, Integer> requiredResourcesPerItem,
-											 final int productionTimePerItem) {
+							final String productName, final Map<String, Integer> requiredResourcesPerItem,
+							final int productionTimePerItem) {
 						super(QUEST_SLOT, productionActivity, productName,
-							  requiredResourcesPerItem, productionTimePerItem, false);
+								requiredResourcesPerItem, productionTimePerItem, false);
 					}
 
 					/**
@@ -137,7 +138,7 @@ public class FishermanNPC implements ZoneConfigurator {
 							}
 							final long timeNow = new Date().getTime();
 							player.setQuest(QUEST_SLOT, amount + ";" + getProductName() + ";"
-											+ timeNow);
+									+ timeNow);
 							npc.say("OK, I will "
 									+ getProductionActivity()
 									+ " "
@@ -163,21 +164,18 @@ public class FishermanNPC implements ZoneConfigurator {
 					 *            The player who wants to fetch the product
 					 */
 					@Override
-						public void giveProduct(final EventRaiser npc, final Player player) {
+					public void giveProduct(final EventRaiser npc, final Player player) {
 						final String orderString = player.getQuest(QUEST_SLOT);
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[0]);
-						// String productName = order[1];
-						final long orderTime = Long.parseLong(order[2]);
-						final long timeNow = new Date().getTime();
-						if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
+						if (!isOrderReady(player)) {
 							npc.say("I'm still working on your request to "
 									+ getProductionActivity() + " " + getProductName()
 									+ " for you. Please return in "
 									+ getApproximateRemainingTime(player) + " to get it. Don't forget to #remind me again ... ");
 						} else {
 							final StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
-																														  getProductName());
+									getProductName());
 
 							products.setQuantity(numberOfProductItems);
 
@@ -188,7 +186,7 @@ public class FishermanNPC implements ZoneConfigurator {
 							player.equipOrPutOnGround(products);
 							npc.say("I'm done! Here you have "
 									+ Grammar.quantityplnoun(numberOfProductItems,
-															 getProductName(), "the") + ".");
+											getProductName(), "the") + ".");
 							player.setQuest(QUEST_SLOT, "done");
 							// give some XP as a little bonus for industrious workers
 							player.addXP(numberOfProductItems);
@@ -196,44 +194,44 @@ public class FishermanNPC implements ZoneConfigurator {
 						}
 					}
 				}
-				
+
 				final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "oil",
-				        requiredResources, 10 * 60);
+						requiredResources, 10 * 60);
 
 				// we are not using producer adder at all here because that uses Conversations states IDLE and saying 'hi' heavily.
 				// we can't do that here because Pequod uses that all the time in his fishing quest. so player is going to have to #remind
 				// him if he wants his oil back!
 
 				add(
-				ConversationStates.ATTENDING,
-				"make",
-				new QuestNotActiveCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING, null,
-				new ProducerBehaviourAction(behaviour, "produce") {
-					@Override
-					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
-						// Find out how much items we shall produce.
-						if (res.getAmount() > 1000) {
-							logger.warn("Decreasing very large amount of "
-									+ res.getAmount()
-									+ " " + res.getChosenItemName()
-									+ " to 1 for player "
-									+ player.getName() + " talking to "
-									+ npc.getName() + " saying " + sentence);
-							res.setAmount(1);
-						}
+						ConversationStates.ATTENDING,
+						"make",
+						new QuestNotActiveCondition(behaviour.getQuestSlot()),
+						ConversationStates.ATTENDING, null,
+						new ProducerBehaviourAction(behaviour, "produce") {
+							@Override
+							public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
+								// Find out how much items we shall produce.
+								if (res.getAmount() > 1000) {
+									logger.warn("Decreasing very large amount of "
+											+ res.getAmount()
+											+ " " + res.getChosenItemName()
+											+ " to 1 for player "
+											+ player.getName() + " talking to "
+											+ npc.getName() + " saying " + sentence);
+									res.setAmount(1);
+								}
 
-						if (behaviour.askForResources(res, npc, player)) {
-							currentBehavRes = res;
-							npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-						}
-					}
-				});
+								if (behaviour.askForResources(res, npc, player)) {
+									currentBehavRes = res;
+									npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+								}
+							}
+						});
 
-		add(ConversationStates.PRODUCTION_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				add(ConversationStates.PRODUCTION_OFFERED,
+						ConversationPhrases.YES_MESSAGES, null,
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
 
@@ -241,28 +239,15 @@ public class FishermanNPC implements ZoneConfigurator {
 					}
 				});
 
-		add(ConversationStates.PRODUCTION_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "OK, no problem.", null);
+				add(ConversationStates.PRODUCTION_OFFERED,
+						ConversationPhrases.NO_MESSAGES, null,
+						ConversationStates.ATTENDING, "OK, no problem.", null);
 
-		add(ConversationStates.ATTENDING,
-				behaviour.getProductionActivity(),
-				new QuestActiveCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser npc) {
-						npc.say("I still haven't finished your last order. Come back in "
-								+ behaviour.getApproximateRemainingTime(player)
-								+ "!");
-					}
-				});
-
-		add(ConversationStates.ATTENDING,
-				"remind",
-				new QuestActiveCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				add(ConversationStates.ATTENDING,
+						Arrays.asList(behaviour.getProductionActivity(), "remind"),
+						new QuestActiveCondition(behaviour.getQuestSlot()),
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
