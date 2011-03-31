@@ -33,6 +33,7 @@ Changelog
 - recognise the expressions "ice cream" and "teddy bear"
 - fix display texts for "ice cream"
 - Alrak and Pequod give the bobbin/oil directly when saying 'make' (as well as 'remind') if item is ready
+- fix a memory hole in the market
 
 0.92: Achievements and Expedition Groups
 26th February 2011
