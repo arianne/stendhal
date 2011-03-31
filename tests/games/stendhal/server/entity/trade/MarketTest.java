@@ -539,7 +539,7 @@ public class MarketTest {
 		Offer offer = market.createOffer(bob, item, 10, 1);
 		offer.put("timestamp", "0");
 		
-		market.prolongOffer(bob, offer);
+		market.prolongOffer(offer);
 		assertTrue(market.getOffersOlderThan(1000).size() == 0);
 		assertTrue(market.countOffersOfPlayer(bob) == 1);
 	}
@@ -560,7 +560,7 @@ public class MarketTest {
 		offer.put("timestamp", "0");
 		market.expireOffer(offer);
 		
-		market.prolongOffer(bob, offer);
+		market.prolongOffer(offer);
 		assertTrue(market.getOffersOlderThan(1000).size() == 0);
 		assertTrue(market.countOffersOfPlayer(bob) == 1);
 		assertTrue(market.getExpiredOffers().size() == 0);
@@ -583,7 +583,7 @@ public class MarketTest {
 		market.expireOffer(offer);
 		market.removeExpiredOffer(offer);
 		
-		market.prolongOffer(bob, offer);
+		market.prolongOffer(offer);
 		
 		assertTrue(market.countOffersOfPlayer(bob) == 0);
 		assertTrue(market.getExpiredOffers().size() == 0);

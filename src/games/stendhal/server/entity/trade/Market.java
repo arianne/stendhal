@@ -404,13 +404,11 @@ public class Market extends PassiveEntity {
 	/**
 	 * prolongs an offer in the market to make it available again
 	 * 
-	 * @param player
-	 *            the prolonging player
 	 * @param offer
 	 *            the offer to prolong
 	 * @return the prolonged offer
 	 */
-	public Offer prolongOffer(Player player, Offer offer) {
+	public Offer prolongOffer(Offer offer) {
 		offer.updateTimestamp();
 		if (getSlot(EXPIRED_OFFERS_SLOT_NAME).has(offer.getID())) {
 			// It had expired. Move to active offers slot.
