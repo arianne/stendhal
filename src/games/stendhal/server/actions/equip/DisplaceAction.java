@@ -24,6 +24,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -99,7 +100,8 @@ public class DisplaceAction implements ActionListener {
 				&& (!isItemBelowOtherPlayer(player, entity))
 				&& destInRange(player, entity, x, y)
 				&& !entityCollides(player, zone, x, y, entity)
-				&& (isGamblingZoneAndIsDice(entity, player) || pathToDest(player, zone, x, y, entity));
+				&& (isGamblingZoneAndIsDice(entity, player) || pathToDest(player, zone, x, y, entity))
+				&& !isNotOwnCorpseAndTooFar(entity, player, x, y);
 	}
 
     /**
@@ -208,6 +210,28 @@ public class DisplaceAction implements ActionListener {
 	private boolean isGamblingZoneAndIsDice(final Entity entity, final Player player) {
 		final StendhalRPZone zone = player.getZone();
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
+	}
+	
+	/* returns true if entity is a corpse, it's not owner by that player, and the distance is far */
+	private boolean isNotOwnCorpseAndTooFar(final Entity entity, final Player player, final int x, final int y) {
+		if(entity instanceof Corpse) {
+			Corpse corpse;
+			try {
+				corpse = (Corpse) entity;
+				String owner = corpse.getCorpseOwner();
+				if (owner!= null && !player.getTitle().equals(owner)) {
+			    	int centerX = (int) (x + entity.getArea().getWidth() / 2);
+			    	int centerY = (int) (y + entity.getArea().getHeight() / 2);			
+			    	if (!(player.squaredDistance(centerX, centerY) < entity.getArea().getWidth() * entity.getArea().getHeight())) {
+			    		player.sendPrivateText("You cannot throw that corpse so far while the protection of " + owner + " is heavy upon it.");
+			    		return true;
+			    	}
+				}
+			} catch (ClassCastException ex) {
+				logger.warn("Some entity " + entity.getTitle() + " claiming to be a corpse, wasn't a corpse! " + entity.toString());
+			}
+		}
+		return false;
 	}
 	
 	/**
