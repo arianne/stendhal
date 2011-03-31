@@ -36,7 +36,7 @@ public final class MarketManagerNPC extends SpeakerNPC {
 
 	@Override
 	protected void createPath() {
-		// npcs is lazy and does not move
+		// npc is lazy and does not move
 	}
 	
 	@Override
