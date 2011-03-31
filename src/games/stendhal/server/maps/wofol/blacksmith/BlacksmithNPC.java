@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -166,10 +167,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 						final String orderString = player.getQuest(QUEST_SLOT);
 						final String[] order = orderString.split(";");
 						final int numberOfProductItems = Integer.parseInt(order[0]);
-						// String productName = order[1];
-						final long orderTime = Long.parseLong(order[2]);
-						final long timeNow = new Date().getTime();
-						if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
+						if (!isOrderReady(player)) {
 							npc.say("I'm still working on your request to "
 									+ getProductionActivity() + " " + getProductName()
 									+ " for you. Please return in "
@@ -228,49 +226,37 @@ public class BlacksmithNPC implements ZoneConfigurator {
 					}
 				});
 
-		add(ConversationStates.PRODUCTION_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-						final EventRaiser npc) {
-							behaviour.transactAgreedDeal(currentBehavRes, npc, player);
-
-							currentBehavRes = null;
-						}
-				});
-
-		add(ConversationStates.PRODUCTION_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "OK, no problem.", null);
-
-		add(ConversationStates.ATTENDING,
-				behaviour.getProductionActivity(),
-				new QuestActiveCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				add(ConversationStates.PRODUCTION_OFFERED,
+						ConversationPhrases.YES_MESSAGES, null,
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
-						npc.say("I still haven't finished your last order. Come back in "
-								+ behaviour.getApproximateRemainingTime(player)
-								+ "!");
+						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
+
+						currentBehavRes = null;
 					}
 				});
 
-		add(ConversationStates.ATTENDING,
-				"remind",
-				new QuestActiveCondition(behaviour.getQuestSlot()),
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
-					public void fire(final Player player, final Sentence sentence,
-							final EventRaiser npc) {
+				add(ConversationStates.PRODUCTION_OFFERED,
+						ConversationPhrases.NO_MESSAGES, null,
+						ConversationStates.ATTENDING, "OK, no problem.", null);
+
+				add(ConversationStates.ATTENDING,
+						Arrays.asList(behaviour.getProductionActivity(), "remind"),
+						new QuestActiveCondition(behaviour.getQuestSlot()),
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
 					}
 				});
+			
 			}
-				
-		    //remaining behaviour defined in maps.quests.ObsidianKnife
-			};
+
+
+		//remaining behaviour defined in maps.quests.ObsidianKnife
+		};
 
 		dwarf.setDescription("You see Alrak, a reclusive dwarf smith.");
 		dwarf.setEntityClass("dwarfnpc");
