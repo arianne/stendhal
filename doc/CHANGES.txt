@@ -9,6 +9,11 @@ Changelog
 - deathmatch creature spawn time dependent on player level and (inversely) on number of players in ring
 - get fresh water at some hidden new springs
 - Kill Enemy Army quest history with more detail and records number of completions
+- corpse auto inspect mode in settings panel
+- inspected corpses auto close when empty
+- corpse window title is the dead creature / player
+- corpses cannot be thrown far by other players if they're protected
+- Xhiphin Zohos is thirsty and asks for water 
 
 *website*
 - new rankings for best player and hall of fame using achievements
@@ -27,6 +32,7 @@ Changelog
 - non-exact answer matching in the fishermans license quiz
 - recognise the expressions "ice cream" and "teddy bear"
 - fix display texts for "ice cream"
+- Alrak and Pequod give the bobbin/oil directly when saying 'make' (as well as 'remind') if item is ready
 
 0.92: Achievements and Expedition Groups
 26th February 2011
