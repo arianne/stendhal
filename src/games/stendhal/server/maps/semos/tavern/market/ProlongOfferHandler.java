@@ -53,7 +53,7 @@ public class ProlongOfferHandler extends OfferHandler {
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
 				
-				Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+				Map<String,Offer> offerMap = manager.getOfferMap();
 				if (offerMap == null) {
 					npc.say("Please check your offers first.");
 					return;

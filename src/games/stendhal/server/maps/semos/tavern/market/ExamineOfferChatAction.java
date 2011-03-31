@@ -35,7 +35,7 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 		MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 		try {
 			String offerNumber = getOfferNumberFromSentence(sentence).toString();
-			Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+			Map<String,Offer> offerMap = manager.getOfferMap();
 			if (offerMap == null) {
 				npc.say("Please take a look at the list of offers first.");
 				return;

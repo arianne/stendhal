@@ -50,7 +50,7 @@ public class RemoveOfferHandler extends OfferHandler {
 			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
-				Map<String,Offer> offerMap = manager.getOfferMap().get(player.getName());
+				Map<String,Offer> offerMap = manager.getOfferMap();
 				if (offerMap == null) {
 					npc.say("Please check your offers first.");
 					return;
@@ -90,7 +90,5 @@ public class RemoveOfferHandler extends OfferHandler {
 		Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		m.removeOffer(offer,player);
 		npc.say("Ok.");
-		// Obsolete the offers, since the list has changed
-		((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
 	}
 }

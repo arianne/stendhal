@@ -92,10 +92,9 @@ public class ShowOffersChatAction implements ChatAction {
 		
 		StringBuilder offersMessage = new StringBuilder();
 		MarketManagerNPC marketNPC = (MarketManagerNPC) npc.getEntity();
-		marketNPC.getOfferMap().put(player.getName(),new HashMap<String, Offer>());
 		
 		boolean usingFilter = filterForMine || (wordFilter != null);
-		int counter = buildMessage(offersMessage, offers, marketNPC.getOfferMap().get(player.getName()), usingFilter);
+		int counter = buildMessage(offersMessage, offers, marketNPC.getOfferMap(), usingFilter);
 		if (counter > 0) {
 			player.sendPrivateText(offersMessage.toString());
 		}
