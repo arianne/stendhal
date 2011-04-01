@@ -17,7 +17,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * A script, which can be reloading at runtime.
+ * A script, which can be reloaded at runtime.
  * 
  * @author hendrik
  */
