@@ -242,7 +242,7 @@ public class WaterForXhiphin extends AbstractQuest {
 			res.add("I found a source of fresh water, but I can't be completely sure it's safe for Xhiphin to drink.");
 		}
 		if (new PlayerHasInfostringItemWithHimCondition("water", CLEAN_WATER_INFOSTRING).fire(player, null, null) || isCompleted(player)) {
-			res.add("Stefan, the chest in Fado hotel, checked the water I collected and it is clean and safe to drink.");
+			res.add("Stefan, the chef in Fado hotel, checked the water I collected and it is clean and safe to drink.");
 		}
 		// checked water was clean?
         if (isCompleted(player)) {
