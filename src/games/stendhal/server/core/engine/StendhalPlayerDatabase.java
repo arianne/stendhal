@@ -135,10 +135,16 @@ public class StendhalPlayerDatabase {
 			+ "'age.week.one', 'age.month.one', 'age.month.two', 'age.month.three', "
 			+ "'age.month.four', 'age.month.five', 'age.month.six', 'age.month.seven', "
 			+ "'age.month.eight', 'age.month.nine', 'age.month.ten', 'age.month.eleven', "
-			+ "'age.year.one', 'quest.special.dm.025', 'quest.special.susi', 'item.produce.flour'," 
+			+ "'age.year.one', 'quest.special.dm.025', 'quest.special.susi', 'item.produce.flour',"
 			+ "'quest.special.santa', 'quest.special.bunny')", null);
 		transaction.execute("UPDATE achievement SET identifier='xp.level.010' WHERE identifier='xp.level.10'", null);
 		transaction.execute("UPDATE achievement SET identifier='xp.level.050' WHERE identifier='xp.level.50'", null);
+
+		// 0.93: inactive achievements
+		if (!transaction.doesColumnExist("achievement", "active")) {
+			transaction.execute("ALTER TABLE achievement ADD COLUMN (active INTEGER);", null);
+			transaction.execute("UPDATE achievement SET active = 1;", null);
+		}
 	}
 
 

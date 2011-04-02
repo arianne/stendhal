@@ -86,14 +86,15 @@ public class AchievementDAO {
 	public int saveAchievement(DBTransaction transaction, Achievement achievement) throws SQLException {
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
-						"(identifier, title, category, description, base_score) VALUES " +
-						"('[identifier]','[title]','[category]', '[description]', [base_score])";
+						"(identifier, title, category, description, base_score, active) VALUES " +
+						"('[identifier]','[title]','[category]', '[description]', [base_score], [active])";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
 		parameters.put("title", achievement.getTitle());
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("active", achievement.isActive() ? 1 : 0);
 		transaction.execute(query, parameters);
 		achievementId = transaction.getLastInsertId("achievement", "id");
 		return achievementId;
@@ -127,6 +128,7 @@ public class AchievementDAO {
 						"category = '[category]', " +
 						"description = '[description]', " +
 						"base_score=[base_score] " +
+						"active=[active] " +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
@@ -134,6 +136,7 @@ public class AchievementDAO {
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("active", achievement.isActive() ? 1 : 0);
 		parameters.put("id", id);
 		transaction.execute(query, parameters);
 	}

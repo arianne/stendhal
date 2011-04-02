@@ -166,6 +166,26 @@ CREATE TABLE IF NOT EXISTS buddy (
 
 /* CREATE INDEX i_buddy_charname ON buddy (charname); */
 
+CREATE TABLE openid_allowedsites (
+  id         INTEGER AUTO_INCREMENT NOT NULL,
+  player_id  INT NOT NULL,
+  realm      TEXT NOT NULL,
+  attribute  TEXT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+/* CREATE INDEX i_openid_allowedsites ON openid_allowedsites (player_id, realm); */
+
+CREATE TABLE openid_associations (
+  id         INT NOT NULL PRIMARY KEY,
+  handle     TEXT,
+  data TEXT NOT NULL,
+  timedate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+ );
+
+/* CREATE INDEX i_openid_associations ON openid_associations (handle); */
+
 CREATE TABLE IF NOT EXISTS achievement (
     id INTEGER AUTO_INCREMENT NOT NULL,
     identifier VARCHAR(64),

@@ -41,7 +41,11 @@ public class Achievement {
 
 	private final int baseScore;
 
+	/** is this achievement visible? */
+	private final boolean active;
+
 	private final ChatCondition condition;
+
 
 
 	/**
@@ -52,15 +56,17 @@ public class Achievement {
 	 * @param category
 	 * @param description
 	 * @param baseScore
+	 * @param active
 	 * @param condition
 	 */
-	public Achievement(String identifier, String title, Category category, String description, int baseScore, ChatCondition condition) {
+	public Achievement(String identifier, String title, Category category, String description, int baseScore, boolean active, ChatCondition condition) {
 		this.identifier = identifier;
 		this.title = title;
 		this.category = category;
 		this.condition = condition;
 		this.description = description;
 		this.baseScore = baseScore;
+		this.active = active;
 	}
 
 	/**
@@ -99,9 +105,16 @@ public class Achievement {
 	}
 
 	/**
-	 * Check if a player has fullfilled this achievement
+	 * @return true if the achievement is visible, false otherwise
+	 */
+	public boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * Check if a player has fulfilled this achievement
 	 * @param p the player to check
-	 * @return true iff this achievement's condtion evalutates to true
+	 * @return true iff this achievement's condition evaluates to true
 	 */
 	public boolean isFulfilled(Player p) {
 		return condition.fire(p, null, null);
