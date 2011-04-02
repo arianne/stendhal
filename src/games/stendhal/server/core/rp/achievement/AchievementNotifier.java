@@ -40,27 +40,27 @@ import org.apache.log4j.Logger;
 
 /**
  * Checks for reached achievements and marks them as reached for a player if he has fulfilled them
- *  
+ *
  * @author madmetzger
  */
 public final class AchievementNotifier {
-	
+
 	private static final Logger logger = Logger.getLogger(AchievementNotifier.class);
 
 	private static AchievementNotifier instance;
-	
+
 	final private Map<Category, List<Achievement>> achievements;
-	
+
 	final private Map<String, Integer> identifiersToIds;
-	
+
 	private AchievementNotifier() {
 		achievements = new HashMap<Category, List<Achievement>>();
 		identifiersToIds = new HashMap<String, Integer>();
 	}
-	
+
 	/**
 	 * singleton accessor method
-	 * 
+	 *
 	 * @return the AchievementNotifier
 	 */
 	public static AchievementNotifier get() {
@@ -71,7 +71,7 @@ public final class AchievementNotifier {
     	}
 		return instance;
 	}
-	
+
 	/**
 	 * initializes the achievements that are available and registers the login listener
 	 * new added achievements are added to the achievements table
@@ -101,7 +101,7 @@ public final class AchievementNotifier {
 				} catch (SQLException e) {
 					logger.error("Error while updating existing achievement " + achievement.getTitle(), e);
 				}
-			} 
+			}
 		}
 		// remove already stored achievements before saving them
 		for(String identifier : allIdentifiersInDatabase.keySet()) {
@@ -124,7 +124,7 @@ public final class AchievementNotifier {
 
 	/**
 	 * collects all identifiers from the database
-	 * 
+	 *
 	 * @return a set of all identifier strings
 	 */
 	private Map<String, Integer> collectAllIdentifiersFromDatabase() {
@@ -139,26 +139,26 @@ public final class AchievementNotifier {
 
 	/**
 	 * checks all for level change relevant achievements for a player
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onLevelChange(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.EXPERIENCE);
 	}
-	
+
 
 	/**
 	 * checks all achievements for a player that should be checked when a player kills sth
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onKill(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.FIGHTING);
 	}
-	
+
 	/**
 	 * check all achievements for a player that are relevant on finishing a quest
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onFinishQuest(Player player) {
@@ -167,57 +167,57 @@ public final class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
 	}
-	
+
 	/**
 	 * check all achievements for a player that belong to the zone category
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onZoneEnter(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.OUTSIDE_ZONE);
 		getAndCheckAchievementsInCategory(player, Category.UNDERGROUND_ZONE);
 	}
-	
+
 	/**
 	 * check all achievements for a player that belong to the age category
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onAge(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.AGE);
 	}
-	
+
 	/**
 	 * check all achievements for a player that belong to the item category
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onItemLoot(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.ITEM);
 	}
-	
+
 	/**
 	 * check all achievements for a player that belong to the production category
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onProduction(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
 	}
-	
+
 	/**
 	 * check all achievements for a player that belong to the obtain category
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onObtain(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 	}
-	
+
 	/**
 	 * Award a player with an achievement that wasn't yet reached by the player
 	 * (used for example in the wishing well)
-	 * 
+	 *
 	 * @param player the player object to award
 	 * @param achievementIdentifier the identifier of the achievement that should be awarded
 	 */
@@ -240,10 +240,10 @@ public final class AchievementNotifier {
 			}
 		}
 	}
-	
+
 	/**
 	 * Checks on login of a player which achievements the player has reached and gives a summarizing message
-	 * 
+	 *
 	 * @param player
 	 */
 	public void onLogin(Player player) {
@@ -267,10 +267,10 @@ public final class AchievementNotifier {
 			player.sendPrivateText(sb.toString());
 		}
 	}
-	
+
 	/**
 	 * retrieve all achievements for a category and check if player has reached each of the found achievements
-	 * 
+	 *
 	 * @param player
 	 * @param category
 	 */
@@ -285,7 +285,7 @@ public final class AchievementNotifier {
 	/**
 	 * checks for each achievement if the player has reached it. in case of reaching
 	 * an achievement it starts logging and notifying about reaching
-	 * 
+	 *
 	 * @param player
 	 * @param toCheck
 	 */
@@ -301,15 +301,17 @@ public final class AchievementNotifier {
 		for (Achievement achievement : toCheck) {
 			if(achievement.isFulfilled(player) && !player.hasReachedAchievement(achievement.getIdentifier())) {
 				logReachingOfAnAchievement(player, achievement);
-				reached.add(achievement);
+				if (achievement.isActive()) {
+					reached.add(achievement);
+				}
 			}
 		}
 		return reached;
 	}
-	
+
 	/**
 	 * Notifies a player about reached achievements via private message
-	 * 
+	 *
 	 * @param player
 	 * @param achievements
 	 */
@@ -318,10 +320,10 @@ public final class AchievementNotifier {
 			notifyPlayerAboutReachedAchievement(player, achievement);
 		}
 	}
-	
+
 	/**
 	 * logs reached achievement to gameEvents table and reached_achievment table
-	 * 
+	 *
 	 * @param player
 	 * @param achievement
 	 */
@@ -337,19 +339,20 @@ public final class AchievementNotifier {
 
 	/**
 	 * notifies the player about reaching an achievement
-	 * 
+	 *
 	 * @param player
 	 * @param achievement
 	 */
-	private void notifyPlayerAboutReachedAchievement(Player player,
-			Achievement achievement) {
+	private void notifyPlayerAboutReachedAchievement(Player player, Achievement achievement) {
+		if (achievement.isActive()) {
 			player.addEvent(new ReachedAchievementEvent(achievement));
 			player.addEvent(new SoundEvent("yay-1", SoundLayer.USER_INTERFACE));
+		}
 	}
 
 	/**
 	 * creates all available achievements
-	 * 
+	 *
 	 * @return map with key identifier and value the identified achievement
 	 */
 	private Map<String, Achievement> createAchievements() {
