@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 /**
  * Factory class for achievements creation with a fixed category
- *  
+ *
  * @author madmetzger
  */
 public abstract class AbstractAchievementFactory {
@@ -33,24 +33,25 @@ public abstract class AbstractAchievementFactory {
 
 	/**
 	 * Creates a collection of achievements
-	 * 
+	 *
 	 * @return the achievments
 	 */
 	public abstract Collection<Achievement> createAchievements();
 
 	/**
-	 * Creates a single achievement 
+	 * Creates a single achievement
 	 * @param identifier
 	 * @param title
 	 * @param description
 	 * @param score
 	 * @param condition
+	 * @param active
 	 * @return the new Achievement
 	 */
-	protected Achievement createAchievement(String identifier, String title, String description, int score, ChatCondition condition) {
-		return new Achievement(identifier, title, getCategory(),  description, score, condition);
+	protected Achievement createAchievement(String identifier, String title, String description, int score, boolean active, ChatCondition condition) {
+		return new Achievement(identifier, title, getCategory(),  description, score, active, condition);
 	}
-	
+
 	/**
 	 * Create a list of all known achievement factories
 	 * @return the list of factories

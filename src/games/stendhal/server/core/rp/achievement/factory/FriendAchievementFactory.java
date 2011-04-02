@@ -29,20 +29,20 @@ import java.util.LinkedList;
 import java.util.List;
 /**
  * Factory for quest achievements
- *  
+ *
  * @author kymara
  */
 public class FriendAchievementFactory extends AbstractAchievementFactory {
-	
+
 	@Override
 	public Collection<Achievement> createAchievements() {
 		List<Achievement> achievements = new LinkedList<Achievement>();
-		
+
 	    // TODO: add Pacifist achievement for not participating in pvp for 6 months or more (last_pvp_action_time)
-		
+
 		// Befriend Susi and complete quests for all children
 		achievements.add(createAchievement("friend.quests.children", "Childrens' friend", "Complete quests for all children",
-												Achievement.MEDIUM_BASE_SCORE, 
+												Achievement.MEDIUM_BASE_SCORE, true,
 												new AndCondition(
 														// Susi Quest is never set to done, therefore we check just if the quest has been started (condition "anyFriends" from FoundGirl.java)
 														new QuestStartedCondition("susi"),
@@ -63,10 +63,10 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 														new QuestCompletedCondition("find_jefs_mom"),
 														// Hughie, Ados farmhouse
 														new AndCondition(new QuestActiveCondition("fishsoup_for_hughie"), new QuestNotInStateCondition("fishsoup_for_hughie", "start")))));
-		
+
 		// quests about finding people
 		achievements.add(createAchievement("friend.quests.find", "Private Detective", "Find all lost and hidden people",
-												Achievement.HARD_BASE_SCORE, 
+												Achievement.HARD_BASE_SCORE, true,
 												new AndCondition(
 														// Rat Children (Agnus)
 														new QuestCompletedCondition("find_rat_kids"),
@@ -84,20 +84,20 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 																return left < 0;
 															}
 														})));
-		
+
 		// earn over 250 karma
 		achievements.add(createAchievement("friend.karma.250", "Good Samaritan", "Earn 250 Karma",
-				Achievement.MEDIUM_BASE_SCORE, 
+				Achievement.MEDIUM_BASE_SCORE, true,
 				new ChatCondition() {
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 				return player.getKarma()>250;
 			}
 		}));
-		
+
 		// meet Santa Claus and Easter Bunny
 		achievements.add(createAchievement("friend.meet.seasonal", "Still Believing", "Meet Santa Claus and Easter Bunny",
-												Achievement.EASY_BASE_SCORE, new AndCondition(new QuestWithPrefixCompletedCondition("meet_santa_"), new QuestWithPrefixCompletedCondition("meet_bunny_"))));
-		
+												Achievement.EASY_BASE_SCORE, true, new AndCondition(new QuestWithPrefixCompletedCondition("meet_santa_"), new QuestWithPrefixCompletedCondition("meet_bunny_"))));
+
 		return achievements;
 	}
 
