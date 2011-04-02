@@ -28,8 +28,8 @@ import games.stendhal.client.gui.InternalManagedWindow;
 import games.stendhal.client.gui.SlotGrid;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.common.Grammar;
 import games.stendhal.common.TradeState;
+import games.stendhal.common.grammar.Grammar;
 
 /**
  * The trading window. Panels for each of the trader's trading slots and

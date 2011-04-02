@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.wofol.blacksmith;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;

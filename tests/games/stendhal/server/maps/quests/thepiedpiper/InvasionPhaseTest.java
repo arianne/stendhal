@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
 public class InvasionPhaseTest extends TPPTestHelper {

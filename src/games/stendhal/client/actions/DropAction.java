@@ -17,7 +17,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPAction;
 
 /**

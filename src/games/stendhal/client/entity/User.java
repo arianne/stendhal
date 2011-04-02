@@ -18,8 +18,8 @@ import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.update.Version;
-import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.grammar.Grammar;
 
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;

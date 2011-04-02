@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests.thepiedpiper;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.bank;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;

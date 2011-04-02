@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 

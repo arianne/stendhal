@@ -16,7 +16,7 @@ import static games.stendhal.common.constants.Actions.CREATURE;
 import static games.stendhal.common.constants.Actions.SUMMON;
 import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;

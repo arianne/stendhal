@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;

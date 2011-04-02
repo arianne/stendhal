@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;

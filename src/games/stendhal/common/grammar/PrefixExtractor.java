@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common;
+package games.stendhal.common.grammar;
 
 /**
  * PrefixProcessor is used to process prefix texts in a text string.

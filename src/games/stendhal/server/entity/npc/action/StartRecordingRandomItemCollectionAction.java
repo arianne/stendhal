@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;

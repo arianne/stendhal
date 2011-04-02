@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 
 import java.util.Map;
 

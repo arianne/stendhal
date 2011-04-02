@@ -14,10 +14,10 @@ package games.stendhal.server.entity;
 
 
 import games.stendhal.common.Constants;
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;

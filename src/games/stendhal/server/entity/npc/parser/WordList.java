@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.parser;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 
 import java.io.BufferedReader;
 import java.io.IOException;

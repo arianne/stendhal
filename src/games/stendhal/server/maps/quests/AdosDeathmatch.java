@@ -13,7 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;

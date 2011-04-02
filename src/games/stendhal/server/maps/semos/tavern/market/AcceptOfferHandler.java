@@ -20,7 +20,7 @@ import marauroa.server.db.command.DBCommandQueue;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;

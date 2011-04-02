@@ -15,7 +15,7 @@ package games.stendhal.server.entity.npc.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.parser.Sentence;

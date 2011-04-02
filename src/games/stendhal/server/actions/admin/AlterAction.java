@@ -24,7 +24,7 @@ import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TITLE;
 import static games.stendhal.common.constants.Actions.UNSET;
 import static games.stendhal.common.constants.Actions.VALUE;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;

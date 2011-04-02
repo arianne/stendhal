@@ -14,7 +14,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPAction;
 
 /**

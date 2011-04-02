@@ -18,8 +18,8 @@ import marauroa.server.db.command.DBCommandQueue;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;

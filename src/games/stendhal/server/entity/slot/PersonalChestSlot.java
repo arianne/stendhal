@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.slot;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.util;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 
 import java.util.Arrays;
 import java.util.LinkedList;

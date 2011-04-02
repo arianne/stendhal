@@ -8,7 +8,7 @@ package games.stendhal.server.util;
 //
 //
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 
 /**
  * Utility functions for time in the game.

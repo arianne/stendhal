@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;

@@ -16,7 +16,7 @@ import static games.stendhal.common.constants.Actions.DURATION;
 import static games.stendhal.common.constants.Actions.LIST;
 import static games.stendhal.common.constants.Actions.REASON;
 import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 

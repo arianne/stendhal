@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;

@@ -9,7 +9,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common;
+package games.stendhal.common.grammar;
+
 
 import java.util.ArrayList;
 import java.util.Collection;

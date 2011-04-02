@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.timed;
 
-import games.stendhal.common.Grammar;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;

@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;

@@ -22,8 +22,8 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 
 import java.util.LinkedList;
 

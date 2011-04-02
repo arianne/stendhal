@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
