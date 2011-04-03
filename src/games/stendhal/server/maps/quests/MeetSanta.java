@@ -53,8 +53,12 @@ import java.util.List;
  * REPETITIONS:None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
-	private static final String QUEST_SLOT = "meet_santa_10";
-
+	
+	// quest slot changed ready for 2011
+	private static final String QUEST_SLOT = "meet_santa_11";
+	// date changed ready for 2011
+    private static final GregorianCalendar notXmas = new GregorianCalendar(2012, Calendar.JANUARY, 6);
+    
 	public static final String QUEST_NAME = "MeetSanta";
 
 	/** the Santa NPC. */
@@ -141,7 +145,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final int hairnumber = outfit.getHair();
 		if ((hairnumber >= 50) && (hairnumber < 94)) {
 			final Date now = new Date();
-			final GregorianCalendar notXmas = new GregorianCalendar(2011, Calendar.JANUARY, 6);
 			final Date dateNotXmas = notXmas.getTime();
 			if (now.after(dateNotXmas)) {
 				final int newhair = hairnumber - 50;
