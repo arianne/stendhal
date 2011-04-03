@@ -328,6 +328,8 @@ public class Grammar {
 		// handle special cases:
 				// "ice cream" -> "ice"
 		if ((word2.getMainWord().equals("ice") && word1.getMainWord().equals("cream")) ||
+				// "chocolate bar" -> "chocolate"
+				(word2.getMainWord().equals("chocolate") && word1.getMainWord().equals("bar")) ||
 				// "teddy bear" -> "teddy"
 				(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
 		    word2.mergeRight(word1, true);
@@ -863,8 +865,8 @@ public class Grammar {
 		} else {
 			final StringBuilder sb = new StringBuilder();
 
-			for(String elem : elements) {
-				sb.append(quoteHash(elem) + ", ");
+			for(int i = 0; i < elements.length - 1; i++) {
+				sb.append(quoteHash(elements[i]) + ", ");
 			}
 			sb.append("and " + quoteHash(elements[elements.length - 1]));
 
