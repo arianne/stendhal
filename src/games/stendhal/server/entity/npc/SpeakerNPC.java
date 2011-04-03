@@ -301,7 +301,7 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
-		
+
 		heal();
 		notifyWorldAboutChanges();
 	}
@@ -332,7 +332,7 @@ public class SpeakerNPC extends NPC {
 
 	public void preLogic() {
 
-		if (this.getZone().getPlayerAndFriends().isEmpty()) {
+		if (this.getZone().getPlayerAndFriends().isEmpty() && !isTalking()) {
 			return;
 		}
 
@@ -420,7 +420,7 @@ public class SpeakerNPC extends NPC {
 		waitAction = action;
 	}
 
-	
+
 	public void addInitChatMessage(final ChatCondition condition, final ChatAction action) {
 		initChatCondition = condition;
 		initChatAction = action;
@@ -594,7 +594,7 @@ public class SpeakerNPC extends NPC {
 					final Sentence sentence = ConversationParser.parse(text);
 					// Note: sentence is currently not yet used in
 					// the called handler functions.
-					waitAction.fire(player, sentence, new EventRaiser(this)); 
+					waitAction.fire(player, sentence, new EventRaiser(this));
 				}
 			}
 
@@ -604,9 +604,9 @@ public class SpeakerNPC extends NPC {
 		return false;
 	}
 
-	/** This function evolves the FSM. 
-	 * @param player 
-	 * @param text 
+	/** This function evolves the FSM.
+	 * @param player
+	 * @param text
 	 * @return true if step was successfully executed*/
 	private boolean tell(final Player player, final String text) {
 		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
@@ -741,7 +741,7 @@ public class SpeakerNPC extends NPC {
 	public void addOffer(final String offerDescription) {
 		addReply(ConversationPhrases.OFFER_MESSAGES, offerDescription);
 	}
-	
+
 	/**
 	 * make npc's emotion reply on player's emotion
 	 * @param playerAction - what player doing with npc
@@ -778,7 +778,7 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.ATTENDING, Arrays.asList(trigger),
 				ConversationStates.ATTENDING, null, new NPCEmoteAction(npcAction));
 	}
-	
+
 	/**
 	 * make npc's reply on player's emotion
 	 * @param playerAction - what player doing with npc
@@ -786,11 +786,11 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void addReplyOnEmotion(final String playerAction, final String reply) {
 		add(ConversationStates.IDLE, Arrays.asList("!me "),new EmoteCondition(playerAction),
-				ConversationStates.IDLE, reply, null);	
+				ConversationStates.IDLE, reply, null);
 		add(ConversationStates.ATTENDING, Arrays.asList("!me "),new EmoteCondition(playerAction),
 				ConversationStates.ATTENDING, reply, null);
 	}
-		
+
 	public void addGoodbye() {
 		addGoodbye("Bye.");
 	}
@@ -853,5 +853,5 @@ public class SpeakerNPC extends NPC {
 		this.alternativeImage = alternativeImage;
 	}
 
-	
+
 }
