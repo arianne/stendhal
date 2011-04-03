@@ -71,18 +71,38 @@ final class PrefixManager
 	}
 
 
+	/**
+	 * Define the singular and plural prefix strings for an item name,
+	 * for example "piece of chocolate".
+	 * @param prefixSingular
+	 * @param prefixPlural
+	 * @param noun
+	 */
 	private void register(final String prefixSingular, final String prefixPlural, final String noun) {
 		prefixMap.put(noun, new PrefixEntry(noun, prefixSingular, prefixPlural));
 
 		registerPrefix(prefixSingular, prefixPlural);
 	}
 
+	/**
+	 * Define the singular and plural prefix strings for an item name,
+	 * for example "bottle of beer".
+	 * @param prefixSingular
+	 * @param prefixPlural
+	 * @param endString
+	 */
 	private void registerEnd(final String prefixSingular, final String prefixPlural, final String endString) {
 		prefixEndList.add(new PrefixEntry(endString, prefixSingular, prefixPlural));
 
 		registerPrefix(prefixSingular, prefixPlural);
 	}
 
+	/**
+	 * Register a pair of singular and plural prefix strings to be removed
+	 * when parsing item names, for example "suits of leather armor".
+	 * @param prefixSingular
+	 * @param prefixPlural
+	 */
 	private void registerPrefix(final String prefixSingular, final String prefixPlural) {
 		singularPrefixes.add(prefixSingular);
 		pluralPrefixes.add(prefixPlural);
