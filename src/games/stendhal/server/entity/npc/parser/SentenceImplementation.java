@@ -546,7 +546,11 @@ public final class SentenceImplementation extends Sentence {
                     if ((curType != null) && (nextType != null)) {
                         // left-merge composite nouns and nouns with preceding adjectives or verbs
                         if (isCompoundNoun(curType, nextType, precedingVerb)) {
-                            expressions.remove(Grammar.mergeCompoundNoun(next, curr));
+                        	if (Grammar.mergeCompoundNoun(next, curr) == curr) {
+                        		expressions.remove(next);
+                        	} else {
+                        		expressions.remove(curr);
+                        	}
                             changed = true;
                             break;
                         }

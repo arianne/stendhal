@@ -302,10 +302,10 @@ public class Grammar {
 		} else if (str.indexOf(" armor") > -1) {
 			str = addPrefixIfNotAlreadyThere(lowString, "suit of ", "suits of ");
 		} else {
-			str = PrefixManager.s_instance.fullForm(str, lowString);
+			str = replaceInternalByDisplayNames(PrefixManager.s_instance.fullForm(str, lowString));
 		}
 
-		return fixItemNames(str);
+		return str;
 	}
 
 	/**
@@ -313,33 +313,35 @@ public class Grammar {
 	 * @param str
 	 * @return fixed string
 	 */
-	public static String fixItemNames(final String str) {
-		return str.replace("icecream", "ice cream");
+	public static String replaceInternalByDisplayNames(final String str) {
+		return str.
+			replace("icecream", "ice cream");
 	}
 
 	/**
-	 * Merge two expressions into a compound noun and return the expression to delete.
+	 * Merge two expressions into a compound noun.
 	 * @param word1
 	 * @param word2
-	 * @return word to be removed
+	 * @return resulting expression: word1 or word2
 	 */
 	public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
-		// special case for "ice cream" -> "ice" and "teddy bear" -> "teddy"
-		// (may be better to handle elsewhere in the game code)
+		// handle special cases:
+				// "ice cream" -> "ice"
 		if ((word2.getMainWord().equals("ice") && word1.getMainWord().equals("cream")) ||
-			(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
+				// "teddy bear" -> "teddy"
+				(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
 		    word2.mergeRight(word1, true);
 
-		    // special case to transform "ice cream" into the item name "icecream"
+		    // transform "ice cream" into the item name "icecream"
 		    if (word2.getMainWord().equals("ice")) {
 		    	word2.setNormalized("icecream");
 		    }
 
-		    return word1;
+		    return word2;
 		} else {
 		    word1.mergeLeft(word2, true);
 
-		    return word2;
+		    return word1;
 		}
 	}
 
@@ -861,17 +863,17 @@ public class Grammar {
 		} else {
 			final StringBuilder sb = new StringBuilder();
 
-			for (int i = 0; i < elements.length - 1; i++) {
-				sb.append(quoteHash(elements[i]) + ", ");
+			for(String elem : elements) {
+				sb.append(quoteHash(elem) + ", ");
 			}
 			sb.append("and " + quoteHash(elements[elements.length - 1]));
 
 			ret = sb.toString();
 		}
 
-		return fixItemNames(ret);
+		return replaceInternalByDisplayNames(ret);
 	}
-	
+
 	/**
 	 * Helper function to nicely formulate an enumeration of a collection, 
 	 * with hashes to colour the words.
@@ -884,7 +886,6 @@ public class Grammar {
 	 * @return A nice String representation of the collection with hashes
 	 */
 	public static String enumerateCollectionWithHash(final Collection<String> collection) {
-		
 		if (collection == null) {
 			return "";
 		}
