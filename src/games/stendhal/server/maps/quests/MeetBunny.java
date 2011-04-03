@@ -17,10 +17,12 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -53,6 +55,10 @@ public class MeetBunny extends AbstractQuest {
 
 	private StendhalRPZone zone;
 	
+	private TeleporterBehaviour teleporterBehaviour;
+	
+	public static final String QUEST_NAME = "MeetBunny";
+
 	// The default is 100 (30 seconds) so make ours half this
 	private static final int TIME_OUT = 50;
 
@@ -61,7 +67,6 @@ public class MeetBunny extends AbstractQuest {
 		return QUEST_SLOT;
 	}
 	
-	@SuppressWarnings("unused")
 	private SpeakerNPC createbunny() {
 		bunny = new SpeakerNPC("Easter Bunny") {
 			@Override
@@ -89,15 +94,9 @@ public class MeetBunny extends AbstractQuest {
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestNotCompletedCondition(QUEST_SLOT)),
-					ConversationStates.ATTENDING,
-					"Happy Easter! I have an easter basket for you.",
+					ConversationStates.IDLE,
+					"Happy Easter! I have an easter basket for you. Bye!",
 					new MultipleActions(reward));
-							
-				addQuest("Just be kind and loving this Easter!");
-				addOffer("I give easter baskets to my new friends, every Easter!");
-				addHelp("You can meet me every Easter!");
-				addJob("I am the Easter Bunny!");
-				addGoodbye("Don't eat too much this Easter! Bye!");
 			}
 		};
 		
@@ -105,7 +104,7 @@ public class MeetBunny extends AbstractQuest {
 		bunny.initHP(100);
 		// times out twice as fast as normal NPCs
 		bunny.setPlayerChatTimeout(TIME_OUT); 
-		
+		bunny.setDescription("You see a friendly bunny carrying brightly coloured Easter baskets.");
 		// start in int_admin_playground
 		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		bunny.setPosition(17, 13);
@@ -119,15 +118,43 @@ public class MeetBunny extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		/* activate bunny here in 2011
-	    createbunny();
-		new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!"); */
 		fillQuestInfo(
 				"Meet Easter Bunny",
 				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. Bunny is really fast even though he carries some heavy surprises with him...",
 				false);
+		
+		if (System.getProperty("stendhal.easterbunny") != null) {
+		    createbunny();
+		    teleporterBehaviour = new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!"); 
+		}
 	}
-
+		
+	/**
+	 * removes a quest from the world.
+	 *
+	 * @return true, if the quest could be removed; false otherwise.
+	 */
+	@Override
+	public boolean removeFromWorld() {
+		removeNPC("Easter Bunny");
+		// remove the turn notifiers left from the TeleporterBehaviour
+		SingletonRepository.getTurnNotifier().dontNotify(teleporterBehaviour);
+		return true;
+	}
+	
+	/**
+	 * removes an NPC from the world and NPC list
+	 *
+	 * @param name name of NPC
+	 */
+	private void removeNPC(String name) {
+		SpeakerNPC npc = NPCList.get().get(name);
+		if (npc == null) {
+			return;
+		}
+		npc.getZone().remove(npc);
+	}
+	
 	@Override
 	public String getName() {
 		return "MeetBunny";
