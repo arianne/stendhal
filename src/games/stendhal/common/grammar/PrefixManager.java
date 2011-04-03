@@ -72,8 +72,8 @@ final class PrefixManager
 
 
 	/**
-	 * Define the singular and plural prefix strings for an item name,
-	 * for example "piece of chocolate".
+	 * Define the singular and plural prefix strings for an item name with full match,
+	 * for example "piece of paper".
 	 * @param prefixSingular
 	 * @param prefixPlural
 	 * @param noun
@@ -85,8 +85,8 @@ final class PrefixManager
 	}
 
 	/**
-	 * Define the singular and plural prefix strings for an item name,
-	 * for example "bottle of beer".
+	 * Define the singular and plural prefix strings for an item name to be matched at the end,
+	 * for example "bottle of ... potion".
 	 * @param prefixSingular
 	 * @param prefixPlural
 	 * @param endString
