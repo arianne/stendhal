@@ -318,6 +318,32 @@ public class Grammar {
 	}
 
 	/**
+	 * Merge two expressions into a compound noun and return the expression to delete.
+	 * @param word1
+	 * @param word2
+	 * @return word to be removed
+	 */
+	public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
+		// special case for "ice cream" -> "ice" and "teddy bear" -> "teddy"
+		// (may be better to handle elsewhere in the game code)
+		if ((word2.getMainWord().equals("ice") && word1.getMainWord().equals("cream")) ||
+			(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
+		    word2.mergeRight(word1, true);
+
+		    // special case to transform "ice cream" into the item name "icecream"
+		    if (word2.getMainWord().equals("ice")) {
+		    	word2.setNormalized("icecream");
+		    }
+
+		    return word1;
+		} else {
+		    word1.mergeLeft(word2, true);
+
+		    return word2;
+		}
+	}
+
+	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ... So this function is just the counter part to fullForm().
 	 * 
@@ -330,23 +356,23 @@ public class Grammar {
 		if (text == null) {
 			result = text;
 		} else {
-			final PrefixExtractor proc = new PrefixExtractor(text);
+			final PrefixExtractor extractor = new PrefixExtractor(text);
 			boolean changed;
 
 			// loop until all prefix strings are removed
 			do {
 				changed = false;
 
-				if (proc.extractNounSingular()) {
+				if (extractor.extractNounSingular()) {
 					changed = true;
 				}
 
-				if (proc.extractNounPlural()) {
+				if (extractor.extractNounPlural()) {
 					changed = true;
 				}
 			} while(changed);
 
-			result = proc.toString();
+			result = extractor.toString();
 		}
 
 		return result;
@@ -365,10 +391,10 @@ public class Grammar {
 		if (text == null) {
 			ret = true;
 		} else {
-			final PrefixExtractor proc = new PrefixExtractor(text);
+			final PrefixExtractor extractor = new PrefixExtractor(text);
 
 			// If there is detected any prefix, the reviewed text was not normalized.
-			if (proc.extractNounSingular() || proc.extractNounPlural()) {
+			if (extractor.extractNounSingular() || extractor.extractNounPlural()) {
 				ret = false;
 			} else {
 				ret = true;
@@ -1116,32 +1142,6 @@ public class Grammar {
 			return true;
 		} else {
 			return false;
-		}
-	}
-
-	/**
-	 * Merge two expressions into a compound noun and return the expression to delete.
-	 * @param next
-	 * @param curr
-	 * @return expression to be removed
-	 */
-	public static Expression mergeCompoundNoun(Expression next, final Expression curr) {
-		// special case for "ice cream" -> "ice" and "teddy bear" -> "teddy"
-		// (may be better to handle elsewhere in the game code)
-		if ((curr.getMainWord().equals("ice") && next.getMainWord().equals("cream")) ||
-			(curr.getMainWord().equals("teddy") && next.getMainWord().equals("bear"))) {
-		    curr.mergeRight(next, true);
-
-		    // special case to transform "ice cream" into the item name "icecream"
-		    if (curr.getMainWord().equals("ice")) {
-		    	curr.setNormalized("icecream");
-		    }
-
-		    return next;
-		} else {
-		    next.mergeLeft(curr, true);
-
-		    return curr;
 		}
 	}
 
