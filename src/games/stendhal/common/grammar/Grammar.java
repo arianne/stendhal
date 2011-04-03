@@ -12,6 +12,8 @@
 package games.stendhal.common.grammar;
 
 
+import games.stendhal.server.entity.npc.parser.Expression;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -1114,6 +1116,32 @@ public class Grammar {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * Merge two expressions into a compound noun and return the expression to delete.
+	 * @param next
+	 * @param curr
+	 * @return expression to be removed
+	 */
+	public static Expression mergeCompoundNoun(Expression next, final Expression curr) {
+		// special case for "ice cream" -> "ice" and "teddy bear" -> "teddy"
+		// (may be better to handle elsewhere in the game code)
+		if ((curr.getMainWord().equals("ice") && next.getMainWord().equals("cream")) ||
+			(curr.getMainWord().equals("teddy") && next.getMainWord().equals("bear"))) {
+		    curr.mergeRight(next, true);
+
+		    // special case to transform "ice cream" into the item name "icecream"
+		    if (curr.getMainWord().equals("ice")) {
+		    	curr.setNormalized("icecream");
+		    }
+
+		    return next;
+		} else {
+		    next.mergeLeft(curr, true);
+
+		    return curr;
 		}
 	}
 
