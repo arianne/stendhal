@@ -149,6 +149,9 @@ final class PrefixManager
 	}
 
 
+	/**
+	 * Entry for registering singular/plural prefixes for a keyword.
+	 */
 	private static class PrefixEntry {
 		public final String keyword;
 		public final String prefixSingular;
