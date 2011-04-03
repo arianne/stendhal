@@ -177,7 +177,7 @@ CREATE TABLE openid_allowedsites (
 /* CREATE INDEX i_openid_allowedsites ON openid_allowedsites (player_id, realm); */
 
 CREATE TABLE openid_associations (
-  id         INT NOT NULL PRIMARY KEY,
+  id         INTEGER NOT NULL PRIMARY KEY,
   handle     TEXT,
   data TEXT NOT NULL,
   timedate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
