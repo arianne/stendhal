@@ -47,12 +47,12 @@ public class ConversationPhrases {
 	
 	public static final List<String> ABORT_MESSAGES = Arrays.asList("another", "abort");
 	
-	public static final List<String> OFFER_MESSAGES = Arrays.asList("offer",
-			"deal", "trade");
+	public static final List<String> OFFER_MESSAGES = Arrays.asList("offer", "deal", "trade");
 
-	public static final List<String> YES_MESSAGES = Arrays.asList("yes", "ok");
+	public static final List<String> YES_MESSAGES = Arrays.asList("yes", "ok", "yep", "sure");
 
-	public static final List<String> NO_MESSAGES = Arrays.asList(NO_EXPRESSION, "nothing");
+	public static final List<String> NO_MESSAGES = Arrays.asList(NO_EXPRESSION, "nope",
+			"nothing", "none");
 
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye", "goodbye",
 			"farewell", "cya", "adios");
