@@ -353,7 +353,7 @@
   
    <creature name="dark angel">
     <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
-    <description></description>
+    <description>You see a dark angel. He is an strong evil angel, and for now he is under cover of darkness.</description>
     <attributes>
       <atk value="1755"/>
       <def value="142"/>
