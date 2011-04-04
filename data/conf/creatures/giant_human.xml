@@ -399,7 +399,7 @@
 
  <creature name="dark archangel">
     <type class="giant_human" subclass="dark_archangel" tileid="giant_human.png:12"/>
-    <description></description>
+    <description>You see a dark archangel, after she fell from heaven her soul became as dark as she is now.</description>
     <attributes>
       <atk value="1965"/>
       <def value="171"/>
