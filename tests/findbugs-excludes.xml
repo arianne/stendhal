@@ -59,7 +59,7 @@
 	<!-- allow method names starting with an upper case letter -->
 	<Match>
 		<Bug pattern="NM_METHOD_NAMING_CONVENTION" />
-		<Class name="games.stendhal.common.Grammar" />
+		<Class name="games.stendhal.common.grammar.Grammar" />
 	</Match>
 
 	<Match>
