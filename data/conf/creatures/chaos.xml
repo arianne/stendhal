@@ -210,7 +210,7 @@
   
   <creature name="chaos overlord">
     <type class="chaos" subclass="chaos_overlord" tileid="chaos.png:3"/>
-    <description></description>
+    <description>You see a chaos overlord. It is he who directs the creation of evil plans and gives orders to all chaotic creatures which exist.</description>
     <attributes>
       <atk value="1042"/>
       <def value="113"/>
