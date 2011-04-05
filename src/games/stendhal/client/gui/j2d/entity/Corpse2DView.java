@@ -69,8 +69,6 @@ class Corpse2DView extends Entity2DView {
 	 * Create a 2D view of an entity.
 	 */
 	public Corpse2DView() {
-
-
 		height = IGameScreen.SIZE_UNIT_PIXELS;
 		width = IGameScreen.SIZE_UNIT_PIXELS;
 	}
@@ -341,7 +339,9 @@ class Corpse2DView extends Entity2DView {
 	 * and has that setting specified
 	 */
 	private void autoRaiseWindowIfDesired() {
-		if (!autoOpenedAlready) {
+		// inspector is null for entities in the drag layer. Those should not
+		// be auto inspected anyway
+		if (!autoOpenedAlready && inspector != null) {
 			autoOpenedAlready = true;
 			boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoinspectcorpses", "true"));
 			if (autoRaiseCorpse) {
