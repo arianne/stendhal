@@ -60,11 +60,11 @@ public class BanActionTest {
 			}
 			
 			// we do a character check now. Made the the character name and the account name the same
-	    	if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
+			if (!characterDAO.hasCharacter(transaction, player.getName(), player.getName())) {
 				characterDAO.addCharacter(transaction,  player.getName(), player.getName(), player);
-	    	}
-	    	
-			System.out.println(DAORegister.get().get(CharacterDAO.class).getAccountName(player.getName()));
+			}
+
+			System.out.println(DAORegister.get().get(CharacterDAO.class).getAccountName(transaction, player.getName()));
 			accountDAO.setAccountStatus(transaction, player.getName(), "active");
 			assertEquals("active", accountDAO.getAccountStatus(transaction, player.getName()));
 
