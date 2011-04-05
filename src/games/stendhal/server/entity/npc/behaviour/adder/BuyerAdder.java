@@ -52,19 +52,8 @@ public class BuyerAdder {
 					null,
 					false,
 					ConversationStates.ATTENDING, 
-					null, new ChatAction() {
-						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-							StringBuilder text = new StringBuilder("I buy ");
-							if(buyerBehaviour.dealtItems().size()==1) {
-								text.append("only this kind of item: ");
-							} else {
-								text.append("items of these kinds: ");
-							}
-							text.append(Grammar.enumerateCollection(buyerBehaviour.dealtItems()));
-							text.append(".");
-							npc.say(text.toString());
-						}						
-					});
+					"I buy " + Grammar.enumerateCollectionPlural(buyerBehaviour.dealtItems()) + ".",
+					null);
 		}
 		engine.add(ConversationStates.ATTENDING, "sell", new SentenceHasErrorCondition(),
 				false, ConversationStates.ATTENDING,

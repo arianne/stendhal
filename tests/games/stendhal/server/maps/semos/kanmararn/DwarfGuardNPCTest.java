@@ -98,7 +98,7 @@ public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("I'm too scared to leave here yet... I'm waiting for someone to #offer me some better equipment.", getReply(npc));
 
 		assertTrue(en.step(player, "offer"));
-		assertEquals("I buy items of these kinds: chaos legs, chaos sword, chaos shield, and chaos armor.", getReply(npc));
+		assertEquals("I buy pairs of chaos legs, chaos swords, chaos shields, and suits of chaos armor.", getReply(npc));
 
 		assertTrue(en.step(player, "sell chocolate"));
 		assertEquals("Sorry, I don't buy chocolates.", getReply(npc));

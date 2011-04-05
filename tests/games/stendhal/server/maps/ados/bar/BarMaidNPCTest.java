@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.bar;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -134,7 +135,7 @@ public class BarMaidNPCTest {
 		Sentence sentence = new SentenceImplementation(new Expression("offer", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertThat("offer text", getReply(barMaid), is("I buy items of these kinds: cheese, meat, spinach, ham, flour, and porcini."));
+		assertThat("offer text", getReply(barMaid), equalTo("I buy pieces of cheese, pieces of meat, spinaches, pieces of ham, sacks of flour, and porcini."));
 
 		final Expression sell = new Expression("sell", ExpressionType.VERB);
 

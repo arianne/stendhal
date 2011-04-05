@@ -1148,4 +1148,18 @@ public class Grammar {
 		}
 	}
 
+	/**
+	 * enumerates a collections using the plural forms.
+	 *
+	 * @param collection Collection
+	 * @return enumeration using plural forms
+	 */
+	public static String enumerateCollectionPlural(Collection<String> collection) {
+		Collection<String> pluralCollection = new LinkedList<String>();
+		for (String entry : collection) {
+			pluralCollection.add(plural(entry));
+		}
+		return enumerateCollection(pluralCollection);
+	}
+
 }
