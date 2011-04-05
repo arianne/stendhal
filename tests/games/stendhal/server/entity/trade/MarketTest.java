@@ -453,8 +453,9 @@ public class MarketTest {
 		Offer offer2 = market.createOffer(bob, item2, 10, 1);
 		
 		// large numbers on purpose trying to overflow int
-		assertTrue(market.getOffersOlderThan(1000000000).contains(offer));
-		assertFalse(market.getOffersOlderThan(1000000000).contains(offer2));
+		List<Offer> offersOlderThan = market.getOffersOlderThan(1000000000);
+		assertTrue(offersOlderThan.contains(offer));
+		assertThat(offersOlderThan.contains(offer2), is(Boolean.FALSE));
 	}
 	
 	/**

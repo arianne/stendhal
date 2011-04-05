@@ -49,10 +49,6 @@ public class Offer extends Entity implements Dateable {
 	public static final String OFFER_RPCLASS_NAME = "offer";
 	private static final String TIMESTAMP = "timestamp";
 
-	private Item item;
-	private final Integer price;
-	private final String offerer;
-
 	public static void generateRPClass() {
 		final RPClass offerRPClass = new RPClass(OFFER_RPCLASS_NAME);
 		offerRPClass.isA("entity");
@@ -75,12 +71,9 @@ public class Offer extends Entity implements Dateable {
 		}
 		if (item != null) {
 			getSlot(OFFER_ITEM_SLOT_NAME).add(item);
-			this.item = item;
 		}
 		this.put(PRICE_ATTRIBUTE, price.intValue());
-		this.price = price;
 		this.put(OFFERER_ATTRIBUTE_NAME, offerer.getName());
-		this.offerer = offerer.getName();
 		put(OFFERER_CID_ATTRIBUTE, getPlayerCID(offerer));
 		updateTimestamp();
 	}
@@ -93,9 +86,6 @@ public class Offer extends Entity implements Dateable {
 		super(object);
 		setRPClass("offer");
 		hide();
-		
-		price = getInt(PRICE_ATTRIBUTE);
-		offerer = get(OFFERER_ATTRIBUTE_NAME);
 		
 		getSlot(OFFER_ITEM_SLOT_NAME).clear();
 				
@@ -115,29 +105,28 @@ public class Offer extends Entity implements Dateable {
 			return;
 		}
 
-		item = entity;
-		getSlot(OFFER_ITEM_SLOT_NAME).addPreservingId(item);
+		getSlot(OFFER_ITEM_SLOT_NAME).addPreservingId(entity);
 	}
 
 	/**
 	 * @return the Item for sale
 	 */
 	public final Item getItem() {
-		return item;
+		return (Item) getSlot(OFFER_ITEM_SLOT_NAME).iterator().next();
 	}
 
 	/**
 	 * @return the price to pay for this offer when accepting it
 	 */
 	public final Integer getPrice() {
-		return price;
+		return getInt(PRICE_ATTRIBUTE);
 	}
 
 	/**
 	 * @return the name of the offering player
 	 */
 	public final String getOfferer() {
-		return offerer;
+		return get(OFFERER_ATTRIBUTE_NAME);
 	}
 
 	/**
@@ -180,16 +169,6 @@ public class Offer extends Entity implements Dateable {
 		
 		// Finally check if it's the same player from another computer
 		return !player.getName().equals(getOfferer());
-	}
-
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, Offer.class);
 	}
 
 	private String getPlayerCID(Player player) {

@@ -34,26 +34,53 @@ public class OfferTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() {
-		PlayerTestHelper.removePlayer(offererName);
+		PlayerTestHelper.removePlayer(OFFERER_NAME);
+		MockStendlRPWorld.reset();
 	}
 
-	private static final String offererName = "george";
+	private static final String OFFERER_NAME = "george";
 
 	/**
 	 * Tests for offer.
+	 * 
+	 * @throws Exception
 	 */
 	@Test
 	public void testOffer() throws Exception {
 		Item item = SingletonRepository.getEntityManager().getItem("money");
 		Integer price = Integer.valueOf(1);
-		Player offerer = PlayerTestHelper.createPlayer(offererName);
+		Player offerer = PlayerTestHelper.createPlayer(OFFERER_NAME);
 		Offer o = new Offer(item, price, offerer);
-		assertThat(o.getOfferer(), is(offererName));
+		assertThat(o.getOfferer(), is(OFFERER_NAME));
 		assertThat(o.getInt("price"), is(price.intValue()));
 		assertThat((Item) o.getSlot("item").getFirst(), is(item));
 		Offer offerFromRPObject = new Offer(o);
 		assertThat(offerFromRPObject.getPrice(), is(price));
-		assertThat(offerFromRPObject.getOfferer(), is(offererName));
+		assertThat(offerFromRPObject.getOfferer(), is(OFFERER_NAME));
 		assertThat(offerFromRPObject.getItem(), is(item));
 	}
+	
+	/**
+	 * Tests for equals of Offers
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testEquals() throws Exception {
+		Item item = SingletonRepository.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(1);
+		Player offerer = PlayerTestHelper.createPlayer(OFFERER_NAME);
+		Offer o = new Offer(item, price, offerer);
+		assertThat(o, is(o));
+		assertThat(o.getOfferer(), is(OFFERER_NAME));
+		assertThat(o.getInt("price"), is(price.intValue()));
+		assertThat((Item) o.getSlot("item").getFirst(), is(item));
+		Offer offerFromRPObject = new Offer(o);
+		assertThat(offerFromRPObject.getPrice(), is(price));
+		assertThat(offerFromRPObject.getOfferer(), is(OFFERER_NAME));
+		assertThat(offerFromRPObject.getItem(), is(item));
+		assertThat(offerFromRPObject, is(o));
+		assertThat(o, is(offerFromRPObject));
+	}
+	
 }
