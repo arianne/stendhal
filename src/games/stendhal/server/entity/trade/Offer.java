@@ -12,22 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.trade;
 
-import java.util.Map;
-
 import games.stendhal.server.actions.CIDSubmitAction;
 import games.stendhal.server.core.engine.transformer.ItemTransformer;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Map;
+
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.Definition.Type;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
+
 /**
- * Represents an {@link Offer} for sale in the {@link Market}
+ * Represents an Offer for sale in the {@link Market}
  *  
  * @author madmetzger
  */
