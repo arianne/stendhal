@@ -20,7 +20,7 @@ package games.stendhal.server.core.events;
 public enum TutorialEventType {
 
 	FIRST_LOGIN(
-			"Hi, welcome to Stendhal. You can move around using the arrow keys."),
+			"Hi, welcome to Stendhal. You can move around using the arrow keys or the clicking the mouse."),
 	FIRST_MOVE(
 			"You can talk to Hayunn Naratha by saying \"hi\"."),
 	RETURN_GUARDHOUSE(
