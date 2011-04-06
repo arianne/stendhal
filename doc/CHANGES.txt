@@ -14,6 +14,9 @@ Changelog
 - corpse window title is the dead creature / player
 - corpses cannot be thrown far by other players if they're protected
 - Xhiphin Zohos is thirsty and asks for water 
+- decorated Semos for Easter
+- Easter Bunny launchable via script
+- Easter Bunny drops small easter eggs as he walks
 
 *website*
 - new rankings for best player and hall of fame using achievements
