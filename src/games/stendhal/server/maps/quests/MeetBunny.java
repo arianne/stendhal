@@ -22,7 +22,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
-import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.ItemDroppingTeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -55,7 +55,7 @@ public class MeetBunny extends AbstractQuest {
 
 	private StendhalRPZone zone;
 	
-	private TeleporterBehaviour teleporterBehaviour;
+	private ItemDroppingTeleporterBehaviour teleporterBehaviour;
 	
 	public static final String QUEST_NAME = "MeetBunny";
 
@@ -125,7 +125,7 @@ public class MeetBunny extends AbstractQuest {
 		
 		if (System.getProperty("stendhal.easterbunny") != null) {
 		    createbunny();
-		    teleporterBehaviour = new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!"); 
+		    teleporterBehaviour = new ItemDroppingTeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!", true, "small easter egg"); 
 		}
 	}
 		

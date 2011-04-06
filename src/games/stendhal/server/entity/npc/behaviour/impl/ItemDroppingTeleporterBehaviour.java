@@ -56,7 +56,7 @@ public final class ItemDroppingTeleporterBehaviour extends TeleporterBehaviour {
 
 	@Override
 	protected void doRegularBehaviour() {
-		if(Rand.roll1D6()==1) {
+		if(Rand.throwCoin()==1) {
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 			final IRPZone zone = speakerNPC.getZone();
 			// place under NPC
