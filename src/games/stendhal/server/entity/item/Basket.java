@@ -27,8 +27,7 @@ import java.util.Map;
 public class Basket extends Box {
 
 
-	private static final String[] ITEMS = { "mega potion", "fairy cake",
-			"easter egg", "egg", "spotted egg", "mythical egg"};
+	private static final String[] ITEMS = {"egg", "easter egg", "small egg", "spotted egg", "mythical egg"};
 
 	/**
 	 * Creates a new Basket.
