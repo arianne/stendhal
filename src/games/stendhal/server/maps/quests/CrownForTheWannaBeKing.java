@@ -174,8 +174,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player asks what exactly is missing (says items) */
 		npc.add(ConversationStates.QUESTION_1, "items", null,
 				ConversationStates.QUESTION_1, null,
-				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5),
-						            new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?")));
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 		
 
 		/* player says he has a required item with him (says yes) */
