@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik
  */
-public final class TeleporterBehaviour implements TurnListener {
+public class TeleporterBehaviour implements TurnListener {
 
 	private static Logger logger = Logger.getLogger(TeleporterBehaviour.class);
 
@@ -36,7 +36,8 @@ public final class TeleporterBehaviour implements TurnListener {
 	private ArrayList<StendhalRPZone> zones;
 
 	private final SpeakerNPC speakerNPC;
-
+	private final String repeatedText;
+	
 	/**
 	 * Creates a new TeleporterBehaviour.
 	 * 
@@ -48,13 +49,14 @@ public final class TeleporterBehaviour implements TurnListener {
 	public TeleporterBehaviour(final SpeakerNPC speakerNPC,
 			final String repeatedText) {
 		this.speakerNPC = speakerNPC;
+		this.repeatedText = repeatedText;
 		listZones();
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
 		// say something every minute so that can be noticed more easily
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, new TurnListener() {
 
 			public void onTurnReached(final int currentTurn) {
-				speakerNPC.say(repeatedText);
+				doRegularBehaviour();
 				SingletonRepository.getTurnNotifier().notifyInTurns(60 * 3, this);
 			}
 		});
@@ -78,6 +80,10 @@ public final class TeleporterBehaviour implements TurnListener {
 		}
 	}
 
+	protected void doRegularBehaviour() {
+		speakerNPC.say(repeatedText);
+	}
+	
 	private void addHighProbability() {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (int i = 0; i < 10; i++) {
