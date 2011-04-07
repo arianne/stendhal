@@ -48,7 +48,9 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 
 		//Maze
 		questAchievements.add(createAchievement("quest.special.maze", "Pathfinder", "Finish the maze",
-												Achievement.EASY_BASE_SCORE, true, new QuestStateGreaterThanCondition("maze", 2, 0)));
+				Achievement.EASY_BASE_SCORE, true, new QuestStateGreaterThanCondition("maze", 2, 0)));
+		questAchievements.add(createAchievement("quest.deathmatch", "Deathmatch Hero", "Earn 100,000 points in deathmatch",
+				Achievement.MEDIUM_BASE_SCORE, false, new QuestStateGreaterThanCondition("deathmatch_score", 0, 100000)));
 
 		// Ados Deathmatch
 		// disabled. Currently the wrong index is being checked (it would be index 6)

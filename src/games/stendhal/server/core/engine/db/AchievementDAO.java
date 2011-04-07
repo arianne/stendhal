@@ -127,8 +127,7 @@ public class AchievementDAO {
 						"title='[title]', " +
 						"category = '[category]', " +
 						"description = '[description]', " +
-						"base_score=[base_score], " +
-						"active=[active] " +
+						"base_score=[base_score] " +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
@@ -136,7 +135,6 @@ public class AchievementDAO {
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
-		parameters.put("active", achievement.isActive() ? 1 : 0);
 		parameters.put("id", id);
 		transaction.execute(query, parameters);
 	}
