@@ -94,8 +94,8 @@ import org.apache.log4j.Logger;
 	private void setTimings() {
 		if (System.getProperty("stendhal.testserver") == null) {		
 			// game timings */
-			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 14);
-			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 7);
+			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 21);
+			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 2);
 			timings.put(INVASION_TIME_MAX, 60 * 60 * 2);
 			timings.put(INVASION_TIME_MIN, 60 * 60 * 2);
 			timings.put(AWAITING_TIME_MAX, 60 * -1);
