@@ -12,14 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.update.ClientGameConfiguration;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Locale;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
@@ -76,21 +73,19 @@ public class Cache {
 			// init caching-directory
 			if (!stendhal.WEB_START_SANDBOX) {
 				// Create file object
-				File file = new File(System.getProperty("user.home") + "/"
-						+ stendhal.STENDHAL_FOLDER);
-				if (!file.exists() && !file.mkdir()) {
+				File file = new File(stendhal.getGameFolder());
+				if (!file.exists() && !file.mkdirs()) {
 					logger.error("Can't create " + file.getAbsolutePath()
 							+ " folder");
 				} else if (file.exists() && file.isFile()) {
-					if (!file.delete() || !file.mkdir()) {
+					if (!file.delete() || !file.mkdirs()) {
 						logger.error("Can't removing file "
 								+ file.getAbsolutePath()
 								+ " and creating a folder instead.");
 					}
 				}
 
-				file = new File(System.getProperty("user.home")
-						+ stendhal.STENDHAL_FOLDER + "cache/");
+				file = new File(stendhal.getGameFolder() + "cache");
 				if (!file.exists() && !file.mkdir()) {
 					logger.error("Can't create " + file.getAbsolutePath()
 							+ " folder");
@@ -130,14 +125,14 @@ public class Cache {
 	 *             in case the cache folder is not readable
 	 */
 	private boolean initCacheManager() throws IOException {
-		final String cacheFile = System.getProperty("user.home")
-				+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+		final String cacheFile = stendhal.getGameFolder() + "cache"
+			+ File.separator + "stendhal.cache";
 
 		// create a new cache file if doesn't exist already
 		boolean ret = new File(cacheFile).createNewFile();
 
 		cacheManager = new Configuration(new ConfigurationParams(
-				true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache"));
+				false, stendhal.getGameFolder(), "cache/stendhal.cache"));
 
 		return ret;
 	}
@@ -146,11 +141,7 @@ public class Cache {
 	 * Deletes the cache.
 	 */
 	private void cleanCache() {
-		final String homeDir = System.getProperty("user.home");
-		final String gameName = ClientGameConfiguration.get("GAME_NAME");
-		final String gameFolder = "/" + gameName.toLowerCase(Locale.ENGLISH) + "/";
-		final String cache = "cache";
-		final File cacheDir = new File(homeDir + gameFolder + cache);
+		final File cacheDir = new File(stendhal.getGameFolder() + "cache");
 		if (cacheDir.isDirectory()) {
 			final File[] files = cacheDir.listFiles();
 			for (final File file : files) {
@@ -197,7 +188,7 @@ public class Cache {
 
 				// get the stream
 				try {
-					return Persistence.get().getInputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
+					return Persistence.get().getInputStream(false, stendhal.getGameFolder() + "cache", item.name);
 				} catch (final IOException e) {
 					logger.warn("Cannot read cache file: " + item.name);
 				}
@@ -246,8 +237,8 @@ public class Cache {
 				logger.error("Cannot store item to cache because .. is not allowed in name " + item.name);
 				return;
 			}
-			final OutputStream os = Persistence.get().getOutputStream(true,
-					stendhal.STENDHAL_FOLDER + "cache/", item.name);
+			final OutputStream os = Persistence.get().getOutputStream(false,
+					stendhal.getGameFolder() + "cache", item.name);
 			os.write(data);
 			os.close();
 

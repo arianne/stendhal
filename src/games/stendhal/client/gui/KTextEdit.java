@@ -51,8 +51,7 @@ public class KTextEdit extends JComponent {
 	protected static final Color HEADER_COLOR = Color.gray;
 
 	/** Location for saving chat log file. */
-	private static final String GAME_LOG_FILE = System.getProperty("user.home") 
-		+ stendhal.STENDHAL_FOLDER + "gamechat.log";
+	private static final String GAME_LOG_FILE = stendhal.getGameFolder() + "gamechat.log";
 	
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);

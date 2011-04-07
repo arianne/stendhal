@@ -97,8 +97,8 @@ public class WtWindowManager {
 		}
 
 		try {
-			final OutputStream os = Persistence.get().getOutputStream(true,
-					"stendhal", FILE_NAME);
+			final OutputStream os = Persistence.get().getOutputStream(false,
+					stendhal.getGameFolder(), FILE_NAME);
 			try {
 				final OutputStreamWriter writer = new OutputStreamWriter(os);
 				try {
@@ -111,7 +111,7 @@ public class WtWindowManager {
 			}
 		} catch (final IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
+			logger.error("Can't write " + stendhal.getGameFolder() + FILE_NAME, e);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class WtWindowManager {
 	private void read() {
 		properties = new Properties();
 		try {
-			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
+			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(),
 					FILE_NAME);
 			properties.load(is);
 			is.close();

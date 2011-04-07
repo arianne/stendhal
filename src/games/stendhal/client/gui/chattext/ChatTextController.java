@@ -28,8 +28,7 @@ import javax.swing.JTextField;
 
 public class ChatTextController {
 
-	private static final String CHAT_LOG_FILE = System.getProperty("user.home")
-		+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
+	private static final String CHAT_LOG_FILE = stendhal.getGameFolder() + "chat.log";
 
 	private final JTextField playerChatText;
 	

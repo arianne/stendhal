@@ -88,7 +88,7 @@ public final class IDSend {
 	
 	private static void readID() {
 		try {
-			final InputStream is = Persistence.get().getInputStream(true, "stendhal", FILE_NAME);
+			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(), FILE_NAME);
 		    final BufferedInputStream bis = new BufferedInputStream(is);
 			try {
 			    ByteArrayOutputStream buf = new ByteArrayOutputStream();
@@ -110,8 +110,8 @@ public final class IDSend {
 
 	private static void saveID() {
 		try {
-			final OutputStream os = Persistence.get().getOutputStream(true,
-					"stendhal", FILE_NAME);
+			final OutputStream os = Persistence.get().getOutputStream(false,
+					stendhal.getGameFolder(), FILE_NAME);
 			final OutputStreamWriter writer = new OutputStreamWriter(os);
 			try {
 				writer.write(computerID);
@@ -120,7 +120,7 @@ public final class IDSend {
 			}
 		} catch (final IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
+			logger.error("Can't write " + stendhal.getGameFolder() + FILE_NAME, e);
 		}
 		
 	}

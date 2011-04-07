@@ -44,8 +44,13 @@ public class stendhal {
 
 	private static boolean doLogin;
 
-	public static final String STENDHAL_FOLDER;
+	// Use getGameFolder() where you need the real game data location
+	private static final String STENDHAL_FOLDER;
 	public static final String GAME_NAME;
+	/**
+	 * Directory for storing the persistent game data.
+	 */
+	private static final String gameFolder;
 	/**
 	 * Just a try to get Webstart working without additional rights.
 	 */
@@ -62,6 +67,7 @@ public class stendhal {
 		/** We set the main game folder to the game name */
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
 		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase(Locale.ENGLISH) + separator;
+		gameFolder = System.getProperty("user.home") + STENDHAL_FOLDER;
 
 		/** setup the search locations for the resource manager */
 		RESOURCE_MANAGER.addScheme("sound" , "data/sounds");
@@ -159,6 +165,15 @@ public class stendhal {
 	 */
 	public static ResourceManager getResourceManager() {
 		return RESOURCE_MANAGER;
+	}
+	
+	/**
+	 * Get the location of persistent game client data.
+	 * 
+	 * @return game's home directory
+	 */
+	public static String getGameFolder() {
+		return gameFolder;
 	}
 
 	/**

@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.update.ClientGameConfiguration;
@@ -519,7 +520,7 @@ public class LoginDialog extends JDialog {
 		final ProfileList tmpProfiles = new ProfileList();
 
 		try {
-			final InputStream is = Persistence.get().getInputStream(true, "stendhal",
+			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(),
 					"user.dat");
 
 			try {
@@ -595,8 +596,8 @@ public class LoginDialog extends JDialog {
 	 */
 	private void saveProfiles(final ProfileList profiles) {
 		try {
-			final OutputStream os = Persistence.get().getOutputStream(true,
-					"stendhal", "user.dat");
+			final OutputStream os = Persistence.get().getOutputStream(false,
+					stendhal.getGameFolder(), "user.dat");
 
 			try {
 				profiles.save(os);
