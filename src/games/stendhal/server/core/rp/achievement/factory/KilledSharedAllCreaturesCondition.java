@@ -24,18 +24,18 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Did the player kill all creatures, solo? (excluding rare)
+ * Did the player kill all creatures, shared? (excluding rare)
  *
  * @author kymara
  */
-public class KilledSoloAllCreaturesCondition implements ChatCondition {
+public class KilledSharedAllCreaturesCondition implements ChatCondition {
 
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
 			if (!creature.isRare()) {
-				if (!player.hasKilledSolo(creature.getName())) {
+				if (!player.hasKilled(creature.getName())) {
 					return false;
 				}
 			}
@@ -45,7 +45,7 @@ public class KilledSoloAllCreaturesCondition implements ChatCondition {
 
 	@Override
 	public String toString() {
-		return "KilledSoloAllCreaturesCondition";
+		return "KilledSharedAllCreaturesCondition";
 	}
 
 	@Override
@@ -56,6 +56,6 @@ public class KilledSoloAllCreaturesCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledSoloAllCreaturesCondition.class);
+				KilledSharedAllCreaturesCondition.class);
 	}
 }

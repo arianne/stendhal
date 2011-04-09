@@ -23,9 +23,9 @@ class KillRecording {
 	private static final String KILL_SLOT_NAME = "!kills";
 	private static final String PREFIX_SHARED = "shared.";
 	private static final String PREFIX_SOLO = "solo.";
-	
+
 	private final Player player;
-	
+
 	public KillRecording(final Player player) {
 		this.player = player;
 	}
@@ -33,7 +33,7 @@ class KillRecording {
 	/**
 	 * Checks if the player has ever killed a creature with the given name
 	 * without the help of any other player.
-	 * 
+	 *
 	 * @param name of the creature to check.
 	 * @return true if this player has ever killed this creature on his own.
 	 */
@@ -43,21 +43,30 @@ class KillRecording {
 	}
 
 	/**
+	 * Checks if the player has ever killed a creature with the given name
+	 * with the help of any other player.
+	 *
+	 * @param name of the creature to check.
+	 * @return true if this player has ever killed this creature in a team.
+	 */
+	public boolean hasKilledShared(final String name) {
+		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
+		return MathHelper.parseIntDefault(count, 0) > 0;
+	}
+	/**
 	 * Checks if the player has ever killed a creature, with or without the help
 	 * of any other player.
-	 * 
+	 *
 	 * @param  name of the creature to check.
 	 * @return true if this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(final String name) {
-		final String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
-		final boolean shared = MathHelper.parseIntDefault(count, 0) > 0;
-		return shared || hasKilledSolo(name);
+		return hasKilledShared(name) || hasKilledSolo(name);
 	}
 
 	/**
 	 * Stores in which way the player has killed a creature with the given name.
-	 * 
+	 *
 	 * @param name of the killed creature.
 	 * @param mode
 	 *            either "solo", "shared", or null.
@@ -73,7 +82,7 @@ class KillRecording {
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
 	 * @param name of the killed entity
-	 * 
+	 *
 	 */
 	public void setSoloKill(final String name) {
 		setKill(name, "solo");
@@ -82,7 +91,7 @@ class KillRecording {
 	/**
 	 * Stores that the player has killed 'name' with help of others. Does not
 	 * overwrite solo kills of 'name'
-	 * @param name of the killed entity 
+	 * @param name of the killed entity
 	 */
 	public void setSharedKill(final String name) {
 		setKill(name, "shared");
@@ -95,27 +104,27 @@ class KillRecording {
 	 * @return number of killed creatures
 	 */
 	public int getKill(final String name, final String mode) {
-		final String key = mode + "." + name;		
+		final String key = mode + "." + name;
 		final int kills = MathHelper.parseIntDefault(player.getKeyedSlot(KILL_SLOT_NAME, key),0);
 		return(kills);
 	}
-	
+
 	/**
-	 * Return how much the player has killed 'name' solo. 
+	 * Return how much the player has killed 'name' solo.
 	 * @param name of the killed entity
 	 * @return number of killed creatures
-	 */	
+	 */
 	public int getSoloKill(final String name) {
 		return(getKill(name, "solo"));
 	}
-	
+
 	/**
-	 * Return how much the player has killed 'name' shared. 
+	 * Return how much the player has killed 'name' shared.
 	 * @param name of the killed entity
 	 * @return number of killed creatures
-	 */	
+	 */
 	public int getSharedKill(final String name) {
 		return(getKill(name, "shared"));
 	}
-	
+
 }

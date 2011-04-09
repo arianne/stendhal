@@ -65,7 +65,7 @@ import marauroa.common.game.SyntaxException;
 import org.apache.log4j.Logger;
 
 public class Player extends RPEntity {
-	
+
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 
 	/** the logger instance. */
@@ -75,7 +75,7 @@ public class Player extends RPEntity {
 	 * A random generator (for karma payout).
 	 */
 	private static final Random KARMA_RANDOMIZER = new Random();
-	
+
 	/**
 	 * Currently active client directions (in oldest-newest order).
 	 */
@@ -99,7 +99,7 @@ public class Player extends RPEntity {
 	 * A list of away replies sent to players.
 	 */
 	protected HashMap<String, Long> awayReplies;
-	
+
 	/**
 	 * Food, drinks etc. that the player wants to consume and has not finished
 	 * with.
@@ -140,7 +140,7 @@ public class Player extends RPEntity {
 	private String lastPrivateChatterName;
 
 	private final PlayerChatBucket chatBucket;
-	
+
 	/**
 	 * all identifiers of reached achievements, filled on login of player
 	 */
@@ -211,7 +211,7 @@ public class Player extends RPEntity {
 		 * Normally a zoneid attribute shouldn't logically exist after an entity
 		 * is removed from a zone, but we need to keep it for players so that it
 		 * can be serialised.
-		 * 
+		 *
 		 * TODO: Find a better way to decouple "active" zone info from "resume"
 		 * zone info, or save just before removing from zone instead.
 		 */
@@ -253,20 +253,20 @@ public class Player extends RPEntity {
 		tradescore = 0;
 		baseSpeed = 1.0;
 		update();
-		
+
 		// Ensure that players do not accidentally get stored with zones
 		if (isStorable()) {
 			unstore();
-			logger.error("Player " + getName() + " was marked storable.", new 
+			logger.error("Player " + getName() + " was marked storable.", new
 					Throwable());
 		}
 	}
 
 	/**
 	 * Add an active client direction.
-	 * @param direction 
-	 * 
-	 * 
+	 * @param direction
+	 *
+	 *
 	 */
 	public void addClientDirection(final Direction direction) {
 		if (hasPath()) {
@@ -279,9 +279,9 @@ public class Player extends RPEntity {
 
 	/**
 	 * Remove an active client direction.
-	 * @param direction 
-	 * 
-	 * 
+	 * @param direction
+	 *
+	 *
 	 */
 	public void removeClientDirection(final Direction direction) {
 		directions.remove(direction);
@@ -289,7 +289,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Apply the most recent active client direction.
-	 * 
+	 *
 	 * @param stopOnNone
 	 *            Stop movement if no (valid) directions are active if
 	 *            <code>true</code>.
@@ -300,7 +300,7 @@ public class Player extends RPEntity {
 
 		/*
 		 * For now just take last direction.
-		 * 
+		 *
 		 * Eventually try each (last-to-first) until a non-blocked one is found
 		 * (if any).
 		 */
@@ -343,7 +343,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get the away message.
-	 * 
+	 *
 	 * @return The away message, or <code>null</code> if unset.
 	 */
 	public String getAwayMessage() {
@@ -356,7 +356,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set the away message.
-	 * 
+	 *
 	 * @param message
 	 *            An away message, or <code>null</code>.
 	 */
@@ -379,7 +379,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get the grumpy message.
-	 * 
+	 *
 	 * @return The grumpy message, or <code>null</code> if unset.
 	 */
 	public String getGrumpyMessage() {
@@ -392,7 +392,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set the grumpy message.
-	 * 
+	 *
 	 * @param message
 	 *            A grumpy message, or <code>null</code>.
 	 */
@@ -404,10 +404,10 @@ public class Player extends RPEntity {
 		}
 
 	}
-	
+
 	/**
 	 * Give the player some karma (good or bad).
-	 * 
+	 *
 	 * @param karmaToAdd
 	 *            An amount of karma to add/subtract.
 	 */
@@ -417,12 +417,12 @@ public class Player extends RPEntity {
 
 		put("karma", this.karma);
 	}
-	
+
 	/**
 	 * Get the current amount of karma.
-	 * 
+	 *
 	 * @return The current amount of karma.
-	 * 
+	 *
 	 * @see #addKarma(double)
 	 */
 	@Override
@@ -434,10 +434,10 @@ public class Player extends RPEntity {
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 * 
+	 *
 	 * @param scale
 	 *            A positive number.
-	 * 
+	 *
 	 * @return A number between -scale and scale.
 	 */
 	@Override
@@ -450,12 +450,12 @@ public class Player extends RPEntity {
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome. The granularity is
 	 * <code>0.01</code> (%1 unit).
-	 * 
+	 *
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
-	 * 
+	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	@Override
@@ -467,21 +467,21 @@ public class Player extends RPEntity {
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 * 
+	 *
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
 	 * @param granularity
 	 *            The amount that any extracted karma is a multiple of.
-	 * 
+	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	@Override
 	public double useKarma(final double negLimit, final double posLimit, final double granularity) {
 		double limit;
 		double score;
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("karma request: " + negLimit + " <= x <= " + posLimit);
 		}
@@ -513,7 +513,7 @@ public class Player extends RPEntity {
 		score = (0.2 + (KARMA_RANDOMIZER.nextDouble() * 0.8)) * limit;
 
 		/*
-		 * Clip to granularity. Use floor() instead of round() so that the player 
+		 * Clip to granularity. Use floor() instead of round() so that the player
 		 * never uses more karma than she has.
 		 */
 		score = Math.floor(score / granularity) * granularity;
@@ -543,7 +543,7 @@ public class Player extends RPEntity {
 		this.tradescore += 1;
 		put("tradescore", this.tradescore);
 	}
-	
+
 	public int getTradescore() {
 		return this.tradescore;
 	}
@@ -575,7 +575,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Add a player ignore entry.
-	 * 
+	 *
 	 * @param name
 	 *            The player name.
 	 * @param duration
@@ -583,7 +583,7 @@ public class Player extends RPEntity {
 	 *            infinite.
 	 * @param reply
 	 *            The reply.
-	 * 
+	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
@@ -606,10 +606,10 @@ public class Player extends RPEntity {
 	/**
 	 * Determine if a player is on the ignore list and return their reply
 	 * message.
-	 * 
+	 *
 	 * @param name
 	 *            The player name.
-	 * 
+	 *
 	 * @return The custom reply message (including an empty string), or
 	 *         <code>null</code> if not ignoring.
 	 */
@@ -652,10 +652,10 @@ public class Player extends RPEntity {
 
 	/**
 	 * Remove a player ignore entry.
-	 * 
+	 *
 	 * @param name
 	 *            The player name.
-	 * 
+	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
@@ -665,10 +665,10 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get a named skills value.
-	 * 
+	 *
 	 * @param key
 	 *            The skill key.
-	 * 
+	 *
 	 * @return The skill value, or <code>null</code> if not set.
 	 */
 	public String getSkill(final String key) {
@@ -677,12 +677,12 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set a named skills value.
-	 * 
+	 *
 	 * @param key
 	 *            The skill key.
 	 * @param value
 	 *            The skill value.
-	 * 
+	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
@@ -692,12 +692,12 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get a keyed string value on a named slot.
-	 * 
+	 *
 	 * @param name
 	 *            The slot name.
 	 * @param key
 	 *            The value key.
-	 * 
+	 *
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
 	public String getKeyedSlot(final String name, final String key) {
@@ -706,14 +706,14 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set a keyed string value on a named slot.
-	 * 
+	 *
 	 * @param name
 	 *            The slot name.
 	 * @param key
 	 *            The value key.
 	 * @param value
 	 *            The value to assign (or remove if <code>null</code>).
-	 * 
+	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
 	 *         there was a problem.
 	 */
@@ -724,10 +724,10 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get a client feature value.
-	 * 
+	 *
 	 * @param name
 	 *            The feature mnemonic.
-	 * 
+	 *
 	 * @return The feature value, or <code>null</code> is not-enabled.
 	 */
 	public String getFeature(final String name) {
@@ -736,10 +736,10 @@ public class Player extends RPEntity {
 
 	/**
 	 * Determine if a client feature is enabled.
-	 * 
+	 *
 	 * @param name
 	 *            The feature mnemonic.
-	 * 
+	 *
 	 * @return <code>true</code> if the feature is enabled.
 	 */
 	public boolean hasFeature(final String name) {
@@ -748,7 +748,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Enable/disable a client feature.
-	 * 
+	 *
 	 * @param name
 	 *            The feature mnemonic.
 	 * @param enabled
@@ -766,7 +766,7 @@ public class Player extends RPEntity {
 	 * Sets/removes a client feature.
 	 * <p> <strong>NOTE: The names and values MUST NOT
 	 * contain <code>=</code> (equals), or <code>:</code> (colon). </strong>
-	 * 
+	 *
 	 * @param name
 	 *            The feature mnemonic.
 	 * @param value
@@ -778,7 +778,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Determine if the entity is invisible to creatures.
-	 * 
+	 *
 	 * @return <code>true</code> if invisible.
 	 */
 	@Override
@@ -788,7 +788,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set whether this player is invisible to creatures.
-	 * 
+	 *
 	 * @param invisible
 	 *            <code>true</code> if invisible.
 	 */
@@ -802,7 +802,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Sends a message that only this player can read.
-	 * 
+	 *
 	 * @param text
 	 *            the message.
 	 */
@@ -813,7 +813,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Sends a message that only this player can read.
-	 * 
+	 *
 	 * @param type
 	 *            NotificationType
 	 * @param text
@@ -828,7 +828,7 @@ public class Player extends RPEntity {
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently so that
 	 * /answer can be used.
-	 * @param lastPrivateChatterName 
+	 * @param lastPrivateChatterName
 	 */
 	public void setLastPrivateChatter(final String lastPrivateChatterName) {
 		TutorialNotifier.messaged(this);
@@ -848,7 +848,7 @@ public class Player extends RPEntity {
 	/**
 	 * Returns the admin level of this user. See AdministrationAction.java for
 	 * details.
-	 * 
+	 *
 	 * @return adminlevel
 	 */
 	public int getAdminLevel() {
@@ -861,7 +861,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set the player's admin level.
-	 * 
+	 *
 	 * @param adminlevel
 	 *            The new admin level.
 	 */
@@ -874,7 +874,7 @@ public class Player extends RPEntity {
 		TutorialNotifier.attacked(this);
 		super.rememberAttacker(attacker);
 	}
-	
+
 	@Override
 	public void onDead(final Entity killer, final boolean remove) {
 		// Always use remove=false for players, as documented
@@ -906,7 +906,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set the player's pet. This will also set the pet's owner.
-	 * 
+	 *
 	 * @param pet
 	 *            The pet.
 	 */
@@ -916,7 +916,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set the player's sheep. This will also set the sheep's owner.
-	 * 
+	 *
 	 * @param sheep
 	 *            The sheep.
 	 */
@@ -926,7 +926,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Get the player's sheep.
-	 * 
+	 *
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {
@@ -948,7 +948,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Is this a new player?
-	 * 
+	 *
 	 * @return true if it is a new player, false otherwise
 	 */
 	public boolean isNew() {
@@ -959,7 +959,7 @@ public class Player extends RPEntity {
 	/**
 	 * Sets the number of minutes that this player has been logged in on the
 	 * server.
-	 * 
+	 *
 	 * @param age
 	 *            minutes
 	 */
@@ -979,7 +979,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Returns the time the player last did an PVP action.
-	 * 
+	 *
 	 * @return time in milliseconds
 	 */
 	public long getLastPVPActionTime() {
@@ -991,7 +991,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Notifies this player that the given player has logged in.
-	 * 
+	 *
 	 * @param who
 	 *            The name of the player who has logged in.
 	 */
@@ -1012,7 +1012,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Notifies this player that the given player has logged out.
-	 * 
+	 *
 	 * @param who
 	 *            The name of the player who has logged out.
 	 */
@@ -1030,7 +1030,7 @@ public class Player extends RPEntity {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the online status for a buddy in the players' buddy list
 	 * @param buddyName
@@ -1042,7 +1042,7 @@ public class Player extends RPEntity {
 			put("buddies", buddyName, isOnline);
 		}
 	}
-	
+
 	/**
 	 * @return true iff this player has buddies (considers only map attribute!)
 	 */
@@ -1053,7 +1053,7 @@ public class Player extends RPEntity {
 
 		return false;
 	}
-	
+
 	/**
 	 * @return all buddy names for this player
 	 */
@@ -1066,7 +1066,7 @@ public class Player extends RPEntity {
 
 		return buddies;
 	}
-	
+
 	public int countBuddies() {
 		if (this.hasBuddies()) {
 			return getMap("buddies").size();
@@ -1077,7 +1077,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Checks whether the player has completed the given quest or not.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return true iff the quest has been completed by the player
@@ -1090,7 +1090,7 @@ public class Player extends RPEntity {
 	 * Checks whether the player has made any progress in the given quest or
 	 * not. For many quests, this is true right after the quest has been
 	 * started.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return true if the player has made any progress in the quest
@@ -1101,7 +1101,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Gets the player's current status in the given quest.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @return the player's status in the quest
@@ -1112,7 +1112,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Gets the player's current status in the given quest.
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -1128,7 +1128,7 @@ public class Player extends RPEntity {
 	 * list of items that need to be brought/NPCs that need to be met, or the
 	 * number of items that still need to be brought. Note that the string
 	 * "done" has a special meaning: see isQuestCompleted().
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param status
@@ -1145,7 +1145,7 @@ public class Player extends RPEntity {
 	 * list of items that need to be brought/NPCs that need to be met, or the
 	 * number of items that still need to be brought. Note that the string
 	 * "done" has a special meaning: see isQuestComplete().
-	 * 
+	 *
 	 * @param name
 	 *            The quest's name
 	 * @param index
@@ -1168,7 +1168,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Is the named quest in one of the listed states?
-	 * 
+	 *
 	 * @param name
 	 *            quest
 	 * @param states
@@ -1178,13 +1178,13 @@ public class Player extends RPEntity {
 	public boolean isQuestInState(final String name, final String... states) {
 		return quests.isQuestInState(name, states);
 	}
-	
+
 	/**
 	 * Is the named quest in one of the listed states?
-	 * 
+	 *
 	 * @param name
 	 *            quest
-	 * @param index           
+	 * @param index
 	 *            quest index
 	 * @param states
 	 *            valid states
@@ -1197,7 +1197,7 @@ public class Player extends RPEntity {
 	/**
 	 * Checks if the player has ever killed a creature, with or without the help
 	 * of any other player.
-	 * 
+	 *
 	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature.
 	 */
@@ -1205,18 +1205,28 @@ public class Player extends RPEntity {
 		return killRec.hasKilled(name);
 	}
 
-
 	/**
 	 * Checks if the player has ever 'solo killed' a creature, i.e. without the help
 	 * of any other player.
-	 * 
+	 *
 	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(final String name) {
 		return killRec.hasKilledSolo(name);
 	}
-	
+
+	/**
+	 * Checks if the player has ever 'shared killed' a creature, i.e. with the help
+	 * of any other player.
+	 *
+	 * @param name of the creature to check.
+	 * @return true iff this player has ever killed this creature in a team.
+	 */
+	public boolean hasKilledShared(final String name) {
+		return killRec.hasKilledShared(name);
+	}
+
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
@@ -1230,14 +1240,14 @@ public class Player extends RPEntity {
 	 * Stores that the player has killed 'name' with help of others. Does not
 	 * overwrite solo kills of 'name'
 	 * @param name of victim
-	 * 
+	 *
 	 */
 	public void setSharedKill(final String name) {
 		killRec.setSharedKill(name);
 	}
 
 	/**
-	 * Returns how much the player has killed 'name' solo. 
+	 * Returns how much the player has killed 'name' solo.
 	 * @param name of the victim
 	 * @return number of solo kills
 	 */
@@ -1248,17 +1258,17 @@ public class Player extends RPEntity {
 	/**
 	 * Returns how much the player has killed 'name' with help of others.
 	 * @param name of victim
-	 * @return number of shared kills 
+	 * @return number of shared kills
 	 */
 	public int getSharedKill(final String name) {
 		return(killRec.getSharedKill(name));
 	}
-	
+
 	/**
 	 * return differences between stored in quest slot info about killed creatures
-	 *    and number of killed creatures. 
+	 *    and number of killed creatures.
 	 * @param questSlot  - name of quest
-	 * @param questIndex - index of quest's record 
+	 * @param questIndex - index of quest's record
 	 * @param creature   - name of creature
 	 * @return - difference in killed creatures
 	 */
@@ -1266,10 +1276,10 @@ public class Player extends RPEntity {
 		final List<String> content = Arrays.asList(getQuest(questSlot, questIndex).split(","));
 		final int index = content.indexOf(creature);
 		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
-		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);		
+		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);
 		return(getSoloKill(creature)+getSharedKill(creature)-solo-shared);
 	}
-	
+
 	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
@@ -1290,7 +1300,7 @@ public class Player extends RPEntity {
 	 * Poisons the player with a poisonous item. Note that this method is also
 	 * used when a player has been poisoned while fighting against a poisonous
 	 * creature.
-	 * 
+	 *
 	 * @param item
 	 *            the poisonous item
 	 * @return true iff the poisoning was effective, i.e. iff the player is not
@@ -1438,7 +1448,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Teleports this player to the given destination.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone where this player should be teleported to.
 	 * @param x
@@ -1478,7 +1488,7 @@ public class Player extends RPEntity {
 	 * Removes all units of an item from the RPEntity. The item can either be
 	 * stackable or non-stackable. If the RPEntity doesn't have any of the item,
 	 * doesn't remove anything.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the item
 	 * @return true iff dropping the item was successful.
@@ -1492,7 +1502,7 @@ public class Player extends RPEntity {
 	/**
 	 * Called when player push entity. The entity displacement is handled by the
 	 * action itself.
-	 * 
+	 *
 	 * @param entity
 	 */
 	public void onPush(final RPEntity entity) {
@@ -1501,7 +1511,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Return true if player can push entity.
-	 * 
+	 *
 	 * @param entity
 	 * @return true iff pushing is possible
 	 */
@@ -1518,7 +1528,7 @@ public class Player extends RPEntity {
 	/**
 	 * Makes this player wear the given outfit. If the given outfit contains
 	 * null parts, the current outfit will be kept for these parts.
-	 * 
+	 *
 	 * @param outfit
 	 *            The new outfit.
 	 * @param temporary
@@ -1556,7 +1566,7 @@ public class Player extends RPEntity {
 	 * Tries to give the player his original outfit back after he has put on a
 	 * temporary outfit. This will only be successful if the original outfit has
 	 * been stored.
-	 * 
+	 *
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit() {
@@ -1576,7 +1586,7 @@ public class Player extends RPEntity {
 	/**
 	 * Determine if zone changes are currently allowed via normal means
 	 * (non-portal teleportation doesn't count).
-	 * 
+	 *
 	 * @return <code>true</code> if the entity can change zones.
 	 */
 	@Override
@@ -1673,7 +1683,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
-	 * 
+	 *
 	 * @return <code>true</code> if in ghost mode.
 	 */
 	@Override
@@ -1683,7 +1693,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set whether this player is a ghost (invisible/non-interactive).
-	 * 
+	 *
 	 * @param ghost
 	 *            <code>true</code> if a ghost.
 	 */
@@ -1697,7 +1707,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Checks whether a player has teleclick enabled.
-	 * 
+	 *
 	 * @return <code>true</code> if teleclick is enabled.
 	 */
 	public boolean isTeleclickEnabled() {
@@ -1706,7 +1716,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Set whether this player has teleclick enabled.
-	 * 
+	 *
 	 * @param teleclick
 	 *            <code>true</code> if teleclick enabled.
 	 */
@@ -1720,7 +1730,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Called when this object is added to a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone this was added to.
 	 */
@@ -1747,7 +1757,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Called when this object is being removed from a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone this will be removed from.
 	 */
@@ -1793,15 +1803,15 @@ public class Player extends RPEntity {
 	}
 
 	public void setSentence(final String arg) {
-		put("sentence", arg);		
+		put("sentence", arg);
 	}
-	
+
 	public String getSentence() {
 		String result = "";
 		if (has("sentence")) {
 			result = get("sentence");
 		}
-		
+
 		return result;
 	}
 
@@ -1823,7 +1833,7 @@ public class Player extends RPEntity {
 					if (!ring.isBroken()) {
 						result.add(ring);
 					}
-					
+
 				}
 			}
 		}
@@ -1854,7 +1864,7 @@ public class Player extends RPEntity {
 	 * Search for an animal with the given name or type.
 	 *
 	 * @param name the name or type of the pet to search
-	 * @param exactly <code>true</code> if looking only for matching 
+	 * @param exactly <code>true</code> if looking only for matching
 	 * 	name instead of both name and type.
 	 * @return the found pet
 	 */
@@ -1882,7 +1892,7 @@ public class Player extends RPEntity {
 
 		return null;
 	}
-	
+
 	@Override
 	protected void applyDefXP(final RPEntity entity) {
 		if (getsFightXpFrom(entity)) {
@@ -1909,7 +1919,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Returns the time the player last did a player kill.
-	 * 
+	 *
 	 * @return time in milliseconds
 	 */
 	public long getLastPlayerKillTime() {
@@ -1921,9 +1931,9 @@ public class Player extends RPEntity {
 
 	public void rehabilitate() {
 		remove(LAST_PLAYER_KILL_TIME);
-		
+
 	}
-	
+
 	@Override
 	protected void rewardKillers(final int oldXP) {
 		// Don't reward for killing players
@@ -1931,7 +1941,7 @@ public class Player extends RPEntity {
 
 		for (final String killerName : playersToReward) {
             final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
-            // check logout  
+            // check logout
             if (killer != null) {
 				TutorialNotifier.killedPlayer(killer);
             }
@@ -1948,7 +1958,7 @@ public class Player extends RPEntity {
 				super.equipOrPutOnGround(item);
 			}
 		}
-		super.equipToInventoryOnly(item); 
+		super.equipToInventoryOnly(item);
 	}
 
 	public PetOwner getPetOwner() {
@@ -1961,13 +1971,13 @@ public class Player extends RPEntity {
 
 	/**
 	 * gets the PlayerChatBucket
-	 * 
+	 *
 	 * @return PlayerChatBucket
 	 */
 	public PlayerChatBucket getChatBucket() {
 		return chatBucket;
 	}
-	
+
 	@Override
 	public Nature getDamageType() {
 		// Use the damage type of arrows, if the player is shooting with them
@@ -1981,16 +1991,16 @@ public class Player extends RPEntity {
 		if (weapon != null) {
 			return weapon.getDamageType();
 		}
-		
+
 		return Nature.CUT;
 	}
-	
+
 	@Override
 	protected double getSusceptibility(Nature type) {
 		double sus = 1.0;
 		/*
 		 * check weapon and shield separately, so that holding
-		 * 2 resistant shields does not help  
+		 * 2 resistant shields does not help
 		 */
 		Item weapon = getWeapon();
 		if (weapon != null) {
@@ -2000,7 +2010,7 @@ public class Player extends RPEntity {
 		if (shield != null) {
 			sus *= shield.getSusceptibility(type);
 		}
-		
+
 		String[] armorSlots = { "armor", "head", "legs", "feet", "cloak" };
 		for (String slot : armorSlots) {
 			RPObject object = getSlot(slot).getFirst();
@@ -2008,13 +2018,13 @@ public class Player extends RPEntity {
 				sus *= ((Item) object).getSusceptibility(type);
 			}
 		}
-		
+
 		return sus;
 	}
-	
+
 	/**
 	 * adds a buddy to the player's buddy list
-	 * 
+	 *
 	 * @param name the name of the buddy
 	 * @param online if the player is online
 	 * @return true if the buddy has been added
@@ -2026,10 +2036,10 @@ public class Player extends RPEntity {
 
 		return isNew;
 	}
-	
+
 	/**
 	 * removes a buddy to the player's buddy list
-	 * 
+	 *
 	 * @param name the name of the buddy
 	 * @return true if a buddy was removed
 	 */
@@ -2047,10 +2057,10 @@ public class Player extends RPEntity {
 			addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
 		}
 	}
-	
+
 	/**
 	 * Adds the identifier of an achievement to the reached achievements
-	 * 
+	 *
 	 * @param identifier
 	 */
 	public void addReachedAchievement(String identifier) {
@@ -2060,7 +2070,7 @@ public class Player extends RPEntity {
 	private Set<String> getAchievements() {
 		return reachedAchievements;
 	}
-	
+
 	public void initReachedAchievements() {
 		reachedAchievements = new HashSet<String>();
 	}
@@ -2076,7 +2086,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * Checks if a player has reached the achievement with the given identifier
-	 * 
+	 *
 	 * @param identifier
 	 * @return true if player had reached the achievement with the given identifier
 	 */
@@ -2099,7 +2109,7 @@ public class Player extends RPEntity {
 
 	/**
 	 * offers the other player to start a trading session
-	 * 
+	 *
 	 * @param partner to offer the trade to
 	 */
 	public void offerTrade(Player partner) {
@@ -2187,77 +2197,77 @@ public class Player extends RPEntity {
 	public void cancelTrade() {
 		trade.cancelTrade();
 	}
-	
+
 	/**
 	 * Gets the how often this player has looted the given item
-	 * 
+	 *
 	 * @param item the item name
 	 * @return the number of loots from corpses
 	 */
 	public int getNumberOfLootsForItem(String item) {
 		return itemCounter.getNumberOfLootsForItem(item);
 	}
-	
+
 	/**
 	 * Gets the amount a player as produced of an item
-	 * 
+	 *
 	 * @param item the item name
 	 * @return the produced amount
 	 */
 	public int getQuantityOfProducedItems(String item) {
 		return itemCounter.getQuantityOfProducedItems(item);
 	}
-	
+
 	/**
 	 * Gets the amount a player as mined of an item
-	 * 
+	 *
 	 * @param item the item name
 	 * @return the mined amount
 	 */
 	public int getQuantityOfMinedItems(String item) {
 		return itemCounter.getQuantityOfMinedItems(item);
 	}
-	
+
 	/**
 	 * Gets the amount a player has harvested of an item
-	 * 
+	 *
 	 * @param item the item name
 	 * @return the harvested amount
 	 */
 	public int getQuantityOfHarvestedItems(String item) {
 		return itemCounter.getQuantityOfHarvestedItems(item);
 	}
-	
+
 	/**
 	 * Gets the amount a player has harvested of an item
-	 * 
+	 *
 	 * @param item the item name
 	 * @return the harvested amount
 	 */
 	public int getQuantityOfBoughtItems(String item) {
 		return itemCounter.getQuantityOfBoughtItems(item);
 	}
-	
+
 	/**
 	 * @return the whole number of items a player has obtained from the well
 	 */
 	public int getQuantityOfObtainedItems() {
 		return itemCounter.getQuantityOfObtainedItems();
 	}
-	
+
 	/**
 	 * Increases the count of loots for the given item
 	 * @param item the item name
-	 * @param count 
+	 * @param count
 	 */
 	public void incLootForItem(String item, int count) {
 		itemCounter.incLootForItem(item, count);
 	}
-	
+
 	/**
 	 * Increases the count of producings for the given item
 	 * @param item the item name
-	 * @param count 
+	 * @param count
 	 */
 	public void incProducedCountForItem(String item, int count) {
 		itemCounter.incProducedForItem(item, count);
@@ -2266,51 +2276,51 @@ public class Player extends RPEntity {
 	/**
 	 * Increases the count of obtains from the well for the given item
 	 * @param name the item name
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void incObtainedForItem(String name, int quantity) {
 		itemCounter.incObtainedForItem(name, quantity);
 	}
-	
+
 	/**
 	 * Increases the count of obtains from the well for the given item
 	 * @param name the item name
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void incSoldForItem(String name, int quantity) {
 		itemCounter.incSoldForItem(name, quantity);
 	}
-	
+
 	/**
 	 * Increases the amount of successful minings for the given item
 	 * @param name the item name
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void incMinedForItem(String name, int quantity) {
 		itemCounter.incMinedForItem(name, quantity);
 	}
-	
+
 	/**
 	 * Increases the amount of successful harvestings for the given item
 	 * @param name the item name
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void incHarvestedForItem(String name, int quantity) {
 		itemCounter.incHarvestedForItem(name, quantity);
 	}
-	
+
 	/**
 	 * Increases the amount of successful buyings for the given item
 	 * @param name the item name
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void incBoughtForItem(String name, int quantity) {
 		itemCounter.incBoughtForItem(name, quantity);
 	}
 
 	/**
-	 * Gets the recorded item stored in a substate of quest slot 
-	 * 
+	 * Gets the recorded item stored in a substate of quest slot
+	 *
 	 * @param questname
 	 *            The quest's name
 	 * @param index
@@ -2322,8 +2332,8 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Gets the recorded item quantity stored in a substate of quest slot 
-	 * 
+	 * Gets the recorded item quantity stored in a substate of quest slot
+	 *
 	 * @param questname
 	 *            The quest's name
 	 * @param index
@@ -2333,10 +2343,10 @@ public class Player extends RPEntity {
 	public int getRequiredItemQuantity(String questname, int index) {
 		return quests.getRequiredItemQuantity(questname, index);
 	}
-	
+
 	/**
-	 * Gets the number of repetitions in a substate of quest slot 
-	 * 
+	 * Gets the number of repetitions in a substate of quest slot
+	 *
 	 * @param questname
 	 *            The quest's name
 	 * @param index
