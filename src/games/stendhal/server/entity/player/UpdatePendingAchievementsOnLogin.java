@@ -56,7 +56,8 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 		updateItemLoots(player, command.getDetails("item.set.chaos"));
 		updateItemLoots(player, command.getDetails("item.set.shadow"));
 		updateItemLoots(player, command.getDetails("item.set.golden"));
-		
+		updateItemLoots(player, command.getDetails("item.set.red"));
+
 		// Could also check for reached achievements here. This is also checked on login but the order may vary due to the async access?
 		
 		// delete the entries. We don't need feedback
