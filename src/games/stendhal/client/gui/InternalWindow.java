@@ -225,12 +225,14 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	public void setTitle(String title) {
 		/*
 		 * Work around JLabel drawing ellipsis when it's short of space. To
-		 * avoid titles like "cor..." for corpses.
+		 * avoid titles like "cor..." for corpses. Html labels do not get the
+		 * ellipsis.
+		 * 
+		 * Use no-break space to avoid the title overflowing to the
+		 * next line when using html.
 		 */
-		if (title.indexOf(' ') == -1) {
-			// A html title with spaces could wrap to the next line
-			title = "<html>" + title + "</html>";
-		}
+		title = title.replaceAll(" +", "&nbsp;");
+		title = "<html>" + title + "</html>";
 		titleLabel.setText(title);
 	}
 	
