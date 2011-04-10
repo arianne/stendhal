@@ -9,14 +9,16 @@ Changelog
 - deathmatch creature spawn time dependent on player level and (inversely) on number of players in ring
 - get fresh water at some hidden new springs
 - Kill Enemy Army quest history with more detail and records number of completions
+- Xhiphin Zohos is thirsty and asks for water 
+- decorated Semos for Easter
+- Easter Bunny drops small easter eggs as he walks
+
+*features*
+- Easter Bunny launchable via script
 - corpse auto inspect mode in settings panel
 - inspected corpses auto close when empty
 - corpse window title is the dead creature / player
 - corpses cannot be thrown far by other players if they're protected
-- Xhiphin Zohos is thirsty and asks for water 
-- decorated Semos for Easter
-- Easter Bunny launchable via script
-- Easter Bunny drops small easter eggs as he walks
 
 *website*
 - new rankings for best player and hall of fame using achievements
@@ -37,6 +39,8 @@ Changelog
 - fix display texts for "ice cream"
 - Alrak and Pequod give the bobbin/oil directly when saying 'make' (as well as 'remind') if item is ready
 - fix a memory hole in the market
+
+
 
 0.92: Achievements and Expedition Groups
 26th February 2011
@@ -71,6 +75,8 @@ Changelog
 - NPC conversation with improved and unified responses of producers and merchandisers
 - improved server side performance by changing Creature.getArea() to not create lots and lots of short lived objects
 
+
+
 0.91: Quest progress
 2nd January 2011
 
@@ -91,8 +97,12 @@ Changelog
 - word list improvements
 - NPC text matching improvements
 
+
+
 0.90.1
 - fixed a bug which prevented logging in without at least one saved profile
+
+
 
 0.90: Seasons Greetings
 10th December 2010
