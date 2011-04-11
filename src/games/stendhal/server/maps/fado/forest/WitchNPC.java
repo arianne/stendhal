@@ -53,12 +53,12 @@ public class WitchNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello wanderer!");
-				addJob("I'm a witch and pratice each day to become a powerful one soon.");
-				addQuest("My grandma inside is quite concerned... She is ill and afraid and I need to help her and will figure out, #how...");
-				addReply("how", "The question really is what may help here... Maybe I'll ask her later about it, I first have to finish my new #receipe...");
-				addReply("receipe", "Oh I doubt that you can eat or drink what I prepare at the moment... But I know two really nice women who can make some tasty #soup for you.");
+				addJob("I'm a witch and practice each day, I hope to become a powerful one soon.");
+				addQuest("My grandma inside is quite concerned... She is ill and afraid and I need to help her. I just need to figure out #how...");
+				addReply("how", "The question really is what may help... Maybe I'll ask her later about it, I first have to finish my new #recipe...");
+				addReply("recipe", "Oh I doubt that you can eat or drink what I prepare at the moment... But I know two really nice women who can make some tasty #soup for you.");
 				addReply("soup", "Florence Boullabaisse and Mother Helena are awesome soup cooks. You'll find them on the Ados market and in the Fado tavern.");
-				addHelp("Aldrin sells some honey, you will love to eat it with bread.");
+				addHelp("Aldrin sells some honey, you would love to eat it with bread.");
 				addOffer("I'm sorry but I can't sell you anything.");
 				addGoodbye("Bye bye and take care around here!");
 			}
@@ -67,7 +67,7 @@ public class WitchNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngwitchnpc");
 		npc.setPosition(59, 29);
 		npc.initHP(100);
-		npc.setDescription("You see Imorgin. She is a young witch whose mystical aura can be felt over a long distance.");
+		npc.setDescription("You see Imorgen. She is a young witch whose mystical aura can be felt over a long distance.");
 		zone.add(npc);
 	}
 }
