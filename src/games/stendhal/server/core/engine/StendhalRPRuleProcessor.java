@@ -262,24 +262,41 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		final long start = System.nanoTime();
 
 		try {
-
 			destroyObsoleteZones();
-
-			logNumberOfPlayersOnline();
-
-			handleKilledEntities();
-
-			executePlayerLogic();
-
-			executeNPCsPreLogic();
-
-			handlePlayersRmTexts();
-
 		} catch (final Exception e) {
 			logger.error("error in beginTurn", e);
-		} finally {
-			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
 		}
+
+		try {
+			logNumberOfPlayersOnline();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+
+		try {
+			handleKilledEntities();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+
+		try {
+			executePlayerLogic();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+
+		try {
+			executeNPCsPreLogic();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+
+		try {
+			handlePlayersRmTexts();
+		} catch (final Exception e) {
+			logger.error("error in beginTurn", e);
+		}
+		logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
 	}
 
 	private void destroyObsoleteZones() {
