@@ -48,20 +48,20 @@ public class OldWitchNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello *Cough*");
-				addJob("I had been a powerful witch before I risked too much and lost my powers while fighting against some #werwolfes.");
-				addReply("werwolfes", "They are really dangerous! I met some on the way to Kikareukin earlier and have been deeply poisoned. That is why I have to rest here.");
-				addQuest("Oh dear, you seem to be really nice and trustful but I can't give you any work at the moment.");
-				addHelp("My daughter #Imorgen outside can maybe help you. She knows lots of people around Faiumoni.");
-				addReply("Imorgen", "She will hopefully become a powerful witch like me in the future. But she still has to learn a lot.");
+				addJob("I was once a powerful witch. But I took a great risk and lost my powers, fighting against some #werewolves.");
+				addReply("werewolves", "They are really dangerous! I met some on the way to Kikareukin earlier and have been deeply poisoned. That is why I have to rest here.");
+				addQuest("Oh dear, you seem to be really nice and trustful, but I can't give you any work at the moment.");
+				addHelp("Maybe my daughter #Imorgen outside can help you. She knows lots of people around Faiumoni.");
+				addReply("Imorgen", "Hopefully she'll become a powerful witch like me in the future. But she still has to learn a lot.");
 				addOffer("I would like to sell you one of my famous drinks but I can't *cough*.");
-				addGoodbye("I hope we'll see us again soon *sigh*.");
+				addGoodbye("I hope we'll meet again soon *sigh*.");
 			}
 		};
 
 		npc.setEntityClass("oldwitchnpc");
 		npc.setPosition(12, 4);
 		npc.initHP(100);
-		npc.setDescription("You see Mircea. She is an old asthenic witch who seems to become weaken each second.");
+		npc.setDescription("You see Mircea. She is an old thin witch, who seems to become weaker each second.");
 		zone.add(npc);
 	}
 }
