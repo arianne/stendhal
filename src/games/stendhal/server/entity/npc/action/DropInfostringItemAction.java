@@ -32,6 +32,7 @@ public class DropInfostringItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private final String itemName;
 	private final String infostring;
+	private final int amount;
 
 	/**
 	 * Creates a new DropInfostringItemAction.
@@ -43,6 +44,23 @@ public class DropInfostringItemAction implements ChatAction {
 	 */
 	public DropInfostringItemAction(final String itemName, final String infostring) {
 		this.itemName = itemName;
+		this.amount = 1;
+		this.infostring = infostring;
+	}
+	
+	/**
+	 * Creates a new DropInfostringItemAction.
+	 * 
+	 * @param itemName
+	 *            name of item
+	 * @param amount
+	 *            amount of item
+	 * @param infostring
+	 *            infostring of the dropped item
+	 */
+	public DropInfostringItemAction(final String itemName, final int amount, final String infostring) {
+		this.itemName = itemName;
+		this.amount = amount;
 		this.infostring = infostring;
 	}
 
@@ -51,7 +69,7 @@ public class DropInfostringItemAction implements ChatAction {
 		boolean res = false;
 		for (final Item item : items) {
 			if (infostring.equalsIgnoreCase(item.getInfoString())) {
-				res = player.drop(item);
+				res = player.drop(item.getName(), amount);
 				break;
 			}
 		}
@@ -64,7 +82,7 @@ public class DropInfostringItemAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "drop item <" + itemName + "> with infostring <" + infostring + ">";
+		return "drop " + amount + " of item <" + itemName + "> with infostring <" + infostring + ">";
 	}
 
 	@Override
@@ -85,6 +103,9 @@ public class DropInfostringItemAction implements ChatAction {
 		}
 		final DropInfostringItemAction other = (DropInfostringItemAction) obj;
 		if (!infostring.equals(other.infostring)) {
+			return false;
+		}
+		if (amount != other.amount) {
 			return false;
 		}
 		if (itemName == null) {
