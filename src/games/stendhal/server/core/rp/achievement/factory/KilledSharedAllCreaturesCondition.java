@@ -26,7 +26,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Did the player kill all creatures, shared? (excluding rare)
  *
- * @author kymara
  */
 public class KilledSharedAllCreaturesCondition implements ChatCondition {
 
