@@ -168,10 +168,12 @@ public class ShowOffersChatAction implements ChatAction {
 	private void filterForWord(List<Offer> offers, String word) {
 		Iterator<Offer> it = offers.iterator();
 		while (it.hasNext()) {
-			Item item = it.next().getItem();
-			
-			if (!(item.getName().indexOf(word) != -1 || word.equals(item.getItemClass()))) {
-				it.remove();
+			Offer o = it.next();
+			if (o.hasItem()) {
+				Item item = o.getItem();
+				if (!(item.getName().indexOf(word) != -1 || word.equals(item.getItemClass()))) {
+					it.remove();
+				}
 			}
 		}
 	}
@@ -207,7 +209,7 @@ public class ShowOffersChatAction implements ChatAction {
 			
 			message.append(counter);
 			message.append(": ");
-			message.append(Grammar.quantityplnoun(quantity, item.getName(), "a"));
+			message.append(Grammar.quantityplnoun(quantity, offer.getItemName(), "a"));
 			message.append(" for ");
 			message.append(offer.getPrice());
 			message.append(" money");

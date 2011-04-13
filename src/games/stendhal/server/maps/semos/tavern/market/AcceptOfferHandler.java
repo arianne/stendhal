@@ -68,11 +68,13 @@ public class AcceptOfferHandler extends OfferHandler {
 				}
 				if(offerMap.containsKey(offerNumber)) {
 					Offer o = offerMap.get(offerNumber);
-					setOffer(o);
-					int quantity = getQuantity(o.getItem());
-					npc.say("Do you want to buy " + Grammar.quantityplnoun(quantity, o.getItem().getName(), "a") + " for " + o.getPrice() + " money?");
-					npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
-					return;
+					if (o.hasItem()) {
+						setOffer(o);
+						int quantity = getQuantity(o.getItem());
+						npc.say("Do you want to buy " + Grammar.quantityplnoun(quantity, o.getItem().getName(), "a") + " for " + o.getPrice() + " money?");
+						npc.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
+						return;
+					}
 				}
 				npc.say("Sorry, please choose a number from those I told you to accept an offer.");
 			} catch (NumberFormatException e) {

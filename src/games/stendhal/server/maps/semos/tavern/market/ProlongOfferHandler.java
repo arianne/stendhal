@@ -62,12 +62,15 @@ public class ProlongOfferHandler extends OfferHandler {
 					Offer o = offerMap.get(offerNumber);
 					if(o.getOfferer().equals(player.getName())) {
 						setOffer(o);
-						int quantity = getQuantity(o.getItem());
+						int quantity = 1;
+						if (o.hasItem()) {
+							quantity = getQuantity(o.getItem());
+						}
 						StringBuilder message = new StringBuilder();
 						
 						if (TradeCenterZoneConfigurator.getShopFromZone(player.getZone()).contains(o)) {
 							message.append("Your offer of ");
-							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
+							message.append(Grammar.quantityplnoun(quantity, o.getItemName(), "one"));
 							message.append(" would expire in ");
 							message.append(TimeUtil.approxTimeUntil((int) ((o.getTimestamp() - System.currentTimeMillis() + 1000 * OfferExpirer.TIME_TO_EXPIRING) / 1000)));
 							message.append(". Do you want to prolong it to last for ");
@@ -77,7 +80,7 @@ public class ProlongOfferHandler extends OfferHandler {
 							message.append(" money?");
 						} else {
 							message.append("Do you want to prolong your offer of ");
-							message.append(Grammar.quantityplnoun(quantity, o.getItem().getName(), "one"));
+							message.append(Grammar.quantityplnoun(quantity, o.getItemName(), "one"));
 							message.append(" at a price of ");
 							message.append(o.getPrice());
 							message.append(" for a fee of ");

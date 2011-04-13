@@ -120,7 +120,11 @@ public class OfferExpirer implements TurnListener{
 			market.expireOffer(offer);
 			StringBuilder builder = new StringBuilder();
 			builder.append("Your offer of ");
-			builder.append(Grammar.a_noun(offer.getItem().getName()));
+			String itemname = "unknown item";
+			if (offer.hasItem()) {
+				itemname = offer.getItem().getName();
+			}
+			builder.append(Grammar.a_noun(itemname));
 			builder.append(" has expired. You have ");
 			builder.append(TimeUtil.approxTimeUntil((int) ((offer.getTimestamp() 
 					- System.currentTimeMillis() + 1000 * TIME_TO_REMOVING) / 1000)));
@@ -139,7 +143,7 @@ public class OfferExpirer implements TurnListener{
 			market.removeExpiredOffer(offer);
 			StringBuilder builder = new StringBuilder();
 			builder.append("Your offer of ");
-			builder.append(Grammar.a_noun(offer.getItem().getName()));
+			builder.append(Grammar.a_noun(offer.getItemName()));
 			builder.append(" has been removed permanently from the market.");
 			sendMessage(offer.getOfferer(), builder);
 		}
@@ -163,7 +167,7 @@ public class OfferExpirer implements TurnListener{
 			
 			StringBuilder builder = new StringBuilder();
 			builder.append("Your offer of ");
-			builder.append(Grammar.a_noun(offer.getItem().getName()));
+			builder.append(Grammar.a_noun(offer.getItemName()));
 			builder.append(" will expire in ");
 			builder.append(TimeUtil.approxTimeUntil((int) ((offer.getTimestamp() - time) / 1000 + TIME_TO_EXPIRING)));
 			builder.append(".");
