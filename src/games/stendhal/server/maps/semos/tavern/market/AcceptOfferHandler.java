@@ -87,11 +87,12 @@ public class AcceptOfferHandler extends OfferHandler {
 		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+			String itemname = offer.getItemName();
 			if (m.acceptOffer(offer,player)) {
 				// Successful trade. Tell the offerer
 				StringBuilder earningToFetchMessage = new StringBuilder();
 				earningToFetchMessage.append("Your ");
-				earningToFetchMessage.append(offer.getItem().getName());
+				earningToFetchMessage.append(itemname);
 				earningToFetchMessage.append(" was sold. You can now fetch your earnings from me.");
 
 				logger.debug("sending a notice to '" + offer.getOfferer() + "': " + earningToFetchMessage.toString());
