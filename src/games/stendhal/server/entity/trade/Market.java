@@ -337,6 +337,8 @@ public class Market extends PassiveEntity {
 	 */
 	public void removeOffer(Offer o, Player p) {
 		Item item = o.getItem();
+		String itemName = item.getName();
+		
 		o.getSlot(Offer.OFFER_ITEM_SLOT_NAME).remove(item.getID());
 		p.equipOrPutOnGround(item);
 
@@ -355,7 +357,7 @@ public class Market extends PassiveEntity {
 			target = "slot";
 		}
 		new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, p,
-						"market-to-" + target, o.getItemName(), Integer
+						"market-to-" + target, itemName, Integer
 								.toString(getQuantity(item)), "remove offer",
 						slotName));
 	}
