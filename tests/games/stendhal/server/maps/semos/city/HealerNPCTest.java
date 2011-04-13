@@ -23,6 +23,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import marauroa.server.game.db.DatabaseFactory;
 
@@ -74,35 +75,37 @@ public class HealerNPCTest {
         assertEquals("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.", getReply(npc));
 
         final Collection<String> items = slh.keySet();
-        final String key = items.iterator().next();
-        final int price = slh.get(key);
-        
-        assertTrue(en.step(player, "offer"));       
-        assertEquals("I sell "+ Grammar.enumerateCollection(items)
-				+ ". "+"I can #heal you.", getReply(npc));
-        
-        player.setBaseHP(100);
-        player.setHP(50);
-        player.setAtkXP(100);
-        player.setDefXP(100);        
-        PlayerTestHelper.equipWithMoney(player, price);
-        
-        assertTrue(en.step(player, "heal"));
-        assertEquals("There, you are healed. How else may I help you?", getReply(npc));
-        assertEquals(player.getHP(),100);       
-                
-        //slh.get("antidote")
-        
-        assertTrue(en.step(player, "buy "+key));      
-        final StringBuilder builder = new StringBuilder("");
-		builder.append(Grammar.quantityplnoun(1, key, "A"));	
-	    builder.append(" will cost ");
-	    builder.append(price);
-	    builder.append(". Do you want to buy it?");	    
-        assertEquals(builder.toString(), getReply(npc));        
-        assertTrue(en.step(player, "no"));
-        assertEquals("Ok, how else may I help you?", getReply(npc));
-        
+        for(Map.Entry<String, Integer> it : slh.entrySet()) {
+        	final String key = it.getKey();
+        	final int price = it.getValue();
+
+	        assertTrue(en.step(player, "offer"));       
+	        assertEquals("I sell "+ Grammar.enumerateCollection(items)
+					+ ". "+"I can #heal you.", getReply(npc));
+
+	        player.setBaseHP(100);
+	        player.setHP(50);
+	        player.setAtkXP(100);
+	        player.setDefXP(100);        
+	        PlayerTestHelper.equipWithMoney(player, price);
+
+	        assertTrue(en.step(player, "heal"));
+	        assertEquals("There, you are healed. How else may I help you?", getReply(npc));
+	        assertEquals(player.getHP(),100);       
+
+	        //slh.get("antidote")
+
+	        assertTrue(en.step(player, "buy "+key));      
+	        final StringBuilder builder = new StringBuilder("");
+			builder.append(Grammar.quantityplnoun(1, key, "A"));	
+		    builder.append(" will cost ");
+		    builder.append(price);
+		    builder.append(". Do you want to buy it?");	    
+	        assertEquals(builder.toString(), getReply(npc));        
+	        assertTrue(en.step(player, "no"));
+	        assertEquals("Ok, how else may I help you?", getReply(npc));
+        }
+
         assertTrue(en.step(player, "!me hugs Carmen"));
 		assertEquals("!me hugs bob", getReply(npc));
 		assertTrue(en.step(player, "bye"));
