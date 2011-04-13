@@ -34,7 +34,7 @@ public class KilledSharedAllCreaturesCondition implements ChatCondition {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
 			if (!creature.isRare()) {
-				if (!player.hasKilled(creature.getName())) {
+				if (!player.hasKilledShared(creature.getName())) {
 					return false;
 				}
 			}
