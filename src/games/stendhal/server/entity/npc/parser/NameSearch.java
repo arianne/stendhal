@@ -51,44 +51,34 @@ public final class NameSearch {
         final String itemName = item.getNormalized();
         
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-        	Sentence parsed = e.getValue();
-        	
-        	if (parsed.matchesNormalized(itemName)) {
+        	if (e.getValue().matchesNormalized(itemName)) {
                 name = e.getKey();
         		found = true;
         		break;
         	}
         }
-        
+
         if (!found) {
 	    	// see if instead the end matches, this is deliberately done afterwards because of bug #3285554 
-        	for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-            	Sentence parsed = e.getValue();
-            	
-            	if (itemName.endsWith(parsed.getOriginalText()) || 
-            			itemName.endsWith(parsed.getNormalized())) {
-                    name = e.getKey();
-            		found = true;
-            		break;
-            	}
-            }
+        	found = searchEndMatch(itemName);
         }
-        
+
+    	// see if instead the plural matches
         if (!found) {
-	    	// see if instead the plural matches
 	        final String pluralName = Grammar.plural(itemName);
 	    	if (!pluralName.equals(itemName)) {
 	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-	            	Sentence parsed = e.getValue();
-	
-	            	if (pluralName.endsWith(parsed.getOriginalText()) ||
-		            		pluralName.endsWith(parsed.getNormalized()) ||
-		                	parsed.matchesStartNormalized(pluralName)) {
+	            	if (e.getValue().matchesStartNormalized(pluralName)) {
 		                name = e.getKey();
 		        		found = true;
 		        		break;
 		        	}
 	            }
+            }
+
+	    	// now check for end matches with the plural
+	    	if (!found && !pluralName.equals(itemName)) {
+	        	found = searchEndMatch(pluralName);
             }
         }
 
@@ -97,16 +87,17 @@ public final class NameSearch {
 	        final String singularName = Grammar.singular(itemName);
 	    	if (!singularName.equals(itemName)) {
 	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-	            	Sentence parsed = e.getValue();
-
-	            	if (singularName.endsWith(parsed.getOriginalText()) ||
-		            		singularName.endsWith(parsed.getNormalized()) ||
-		                	parsed.matchesStartNormalized(singularName)) {
+	            	if (e.getValue().matchesStartNormalized(singularName)) {
 		                name = e.getKey();
 		        		found = true;
 		        		break;
 		        	}
 	        	}
+
+		    	// now check for end matches with the singular
+		    	if (!found && !singularName.equals(itemName)) {
+			        found = searchEndMatch(singularName);
+		    	}
 	    	}
 
 	        if (!found) {
@@ -114,16 +105,17 @@ public final class NameSearch {
 		        final String singular2 = Grammar.singular(singularName);
 		    	if (!singular2.equals(singularName)) {
 		            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-		            	Sentence parsed = e.getValue();
-		
-		            	if (singularName.endsWith(parsed.getOriginalText()) ||
-			            		singularName.endsWith(parsed.getNormalized()) ||
-			                	parsed.matchesStartNormalized(singularName)) {
+		            	if (e.getValue().matchesStartNormalized(singular2)) {
 			                name = e.getKey();
 			        		found = true;
 			        		break;
 			        	}
 		        	}
+		    	}
+
+		    	// now check for end matches with the "double singular"
+		    	if (!found && !singular2.equals(itemName)) {
+		        	found = searchEndMatch(singular2);
 		    	}
 	        }
     	}
@@ -134,6 +126,25 @@ public final class NameSearch {
     	} else
     		return false;
     }
+
+    /**
+     * Check for end matches while searching for item names.
+     * @param itemName
+     * @return
+     */
+	private boolean searchEndMatch(final String itemName) {
+		for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+			Sentence parsed = e.getValue();
+			
+			if (itemName.endsWith(parsed.getOriginalText()) || 
+					itemName.endsWith(parsed.getNormalized())) {
+		        name = e.getKey();
+				return true;
+			}
+		}
+
+		return false;
+	}
 
     /**
      * Return true if matching name found.
