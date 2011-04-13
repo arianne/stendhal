@@ -26,7 +26,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Did the player kill all creatures, shared? (excluding rare)
  *
- * @author kymara
  */
 public class KilledSharedAllCreaturesCondition implements ChatCondition {
 
@@ -35,7 +34,7 @@ public class KilledSharedAllCreaturesCondition implements ChatCondition {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
 			if (!creature.isRare()) {
-				if (!player.hasKilled(creature.getName())) {
+				if (!player.hasKilledShared(creature.getName())) {
 					return false;
 				}
 			}
