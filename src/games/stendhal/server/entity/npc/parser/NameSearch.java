@@ -49,18 +49,31 @@ public final class NameSearch {
         boolean found = false;
 
         final String itemName = item.getNormalized();
+        
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
         	Sentence parsed = e.getValue();
-
-        	if (itemName.endsWith(parsed.getOriginalText()) ||
-	    			itemName.endsWith(parsed.getNormalized()) ||
-	        		parsed.matchesNormalized(itemName)) {
+        	
+        	if (parsed.matchesNormalized(itemName)) {
                 name = e.getKey();
         		found = true;
         		break;
         	}
         }
-
+        
+        if (!found) {
+	    	// see if instead the end matches, this is deliberately done afterwards because of bug #3285554 
+        	for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+            	Sentence parsed = e.getValue();
+            	
+            	if (itemName.endsWith(parsed.getOriginalText()) || 
+            			itemName.endsWith(parsed.getNormalized())) {
+                    name = e.getKey();
+            		found = true;
+            		break;
+            	}
+            }
+        }
+        
         if (!found) {
 	    	// see if instead the plural matches
 	        final String pluralName = Grammar.plural(itemName);
