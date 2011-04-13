@@ -42,10 +42,11 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 			}
 			if(offerMap.containsKey(offerNumber)) {
 				Offer o = offerMap.get(offerNumber);
-				
-				player.sendPrivateText(o.getItem().describe());
-				showImage(player, o.getItem());
-				return;
+				if (o.hasItem()) {
+					player.sendPrivateText(o.getItem().describe());
+					showImage(player, o.getItem());
+					return;
+				}
 			}
 			npc.say("Sorry, please choose a number from those I told you.");
 		} catch (NumberFormatException e) {

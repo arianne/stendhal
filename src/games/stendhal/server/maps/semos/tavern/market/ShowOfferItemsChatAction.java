@@ -70,7 +70,7 @@ public class ShowOfferItemsChatAction implements ChatAction {
 	private Set<String> buildItemList(List<Offer> offers) {
 		Set<String> items = new TreeSet<String>();
 		for (Offer offer : offers) {
-			items.add(offer.getItem().getName());
+			items.add(offer.getItemName());
 		}
 		return items;
 	}

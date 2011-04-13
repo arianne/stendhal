@@ -112,7 +112,31 @@ public class Offer extends Entity implements Dateable {
 	 * @return the Item for sale
 	 */
 	public final Item getItem() {
+		if (getSlot(OFFER_ITEM_SLOT_NAME).size() == 0) {
+			return null;
+		}
 		return (Item) getSlot(OFFER_ITEM_SLOT_NAME).iterator().next();
+	}
+
+	/**
+	 * checks if an item is attached to this offer.
+	 * @return true, if this offer has an item
+	 */
+	public boolean hasItem() {
+		return (hasSlot(OFFER_ITEM_SLOT_NAME) && getSlot(OFFER_ITEM_SLOT_NAME).size() != 0);
+	}
+
+	/**
+	 * gets the name of the item
+	 *
+	 * @return name of item or <code>"null"</code>, if there is no item in this offer
+	 */
+	public String getItemName() {
+		if (hasItem()) {
+			return getItem().getName();
+		}
+		logger.error("Trying to get item name from empty slot", new Throwable());
+		return "null";
 	}
 
 	/**
@@ -180,4 +204,5 @@ public class Offer extends Entity implements Dateable {
 			return cid;
 		}
 	}
+
 }

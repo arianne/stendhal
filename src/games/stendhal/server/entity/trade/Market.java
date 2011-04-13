@@ -219,7 +219,7 @@ public class Market extends PassiveEntity {
 	 * @param acceptingPlayer
 	 */
 	public boolean acceptOffer(final Offer offer, final Player acceptingPlayer) {
-		if (getSlot(OFFERS_SLOT_NAME).has(offer.getID())) {
+		if (getSlot(OFFERS_SLOT_NAME).has(offer.getID()) && offer.hasItem()) {
 			int price = offer.getPrice().intValue();
 			// Take the money; free items should always succeed
 			if ((price == 0) || acceptingPlayer.drop("money", price)) {
@@ -354,9 +354,8 @@ public class Market extends PassiveEntity {
 			slotName = item.getContainerSlot().getName();
 			target = "slot";
 		}
-		new ItemLogger()
-				.addLogItemEventCommand(new LogSimpleItemEventCommand(item, p,
-						"market-to-" + target, item.get("name"), Integer
+		new ItemLogger().addLogItemEventCommand(new LogSimpleItemEventCommand(item, p,
+						"market-to-" + target, o.getItemName(), Integer
 								.toString(getQuantity(item)), "remove offer",
 						slotName));
 	}
@@ -371,8 +370,11 @@ public class Market extends PassiveEntity {
 		this.getSlot(OFFERS_SLOT_NAME).remove(o.getID());
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).add(o);
 		this.getZone().storeToDatabase();
-		new GameEvent("market", "expire-offer", o.getOfferer(), o.getItem()
-				.getName(), o.getPrice().toString()).raise();
+		String itemname = "null";
+		if (o.hasItem()) {
+			itemname = o.getItem().getName();
+		}
+		new GameEvent("market", "expire-offer", o.getOfferer(), itemname, o.getPrice().toString()).raise();
 	}
 
 	/**
@@ -395,8 +397,10 @@ public class Market extends PassiveEntity {
 		this.getSlot(EXPIRED_OFFERS_SLOT_NAME).remove(offerToRemove.getID());
 
 		Item item = offerToRemove.getItem();
-		new ItemLogger().destroy(null, this.getSlot(EXPIRED_OFFERS_SLOT_NAME),
-				item, "timeout");
+		if (item != null) {
+			new ItemLogger().destroy(null, this.getSlot(EXPIRED_OFFERS_SLOT_NAME),
+					item, "timeout");
+		}
 
 		this.getZone().storeToDatabase();
 	}
