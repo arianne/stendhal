@@ -100,7 +100,7 @@ public class AcceptOfferHandler extends OfferHandler {
 
 				npc.say("Thanks.");
 				// Obsolete the offers, since the list has changed
-				((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
+				((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
 			} else {
 				// Trade failed for some reason. Check why, and inform the player
 				if (!m.contains(offer)) {

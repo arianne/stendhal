@@ -115,7 +115,7 @@ public class ProlongOfferHandler extends OfferHandler {
 						npc.say("Sorry, that offer has already been removed from the market.");
 					}
 					// Changed the status, or it has been changed by expiration. Obsolete the offers
-					((MarketManagerNPC) npc.getEntity()).getOfferMap().put(player.getName(), null);
+					((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
 				} else {
 					npc.say("You cannot afford the trading fee of "+fee.toString());
 				}

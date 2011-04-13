@@ -51,7 +51,7 @@ public class RemoveOfferHandler extends OfferHandler {
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();
 				Map<String,Offer> offerMap = manager.getOfferMap();
-				if (offerMap == null) {
+				if (offerMap.isEmpty()) {
 					npc.say("Please check your offers first.");
 					return;
 				}
@@ -69,6 +69,8 @@ public class RemoveOfferHandler extends OfferHandler {
 							npc.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
 							removeOffer(player, npc);
+							// Changed the status, or it has been changed by expiration. Obsolete the offers
+							((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
 						}
 						return;
 					}
@@ -85,6 +87,8 @@ public class RemoveOfferHandler extends OfferHandler {
 	protected class ConfirmRemoveOfferChatAction implements ChatAction {
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			removeOffer(player, npc);
+			// Changed the status, or it has been changed by expiration. Obsolete the offers
+			((MarketManagerNPC) npc.getEntity()).getOfferMap().clear();
 		}
 	}
 	
