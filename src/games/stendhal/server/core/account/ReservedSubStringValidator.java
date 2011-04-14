@@ -38,16 +38,25 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("admin")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("support")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("arianne")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("stendhal")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).equals("help")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
 		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("marauroa")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
-		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("arianne")) {
+		if (parameterValue.toLowerCase(Locale.ENGLISH).equals("null")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("support")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase(Locale.ENGLISH).equals("server")) {
+			return Result.FAILED_RESERVED_NAME;
+		}
+		if (parameterValue.toLowerCase(Locale.ENGLISH).contains("stendhal")) {
 			return Result.FAILED_RESERVED_NAME;
 		}
 
