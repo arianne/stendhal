@@ -66,6 +66,7 @@ class AccountCreationRules {
 
 	private void setupValidatorsForEMail() {
 		validators.add(new MaxLengthValidator(email, 100));
+		validators.add(new EMailCharacterValidator(email));
 	}
 
 	/**
