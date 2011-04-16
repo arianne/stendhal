@@ -157,6 +157,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		} else {
 			setCursor(null);
 		}
+		popupMenu = null;
 	}
 	
 	/**
