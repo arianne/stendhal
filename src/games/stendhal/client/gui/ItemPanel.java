@@ -157,6 +157,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 		} else {
 			setCursor(null);
 		}
+		// The old popup menu is no longer valid
+		popupMenu = null;
 	}
 	
 	/**
