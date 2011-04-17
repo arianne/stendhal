@@ -36,7 +36,8 @@ final class PrefixManager
 		register("piece of ", "pieces of ", "iron");
 		register("piece of ", "pieces of ", "chicken");
 		register("piece of ", "pieces of ", "coal");
-
+		register("piece of ", "pieces of ", "beeswax");
+		
 		register("sack of ", "sacks of ", "flour");
 		register("sack of ", "sacks of ", "sugar");
 
