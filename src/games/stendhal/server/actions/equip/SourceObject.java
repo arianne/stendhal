@@ -65,10 +65,12 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source;
-		if (action.has(EquipActionConsts.SOURCE_PATH)) {
+		/* TODO: disabled because of 
+		 * if (action.has(EquipActionConsts.SOURCE_PATH)) {
 			source = createSource(action, player);
 			// Otherwise use compatibility mode
-		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
+		} else*/
+		if (action.has(EquipActionConsts.BASE_OBJECT)) {
 			source = createSourceForContainedItem(action, player);
 		} else {
 			source = createSourceForNonContainedItem(action, player);
