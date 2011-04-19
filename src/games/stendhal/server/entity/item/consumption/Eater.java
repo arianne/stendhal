@@ -14,18 +14,23 @@ package games.stendhal.server.entity.item.consumption;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
-import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 class Eater implements Feeder {
 
 	public boolean feed(final ConsumableItem item, final Player player) {
 		if (player.isChokingToDeath()) {
-			// kill the player!
-			player.setHP(0);
-			player.onDead(item);
-			player.sendPrivateText(NotificationType.NEGATIVE, "You choked to death on " + Grammar.a_noun(item.getName()) + ".");
+			int playerHP = player.getHP();
+			int chokingDamage = Rand.rand(2 * playerHP / 3);
+			player.setHP(playerHP - chokingDamage);
+			player.sendPrivateText(NotificationType.NEGATIVE, "You ate so much that you vomited on the ground and lost " + Integer.toString(chokingDamage) + " health points.");
+			final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
+			player.getZone().add(sick);
+			sick.setPosition(player.getX(), player.getY() + 1);
+			player.clearFoodList();
 			player.notifyWorldAboutChanges();
 			return false;
 		}
@@ -35,7 +40,7 @@ class Eater implements Feeder {
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand(playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
-			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could choke to death.");
+			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could be very sick.");
 			player.notifyWorldAboutChanges();
 		} else if (player.isFull()) {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");

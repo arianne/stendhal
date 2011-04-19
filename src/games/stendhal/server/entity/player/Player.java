@@ -1414,6 +1414,10 @@ public class Player extends RPEntity {
 
 		notifyWorldAboutChanges();
 	}
+	
+	public void clearFoodList() {
+		itemsToConsume.clear();
+	}
 
 	@Override
 	public String describe() {
