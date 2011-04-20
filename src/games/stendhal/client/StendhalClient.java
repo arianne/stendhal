@@ -28,7 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -92,7 +93,7 @@ public class StendhalClient extends ClientFramework {
 	 * Whether the client is in a batch update.
 	 */
 	private boolean inBatchUpdate = false;
-	private Semaphore drawingSemaphore = new Semaphore(1);
+	private Lock drawingSemaphore = new ReentrantLock();
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 
@@ -228,7 +229,7 @@ public class StendhalClient extends ClientFramework {
 
 		if (inBatchUpdate && (contentToLoad == 0)) {
 			inBatchUpdate = false;
-			drawingSemaphore.release();
+			drawingSemaphore.unlock();
 		}
 	}
 
@@ -237,7 +238,7 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * A batch update has begun
 		 */
-		drawingSemaphore.acquireUninterruptibly();
+		drawingSemaphore.lock();
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
 
@@ -610,11 +611,11 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	public void releaseDrawingSemaphore() {
-		drawingSemaphore.release();
+		drawingSemaphore.unlock();
 	}
 
 	public boolean tryAcquireDrawingSemaphore() {
-		return drawingSemaphore.tryAcquire();
+		return drawingSemaphore.tryLock();
 	}
 
 
