@@ -265,6 +265,12 @@
 			lastMap = location;
 			var body = document.getElementById("body")
 			body.style.cursor = "wait";
-			makeRequest("/tiled/" + escape(location), parseMap);
+			var temp = /([^_]*)_([^_]*)_(.*)/(location);
+			if (temp[1] == "int") {
+				temp[1] = "interiors"
+			} else {
+				temp[1] = "Level " + temp[1];
+			}
+			makeRequest("/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx", parseMap);
 		}
 	}
