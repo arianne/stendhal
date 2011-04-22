@@ -1,22 +1,3 @@
-	var lastMap = ""
-
-	var offsetX = 0;
-	var offsetY = 0;
-	var sizeX = 23;
-	var sizeY = 17
-
-	var tileWidth = 32;
-	var tileHeight = 32;
-	var zoom = 100;
-
-	var aImages;
-	var layerNames;
-	var layers;
-	var firstgids;
-	var numberOfXTiles;
-	var numberOfYTiles;
-
-
 	// Start http://www.webreference.com/programming/javascript/gr/column3/ 
 	function ImagePreloader(images, callback) {
 		// store the call-back
@@ -31,8 +12,9 @@
 		this.nImages = images.length;
 
 		// for each image, call preload()
-		for ( var i = 0; i < images.length; i++)
+		for ( var i = 0; i < images.length; i++) {
 			this.preload(images[i]);
+		}
 	}
 
 	ImagePreloader.prototype.preload = function(image) {
@@ -61,9 +43,6 @@
 	}
 
 	ImagePreloader.prototype.onload = function() {
-		if (this.oImagePreloader.nLoaded % 10 == 0) {
-			status("Downloading images... " + this.oImagePreloader.nLoaded);
-		}
 		this.bLoaded = true;
 		this.oImagePreloader.nLoaded++;
 		this.oImagePreloader.onComplete();
@@ -83,6 +62,25 @@
 
 	// End http://www.webreference.com/programming/javascript/gr/column3/
 
+	
+
+	var lastMap = ""
+
+	var offsetX = 0;
+	var offsetY = 0;
+	var sizeX = 23;
+	var sizeY = 17
+
+	var tileWidth = 32;
+	var tileHeight = 32;
+	var zoom = 100;
+
+	var aImages;
+	var layerNames;
+	var layers;
+	var firstgids;
+	var numberOfXTiles;
+	var numberOfYTiles;
 
 	var drawingError = false;
 	var drawingLayer = 0;
@@ -128,8 +126,6 @@
 
 		canvas.style.display = "block";
 
-		status("Framerate: " + Math.floor(counter / (new Date().getTime() - starttime) * 1000), true);
-		//offsetX = Math.floor(Math.random() * 10);
 		setTimeout("draw()", Math.max(48 - (new Date().getTime()-startTime), 1));
 	}
 
@@ -152,7 +148,6 @@
 						}
 					} catch (e) {
 						marauroa.log.error(e);
-						status("Error while drawing tileset " + tileset + " " + aImages[tileset] + ": " + e, true);
 						drawingError = true;
 					}
 				}
@@ -201,10 +196,9 @@
 			return;
 		}
 		if (httpRequest.status != 200) {
-			status("Error: Could not find map", true);
+			marauroa.log.error("Error: Could not find map file.");
 			return;
 		}
-		status("Parsing map...", false);
 		var xmldoc = httpRequest.responseXML;
 		var root = xmldoc.getElementsByTagName('map').item(0);
 		var images = new Array;
@@ -221,10 +215,8 @@
 				filename = getTilesetFilename(node)
 				images.push(filename);
 				firstgids.push(node.getAttribute("firstgid"));
-				status("Parsing map...   (Tileset: " + filename + ")", false);
 			} else if (node.nodeName == "layer") {
 				var layerName = node.getAttribute("name");
-				status("Parsing map...   (Layer: " + layerName + ")", false);
 				var data = node.getElementsByTagName("data")[0];
 				var mapData = data.firstChild.nodeValue.trim();
 				var decoder = new JXG.Util.Unzip(JXG.Util.Base64.decodeAsArray(mapData));
@@ -232,7 +224,6 @@
 				readLayer(layerName, data);
 			}
 		}
-		status("Downloading images...", false);
 		images.push("/data/sprites/outfit/detail_1.png")
 		images.push("/data/sprites/outfit/detail_2.png")
 		images.push("/data/sprites/outfit/detail_3.png")
@@ -269,52 +260,11 @@
 		layers.push(layer);
 	}
 
-	function load() {
-		var location = "Level 0/semos/city.tmx" // TODO: window.location.hash.substring(2);
-		if (location == "") {
-//			document.getElementById("mapname").value = "Level 0/semos/city.tmx";
-			refreshButton();
-		}
-		checkMapChange();
-	}
-
-	function checkMapChange() {
-		setTimeout("checkMapChange()", 200);
-		var location = "Level 0/semos/city.tmx" // TODO: window.location.hash.substring(2).replace(/%20/, " ");
+	function load(location) {
 		if (lastMap != location) {
 			lastMap = location;
-			loadMap();
-		}
-	}
-
-	function loadMap() {
-		var body = document.getElementById("body")
-		body.style.cursor = "wait";
-		var location = "Level 0/semos/city.tmx" // TODO: window.location.hash.substring(2).replace(/%20/, " ");
-		if (location.indexOf(":") > -1) {
-			status("Error: Invalid map name", true);
-			return;
-		}
-		// TODO: document.getElementById("mapname").value = location;
-		status("Requesting map...", false);
-		makeRequest("/tiled/" + escape(location), parseMap);
-	}
-
-	function refreshButton() {
-		var location = "Level 0/semos/city.tmx" // TODO: = document.getElementById("mapname").value.trim();
-		if (lastMap != location) {
-			status("Preparing...", false);
-		} else {
-			draw();
-		}
-		return false;
-	}
-
-	function status(message, finished) {
-		//document.getElementById("status").innerHTML = message;
-		document.getElementById("status").firstChild.data = message;
-		if (finished) {
 			var body = document.getElementById("body")
-			body.style.cursor = "auto";
+			body.style.cursor = "wait";
+			makeRequest("/tiled/" + escape(location), parseMap);
 		}
 	}
