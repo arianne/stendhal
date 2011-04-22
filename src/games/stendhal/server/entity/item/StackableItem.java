@@ -102,6 +102,9 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 	public int add(final StackableItem other) {
 		if (this.isStackable(other)) {
 			setQuantity(other.getQuantity() + getQuantity());
+			// set flag to false to prevent abuse by adding to a stackable in a corpse
+			// leading to a too high number awarded when looting
+			this.setFromCorpse(false);
 		}
 		return getQuantity();
 	}
