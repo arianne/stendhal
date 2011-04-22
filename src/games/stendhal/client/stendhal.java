@@ -40,6 +40,7 @@ import org.apache.log4j.Logger;
 
 public class stendhal {
 
+	private static final String LOG_FOLDER = "log";
 	private static final Logger logger = Logger.getLogger(stendhal.class);
 	private static final ResourceManager RESOURCE_MANAGER = new ResourceManager();
 
@@ -160,7 +161,7 @@ public class stendhal {
 	}
 
 	public static String getLogFolder() {
-		return getGameFolder()+"log";
+		return getGameFolder()+LOG_FOLDER;
 	}
 
 	/**
