@@ -25,6 +25,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.resource.ResourceManager;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.security.AccessControlException;
 import java.util.Locale;
 
@@ -122,11 +123,14 @@ public class stendhal {
 	 * Starts the LogSystem.
 	 */
 	private static void startLogSystem() {
+		prepareLoggingSystemEnviroment();
+		
 		Log4J.init("data/conf/log4j.properties");
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
 		logger.info(Debug.PRE_RELEASE_VERSION);
+		logger.info("Logging to directory: "+ getLogFolder());
 
 		String patchLevel = System.getProperty("sun.os.patch.level");
 		if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
@@ -143,6 +147,20 @@ public class stendhal {
 				+ System.getProperty("java.vm.name") + " "
 				+ System.getProperty("java.vm.version"));
 		LogUncaughtExceptionHandler.setup();
+	}
+
+	private static void prepareLoggingSystemEnviroment() {
+		// property configuration relies on this parameter
+		System.setProperty("log.directory", getLogFolder());
+		//create the log directory if not yet existing:
+		File logDir = new File(getLogFolder());
+		if(!logDir.exists()) {
+			logDir.mkdir();
+		}
+	}
+
+	public static String getLogFolder() {
+		return getGameFolder()+"log";
 	}
 
 	/**
