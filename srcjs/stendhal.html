@@ -45,13 +45,16 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 <script type="text/javascript" src="perception.js"></script>
 <script type="text/javascript" src="rpfactory.js"></script>
 
+<script type="text/javascript" src="/css/jsxgraph-util.js"></script>
+
 <script type="text/javascript" src="stendhal-webui.js"></script>
+<script type="text/javascript" src="stendhal-webui-gamewindow.js"></script>
 <script type="text/javascript" src="stendhal-actions.js"></script>
 <script type="text/javascript" src="stendhal-entities.js"></script>
 <script type="text/javascript" src="stendhal-events.js"></script>
 <script type="text/javascript" src="stendhal.js"></script>
 </head>
-<body>
+<body id="body" onload="load()"> <!--TODO: remove -->
 
 <script type="text/javascript">
 stendhal.server="http://localhost";
@@ -118,7 +121,9 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 <div id="keyring7" class="itemSlot"></div>
 </div>
 
+<canvas id="gamewindow" width="300" height="300">Sorry, this pages only works in modern web browsers.</canvas>
 
+<div id="status">Loading...</div>
 
 </body>
 </html>
