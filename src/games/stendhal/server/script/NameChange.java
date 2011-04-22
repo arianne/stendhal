@@ -36,7 +36,7 @@ public class NameChange extends ScriptImpl {
 			if (!Configuration.getConfiguration().has(CONFIG_KEY)
 					|| !Boolean.parseBoolean(Configuration.getConfiguration().get(
 							CONFIG_KEY))) {
-				admin.sendPrivateText("This script is disabled in the server configuration file key "
+				admin.sendPrivateText("This script must be enabled in the server configuration file (usually server.ini) with key "
 						+ CONFIG_KEY);
 				return;
 			}
@@ -44,19 +44,22 @@ public class NameChange extends ScriptImpl {
 			admin.sendPrivateText(e.toString());
 			return;
 		}
-
-		// do title change
-		if (args.get(0).equals("remove")) {
-			admin.setTitle(null);
-			admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
+		if (args.size() < 1) {
+			admin.sendPrivateText("Usage: /script NameChange.class {newname|remove}\nSets your display name to newname, or removes the name change effect.\nWarning: Not supported for normal characters. Bound items and spouses will be broken and there may be other unexpected effects.");
 		} else {
-			final String title = args.get(0);
+			// do title change
+			if (args.get(0).equals("remove")) {
+				admin.setTitle(null);
+				admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
+			} else {
+				final String title = args.get(0);
 
-			admin.setTitle(title);
-			admin.sendPrivateText("Your name has been changed to " + title
-					+ ".");
+				admin.setTitle(title);
+				admin.sendPrivateText("Your display name has been changed to " + title
+					+ ". Internally stored names have not been changed and there may be unexpected effects.");
+			}
+
+			admin.notifyWorldAboutChanges();
 		}
-
-		admin.notifyWorldAboutChanges();
 	}
 }
