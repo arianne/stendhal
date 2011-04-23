@@ -62,57 +62,51 @@
 
 	// End http://www.webreference.com/programming/javascript/gr/column3/
 
-	
+stendhal.ui.gamewindow = {
 
-	var lastMap = ""
+	lastMap : "",
 
-	var offsetX = 0;
-	var offsetY = 0;
-	var sizeX = 23;
-	var sizeY = 17
+	offsetX : 0,
+	offsetY : 0,
+	sizeX : 23,
+	sizeY : 17,
 
-	var tileWidth = 32;
-	var tileHeight = 32;
-	var zoom = 100;
+	tileWidth : 32,
+	tileHeight : 32,
+	zoom : 100,
 
-	var aImages;
-	var layerNames;
-	var layers;
-	var firstgids;
-	var numberOfXTiles;
-	var numberOfYTiles;
+	aImages : -1,
+	layerNames : -1,
+	layers : -1,
+	firstgids : -1,
+	numberOfXTiles : -1,
+	numberOfYTiles : -1,
 
-	var drawingError = false;
-	var drawingLayer = 0;
-	var targetTileWidth = 0;
-	var targetTileHeight = 0;
+	drawingError : false,
+	targetTileWidth : 0,
+	targetTileHeight : 0,
 
-	var counter = 0;
-	var starttime = new Date().getTime();
-	var balloonY = 0;
-
-	function draw() {
+	draw: function() {
 		var startTime = new Date().getTime();
-		counter++;
 		var canvas = document.getElementById("gamewindow");
 		canvas.style.display = "none";
-		targetTileWidth = Math.floor(tileWidth * zoom / 100);
-		targetTileHeight = Math.floor(tileHeight * zoom / 100);
-		canvas.width = sizeX * targetTileWidth;
-		canvas.height = sizeY * targetTileHeight;
-		drawingError = false;
-		drawingLayer = 0;
+		this.targetTileWidth = Math.floor(this.tileWidth * this.zoom / 100);
+		this.targetTileHeight = Math.floor(this.tileHeight * this.zoom / 100);
+		canvas.width = this.sizeX * this.targetTileWidth;
+		canvas.height = this.sizeY * this.targetTileHeight;
+		this.drawingError = false;
+		this.drawingLayer = 0;
 
 		var ctx = canvas.getContext("2d");
 		ctx.globalAlpha = 1.0;
 
-		for (var drawingLayer=0; drawingLayer < layers.length; drawingLayer++) {
-			var name = layerNames[drawingLayer];
+		for (var drawingLayer=0; drawingLayer < this.layers.length; drawingLayer++) {
+			var name = this.layerNames[drawingLayer];
 			if (name != "protection" && name != "collision" && name != "objects") {
-				paintLayer(ctx, drawingLayer);
+				this.paintLayer(ctx, drawingLayer);
 			}
 		}
-
+/*
 		balloonY--;
 		if (balloonY < -64) {
 			balloonY = (sizeY * targetTileHeight);
@@ -121,134 +115,142 @@
 		ctx.globalAlpha = 1.0;
 		ctx.drawImage(aImages[aImages.length - 4],
 				0, 0, 48, 64,
-				(sizeX * targetTileWidth) / 2 - 24, balloonY, 48, 64);
-
+				(this.sizeX * this.targetTileWidth) / 2 - 24, balloonY, 48, 64);
+*/
 
 		canvas.style.display = "block";
 
-		setTimeout("draw()", Math.max(48 - (new Date().getTime()-startTime), 1));
-	}
+		setTimeout(function() {
+			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+		}, Math.max(48 - (new Date().getTime()-startTime), 1));
+	},
 
-	function paintLayer(ctx, drawingLayer) {
-		var layer = layers[drawingLayer];
-		for (var y=0; y < sizeY; y++) {
-			for (var x=0; x < sizeX; x++) {
-				var gid = layer[(offsetY + y) * numberOfXTiles + (offsetX + x)];
+	paintLayer: function(ctx, drawingLayer) {
+		var layer = this.layers[drawingLayer];
+		for (var y=0; y < this.sizeY; y++) {
+			for (var x=0; x < this.sizeX; x++) {
+				var gid = layer[(this.offsetY + y) * this.numberOfXTiles + (this.offsetX + x)];
 				if (gid > 0) {
-					var tileset = getTilesetForGid(gid);
-					var base = firstgids[tileset];
+					var tileset = this.getTilesetForGid(gid);
+					var base = this.firstgids[tileset];
 					var idx = gid - base;
 					var tilesetWidth = aImages[tileset].width;
 
 					try {
 						if (aImages[tileset].height > 0) {
 							ctx.drawImage(aImages[tileset],
-								(idx * tileWidth) % tilesetWidth, Math.floor((idx * tileWidth) / tilesetWidth) * tileHeight, tileWidth, tileHeight, 
-								x * targetTileWidth, y * targetTileHeight, targetTileWidth, targetTileHeight);
+								(idx * this.tileWidth) % tilesetWidth, Math.floor((idx * this.tileWidth) / tilesetWidth) * this.tileHeight, 
+								this.tileWidth, this.tileHeight, 
+								x * this.targetTileWidth, y * this.targetTileHeight, 
+								this.targetTileWidth, this.targetTileHeight);
 						}
 					} catch (e) {
 						marauroa.log.error(e);
-						drawingError = true;
+						this.drawingError = true;
 					}
 				}
 			}
 		}
-	}
+	},
 
 	/**
 	 * Returns the index of the tileset a tile belongs to.
 	 */
-	function getTilesetForGid(value) {
+	getTilesetForGid: function(value) {
 		var pos;
-		for (pos = 0; pos < firstgids.length; pos++) {
-			if (value < firstgids[pos]) {
+		for (pos = 0; pos < this.firstgids.length; pos++) {
+			if (value < this.firstgids[pos]) {
 				break;
 			}
 		}
 		return pos - 1;
-	}
+	},
 
-	var httpRequest;
-	function makeRequest(url, callback) {
+	httpRequest: -1,
+	requestMap: function(url) {
 		if (window.XMLHttpRequest) {
-			httpRequest = new XMLHttpRequest();
+			this.httpRequest = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
 			try {
-				httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+				this.httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
 			} catch (e) {
-				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				this.httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 		}
-		if (httpRequest.overrideMimeType) {
-			httpRequest.overrideMimeType('text/xml');
+		if (this.httpRequest.overrideMimeType) {
+			this.httpRequest.overrideMimeType('text/xml');
 		}
-		httpRequest.onreadystatechange = callback;
-		httpRequest.open('GET', url, true);
-		httpRequest.send(null);
-	}
+		this.httpRequest.onreadystatechange = function() {
+			stendhal.ui.gamewindow.parseMap.apply(stendhal.ui.gamewindow, arguments);
+		};
+		this.httpRequest.open('GET', url, true);
+		this.httpRequest.send(null);
+	},
 
 
 	/**
 	 * parses the map file, loads the tileset and resizes the canvas.
 	 */
-	function parseMap() {
-		if (httpRequest.readyState != 4) {
+	parseMap: function() {
+		if (this.httpRequest.readyState != 4) {
 			return;
 		}
-		if (httpRequest.status != 200) {
+		if (this.httpRequest.status != 200) {
 			marauroa.log.error("Error: Could not find map file.");
 			return;
 		}
-		var xmldoc = httpRequest.responseXML;
+		var xmldoc = this.httpRequest.responseXML;
 		var root = xmldoc.getElementsByTagName('map').item(0);
 		var images = new Array;
-		firstgids = new Array;
-		layers = new Array;
-		layerNames = new Array;
+		this.firstgids = new Array;
+		this.layers = new Array;
+		this.layerNames = new Array;
 
-		tileWidth = +root.getAttribute("tilewidth");
-		tileHeight = +root.getAttribute("tileheight");
+		this.tileWidth = +root.getAttribute("tilewidth");
+		this.tileHeight = +root.getAttribute("tileheight");
 
 		for (var iNode = 0; iNode < root.childNodes.length; iNode++) {
 			var node = root.childNodes.item(iNode);
 			if (node.nodeName == "tileset") {
-				filename = getTilesetFilename(node)
+				var filename = this.getTilesetFilename(node)
 				images.push(filename);
-				firstgids.push(node.getAttribute("firstgid"));
+				this.firstgids.push(node.getAttribute("firstgid"));
 			} else if (node.nodeName == "layer") {
 				var layerName = node.getAttribute("name");
 				var data = node.getElementsByTagName("data")[0];
 				var mapData = data.firstChild.nodeValue.trim();
 				var decoder = new JXG.Util.Unzip(JXG.Util.Base64.decodeAsArray(mapData));
 				var data = decoder.unzip()[0][0];
-				readLayer(layerName, data);
+				this.readLayer(layerName, data);
 			}
 		}
 		images.push("/data/sprites/outfit/detail_1.png")
 		images.push("/data/sprites/outfit/detail_2.png")
 		images.push("/data/sprites/outfit/detail_3.png")
 		images.push("/data/sprites/outfit/detail_4.png")
-		new ImagePreloader(images, draw);
+		new ImagePreloader(images, function() {
+			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+		});
 
-		numberOfXTiles = root.getAttribute("width")
-		numberOfYTiles = root.getAttribute("height")
-	}
+		this.numberOfXTiles = root.getAttribute("width")
+		this.numberOfYTiles = root.getAttribute("height")
+	},
 
-	function getTilesetFilename(node) {
+	getTilesetFilename: function(node) {
 		var image = node.getElementsByTagName("image");
 		var name = node.getAttribute("name");
 		if (image.length > 0) {
 			name = image[0].getAttribute("source")
 		}
 		return "/" + name.replace(/\.\.\/\.\.\//g, "");
-	}
+	},
 
 	/**
 	 * reads the tile information for a layer
 	 */
-	function readLayer(name, dataString) {
+	readLayer: function(name, dataString) {
 		var layer = new Array;
-		data = dataString;
+		var data = dataString;
 		for (var i = 0; i < data.length - 3; i=i+4) {
 			var tileId = (data.charCodeAt(i) >>> 0)
 				+ (data.charCodeAt(i + 1) << 8)
@@ -256,13 +258,13 @@
 				+ (data.charCodeAt(i + 3) << 24);
 			layer.push(tileId)
 		}
-		layerNames.push(name);
-		layers.push(layer);
-	}
+		this.layerNames.push(name);
+		this.layers.push(layer);
+	},
 
-	function load(location) {
-		if (lastMap != location) {
-			lastMap = location;
+	load: function(location) {
+		if (this.lastMap != location) {
+			this.lastMap = location;
 			var body = document.getElementById("body")
 			body.style.cursor = "wait";
 			var temp = /([^_]*)_([^_]*)_(.*)/(location);
@@ -271,6 +273,7 @@
 			} else {
 				temp[1] = "Level " + temp[1];
 			}
-			makeRequest("/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx", parseMap);
+			this.requestMap("/tiled/" + escape(temp[1]) + "/" + escape(temp[2]) + "/" + escape(temp[3]) + ".tmx");
 		}
 	}
+}
