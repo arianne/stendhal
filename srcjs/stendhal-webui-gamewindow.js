@@ -68,6 +68,8 @@ stendhal.ui.gamewindow = {
 
 	offsetX : 0,
 	offsetY : 0,
+	zoneSizeX : -1,
+	zoneSizeY : -1,
 	sizeX : 23,
 	sizeY : 17,
 
@@ -127,8 +129,8 @@ stendhal.ui.gamewindow = {
 
 	paintLayer: function(ctx, drawingLayer) {
 		var layer = this.layers[drawingLayer];
-		for (var y=0; y < this.sizeY; y++) {
-			for (var x=0; x < this.sizeX; x++) {
+		for (var y=0; y < Math.min(this.zoneSizeY, this.sizeY); y++) {
+			for (var x=0; x < Math.min(this.zoneSizeX, this.sizeX); x++) {
 				var gid = layer[(this.offsetY + y) * this.numberOfXTiles + (this.offsetX + x)];
 				if (gid > 0) {
 					var tileset = this.getTilesetForGid(gid);
@@ -208,6 +210,8 @@ stendhal.ui.gamewindow = {
 
 		this.tileWidth = +root.getAttribute("tilewidth");
 		this.tileHeight = +root.getAttribute("tileheight");
+		this.zoneSizeX = +root.getAttribute("width");
+		this.zoneSizeY = +root.getAttribute("height");
 
 		for (var iNode = 0; iNode < root.childNodes.length; iNode++) {
 			var node = root.childNodes.item(iNode);
