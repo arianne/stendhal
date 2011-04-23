@@ -872,6 +872,7 @@ Please leave my mail at my neighbour's house.
  </zone>
  
  <zone name="int_ados_reverse_arrow" file="interiors/ados/reverse_arrow.tmx">
+	<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
  </zone>
  
    <zone name="int_ados_bank" file="interiors/ados/bank.tmx">
