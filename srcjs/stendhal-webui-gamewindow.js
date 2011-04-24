@@ -70,8 +70,8 @@ stendhal.ui.gamewindow = {
 	offsetY : 0,
 	zoneSizeX : -1,
 	zoneSizeY : -1,
-	sizeX : 23,
-	sizeY : 17,
+	sizeX : 20,
+	sizeY : 15,
 
 	tileWidth : 32,
 	tileHeight : 32,

@@ -68,20 +68,15 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 }
 </script>
 
-<h1>Stendhal</h1>
-<form id="form" onsubmit="stendhal.ui.chatBar.send(); return false">
-	<input type="text" name="chatbar" id="chatbar" style="width:90%">
-	<input type="submit" value="Send">
-</form>
-<div id="chat" style="height:200px">
-<p>Connecting...</p>
-<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
+<div style="float:left; width:130px">
+<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
+<div id="buddyList" style="border: 1px solid black; width: 10em; float: left"></div>
 </div>
 
-<canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
+<canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
 
 
-<div id="buddyList" style="border: 1px solid black; width: 10em; float: left"></div>
+<div style="float:left; width:130px">
 
 <div style="float: left; width:130px">
 <div id="equipment" class="equipment">
@@ -121,8 +116,17 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 <div id="keyring6" class="itemSlot"></div>
 <div id="keyring7" class="itemSlot"></div>
 </div>
+</div>
 
-<canvas id="gamewindow" width="300" height="300">Sorry, this pages only works in modern web browsers.</canvas>
+<form id="form" onsubmit="stendhal.ui.chatBar.send(); return false">
+	<input type="text" name="chatbar" id="chatbar" style="width:90%">
+	<input type="submit" value="Send">
+</form>
+<div id="chat" style="height:200px">
+<p>Connecting...</p>
+<noscript>JavaScript is required by the Stendhal Web Client.</noscript>
+</div>
+
 
 </body>
 </html>
