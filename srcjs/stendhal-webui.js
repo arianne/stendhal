@@ -345,6 +345,7 @@ stendhal.ui = {
 			}
 		},
 
+		// TODO: sort marauroa.currentZone[i] by z-order and position
 		drawEntities: function() {
 			for (i in marauroa.currentZone) {
 				if (typeof(marauroa.currentZone[i].draw) != "undefined") {
@@ -353,6 +354,7 @@ stendhal.ui = {
 			}
 		},
 
+		// TODO: sort marauroa.currentZone[i] by z-order and position
 		drawEntitiesTop: function() {
 			for (i in marauroa.currentZone) {
 				if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {

@@ -39,8 +39,6 @@ marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
  */
 marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
 marauroa.rpobjectFactory.rpentity.drawY = 0;
-marauroa.rpobjectFactory.rpentity.drawWidth = 48;
-marauroa.rpobjectFactory.rpentity.drawHeight = 64;
 marauroa.rpobjectFactory.rpentity.spritePath = "";
 marauroa.rpobjectFactory.rpentity.set = function(key, value) {
 	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
@@ -63,7 +61,7 @@ marauroa.rpobjectFactory.rpentity.say = function (text) {
 /** draw RPEntities */
 marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
 	var localX = this.x * 32 - offsetX;
-	var localY = this.y * 32 + this.drawY - offsetY;
+	var localY = this.y * 32 - offsetY;
 
 	var filename;
 	if (typeof(this.outfit) != "undefined") {
@@ -80,8 +78,11 @@ marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
 	if (image.complete) {
 		// TODO: animate
 		// TODO: smooth walking on sub tiles
-		marauroa.log.debug(image, 0, (this.dir - 1) * this.drawHeight, this.drawWidth, this.drawHeight, localX, localY, this.drawWidth, this.drawHeight);
-		ctx.drawImage(image, 0, (this.dir - 1) * this.drawHeight, this.drawWidth, this.drawHeight, localX, localY, this.drawWidth, this.drawHeight);
+		var drawHeight = image.height / 4;
+		var drawWidth = image.width / 3;
+		var drawX = ((this.width * 32) - drawWidth) / 2;
+		var drawY = (this.height * 32) - drawHeight;
+		ctx.drawImage(image, 0, (this.dir - 1) * drawHeight, drawWidth, drawHeight, localX + drawX, localY + drawY, drawWidth, drawHeight);
 	}
 }
 
@@ -92,7 +93,6 @@ marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
 marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.player.minimapShow = true;
 marauroa.rpobjectFactory.player.minimapStyle = "rgb(255, 255, 255)";
-marauroa.rpobjectFactory.player.drawY = -32;
 marauroa.rpobjectFactory.player.dir = 3;
 
 
@@ -115,14 +115,6 @@ marauroa.rpobjectFactory.player.isInHearingRange = function(entity) {
 marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.creature.minimapStyle = "rgb(255,255,0)";
 marauroa.rpobjectFactory.rpentity.spritePath = "monsters";
-marauroa.rpobjectFactory.creature.set = function(key, value) {
-	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
-	if (key == "height") {
-		this.drawHeight = value * 32;
-	} else if (key == "width") {
-		this.drawWidth = value * 32;
-	}
-}
 
 /**
  * NPC
@@ -130,7 +122,6 @@ marauroa.rpobjectFactory.creature.set = function(key, value) {
 marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
 marauroa.rpobjectFactory.npc.spritePath = "npc";
-marauroa.rpobjectFactory.npc.drawY = -32;
 
 
 
