@@ -1,4 +1,6 @@
-stendhal.data.sprites {
+stendhal.data = {};
+
+stendhal.data.sprites = {
 	get: function(filename) {
 		if (typeof(this[filename]) != "undefined") {
 			this[filename].counter++;
@@ -8,7 +10,7 @@ stendhal.data.sprites {
 		temp.counter = 0;
 		temp.src = filename;
 		this[filename] = temp;
-	}
+	},
 
 	/** deletes all objects that have not been accessed since this method was called last time */
 	clean: function() {
@@ -89,7 +91,7 @@ stendhal.data.sprites {
 
 	// End http://www.webreference.com/programming/javascript/gr/column3/
 
-stendhal.ui.gamewindow = {
+stendhal.data.map = {
 
 	lastMap : "",
 
@@ -115,73 +117,6 @@ stendhal.ui.gamewindow = {
 	targetTileWidth : 0,
 	targetTileHeight : 0,
 
-	draw: function() {
-		var startTime = new Date().getTime();
-		var canvas = document.getElementById("gamewindow");
-		canvas.style.display = "none";
-		this.targetTileWidth = Math.floor(this.tileWidth * this.zoom / 100);
-		this.targetTileHeight = Math.floor(this.tileHeight * this.zoom / 100);
-		canvas.width = this.sizeX * this.targetTileWidth;
-		canvas.height = this.sizeY * this.targetTileHeight;
-		this.drawingError = false;
-		this.drawingLayer = 0;
-
-		var ctx = canvas.getContext("2d");
-		ctx.globalAlpha = 1.0;
-
-		for (var drawingLayer=0; drawingLayer < this.layers.length; drawingLayer++) {
-			var name = this.layerNames[drawingLayer];
-			if (name != "protection" && name != "collision" && name != "objects") {
-				this.paintLayer(ctx, drawingLayer);
-			}
-		}
-/*
-		balloonY--;
-		if (balloonY < -64) {
-			balloonY = (sizeY * targetTileHeight);
-		}
-
-		ctx.globalAlpha = 1.0;
-		ctx.drawImage(aImages[aImages.length - 4],
-				0, 0, 48, 64,
-				(this.sizeX * this.targetTileWidth) / 2 - 24, balloonY, 48, 64);
-*/
-
-		canvas.style.display = "block";
-
-		setTimeout(function() {
-			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-		}, Math.max(/*48*/1000 - (new Date().getTime()-startTime), 1));
-		// TODO: use 20 FPS later, but 1 FPS is okay for testing
-	},
-
-	paintLayer: function(ctx, drawingLayer) {
-		var layer = this.layers[drawingLayer];
-		for (var y=0; y < Math.min(this.zoneSizeY, this.sizeY); y++) {
-			for (var x=0; x < Math.min(this.zoneSizeX, this.sizeX); x++) {
-				var gid = layer[(this.offsetY + y) * this.numberOfXTiles + (this.offsetX + x)];
-				if (gid > 0) {
-					var tileset = this.getTilesetForGid(gid);
-					var base = this.firstgids[tileset];
-					var idx = gid - base;
-					var tilesetWidth = aImages[tileset].width;
-
-					try {
-						if (aImages[tileset].height > 0) {
-							ctx.drawImage(aImages[tileset],
-								(idx * this.tileWidth) % tilesetWidth, Math.floor((idx * this.tileWidth) / tilesetWidth) * this.tileHeight, 
-								this.tileWidth, this.tileHeight, 
-								x * this.targetTileWidth, y * this.targetTileHeight, 
-								this.targetTileWidth, this.targetTileHeight);
-						}
-					} catch (e) {
-						marauroa.log.error(e);
-						this.drawingError = true;
-					}
-				}
-			}
-		}
-	},
 
 	/**
 	 * Returns the index of the tileset a tile belongs to.
@@ -211,7 +146,7 @@ stendhal.ui.gamewindow = {
 			this.httpRequest.overrideMimeType('text/xml');
 		}
 		this.httpRequest.onreadystatechange = function() {
-			stendhal.ui.gamewindow.parseMap.apply(stendhal.ui.gamewindow, arguments);
+			stendhal.data.map.parseMap.apply(stendhal.data.map, arguments);
 		};
 		this.httpRequest.open('GET', url, true);
 		this.httpRequest.send(null);
@@ -256,10 +191,6 @@ stendhal.ui.gamewindow = {
 				this.readLayer(layerName, data);
 			}
 		}
-		images.push("/data/sprites/outfit/detail_1.png")
-		images.push("/data/sprites/outfit/detail_2.png")
-		images.push("/data/sprites/outfit/detail_3.png")
-		images.push("/data/sprites/outfit/detail_4.png")
 		new ImagePreloader(images, function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
 			var body = document.getElementById("body")
