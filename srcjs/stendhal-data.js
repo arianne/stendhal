@@ -124,7 +124,8 @@ stendhal.ui.gamewindow = {
 
 		setTimeout(function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-		}, Math.max(48 - (new Date().getTime()-startTime), 1));
+		}, Math.max(/*48*/1000 - (new Date().getTime()-startTime), 1));
+		// TODO: use 20 FPS later, but 1 FPS is okay for testing
 	},
 
 	paintLayer: function(ctx, drawingLayer) {
