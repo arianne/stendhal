@@ -157,7 +157,7 @@ public class stendhal {
 		//create the log directory if not yet existing:
 		File logDir = new File(getLogFolder());
 		if(!logDir.exists()) {
-			logDir.mkdir();
+			logDir.mkdirs();
 		}
 	}
 
