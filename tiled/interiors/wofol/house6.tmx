@@ -59,17 +59,17 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3LqQqAQBhF4R/c16S4VMHiUtSsvv9LeYJBZAYc81z40uXMIuLBN5BjQo8WEeIPMjRw77YQszkIf7aBbW2rWfJoa5QvC1Zsiq9CihGdwo4Dp+YfcAHYiGqahAMAAA==
+   H4sIAAAAAAAAAO3LOQ5AYBRF4ZeYx4oYWonG0KDGRux/GU6hQPyG3k2+6ua0ImLA/CBEgxI5HLgvBMigb20kxy1yPw22on2a9bd/q5i3a1PEJx16DBdfAh81igsjJsyKv8IKXUMHB4QDAAA=
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA1S0fjRONTlYhFLw2MuMigA4hggjgXiOKhYOpqaCBx6iwmYDdIXTkA/Pnlc4oMF5AFxPpl6C4G4iEi18UCcQKY9iUCcRIS6LCxiyUCcQqa9xAJs9tIbAACA7cbThAMAAA==
+   H4sIAAAAAAAAAGNgwA1S0fjRONTlYhFLw2MuMigA4hggjgXiTKhYOpqaCBx6iwmYDdIXTkA/Pnlc4oMF5AFxPpl6C4G4iEi18UCcQKY9iUCcRIS6LCxiyUCcQqa9xAJs9tIbAAAjQvGWhAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGDwgkww9uVR3BX1BNhDnDLQjRsGAAgBKQDzdhAMAAA==
+   H4sIAAAAAAAAAGNgGNogd6AdQCHIBuKcgXbEKBhQAABsJGYFhAMAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="15">
