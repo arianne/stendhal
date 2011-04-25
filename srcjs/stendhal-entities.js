@@ -81,8 +81,22 @@ marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.
 marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
 marauroa.rpobjectFactory.npc.draw = function(ctx, offsetX, offsetY) {
 	var localX = this.x * 32 - offsetX;
-	var localY = this.y * 32 - offsetY;
-	ctx.fillRect(localX, localY, 32, 32);
+	var localY = (this.y-1) * 32 - offsetY;
+
+	var filename;
+	if (typeof(this.outfit) != "undefined") {
+		// TODO: does not workout outside /data/sprite
+		// TODO: verify leading 000 are handled correctly
+		filename = "/images/outfit/" + this.outfit + ".png";
+	} else {
+		filename = "npc/" + this["class"] + ".png";
+	}
+	var image = stendhal.data.sprites.get(filename);
+	if (image.complete) {
+		// TODO: animate
+		// TODO: smooth walking on sub tiles
+		ctx.drawImage(image, 0, (this.dir - 1) * 64, 48, 64, localX, localY, 48, 64);
+	}
 }
 
 

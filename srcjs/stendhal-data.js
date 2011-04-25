@@ -8,11 +8,13 @@ stendhal.data.sprites = {
 		}
 		var temp = new Image;
 		temp.counter = 0;
-		temp.src = filename;
+		temp.src = "/data/sprites/" + filename;
 		this[filename] = temp;
+		return temp;
 	},
 
 	/** deletes all objects that have not been accessed since this method was called last time */
+	// TODO: call clean on map change
 	clean: function() {
 		for (var i in this) {
 			marauroa.log.debug(typeof(i));
