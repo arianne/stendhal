@@ -153,6 +153,21 @@ stendhal.slashActionRepository = {
 		getMaxParams: 1
 	},
 
+	"summon": {
+		execute: function(type, params, remainder) {
+			var action = {
+				"type": type,
+				creature: params[0],
+				x: params[1],
+				y: params[2]
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 3,
+		getMaxParams: 3
+	},
+
 	"summonat": {
 		execute: function(type, params, remainder) {
 			var action = {
