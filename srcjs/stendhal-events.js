@@ -7,3 +7,10 @@ marauroa.rpeventFactory.text = marauroa.util.fromProto(marauroa.rpeventFactory._
 marauroa.rpeventFactory.text.execute = function(rpobject) {
 	rpobject.say(this.text);
 }
+
+marauroa.rpeventFactory.sound_event = marauroa.util.fromProto(marauroa.rpeventFactory._default);
+marauroa.rpeventFactory.sound_event.execute = function(rpobject) {
+	var sound = new Audio();
+	sound.autoplay = true;
+	sound.src = "/data/sounds/" + this.sound + ".ogg";
+}
