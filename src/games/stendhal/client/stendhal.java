@@ -40,7 +40,6 @@ import org.apache.log4j.Logger;
 
 public class stendhal {
 
-	private static final String LOG_FILE = "stendhal.txt";
 	private static final String LOG_FOLDER = "log/";
 	private static final Logger logger = Logger.getLogger(stendhal.class);
 	private static final ResourceManager RESOURCE_MANAGER = new ResourceManager();
@@ -165,14 +164,14 @@ public class stendhal {
 	 * @return the name of the log folder
 	 */
 	public static String getLogFolder() {
-		return getGameFolder()+LOG_FOLDER;
+		return getGameFolder() + LOG_FOLDER;
 	}
 	
 	/**
 	 * @return the name of the log file
 	 */
 	public static String getLogFile() {
-		return getLogFolder()+LOG_FILE;
+		return getLogFolder() + GAME_NAME.toLowerCase() + ".txt";
 	}
 
 	/**
