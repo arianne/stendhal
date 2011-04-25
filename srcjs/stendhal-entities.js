@@ -13,8 +13,22 @@ marauroa.rpobjectFactory.entity.set = function(key, value) {
 	} else {
 		this[key] = value;
 	}
+	if (key == "text") {
+		this.say(value);
+	}
 }
 
+
+/** says a text */
+marauroa.rpobjectFactory.entity.say = function (text) {
+	if (marauroa.me.isInHearingRange(this)) {
+		if (text.match("^!me") == "!me") {
+			stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
+		} else {
+			stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
+		}
+	}
+}
 
 /**
  * Item
@@ -30,23 +44,16 @@ marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFacto
 marauroa.rpobjectFactory.player.minimapShow = true;
 marauroa.rpobjectFactory.player.minimapStyle = "rgb(255, 255, 255)";
 
-/** updates a property value */
-marauroa.rpobjectFactory.player.set = function(key, value) {
-	marauroa.rpobjectFactory.player.proto.set.apply(this, arguments);
-	if (key == "text") {
-		this.say(value);
-	}
+
+/** Is this player an admin? */
+marauroa.rpobjectFactory.player.isAdmin = function() {
+	return (typeof(this.adminlevel) != "undefined" && this.adminlevel > 600);
 }
 
-/** says a text */
-marauroa.rpobjectFactory.player.say = function (text) {
-	if (text.match("^!me") == "!me") {
-		stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
-	} else {
-		stendhal.ui.chatLog.addLine("normal", this.title + ": " + text);
-	}
+/** Can the player hear this chat message? */
+marauroa.rpobjectFactory.player.isInHearingRange = function(entity) {
+	return (this.isAdmin() || ((Math.abs(this.x - entity.x) < 15) && (Math.abs(this.y - entity.y) < 15)));
 }
-
 
 
 
