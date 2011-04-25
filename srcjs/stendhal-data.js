@@ -8,7 +8,7 @@ stendhal.data.sprites = {
 		}
 		var temp = new Image;
 		temp.counter = 0;
-		temp.src = "/data/sprites/" + filename;
+		temp.src = filename;
 		this[filename] = temp;
 		return temp;
 	},

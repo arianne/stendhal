@@ -13,14 +13,44 @@ marauroa.rpobjectFactory.entity.set = function(key, value) {
 	} else {
 		this[key] = value;
 	}
+}
+
+
+
+/**
+ * Item
+ */
+marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.item.minimapStyle = "rgb(0,255,0)";
+
+
+
+/**
+ * Portal
+ */
+marauroa.rpobjectFactory.portal = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.portal.minimapShow = true;
+marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
+
+
+
+/**
+ * RPEntity
+ */
+marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.rpentity.drawY = 0;
+marauroa.rpobjectFactory.rpentity.drawWidth = 48;
+marauroa.rpobjectFactory.rpentity.drawHeight = 64;
+marauroa.rpobjectFactory.rpentity.spritePath = "";
+marauroa.rpobjectFactory.rpentity.set = function(key, value) {
+	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 	if (key == "text") {
 		this.say(value);
 	}
 }
 
-
 /** says a text */
-marauroa.rpobjectFactory.entity.say = function (text) {
+marauroa.rpobjectFactory.rpentity.say = function (text) {
 	if (marauroa.me.isInHearingRange(this)) {
 		if (text.match("^!me") == "!me") {
 			stendhal.ui.chatLog.addLine("emote", text.replace(/^!me/, this.title));
@@ -30,19 +60,41 @@ marauroa.rpobjectFactory.entity.say = function (text) {
 	}
 }
 
-/**
- * Item
- */
-marauroa.rpobjectFactory.item = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
-marauroa.rpobjectFactory.item.minimapStyle = "rgb(0,255,0)";
+/** draw RPEntities */
+marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
+	var localX = this.x * 32 - offsetX;
+	var localY = this.y * 32 + this.drawY - offsetY;
+
+	var filename;
+	if (typeof(this.outfit) != "undefined") {
+		// TODO: draw complete outfit into an outfit cache
+		filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
+	} else {
+		filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
+		if (typeof(this.subclass) != "undefined") {
+			filename = filename + "/" + this["subclass"];
+		}
+		filename = filename + ".png";
+	}
+	var image = stendhal.data.sprites.get(filename);
+	if (image.complete) {
+		// TODO: animate
+		// TODO: smooth walking on sub tiles
+		marauroa.log.debug(image, 0, (this.dir - 1) * this.drawHeight, this.drawWidth, this.drawHeight, localX, localY, this.drawWidth, this.drawHeight);
+		ctx.drawImage(image, 0, (this.dir - 1) * this.drawHeight, this.drawWidth, this.drawHeight, localX, localY, this.drawWidth, this.drawHeight);
+	}
+}
 
 
 /**
  * Player
  */
-marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.player = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.player.minimapShow = true;
 marauroa.rpobjectFactory.player.minimapStyle = "rgb(255, 255, 255)";
+marauroa.rpobjectFactory.player.drawY = -32;
+marauroa.rpobjectFactory.player.dir = 3;
+
 
 
 /** Is this player an admin? */
@@ -60,44 +112,26 @@ marauroa.rpobjectFactory.player.isInHearingRange = function(entity) {
 /**
  * Creature
  */
-marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.creature.minimapStyle = "rgb(255,255,0)";
-
-
-
-/**
- * Portal
- */
-marauroa.rpobjectFactory.portal = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
-marauroa.rpobjectFactory.portal.minimapShow = true;
-marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
-
-
+marauroa.rpobjectFactory.rpentity.spritePath = "monsters";
+marauroa.rpobjectFactory.creature.set = function(key, value) {
+	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
+	if (key == "height") {
+		this.drawHeight = value * 32;
+	} else if (key == "width") {
+		this.drawWidth = value * 32;
+	}
+}
 
 /**
  * NPC
  */
-marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
+marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
-marauroa.rpobjectFactory.npc.draw = function(ctx, offsetX, offsetY) {
-	var localX = this.x * 32 - offsetX;
-	var localY = (this.y-1) * 32 - offsetY;
+marauroa.rpobjectFactory.npc.spritePath = "npc";
+marauroa.rpobjectFactory.npc.drawY = -32;
 
-	var filename;
-	if (typeof(this.outfit) != "undefined") {
-		// TODO: does not workout outside /data/sprite
-		// TODO: verify leading 000 are handled correctly
-		filename = "/images/outfit/" + this.outfit + ".png";
-	} else {
-		filename = "npc/" + this["class"] + ".png";
-	}
-	var image = stendhal.data.sprites.get(filename);
-	if (image.complete) {
-		// TODO: animate
-		// TODO: smooth walking on sub tiles
-		ctx.drawImage(image, 0, (this.dir - 1) * 64, 48, 64, localX, localY, 48, 64);
-	}
-}
 
 
 
