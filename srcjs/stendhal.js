@@ -16,6 +16,10 @@
 		} else {
 			marauroa.clientFramework.chooseCharacter(marauroa.util.first(characters).a.name);
 		}
+
+		var body = document.getElementById("body")
+		body.style.cursor = "auto";
+		stendhal.ui.chatLog.addLine("client", "Loading world...");
 	}
 
 
@@ -31,4 +35,9 @@
 	document.onkeydown=stendhal.ui.chatBar.keydown;
 
 
+function stendhalStartClient() {
+	stendhal.ui.chatLog.addLine("client", "Client loaded. Connecting...");
+	var body = document.getElementById("body")
+	body.style.cursor = "wait";
 	marauroa.clientFramework.connect(null, null);
+}

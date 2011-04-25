@@ -234,6 +234,8 @@ stendhal.ui.gamewindow = {
 		images.push("/data/sprites/outfit/detail_4.png")
 		new ImagePreloader(images, function() {
 			stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
+			var body = document.getElementById("body")
+			body.style.cursor = "auto";
 		});
 
 		this.numberOfXTiles = root.getAttribute("width")

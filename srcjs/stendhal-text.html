@@ -39,7 +39,7 @@ p.logsupport {color: #ff7200}
 <script type="text/javascript" src="stendhal-events.js"></script>
 <script type="text/javascript" src="stendhal.js"></script>
 </head>
-<body>
+<body id="body" onload="stendhalStartClient()">
 
 <h1>Stendhal</h1>
 <form id="form" onsubmit="stendhal.ui.chatBar.send(); return false">
@@ -47,7 +47,6 @@ p.logsupport {color: #ff7200}
 	<input type="submit" value="Send">
 </form>
 <div id="chat" style="height:200px">
-<p>Connecting...</p>
 <noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 </div>
 

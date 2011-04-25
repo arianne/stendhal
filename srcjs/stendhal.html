@@ -54,7 +54,7 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 <script type="text/javascript" src="stendhal-events.js"></script>
 <script type="text/javascript" src="stendhal.js"></script>
 </head>
-<body id="body">
+<body id="body" onload="stendhalStartClient()">
 
 <script type="text/javascript">
 stendhal.server="http://localhost";
@@ -123,7 +123,6 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 	<input type="submit" value="Send">
 </form>
 <div id="chat" style="height:200px">
-<p>Connecting...</p>
 <noscript>JavaScript is required by the Stendhal Web Client.</noscript>
 </div>
 
