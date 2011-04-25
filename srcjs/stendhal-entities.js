@@ -79,7 +79,11 @@ marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
  */
 marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
 marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
-
+marauroa.rpobjectFactory.npc.draw = function(ctx, offsetX, offsetY) {
+	var localX = this.x * 32 - offsetX;
+	var localY = this.y * 32 - offsetY;
+	ctx.fillRect(localX, localY, 32, 32);
+}
 
 
 

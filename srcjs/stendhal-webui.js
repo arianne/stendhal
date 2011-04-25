@@ -295,15 +295,19 @@ stendhal.ui = {
 			canvas.height = stendhal.data.map.sizeY * this.targetTileHeight;
 			this.drawingError = false;
 
-			var ctx = canvas.getContext("2d");
-			ctx.globalAlpha = 1.0;
+			this.ctx = canvas.getContext("2d");
+			this.ctx.globalAlpha = 1.0;
 
 			for (var drawingLayer=0; drawingLayer < stendhal.data.map.layers.length; drawingLayer++) {
 				var name = stendhal.data.map.layerNames[drawingLayer];
 				if (name != "protection" && name != "collision" && name != "objects") {
-					this.paintLayer(ctx, drawingLayer);
+					this.paintLayer(drawingLayer);
+				}
+				if (name = "2_object") {
+					this.drawEntities();
 				}
 			}
+			this.drawEntitiesTop();
 
 			canvas.style.display = "block";
 
@@ -313,7 +317,7 @@ stendhal.ui = {
 			// TODO: use 20 FPS later, but 1 FPS is okay for testing
 		},
 
-		paintLayer: function(ctx, drawingLayer) {
+		paintLayer: function(drawingLayer) {
 			var layer = stendhal.data.map.layers[drawingLayer];
 			for (var y=0; y < Math.min(stendhal.data.map.zoneSizeY, stendhal.data.map.sizeY); y++) {
 				for (var x=0; x < Math.min(stendhal.data.map.zoneSizeX, stendhal.data.map.sizeX); x++) {
@@ -326,7 +330,7 @@ stendhal.ui = {
 
 						try {
 							if (aImages[tileset].height > 0) {
-								ctx.drawImage(aImages[tileset],
+								this.ctx.drawImage(aImages[tileset],
 									(idx * stendhal.data.map.tileWidth) % tilesetWidth, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight, 
 									stendhal.data.map.tileWidth, stendhal.data.map.tileHeight, 
 									x * this.targetTileWidth, y * this.targetTileHeight, 
@@ -337,6 +341,22 @@ stendhal.ui = {
 							this.drawingError = true;
 						}
 					}
+				}
+			}
+		},
+
+		drawEntities: function() {
+			for (i in marauroa.currentZone) {
+				if (typeof(marauroa.currentZone[i].draw) != "undefined") {
+					marauroa.currentZone[i].draw(this.ctx, this.offsetX, this.offsetY);
+				}
+			}
+		},
+
+		drawEntitiesTop: function() {
+			for (i in marauroa.currentZone) {
+				if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {
+					marauroa.currentZone[i].drawTop(this.ctx, this.offsetX, this.offsetY);
 				}
 			}
 		}
