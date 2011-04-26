@@ -38,6 +38,9 @@ Walk on, and you will be returned to the land of the living...
 	<zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx" accessible="false">
 	</zone>
 
+	<zone name="int_abstract_server_down" file="interiors/abstract/server_down.tmx" accessible="false">
+	</zone>
+
 	<zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx" accessible="false">
 	</zone>
 
