@@ -11,6 +11,7 @@
     <weight value="1.0"/>
     <value value="17280"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -28,6 +29,7 @@
     <weight value="1.0"/>
     <value value="27440"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -45,6 +47,7 @@
     <weight value="1.0"/>
     <value value="33750"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -62,6 +65,7 @@
     <weight value="3.0"/>
     <value value="49130"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -79,6 +83,7 @@
     <weight value="3.0"/>
     <value value="92610"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -96,6 +101,7 @@
     <weight value="3.0"/>
     <value value="142610"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>

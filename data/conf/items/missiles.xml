@@ -14,6 +14,7 @@
     <value value="80"/>
     <damage type="ice"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -33,6 +34,7 @@
     <weight value="0.1"/>
     <value value="2"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -52,6 +54,7 @@
     <weight value="0.1"/>
     <value value="80"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -71,6 +74,7 @@
     <weight value="0.1"/>
     <value value="640"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -90,6 +94,7 @@
     <weight value="0.1"/>
     <value value="2160"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -110,6 +115,7 @@
     <value value="2160"/>
     <damage type="fire"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
@@ -129,6 +135,7 @@
     <weight value="0.1"/>
     <value value="10000"/>
     <equipable>
+      <slot name="content"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>

@@ -10,6 +10,7 @@
     <weight value="0.1"/>
     <value value="1"/>
     <equipable>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
       <slot name="finger"/>
@@ -25,6 +26,7 @@
     <weight value="0.1"/>
     <value value="1"/>
     <equipable>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
       <slot name="finger"/>
@@ -42,6 +44,7 @@
     <weight value="0.1"/>
     <value value="100000"/>
     <equipable>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
       <slot name="finger"/>

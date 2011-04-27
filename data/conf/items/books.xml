@@ -9,6 +9,7 @@
     <weight value="0.01"/>
     <value value="1"/>
     <equipable>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
@@ -22,6 +23,7 @@
     <weight value="0.01"/>
     <value value="1"/>
     <equipable>
+      <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
