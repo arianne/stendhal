@@ -603,9 +603,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return true;
 		}
 
-		// when the slot is called "content", it's a personal chest or corpse
-		// TODO: this should be made explicit in the xml files
-		return possibleSlots.contains(slot) || slot.equals("content");
+		return possibleSlots.contains(slot);
 	}
 
 
