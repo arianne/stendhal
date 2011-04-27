@@ -39,6 +39,11 @@ Walk on, and you will be returned to the land of the living...
 	</zone>
 
 	<zone name="int_abstract_server_down" file="interiors/abstract/server_down.tmx" accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
+		<configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+			<parameter name="message">You should keep your items safe for now.</parameter>
+		</configurator>
+		<!-- TODO: add portal to int_semos_townhall -->
 	</zone>
 
 	<zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx" accessible="false">
