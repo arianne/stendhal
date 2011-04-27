@@ -2904,6 +2904,9 @@ Mature sheep wanted: please speak to Sato
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
 		<configurator class-name="games.stendhal.server.maps.semos.jail.GuardNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.jail.InmateNPC" />
+		<configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+			<parameter name="message">For security reasons, items may not be moved around in jail.</parameter>
+		</configurator>
 		<!--for the admin house-->
 		<portal x="15" y="7" ref="house_exit_4">
 			<implementation
@@ -3044,11 +3047,17 @@ Mature sheep wanted: please speak to Sato
 	<zone name="-2_semos_jail" level="-2" x="499872" y="500000"
 		file="Level -2/semos/jail.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.jail.JailKeeperNPC" />
+		<configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+			<parameter name="message">For security reasons, items may not be moved around in jail.</parameter>
+		</configurator>
 	</zone>
 
 	<zone name="-3_semos_jail" level="-3" x="499872" y="500000"
 		file="Level -3/semos/jail_walk.tmx" accessible="false">
 		<configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
+		<configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+			<parameter name="message">For security reasons, items may not be moved around in jail.</parameter>
+		</configurator>
 		<portal x="59" y="67" ref="jail_entrance_left">
 			<destination zone="int_semos_temple" ref="restart_life" />
 		</portal>
@@ -3319,7 +3328,7 @@ Mature sheep wanted: please speak to Sato
 
 	<!--
 		If we call it _jail, players can't move items around in it for
-		security reasons
+		security reasons. This issue is fixed now.
 	-->
 	<zone name="-7_kanmararn_prison" level="-7" x="500160" y="500064"
 		file="Level -7/kanmararn/jail.tmx">

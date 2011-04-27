@@ -1182,6 +1182,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private boolean accessible;
 
+	private String noItemMoveMessage;
+
 
 
 	@Override
@@ -1405,7 +1407,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		zoneNameMappings.put("-2_athor_ship_w2", "on Athor ferry");
 		zoneNameMappings.put("hell", "in Hell");
 	}
-	
+
 	/**
 	 * Translate zone name into a more readable form.
 	 *
@@ -1413,7 +1415,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return translated zone name
 	 */
 	private static String translateZoneName(final String zoneName) {
-		
+
 		if (zoneNameMappings.get(zoneName) != null) {
 			return zoneNameMappings.get(zoneName);
 		}
@@ -1437,12 +1439,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 				} else {
 					result = "below ground level at ";
 				}
-			} else if (level.matches("^\\d")) { 
+			} else if (level.matches("^\\d")) {
 				/* positive floor */
 				try {
 					levelValue = Integer.parseInt(level);
 				} catch (final NumberFormatException e) {
-					levelValue = 0; 
+					levelValue = 0;
 				}
 				if (levelValue != 0) {
 					if (levelValue > 1) {
@@ -1450,7 +1452,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					} else {
 						result = "above the ground level at ";
 					}
-				} 
+				}
 			}
 			final StringBuilder sb = new StringBuilder();
 			final String[] directions = new String[] { ".+_n\\d?e\\d?($|_).*",
@@ -1488,7 +1490,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			return result.trim();
 		}
 	}
-	
+
 	private static String getInteriorName(final String zoneName) {
 		if (zoneName == null) {
 			throw new IllegalArgumentException("zoneName is null");
@@ -1504,11 +1506,29 @@ public class StendhalRPZone extends MarauroaRPZone {
 			return zoneName;
 		}
 	}
-	
+
 	public static String describe(final String zoneName) {
 		return StendhalRPZone.translateZoneName(zoneName);
 	}
 	public String describe() {
 		return StendhalRPZone.translateZoneName(this.getName());
+	}
+
+	/**
+	 * Disabled movement of items in this zone.
+	 *
+	 * @param message in game error message
+	 */
+	public void setNoItemMoveMessage(String message) {
+		this.noItemMoveMessage = message;
+	}
+
+	/**
+	 * Gets the in game error message if movement of items is disabled in this zone.
+	 *
+	 * @return message in game error message or <code>null</code>
+	 */
+	public String getNoItemMoveMessage() {
+		return this.noItemMoveMessage;
 	}
 }

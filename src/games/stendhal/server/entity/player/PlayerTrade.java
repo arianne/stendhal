@@ -43,7 +43,7 @@ class PlayerTrade {
 
 	private String partnerName;
 
-	private Player player;
+	private final Player player;
 
 	private TradeState tradeState;
 
@@ -64,6 +64,12 @@ class PlayerTrade {
 	 * @return <code>true</code>, if the trade may be offered; <code>false</code> otherwise.
 	 */
 	private boolean checkIfTradeMayBeOffered(Player partner) {
+		String noItemMessage = player.getZone().getNoItemMoveMessage();
+		if (noItemMessage != null) {
+			player.sendPrivateText(noItemMessage);
+			return false;
+		}
+
 		if (!player.nextTo(partner)) {
 			player.sendPrivateText("You are too far away to start trading with " + partner.getName());
 			return false;
@@ -73,7 +79,7 @@ class PlayerTrade {
 			return false;
 		}
 
-		if ((partner.getAwayMessage() != null) 
+		if ((partner.getAwayMessage() != null)
 			|| (partner.getTradeState() != TradeState.NO_ACTIVE_TRADE)) {
 			player.sendPrivateText("Sorry, " + partner.getName() + " is busy.");
 			return false;
@@ -118,7 +124,7 @@ class PlayerTrade {
 
 	/**
 	 * offers the other player to start a trading session
-	 * 
+	 *
 	 * @param partner to offer the trade to
 	 */
 	public void offerTrade(Player partner) {
@@ -149,7 +155,7 @@ class PlayerTrade {
 
 
 	/**
-	 * cancels a trade because 
+	 * cancels a trade because
 	 */
 	protected void cancelTradeBecauseOfLogout() {
 		if (tradeState == TradeState.NO_ACTIVE_TRADE) {
@@ -269,7 +275,7 @@ class PlayerTrade {
         RPSlot partnerTradeSlot = partner.getSlot("trade");
         List<Item> playerItems = moveItemsFromSlotToList(playerTradeSlot);
         List<Item> partnerItems = moveItemsFromSlotToList(partnerTradeSlot);
-        
+
         moveItemsFromListToSlotOrGround(null, player.getName(), partner.getName(), playerItems, partnerTradeSlot);
         moveItemsFromListToSlotOrGround(null, partner.getName(), player.getName(), partnerItems, playerTradeSlot);
     }
@@ -327,7 +333,7 @@ class PlayerTrade {
 	public void unlockItemOffer() {
 		boolean myRes = unlockItemOfferInternally(partnerName);
 		boolean otherRes = false;
-		
+
 		Player partner = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 		if (partner != null) {
 			otherRes = partner.unlockTradeItemOfferInternally(player.getName());

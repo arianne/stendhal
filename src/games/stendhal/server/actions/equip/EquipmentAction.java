@@ -29,19 +29,19 @@ import org.apache.log4j.Logger;
 /**
  * This listener handles all entity movements from a slot to either another slot
  * or the ground.
- * 
+ *
  * The source can be: baseitem - object id of the item which should be moved
- * 
+ *
  * (optional, only when the source is inside a slot) baseobject - (only when the
  * item is in a slot) object id of the object containing the slot where the item
  * is in baseslot - (only when the item is in a slot) slot name where the item
  * is in (/optional)
- * 
- * 
+ *
+ *
  * The target can be either an 'equip': type - "equip" targetobject - object id
  * of the container object targetslot - slot name where the item should be moved
  * to
- * 
+ *
  * or a 'drop': type - "drop" x - the x-coordinate on the ground y - the
  * y-coordinate on the ground
  */
@@ -63,32 +63,33 @@ public abstract class EquipmentAction implements ActionListener {
 		if (!isValidAction(action)) {
 			return;
 		}
-		
-		
-		if (isNotInValidZone(player)) {
-			player.sendPrivateText("For security reasons, items may not be moved around in jail.");
+
+
+		String noItemMessage = player.getZone().getNoItemMoveMessage();
+		if (noItemMessage != null) {
+			player.sendPrivateText(noItemMessage);
 			return;
 		}
-		
-		
+
+
 //		isValidSource();
 //		isValidItem();
 //		isValidDestination();
-//		
-	
-		
-		
-		
+//
+
+
+
+
 		logger.debug("Checking source object conditions: " + action);
 		final SourceObject source = SourceObject.createSourceObject(action, player);
 		if (source.isInvalidMoveable(player, EquipActionConsts.MAXDISTANCE, validContainerClassesList)) {
 			return;
 		}
-		
+
 		execute(player, action, source);
-		
+
 	}
-	 
+
 
 	/**
 	 * There are special zones where people should not be allowed to exchange items as for example in Jail.
@@ -101,7 +102,7 @@ public abstract class EquipmentAction implements ActionListener {
 
 	protected abstract void execute(final Player player, final RPAction action, final  SourceObject source);
 
-	
+
 	private boolean isValidAction(final RPAction action) {
 		return action != null;
 	}
