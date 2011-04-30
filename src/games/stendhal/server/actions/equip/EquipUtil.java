@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
  */
 public class EquipUtil {
 	private static Logger logger = Logger.getLogger(EquipUtil.class);
-	
+
 	/**
 	 * The maximum distance a player can throw an item away from himself.
 	 */
@@ -36,7 +36,7 @@ public class EquipUtil {
 	/**
 	 * Gets the object for the given id. Returns null when the item is not
 	 * available. Failure is written to the logger.
-	 * 
+	 *
 	 * @param player
 	 *            the player
 	 * @param objectId
@@ -44,7 +44,7 @@ public class EquipUtil {
 	 * @return the object with the given id or null if the object is not
 	 *         available.
 	 */
-	static Entity getEntityFromId(final Player player, final int objectId) {
+	public static Entity getEntityFromId(final Player player, final int objectId) {
 		final StendhalRPZone zone = player.getZone();
 		final RPObject.ID id = new RPObject.ID(objectId, zone.getID());
 
@@ -59,7 +59,7 @@ public class EquipUtil {
 
 	/**
 	 * Checks if the object is of one of the given class or one of its children.
-	 * 
+	 *
 	 * @param validClasses
 	 *            list of valid class-objects
 	 * @param object

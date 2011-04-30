@@ -1,5 +1,8 @@
 /* $Id$
  * $Log$
+ * Revision 1.1  2011/04/30 10:54:12  nhnb
+ * created an object to save all the information needed during an equip action
+ *
  */
 package games.stendhal.server.core.rp.equipping;
 
@@ -105,6 +108,11 @@ public class EquipmentActionData {
 		return errorMessage;
 	}
 
+	/**
+	 * stores the in-game error message to be sent to the client. "" means fail silently.
+	 *
+	 * @param message in-game error message
+	 */
 	public void setErrorMessage(String message) {
 		this.errorMessage = message;
 	}
