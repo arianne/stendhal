@@ -47,6 +47,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		setupZone(ZONE_NAME);
 	}
 
+	@Override
 	@After
 	public void tearDown() throws Exception {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
@@ -114,21 +115,22 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		StendhalRPZone zone = new StendhalRPZone("bla_jail");
+		zone.setNoItemMoveMessage("For security reasons, items may not be moved around in jail.");
 		zone.add(bob);
 		action.onAction(bob, new RPAction());
 		assertFalse(bob.events().isEmpty());
 		assertEquals("For security reasons, items may not be moved around in jail.", bob.events().get(0).get("text"));
 
-		
+
 		bob = PlayerTestHelper.createPlayer("bobby");
-		
+
 		zone = new StendhalRPZone("bla_jail_not");
-		
+
 		zone.add(bob);
 		action.onAction(bob, new RPAction());
 		assertTrue(bob.events().isEmpty());
 	}
-	
+
 	/**
 	 * Tests for dropItem.
 	 */
@@ -153,14 +155,14 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		assertEquals(0, localzone.getItemsOnGround().size());
 		assertTrue(drop.has(EquipActionConsts.BASE_ITEM));
-		
+
 		action.onAction(player, drop);
 		Assert.assertEquals(0, player.events().size());
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
-		
+
 	}
-	
+
 	/**
 	 * Tests for dropSomeOfItem.
 	 */
@@ -185,12 +187,12 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		assertEquals(0, localzone.getItemsOnGround().size());
 		assertTrue(drop.has(EquipActionConsts.BASE_ITEM));
-		
+
 		action.onAction(player, drop);
 		Assert.assertEquals(0, player.events().size());
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese", 4));
 		assertTrue(player.isEquipped("cheese", 3));
 	}
-	
+
 }
