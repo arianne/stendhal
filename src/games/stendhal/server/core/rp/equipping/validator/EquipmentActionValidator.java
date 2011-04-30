@@ -20,7 +20,7 @@ import games.stendhal.server.core.rp.equipping.EquipmentActionData;
  */
 public class EquipmentActionValidator {
 	Validator[] validators = new Validator[]{
-		new NoErrorValidator()
+		new IsDataBuiltCompletely()
 	};
 
 	/**
