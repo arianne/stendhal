@@ -211,6 +211,13 @@ public class PlayerTransformer implements Transformer {
 	public static void placePlayerIntoWorldOnLogin(final RPObject object, final Player player) {
 		StendhalRPZone zone = null;
 
+		String zoneName = System.getProperty("stendhal.forcezone");
+		if (zoneName != null) {
+			zone = SingletonRepository.getRPWorld().getZone(zoneName);
+			zone.placeObjectAtEntryPoint(player);
+			return;
+		}
+
 		try {
 			if (object.has("zoneid") && object.has("x") && object.has("y")) {
 				if (Version.checkCompatibility(object.get("release"),Debug.VERSION)) {
@@ -225,9 +232,7 @@ public class PlayerTransformer implements Transformer {
 		} catch (final RuntimeException e) {
 			// If placing the player at its last position
 			// fails, we reset to default zone
-			logger.warn(
-					"Cannot place player at its last position. Using default",
-					e);
+			logger.warn("Cannot place player at its last position. Using default", e);
 		}
 
 		if (zone != null) {
