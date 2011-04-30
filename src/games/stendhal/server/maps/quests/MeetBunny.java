@@ -47,16 +47,17 @@ import java.util.List;
  * REPETITIONS: None
  */
 public class MeetBunny extends AbstractQuest {
-	// quest slot changed ready for 2011
-	private static final String QUEST_SLOT = "meet_bunny_11";
+	// quest slot changed ready for 2012
+	private static final String QUEST_SLOT = "meet_bunny_12";
 
 	/** the Bunny NPC. */
 	protected SpeakerNPC bunny;
 
 	private StendhalRPZone zone;
-	
+
 	private ItemDroppingTeleporterBehaviour teleporterBehaviour;
-	
+
+	/** the name of the quest */
 	public static final String QUEST_NAME = "MeetBunny";
 
 	// The default is 100 (30 seconds) so make ours half this
@@ -66,7 +67,7 @@ public class MeetBunny extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private SpeakerNPC createbunny() {
 		bunny = new SpeakerNPC("Easter Bunny") {
 			@Override
@@ -99,11 +100,11 @@ public class MeetBunny extends AbstractQuest {
 					new MultipleActions(reward));
 			}
 		};
-		
+
 		bunny.setEntityClass("easterbunnynpc");
 		bunny.initHP(100);
 		// times out twice as fast as normal NPCs
-		bunny.setPlayerChatTimeout(TIME_OUT); 
+		bunny.setPlayerChatTimeout(TIME_OUT);
 		bunny.setDescription("You see a friendly bunny carrying brightly coloured Easter baskets.");
 		// start in int_admin_playground
 		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
@@ -122,13 +123,13 @@ public class MeetBunny extends AbstractQuest {
 				"Meet Easter Bunny",
 				"At Easter one may see the Easter Bunny hopping around the world of Faiumoni. Bunny is really fast even though he carries some heavy surprises with him...",
 				false);
-		
+
 		if (System.getProperty("stendhal.easterbunny") != null) {
 		    createbunny();
-		    teleporterBehaviour = new ItemDroppingTeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!", true, "small easter egg"); 
+		    teleporterBehaviour = new ItemDroppingTeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!", true, "small easter egg");
 		}
 	}
-		
+
 	/**
 	 * removes a quest from the world.
 	 *
@@ -141,7 +142,7 @@ public class MeetBunny extends AbstractQuest {
 		SingletonRepository.getTurnNotifier().dontNotify(teleporterBehaviour);
 		return true;
 	}
-	
+
 	/**
 	 * removes an NPC from the world and NPC list
 	 *
@@ -154,20 +155,20 @@ public class MeetBunny extends AbstractQuest {
 		}
 		npc.getZone().remove(npc);
 	}
-	
+
 	@Override
 	public String getName() {
-		return "MeetBunny";
+		return QUEST_NAME;
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 }
