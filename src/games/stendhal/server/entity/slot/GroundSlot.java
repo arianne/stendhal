@@ -16,7 +16,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.awt.Rectangle;
@@ -29,11 +28,11 @@ import java.util.List;
  * @author hendrik
  */
 public class GroundSlot extends EntitySlot {
-	private StendhalRPZone zone;
+	private final StendhalRPZone zone;
 //	private int itemid;
-	private Item item;
-	private int x;
-	private int y;
+	private Entity item;
+	private final int x;
+	private final int y;
 
 	/**
 	 * creates a new GroundSlot
@@ -53,7 +52,7 @@ public class GroundSlot extends EntitySlot {
 	 * @param zone zone
 	 * @param item item on the ground
 	 */
-	public GroundSlot(StendhalRPZone zone, Item item) {
+	public GroundSlot(StendhalRPZone zone, Entity item) {
 		this.zone = zone;
 		this.item = item;
 		this.x = item.getX();
@@ -86,7 +85,7 @@ public class GroundSlot extends EntitySlot {
 			setErrorMessage("That is too far away.");
 			return false;
 		}
-		
+
 		if (!isGamblingZoneAndIsDice(item)) {
 			// and there is a path there
 			final List<Node> path = Path.searchPath(entity, zone,
@@ -101,12 +100,12 @@ public class GroundSlot extends EntitySlot {
 		return true;
 	}
 
-	/** 
+	/**
 	 * returns true if zone is semos tavern and entity is dice
 	 *
 	 * @param entity the item
 	 */
-	private boolean isGamblingZoneAndIsDice(final Item entity) {
+	private boolean isGamblingZoneAndIsDice(final Entity entity) {
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
 	}
 
@@ -114,7 +113,7 @@ public class GroundSlot extends EntitySlot {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 * 
+	 *
 	 * @return name of other player standing on the item or <code>null</code>
 	 */
 	private String getOtherPlayerStandingOnItem(final Entity player) {
@@ -139,6 +138,7 @@ public class GroundSlot extends EntitySlot {
 	 *
 	 * @return slot type
 	 */
+	@Override
 	public String getSlotType() {
 		return "ground";
 	}
