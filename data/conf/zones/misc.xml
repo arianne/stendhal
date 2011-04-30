@@ -43,7 +43,18 @@ Walk on, and you will be returned to the land of the living...
 		<configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
 			<parameter name="message">You should keep your items safe for now.</parameter>
 		</configurator>
-		<!-- TODO: add portal to int_semos_townhall -->
+
+		<!-- Note: This portal is defined in ServerDown, too. -->
+		<portal x="15" y="28" ref="exit">
+			<destination zone="0_semos_city" ref="townhall_entrance" />
+		</portal>
+
+		<entity x="0" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+				<parameter name="sound">a_weird_place</parameter>
+				<parameter name="volume">50</parameter>
+			</implementation>
+		</entity>
 	</zone>
 
 	<zone name="int_testing_grid" file="interiors/abstract/testing_grid.tmx" accessible="false">
