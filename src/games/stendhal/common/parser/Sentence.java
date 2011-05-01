@@ -796,29 +796,29 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Searches for a matching item name in the given Set.
+     * Searches for a matching name in the given Set.
      *
      * @param names
-     * @return item name, or null if no match
+     * @return name, or null if no match
      */
     public NameSearch findMatchingName(final Set<String> names) {
         final NameSearch ret = new NameSearch(names);
 
         // check first object of the sentence
-        Expression item = getObject(0);
+        Expression name = getObject(0);
 
-        if (item != null) {
-            if (ret.search(item)) {
+        if (name != null) {
+            if (ret.search(name)) {
                 return ret;
             }
         }
 
         if (!ret.found()) {
             // check first subject
-            item = getSubject(0);
+            name = getSubject(0);
 
-            if (item != null) {
-                if (ret.search(item)) {
+            if (name != null) {
+                if (ret.search(name)) {
                     return ret;
                 }
             }
@@ -826,10 +826,10 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
         if (!ret.found()) {
             // check second subject, e.g. in "i buy cat"
-            item = getSubject(1);
+            name = getSubject(1);
 
-            if (item != null) {
-                if (ret.search(item)) {
+            if (name != null) {
+                if (ret.search(name)) {
                     return ret;
                 }
             }
@@ -837,18 +837,18 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
         if (!ret.found()) {
             // check unknown/misspelled words, e.g. in "sell porcinis"
-            item = getUnknownTypeExpression(0);
+            name = getUnknownTypeExpression(0);
 
-            if (item != null) {
-            	if (!item.hasAmount()) {
+            if (name != null) {
+            	if (!name.hasAmount()) {
                     Expression num = getNumeral(0);
 
                     if (num != null) {
-                    	item.setAmount(num.getAmount());
+                    	name.setAmount(num.getAmount());
                     }
             	}
 
-            	if (ret.search(item)) {
+            	if (ret.search(name)) {
                     return ret;
                 }
             }
@@ -858,7 +858,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
     /**
-     * Return a string containing the sentence part referenced by a verb or simple the single object name.
+     * Return a string containing the sentence part referenced by a verb or simply the single object name.
      *
      * @return String or null if nothing found
      */
