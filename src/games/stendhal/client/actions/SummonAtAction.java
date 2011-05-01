@@ -13,8 +13,11 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParser;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
 import marauroa.common.game.RPAction;
 
 /**
@@ -39,24 +42,13 @@ class SummonAtAction implements SlashAction {
 		summon.put("target", params[0]);
 		summon.put("slot", params[1]);
 
-		int amount;
-		String itemName;
+		// parse item name and amount
+		ItemParser parser = new ItemParser();
+		Sentence sentence = ConversationParser.parse((params[2] + " " + remainder).trim());
+		ItemParserResult res = parser.parse(sentence);
 
-		// If there is a numeric expression, treat it as amount.
-		//TODO refactor with same code in DropAction.execute()
-		if (params[2].matches("[0-9].*")) {
-    		try {
-    			amount = Integer.parseInt(params[2]);
-    		} catch (final NumberFormatException ex) {
-    			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid amount: " + params[2]));
-    			return true;
-    		}
-
-    		itemName = remainder;
-		} else {
-			amount = 1;
-			itemName = (params[2] + " " + remainder).trim();
-		}
+		final int amount = res.getAmount();
+		final String itemName = res.getChosenItemName();
 
 		final String singularName = Grammar.singular(itemName);
 

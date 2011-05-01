@@ -17,6 +17,7 @@ import static games.stendhal.common.constants.Actions.ITEM;
 import static games.stendhal.common.constants.Actions.SLOT;
 import static games.stendhal.common.constants.Actions.SUMMONAT;
 import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -34,7 +35,6 @@ public class SummonAtAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-
 		if (action.has(TARGET) && action.has(SLOT) && action.has(ITEM)) {
 			final String name = action.get(TARGET);
 			final Player changed = SingletonRepository.getRuleProcessor().getPlayer(name);
@@ -57,10 +57,26 @@ public class SummonAtAction extends AdministrationAction {
 			}
 
 			final EntityManager manager = SingletonRepository.getEntityManager();
-			final String type = action.get(ITEM);
+			final String typeName = action.get(ITEM);
+			String type = typeName;
 
 			// Is the entity an item
-			if (manager.isItem(type)) {
+			if (!manager.isItem(type)) {
+				// see it the name was in plural
+				type = Grammar.singular(typeName);
+
+				if (!manager.isItem(type)) {
+					// see it the name was in singular but the registered type is in plural
+					type = Grammar.plural(typeName);
+
+					if (!manager.isItem(type)) {
+						player.sendPrivateText(typeName + " is not an item.");
+						type = null;
+					}
+				}
+			}
+
+			if (type != null) {
 				new GameEvent(player.getName(), SUMMONAT, changed.getName(), slotName, type).raise();
 				final Item item = manager.getItem(type);
 
@@ -71,8 +87,6 @@ public class SummonAtAction extends AdministrationAction {
 				if (!changed.equip(slotName, item)) {
 					player.sendPrivateText("The slot is full.");
 				}
-			} else {
-				player.sendPrivateText(type + " is not an item.");
 			}
 		}
 	}
