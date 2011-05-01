@@ -36,6 +36,7 @@ public class DropActionTest {
 	private static final int USER_ID = 1001;
 	private static final int MONEY_ID = 1234;
 	private static final int SILVER_SWORD_ID = 1235;
+	private static final int GOLDEN_SWORD_ID = 1236;
 
 	/**
 	 * Create and initialize a User object.
@@ -95,7 +96,7 @@ public class DropActionTest {
 
 		// issue "/drop 85x money"
 		assertTrue(action.execute(new String[]{"85x"}, "money"));
-		assertEquals("Invalid quantity: 85x", clientUI.getEventBuffer());
+		assertEquals("You don't have any 85x", clientUI.getEventBuffer());
 	}
 
 	/**
@@ -187,11 +188,11 @@ public class DropActionTest {
 			}
 		};
 
-		// create a player and give him some money
+		// create a player and give him a silver sword
 		final RPObject player = createPlayer();
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
-		// issue "/drop money"
+		// issue "/drop silver sword"
 		final DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
@@ -213,6 +214,40 @@ public class DropActionTest {
 	public void testGetMinimumParameters() {
 		final DropAction action = new DropAction();
 		assertThat(action.getMinimumParameters(), is(1));
+	}
+
+	/**
+	 * Tests for advanced error messages.
+	 */
+	@Test
+	public void testAdvancedMessages() {
+		// create client UI
+		final MockClientUI clientUI = new MockClientUI();
+
+		// create client
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				client = null;
+				assertEquals("drop", action.get("type"));
+				assertEquals(USER_ID, action.getInt("baseobject"));
+				assertEquals(0, action.getInt("x"));
+				assertEquals(0, action.getInt("y"));
+				assertEquals("bag", action.get("baseslot"));
+				assertEquals(1, action.getInt("quantity"));
+				assertEquals(SILVER_SWORD_ID, action.getInt("baseitem"));
+			}
+		};
+
+		// create a player and give him a silver sword and a golden sword
+		final RPObject player = createPlayer();
+		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
+		player.getSlot("bag").addPreservingId(createItem("golden sword", GOLDEN_SWORD_ID, 1));
+
+		// issue "/drop sword"
+		final DropAction action = new DropAction();
+		assertTrue(action.execute(new String[]{"sword"}, ""));
+		assertEquals("There is more than one sword. Please specify which sort of sword you want to drop.", clientUI.getEventBuffer());
 	}
 
 }
