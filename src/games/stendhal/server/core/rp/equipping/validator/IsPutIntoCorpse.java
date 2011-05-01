@@ -27,8 +27,8 @@ class IsPutIntoCorpse implements Validator {
 		// which aren't just a movement from one corpse to another.
 		// we could of course specifically preclude dropping into corpses, but that is undesirable.
 
-		boolean sourceIsCorpse = (data.getSourceItems().get(0).getContainerBaseOwner() instanceof Corpse);
-		boolean targetIsCorpse = false;
+		boolean sourceIsCorpse = (data.getSourceRoot() instanceof Corpse);
+		boolean targetIsCorpse = (data.getTargetRoot() instanceof Corpse);
 		if (!sourceIsCorpse && targetIsCorpse) {
 			data.setWarningMessage("For your information, you just dropped "
 				+ Grammar.quantityplnounWithHash(data.getQuantity(), data.getItemName()) + " into a corpse next to you.");

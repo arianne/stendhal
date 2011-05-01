@@ -48,7 +48,9 @@ class BuildSourceFromOldActionFormat implements PartialBuilder {
 			return;
 		}
 		final Entity entity = (Entity) slot.get(baseItemId);
+
 		data.addSourceItem(entity);
+		data.setSourceRoot(parent);
 		data.addSourceSlot((EntitySlot) slot);
 	}
 }

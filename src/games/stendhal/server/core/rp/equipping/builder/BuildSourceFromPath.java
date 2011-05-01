@@ -35,6 +35,7 @@ class BuildSourceFromPath implements PartialBuilder {
 
 		// get parent
 		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+		Entity root = parent;
 		if (parent == null) {
 			data.setErrorMessage("");
 			return;
@@ -74,6 +75,7 @@ class BuildSourceFromPath implements PartialBuilder {
 			data.addSourceSlot(new GroundSlot(player.getZone(), entity));
 		} else {
 			data.addSourceItem(entity);
+			data.setSourceRoot(root);
 			data.addSourceSlot((EntitySlot) entity.getContainerSlot());
 		}
 	}

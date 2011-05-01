@@ -35,11 +35,17 @@ public class EquipmentActionData {
 	/** the source slots */
 	private final List<EntitySlot> sourceSlots = new LinkedList<EntitySlot>();
 
+	/** the source items */
+	private final List<Entity> sourceItems = new LinkedList<Entity>();
+
+	/** root object of the source item */
+	private Entity sourceRoot;
+
 	/** the target slots */
 	private EntitySlot targetSlot;
 
-	/** the source items */
-	private final List<Entity> sourceItems = new LinkedList<Entity>();
+	/** root object of the target slot */
+	private Entity targetRoot;
 
 	/** player */
 	private Player player;
@@ -128,6 +134,22 @@ public class EquipmentActionData {
 
 	public void setWarningMessage(String warningMessage) {
 		this.warningMessage = warningMessage;
+	}
+
+	public Entity getSourceRoot() {
+		return sourceRoot;
+	}
+
+	public void setSourceRoot(Entity sourceRoot) {
+		this.sourceRoot = sourceRoot;
+	}
+
+	public Entity getTargetRoot() {
+		return targetRoot;
+	}
+
+	public void setTargetRoot(Entity targetRoot) {
+		this.targetRoot = targetRoot;
 	}
 
 }

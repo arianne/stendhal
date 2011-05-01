@@ -34,6 +34,7 @@ class BuildTargetFromOldActionFormat implements PartialBuilder {
 			data.setErrorMessage("");
 			return;
 		}
+		data.setTargetRoot(parent);
 		data.setTargetSlot(parent.getEntitySlot(slotName));
 	}
 }

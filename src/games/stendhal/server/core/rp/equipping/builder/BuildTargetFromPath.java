@@ -33,6 +33,7 @@ class BuildTargetFromPath implements PartialBuilder {
 
 		// get parent
 		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+		Entity root = parent;
 		if (parent == null) {
 			data.setErrorMessage("");
 			return;
@@ -58,6 +59,7 @@ class BuildTargetFromPath implements PartialBuilder {
 			}
 			parent = (Entity) slot.get(itemId);
 		}
+		data.setTargetRoot(root);
 		data.setTargetSlot(slot);
 	}
 }
