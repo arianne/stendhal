@@ -19,9 +19,18 @@ package games.stendhal.common;
  */
 public class NameBuilder {
 
-	protected StringBuilder buffer = new StringBuilder();
+	private StringBuilder buffer = new StringBuilder();
 
-	protected boolean first = true;
+	private boolean first = true;
+	private final String separator;
+
+	public NameBuilder() {
+		separator = " ";
+	}
+
+	public NameBuilder(String sep) {
+		separator = sep;
+	}
 
 	/**
 	 * Append a string, separate by space if not empty.
@@ -33,7 +42,7 @@ public class NameBuilder {
     		if (first) {
     			first = false;
     		} else {
-    			buffer.append(' ');
+    			buffer.append(separator);
     		}
 
     		buffer.append(str);
@@ -41,7 +50,7 @@ public class NameBuilder {
 	}
 
 	/**
-	 * Retun true if still empty.
+	 * Return true if still empty.
 	 *
 	 * @return empty flag
 	 */
