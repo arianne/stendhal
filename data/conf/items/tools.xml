@@ -10,6 +10,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -26,6 +27,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -42,6 +44,7 @@
       <weight value="3.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -58,6 +61,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -74,6 +78,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -90,6 +95,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -107,6 +113,7 @@
       <weight value="3.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -124,6 +131,7 @@
       <weight value="0.5"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>
@@ -140,6 +148,7 @@
       <weight value="10.0"/>
       <value value="1"/>
       <equipable>
+        <slot name="ground"/>
         <slot name="content"/>
         <slot name="bag"/>
         <slot name="trade"/>

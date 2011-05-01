@@ -11,6 +11,7 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+      <slot name="ground"/>
     </equipable>
   </item>
 
@@ -23,6 +24,7 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+      <slot name="ground"/>
     </equipable>
   </item>
 
@@ -35,6 +37,7 @@
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
+      <slot name="ground"/>
     </equipable>
   </item>
 </items>

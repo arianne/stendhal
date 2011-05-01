@@ -11,6 +11,7 @@
     <weight value="5.0"/>
     <value value="7"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -29,6 +30,7 @@
     <weight value="15.0"/>
     <value value="189"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -45,6 +47,7 @@
     <weight value="15.0"/>
     <value value="448"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -61,6 +64,7 @@
     <weight value="15.0"/>
     <value value="448"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -77,6 +81,7 @@
     <weight value="15.0"/>
     <value value="875"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -93,6 +98,7 @@
     <weight value="25.0"/>
     <value value="875"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -109,6 +115,7 @@
     <weight value="45.0"/>
     <value value="1512"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -125,6 +132,7 @@
     <weight value="45.0"/>
     <value value="2401"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -141,6 +149,7 @@
     <weight value="45.0"/>
     <value value="3584"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -157,6 +166,7 @@
     <weight value="45.0"/>
     <value value="3584"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -173,6 +183,7 @@
     <weight value="45.0"/>
     <value value="5103"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -189,6 +200,7 @@
     <weight value="45.0"/>
     <value value="5103"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -205,6 +217,7 @@
     <weight value="45.0"/>
     <value value="7000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -221,6 +234,7 @@
     <weight value="45.0"/>
     <value value="12000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -237,6 +251,7 @@
     <weight value="35.0"/>
     <value value="18000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -253,6 +268,7 @@
     <weight value="15.0"/>
     <value value="19208"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -269,6 +285,7 @@
     <weight value="15.0"/>
     <value value="23625"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -285,6 +302,7 @@
     <weight value="45.0"/>
     <value value="28672"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -304,6 +322,7 @@
     <susceptibility type="light" value="1.4"/>
     <susceptibility type="dark" value="0.8"/> 
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -321,6 +340,7 @@
     <weight value="40.0"/>
     <value value="34391"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -340,6 +360,7 @@
     <susceptibility type="fire" value="0.95"/>
     <susceptibility type="light" value="0.95"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -359,6 +380,7 @@
     <susceptibility type="ice" value="0.7"/>
     <susceptibility type="fire" value="1.5"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -376,6 +398,7 @@
     <weight value="45.0"/>
     <value value="56000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -393,6 +416,7 @@
     <weight value="45.0"/>
     <value value="76000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -410,6 +434,7 @@
     <weight value="45.0"/>
     <value value="86000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -431,6 +456,7 @@
     <susceptibility type="dark" value="0.95"/>
     <susceptibility type="light" value="0.95"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -450,6 +476,7 @@
     <susceptibility type="dark" value="0.9"/>
     <susceptibility type="light" value="1.2"/>  
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
@@ -468,6 +495,7 @@
     <susceptibility type="dark" value="1.2"/>
     <susceptibility type="light" value="0.9"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>

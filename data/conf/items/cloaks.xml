@@ -10,6 +10,7 @@
     <weight value="1.0"/>
     <value value="7"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -26,6 +27,7 @@
     <weight value="1.0"/>
     <value value="189"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -42,6 +44,7 @@
     <weight value="5.0"/>
     <value value="448"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -58,6 +61,7 @@
     <weight value="5.0"/>
     <value value="948"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -74,6 +78,7 @@
     <weight value="5.0"/>
     <value value="1512"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -90,6 +95,7 @@
     <weight value="5.0"/>
     <value value="2200"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -106,6 +112,7 @@
     <weight value="5.0"/>
     <value value="3584"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -124,6 +131,7 @@
     <susceptibility type="fire" value="0.8"/>
     <susceptibility type="ice" value="0.8"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -140,6 +148,7 @@
     <weight value="5.0"/>
     <value value="7000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -156,6 +165,7 @@
     <weight value="2.0"/>
     <value value="9317"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -172,6 +182,7 @@
     <weight value="2.0"/>
     <value value="9317"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -188,6 +199,7 @@
     <weight value="2.0"/>
     <value value="12096"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -206,6 +218,7 @@
     <susceptibility type="light" value="1.4"/>
     <susceptibility type="dark" value="0.8"/> 
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -222,6 +235,7 @@
     <weight value="5.0"/>
     <value value="15379"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -238,6 +252,7 @@
     <weight value="5.0"/>
     <value value="20000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -254,6 +269,7 @@
     <weight value="5.0"/>
     <value value="40824"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -270,6 +286,7 @@
     <weight value="5.0"/>
     <value value="48013"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -286,6 +303,7 @@
     <weight value="5.0"/>
     <value value="56000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -302,6 +320,7 @@
     <weight value="6.0"/>
     <value value="63000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -318,6 +337,7 @@
     <weight value="6.0"/>
     <value value="73000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -336,6 +356,7 @@
     <susceptibility type="light" value="1.3"/>
     <susceptibility type="dark" value="0.85"/> 
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -354,6 +375,7 @@
     <susceptibility type="light" value="0.9"/>
     <susceptibility type="dark" value="1.3"/> 
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
@@ -370,6 +392,7 @@
     <weight value="2.0"/>
     <value value="10000"/>
     <equipable>
+      <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
