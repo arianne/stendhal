@@ -17,8 +17,9 @@ import static org.junit.Assert.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
 
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class BehaviourTest {
 	 */
 	@Test
 	public void testSetAmount() {
-		BehaviourResult beh = new BehaviourResult(true, "X", 1, null);
+		ItemParserResult beh = new ItemParserResult(true, "X", 1, null);
 		beh.setAmount(0);
 		assertEquals(1, beh.getAmount());
 		beh.setAmount(1001);
@@ -50,11 +51,11 @@ public class BehaviourTest {
 
 		Behaviour horseBeh = new Behaviour("horse");
 		assertEquals(1, horseBeh.getItemNames().size());
-		assertTrue(horseBeh.parseRequest(sentence).wasFound());
+		assertTrue(horseBeh.parse(sentence).wasFound());
 
 		Behaviour cowBeh = new Behaviour("cow");
 		assertEquals(1, cowBeh.getItemNames().size());
-		assertFalse(cowBeh.parseRequest(sentence).wasFound());
+		assertFalse(cowBeh.parse(sentence).wasFound());
 	}
 
 	/**
@@ -68,14 +69,14 @@ public class BehaviourTest {
 		Set<String> items = new HashSet<String>();
 		items.add("gold");
 		Behaviour beh = new Behaviour(items);
-		BehaviourResult res = beh.parseRequest(sentence);
+		ItemParserResult res = beh.parse(sentence);
 		assertTrue(res.wasFound()); // only gold, silver -> unambiguous
 		assertEquals(50, res.getAmount());
 		assertEquals("gold", res.getChosenItemName());
 
 		items.add("silver");
 		beh = new Behaviour(items);
-		res = beh.parseRequest(sentence);
+		res = beh.parse(sentence);
 		assertFalse(res.wasFound()); // gold, silver -> ambiguous
 		assertEquals(50, res.getAmount());
 	}

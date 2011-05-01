@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -64,7 +65,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 		String chosenItemName = res.getChosenItemName();
 		int amount = res.getAmount();
 

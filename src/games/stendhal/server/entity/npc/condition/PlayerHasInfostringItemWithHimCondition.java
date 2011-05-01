@@ -14,10 +14,10 @@ package games.stendhal.server.entity.npc.condition;
 
 import java.util.List;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;

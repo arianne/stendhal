@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import games.stendhal.common.parser.Expression;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 
 /**
  * abstract class for handling offer numbers in sentences

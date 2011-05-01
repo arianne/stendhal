@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -21,13 +23,11 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
@@ -40,7 +40,7 @@ public class BuyerAdder {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	public void add(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
@@ -74,7 +74,7 @@ public class BuyerAdder {
 				null,
 				new BehaviourAction(buyerBehaviour, "sell", "buy") {
 					@Override
-					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+					public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isBadBoy()) {
 							// don't buy from player killers at all
 							raiser.say("Sorry, but I just can't trust you. You look too dangerous to deal with. Please go away.");

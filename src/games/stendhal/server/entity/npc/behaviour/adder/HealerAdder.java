@@ -13,15 +13,15 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 public class HealerAdder {
@@ -30,7 +30,7 @@ public class HealerAdder {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	/**
 	 *<p>Makes this NPC a healer, i.e. someone who sets the player's hp to
@@ -61,7 +61,7 @@ public class HealerAdder {
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						BehaviourResult res = new BehaviourResult(true, "heal", 1, null);
+						ItemParserResult res = new ItemParserResult(true, "heal", 1, null);
 
 						int cost = healerBehaviour.getCharge(res, player);
 						currentBehavRes = res;

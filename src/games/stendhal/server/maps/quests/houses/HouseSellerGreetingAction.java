@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /** House owners are offered the chance to buy a spare key when the seller greets them. Others are just greeted with their name. */

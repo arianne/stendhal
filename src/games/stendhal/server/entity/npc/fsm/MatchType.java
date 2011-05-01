@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.fsm;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.parser.Sentence;
 
 /**
  * How strong possible transitions should be matched.

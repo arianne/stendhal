@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 public interface ChatAction extends PostTransitionAction {

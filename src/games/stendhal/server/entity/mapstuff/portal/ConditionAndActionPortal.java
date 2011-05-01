@@ -12,12 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;

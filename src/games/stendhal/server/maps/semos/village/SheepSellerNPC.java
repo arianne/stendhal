@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.village;
 
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -21,7 +22,6 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -64,7 +64,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 						if (res.getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;

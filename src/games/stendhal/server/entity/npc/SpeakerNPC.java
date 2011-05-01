@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.ExpressionMatcher;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -21,9 +24,6 @@ import games.stendhal.server.entity.npc.condition.EmoteCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.Transition;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;

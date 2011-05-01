@@ -14,6 +14,8 @@ package games.stendhal.server.maps.ados.fishermans_hut;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -26,11 +28,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -57,7 +57,7 @@ public class FishermanNPC implements ZoneConfigurator {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	/**
 	 * Configure a zone.
@@ -123,7 +123,7 @@ public class FishermanNPC implements ZoneConfigurator {
 					 *            the involved player
 					 */
 					@Override
-					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser npc, final Player player) {
 						int amount = res.getAmount();
 
 						if (getMaximalAmount(player) < amount) {
@@ -209,7 +209,7 @@ public class FishermanNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING, null,
 						new ProducerBehaviourAction(behaviour, "produce") {
 							@Override
-							public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
+							public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
 								// Find out how much items we shall produce.
 								if (res.getAmount() > 1000) {
 									logger.warn("Decreasing very large amount of "

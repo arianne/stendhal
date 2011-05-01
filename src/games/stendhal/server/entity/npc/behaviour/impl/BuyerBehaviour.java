@@ -14,6 +14,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -39,7 +40,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * @param player
 	 *            The player who sells
 	 */
-	protected void payPlayer(BehaviourResult res, final Player player) {
+	protected void payPlayer(ItemParserResult res, final Player player) {
 		final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(getCharge(res, player));
 		player.equipOrPutOnGround(money);
@@ -56,7 +57,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *         has the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 		if (player.drop(res.getChosenItemName(), res.getAmount())) {
 			payPlayer(res, player);
 			seller.say("Thanks! Here is your money.");

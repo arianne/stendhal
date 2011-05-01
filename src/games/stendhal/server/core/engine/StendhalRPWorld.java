@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.net.URI;
 import java.util.Collection;

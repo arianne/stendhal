@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -20,7 +22,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -30,7 +31,6 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -44,7 +44,7 @@ public class ProducerAdder {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
     /** Adds all the dialogue associated with a Producing NPC */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
@@ -101,7 +101,7 @@ public class ProducerAdder {
                 ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
-					public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
+					public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
 						// Find out how much items we shall produce.
 						if (res.getAmount() > 1000) {
 							logger.warn("Decreasing very large amount of "

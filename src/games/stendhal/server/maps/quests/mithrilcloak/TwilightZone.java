@@ -13,6 +13,9 @@
 package games.stendhal.server.maps.quests.mithrilcloak;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.JokerExprMatcher;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -31,9 +34,6 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;

@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -38,7 +38,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 		if (sentence.hasError()) {
 			fireSentenceError(player, sentence, npc);
 		} else {
-			BehaviourResult res = behaviour.parseRequest(sentence);
+			ItemParserResult res = behaviour.parse(sentence);
 
 			if (res.wasFound()) {
 				fireRequestOK(res, player, sentence, npc);
@@ -67,7 +67,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	 * @param sentence
 	 * @param npc
 	 */
-	public abstract void fireRequestOK(BehaviourResult res, Player player, Sentence sentence, EventRaiser npc);
+	public abstract void fireRequestOK(ItemParserResult res, Player player, Sentence sentence, EventRaiser npc);
 
 	/**
 	 * The user input was parsed as valid Sentence, but could not transformed into a Behaviour request.
@@ -77,6 +77,6 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	 * @param sentence
 	 * @param npc
 	 */
-	public abstract void fireRequestError(BehaviourResult res, Player player, Sentence sentence, EventRaiser npc);
+	public abstract void fireRequestError(ItemParserResult res, Player player, Sentence sentence, EventRaiser npc);
 
 }

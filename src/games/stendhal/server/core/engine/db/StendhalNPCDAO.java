@@ -11,11 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
+import games.stendhal.common.parser.Expression;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
-import games.stendhal.server.entity.npc.parser.Expression;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

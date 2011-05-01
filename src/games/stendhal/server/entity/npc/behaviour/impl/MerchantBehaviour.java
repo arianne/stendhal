@@ -11,8 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.WordList;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -81,7 +82,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * 
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
-	public int getCharge(BehaviourResult res, final Player player) {
+	public int getCharge(ItemParserResult res, final Player player) {
 		if (res.getChosenItemName() == null) {
 			return 0;
 		} else {

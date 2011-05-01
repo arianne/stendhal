@@ -14,6 +14,7 @@ package games.stendhal.server.maps.kalavan.citygardens;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -25,7 +26,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
@@ -95,7 +95,7 @@ public class GardenerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-						public boolean askForResources(BehaviourResult res, final EventRaiser npc, final Player player) {
+						public boolean askForResources(ItemParserResult res, final EventRaiser npc, final Player player) {
 						int amount = res.getAmount();
 
 						if (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("done;")) {
@@ -131,7 +131,7 @@ public class GardenerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser npc, final Player player) {
 						int amount = res.getAmount();
 
 						if (getMaximalAmount(player) < amount) {

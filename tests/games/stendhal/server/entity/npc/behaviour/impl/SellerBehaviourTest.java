@@ -43,7 +43,7 @@ public class SellerBehaviourTest {
 	public void testSellerBehaviour() {
 		final SellerBehaviour sb = new SellerBehaviour();
 		assertTrue(sb.dealtItems().isEmpty());
-		assertTrue(sb.itemNames.isEmpty());
+		assertTrue(sb.getItemNames().isEmpty());
 		assertTrue(sb.priceList.isEmpty());
 	}
 
@@ -56,7 +56,7 @@ public class SellerBehaviourTest {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		SellerBehaviour sb = new SellerBehaviour(pricelist);
 		assertTrue(sb.dealtItems().isEmpty());
-		assertTrue(sb.itemNames.isEmpty());
+		assertTrue(sb.getItemNames().isEmpty());
 		assertTrue(sb.priceList.isEmpty());
 
 		pricelist.put("item1", 10);

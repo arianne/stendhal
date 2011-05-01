@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.parser.TriggerList;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.TriggerList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;

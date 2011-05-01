@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparser;
 
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.WordList;
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.WordList;
 
 import java.io.BufferedReader;
 import java.io.File;

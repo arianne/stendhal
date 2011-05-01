@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants.TPP_Phase;

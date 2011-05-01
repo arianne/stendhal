@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.clothing_boutique;
 
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,7 +25,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -124,7 +124,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 					}
 					// override transact agreed deal to only make the player rest to a normal outfit if they want a put on over type.
 					@Override
-					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 						final String outfitType = res.getChosenItemName();
 						final Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						final boolean type = outfitPair.second();

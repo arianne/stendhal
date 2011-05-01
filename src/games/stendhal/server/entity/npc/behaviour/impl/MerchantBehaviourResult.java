@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import games.stendhal.common.grammar.ItemParserResult;
+
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -7,7 +9,7 @@ import org.apache.log4j.Logger;
 /**
  * Result of parsing an user request in Behaviour classes.
  */
-public final class MerchantBehaviourResult extends BehaviourResult {
+public final class MerchantBehaviourResult extends ItemParserResult {
 
 	private static Logger logger = Logger.getLogger(MerchantBehaviourResult.class);
 

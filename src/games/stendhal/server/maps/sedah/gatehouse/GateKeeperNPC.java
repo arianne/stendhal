@@ -13,6 +13,8 @@
 package games.stendhal.server.maps.sedah.gatehouse;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -22,8 +24,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -92,7 +92,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 						}
 
 						@Override
-						public void fireRequestOK(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						public void fireRequestOK(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
 				        	final int amount = res.getAmount();
 
 				        	if (sentence.getExpressions().size() == 1) {
@@ -119,7 +119,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			        	}
 
 						@Override
-						public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						public void fireRequestError(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
 							if (res.getChosenItemName() == null) {
 								fireRequestOK(res, player, sentence, raiser);
         			        } else {

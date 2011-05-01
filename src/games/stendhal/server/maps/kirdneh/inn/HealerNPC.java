@@ -13,6 +13,8 @@
 package games.stendhal.server.maps.kirdneh.inn;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -22,11 +24,9 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.ListProducedItemDetailAction;
 import games.stendhal.server.entity.npc.action.ListProducedItemsOfClassAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.condition.TriggerIsProducedItemOfClassCondition;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -43,7 +43,7 @@ public class HealerNPC implements ZoneConfigurator {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	/**
 	 * Configure a zone.
@@ -113,7 +113,7 @@ public class HealerNPC implements ZoneConfigurator {
 				ConversationStates.HEAL_OFFERED,
 		        null, new ChatAction() {
 			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-			        	currentBehavRes = new BehaviourResult(true, "heal", 1, null);
+			        	currentBehavRes = new ItemParserResult(true, "heal", 1, null);
                         String badboymsg = "";
 			        	int cost = healerBehaviour.getCharge(currentBehavRes, player);
 			        	if (player.isBadBoy()) {

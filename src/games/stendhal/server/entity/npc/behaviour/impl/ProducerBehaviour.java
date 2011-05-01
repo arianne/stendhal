@@ -13,11 +13,12 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -306,7 +307,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @param player
 	 * @return true if all resources can be taken
 	 */
-	public boolean askForResources(final BehaviourResult res, final EventRaiser npc, final Player player) {
+	public boolean askForResources(final ItemParserResult res, final EventRaiser npc, final Player player) {
 		int amount = res.getAmount();
 
 		if (getMaximalAmount(player) < amount) {
@@ -334,7 +335,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *            the involved player
 	 */
 	@Override
-	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser npc, final Player player) {
 		if (getMaximalAmount(player) < res.getAmount()) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
@@ -410,10 +411,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *
 	 * @param res
 	 * @param npcAction
-	 * @param npc
 	 */
-	public void sayError(final BehaviourResult res, final String npcAction, final EventRaiser npc) {
-		sayError(res, getProductionActivity(), npcAction, npc);
+	public String getErrormessage(final ItemParserResult res, final String npcAction) {
+		return getErrormessage(res, getProductionActivity(), npcAction);
 	}
 
 }

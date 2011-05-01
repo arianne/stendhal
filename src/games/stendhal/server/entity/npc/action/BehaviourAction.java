@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -30,8 +30,8 @@ public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour>
 		super(behaviour, userAction, npcAction);
 	}
 
-	public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
-		behaviour.sayError(res, userAction, npcAction, npc);
+	public void fireRequestError(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
+		npc.say(behaviour.getErrormessage(res, userAction, npcAction));
 	}
 
 	@Override

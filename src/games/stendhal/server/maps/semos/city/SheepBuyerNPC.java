@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -12,7 +13,6 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
@@ -182,12 +182,12 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 			super(items);
 		}
 
-		private int getValue(BehaviourResult res, final Sheep sheep) {
+		private int getValue(ItemParserResult res, final Sheep sheep) {
 			return Math.round(getUnitPrice(res.getChosenItemName()) * ((float) sheep.getWeight() / (float) Sheep.MAX_WEIGHT));
 		}
 
 		@Override
-		public int getCharge(BehaviourResult res, final Player player) {
+		public int getCharge(ItemParserResult res, final Player player) {
 			if (player.hasSheep()) {
 				final Sheep sheep = player.getSheep();
 				return getValue(res, sheep);
@@ -198,7 +198,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		}
 
 		@Override
-		public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+		public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 			// res.getAmount() is currently ignored.
 
 			final Sheep sheep = player.getSheep();

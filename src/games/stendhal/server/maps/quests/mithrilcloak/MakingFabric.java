@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests.mithrilcloak;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -29,7 +31,6 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.ProducerBehaviourAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -38,7 +39,6 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -66,7 +66,7 @@ class MakingFabric {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	public MakingFabric(final MithrilCloakQuestInfo mithrilcloak) {
 		this.mithrilcloak = mithrilcloak;
@@ -102,7 +102,7 @@ class MakingFabric {
 			 *            the involved player
 			 */
 			@Override
-				public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser npc, final Player player) {
+				public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser npc, final Player player) {
 				int amount = res.getAmount();
 
 				if (getMaximalAmount(player) < amount) {
@@ -171,7 +171,7 @@ class MakingFabric {
 				new QuestInStateCondition(mithrilcloak.getQuestSlot(), "need_fabric"), ConversationStates.ATTENDING, null,
 				new ProducerBehaviourAction(behaviour) {
 					@Override
-					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser npc) {
+					public void fireRequestOK(final ItemParserResult res, Player player, Sentence sentence, EventRaiser npc) {
 						// Find out how much items we shall produce.
 						if (res.getAmount() < 40) {
 							npc.say("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.");
@@ -194,8 +194,8 @@ class MakingFabric {
 					}
 
 					@Override
-					public void fireRequestError(final BehaviourResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
-						behaviour.sayError(res, "#make", "produce", raiser);
+					public void fireRequestError(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser raiser) {
+						raiser.say(behaviour.getErrormessage(res, "#make", "produce"));
 					}
 				});
 		

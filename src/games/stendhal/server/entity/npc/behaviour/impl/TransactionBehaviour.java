@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
@@ -38,6 +39,6 @@ public abstract class TransactionBehaviour extends Behaviour {
 	 *            The player who buys/sells
 	 * @return true if the transaction was successful.
 	 */
-	public abstract boolean transactAgreedDeal(BehaviourResult res, EventRaiser seller, Player player);
+	public abstract boolean transactAgreedDeal(ItemParserResult res, EventRaiser seller, Player player);
 
 }

@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.common.parser.ConvCtxForMatchingSource;
+import games.stendhal.common.parser.ConversationContext;
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
-import games.stendhal.server.entity.npc.parser.ConversationContext;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;

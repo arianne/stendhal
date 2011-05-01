@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.wofol.bar;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -21,7 +22,6 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -83,7 +83,7 @@ public class KoboldBarmaidNPC implements ZoneConfigurator {
 					  * as the requested amount in his inventory.
 					  */
 					@Override
-					public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+					public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 						String chosenItemName = res.getChosenItemName();
 						final Item item = getAskedItem(chosenItemName);
 						int amount = res.getAmount();

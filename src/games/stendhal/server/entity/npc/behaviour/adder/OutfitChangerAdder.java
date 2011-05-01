@@ -13,16 +13,16 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -35,7 +35,7 @@ public class OutfitChangerAdder {
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
-	private BehaviourResult currentBehavRes;
+	private ItemParserResult currentBehavRes;
 
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
@@ -92,7 +92,7 @@ public class OutfitChangerAdder {
 				ConversationStates.ATTENDING, null,
 				new BehaviourAction(outfitBehaviour, action, "offer") {
 					@Override
-					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser raiser) {
+					public void fireRequestOK(final ItemParserResult res, Player player, Sentence sentence, EventRaiser raiser) {
 						// find out what the player wants to wear
 
 						// We ignore any amounts.

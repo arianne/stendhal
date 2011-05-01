@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -120,7 +121,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	public boolean transactAgreedDeal(BehaviourResult res, final EventRaiser seller, final Player player) {
+	public boolean transactAgreedDeal(ItemParserResult res, final EventRaiser seller, final Player player) {
 		final String outfitType = res.getChosenItemName();
 
 		if (player.getOutfit().getBase() > 80 && player.getOutfit().getBase() < 99) {

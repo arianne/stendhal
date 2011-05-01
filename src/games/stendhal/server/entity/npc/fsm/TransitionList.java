@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.fsm;
 
+import games.stendhal.common.parser.Expression;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.parser.Expression;
 
 import java.util.Collection;
 import java.util.HashSet;

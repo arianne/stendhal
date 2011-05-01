@@ -12,7 +12,7 @@
 package games.stendhal.common.grammar;
 
 
-import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.common.parser.Expression;
 
 import java.util.Collection;
 import java.util.LinkedList;

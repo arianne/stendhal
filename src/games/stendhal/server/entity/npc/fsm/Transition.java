@@ -14,10 +14,10 @@ package games.stendhal.server.entity.npc.fsm;
 
 import java.util.Collection;
 
+import games.stendhal.common.parser.Expression;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**

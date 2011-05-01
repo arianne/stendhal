@@ -1,6 +1,8 @@
 
 package games.stendhal.server.maps.quests.houses;
 
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.condition.AgeGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -9,8 +11,6 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
 
 import java.util.Arrays;
 

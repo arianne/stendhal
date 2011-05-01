@@ -12,19 +12,19 @@
  ***************************************************************************/
 package games.stendhal.tools.npcparser;
 
+import games.stendhal.common.parser.CaseInsensitiveExprMatcher;
+import games.stendhal.common.parser.ConvCtxForMatchingSource;
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.ExactExprMatcher;
+import games.stendhal.common.parser.Expression;
+import games.stendhal.common.parser.ExpressionMatcher;
+import games.stendhal.common.parser.ExpressionType;
+import games.stendhal.common.parser.JokerExprMatcher;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.parser.SimilarExprMatcher;
+import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.parser.CaseInsensitiveExprMatcher;
-import games.stendhal.server.entity.npc.parser.ConvCtxForMatchingSource;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.ExactExprMatcher;
-import games.stendhal.server.entity.npc.parser.Expression;
-import games.stendhal.server.entity.npc.parser.ExpressionMatcher;
-import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.JokerExprMatcher;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.SimilarExprMatcher;
-import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.awt.Cursor;
 import java.io.IOException;

@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.common.parser.ConversationParser;
 
 import java.util.Collection;
 import java.util.LinkedList;

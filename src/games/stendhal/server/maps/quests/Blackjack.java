@@ -14,6 +14,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
@@ -26,8 +28,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.BehaviourResult;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -367,7 +367,7 @@ public class Blackjack extends AbstractQuest {
 						if (sentence.hasError()) {
 							fireSentenceError(player, sentence, npc);
 						} else {
-							BehaviourResult res = behaviour.parseRequest(sentence);
+							ItemParserResult res = behaviour.parse(sentence);
 
 							// don't use res.wasFound() and avoid to call fireRequestError()
 							fireRequestOK(res, player, sentence, npc);
@@ -375,7 +375,7 @@ public class Blackjack extends AbstractQuest {
 					}
 
 					@Override
-					public void fireRequestOK(final BehaviourResult res, Player player, Sentence sentence, EventRaiser npc) {
+					public void fireRequestOK(final ItemParserResult res, Player player, Sentence sentence, EventRaiser npc) {
 						stake = res.getAmount();
 
 						if (stake < MIN_STAKE) {

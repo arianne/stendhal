@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -24,7 +25,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.StoreMessageAction;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;

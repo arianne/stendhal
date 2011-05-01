@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Seed;
 import games.stendhal.server.entity.item.Stackable;
@@ -53,7 +54,7 @@ public class SeedSellerBehaviourTest {
 		final SpeakerNPC speakerNPC = new SpeakerNPC("hugo");
 
 		sb = new SeedSellerBehaviour(pricelist);
-		BehaviourResult res = new BehaviourResult(true, "lilia seed",1, null);
+		ItemParserResult res = new ItemParserResult(true, "lilia seed",1, null);
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		PlayerTestHelper.equipWithMoney(bob, 100);
 		sb.transactAgreedDeal(res, new EventRaiser(speakerNPC), bob);

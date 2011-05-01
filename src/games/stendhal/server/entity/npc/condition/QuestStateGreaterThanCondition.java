@@ -13,9 +13,9 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 /**
  * Condition to check if the value in a quest slot is greater than an expected value
