@@ -58,35 +58,36 @@ public class EquipmentActionBuilder {
 			data.setQuantity(action.getInt("quantity"));
 		}
 
-		buildSource();
-		buildTarget();
+		createSourceBuilder().build(data, player, action);
+		createTargetBuilder().build(data, player, action);
 
 		// TODO: /drop, NPC quests, NPC sells, NPC buyes, player trade, Harold
 		// TODO: check that the client sent the request for this zone
 		// TODO: get name from sourceItems
+
 	}
 
-	private void buildSource() {
+	private PartialBuilder createSourceBuilder() {
 		if (action.has(EquipActionConsts.SOURCE_PATH)) {
-			new BuildSourceFromPath().build(data, player, action);
+			return new BuildSourceFromPath();
 		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
-			new BuildSourceFromOldActionFormat().build(data, player, action);
+			return new BuildSourceFromOldActionFormat();
 		} else if (action.has(BASEITEM)) {
-			new BuildSourceFromGround().build(data, player, action);
+			return new BuildSourceFromGround();
 		} else {
-			data.setErrorMessage("");
+			return new BuildError();
 		}
 	}
 
-	private void buildTarget() {
+	private PartialBuilder createTargetBuilder() {
 		if (action.has(EquipActionConsts.TARGET_PATH)) {
-			new BuildTargetFromPath().build(data, player, action);
+			return new BuildTargetFromPath();
 		} else if (action.has(X)) {
-			new BuildTargetFromGround().build(data, player, action);
+			return new BuildTargetFromGround();
 		} else if (action.has(EquipActionConsts.TARGET_OBJECT)) {
-			new BuildTargetFromOldActionFormat().build(data, player, action);
+			return new BuildTargetFromOldActionFormat();
 		} else {
-			data.setErrorMessage("");
+			return new BuildError();
 		}
 	}
 
