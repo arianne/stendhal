@@ -5,6 +5,7 @@ import games.stendhal.common.parser.NameSearch;
 import games.stendhal.common.parser.Sentence;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ItemParser {
@@ -33,18 +34,36 @@ public class ItemParser {
 	}
 
 	/**
-	 * Search for a matching item name in the available item names.
+	 * Search for a matching name in the available names.
 	 *
 	 * @param sentence
 	 * @return parsing result
 	 */
 	public ItemParserResult parse(final Sentence sentence) {
+		if (itemNames.isEmpty()) {
+    		int amount;
+    		String chosenName;
+
+    		List<Expression> expressions = sentence.getExpressions();
+    		if (expressions.size() == 1) {
+				Expression expr = expressions.get(0);
+				amount = expr.getAmount();
+				chosenName = expr.getNormalized();
+			} else {
+				final Expression numeral = sentence.getNumeral();
+	    		amount = numeral!=null? numeral.getAmount(): 1;
+	    		chosenName = sentence.getExpressionStringAfterVerb();
+			}
+
+			return new ItemParserResult(false, chosenName, amount, null);
+		}
+
 		NameSearch search = sentence.findMatchingName(itemNames);
-		
+
 		boolean found = search.found();
 
-		// Store found item.
-		String chosenItemName = search.getName();
+		// Store found name.
+		String chosenName = search.getName();
 		int amount = search.getAmount();
 		Set<String> mayBeItems = new HashSet<String>();
 
@@ -59,26 +78,26 @@ public class ItemParser {
     		} else {
     			// If there was no match, return the given object name instead
     			// and set amount to 1.
-        		chosenItemName = sentence.getExpressionStringAfterVerb();
+        		chosenName = sentence.getExpressionStringAfterVerb();
         		amount = 1;
     		}
 
-			if (chosenItemName == null && itemNames.size() == 1) {
+			if (chosenName == null && itemNames.size() == 1) {
     			// The NPC only offers one type of ware, so
     			// it's clear what the player wants.
-				chosenItemName = itemNames.iterator().next();
+				chosenName = itemNames.iterator().next();
 				found = true;
-			} else if (chosenItemName != null) {
+			} else if (chosenName != null) {
     			// search for items to sell with compound names, ending with the given expression
-    			for(String itemName : itemNames) {
-    				if (itemName.endsWith(" "+chosenItemName)) {
-    					mayBeItems.add(itemName);
+    			for(String name : itemNames) {
+    				if (name.endsWith(" "+chosenName)) {
+    					mayBeItems.add(name);
     				}
     			}
     		}
 		}
 
-		return new ItemParserResult(found, chosenItemName, amount, mayBeItems);
+		return new ItemParserResult(found, chosenName, amount, mayBeItems);
     }
 
 	/**
@@ -94,11 +113,11 @@ public class ItemParser {
 
 		if (chosenItemName == null) {
 			return "Please tell me what you want to " + userAction + ".";
-		} else if (mayBeItems.size() > 1) {
+		} else if (mayBeItems!=null && mayBeItems.size()>1) {
 			return "There is more than one " + chosenItemName + ". " +
 					"Please specify which sort of "
 					+ chosenItemName + " you want to " + userAction + ".";
-		} else if (!mayBeItems.isEmpty()) {
+		} else if (mayBeItems!=null && !mayBeItems.isEmpty()) {
 			return "Please specify which sort of "
 					+ chosenItemName + " you want to " + userAction + ".";
 		} else if (npcAction != null) {
