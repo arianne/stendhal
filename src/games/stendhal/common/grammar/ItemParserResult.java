@@ -1,11 +1,11 @@
-package games.stendhal.server.entity.npc.behaviour.impl;
+package games.stendhal.common.grammar;
 
 import java.util.Set;
 
 /**
- * Result of parsing an user request in Behaviour classes.
+ * Result of parsing an item name and amount by ItemParser.
  */
-public class BehaviourResult {
+public class ItemParserResult {
 
 	private final boolean found;
 
@@ -18,7 +18,7 @@ public class BehaviourResult {
 	/** The amount of requested items. */
 	protected int amount;
 
-	public BehaviourResult(boolean found, String chosenItemName, int amount, Set<String> mayBeItems) {
+	public ItemParserResult(boolean found, String chosenItemName, int amount, Set<String> mayBeItems) {
 		this.found = found;
 		this.chosenItemName = chosenItemName;
 		this.amount = amount;

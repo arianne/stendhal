@@ -1,0 +1,112 @@
+package games.stendhal.common.grammar;
+
+import games.stendhal.common.parser.Expression;
+import games.stendhal.common.parser.NameSearch;
+import games.stendhal.common.parser.Sentence;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class ItemParser {
+
+	/** ItemNames contains all valid item names. */
+	protected Set<String> itemNames;
+
+	public ItemParser() {
+	    this.itemNames = new HashSet<String>();
+    }
+
+	public ItemParser(final Set<String> itemNames) {
+	    this.itemNames = itemNames;
+    }
+
+	public ItemParser(final String itemName) {
+	    itemNames = new HashSet<String>();
+	    itemNames.add(itemName);
+    }
+
+	/**
+	 * @return the recognized item names
+	 */
+	public Set<String> getItemNames() {
+		return itemNames;
+	}
+
+	/**
+	 * Search for a matching item name in the available item names.
+	 *
+	 * @param sentence
+	 * @return parsing result
+	 */
+	public ItemParserResult parse(final Sentence sentence) {
+		NameSearch search = sentence.findMatchingName(itemNames);
+		
+		boolean found = search.found();
+
+		// Store found item.
+		String chosenItemName = search.getName();
+		int amount = search.getAmount();
+		Set<String> mayBeItems = new HashSet<String>();
+
+		if (!found) {
+			if ((sentence.getNumeralCount() == 1)
+					&& (sentence.getUnknownTypeCount() == 0)
+					&& (sentence.getObjectCount() == 0)) {
+				final Expression number = sentence.getNumeral();
+
+    			// If there is given only a number, return this as amount.
+        		amount = number.getAmount();
+    		} else {
+    			// If there was no match, return the given object name instead
+    			// and set amount to 1.
+        		chosenItemName = sentence.getExpressionStringAfterVerb();
+        		amount = 1;
+    		}
+
+			if (chosenItemName == null && itemNames.size() == 1) {
+    			// The NPC only offers one type of ware, so
+    			// it's clear what the player wants.
+				chosenItemName = itemNames.iterator().next();
+				found = true;
+			} else if (chosenItemName != null) {
+    			// search for items to sell with compound names, ending with the given expression
+    			for(String itemName : itemNames) {
+    				if (itemName.endsWith(" "+chosenItemName)) {
+    					mayBeItems.add(itemName);
+    				}
+    			}
+    		}
+		}
+
+		return new ItemParserResult(found, chosenItemName, amount, mayBeItems);
+    }
+
+	/**
+	 * Answer with an error message in case the request could not be fulfilled.
+	 *
+	 * @param res
+	 * @param userAction
+	 * @param npcAction
+	 */
+	public String getErrormessage(final ItemParserResult res, final String userAction, final String npcAction) {
+		String chosenItemName = res.getChosenItemName();
+		Set<String> mayBeItems = res.getMayBeItems();
+
+		if (chosenItemName == null) {
+			return "Please tell me what you want to " + userAction + ".";
+		} else if (mayBeItems.size() > 1) {
+			return "There is more than one " + chosenItemName + ". " +
+					"Please specify which sort of "
+					+ chosenItemName + " you want to " + userAction + ".";
+		} else if (!mayBeItems.isEmpty()) {
+			return "Please specify which sort of "
+					+ chosenItemName + " you want to " + userAction + ".";
+		} else if (npcAction != null) {
+			return "Sorry, I don't " + npcAction + " "
+					+ Grammar.plural(chosenItemName) + ".";
+		} else {
+			return null;
+		}
+	}
+
+}
