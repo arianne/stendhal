@@ -20,6 +20,7 @@ import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.grammar.ItemParser;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -53,12 +54,13 @@ class DropAction implements SlashAction {
 		}
 
 		// parse item name and amount
-		ItemParser parser = new ItemParser(itemNames);
-		ItemParserResult res = parser.parse(ConversationParser.parse((params[0] + " " + remainder).trim()));
+		final ItemParser parser = new ItemParser(itemNames);
+		final Sentence sentence = ConversationParser.parse((params[0] + " " + remainder).trim());
+		final ItemParserResult res = parser.parse(sentence);
 		String errorMsg;
 
 		if (res.wasFound()) {
-			String itemName = res.getChosenItemName();
+			final String itemName = res.getChosenItemName();
 
 			for(final String slotName : Constants.CARRYING_SLOTS) {
 				int itemID = User.get().findItem(slotName, itemName);
