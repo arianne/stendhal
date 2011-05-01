@@ -10,17 +10,18 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 /**
- * ExactExprMatcher creates an ExpressionMatcher with exact matching.
+ * Create a ConversationContext with de-activated Expression merging and word ignoring.
  *
  * @author Martin Fuchs
  */
-public class ExactExprMatcher extends ExpressionMatcher {
+public final class ConvCtxForMatchingSource extends ConversationContext {
 
-    public ExactExprMatcher() {
-        exactMatching = true;
+    public ConvCtxForMatchingSource() {
+        mergeExpressions = false;
+        ignoreIgnorable = false;
     }
 
 }

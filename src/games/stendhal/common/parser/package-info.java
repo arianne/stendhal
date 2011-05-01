@@ -1,3 +1,17 @@
+/**
+ * implements the NPC conversation parser.
+ *
+ * <p>To make the conversation between players and NPCs more flexible, 
+ * the NPC Conversation Parser was invented. Its aim is, to go beyond 
+ * simple keywords and the very constrained, previous imperative syntax.</p>
+ *
+ * <p>For more information please see 
+ * <a href="doc-files/ConversationParser.odp">ConversationParser.odp</a>.</p>
+ */
+package games.stendhal.common.parser;
+
+
+
 /* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
@@ -10,18 +24,3 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
-
-/**
- * Create a ConversationContext with de-activated Expression merging and word ignoring.
- *
- * @author Martin Fuchs
- */
-public final class ConvCtxForMatchingSource extends ConversationContext {
-
-    public ConvCtxForMatchingSource() {
-        mergeExpressions = false;
-        ignoreIgnorable = false;
-    }
-
-}

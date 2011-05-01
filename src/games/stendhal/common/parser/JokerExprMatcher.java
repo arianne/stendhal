@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 /**
  * JokerExprMatcher creates an ExpressionMatcher for joker matching. This mode uses the

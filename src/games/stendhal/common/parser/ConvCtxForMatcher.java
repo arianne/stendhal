@@ -10,17 +10,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 /**
- * TypeExprMatcher creates an ExpressionMatcher with type matching.
- *
+ * Create a ConversationContext for matching.
  * @author Martin Fuchs
  */
-class TypeExprMatcher extends ExpressionMatcher {
+public final class ConvCtxForMatcher extends ConversationContext {
 
-    public TypeExprMatcher() {
-        typeMatching = true;
+    public ConvCtxForMatcher() {
+        forMatching = true;
     }
 
 }

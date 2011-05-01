@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 /**
  * PunctuationParser is used to trim preceding and trailing punctuation

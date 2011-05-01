@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 import games.stendhal.common.grammar.Grammar;
 

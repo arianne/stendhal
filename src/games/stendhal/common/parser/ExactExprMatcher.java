@@ -10,18 +10,17 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc.parser;
+package games.stendhal.common.parser;
 
 /**
- * CaseInsensitiveExprMatcher creates an ExpressionMatcher with exact and case insensitive matching.
+ * ExactExprMatcher creates an ExpressionMatcher with exact matching.
  *
  * @author Martin Fuchs
  */
-public final class CaseInsensitiveExprMatcher extends ExpressionMatcher {
+public class ExactExprMatcher extends ExpressionMatcher {
 
-    public CaseInsensitiveExprMatcher() {
+    public ExactExprMatcher() {
         exactMatching = true;
-        caseInsensitive = true;
     }
 
 }

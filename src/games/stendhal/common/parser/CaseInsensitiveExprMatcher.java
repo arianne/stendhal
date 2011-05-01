@@ -1,17 +1,3 @@
-/**
- * implements the NPC conversation parser.
- *
- * <p>To make the conversation between players and NPCs more flexible, 
- * the NPC Conversation Parser was invented. Its aim is, to go beyond 
- * simple keywords and the very constrained, previous imperative syntax.</p>
- *
- * <p>For more information please see 
- * <a href="doc-files/ConversationParser.odp">ConversationParser.odp</a>.</p>
- */
-package games.stendhal.server.entity.npc.parser;
-
-
-
 /* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
@@ -24,3 +10,18 @@ package games.stendhal.server.entity.npc.parser;
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+package games.stendhal.common.parser;
+
+/**
+ * CaseInsensitiveExprMatcher creates an ExpressionMatcher with exact and case insensitive matching.
+ *
+ * @author Martin Fuchs
+ */
+public final class CaseInsensitiveExprMatcher extends ExpressionMatcher {
+
+    public CaseInsensitiveExprMatcher() {
+        exactMatching = true;
+        caseInsensitive = true;
+    }
+
+}
