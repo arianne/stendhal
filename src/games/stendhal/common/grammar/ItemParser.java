@@ -41,10 +41,10 @@ public class ItemParser {
 	 */
 	public ItemParserResult parse(final Sentence sentence) {
 		if (itemNames.isEmpty()) {
-    		int amount;
-    		String chosenName;
-
     		List<Expression> expressions = sentence.getExpressions();
+    		String chosenName;
+    		int amount;
+
     		if (expressions.size() == 1) {
 				Expression expr = expressions.get(0);
 				amount = expr.getAmount();
@@ -65,7 +65,7 @@ public class ItemParser {
 		// Store found name.
 		String chosenName = search.getName();
 		int amount = search.getAmount();
-		Set<String> mayBeItems = new HashSet<String>();
+		Set<String> mayBeItems = null;
 
 		if (!found) {
 			if ((sentence.getNumeralCount() == 1)
@@ -88,6 +88,8 @@ public class ItemParser {
 				chosenName = itemNames.iterator().next();
 				found = true;
 			} else if (chosenName != null) {
+				mayBeItems = new HashSet<String>();
+
     			// search for items to sell with compound names, ending with the given expression
     			for(String name : itemNames) {
     				if (name.endsWith(" "+chosenName)) {
