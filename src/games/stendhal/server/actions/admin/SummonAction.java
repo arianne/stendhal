@@ -144,20 +144,24 @@ public class SummonAction extends AdministrationAction {
 
 					final String typeName = action.get(CREATURE);
 					String type = typeName;
-					
-					
+
 					factory.createEntity(type);
 
 					if (factory.isSearching()) {
     					// see it the name was in plural
 						type = Grammar.singular(typeName);
-
 						factory.createEntity(type);
 
-						// Did we still not find any matching class?
 						if (factory.isSearching()) {
-    						logger.info("onSummon: Entity \"" + type + "\" not found.");
-    						factory.error("onSummon: Entity \"" + type + "\" not found.");
+	    					// see it the name was in singular but the registered type is in plural
+							type = Grammar.plural(typeName);
+							factory.createEntity(type);
+
+							// Did we still not find any matching class?
+							if (factory.isSearching()) {
+	    						logger.info("onSummon: Entity \"" + typeName + "\" not found.");
+	    						factory.error("onSummon: Entity \"" + typeName + "\" not found.");
+							}
 						}
 					}
 				}

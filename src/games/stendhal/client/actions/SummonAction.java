@@ -16,6 +16,10 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.NameBuilder;
+import games.stendhal.common.grammar.ItemParser;
+import games.stendhal.common.grammar.ItemParserResult;
+import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Sentence;
 import marauroa.common.game.RPAction;
 
 /**
@@ -70,8 +74,14 @@ class SummonAction implements SlashAction {
 			}
 		}
 
+		// parse item name and amount
+		final ItemParser parser = new ItemParser();
+		final Sentence sentence = ConversationParser.parse(nameBuilder.toString());
+		final ItemParserResult res = parser.parse(sentence);
+		final String creatureName = res.getChosenItemName();
+
 		summon.put("type", "summon");
-		summon.put("creature", nameBuilder.toString());
+		summon.put("creature", creatureName);
 
 		if (x != null) {
 			if (y != null) {
