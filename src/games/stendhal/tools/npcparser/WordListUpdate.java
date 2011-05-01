@@ -60,7 +60,7 @@ public final class WordListUpdate {
 //			wl.calculateHash();
 
             // see if we can find the word list source file in the file system
-            String outputPath = "src/games/stendhal/server/entity/npc/parser/" + WordList.WORDS_FILENAME;
+            String outputPath = "src/games/stendhal/common/parser/" + WordList.WORDS_FILENAME;
 
             final File file = new File(outputPath);
             if (!file.exists()) {
