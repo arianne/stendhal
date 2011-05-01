@@ -16,9 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.scripting.ChatLineParser;
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -28,14 +30,29 @@ import org.junit.Test;
  */
 public class SummonAtActionTest {
 
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
+	}
+
 	@Test
 	public void testInvalidAmount() {
-		final MockClientUI clientUI = new MockClientUI();
+		// create client
+		new MockStendhalClient() {
+			@Override
+			public void send(final RPAction action) {
+				assertEquals("summonat", action.get("type"));
+				assertEquals("player", action.get("target"));
+				assertEquals("bag", action.get("slot"));
+				assertEquals(1, action.getInt("amount"));
+				assertEquals("5x", action.get("item"));
+			}
+		};
+
 		final SummonAtAction action = new SummonAtAction();
 
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
-		assertEquals("Invalid amount: 5x", clientUI.getEventBuffer());
 	}
 
 	/**
@@ -50,7 +67,6 @@ public class SummonAtActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("player", action.get("target"));
 				assertEquals("bag", action.get("slot"));
@@ -77,7 +93,6 @@ public class SummonAtActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("player", action.get("target"));
 				assertEquals("bag", action.get("slot"));
@@ -123,7 +138,6 @@ public class SummonAtActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("summonat", action.get("type"));
 				assertEquals("memem", action.get("target"));
 				assertEquals("bag", action.get("slot"));
@@ -133,7 +147,6 @@ public class SummonAtActionTest {
 		};
 		SlashActionRepository.register();
 		ChatLineParser.parseAndHandle("/summonat memem bag 3 greater potion");
-		
 	}
 	
 }

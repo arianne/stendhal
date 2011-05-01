@@ -45,7 +45,7 @@ public class SummonActionTest {
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
-	
+
 	@Before
 	public void setUP() {
 		zone = new StendhalRPZone("testzone") {
@@ -57,7 +57,7 @@ public class SummonActionTest {
 			}
 		};
 	}
-	
+
 	@After
 	public void teardown() {
 		MockStendhalRPRuleProcessor.get().clearPlayers();

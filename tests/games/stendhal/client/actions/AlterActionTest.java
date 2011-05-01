@@ -15,9 +15,11 @@ package games.stendhal.client.actions;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -25,6 +27,11 @@ public class AlterActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
 	}
 
 	/**
@@ -35,7 +42,6 @@ public class AlterActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("alter", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnack", action.get("stat"));

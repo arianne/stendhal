@@ -16,21 +16,27 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class AlterQuestActionTest {
+
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
+	}
+
 	/**
 	 * Tests for execute.
 	 */
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("alterquest", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnack", action.get("name"));
@@ -46,7 +52,6 @@ public class AlterQuestActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("alterquest", action.get("type"));
 				assertEquals("schnick", action.get("target"));
 				assertEquals("schnick", action.get("name"));

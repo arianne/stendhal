@@ -17,11 +17,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class WhoActionTest {
+
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
+	}
 
 	/**
 	 * Tests for execute.
@@ -31,7 +38,6 @@ public class WhoActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				for (final String attrib : action) {
 					assertEquals("type", attrib);
 					assertEquals("who", (action.get(attrib)));

@@ -18,12 +18,14 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
+import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -32,6 +34,12 @@ import org.junit.Test;
  * @author Martin Fuchs
  */
 public class DropActionTest {
+
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
+	}
+
 	private static final String ZONE_NAME = "Testzone";
 	private static final int USER_ID = 1001;
 	private static final int MONEY_ID = 1234;
@@ -111,7 +119,6 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -144,7 +151,6 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -177,7 +183,6 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -228,7 +233,6 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));

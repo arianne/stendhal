@@ -101,6 +101,10 @@ public class StendhalClient extends ClientFramework {
 		return client;
 	}
 
+	public static void resetClient() {
+		client = null;
+	}
+
 	public StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
 		super(LOG4J_PROPERTIES);
 		client = this;
