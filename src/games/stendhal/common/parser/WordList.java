@@ -792,11 +792,9 @@ final public class WordList {
 	 * Add a new word to the list in order to remember it later.
 	 * 
 	 * @param str
-	 * @param persist
-	 *            if true word will be written to database
 	 * @return the added entry
 	 */
-	public WordEntry addNewWord(final String str, final boolean persist) {
+	public WordEntry addNewWord(final String str) {
 		final String key = trimWord(str);
 		WordEntry entry = words.get(key);
 
@@ -807,10 +805,6 @@ final public class WordList {
 			// add the new entry
 			entry.setNormalized(key);
 			words.put(key, entry);
-
-//			if (persist) {
-//				persistNewWord(key, entry);
-//			}
 		} else {
 			logger.warn("word already known: " + str + " -> "
 					+ entry.getNormalized());
@@ -818,17 +812,6 @@ final public class WordList {
 
 		return entry;
 	}
-
-//	/**
-//	 * Store the new word in the database. This base class implementation does
-//	 * nothing, it is overridden by the DBWordList method.
-//	 * @param key
-//	 * @param entry
-//	 * @return success flag
-//	 */
-//	protected boolean persistNewWord(final String key, final WordEntry entry) {
-//		return false;
-//	}
 
 	/**
 	 * Return number of word entries.

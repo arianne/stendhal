@@ -198,12 +198,8 @@ public final class SentenceImplementation extends Sentence {
                 w.setNormalized(original.toLowerCase());
 
                 if (entryMissing) {
-                    // Don't persist expressions used for joker matching.
-                    final boolean persist = context.getPersistNewWords()
-                            && (!context.isForMatching() || !original.contains(Expression.JOKER));
-
                     // Add the unknown word to the word list.
-                    wl.addNewWord(original, persist);
+                    wl.addNewWord(original);
                 }
             }
 

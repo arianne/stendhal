@@ -41,7 +41,6 @@ public class SentenceTest {
 	@Test
 	public final void testGrammar() {
 		final ConversationContext ctx = new ConversationContext();
-		ctx.setPersistNewWords(false);
 
 		SentenceImplementation sentence = new SentenceImplementation(ctx, "The quick brown fox jumps over the lazy dog.");
 		ConversationParser parser = new ConversationParser(sentence);

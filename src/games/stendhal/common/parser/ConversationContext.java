@@ -38,9 +38,6 @@ public class ConversationContext {
     /** Flag to enable Expression merging. */
     protected boolean mergeExpressions = true;
     
-    /** Flag to enable storing new words into the database. */
-    protected boolean persistNewWords = false; 
-    
     /** Flag to enable ignoring of words marked with the type IGN. */
     protected boolean ignoreIgnorable = true; 
     
@@ -72,14 +69,6 @@ public class ConversationContext {
         return mergeExpressions;
     }
 
-    public void setPersistNewWords(final boolean persistNewWords) {
-        this.persistNewWords = persistNewWords;
-    }
-
-    public boolean getPersistNewWords() {
-        return persistNewWords;
-    }
-
     public void setIgnoreIgnorable(final boolean ignoreIgnorable) {
         this.ignoreIgnorable = ignoreIgnorable;
     }
@@ -96,7 +85,6 @@ public class ConversationContext {
 		result = prime * result + (forMatching ? 1231 : 1237);
 		result = prime * result + (ignoreIgnorable ? 1231 : 1237);
 		result = prime * result + (mergeExpressions ? 1231 : 1237);
-		result = prime * result + (persistNewWords ? 1231 : 1237);
 		result = prime * result + state;
 		return result;
 	}
@@ -116,8 +104,6 @@ public class ConversationContext {
 		if (ignoreIgnorable != other.ignoreIgnorable)
 			return false;
 		if (mergeExpressions != other.mergeExpressions)
-			return false;
-		if (persistNewWords != other.persistNewWords)
 			return false;
 		if (state != other.state)
 			return false;
