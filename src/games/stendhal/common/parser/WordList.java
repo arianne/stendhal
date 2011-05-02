@@ -53,11 +53,6 @@ final public class WordList {
 
 	public static final String WORDS_FILENAME = "words.txt";
 
-/*	static final String HASH_KEYWORD = "@Hash";
-
-	** MD5 Hash code to check for changes
-	protected String hash = "";*/
-
 	private Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	private Map<String, Set<CompoundName>> compoundNames = new HashMap<String, Set<CompoundName>>();
@@ -68,19 +63,7 @@ final public class WordList {
 	/** instance variable with package protection because of FindBugs hint */
 	static private WordList instance;
 
-//	/**
-//	 * Take over the content of the other WordList object.
-//	 * @param other
-//	 */
-//	protected void takeOver(WordList other)
-//	{
-//		words = instance.words;
-//		compoundNames = instance.compoundNames;
-//		hash = instance.hash;
-//		subjectRefCount = other.subjectRefCount;
-//	}
-
-	// Initialise the word list by querying the database or reading from the
+	// Initialise the word list by reading from the
 	// input file "words.txt" in the class path.
 	static {
 		Log4J.init();
@@ -102,6 +85,7 @@ final public class WordList {
 	 * Reads the word list from the resource file "words.txt".
 	 */
 	private void readFromResources() {
+
 		final InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 
         if (str != null) {
@@ -140,61 +124,6 @@ final public class WordList {
 		return instance;
 	}
 
-	/*
-	 * Returns the WordList version number.
-	 * 
-	 * @return MD5 hash code
-	 *
-	public String getHash() {
-		return hash;
-	}
-
-	 **
-	 * Updates the MD5 hash code.
-	 * 
-	 * @return true on success
-	 *
-	public boolean calculateHash() {
-		MessageDigest md;
-
-		try {
-			md = MessageDigest.getInstance("MD5");
-		} catch (final NoSuchAlgorithmException e) {
-			return false;
-		}
-
-		for (final WordEntry e : words.values()) {
-			String s = e.getNormalized();
-			if (s != null) {
-				md.update(s.getBytes());
-			}
-
-			s = e.getPlurSing();
-			if (s != null) {
-				md.update(s.getBytes());
-			}
-
-			s = e.getTypeString();
-			if (s != null) {
-				md.update(s.getBytes());
-			}
-
-			// md.update(e.getValue().getBytes());
-		}
-
-		final byte[] buffer = md.digest();
-
-		final StringBuffer sb = new StringBuffer();
-
-		for (final byte b : buffer) {
-			sb.append(Integer.toHexString(b & 0xFF).toUpperCase());
-		}
-
-		hash = sb.toString();
-
-		return true;
-	}
-*/
 	/**
 	 * Reads word list from reader object.
 	 * 
