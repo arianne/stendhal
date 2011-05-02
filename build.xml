@@ -383,7 +383,17 @@
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<mkdir dir="${build_client}"/>
 
-		<copy todir="${build_client}/games/stendhal/client/gui" file="${src}/games/stendhal/client/gui/credits.txt"/>
+		<copy todir="${build_client}/games/stendhal/client">
+			<fileset dir="${src}/games/stendhal/client">
+				<include name="**/*.txt"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${build_client}/games/stendhal/common">
+			<fileset dir="${src}/games/stendhal/common">
+				<include name="**/*.txt"/>
+			</fileset>
+		</copy>
 
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/client/*.java"/>
