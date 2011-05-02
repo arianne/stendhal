@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+0.94
+
+- overeating clears the food list and makes the player sick, instead of killing them
+ 
 0.93
 
 *world*
