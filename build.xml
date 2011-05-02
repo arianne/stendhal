@@ -890,6 +890,7 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
+				<pathelement path="${jorbis_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
 				<pathelement path="data/script"/>
