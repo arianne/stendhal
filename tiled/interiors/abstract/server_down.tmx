@@ -67,12 +67,15 @@
  <tileset name="..\tileset\sky\haze.png" firstgid="1818" tilewidth="32" tileheight="32">
   <image source="../../tileset/sky/haze.png"/>
  </tileset>
- <tileset name="..\tileset\object\pacman.png" firstgid="1827" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/pacman.png"/>
+ <tileset name="..\tileset\building\decoration\pacman.png" firstgid="1827" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/pacman.png"/>
+ </tileset>
+ <tileset name="..\tileset\building\decoration\realwordcafe.png" firstgid="1836" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/realworldcafe.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK2XR3PUQBCFtVVeRAbfMDnjRL6R0wmXpJGM9y/w08nmRk6fC3X5MZ6RRsKHr6Z2Rnqvu2dWajWTLCuhhqIdK5lr5LeDDViDGTyH9XactfeXcr3dW4uezhetZiNepazp2IjPWuurcTjRqNvfpuVktDgqGf1Y7LqQj+YbWi88T62t+WiubrIzT+f5vMy2/WaR+XXRK1qszpZPI+vmZXsSy0fj0Ly76mGafgzqp3Gk1DV13fZRa61nstoln751/yxb/jGdhT3/8mouy17DG3gL7+A9fIBN+DgXj0PPeZ0Qr3l+QvMzfIGv8A2+ww/4Cb/gN2TT/nrYeeu7zrxzNPfCPtgPB+AgHILDcASOwvy0f1+s9n3XmfcxNBfgOJyAk3AKTsMZOAvn4Pz07/0X8iy7CJfy8P8/5ZyY9xKay7ACq3AVrsF1uAE34RbcbvO+jOcVWMzD+inn1bzvoHkX7sF9eAAP4RE8hifwFJ61+72E5zKs5P3Ph1gc/jkv0C6hAgc1NFt1hhewMU2rZ8r/M1Sn1LFPf+h1KWNKPf36h67zdf096COmH6p/X75DvWP1HPp8Hpt3SL8csD+x53tq3qpv77Wh76P/3W97nxUj6j4mb19f+4hyQN3HjHa/9Yb6LnUD6z523Xoz602tl9L53YzD6qt9mZts9yzWK9t8TMfvR219az4Wh/bIlcRhXvrt4PeVXe+Bru8E7Qsb+a09eyVr2jtbnLHnUVccun9usvM7pfE8K2/d5rUuXfurNdW+289Re3Gtg8Wi/wGd6zpn/plSvTrg+QfdcMS7iA4AAA==
+   H4sIAAAAAAAAAK3X1XMbMRDA4fNM3Cu3eWvK3IapGKaie5jYZYaU8Y8ut29l+nl6O9koOrAnD99ofLrblVayT45LjuMjgpe0gboWq88hqqighrOYTdpa8ryv7pdnIxVPX/eSmLHK5as+3cYqTyXJq8cRqhhR8llihaqVcQSqNcci99ny6Pna+j0jp66t5NFzDUtL5xkaeeadhXy1lOuzKp6XkDrLfGLVL7lkTdLmo8eh551VD4lpjkHn0+MoUtei/bKOutZ6TwbLlCev39zLMv+0OG0rFnvd4jhv8Bbv8B4f8BGf8LklfRx6n0cFxis5vxDzK77hO37gJ37hN/7gL5xyfj1kv+XdJ7ldYq7EKqzGGqzFOqzHBmxEazl/XaT2efdJ7k3EbMNmbMFWbMN27MBO7MLu8v/n97iOsxf7XPv3v8g+kdztxOxAJ7rQjR70og/9GMBgMu/95DyAg649fpH9KrmHiDmMEYxiDOOYwCSmMI2ZZL3bydmBTjf/9yFtHOY+94jtI0CICHG9zphDtVysnkW+n7Y6FW3z4jd6X5G2SD3N+tvuM+N2sX7d6EEv+tCPAQziEA7jCI666fFt9c+b7zHiHccQhjGCUYxhHBOYxBSmU/aZbT2L1H2GeCdwEqdwGmfq80MF5+DBR+Cm19NvYH2kPyRehLj+m4E5VOvzw3lcwEVcwmXXXk95rzX6PrpCvKu4huu4gZu4hdu4g7u4h3nLesv7zGui7veJ9wAP8QiP8QRP8QzP8QIv8cq1x9fnCL+BujfTyvNyNtTv0rDBujfbL2czOZvKWUpfX85xSH31uSwsLZxZ5Kws19PimOdR6a9fTxuHPiMHahySS/93MM+VWe+BrP8J+lwYq8/6zB6oPn12lnGm/R5ljUOvX1ha+j8lNnIGRr9c13XJWl9dU33uNueoz+K6DjIW/R3Q17L2mbmndLzIkvMfModGFYgOAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="31" height="30">
@@ -100,7 +103,7 @@
    H4sIAAAAAAAAAO3OQQ0AAAgEoDOa/UtZwZ+bgwQkAAA/dF0PANgYyAijr4gOAAA=
   </data>
  </layer>
- <layer name="collision" width="31" height="30" opacity="0.54">
+ <layer name="collision" width="31" height="30" visible="0" opacity="0.54">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UUQrAIAxD3e28/4n2O4bVNjbphAWKIOqLtbVfrfU/XDFSFV/B8rAZXtTsDO2yVXst79G7IjmoYCNnrdZ7apN179Goyrmn957z1lkZ/enlsXUiuzL/Eb+jP87yr2AjfwyLHRHKzvCA1lpGzlHt9gaT9xX224fla7budPbsPdisVR0o+RlxAwH9SRWIDgAA
   </data>
