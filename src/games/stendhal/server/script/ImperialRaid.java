@@ -25,7 +25,6 @@ public class ImperialRaid extends CreateRaid {
 	@Override
 	protected Map<String, Integer> createArmy() {
 		final Map<String, Integer> attackArmy = new HashMap<String, Integer>();
-		attackArmy.put("imperial soldier", 5);
 		attackArmy.put("imperial chief", 2);
 		attackArmy.put("imperial knight", 2);
 		attackArmy.put("imperial general", 1);
