@@ -172,7 +172,7 @@ class UseableEntity2DView extends Entity2DView {
 		if (isReleased()) {
 			return;
 		}
-		if (at == this.action) {
+		if (at.getActionCode().equals(this.action.getActionCode())) {
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 		} else {
 			super.onAction(at);

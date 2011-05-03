@@ -192,5 +192,12 @@ public enum ActionType {
 		return rpaction;
 	}
 	
-	
+	/**
+	 * gets the action code
+	 *
+	 * @return actioncode
+	 */
+	public String getActionCode() {
+		return actionCode;
+	}
 }
