@@ -4,7 +4,13 @@ Changelog
 0.94
 
 - overeating clears the food list and makes the player sick, instead of killing them
- 
+
+*admin*
+- added new zone int_abstract_admin_investigation for investigation account issues
+- added new zone int_abstract_server_down for operating Stendhal on a read only database copy
+
+
+
 0.93
 
 *world*
