@@ -34,6 +34,9 @@ div.itemSlot {width:32px; height:32px; background-repeat: no-repeat; border: 1px
 #cloak {position:absolute; top:90px; left:80px}
 #legs {position:absolute; top:80px; left:40px}
 #feet {position:absolute; top:120px; left:40px}
+
+#buddyList {border: 1px solid black; width: 128px; height: 352px; float: left; overflow:scroll}
+#buddyList ul {list-style-type: none; margin:0; padding:0.1em}
 </style>
 
 <script src="json.js"></script>
@@ -70,7 +73,7 @@ marauroa.perceptionListener.onPerceptionEnd = function(type, timestamp) {
 
 <div style="float:left; width:130px">
 <canvas style="border: 1px solid black; float: left" id="minimap" width="128" height="128">Sorry, this part of the page only works in modern web browsers.</canvas>
-<div id="buddyList" style="border: 1px solid black; width: 10em; float: left"></div>
+<div id="buddyList"></div>
 </div>
 
 <canvas id="gamewindow" width="640" height="480" style="float:left">Sorry, this pages only works in modern web browsers.</canvas>
