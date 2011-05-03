@@ -15,20 +15,24 @@ package games.stendhal.server.script;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 import java.util.Map;
 
-/** 
+import org.apache.log4j.Logger;
+
+/**
  * Base class for creating small raids of creatures from other lists
  * Picks randomly from the list and summons raid creatures within a radius of the admin.
  */
 public abstract class CreateRaid extends ScriptImpl {
+	private static Logger logger = Logger.getLogger(CreateRaid.class);
 
 	private final int RADIUS = 5;
-	
+
 	protected abstract Map<String, Integer> createArmy();
 
 	@Override
@@ -38,7 +42,7 @@ public abstract class CreateRaid extends ScriptImpl {
 			admin.sendPrivateText(getInfo());
 			return;
 		}
-		
+
 		// extract position of admin
 		final StendhalRPZone myZone = sandbox.getZone(admin);
 		final int x = admin.getX();
@@ -46,13 +50,18 @@ public abstract class CreateRaid extends ScriptImpl {
 		sandbox.setZone(myZone);
 
 		for (final Map.Entry<String, Integer> entry : createArmy().entrySet()) {
-			final RaidCreature creature = new RaidCreature(sandbox.getCreature(entry.getKey()));
+			Creature template = sandbox.getCreature(entry.getKey());
+			if (template != null) {
+				final RaidCreature creature = new RaidCreature(template);
 
-			for (int i = 0; i < entry.getValue(); i++) {
-				if(Rand.roll1D6()==1) {
-					sandbox.add(creature, x + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS), 
-							              y + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS));
+				for (int i = 0; i < entry.getValue(); i++) {
+					if(Rand.roll1D6()==1) {
+						sandbox.add(creature, x + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS),
+								              y + games.stendhal.common.Rand.randUniform(-RADIUS, RADIUS));
+					}
 				}
+			} else {
+				logger.error("Unknown creature name " + entry.getKey());
 			}
 		}
 	}
