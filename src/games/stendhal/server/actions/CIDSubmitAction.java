@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,35 +16,40 @@ import static games.stendhal.common.constants.Actions.ID;
 import games.stendhal.server.core.engine.dbcommand.LogCidCommand;
 import games.stendhal.server.entity.player.Player;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommandQueue;
+import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
+
+import org.apache.log4j.Logger;
 
 /**
  * handles CID actions.
  */
 public class CIDSubmitAction implements ActionListener {
-	
-	//Key is ID, value contains list of names
+	private static Logger logger = Logger.getLogger(CIDSubmitAction.class);
+
+	/** Key is ID, value contains list of names */
 	public static final Map<String, String> idList = new HashMap<String, String>();
-	
-	//Key is name, value is ID
+
+	/** Key is name, value is ID */
 	public static final Map<String, String> nameList = new HashMap<String, String>();
-	
-	
+
+	/** registers the action */
 	public static void register() {
 		CommandCenter.register(CID, new CIDSubmitAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(ID)) {
-			
+
 			final String cid = action.get(ID);
 			final String pName = player.getName();
-			
+
 			//add to idList
 			if (idList.containsKey(cid)) {
 				if(!idList.get(cid).contains("," + pName + ",")) {
@@ -54,13 +59,23 @@ public class CIDSubmitAction implements ActionListener {
 			} else {
 				idList.put(cid, "," + pName + ",");
 			}
-			
+
 			//add to nameList
 			nameList.put(pName, cid);
 
-			String address = PlayerEntryContainer.getContainer().get(player).getAddress().getHostAddress();
+			PlayerEntry entry = PlayerEntryContainer.getContainer().get(player);
+			if (entry == null) {
+				// already logged out again
+				return;
+			}
+			InetAddress inetAddress = entry.getAddress();
+			if (inetAddress == null) {
+				logger.error("inetAddress of entry " + entry + " is null", new Throwable());
+				return;
+			}
+			String address = inetAddress.getHostAddress();
 			DBCommandQueue.get().enqueue(new LogCidCommand(pName, address, cid));
-			
+
 		}
 	}
 }
