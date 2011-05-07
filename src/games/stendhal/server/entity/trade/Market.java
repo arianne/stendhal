@@ -281,18 +281,32 @@ public class Market extends PassiveEntity {
 		for (RPObject earningRPObject : this.getSlot(EARNINGS_SLOT_NAME)) {
 			Earning earning = (Earning) earningRPObject;
 			if (earning.getSeller().equals(earner.getName())) {
-				final StackableItem item = (StackableItem) SingletonRepository
-						.getEntityManager().getItem("money");
-				item.setQuantity(earning.getValue());
-				earner.equipToInventoryOnly(item);
 				earningsToRemove.add(earning);
-				if (earning.shouldReward()) {
-					applyTradingBonus(earner);
-				}
 			}
 		}
-
-		removeEarnings(earningsToRemove);
+		
+		if(!earningsToRemove.isEmpty()) {
+			int summedUpEarnings = 0;
+			//sum up
+			for (Earning earningToSumUp : earningsToRemove) {
+				summedUpEarnings = summedUpEarnings + earningToSumUp.getValue();
+			}
+			final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+			item.setQuantity(summedUpEarnings);
+			if(earner.equipToInventoryOnly(item)) {
+				//reward only if equipping was done
+				for(Earning earningToReward : earningsToRemove) {
+					if (earningToReward.shouldReward()) {
+						applyTradingBonus(earner);
+					}
+				}
+				removeEarnings(earningsToRemove);
+			} else {
+				//signal that no earnings were collected at all
+				//a caller can only distinguish if anything was collected
+				earningsToRemove.clear();
+			}
+		}
 
 		return earningsToRemove;
 	}

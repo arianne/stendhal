@@ -50,7 +50,8 @@ public class FetchEarningsChatAction implements ChatAction {
 			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
 			npc.say("Your earnings have been paid to you");
 		} else {
-			npc.say("You do not have any earnings to collect.");
+			//either you have no space in your bag or there isn't anything to collect
+			npc.say("You did not collect any earnings.");
 		}
 		npc.setCurrentState(ConversationStates.ATTENDING);
 	}
