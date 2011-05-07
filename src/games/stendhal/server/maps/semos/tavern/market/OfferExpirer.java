@@ -41,7 +41,7 @@ public class OfferExpirer implements TurnListener{
 	/**
 	 * number of days after which an expired offer will be removed completely.
 	 */
-	private static final int DAYS_TO_REMOVING = 7;
+	private static final int DAYS_TO_REMOVING = 30;
 	
 	/**
 	 * Time after earnings that the owner has not collected are pocketted by Harold.
