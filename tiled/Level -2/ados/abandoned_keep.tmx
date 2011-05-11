@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/strawberry.png"/>
  </tileset>
@@ -78,7 +77,7 @@
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2aOw6CQBRFobKw87cEK5drDwV+OgsLt2LNSpyJTEIjDnDHAeeQ3ITCnLxDw/MyVZZlJ5PzyFxMriYPk0rEDMl2zJtJKcq9mVHJDMm2zKeQVzczKpkh2TX++E98Rvy/s4+J+49hdvHyD8Eff/zxx/+//acwI/74448//mH8F7mOt8zfMyqZIdmWuTJZm2w6sm/S9Zutya6Z0Yfpyx3C7jtvyvHpk93zVPXZU+C2++9DonH9t70vE4t1du8//OPPgz/++P/e3+6Tsd9DsaLcf4ckJpf9V7v/Djmj4bv/9mX33X9LUdpnNApx5nb+oxByi2x+/Q/++OOPP/74448//vjjj//U/EN9/1X//+X7rz9b3X+5K3ZXRf9F/0X/pZ0Xf/zxxx//NP3Z//12dfWOHpvtmC+gODecAEAAAA==
+   H4sIAAAAAAAAAO2avQ6CMBhFy+Tg5t8jOPnOMODP5uDgqzjzJLaRJiySgre22kNyEwZz8h0WPi9tjTFHm9OHOdtcbO42rYgZk+2ZV5tGlFs/o5IZk+2YDyGv62dUMmOyO/zxz3xG/PFP5V+9Cf74448//v/tn8OM+OOPP/74x/FfVDresnrNqGTGZDvmymZtsxnJvs/Yb7Y2u37GEGYodw576rwlJ6RP9s9T1WfnwB3234dC4/tvd98UFufs33/4p58Hf/zx/76/2ydTv4dSRbn/zklKLvuvdv+dc0YjdP+dyp66/zaiDM9o1OL82vmPWsitze/1P/jjjz/++OOPP/74448//rn5x/r+q/7/y/ffcLa6//JX6q6K/ov+i/5LOy/++OOPP/5l+rP/h+3q6h09Ndszn0vmDuEAQAAA
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
@@ -101,7 +100,7 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="objects" width="64" height="64">
+ <layer name="objects" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3aQQrDIBAF0Nwf0k2bht62J2gQxuTX+N5SEL4MyoguC8CxvTj/0yUF/PZKB7ixZzoAFPzz2fBOBxjcGbU9qol60YOeGAAAgKut6QAAAERtjWOtkm9ms7yzzLJOMir7nzbVc3KEf1r+TwAAUJHqee/cx56xtuTdZIR70YwqdXl0SwFz+gJ8450CAEAAAA==
   </data>
