@@ -12,11 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.maps.magic.house1;
 
-import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.item.Corpse;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import marauroa.common.game.RPObject;
 
 /**
  * removes the island
@@ -38,11 +42,16 @@ public class AdventureIslandRemover implements TurnListener {
 		if (zone.getPlayers().size()==0) {
 			// Tell all corpses they are to be removed
 			// (stops timers)
+			Set<Corpse> corpses = new HashSet<Corpse>();
 			for (RPObject object : zone) {
 				if (object instanceof Corpse) {
-					((Corpse) object).onRemoved(zone);
+					corpses.add((Corpse) object);
 				}
 			}
+			for (Corpse corpse : corpses) {
+				zone.remove(corpse);
+			}
+
 			SingletonRepository.getRPWorld().removeZone(zone);
 		} 
 	}
