@@ -170,7 +170,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * 	<code>false</code> otherwise
 	 */
 	private boolean showAmountChooser(MouseEvent event, IEntity entity) {
-		if (((event.getModifiersEx() & MouseEvent.CTRL_DOWN_MASK) != 0)
+		if (((event.getModifiersEx() & (MouseEvent.CTRL_DOWN_MASK|MouseEvent.META_DOWN_MASK)) != 0)
 				&& (entity instanceof StackableItem)) {
 			return ((StackableItem) entity).getQuantity() > 1;
 		}
