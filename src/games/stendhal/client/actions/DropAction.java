@@ -17,17 +17,8 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
-import games.stendhal.common.grammar.ItemParser;
-import games.stendhal.common.grammar.ItemParserResult;
-import games.stendhal.common.parser.ConversationParser;
-import games.stendhal.common.parser.Sentence;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
+import games.stendhal.common.grammar.Grammar;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * Drop a player item.
@@ -45,53 +36,50 @@ class DropAction implements SlashAction {
 	 * @return <code>true</code> if command was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
-		// assemble available item names in all slots
-		User user = User.get();
-		Set<String> itemNames = new HashSet<String>();
-		for(final String slotName : Constants.CARRYING_SLOTS) {
-			for(Iterator<RPObject> it=user.getSlot(slotName).iterator(); it.hasNext(); )
-				itemNames.add(it.next().get("name"));
-		}
+		int quantity;
+		String itemName;
 
-		// parse item name and amount
-		final ItemParser parser = new ItemParser(itemNames);
-		final Sentence sentence = ConversationParser.parse((params[0] + " " + remainder).trim());
-		final ItemParserResult res = parser.parse(sentence);
-		String errorMsg;
-
-		if (res.wasFound()) {
-			final String itemName = res.getChosenItemName();
-
-			for(final String slotName : Constants.CARRYING_SLOTS) {
-				int itemID = User.get().findItem(slotName, itemName);
-
-				if (itemID != -1) {
-					final RPAction drop = new RPAction();
-
-					drop.put(EquipActionConsts.TYPE, "drop");
-					drop.put(EquipActionConsts.BASE_OBJECT, User.get().getObjectID());
-					drop.put(EquipActionConsts.BASE_SLOT, slotName);
-					drop.put(EquipActionConsts.GROUND_X, (int) User.get().getX());
-					drop.put(EquipActionConsts.GROUND_Y, (int) User.get().getY());
-					drop.put(EquipActionConsts.QUANTITY, res.getAmount());
-					drop.put(EquipActionConsts.BASE_ITEM, itemID);
-
-					ClientSingletonRepository.getClientFramework().send(drop);
-					return true;
-				}
+		// Is there a numeric expression as first parameter?
+		if (params[0].matches("[0-9].*")) {
+			try {
+				quantity = Integer.parseInt(params[0]);
+			} catch (final NumberFormatException ex) {
+				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid quantity: " + params[0]));
+				return true;
 			}
 
-			// should never be reached, as matching item names is already handled by ItemParser
-			errorMsg = "You don't have any " + itemName;
+			itemName = remainder;
 		} else {
-			errorMsg = parser.getErrormessage(res, "drop", null);
-
-			if (errorMsg == null) {
-				errorMsg = "You don't have any " + res.getChosenItemName();
-			}
+			quantity = 1;
+			itemName = (params[0] + " " + remainder).trim();
 		}
 
-		ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(errorMsg));
+		final String singularItemName = Grammar.singular(itemName);
+
+		for (final String slotName : Constants.CARRYING_SLOTS) {
+			int itemID = User.get().findItem(slotName, itemName);
+
+			// search again using the singular, in case it was a plural item name
+			if ((itemID == -1) && !itemName.equals(singularItemName)) {
+				itemID = User.get().findItem(slotName, singularItemName);
+			}
+
+			if (itemID != -1) {
+				final RPAction drop = new RPAction();
+
+				drop.put(EquipActionConsts.TYPE, "drop");
+				drop.put(EquipActionConsts.BASE_OBJECT, User.get().getObjectID());
+				drop.put(EquipActionConsts.BASE_SLOT, slotName);
+				drop.put(EquipActionConsts.GROUND_X, (int) User.get().getX());
+				drop.put(EquipActionConsts.GROUND_Y, (int) User.get().getY());
+				drop.put(EquipActionConsts.QUANTITY, quantity);
+				drop.put(EquipActionConsts.BASE_ITEM, itemID);
+
+				ClientSingletonRepository.getClientFramework().send(drop);
+				return true;
+			}
+		}
+		ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("You don't have any " + singularItemName));
 		return true;
 	}
 
