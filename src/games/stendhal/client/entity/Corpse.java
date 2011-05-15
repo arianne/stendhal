@@ -74,5 +74,15 @@ public class Corpse extends Entity {
 			content = null;
 		}
 	}
+	
+	/**
+	 * Checks if the corpse is empty or not
+	 * 
+	 *  @return true if the corpse is empty
+	 */
+	public boolean isEmpty() {
+		// size() is a method from RPSlot which counts the number of objects in the slot
+		return content.size() == 0;
+	}
 
 }

@@ -346,7 +346,7 @@ class Corpse2DView extends Entity2DView {
 			boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoinspectcorpses", "true"));
 			if (autoRaiseCorpse) {
 				Corpse corpse = (Corpse) entity;
-				if ((corpse.getCorpseOwner() != null) && corpse.getCorpseOwner().equals(User.getCharacterName())) {
+				if ((corpse.getCorpseOwner() != null) && corpse.getCorpseOwner().equals(User.getCharacterName()) && !corpse.isEmpty()) {
 					onAction(ActionType.INSPECT);
 				}
 			}
