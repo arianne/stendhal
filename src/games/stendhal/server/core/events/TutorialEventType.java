@@ -38,7 +38,7 @@ public enum TutorialEventType {
 	FIRST_ATTACKED(
 			"That creature with the yellow circle is attacking you! Click on it to fight back."),
 	FIRST_KILL(
-			"Click on the Corpse and drag the items with the mouse over your bag and drop them there."),
+			"Click on items in corpses to transfer them to your bag."),
     FIRST_PLAYER_KILL(
 			"You have been marked with the red skull of a player killer. You may find that people are wary of you now. To get it removed, you may speak to Io Flotto in Semos temple."),
 	FIRST_POISONED(
