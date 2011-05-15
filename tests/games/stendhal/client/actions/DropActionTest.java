@@ -18,14 +18,12 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
 import org.junit.Test;
 
 /**
@@ -34,17 +32,10 @@ import org.junit.Test;
  * @author Martin Fuchs
  */
 public class DropActionTest {
-
-	@After
-	public void tearDown() throws Exception {
-		StendhalClient.resetClient();
-	}
-
 	private static final String ZONE_NAME = "Testzone";
 	private static final int USER_ID = 1001;
 	private static final int MONEY_ID = 1234;
 	private static final int SILVER_SWORD_ID = 1235;
-	private static final int GOLDEN_SWORD_ID = 1236;
 
 	/**
 	 * Create and initialize a User object.
@@ -104,7 +95,7 @@ public class DropActionTest {
 
 		// issue "/drop 85x money"
 		assertTrue(action.execute(new String[]{"85x"}, "money"));
-		assertEquals("You don't have any 85x", clientUI.getEventBuffer());
+		assertEquals("Invalid quantity: 85x", clientUI.getEventBuffer());
 	}
 
 	/**
@@ -119,6 +110,7 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
+				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -151,6 +143,7 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
+				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -183,6 +176,7 @@ public class DropActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
+				client = null;
 				assertEquals("drop", action.get("type"));
 				assertEquals(USER_ID, action.getInt("baseobject"));
 				assertEquals(0, action.getInt("x"));
@@ -193,11 +187,11 @@ public class DropActionTest {
 			}
 		};
 
-		// create a player and give him a silver sword
+		// create a player and give him some money
 		final RPObject player = createPlayer();
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
-		// issue "/drop silver sword"
+		// issue "/drop money"
 		final DropAction action = new DropAction();
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
@@ -219,39 +213,6 @@ public class DropActionTest {
 	public void testGetMinimumParameters() {
 		final DropAction action = new DropAction();
 		assertThat(action.getMinimumParameters(), is(1));
-	}
-
-	/**
-	 * Tests for advanced error messages.
-	 */
-	@Test
-	public void testAdvancedMessages() {
-		// create client UI
-		final MockClientUI clientUI = new MockClientUI();
-
-		// create client
-		new MockStendhalClient() {
-			@Override
-			public void send(final RPAction action) {
-				assertEquals("drop", action.get("type"));
-				assertEquals(USER_ID, action.getInt("baseobject"));
-				assertEquals(0, action.getInt("x"));
-				assertEquals(0, action.getInt("y"));
-				assertEquals("bag", action.get("baseslot"));
-				assertEquals(1, action.getInt("quantity"));
-				assertEquals(SILVER_SWORD_ID, action.getInt("baseitem"));
-			}
-		};
-
-		// create a player and give him a silver sword and a golden sword
-		final RPObject player = createPlayer();
-		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
-		player.getSlot("bag").addPreservingId(createItem("golden sword", GOLDEN_SWORD_ID, 1));
-
-		// issue "/drop sword"
-		final DropAction action = new DropAction();
-		assertTrue(action.execute(new String[]{"sword"}, ""));
-		assertEquals("There is more than one sword. Please specify which sort of sword you want to drop.", clientUI.getEventBuffer());
 	}
 
 }

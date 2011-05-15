@@ -29,7 +29,7 @@ import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
- * Tests for the seller behaviour.
+ * Test selling cheese to the bar maid.
  *
  * @author Martin Fuchs
  */
@@ -186,7 +186,7 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 	 * Tests for selling solid plate shields.
 	 */
 	@Test
-	public void testSellPlateShields() {
+	public void testSellShields() {
 		final SpeakerNPC npc = getNPC("McPegleg");
 		final Engine en = npc.getEngine();
 
@@ -232,43 +232,5 @@ public class SellingTest extends ZonePlayerAndNPCTestImpl {
 		 // check if we got the promised money and the cheese is gone into McPegleg's hands
 		assertTrue(player.isEquipped("money", 5));
         assertFalse(player.isEquipped("plate shield", 1));
-
-		assertTrue(en.step(player, "bye"));
-		assertEquals("I see you!", getReply(npc));
-	}
-
-	/**
-	 * Tests for selling enhanced lion plate shields.
-	 */
-	@Test
-	public void testSellLionShield() {
-		final SpeakerNPC npc = getNPC("McPegleg");
-		final Engine en = npc.getEngine();
-
-		assertTrue(en.step(player, "hi"));
-		assertEquals("Yo matey! You look like you need #help.", getReply(npc));
-
-		assertTrue(en.step(player, "sell lion shield"));
-		assertEquals("A lion shield is worth 50. Do you want to sell it?", getReply(npc));
-
-		assertTrue(en.step(player, "yes"));
-		assertEquals("Sorry! You don't have any lion shield.", getReply(npc));
-
-		 // equip the player with a lion shield to be sold
-		assertFalse(player.isEquipped("lion shield", 1));
-		assertTrue(equipWithItem(player, "lion shield"));
-		assertTrue(player.isEquipped("lion shield", 1));
-
-		assertTrue(en.step(player, "sell enhanced lion shield"));
-		assertEquals("A lion shield is worth 50. Do you want to sell it?", getReply(npc));
-
-		 // ensure we currently don't have any money
-		assertFalse(player.isEquipped("money", 1));
-
-		assertTrue(en.step(player, "yes"));
-		assertEquals("Thanks! Here is your money.", getReply(npc));
-
-		assertTrue(en.step(player, "bye"));
-		assertEquals("I see you!", getReply(npc));
 	}
 }
