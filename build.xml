@@ -208,8 +208,8 @@
 
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server" file="${src}/games/stendhal/server/stendhal_init.sql"/>
-		<copy todir="${build_server}/games/stendhal/server">
-			<fileset dir="${src}/games/stendhal/server">
+		<copy todir="${build_server}/games/stendhal/common">
+			<fileset dir="${src}/games/stendhal/common">
 				<include name="**/*.txt"/>
 			</fileset>
 		</copy>
