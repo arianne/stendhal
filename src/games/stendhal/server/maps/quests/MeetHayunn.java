@@ -45,8 +45,8 @@ import org.apache.log4j.Logger;
  * STEPS: <ul>
  * <li> Talk to Hayunn to activate the quest.
  * <li> He asks you to kill a rat, also offering to teach you how
- * <li> Return and learn how to loot, identify items and heal
- * <li> Return and learn how to double click move, and get some URLs
+ * <li> Return and get directions to Semos
+ * <li> Return and learn how to click move, and get some URLs
  * </ul>
  *
  * REWARD: <ul><li> 20 XP <li> 5 gold coins <li> studded shield </ul>
