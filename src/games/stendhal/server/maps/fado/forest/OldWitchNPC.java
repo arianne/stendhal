@@ -50,7 +50,7 @@ public class OldWitchNPC implements ZoneConfigurator {
 				addGreeting("Hello *Cough*");
 				addJob("I was once a powerful witch. But I took a great risk and lost my powers, fighting against some #werewolves.");
 				addReply("werewolves", "They are really dangerous! I met some on the way to Kikareukin earlier and have been deeply poisoned. That is why I have to rest here.");
-				addQuest("Oh dear, you seem to be really nice and trustful, but I can't give you any work at the moment.");
+				addQuest("Oh dear, you seem to be really nice and trustworthy, but I can't give you any work at the moment.");
 				addHelp("Maybe my daughter #Imorgen outside can help you. She knows lots of people around Faiumoni.");
 				addReply("Imorgen", "Hopefully she'll become a powerful witch like me in the future. But she still has to learn a lot.");
 				addOffer("I would like to sell you one of my famous drinks but I can't *cough*.");
