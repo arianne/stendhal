@@ -90,12 +90,15 @@ public class NPCTest extends ZonePlayerAndNPCTestImpl {
 	public void testIdea() {
 		final SpeakerNPC npc = getNPC("Felina");
 
-		assertEquals(null, npc.getIdea());
+		assertEquals("awaiting", npc.getIdea());
 		npc.setIdea("walk");
 		assertEquals("walk", npc.getIdea());
 
 		npc.setIdea(null);
 		assertEquals(null, npc.getIdea());
+
+		npc.setIdea("awaiting");
+		assertEquals("awaiting", npc.getIdea());
 	}
 
 	// players use _hi, _hello etc to avoid npcs answering when it's meant to 
