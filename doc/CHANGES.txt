@@ -4,10 +4,12 @@ Changelog
 0.94
 - increased time for expired items and earnings on the market
 - over-eating clears the food list and makes the player sick, instead of killing them
+- empty corpses are not automatically inspected
+- NPCs who await a specific response (e.g. for a question) have a special icon
 
 *bugfixes*
 - fixed right clicking on sources, fishing spots, etc.
-- On Mac cmt+dragging opens the item split window
+- On Mac cmd+dragging opens the item split window
 
 *admin*
 - added new zone int_abstract_admin_investigation for investigation account issues
