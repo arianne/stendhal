@@ -139,6 +139,9 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!", getReply(npc));
 
 		assertTrue(player.hasPet());
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Bye.", getReply(npc));
 	}
 
 	/**
