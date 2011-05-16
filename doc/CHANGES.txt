@@ -2,11 +2,12 @@ Changelog
 ---------
 
 0.94
-
-- overeating clears the food list and makes the player sick, instead of killing them
+- increased time for expired items and earnings on the market
+- over-eating clears the food list and makes the player sick, instead of killing them
 
 *bugfixes*
 - fixed right clicking on sources, fishing spots, etc.
+- On Mac cmt+dragging opens the item split window
 
 *admin*
 - added new zone int_abstract_admin_investigation for investigation account issues
