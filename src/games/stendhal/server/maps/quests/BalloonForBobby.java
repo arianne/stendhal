@@ -175,10 +175,10 @@ public class BalloonForBobby extends AbstractQuest {
 		// Rewards to give to the player if he gives Bobby the balloon
 		// NOTE: Also changes the players outfit to get rid of the balloon
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new ChangePlayerOutfitAction(balloonList[0], false));
-		reward.add(new ChangePlayerOutfitAction(balloonList[1], false));
-		reward.add(new ChangePlayerOutfitAction(balloonList[2], false));
-		reward.add(new ChangePlayerOutfitAction(balloonList[3], false));
+		reward.add(new ChangePlayerOutfitAction(balloonList[0], false, false));
+		reward.add(new ChangePlayerOutfitAction(balloonList[1], false, false));
+		reward.add(new ChangePlayerOutfitAction(balloonList[2], false, false));
+		reward.add(new ChangePlayerOutfitAction(balloonList[3], false, false));
 		reward.add(new IncreaseXPAction(200));
 		reward.add(new IncreaseKarmaAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT,0,"done"));

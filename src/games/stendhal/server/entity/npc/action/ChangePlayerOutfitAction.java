@@ -31,6 +31,7 @@ public class ChangePlayerOutfitAction implements ChatAction {
 
 	private final Outfit outfitChange;
 	private final boolean addOutfit;
+	private final boolean temporaryOutfit;
 
 	/**
 	 * Creates a new ChangePlayerOutfitAction
@@ -40,26 +41,31 @@ public class ChangePlayerOutfitAction implements ChatAction {
 	 * @param addOutfit
 	 * 			addOutfit = true: Add (part of) the outfit to the players current outfit
 	 * 			addOutfit = false: Remove (part of) the outfit the player currently wears
+	 * @param temporaryOutfit is this a temporary outfit or a permanent change?
 	 */
-	public ChangePlayerOutfitAction(Outfit outfit, boolean addOutfit) {
+	public ChangePlayerOutfitAction(Outfit outfit, boolean addOutfit, boolean temporaryOutfit) {
 		this.outfitChange = outfit;
 		this.addOutfit = addOutfit;
+		this.temporaryOutfit = temporaryOutfit;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		final Outfit outfit = player.getOutfit();
+		Outfit outfit = player.getOriginalOutfit();
+		if (outfit == null) {
+			outfit = player.getOutfit();
+		}
 
 		// Depending on if you want to add or remove part of the outfit...
 		if (addOutfit) {
 			//... either put the new outfit over the old one
 			// and set the players outfit to the combination
 			Outfit tempOutfit = this.outfitChange.putOver(outfit);
-			player.setOutfit(tempOutfit, true);
+			player.setOutfit(tempOutfit, temporaryOutfit);
 		} else {
 			//... or remove (parts of) the players outfit
 			// and set the players outfit to this combination
 			Outfit tempOutfit = outfit.removeOutfit(this.outfitChange);
-			player.setOutfit(tempOutfit, true);
+			player.setOutfit(tempOutfit, temporaryOutfit);
 		}
 	}
 
