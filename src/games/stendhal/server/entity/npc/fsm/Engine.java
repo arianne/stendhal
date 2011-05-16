@@ -466,10 +466,16 @@ public class Engine {
 		}
 
 		currentState = nextState;
-
+        if (currentState == ConversationStates.ATTENDING) {
+        	speakerNPC.setIdea("attending");
+        } else if (currentState != ConversationStates.IDLE) {
+        	speakerNPC.setIdea("awaiting");
+        }
 		if (trans.getAction() != null) {
 			trans.getAction().fire(player, sentence, new EventRaiser(speakerNPC));
 		}
+		
+		speakerNPC.notifyWorldAboutChanges();
 	}
 
 	/**

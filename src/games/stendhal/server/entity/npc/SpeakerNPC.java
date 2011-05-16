@@ -290,7 +290,6 @@ public class SpeakerNPC extends NPC {
 		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (rpentity != null) {
 			stop();
-			setIdea("attending");
 		} else {
 			if (hasPath()) {
 				setSpeed(getBaseSpeed());
@@ -625,6 +624,11 @@ public class SpeakerNPC extends NPC {
 	}
 
 	public void setCurrentState(final ConversationStates state) {
+		if (state == ConversationStates.ATTENDING) {
+        	setIdea("attending");
+        } else {
+        	setIdea("awaiting");
+        }
 		engine.setCurrentState(state);
 	}
 
