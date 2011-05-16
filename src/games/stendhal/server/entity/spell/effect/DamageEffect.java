@@ -30,11 +30,11 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 
 	private static final Logger LOGGER = Logger.getLogger(DamageEffect.class);
 	
-	/** the entity getting damaged */
-	private RPEntity rpEntityToDamage;
+//	/** the entity getting damaged */
+//	private RPEntity rpEntityToDamage;
 	
-	/** the player issuing the effect */
-	private Player damageOrigin;
+//	/** the player issuing the effect */
+//	private Player damageOrigin;
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
 			double lifesteal, int rate, int regen) {
@@ -56,8 +56,8 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	
 	private void actInternal(Player caster, RPEntity target) {
 		// remember caster and target
-		rpEntityToDamage = target;
-		damageOrigin = caster;
+//		rpEntityToDamage = target;
+//		damageOrigin = caster;
 		// use turn notifier to enable for damage over a certain amount of time
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
