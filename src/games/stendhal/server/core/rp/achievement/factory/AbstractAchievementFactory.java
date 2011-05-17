@@ -69,6 +69,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new QuestAchievementFactory());
 		list.add(new OutsideZoneAchievementFactory());
 		list.add(new UndergroundZoneAchievementFactory());
+		list.add(new InteriorZoneAchievementFactory());
 		return list;
 	}
 

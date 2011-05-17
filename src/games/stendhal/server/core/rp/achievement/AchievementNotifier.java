@@ -176,6 +176,7 @@ public final class AchievementNotifier {
 	public void onZoneEnter(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.OUTSIDE_ZONE);
 		getAndCheckAchievementsInCategory(player, Category.UNDERGROUND_ZONE);
+		getAndCheckAchievementsInCategory(player, Category.INTERIOR_ZONE);
 	}
 
 	/**

@@ -28,6 +28,8 @@ public enum Category {
 	OUTSIDE_ZONE,
 	/** visiting groups of underground zones */
 	UNDERGROUND_ZONE,
+	/** visiting groups of interior zones */
+	INTERIOR_ZONE,
 	/** age of character */
 	AGE,
 	/** looting items */
