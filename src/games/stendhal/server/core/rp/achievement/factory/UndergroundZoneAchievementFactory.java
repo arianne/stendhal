@@ -34,6 +34,9 @@ public class UndergroundZoneAchievementFactory extends AbstractAchievementFactor
 		list.add(createAchievement("zone.underground.amazon", "Human Mole", "Visit all underground zones in the Amazon region",
 									Achievement.MEDIUM_BASE_SCORE, true,
 									new PlayerVisitedZonesInRegionCondition("amazon", Boolean.TRUE, Boolean.FALSE)));
+		list.add(createAchievement("zone.underground.ados", "Deep Dweller", "Visit all underground zones in the Ados region",
+									Achievement.MEDIUM_BASE_SCORE, true,
+									new PlayerVisitedZonesInRegionCondition("ados", Boolean.TRUE, Boolean.FALSE)));
 		return list;
 	}
 
