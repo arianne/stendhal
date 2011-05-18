@@ -47,6 +47,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.ArrayList;
@@ -569,5 +570,10 @@ public class SadScientist extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 100;
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.KALAVAN;
 	}
 }

@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -324,5 +325,10 @@ public class ImperialPrincess extends AbstractQuest {
 	@Override
 	public int getMinLevel() {
 		return 50;
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.KALAVAN;
 	}
 }
