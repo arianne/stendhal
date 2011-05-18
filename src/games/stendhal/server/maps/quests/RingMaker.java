@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -246,5 +247,10 @@ public class RingMaker extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "RingMaker";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CITY;
 	}
 }

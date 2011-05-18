@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.marriage.MarriageQuestChain;
 
 import java.util.List;
@@ -83,6 +84,11 @@ public class Marriage extends AbstractQuest {
 	@Override
 	public String getName() {
 		return "Marriage";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CITY;
 	}
 
 }

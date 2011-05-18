@@ -39,6 +39,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -269,6 +270,11 @@ public class WaterForXhiphin extends AbstractQuest {
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 				 new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player,null, null);
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CITY;
 	}
 	
 }
