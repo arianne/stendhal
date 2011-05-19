@@ -16,11 +16,9 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 /**
  * translates the visual representation into server side commands.
- * 
+ *
  * @author astridemma
  */
 public enum ActionType {
@@ -115,7 +113,7 @@ public enum ActionType {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param actCode
 	 *            the code to be sent to the server
 	 * @param actionRep
@@ -128,7 +126,7 @@ public enum ActionType {
 
 	/**
 	 * finds the ActionType that belongs to a visual String representation.
-	 * 
+	 *
 	 * @param representation
 	 *            the menu String
 	 * @return the Action Element or null if not found
@@ -140,8 +138,6 @@ public enum ActionType {
 			}
 
 		}
-		Logger.getLogger(ActionType.class).error(
-				representation + " =code: not found");
 		return null;
 	}
 
@@ -162,18 +158,18 @@ public enum ActionType {
 
 	/**
 	 * sends the requested action to the server.
-	 * 
+	 *
 	 * @param rpaction
 	 *            action to be sent
 	 */
 	public void send(final RPAction rpaction) {
 		StendhalClient.get().send(rpaction);
 	}
-	
+
 	public RPAction fillTargetInfo(final RPObject rpObject) {
-		
+
 		RPAction rpaction = new RPAction();
-		
+
 		rpaction.put("type", toString());
 		final int id = rpObject.getID().getObjectID();
 
@@ -188,10 +184,10 @@ public enum ActionType {
 			target.append(Integer.toString(id));
 			rpaction.put("target", target.toString());
 		}
-		
+
 		return rpaction;
 	}
-	
+
 	/**
 	 * gets the action code
 	 *
