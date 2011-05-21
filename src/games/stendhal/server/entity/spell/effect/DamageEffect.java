@@ -24,17 +24,23 @@ import org.apache.log4j.Logger;
 /**
  * An effect to cause magical damage with a spell
  * 
+ * Used attributes:
+ * - amount: How often will this effect hit a player
+ * - atk: for usage of the usual damage calcuation acting as a weapon
+ * 
  * @author madmetzger
  */
 public class DamageEffect extends AbstractEffect implements TurnListener {
 
 	private static final Logger LOGGER = Logger.getLogger(DamageEffect.class);
 	
-//	/** the entity getting damaged */
-//	private RPEntity rpEntityToDamage;
+	/** the entity getting damaged */
+	private RPEntity rpEntityToDamage;
 	
-//	/** the player issuing the effect */
-//	private Player damageOrigin;
+	/** the player issuing the effect */
+	private Player damageOrigin;
+	
+	private int numberOfLeftOverHits;
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
 			double lifesteal, int rate, int regen) {
@@ -50,14 +56,22 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	}
 	
 	public void onTurnReached(int currentTurn) {
-		//TODO implement DamageEffect action
+		if(numberOfLeftOverHits > 0) {
+			int damageDone = damageOrigin.damageDone(rpEntityToDamage);
+			rpEntityToDamage.damage(damageDone, damageOrigin);
+			numberOfLeftOverHits = numberOfLeftOverHits -1;
+			if (numberOfLeftOverHits > 0) {
+				SingletonRepository.getTurnNotifier().notifyInTurns(getRate(), new TurnListenerDecorator(this));
+			}
+		}
 	}
 
 	
 	private void actInternal(Player caster, RPEntity target) {
 		// remember caster and target
-//		rpEntityToDamage = target;
-//		damageOrigin = caster;
+		rpEntityToDamage = target;
+		damageOrigin = caster;
+		numberOfLeftOverHits = this.getAmount();
 		// use turn notifier to enable for damage over a certain amount of time
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
