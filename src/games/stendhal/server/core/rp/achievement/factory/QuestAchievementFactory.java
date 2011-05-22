@@ -65,6 +65,10 @@ public class QuestAchievementFactory extends AbstractAchievementFactory {
 		// have completed all quests in Ados City?
 		questAchievements.add(createAchievement("quest.special.ados", "Helper of Ados city dwellers", "Complete all quests in Ados City",
 				Achievement.MEDIUM_BASE_SCORE, true, new QuestsInRegionCompletedCondition(Region.ADOS_CITY)));
+		
+		// complete nearly all the quests in the game?
+		questAchievements.add(createAchievement("quest.count.80", "Quest Junkie","Complete at least 80 quests",
+				Achievement.MEDIUM_BASE_SCORE, true, new QuestCountCompletedCondition(80)));
 
 		return questAchievements;
 	}
