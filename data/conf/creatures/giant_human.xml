@@ -147,7 +147,7 @@
 
   <creature name="amazoness giant">
     <type class="giant_human" subclass="amazoness_giant" tileid="giant_human.png:10"/>
-    <description>You see an amazoness giant. She looks very beautiful but don´t be deceived by that!</description>
+    <description>You see an amazoness giant. She looks very beautiful but don't be deceived by that!</description>
     <attributes>
       <atk value="974"/>
       <def value="124"/>
@@ -263,7 +263,7 @@
 
   <creature name="angel">
     <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
-    <description>You see an angel. With his flame sword he guards the way and doesn´t let you pass.</description>
+    <description>You see an angel. With his flame sword he guards the way and doesn't let you pass.</description>
     <attributes>
       <atk value="1187"/>
       <def value="128"/>
@@ -306,7 +306,7 @@
   
  <creature name="archangel">
     <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
-    <description>You see an archangel. She wants to kill you because she doesn´t want you in the clouds.</description>
+    <description>You see an archangel. She wants to kill you because she doesn't want you in the clouds.</description>
     <attributes>
       <atk value="1455"/>
       <def value="162"/>

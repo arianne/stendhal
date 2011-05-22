@@ -37,7 +37,7 @@
 
   <creature name="amazoness hunter">
     <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
-    <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn´t like that you are in her hunting area!</description>
+    <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn't like that you are in her hunting area!</description>
     <attributes>
       <atk value="484"/>
       <def value="57"/>
@@ -243,7 +243,7 @@
   
   <creature name="amazoness vigilance">
     <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
-    <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don´t want her to hear you!</description>
+    <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don't want her to hear you!</description>
     <attributes>
       <atk value="629"/>
       <def value="86"/>

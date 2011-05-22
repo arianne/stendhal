@@ -4,7 +4,7 @@
  
    <creature name="imp">
     <type class="demon" subclass="imp" tileid="demon.png:0"/>
-    <description>You see an imp. He may look a little bit cute, but don´t forget he is one of the devil´s servants!</description>
+    <description>You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!</description>
     <attributes>
       <atk value="495"/>
       <def value="73"/>

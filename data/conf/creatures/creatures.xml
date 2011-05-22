@@ -109,7 +109,7 @@
 <!--
  <creature name="smuggler">
     <type class="lutin" subclass="lutin_king" tileid="animal.png:100"/>
-    <description>You see a smuggler. You don´t know what he's smuggling... Maybe you will be able to find out? But if he notices you as you are watching him, he will fight to save his secrets!</description>
+    <description>You see a smuggler. You don't know what he's smuggling... Maybe you will be able to find out? But if he notices you as you are watching him, he will fight to save his secrets!</description>
     <attributes>
       <atk value="270"/>
       <def value="70"/>

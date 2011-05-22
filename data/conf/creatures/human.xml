@@ -302,7 +302,7 @@
  
    <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
-    <description>You see a cannibal. He hunts you for cooking and eating your fresh meat! It´s useless to tell him that your flesh is not good, better fight him or run away!</description>
+    <description>You see a cannibal. He hunts you for cooking and eating your fresh meat! It's useless to tell him that your flesh is not good, better fight him or run away!</description>
     <attributes>
       <atk value="281"/>
       <def value="91"/>
