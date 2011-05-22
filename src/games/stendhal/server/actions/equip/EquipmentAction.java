@@ -87,21 +87,9 @@ public abstract class EquipmentAction implements ActionListener {
 		}
 
 		execute(player, action, source);
-
 	}
 
-
-//	/**
-//	 * There are special zones where people should not be allowed to exchange items as for example in Jail.
-//	 * @param player
-//	 * @return true if exchange is NOT allowed in this zone.
-//	 */
-//	private boolean isNotInValidZone(final Player player) {
-//		return player.getZone().getName().endsWith("_jail");
-//	}
-
 	protected abstract void execute(final Player player, final RPAction action, final  SourceObject source);
-
 
 	private boolean isValidAction(final RPAction action) {
 		return action != null;
