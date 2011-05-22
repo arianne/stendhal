@@ -6,6 +6,7 @@ Changelog
 - over-eating clears the food list and makes the player sick, instead of killing them
 - empty corpses are not automatically inspected
 - NPCs who await a specific response (e.g. for a question) have a special icon
+- new achievements active: interior zones, DM points, completed quests, red armor set
 
 *bugfixes*
 - fixed right clicking on sources, fishing spots, etc.
