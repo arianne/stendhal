@@ -729,7 +729,7 @@
   
   <creature name="poisonous spider">
     <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
-    <description>You see a poisonous spider. Be careful! It´s poison is very strong! It will make you very weak and can probably kill you!</description>
+    <description>You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!</description>
     <attributes>
       <atk value="244"/>
       <def value="61"/>
