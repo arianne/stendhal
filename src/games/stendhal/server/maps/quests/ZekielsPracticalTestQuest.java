@@ -83,13 +83,12 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 				null);
 
 		// player asks about quest when he is in the practical test stage
-		// TODO: would we like to reword this question to not be a yes/no answer, or add the yes/no replies?
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestInStateCondition(QUEST_SLOT, "candles_done"),
 				ConversationStates.ATTENDING, 
-				"You haven't finished the practical test. Are you ready to #start with it, or do you want to know " +
-				"more about the #wizards first?",
+				"You haven't finished the practical test. You can #start with it, or you can learn " +
+				"more about the #wizards before you begin.",
 				null);
 		
 		// we should only answer to these ingredients questions if the candles stage is not yet done
