@@ -86,7 +86,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 														})));
 
 		// earn over 250 karma
-		achievements.add(createAchievement("friend.karma.250", "Good Samaritan", "Earn 250 Karma",
+		achievements.add(createAchievement("friend.karma.250", "Good Samaritan", "Earn a very good karma",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new ChatCondition() {
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
