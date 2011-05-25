@@ -4,9 +4,11 @@
   <item name="lucky charm">
     <type class="special" subclass="lucky_charm" tileid="-1"/>
     <description>You see a lucky charm. Some believe that it helps their karma in some way, but others think that is superstition.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
-	   </attributes>
+      <max_quantity value="2147483648"/>
+    </attributes>
     <weight value="1.0"/>
     <value value="100000"/>
     <equipable>
@@ -42,7 +44,8 @@
     <type class="special" subclass="mythical_egg" tileid="-1"/>
     <description>You see a mythical egg, but you do not know, what it is for.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-	  <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="100000"/>
@@ -60,8 +63,10 @@
   <item name="magical eggshells">
     <type class="special" subclass="eggshells" tileid="-1"/>
     <description>You see shards from a mythical egg. They have magical properties.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1000"/>
@@ -78,8 +83,10 @@
   <item name="golden gm token">
     <type class="special" subclass="GM_tokend_gold2" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -96,8 +103,10 @@
   <item name="silvery gm token">
     <type class="special" subclass="GM_tokend_silver" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -114,8 +123,10 @@
   <item name="bronze gm token">
     <type class="special" subclass="GM_tokend_bronze" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

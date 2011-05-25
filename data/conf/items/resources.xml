@@ -4,8 +4,10 @@
 	 <item name="wood">
     <type class="resource" subclass="wood" tileid="-1"/>
     <description>You see some wood, fallen from a nearby tree.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -22,8 +24,10 @@
   <item name="sugar cane">
     <type class="resource" subclass="sugarcane" tileid="-1"/>
     <description>You see a sugar cane. You can grind it for raw sugar.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.05"/>
     <value value="1"/>
@@ -40,8 +44,10 @@
   <item name="grain">
     <type class="resource" subclass="grain" tileid="-1"/>
     <description>You see a sheaf of grain.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.05"/>
     <value value="1"/>
@@ -58,8 +64,10 @@
   <item name="flour">
     <type class="resource" subclass="flour" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -76,8 +84,10 @@
   <item name="iron ore">
     <type class="resource" subclass="iron_ore" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -94,8 +104,10 @@
   <item name="coal">
     <type class="resource" subclass="coal" tileid="-1"/>
     <description>You see a black and shiny piece of stone coal. It stayed in the ground for million of years.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -112,8 +124,10 @@
   <item name="wool">
     <type class="resource" subclass="wool" tileid="-1"/>
     <description>You see wool. It was recently shorn.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -130,8 +144,10 @@
   <item name="yarn">
     <type class="resource" subclass="yarn" tileid="-1"/>
     <description>You see a ball of yarn. It was spun with care.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -148,8 +164,10 @@
   <item name="cloth">
     <type class="resource" subclass="cloth" tileid="-1"/>
     <description>You see a roll of cloth. It is of first-class quality.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -166,8 +184,10 @@
   <item name="gold nugget">
     <type class="resource" subclass="gold_ore" tileid="-1"/>
     <description>You see a gold nugget. Its rich golden colour shines, and it may be useful.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -184,8 +204,10 @@
   <item name="mithril nugget">
     <type class="resource" subclass="mithril_ore" tileid="-1"/>
     <description>You see a mithril nugget. Its pale silvery color shines, and it may be useful.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -202,8 +224,10 @@
   <item name="iron">
     <type class="resource" subclass="iron" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -220,8 +244,10 @@
   <item name="gold bar">
     <type class="resource" subclass="gold_bar" tileid="-1"/>
     <description>You see a gold bar. It will make beautiful jewelry, or fetch a fine price.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -238,8 +264,10 @@
   <item name="mithril bar">
     <type class="resource" subclass="mithril_bar" tileid="-1"/>
     <description>You see a mithril bar. It can be made into excellent armor, or fetch a fine price.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="1"/>
@@ -256,8 +284,10 @@
   <item name="golden egg">
     <type class="resource" subclass="golden_egg" tileid="-1"/>
     <description>You see a valuable golden egg.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1000"/>
@@ -274,10 +304,12 @@
   <item name="spotted egg">
     <type class="food" subclass="spotted_egg" tileid="-1"/>
     <description>You see a spotted egg. They are said to be delicious.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <attributes>
       <amount value="1000"/>
       <frequency value="10"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
       <regen value="10"/>
     </attributes>
     <weight value="1.0"/>
@@ -295,8 +327,10 @@
  <item name="reptile egg">
     <type class="resource" subclass="green_egg" tileid="-1"/>
     <description>You see a valuable reptile egg.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="10000"/>
@@ -313,8 +347,10 @@
   <item name="silk gland">
     <type class="resource" subclass="silkgland" tileid="-1"/>
     <description>You see a silk gland from a giant spider. Its contents are extremely valuable.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="2000"/>
@@ -331,8 +367,10 @@
   <item name="silk thread">
     <type class="resource" subclass="silkthread" tileid="-1"/>
     <description>You see a spool of silk thread, spun from the glands of a giant spider..</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="4000"/>
@@ -351,7 +389,8 @@
     <description>You see a small can of oil.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-     <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -368,8 +407,10 @@
   <item name="mithril thread">
     <type class="resource" subclass="mithril_thread" tileid="-1"/>
     <description>You see a spool of mithril thread, made from silk fused with mithril.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="8000"/>
@@ -386,8 +427,10 @@
   <item name="mithril fabric">
     <type class="resource" subclass="mithril_fabric" tileid="-1"/>
     <description>You see a couple yards of mithril fabric. It's very sparkly!</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="2.0"/>
     <value value="10000"/>
@@ -404,8 +447,10 @@
   <item name="horse hair">
     <type class="resource" subclass="horsehair" tileid="-1"/>
     <description>You see some horse hairs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -422,8 +467,10 @@
   <item name="beeswax">
     <type class="resource" subclass="beeswax" tileid="-1"/>
     <description>You see a piece of beeswax.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
@@ -442,7 +489,8 @@
     <description>You see a candle in a candle stick.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-       <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

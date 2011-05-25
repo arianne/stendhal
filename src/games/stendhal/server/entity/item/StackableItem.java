@@ -26,14 +26,15 @@ import org.apache.log4j.Logger;
 public class StackableItem extends Item implements Stackable<StackableItem> {
 
 	private int quantity = 1;
+	private int capacity = 1;
 
 	private static Logger logger = Logger.getLogger(StackableItem.class);
 
-	private static final String[] IMPORTANT_ATTRIBUTES = new String[] { "infostring", 
+	private static final String[] IMPORTANT_ATTRIBUTES = new String[] { "infostring",
 			"bound",
 			"persistent", "undroppableondeath", "amount", "frequency",
 			"regen", "atk", "range" };
-	
+
 	private static final String[] ATTRIBUTES_TO_COPY_ON_SPLIT = initializeAttributeNamesToCopy();
 
 	private static String[] initializeAttributeNamesToCopy() {
@@ -41,7 +42,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		attsToCopy.add("description");
 		return attsToCopy.toArray(new String[attsToCopy.size()]);
 	}
-	
+
 	public StackableItem(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
@@ -50,13 +51,14 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 
 	/**
 	 * Copy constructor.
-	 * 
+	 *
 	 * @param item
 	 *            item to copy
 	 */
 	public StackableItem(final StackableItem item) {
 		super(item);
 		this.setQuantity(item.getQuantity());
+		this.setCapacity(item.getCapacity());
 		update();
 	}
 
@@ -65,6 +67,9 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		super.update();
 		if (has("quantity")) {
 			setQuantity(getInt("quantity"));
+		}
+		if (has("max_quantity")) {
+			setQuantity(getInt("max_quantity"));
 		}
 	}
 
@@ -86,7 +91,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 
 	/**
 	 * Reduces Item's amount by amount.
-	 * 
+	 *
 	 * @param amount of reduction, negative numbers will be ignored.
 	 * @return remaining amount
 	 */
@@ -119,13 +124,13 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 					getName());
 
 			newItem.setQuantity(amountToSplitOff);
-		
+
 			for (final String attribute : ATTRIBUTES_TO_COPY_ON_SPLIT) {
 				if (has(attribute)) {
 					newItem.put(attribute, get(attribute));
 				}
 			}
-			
+
 			sub(amountToSplitOff);
 
 			if (getQuantity() > 0) {
@@ -170,7 +175,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			return false;
 		}
 
-		
+
 		for (final String iAtt : IMPORTANT_ATTRIBUTES) {
 			if (has(iAtt)) {
 				if (!onTop.has(iAtt) || !get(iAtt).equals(onTop.get(iAtt))) {
@@ -181,5 +186,13 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			}
 		}
 		return true;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 }

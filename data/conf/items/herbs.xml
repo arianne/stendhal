@@ -4,8 +4,10 @@
   <item name="arandula">
     <type class="herb" subclass="arandula" tileid="-1"/>
     <description>You see a arandula. It has medicinal properties, if the right person uses it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -22,8 +24,10 @@
   <item name="kokuda">
     <type class="herb" subclass="kokuda" tileid="-1"/>
     <description>You see a kokuda. It has medicinal properties, if the right person uses it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -40,8 +44,10 @@
   <item name="kekik">
     <type class="herb" subclass="kekik" tileid="-1"/>
     <description>You see a kekik. It is a herb which can have healing properties.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -58,8 +64,10 @@
   <item name="mandragora">
     <type class="herb" subclass="mandragora" tileid="-1"/>
     <description>You see a root of mandragora. It has medicinal properties, if the right person uses it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -76,8 +84,10 @@
   <item name="sclaria">
     <type class="herb" subclass="sclaria" tileid="-1"/>
     <description>You see the herb sclaria. The smell is calming.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

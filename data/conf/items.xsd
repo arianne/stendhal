@@ -46,6 +46,7 @@
 
 			<element name="range" type="Q1:attribute" minOccurs="0"></element>
 			<element name="quantity" type="Q1:attribute" minOccurs="0"></element>
+			<element name="max_quantity" type="Q1:attribute" minOccurs="0"></element>
 			<element name="regen" type="Q1:attribute" minOccurs="0"></element>
 			<element name="rate" type="Q1:attribute" minOccurs="0"></element>
 			<element name="lifesteal" type="Q1:attribute" minOccurs="0"></element>

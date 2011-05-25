@@ -9,6 +9,7 @@
       <atk value="-1"/>
       <range value="8"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
@@ -31,6 +32,7 @@
       <atk value="-1"/>
       <range value="5"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2"/>
@@ -52,6 +54,7 @@
       <atk value="2"/>
       <range value="2"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="80"/>
@@ -73,6 +76,7 @@
       <atk value="4"/>
       <range value="2"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="640"/>
@@ -94,6 +98,7 @@
       <atk value="6"/>
       <range value="3"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -115,6 +120,7 @@
       <atk value="12"/>
       <range value="3"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>
@@ -137,6 +143,7 @@
       <atk value="10"/>
       <range value="4"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="10000"/>

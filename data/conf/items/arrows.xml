@@ -4,11 +4,12 @@
   <item name="wooden arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
     <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance. </description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <atk value="1"/>
       <range value="2"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="10"/>
@@ -25,10 +26,12 @@
   <item name="steel arrow">
     <type class="ammunition" subclass="steel_arrow" tileid="-1"/>
     <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <atk value="3"/>
       <range value="2"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="270"/>
@@ -49,6 +52,7 @@
       <atk value="4"/>
       <range value="3"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="640"/>
@@ -69,6 +73,7 @@
       <atk value="6"/>
       <range value="4"/>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>

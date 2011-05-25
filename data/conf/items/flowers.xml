@@ -22,8 +22,10 @@
   <item name="rose">
     <type class="flower" subclass="rose" tileid="-1"/>
     <description>You see a single red rose. It smells heavenly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-     <quantity value="1"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -42,7 +44,8 @@
     <description>You see a lilia, a single precious bloom.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-     <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -61,7 +64,8 @@
     <description>You see a bunch of daisies. They are cheap and cheerful!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-     <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -80,7 +84,8 @@
     <description>You see a pansy, so colorful and beautiful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-     <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -99,7 +104,8 @@
     <description>You see a zantedeschia, a delicate bloom with the sweetest fragrance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-     <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

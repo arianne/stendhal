@@ -43,8 +43,10 @@
   <item name="giant heart">
     <type class="misc" subclass="giant_heart" tileid="-1"/>
     <description>You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -76,7 +78,10 @@
   <item name="cards">
     <type class="misc" subclass="cards" tileid="-1"/>
     <description>You see a deck of cards.  Shuffle them well, to get a winning hand.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -108,8 +113,10 @@
   <item name="vampirette entrails">
     <type class="misc" subclass="vampirette_entrails" tileid="-1"/>
     <description>You see some vampirette entrails. These guts proves that a vampirette was slain.</description> 
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -126,8 +133,10 @@
   <item name="bat entrails">
     <type class="misc" subclass="bat_entrails" tileid="-1"/>
     <description>You see some bat entrails, full of the blood of a living creature.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -144,8 +153,10 @@
   <item name="suntan cream">
     <type class="misc" subclass="suntan_cream" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -162,8 +173,10 @@
    <item name="marbles">
     <type class="misc" subclass="marbles" tileid="-1"/>
     <description>You see some marbles. Boys will be boys.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-       <quantity value="1"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -180,8 +193,10 @@
    <item name="canned tuna">
     <type class="misc" subclass="canotuna" tileid="-1"/>
     <description>You see tuna in a can. Too bad you don't have a can opener.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-       <quantity value="1"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -198,8 +213,10 @@
    <item name="snowglobe">
     <type class="misc" subclass="snowglobe" tileid="-1"/>
     <description>You see a snowglobe. You are SUCH a tourist!</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-       <quantity value="1"/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -219,7 +236,8 @@
     <description>You see a bobbin for a sewing machine.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-       <quantity value="1"/>
+      <quantity value="1"/>
+      <max_quantity value="2147483648"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

@@ -14,25 +14,52 @@ package games.stendhal.server.entity.item;
 
 /**
  * this interface tags all items which are stackable.
- * 
+ *
  * @author mtotz
- * @param <T> 
+ * @param <T>
  */
 public interface Stackable<T> {
 
-	/** @return the quantity */
+	/**
+	 * gets the current quantity
+	 *
+	 * @return the quantity
+	 */
 	int getQuantity();
 
-	/** sets the quantity. 
-	 * @param amount to be set*/
+	/**
+	 * sets the quantity.
+	 *
+	 * @param amount to be set
+	 */
 	void setQuantity(int amount);
 
-	/** Adds the quantity of the other Stackable to this .
-	 * @param other 
-	 * @return the previous quantity */
+	/**
+	 * gets the maximum amount
+	 *
+	 * @return the maximum amount
+	 */
+	int getCapacity();
+
+	/**
+	 * sets the maximum amount
+	 *
+	 * @param capacity
+	 */
+	void setCapacity(int capacity);
+
+	/**
+	 * Adds the quantity of the other Stackable to this.
+	 *
+	 * @param other other object to merge in
+	 * @return the previous quantity
+	 */
 	int add(T other);
 
-	/** @param other 
+	/**
+	 * checks if the other object can be stacked onto this one
+	 *
+	 * @param other other object
 	 * @return true when both stackables are of the same type and can be merged */
 	boolean isStackable(T other);
 
