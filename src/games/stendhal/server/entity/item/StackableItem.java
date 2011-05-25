@@ -69,7 +69,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 			setQuantity(getInt("quantity"));
 		}
 		if (has("max_quantity")) {
-			setQuantity(getInt("max_quantity"));
+			setCapacity(getInt("max_quantity"));
 		}
 	}
 
