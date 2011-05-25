@@ -9,7 +9,7 @@
       <atk value="1"/>
       <range value="2"/>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="0.1"/>
     <value value="10"/>
@@ -31,7 +31,7 @@
       <atk value="3"/>
       <range value="2"/>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="0.1"/>
     <value value="270"/>
@@ -52,7 +52,7 @@
       <atk value="4"/>
       <range value="3"/>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="0.1"/>
     <value value="640"/>
@@ -73,7 +73,7 @@
       <atk value="6"/>
       <range value="4"/>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="0.1"/>
     <value value="2160"/>

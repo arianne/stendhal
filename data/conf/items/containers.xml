@@ -8,7 +8,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -26,7 +26,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -44,7 +44,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -62,7 +62,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -80,7 +80,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -98,7 +98,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -116,7 +116,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -134,7 +134,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -152,7 +152,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -170,7 +170,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -188,7 +188,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -206,7 +206,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -240,7 +240,7 @@
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
-      <max_quantity value="2147483648"/>
+      <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
