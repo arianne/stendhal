@@ -16,6 +16,10 @@ Changelog
 - added new zone int_abstract_admin_investigation for investigation account issues
 - added new zone int_abstract_server_down for operating Stendhal on a read only database copy
 
+*website*
+- achievements on character pages now have a mouse over box
+- improved performance of recent event page
+- improved performance of pages with many images
 
 
 0.93
