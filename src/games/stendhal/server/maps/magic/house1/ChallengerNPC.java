@@ -112,12 +112,14 @@ public class ChallengerNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 				addGreeting("And so, the hero has come.");
-				addQuest("Pay the #fee and you can #fight my trained magical creatures. There will be " + NUMBER_OF_CREATURES 
+				addQuest("Pay the #fee and you can #fight my trained magical creatures on a magical #island. There will be " + NUMBER_OF_CREATURES 
 						+ " in all, at a level to challenge you.");
 				addHelp("If you are strong enough and will pay the #fee, you can #fight " + NUMBER_OF_CREATURES 
-						+ " of my animals on a private adventure island.");
-				addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical island.");
-				addOffer("To fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge.");		
+						+ " of my animals on a private adventure #island.");
+				addJob("I train magical animals for fighting and offer warriors the chance to #battle against them on a magical #island.");
+				addOffer("To be transported to an #island to fight against " + NUMBER_OF_CREATURES + " of my trained creatures, chosen for your level, make the #challenge.");		
+				addReply("island", "I can summon a magical island for you personally. It is sustained by your life force, so if you leave it, you must return quickly or " 
+						+ "it will dissipate. You should not try to leave and return more than once. To enter, just pay the #fee.");
 				addGoodbye("Bye.");
 				add(ConversationStates.ANY, 
 						"fee", 
