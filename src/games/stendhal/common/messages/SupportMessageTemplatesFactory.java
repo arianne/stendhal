@@ -21,7 +21,7 @@ import java.util.Map;
  *
  */
 public class SupportMessageTemplatesFactory {
-	
+
 	private static final String TEMPLATE_PREFIX = "$";
 
 	private final Map<String, String> messageTemplates;
@@ -40,6 +40,7 @@ public class SupportMessageTemplatesFactory {
 		addTemplate("$atlas", "Hi %s, we feel sorry that you got lost in the world of Stendhal. You can open the atlas of Faiumoni with the #/atlas command - thank you");
 		addTemplate("$banprivate", "Hi %s, I am sorry but we cannot discuss bans of other players for privacy reasons.");
 		addTemplate("$bugstracker","Hi %s, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhalgame.org/wiki/SubmitBug - thank you very much.");
+		addTemplate("$bugreport","Hi %s, it sounds like you have found a new bug. Please could you create a bug report, details on how to do this are at #http://stendhalgame.org/wiki/SubmitBug - thank you very much.");
 		addTemplate("$faq", "Hi %s, you will find the answer to your question in the Stendhal FAQ. It's very helpful so please read it thoroughly! Use #/faq to open the Stendhal FAQ. Thanks for playing Stendhal!");
 		addTemplate("$faqpvp","Hi %s, sorry to hear about that. Player attacks are actually within the rules of the game, and it is not something that support gets involved with for that reason. Please read carefully #http://stendhalgame.org/wiki/StendhalFAQ#Player_vs_Player - good luck for the future.");
 		addTemplate("$faqsocial", "Hi %s, sorry to hear about that. But unfortunately support is not here to help you with social problems unless it gets way out of hand. This issue is discussed further on the stendhal FAQ and how to deal with it is described there. Please open the FAQ via #/faq and read carefully #http://stendhalgame.org/wiki/StendhalFAQ#Player_social_problems - hopefully the rest of your Stendhal experience will be more pleasant.");
@@ -60,7 +61,7 @@ public class SupportMessageTemplatesFactory {
 
 	/**
 	 * registers a template name with the corresponding text
-	 * 
+	 *
 	 * @param templateName
 	 * @param templateText
 	 */
@@ -72,10 +73,10 @@ public class SupportMessageTemplatesFactory {
 		nameBuilder.append(templateName);
 		messageTemplates.put(nameBuilder.toString(), templateText);
 	}
-	
+
 	/**
 	 * returns the map of templates
-	 * 
+	 *
 	 * @return a map of the template names as key and template text as value
 	 */
 	public Map<String, String> getTemplates() {
