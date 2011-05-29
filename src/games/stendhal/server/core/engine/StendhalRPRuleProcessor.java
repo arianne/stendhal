@@ -717,4 +717,34 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public static void setWelcomeMessage(String msg) {
 		StendhalRPRuleProcessor.welcomeMessage = msg;
 	}
+
+	/**
+	 * gets the content type for the requested resource
+	 * 
+	 * @param resource name of resource
+	 * @return mime content/type or <code>null</code>
+	 */
+	public String getMimeTypeForResource(String resource) {
+		if (resource.endsWith(".tmx")) {
+			return "text/xml";
+		} else if (resource.endsWith(".tmx")) {
+			return "audio/ogg";
+		} else if (resource.endsWith(".png")) {
+			return "image/png";
+		}
+		return null;
+	}
+
+	/**
+	 * gets an input stream to the requested resource
+	 * 
+	 * @param resource name of resource
+	 * @return InputStream or <code>null</code>
+	 */
+	public InputStream getResource(String resource) {
+		if (resource.startsWith("/tiled") || resource.startsWith("/data")) {
+			return StendhalRPRuleProcessor.class.getClassLoader().getResourceAsStream(resource.substring(1));
+		}
+		return null;
+	}
 }
