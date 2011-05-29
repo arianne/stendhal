@@ -745,6 +745,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (resource.startsWith("/tiled") || resource.startsWith("/data")) {
 			return StendhalRPRuleProcessor.class.getClassLoader().getResourceAsStream(resource.substring(1));
 		}
+		if (resource.startsWith("/tileset")) {
+			return StendhalRPRuleProcessor.class.getClassLoader().getResourceAsStream("tiled" + resource);
+		}
 		return null;
 	}
 }
