@@ -2,15 +2,17 @@ Changelog
 ---------
 
 0.94
-- increased time for expired items and earnings on the market
+- new achievements active: interior zones, DM points, completed quests, red armor set
+- increased time for expired items and earnings on the market at Harold
 - over-eating clears the food list and makes the player sick, instead of killing them
 - empty corpses are not automatically inspected
 - NPCs who await a specific response (e.g. for a question) have a special icon
-- new achievements active: interior zones, DM points, completed quests, red armor set
 
 *bugfixes*
 - fixed right clicking on sources, fishing spots, etc.
 - On Mac cmd+dragging opens the item split window
+- client error log is now works in webstart client, too
+- a number of small map bugs
 
 *admin*
 - added new zone int_abstract_admin_investigation for investigation account issues
@@ -18,6 +20,7 @@ Changelog
 
 *website*
 - achievements on character pages now have a mouse over box
+- nicer layout for chat logs and log selection
 - improved performance of recent event page
 - improved performance of pages with many images
 
