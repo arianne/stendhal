@@ -1,5 +1,8 @@
 /* $Id$
  * $Log$
+ * Revision 1.2  2011/04/30 10:11:25  nhnb
+ * wrote a script that allows enabling and disabling of server down mode, for logins to int_abstract_server_down if enabled
+ *
  * Revision 1.1  2011/04/27 22:21:10  nhnb
  * started to work on a script to enable and disable server down mode
  *
@@ -116,7 +119,7 @@ public class ServerDown extends ScriptImpl {
 		};
 
 		// TODO: different sprite
-		npc.setEntityClass("littlegirlnpc");
+		npc.setEntityClass("timekeepernpc");
 		npc.setPosition(25, 21);
 		npc.setDirection(Direction.UP);
 		npc.initHP(100);
