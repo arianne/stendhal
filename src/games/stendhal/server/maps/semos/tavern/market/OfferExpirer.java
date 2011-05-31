@@ -126,8 +126,8 @@ public class OfferExpirer implements TurnListener{
 			}
 			builder.append(Grammar.a_noun(itemname));
 			builder.append(" has expired. You have ");
-			builder.append(TimeUtil.approxTimeUntil((int) ((offer.getTimestamp() 
-					- System.currentTimeMillis() + 1000 * TIME_TO_REMOVING) / 1000)));
+			builder.append(TimeUtil.approxTimeUntil((int) (offer.getTimestamp() 
+					- System.currentTimeMillis()) / 1000 + TIME_TO_REMOVING));
 			builder.append(" left to get the item back or prolong the offer.");
 			sendMessage(offer.getOfferer(), builder);
 		}
