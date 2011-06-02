@@ -173,18 +173,18 @@ CREATE TABLE IF NOT EXISTS openid_allowedsites (
   realm      TEXT NOT NULL,
   attribute  TEXT NOT NULL,
   PRIMARY KEY (id)
-); */
+);*/
 
 /* CREATE INDEX i_openid_allowedsites ON openid_allowedsites (player_id, realm); */
 
 /*
 CREATE TABLE IF NOT EXISTS openid_associations (
   id         INTEGER NOT NULL,
-  handle     TEXT,
+  handle     VARCHAR(255),
   data TEXT NOT NULL,
   timedate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
- ); */
+ );*/
 
 /* CREATE INDEX i_openid_associations ON openid_associations (handle); */
 
