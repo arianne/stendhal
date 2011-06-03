@@ -41,7 +41,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1000000, "money")));
 		itemAchievements.add(createAchievement("item.set.red", "Amazon's Menace", "Loot a complete red equipment set",
-				Achievement.MEDIUM_BASE_SCORE, false,
+				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "red armor", "red helmet", "red cloak", "red legs", "red boots", "red shield")));
 		itemAchievements.add(createAchievement("item.set.shadow", "Shadow Dweller", "Loot a complete shadow equipment set",
 				Achievement.MEDIUM_BASE_SCORE, true,
