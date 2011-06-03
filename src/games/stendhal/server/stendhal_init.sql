@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS openid_allowedsites (
 
 /*
 CREATE TABLE IF NOT EXISTS openid_associations (
-  id         INTEGER NOT NULL,
+  id         INTEGER AUTO_INCREMENT NOT NULL,
   handle     VARCHAR(255),
   data TEXT NOT NULL,
   timedate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
