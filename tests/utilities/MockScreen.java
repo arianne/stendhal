@@ -114,7 +114,7 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
-	public RemovableSprite getTextAt(final double x, final double y) {
+	public RemovableSprite getTextAt(final int x, final int y) {
 		return null;
 	}
 

@@ -110,6 +110,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * The text bubbles.
 	 */
 	private final List<RemovableSprite> texts;
+	
+	/**
+	 * Text boxes that are anchored to the screen coordinates.
+	 */
+	private final List<RemovableSprite> staticSprites;
 
 	/**
 	 * The text bubbles to remove.
@@ -229,6 +234,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		views = Collections.synchronizedList(new LinkedList<EntityView>());
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
+		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		entities = new HashMap<IEntity, EntityView>();
 
 		// create ground
@@ -639,6 +645,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private void drawText(final Graphics2D g2d) {
 		texts.removeAll(textsToRemove);
+		staticSprites.removeAll(textsToRemove);
 		textsToRemove.clear();
 		
 		/*
@@ -659,6 +666,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		
 		// Restore the coordinates
 		g2d.translate(getScreenViewX(), getScreenViewY());
+		// These are anchored to the screen, so they can use the usual proper
+		// coordinates.
+		synchronized (staticSprites) {
+			for (final RemovableSprite text : staticSprites) {
+				if (!text.shouldBeRemoved()) {
+					text.draw(g2d);
+				} else {
+					removeText(text);
+				}
+			}
+		}
 	}
 
 	/**
@@ -786,7 +804,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		texts.add(new RemovableSprite(sprite, sx, sy, Math.max(
 				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
 						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
-
 	}
 
 	/**
@@ -847,6 +864,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void removeAllObjects() {
 		views.clear();
 		texts.clear();
+		staticSprites.clear();
 		textsToRemove.clear();
 		// The user was removed as well
 		areaChangingLock.lock();
@@ -860,6 +878,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void clearTexts() {
 		synchronized (texts) {
 			for (final RemovableSprite text : texts) {
+				textsToRemove.add(text);
+			}
+		}
+		synchronized (staticSprites) {
+			for (final RemovableSprite text : staticSprites) {
 				textsToRemove.add(text);
 			}
 		}
@@ -959,21 +982,32 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/*
 	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#getTextAt(double, double)
+	 * @see games.stendhal.client.IGameScreen#getTextAt(int, int)
 	 */
-	public RemovableSprite getTextAt(final double x, final double y) {
-		final int sx = convertWorldToScreen(x);
-		final int sy = convertWorldToScreen(y);
-
-		synchronized (texts) {
-			final ListIterator<RemovableSprite> it = texts.listIterator(texts.size());
-
+	public RemovableSprite getTextAt(final int x, final int y) {
+		// staticTexts are drawn on top of the others; those in the end of the
+		// lists are above preceding texts
+		synchronized (staticSprites) {
+			final ListIterator<RemovableSprite> it = staticSprites.listIterator(staticSprites.size());
 
 			while (it.hasPrevious()) {
 				final RemovableSprite text = it.previous();
 
-				if (text.getArea().contains(sx, sy)) {
+				if (text.getArea().contains(x, y)) {
+					return text;
+				}
+			}
+		}
+		// map pixel coordinates
+		final int tx = x + svx;
+		final int ty = y + svy;
+		synchronized (texts) {
+			final ListIterator<RemovableSprite> it = texts.listIterator(texts.size());
+
+			while (it.hasPrevious()) {
+				final RemovableSprite text = it.previous();
+
+				if (text.getArea().contains(tx, ty)) {
 					return text;
 				}
 			}
@@ -1159,16 +1193,26 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void addAchievementBox(String title, String description,
 			String category) {
 		final Sprite sprite = getAchievementFactory().createAchievementBox(title, description, category);
-		// Center in X
-		int x = svx + (getWidth() - sprite.getWidth()) / 2;
-		// Bottom of screen
-		int y = svy + getHeight() - sprite.getHeight();
+		
 		/*
 		 * Keep the achievements a bit longer on the screen. They do not leave
 		 * a line to the chat log, so we give the player a bit more time to
 		 * admire her prowess.
 		 */
-		texts.add(new RemovableSprite(sprite, x, y, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME));
+		addStaticSprite(sprite, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME);
+	}
+	
+	/**
+	 * Add a sprite anchored to the screen bottom.
+	 * 
+	 * @param sprite sprite
+	 * @param persistTime time to stay on the screen before being automatically
+	 * 	removed
+	 */
+	private void addStaticSprite(Sprite sprite, long persistTime) {
+		int x = (getWidth() - sprite.getWidth()) / 2;
+		int y = getHeight() - sprite.getHeight();
+		staticSprites.add(new RemovableSprite(sprite, x, y, persistTime));
 	}
 	
 	/**

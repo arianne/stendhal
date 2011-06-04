@@ -139,13 +139,13 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	public StendhalCursor getCursor(Point point) {
 		StendhalCursor cursor = null;
 
-		Point2D point2 = screen.convertScreenViewToWorld(point);
-
 		// is the cursor aiming at a text box?
-		final RemovableSprite text = screen.getTextAt(point2.getX(), point2.getY());
+		final RemovableSprite text = screen.getTextAt(point.x, point.y);
 		if (text != null) {
 			return StendhalCursor.NORMAL;
 		}
+
+		Point2D point2 = screen.convertScreenViewToWorld(point);
 
 		// is the cursor aiming at an entity?
 		final EntityView view = screen.getEntityViewAt(point2.getX(), point2.getY());
@@ -180,15 +180,15 @@ public class GroundContainer extends MouseHandler implements Inspector,
 			return false;
 		}
 		
-		// get clicked entity
-		final Point2D location = screen.convertScreenViewToWorld(point);
-		
 		// for the text pop up....
-		final RemovableSprite text = screen.getTextAt(location.getX(), location.getY());
+		final RemovableSprite text = screen.getTextAt(point.x, point.y);
 		if (text != null) {
 			screen.removeText(text);
 			return true;
 		}
+
+		// get clicked entity
+		final Point2D location = screen.convertScreenViewToWorld(point);
 
 		// for the clicked entity....
 		final EntityView view = screen.getEntityViewAt(location.getX(), location.getY());

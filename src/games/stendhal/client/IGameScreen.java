@@ -101,13 +101,13 @@ public interface IGameScreen {
 	 * Get the text bubble at specific coordinates.
 	 *
 	 * @param x
-	 *            The X world coordinate.
+	 *            Screen X coordinate.
 	 * @param y
-	 *            The Y world coordinate.
-	 * @return the text bubble at the given coorodinate or <code>null</code> if not found.
-	 *
+	 *            Screen Y world coordinate.
+	 * @return the text bubble at the given coordinate or <code>null</code> if
+	 * 	not found.
 	 */
-	RemovableSprite getTextAt(double x, double y);
+	RemovableSprite getTextAt(int x, int y);
 
 	/**
 	 * Convert world coordinates to screen view coordinates.
