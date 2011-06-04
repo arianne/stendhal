@@ -1163,7 +1163,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		int x = svx + (getWidth() - sprite.getWidth()) / 2;
 		// Bottom of screen
 		int y = svy + getHeight() - sprite.getHeight();
-		texts.add(new RemovableSprite(sprite, x, y, RemovableSprite.STANDARD_PERSISTENCE_TIME));
+		/*
+		 * Keep the achievements a bit longer on the screen. They do not leave
+		 * a line to the chat log, so we give the player a bit more time to
+		 * admire her prowess.
+		 */
+		texts.add(new RemovableSprite(sprite, x, y, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME));
 	}
 	
 	/**
