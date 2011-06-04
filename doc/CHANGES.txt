@@ -11,17 +11,17 @@ Changelog
 *bugfixes*
 - fixed right clicking on sources, fishing spots, etc.
 - On Mac cmd+dragging opens the item split window
-- client error log is now works in webstart client, too
-- a number of small map bugs
+- client error log now works in the webstart client, too
+- a number of small map fixes
 
 *admin*
-- added new zone int_abstract_admin_investigation for investigation account issues
+- added new zone int_abstract_admin_investigation for investigation of account issues
 - added new zone int_abstract_server_down for operating Stendhal on a read only database copy
 
 *website*
 - achievements on character pages now have a mouse over box
 - nicer layout for chat logs and log selection
-- improved performance of recent event page
+- improved performance of Recent Events page
 - improved performance of pages with many images
 
 
