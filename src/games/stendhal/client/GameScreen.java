@@ -733,31 +733,31 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			// Point alignment: left, bottom
 			sy -= sprite.getHeight();
 		} else {
-			// Point alignment: left-right centered, bottom
-			sx -= (sprite.getWidth() / 2);
-			sy -= sprite.getHeight();
+			/*
+			 * Respect the placement if the world size is not known yet.
+			 * (messages at login). svx and svy do not have their correct values
+			 * yet, so placing the message at the bottom will not work.
+			 */
+			if (ww == 0) {
+				sx -= (sprite.getWidth() / 2);
+				sy -= sprite.getHeight();
+			} else {
+				/*
+				 * Otherwise place non-talking boxes at the bottom of the
+				 * screen, ignoring the specified placement.
+				 */
+				sx = svx + (getWidth() - sprite.getWidth()) / 2;
+				sy = svy + getHeight() - sprite.getHeight();
+			}
 		}
 
+		sx = keepSpriteOnMapX(sprite, sx);
+		sy = keepSpriteOnMapY(sprite, sy);
+		
 		/*
-		 * Try to keep the text on screen. This could mess up the "talk" origin
-		 * positioning.
+		 * Adjust the position of boxes placed at the same point to make it
+		 * clear for the player there are more than one.
 		 */
-		sx = Math.max(sx, 0);
-		/*
-		 * Allow placing beyond the map, but only if the area is on the screen.
-		 * Do not try to adjust the coordinates if the world size is not known
-		 * yet (as in immediately after a zone change)
-		 */
-		if (ww != 0) {
-			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
-		}
-
-		sy = Math.max(sy, 0);
-		// Same for the Y coordinate
-		if (wh != 0) {
-			sy = Math.min(sy, Math.max(getHeight() + svy, convertWorldToScreen(wh)) - sprite.getHeight());
-		}
-
 		boolean found = true;
 
 		while (found) {
@@ -767,7 +767,16 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				for (final RemovableSprite item : texts) {
 					if ((item.getX() == sx) && (item.getY() == sy)) {
 						found = true;
-						sy += (SIZE_UNIT_PIXELS / 2);
+						sx += (SIZE_UNIT_PIXELS / 2);
+						sx = keepSpriteOnMapX(sprite, sx);
+						/*
+						 * Don't adjust the Y-coordinate of the boxes that are
+						 * meant to be placed at the screen bottom.
+						 */
+						if (isTalking) {
+							sy += (SIZE_UNIT_PIXELS / 2);
+							sy = keepSpriteOnMapY(sprite, sy);
+						}
 						break;
 					}
 				}
@@ -778,6 +787,47 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				RemovableSprite.STANDARD_PERSISTENCE_TIME, textLength
 						* RemovableSprite.STANDARD_PERSISTENCE_TIME / 50)));
 
+	}
+
+	/**
+	 * Try to keep a sprite on the map. Adjust the Y coordinate.
+	 * 
+	 * @param sprite
+	 * @param sy suggested Y coordinate on screen
+	 * @return new Y coordinate
+	 */
+	private int keepSpriteOnMapY(Sprite sprite, int sy) {
+		sy = Math.max(sy, 0);
+		/*
+		 * Allow placing beyond the map, but only if the area is on the screen.
+		 * Do not try to adjust the coordinates if the world size is not known
+		 * yet (as in immediately after a zone change)
+		 */
+		if (wh != 0) {
+			sy = Math.min(sy, Math.max(getHeight() + svy - sprite.getHeight(), 
+					convertWorldToScreen(wh)) - sprite.getHeight());
+		}
+		return sy;
+	}
+
+	/**
+	 * Try to keep a sprite on the map. Adjust the X coordinate.
+	 * 
+	 * @param sprite
+	 * @param sx suggested X coordinate on screen
+	 * @return new X coordinate
+	 */
+	private int keepSpriteOnMapX(Sprite sprite, int sx) {
+		sx = Math.max(sx, 0);
+		/*
+		 * Allow placing beyond the map, but only if the area is on the screen.
+		 * Do not try to adjust the coordinates if the world size is not known
+		 * yet (as in immediately after a zone change)
+		 */
+		if (ww != 0) {
+			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
+		}
+		return sx;
 	}
 
 	/*
