@@ -52,78 +52,78 @@ ORDER BY points;
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'A', @rownum:=@rownum+1 as rank, age/60, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND age > 5
+WHERE admin<=600 AND age >= 5
 ORDER BY age DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'A', @rownum:=@rownum+1 as rank, age/60, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND age > 5 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND age >= 5 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY age DESC;
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'T', @rownum:=@rownum+1 as rank, atk*(1+0.03*level) As points, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r
-WHERE admin<=600 AND level > 2
+WHERE admin<=600 AND level >= 2
 ORDER BY points DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'T', @rownum:=@rownum+1 as rank, atk*(1+0.03*level) As points, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND level > 2 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND level >= 2 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY points DESC;
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'F', @rownum:=@rownum+1 as rank, def*(1+0.03*level) As points, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND level > 2 
+WHERE admin<=600 AND level >= 2 
 ORDER BY points DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'F', @rownum:=@rownum+1 as rank, def*(1+0.03*level) As points, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND level > 2 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND level >= 2 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY points DESC;
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'W', @rownum:=@rownum+1 as rank, money, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND money > 100
+WHERE admin<=600 AND money >= 100
 ORDER BY money DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'W', @rownum:=@rownum+1 as rank, money, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND money > 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND money >= 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY money DESC;
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'X', @rownum:=@rownum+1 as rank, xp, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND xp > 100 
+WHERE admin<=600 AND xp >= 100 
 ORDER BY xp DESC, karma DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'X', @rownum:=@rownum+1 as rank, xp, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND xp > 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND xp >= 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY xp DESC, karma DESC;
 
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'B', @rownum:=@rownum+1 as rank, xp/(age+1) As points, CURRENT_DATE(), 0 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND xp > 100 
+WHERE admin<=600 AND xp >= 100 
 ORDER BY points DESC;
 
 INSERT INTO halloffame_archive (charname, fametype, rank, points, day, recent) 
 SELECT name, 'B', @rownum:=@rownum+1 as rank, xp/(age+1) As points, CURRENT_DATE(), 1 
 FROM character_stats, (SELECT @rownum:=0) r 
-WHERE admin<=600 AND xp > 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
+WHERE admin<=600 AND xp >= 100 AND character_stats.lastseen>date_sub(CURRENT_TIMESTAMP, interval 1 month)
 ORDER BY points DESC;
 
 
