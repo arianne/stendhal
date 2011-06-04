@@ -297,7 +297,7 @@ public class StendhalFirstScreen extends JFrame {
 			if (Version.compare(version, stendhal.VERSION) > 0) {
 				// custom title, warning icon
 				JOptionPane.showMessageDialog(
-						null,
+						this,
 						"Your client is out of date. Latest version is "
 								+ version
 								+ ". But you are using "

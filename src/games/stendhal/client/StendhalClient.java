@@ -203,7 +203,7 @@ public class StendhalClient extends ClientFramework {
 			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
 				// custom title, warning icon
 				JOptionPane.showMessageDialog(
-						null,
+						StendhalFirstScreen.get(),
 						"Your client may not function properly.\nThe version of this server is "
 								+ version
 								+ " but your client is version "
