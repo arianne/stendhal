@@ -381,7 +381,7 @@ public class RPEntityTest {
 			}
 
 			@Override
-			public int damageDone(final RPEntity defender) {
+			public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
 				return 0;
 			}
 
@@ -457,7 +457,7 @@ public class RPEntityTest {
 			}
 
 			@Override
-			public int damageDone(final RPEntity defender) {
+			public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
 				return 30;
 			}
 

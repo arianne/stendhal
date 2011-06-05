@@ -456,10 +456,12 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param defender
 	 *            The defender.
+	 * @param attackingWeaponsValue
+	 * 			  ATK-value of all attacking weapons/spells
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
-	public int damageDone(final RPEntity defender) {
+	public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
 		// Don't start from 0 to mitigate weird behaviour at very low levels
 		final int effectiveAttackerLevel = getLevel() + 5;
 		final int effectiveDefenderLevel = defender.getLevel() + 5;
@@ -509,7 +511,7 @@ public abstract class RPEntity extends GuidedEntity {
 					* levelPart;
 		}
 
-		final double weaponComponent = 1.0 + getItemAtk();
+		final double weaponComponent = 1.0 + attackingWeaponsValue;
 		final double maxAttack = sourceAtk * weaponComponent
 				* (1 + LEVEL_ATK * effectiveAttackerLevel) * speedEffect;
 		double attack = Rand.rand() * maxAttack;
@@ -2325,7 +2327,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
-			int damage = this.damageDone(defender);
+			int damage = this.damageDone(defender, this.getItemAtk());
 
 			if (damage > 0) {
 
