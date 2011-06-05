@@ -821,7 +821,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * yet (as in immediately after a zone change)
 		 */
 		if (wh != 0) {
-			sy = Math.min(sy, Math.max(getHeight() + svy - sprite.getHeight(), 
+			sy = Math.min(sy, Math.max(getHeight() + svy,
 					convertWorldToScreen(wh)) - sprite.getHeight());
 		}
 		return sy;
