@@ -1203,6 +1203,19 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	/**
+	 * Add a text box bound to the bottom of the screen, with a timeout
+	 * dependent on the text length.
+	 * 
+	 * @param sprite
+	 * @param textLength
+	 */
+	public void addStaticText(Sprite sprite, int textLength) {
+		addStaticSprite(sprite,
+				Math.max(RemovableSprite.STANDARD_PERSISTENCE_TIME,
+				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50));
+	}
+	
+	/**
 	 * Add a sprite anchored to the screen bottom.
 	 * 
 	 * @param sprite sprite

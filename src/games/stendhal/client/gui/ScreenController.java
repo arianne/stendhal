@@ -52,11 +52,19 @@ class ScreenController implements PositionChangeListener {
 		final Sprite sprite = screen.createTextBox(text, type, isTalking);
 		final int textLength = text.length();
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				screen.addTextBox(sprite, x, y, isTalking, textLength);
-			}
-		});
+		if (type == NotificationType.TUTORIAL) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					screen.addStaticText(sprite, textLength);
+				}
+			});
+		} else {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					screen.addTextBox(sprite, x, y, isTalking, textLength);
+				}
+			});
+		}
 	}
 	
 	/**
