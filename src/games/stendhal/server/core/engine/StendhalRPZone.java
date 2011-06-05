@@ -662,10 +662,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	private synchronized void add(final RPObject object, final Player player, final boolean expire) {
-		if (object instanceof Player) {
-			Player playerObject = (Player) object;
-			SingletonRepository.getAchievementNotifier().onZoneEnter(playerObject);
-		}
 		/*
 		 * Assign [zone relative] ID info. TODO: Move up to MarauroaRPZone
 		 */
@@ -705,6 +701,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 			Player playerObject = (Player) object;
 			players.add(playerObject);
 			playersAndFriends.add(playerObject);
+			/*
+			 * super.add() clears the events, so this needs to be after it for
+			 * the player to see the zone achievements. Also, Player.onAdded()
+			 * sets the !visited slot, so this should be after it to have the
+			 * achievement appear when the player enters the last missing zone.
+			 */
+			SingletonRepository.getAchievementNotifier().onZoneEnter(playerObject);
 		} else if (object instanceof AttackableCreature) {
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
