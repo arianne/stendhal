@@ -164,7 +164,7 @@ public class SheepGrowing extends AbstractQuest {
                 ConversationStates.QUEST_OFFERED,
                 "Lately I am very busy with all my sheep. " +
                 "Would you be willing to take care of one of my sheep and hand it over to #Sato? " +
-                "You only have to let it eat some red berries until it reaches a weight of " + Sheep.MAX_WEIGHT + "." +
+                "You only have to let it eat some red berries until it reaches a weight of " + Sheep.MAX_WEIGHT + ". " +
                 "Would you do that?",
                 new SetQuestAction(QUEST_SLOT, "asked"));
 
