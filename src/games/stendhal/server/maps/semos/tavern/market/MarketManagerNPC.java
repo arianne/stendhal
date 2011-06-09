@@ -14,6 +14,7 @@ package games.stendhal.server.maps.semos.tavern.market;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -66,7 +67,8 @@ public final class MarketManagerNPC extends SpeakerNPC {
 		add(ConversationStates.ATTENDING, "show", new NotCondition(new TextHasParameterCondition()),
 				ConversationStates.ATTENDING, null, new ShowOfferItemsChatAction());
 		add(ConversationStates.ATTENDING, "show", new TextHasParameterCondition(), ConversationStates.ATTENDING, null, new ShowOffersChatAction());
-		add(ConversationStates.ATTENDING, "fetch", null, ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
+		// fetch earnings when starting to talk to the market manager
+		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new PlayerHasEarningsToCollectCondition(), ConversationStates.ATTENDING, null, new FetchEarningsChatAction());
 		new AcceptOfferHandler().add(this);
 		new RemoveOfferHandler().add(this);
 		new ProlongOfferHandler().add(this);

@@ -114,9 +114,11 @@ public class MarketTest {
 		assertThat(Boolean.valueOf(ernie.isEquipped("axe")), is(Boolean.TRUE));
 		assertThat(ernie.isEquipped("money", price), is(Boolean.FALSE));
 		assertThat(Boolean.valueOf(george.isEquipped("money")), is(Boolean.FALSE));
+		assertThat(market.hasEarningsFor(george), is(Boolean.TRUE));
 		market.fetchEarnings(george);
 		assertThat(Boolean.valueOf(george.isEquipped("money", price.intValue())),
 				is(Boolean.TRUE));
+		assertThat(market.hasEarningsFor(george), is(Boolean.FALSE));
 	}
 	
 	/**
@@ -145,7 +147,9 @@ public class MarketTest {
 		market.acceptOffer(offer, ernie);
 		market.acceptOffer(offer2, ernie);
 		
+		assertThat(market.hasEarningsFor(george), is(Boolean.TRUE));
 		market.fetchEarnings(george);
+		assertThat(market.hasEarningsFor(george), is(Boolean.FALSE));
 		// Total earnings should be 21
 		int total = 0;
 		for (Item gMoney : george.getAllEquipped("money")) {

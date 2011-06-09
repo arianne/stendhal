@@ -34,7 +34,7 @@ public class FetchEarningsChatAction implements ChatAction {
 			npc.say("Sorry, I did not understand you. "
 					+ sentence.getErrorString());
 			npc.setCurrentState(ConversationStates.ATTENDING);
-		} else if (sentence.getExpressions().iterator().next().toString().equals("fetch")){
+		} else {
 			handleSentence(player, npc);
 		}
 	}
@@ -48,10 +48,10 @@ public class FetchEarningsChatAction implements ChatAction {
 		}
 		if (collectedSum > 0) {
 			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
-			npc.say("Your earnings have been paid to you");
+			npc.say("Welcome to Semos trading center. I handed you your pending earnings. What else can I do for you?");
 		} else {
 			//either you have no space in your bag or there isn't anything to collect
-			npc.say("You did not collect any earnings.");
+			npc.say("Welcome to Semos trading center. How can I #help you?");
 		}
 		npc.setCurrentState(ConversationStates.ATTENDING);
 	}

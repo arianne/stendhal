@@ -531,4 +531,18 @@ public class Market extends PassiveEntity {
 	public boolean contains(Offer o) {
 		return getSlot(OFFERS_SLOT_NAME).has(o.getID());
 	}
+
+	/**
+	 * @param player
+	 * @return true iff there are earnings for this player in the market
+	 */
+	public boolean hasEarningsFor(Player player) {
+		for(RPObject o : this.getSlot(EARNINGS_SLOT_NAME)) {
+			Earning e = (Earning) o;
+			if(e.getSeller().equals(player.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
