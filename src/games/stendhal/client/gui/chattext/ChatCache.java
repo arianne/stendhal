@@ -31,7 +31,7 @@ public class ChatCache {
 
 	private final String chatCacheFile;
 	private int current;
-	
+
 
 	public ChatCache(final String chatLogFile) {
 		this.chatCacheFile = chatLogFile;
@@ -46,11 +46,11 @@ public class ChatCache {
 	void loadChatCache() {
 		try {
 			final File chatfile = new File(chatCacheFile);
-	
+
 			if (chatfile.exists()) {
 				final FileInputStream fis = new FileInputStream(chatfile);
 				final BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-	
+
 				try {
 					String line = null;
 					while (null != (line = br.readLine())) {
@@ -70,16 +70,17 @@ public class ChatCache {
 	public void save() {
 		FileOutputStream fo;
 		try {
+			new File(chatCacheFile).getParentFile().mkdirs();
 			fo = new FileOutputStream(chatCacheFile);
 			final PrintStream ps = new PrintStream(fo);
-	
+
 			/*
 			 * Keep size of chat.log in a reasonable size.
 			 */
 			while (lines.size() > 200) {
 				lines.removeFirst();
 			}
-	
+
 			final ListIterator<String> iterator = lines.listIterator();
 			while (iterator.hasNext()) {
 				ps.println(iterator.next());
@@ -102,7 +103,7 @@ public class ChatCache {
 	void addlinetoCache(final String text) {
 		getLines().add(text);
 		setCurrent(getLines().size());
-	
+
 		if (getLines().size() > 50) {
 			getLines().removeFirst();
 			setCurrent((getCurrent() - 1));
@@ -122,7 +123,7 @@ public class ChatCache {
 	}
 
 	public String previous() {
-		
+
 		try {
 			current--;
 			return current();
@@ -131,11 +132,11 @@ public class ChatCache {
 			current++;
 			throw new NoSuchElementException();
 		}
-		
+
 	}
 
 	public String next() {
-		
+
 		try {
 			current++;
 			return current();
