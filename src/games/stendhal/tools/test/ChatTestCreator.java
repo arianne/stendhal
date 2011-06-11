@@ -21,7 +21,7 @@ import java.io.PrintStream;
 /**
  * This program creates a simple NPC chat test based on a chat log copy&pasted
  * from the the client chat log window.
- * 
+ *
  * @author hendrik
  */
 public class ChatTestCreator {
@@ -67,7 +67,7 @@ public class ChatTestCreator {
 
 	/**
 	 * Converts a chat log into a test case.
-	 * 
+	 *
 	 * @param args
 	 *            chatlog.txt [test.java]
 	 * @throws IOException
@@ -77,6 +77,7 @@ public class ChatTestCreator {
 		if ((args.length < 1) || (args.length > 2)) {
 			System.err.println("java " + ChatTestCreator.class.getName()
 					+ " chatlog.txt [chatlogtest.java]");
+			System.exit(1);
 		}
 
 		final BufferedReader br = new BufferedReader(new FileReader(args[0]));
