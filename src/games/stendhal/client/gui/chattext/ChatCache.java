@@ -44,6 +44,9 @@ public class ChatCache {
 	private final LinkedList<String> lines = new LinkedList<String>();
 
 	void loadChatCache() {
+		if (chatCacheFile == null) {
+			return;
+		}
 		try {
 			final File chatfile = new File(chatCacheFile);
 
@@ -68,6 +71,9 @@ public class ChatCache {
 	}
 
 	public void save() {
+		if (chatCacheFile == null) {
+			return;
+		}
 		FileOutputStream fo;
 		try {
 			new File(chatCacheFile).getParentFile().mkdirs();

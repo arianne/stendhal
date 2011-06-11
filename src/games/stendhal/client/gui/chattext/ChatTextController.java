@@ -36,7 +36,12 @@ public class ChatTextController {
 		playerChatText.setFocusTraversalKeysEnabled(false);
 		playerChatText.addKeyListener(new ChatTextKeyListener());
 		addActionListener(new ParserHandler());
-		String logFile = stendhal.getGameFolder() + "chat/out-" + StendhalClient.get().getCharacter() + ".log";
+		StendhalClient client = StendhalClient.get();
+		String logFile = null;
+		if (client != null) {
+			// StendhalClient is null during test runs
+			logFile = stendhal.getGameFolder() + "chat/out-" + client.getCharacter() + ".log";
+		}
 		cache = new ChatCache(logFile);
 		cache.loadChatCache();
 		setCache(cache);
