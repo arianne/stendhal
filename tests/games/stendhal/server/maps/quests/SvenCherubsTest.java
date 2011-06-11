@@ -78,13 +78,14 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 6 more. Fare thee well!", getReply(npc));
-		// [14:54] bluelads earns 20 experience points.
+		assertEquals(player.getXP(), 20);
 		// [14:53] bluelads heals 1 health point.
 
 		npc = SingletonRepository.getNPCList().get("Gabriel");
 		en = npc.getEngine();
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 5 more. Fare thee well!", getReply(npc));
+		assertEquals(player.getXP(), 620);
 		// [14:53] bluelads earns 400 experience points.
 
 
@@ -93,9 +94,10 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 4 more. Fare thee well!", getReply(npc));
 		// [14:54] bluelads earns 800 experience points.
+		assertEquals(player.getXP(), 1420);
 		en.step(player, "hi");
 		assertEquals("Seek out the other cherubim to get thy reward!", getReply(npc));
-		en.step(player, "help");
+		assertEquals(player.getXP(), 1420);
 
 
 		npc = SingletonRepository.getNPCList().get("Raphael");
@@ -103,6 +105,7 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 3 more. Fare thee well!", getReply(npc));
 		// [14:54] bluelads earns 1000 experience points.
+		assertEquals(player.getXP(), 2420);
 
 
 		npc = SingletonRepository.getNPCList().get("Uriel");
@@ -110,8 +113,10 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 2 more. Fare thee well!", getReply(npc));
 		// [14:54] bluelads earns 1200 experience points.
+		assertEquals(player.getXP(), 3620);
 		en.step(player, "hi");
 		assertEquals("Seek out the other cherubim to get thy reward!", getReply(npc));
+		assertEquals(player.getXP(), 3620);
 
 
 		npc = SingletonRepository.getNPCList().get("Zophiel");
@@ -119,8 +124,10 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Well done! You only need to find 1 more. Fare thee well!", getReply(npc));
 		// [14:54] bluelads earns 1400 experience points.
+		assertEquals(player.getXP(), 5020);
 		en.step(player, "hi");
 		assertEquals("Seek out the other cherubim to get thy reward!", getReply(npc));
+		assertEquals(player.getXP(), 5020);
 
 
 		npc = SingletonRepository.getNPCList().get("Azazel");
@@ -128,10 +135,12 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Thou hast proven thyself brave enough to bear this mighty relic!", getReply(npc));
 		// [14:55] bluelads earns 2000 experience points.
+		assertEquals(player.getXP(), 7020);
 
 		en = npc.getEngine();
 		en.step(player, "hi");
 		assertEquals("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.", getReply(npc));
 		// [14:55] You see a pair of golden boots. They will be heavy to wear but well worth their weight. It is a special quest reward for bluelads, and cannot be used by others. Stats are (DEF: 8).
+		assertEquals(player.getXP(), 7020);
 	}
 }
