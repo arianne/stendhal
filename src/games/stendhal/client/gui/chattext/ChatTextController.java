@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.chattext;
 
 
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.scripting.ChatLineParser;
@@ -28,36 +29,31 @@ import javax.swing.JTextField;
 
 public class ChatTextController {
 
-	private static final String CHAT_LOG_FILE = stendhal.getGameFolder() + "chat.log";
+	private final JTextField playerChatText = new JTextField("");
 
-	private final JTextField playerChatText;
-	
-	{
-		playerChatText = new JTextField("");
-	}
-	
 	private ChatCache cache;
 	public ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
 		playerChatText.addKeyListener(new ChatTextKeyListener());
 		addActionListener(new ParserHandler());
-		cache = new ChatCache(CHAT_LOG_FILE);
+		String logFile = stendhal.getGameFolder() + "chat/out-" + StendhalClient.get().getCharacter() + ".log";
+		cache = new ChatCache(logFile);
 		cache.loadChatCache();
 		setCache(cache);
 	}
-	
+
 	public Component getPlayerChatText() {
-		
+
 		return playerChatText;
 	}
 
 	public void setChatLine(final String text) {
-		
+
 		playerChatText.setText(text);
 	}
 
 	class ChatTextKeyListener extends KeyAdapter {
-		
+
 			@Override
 			public void keyPressed(final KeyEvent e) {
 				final int keypressed = e.getKeyCode();
@@ -97,13 +93,13 @@ public class ChatTextController {
 	}
 	public void addActionListener(final ActionListener l) {
 		playerChatText.addActionListener(l);
-		
+
 	}
-	
+
 	public void addKeyListener(final KeyListener l) {
 		playerChatText.addKeyListener(l);
 	}
-	
+
 
 	public String getText() {
 		return playerChatText.getText();
@@ -111,18 +107,18 @@ public class ChatTextController {
 
 	public void setCache(final ChatCache cache) {
 		this.cache = cache;
-		
+
 	}
 
 	public void clearLine() {
 		cache.addlinetoCache(getText());
 
 		setChatLine("");
-		
+
 	}
 
 	public void saveCache() {
 		cache.save();
-		
+
 	}
 }
