@@ -33,7 +33,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
  *
  * @author hendrik
  */
-public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
+public class SevenCherubsTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -58,7 +58,7 @@ public class SvenCherubsTest extends ZonePlayerAndNPCTestImpl {
 	/**
 	 * creates a test for the seven cherubs quest
 	 */
-	public SvenCherubsTest() {
+	public SevenCherubsTest() {
 		super("0_semos_village_w", "Cherubiel", "Gabriel", "Ophaniel", "Raphael", "Uriel", "Zophiel", "Azazel");
 	}
 
