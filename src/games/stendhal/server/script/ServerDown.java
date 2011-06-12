@@ -116,7 +116,11 @@ public class ServerDown extends ScriptImpl {
 				addGreeting("Oh hello, i don't get many visitors here at this #place.");
 				addJob("Oh nothing really. I just watch over space and time.");
 				addHelp("Thank you for your offer. But there is nothing you can do right now. Just wait and relax");
-				addReply("place", "This is... Think of it as after the theater, outside space and time, beyond reality.");
+				addReply("place", "This is... Think of it as after the theater, outside space and time, beyond #reality.");
+				addReply("reality", "To get you to this place beyond reality, I had to suspend disbelief.");
+				addReply("stendhal", "The powers, that be, are currently restoring the Stendhal reality. Just wait and relax.");
+				addReply("pacman", "Oh, that is just one reality among the ones we are watching here. See #http://stendhalgame.org/-49 for details.");
+				
 				addGoodbye();
 			}
 		};
