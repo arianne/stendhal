@@ -1,12 +1,15 @@
-/* $Id$
- * $Log$
- * Revision 1.2  2011/04/30 10:11:25  nhnb
- * wrote a script that allows enabling and disabling of server down mode, for logins to int_abstract_server_down if enabled
- *
- * Revision 1.1  2011/04/27 22:21:10  nhnb
- * started to work on a script to enable and disable server down mode
- *
- */
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
