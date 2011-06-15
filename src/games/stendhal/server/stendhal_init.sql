@@ -48,7 +48,7 @@ create table if not exists halloffame
 
 /*CREATE INDEX i_halloffame_charname ON halloffame(charname);*/
 
-create table if not exists halloffame_archive
+create table if not exists halloffame_archive_recent
   (
   id integer auto_increment not null,
   charname varchar(32) not null,
@@ -56,12 +56,25 @@ create table if not exists halloffame_archive
   rank integer not null,
   points integer not null,
   day date not null,
-  recent char(1) not null,
+  primary key(id)
+  );
+
+/*CREATE INDEX i_halloffame_archive_recent_day_charname ON halloffame_archive_recent(day, charname);*/
+
+
+create table if not exists halloffame_archive_alltimes
+  (
+  id integer auto_increment not null,
+  charname varchar(32) not null,
+  fametype char(1) not null,
+  rank integer not null,
+  points integer not null,
+  day date not null,
   primary key(id)
   ) 
  ;
 
-/*CREATE INDEX i_halloffame_day_charname ON halloffame_archive(day, recent, charname);*/
+/*CREATE INDEX i_halloffame_archive_alltimes_day_charname ON halloffame_archive_alltimes(day, charname);*/
 
 
 CREATE TABLE IF NOT EXISTS itemid (
@@ -82,14 +95,13 @@ CREATE TABLE IF NOT EXISTS itemlog (
 );
 
 /*CREATE INDEX i_itemlog_itemid ON itemlog(itemid);*/
-/*CREATE INDEX i_itemlog_source ON itemlog(source);*/
-/*CREATE INDEX i_itemlog_event ON itemlog(event);*/
+/*CREATE INDEX i_itemlog_source_timedate ON itemlog(source, timedate);*/
+/*CREATE INDEX i_itemlog_event_timedate ON itemlog(event, timedate);*/
 /*CREATE INDEX i_itemlog_param1 ON itemlog(param1);*/
 /*CREATE INDEX i_itemlog_param2 ON itemlog(param2);*/
 /*CREATE INDEX i_itemlog_param3 ON itemlog(param3);*/
 /*CREATE INDEX i_itemlog_param4 ON itemlog(param4);*/
-/*CREATE INDEX i_itemlog_source_event ON itemlog(source, event);*/
-/*CREATE INDEX i_itemlog_itemid_event ON itemlog(itemid, event);*/
+/*CREATE INDEX i_itemlog_source_itemid ON itemlog(source, itemid);*/
 /*CREATE INDEX i_itemlog_event_param12 ON itemlog(event, param1, param2);*/
 /*CREATE INDEX i_itemlog_event_param34 ON itemlog(event, param3, param4);*/
 
