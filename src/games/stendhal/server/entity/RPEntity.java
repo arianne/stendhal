@@ -461,7 +461,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
-	public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
+	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
 		// Don't start from 0 to mitigate weird behaviour at very low levels
 		final int effectiveAttackerLevel = getLevel() + 5;
 		final int effectiveDefenderLevel = defender.getLevel() + 5;
@@ -530,7 +530,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 
 		// Apply defense and damage type effect
-		int damage = (int) (defender.getSusceptibility(getDamageType()) 
+		int damage = (int) (defender.getSusceptibility(damageType) 
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
 
 		final int maxRange = getMaxRangeForArcher();
@@ -2327,7 +2327,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
-			int damage = this.damageDone(defender, this.getItemAtk());
+			int damage = this.damageDone(defender, this.getItemAtk(), this.getDamageType());
 
 			if (damage > 0) {
 

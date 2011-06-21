@@ -268,7 +268,7 @@ public class BalanceRPGame {
 			}
 
 			if ((turns % 5 == 0) && player.canHit(target)) {
-				int damage = player.damageDone(target, player.getItemAtk());
+				int damage = player.damageDone(target, player.getItemAtk(), player.getDamageType());
 				if (damage < 0) {
 					damage = 0;
 				}
@@ -282,7 +282,7 @@ public class BalanceRPGame {
 			}
 
 			if ((turns % target.getAttackRate() == 0) && target.canHit(player)) {
-				int damage = target.damageDone(player, target.getItemAtk());
+				int damage = target.damageDone(player, target.getItemAtk(), player.getDamageType());
 				if (damage < 0) {
 					damage = 0;
 				}

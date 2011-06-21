@@ -24,6 +24,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Corpse;
@@ -381,7 +382,7 @@ public class RPEntityTest {
 			}
 
 			@Override
-			public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
+			public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
 				return 0;
 			}
 
@@ -457,7 +458,7 @@ public class RPEntityTest {
 			}
 
 			@Override
-			public int damageDone(final RPEntity defender, double attackingWeaponsValue) {
+			public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
 				return 30;
 			}
 

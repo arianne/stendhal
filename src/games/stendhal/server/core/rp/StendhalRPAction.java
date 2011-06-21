@@ -240,7 +240,7 @@ public class StendhalRPAction {
 				defender.incDefXP();
 			}
 
-			int damage = player.damageDone(defender, player.getItemAtk());
+			int damage = player.damageDone(defender, player.getItemAtk(), player.getDamageType());
 			if (damage > 0) {
 
 				// limit damage to target HP
