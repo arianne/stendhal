@@ -248,7 +248,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return attack points
 	 */
 	public int getAttack() {
-		if (has("atk")) {
+		if (has("atk") && getDeterioration() <= MAX_DETERIORATION) {
 			return getInt("atk");
 		}
 
@@ -262,7 +262,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return defense points
 	 */
 	public int getDefense() {
-		if (has("def")) {
+		if (has("def") && getDeterioration() <= MAX_DETERIORATION) {
 			return getInt("def");
 		}
 
