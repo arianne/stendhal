@@ -43,9 +43,20 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	private static final int DEFAULT_ATTACK_RATE = 5;
 	
+	/**
+	 * max degree of deterioration
+	 */
 	private static final int MAX_DETERIORATION = 100;
 	
+	/**
+	 * default value for deterioration implies each item is okay if ne
+	 */
 	private static final int DEFAULT_DETERIORATION = 0;
+	
+	/**
+	 * propability of an item deteriorating on use
+	 */
+	private static final double DETERIORATION_PROPABILITY = 0.1;
 
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -288,7 +299,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	public void deteriorate() {
 		int dice = Rand.roll1D100();
-		if(dice % 10 == 0 && getDeterioration() <= MAX_DETERIORATION) {
+		if(dice % DETERIORATION_PROPABILITY * 100 == 0 && getDeterioration() <= MAX_DETERIORATION) {
 			this.add("deterioration", 1);
 		}
 	}
