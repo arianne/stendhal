@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
@@ -41,7 +42,10 @@ import marauroa.common.game.RPSlot;
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	private static final int DEFAULT_ATTACK_RATE = 5;
-
+	
+	private static final int MAX_DETERIORATION = 100;
+	
+	private static final int DEFAULT_DETERIORATION = 0;
 
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -139,6 +143,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items have defense values
 		entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
+		
+		//Some items can be damaged in combat or during use. This rises the degree of deterioration
+		entity.addAttribute("deterioration", Type.INT, Definition.HIDDEN);
 
 		// Some items(food) have amount of something
 		// (a bottle, a piece of meat).
@@ -262,6 +269,28 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 
 		return DEFAULT_ATTACK_RATE;
+	}
+	
+	/**
+	 * Each Item is subject to deterioration that weakens the item
+	 * 
+	 * @return the current degree of deterioration
+	 */
+	public int getDeterioration() {
+		if(has("deterioration")) {
+			return getInt("deterioration");
+		}
+		return DEFAULT_DETERIORATION;
+	}
+	
+	/**
+	 * Propose increase the degree of deterioration. If degree increases is decided by random with a propability of 10% 
+	 */
+	public void deteriorate() {
+		int dice = Rand.roll1D100();
+		if(dice % 10 == 0 && getDeterioration() <= MAX_DETERIORATION) {
+			this.add("deterioration", 1);
+		}
 	}
 
 	/**
