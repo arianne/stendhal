@@ -284,7 +284,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 	
 	/**
-	 * Propose increase the degree of deterioration. If degree increases is decided by random with a propability of 10% 
+	 * Propose increase the degree of deterioration. If degree increases is decided by random
 	 */
 	public void deteriorate() {
 		int dice = Rand.roll1D100();
