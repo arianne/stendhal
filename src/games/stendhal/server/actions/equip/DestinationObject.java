@@ -207,8 +207,14 @@ class DestinationObject extends MoveableObject {
 					player.sendPrivateText("You cannot put this special quest reward there because it can only be used by you.");
 					return false;
 				}
+				
+				// check if an item that is sent to a trade slot is not damaged
+				if (item.getDeterioration() > 0 && rpslot.getName().equals("trade")) {
+					player.sendPrivateText("You must not trade a damaged item with other players.");
+					return false;
+				}
 			}
-
+			
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
