@@ -120,6 +120,9 @@ public class PrepareOfferHandler {
 					if (item.isBound()) {
 						npc.say("That " + itemName + " can be used only by you. I can not sell it.");
 						return;
+					} else if (item.getDeterioration() > 0) {
+						npc.say("That " + itemName + " is damaged. I can not sell it.");
+						return;
 					} else if (number > 1000) {
 						npc.say("Sorry, my storage is not large enough for such a huge amout of " + Grammar.plural(itemName) + ".");
 						return;
