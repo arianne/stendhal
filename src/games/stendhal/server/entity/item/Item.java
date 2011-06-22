@@ -56,7 +56,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * propability of an item deteriorating on use
 	 */
-	private static final double DETERIORATION_PROPABILITY = 0.1;
+	private static final double DETERIORATION_PROPABILITY = 0.01;
+	
+	
 
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -298,8 +300,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * Propose increase the degree of deterioration. If degree increases is decided by random
 	 */
 	public void deteriorate() {
-		int dice = Rand.roll1D100();
-		if(dice % DETERIORATION_PROPABILITY * 100 == 0 && getDeterioration() <= MAX_DETERIORATION) {
+		double dice = Rand.rand();
+		if(dice < DETERIORATION_PROPABILITY && getDeterioration() <= MAX_DETERIORATION) {
 			this.add("deterioration", 1);
 		}
 	}
