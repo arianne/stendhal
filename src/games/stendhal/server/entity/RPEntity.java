@@ -2077,6 +2077,35 @@ public abstract class RPEntity extends GuidedEntity {
 				+ LEG_DEF_MULTIPLIER * legs + BOOTS_DEF_MULTIPLIER * boots
 				+ WEAPON_DEF_MULTIPLIER * weapon;
 	}
+	
+	/**
+	 * get all items that affect a player's defensive value except the weapon
+	 * 
+	 * @return a list of all equipped defensive items
+	 */
+	public List<Item> getDefenseItems() {
+		List<Item> items = new LinkedList<Item>();
+		if (hasShield()) {
+			items.add(getShield());
+		}
+		if (hasArmor()) {
+			items.add(getArmor());
+		}
+		if (hasHelmet()) {
+			items.add(getHelmet());
+		}
+		if (hasLegs()) {
+			items.add(getLegs());
+		}
+
+		if (hasBoots()) {
+			items.add(getBoots());
+		}
+		if (hasCloak()) {
+			items.add(getCloak());
+		}
+		return items;
+	}
 
 	/**
 	 * Recalculates item based atk and def.
