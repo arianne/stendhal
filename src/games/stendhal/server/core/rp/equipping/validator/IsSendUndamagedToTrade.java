@@ -10,7 +10,6 @@ import games.stendhal.server.entity.item.Item;
  */
 public class IsSendUndamagedToTrade implements Validator {
 
-	@Override
 	public boolean validate(EquipmentActionData data) {
 		if(data.getTargetSlot().getName().equals("trade")) {
 			for(Entity e : data.getSourceItems()) {
