@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp;
 
+import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -256,6 +257,15 @@ public class StendhalRPAction {
 				// The attack was too weak, it was blocked
 				logger.debug("attack from " + player.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
+			}
+			//deteriorate weapons of attacker
+			for(Item weapon : player.getWeapons()) {
+				weapon.deteriorate();
+			}
+			//randomly choose one defensive item to deteriorate
+			List<Item> defenseItems = defender.getDefenseItems();
+			if(!defenseItems.isEmpty()) {
+				Rand.rand(defenseItems).deteriorate();
 			}
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType()));
 		} else {
