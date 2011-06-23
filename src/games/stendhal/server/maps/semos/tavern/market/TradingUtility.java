@@ -58,7 +58,7 @@ public class TradingUtility {
 			Money m = (Money) item;
 			ownedMoney += m.getQuantity();
 		}
-		return fee.compareTo(BigDecimal.valueOf(ownedMoney)) <= 0;
+		return fee.intValue() <= ownedMoney;
 	}
 	
 	/**
