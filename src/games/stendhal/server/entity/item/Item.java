@@ -305,6 +305,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			this.add("deterioration", 1);
 		}
 	}
+	
+	/**
+	 * repair this item
+	 */
+	public void repair() {
+		if(has("deterioration")) {
+			put("deterioration", DEFAULT_DETERIORATION);
+		}
+	}
 
 	/**
 	 * Returns if the item is persistent. Persistent items do not update their
