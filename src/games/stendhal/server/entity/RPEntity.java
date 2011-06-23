@@ -1723,7 +1723,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param name
 	 *            The item's name
-	 * @return The item, or a stack of stackable items, or null if nothing was
+	 * @return The item, or a stack of stackable items, or an empty list if nothing was
 	 *         found
 	 */
 	public List<Item> getAllEquipped(final String name) {
