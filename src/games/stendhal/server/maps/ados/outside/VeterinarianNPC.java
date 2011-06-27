@@ -78,7 +78,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 					@Override
 					public int getUnitPrice(final String item) {
 						// Player gets 20 % rebate
-						return (int) (0.8f * priceList.get(item));
+						return (int) (0.8f * priceCalculator.calculatePrice(item, null));
 					}
 				});
 

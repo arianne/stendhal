@@ -44,7 +44,6 @@ public class SellerBehaviourTest {
 		final SellerBehaviour sb = new SellerBehaviour();
 		assertTrue(sb.dealtItems().isEmpty());
 		assertTrue(sb.getItemNames().isEmpty());
-		assertTrue(sb.priceList.isEmpty());
 	}
 
 	/**
@@ -57,7 +56,6 @@ public class SellerBehaviourTest {
 		SellerBehaviour sb = new SellerBehaviour(pricelist);
 		assertTrue(sb.dealtItems().isEmpty());
 		assertTrue(sb.getItemNames().isEmpty());
-		assertTrue(sb.priceList.isEmpty());
 
 		pricelist.put("item1", 10);
 		pricelist.put("item2", 20);

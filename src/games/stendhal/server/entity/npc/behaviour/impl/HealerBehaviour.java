@@ -32,7 +32,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	 */
 	public HealerBehaviour(final int cost) {
 		super();
-		priceList.put("heal", cost);
+		priceCalculator.addCoveredItem("heal", cost);
 	}
 
 	/**

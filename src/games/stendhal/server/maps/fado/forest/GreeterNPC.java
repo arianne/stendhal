@@ -75,7 +75,7 @@ public class GreeterNPC implements ZoneConfigurator {
 					@Override
 					public int getUnitPrice(final String item) {
 						// Player gets 20 % rebate
-						return (int) (0.80f * priceList.get(item));
+						return (int) (0.80f * priceCalculator.calculatePrice(item, null));
 					}
 				});
 				addQuest("A generous offer, but I require nothing, thank you.");

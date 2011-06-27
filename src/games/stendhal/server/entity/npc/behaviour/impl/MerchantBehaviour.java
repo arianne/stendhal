@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
+import games.stendhal.server.entity.npc.behaviour.impl.prices.FixedPricePriceCalculationStrategy;
+import games.stendhal.server.entity.npc.behaviour.impl.prices.PriceCalculationStrategy;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -26,7 +28,9 @@ import java.util.Set;
  */
 public abstract class MerchantBehaviour extends TransactionBehaviour {
 
-	protected Map<String, Integer> priceList;
+//	protected Map<String, Integer> priceList;
+	
+	protected PriceCalculationStrategy priceCalculator;
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
@@ -34,9 +38,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 
 	public MerchantBehaviour(final Map<String, Integer> priceList) {
 		super(priceList.keySet());
-
-		this.priceList = priceList;
-
+		priceCalculator = new FixedPricePriceCalculationStrategy(priceList);
 		for (final String itemName : priceList.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
@@ -48,7 +50,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * @return the dealt items
 	 */
 	public Set<String> dealtItems() {
-		return priceList.keySet();
+		return priceCalculator.dealtItems();
 	}
 
 	/**
@@ -59,7 +61,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * @return true iff the NPC deals with the item
 	 */
 	public boolean hasItem(final String item) {
-		return priceList.containsKey(item);
+		return priceCalculator.hasItem(item);
 	}
 
 	/**
@@ -70,7 +72,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * @return the unit price
 	 */
 	public int getUnitPrice(final String item) {
-		return priceList.get(item);
+		return priceCalculator.calculatePrice(item, null);
 	}
 
 	/**

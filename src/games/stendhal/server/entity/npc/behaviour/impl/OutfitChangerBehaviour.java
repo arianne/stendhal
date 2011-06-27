@@ -219,7 +219,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	public boolean wearsOutfitFromHere(final Player player) {
 		final Outfit currentOutfit = player.getOutfit();
 
-		for (final String outfitType : priceList.keySet()) {
+		for (final String outfitType : priceCalculator.dealtItems()) {
 			final List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
 			for (final Outfit possibleOutfit : possibleOutfits) {
 				if (possibleOutfit.isPartOf(currentOutfit)) {

@@ -87,7 +87,7 @@ public class GreeterNPC implements ZoneConfigurator {
 					@Override
 					public int getUnitPrice(final String item) {
 						// Player pays 150 % of standard price
-						return (int) (1.50f * priceList.get(item));
+						return (int) (1.50f * priceCalculator.calculatePrice(item, null));
 					}
 				});
 
