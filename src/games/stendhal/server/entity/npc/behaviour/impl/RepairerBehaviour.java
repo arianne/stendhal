@@ -38,7 +38,8 @@ public class RepairerBehaviour extends TransactionBehaviour {
 				if(item.getDeterioration() > 0) {
 					int price = priceCalculator.calculatePrice(item, player);
 					if (player.isEquipped("money", price)) {
-						return doRepair(item);
+						item.repair();
+						return true;
 					}
 				}
 			} else {
@@ -48,11 +49,9 @@ public class RepairerBehaviour extends TransactionBehaviour {
 		}
 		return false;
 	}
-
-	private boolean doRepair(Item item) {
-		//TODO implement dynamic price calculation via strategy pattern and drop money here
-		item.repair();
-		return true;
+	
+	public int getPrice(String item, Player player) {
+		return priceCalculator.calculatePrice(item, player);
 	}
 
 }
