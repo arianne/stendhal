@@ -97,7 +97,6 @@ public final class TurnNotifier {
 		}
 
 		if (set != null) {
-		  if (!set.isEmpty()) {
 			for (final TurnListener turnListener : set) {
 				
 				try {
@@ -106,8 +105,7 @@ public final class TurnNotifier {
 					logger.error("Exception in " + turnListener, e);
 				}
 			}
-		  }
-	    }
+		}
 	}
 
 	/**
@@ -146,6 +144,11 @@ public final class TurnNotifier {
 	 */
 
 	public void notifyAtTurn(final int turn, final TurnListener turnListener) {
+		if (turnListener == null) {
+			logger.error("Trying to notify null-object", new Throwable());
+			return;
+		}
+
 		if (logger.isDebugEnabled()) {
 			logger.info("Notify at " + turn + " by " + turnListener);
 			final StringBuilder st = new StringBuilder();
