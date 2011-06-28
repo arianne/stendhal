@@ -740,34 +740,14 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * 
 	 * @param sprite 
 	 * @param x 
-	 * @param y 
-	 * @param isTalking 
+	 * @param y
 	 * @param textLength 
 	 */
-	public void addTextBox(Sprite sprite, double x, double y, boolean isTalking, int textLength) {
+	public void addTextBox(Sprite sprite, double x, double y, int textLength) {
 		int sx = convertWorldToScreen(x);
 		int sy = convertWorldToScreen(y);
-		if (isTalking) {
-			// Point alignment: left, bottom
-			sy -= sprite.getHeight();
-		} else {
-			/*
-			 * Respect the placement if the world size is not known yet.
-			 * (messages at login). svx and svy do not have their correct values
-			 * yet, so placing the message at the bottom will not work.
-			 */
-			if (ww == 0) {
-				sx -= (sprite.getWidth() / 2);
-				sy -= sprite.getHeight();
-			} else {
-				/*
-				 * Otherwise place non-talking boxes at the bottom of the
-				 * screen, ignoring the specified placement.
-				 */
-				sx = svx + (getWidth() - sprite.getWidth()) / 2;
-				sy = svy + getHeight() - sprite.getHeight();
-			}
-		}
+		// Point alignment: left, bottom
+		sy -= sprite.getHeight();
 
 		sx = keepSpriteOnMapX(sprite, sx);
 		sy = keepSpriteOnMapY(sprite, sy);
@@ -787,14 +767,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 						found = true;
 						sx += (SIZE_UNIT_PIXELS / 2);
 						sx = keepSpriteOnMapX(sprite, sx);
-						/*
-						 * Don't adjust the Y-coordinate of the boxes that are
-						 * meant to be placed at the screen bottom.
-						 */
-						if (isTalking) {
-							sy += (SIZE_UNIT_PIXELS / 2);
-							sy = keepSpriteOnMapY(sprite, sy);
-						}
+						sy += (SIZE_UNIT_PIXELS / 2);
+						sy = keepSpriteOnMapY(sprite, sy);
 						break;
 					}
 				}

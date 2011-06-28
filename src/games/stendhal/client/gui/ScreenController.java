@@ -37,7 +37,9 @@ class ScreenController implements PositionChangeListener {
 		this.screen = screen;
 	}
 	/**
-	 * Adds a text bubble at a give position of the specified type.
+	 * Adds a text bubble at a give position of the specified type. For
+	 * non-talking boxes the coordinates are ignored, and the box is attached
+	 * to the bottom of the screen.
 	 * 
 	 * @param x The screen X coordinate.
 	 * @param y The screen Y coordinate.
@@ -52,7 +54,7 @@ class ScreenController implements PositionChangeListener {
 		final Sprite sprite = screen.createTextBox(text, type, isTalking);
 		final int textLength = text.length();
 		
-		if (type == NotificationType.TUTORIAL) {
+		if (!isTalking) {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					screen.addStaticText(sprite, textLength);
@@ -61,7 +63,7 @@ class ScreenController implements PositionChangeListener {
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					screen.addTextBox(sprite, x, y, isTalking, textLength);
+					screen.addTextBox(sprite, x, y, textLength);
 				}
 			});
 		}
