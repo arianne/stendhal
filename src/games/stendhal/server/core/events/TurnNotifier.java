@@ -97,6 +97,7 @@ public final class TurnNotifier {
 		}
 
 		if (set != null) {
+		  if (!set.isEmpty()) {
 			for (final TurnListener turnListener : set) {
 				
 				try {
@@ -105,7 +106,8 @@ public final class TurnNotifier {
 					logger.error("Exception in " + turnListener, e);
 				}
 			}
-		}
+		  }
+	    }
 	}
 
 	/**
