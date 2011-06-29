@@ -53,6 +53,11 @@ public class TextBoxFactory {
 	private static final int BUBBLE_OFFSET = 10;
 	/** the diameter of the arc of the rounded bubble corners. */
 	private static final int ARC_DIAMETER = 2 * MARGIN_WIDTH + 2;
+	/**
+	 * The maximum number of lines to try to fit in a text box. It is not a
+	 * hard limit, but can be exceeded by one in some situations.
+	 */
+	private static final int MAX_LINES = 6;
 	
 	/**
 	 * Creates a text box sprite.
@@ -284,12 +289,18 @@ public class TextBoxFactory {
 
 				best = null;
 
-				if (lines.size() > 50) {
-					// Very large amount of lines won't fit on the screen anyway. 
-					// Also serves to cut infinite loops should there be bugs in this
-					// ridiculously complicated code. Unfortunately there's no tolerable
-					// way to get the raw string for proper reporting.
-					break;
+				if (lines.size() > MAX_LINES) {
+					/*
+					 * Limit the height of the text boxes. Append ellipsis
+					 * to tell the user to take a look at the chat log.
+					 * The last line is removed twice to avoid the situation
+					 * where the last text line would fit on the space the
+					 * ellipsis occupies.
+					 */
+					lines.remove(lines.size() - 1);
+					lines.remove(lines.size() - 1);
+					lines.add(new AttributedString("...").getIterator());
+					return lines;
 				}
 			}
 		}
