@@ -27,8 +27,7 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 	}
 
 	public int calculatePrice(String item, Player p) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	public Set<String> dealtItems() {
