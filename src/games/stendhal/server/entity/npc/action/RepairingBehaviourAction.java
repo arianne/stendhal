@@ -19,13 +19,9 @@ public class RepairingBehaviourAction extends AbstractBehaviourAction<RepairerBe
 	@Override
 	public void fireRequestOK(ItemParserResult res, Player player,
 			Sentence sentence, EventRaiser npc) {
-		if (behaviour.getItemNames().contains(res.getChosenItemName())) {
-			int price = behaviour.getPrice(res.getChosenItemName(), player);
-			if(player.drop("money", price)) {
-				behaviour.transactAgreedDeal(res, npc, player);
-			} else {
-				npc.say("You cannot afford to repair your "+res.getChosenItemName());
-			}
+		String chosen = res.getChosenItemName();
+		if(behaviour.canDealWith(chosen)) {
+			npc.say("repairing will cost x money");
 		} else {
 			npc.say("I am sorry, but I am not able to repair your " + res.getChosenItemName() + ".");
 		}
