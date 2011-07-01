@@ -564,7 +564,7 @@
 	</target>
 
 	<target name="dist" depends="clean, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_no_sound_binary, dist_client_starter"/>
+	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -634,42 +634,13 @@
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
-		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_jarname}"/>
-			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_jarname}" filemode="755"/>
-		</zip>
-		<delete dir="${buildroot}/stendhal-${version}"/>
-	</target>
-
-	<target name="dist_client_no_sound_binary" depends="client_build,sign_jars">
-		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
-		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
-
-		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib">
-			<fileset dir="libs">
-				<include name="*.txt"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-		<copy todir="${buildroot}/stendhal-${version}/doc">
-			<fileset dir="doc"/>
-			<fileset dir="." includes="LICENSE.txt"/>
-		</copy>
-		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
-		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
-		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_jarname}"/>
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_jarname}" filemode="755"/>
 		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
+
 
 	<target name="dist_client_starter" depends="client_build,sign_jars">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
