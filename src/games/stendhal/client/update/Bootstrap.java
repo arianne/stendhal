@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Starts a program after doing some classpath magic.
- * 
+ *
  * @author hendrik
  */
 public class Bootstrap {
@@ -42,7 +42,7 @@ public class Bootstrap {
 
 		/**
 		 * Creates a bottom up order class loader.
-		 * 
+		 *
 		 * @param urls
 		 *            classpath
 		 * @param parent
@@ -61,6 +61,8 @@ public class Bootstrap {
 				try {
 					clazz = findClass(name);
 				} catch (final ClassNotFoundException e) {
+					clazz = parent.loadClass(name);
+				} catch (final SecurityException e) {
 					clazz = parent.loadClass(name);
 				}
 			}
@@ -85,7 +87,7 @@ public class Bootstrap {
 
 	/**
 	 * saves modified boot properties to disk.
-	 * 
+	 *
 	 * @throws IOException
 	 *             if an IO-error occurs
 	 */
@@ -122,7 +124,7 @@ public class Bootstrap {
 
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it.
-	 * 
+	 *
 	 * @return ClassLoader object
 	 * @throws Exception
 	 *             if an unexpected error occurs
@@ -170,7 +172,7 @@ public class Bootstrap {
 
 	/**
 	 * Do the whole start up process in a privileged block.
-	 * @param <T> 
+	 * @param <T>
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
@@ -180,7 +182,7 @@ public class Bootstrap {
 
 		/**
 		 * Creates a PrivilagedBoot object.
-		 * 
+		 *
 		 * @param className
 		 *            className to boot
 		 * @param args
@@ -272,7 +274,7 @@ public class Bootstrap {
 	/**
 	 * Is this package signed? Note it does not validate the signature, just
 	 * looks for the presence of one.
-	 * 
+	 *
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
@@ -284,7 +286,7 @@ public class Bootstrap {
 	/**
 	 * Starts the main-method of specified class after dynamically building the
 	 * classpath.
-	 * 
+	 *
 	 * @param className
 	 *            name of class with "main"-method
 	 * @param args
@@ -343,7 +345,7 @@ public class Bootstrap {
 
 	/**
 	 * Handles exceptions during program invocation.
-	 * 
+	 *
 	 * @param message
 	 * @param t
 	 *            exception
@@ -391,7 +393,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * converts a Throwable into a string representation 
+	 * converts a Throwable into a string representation
 	 * @param e throwable
 	 * @return string
 	 */
