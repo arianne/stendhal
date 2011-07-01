@@ -58,11 +58,12 @@ public class Bootstrap {
 			final ClassLoader parent = super.getParent();
 			Class< ? > clazz = findLoadedClass(name);
 			if (clazz == null) {
+				if (name != null && (name.startsWith("java") || name.startsWith("sun"))) {
+					clazz = findSystemClass(name);
+				}
 				try {
 					clazz = findClass(name);
 				} catch (final ClassNotFoundException e) {
-					clazz = parent.loadClass(name);
-				} catch (final SecurityException e) {
 					clazz = parent.loadClass(name);
 				}
 			}
