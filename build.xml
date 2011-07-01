@@ -436,17 +436,16 @@
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
+				<attribute name="Class-path" value=". lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/${client_jarname} lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
 			</manifest>
 		</jar>
+		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
 
 		<jar jarfile="${lib}/${client_jarname}">
-			<fileset dir="${build_client}"/>
-			<manifest>
-				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
-			</manifest>
+			<fileset dir="${build_client}">
+				<exclude name="games/stendhal/client/update/**"/>
+			</fileset>
 		</jar>
-		<chmod file="${lib}/${client_jarname}" perm="+x"/>
 
 		<mkdir dir="${build_client_data}"/>
 
@@ -614,7 +613,8 @@
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_starter_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
