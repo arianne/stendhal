@@ -39,43 +39,40 @@ public class RepairerBehaviour extends TransactionBehaviour {
 			Player player) {
 		List<Item> equipped = player.getAllEquipped(res.getChosenItemName());
 		if(!equipped.isEmpty()) {
-			if(equipped.size() == 1) {
-				Item item = equipped.iterator().next();
-				if(item.getDeterioration() > 0) {
-					int price = priceCalculator.calculatePrice(item, player);
-					if (player.isEquipped("money", price)) {
-						item.repair();
-						player.drop("money", price);
-						return true;
+			boolean foundMoreThanOne = false;
+			//found more that one item, important for answer of NPC
+			if(equipped.size() > 1) {
+				foundMoreThanOne = true;
+			}
+			//choose the first item as reference
+			Item toRepair = equipped.iterator().next();
+			//select the most damaged item from the found items
+			for(Item i : equipped) {
+				if(i.getDeterioration() > toRepair.getDeterioration()) {
+					toRepair = i;
+				}
+			}
+			// check if item is damaged
+			if(toRepair.getDeterioration() > 0) {
+				int price = priceCalculator.calculatePrice(toRepair, player);
+				//only repair if player can afford it
+				if (player.isEquipped("money", price)) {
+					toRepair.repair();
+					player.drop("money", price);
+					//tell player about result of repairing as for more than one found item the most damaged one is repaired
+					if(foundMoreThanOne) {
+						seller.say("You do carry more than one "+res.getChosenItemName()+" with you. So I repaired the most damaged one.");
 					} else {
-						seller.say("You cannot afford to repair your "+res.getChosenItemName());
-						return false;
+						seller.say("I repaired your "+res.getChosenItemName());
 					}
+					return true;
 				} else {
-					seller.say("Your "+res.getChosenItemName()+" is not damaged.");
+					seller.say("You cannot afford to repair your "+res.getChosenItemName());
 					return false;
 				}
 			} else {
-				Item toRepair = equipped.iterator().next();
-				for(Item i : equipped) {
-					if(i.getDeterioration() > toRepair.getDeterioration()) {
-						toRepair = i;
-					}
-				}
-				if(toRepair.getDeterioration() > 0) {
-					int price = priceCalculator.calculatePrice(toRepair, player);
-					if (player.isEquipped("money", price)) {
-						toRepair.repair();
-						player.drop("money", price);
-						seller.say("You do carry more than one "+res.getChosenItemName()+" with you. So I repaired the most damaged one.");
-						return true;
-					}
-					seller.say("You cannot afford to repair your "+res.getChosenItemName());
-					return false;
-				} else {
-					seller.say("Your "+res.getChosenItemName()+" is not damaged.");
-					return false;
-				}
+				seller.say("Your "+res.getChosenItemName()+" is not damaged.");
+				return false;
 			}
 		}
 		seller.say("You do not carry a "+res.getChosenItemName()+" with you.");
