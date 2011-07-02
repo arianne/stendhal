@@ -88,15 +88,6 @@
 			match="STENDHAL_VERSION ?= ?&quot;.*&quot;"
 			replace="STENDHAL_VERSION=&quot;${version}&quot;"
 			byline="true"/>
-		<replaceregexp file="README.txt"
-		            match="You can double click on stendhal-.*.jar and the client will run."
-		            replace="You can double click on stendhal-${version}.jar and the client will run."
-		            byline="true"/>
-        <replaceregexp file="README.txt"
-                    match="  java -jar stendhal-.*.jar"
-                    replace="  java -jar stendhal-${version}.jar"
-                    byline="true"/>
-                    	
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="GAME_NAME=.*"
@@ -436,7 +427,7 @@
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value=". lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/${client_jarname} lib/${client_data} lib/${client_sound_data} lib/${client_music_data}"/>
+				<attribute name="Class-path" value=". lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/stendhal.jar lib/stendhal-data.jar lib/stendhal-sound-data.jar lib/stendhal-music-data.jar"/>
 			</manifest>
 		</jar>
 		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
@@ -595,8 +586,8 @@
 			<fileset dir="doc"/>
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
-		
-	    <copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
+
+		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.txt"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
 		<mkdir dir="${buildroot}/stendhal-server-${version}/log" />
@@ -613,14 +604,14 @@
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_starter_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/log4j.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/marauroa.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/jorbis.jar"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_sound_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_music_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}/lib" file="${build_sign}/${client_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${build_sign}/${client_starter_jarname}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${build_sign}/${client_jarname}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${build_sign}/log4j.jar"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${build_sign}/marauroa.jar"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${build_sign}/jorbis.jar"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${build_sign}/${client_sound_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${build_sign}/${client_music_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${build_sign}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
@@ -635,8 +626,8 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
-			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="${client_jarname}"/>
-			<zipfileset dir="${buildroot}/stendhal-${version}" includes="${client_jarname}" filemode="755"/>
+			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
+			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
 		</zip>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>

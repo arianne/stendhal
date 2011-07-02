@@ -39,16 +39,16 @@ Java is included in most Linux distributions. Both Sun Java and OpenJDK are supp
 
 Please download Stendhal from http://arianne.sourceforge.net
 Then unzip the client zip into a new folder. 
-You can double click on stendhal-0.94.5.jar and the client will run.
+You can double click on stendhal-starter.jar and the client will run.
 
 If you prefer to run from command line, then just execute this command
 in the stendhal folder:
 
-  java -jar stendhal-0.94.5.jar
+  java -jar stendhal-starter.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
-  http://stendhalgame.org/stendhal.jnlp
+  http://stendhalgame.org
 
 To play Stendhal you have to use a keyboard and a mouse.
 
@@ -83,5 +83,5 @@ Legal
 Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005-2008
 arianne_rpg at users dot sourceforge dot net and others
 
-Stendhal(c) is copyright of the Arianne Project, 2006-2010
+Stendhal(c) is copyright of the Arianne Project, 2006-2011
 arianne-general at lists dot sourceforge dot net
