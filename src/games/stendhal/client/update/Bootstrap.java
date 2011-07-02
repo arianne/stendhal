@@ -33,59 +33,7 @@ public class Bootstrap {
 
 	private Properties bootPropOrg;
 
-	/**
-	 * An URLClassLoader which loads its classes first and only delegates
-	 * missing classes to the parent classloader. (default is the other way
-	 * round)
-	 */
-	private static class BottomUpOrderClassLoader extends URLClassLoader {
 
-		/**
-		 * Creates a bottom up order class loader.
-		 *
-		 * @param urls
-		 *            classpath
-		 * @param parent
-		 *            parent classloader
-		 */
-		BottomUpOrderClassLoader(final URL[] urls, final ClassLoader parent) {
-			super(urls, parent);
-		}
-
-		@Override
-		protected synchronized Class< ? > loadClass(final String name, final boolean resolve)
-				throws ClassNotFoundException {
-			final ClassLoader parent = super.getParent();
-			Class< ? > clazz = findLoadedClass(name);
-			if (clazz == null) {
-				if ((name != null) && (name.startsWith("java") || name.startsWith("sun"))) {
-					clazz = findSystemClass(name);
-				} else {
-					try {
-						clazz = findClass(name);
-					} catch (final ClassNotFoundException e) {
-						clazz = parent.loadClass(name);
-					}
-				}
-			}
-			if (resolve) {
-				resolveClass(clazz);
-			}
-			return clazz;
-		}
-
-		@Override
-		public URL getResource(final String name) {
-			final ClassLoader parent = super.getParent();
-			URL url = findResource(name);
-			if (url == null) {
-				if (parent != null) {
-					url = parent.getResource(name);
-				}
-			}
-			return url;
-		}
-	}
 
 	/**
 	 * saves modified boot properties to disk.
@@ -171,7 +119,7 @@ public class Bootstrap {
 
 		// Create new class loader with the list of .jar-files as classpath
 		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-		final ClassLoader loader = new BottomUpOrderClassLoader(urlArray,
+		final ClassLoader loader = new URLClassLoader(urlArray,
 				this.getClass().getClassLoader());
 		return loader;
 	}
