@@ -131,39 +131,43 @@ public class Bootstrap {
 	 * @throws Exception
 	 *             if an unexpected error occurs
 	 */
-	ClassLoader createClassloader() throws Exception {
-		// load jar.properties
-		final String propFile = jarFolder + "jar.properties";
-		bootProp = new Properties();
+	ClassLoader createClassloader(boolean includeUpdates) throws Exception {
 		final List<URL> jarFiles = new LinkedList<URL>();
-		if (new File(propFile).canRead()) {
-			final InputStream is = new FileInputStream(propFile);
-			bootProp.load(is);
-			bootPropOrg = (Properties) bootProp.clone();
-			is.close();
+		if (includeUpdates) {
+			// load jar.properties
+			final String propFile = jarFolder + "jar.properties";
+			bootProp = new Properties();
+			if (new File(propFile).canRead()) {
+				final InputStream is = new FileInputStream(propFile);
+				bootProp.load(is);
+				bootPropOrg = (Properties) bootProp.clone();
+				is.close();
 
-			// get list of .jar-files
-			final String jarNameString = bootProp.getProperty("load-0.95", "");
-			final StringTokenizer st = new StringTokenizer(jarNameString, ",");
-			while (st.hasMoreTokens()) {
-				final String filename = st.nextToken();
-				jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+				// get list of .jar-files
+				final String jarNameString = bootProp.getProperty("load-0.95", "");
+				final StringTokenizer st = new StringTokenizer(jarNameString, ",");
+				while (st.hasMoreTokens()) {
+					final String filename = st.nextToken();
+					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+				}
+				System.out.println("our classpath: " + jarNameString);
+			} else {
+				System.out.println("no jar.properties");
 			}
-			System.out.println("our classpath: " + jarNameString);
-		} else {
-			System.out.println("no jar.properties");
 		}
 
-		// add boot classpath at the end so that those classes
-		// are loaded by our classloader as well (otherwise the dependencies
-		// would be loaded by the system classloader as well).
-		final String vmClasspath = System.getProperty("java.class.path", "");
-		System.out.println("vm  classpath: " + vmClasspath);
-		final StringTokenizer st = new StringTokenizer(vmClasspath, ":;");
-		while (st.hasMoreTokens()) {
-			final String filename = st.nextToken();
-			jarFiles.add(new File(filename).toURI().toURL());
+		// add the files in the download distribution at the end of the classpath
+		ClassLoader orgClassloader = Bootstrap.class.getClassLoader();
+		String[] includedJarFiles = new String[] { "lib/log4j.jar", "lib/marauroa.jar", "lib/jorbis.jar",
+				"lib/stendhal.jar", "lib/stendhal-data.jar", "lib/stendhal-sound-data.jar",
+				"lib/stendhal-music-data.jar"};
+		for (String includedJarFile : includedJarFiles) {
+			URL url = orgClassloader.getResource(includedJarFile);
+			if (url != null) {
+				jarFiles.add(url);
+			}
 		}
+		System.out.println("Creating custom class loader for: " + jarFiles);
 
 		// Create new class loader with the list of .jar-files as classpath
 		final URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
@@ -201,7 +205,7 @@ public class Bootstrap {
 		private void handleUpdate() {
 			// invoke update handling first
 			try {
-				final ClassLoader classLoader = createClassloader();
+				final ClassLoader classLoader = createClassloader(true);
 				// is this the initial download (or do we already have the
 				// program downloaded)?
 				boolean initialDownload = false;
@@ -254,7 +258,7 @@ public class Bootstrap {
 			// .jar-files may have been added
 
 			try {
-				final ClassLoader classLoader = createClassloader();
+				final ClassLoader classLoader = createClassloader(true);
 				final Class< ? > clazz = classLoader.loadClass(className);
 				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
@@ -308,8 +312,7 @@ public class Bootstrap {
 			// files
 			System.err.println("Integrating old updates and looking for new ones");
 			try {
-				AccessController.doPrivileged(new PrivilegedBoot<Object>(
-						className, args));
+				AccessController.doPrivileged(new PrivilegedBoot<Object>(className, args));
 			} catch (final SecurityException e) {
 				// partly update
 				e.printStackTrace();
@@ -333,7 +336,8 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				final Class< ? > clazz = Class.forName(className);
+				final ClassLoader classLoader = createClassloader(false);
+				final Class< ? > clazz = classLoader.loadClass(className);
 				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (final Exception err) {

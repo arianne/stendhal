@@ -427,7 +427,7 @@
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value=". lib/log4j.jar lib/marauroa.jar lib/jorbis.jar lib/stendhal.jar lib/stendhal-data.jar lib/stendhal-sound-data.jar lib/stendhal-music-data.jar"/>
+				<attribute name="Class-path" value="."/>
 			</manifest>
 		</jar>
 		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
