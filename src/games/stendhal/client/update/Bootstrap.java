@@ -143,7 +143,7 @@ public class Bootstrap {
 			is.close();
 
 			// get list of .jar-files
-			final String jarNameString = bootProp.getProperty("load-0.86", "");
+			final String jarNameString = bootProp.getProperty("load-0.95", "");
 			final StringTokenizer st = new StringTokenizer(jarNameString, ",");
 			while (st.hasMoreTokens()) {
 				final String filename = st.nextToken();
@@ -387,6 +387,7 @@ public class Bootstrap {
 		bootProp.remove("load");
 		bootProp.remove("load-0.69");
 		bootProp.remove("load-0.86");
+		bootProp.remove("load-0.95");
 		try {
 			saveBootProp();
 		} catch (final IOException e1) {

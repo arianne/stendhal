@@ -23,7 +23,7 @@ import java.util.Properties;
 
 /**
  * Manages download and installation of updates.
- * 
+ *
  * @author hendrik
  */
 public class UpdateManager {
@@ -50,13 +50,13 @@ public class UpdateManager {
 	 */
 	private void init(final boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
-				+ "/update-0.86.properties";
+				+ "/update-0.95.properties";
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder-0.86",
+			serverFolder = bootProp.getProperty("server.folder-0.95",
 					ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
 					+ "/";
-			updatePropertiesFile = bootProp.getProperty("server.update-prop-0.86",
-					serverFolder + "update-0.86.properties");
+			updatePropertiesFile = bootProp.getProperty("server.update-prop-0.95",
+					serverFolder + "update-0.95.properties");
 		}
 		final HttpClient httpClient = new HttpClient(updatePropertiesFile,
 				initialDownload);
@@ -65,7 +65,7 @@ public class UpdateManager {
 
 	/**
 	 * Processes the update.
-	 * 
+	 *
 	 * @param jarFolder
 	 *            folder where the .jar files are stored
 	 * @param bootProp
@@ -157,7 +157,7 @@ public class UpdateManager {
 	/**
 	 * Removes all files from the download list which have already been
 	 * downloaded.
-	 * 
+	 *
 	 * @param files
 	 *            list of files to check and clean
 	 */
@@ -185,7 +185,7 @@ public class UpdateManager {
 
 	/**
 	 * returns the list of all files to download for the first install.
-	 * 
+	 *
 	 * @return list of files
 	 */
 	private List<String> getFilesForFirstDownload() {
@@ -201,7 +201,7 @@ public class UpdateManager {
 
 	/**
 	 * returns the list of all files to download for transitive update.
-	 * 
+	 *
 	 * @param startVersion
 	 *            the version to start the path at
 	 * @return list of files
@@ -228,7 +228,7 @@ public class UpdateManager {
 
 	/**
 	 * Calculates the sum of the file sizes.
-	 * 
+	 *
 	 * @param files
 	 *            list of files
 	 * @return total size of download
@@ -249,7 +249,7 @@ public class UpdateManager {
 
 	/**
 	 * Downloads the files listed for update.
-	 * 
+	 *
 	 * @param files
 	 *            list of files to download
 	 * @param size
@@ -357,7 +357,7 @@ public class UpdateManager {
 
 	/**
 	 * Updates the classpath.
-	 * 
+	 *
 	 * @param files
 	 */
 	private void updateClasspathConfig(final List<String> files) {
@@ -368,8 +368,8 @@ public class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		sb.append(bootProp.getProperty("load-0.86", ""));
+		sb.append(bootProp.getProperty("load-0.95", ""));
 
-		bootProp.put("load-0.86", sb.toString());
+		bootProp.put("load-0.95", sb.toString());
 	}
 }
