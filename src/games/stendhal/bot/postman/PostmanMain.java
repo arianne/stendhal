@@ -13,7 +13,7 @@
 package games.stendhal.bot.postman;
 
 import games.stendhal.bot.core.PerceptionErrorListener;
-import games.stendhal.client.update.Version;
+import games.stendhal.common.Version;
 
 import java.net.SocketException;
 import java.util.HashMap;

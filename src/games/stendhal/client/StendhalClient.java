@@ -17,8 +17,8 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.update.HttpClient;
-import games.stendhal.client.update.Version;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

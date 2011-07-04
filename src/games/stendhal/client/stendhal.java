@@ -20,8 +20,8 @@ import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Version;
 import games.stendhal.common.resource.ResourceManager;
 
 import java.awt.Dimension;

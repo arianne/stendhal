@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+
 /**
  * Handles version numbers
  * 
@@ -22,6 +23,7 @@ package games.stendhal.common;
  * @author hendrik
  */
 public class Version {
+	public final static String VERSION = Debug.VERSION;
 
 	/**
 	 * Extract the specified number of parts from a version-string.
@@ -125,6 +127,15 @@ public class Version {
 
 	private Version() {
 		// hide constructor; this is a static class
+	}
+
+	/**
+	 * gets the version
+	 * 
+	 * @return version
+	 */
+	public static String getVersion() {
+		return Debug.VERSION;
 	}
 
 }

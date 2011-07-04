@@ -96,10 +96,13 @@ public class UpdateManager {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 			fromVersion = null;
 		} else {
-			fromVersion = Version.getVersion();
+			fromVersion = getVersion();
 			final String versionStateString = updateProp.getProperty("version."
 					+ fromVersion);
 			versionState = VersionState.getFromString(versionStateString);
+		}
+		if (fromVersion == null) {
+			versionState = VersionState.INITIAL_DOWNLOAD;
 		}
 
 		switch (versionState) {
@@ -131,7 +134,7 @@ public class UpdateManager {
 			break;
 
 		case UPDATE_NEEDED:
-			version = Version.getVersion();
+			version = getVersion();
 			files = getFilesToUpdate(version);
 			filesToAddToClasspath = new ArrayList<String>(files);
 			removeAlreadyExistingFiles(files);
@@ -152,6 +155,29 @@ public class UpdateManager {
 			break;
 
 		}
+	}
+
+	/**
+	 * loads the version without introduction a dependency
+	 *
+	 * @return version or <code>null</code>
+	 */
+	private String getVersion() {
+		try {
+			Class<?> clazz = Class.forName("games.stendhal.common.Version");
+			return (String) clazz.getField("VERSION").get(null);
+		} catch (ClassNotFoundException e) {
+			// ignore
+		} catch (IllegalArgumentException e) {
+			// ignore
+		} catch (SecurityException e) {
+			// ignore
+		} catch (IllegalAccessException e) {
+			// ignore
+		} catch (NoSuchFieldException e) {
+			// ignore
+		}
+		return null;
 	}
 
 	/**

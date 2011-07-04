@@ -34,10 +34,10 @@ So what are you waiting for?! A whole new world awaits...
 How to play
 -----------
 
-You need Java which you can download from http://www.java.com/en/download
+You need Java which you can download from http://www.java.com/en/download on Microsoft Windows.
 Java is included in most Linux distributions. Both Sun Java and OpenJDK are supported.
 
-Please download Stendhal from http://arianne.sourceforge.net
+Please download Stendhal from http://stendhalgame.org
 Then unzip the client zip into a new folder. 
 You can double click on stendhal-starter.jar and the client will run.
 
@@ -54,7 +54,7 @@ To play Stendhal you have to use a keyboard and a mouse.
 
 There is a manual at
 http://stendhalgame.org/wiki/Stendhal_Manual, and there is
-Help from the client main menu too.
+Help from the client menu icons in the upper right hand side of the game screen.
 
 
 How to create a server

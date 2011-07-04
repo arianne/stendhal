@@ -18,7 +18,7 @@ import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
-import games.stendhal.client.update.Version;
+import games.stendhal.common.Version;
 
 import java.awt.Component;
 import java.awt.Container;

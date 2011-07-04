@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.bot.core;
 
-import games.stendhal.client.update.Version;
+import games.stendhal.common.Version;
 
 import java.io.IOException;
 import java.net.SocketException;

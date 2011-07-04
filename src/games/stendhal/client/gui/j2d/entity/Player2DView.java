@@ -22,7 +22,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.update.Version;
+import games.stendhal.common.Version;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
