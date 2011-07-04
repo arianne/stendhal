@@ -48,7 +48,7 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 		for (IRPZone irpZone : rpWorld) {
 			StendhalRPZone irpZone2 = (StendhalRPZone) irpZone;
 			if (!irpZone2.getName().startsWith("int")) {
-				zones.add(irpZone2);				
+				zones.add(irpZone2);
 			}
 		}
 	}
@@ -59,11 +59,14 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 		PlayerList pl = new PlayerList();
 		int packet = 1;
 		for (Player p : onlinePlayers) {
-			pl.add(p);
-			if(pl.getAllPlayers().size() == 5) {
-				SingletonRepository.getTurnNotifier().notifyInTurns(packet, new MoveAndStrengthenPlayersTurnListener(pl, admin));
-				pl = new PlayerList();
-				packet += 1;
+			String zoneName = p.getZone().getName();
+			if ((zoneName != null) && (zoneName.equals("int_afterlife") || zoneName.equals("int_semos_guard_house"))) {
+				pl.add(p);
+				if(pl.getAllPlayers().size() == 5) {
+					SingletonRepository.getTurnNotifier().notifyInTurns(packet, new MoveAndStrengthenPlayersTurnListener(pl, admin));
+					pl = new PlayerList();
+					packet += 1;
+				}
 			}
 		}
 		
