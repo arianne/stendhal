@@ -67,11 +67,7 @@ public class KeyedSlotUtil {
 			return null;
 		}
 
-		if (object.has(key)) {
-			return object.get(key);
-		} else {
-			return null;
-		}
+		return object.get(key);
 	}
 
 	/**
