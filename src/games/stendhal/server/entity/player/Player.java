@@ -347,11 +347,7 @@ public class Player extends RPEntity {
 	 * @return The away message, or <code>null</code> if unset.
 	 */
 	public String getAwayMessage() {
-		if (has(AWAY)) {
-			return get(AWAY);
-		} else {
-			return null;
-		}
+		return get(AWAY);
 	}
 
 	/**
@@ -383,11 +379,7 @@ public class Player extends RPEntity {
 	 * @return The grumpy message, or <code>null</code> if unset.
 	 */
 	public String getGrumpyMessage() {
-		if (has(GRUMPY)) {
-			return get(GRUMPY);
-		} else {
-			return null;
-		}
+		return get(GRUMPY);
 	}
 
 	/**
@@ -1340,9 +1332,7 @@ public class Player extends RPEntity {
 
 	public void setImmune() {
 		if (has("poisoned")) {
-
 			remove("poisoned");
-
 		}
 		poisonToConsume.clear();
 		isImmune = true;
