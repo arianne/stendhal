@@ -12,12 +12,21 @@
  ***************************************************************************/
 package games.stendhal.tools.updateprop;
 
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.Signature;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -26,14 +35,13 @@ import java.util.Properties;
  * @author hendrik
  */
 public class UpdatePropUpdater {
-	private static final String NON_STENDHAL_FILES = "log4j.jar,jorbis.jar,marauroa-3.8.2.jar";
-
 	private String oldFile;
 	private String newFile;
 	private String oldVersion;
 	private String newVersion;
-	private String legacy;
+	private List<String> files;
 	private Properties prop;
+	private Signature signer;
 	
 	/**
 	 * Creates a new UpdatePropUpdater.
@@ -42,28 +50,59 @@ public class UpdatePropUpdater {
 	 * @param newFile    name of new file
 	 * @param oldVersion last version
 	 * @param newVersion new version
-	 * @param folder     folder with files
-	 * @param legacy     legacy prefix, may be empty
+	 * @param files      list of files
+	 * @throws Exception 
 	 */
-	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion, String folder, String legacy) {
+	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion, List<String> files) throws Exception {
 		this.newFile = newFile;
 		this.newVersion = newVersion;
 		this.oldFile = oldFile;
 		this.oldVersion = oldVersion;
-		this.legacy = legacy;
+		this.files = new ArrayList<String>(files);
+		initSigner();
+	}
+
+	private void initSigner() throws Exception {
+		Properties antProp = new Properties();
+		InputStream is;
+		try {
+			is = new FileInputStream("build.ant-private.properties");
+			antProp.load(is);
+			is.close();
+		} catch (IOException e) {
+			System.err.println("Loading build.ant-private.properties with parameters keystore.alias and keystore.password failed");
+			System.exit(1);
+		}
+
+		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+
+		// get user password and file input stream
+		char[] password = antProp.getProperty("keystore.password").toCharArray();
+		java.io.FileInputStream fis = new FileInputStream("keystore.ks");
+		ks.load(fis, password);
+		fis.close();
+
+		// get my private key
+		KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(password);
+		KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(antProp.getProperty("keystore.alias"), protection);
+		PrivateKey key = pkEntry.getPrivateKey();
+		System.out.println(key);
+
+		signer = Signature.getInstance("SHA1withRSA");
+		signer.initSign(key);
 	}
 
 	/**
 	 * Updates the update.properties file.
 	 *
-	 * @throws IOException in case of an input/output error
+	 * @throws Exception in case of an unexpected error
 	 */
-	public void process() throws IOException {
+	public void process() throws Exception {
 		loadOldUpdateProperties();
 		updateVersion();
 		updateInit();
 		updateUpdateFileList();
-		updateFileSize();
+		updateFileSizeAndSignature();
 		writeNewUpdateProperties();
 	}
 
@@ -98,8 +137,7 @@ public class UpdatePropUpdater {
 	 * updates the init statement
 	 */
 	private void updateInit() {
-		// TODO: generate automatically instead of hard coding it.
-		prop.put("init.file-list", NON_STENDHAL_FILES + ",stendhal-data-" + newVersion + ".jar,stendhal-" + newVersion + ".jar");
+		prop.put("init.file-list", prop.getProperty("init.file-list").replaceAll(oldVersion, newVersion));
 		prop.put("init.version", newVersion);
 
 	}
@@ -108,15 +146,36 @@ public class UpdatePropUpdater {
 	 * updates the update-file-list
 	 */
 	private void updateUpdateFileList() {
-		// TODO: generate automatically instead of hard coding it.
-		prop.put("update-file-list." + oldVersion, NON_STENDHAL_FILES + ",stendhal" + legacy + "-data-diff-" + oldVersion + "-" + newVersion + ".jar,stendhal" + legacy + "-diff-" + oldVersion + "-" + newVersion + ".jar");
+		StringBuilder updateList = new StringBuilder();
+		for (String file : files) {
+			if (updateList.length() > 0) {
+				updateList.append(",");
+			}
+			if (file.indexOf("diff") > -1) {
+				updateList.append(file);
+			}
+		}
+		prop.put("update-file-list." + oldVersion, updateList);
 	}
 
 	/**
-	 * update the file size section
+	 * update the file size and signature sections
 	 */
-	private void updateFileSize() {
-		// TODO: implement updateFileSize()
+	private void updateFileSizeAndSignature() throws Exception{
+		for (String filename : files) {
+			File file = new File(filename);
+			prop.put("file-size." + filename, file.length());
+			
+			InputStream is = new BufferedInputStream(new FileInputStream(filename));
+			byte[] buffer = new byte[1024];
+			int len;
+			while ((len = is.read(buffer)) >= 0) {
+				signer.update(buffer, 0, len);
+			}
+			is.close();
+			byte[] realSig = signer.sign();
+			prop.put("file-size." + filename, String.format("%x", new BigInteger(1, realSig)));
+		}
 	}
 
 	/**
@@ -135,18 +194,18 @@ public class UpdatePropUpdater {
 	 * generates a new update.properties based on an existing one
 	 *
 	 * @param args oldFile newFile oldVersion newVersion folder [legacy]
-	 * @throws IOException in case of an input/output error
+	 * @throws Exception in case of an unexpected error
 	 */
-	public static void main(final String[] args) throws IOException {
-		if ((args.length != 5) && (args.length != 6)) {
-			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion folder [legacy]");
+	public static void main(final String[] args) throws Exception {
+		if ((args.length < 4)) {
+			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion files");
 			System.exit(1);
 		}
-		String legacy = "";
-		if (args.length > 5) {
-			legacy = "-" + args[5];
+		List<String> files = new LinkedList<String>();
+		for (int i = 4; i < args.length; i++) {
+			files.add(args[i]);
 		}
-		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3], args[4], legacy);
+		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3], files);
 		updater.process();
 	}
 }

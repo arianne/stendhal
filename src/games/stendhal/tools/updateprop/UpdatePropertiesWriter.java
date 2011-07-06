@@ -50,6 +50,7 @@ public class UpdatePropertiesWriter {
 		init();
 		updateFileList();
 		fileSize();
+		fileSignature();
 	}
 
 	/**
@@ -102,14 +103,10 @@ public class UpdatePropertiesWriter {
 		writeKeysWithPrefix("version.", "version.destination");
 	}
 
-	/**
-	 * 
-	 */
 	private void destination() {
 		ps.println("# new version after update to calculate multiple updates in a row");
 		writeKeysWithPrefix("version.destination.");
 	}
-	
 
 	private void init() {
 		ps.println("# files to download on first install");
@@ -122,7 +119,12 @@ public class UpdatePropertiesWriter {
 	}
 
 	private void fileSize() {
-		ps.println("# size of complete files");
+		ps.println("# size of files");
 		writeKeysWithPrefix("file-size.");
+	}
+
+	private void fileSignature() {
+		ps.println("# signature of files");
+		writeKeysWithPrefix("file-signature.");
 	}
 }
