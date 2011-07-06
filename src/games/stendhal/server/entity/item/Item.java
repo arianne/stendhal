@@ -302,7 +302,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void deteriorate() {
 		double dice = Rand.rand();
 		if(dice < DETERIORATION_PROPABILITY && getDeterioration() <= MAX_DETERIORATION) {
-			this.add("deterioration", 1);
+//			this.add("deterioration", 1);
 		}
 	}
 	
