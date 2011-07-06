@@ -98,11 +98,6 @@
 				<include name="*-diff*.jar"/>
 			</fileset>
 		</signjar>
-		<signjar alias="stendhal" keystore="keystore.ks" storepass="${keystore.password}">
-			<fileset dir="${lib}">
-				<include name="*-diff*.jar"/>
-			</fileset>
-		</signjar>
 	</target>
 
 	<target name="upload-diff">
