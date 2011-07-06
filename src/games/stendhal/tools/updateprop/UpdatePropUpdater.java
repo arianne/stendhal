@@ -39,10 +39,11 @@ public class UpdatePropUpdater {
 	private String newFile;
 	private String oldVersion;
 	private String newVersion;
+	private String folder;
 	private List<String> files;
 	private Properties prop;
 	private Signature signer;
-	
+
 	/**
 	 * Creates a new UpdatePropUpdater.
 	 *
@@ -50,14 +51,16 @@ public class UpdatePropUpdater {
 	 * @param newFile    name of new file
 	 * @param oldVersion last version
 	 * @param newVersion new version
+	 * @param folder     folder the .jar files are in
 	 * @param files      list of files
 	 * @throws Exception 
 	 */
-	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion, List<String> files) throws Exception {
+	public UpdatePropUpdater(final String oldFile, final String newFile, final String oldVersion, final String newVersion, String folder, List<String> files) throws Exception {
 		this.newFile = newFile;
 		this.newVersion = newVersion;
 		this.oldFile = oldFile;
 		this.oldVersion = oldVersion;
+		this.folder = folder;
 		this.files = new ArrayList<String>(files);
 		initSigner();
 	}
@@ -86,7 +89,6 @@ public class UpdatePropUpdater {
 		KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(password);
 		KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(antProp.getProperty("keystore.alias"), protection);
 		PrivateKey key = pkEntry.getPrivateKey();
-		System.out.println(key);
 
 		signer = Signature.getInstance("SHA1withRSA");
 		signer.initSign(key);
@@ -130,7 +132,7 @@ public class UpdatePropUpdater {
 	private void updateVersion() {
 		prop.put("version." + oldVersion, "UPDATE_NEEDED");
 		prop.put("version." + newVersion, "CURRENT");
-		prop.put("version.destination", newVersion);
+		prop.put("version.destination." + oldVersion, newVersion);
 	}
 
 	/**
@@ -155,7 +157,7 @@ public class UpdatePropUpdater {
 				updateList.append(file);
 			}
 		}
-		prop.put("update-file-list." + oldVersion, updateList);
+		prop.put("update-file-list." + oldVersion, updateList.toString());
 	}
 
 	/**
@@ -163,10 +165,10 @@ public class UpdatePropUpdater {
 	 */
 	private void updateFileSizeAndSignature() throws Exception{
 		for (String filename : files) {
-			File file = new File(filename);
-			prop.put("file-size." + filename, file.length());
+			File file = new File(folder + "/" + filename);
+			prop.put("file-size." + filename, Long.toString(file.length()));
 			
-			InputStream is = new BufferedInputStream(new FileInputStream(filename));
+			InputStream is = new BufferedInputStream(new FileInputStream(folder + "/" + filename));
 			byte[] buffer = new byte[1024];
 			int len;
 			while ((len = is.read(buffer)) >= 0) {
@@ -174,7 +176,7 @@ public class UpdatePropUpdater {
 			}
 			is.close();
 			byte[] realSig = signer.sign();
-			prop.put("file-size." + filename, String.format("%x", new BigInteger(1, realSig)));
+			prop.put("file-signature." + filename, String.format("%x", new BigInteger(1, realSig)));
 		}
 	}
 
@@ -198,14 +200,14 @@ public class UpdatePropUpdater {
 	 */
 	public static void main(final String[] args) throws Exception {
 		if ((args.length < 4)) {
-			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion files");
+			System.err.println("java " + UpdatePropUpdater.class.getName() + " oldFile newFile oldVersion newVersion folder files");
 			System.exit(1);
 		}
 		List<String> files = new LinkedList<String>();
-		for (int i = 4; i < args.length; i++) {
+		for (int i = 5; i < args.length; i++) {
 			files.add(args[i]);
 		}
-		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3], files);
+		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3], args[4], files);
 		updater.process();
 	}
 }
