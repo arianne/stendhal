@@ -67,9 +67,8 @@ public class UpdatePropUpdater {
 
 	private void initSigner() throws Exception {
 		Properties antProp = new Properties();
-		InputStream is;
 		try {
-			is = new FileInputStream("build.ant-private.properties");
+			InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("build.ant-private.properties");
 			antProp.load(is);
 			is.close();
 		} catch (IOException e) {
@@ -81,9 +80,9 @@ public class UpdatePropUpdater {
 
 		// get user password and file input stream
 		char[] password = antProp.getProperty("keystore.password").toCharArray();
-		java.io.FileInputStream fis = new FileInputStream("keystore.ks");
-		ks.load(fis, password);
-		fis.close();
+		InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("keystore.ks");
+		ks.load(is, password);
+		is.close();
 
 		// get my private key
 		KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(password);
@@ -209,5 +208,7 @@ public class UpdatePropUpdater {
 		}
 		UpdatePropUpdater updater = new UpdatePropUpdater(args[0], args[1], args[2], args[3], args[4], files);
 		updater.process();
+
+		System.err.println("Check and update parameter init.file-list.");
 	}
 }
