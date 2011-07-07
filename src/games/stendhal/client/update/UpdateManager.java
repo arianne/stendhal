@@ -12,7 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.update;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.Signature;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -196,12 +201,12 @@ public class UpdateManager {
 				continue;
 			}
 			try {
-				// TODO: use hash of files instead of size
-				final long sizeShould = Integer.parseInt(updateProp.getProperty(
-						"file-size." + file, ""));
+				final long sizeShould = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 				final long sizeIs = new File(jarFolder + file).length();
 				if (sizeShould == sizeIs) {
-					itr.remove();
+					if (checkSignature(jarFolder + file, updateProp.getProperty("file-signature." + file))) {
+						itr.remove();
+					}
 				}
 			} catch (final RuntimeException e) {
 				e.printStackTrace(System.err);
@@ -310,15 +315,13 @@ public class UpdateManager {
 		final HttpClient httpClient = new HttpClient(serverFolder + file, true);
 		httpClient.setProgressListener(updateProgressBar);
 		if (!httpClient.fetchFile(jarFolder + file)) {
-			UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file "
-					+ file);
+			UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file " + file);
 			return false;
 		}
 		try {
 			final File fileObj = new File(jarFolder + file);
-			final int shouldSize = Integer.parseInt(updateProp.getProperty(
-					"file-size." + file, ""));
-			if (fileObj.length() != shouldSize) {
+			final int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+			if ((fileObj.length() != shouldSize) || !checkSignature(jarFolder + file, updateProp.getProperty("file-signature." + file))) {
 				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
 						+ file
 						+ " does not match. We got "
@@ -372,6 +375,10 @@ public class UpdateManager {
 				System.out.println("wrong file size, will retry from normal location");
 				return false;
 			}
+			if (!checkSignature(jarFolder + file, updateProp.getProperty("file-signature." + file))) {
+				System.out.println("signature verification failed");
+				return false;
+			}
 		} catch (final NumberFormatException e) {
 			e.printStackTrace(System.err);
 			return false;
@@ -381,6 +388,50 @@ public class UpdateManager {
 		return true;
 	}
 
+	private boolean checkSignature(String filename, String signature) {
+		if (signature == null) {
+			return false;
+		}
+		try {
+			KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+			String keystoreFilename = ClientGameConfiguration.get("UPDATE_CERTSTORE");
+			InputStream fis = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
+			ks.load(fis, null);
+			fis.close();
+
+			Signature sig = Signature.getInstance("SHA1withRSA");
+			sig.initVerify(ks.getCertificate("stendhal2011").getPublicKey());
+
+			FileInputStream datafis = new FileInputStream(filename);
+			InputStream buf = new BufferedInputStream(datafis);
+
+			byte[] temp = new byte[1024];
+			int length = 0;
+			while (buf.available() != 0) {
+				length = buf.read(temp);
+				sig.update(temp, 0, length);
+			}
+			buf.close();
+
+			boolean isVaild = sig.verify(hexStringToByteArray(signature));
+			System.out.println("Validated " + filename + ": " + isVaild);
+			return isVaild;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// http://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java/140861#140861
+	private static byte[] hexStringToByteArray(String s) {
+		int len = s.length();
+		byte[] data = new byte[len / 2];
+		for (int i = 0; i < len; i += 2) {
+			data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character
+					.digit(s.charAt(i + 1), 16));
+		}
+		return data;
+	}
 	/**
 	 * Updates the classpath.
 	 *
