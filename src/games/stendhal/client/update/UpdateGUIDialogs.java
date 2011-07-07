@@ -34,14 +34,14 @@ public class UpdateGUIDialogs {
 		int resCode;
 		if (update) {
 			resCode = JOptionPane.showConfirmDialog(null,
-					"There is a new version which is " + sizeString
-							+ " KB. Should Stendhal be updated?", DIALOG_TITLE,
+					new SelectableLabel("There is a new version which is " + sizeString
+							+ " KB. Should Stendhal be updated?"), DIALOG_TITLE,
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		} else {
 			resCode = JOptionPane.showConfirmDialog(null,
-					"We need to download some additional files which are "
+					new SelectableLabel("We need to download some additional files which are "
 							+ sizeString
-							+ " KB.\r\n Should Stendhal be installed?",
+							+ " KB.\r\n Should Stendhal be installed?"),
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 		}
@@ -56,7 +56,7 @@ public class UpdateGUIDialogs {
 	 *            message to display
 	 */
 	public static void messageBox(final String message) {
-		JOptionPane.showMessageDialog(null, message, DIALOG_TITLE,
+		JOptionPane.showMessageDialog(null, new SelectableLabel(message), DIALOG_TITLE,
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 

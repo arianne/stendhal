@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 /**
  * Starts a program after doing some classpath magic.
@@ -347,7 +345,7 @@ public class Bootstrap {
 		try {
 			saveBootProp();
 		} catch (final IOException e1) {
-			JOptionPane.showMessageDialog(null,	new SelectableLabel("Could not write jar.properties"));
+			JOptionPane.showMessageDialog(null, new SelectableLabel("Could not write jar.properties"));
 		}
 	}
 
@@ -364,28 +362,5 @@ public class Bootstrap {
 			sb.append(frame.toString());
 		}
 		return sb.toString();
-	}
-	
-	/**
-	 * A fake label component to work around JLabels not being
-	 * selectable. JOptionPane creates JLabels for strings, but keeps
-	 * custom components, like this.
-	 */
-	static class SelectableLabel extends JTextArea {
-		private static final long serialVersionUID = -834949100383673798L;
-
-		SelectableLabel(String text) {
-			super(text);
-			setEditable(false);
-			setBorder(null);
-			setOpaque(false);
-			/*
-			 * Get the font directly from JLabel, in case the user is
-			 * using a theme where it does not come from an UIManager
-			 * property.
-			 */
-			JLabel tmp = new JLabel();
-			setFont(tmp.getFont());
-		}
 	}
 }

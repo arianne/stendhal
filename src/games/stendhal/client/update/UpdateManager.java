@@ -89,9 +89,9 @@ public class UpdateManager {
 		init(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
-				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from "
+				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from\r\n"
 						+ serverFolder
-						+ " but that server is not reachable at the moment. Please try again later.");
+						+ "\r\nbut that server is not reachable at the moment. Please try again later.");
 				System.exit(1);
 			}
 			return;
@@ -120,7 +120,7 @@ public class UpdateManager {
 			break;
 
 		case OUTDATED:
-			UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
+			UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work.\r\nPlease download the current version from http://arianne.sf.net .");
 			break;
 
 		case INITIAL_DOWNLOAD:
@@ -322,9 +322,9 @@ public class UpdateManager {
 			final File fileObj = new File(jarFolder + file);
 			final int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 			if ((fileObj.length() != shouldSize) || !checkSignature(jarFolder + file, updateProp.getProperty("file-signature." + file))) {
-				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
+				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update.\r\nFile size of "
 						+ file
-						+ " does not match. We got "
+						+ "or signature does not match.\r\nWe got file size "
 						+ fileObj.length()
 						+ " but it should be "
 						+ shouldSize);
