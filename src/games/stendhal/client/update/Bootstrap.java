@@ -26,13 +26,9 @@ import javax.swing.JOptionPane;
 public class Bootstrap {
 
 	private String pathSep;
-
 	private String jarFolder;
-
 	private Properties bootProp;
-
 	private Properties bootPropOrg;
-
 
 
 	/**
@@ -96,7 +92,9 @@ public class Bootstrap {
 				final StringTokenizer st = new StringTokenizer(jarNameString, ",");
 				while (st.hasMoreTokens()) {
 					final String filename = st.nextToken();
-					jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+					if (SignatureVerifier.get().checkSignature(jarFolder + filename, bootProp.getProperty("file-signature." + filename))) {
+						jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+					}
 				}
 				System.out.println("our classpath: " + jarNameString);
 			} else {
@@ -170,14 +168,13 @@ public class Bootstrap {
 					}
 				} catch (final ClassNotFoundException e) {
 					initialDownload = true;
-					System.out.println("Initial Download triggered by the following missing classes: ");
-					e.printStackTrace();
+					System.out.println("Initial Download triggered by the following missing classes: " + e);
 				}
 
 				// start update handling
 				final Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				final Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
-				method.invoke(clazz.newInstance(), jarFolder, bootProp,	initialDownload);
+				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (final SecurityException e) {
 				throw e;
 			} catch (final Exception e) {
@@ -267,8 +264,8 @@ public class Bootstrap {
 
 				final int res = JOptionPane.showConfirmDialog(
 						null,
-						new SelectableLabel(" Sorry an error occurred because of inconsistent code signing.\n"
-						+ " Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\n"
+						new SelectableLabel(" Sorry an error occurred because of inconsistent code signing.\r\n"
+						+ " Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\r\n"
 						+ " Note: This exception can occur if you include signed jars into a self build client."),
 						ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
