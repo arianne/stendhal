@@ -3,10 +3,10 @@
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
 
-	<target name="temp" depends="init,jardiff,sign_diff-jars" />
+	<target name="temp" depends="init,jardiff" />
 
 	
-	<target name="all" depends="init,prepare-archive,jardiff,sign_diff-jars">
+	<target name="all" depends="init,prepare-archive,jardiff">
 		<!-- This file will automate some parts of the release process -->
 		
 		<!-- TODO
@@ -46,7 +46,7 @@
 		<!-- TODO
 		* unless build-archive/stendhal-${version.old}.zip exists
 			download http://arianne.sf.net/jws/stendhal-${version.old}.zip to build-archiv -->
-		<unzip src="${build-archive}/stendhal-FULL-${version.old}.zip" 
+		<unzip src="${build-archive}/stendhal-${version.old}.zip" 
 			dest="${build-archive}" />
 	</target>
 
@@ -84,20 +84,6 @@
 			<arg value="${build}/lib/stendhal-sound-data-${version}.jar" />
 		</java>
 	<!-- TODO maraurora.jar-->
-	</target>
-
-	<!-- * Sign the -diff-*.jar files for webstart -->
-	<condition property="exclude.signing" value="true">
-		<not>
-			<available file="keystore.ks"/>
-		</not>
-		</condition>
-	<target name="sign_diff-jars" depends="jardiff" unless="exclude.signing">
-		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
-			<fileset dir="${lib}">
-				<include name="*-diff*.jar"/>
-			</fileset>
-		</signjar>
 	</target>
 
 	<target name="upload-diff">
