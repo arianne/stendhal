@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class UpdateGUIDialogs {
 
-	private static final String DIALOG_TITLE = "Stendhal Update";
+	private static final String DIALOG_TITLE = ClientGameConfiguration.get("GAME_NAME") + " Update";
 
 	/**
 	 * Asks the user to accept an update.
@@ -34,14 +34,14 @@ public class UpdateGUIDialogs {
 		int resCode;
 		if (update) {
 			resCode = JOptionPane.showConfirmDialog(null,
-					new SelectableLabel("There is a new version which is " + sizeString
-							+ " KB. Should Stendhal be updated?"), DIALOG_TITLE,
+					new SelectableLabel("There is a new version which is " + sizeString + " KB.\r\n"
+						+ "Should " + ClientGameConfiguration.get("GAME_NAME") + " be updated?"), DIALOG_TITLE,
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		} else {
 			resCode = JOptionPane.showConfirmDialog(null,
 					new SelectableLabel("We need to download some additional files which are "
-							+ sizeString
-							+ " KB.\r\n Should Stendhal be installed?"),
+						+ sizeString + " KB.\r\n"
+						+ "Should " + ClientGameConfiguration.get("GAME_NAME") + " be installed?"),
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 		}

@@ -98,7 +98,7 @@ public class UpdateProgressBar extends JFrame implements
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		if (fromVersion == null) {
-			contentPane.add(new JLabel("Please wait while Stendhal is downloaded..."));
+			contentPane.add(new JLabel("Please wait while " + ClientGameConfiguration.get("GAME_NAME") + " is downloaded..."));
 		} else {
 			contentPane.add(new JLabel("Downloading updates..."));
 		}

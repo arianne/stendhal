@@ -268,9 +268,9 @@ public class Bootstrap {
 				final int res = JOptionPane.showConfirmDialog(
 						null,
 						new SelectableLabel(" Sorry an error occurred because of inconsistent code signing.\n"
-						+ " Delete update files so that they are downloaded again after you restart Stendhal?\n"
+						+ " Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\n"
 						+ " Note: This exception can occur if you include signed jars into a self build client."),
-						"Stendhal", JOptionPane.YES_NO_OPTION,
+						ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (res == JOptionPane.YES_OPTION) {
 					clearUpdateFiles();
@@ -315,13 +315,13 @@ public class Bootstrap {
 
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null,
-					"Sorry, an OutOfMemoryError occurred. Please restart Stendhal.");
+					"Sorry, an OutOfMemoryError occurred. Please restart " + ClientGameConfiguration.get("GAME_NAME") + ".");
 		} else if (e instanceof LinkageError || e instanceof SecurityException) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
 					new SelectableLabel(message 
-					+ " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart Stendhal?"),
-					"Stendhal", JOptionPane.YES_NO_OPTION,
+					+ " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") +"?"),
+					ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
 				clearUpdateFiles();
