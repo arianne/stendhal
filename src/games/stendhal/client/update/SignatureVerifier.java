@@ -33,9 +33,13 @@ public class SignatureVerifier {
 		try {
 			ks = KeyStore.getInstance(KeyStore.getDefaultType());
 			String keystoreFilename = ClientGameConfiguration.get("UPDATE_CERTSTORE");
-			InputStream fis = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
-			ks.load(fis, null);
-			fis.close();
+			InputStream is = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
+			if (is != null) {
+				ks.load(is, null);
+				is.close();
+			} else {
+				System.err.println("Certstore " + keystoreFilename + " not found, configured as UPDATE_CERTSTORE in game.properties.");
+			}
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} catch (KeyStoreException e) {
@@ -70,6 +74,7 @@ public class SignatureVerifier {
 	 */
 	public boolean checkSignature(String filename, String signature) {
 		if ((ks == null) || (signature == null)) {
+			System.out.println("No signature for " + filename);
 			return false;
 		}
 		try {
