@@ -400,7 +400,7 @@ public class UpdateManager {
 			fis.close();
 
 			Signature sig = Signature.getInstance("SHA1withRSA");
-			sig.initVerify(ks.getCertificate("stendhal2011").getPublicKey());
+			sig.initVerify(ks.getCertificate(ClientGameConfiguration.get("UPDATE_CERT_NAME")).getPublicKey());
 
 			FileInputStream datafis = new FileInputStream(filename);
 			InputStream buf = new BufferedInputStream(datafis);
