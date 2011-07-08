@@ -1,0 +1,110 @@
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2011 - Faiumoni e. V.                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.client.update;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
+import java.security.cert.CertificateException;
+
+/**
+ * verifies a signature
+ */
+public class SignatureVerifier {
+	private static SignatureVerifier instance;
+	private KeyStore ks;
+
+	private SignatureVerifier() {
+		try {
+			ks = KeyStore.getInstance(KeyStore.getDefaultType());
+			String keystoreFilename = ClientGameConfiguration.get("UPDATE_CERTSTORE");
+			InputStream fis = UpdateManager.class.getClassLoader().getResourceAsStream(keystoreFilename);
+			ks.load(fis, null);
+			fis.close();
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * gets the Signature Verifier
+	 *
+	 * @return SignatureVerifier
+	 */
+	public static SignatureVerifier get() {
+		if (instance == null) {
+			instance = new SignatureVerifier();
+		}
+		return instance;
+	}
+
+	/**
+	 * Checks the signature of a file
+	 *
+	 * @param filename name of file
+	 * @param signature signature
+	 * @return true, if the signature is fine, false otherwise.
+	 */
+	public boolean checkSignature(String filename, String signature) {
+		if ((ks == null) || (signature == null)) {
+			return false;
+		}
+		try {
+
+			Signature sig = Signature.getInstance("SHA1withRSA");
+			sig.initVerify(ks.getCertificate(ClientGameConfiguration.get("UPDATE_CERT_NAME")).getPublicKey());
+
+			FileInputStream datafis = new FileInputStream(filename);
+			InputStream buf = new BufferedInputStream(datafis);
+
+			byte[] temp = new byte[1024];
+			int length = 0;
+			while (buf.available() != 0) {
+				length = buf.read(temp);
+				sig.update(temp, 0, length);
+			}
+			buf.close();
+
+			boolean isVaild = sig.verify(hexStringToByteArray(signature));
+			System.out.println("Validated " + filename + ": " + isVaild);
+			return isVaild;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// http://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java/140861#140861
+	private static byte[] hexStringToByteArray(String s) {
+		int len = s.length();
+		byte[] data = new byte[len / 2];
+		for (int i = 0; i < len; i += 2) {
+			data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character
+					.digit(s.charAt(i + 1), 16));
+		}
+		return data;
+	}
+}
