@@ -24,8 +24,6 @@
 	<property name="build_stendhaltools" value="${buildroot}/build_stendhaltools"/>
 	<property name="build_stendhaltextclient" value="${buildroot}/build_stendhaltextclient"/>
 
-	<property name="build_sign" value="${buildroot}/build_sign"/>
-
 	<property name="build_client" value="${buildroot}/build_client"/>
 	
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
@@ -134,7 +132,6 @@
 		<delete dir="${build_server}" />
 		<delete dir="${build_server_maps}" />
 		<delete dir="${build_server_script}" />
-		<delete dir="${build_sign}" />
 		<delete dir="${buildroot}/build_server_quests" />
 		<delete dir="${buildroot}/build_server_xmlconf" />
 		<delete dir="${build_tests}" />
@@ -414,7 +411,9 @@
 		</javac>
 
 		<copy todir="${build_client}/games/stendhal/client/update">
-			<fileset file="${src}/games/stendhal/client/update/game*.properties"/>
+			<fileset file="${src}/games/stendhal/client/update/**">
+				<exclude name="*.java" />
+			</fileset>
 		</copy>
 
 		<jar jarfile="${lib}/${client_starter_jarname}">
@@ -426,6 +425,7 @@
 				<attribute name="Class-path" value="."/>
 			</manifest>
 		</jar>
+		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}" jar="${lib}/${client_starter_jarname}" />
 		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
 
 		<jar jarfile="${lib}/${client_jarname}">
@@ -522,28 +522,6 @@
 		</not>
 	</condition>
 
-	<target name="prepare_sign" depends="server_build, client_build">
-		<mkdir dir="${build_sign}" />
-		<copy todir="${build_sign}">
-			<fileset dir="${lib}">
-				<include name="**/*.jar"/>
-			</fileset>
-			<fileset file="${log4j_jar}"/>
-			<fileset file="${marauroa_jar}"/>
-			<fileset file="${jorbis_jar}"/>
-		</copy>
-		<chmod file="${build_sign}/${client_jarname}" perm="+x" verbose="true"/>
-		<chmod file="${build_sign}/${server_jarname}" perm="+x" verbose="true"/>
-	</target>
-
-	<target name="sign_jars" depends="prepare_sign" unless="exclude.signing">
-		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
-			<fileset dir="${build_sign}">
-				<include name="**/*.jar"/>
-			</fileset>
-		</signjar>
-	</target>
-
 	<target name="dist" depends="clean, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
 
@@ -590,19 +568,19 @@
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
 
-	<target name="dist_client_binary" depends="client_build,sign_jars">
+	<target name="dist_client_binary" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
-		<copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${build_sign}/${client_starter_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${build_sign}/${client_jarname}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${build_sign}/log4j.jar"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${build_sign}/marauroa.jar"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${build_sign}/jorbis.jar"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${build_sign}/${client_sound_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${build_sign}/${client_music_data}"/>
-		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${build_sign}/${client_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/stendhal-starter.jar" file="${lib}/${client_starter_jarname}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal.jar" file="${lib}/${client_jarname}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/log4j.jar" file="${log4j_jar}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/marauroa.jar" file="${marauroa_jar}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/jorbis.jar" file="${jorbis_jar}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-sound-data.jar" file="${lib}/${client_sound_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-music-data.jar" file="${lib}/${client_music_data}"/>
+		<copy tofile="${buildroot}/stendhal-${version}/lib/stendhal-data.jar" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
@@ -624,9 +602,9 @@
 	</target>
 
 
-	<target name="dist_client_starter" depends="client_build,sign_jars">
+	<target name="dist_client_starter" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${build_sign}/${client_starter_jarname}"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
