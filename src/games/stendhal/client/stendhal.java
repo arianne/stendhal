@@ -25,7 +25,6 @@ import games.stendhal.common.Version;
 import games.stendhal.common.resource.ResourceManager;
 
 import java.awt.Dimension;
-import java.io.File;
 import java.security.AccessControlException;
 import java.util.Locale;
 
@@ -154,10 +153,7 @@ public class stendhal {
 		// property configuration relies on this parameter
 		System.setProperty("log.directory", getLogFolder());
 		//create the log directory if not yet existing:
-		File logDir = new File(getLogFolder());
-		if(!logDir.exists()) {
-			logDir.mkdirs();
-		}
+		//removed code as log4j is now capable of doing that automatically
 	}
 
 	/**
