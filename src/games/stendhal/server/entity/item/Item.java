@@ -158,7 +158,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
 		
 		//Some items can be damaged in combat or during use. This rises the degree of deterioration
-		entity.addAttribute("deterioration", Type.INT, Definition.HIDDEN);
+		entity.addAttribute("deterioration", Type.INT, Definition.VOLATILE);
 
 		// Some items(food) have amount of something
 		// (a bottle, a piece of meat).
