@@ -12,7 +12,9 @@
 package games.stendhal.client.gui.progress;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.User;
 import games.stendhal.common.constants.Actions;
+import games.stendhal.common.grammar.Grammar;
 
 import java.awt.Component;
 
@@ -113,7 +115,7 @@ public class ProgressLogController {
 	 */
 	private ProgressLog getProgressLog() {
 		if (progressLog == null) {
-			progressLog = new ProgressLog("Travel log");
+			progressLog = new ProgressLog(Grammar.suffix_s(User.getCharacterName()) + " travel log");
 		}
 		return progressLog;
 	}
