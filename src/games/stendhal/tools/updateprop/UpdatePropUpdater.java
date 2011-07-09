@@ -12,18 +12,13 @@
  ***************************************************************************/
 package games.stendhal.tools.updateprop;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.math.BigInteger;
 import java.net.URL;
-import java.security.KeyStore;
-import java.security.PrivateKey;
-import java.security.Signature;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +37,7 @@ public class UpdatePropUpdater {
 	private String folder;
 	private List<String> files;
 	private Properties prop;
-	private Signature signer;
+	private UpdateSigner signer;
 
 	/**
 	 * Creates a new UpdatePropUpdater.
@@ -62,36 +57,10 @@ public class UpdatePropUpdater {
 		this.oldVersion = oldVersion;
 		this.folder = folder;
 		this.files = new ArrayList<String>(files);
-		initSigner();
+		signer = new UpdateSigner();
 	}
 
-	private void initSigner() throws Exception {
-		Properties antProp = new Properties();
-		try {
-			InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("build.ant-private.properties");
-			antProp.load(is);
-			is.close();
-		} catch (IOException e) {
-			System.err.println("Loading build.ant-private.properties with parameters keystore.alias and keystore.password failed");
-			System.exit(1);
-		}
 
-		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-
-		// get user password and file input stream
-		char[] password = antProp.getProperty("keystore.password").toCharArray();
-		InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("keystore.ks");
-		ks.load(is, password);
-		is.close();
-
-		// get my private key
-		KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(password);
-		KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(antProp.getProperty("keystore.alias"), protection);
-		PrivateKey key = pkEntry.getPrivateKey();
-
-		signer = Signature.getInstance("SHA1withRSA");
-		signer.initSign(key);
-	}
 
 	/**
 	 * Updates the update.properties file.
@@ -166,18 +135,13 @@ public class UpdatePropUpdater {
 		for (String filename : files) {
 			File file = new File(folder + "/" + filename);
 			prop.put("file-size." + filename, Long.toString(file.length()));
-			
-			InputStream is = new BufferedInputStream(new FileInputStream(folder + "/" + filename));
-			byte[] buffer = new byte[1024];
-			int len;
-			while ((len = is.read(buffer)) >= 0) {
-				signer.update(buffer, 0, len);
-			}
-			is.close();
-			byte[] realSig = signer.sign();
-			prop.put("file-signature." + filename, String.format("%x", new BigInteger(1, realSig)));
+			String fullFilename = folder + "/" + filename;
+			String signature = signer.sign(fullFilename);
+			prop.put("file-signature." + filename, signature);
 		}
 	}
+
+
 
 	/**
 	 * writes the new version of the update.properties
