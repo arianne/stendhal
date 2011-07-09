@@ -119,4 +119,18 @@ public class UpdateSigner extends Task {
 			throw new BuildException(e);
 		}
 	}
+
+	/**
+	 * signs files
+	 *
+	 * @param args file1 file2 ...
+	 * @throws Exception in case of an error
+	 */
+	public static void main(String[] args) throws Exception {
+		UpdateSigner signer = new UpdateSigner();
+		for (String filename : args) {
+			String signature = signer.sign(filename);
+			System.out.println("file-signature." + new File(filename).getName() + "=" + signature);
+		}
+	}
 }
