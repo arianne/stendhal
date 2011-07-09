@@ -774,6 +774,63 @@
 		</updatesigner>
 	</target>
 
+	<target name="jardiff">
+		<echo>Creating update from ${version.old} to ${version}</echo>
+		<delete>
+			<fileset dir="${build-archive}">
+				<exclude name="*.zip"/>
+			</fileset>
+		</delete>
+		<unzip src="${build-archive}/stendhal-${version.old}.zip" dest="${build-archive}" />
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/stendhal-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-${version}.jar" />
+		</java>
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/lib/stendhal-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-data-${version}.jar" />
+		</java>
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-music-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/lib/stendhal-music-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-music-data-${version}.jar" />
+		</java>
+		<java jar="libs/jardiff.jar" fork="true">
+			<arg value="-nonminimal" />
+			<arg value="-creatediff" />
+			<arg value="-output" />
+			<arg value="${build}/lib/stendhal-sound-data-diff-${version.old}-${version}.jar" />
+			<arg value="${build-archive}/lib/stendhal-sound-data-${version.old}.jar" />
+			<arg value="${build}/lib/stendhal-sound-data-${version}.jar" />
+		</java>
+	<!-- TODO maraurora.jar-->
+	</target>
+
+
+
+
+
+
+
+<!--************************************************************************-->
+<!--************************************************************************-->
+<!--****                                                                ****-->
+<!--****                     T  E  S  T  I  N  G                        ****-->
+<!--****                                                                ****-->
+<!--************************************************************************-->
+<!--************************************************************************-->
+
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
