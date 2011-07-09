@@ -48,6 +48,12 @@
 			<available file="keystore.ks"/>
 		</not>
 	</condition>
+	<condition property="exclude.jardiff" value="true">
+		<not>
+			<available file="${build-archive}/stendhal-${version.old}.zip"/>
+		</not>
+	</condition>
+
 
 	<!--
 	Definitions for cobertura coverage
@@ -764,22 +770,7 @@
 		</mapupdater>
 	</target>
 
-	<target name="signupdates" description="signs updates" depends="compile_stendhaltools,client_build" unless="exclude.signing">
-		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
-			<classpath>
-				<pathelement path="."/>
-				<pathelement path="${build_stendhaltools}"/>
-			</classpath>
-		</taskdef>
-
-		<updatesigner>
-			<fileset dir="${lib}">
-				<include name="*.jar"/>
-			</fileset>
-		</updatesigner>
-	</target>
-
-	<target name="jardiff">
+	<target name="jardiff" depends="client_build" unless="exclude.jardiff">
 		<echo>Creating update from ${version.old} to ${version}</echo>
 		<delete>
 			<fileset dir="${build-archive}">
@@ -822,7 +813,20 @@
 	<!-- TODO maraurora.jar-->
 	</target>
 
+	<target name="signupdates" description="signs updates" depends="compile_stendhaltools,jardiff" unless="exclude.signing">
+		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
+			<classpath>
+				<pathelement path="."/>
+				<pathelement path="${build_stendhaltools}"/>
+			</classpath>
+		</taskdef>
 
+		<updatesigner>
+			<fileset dir="${lib}">
+				<include name="*.jar"/>
+			</fileset>
+		</updatesigner>
+	</target>
 
 
 
