@@ -21,7 +21,7 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 
 
 0.94
-4th July 2011
+4th June 2011
 
 - new achievements active: interior zones, DM points, completed quests, red armor set
 - increased time for expired items and earnings on the market at Harold
