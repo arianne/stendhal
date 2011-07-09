@@ -679,7 +679,7 @@
 			<fileset dir="." includes="LICENSE.txt"/>
 		</copy>
 
-		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip">
+		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
 				<exclude name="**/CVS/**"/>
 			</tarfileset>
