@@ -9,6 +9,7 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 ******************
 
 - text boxes are now attached to the bottom of the screen
+- Harold pays your earnings instantly on start of dialogue
 - updated to Marauroa 3.8.7 which greatly improves server side performance
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
 
