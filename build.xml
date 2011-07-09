@@ -43,6 +43,12 @@
 	
 	<property name="cobertura.dir" value="${libdir}/cobertura" />
 
+	<condition property="exclude.signing" value="true">
+		<not>
+			<available file="keystore.ks"/>
+		</not>
+	</condition>
+
 	<!--
 	Definitions for cobertura coverage
 	-->
@@ -425,7 +431,7 @@
 				<attribute name="Class-path" value="."/>
 			</manifest>
 		</jar>
-		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}" jar="${lib}/${client_starter_jarname}" />
+		<antcall target="signjar" />
 		<chmod file="${lib}/${client_starter_jarname}" perm="+x"/>
 
 		<jar jarfile="${lib}/${client_jarname}">
@@ -487,6 +493,11 @@
 
 	</target>
 
+
+	<target name="signjar" unless="exclude.signing">
+		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}" jar="${lib}/${client_starter_jarname}" />
+	</target>
+
 	<target name="docs" description="Build javadocs for fixedStendhal">
 		<javadoc packagenames="games.stendhal.*"
 		   defaultexcludes="yes"
@@ -516,13 +527,7 @@
 
 	<target name="compile" depends="server_build, client_build" description="Generates JAR files for both client and server"/>
 
-	<condition property="exclude.signing" value="true">
-		<not>
-			<available file="keystore.ks"/>
-		</not>
-	</condition>
-
-	<target name="dist" depends="clean, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+	<target name="dist" depends="clean, dist_binary, dist_source, signupdates" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
@@ -759,7 +764,7 @@
 		</mapupdater>
 	</target>
 
-	<target name="signudates" description="signsupdates" depends="compile_stendhaltools,client_build">
+	<target name="signupdates" description="signs updates" depends="compile_stendhaltools,client_build" unless="exclude.signing">
 		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
 			<classpath>
 				<pathelement path="."/>
