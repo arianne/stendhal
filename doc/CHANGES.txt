@@ -2,10 +2,23 @@ Changelog
 ---------
 
 0.95
+
+**** IMPORTANT****
+If you package Stendhal or have forked your own game based on it
+read http://stendhalgame.org/wiki/Automatic_Software_Updater
+******************
+
 - text boxes are now attached to the bottom of the screen
+- updated to Marauroa 3.8.7 which greatly improves server side performance
+- rewrote the updater so that it will not break onces a year anymore because the certificate expires
+
 
 *fixes*
-- fixed showing zone achievements 
+- fixed not showing zone achievements
+- fixed webstart which did not work on the most recent OpenJDK version (Ubuntu 11.04, SuSE)
+
+
+
 
 0.94
 4th July 2011
