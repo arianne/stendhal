@@ -12,6 +12,7 @@
 package games.stendhal.tools.updateprop;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.FileSet;
 
@@ -43,20 +46,24 @@ public class UpdateSigner extends Task {
 	 */
 	public UpdateSigner() throws Exception {
 		Properties antProp = new Properties();
-		try {
-			InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("build.ant-private.properties");
-			antProp.load(is);
-			is.close();
-		} catch (IOException e) {
-			System.err.println("Loading build.ant-private.properties with parameters keystore.alias and keystore.password failed");
-			System.exit(1);
+		InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("build.ant-private.properties");
+		if (is == null) {
+			throw new IOException("Loading build.ant-private.properties with parameters keystore.alias and keystore.password failed");
+		}
+		antProp.load(is);
+		is.close();
+		if ((antProp.getProperty("keystore.password") == null) || (antProp.getProperty("keystore.alias") == null)) {
+			throw new IllegalArgumentException("build.ant-private.properties is missing parameters keystore.alias or keystore.password");
 		}
 
 		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
 
 		// get user password and file input stream
 		char[] password = antProp.getProperty("keystore.password").toCharArray();
-		InputStream is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("keystore.ks");
+		is = UpdatePropUpdater.class.getClassLoader().getResourceAsStream("keystore.ks");
+		if (is == null) {
+			throw new IOException("No keystore.ks in root folder.");
+		}
 		ks.load(is, password);
 		is.close();
 
@@ -93,5 +100,23 @@ public class UpdateSigner extends Task {
 		filesets.add(set);
 	}
 
-	
+	/**
+	 * ants execute method.
+	 */
+	@Override
+	public void execute() {
+		try {
+			for (final FileSet fileset : filesets) {
+				final DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
+				final String[] includedFiles = ds.getIncludedFiles();
+				for (final String filename : includedFiles) {
+					String signature = sign(ds.getBasedir().getAbsolutePath()
+							+ File.separator + filename);
+					System.out.println("file-signature." + filename + "=" + signature);
+				}
+			}
+		} catch (final Exception e) {
+			throw new BuildException(e);
+		}
+	}
 }

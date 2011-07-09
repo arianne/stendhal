@@ -759,6 +759,22 @@
 		</mapupdater>
 	</target>
 
+	<target name="signudates" description="signsupdates" depends="compile_stendhaltools,client_build">
+		<taskdef name="updatesigner" classname="games.stendhal.tools.updateprop.UpdateSigner">
+			<classpath>
+				<pathelement path="."/>
+				<pathelement path="${build_stendhaltools}"/>
+			</classpath>
+		</taskdef>
+
+		<updatesigner>
+			<fileset dir="${lib}">
+				<include name="*.jar"/>
+			</fileset>
+		</updatesigner>
+	</target>
+
+
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient">
