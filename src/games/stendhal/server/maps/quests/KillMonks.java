@@ -44,23 +44,23 @@ import marauroa.common.Pair;
  * QUEST: KillMonks
  *
  * PARTICIPANTS: <ul>
- * <li> NPC on Athor island
+ * <li> Andy on Ados cementary
  * <li> Darkmonks and normal monks
  * </ul>
  *
  * STEPS:<ul>
- * <li> John on Athor island asks player to kill some monks for him, cause he can't enjoy his vacation
- * <li> Kill them for him and go back to the NPC to get your reward
+ * <li> Andy who is sad about the death of his wife, wants revenge for her death 
+ * <li> Kill monks for him for reaching his goal
  * </ul>
  * 
  *
  * REWARD:<ul>
  * <li> 15000 XP
- * <li> 10 greater potion
+ * <li> 5 soup
  * <li> some karma
  * </ul>
  *
- * REPETITIONS: <ul><li>once in a week</ul>
+ * REPETITIONS: <ul><li>once in two weeks</ul>
  * 
  * @author Vanessa Julius, idea by anoyyou
 
@@ -69,9 +69,9 @@ import marauroa.common.Pair;
 public class KillMonks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
-	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 7;
-	protected HashMap<String, Pair<Integer, String>> creaturestokill = new HashMap<String, Pair<Integer,String>>();
-	protected HashMap<String, List<String>> creatures = new HashMap<String, List<String>>();
+	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 14;
+	protected HashMap<String, Pair<Integer, Integer>> creaturestokill = new HashMap<String, Pair<Integer,Integer>>();
+	  protected HashMap<String, List<String>> creatures = new HashMap<String, List<String>>();
 	
 	@Override
 	public String getSlotName() {
@@ -80,23 +80,23 @@ public class KillMonks extends AbstractQuest {
 	
 	public KillMonks() {
 		super();
-
-		creaturestokill.put("monk", 
-			new Pair<Integer, String>(50,"They mostly live in undergrounds and basements."));
 		
-		creatures.put("monk",
-				Arrays.asList("monk",
+		 creaturestokill.put("monk", 
+				 new Pair<Integer, Integer>(0, 50));
+
+		 creatures.put("monk",
+			     Arrays.asList("monk",
 							  "darkmonk"));
 	}
 	
 	private void step_1() {
-		final SpeakerNPC npc = npcs.get("John");
+		final SpeakerNPC npc = npcs.get("Andy");
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My wife Jane and me are on vacation here on Athor island. Unfortunetly we can't explore the whole island cause some ugly monks step in our way each time. Can you help us by killing some of them to turn our vacation into a good one?",
+				"My lovely wife died after she went to Wofol for getting us some freshmade pizza by Kroip. She died after some monks stepped into her way, now I want revenge! May you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -104,7 +104,7 @@ public class KillMonks extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
-				"Those monks returned after the last time you helped us. May you help us again please?",
+				"Those monks are cruel and I still didn't get my revenge. May you help me again please?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -112,7 +112,7 @@ public class KillMonks extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES))),
 				ConversationStates.ATTENDING,
-				"These monks didn't return so far and we could see some lovely places all over.",
+				"These monks learned their lesson for now but I could need your help again in some days.",
 				null);
 	
 
@@ -125,14 +125,14 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Fantastic! We can't wait for your return. Some of these gnomes are in the cool underground dungeon here. I bet you'll get them all!",
+				"Thank you! Also in the name of my beloved wife!",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING,
-				"Oh nevermind. We'll go on sunbathing then. Not that we are tired of it...",
+				"That is a pity... Maybe you'll change your mind soon and help a sad man then.",
 				new SetQuestAction(QUEST_SLOT, "rejected"));
 	}
 
@@ -142,11 +142,11 @@ public class KillMonks extends AbstractQuest {
 
 	private void step_3() {
 
-		final SpeakerNPC npc = npcs.get("John");
+		final SpeakerNPC npc = npcs.get("Andy");
 
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-	    actions.add(new EquipItemAction("greater potion", 10));
+	    actions.add(new EquipItemAction("soup", 5));
 		actions.add(new IncreaseXPAction(15000));
 		actions.add(new SetQuestAction(QUEST_SLOT, "killed;1"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
@@ -160,7 +160,7 @@ public class KillMonks extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.ATTENDING, 
-				"Brilliant! You killed some of these ugly monks as I see! Hopefully they'll not return that fast or we will still not have the chance 					to explore some places. Please take these greater potions as a reward for your help!" + "Please take these potions as a reward.",
+				"Thank you so much! Now I can sleep a bit better.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.ATTENDING, 
@@ -169,7 +169,7 @@ public class KillMonks extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.ATTENDING, 
-				"Please free these lovely places on Athor from monks!",
+				"Please help me with reaching my goal of taking revenge!",
 				null);
 	}
 
@@ -178,7 +178,7 @@ public class KillMonks extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Monks",
-				"John and his wife Jane want to take revenge on monks cause they destroyed their vacation.",
+				"Andy lost his wife by monks, now he wants revenge on them.",
 				false);
 		step_1();
 		step_2();
@@ -192,11 +192,11 @@ public class KillMonks extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I must kill 50 monks for helping John and Jane having a nice vacation on Athor island!");
+				res.add("I must kill 50 monks to help Andy reaching his goal of taking revenge.");
 			} else if(isRepeatable(player)){
-				res.add("It's a long time ago that I visited John and asked if he was able to explore some places on Athor. Maybe he needs my help 				again.");
+				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help");
 			} else {
-				res.add("I've killed some monks and John and Jane can finally enjoy their vacation!");
+				res.add("I've killed some monks and Andy finally can sleep a bit better!");
 			}
 			return res;
 	}
