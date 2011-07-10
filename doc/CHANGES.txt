@@ -23,6 +23,7 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 *world*
 - John and his wife Jane on Athor island need some help for saving their vacation
 - Harold pays your earnings instantly on start of dialogue
+- Andy who walks around on Ados cementary, could need some help by players
 
 
 *fixes*
