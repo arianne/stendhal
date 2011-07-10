@@ -48,7 +48,7 @@ public class FetchEarningsChatAction implements ChatAction {
 		}
 		if (collectedSum > 0) {
 			player.sendPrivateText("You collected "+Integer.valueOf(collectedSum).toString()+" money.");
-			npc.say("Welcome to Semos trading center. I gave your pending earnings to you. What else can I do for you?");
+			npc.say("Welcome to Semos trading center. I gave your pending earnings to you. What else can I do?");
 		} else {
 			//either you have no space in your bag or there isn't anything to collect
 			npc.say("Welcome to Semos trading center. How can I #help you?");
