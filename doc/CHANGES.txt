@@ -12,7 +12,10 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 - Harold pays your earnings instantly on start of dialogue
 - updated to Marauroa 3.8.7 which greatly improves server side performance
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
-
+- improved the best player score for low level players: http://stendhalgame.org/wiki/Fixing_RP_Score_2011
+- renamed the stendhal-FULL-0.xx.zip to stendhal-0.xx.zip. 
+  the extra client without sound made sense a long time ago
+  when the full client had twice the size of the soundless client.
 
 *fixes*
 - fixed not showing zone achievements
