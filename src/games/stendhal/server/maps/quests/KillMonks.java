@@ -69,7 +69,7 @@ import marauroa.common.Pair;
 public class KillMonks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
-	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 14;
+	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 7;
 	protected HashMap<String, Pair<Integer, Integer>> creaturestokill = new HashMap<String, Pair<Integer,Integer>>();
 	  protected HashMap<String, List<String>> creatures = new HashMap<String, List<String>>();
 	
@@ -102,7 +102,7 @@ public class KillMonks extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
+						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES*2)),
 				ConversationStates.QUEST_OFFERED,
 				"Those monks are cruel and I still didn't get my revenge. May you help me again please?",
 				null);
@@ -110,7 +110,7 @@ public class KillMonks extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES))),
+						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES*2))),
 				ConversationStates.ATTENDING,
 				"These monks learned their lesson for now but I could need your help again in some days.",
 				null);
@@ -211,7 +211,7 @@ public class KillMonks extends AbstractQuest {
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-				 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)).fire(player,null, null);
+				 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES*2)).fire(player,null, null);
 	}
 	
 	@Override
