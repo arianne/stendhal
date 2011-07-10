@@ -8,14 +8,22 @@ If you package Stendhal or have forked your own game based on it
 read http://stendhalgame.org/wiki/Automatic_Software_Updater
 ******************
 
-- text boxes are now attached to the bottom of the screen
-- Harold pays your earnings instantly on start of dialogue
-- updated to Marauroa 3.8.7 which greatly improves server side performance
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
 - improved the best player score for low level players: http://stendhalgame.org/wiki/Fixing_RP_Score_2011
+
+* Marauroa*
+- updated to Marauroa 3.8.7 which greatly improves server side performance
+
+*client*
+- text boxes are now attached to the bottom of the screen
 - renamed the stendhal-FULL-0.xx.zip to stendhal-0.xx.zip. 
   the extra client without sound made sense a long time ago
   when the full client had twice the size of the soundless client.
+
+*world*
+- John and his wife Jane on Athor island need some help for saving their vacation
+- Harold pays your earnings instantly on start of dialogue
+
 
 *fixes*
 - fixed not showing zone achievements
