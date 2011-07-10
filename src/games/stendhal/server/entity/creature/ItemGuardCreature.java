@@ -121,13 +121,15 @@ public class ItemGuardCreature extends Creature {
 		
 		if (killer instanceof Player) {
 			final Player killerPlayer = (Player) killer;
-			if (!killerPlayer.isEquipped(itemType) && !killerPlayer.isQuestCompleted(questSlot)) {
-				if(questState != null) {
-					if (killerPlayer.isQuestInState(questSlot, questIndex, questState)) {
+			if (!killerPlayer.isEquipped(itemType)) {
+				if ((questSlot == null) || !killerPlayer.isQuestCompleted(questSlot)) {
+					if(questState != null) {
+						if (killerPlayer.isQuestInState(questSlot, questIndex, questState)) {
+							equipPlayerWithGuardedItem(killerPlayer);
+						}
+					} else {
 						equipPlayerWithGuardedItem(killerPlayer);
 					}
-				} else {
-					equipPlayerWithGuardedItem(killerPlayer);
 				}
 			}
 		}
