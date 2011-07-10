@@ -44,7 +44,6 @@ public class HusbandNPC implements ZoneConfigurator  {
 			@Override
 			public void createDialog() {
 				addGreeting("Hi!");
-				addQuest("We have no tasks, we're here on holiday.");
 				addJob("I am a coachman, but on this island there are no carriages!");
 				addHelp("Don't try to talk to my wife, she is very shy.");
 				addGoodbye("Bye!");
