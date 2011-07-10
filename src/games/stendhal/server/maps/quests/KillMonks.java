@@ -33,7 +33,6 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,7 +49,7 @@ import marauroa.common.Pair;
  *
  * STEPS:<ul>
  * <li> Andy who is sad about the death of his wife, wants revenge for her death 
- * <li> Kill monks for him for reaching his goal
+ * <li> Kill 25 monks and 25 darkmonks for him for reaching his goal
  * </ul>
  * 
  *
@@ -82,11 +81,11 @@ public class KillMonks extends AbstractQuest {
 		super();
 		
 		 creaturestokill.put("monk", 
-				 new Pair<Integer, Integer>(0, 50));
+				 new Pair<Integer, Integer>(0, 25));
 
-		 creatures.put("monk",
-			     Arrays.asList("monk",
-							  "darkmonk"));
+		 creaturestokill.put("darkmonk",
+				 new Pair<Integer, Integer>(0, 25));
+		 		
 	}
 	
 	private void step_1() {
@@ -96,7 +95,7 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My lovely wife died after she went to Wofol for getting us some freshmade pizza by Kroip. She died after some monks stepped into her way, now I want revenge! May you help me?",
+				"My lovely wife died when she went to Wofol for getting us some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -125,7 +124,7 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thank you! Also in the name of my beloved wife!",
+				"Thank you! Also in the name of my beloved wife! Please kill 25 monks and 25 darkmonks.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
@@ -192,7 +191,7 @@ public class KillMonks extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I must kill 50 monks to help Andy reaching his goal of taking revenge.");
+				res.add("I must kill 25 monks and 25 darkmonks to help Andy reaching his goal of taking revenge.");
 			} else if(isRepeatable(player)){
 				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help");
 			} else {
