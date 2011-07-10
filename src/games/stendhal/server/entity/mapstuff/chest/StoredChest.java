@@ -63,11 +63,11 @@ public class StoredChest extends Chest {
 
 	@Override
 	public void open() {
-		if (chestListener != null) {
+		if (chestListener == null) {
 			chestListener = new ChestListener();
 		}
 		SingletonRepository.getTurnNotifier().notifyInSeconds(60, chestListener);
-		logger.info("Opening chest in zone " + getZone().getName() + " with " + getSlot("content").size() + " items.");
+		logger.debug("Opening chest in zone " + getZone().getName() + " with " + getSlot("content").size() + " items.");
 		super.open();
 	}
 
@@ -77,10 +77,10 @@ public class StoredChest extends Chest {
 		SingletonRepository.getTurnNotifier().dontNotify(chestListener);
 		StendhalRPZone zone = this.getZone();
 		if (zone != null) {
-			logger.info("Storing chest in zone " + zone.getName() + " with " + getSlot("content").size() + " items.");
+			logger.debug("Storing chest in zone " + zone.getName() + " with " + getSlot("content").size() + " items.");
 			zone.storeToDatabase();
 		} else {
-			logger.error("Closing chest which is in no zone.");
+			logger.error("Closing StoredChest which is in no zone.");
 		}
 	}
 
@@ -138,11 +138,11 @@ public class StoredChest extends Chest {
 
 		if (getZone().getPlayers().size() > 0) {
 			// do nothing - people are still in the zone
-				return true;
+			return true;
 		} else {
 			// the zone is empty, close the chest
-				close();
-				notifyWorldAboutChanges();
+			close();
+			notifyWorldAboutChanges();
 		}
 		return false;
 	}
