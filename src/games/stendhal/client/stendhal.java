@@ -25,6 +25,7 @@ import games.stendhal.common.Version;
 import games.stendhal.common.resource.ResourceManager;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.security.AccessControlException;
 import java.util.Locale;
 
@@ -51,7 +52,7 @@ public class stendhal {
 	/**
 	 * Directory for storing the persistent game data.
 	 */
-	private static final String gameFolder;
+	private static String gameFolder;
 	/**
 	 * Just a try to get Webstart working without additional rights.
 	 */
@@ -68,7 +69,7 @@ public class stendhal {
 		/** We set the main game folder to the game name */
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
 		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase(Locale.ENGLISH) + separator;
-		gameFolder = System.getProperty("user.home") + STENDHAL_FOLDER;
+		initGameFolder();
 
 		/** setup the search locations for the resource manager */
 		RESOURCE_MANAGER.addScheme("sound" , "data/sounds");
@@ -87,6 +88,39 @@ public class stendhal {
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
 	public static final int FPS_LIMIT = 25;
+
+	/**
+	 * Initialize the client game directory.
+	 * <p>
+	 * NOTE: IF YOU CHANGE THIS, CHANGE ALSO CORRESPONDING CODE IN
+	 * Bootstrap.java
+	 */
+	private static void initGameFolder() {
+		String defaultFolder = System.getProperty("user.home") + STENDHAL_FOLDER;
+		/* 
+		 * Add any previously unrecognized unix like systems here. These will
+		 * try to use ~/.config/stendhal if the user does not have saved data
+		 * in ~/stendhal.
+		 * 
+		 * OS X is counted in here too, but should it?
+		 * 
+		 * List taken from:
+		 * 	http://mindprod.com/jgloss/properties.html#OSNAME
+		 */
+		String unixLikes = "AIX|Digital Unix|FreeBSD|HP UX|Irix|Linux|Mac OS X|Solaris";
+		String system = System.getProperty("os.name");
+		if (system.matches(unixLikes)) {
+			// Check first if the user has important data in the default folder.
+			File f = new File(defaultFolder + "user.dat");
+			if (!f.exists()) {
+				gameFolder = System.getProperty("user.home") + separator 
+				+ ".config" + separator + STENDHAL_FOLDER;
+				return;
+			}
+		}
+		// Everyone else should use the default top level directory in $HOME
+		gameFolder = defaultFolder;
+	}
 
 	public static void setDoLogin()	{
 		doLogin = true;
