@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -86,15 +87,31 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My wife Jane and me are on vacation here on Athor island. Unfortunetly we can't explore the whole island cause some ugly creatures step in our way each time. Can you help us by killing some of them to turn our vacation into a good one?",
+				"My wife Jane and me are on vacation here on Athor island. #Unfortunately we can't explore the whole island cause some ugly #creatures step in our way each time. Can you help us by killing some of them to turn our vacation into a good one?",
 				null);
 
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				Arrays.asList("Unfortunately"),
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"Yes, unfortunately. We wanted to have a great time here but all we did so far was sunbathing at the beach.",
+				null);
+		
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				Arrays.asList("creatures"),
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"We just want to visit the first part of the dungeon, it seems to be very interesting. Some of these ugly things jump around there, even some mummies!",
+				null);
+		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
-				"Those creatures returned after the last time you helped us. May you help us again please?",
+				"Those #creatures returned after the last time you helped us. May you help us again please?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -102,7 +119,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES))),
 				ConversationStates.ATTENDING,
-				"These creatures didn't return so far and we could see some lovely places all over.",
+				"These #creatures didn't return so far and we could see some lovely places all over.",
 				null);
 	
 
@@ -165,7 +182,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.ATTENDING, 
-				"Brilliant! You killed some of these ugly creatures as I see! Hopefully they'll not return that fast or we will still not have the chance to explore some places." + "Please take these greater potions as a reward for your help.",
+				"Brilliant! You killed some of these ugly creatures as I see! Hopefully they'll not return that fast or we will still not have the chance to explore some places."  + "Please take these greater potions as a reward for your help.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.ATTENDING, 
@@ -174,7 +191,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.ATTENDING, 
-				"Please free these lovely places on Athor from ugly creatures!",
+				"Please free these lovely places on Athor from ugly #creatures!",
 				null);
 	}
 
