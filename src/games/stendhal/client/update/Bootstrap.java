@@ -1,5 +1,7 @@
 package games.stendhal.client.update;
 
+import static java.io.File.separator;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,8 +26,6 @@ import javax.swing.JOptionPane;
  * @author hendrik
  */
 public class Bootstrap {
-
-	private String pathSep;
 	private String jarFolder;
 	private Properties bootProp;
 	private Properties bootPropOrg;
@@ -54,13 +54,23 @@ public class Bootstrap {
 	 */
 	void init() {
 		// discover folder for .jar-files
-		pathSep = System.getProperty("file.separator");
-
+		// Copied from stendhal.java; don't change this to anything different
+		// from than what's there
 		final String stendhal = ClientGameConfiguration.get("GAME_NAME").toLowerCase();
 		System.out.println("GAME: " + stendhal);
+		String topFolder = System.getProperty("user.home") + separator + stendhal + separator;
+		String unixLikes = "AIX|Digital Unix|FreeBSD|HP UX|Irix|Linux|Mac OS X|Solaris";
+		String system = System.getProperty("os.name");
+		if (system.matches(unixLikes)) {
+			// Check first if the user has important data in the default folder.
+			File f = new File(topFolder + "user.dat");
+			if (!f.exists()) {
+				topFolder = System.getProperty("user.home") + separator 
+				+ ".config" + separator + stendhal + separator;
+			}
+		}
 
-		jarFolder = System.getProperty("user.home") + pathSep + stendhal
-				+ pathSep + "jar" + pathSep;
+		jarFolder = topFolder + "jar";
 		final File folder = new File(jarFolder);
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -70,7 +80,8 @@ public class Bootstrap {
 
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it.
-	 *
+	 * 
+	 * @param includeUpdates
 	 * @return ClassLoader object
 	 * @throws Exception
 	 *             if an unexpected error occurs
