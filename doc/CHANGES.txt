@@ -9,6 +9,7 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 ******************
 
 - rewrote the updater so that it will not break onces a year anymore because the certificate expires
+- on Unix/Linux the home folder now defaults to $HOME/.config/stendhal for new installs
 - improved the best player score for low level players: http://stendhalgame.org/wiki/Fixing_RP_Score_2011
 
 * Marauroa*
