@@ -193,7 +193,7 @@ public class KillMonks extends AbstractQuest {
 			if (!isCompleted(player)) {
 				res.add("I must kill 25 monks and 25 darkmonks to help Andy reaching his goal of taking revenge.");
 			} else if(isRepeatable(player)){
-				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help");
+				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help!");
 			} else {
 				res.add("I've killed some monks and Andy finally can sleep a bit better!");
 			}
