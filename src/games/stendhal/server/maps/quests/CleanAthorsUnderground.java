@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
@@ -107,6 +108,14 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)), new QuestStateStartsWithCondition(QUEST_SLOT, "killed")),
+				ConversationStates.ATTENDING,
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT, 1, WEEK_IN_MINUTES, "These #creatures didn't return so far and we could see some lovely places all over. Please return in"));
+		
+		
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
@@ -114,13 +123,6 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				"Those #creatures returned after the last time you helped us. May you help us again please?",
 				null);
 
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES))),
-				ConversationStates.ATTENDING,
-				"These #creatures didn't return so far and we could see some lovely places all over.",
-				null);
 	
 
 		final Map<String, Pair<Integer, Integer>> toKill = new TreeMap<String, Pair<Integer, Integer>>();
