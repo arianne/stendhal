@@ -216,11 +216,11 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I must kill one of each creature of Athor underground for helping John and Jane having a nice vacation!");
+				res.add("I must kill one of each creature of the Athor underground for helping John and Jane having a nice vacation!");
 			} else if(isRepeatable(player)){
-				res.add("It's a long time ago that I visited John and asked if he was able to explore some places on Athor. Maybe he needs my help again.");
+				res.add("It's a long time ago that I visited John and Jane on Athor island. Maybe he needs my help again now.");
 			} else {
-				res.add("I've killed some creatures and John and Jane can finally enjoy their vacation!");
+				res.add("I've killed some creatures and John and Jane can finally enjoy their vacation! They will not need my help again during the next days.");
 			}
 			return res;
 	}
