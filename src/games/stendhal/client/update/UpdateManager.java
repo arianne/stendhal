@@ -194,8 +194,11 @@ public class UpdateManager {
 				final long sizeIs = new File(jarFolder + file).length();
 				if (sizeShould == sizeIs) {
 					String signature = updateProp.getProperty("file-signature." + file);
-					if (SignatureVerifier.get().checkSignature(jarFolder + file, signature)) {
-						itr.remove();
+					String signatureJarProp = bootProp.getProperty("file-signature." + file);
+					if (signature.equals(signatureJarProp)) {
+						if (SignatureVerifier.get().checkSignature(jarFolder + file, signature)) {
+							itr.remove();
+						}
 					}
 				}
 			} catch (final RuntimeException e) {
@@ -313,11 +316,11 @@ public class UpdateManager {
 			final int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 			String signature = updateProp.getProperty("file-signature." + file);
 			if ((fileObj.length() != shouldSize) || !SignatureVerifier.get().checkSignature(jarFolder + file, signature)) {
-				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update.\r\nFile size of "
+				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update.\r\nThe signature of "
 						+ file
-						+ "or signature does not match.\r\nWe got file size "
+						+ " does not match.\r\nWe got "
 						+ fileObj.length()
-						+ ". It should be "
+						+ " bytes of "
 						+ shouldSize);
 				updateProgressBar.dispose();
 				return false;
