@@ -275,9 +275,9 @@ public class Bootstrap {
 
 				final int res = JOptionPane.showConfirmDialog(
 						null,
-						new SelectableLabel(" Sorry an error occurred because of inconsistent code signing.\r\n"
-						+ " Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\r\n"
-						+ " Note: This exception can occur if you include signed jars into a self build client."),
+						new SelectableLabel("Sorry an error occurred because of inconsistent code signing.\r\n"
+						+ "Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\r\n"
+						+ "Note: This exception can occur if you include signed jars into a self build client."),
 						ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (res == JOptionPane.YES_OPTION) {
@@ -324,7 +324,7 @@ public class Bootstrap {
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null,
 					"Sorry, an OutOfMemoryError occurred. Please restart " + ClientGameConfiguration.get("GAME_NAME") + ".");
-		} else if (e instanceof LinkageError || e instanceof SecurityException) {
+		} else if (e instanceof LinkageError || e instanceof SecurityException || e instanceof ClassNotFoundException) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
 					new SelectableLabel(message 
