@@ -328,7 +328,7 @@ public class Bootstrap {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
 					new SelectableLabel(message 
-					+ " Sorry an error occurred because of an inconsistent update state. Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") +"?"),
+					+ " Sorry an error occurred because of an inconsistent update state.\r\nDelete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") +"?"),
 					ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
