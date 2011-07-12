@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
@@ -95,7 +96,7 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My lovely wife died when she went to Wofol for getting us some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
+				"My lovely wife died when she went to Wofol for ordering some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -107,12 +108,11 @@ public class KillMonks extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, 
-				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
-						 new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES*2))),
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES*2)), new QuestStateStartsWithCondition(QUEST_SLOT, "killed")),
 				ConversationStates.ATTENDING,
-				"These monks learned their lesson for now but I could need your help again in some days.",
-				null);
+				null,
+				new SayTimeRemainingAction(QUEST_SLOT, 1, WEEK_IN_MINUTES*2, "These monks learned their lesson for now but I could need your help again in"));
 	
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
@@ -193,7 +193,7 @@ public class KillMonks extends AbstractQuest {
 			if (!isCompleted(player)) {
 				res.add("I must kill 25 monks and 25 darkmonks to help Andy reaching his goal of taking revenge.");
 			} else if(isRepeatable(player)){
-				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help");
+				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help!");
 			} else {
 				res.add("I've killed some monks and Andy finally can sleep a bit better!");
 			}
