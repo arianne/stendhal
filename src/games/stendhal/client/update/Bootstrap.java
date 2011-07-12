@@ -70,7 +70,7 @@ public class Bootstrap {
 			}
 		}
 
-		jarFolder = topFolder + "jar";
+		jarFolder = topFolder + "jar" + separator;
 		final File folder = new File(jarFolder);
 		if (!folder.exists()) {
 			folder.mkdirs();
