@@ -195,7 +195,7 @@ public class UpdateManager {
 				if (sizeShould == sizeIs) {
 					String signature = updateProp.getProperty("file-signature." + file);
 					if (SignatureVerifier.get().checkSignature(jarFolder + file, signature)) {
-						bootProp.put("file-signature.", signature);
+						bootProp.put("file-signature." + file, signature);
 						itr.remove();
 					}
 				}
