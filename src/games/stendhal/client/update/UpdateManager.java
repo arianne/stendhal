@@ -394,8 +394,9 @@ public class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		sb.append(bootProp.getProperty("load-0.95", ""));
-
-		bootProp.put("load-0.95", sb.toString());
+		if (!bootProp.getProperty("load-0.95", "").startsWith(sb.toString())) {
+			sb.append(bootProp.getProperty("load-0.95", ""));
+			bootProp.put("load-0.95", sb.toString());
+		}
 	}
 }
