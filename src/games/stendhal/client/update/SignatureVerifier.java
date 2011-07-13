@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2011 - Faiumoni e. V.                   *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -102,6 +101,12 @@ public class SignatureVerifier {
 		}
 	}
 
+	/**
+	 * converts a hexadecimal string into an byte array
+	 *
+	 * @param hexString hexadecimal encoded string
+	 * @return byte[]
+	 */
 	// http://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java/140861#140861
 	static byte[] hexStringToByteArray(String hexString) {
 		String s = hexString;

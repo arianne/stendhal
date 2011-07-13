@@ -1,15 +1,14 @@
-//*****************************************************************************
-//*****************************************************************************
-//
-//                               Important note
-//
-// Please note that this file is compiled using Java 1.2 in the build-script
-// in order to display a dialogbox to the user in case an old version of java
-// is used. As we compile it with Java 1.2 no new features may be used in this
-// class.
-// 
-//*****************************************************************************
-//*****************************************************************************
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.update;
 
 import java.lang.reflect.Method;

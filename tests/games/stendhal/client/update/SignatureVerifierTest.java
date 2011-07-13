@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.update;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -7,8 +18,16 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+/**
+ * Tests for SignatureVerifier
+ *
+ * @author hendrik
+ */
 public class SignatureVerifierTest {
 
+	/**
+	 * Tests for hexStringToByteArray
+	 */
 	@Test
 	public void testHexStringToByteArray() {
 		// test uneven number of hex digits because a leading 0 was stripped.

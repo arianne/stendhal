@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -43,10 +42,10 @@ public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 		}
 	}
 
-	static final String[] browsers = { "google-chrome", "chromium-browser", "firefox", "opera",
+	private static final String[] BROWSER = { "google-chrome", "chromium-browser", "firefox", "opera",
 			"konqueror", "epiphany", "seamonkey", "galeon", "kazehakase",
 			"mozilla" };
-	static final String errMsg = "Error attempting to launch web browser:\n ";
+	private static final String ERROR_MESSAGE = "Error attempting to launch web browser:\n ";
 
 	/**
 	 * Opens the specified web page in the user's default browser
@@ -76,7 +75,7 @@ public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 							"rundll32 url.dll,FileProtocolHandler " + url);
 				else { // assume Unix or Linux
 					boolean found = false;
-					for (String browser : browsers)
+					for (String browser : BROWSER)
 						if (!found) {
 							found = Runtime.getRuntime().exec(
 									new String[] { "which", browser })
@@ -87,7 +86,7 @@ public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 						}
 				}
 			} catch (Exception e) {
-				System.err.println(errMsg + url);
+				System.err.println(ERROR_MESSAGE + url);
 				System.err.println(e);
 			}
 		}
