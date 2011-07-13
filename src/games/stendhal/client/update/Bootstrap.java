@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.update;
 
 import static java.io.File.separator;
@@ -81,7 +92,7 @@ public class Bootstrap {
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it.
 	 *
-	 * @param includeUpdates
+	 * @param includeUpdates should updates from jar.properties be included
 	 * @param firstPhase true, if this is the first phase before the updater is executed
 	 * @return ClassLoader object
 	 * @throws Exception
@@ -315,9 +326,8 @@ public class Bootstrap {
 	/**
 	 * Handles exceptions during program invocation.
 	 *
-	 * @param message
-	 * @param t
-	 *            exception
+	 * @param message error message
+	 * @param t exception
 	 */
 	void unexpectedErrorHandling(String message, final Throwable t) {
 		// unwrap chained exceptions

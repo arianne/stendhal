@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,7 +70,8 @@ public class HttpClientTest {
 
 	/**
 	 * Tests for fetchFile
-	 * @throws IOException 
+	 *
+	 * @throws IOException in  case of an input/output error
 	 */
 	@Test
 	public void testFetchFile() throws IOException {
