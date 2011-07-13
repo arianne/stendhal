@@ -13,12 +13,18 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -56,7 +62,7 @@ import marauroa.common.Pair;
  *
  * REWARD:<ul>
  * <li> 15000 XP
- * <li> 5 soup
+ * <li> 1-5 soup
  * <li> some karma
  * </ul>
  *
@@ -96,7 +102,7 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My lovely wife died when she went to Wofol for ordering some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
+				"My lovely wife was killed when she went to Wo'fol to order some freshmade pizza by Kroip. Some monks stepped into her way and she had no chance. Now I want revenge! May you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -116,7 +122,7 @@ public class KillMonks extends AbstractQuest {
 	
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, creaturestokill));
 
 		
@@ -124,7 +130,7 @@ public class KillMonks extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thank you! Also in the name of my beloved wife! Please kill 25 monks and 25 darkmonks.",
+				"Thank you! Please kill 25 monks and 25 darkmonks in the name of my beloved wife.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
@@ -132,7 +138,7 @@ public class KillMonks extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"That is a pity... Maybe you'll change your mind soon and help a sad man then.",
-				new SetQuestAction(QUEST_SLOT, "rejected"));
+				new SetQuestAction(QUEST_SLOT, 0, "rejected"));
 	}
 
 	private void step_2() {
@@ -142,13 +148,26 @@ public class KillMonks extends AbstractQuest {
 	private void step_3() {
 
 		final SpeakerNPC npc = npcs.get("Andy");
-
+		
+		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				//add random number of soups
+				final StackableItem soup = (StackableItem) SingletonRepository.getEntityManager()
+						.getItem("soup");
+				int amount;
+				// between 1 and 5 soup
+				amount = Rand.rand(4) + 1;
+				soup.setQuantity(amount);
+				player.equipOrPutOnGround(soup);
+			}
+		};
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-	    actions.add(new EquipItemAction("soup", 5));
+	    actions.add(addRandomNumberOfItemsAction);
 		actions.add(new IncreaseXPAction(15000));
-		actions.add(new SetQuestAction(QUEST_SLOT, "killed;1"));
+		actions.add(new SetQuestAction(QUEST_SLOT, 0, "killed"));
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
+		actions.add(new IncrementQuestAction(QUEST_SLOT,2,1));
 		
 		LinkedList<String> triggers = new LinkedList<String>();
 		triggers.addAll(ConversationPhrases.FINISH_MESSAGES);
@@ -159,7 +178,7 @@ public class KillMonks extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.ATTENDING, 
-				"Thank you so much! Now I can sleep a bit better.",
+				"Thank you so much! Now I can sleep a bit better. Please take some soup.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.ATTENDING, 
@@ -177,7 +196,7 @@ public class KillMonks extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Kill Monks",
-				"Andy lost his wife by monks, now he wants revenge on them.",
+				"Andy's wife was killed by monks, now he wants revenge on them.",
 				false);
 		step_1();
 		step_2();
@@ -191,11 +210,16 @@ public class KillMonks extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I must kill 25 monks and 25 darkmonks to help Andy reaching his goal of taking revenge.");
+				res.add("I must kill 25 monks and 25 darkmonks to get revenge for Andy's wife.");
 			} else if(isRepeatable(player)){
-				res.add("Now, after more than two weeks, I should take a look after Andy again. Maybe he needs my help!");
+				res.add("Now, after more than two weeks, I should check on Andy again. Maybe he needs my help!");
 			} else {
 				res.add("I've killed some monks and Andy finally can sleep a bit better!");
+			}
+			int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
+			if (repetitions > 0) {
+				res.add("I have taken revenge for Andy "
+						+ Grammar.quantityplnoun(repetitions, "time") + " now.");
 			}
 			return res;
 	}
