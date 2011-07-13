@@ -88,7 +88,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
-				"My wife Jane and me are on vacation here on Athor island. #Unfortunately we can't explore the whole island cause some ugly #creatures step in our way each time. Can you help us by killing some of them to turn our vacation into a good one?",
+				"My wife Jane and me are on vacation here on Athor island. #Unfortunately we can't explore the whole island because some ugly #creatures step in our way each time. Can you help us by killing some of them to turn our vacation into a good one?",
 				null);
 
 		npc.add(
@@ -96,7 +96,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				Arrays.asList("Unfortunately"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"Yes, unfortunately. We wanted to have a great time here but all we did so far was sunbathing at the beach.",
+				"Yes, unfortunately. We wanted to have a great time here but all we did so far was sunbathe at the beach.",
 				null);
 		
 		npc.add(
@@ -154,7 +154,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING,
-				"Oh nevermind. We'll go on sunbathing then. Not that we aren't tired of it...",
+				"Oh never mind. We'll go on sunbathing then. Not that we aren't tired of it...",
 				new SetQuestAction(QUEST_SLOT, "rejected"));
 	}
 
@@ -184,7 +184,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new KilledForQuestCondition(QUEST_SLOT, 1)),
 				ConversationStates.ATTENDING, 
-				"Brilliant! You killed some of these ugly creatures as I see! Hopefully they'll not return that fast or we will still not have the chance to explore some places."  + "Please take these greater potions as a reward for your help.",
+				"Brilliant! You killed some of these ugly creatures as I see! Hopefully they'll not return that fast or we will still not have the chance to explore some places."  + " Please take these greater potions as a reward for your help.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.ATTENDING, 
@@ -202,7 +202,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Clean Athors underground",
-				"John and his wife Jane want to explore Athor underground on their vacation but unfortunetely they can't.",
+				"John and his wife Jane want to explore Athor underground on their vacation but unfortunately they can't.",
 				false);
 		step_1();
 		step_2();
@@ -216,9 +216,9 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				return res;
 			}
 			if (!isCompleted(player)) {
-				res.add("I must kill one of each creature of the Athor underground for helping John and Jane having a nice vacation!");
+				res.add("I must kill one of each creature of the Athor underground to help John and Jane have a nice vacation!");
 			} else if(isRepeatable(player)){
-				res.add("It's a long time ago that I visited John and Jane on Athor island. Maybe he needs my help again now.");
+				res.add("It's a long time ago that I visited John and Jane on Athor island. Maybe they need my help again now.");
 			} else {
 				res.add("I've killed some creatures and John and Jane can finally enjoy their vacation! They will not need my help again during the next days.");
 			}
