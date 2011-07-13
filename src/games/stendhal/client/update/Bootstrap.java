@@ -65,7 +65,7 @@ public class Bootstrap {
 			// Check first if the user has important data in the default folder.
 			File f = new File(topFolder + "user.dat");
 			if (!f.exists()) {
-				topFolder = System.getProperty("user.home") + separator 
+				topFolder = System.getProperty("user.home") + separator
 				+ ".config" + separator + stendhal + separator;
 			}
 		}
@@ -80,13 +80,14 @@ public class Bootstrap {
 
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it.
-	 * 
+	 *
 	 * @param includeUpdates
+	 * @param firstPhase true, if this is the first phase before the updater is executed
 	 * @return ClassLoader object
 	 * @throws Exception
 	 *             if an unexpected error occurs
 	 */
-	ClassLoader createClassloader(boolean includeUpdates) throws Exception {
+	ClassLoader createClassloader(boolean includeUpdates, boolean firstPhase) throws Exception {
 		final List<URL> jarFiles = new LinkedList<URL>();
 		if (includeUpdates) {
 			// load jar.properties
@@ -105,6 +106,12 @@ public class Bootstrap {
 					final String filename = st.nextToken();
 					if (SignatureVerifier.get().checkSignature(jarFolder + filename, bootProp.getProperty("file-signature." + filename))) {
 						jarFiles.add(new File(jarFolder + filename).toURI().toURL());
+					} else {
+						if (firstPhase) {
+							// if the signature of one file is not valid, ignore all files and do a fresh download
+							ClassLoader loader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
+							return loader;
+						}
 					}
 				}
 				System.out.println("our classpath: " + jarNameString);
@@ -162,7 +169,7 @@ public class Bootstrap {
 		private void handleUpdate() {
 			// invoke update handling first
 			try {
-				final ClassLoader classLoader = createClassloader(true);
+				final ClassLoader classLoader = createClassloader(true, true);
 				// is this the initial download (or do we already have the
 				// program downloaded)?
 				boolean initialDownload = false;
@@ -214,7 +221,7 @@ public class Bootstrap {
 			// .jar-files may have been added
 
 			try {
-				final ClassLoader classLoader = createClassloader(true);
+				final ClassLoader classLoader = createClassloader(true, false);
 				final Class< ? > clazz = classLoader.loadClass(className);
 				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
@@ -292,7 +299,7 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				final ClassLoader classLoader = createClassloader(false);
+				final ClassLoader classLoader = createClassloader(false, false);
 				final Class< ? > clazz = classLoader.loadClass(className);
 				final Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
@@ -327,7 +334,7 @@ public class Bootstrap {
 		} else if (e instanceof LinkageError || e instanceof SecurityException || e instanceof ClassNotFoundException) {
 			final int res = JOptionPane.showConfirmDialog(
 					null,
-					new SelectableLabel(message 
+					new SelectableLabel(message
 					+ " Sorry an error occurred because of an inconsistent update state.\r\nDelete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") +"?"),
 					ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
