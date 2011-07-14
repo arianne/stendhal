@@ -98,6 +98,8 @@ public class UpdateManager {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		}
 
+		System.out.println("Update state: " + versionState);
+
 		switch (versionState) {
 		case CURRENT:
 			System.out.println("Current Version");
