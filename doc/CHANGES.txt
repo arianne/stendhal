@@ -22,9 +22,10 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
   when the full client had twice the size of the soundless client.
 
 *world*
-- John and his wife Jane on Athor island need some help for saving their vacation
-- Harold pays your earnings instantly on start of dialogue
-- Andy who walks around on Ados cementary, could need some help by players
+- John and Jane on Athor island have a disrupted holiday
+- Andy, at Ados cemetery, seeks revenge
+- Harold pays owed earnings instantly on start of dialogue
+
 
 
 *fixes*
