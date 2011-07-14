@@ -120,6 +120,7 @@ public class Bootstrap {
 					} else {
 						if (firstPhase) {
 							// if the signature of one file is not valid, ignore all files and do a fresh download
+							clearUpdateFiles();
 							ClassLoader loader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
 							return loader;
 						}
@@ -202,8 +203,8 @@ public class Bootstrap {
 
 				// start update handling
 				final Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-				final Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
-				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
+				final Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class, ClassLoader.class);
+				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload, classLoader);
 			} catch (final SecurityException e) {
 				throw e;
 			} catch (final Exception e) {

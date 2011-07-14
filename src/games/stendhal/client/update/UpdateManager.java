@@ -31,6 +31,7 @@ public class UpdateManager {
 	private Properties bootProp;
 	private String serverFolder;
 	private Properties updateProp;
+	private ClassLoader classLoader;
 	private UpdateProgressBar updateProgressBar;
 	private String fromVersion;
 	private String toVersion;
@@ -59,14 +60,12 @@ public class UpdateManager {
 	/**
 	 * Processes the update.
 	 *
-	 * @param jarFolder
-	 *            folder where the .jar files are stored
-	 * @param bootProp
-	 *            boot properties
-	 * @param initialDownload
-	 *            true, if only the small starter.jar is available
+	 * @param jarFolder folder where the .jar files are stored
+	 * @param bootProp boot properties
+	 * @param initialDownload true, if only the small starter.jar is available
+	 * @param classLoader with update files
 	 */
-	public void process(final String jarFolder, final Properties bootProp, final Boolean initialDownload) {
+	public void process(final String jarFolder, final Properties bootProp, final Boolean initialDownload, ClassLoader classLoader) {
 
 		if (!Boolean.parseBoolean(ClientGameConfiguration.get("UPDATE_ENABLE_AUTO_UPDATE"))) {
 			System.out.println("Automatic Update disabled");
@@ -74,6 +73,7 @@ public class UpdateManager {
 		}
 		this.jarFolder = jarFolder;
 		this.bootProp = bootProp;
+		this.classLoader = classLoader;
 		init(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
@@ -98,6 +98,7 @@ public class UpdateManager {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		}
 
+		System.out.println("Update state: " + versionState + " initialDownload: " + initialDownload + " fromVersion: " + fromVersion);
 		switch (versionState) {
 		case CURRENT:
 			System.out.println("Current Version");
@@ -157,7 +158,7 @@ public class UpdateManager {
 	 */
 	private String getVersion() {
 		try {
-			Class<?> clazz = Class.forName("games.stendhal.common.Version");
+			Class<?> clazz = classLoader.loadClass("games.stendhal.common.Version");
 			return (String) clazz.getField("VERSION").get(null);
 		} catch (ClassNotFoundException e) {
 			// ignore
