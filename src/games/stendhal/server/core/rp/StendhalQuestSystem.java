@@ -103,6 +103,7 @@ public class StendhalQuestSystem {
 		//loadQuest(new KillBlordroughs());
 		loadQuest(new KillDarkElves());
 		loadQuest(new KillDhohrNuggetcutter());
+		loadQuest(new KillEnemyArmy());
 		loadQuest(new KillGnomes());
 		loadQuest(new KillMonks());
 		loadQuest(new KillSpiders());
