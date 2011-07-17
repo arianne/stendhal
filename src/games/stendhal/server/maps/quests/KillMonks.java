@@ -50,7 +50,7 @@ import marauroa.common.Pair;
  * QUEST: KillMonks
  *
  * PARTICIPANTS: <ul>
- * <li> Andy on Ados cementary
+ * <li> Andy on Ados cemetery
  * <li> Darkmonks and normal monks
  * </ul>
  *
