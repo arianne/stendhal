@@ -197,6 +197,8 @@ import marauroa.common.Pair;
 							  "madaram cavalry",
 							  "madaram stalker",
 							  "madaram buster blader",
+							  "madaram archer",
+							  "madaram windwalker",
 							  "kasarkutominubat"));
 		/*
 		 * exclude amazoness ( because they dont want to leave their island? )
