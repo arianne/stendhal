@@ -131,7 +131,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 
 		npc.addReply("exact",
-			"This archaic magic requires that the ingredients are added on a exact order.");
+			"This archaic magic requires that the ingredients are added on an exact order.");
 	}
 
 	private void step_2() {
