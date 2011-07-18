@@ -85,7 +85,7 @@ public class StuffForVulcanusTest {
 		en.step(player, "yes");
 		assertEquals("I will need several things: 15 iron, 26 wood logs, 12 gold bars and 6 giant hearts. Come back when you have them in the same #exact order!", getReply(npc));
 		en.step(player, "exact");
-		assertEquals("This archaic magic requires that the ingredients are added on a exact order.", getReply(npc));
+		assertEquals("This archaic magic requires that the ingredients are added on an exact order.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Farewell", getReply(npc));
 
