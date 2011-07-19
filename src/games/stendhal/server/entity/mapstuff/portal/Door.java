@@ -90,6 +90,23 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		put("open", "");
 		notifyWorldAboutChanges();
 	}
+	
+	/**
+	 * Open door, or stop door from closing
+	 */
+	private void keepOpen() {
+		final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
+		if (isOpen()) {
+			// The door is still open because another player just used it.
+			// Thus, it is scheduled to auto-close soon. We delay this
+			// auto-closing.
+			turnNotifier.dontNotify(this);
+		} else {
+			open();
+		}
+		// register automatic close
+		turnNotifier.notifyInSeconds(SECONDS_TO_STAY_OPEN, this);
+	}
 
 	/**
 	 * Closes the door.
@@ -120,19 +137,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		final boolean couldUse = super.onUsed(user);
 
 		if (couldUse) {
-			// open door, or stop door from closing
-			final TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
-			if (isOpen()) {
-				// The door is still open because another player just used it.
-				// Thus, it is scheduled to auto-close soon. We delay this
-				// auto-closing.
-				turnNotifier.dontNotify(this);
-			} else {
-				open();
-			}
-
-			// register automatic close
-			turnNotifier.notifyInSeconds(SECONDS_TO_STAY_OPEN, this);
+			keepOpen();
 		} else { 
 			// player may not use it
 			if (isOpen()) {
@@ -148,7 +153,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	@Override
 	public void onUsedBackwards(final RPEntity user) {
-		open();
+		keepOpen();
 		notifyWorldAboutChanges();
 	}
 
