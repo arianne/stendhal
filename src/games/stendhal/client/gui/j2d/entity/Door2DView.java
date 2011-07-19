@@ -125,13 +125,7 @@ class Door2DView extends StateEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		Door door = (Door) entity;
-		if (door != null && door.isOpen()) {
-			list.add(ActionType.CLOSE.getRepresentation());
-		} else {
-			list.add(ActionType.OPEN.getRepresentation());
-
-		}
+		list.add(ActionType.USE.getRepresentation());
 	}
 
 	/**
@@ -220,8 +214,7 @@ class Door2DView extends StateEntity2DView {
 			return;
 		}
 		switch (at) {
-		case OPEN:
-		case CLOSE:
+		case USE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 
