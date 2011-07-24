@@ -180,7 +180,7 @@ ask for horse hair.
 				ConversationStates.ATTENDING,
 				"Great, now I can make new arrows. But for the bows I need " +
 				"bowstrings. Please go to #Karl. I know he has horses and if " +
-				"you tell him my name he will give you  #'horse hairs' from a horsetail.",
+				"you tell him my name he will give you #'horse hairs' from a horsetail.",
 				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "hair", 2.0), new DropItemAction("wood", 10)));
 
 		/*

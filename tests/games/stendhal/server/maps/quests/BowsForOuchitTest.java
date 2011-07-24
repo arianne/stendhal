@@ -106,7 +106,7 @@ public class BowsForOuchitTest {
 		en.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", getReply(npc));
 		en.step(player, "wood");
-		assertEquals("Great, now I can make new arrows. But for the bows I need bowstrings. Please go to #Karl. I know he has horses and if you tell him my name he will give you  #'horse hairs' from a horsetail.", getReply(npc));
+		assertEquals("Great, now I can make new arrows. But for the bows I need bowstrings. Please go to #Karl. I know he has horses and if you tell him my name he will give you #'horse hairs' from a horsetail.", getReply(npc));
 		
 		// check quest slot 
 		assertEquals(player.getQuest(QUEST_SLOT),"hair");
