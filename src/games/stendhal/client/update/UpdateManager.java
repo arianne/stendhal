@@ -372,6 +372,7 @@ public class UpdateManager {
 				System.out.println("signature verification failed");
 				return false;
 			}
+			bootProp.put("file-signature." + file, updateProp.getProperty("file-signature." + file));
 		} catch (final NumberFormatException e) {
 			e.printStackTrace(System.err);
 			return false;
