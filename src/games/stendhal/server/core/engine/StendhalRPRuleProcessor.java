@@ -148,6 +148,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				preRelease = " - " + preRelease;
 			}
 			logger.info("Running Stendhal server VERSION " + Debug.VERSION + preRelease);
+			Translate.init();
 
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
@@ -175,9 +176,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				logger.info("No server extensions configured in ini file.");
 			}
 
-			/*
-			 * Remove online info from database.
-			 */
+			// Remove online info from database.
 			DAORegister.get().get(StendhalWebsiteDAO.class).clearOnlineStatus();
 		} catch (final Exception e) {
 			logger.error("cannot set Context. exiting", e);
