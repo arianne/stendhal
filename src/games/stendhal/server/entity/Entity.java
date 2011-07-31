@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import static games.stendhal.server.core.engine.Translate._;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.grammar.Grammar;
@@ -509,7 +510,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public String describe() {
 		if (hasDescription()) {
-			return getDescription();
+			return _(getDescription());
 		}
 
 		return "You see " + getDescriptionName(false) + ".";
