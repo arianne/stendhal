@@ -192,6 +192,7 @@ public final class Actions {
 
 	public static final String READ = "read";
 	public static final String LOOK_CLOSELY = "look_closely";
+	public static final String LANGUAGE = "language";
 	
 	private Actions() {
 		// hide constructor

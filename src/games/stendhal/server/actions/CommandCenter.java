@@ -32,6 +32,7 @@ import games.stendhal.server.actions.pet.ForsakeAction;
 import games.stendhal.server.actions.pet.NameAction;
 import games.stendhal.server.actions.pet.OwnAction;
 import games.stendhal.server.actions.query.InfoAction;
+import games.stendhal.server.actions.query.LanguageAction;
 import games.stendhal.server.actions.query.ListProducersAction;
 import games.stendhal.server.actions.query.LookAction;
 import games.stendhal.server.actions.query.ProgressStatusQueryAction;
@@ -39,6 +40,7 @@ import games.stendhal.server.actions.query.QuestListAction;
 import games.stendhal.server.actions.query.WhereAction;
 import games.stendhal.server.actions.query.WhoAction;
 import games.stendhal.server.actions.spell.CastSpellAction;
+import games.stendhal.server.core.engine.Translate;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -99,6 +101,7 @@ public class CommandCenter {
 		ForsakeAction.register();
 		GroupManagementAction.register();
 		KnockAction.register();
+		LanguageAction.register();
 		ListProducersAction.register();
 		LookAction.register();
 		MoveAction.register();
@@ -120,10 +123,18 @@ public class CommandCenter {
 		register("markscroll", new MarkScrollAction());
 	}
 
+	/**
+	 * executes an action from the client
+	 *
+	 * @param caster player requesting the action
+	 * @param action action details
+	 * @return true, if it was processed
+	 */
 	public static boolean execute(final RPObject caster, final RPAction action) {
 		try {
 			if (caster instanceof Player) {
 				final Player player = (Player) caster;
+				Translate.setThreadLanguage(player.getLanguage());
 				final ActionListener actionListener = getAction(action);
 				final String type = action.get(Actions.TYPE);
 				if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
