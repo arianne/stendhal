@@ -82,7 +82,14 @@ public class GrammarTest {
 		assertEquals("first", Grammar.ordered(1));
 		assertEquals("second", Grammar.ordered(2));
 		assertEquals("third", Grammar.ordered(3));
-		assertEquals("4", Grammar.ordered(4));
+		assertEquals("fourth", Grammar.ordered(4));
+		assertEquals("fifth", Grammar.ordered(5));
+		assertEquals("sixth", Grammar.ordered(6));
+		assertEquals("seventh", Grammar.ordered(7));
+		assertEquals("eighth", Grammar.ordered(8));
+		assertEquals("ninth", Grammar.ordered(9));
+		assertEquals("tenth", Grammar.ordered(10));
+		assertEquals("11", Grammar.ordered(11));
 	}
 
 	/**
