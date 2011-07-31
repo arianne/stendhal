@@ -380,7 +380,7 @@ cloth	OBJ	cloths
 cloudburst	OBJ	cloudbursts
 clownfish	OBJ-FOO-ANI	clownfishes
 club	OBJ	clubs
-coal	OBJ
+coal	OBJ coals
 cocktail	OBJ-FOO-FLU	cocktails
 coconut	OBJ-FOO	coconuts
 cod	OBJ-FOO	cods

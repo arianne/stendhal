@@ -84,7 +84,6 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
-
 	
 	/**
 	 * Check that creating offers for zero price cost.
@@ -115,4 +114,54 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
+
+	/**
+	 * Tests for successful placement of an offer with more than one item.
+	 */
+	@Test
+	public void testSellPlural() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		QuestHelper.equipWithStackableItem(player, "coal", 10);
+		QuestHelper.equipWithMoney(player, 100);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		assertTrue(en.step(player, "sell 2 coals for 1000"));
+		assertEquals("Do you want to sell 2 pieces of coal for total 1000 money? It would cost you 10 money.", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("I added your offer to the trading center and took the fee of 10.", getReply(npc));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}
+
+	/**
+	 * Tests for successful placement of an offer of daisies.
+	 *
+	@Test
+	public void testSellDaisies() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		QuestHelper.equipWithStackableItem(player, "daisies", 5);
+		QuestHelper.equipWithMoney(player, 100);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		assertTrue(en.step(player, "sell 5 daisies for 700"));
+		assertEquals("Do you want to sell 5 bunches of daisies for total 700 money? It would cost you 7 money.", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("I added your offer to the trading center and took the fee of 7.", getReply(npc));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}*/
 }
