@@ -205,7 +205,7 @@ public abstract class Entity extends RPObject {
 		if (has("description")) {
 			description = get("description");
 		}
-		return description;
+		return _(description);
 	}
 
 	/**
@@ -510,7 +510,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public String describe() {
 		if (hasDescription()) {
-			return _(getDescription());
+			return getDescription();
 		}
 
 		return "You see " + getDescriptionName(false) + ".";
