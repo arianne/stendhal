@@ -112,7 +112,6 @@ public class Player extends RPEntity {
 	 */
 	List<ConsumableItem> poisonToConsume;
 
-
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer  dieer  = new PlayerDieer(this);
 	private final PlayerTrade  trade  = new PlayerTrade(this);
@@ -145,6 +144,11 @@ public class Player extends RPEntity {
 	 * all identifiers of reached achievements, filled on login of player
 	 */
 	private Set<String> reachedAchievements;
+
+	/**
+	 * prefered language
+	 */
+	private String language;
 
 	public static void generateRPClass() {
 		try {
@@ -2349,5 +2353,23 @@ public class Player extends RPEntity {
 	 */
 	public int getNumberOfRepetitions(final String questname, final int index) {
 		return quests.getNumberOfRepetitions(questname, index);
+	}
+
+	/**
+	 * gets the language
+	 *
+	 * @return language
+	 */
+	public String getLanguage() {
+		return language;
+	}
+
+	/**
+	 * sets the language
+	 *
+	 * @param language language
+	 */
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 }

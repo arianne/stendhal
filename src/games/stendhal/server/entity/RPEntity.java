@@ -2500,4 +2500,13 @@ public abstract class RPEntity extends GuidedEntity {
 	public String getCorpseDeserver() {
 		return null;
 	}
+
+	/**
+	 * gets the language
+	 *
+	 * @return language
+	 */
+	public String getLanguage() {
+		return null;
+	}
 }
