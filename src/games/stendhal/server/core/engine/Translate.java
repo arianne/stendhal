@@ -39,7 +39,6 @@ public class Translate {
 	 */
 	public static void init() {
 		init("es");
-		init("de");
 	}
 
 	/**
@@ -50,6 +49,10 @@ public class Translate {
 	private static void init(String language) {
 		try {
 			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/language/" + language + ".txt");
+			if (is == null) {
+				logger.warn("data/language/" + language + ".txt does not exist on classpath)");
+				return;
+			}
 			BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(is));
 
 			// we cannot use Properties.load because that does a) not support unicode and b) splits on the first space
