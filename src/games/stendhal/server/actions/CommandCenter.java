@@ -141,6 +141,7 @@ public class CommandCenter {
 					return false;
 				}
 				actionListener.onAction(player, action);
+				Translate.setThreadLanguage(null);
 				return true;
 			} else {
 				logger.error("caster is no Player; cannot execute action " + action +
