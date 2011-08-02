@@ -290,8 +290,8 @@
 				<include name="spells/*.xml" />
 			</fileset>
 		</copy>
-		<copy todir="${build_server_xmlconf}/data/language">
-			<fileset dir="data/language" />
+		<copy todir="${build_server_xmlconf}/data/languages">
+			<fileset dir="data/languages" />
 		</copy>
 
 		<jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>

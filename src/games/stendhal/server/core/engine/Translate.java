@@ -48,7 +48,7 @@ public class Translate {
 	 */
 	private static void init(String language) {
 		try {
-			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/language/" + language + ".txt");
+			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".txt");
 			if (is == null) {
 				logger.warn("data/language/" + language + ".txt does not exist on classpath)");
 				return;
