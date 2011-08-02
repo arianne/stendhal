@@ -39,5 +39,9 @@ public enum Category {
 	/** helping others and being friendly */
 	FRIEND, 
 	/** producing items */
-	PRODUCTION;
+	PRODUCTION, 
+	/** ados item quests */
+	QUEST_ADOS_ITEMS,
+	/** semos monster quest */
+	QUEST_SEMOS_MONSTER;
 }
