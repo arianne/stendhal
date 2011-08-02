@@ -1,7 +1,16 @@
 Changelog
 ---------
+0.96
+- 
+- fixed kill enemy army quest
+- improvements to the arianne.sourceforge.net website including an rss feed
+- harold now understands plural words properly
+
+
+
 
 0.95
+14th July 2011
 
 **** IMPORTANT****
 If you package Stendhal or have forked your own game based on it
