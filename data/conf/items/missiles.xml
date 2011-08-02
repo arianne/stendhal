@@ -70,7 +70,7 @@
 
   <item name="power dart">
     <type class="missile" subclass="dart" tileid="-1"/>
-    <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results. </description>
+    <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <atk value="4"/>
