@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,50 +9,43 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rp.achievement.factory;
+package games.stendhal.server.core.rp.achievement.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Was a quest with this prefix completed?
+ * Did the player kill all creatures, solo? (excluding rare)
+ *
+ * @author kymara
  */
-public class QuestWithPrefixCompletedCondition implements ChatCondition {
+public class KilledSoloAllCreaturesCondition implements ChatCondition {
 
-	private final String questname;
-
-	/**
-	 * Creates a new QuestWithPrefixCompletedCondition.
-	 * 
-	 * @param questname
-	 *            name of quest-slot
-	 */
-	public QuestWithPrefixCompletedCondition(final String questname) {
-		this.questname = questname;
-	}
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		List<String> quests = player.getQuests();
-		for (String quest : quests) {
-			if (quest.startsWith(questname)) {
-				if (player.isQuestCompleted(quest)) {
-					return true;
+		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
+		for (Creature creature : creatures) {
+			if (!creature.isRare()) {
+				if (!player.hasKilledSolo(creature.getName())) {
+					return false;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "QuestWithPrefixCompleted <" + questname + ">";
+		return "KilledSoloAllCreaturesCondition";
 	}
 
 	@Override
@@ -64,6 +56,6 @@ public class QuestWithPrefixCompletedCondition implements ChatCondition {
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestWithPrefixCompletedCondition.class);
+				KilledSoloAllCreaturesCondition.class);
 	}
 }

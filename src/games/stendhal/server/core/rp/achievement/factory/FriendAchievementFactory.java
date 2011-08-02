@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.achievement.factory;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.core.rp.achievement.condition.QuestWithPrefixCompletedCondition;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;

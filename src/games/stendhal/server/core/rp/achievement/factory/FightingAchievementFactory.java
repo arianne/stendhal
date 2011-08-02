@@ -14,6 +14,9 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.core.rp.achievement.condition.KilledRareCreatureCondition;
+import games.stendhal.server.core.rp.achievement.condition.KilledSharedAllCreaturesCondition;
+import games.stendhal.server.core.rp.achievement.condition.KilledSoloAllCreaturesCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasKilledNumberOfCreaturesCondition;
 

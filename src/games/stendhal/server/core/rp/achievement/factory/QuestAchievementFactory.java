@@ -14,6 +14,8 @@ package games.stendhal.server.core.rp.achievement.factory;
 
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.Category;
+import games.stendhal.server.core.rp.achievement.condition.QuestCountCompletedCondition;
+import games.stendhal.server.core.rp.achievement.condition.QuestsInRegionCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.maps.Region;
 
