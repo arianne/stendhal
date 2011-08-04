@@ -12,10 +12,12 @@
 			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
 			<choice minOccurs="0" maxOccurs="unbounded">
 				<element name="configurator" type="Q1:configurator"
-					minOccurs="1" maxOccurs="unbounded"/>
-				<element name="portal" type="Q1:portal" minOccurs="1"
+					minOccurs="0" maxOccurs="unbounded"/>
+				<element name="point-of-interest" type="Q1:point-of-interest" minOccurs="0"
 					maxOccurs="unbounded"/>
-				<element name="entity" type="Q1:entity" minOccurs="1"
+				<element name="portal" type="Q1:portal" minOccurs="0"
+					maxOccurs="unbounded"/>
+				<element name="entity" type="Q1:entity" minOccurs="0"
 					maxOccurs="unbounded" />
 			</choice>
 		</sequence>
@@ -37,6 +39,17 @@
 
 	<element name="zones" type="Q1:zones"></element>
 
+	<complexType name="point-of-interest">
+		<sequence minOccurs="1" maxOccurs="1">
+			<element name="name" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="type" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="description" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="url" type="string" minOccurs="0" maxOccurs="1" />
+		</sequence>
+		<attribute name="x" type="int"></attribute>
+		<attribute name="y" type="int"></attribute>
+	</complexType>
+	
 	<complexType name="portal">
 		<sequence minOccurs="1" maxOccurs="1">
 			<element name="destination" type="Q1:destination" minOccurs="0"
@@ -52,7 +65,6 @@
 		<attribute name="ref" type="string"></attribute>
 		<attribute name="replacing" type="boolean"></attribute>
 	</complexType>
-
 	<complexType name="configurator">
 		<sequence>
 			<element name="parameter" type="Q1:parameterType" minOccurs="0"

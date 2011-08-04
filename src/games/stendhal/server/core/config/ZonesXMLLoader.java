@@ -364,7 +364,7 @@ public final class ZonesXMLLoader {
 				setupDesc = entitySetupReader.read(child);
 			} else if (tag.equals("portal")) {
 				setupDesc = portalSetupReader.read(child);
-			} else if (tag.equals("title")) {
+			} else if (tag.equals("title") || tag.equals("point-of-interest")) {
 				// Ignore
 				continue;
 			} else {
