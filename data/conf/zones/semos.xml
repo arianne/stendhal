@@ -1142,6 +1142,13 @@ Mature sheep wanted: please speak to Sato.
 		<configurator class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.SignLessorNPC" />
 
+		<point-of-interest x="28" y="38">
+			<name>Semos Dungeon</name>
+			<type>dungeon</type>
+			<description>A dangerous place right in the center of the city.</description>
+			<url>http://stendhalgame.org/wiki/Semos_Dungeons</url>
+		</point-of-interest>
+
 		<portal x="42" y="37" ref="tavern_entrance">
 			<destination zone="int_semos_tavern_0" ref="entrance" />
 		</portal>
@@ -1172,6 +1179,12 @@ Mature sheep wanted: please speak to Sato.
 			<destination zone="int_semos_storage_0" ref="entrance" />
 		</portal>
 
+		<point-of-interest x="18" y="21">
+			<name>Semos Bank</name>
+			<type>bank</type>
+			<description>A place to store your possessions.</description>
+			<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+		</point-of-interest>
 		<portal x="18" y="22" ref="bank_entrance">
 			<destination zone="int_semos_bank" ref="entrance" />
 		</portal>
