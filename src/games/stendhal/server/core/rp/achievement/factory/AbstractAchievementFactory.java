@@ -59,17 +59,18 @@ public abstract class AbstractAchievementFactory {
 	public static List<AbstractAchievementFactory> createFactories() {
 		List<AbstractAchievementFactory> list = new LinkedList<AbstractAchievementFactory>();
 		//add new created factories here
-		list.add(new AgeAchievementFactory());
+		list.add(new AdosItemQuestAchievementsFactory());
 		list.add(new ExperienceAchievementFactory());
 		list.add(new FightingAchievementFactory());
 		list.add(new FriendAchievementFactory());
+		list.add(new InteriorZoneAchievementFactory());
 		list.add(new ItemAchievementFactory());
 		list.add(new ObtainAchievementsFactory());
+		list.add(new OutsideZoneAchievementFactory());
 		list.add(new ProductionAchievementFactory());
 		list.add(new QuestAchievementFactory());
-		list.add(new OutsideZoneAchievementFactory());
+		list.add(new SemosMonsterQuestAchievementFactory());
 		list.add(new UndergroundZoneAchievementFactory());
-		list.add(new InteriorZoneAchievementFactory());
 		return list;
 	}
 
