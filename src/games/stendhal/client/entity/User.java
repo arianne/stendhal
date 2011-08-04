@@ -475,4 +475,13 @@ public class User extends Player {
 			}
 		}
 	}
+
+	/**
+	 * gets the zone name
+	 *
+	 * @return zone name
+	 */
+	public String getZoneName() {
+		return rpObject.getID().getZoneID();
+	}
 }
