@@ -163,6 +163,8 @@ public final class AchievementNotifier {
 	 */
 	public void onFinishQuest(Player player) {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
+		getAndCheckAchievementsInCategory(player, Category.QUEST_ADOS_ITEMS);
+		getAndCheckAchievementsInCategory(player, Category.QUEST_SEMOS_MONSTER);
 		getAndCheckAchievementsInCategory(player, Category.FRIEND);
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
