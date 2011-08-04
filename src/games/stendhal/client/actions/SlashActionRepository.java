@@ -41,6 +41,7 @@ public class SlashActionRepository {
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
+		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
 		
 		actions.put("ban", new BanAction());

@@ -27,7 +27,6 @@ public class BareBonesBrowserLaunchCommandsFactory {
 	
 	private static void initialize() {
 		commandsAndUrls = new HashMap<String, String>();
-		commandsAndUrls.put("atlas", "http://stendhalgame.org/wiki/StendhalAtlas");
 		commandsAndUrls.put("faq", "http://stendhalgame.org/wiki/StendhalFAQ");
 		commandsAndUrls.put("manual", "http://stendhalgame.org/wiki/Stendhal_Manual/Controls_and_Game_Settings");
 		commandsAndUrls.put("rules", "http://stendhalgame.org/wiki/Stendhal_Rules");
