@@ -88,6 +88,7 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 
 				public void execute(Player player) {
 					equipPlayer(player);
+					fillBag(player);
 					player.setDefXP(999999999);
 					player.addXP(999999999);
 					player.setImmune();
@@ -95,6 +96,15 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 					int x = Rand.rand(zone.getWidth() - 4) + 2;
 					int y = Rand.rand(zone.getHeight() - 5) + 2;
 					player.teleport(zone, x, y, Direction.DOWN, admin);
+				}
+
+				private void fillBag(Player player) {
+					String[] items = {"leek", "porcini", "potion", "antidote", "beer"};
+					for(String item : items) {
+						StackableItem stackable = (StackableItem) SingletonRepository.getEntityManager().getItem(item);
+						stackable.setQuantity(100);
+						player.equipToInventoryOnly(stackable);
+					}
 				}
 
 				private void equipPlayer(Player player) {
