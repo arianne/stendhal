@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -221,27 +222,28 @@ public class KTextEdit extends JComponent {
 	 * @param type
 	 */
 	protected void insertText(final String text, final NotificationType type) {
-		final Color color = type.getColor();
-		final String styleDescription = type.getStyleDescription();
-		final Document doc = textPane.getDocument();
+		
+			final Color color = type.getColor();
+			final String styleDescription = type.getStyleDescription();
+			final Document doc = textPane.getDocument();
 
-		try {
-			final FormatTextParser parser =	new FormatTextParser() {
-				@Override
-				public void normalText(final String txt) throws BadLocationException {
-					doc.insertString(doc.getLength(), txt, getStyle(color,styleDescription));
-				}
+			try {
+				final FormatTextParser parser =	new FormatTextParser() {
+					@Override
+					public void normalText(final String txt) throws BadLocationException {
+						doc.insertString(doc.getLength(), txt, getStyle(color,styleDescription));
+					}
 
-				@Override
-				public void colorText(final String txt) throws BadLocationException {
-					doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
-				}
-			};
-			parser.format(text);
-		} catch (final Exception e) { 
-			// BadLocationException
-			logger.error("Couldn't insert initial text.", e);
-		}
+					@Override
+					public void colorText(final String txt) throws BadLocationException {
+						doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
+					}
+				};
+				parser.format(text);
+			} catch (final Exception e) { 
+				// BadLocationException
+				logger.error("Couldn't insert initial text.", e);
+			}
 	}
 
 	/**
@@ -311,29 +313,31 @@ public class KTextEdit extends JComponent {
 		final int currentLocation = vbar.getValue();
 		
 		setAutoScrollEnabled((vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum()));
-		insertNewline();
+		if(isNotificationTypeEnabled(type)) {
+			insertNewline();
 
-		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-		final String dateString = formatter.format(new Date());
-		insertTimestamp(dateString);
+			final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+			final String dateString = formatter.format(new Date());
+			insertTimestamp(dateString);
 
-		insertHeader(header);
-		insertText(line, type);
-		
-		// wait a bit so that the scroll bar knows where it should scroll 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				if (isAutoScrollEnabled()) {
-					scrollToBottom();
-				} else {
-					// the scroll bar insists changing its value, so jump back.
-					// in a sane toolkit it would be possible to defer drawing
-					// until this
-					vbar.setValue(currentLocation);
-					setUnreadLinesWarning(true);
+			insertHeader(header);
+			insertText(line, type);
+			
+			// wait a bit so that the scroll bar knows where it should scroll 
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					if (isAutoScrollEnabled()) {
+						scrollToBottom();
+					} else {
+						// the scroll bar insists changing its value, so jump back.
+						// in a sane toolkit it would be possible to defer drawing
+						// until this
+						vbar.setValue(currentLocation);
+						setUnreadLinesWarning(true);
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	/**
@@ -399,6 +403,23 @@ public class KTextEdit extends JComponent {
 			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
 		} catch (final Exception ex) {
 			logger.error(ex, ex);
+		}
+	}
+
+	/**
+	 * Check if a notification type is enabled to be noticed about
+	 * 
+	 * @param type
+	 * @return true if the given type should be printed out
+	 */
+	protected boolean isNotificationTypeEnabled(NotificationType type) {
+		switch (type) {
+		case POSITIVE:
+			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.healingmessage", "true"));
+		case NEGATIVE:
+			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.poisonmessage", "true"));
+		default:
+			return true;
 		}
 	}
 }

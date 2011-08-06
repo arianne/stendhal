@@ -459,7 +459,7 @@ public class KHtmlEdit extends KTextEdit {
 
 		appendString(sbuf.toString());
 	}
-
+	
 	@Override
 	protected void insertTimestamp(final String text) {
 		final StringBuilder sbuf = new StringBuilder();

@@ -37,6 +37,10 @@ class GeneralSettings {
 	/** Property used for the double click setting */
 	private static final String DOUBLE_CLICK_PROPERTY = "ui.doubleclick";
 	
+	private static final String HEALING_MESSAGE_PROPERTY = "ui.healingmessage";
+	
+	private static final String POISON_MESSAGE_PROPERTY = "ui.poisonmessage";
+	
 	/** Container for the setting components */
 	private final JComponent page;
 	
@@ -87,6 +91,34 @@ class GeneralSettings {
 			}
 		});
 		page.add(autoRaiseToggle);
+		
+		// show healing messages
+		JCheckBox showHealingToggle = new JCheckBox("Show healing messages");
+		showHealingToggle.setToolTipText("Show healing messages in the chat log");
+		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(HEALING_MESSAGE_PROPERTY, "true"));
+		showHealingToggle.setSelected(selected);
+		
+		showHealingToggle.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
+				WtWindowManager.getInstance().setProperty(HEALING_MESSAGE_PROPERTY, Boolean.toString(enabled));
+			}
+		});
+		page.add(showHealingToggle);
+		
+		// show poison messages
+		JCheckBox showPoisonToggle = new JCheckBox("Show poison messages");
+		showPoisonToggle.setToolTipText("Show poisoned messages in the chat log");
+		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(POISON_MESSAGE_PROPERTY, "true"));
+		showPoisonToggle.setSelected(selected);
+		
+		showPoisonToggle.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
+				WtWindowManager.getInstance().setProperty(POISON_MESSAGE_PROPERTY, Boolean.toString(enabled));
+			}
+		});
+		page.add(showPoisonToggle);
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
