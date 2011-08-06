@@ -55,9 +55,10 @@ class ScreenController implements PositionChangeListener {
 		final int textLength = text.length();
 		
 		if (!isTalking) {
+			final int priority = getPriority(type);
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					screen.addStaticText(sprite, textLength);
+					screen.addStaticText(sprite, textLength, priority);
 				}
 			});
 		} else {
@@ -66,6 +67,25 @@ class ScreenController implements PositionChangeListener {
 					screen.addTextBox(sprite, x, y, textLength);
 				}
 			});
+		}
+	}
+	
+	/**
+	 * Get the importance of a message to keep it above others
+	 * 
+	 * @param type type of the message
+	 * @return priority
+	 */
+	private int getPriority(NotificationType type) {
+		// Tutorial above most messages, admin messages above everything
+		// else
+		switch (type) {
+		case TUTORIAL:
+			return 1;
+		case SUPPORT:
+			return 2;
+		default:
+			return 0;
 		}
 	}
 	

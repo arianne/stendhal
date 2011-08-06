@@ -1173,7 +1173,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * a line to the chat log, so we give the player a bit more time to
 		 * admire her prowess.
 		 */
-		addStaticSprite(sprite, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME);
+		addStaticSprite(sprite, 2 * RemovableSprite.STANDARD_PERSISTENCE_TIME, 0);
 	}
 	
 	/**
@@ -1182,11 +1182,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * 
 	 * @param sprite
 	 * @param textLength
+	 * @param priority importance of the message to keep it above others
 	 */
-	public void addStaticText(Sprite sprite, int textLength) {
+	public void addStaticText(Sprite sprite, int textLength, int priority) {
 		addStaticSprite(sprite,
 				Math.max(RemovableSprite.STANDARD_PERSISTENCE_TIME,
-				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50));
+				textLength * RemovableSprite.STANDARD_PERSISTENCE_TIME / 50),
+				priority);
 	}
 	
 	/**
@@ -1195,11 +1197,15 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param sprite sprite
 	 * @param persistTime time to stay on the screen before being automatically
 	 * 	removed
+	 *  @param priority importance of the message to keep it above others
 	 */
-	private void addStaticSprite(Sprite sprite, long persistTime) {
+	private void addStaticSprite(Sprite sprite, long persistTime, int priority) {
 		int x = (getWidth() - sprite.getWidth()) / 2;
 		int y = getHeight() - sprite.getHeight();
-		staticSprites.add(new RemovableSprite(sprite, x, y, persistTime));
+		RemovableSprite msg = new RemovableSprite(sprite, x, y, persistTime);
+		msg.setPriority(priority);
+		staticSprites.add(msg);
+		Collections.sort(staticSprites);
 	}
 	
 	/**
