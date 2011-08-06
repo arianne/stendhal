@@ -17,7 +17,7 @@ import games.stendhal.client.sprite.Sprite;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class RemovableSprite {
+public class RemovableSprite implements Comparable<RemovableSprite> {
 	
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;
 	
@@ -28,6 +28,8 @@ public class RemovableSprite {
 	protected final Sprite sprite;
 
 	protected long removeTime;
+	/** importance of the message to keep it above others */
+	private int priority;
 
 	/**
 	 * Create a new text object.
@@ -66,6 +68,16 @@ public class RemovableSprite {
 	public int getY() {
 		return y;
 	}
+	
+	/**
+	 * Set the priority of the message. Higher priority messages are kept above
+	 * others; sprites of the same priority are ordered newest on top.
+	 * 
+	 * @param priority
+	 */
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
 	/**
 	 * Check if the <code>Text</code> is old enough to be removed.
@@ -74,5 +86,9 @@ public class RemovableSprite {
 	 */
 	public boolean shouldBeRemoved() {
 		return (System.currentTimeMillis() >= removeTime);
+	}
+
+	public int compareTo(RemovableSprite other) {
+		return priority - other.priority;
 	}
 }
