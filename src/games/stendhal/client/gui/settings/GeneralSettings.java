@@ -30,6 +30,10 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 class GeneralSettings {
+	
+	private static final String GAMESCREEN_BLOOD = "gamescreen.blood";
+	
+	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoraisecorpse";
 	/** Default decorative font */
 	private static final String DEFAULT_FONT = "BlackChancery";
 	/** Property used for the decorative font */
@@ -51,73 +55,28 @@ class GeneralSettings {
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		
 		// click mode
-		JCheckBox clickModeToggle = new JCheckBox("Double Click Mode");
-		clickModeToggle.setToolTipText("Move and attack with double click. If not checked, a single click is enough.");
-		boolean selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(DOUBLE_CLICK_PROPERTY, "false"));
-		clickModeToggle.setSelected(selected);
-		
-		clickModeToggle.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				boolean doubleClick = (e.getStateChange() == ItemEvent.SELECTED);
-				WtWindowManager.getInstance().setProperty(DOUBLE_CLICK_PROPERTY, Boolean.toString(doubleClick));
-			}
-		});
+		JCheckBox clickModeToggle = SettingsComponentFactory.createSettingsToggle(DOUBLE_CLICK_PROPERTY, "false",
+				"Double Click Mode", "Move and attack with double click. If not checked, a single click is enough.");
 		page.add(clickModeToggle);
 		
 		// blood
-		JCheckBox showBloodToggle = new JCheckBox("Show blood and corpses");
-		showBloodToggle.setToolTipText("Show blood spots on hits during fighting and corpse.");
-		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
-		showBloodToggle.setSelected(selected);
-
-		showBloodToggle.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				WtWindowManager.getInstance().setProperty("gamescreen.blood", Boolean.toString(enabled));
-			}
-		});
+		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
+				"Show blood and corpses", "Show blood spots on hits during fighting and corpse.");
 		page.add(showBloodToggle);
 		
 		// raising corpses
-		JCheckBox autoRaiseToggle = new JCheckBox("Auto inspect corpses");
-		autoRaiseToggle.setToolTipText("Automatically open the loot window for corpses of creatures you can loot");
-		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoraisecorpse", "true"));
-		autoRaiseToggle.setSelected(selected);
-
-		autoRaiseToggle.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				WtWindowManager.getInstance().setProperty("gamescreen.autoinspectcorpses", Boolean.toString(enabled));
-			}
-		});
+		JCheckBox autoRaiseToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_AUTORAISECORPSE, "true",
+				"Auto inspect corpses", "Automatically open the loot window for corpses of creatures you can loot");
 		page.add(autoRaiseToggle);
 		
 		// show healing messages
-		JCheckBox showHealingToggle = new JCheckBox("Show healing messages");
-		showHealingToggle.setToolTipText("Show healing messages in the chat log");
-		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(HEALING_MESSAGE_PROPERTY, "true"));
-		showHealingToggle.setSelected(selected);
-		
-		showHealingToggle.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e) {
-				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				WtWindowManager.getInstance().setProperty(HEALING_MESSAGE_PROPERTY, Boolean.toString(enabled));
-			}
-		});
+		JCheckBox showHealingToggle = SettingsComponentFactory.createSettingsToggle(HEALING_MESSAGE_PROPERTY, "false",
+				"Show healing messages", "Show healing messages in the chat log");new JCheckBox();
 		page.add(showHealingToggle);
 		
 		// show poison messages
-		JCheckBox showPoisonToggle = new JCheckBox("Show poison messages");
-		showPoisonToggle.setToolTipText("Show poisoned messages in the chat log");
-		selected = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty(POISON_MESSAGE_PROPERTY, "true"));
-		showPoisonToggle.setSelected(selected);
-		
-		showPoisonToggle.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e) {
-				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
-				WtWindowManager.getInstance().setProperty(POISON_MESSAGE_PROPERTY, Boolean.toString(enabled));
-			}
-		});
+		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
+										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
