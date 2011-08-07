@@ -5,6 +5,7 @@ Changelog
 - fixed kill enemy army quest
 - improvements to the arianne.sourceforge.net website including an rss feed
 - harold now understands plural words properly
+- configuration paramter added to hide healing and poisoning messages (now hidden by default)
 
 
 
