@@ -1,12 +1,23 @@
 Changelog
 ---------
 0.96
-- 
-- fixed kill enemy army quest
-- improvements to the arianne.sourceforge.net website including an rss feed
-- harold now understands plural words properly
-- configuration paramter added to hide healing and poisoning messages (now hidden by default)
 
+*world*
+- 
+
+*website*
+- added an interactive Atlas to the website
+- improvements to the arianne.sourceforge.net website including an rss feed
+
+*client*
+- support and tutorial textboxes stay on top
+- Atlas command now focuses on the current position
+- added Beginner's guide to help menu
+- healing messages don't spam the chat log anymore (but can be enabled in the setting dialog)
+
+*fixes*
+- fixed kill enemy army quest
+- harold now understands plural words properly
 
 
 
