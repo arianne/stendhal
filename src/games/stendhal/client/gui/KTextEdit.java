@@ -415,9 +415,9 @@ public class KTextEdit extends JComponent {
 	protected boolean isNotificationTypeEnabled(NotificationType type) {
 		switch (type) {
 		case POSITIVE:
-			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.healingmessage", "true"));
+			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.healingmessage", "false"));
 		case NEGATIVE:
-			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.poisonmessage", "true"));
+			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.poisonmessage", "false"));
 		default:
 			return true;
 		}
