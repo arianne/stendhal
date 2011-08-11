@@ -53,7 +53,7 @@ public class Translate {
 				logger.warn("data/language/" + language + ".txt does not exist on classpath)");
 				return;
 			}
-			BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(is));
+			BufferedReader reader = new BufferedReader(new UnicodeSupportingInputStreamReader(is, "UTF-8"));
 
 			// we cannot use Properties.load because that does a) not support unicode and b) splits on the first space
 			Map<String, String> map = new HashMap<String, String>();
