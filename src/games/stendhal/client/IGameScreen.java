@@ -57,11 +57,6 @@ public interface IGameScreen {
 	void removeText(RemovableSprite entity);
 
 	/**
-	 * Removes all objects from the screen.
-	 */
-	void removeAllObjects();
-
-	/**
 	 * Removes all the text entities.
 	 */
 	void clearTexts();

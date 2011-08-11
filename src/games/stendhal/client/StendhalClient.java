@@ -75,14 +75,14 @@ public class StendhalClient extends ClientFramework {
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
-	protected IGameScreen screen;
-
 	private String userName = "";
 
 	private String character = null;
 
 	private final UserContext userContext;
 	
+	/** Listeners to be called when zone changes. */
+	private final List<ZoneChangeListener> zoneChangeListeners = new ArrayList<ZoneChangeListener>();
 
 	/**
 	 * The amount of content yet to be transfered.
@@ -136,10 +136,6 @@ public class StendhalClient extends ClientFramework {
 	@Override
 	protected String getVersionNumber() {
 		return stendhal.VERSION;
-	}
-
-	public void setScreen(final IGameScreen screen) {
-		this.screen = screen;
 	}
 
 	public StaticGameLayers getStaticGameLayers() {
@@ -266,11 +262,9 @@ public class StendhalClient extends ClientFramework {
 			staticLayers.setAreaName(name.substring(0, i));
 		}
 
-		/*
-		 * Remove screen objects (like text bubbles)
-		 */
-		logger.debug("CLEANING screen object list");
-		screen.removeAllObjects();
+		for (ZoneChangeListener listener : zoneChangeListeners) {
+			listener.onZoneChange();
+		}
 
 		contentToLoad = 0;
 
@@ -302,6 +296,15 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		return items;
+	}
+	
+	/**
+	 * Add a listener to be called when the player changes zone.
+	 * 
+	 * @param listener
+	 */
+	public void addZoneChangeListener(ZoneChangeListener listener) {
+		zoneChangeListeners.add(listener);
 	}
 
 	/**
@@ -622,5 +625,14 @@ public class StendhalClient extends ClientFramework {
 		return drawingSemaphore.tryLock();
 	}
 
-
+	/**
+	 * Interface for listeners that need to be informed when the user is
+	 * changing zone.
+	 */
+	public static interface ZoneChangeListener {
+		/**
+		 * Called when the user is changing zone.
+		 */
+		void onZoneChange();
+	}
 }

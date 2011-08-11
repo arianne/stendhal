@@ -51,7 +51,7 @@ import org.apache.log4j.Logger;
  * The game screen. This manages and renders the visual elements of the game.
  */
 public class GameScreen extends JComponent implements IGameScreen, DropTarget,
-	GameObjects.GameObjectListener {
+	GameObjects.GameObjectListener, StendhalClient.ZoneChangeListener {
 	/**
 	 * serial version uid
 	 */
@@ -830,18 +830,15 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		textsToRemove.add(entity);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#removeAll()
+	/**
+	 * Remove all map objects.
 	 */
-	public void removeAllObjects() {
+	private void removeAllObjects() {
+		logger.debug("CLEANING screen object list");
 		views.clear();
 		texts.clear();
 		textsToRemove.clear();
 		// staticSprites contents are not zone specific, so don't clear those
-		// The user was removed as well
-		areaChangingLock.lock();
 	}
 
 	/*
@@ -1246,5 +1243,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		boolean locked() {
 			return !(sizeReceived && playerReceived);
 		}
+	}
+
+	public void onZoneChange() {
+		removeAllObjects();
+		// The user was removed as well
+		areaChangingLock.lock();
 	}
 }

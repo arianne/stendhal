@@ -235,7 +235,7 @@ public class j2DClient implements UserInterface {
 		// ... and put it on the ground layer of the pane
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
 
-		client.setScreen(screen);
+		client.addZoneChangeListener(screen);
 		positionChangeListener.add(screenController);
 
 
