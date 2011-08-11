@@ -77,7 +77,7 @@ public class KillGnomesTest {
 
 		// Accept quest
 		en.step(player, "yes");
-		assertEquals("Excellent. You'll find the gnomes camped out, north west of Semos. Make sure you kill some of the ringleaders.", getReply(npc));
+		assertEquals("Excellent. You'll find the gnomes camped out, north west of Semos. Make sure you kill some of the ringleaders, too, at least one infantryman and one cavalryman.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		assertThat(player.getQuest(questSlot), equalTo(QUEST_VALUE_STARTED));

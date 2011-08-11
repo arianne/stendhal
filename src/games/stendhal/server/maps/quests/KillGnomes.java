@@ -117,7 +117,7 @@ public class KillGnomes extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Excellent. You'll find the gnomes camped out, north west of Semos. Make sure you kill some of the ringleaders.",
+				"Excellent. You'll find the gnomes camped out, north west of Semos. Make sure you kill some of the ringleaders, too, at least one infantryman and one cavalryman.",
 				new MultipleActions(actions));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
