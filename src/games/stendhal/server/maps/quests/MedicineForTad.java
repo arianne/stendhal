@@ -74,7 +74,7 @@ public class MedicineForTad extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("TadFirstChat")) {
-			res.add("I have met Tad in Semos Townhall");
+			res.add("I have met Tad in Semos Hostel");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
@@ -323,7 +323,7 @@ public class MedicineForTad extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Medicine For Tad",
-				"Tad, a boy in Semos Townhall, needs help to get his medicine.",
+				"Tad, a boy in Semos Hostel, needs help to get his medicine.",
 				false);
 		step_1();
 		step_2();

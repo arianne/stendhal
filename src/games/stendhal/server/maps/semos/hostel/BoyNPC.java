@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.semos.townhall;
+package games.stendhal.server.maps.semos.hostel;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
@@ -109,8 +109,10 @@ public class BoyNPC implements ZoneConfigurator {
 
 		npc.setEntityClass("childnpc");
 		npc.setDescription("The young boy you see is Tad. He looks ill and his face is pale.");
-		npc.setPosition(13, 38);
-		npc.setDirection(Direction.RIGHT);
+
+		npc.setPosition(18, 21);
+		
+		npc.setDirection(Direction.LEFT);
 		npc.initHP(100);
 		zone.add(npc);
 	}
