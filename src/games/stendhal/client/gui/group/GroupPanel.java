@@ -410,18 +410,16 @@ class GroupPanel {
 	private class MemberListMouseListener extends MousePopupAdapter {
 		@Override
 		protected void showPopup(final MouseEvent e) {
-			Member me = memberList.getMember(User.getCharacterName());
-			if (!me.isLeader()) {
-				// Only the leader needs the popup menus, at least for now
-				return;
-			}
 			int index = memberListComponent.locationToIndex(e.getPoint());
 			Object obj = memberListComponent.getModel().getElementAt(index);
 
-			// no menu for the player herself
-			if ((obj instanceof Member) && (obj != me)) {
+			if (obj instanceof Member) {
+				Member me = memberList.getMember(User.getCharacterName());
 				Member member = (Member) obj;
-				final JPopupMenu popup = new MemberPopupMenu(member.getName());
+				// Show leader operations only if the user is the leader, and
+				// only for the other members
+				boolean showLeaderOps = me.isLeader() && (obj != me);
+				final JPopupMenu popup = new MemberPopupMenu(member.getName(), showLeaderOps);
 				popup.show(memberListComponent, e.getX() - POPUP_OFFSET, e.getY() - POPUP_OFFSET);
 			}
 		}
