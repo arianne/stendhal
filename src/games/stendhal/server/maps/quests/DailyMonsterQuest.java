@@ -272,7 +272,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					.fire(player, null, null);
 			final String creatureToKill = getCreatureToKillFromPlayer(player);
 			if (!questDone) {
-				res.add("I have been asked to kill a " + creatureToKill
+				res.add("I have been asked to kill " + Grammar.a_noun(creatureToKill)
 						+ " to help Semos. I haven't killed it yet.");
 			} else {
 				res.add("I have killed the " + creatureToKill
