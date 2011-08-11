@@ -16,7 +16,7 @@ Changelog
 - healing messages don't spam the chat log anymore (but can be enabled in the setting dialog)
 
 *fixes*
-- fixed kill enemy army quest
+- fixed kill enemy army quest (load again + added madaram archer and windwalker to kill-list)
 - harold now understands plural words properly
 
 
