@@ -3,7 +3,8 @@ Changelog
 0.96
 
 *world*
-- 
+- Barbarus moved his work place a bit closer to the Mines entrance and reduced the pick price to 400 money each
+- Haunchy Meatoch is really thankful for the help he gets each time from players and gives them some XP now
 
 *website*
 - added an interactive Atlas to the website
