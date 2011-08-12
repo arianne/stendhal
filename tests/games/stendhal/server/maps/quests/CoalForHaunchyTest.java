@@ -91,7 +91,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		barbarusEng.step(player, "hi");
 		assertEquals("Good luck!", getReply(barbarus));
 		barbarusEng.step(player, "buy pick");
-		assertEquals("A pick will cost 450. Do you want to buy it?", getReply(barbarus));
+		assertEquals("A pick will cost 400. Do you want to buy it?", getReply(barbarus));
 		barbarusEng.step(player, "yes");
 		assertEquals("Sorry, you don't have enough money!", getReply(barbarus));
 		barbarusEng.step(player, "bye");
@@ -100,8 +100,8 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		barbarusEng.step(player, "hi");
 		assertEquals("Good luck!", getReply(barbarus));
 		barbarusEng.step(player, "buy pick");
-		assertEquals("A pick will cost 450. Do you want to buy it?", getReply(barbarus));
-		PlayerTestHelper.equipWithMoney(player, 450);
+		assertEquals("A pick will cost 400. Do you want to buy it?", getReply(barbarus));
+		PlayerTestHelper.equipWithMoney(player, 400);
 		barbarusEng.step(player, "yes");
 		assertEquals("Congratulations! Here is your pick!", getReply(barbarus));
 		// You see a pick. It is a tool which helps you to get some coal.
