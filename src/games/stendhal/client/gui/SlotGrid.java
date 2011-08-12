@@ -88,6 +88,15 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	}
 	
 	/**
+	 * Get the name of the slot this grid represents
+	 * 
+	 * @return name of the slot
+	 */
+	public String getSlotName() {
+		return slotName;
+	}
+	
+	/**
 	 * Set the inspector the contained entities should use.
 	 * 
 	 * @param inspector

@@ -327,6 +327,12 @@ public class j2DClient implements UserInterface {
 		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
 
 		containerPanel = createContainerPanel();
+		/*
+		 * ContainerPanel needs to be informed about zone changes so that it can
+		 * keep track containers that the user is carrying and change their
+		 * slots.
+		 */
+		client.addZoneChangeListener(containerPanel);
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -633,6 +639,7 @@ public class j2DClient implements UserInterface {
 						spells.setSlot(user, "spells");
 						inventory.setSlot(user, "bag");
 						lastuser = user;
+						containerPanel.onZoneChangeCompleted();
 					}
 				}
 

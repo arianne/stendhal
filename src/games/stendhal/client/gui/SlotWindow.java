@@ -36,8 +36,8 @@ public class SlotWindow extends InternalManagedWindow {
 	 */
 	private static final int MAX_DISTANCE = 4;
 	
-	private final SlotGrid content;
-	private IEntity parent;
+	protected final SlotGrid content;
+	protected IEntity parent;
 	
 	/**
 	 * Create a new EntityContainer.

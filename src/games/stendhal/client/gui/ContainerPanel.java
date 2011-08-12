@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -30,7 +31,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-public class ContainerPanel extends JScrollPane implements Inspector {
+public class ContainerPanel extends JScrollPane implements Inspector, StendhalClient.ZoneChangeListener {
 	/**
 	 * serial version uid
 	 */
@@ -135,13 +136,32 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 			// Nothing to do. 
 			return container;
 		} else {
-			SlotWindow window = new SlotWindow(entity.getName(), width, height);
+			SlotWindow window = new FreezableSlotWindow(entity.getName(), width, height);
 			window.setSlot(entity, content.getName());
 			window.setInspector(this);
 			window.setVisible(true);
 			window.setAlignmentX(LEFT_ALIGNMENT);
 			addRepaintable(window);
 			return window;
+		}
+	}
+
+	public void onZoneChange() {
+		for (JComponent component : repaintable) {
+			if (component instanceof FreezableSlotWindow) {
+				((FreezableSlotWindow) component).freeze();
+			}
+		}
+	}
+	
+	/**
+	 * Call this when the user entity at the new zone has been constructed.
+	 */
+	void onZoneChangeCompleted() {
+		for (JComponent component : repaintable) {
+			if (component instanceof FreezableSlotWindow) {
+				((FreezableSlotWindow) component).thaw();
+			}
 		}
 	}
 }
