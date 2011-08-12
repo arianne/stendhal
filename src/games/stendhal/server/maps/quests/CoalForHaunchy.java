@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -156,6 +157,7 @@ public class CoalForHaunchy extends AbstractQuest {
 				null,
 				new MultipleActions(
 						new DropItemAction("coal",25), 
+						new IncreaseXPAction(200),
 						new ChatAction() {
 							public void fire(final Player player,
 									final Sentence sentence,
