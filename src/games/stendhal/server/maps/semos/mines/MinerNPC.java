@@ -45,19 +45,17 @@ public class MinerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(70, 115));
-				nodes.add(new Node(69, 117));
-                nodes.add(new Node(69, 120));
-                nodes.add(new Node(72, 120));  
-                nodes.add(new Node(76, 123));
-                nodes.add(new Node(80, 121)); 
-                nodes.add(new Node(83, 119)); 
-                nodes.add(new Node(83, 115));
-                nodes.add(new Node(79, 115));
-                nodes.add(new Node(79, 113));
-                nodes.add(new Node(74, 113));
-                nodes.add(new Node(74, 112));
-                nodes.add(new Node(70, 112));
+				nodes.add(new Node(57, 78));
+				nodes.add(new Node(55, 78));
+                nodes.add(new Node(55, 80));
+                nodes.add(new Node(53, 80));  
+                nodes.add(new Node(53, 82));
+                nodes.add(new Node(55, 82)); 
+                nodes.add(new Node(55, 84)); 
+                nodes.add(new Node(59, 84));
+                nodes.add(new Node(59, 78));
+                nodes.add(new Node(58, 78));
+                nodes.add(new Node(57, 78));
                	setPath(new FixedPath(nodes, true));
 
 			}
@@ -73,7 +71,7 @@ public class MinerNPC implements ZoneConfigurator {
 				addOffer("I can sell you a useful tool for getting some coal with. Most of my friends who used to work with me left me some time ago, so you can buy some #picks which they left here. I'd also like to give you some of my drink and food but there isn't much left... I still need to work some hours so I need it for myself, sorry... But I can show you a hand drawn #map of the mine if you want.");
 				addReply("picks", "You need a pick for getting some coal from places on the walls in Semos Mine.");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();
-                offerings.put("pick", 450);
+                offerings.put("pick", 400);
                 new SellerAdder().addSeller(this, new SellerBehaviour(offerings), false);
 				addQuest("Sorry but as you can see, I'm covered with dust and still didn't finish my work up yet. I can't think about any quests for you, but you can help me to gain some coal."); 
 				addJob("I am a miner. Working in a mine is quite hard work. If you get deep and deeper into the earth it gets very warm and even more dusty. And you can hardly see anything in this low light...");
@@ -86,7 +84,7 @@ public class MinerNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Barbarus. He looks dirty and sweats quite much. His face and arms are nearly black because they are covered with dust.");
 		npc.setEntityClass("minernpc");
-		npc.setPosition(70, 115);
+		npc.setPosition(57, 78);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);

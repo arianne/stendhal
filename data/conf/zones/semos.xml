@@ -2341,7 +2341,7 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_mine_n2_w2" level="-1" x="499744" y="499744"
 		file="Level -1/semos/mine_n2_w2.tmx">
-		
+				
 		<entity x="81" y="5">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
@@ -2478,8 +2478,33 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_mine_n2" level="-1" x="500000" y="499744"
 		file="Level -1/semos/mine_n2.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.semos.mines.DwarfGuardianNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.mines.DwarfGuardianNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.mines.MinerNPC" />
+		
+		<entity x="62" y="79">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="56" y="86">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="51" y="84">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="51" y="78">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
+		
+		<entity x="55" y="75">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+		</entity>
 			
 		<entity x="106" y="15">
 			<implementation
@@ -2540,7 +2565,6 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_mine_ne" level="-1" x="500128" y="499744"
 		file="Level -1/semos/mine_ne.tmx">
-		<configurator class-name="games.stendhal.server.maps.semos.mines.MinerNPC" />
 		
 		<entity x="79" y="107">
 			<implementation
