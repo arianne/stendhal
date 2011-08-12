@@ -161,6 +161,30 @@ class SourceObject extends MoveableObject {
 			return invalidSource;
 		}
 		
+		/*
+		 * Corpses are always top level objects, so this check can be done
+		 * outside the path loop.
+		 */
+		if (parent instanceof Corpse) {
+			Corpse corpse = (Corpse) parent;
+			if (!corpse.mayUse(player)) {
+				logger.debug(player.getName() + " tried to access eCorpse owned by " + corpse.getCorpseOwner());
+				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
+				return invalidSource;
+			}
+		}
+		
+		/*
+		 * Top level items need to be checked for players standing on them. We
+		 * do not need to worry about access to containers below other players
+		 * as items do not have the content slot when they are on the ground.
+		 */
+		if (parent instanceof Item) {
+			if (isItemBelowOtherPlayer(player, (Item) parent)) {
+				return invalidSource;
+			}
+		}
+		
 		// Walk the slot path
 		Entity entity = parent;
 		String slotName = null;
@@ -170,12 +194,14 @@ class SourceObject extends MoveableObject {
 				player.sendPrivateText("Source " + slotName + " does not exist");
 				logger.error(player.getName() + " tried to use non existing slot " + slotName + " of " + entity
 						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+				return invalidSource;
 			}
 			
 			final RPSlot slot = ((EntitySlot) entity.getSlot(slotName)).getWriteableSlot();
 			if (!isValidBaseSlot(player, slot)) {
 				return invalidSource;
 			}
+			
 			if (!it.hasNext()) {
 				logger.error("Missing item id");
 				return invalidSource;
@@ -289,7 +315,7 @@ class SourceObject extends MoveableObject {
 		if (SingletonRepository.getRPWorld().has(baseItemId)) {
 			entity = (Entity) SingletonRepository.getRPWorld().get(baseItemId);
 			if ((entity instanceof Item)) {
-				if (isItemBelowOtherPlayer((Item) entity)) {
+				if (isItemBelowOtherPlayer(player, (Item) entity)) {
 					entity = null;
 				}
 			} else {
@@ -417,12 +443,13 @@ class SourceObject extends MoveableObject {
 	/**
 	 * Checks whether the item is below <b>another</b> player.
 	 *
+	 * @param player Player trying to access the item
 	 * @param sourceItem
 	 *            to check
 	 *
 	 * @return true, if it cannot be taken; false otherwise
 	 */
-	private boolean isItemBelowOtherPlayer(final Item sourceItem) {
+	private static boolean isItemBelowOtherPlayer(final Player player, final Item sourceItem) {
 		final List<Player> players = player.getZone().getPlayers();
 		for (final Player otherPlayer : players) {
 			if (player.equals(otherPlayer)) {
