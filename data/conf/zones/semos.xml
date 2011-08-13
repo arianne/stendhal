@@ -10,6 +10,15 @@
 
 	<zone name="0_semos_mountain_n_w4" level="0" x="499616" y="499744"
 		file="Level 0/semos/mountain_n_w4.tmx">
+		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">77</parameter>
+			<parameter name="y">47</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">v</parameter>
+			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
+		</configurator>
+
 
 		<portal x="61" y="38" ref="kikareukin_entrance">
 			<destination zone="1_kikareukin_cave" ref="entrance" />
@@ -849,6 +858,14 @@
 			<parameter name="width">16</parameter>
 			<parameter name="height">26</parameter>
 		</configurator>
+		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">75</parameter>
+			<parameter name="y">109</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">v</parameter>
+			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
+		</configurator>
 
 		<portal x="92" y="101" ref="catacombs_entrance">
 			<destination zone="-1_semos_catacombs_se" ref="entrance" />
@@ -1147,6 +1164,15 @@ Mature sheep wanted: please speak to Sato.
 		<configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.SignLessorNPC" />
+		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">53</parameter>
+			<parameter name="y">23</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">h</parameter>
+			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
+		</configurator>
+
 
 		<point-of-interest x="28" y="38">
 			<name>Semos Dungeon</name>
@@ -2165,6 +2191,15 @@ Holy mackerel! These chips are tasty.
 
 	<zone name="0_semos_road_e" level="0" x="500128" y="500000"
 		file="Level 0/semos/road_e.tmx">
+		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">103</parameter>
+			<parameter name="y">49</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">v</parameter>
+			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
+		</configurator>
+
 		<portal x="108" y="47" ref="pad_entrance">
 			<destination zone="int_semos_swanky_pad" ref="entrance" />
 		</portal>
