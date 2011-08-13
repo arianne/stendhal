@@ -109,10 +109,10 @@
  <tileset name="fence" firstgid="231" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png"/>
  </tileset>
- <tileset name="meat and fish" firstgid="240" tilewidth="32" tileheight="32">
+ <tileset name="meat and fish" firstgid="252" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/meat_and_fish.png"/>
  </tileset>
- <tileset name="meals" firstgid="245" tilewidth="32" tileheight="32">
+ <tileset name="meals" firstgid="257" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/rustic_meals.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -122,7 +122,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANXUSWoCQRQG4DqBgq4i2OBwAcfEM/QRFMwB1JXjGcwmySIxcV64lAQcNxqPEryDa/+GaiiaGl6DvfDBt+jivf7p4tELxtgiYL/wAAmfYoQ5p+eHZ6SYujrQk5xHIArvijnnPK3J+IezJpdSF0VGH16I7whB2NCj+w5KpSVzZagEnCHruXVGFZ4NGc4OdZl8jygZYsn2yoYmtKDtI+MV3jQ93gyb8G5vhqpsT0YckgafnPtsEeYsnkH534xgzE2IM97/1QZOGlOYcXNDr2gr3NVRuMca1AUNzZ2b6qDIcHfLRdkxvxm3rHvJyEAWcgFm5KEAxTvPeIQnKAWYYSoxYwd/BB98dkDs3/OMFSyJvuAbhj5m1nAF3tKDDcQJAAA=
+   H4sIAAAAAAAAANXUT07CQBQG8IEDQAIrSGgi9gIiAp6hR9BED4CsBPUMsEEXKODfRZcGEkXZgBzFcBG+JtNkMpnOvEmYRV/yW3TyXr908tKQMRY6NocSHFgqE+ainhnPOGTJdQN3ivMCFOEhYS469zUZ/7DV5FIqm1Fn9GFAfEcO8oYe3XdQylfMncG54wxVz74zLuDSkBHt0C1T7xElQyzVXgVwDV3oWWQM4V7TI2cEhHfLGUkVSBkVqBo8cvGzR5jzeAblf/MML9wrcUb+Xy1go/EG79yHoVf0I9zVWrjHNlwJOpo7N9UqISPerRhlx2wz9llpyTiCGhw7zKjDCTRSntGEFpw6zDCVmPELfwQjPvtE7F/yjC/4JBrDBKYWM9+wAwVvVrHECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -142,7 +142,7 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDDT4NtANGAVHAb6AdMApGwSgYBaNgFCABAJqVCFbECQAA
+   H4sIAAAAAAAAAGNgGAUDDf4NtANGAVHAb6AdMApGwSgYBaNgFCABAP4+0aPECQAA
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">

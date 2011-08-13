@@ -103,13 +103,13 @@
  <tileset name="fence" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png"/>
  </tileset>
- <tileset name="pillow" firstgid="247" tilewidth="32" tileheight="32">
+ <tileset name="pillow" firstgid="259" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_red.png"/>
  </tileset>
- <tileset name="pillow" firstgid="248" tilewidth="32" tileheight="32">
+ <tileset name="pillow" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_yellow.png"/>
  </tileset>
- <tileset name="food" firstgid="249" tilewidth="32" tileheight="32">
+ <tileset name="food" firstgid="261" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -124,7 +124,7 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA0M8MiRogYZZJKoHhmUA3EFATWlOMTLgPgbHjkQKAHiSiCugrLJAbjsQAb1RKjZDsQ7gHgnmXZQCmB2fEHCH4jUa4bGrwHiy0B8lQx3+EAxIXCMDLNBwA+I/aE4gAJzqAFSBrl5gw1kUKg/nUh1+6AYBpSBWAmKVZDEz0LpP2j6bwHxbSR5EDCH0llQ+hAQH0aSV0XDMHAOiG8A8U00O+4A8V2oPC5wHIhP4pEnBO4B8X088g8pMJsYsI+wEpJAGhYxaud/bHaAAKh8x1a2U2qHORb57zjY6CCVRHvR69ofBNTjK4/O4xAvw2IPNjUwkAjESUCcjEUdpekfH+iD0hPwqLElURwdTILSU9DEAYg5VvbECQAA
+   H4sIAAAAAAAAAGNgwA0M8MiRogYZZJKoHhmUA3EFATWlOMTLgPgbHjkQKAHiSiCugrLJAbjsQAb1RKjZDsQ7gHgnmXZQCmB2fEHCH4jUa4bGrwHiy0B8lQx3+EAxIXCMDLNBwA+I/aE4gAJzqAFSBrl5gw1kUKg/nUh1+6AYBpSBWAmKVZDEz0JpDkZU/beA+DaSPAiYQ+ksKH0IiA8jyauiYRg4B8Q3gPgmmhvvAPFdqDwucByIT+KRJwTuAfF9PPIPKTCbGLCPsBKSQBoWMWrnf2x2gACofMdWtlNqhzkWeWZG7Gx0kEqiveh1LQses0EAX3l0Hod4GRZ7sKmBgUQgTgLiZCzqKE3/+EAflJ6AR40tieLoYBKUnoImDgDNZ2xwxAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
