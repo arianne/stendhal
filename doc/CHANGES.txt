@@ -5,6 +5,8 @@ Changelog
 *world*
 - Barbarus moved his work place a bit closer to the Mines entrance and reduced the pick price to 400 money each
 - Haunchy Meatoch is really thankful for the help he gets each time from players and gives them some XP now
+- various animal pens have gates now. Also wolves in the park are behind a gate
+
 
 *website*
 - added an interactive Atlas to the website
@@ -15,6 +17,7 @@ Changelog
 - Atlas command now focuses on the current position
 - added Beginner's guide to help menu
 - healing messages don't spam the chat log anymore (but can be enabled in the setting dialog)
+- "where" command in the group menu
 
 *fixes*
 - fixed kill enemy army quest (load again + added madaram archer and windwalker to kill-list)
