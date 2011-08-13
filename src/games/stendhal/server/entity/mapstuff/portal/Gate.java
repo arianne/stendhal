@@ -52,6 +52,8 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * not close automatically.
 	 */
 	private int autoCloseDelay;
+	/** Message send to a player trying to open a locked gate. */
+	private String refuseMessage;
 
 	/**
 	 * Create a new gate.
@@ -61,7 +63,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * @param condition conditions required for opening the gate, or <code>null</code>
 	 * 	if no checking is required
 	 */
-	public Gate(final String orientation, String image, ChatCondition condition) {
+	Gate(final String orientation, String image, ChatCondition condition) {
 		setRPClass("gate");
 		put("type", "gate");
 		setOrientation(orientation);
@@ -100,7 +102,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	/**
 	 * Open the gate.
 	 */
-	protected void open() {
+	void open() {
 		setOpen(true);
 	}
 
@@ -109,21 +111,25 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * 
 	 * @return true iff the gate is open
 	 */
-	protected boolean isOpen() {
+	boolean isOpen() {
 		return isOpen;
 	}
 
 	/**
 	 * Close the gate.
 	 */
-	protected void close() {
+	void close() {
 		setOpen(false);
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		if (this.nextTo(user) && isAllowed(user)) {
-			setOpen(!isOpen());
-			return true;
+		if (this.nextTo(user)) {
+			if (isAllowed(user)) {
+				setOpen(!isOpen());
+				return true;
+			} else if (refuseMessage != null) {
+				user.sendPrivateText(refuseMessage);
+			}
 		}
 		return false;
 	}
@@ -134,7 +140,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * 
 	 * @param seconds time to keep the gate open
 	 */
-	protected void setAutoCloseDelay(int seconds) {
+	void setAutoCloseDelay(int seconds) {
 		autoCloseDelay = seconds;
 	}
 	
@@ -178,6 +184,16 @@ public class Gate extends Entity implements UseListener, TurnListener {
 		}
 		isOpen = open;
 		notifyWorldAboutChanges();
+	}
+	
+	/**
+	 * Set the message to be send to the player if she's not allowed to open
+	 * the gate
+	 * 
+	 * @param message
+	 */
+	void setRefuseMessage(String message) {
+		refuseMessage = message;
 	}
 
 	public void onTurnReached(int currentTurn) {

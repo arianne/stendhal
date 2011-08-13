@@ -18,6 +18,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.npc.condition.AlwaysFalseCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -27,8 +29,12 @@ import marauroa.common.game.RPObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+
+/**
+ * Tests for Gate
+ */
 public class GateTest {
-	
 	@BeforeClass
 	public static void setupBeforeClass() {
 		MockStendlRPWorld.get();
@@ -42,8 +48,7 @@ public class GateTest {
 	 * Tests for openCloseGate.
 	 */
 	@Test
-	public void testOpenCloseGate() throws Exception {
-		
+	public void testOpenCloseGate() {
 		final Gate gate = new Gate();
 		gate.open();
 		assertTrue(gate.isOpen());
@@ -78,7 +83,7 @@ public class GateTest {
 	 * Tests for closeOpenGate.
 	 */
 	@Test
-	public void testCloseOpenGate() throws Exception {
+	public void testCloseOpenGate() {
 		final Gate gate = new Gate();
 		gate.close();
 		assertFalse(gate.isOpen());
@@ -87,10 +92,10 @@ public class GateTest {
 	}
 
 	/**
-	 * Tests for useGateNotNExtTo.
+	 * Tests for useGateNotNextTo.
 	 */
 	@Test
-	public void testUseGateNotNExtTo() throws Exception {
+	public void testUseGateNotNextTo() {
 		final Gate gate = new Gate();
 		gate.setPosition(5, 5);
 		assertFalse(gate.isOpen());
@@ -119,7 +124,7 @@ public class GateTest {
 	 * Tests for useGateNextTo.
 	 */
 	@Test
-	public void testUseGateNextTo() throws Exception {
+	public void testUseGateNextTo() {
 		final Gate gate = new Gate();
 
 		final Player user = new Player(new RPObject()) {
@@ -149,7 +154,7 @@ public class GateTest {
 	 * Tests for isObstacle.
 	 */
 	@Test
-	public void testIsObstacle() throws Exception {
+	public void testIsObstacle() {
 		final Gate gate = new Gate();
 
 		final RPEntity user = new RPEntity() {
@@ -170,6 +175,50 @@ public class GateTest {
 		gate.open();
 		assertTrue(gate.isOpen());
 		assertFalse(gate.isObstacle(user));
-
+	}
+	
+	/**
+	 * Test player opening and closing a gate he's allowed to use.
+	 */
+	@Test
+	public void testOpenCloseAllowed() {
+		final Gate gate = new Gate("v", "image", new AlwaysTrueCondition());
+		Player user = PlayerTestHelper.createPlayer("Gate keeper");
+		assertFalse(gate.isOpen());
+		assertTrue(gate.onUsed(user));
+		assertTrue(gate.isOpen());
+		assertTrue(gate.onUsed(user));
+		assertFalse(gate.isOpen());
+	}
+	
+	/**
+	 * Test player opening and closing a gate he's not allowed to use.
+	 */
+	@Test
+	public void testOpenCloseDenied() {
+		final Gate gate = new Gate("v", "image", new AlwaysFalseCondition());
+		Player user = PlayerTestHelper.createPlayer("Gate keeper");
+		assertFalse(gate.isOpen());
+		assertFalse(gate.onUsed(user));
+		assertEquals(null, PlayerTestHelper.getPrivateReply(user));
+		assertFalse(gate.isOpen());
+		gate.open();
+		assertTrue(gate.isOpen());
+		assertFalse(gate.onUsed(user));
+		assertTrue(gate.isOpen());
+		assertEquals(null, PlayerTestHelper.getPrivateReply(user));
+		
+		// Repeat the same sequence, but with a deny message.
+		gate.close();
+		gate.setRefuseMessage("lorem ipsum");
+		assertFalse(gate.isOpen());
+		assertFalse(gate.onUsed(user));
+		assertEquals("lorem ipsum", PlayerTestHelper.getPrivateReply(user));
+		assertFalse(gate.isOpen());
+		gate.open();
+		assertTrue(gate.isOpen());
+		assertFalse(gate.onUsed(user));
+		assertTrue(gate.isOpen());
+		assertEquals("lorem ipsum", PlayerTestHelper.getPrivateReply(user));
 	}
 }
