@@ -3384,6 +3384,15 @@ Mature sheep wanted: please speak to Sato
 	<zone name="-4_semos_dungeon" level="-4" x="500096" y="500064"
 		file="Level -4/semos/dungeon.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC" />
+		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">61</parameter>
+			<parameter name="y">18</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">h</parameter>
+			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
+		</configurator>
+
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">the_forsaken_mine</parameter>
