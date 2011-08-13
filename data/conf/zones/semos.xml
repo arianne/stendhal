@@ -1035,6 +1035,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 			<parameter name="image">fence_gate</parameter>
 			<parameter name="orientation">h</parameter>
 			<parameter name="condition">new AlwaysFalseCondition()</parameter>
+			<parameter name="message">The gate is locked.</parameter>
 		</configurator>
 
 	<!-- 
