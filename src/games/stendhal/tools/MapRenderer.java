@@ -41,7 +41,7 @@ import tiled.view.OrthoMapView;
 /**
  * Renders Stendhal maps from *.tmx into PNG files of the same base name. This class can be started
  * from the command line or through an ant task.
- * 
+ *
  * @author mtotz
  */
 public class MapRenderer extends Task {
@@ -50,8 +50,10 @@ public class MapRenderer extends Task {
 	/** list of *.tmx files to convert. */
 	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
-	/** converts the map files. 
-	 * @param tmxFile 
+	private double zoom;
+
+	/** converts the map files.
+	 * @param tmxFile
 	 * @throws Exception */
 	public void convert(final String tmxFile) throws Exception {
 		final File file = new File(tmxFile);
@@ -96,10 +98,14 @@ public class MapRenderer extends Task {
 		}
 
 		final OrthoMapView myView = new OrthoMapView(map);
-		if (level.equals("int") && !area.equals("abstract")) {
-			myView.setZoom(0.25);
+		if (zoom > -1) {
+			myView.setZoom(zoom);
 		} else {
-			myView.setZoom(0.0625);
+			if (level.equals("int") && !area.equals("abstract")) {
+				myView.setZoom(0.25);
+			} else {
+				myView.setZoom(0.0625);
+			}
 		}
 
 		final Dimension d = myView.getSize();
@@ -108,7 +114,7 @@ public class MapRenderer extends Task {
 		g.setClip(0, 0, d.width, d.height);
 		myView.paint(g);
 		g.dispose();
-		
+
 
 		try {
 			ImageIO.write(i, "png", new File(filename));
@@ -119,7 +125,7 @@ public class MapRenderer extends Task {
 
 	/**
 	 * Adds a set of files to copy.
-	 * 
+	 *
 	 * @param set
 	 *            a set of files to copy
 	 */
@@ -129,7 +135,7 @@ public class MapRenderer extends Task {
 
 	/**
 	 * The setter for the "stendPath" attribute.
-	 * @param imagePath 
+	 * @param imagePath
 	 */
 	public void setImagePath(final String imagePath) {
 		this.imagePath = imagePath;
@@ -145,15 +151,22 @@ public class MapRenderer extends Task {
 				final DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
 				final String[] includedFiles = ds.getIncludedFiles();
 				for (final String filename : includedFiles) {
-					System.out.println(ds.getBasedir().getAbsolutePath()
-							+ File.separator + filename);
-					convert(ds.getBasedir().getAbsolutePath() + File.separator
-							+ filename);
+					System.out.println(ds.getBasedir().getAbsolutePath() + File.separator + filename);
+					convert(ds.getBasedir().getAbsolutePath() + File.separator + filename);
 				}
 			}
 		} catch (final Exception e) {
 			throw new BuildException(e);
 		}
+	}
+
+	/**
+	 * sets a zoom level
+	 *
+	 * @param zoom zoom
+	 */
+	public void setZoom(double zoom) {
+		this.zoom = zoom;
 	}
 
 	public static void main(final String[] args) throws Exception {
