@@ -43,7 +43,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 	/** 
 	 * The maximum number of sheep Sato keeps in his sheep pen.
 	 */ 
-	private static final int MAX_SHEEP_IN_PEN = 10;
+	private static final int MAX_SHEEP_IN_PEN = 9;
 	/** The area covering the sheep pen in Semos */
 	private Area pen;
 
