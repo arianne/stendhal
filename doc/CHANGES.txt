@@ -1,4 +1,4 @@
-Changelog
+﻿Changelog
 ---------
 0.96
 
@@ -6,6 +6,7 @@ Changelog
 - Barbarus moved his work place a bit closer to the Mines entrance and reduced the pick price to 400 money each
 - Haunchy Meatoch is really thankful for the help he gets each time from players and gives them some XP now
 - various animal pens have gates now. Also wolves in the park are behind a gate
+- Semos has a palisade wall now to protect the city against the creatures outside
 
 
 *website*
