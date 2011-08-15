@@ -130,10 +130,10 @@ public class ItemTest {
 		item.put("range", 6);
 		item.put("lifesteal", 7);
 
-		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
+		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7 MIN-LEVEL: 1)."));
 
 		item.setDamageType(Nature.FIRE);
-		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. It requires level 1 to be used to the full benefit. Stats are (ATK: 2 [FIRE] DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7)."));
+		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. Stats are (ATK: 2 [FIRE] DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7 MIN-LEVEL: 1)."));
 	}
 
 
