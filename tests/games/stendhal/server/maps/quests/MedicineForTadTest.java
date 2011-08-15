@@ -125,10 +125,11 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC ketteh       = getNPC("Ketteh Wehoh");
 		final Engine     engineKetteh = ketteh.getEngine();
 
-		// before quest starts, no reminder from ketteh
+		// before quest starts, ketteh will ask if you've met TAd
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
-		assertEquals("Bye.", getReply(ketteh));
+		assertEquals("Farewell.  Have you met Tad, in the hostel?  If you get a chance, please check in on him.  I heard he was not feeling well.", 
+				     getReply(ketteh));
 
 		
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));

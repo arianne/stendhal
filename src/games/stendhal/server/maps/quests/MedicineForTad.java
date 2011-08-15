@@ -322,7 +322,8 @@ public class MedicineForTad extends AbstractQuest {
 				new MultipleActions(processStep));
 	
 		/*
-		 * if player has not finished this quest, ketteh will remind player
+		 * if player has not finished this quest, ketteh will remind player about him.
+		 * if player has not started, and not finished, ketteh will ask if player has met him.
 		 */
 		npc = npcs.get("Ketteh Wehoh");
 
@@ -333,6 +334,14 @@ public class MedicineForTad extends AbstractQuest {
                 ConversationStates.ATTENDING,
                 "Don't forget to check on Tad.  I hope he's feeling better.",
                 null);
+
+        npc.add(ConversationStates.ATTENDING, 
+        		ConversationPhrases.GOODBYE_MESSAGES,
+        		new QuestNotStartedCondition(QUEST_SLOT),
+                ConversationStates.ATTENDING,
+                "Farewell.  Have you met Tad, in the hostel?  If you get a chance, please check in on him.  I heard he was not feeling well.",
+                null);
+
 	}
 
 	@Override
