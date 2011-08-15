@@ -1067,6 +1067,7 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
 	<zone name="int_semos_hostel" file="interiors/semos/hostel.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.hostel.KidsNPCs" />
+		<configurator class-name="games.stendhal.server.maps.semos.hostel.BoyNPC"/>
 
 		<entity x="9" y="3">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -2133,7 +2134,6 @@ Holy mackerel! These chips are tasty.
 
 	<zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
-		<configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
