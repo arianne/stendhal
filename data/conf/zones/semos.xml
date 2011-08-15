@@ -1205,9 +1205,16 @@ Mature sheep wanted: please speak to Sato.
 		file="Level 0/semos/city.tmx">
 		<title>The City of Semos</title>
 		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.office.StoredEntityMoveConfigurator">
+			<parameter name="oldx">44</parameter>
+			<parameter name="oldy">60</parameter>
+			<parameter name="x">45</parameter>
+			<parameter name="y">53</parameter>
+		</configurator>
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">44</parameter>
-			<parameter name="y">60</parameter>
+			<parameter name="x">45</parameter>
+			<parameter name="y">53</parameter>
 		</configurator>
 		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
@@ -1439,13 +1446,11 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
 			</implementation> </entity>
 		-->
 
-		<entity x="44" y="62">
+		<entity x="45" y="55">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-TO THE PLAINS
-
-Shepherds please note: keep watch for the wolves while searching for berries here.
-   </attribute>
+				Semos Community Chest
+			</attribute>
 		</entity>
 
 		<!--  table on the left -->
