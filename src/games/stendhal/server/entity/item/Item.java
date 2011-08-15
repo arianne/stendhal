@@ -42,23 +42,23 @@ import marauroa.common.game.RPSlot;
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	private static final int DEFAULT_ATTACK_RATE = 5;
-	
+
 	/**
 	 * max degree of deterioration
 	 */
 	private static final int MAX_DETERIORATION = 100;
-	
+
 	/**
 	 * default value for deterioration implies each item is okay if ne
 	 */
 	private static final int DEFAULT_DETERIORATION = 0;
-	
+
 	/**
 	 * propability of an item deteriorating on use
 	 */
 	private static final double DETERIORATION_PROPABILITY = 0.01;
-	
-	
+
+
 
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -156,7 +156,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items have defense values
 		entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
-		
+
 		//Some items can be damaged in combat or during use. This rises the degree of deterioration
 		entity.addAttribute("deterioration", Type.INT, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
@@ -205,7 +205,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Name of the container slot, if the item has one
 		entity.addAttribute("slot_name", Type.STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
-		
+
 		// Container slot
 		entity.addRPSlot("content", 8, Definition.PRIVATE);
 	}
@@ -283,10 +283,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		return DEFAULT_ATTACK_RATE;
 	}
-	
+
 	/**
 	 * Each Item is subject to deterioration that weakens the item
-	 * 
+	 *
 	 * @return the current degree of deterioration
 	 */
 	public int getDeterioration() {
@@ -295,7 +295,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 		return DEFAULT_DETERIORATION;
 	}
-	
+
 	/**
 	 * Propose increase the degree of deterioration. If degree increases is decided by random
 	 */
@@ -305,7 +305,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 //			this.add("deterioration", 1);
 		}
 	}
-	
+
 	/**
 	 * repair this item
 	 */
@@ -592,9 +592,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 					+ ", and cannot be used by others.";
 		}
 
-		if (has("min_level")) {
-			levelwarning = " It requires level " + get("min_level") + " to be used to the full benefit.";
-		}
 		if (has("atk")) {
 			stats.append("ATK: ");
 			stats.append(get("atk"));
@@ -633,6 +630,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				stats.append(Math.round(100/entry.getValue()));
 				stats.append("%");
 			}
+		}
+		if (has("min_level")) {
+			stats.append(" MIN-LEVEL: ");
+			stats.append(get("min_level"));
 		}
 		String statString = "";
 		if (stats.length() > 0) {
@@ -723,5 +724,14 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	public boolean isFromCorpse() {
 		return fromCorpse;
+	}
+
+	/**
+	 * gets the min level
+	 *
+	 * @return minLevel
+	 */
+	public int getMinLevel() {
+		return super.getInt("min_level");
 	}
 }
