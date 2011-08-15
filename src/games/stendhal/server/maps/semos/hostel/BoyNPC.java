@@ -93,7 +93,7 @@ public class BoyNPC implements ZoneConfigurator {
 			 */
 			@Override
 			protected void onGoodbye(RPEntity player) {
-				setDirection(Direction.RIGHT);
+				setDirection(Direction.LEFT);
 			}
 
 		};
@@ -111,8 +111,8 @@ public class BoyNPC implements ZoneConfigurator {
 		npc.setDescription("The young boy you see is Tad. He looks ill and his face is pale.");
 
 		npc.setPosition(18, 21);
-		
 		npc.setDirection(Direction.LEFT);
+
 		npc.initHP(100);
 		zone.add(npc);
 	}

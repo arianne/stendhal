@@ -24,6 +24,9 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.hostel.BoyNPC;
 import games.stendhal.server.maps.semos.temple.HealerNPC;
+import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
+import games.stendhal.server.maps.quests.MeetKetteh;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 import marauroa.server.game.db.DatabaseFactory;
@@ -36,9 +39,8 @@ import utilities.RPClass.ItemTestHelper;
 
 public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 
-	private static final String ZONE_NAME = "testzone";
-
-	private static final String QUEST_SLOT = "introduce_players";
+	private static final String ZONE_NAME       = "testzone";
+	private static final String QUEST_SLOT      = "introduce_players";
 	private static final String SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
 
 	@BeforeClass
@@ -51,15 +53,15 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		MockStendlRPWorld.get();
 
 		setupZone(ZONE_NAME, new BoyNPC());
-		
 		setupZone(ZONE_NAME, new HealerNPC());
+		setupZone(ZONE_NAME, new DecencyAndMannersWardenNPC());
 
 		new MedicineForTad().addToWorld();
-		
+		new MeetKetteh().addToWorld();
 	}
 
 	public MedicineForTadTest() {
-		super(ZONE_NAME, "Tad", "Ilisa");
+		super(ZONE_NAME, "Tad", "Ilisa", "Ketteh Wehoh");
 	}
 
 	/**
@@ -118,8 +120,17 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testQuest() {
-		final SpeakerNPC tad = getNPC("Tad");
-		final Engine engineTad = tad.getEngine();
+		final SpeakerNPC tad          = getNPC("Tad");
+		final Engine     engineTad    = tad.getEngine();
+		final SpeakerNPC ketteh       = getNPC("Ketteh Wehoh");
+		final Engine     engineKetteh = ketteh.getEngine();
+
+		// before quest starts, no reminder from ketteh
+		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Bye.", getReply(ketteh));
+
+		
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
 		assertEquals(SSSHH_COME_HERE, getReply(tad));
@@ -134,6 +145,12 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", getReply(tad));
 
+		// quest started but not complete - ketteh will remind player
+		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Don't forget to check on Tad.  I hope he's feeling better.", getReply(ketteh));
+		
+		
 		final StackableItem flask = new StackableItem("flask", "", "", null);
 		flask.setQuantity(1);
 		flask.setID(new ID(2, ZONE_NAME));
@@ -151,9 +168,9 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		final SpeakerNPC ilisa = getNPC("Ilisa");
 		final Engine engineIlisa = ilisa.getEngine();
 		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
-		assertEquals(
-				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
-				getReply(ilisa));
+		
+		assertEquals("Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
+					getReply(ilisa));
 		engineIlisa.step(player, "yes");
 		assertEquals("North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",getReply(ilisa));
 		assertEquals("corpse&herbs", player.getQuest(QUEST_SLOT));
@@ -195,6 +212,10 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Thanks! I will go talk with #ilisa as soon as possible.", getReply(tad));
 		assertEquals("done", player.getQuest(QUEST_SLOT));
 		
+		// quest complete.  ketteh no longer reminds player
+		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertEquals("Bye.", getReply(ketteh));
 		
 	}
 

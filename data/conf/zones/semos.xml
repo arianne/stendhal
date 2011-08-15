@@ -1087,7 +1087,6 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 	<zone name="0_semos_village_w" level="0" x="500000" y="500000"
 		file="Level 0/semos/village_w.tmx">
 		
-		<configurator class-name="games.stendhal.server.maps.semos.village.DecencyAndMannersWardenNPC" />
         <configurator class-name="games.stendhal.server.maps.semos.village.RatsCreatures" />
 		<configurator
 			class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
@@ -2134,6 +2133,7 @@ Holy mackerel! These chips are tasty.
 
 	<zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
 		<configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC" />
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">

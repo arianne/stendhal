@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.semos.village;
+package games.stendhal.server.maps.semos.townhall;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -54,10 +54,12 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setDirection(Direction.DOWN);
 		npc.setDescription("Ketteh Wehoh is sitting on a bench while waiting for new adventurers.");
 		npc.setEntityClass("elegantladynpc");
-		npc.setPosition(13, 35);
+
+		npc.setDirection(Direction.RIGHT);
+		npc.setPosition(13, 38);
+		
 		npc.initHP(100);
 		zone.add(npc);
 	}

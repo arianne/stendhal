@@ -20,7 +20,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.semos.village.DecencyAndMannersWardenNPC;
+import games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

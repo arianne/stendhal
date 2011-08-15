@@ -27,7 +27,9 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -42,6 +44,7 @@ import java.util.List;
  * <li> Tad
  * <li> Margaret
  * <li> Ilisa
+ * <li> Ketteh Wehoh
  * </ul>
  * 
  * <p>
@@ -51,6 +54,7 @@ import java.util.List;
  * <li>Tad thanks you and asks you to take the flask to Ilisa
  * <li> Ilisa asks you for a few herbs.
  * <li> Return the created dress potion to Tad.
+ * <li> Ketteh Wehoh will reminder player about Tad, if quest is started but not complete.
  * </ul>
  * <p>
  * REWARD:<ul>
@@ -296,7 +300,7 @@ public class MedicineForTad extends AbstractQuest {
 	}
 
 	private void step_6() {
-		final SpeakerNPC npc = npcs.get("Tad");
+		SpeakerNPC npc = npcs.get("Tad");
 
         // another reminder incase player says task again                                                                                                    
         npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
@@ -316,6 +320,19 @@ public class MedicineForTad extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, "potion")),
 				ConversationStates.ATTENDING, "Thanks! I will go talk with #ilisa as soon as possible.",
 				new MultipleActions(processStep));
+	
+		/*
+		 * if player has not finished this quest, ketteh will remind player
+		 */
+		npc = npcs.get("Ketteh Wehoh");
+
+        npc.add(ConversationStates.ATTENDING, 
+        		ConversationPhrases.GOODBYE_MESSAGES,
+        		new AndCondition(new QuestStartedCondition(QUEST_SLOT),
+        					     new QuestNotCompletedCondition(QUEST_SLOT)),
+                ConversationStates.ATTENDING,
+                "Don't forget to check on Tad.  I hope he's feeling better.",
+                null);
 	}
 
 	@Override
