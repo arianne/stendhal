@@ -291,9 +291,16 @@ public class SheepGrowing extends AbstractQuest {
                         new QuestInStateCondition(QUEST_SLOT,"start"),
                         playerHasFullWeightSheep),
                 ConversationStates.IDLE,
-                "Oh... hmm... ok. Well, I buy sheep you know? And I am waiting for one from Nishiya. " +
                 "He wanted to send me one a while ago...",
                 null);
+        
+
+		npc.add(
+				ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+						new QuestInStateCondition(QUEST_SLOT, "handed_over"),
+				ConversationStates.ATTENDING, 
+				"Thank you for bringing me Nishiyas sheep! My friend was really happy about it.", null);
     }
 
     /**
