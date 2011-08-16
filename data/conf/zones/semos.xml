@@ -46,14 +46,6 @@
 
 	<zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744"
 		file="Level 0/semos/mountain_n2_w2.tmx">
-
-		<point-of-interest x="90" y="97">
-			<name>Semos Mines</name>
-			<type>dungeon</type>
-			<description>Western entrance to the Semos Mines, the city of Wofol and the huge tunnel system leading through the mountains. (Player Level 6 - 597)</description>
-			<url>http://stendhalgame.org/wiki/Semos_Mines</url>
-		</point-of-interest>
-
 	</zone>
 
 	<zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744"
@@ -97,6 +89,13 @@
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
 		file="Level 0/semos/mountain_n2.tmx">
+
+		<point-of-interest x="90" y="97">
+			<name>Semos Mines</name>
+			<type>dungeon</type>
+			<description>Western entrance to the Semos Mines, the city of Wofol and the huge tunnel system leading through the mountains. (Player Level 6 - 597)</description>
+			<url>http://stendhalgame.org/wiki/Semos_Mines</url>
+		</point-of-interest>
 
 		<portal x="80" y="108" ref="frank_house">
 			<destination zone="int_semos_frank_house" ref="exit" />
