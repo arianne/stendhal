@@ -69,9 +69,23 @@
   <entity x="87" y="21">
     <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
   </entity>
+  
+  <point-of-interest x="13" y="126">
+	<name>Ados Abandoned Keep</name>
+	<type>dungeon</type>
+	<description>Home of mountain orcs, mountain dwarves and duergars. Prepare well before entering this keep.</description>
+	<url></url>
+  </point-of-interest>
+  
  </zone>
 
  <zone name="0_ados_mountain_n2" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2.tmx">
+ 	<point-of-interest x="63" y="48">
+ 		<name>Amazon Tunnel West Entrance</name>
+ 		<type>dungeon</type>
+ 		<description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit. Maybe you will be stranded somewhere... (Player Level 50 - 200)</description>
+ 		<url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
+ 	</point-of-interest>
  </zone>
 
  <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="Level 0/ados/wall_n2.tmx">
@@ -253,7 +267,21 @@
                 <parameter name="volume">60</parameter>
             </implementation>
         </entity>
- 
+        
+        <point-of-interest x="40" y="48">
+        	<name>Ados Caves Northwest Entrance</name>
+        	<type>dungeon</type>
+        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern Region can be passed by lower leveled Players with caution! (Player Level 80 - 597)</description>
+        	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
+        </point-of-interest>
+        
+        <point-of-interest x="117" y="37">
+        	<name>Ados Caves Northeast Entrance</name>
+        	<type>dungeon</type>
+        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern Region can be passed by lower leveled Players with caution! (Player Level 80 - 597)</description>
+        	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
+        </point-of-interest>
+
  </zone>
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
@@ -395,6 +423,13 @@ areas.
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
   </portal>
+  
+  <point-of-interest x="67" y="24">
+  	<name>Ados Bear Caves</name>
+  	<type>dungeon</type>
+  	<description>Bear cave at Ados wildlife refuge. It also keeps some other creatures ready for you if you dare going a bit deeper into the mountain.</description>
+  	<url></url>
+  </point-of-interest>
 
   <entity x="53" y="48">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
