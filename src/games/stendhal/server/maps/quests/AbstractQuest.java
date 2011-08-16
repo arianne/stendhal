@@ -35,7 +35,7 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	/**
-	 * fill fields of questInfo object with info about this quest 
+	 * fill fields of questInfo object with info about this quest
 	 * @param name - name of the quest
 	 * @param description - short description of this quest in a neutral tense (not first person)
 	 * @param repeatable - is quest repeatable or not
@@ -44,18 +44,19 @@ public abstract class AbstractQuest implements IQuest {
 		questInfo.setName(name);
 		questInfo.setDescription(description);
 		questInfo.setRepeatable(repeatable);
+		questInfo.setSuggestedMinLevel(this.getMinLevel());
 	}
 
 	/** NPCList. */
 	protected NPCList npcs = SingletonRepository.getNPCList();
 
-	/** 
-	 * The slot-name in !quests. 
-	 * @return the slot's name 
-	 * 
+	/**
+	 * The slot-name in !quests.
+	 * @return the slot's name
+	 *
 	 */
 	public abstract String getSlotName();
-	
+
 	public void addToWorld() {
 		// sub classes can implement this method
 	}
@@ -74,12 +75,12 @@ public abstract class AbstractQuest implements IQuest {
 		return EMPTY_LIST;
 	}
 
-	// Determines if the player should be given a hint to start the quest. 
+	// Determines if the player should be given a hint to start the quest.
 	// Not a hard condition about the quest itself. (use level check ChatConditions for that)
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	public abstract List<String> getHistory(final Player player);
 
 	public boolean isCompleted(final Player player) {
@@ -96,14 +97,14 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public abstract String getName();
-	
+
 	public boolean isVisibleOnQuestStatus() {
 		return true;
 	}
-	
+
 	/**
 	 * Returns the region where the quest adventure takes place (or begins), or null for global quests
-	 * 
+	 *
 	 * @return region, or null for global quests
 	 */
 	public String getRegion() {

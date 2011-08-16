@@ -202,6 +202,9 @@ public class StendhalQuestSystem {
 		final QuestInfo questInfo = quest.getQuestInfo(player);
 		sb.append(questInfo.getName() + " : ");
 		sb.append(questInfo.getDescription() + "\r\n");
+		if (questInfo.getSuggestedMinLevel() > player.getLevel()) {
+			sb.append("(This task may be too dangerous for your level of experience)\r\n");
+		}
 
 		final List<String> history = quest.getHistory(player);
 		for (final String entry : history) {
@@ -349,6 +352,24 @@ public class StendhalQuestSystem {
 	}
 
 	/**
+	 * if the quest is too dangerous, add a warning
+	 *
+	 * @param player Player to get the warning for
+	 * @param questName   quest
+	 * @return warning or empty string
+	 */
+	public String getQuestLevelWarning(Player player, String questName) {
+		for (final IQuest quest : quests) {
+			final QuestInfo questInfo = quest.getQuestInfo(player);
+			if (questInfo.getName().equals(questName)) {
+				if (questInfo.getSuggestedMinLevel() > player.getLevel()) {
+					return "This task may be too dangerous for your level of experience.";
+				}
+			}
+		}
+		return "";
+	}
+	/**
 	 * gets details on the progress of the quest
 	 *
 	 * @param player player to get the details for
@@ -406,7 +427,7 @@ public class StendhalQuestSystem {
 			logger.error(this.getClass() + " cannot be removed from the world");
 		}
 	}
-	
+
 	/**
 	 * gets a list of incomplete quests in a specified region
 	 *
@@ -423,4 +444,5 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
+
 }

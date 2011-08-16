@@ -31,7 +31,7 @@ import marauroa.common.game.RPAction;
  * @author hendrik
  */
 public class ProgressStatusQueryAction implements ActionListener {
-	
+
 
 	/**
 	 * registers this action.
@@ -42,7 +42,7 @@ public class ProgressStatusQueryAction implements ActionListener {
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
@@ -76,13 +76,13 @@ public class ProgressStatusQueryAction implements ActionListener {
 	 */
 	private void sendItemList(Player player, String progressType) {
 		if (progressType.equals("Open Quests")) {
-			player.addEvent(new ProgressStatusEvent(progressType, 
+			player.addEvent(new ProgressStatusEvent(progressType,
 				SingletonRepository.getStendhalQuestSystem().getOpenQuests(player)));
 		} else if (progressType.equals("Completed Quests")) {
-			player.addEvent(new ProgressStatusEvent(progressType, 
+			player.addEvent(new ProgressStatusEvent(progressType,
 				SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player)));
 		} else if (progressType.equals("Production")) {
-			player.addEvent(new ProgressStatusEvent(progressType, 
+			player.addEvent(new ProgressStatusEvent(progressType,
 					SingletonRepository.getProducerRegister().getWorkingProducerNames(player)));
 		}
 	}
@@ -97,11 +97,12 @@ public class ProgressStatusQueryAction implements ActionListener {
 	private void sendDetails(Player player, String progressType, String item) {
 		StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 		if (progressType.equals("Open Quests") || progressType.equals("Completed Quests")) {
-			player.addEvent(new ProgressStatusEvent(progressType, item, 
+			player.addEvent(new ProgressStatusEvent(progressType, item,
 				questSystem.getQuestDescription(player, item),
+				questSystem.getQuestLevelWarning(player, item),
 				questSystem.getQuestProgressDetails(player, item)));
 		} else if (progressType.equals("Production")) {
-			player.addEvent(new ProgressStatusEvent(progressType, item, 
+			player.addEvent(new ProgressStatusEvent(progressType, item,
 					SingletonRepository.getProducerRegister().getProductionDescription(player, item),
 					SingletonRepository.getProducerRegister().getProductionDetails(player, item)));
 		}

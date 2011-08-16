@@ -17,7 +17,6 @@ import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
 
 import java.awt.Component;
-
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -27,16 +26,16 @@ import marauroa.common.game.RPAction;
 public class ProgressLogController {
 	/** Controller instance */
 	private static ProgressLogController instance;
-	
+
 	/**
 	 * Progress window. This should be accessed only through getProgressLog(),
 	 * which ensures the window has been created.
 	 */
 	private ProgressLog progressLog;
-	
+
 	/**
 	 * Get the book controller instance.
-	 * 
+	 *
 	 * @return controller instance
 	 */
 	public static synchronized ProgressLogController get() {
@@ -45,16 +44,16 @@ public class ProgressLogController {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Create a new ProgressLogController.
 	 */
 	private ProgressLogController() {
 	}
-	
+
 	/**
 	 * Show available progress categories.
-	 * 
+	 *
 	 * @param categories
 	 */
 	public void showCategories(final List<String> categories) {
@@ -63,16 +62,16 @@ public class ProgressLogController {
 				// Prepare appropriate action for content clicks
 				RequestAction contentAction = new RequestAction();
 				contentAction.setDataKey("progress_type");
-				
+
 				getProgressLog().setPages(categories, contentAction);
 				showWindow();
 			}
 		});
 	}
-	
+
 	/**
 	 * Show a list of items in a category.
-	 * 
+	 *
 	 * @param category
 	 * @param items
 	 */
@@ -83,34 +82,35 @@ public class ProgressLogController {
 				RequestAction contentAction = new RequestAction();
 				contentAction.setDataKey("item");
 				contentAction.setProgressType(category);
-				
+
 				getProgressLog().setPageIndex(category, items, contentAction);
 				showWindow();
 			}
 		});
 	}
-	
+
 	/**
 	 * Show the description of an item in a category.
-	 * 
+	 *
 	 * @param category
 	 * @param item item to be described
-	 * @param description description 
+	 * @param description description
+	 * @param information information
 	 * @param details paragraphs
 	 */
-	public void showDescription(final String category, final String item, final String description, final List<String> details) { 
+	public void showDescription(final String category, final String item, final String description, final String information, final List<String> details) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				getProgressLog().setPageContent(category, item, description, details);
+				getProgressLog().setPageContent(category, item, description, information, details);
 				showWindow();
 			}
 		});
 	}
-	
+
 	/**
 	 * Get the log window, and create it if it has not been created before.
 	 * This method must be called in the event dispatch thread.
-	 *  
+	 *
 	 * @return log window
 	 */
 	private ProgressLog getProgressLog() {
@@ -119,26 +119,26 @@ public class ProgressLogController {
 		}
 		return progressLog;
 	}
-	
+
 	/**
 	 * Show the window, if it's not already visible. This must not be called
-	 * outside the event dispatch thread. 
+	 * outside the event dispatch thread.
 	 */
 	private void showWindow() {
 		Component window = getProgressLog().getWindow();
 		window.setVisible(true);
 	}
-	
+
 	/**
 	 * A class for storing progress query information.
 	 */
 	private static class RequestAction implements ProgressStatusQuery {
 		private String progressType;
 		private String dataKey;
-		
+
 		/**
 		 * Send the progress query to the server.
-		 * 
+		 *
 		 * @param data the value of dataKey, if set
 		 */
 		public void fire(String data) {
@@ -150,23 +150,23 @@ public class ProgressLogController {
 			if (dataKey != null) {
 				action.put(dataKey, data);
 			}
-			
+
 			StendhalClient.get().send(action);
 		}
-		
+
 		/**
 		 * Set the action key whose value will be passed as a parameter to
 		 * fire()
-		 * 
+		 *
 		 * @param key
 		 */
 		void setDataKey(String key) {
 			dataKey = key;
 		}
-		
+
 		/**
 		 * Set the "progress_type" value for the query.
-		 * 
+		 *
 		 * @param type
 		 */
 		void setProgressType(String type) {

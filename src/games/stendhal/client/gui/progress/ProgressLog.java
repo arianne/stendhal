@@ -43,7 +43,7 @@ import javax.swing.event.HyperlinkListener;
  * Progress status window. For displaying quest information.
  */
 public class ProgressLog {
-	/** Width of the window content */ 
+	/** Width of the window content */
 	private static final int PAGE_WIDTH = 450;
 	/** Height of the window content */
 	private static final int PAGE_HEIGHT = 300;
@@ -53,34 +53,34 @@ public class ProgressLog {
 	private static final String BACKGROUND_IMAGE = "data/gui/scroll_background.png";
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
-	
+
 	/** The enclosing window */
 	JDialog window;
 	/** Category tabs */
 	private final JTabbedPane tabs;
-	
+
 	/**
 	 * Create a new ProgressLog.
-	 * 
+	 *
 	 * @param name name of the window
 	 */
 	ProgressLog(String name) {
 		window = new JDialog(j2DClient.get().getMainFrame(), name);
-		
+
 		tabs = new JTabbedPane();
 		tabs.setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		tabs.addChangeListener(new TabChangeListener());
-		
+
 		window.add(tabs);
 		window.pack();
 	}
-	
+
 	/**
 	 * Set the available categories.
-	 * 
+	 *
 	 * @param pages category list
 	 * @param query query for retrieving the index lists for the pages. Page
-	 *	name will be used as the query parameter 
+	 *	name will be used as the query parameter
 	 */
 	void setPages(List<String> pages, ProgressStatusQuery query) {
 		tabs.removeAll();
@@ -90,10 +90,10 @@ public class ProgressLog {
 			tabs.add(page, content);
 		}
 	}
-	
+
 	/**
 	 * Set the subject index for a given page.
-	 * 
+	 *
 	 * @param page category
 	 * @param subjects index of available subjects
 	 * @param onClick query for retrieving the data for a given subject. Subject
@@ -108,48 +108,49 @@ public class ProgressLog {
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the descriptive content for a given page.
-	 *  
+	 *
 	 * @param page category
-	 * @param header subject header. This will be shown as a html header for the 
+	 * @param header subject header. This will be shown as a html header for the
 	 * content paragraph
-	 * @param description a description about the items shown between the header and the list 
+	 * @param description a description about the items shown between the header and the list
+	 * @param information information
 	 * @param contents content paragraphs
 	 */
-	void setPageContent(String page, String header, String description, List<String> contents) {
+	void setPageContent(String page, String header, String description, String information, List<String> contents) {
 		int index = tabs.indexOfTab(page);
 		if (index != -1) {
 			Component comp = tabs.getComponent(index);
 			if (comp instanceof Page) {
-				((Page) comp).setContent(header, description, contents);
+				((Page) comp).setContent(header, description, information, contents);
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the window component.
-	 * 
+	 *
 	 * @return travel log window
 	 */
 	Component getWindow() {
 		return window;
 	}
-	
+
 	/**
 	 * Listener for tab changes. Requests the page to update its index when it's
 	 * selected.
 	 */
 	private class TabChangeListener implements ChangeListener {
 		public void stateChanged(ChangeEvent event) {
-			Component selected = tabs.getSelectedComponent(); 
+			Component selected = tabs.getSelectedComponent();
 			if (selected instanceof Page) {
 				((Page) selected).update();
 			}
 		}
 	}
-	
+
 	/**
 	 * A page on the window.
 	 */
@@ -163,47 +164,47 @@ public class ProgressLog {
 		private final JScrollPane indexScrollPane;
 		/** Scrolling component of the content html area */
 		private final JScrollPane contentScrollPane;
-		
+
 		/** Query that is used to update the index area */
 		private ProgressStatusQuery indexQuery;
 		/** Additional data for the index updating query */
 		private String indexQueryData;
-		
+
 		/** Query that is used to update the content area */
 		private ProgressStatusQuery contentQuery;
 		/** Additional data for the content updating query */
 		private String contentQueryData;
-		
+
 		/**
 		 * Create a new page.
 		 */
 		public Page() {
 			this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 			JComponent panels = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-			add(panels, SBoxLayout.constraint(SLayout.EXPAND_X, 
+			add(panels, SBoxLayout.constraint(SLayout.EXPAND_X,
 					SLayout.EXPAND_Y));
-			
+
 			indexArea = new PrettyEditorPane();
 			indexArea.addHyperlinkListener(this);
-			
+
 			indexScrollPane = new JScrollPane(indexArea);
 			// Fixed width
 			indexScrollPane.setMaximumSize(new Dimension(INDEX_WIDTH, Integer.MAX_VALUE));
 			indexScrollPane.setMinimumSize(new Dimension(INDEX_WIDTH, 0));
 			panels.add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
-			
+
 			contentArea = new PrettyEditorPane();
 			// Does not need a listener. There should be no links
-			
+
 			contentScrollPane = new JScrollPane(contentArea);
 			panels.add(contentScrollPane, SBoxLayout.constraint(SLayout.EXPAND_X,
 					SLayout.EXPAND_Y));
-			
+
 			// A button for reloading the page contents
 			JButton refresh = new JButton("Update");
 			refresh.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			refresh.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(SBoxLayout.COMMON_PADDING,
-					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING, 
+					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING,
 					SBoxLayout.COMMON_PADDING), refresh.getBorder()));
 			refresh.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
@@ -212,7 +213,7 @@ public class ProgressLog {
 			});
 			add(refresh);
 		}
-		
+
 		/**
 		 * Update the page from the latest data from the server.
 		 */
@@ -224,10 +225,10 @@ public class ProgressLog {
 				contentQuery.fire(contentQueryData);
 			}
 		}
-		
+
 		/**
 		 * Set the query information for updating the the index.
-		 * 
+		 *
 		 * @param query
 		 * @param queryData additional data for the query
 		 */
@@ -235,10 +236,10 @@ public class ProgressLog {
 			this.indexQuery = query;
 			this.indexQueryData = queryData;
 		}
-		
+
 		/**
 		 * Set the subject index.
-		 * 
+		 *
 		 * @param subjects list of subjects available on this page
 		 * @param onClick query to be used for requesting data for a subject.
 		 *	Subject name will be used as the query parameter
@@ -284,11 +285,11 @@ public class ProgressLog {
 				}
 			});
 		}
-		
+
 		/**
 		 * StyleSheet for the scroll html areas. Margins are needed to avoid
 		 * drawing over the scroll borders.
-		 * 
+		 *
 		 * @return style sheet
 		 */
 		private String createStyleDefinition() {
@@ -301,12 +302,13 @@ public class ProgressLog {
 		/**
 		 * Set the page contents. Each of the content strings is shown as its
 		 * own paragraph.
-		 * 
+		 *
 		 * @param header page header
 		 * @param description description of the quest
+		 * @param information information
 		 * @param contents content paragraphs
 		 */
-		void setContent(String header, String description, List<String> contents) {
+		void setContent(String header, String description, String information, List<String> contents) {
 			StringBuilder text = new StringBuilder("<html>");
 			text.append(createStyleDefinition());
 
@@ -317,11 +319,18 @@ public class ProgressLog {
 				text.append("</h2>");
 			}
 
+			// information
+			if ((information != null) && (!information.trim().equals(""))) {
+				text.append("<p style=\"font-family:arial; color: #FF0000\"><b>");
+				text.append(information);
+				text.append("</b></p>");
+			}
+
 			// description
 			if (description != null) {
-				text.append("<i>");
+				text.append("<p><i>");
 				text.append(description);
-				text.append("</i>");
+				text.append("</i></p>");
 			}
 
 			// details
@@ -346,7 +355,7 @@ public class ProgressLog {
 				public void run() {
 					contentScrollPane.getVerticalScrollBar().setValue(0);
 				}
-			});	
+			});
 		}
 
 		public void hyperlinkUpdate(HyperlinkEvent event) {
@@ -363,7 +372,7 @@ public class ProgressLog {
 			}
 		}
 	}
-	
+
 	/**
 	 * A HTML JEditorPane with a background image.
 	 */
@@ -380,7 +389,7 @@ public class ProgressLog {
 			setContentType("text/html");
 			setEditable(false);
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			background.paint(g, getWidth(), getHeight());
