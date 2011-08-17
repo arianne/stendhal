@@ -153,6 +153,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
 				addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
 				addGoodbye();
+				addQuest("Hmm I need a present for my friend. Maybe you can ask Nishiya for a nice idea...");
 			}
 
 			@Override
