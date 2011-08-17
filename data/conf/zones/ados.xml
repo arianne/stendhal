@@ -74,7 +74,7 @@
 	<name>Ados Abandoned Keep</name>
 	<type>dungeon</type>
 	<description>Home of mountain orcs, mountain dwarves and duergars. Prepare well before entering this keep.</description>
-	<url></url>
+	<url>http://stendhalgame.org/wiki/Ados_Abandoned_Keep</url>
   </point-of-interest>
   
  </zone>
@@ -271,14 +271,21 @@
         <point-of-interest x="40" y="48">
         	<name>Ados Caves Northwest Entrance</name>
         	<type>dungeon</type>
-        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern Region can be passed by lower leveled Players with caution! (Player Level 80 - 597)</description>
+        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
         	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
         </point-of-interest>
         
         <point-of-interest x="117" y="37">
         	<name>Ados Caves Northeast Entrance</name>
         	<type>dungeon</type>
-        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern Region can be passed by lower leveled Players with caution! (Player Level 80 - 597)</description>
+        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
+        	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
+        </point-of-interest>
+
+        <point-of-interest x="97" y="114">
+        	<name>Ados Caves South Entrance</name>
+        	<type>dungeon</type>
+        	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. (Player Level 80 - 597)</description>
         	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
         </point-of-interest>
 
@@ -331,6 +338,14 @@ West: Semos
   <portal x="75" y="50" ref="magician_house_entrance">
    <destination zone="int_ados_magician_house" ref="entrance"/>
   </portal>
+  
+  <point-of-interest x="56" y="95">
+  	<name>Ados Caves Naga Hole</name>
+  	<type>dungeon</type>
+  	<description>You hear very loud hissing from the hole in the ground. There must be some gigantic snakes within.</description>
+  	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
+  </point-of-interest>
+  
  </zone>
 
  <zone name="int_ados_magician_house" file="interiors/ados/magician_house.tmx">
@@ -425,10 +440,10 @@ areas.
   </portal>
   
   <point-of-interest x="67" y="24">
-  	<name>Ados Bear Caves</name>
+  	<name>Outside Ados</name>
   	<type>dungeon</type>
-  	<description>Bear cave at Ados wildlife refuge. It also keeps some other creatures ready for you if you dare going a bit deeper into the mountain.</description>
-  	<url></url>
+  	<description>The Dungeon of Outside Ados can be found close to the Ados Mountains in the west of Ados. The entrance is laying close to the Ados Wildlife Refuge home for endangered animals.</description>
+  	<url>http://stendhalgame.org/wiki/Outside_Ados</url>
   </point-of-interest>
 
   <entity x="53" y="48">
@@ -2739,6 +2754,13 @@ Southeast: Docks
         <parameter name="enterMessage">You see massive footprints around the entrance.</parameter>
     </implementation>
     </entity>
+    <point-of-interest x="65" y="77">
+	  	<name>Ados Caves Giant Pit</name>
+	  	<type>dungeon</type>
+	  	<description>You see massive footprints around the entrance.</description>
+	  	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
+	</point-of-interest>
+    
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
@@ -2839,6 +2861,13 @@ Southeast: Docks
     <portal x="102" y="52" ref="barracks_entrance_right">
       <destination zone="int_ados_barracks_0" ref="entrance_right"/>
     </portal>
+    
+    <point-of-interest x="71" y="92">
+    	<name>Ados Sewers</name>
+    	<type>dungeon</type>
+    	<description>A confusing labyrinth underneath the city of Ados.</description>
+    	<url>http://stendhalgame.org/wiki/Ados_Sewers</url>
+    </point-of-interest>
 
    </zone>
    

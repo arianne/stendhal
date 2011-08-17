@@ -908,7 +908,7 @@
 			<name>Semos Catacombs</name>
 			<type>dungeon</type>
 			<description>A hole in the ground on Semos graveyard. Prepare yourself well to fight the undead.</description>
-			<url></url>
+			<url>http://stendhalgame.org/wiki/Semos_Catacombs</url>
 		</point-of-interest>
 
 		<entity x="77" y="66">
