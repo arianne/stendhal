@@ -106,6 +106,206 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
 		</implementation>
 	</entity>
+
+	<!-- Fado hotel beer garden -->
+
+	<!--  small tables -->
+
+	<!--  Table 1 -->
+	<entity x="2" y="62">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 2 -->
+	<entity x="7" y="62">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 3 -->
+	<entity x="11" y="69">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 4 -->
+	<entity x="2" y="74">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 5 -->
+	<entity x="11" y="75">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 6 -->
+	<entity x="3" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 7 -->
+	<entity x="11" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+
+	<!--  Table 8 -->
+	<entity x="21" y="68">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 9 -->
+	<entity x="24" y="68">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 10 -->
+	<entity x="27" y="68">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 11 -->
+	<entity x="30" y="68">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+
+	<!--  Table 12 -->
+	<entity x="21" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 13 -->
+	<entity x="24" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 14 -->
+	<entity x="27" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 15 -->
+	<entity x="30" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+
+	<!--  Table 16 -->
+	<entity x="35" y="81">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">2</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+
+	<!-- big tables -->
+
+	<!--  Table 17 -->
+	<entity x="21" y="72">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">4</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 18 -->
+	<entity x="27" y="72">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">4</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 19 -->
+	<entity x="21" y="77">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">4</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 20 -->
+	<entity x="27" y="77">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">4</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
+	<!--  Table 21 -->
+	<entity x="33" y="69">
+		<implementation
+			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+		<attribute name="width">4</attribute>
+		<attribute name="height">1</attribute>
+	</entity>
+
 	
 
  </zone>
