@@ -732,6 +732,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return minLevel
 	 */
 	public int getMinLevel() {
-		return super.getInt("min_level");
+		if (super.has("min_level")) {
+			return super.getInt("min_level");
+		} else {
+			return 0;
+		}
 	}
 }
