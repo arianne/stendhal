@@ -2858,12 +2858,20 @@ Southeast: Docks
     <portal x="101" y="52" ref="barracks_entrance_center">
       <destination zone="int_ados_barracks_0" ref="entrance_right"/>
     </portal>
+    
+    <point-of-interest x="101" y="52">
+    	<name>Ados Sewers Barracks Entrance</name>
+    	<type>dungeon</type>
+    	<description>A confusing labyrinth underneath the city of Ados.</description>
+    	<url>http://stendhalgame.org/wiki/Ados_Sewers</url>
+    </point-of-interest>
+
     <portal x="102" y="52" ref="barracks_entrance_right">
       <destination zone="int_ados_barracks_0" ref="entrance_right"/>
     </portal>
     
     <point-of-interest x="71" y="92">
-    	<name>Ados Sewers</name>
+    	<name>Ados Sewers Wall Entrance</name>
     	<type>dungeon</type>
     	<description>A confusing labyrinth underneath the city of Ados.</description>
     	<url>http://stendhalgame.org/wiki/Ados_Sewers</url>
@@ -3012,8 +3020,15 @@ Southeast: Docks
   <portal x="10" y="31" ref="castledungeons">
    <destination zone="int_ados_castle_dungeons" ref="entrance1"/>
   </portal>
+  
+  <point-of-interest x="10" y="31">
+  	<name>Assassin Tunnel</name>
+  	<type>dungeon</type>
+  	<description>The Assassin Tunnel is populated by young, strong assassins, some of whom are trainees who wait for huge tasks which they alone can solve. Other occupants include a group of Blordrough deserters, along with their beloved dragons. (Player Level 60 - 200)</description>
+  	<url>http://stendhalgame.org/wiki/Assassin_Tunnel</url>
+  </point-of-interest>
 
-   <entity x="89" y="63">
+  <entity x="89" y="63">
         <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">cod</parameter>
         </implementation>

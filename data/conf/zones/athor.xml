@@ -213,6 +213,13 @@
          <destination zone="-1_athor_island" ref="quicksand_out"/>
          <attribute name="hidden"/>
        </portal>
+       <point-of-interest x="118" y="96">
+       	<name>Athor Tunnels</name>
+       	<type>dungeon</type>
+       	<description>Did you fall down to the Athor tunnel? Below the ground live stronger, and more evil creatures than on the surface. Take care of the monks, dragons, and the evil minotaur king! Kill the minotaur king! He is waiting for you!</description>
+       	<url>http://stendhalgame.org/wiki/Athor_Tunnels</url>
+       </point-of-interest>
+       
        <portal x="60" y="66" ref="pool">
          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
        </portal>

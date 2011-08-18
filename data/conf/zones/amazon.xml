@@ -53,6 +53,13 @@
      	<parameter name="species">red lionfish</parameter>
     	</implementation>
   	 </entity>
+  	 
+	<point-of-interest x="56" y="57">
+		<name>Amazon Tunnel East Entrance</name>
+		<type>dungeon</type>
+		<description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit.</description>
+		<url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
+	</point-of-interest>
 
  </zone>
 
@@ -78,6 +85,14 @@
   <portal x="48" y="98" ref="in">
    <destination zone="int_amazon_princess_hut" ref="out"/>
   </portal>
+  
+  <point-of-interest x="60" y="105">
+  	<name>Amazon Caves</name>
+  	<type>dungeon</type>
+  	<description>A small underground area populated with archers and bodyguards...</description>
+  	<url>http://stendhalgame.org/wiki/Amazon_Caves</url>
+  </point-of-interest>
+
  </zone>
 
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
