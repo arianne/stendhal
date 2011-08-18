@@ -68,6 +68,7 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 			
 			npc.setPosition(25, 32);
 			npc.setEntityClass("olddwarfnpc");
+			npc.setDescription("You see Ritati Dragontracker who buys odds end ends.");
 			zone.add(npc);		
 	}
 }
