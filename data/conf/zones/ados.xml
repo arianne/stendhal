@@ -308,6 +308,7 @@
    <attribute name="text">
     Beware of bandits beyond!
    </attribute>
+    <attribute name="class">danger_sign</attribute>
   </entity>
 
   <entity x="77" y="82">
@@ -325,6 +326,7 @@ West: Semos
    <attribute name="text">
     Beware of bandits beyond!
    </attribute>
+    <attribute name="class">danger_sign</attribute>
   </entity>
 
   <entity x="53" y="92">
