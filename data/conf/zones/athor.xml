@@ -254,16 +254,19 @@
        <entity x="112" y="96">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
+         <attribute name="class">danger_sign</attribute>
        </entity>
 
        <entity x="119" y="89">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
+         <attribute name="class">danger_sign</attribute>
        </entity>
 
        <entity x="120" y="104">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
+         <attribute name="class">danger_sign</attribute>
        </entity>
 
        <entity x="12" y="88">
