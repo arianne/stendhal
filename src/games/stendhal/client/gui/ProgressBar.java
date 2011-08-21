@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,41 +22,43 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class ProgressBar extends JDialog {
-
 	private static final long serialVersionUID = 6241161656154797719L;
+	/** Default delay between updating */
+	private static final int SLEEP_TIME = 200;
+	/** Maximum value for the progress bar */
+	private static final int MAX_VALUE = 100;
+	/** Default step size */
+	private static final int STEP_SIZE = MAX_VALUE / 50;
 
-	private JPanel contentPane;
+	private JProgressBar progressBar;
 
-	private JProgressBar m_progressBar;
-
-	private  Thread m_run;
-
-	private int m_sleepTime = 210;
+	/** Speed factor for updating the bar */
+	private int stepSizeMultiplier = 1;
+	/**
+	 * Keeps track of how many times it has looped with a multiplier greater
+	 * than 0
+	 */
+	private int stepCounter;
 	
-	// makes for 10 normal steps. 100/10
-	private int m_stepSize = 2; 
+	private final Timer timer = new Timer(SLEEP_TIME, new Updater());
 
-	private int m_stepSizeMultiplier = 1;
-	// keeps track of how many times it has lookp with a multiplier greater then 0
-	private int m_stepCounter; 
-
-	// continue while true
-	private boolean m_con = true;
-
+	/**
+	 * Create a new ProgressBar.
+	 * 
+	 * @param w parent dialog
+	 */
 	public ProgressBar(final JDialog w) {
 		super(w, "Connecting...", true);
-
 		initializeComponents();
-
 		this.pack();
 		setLocationRelativeTo(w);
 	}
 
 	private void initializeComponents() {
-		contentPane = (JPanel) this.getContentPane();
+		JPanel contentPane = (JPanel) this.getContentPane();
 
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -61,75 +66,60 @@ public class ProgressBar extends JDialog {
 		contentPane.add(new JLabel("Connecting..."));
 		contentPane.add(Box.createVerticalStrut(5));
 
-		m_progressBar = new JProgressBar(0, 100);
-		m_progressBar.setStringPainted(false);
-		m_progressBar.setValue(0);
-		contentPane.add(m_progressBar);
+		progressBar = new JProgressBar(0, MAX_VALUE);
+		progressBar.setStringPainted(false);
+		contentPane.add(progressBar);
 	}
-
-	public void setTotalTimeEstimate(final int time) {
-		m_stepSize = time / 5250;
-	}
-
-	public void start() {
-		m_run = new Thread("LoginProgressBar") {
-
-			private int counter;
-
-			@Override
-			public void run() {
-				while (m_con && (counter < 100)) {
-					try {
-						Thread.sleep(m_sleepTime);
-						counter += m_stepSize * m_stepSizeMultiplier;
-
-						final Runnable updateRunner = new Runnable() {
-
-							public void run() {
-								m_progressBar.setValue(counter);
-							}
-						};
-						SwingUtilities.invokeLater(updateRunner);
-
-						if (m_stepCounter <= 0) {
-							m_stepCounter = 0;
-							m_stepSizeMultiplier = 1;
-						}
-						m_stepCounter--;
-					} catch (final InterruptedException ie) {
-						// ignore
-					}
+	
+	/**
+	 * Timer task that updates the progress bar.
+	 */
+	private class Updater implements ActionListener {
+		private int counter = 0;
+		
+		public void actionPerformed(ActionEvent arg0) {
+			counter += STEP_SIZE * stepSizeMultiplier;
+			progressBar.setValue(counter);
+			if (stepCounter >= 0) {
+				if (stepCounter == 0) {
+					stepSizeMultiplier = 1;
 				}
-				ProgressBar.this.dispose();
+				stepCounter--;
 			}
-		};
-
-		this.setVisible(true);
-		m_run.start();
+			if (counter > 100) {
+				cancel();
+			}
+		}
 	}
+
+	/** Start updating the progress bar */
+	public void start() {
+		timer.start();
+		setVisible(true);
+	}
+	
 	/** 
-	 * Temporarily speeds up bar.
+	 * Temporarily speeds up the bar.
 	 */
 	public void step() { 
-		m_stepCounter = 3;
-		m_stepSizeMultiplier = 2;
+		stepCounter = 3;
+		stepSizeMultiplier = 3;
 	}
 	
 	/**
 	 *  Speeds up to quickly finish.
 	 */
 	public void finish() {
-		m_stepCounter = 20; 
-		m_stepSizeMultiplier = 2;
-		m_sleepTime = 15;
-		this.cancel();
+		stepCounter = 20;
+		stepSizeMultiplier = 3;
+		timer.setDelay(15);
 	}
+	
 	/**
 	 * Exits quickly.
 	 */
 	public void cancel() { 
-		m_con = false;
+		timer.stop();
 		this.dispose();
 	}
-
 }
