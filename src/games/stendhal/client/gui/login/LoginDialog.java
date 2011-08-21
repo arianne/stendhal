@@ -470,8 +470,7 @@ public class LoginDialog extends JDialog {
 					try {
 					setVisible(false);
 					} catch (NullPointerException npe) {
-						Logger.getLogger(LoginDialog.class).warn("Error probably related to bug in JRE occured");						
-						Logger.getLogger(LoginDialog.class).error(npe);
+						Logger.getLogger(LoginDialog.class).error("Error probably related to bug in JRE occured", npe);
 						me.dispose();
 					}
 				}
