@@ -225,7 +225,7 @@ public class CreateAccountDialog extends JDialog {
 		}
 		// port couldn't be accessed from inner class
 		final int finalPort; 
-		final ProgressBar progressBar = new ProgressBar(owner);
+		final ProgressBar progressBar = new ProgressBar(this);
 
 		try {
 			port = Integer.parseInt(serverPortField.getText());

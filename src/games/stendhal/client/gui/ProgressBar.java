@@ -12,27 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.update.ClientGameConfiguration;
-
-import java.awt.Window;
-import java.net.URL;
-import java.security.AccessControlException;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
-public class ProgressBar extends JFrame {
+public class ProgressBar extends JDialog {
 
 	private static final long serialVersionUID = 6241161656154797719L;
-
-	private final Window frame;
 
 	private JPanel contentPane;
 
@@ -50,24 +41,15 @@ public class ProgressBar extends JFrame {
 	private int m_stepCounter; 
 
 	// continue while true
-	private boolean m_con = true; 
+	private boolean m_con = true;
 
-	public ProgressBar(final Window w) {
-		super("Connecting...");
-		final URL url = this.getClass().getClassLoader().getResource(
-				ClientGameConfiguration.get("GAME_ICON"));
-		setIconImage(new ImageIcon(url).getImage());
-		this.frame = w;
+	public ProgressBar(final JDialog w) {
+		super(w, "Connecting...", true);
 
 		initializeComponents();
 
 		this.pack();
-		this.setLocationRelativeTo(frame);
-		try {
-			this.setAlwaysOnTop(true);
-		} catch (final AccessControlException e) {
-			// ignore it
-		}
+		setLocationRelativeTo(w);
 	}
 
 	private void initializeComponents() {
