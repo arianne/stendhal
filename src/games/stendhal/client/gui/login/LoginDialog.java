@@ -457,24 +457,26 @@ public class LoginDialog extends JDialog {
 			handleError("Unable to connect to server. Did you misspell the server name?", "Connection failed");
 			return;
 		}
-
+		
+		final JDialog me=this;
 		try {
 			client.setAccountUsername(profile.getUser());
 			client.setCharacter(profile.getCharacter());
 			client.login(profile.getUser(), profile.getPassword(), profile.getSeed());
-
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					progressBar.step();
 					progressBar.finish();
 					// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
 					try {
-					    setVisible(false);
+					setVisible(false);
 					} catch (NullPointerException npe) {
-						setVisible(false);
+						Logger.getLogger(LoginDialog.class).warn("Error probably related to bug in JRE occured");						
+						Logger.getLogger(LoginDialog.class).error(npe);
+						me.dispose();
 					}
 				}
 			});
+
 		} catch (final InvalidVersionException e) {
 			handleError("You are running an incompatible version of Stendhal. Please update",
 					"Invalid version");
