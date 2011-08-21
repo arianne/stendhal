@@ -17,6 +17,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Version;
 import games.stendhal.common.grammar.Grammar;
@@ -182,10 +183,10 @@ public class User extends Player {
 	public void onHealed(final int amount) {
 		super.onHealed(amount);
 		ClientSingletonRepository.getUserInterface().addEventLine(
-			new HeaderLessEventLine(
-			getTitle() + " heals "
-			+ Grammar.quantityplnoun(amount, "health point") + ".",
-			NotificationType.POSITIVE));
+				new HeaderLessEventLine(
+						getTitle() + " heals "
+						+ Grammar.quantityplnoun(amount, "health point") + ".",
+						NotificationType.HEAL));
 	}
 
 	/**

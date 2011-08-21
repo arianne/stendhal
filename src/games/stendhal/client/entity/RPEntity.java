@@ -18,6 +18,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
@@ -585,9 +586,9 @@ public abstract class RPEntity extends ActiveEntity {
 			poisoned = true;
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
-					getTitle() + " is poisoned, losing "
+							getTitle() + " is poisoned, losing "
 							+ Grammar.quantityplnoun(amount, "health point")
-							+ ".", NotificationType.NEGATIVE));
+							+ ".", NotificationType.POISON));
 		}
 	}
 

@@ -36,6 +36,16 @@ public enum NotificationType {
 			return COLOR_ERROR;
 		}
 	},
+	HEAL("heal") {
+		@Override
+		public Color getColor() {
+			return COLOR_POSITIVE;
+		}
+		@Override
+		public String getStyleDescription() {
+			return REGULAR;
+		}
+	},
 	INFORMATION("information") {
 		@Override
 		public Color getColor() {
@@ -56,6 +66,16 @@ public enum NotificationType {
 		@Override
 		public Color getColor() {
 			return COLOR_NORMAL;
+		}
+	},
+	POISON("poison") {
+		@Override
+		public Color getColor() {
+			return COLOR_NEGATIVE;
+		}
+		@Override
+		public String getStyleDescription() {
+			return REGULAR;
 		}
 	},
 	POSITIVE("positive") {
