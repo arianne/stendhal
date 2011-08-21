@@ -467,7 +467,12 @@ public class LoginDialog extends JDialog {
 				public void run() {
 					progressBar.step();
 					progressBar.finish();
-					setVisible(false);
+					// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
+					try {
+					    setVisible(false);
+					} catch (NullPointerException npe) {
+						setVisible(false);
+					}
 				}
 			});
 		} catch (final InvalidVersionException e) {

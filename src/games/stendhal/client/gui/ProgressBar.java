@@ -120,6 +120,11 @@ public class ProgressBar extends JDialog {
 	 */
 	public void cancel() { 
 		timer.stop();
-		this.dispose();
+		// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
+		try {
+		    this.dispose();
+		} catch(NullPointerException npe) {
+			return;
+		}
 	}
 }
