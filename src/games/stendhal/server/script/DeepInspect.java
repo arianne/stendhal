@@ -38,7 +38,7 @@ public class DeepInspect extends ScriptImpl {
 	public void execute(final Player admin, final List<String> args) {
 		super.execute(admin, args);
 		if ((args.size() != 2) || (!(args.get(0).equals("character") || args.get(0).equals("username")))) {
-			admin.sendPrivateText("{character|username} <name>.");
+			admin.sendPrivateText("usage: {\"character\" | \"username\"} <name>.");
 			admin.sendPrivateText("character will do an inspection of an online character.");
 			admin.sendPrivateText("username will do an inspection of all characters belonging to that account as they are stored in the database.");
 			return;
