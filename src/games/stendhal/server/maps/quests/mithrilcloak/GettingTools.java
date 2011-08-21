@@ -356,7 +356,9 @@ class GettingTools {
 				ConversationPhrases.YES_MESSAGES, 
 				new PlayerHasItemWithHimCondition("money", NEEDLE_COST),
 				ConversationStates.IDLE,
-				"Ok, here you are. Be careful with them, they break easy. Now, get lost, you have hung around here far too long already.",				
+				"Ok, here you are. Be careful with them, they break easy. "+
+				"And if you break it, all other needles you have already bought from me, will lose their magic. "+
+				"Now, get lost, you have hung around here far too long already.",				
 				new MultipleActions(
 					new DropItemAction("money", NEEDLE_COST), 
 					new EquipItemAction("magical needle", 1, true)
