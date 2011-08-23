@@ -341,6 +341,11 @@ class DestinationObject extends MoveableObject {
 
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
+				
+				/* XXX sjtsp - experiment.  
+				 *   - maybe should call this on player, instead of item? 
+				 */
+				((Item) entity).onEquipped(player, rpslot.getName());
 			}
 			SingletonRepository.getRPWorld().modify(parent.getBaseContainer());
 		} else {

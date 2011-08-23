@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
@@ -660,6 +661,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 
 	public void removeFromWorld() {
+		
+		this.onUnequipped();
+		
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -738,4 +742,38 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return 0;
 		}
 	}
+	
+	
+	/**
+	 * opportunity to affect the player when equipped
+	 * 
+	 * currently returns boolean, to indicate whether it made any change
+	 * 
+	 * TODO: should this return some sort of undoable thing (if it can be undone?)
+	 */
+	public boolean onEquipped(RPEntity equipper, String slot) {
+		
+		// this.prevEntity = equipper;
+		// this.prevSlot   = slot;
+		
+		return false;
+	}
+
+	/**
+	 * item is about to be removed from owner.
+	 * at this time, we are still owned by the original owner.
+	 * opportunity to affect the player when equipped
+	 * 
+	 * note: use this.getContainerOwner(), rather than the equipper param
+	 * 
+	 * TODO: i don't think the parameters are necessary.  can get
+	 *       owner and slot from Item api 
+	 */
+	// public boolean onUnequipped(RPEntity equipper, String slot) {
+	// 	return false;
+	// }
+	public boolean onUnequipped() {
+		return false;
+	}
+
 }

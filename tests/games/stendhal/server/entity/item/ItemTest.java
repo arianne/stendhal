@@ -473,4 +473,5 @@ public class ItemTest {
 		assertFalse(PlayerTestHelper.createPlayer("bob").isBoundTo(mo));
 		assertThat(mo.getBoundTo(), not(is("bob")));
 	}
+
 }

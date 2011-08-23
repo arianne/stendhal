@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
+
+  <!-- capture-the-flag stuff -->
+
+  <item name="flag">
+    <type class="misc" subclass="teddy" tileid="-1"/>
+    <description>You see a flag. Its soft and cuddly, and children love them.</description>
+
+    <implementation class-name="games.stendhal.server.entity.item.CaptureTheFlagFlag"/>
+    
+    <attributes>
+    </attributes>
+
+    <weight value="1.0"/>
+    <value  value="1"/>
+    
+    <equipable>
+      <slot name="rhand"/>
+      <slot name="lhand"/>
+      <slot name="ground"/>
+            
+      <!-- i think that hand-only is a good policy -->
+      <!-- <slot name="content"/> -->
+      <!-- <slot name="bag"/>     -->
+    </equipable>
+  </item>
+
+
+</items>
+  
