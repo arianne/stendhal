@@ -149,7 +149,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		// quest started but not complete - ketteh will remind player
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
-		assertEquals("Don't forget to check on Tad.  I hope he's feeling better.", getReply(ketteh));
+		assertEquals("Goodbye.  Don't forget to check on Tad.  I hope he's feeling better.", getReply(ketteh));
 		
 		
 		final StackableItem flask = new StackableItem("flask", "", "", null);

@@ -331,14 +331,14 @@ public class MedicineForTad extends AbstractQuest {
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new AndCondition(new QuestStartedCondition(QUEST_SLOT),
         					     new QuestNotCompletedCondition(QUEST_SLOT)),
-                ConversationStates.ATTENDING,
-                "Don't forget to check on Tad.  I hope he's feeling better.",
+                ConversationStates.IDLE,
+                "Goodbye.  Don't forget to check on Tad.  I hope he's feeling better.",
                 null);
 
         npc.add(ConversationStates.ATTENDING, 
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new QuestNotStartedCondition(QUEST_SLOT),
-                ConversationStates.ATTENDING,
+                ConversationStates.IDLE,
                 "Farewell.  Have you met Tad, in the hostel?  If you get a chance, please check in on him.  I heard he was not feeling well.",
                 null);
 
