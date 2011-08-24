@@ -4,40 +4,17 @@
 package games.stendhal.server.entity.item;
 
 
+import static org.junit.Assert.assertEquals;
+import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
+import marauroa.common.game.SlotOwner;
 
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.RPClass.ItemTestHelper;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.RPEntity;
-
-import games.stendhal.server.entity.item.CaptureTheFlagFlag;
-import games.stendhal.server.entity.item.Corpse;
-
-import games.stendhal.server.entity.player.Player;
-
-import games.stendhal.server.entity.slot.EntitySlot;
-
-// import games.stendhal.server.actions.equip.SourceObject;
-
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import marauroa.common.game.SlotOwner;
 
 
 

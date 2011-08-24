@@ -17,7 +17,6 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Version;
 import games.stendhal.common.grammar.Grammar;
