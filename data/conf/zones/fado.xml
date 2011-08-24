@@ -896,6 +896,14 @@ For example say:  11  if you want the room called Water of Love.
 		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
 	   </implementation>
   </portal>
+
+	<point-of-interest x="18" y="120">
+		<name>Fado Great Caves</name>
+		<type>dungeon</type>
+		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+	</point-of-interest>
+
 </zone>
 
  <zone name="int_oni_palace_0" file="interiors/fado/palace_0.tmx">
@@ -975,15 +983,39 @@ For example say:  11  if you want the room called Water of Love.
 </zone>
 
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
+
+	<point-of-interest x="30" y="105">
+		<name>Fado Great Caves</name>
+		<type>dungeon</type>
+		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+	</point-of-interest>
+
 </zone>
 <zone name="0_fado_forest_s_e2" level="0" x="500000" y="500640" file="Level 0/fado/forest_s_e2.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.GreeterNPC" />
+
+	<point-of-interest x="12" y="11">
+		<name>Fado Great Caves</name>
+		<type>dungeon</type>
+		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+	</point-of-interest>
+
  <portal x="26" y="42" ref="hut1_entrance">
   <destination zone="int_fado_elf_hut_1" ref="entrance"/>
  </portal>
  <portal x="25" y="30" ref="hut2_entrance">
   <destination zone="int_fado_elf_hut_2" ref="entrance"/>
  </portal>
+
+	<point-of-interest x="84" y="59">
+		<name>Fado Great Caves</name>
+		<type>dungeon</type>
+		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+	</point-of-interest>
+
  <portal x="97" y="85" ref="hut3_entrance">
   <destination zone="int_fado_elf_hut_3" ref="entrance"/>
  </portal>
