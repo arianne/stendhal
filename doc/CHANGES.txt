@@ -7,12 +7,15 @@
 - Haunchy Meatoch is really thankful for the help he gets each time from players and gives them some XP now
 - various animal pens have gates now. Also wolves in the park are behind a gate
 - Semos has a palisade wall now to protect the city against the creatures outside
-- there is a nice new beer garden infront of the Fado hotel
-
+- there is a nice new beer garden in front of the Fado hotel
+- Tad moved to Semos Hostel and Ketteh Wehoh, in the town hall, will remind about his quest
+- the quest log hints if a quest which has been started isn't suitable for the current level
+- danger signs are more prominent
 
 *website*
 - added an interactive Atlas to the website
 - improvements to the arianne.sourceforge.net website including an rss feed
+- achievements for Semos and Ados daily quests are in their own categories
 
 *client*
 - support and tutorial textboxes stay on top
