@@ -42,6 +42,7 @@
 	<complexType name="point-of-interest">
 		<sequence minOccurs="1" maxOccurs="1">
 			<element name="name" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
 			<element name="type" type="string" minOccurs="1" maxOccurs="1" />
 			<element name="description" type="string" minOccurs="0" maxOccurs="1" />
 			<element name="url" type="string" minOccurs="0" maxOccurs="1" />
