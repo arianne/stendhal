@@ -106,7 +106,7 @@ public class Gate2DView extends Entity2DView {
 
 	@Override
 	public int getZIndex() {
-		return 0;
+		return 5000;
 	}
 }
 
