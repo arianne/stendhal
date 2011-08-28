@@ -78,7 +78,7 @@ public class MedicineForTad extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (player.hasQuest("TadFirstChat")) {
-			res.add("I have met Tad in Semos Hostel");
+			res.add("I have met Tad in Semos Hostel.");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
@@ -332,14 +332,14 @@ public class MedicineForTad extends AbstractQuest {
         		new AndCondition(new QuestStartedCondition(QUEST_SLOT),
         					     new QuestNotCompletedCondition(QUEST_SLOT)),
                 ConversationStates.IDLE,
-                "Goodbye.  Don't forget to check on Tad.  I hope he's feeling better.",
+                "Goodbye. Don't forget to check on Tad. I hope he's feeling better.",
                 null);
 
         npc.add(ConversationStates.ATTENDING, 
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new QuestNotStartedCondition(QUEST_SLOT),
                 ConversationStates.IDLE,
-                "Farewell.  Have you met Tad, in the hostel?  If you get a chance, please check in on him.  I heard he was not feeling well.",
+                "Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishyia.",
                 null);
 
 	}

@@ -128,7 +128,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		// before quest starts, ketteh will ask if you've met TAd
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
-		assertEquals("Farewell.  Have you met Tad, in the hostel?  If you get a chance, please check in on him.  I heard he was not feeling well.", 
+		assertEquals("Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishyia.", 
 				     getReply(ketteh));
 
 		
@@ -149,7 +149,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		// quest started but not complete - ketteh will remind player
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
-		assertEquals("Goodbye.  Don't forget to check on Tad.  I hope he's feeling better.", getReply(ketteh));
+		assertEquals("Goodbye. Don't forget to check on Tad. I hope he's feeling better.", getReply(ketteh));
 		
 		
 		final StackableItem flask = new StackableItem("flask", "", "", null);
