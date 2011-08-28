@@ -183,4 +183,26 @@ public class Rand {
 	public static int randExponential(final int mean) {
 		return (int) (-mean * Math.log(rand.nextDouble()));
 	}
+	
+	/**
+	 * Calculate the propability for a given mean value in an exponential distribution
+	 * 
+	 * @param mean the desired mean value of the distribution
+	 * @return the propability to reach the given mean value (1 for mean == 0)
+	 */
+	public static double propabilityForMeanExp(final long mean) {
+		if(mean == 0) {
+			return 1;
+		}
+		return 1/mean;
+	}
+	
+	/**
+	 * Flip a coin to decide between true and false based on a propability
+	 * @param propability the propability to get true
+	 * @return true or false randomly
+	 */
+	public static boolean flipCoin(final double propability) {
+		return rand.nextDouble() <= propability;
+	}
 }
