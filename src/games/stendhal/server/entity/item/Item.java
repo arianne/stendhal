@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -55,12 +57,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private static final int DEFAULT_DETERIORATION = 0;
 
 	/**
-	 * propability of an item deteriorating on use
+	 * mean time an item is constantly usable in hours
 	 */
-	private static final double DETERIORATION_PROPABILITY = 0.01;
-
-
-
+	private static final long MEAN_LIFETIME = 12 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+	
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
@@ -301,9 +301,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * Propose increase the degree of deterioration. If degree increases is decided by random
 	 */
 	public void deteriorate() {
-		double dice = Rand.rand();
-		if(dice < DETERIORATION_PROPABILITY && getDeterioration() <= MAX_DETERIORATION) {
-//			this.add("deterioration", 1);
+		double propabilityForMeanExp = Rand.propabilityForMeanExp(MEAN_LIFETIME / 300 * this.getAttackRate());
+		if(Rand.flipCoin(propabilityForMeanExp) && getDeterioration() <= MAX_DETERIORATION) {
+			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"deteriorated from "+this.getDeterioration()+".");
+			this.add("deterioration", 1);
+		} else {
+			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"did not deteriorate from "+this.getDeterioration()+".");
 		}
 	}
 
