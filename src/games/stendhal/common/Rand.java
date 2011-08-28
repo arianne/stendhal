@@ -194,7 +194,8 @@ public class Rand {
 		if(mean == 0) {
 			return 1;
 		}
-		return 1/mean;
+		double meandouble = mean;
+		return (double) 1d/meandouble;
 	}
 	
 	/**
