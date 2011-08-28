@@ -119,7 +119,7 @@ public class MeetKetteh extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Ketteh Wehoh",
-				"A lady sits infront of a hut in Semos Village and takes care, that new inhabitants of Faiumoni will walk around without freezing.",
+				"An elegant lady waits in the townhall in Semos and takes care, that new inhabitants of Faiumoni will walk around without freezing. She is the town Decency and Manners Warden.",
 				false);
 		step1();
 	}
@@ -130,13 +130,13 @@ public class MeetKetteh extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I met Ketteh Wehoh in the old Semos village.");
+		res.add("I met Ketteh Wehoh in the Semos townhall.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("seen_naked".equals(questState)) {
 			res.add("She was shocked and yelled at me that I shouldn't go around naked.");
 		}
 		if ("seen".equals(questState) || "done".equals(questState) || "learnt_manners".equals(questState)) {
-			res.add("She has been very polite and she has taugth me the basics of proper behaviour in Faiumoni.");
+			res.add("She has been very polite and she has taught me the basics of proper behaviour in Faiumoni.");
 		}
         if (isCompleted(player)) {
             res.add("I can meet and have a chat with her again anytime.");
