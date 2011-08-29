@@ -15,6 +15,7 @@ package games.stendhal.client.gui.login;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ProgressBar;
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.update.ClientGameConfiguration;
@@ -84,6 +85,7 @@ public class CreateAccountDialog extends JDialog {
 		this.owner = owner;
 		initializeComponent();
 
+		WindowUtils.closeOnEscape(this);
 		this.setVisible(true);
 	}
 

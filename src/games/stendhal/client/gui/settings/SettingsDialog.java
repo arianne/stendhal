@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Frame;
@@ -54,6 +55,7 @@ public class SettingsDialog extends JDialog {
 			}
 		});
 		add(closeButton);
+		WindowUtils.closeOnEscape(this);
 		pack();
 	}
 }

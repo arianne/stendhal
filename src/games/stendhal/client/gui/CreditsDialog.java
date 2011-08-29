@@ -79,6 +79,7 @@ public class CreditsDialog extends JDialog {
 			this.setLocationByPlatform(true);
 			this.setSize(600, 420);
 		}
+		WindowUtils.closeOnEscape(this);
 		this.setVisible(true);
 	}
 

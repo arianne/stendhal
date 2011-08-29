@@ -62,7 +62,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -239,7 +238,7 @@ public class j2DClient implements UserInterface {
 		positionChangeListener.add(screenController);
 
 
-		final KeyAdapter tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
+		final KeyListener tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
 		chatText.addKeyListener(tabcompletion);
 
 		/*
@@ -1082,10 +1081,6 @@ public class j2DClient implements UserInterface {
 		}
 
 		public void keyTyped(final KeyEvent e) {
-			if (e.getKeyChar() == 27) {
-				// Escape
-				requestQuit();
-			}
 		}
 	}
 

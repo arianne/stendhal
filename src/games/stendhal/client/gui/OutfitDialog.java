@@ -190,6 +190,7 @@ public class OutfitDialog extends JDialog {
 		if (clothesIndex >= clothes.length) {
 			clothesIndex = 0;
 		}
+		WindowUtils.closeOnEscape(this);
 	}
 
 	/**

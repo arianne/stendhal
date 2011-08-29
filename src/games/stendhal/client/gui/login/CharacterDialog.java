@@ -16,6 +16,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -158,6 +159,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		thread.setDaemon(true);
 		thread.start();
 
+		WindowUtils.closeOnEscape(this);
 		setResizable(false);
 		setVisible(true);
 	}

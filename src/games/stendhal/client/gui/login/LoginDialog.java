@@ -14,6 +14,7 @@ package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.ProgressBar;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.update.ClientGameConfiguration;
@@ -102,6 +103,7 @@ public class LoginDialog extends JDialog {
 		this.client = client;
 		this.owner = owner;
 		initializeComponent();
+		WindowUtils.closeOnEscape(this);
 	}
 
 	private void initializeComponent() {

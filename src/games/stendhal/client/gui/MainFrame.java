@@ -41,9 +41,8 @@ public class MainFrame {
 		setTitle();
 		setIcon();
 		setDefaultCloseBehaviour();
+		WindowUtils.closeOnEscape(mainFrame);
 	}
-
-
 
 	private void setDefaultCloseBehaviour() {
 		// When the user tries to close the window, don't close immediately,

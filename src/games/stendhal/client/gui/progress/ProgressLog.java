@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.progress;
 
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.BackgroundPainter;
 import games.stendhal.client.gui.layout.SBoxLayout;
@@ -71,6 +72,7 @@ public class ProgressLog {
 		tabs.setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		tabs.addChangeListener(new TabChangeListener());
 
+		WindowUtils.closeOnEscape(window);
 		window.add(tabs);
 		window.pack();
 	}
