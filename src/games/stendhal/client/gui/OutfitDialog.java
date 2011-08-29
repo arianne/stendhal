@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2003 - 2011 Stendhal                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,15 +30,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -81,9 +78,6 @@ public class OutfitDialog extends JDialog {
 	private int bodiesIndex;
 
 	private int clothesIndex;
-
-	// to handle the draws update
-	private final Timer timer;
 
 	// 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT
 	private int direction = 2;
@@ -164,10 +158,6 @@ public class OutfitDialog extends JDialog {
 		// Plus 1 to add the sprite_empty.png that is always at 0
 		clothes = new Sprite[total_clothes];
 
-		// updates the draws every 2500 milliseconds
-		timer = new Timer();
-		timer.schedule(new AnimationTask(), 1000, 2500);
-
 		// analyse current outfit
 		bodiesIndex = outfit % 100;
 		outfit = outfit / 100;
@@ -190,153 +180,17 @@ public class OutfitDialog extends JDialog {
 		if (clothesIndex >= clothes.length) {
 			clothesIndex = 0;
 		}
+		updateHairImage();
+		updateHeadImage();
+		updateBodyImage();
+		updateDressImage();
+		updateWholeOutfit();
 		WindowUtils.closeOnEscape(this);
 	}
 
-	/**
-	 * Cleans the previous draw.
-	 *
-	 * @param g
-	 *            the Graphics where to clean
-	 */
-	private void clean(final Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect(2, 2, PLAYER_WIDTH, PLAYER_HEIGHT);
-	}
-
-	/**
-	 * Redraws the hair image from an outfit code.
-	 *
-	 * @param code
-	 *            The index code.
-	 * @param g
-	 *            The graphics context.
-	 */
-	private void redrawHair(final int code, final Graphics g) {
-		clean(g);
-		drawHair(code, g);
-	}
-
-	/**
-	 * Draws a hair images from an outfit code.
-	 * @param code
-	 * @param g
-	 */
-	private void drawHair(final int code, final Graphics g) {
-		final Sprite sprite = store.getTile(ostore.getHairSprite(code), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
-
-		sprite.draw(g, 2, 2);
-	}
-
-	/**
-	 * Redraws the head image from an outfit code.
-	 *
-	 * @param code
-	 *            The index code.
-	 * @param g
-	 *            The graphics context.
-	 */
-	private void redrawHead(final int code, final Graphics g) {
-		clean(g);
-		drawHead(code, g);
-	}
-
-	/**
-	 * Draws a head from the outfit code.
-	 * @param code
-	 * @param g
-	 */
-	private void drawHead(final int code, final Graphics g) {
-		final Sprite sprite = store.getTile(ostore.getHeadSprite(code), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
-
-		sprite.draw(g, 2, 2);
-	}
-
-	/**
-	 * Redraws the hair image from an outfit code.
-	 *
-	 * @param code
-	 *            The index code.
-	 * @param g
-	 *            The graphics context.
-	 */
-	private void redrawDress(final int code, final Graphics g) {
-		clean(g);
-		drawDress(code, g);
-	}
-
-	/**
-	 * Draws a dress from the outfit code.
-	 * @param code
-	 * @param g
-	 */
-	private void drawDress(final int code, final Graphics g) {
-		final Sprite sprite = store.getTile(ostore.getDressSprite(code),
-				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
-				PLAYER_HEIGHT);
-
-		sprite.draw(g, 2, 2);
-	}
-
-	/**
-	 * Redraws the hair image from an outfit code.
-	 *
-	 * @param code
-	 *            The index code.
-	 * @param g
-	 *            The graphics context.
-	 */
-	private void redrawBase(final int code, final Graphics g) {
-		clean(g);
-		drawBase(code, g);
-	}
-
-	/**
-	 * Draws a base from an outfit code.
-	 * @param code
-	 * @param g
-	 */
-	private void drawBase(final int code, final Graphics g) {
-		final Sprite sprite = store.getTile(ostore.getBaseSprite(code), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
-
-		sprite.draw(g, 2, 2);
-	}
-
-	/**
-	 * Redraw the final player.
-	 *
-	 * @param g
-	 *            The graphics context.
-	 */
-	private void redrawFinalPlayer(final Graphics g) {
-		clean(g);
-		drawFinalPlayer(g);
-	}
-
-	/**
-	 * Draws final player.
-	 * @param g
-	 */
-	private void drawFinalPlayer(final Graphics g) {
-		drawBase(bodiesIndex, g);
-		drawDress(clothesIndex, g);
-		drawHead(headsIndex, g);
-		drawHair(hairsIndex, g);
-	}
-
 	private void initComponents() {
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(final WindowEvent evt) {
-				formWindowClosing(evt);
-			}
-		});
 
 		JComponent content = (JComponent) getContentPane();
 		content.setLayout(null);
@@ -444,7 +298,6 @@ public class OutfitDialog extends JDialog {
 		jlblHairs = new JLabel();
 		jlblHairs.setFont(new Font("Dialog", 0, 10));
 		jlblHairs.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblHairs.setText("loading...");
 		jlblHairs.setOpaque(true);
 		content.add(jlblHairs);
 		jlblHairs.setBounds(60, 10, 52, 68);
@@ -452,7 +305,6 @@ public class OutfitDialog extends JDialog {
 		jlblHeads = new JLabel();
 		jlblHeads.setFont(new Font("Dialog", 0, 10));
 		jlblHeads.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblHeads.setText("loading...");
 		jlblHeads.setOpaque(true);
 		content.add(jlblHeads);
 		jlblHeads.setBounds(60, 90, 52, 68);
@@ -460,7 +312,6 @@ public class OutfitDialog extends JDialog {
 		jlblBodies = new JLabel();
 		jlblBodies.setFont(new Font("Dialog", 0, 10));
 		jlblBodies.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblBodies.setText("loading...");
 		jlblBodies.setOpaque(true);
 		content.add(jlblBodies);
 		jlblBodies.setBounds(60, 170, 52, 68);
@@ -468,7 +319,6 @@ public class OutfitDialog extends JDialog {
 		jlblClothes = new JLabel();
 		jlblClothes.setFont(new Font("Dialog", 0, 10));
 		jlblClothes.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblClothes.setText("loading...");
 		jlblClothes.setOpaque(true);
 		content.add(jlblClothes);
 		jlblClothes.setBounds(60, 250, 52, 68);
@@ -476,7 +326,6 @@ public class OutfitDialog extends JDialog {
 		jlblFinalResult = new JLabel();
 		jlblFinalResult.setFont(new Font("Dialog", 0, 10));
 		jlblFinalResult.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblFinalResult.setText("loading...");
 		jlblFinalResult.setOpaque(true);
 		content.add(jlblFinalResult);
 		jlblFinalResult.setBounds(205, 90, 52, 68);
@@ -508,18 +357,107 @@ public class OutfitDialog extends JDialog {
 	private void jsliderDirectionStateChanged(final ChangeEvent evt) {
 		direction = jsliderDirection.getValue();
 
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
-		redrawHair(hairsIndex, jlblHairs.getGraphics());
-		redrawHead(headsIndex, jlblHeads.getGraphics());
-		redrawBase(bodiesIndex, jlblBodies.getGraphics());
-		redrawDress(clothesIndex, jlblClothes.getGraphics());
+		updateWholeOutfit();
+		updateHairImage();
+		updateHeadImage();
+		updateBodyImage();
+		updateDressImage();
 	}
+	
+	/**
+	 * Get the hair sprite.
+	 * 
+	 * @return hair sprite
+	 */
+	private Sprite getHairSprite() {
+		return store.getTile(ostore.getHairSprite(hairsIndex), PLAYER_WIDTH,
+				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Get the head sprite.
+	 * 
+	 * @return head sprite
+	 */
+	private Sprite getHeadSprite() {
+		return store.getTile(ostore.getHeadSprite(headsIndex), PLAYER_WIDTH,
+				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Get the body sprite.
+	 * 
+	 * @return body sprite
+	 */
+	private Sprite getBodySprite() {
+		return store.getTile(ostore.getBaseSprite(bodiesIndex), PLAYER_WIDTH,
+				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Get the dress sprite.
+	 * 
+	 * @return dress sprite
+	 */
+	private Sprite getDressSprite() {
+		return store.getTile(ostore.getDressSprite(clothesIndex), PLAYER_WIDTH,
+				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Update the hair image.
+	 */
+	private void updateHairImage() {
+		updateLabel(jlblHairs, getHairSprite());
+	}
+	
+	/**
+	 * Update the head image.
+	 */
+	private void updateHeadImage() {
+		updateLabel(jlblHeads, getHeadSprite());
+	}
+	
+	/**
+	 * Update the base image.
+	 */
+	private void updateBodyImage() {
+		updateLabel(jlblBodies, getBodySprite());
+	}
+	
+	/**
+	 * Update the base image.
+	 */
+	private void updateDressImage() {
+		updateLabel(jlblClothes, getDressSprite());
+	}
+	
 
-	/** when user closes this window.
-	 * @param evt */
-	private void formWindowClosing(final WindowEvent evt) {
-		timer.cancel();
-		this.dispose();
+	/**
+	 * Updates the final outfit image.
+	 */
+	private void updateWholeOutfit() {
+		updateLabel(jlblFinalResult, getBodySprite(), getDressSprite(),
+				getHeadSprite(), getHairSprite());
+	}
+	
+	/**
+	 * Update the image of a label using a set of sprites.
+	 * 
+	 * @param label label to be updated
+	 * @param sprites
+	 */
+	private void updateLabel(JLabel label, Sprite ... sprites) {
+		BufferedImage img = label.getGraphicsConfiguration().createCompatibleImage(PLAYER_WIDTH, PLAYER_HEIGHT);
+		Graphics g = img.getGraphics();
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
+		for (Sprite sprite : sprites) {
+			sprite.draw(g, 0, 0);
+		}
+		g.dispose();
+		ImageIcon icon = new ImageIcon(img);
+		label.setIcon(icon);
 	}
 
 	/** Clothes Right button.
@@ -531,8 +469,8 @@ public class OutfitDialog extends JDialog {
 			clothesIndex = 0;
 		}
 
-		redrawDress(clothesIndex, jlblClothes.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateDressImage();
+		updateWholeOutfit();
 	}
 
 	/** Clothes Left button.
@@ -544,8 +482,8 @@ public class OutfitDialog extends JDialog {
 			clothesIndex = clothes.length - 1;
 		}
 
-		redrawDress(clothesIndex, jlblClothes.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateDressImage();
+		updateWholeOutfit();
 	}
 
 	/** Bodies Right button.
@@ -557,8 +495,8 @@ public class OutfitDialog extends JDialog {
 			bodiesIndex = 0;
 		}
 
-		redrawBase(bodiesIndex, jlblBodies.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateBodyImage();
+		updateWholeOutfit();
 	}
 
 	/** Bodies Left button.
@@ -570,8 +508,8 @@ public class OutfitDialog extends JDialog {
 			bodiesIndex = bodies.length - 1;
 		}
 
-		redrawBase(bodiesIndex, jlblBodies.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateBodyImage();
+		updateWholeOutfit();
 	}
 
 	/** Heads Right button.
@@ -583,8 +521,8 @@ public class OutfitDialog extends JDialog {
 			headsIndex = 0;
 		}
 
-		redrawHead(headsIndex, jlblHeads.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateHeadImage();
+		updateWholeOutfit();
 	}
 
 	/** Heads Left button.
@@ -596,8 +534,8 @@ public class OutfitDialog extends JDialog {
 			headsIndex = heads.length - 1;
 		}
 
-		redrawHead(headsIndex, jlblHeads.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateHeadImage();
+		updateWholeOutfit();
 	} 
 
 	/** Hairs Right button.
@@ -609,8 +547,8 @@ public class OutfitDialog extends JDialog {
 			hairsIndex = 0;
 		}
 
-		redrawHair(hairsIndex, jlblHairs.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateHairImage();
+		updateWholeOutfit();
 	} 
 
 	/** Hairs Left button.
@@ -622,8 +560,8 @@ public class OutfitDialog extends JDialog {
 			hairsIndex = hairs.length - 1;
 		}
 
-		redrawHair(hairsIndex, jlblHairs.getGraphics());
-		redrawFinalPlayer(jlblFinalResult.getGraphics());
+		updateHairImage();
+		updateWholeOutfit();
 	}
 
 	/** Button OK action.
@@ -631,7 +569,6 @@ public class OutfitDialog extends JDialog {
 	private void jbtOKActionPerformed(final ActionEvent evt) { 
 		sendAction();
 
-		timer.cancel();
 		this.dispose();
 	} 
 
@@ -651,26 +588,6 @@ public class OutfitDialog extends JDialog {
 		client.send(rpaction);
 	}
 
-
-
-	/**
-	 * Private class that handles the update (repaint) of jLabels.
-	 */
-	private class AnimationTask extends TimerTask {
-
-		@Override
-		public void run() {
-			// draws single parts
-			redrawHair(hairsIndex, jlblHairs.getGraphics());
-			redrawHead(headsIndex, jlblHeads.getGraphics());
-			redrawBase(bodiesIndex, jlblBodies.getGraphics());
-			redrawDress(clothesIndex, jlblClothes.getGraphics());
-
-			redrawFinalPlayer(jlblFinalResult.getGraphics());
-		}
-	}
-
-
 	private void generateAllOutfits(final String baseDir) {
 		/** TEST METHOD: DON'T NO USE */
 		for (bodiesIndex = 0; bodiesIndex < bodies.length; bodiesIndex++) {
@@ -688,7 +605,12 @@ public class OutfitDialog extends JDialog {
 							System.out.println("Creating " + name + ".png");
 							final Image image = new BufferedImage(PLAYER_WIDTH,
 									PLAYER_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-							drawFinalPlayer(getGraphics());
+							Graphics g = image.getGraphics();
+							getBodySprite().draw(g, 0, 0);
+							getDressSprite().draw(g, 0, 0);
+							getHeadSprite().draw(g, 0, 0);
+							getHairSprite().draw(g, 0, 0);
+							g.dispose();
 							try {
 								ImageIO.write((RenderedImage) image, "png",
 										file);
