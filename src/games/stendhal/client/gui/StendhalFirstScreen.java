@@ -31,6 +31,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -56,6 +57,7 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("serial")
 public class StendhalFirstScreen extends JFrame {
 	private static final long serialVersionUID = -7825572598938892220L;
+	private static final Logger logger = Logger.getLogger(StendhalFirstScreen.class);
 	private static final int BUTTON_WIDTH = 160;
 	private static final int BUTTON_HEIGHT = 32;
 	
@@ -77,7 +79,6 @@ public class StendhalFirstScreen extends JFrame {
 	
 	// load an atmospheric font for the text
 	static {
-		Logger logger = Logger.getLogger(StendhalFirstScreen.class);
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		// Don't needlessly load the font if user already has it installed
 		boolean needsLoading = true;
@@ -108,6 +109,7 @@ public class StendhalFirstScreen extends JFrame {
 				logger.error("Error loading custom font", e);
 			}
 		}
+		initApplicationName();
 	}
 
 	/**
@@ -152,6 +154,34 @@ public class StendhalFirstScreen extends JFrame {
 			return pointer.getDevice().getDefaultConfiguration();
 		}
 		return null;
+	}
+	
+	/**
+	 * Set the application name for the windowing system.
+	 */
+	private static void initApplicationName() {
+		/*
+		 * WM_CLASS for X window managers that use it
+		 * (A workaround, see java RFE 6528430)
+		 * 
+		 * Used for example in collapsing the window list in gnome 2, and
+		 * for the application menu in gnome 3.
+		 */
+		try {
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			java.lang.reflect.Field awtAppClassNameField =
+				toolkit.getClass().getDeclaredField("awtAppClassName");
+			awtAppClassNameField.setAccessible(true);
+			awtAppClassNameField.set(toolkit, stendhal.GAME_NAME);
+		} catch (NoSuchFieldException e) {
+			logger.debug("Not setting X application name " + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			logger.debug("Not setting X application name " + e.getMessage());
+		} catch (IllegalAccessException e) {
+			logger.debug("Not setting X application name: " + e.getMessage());
+		}
+		// Setting the name for Mac probably requires using the native LAF, and
+		// we do not use it
 	}
 
 	/**
