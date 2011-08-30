@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
@@ -23,25 +24,25 @@ import games.stendhal.common.Outfits;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -58,73 +59,51 @@ public class OutfitDialog extends JDialog {
 	private static final long serialVersionUID = 4628210176721975735L;
 
 	private static final int PLAYER_WIDTH = 48;
-
 	private static final int PLAYER_HEIGHT = 64;
+	private static final int SLIDER_WIDTH = 80;
 
-	// to keep the sprites to show
-	private final Sprite[] hairs;
+	private final SelectorModel hair;
+	private final SelectorModel head;
+	private final SelectorModel body;
+	private final SelectorModel dress;
 
-	private final Sprite[] heads;
-
-	private final Sprite[] bodies;
-
-	private final Sprite[] clothes;
-
-	// current selected parts index
-	private int hairsIndex = 1;
-
-	private int headsIndex;
-
-	private int bodiesIndex;
-
-	private int clothesIndex;
-
-	// 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT
+	/** Sprite direction: 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT */
 	private int direction = 2;
 
-	private final StendhalClient client;
-
 	private final SpriteStore store = SpriteStore.get();
-
 	private final OutfitStore ostore = OutfitStore.get();
-	
-	private JButton jbtLeftBodies;
 
-	private JButton jbtLeftClothes;
+	private JButton okButton;
 
-	private JButton jbtLeftHairs;
+	/** Label containing the hair image. */
+	private OutfitLabel hairLabel;
+	/** Label containing the head image. */
+	private OutfitLabel headLabel;
+	/** Label containing the body image. */
+	private OutfitLabel bodyLabel;
+	/** Label containing the dress image. */
+	private OutfitLabel dressLabel;
+	/** Label containing the full outfit image */
+	private OutfitLabel outfitLabel;
 
-	private JButton jbtLeftHeads;
+	/** Selector for the sprite direction */
+	private JSlider directionSlider;
 
-	private JButton jbtOK;
-
-	private JButton jbtRightBodies;
-
-	private JButton jbtRightClothes;
-
-	private JButton jbtRightHairs;
-
-	private JButton jbtRightHeads;
-
-	private JLabel jlblBodies;
-
-	private JLabel jlblClothes;
-
-	private JLabel jlblFinalResult;
-
-	private JLabel jlblHairs;
-
-	private JLabel jlblHeads;
-
-	private JSlider jsliderDirection;
-
+	/**
+	 * Create a new OutfitDialog.
+	 * 
+	 * @param parent parent window
+	 * @param title title of the dialog
+	 * @param outfit number of the outfit
+	 */
 	public OutfitDialog(final Frame parent, final String title, final int outfit) {
 		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
 				Outfits.CLOTHES_OUTFITS);
 	}
 
 	/**
-	 * Creates new form SetOutfitGameDialog.
+	 * Create a new OutfitDialog.
+	 * 
 	 * @param parent
 	 *
 	 * @param title
@@ -144,47 +123,57 @@ public class OutfitDialog extends JDialog {
 			final int total_hairs, final int total_heads, final int total_bodies,
 			final int total_clothes) {
 		super(parent, false);
+		
+		hair = new SelectorModel(total_hairs);
+		head = new SelectorModel(total_heads);
+		body = new SelectorModel(total_bodies);
+		dress = new SelectorModel(total_clothes);
+		
+		// Needs to be after initializing the models
 		initComponents();
 		applyStyle();
 		setTitle(title);
-
-		client = StendhalClient.get();
-
-		// initializes the arrays
-		// Plus 1 to add the sprite_empty.png that is always at 0
-		hairs = new Sprite[total_hairs];
-		heads = new Sprite[total_heads];
-		bodies = new Sprite[total_bodies];
-		// Plus 1 to add the sprite_empty.png that is always at 0
-		clothes = new Sprite[total_clothes];
+		
+		// Follow the model changes; the whole outfit follows them all
+		hair.addListener(hairLabel);
+		hair.addListener(outfitLabel);
+		head.addListener(headLabel);
+		head.addListener(outfitLabel);
+		body.addListener(bodyLabel);
+		body.addListener(outfitLabel);
+		dress.addListener(dressLabel);
+		dress.addListener(outfitLabel);
 
 		// analyse current outfit
-		bodiesIndex = outfit % 100;
+		int bodiesIndex = outfit % 100;
 		outfit = outfit / 100;
-		clothesIndex = outfit % 100;
+		int clothesIndex = outfit % 100;
 		outfit = outfit / 100;
-		headsIndex = outfit % 100;
+		int headsIndex = outfit % 100;
 		outfit = outfit / 100;
-		hairsIndex = outfit % 100;
+		int hairsIndex = outfit % 100;
 
 		// reset special outfits
-		if (hairsIndex >= hairs.length) {
+		if (hairsIndex >= total_hairs) {
 			hairsIndex = 0;
 		}
-		if (headsIndex >= heads.length) {
+		if (headsIndex >= total_heads) {
 			headsIndex = 0;
 		}
-		if (bodiesIndex >= bodies.length) {
+		if (bodiesIndex >= total_bodies) {
 			bodiesIndex = 0;
 		}
-		if (clothesIndex >= clothes.length) {
+		if (clothesIndex >= total_clothes) {
 			clothesIndex = 0;
 		}
-		updateHairImage();
-		updateHeadImage();
-		updateBodyImage();
-		updateDressImage();
-		updateWholeOutfit();
+		
+		// Set the current outfit indices; this will update the labels as well
+		hair.setIndex(hairsIndex);
+		head.setIndex(headsIndex);
+		body.setIndex(bodiesIndex);
+		dress.setIndex(clothesIndex);
+
+		pack();
 		WindowUtils.closeOnEscape(this);
 	}
 
@@ -192,176 +181,128 @@ public class OutfitDialog extends JDialog {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
 
-		JComponent content = (JComponent) getContentPane();
-		content.setLayout(null);
-
-		jbtOK = new JButton("OK");
-		jbtOK.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtOKActionPerformed(evt);
-			}
-		});
-
-		content.add(jbtOK);
-		jbtOK.setBounds(190, 220, 80, 30);
-
+		final JComponent content = (JComponent) getContentPane();
+		final int pad = SBoxLayout.COMMON_PADDING;
+		content.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		
-		jbtLeftHairs = new JButton("<");
-		jbtLeftHairs.addActionListener(new ActionListener() {
+		content.setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL, pad));
+		final JComponent partialsColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		content.add(partialsColumn);
 
-			public void actionPerformed(final ActionEvent evt) {
-				jbtLeftHairsActionPerformed(evt);
+		// --------- outfit parts side ----------
+		
+		// Hair
+		SpriteRetriever hairRetriever = new SpriteRetriever() {
+			public Sprite getSprite() {
+				return getHairSprite();
 			}
-		});
-
-		content.add(jbtLeftHairs);
-		jbtLeftHairs.setBounds(10, 20, 45, 30);
-
-		jbtRightHairs = new JButton(">");
-		jbtRightHairs.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtRightHairsActionPerformed(evt);
+		};
+		hairLabel = new OutfitLabel(hairRetriever);
+		partialsColumn.add(createSelector(hair, hairLabel));
+		
+		// Head
+		SpriteRetriever headRetriever = new SpriteRetriever() {
+			public Sprite getSprite() {
+				return getHeadSprite();
 			}
-		});
-
-		content.add(jbtRightHairs);
-		jbtRightHairs.setBounds(120, 20, 45, 30);
-
-		jbtLeftHeads = new JButton("<");
-		jbtLeftHeads.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtLeftHeadsActionPerformed(evt);
+		};
+		headLabel = new OutfitLabel(headRetriever);
+		partialsColumn.add(createSelector(head, headLabel));
+		
+		// Body
+		SpriteRetriever bodyRetriever = new SpriteRetriever() {
+			public Sprite getSprite() {
+				return getBodySprite();
 			}
-		});
-
-		content.add(jbtLeftHeads);
-		jbtLeftHeads.setBounds(10, 100, 45, 30);
-
-		jbtRightHeads = new JButton(">");
-		jbtRightHeads.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtRightHeadsActionPerformed(evt);
+		};
+		bodyLabel = new OutfitLabel(bodyRetriever);
+		partialsColumn.add(createSelector(body, bodyLabel));
+		
+		// Dress
+		SpriteRetriever dressRetriever = new SpriteRetriever() {
+			public Sprite getSprite() {
+				return getDressSprite();
 			}
-		});
+		};
+		dressLabel = new OutfitLabel(dressRetriever);
+		partialsColumn.add(createSelector(dress, dressLabel));
+		
+		// --------- whole outfit side ----------
+		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		column.setAlignmentY(CENTER_ALIGNMENT);
+		content.add(column);
 
-		content.add(jbtRightHeads);
-		jbtRightHeads.setBounds(120, 100, 45, 30);
+		outfitLabel = new OutfitLabel(bodyRetriever, dressRetriever,
+				headRetriever, hairRetriever);
+		outfitLabel.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(outfitLabel);
 
-		jbtLeftBodies = new JButton("<");
-		jbtLeftBodies.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtLeftBodiesActionPerformed(evt);
-			}
-		});
-
-		content.add(jbtLeftBodies);
-		jbtLeftBodies.setBounds(10, 180, 45, 30);
-
-		jbtRightBodies = new JButton(">");
-		jbtRightBodies.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtRightBodiesActionPerformed(evt);
-			}
-		});
-
-		content.add(jbtRightBodies);
-		jbtRightBodies.setBounds(120, 180, 45, 30);
-
-		jbtLeftClothes = new JButton("<");
-		jbtLeftClothes.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtLeftClothesActionPerformed(evt);
-			}
-		});
-
-		content.add(jbtLeftClothes);
-		jbtLeftClothes.setBounds(10, 260, 45, 30);
-
-		jbtRightClothes = new JButton(">");
-		jbtRightClothes.addActionListener(new ActionListener() {
-
-			public void actionPerformed(final ActionEvent evt) {
-				jbtRightClothesActionPerformed(evt);
-			}
-		});
-
-		content.add(jbtRightClothes);
-		jbtRightClothes.setBounds(120, 260, 45, 30);
-
-		jlblHairs = new JLabel();
-		jlblHairs.setFont(new Font("Dialog", 0, 10));
-		jlblHairs.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblHairs.setOpaque(true);
-		content.add(jlblHairs);
-		jlblHairs.setBounds(60, 10, 52, 68);
-
-		jlblHeads = new JLabel();
-		jlblHeads.setFont(new Font("Dialog", 0, 10));
-		jlblHeads.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblHeads.setOpaque(true);
-		content.add(jlblHeads);
-		jlblHeads.setBounds(60, 90, 52, 68);
-
-		jlblBodies = new JLabel();
-		jlblBodies.setFont(new Font("Dialog", 0, 10));
-		jlblBodies.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblBodies.setOpaque(true);
-		content.add(jlblBodies);
-		jlblBodies.setBounds(60, 170, 52, 68);
-
-		jlblClothes = new JLabel();
-		jlblClothes.setFont(new Font("Dialog", 0, 10));
-		jlblClothes.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblClothes.setOpaque(true);
-		content.add(jlblClothes);
-		jlblClothes.setBounds(60, 250, 52, 68);
-
-		jlblFinalResult = new JLabel();
-		jlblFinalResult.setFont(new Font("Dialog", 0, 10));
-		jlblFinalResult.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblFinalResult.setOpaque(true);
-		content.add(jlblFinalResult);
-		jlblFinalResult.setBounds(205, 90, 52, 68);
-
-		jsliderDirection = new JSlider();
-		jsliderDirection.setMaximum(3);
-		jsliderDirection.setSnapToTicks(true);
-		jsliderDirection.setValue(2);
-		jsliderDirection.setInverted(true);
-		jsliderDirection.addChangeListener(new ChangeListener() {
-
+		directionSlider = new JSlider();
+		directionSlider.setMaximum(3);
+		directionSlider.setSnapToTicks(true);
+		directionSlider.setValue(2);
+		directionSlider.setInverted(true);
+		Dimension d = directionSlider.getPreferredSize();
+		d.width = SLIDER_WIDTH;
+		directionSlider.setPreferredSize(d);
+		directionSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(final ChangeEvent evt) {
-				jsliderDirectionStateChanged(evt);
+				sliderDirectionStateChanged(evt);
 			}
 		});
-
-		content.add(jsliderDirection);
-		jsliderDirection.setBounds(190, 170, 80, 27);
-
-		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds((screenSize.width - 288) / 2, (screenSize.height - 361) / 2,
-				288, 361);
+		column.add(directionSlider);
+		
+		okButton = new JButton("OK");
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(final ActionEvent evt) {
+				okActionPerformed(evt);
+			}
+		});
+		okButton.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(okButton);
 	}
 
+	/**
+	 * Create a selector for outfit part.
+	 * 
+	 * @param model model that the buttons should modify
+	 * @param label central image label
+	 * @return selector component
+	 */
+	private JComponent createSelector(final SelectorModel model, OutfitLabel label) {
+		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+	
+		JButton button = new JButton("<");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				model.scrollDown();
+			}
+		});
+		row.add(button);
+		row.add(label);
+		button = new JButton(">");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.scrollUp();
+			}
+		});
+		row.add(button);
+		
+		return row;
+	}
 
+	/**
+	 * this is called every time the user moves the slider.
+	 * @param evt
+	 */
+	private void sliderDirectionStateChanged(final ChangeEvent evt) {
+		direction = directionSlider.getValue();
 
-	/** this is called every time the user moves the slider.
-	 * @param evt */
-	private void jsliderDirectionStateChanged(final ChangeEvent evt) {
-		direction = jsliderDirection.getValue();
-
-		updateWholeOutfit();
-		updateHairImage();
-		updateHeadImage();
-		updateBodyImage();
-		updateDressImage();
+		outfitLabel.changed();
+		hairLabel.changed();
+		headLabel.changed();
+		bodyLabel.changed();
+		dressLabel.changed();
 	}
 	
 	/**
@@ -370,8 +311,9 @@ public class OutfitDialog extends JDialog {
 	 * @return hair sprite
 	 */
 	private Sprite getHairSprite() {
-		return store.getTile(ostore.getHairSprite(hairsIndex), PLAYER_WIDTH,
-				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+		return store.getTile(ostore.getHairSprite(hair.getIndex()),
+				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
+				PLAYER_HEIGHT);
 	}
 	
 	/**
@@ -380,7 +322,7 @@ public class OutfitDialog extends JDialog {
 	 * @return head sprite
 	 */
 	private Sprite getHeadSprite() {
-		return store.getTile(ostore.getHeadSprite(headsIndex), PLAYER_WIDTH,
+		return store.getTile(ostore.getHeadSprite(head.getIndex()), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	
@@ -390,7 +332,7 @@ public class OutfitDialog extends JDialog {
 	 * @return body sprite
 	 */
 	private Sprite getBodySprite() {
-		return store.getTile(ostore.getBaseSprite(bodiesIndex), PLAYER_WIDTH,
+		return store.getTile(ostore.getBaseSprite(body.getIndex()), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	
@@ -400,203 +342,206 @@ public class OutfitDialog extends JDialog {
 	 * @return dress sprite
 	 */
 	private Sprite getDressSprite() {
-		return store.getTile(ostore.getDressSprite(clothesIndex), PLAYER_WIDTH,
+		return store.getTile(ostore.getDressSprite(dress.getIndex()), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
-	
-	/**
-	 * Update the hair image.
-	 */
-	private void updateHairImage() {
-		updateLabel(jlblHairs, getHairSprite());
-	}
-	
-	/**
-	 * Update the head image.
-	 */
-	private void updateHeadImage() {
-		updateLabel(jlblHeads, getHeadSprite());
-	}
-	
-	/**
-	 * Update the base image.
-	 */
-	private void updateBodyImage() {
-		updateLabel(jlblBodies, getBodySprite());
-	}
-	
-	/**
-	 * Update the base image.
-	 */
-	private void updateDressImage() {
-		updateLabel(jlblClothes, getDressSprite());
-	}
-	
 
 	/**
-	 * Updates the final outfit image.
+	 * OK Button action.
+	 * @param evt
 	 */
-	private void updateWholeOutfit() {
-		updateLabel(jlblFinalResult, getBodySprite(), getDressSprite(),
-				getHeadSprite(), getHairSprite());
-	}
-	
-	/**
-	 * Update the image of a label using a set of sprites.
-	 * 
-	 * @param label label to be updated
-	 * @param sprites
-	 */
-	private void updateLabel(JLabel label, Sprite ... sprites) {
-		BufferedImage img = label.getGraphicsConfiguration().createCompatibleImage(PLAYER_WIDTH, PLAYER_HEIGHT);
-		Graphics g = img.getGraphics();
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
-		for (Sprite sprite : sprites) {
-			sprite.draw(g, 0, 0);
-		}
-		g.dispose();
-		ImageIcon icon = new ImageIcon(img);
-		label.setIcon(icon);
-	}
-
-	/** Clothes Right button.
-	 * @param evt */
-	private void jbtRightClothesActionPerformed(final ActionEvent evt) {
-		if (clothesIndex < clothes.length - 1) {
-			clothesIndex++;
-		} else {
-			clothesIndex = 0;
-		}
-
-		updateDressImage();
-		updateWholeOutfit();
-	}
-
-	/** Clothes Left button.
-	 * @param evt */
-	private void jbtLeftClothesActionPerformed(final ActionEvent evt) {
-		if (clothesIndex > 0) {
-			clothesIndex--;
-		} else {
-			clothesIndex = clothes.length - 1;
-		}
-
-		updateDressImage();
-		updateWholeOutfit();
-	}
-
-	/** Bodies Right button.
-	 * @param evt */
-	private void jbtRightBodiesActionPerformed(final ActionEvent evt) {
-		if (bodiesIndex < bodies.length - 1) {
-			bodiesIndex++;
-		} else {
-			bodiesIndex = 0;
-		}
-
-		updateBodyImage();
-		updateWholeOutfit();
-	}
-
-	/** Bodies Left button.
-	 * @param evt */
-	private void jbtLeftBodiesActionPerformed(final ActionEvent evt) { 
-		if (bodiesIndex > 0) {
-			bodiesIndex--;
-		} else {
-			bodiesIndex = bodies.length - 1;
-		}
-
-		updateBodyImage();
-		updateWholeOutfit();
-	}
-
-	/** Heads Right button.
-	 * @param evt */
-	private void jbtRightHeadsActionPerformed(final ActionEvent evt) { 
-		if (headsIndex < heads.length - 1) {
-			headsIndex++;
-		} else {
-			headsIndex = 0;
-		}
-
-		updateHeadImage();
-		updateWholeOutfit();
-	}
-
-	/** Heads Left button.
-	 * @param evt */
-	private void jbtLeftHeadsActionPerformed(final ActionEvent evt) { 
-		if (headsIndex > 0) {
-			headsIndex--;
-		} else {
-			headsIndex = heads.length - 1;
-		}
-
-		updateHeadImage();
-		updateWholeOutfit();
-	} 
-
-	/** Hairs Right button.
-	 * @param evt */
-	private void jbtRightHairsActionPerformed(final ActionEvent evt) { 
-		if (hairsIndex < hairs.length - 1) {
-			hairsIndex++;
-		} else {
-			hairsIndex = 0;
-		}
-
-		updateHairImage();
-		updateWholeOutfit();
-	} 
-
-	/** Hairs Left button.
-	 * @param evt */
-	private void jbtLeftHairsActionPerformed(final ActionEvent evt) { 
-		if (hairsIndex > 0) {
-			hairsIndex--;
-		} else {
-			hairsIndex = hairs.length - 1;
-		}
-
-		updateHairImage();
-		updateWholeOutfit();
-	}
-
-	/** Button OK action.
-	 * @param evt */
-	private void jbtOKActionPerformed(final ActionEvent evt) { 
+	private void okActionPerformed(final ActionEvent evt) {
 		sendAction();
-
 		this.dispose();
 	} 
 
+	/**
+	 * Sent the outfit change action to the server.
+	 */
 	private void sendAction() {
+		StendhalClient client = StendhalClient.get();
 		if (client == null) {
 			/** If running standalone, just print the outfit */
 			System.out.println("OUTFIT is: "
-					+ (bodiesIndex + clothesIndex * 100 + headsIndex * 100
-							* 100 + hairsIndex * 100 * 100 * 100));
+					+ (body.getIndex() + dress.getIndex() * 100 + head.getIndex() * 100
+							* 100 + hair.getIndex() * 100 * 100 * 100));
 			return;
 		}
 
 		final RPAction rpaction = new RPAction();
 		rpaction.put("type", "outfit");
-		rpaction.put("value", bodiesIndex + clothesIndex * 100 + headsIndex
-				* 100 * 100 + hairsIndex * 100 * 100 * 100);
+		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
+				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
 		client.send(rpaction);
 	}
+		
+	/**
+	 * Apply Stendhal style to all components.
+	 */
+	private void applyStyle() {
+		Style style = StyleUtil.getStyle();
+		if (style != null) {
+			// Labels (Images). Making all JLabels bordered would be undesired
+			bodyLabel.setBorder(style.getBorderDown());
+			dressLabel.setBorder(style.getBorderDown());
+			outfitLabel.setBorder(style.getBorderDown());
+			hairLabel.setBorder(style.getBorderDown());
+			headLabel.setBorder(style.getBorderDown());
+		}
+	}
+	
+	/**
+	 * An image label for outfit and outfit parts.
+	 */
+	private static class OutfitLabel extends JLabel implements IndexChangeListener {
+		SpriteRetriever[] retrievers;
+		
+		/**
+		 * Create a new OutfitLabel.
+		 * 
+		 * @param retrievers sprite sources used to update the image, when
+		 *	changed() is called
+		 */
+		OutfitLabel(SpriteRetriever ... retrievers) {
+			setOpaque(true);
+			this.retrievers = retrievers;
+		}
+		
+		public void changed() {
+			// Update image
+			BufferedImage img = getGraphicsConfiguration().createCompatibleImage(PLAYER_WIDTH, PLAYER_HEIGHT);
+			Graphics g = img.getGraphics();
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
+			for (SpriteRetriever retriever : retrievers) {
+				retriever.getSprite().draw(g, 0, 0);
+			}
+			g.dispose();
+			ImageIcon icon = new ImageIcon(img);
+			setIcon(icon);
+		}
+	}
+	
+	/**
+	 * A ranged, circular, index model.
+	 */
+	private static class SelectorModel {
+		final int n;
+		int index;
+		final List<IndexChangeListener> listeners = new ArrayList<IndexChangeListener>();
+		
+		/**
+		 * Create a new SelectorModel. Valid indices are 0 to n - 1.
+		 * 
+		 * @param n maximum value
+		 */
+		SelectorModel(int n) {
+			if (n <= 0) {
+				throw new IllegalArgumentException("Can not create a model with " + n + " elements");
+			}
+			this.n = n;
+		}
+		
+		/**
+		 * Add a new listener for value changes.
+		 * 
+		 * @param listener
+		 */
+		void addListener(IndexChangeListener listener) {
+			listeners.add(listener);
+		}
+		
+		/**
+		 * Get the number of elements. (maximum index + 1)
+		 * 
+		 * @return maximum index + 1
+		 */
+		int getN() {
+			return n;
+		}
+		
+		/**
+		 * Set index.
+		 *  
+		 * @param index
+		 */
+		void setIndex(int index) {
+			if ((index < 0) || (index >= n)) {
+				throw new IndexOutOfBoundsException();
+			}
+			this.index = index;
+			fire();
+		}
+		
+		/**
+		 * Scroll index value downwards.
+		 */
+		void scrollDown() {
+			// avoid negatives
+			index += n - 1;
+			index %= n;
+			fire();
+		}
+		
+		/**
+		 * Scroll the index value upwards.
+		 */
+		void scrollUp() {
+			index++;
+			index %= n;
+			fire();
+		}
+		
+		/**
+		 * Get the current index value.
+		 * 
+		 * @return index
+		 */
+		int getIndex() {
+			return index;
+		}
+		
+		/**
+		 * Notify listeners that the value has changed.
+		 */
+		private void fire() {
+			for (IndexChangeListener listener : listeners) {
+				listener.changed();
+			}
+		}
+	}
 
+	/**
+	 * An interface for objects that can fetch outfit part sprites.
+	 */
+	private interface SpriteRetriever {
+		/**
+		 * Get the sprite.
+		 * 
+		 * @return sprite
+		 */
+		Sprite getSprite();
+	}
+	
+	/**
+	 * Interface for listening SelectorModel changes.
+	 */
+	private interface IndexChangeListener {
+		/**
+		 * Called when the model changes.
+		 */
+		void changed();
+	}
+	
 	private void generateAllOutfits(final String baseDir) {
 		/** TEST METHOD: DON'T NO USE */
-		for (bodiesIndex = 0; bodiesIndex < bodies.length; bodiesIndex++) {
-			for (clothesIndex = 0; clothesIndex < clothes.length; clothesIndex++) {
-				for (headsIndex = 0; headsIndex < heads.length; headsIndex++) {
-					for (hairsIndex = 0; hairsIndex < hairs.length; hairsIndex++) {
-						final String name = Integer.toString(bodiesIndex
-								+ clothesIndex * 100 + headsIndex * 100 * 100
-								+ hairsIndex * 100 * 100 * 100);
+		for (body.setIndex(0); body.getIndex() < body.getN(); body.setIndex(body.getIndex() + 1)) {
+			for (dress.setIndex(0); dress.getIndex() < dress.getN(); dress.setIndex(dress.getIndex() + 1)) {
+				for (head.setIndex(0); head.getIndex() < head.getN(); head.setIndex(head.getIndex() + 1)) {
+					for (hair.setIndex(0); hair.getIndex() < hair.getN(); hair.setIndex(hair.getIndex() + 1)) {
+						final String name = Integer.toString(body.getIndex()
+								+ dress.getIndex() * 100 + head.getIndex() * 100 * 100
+								+ hair.getIndex() * 100 * 100 * 100);
 						final File file = new File(baseDir + "outfits/" + name
 								+ ".png");
 
@@ -621,21 +566,6 @@ public class OutfitDialog extends JDialog {
 					}
 				}
 			}
-		}
-	}
-	
-	/**
-	 * Apply Stendhal style to all components.
-	 */
-	private void applyStyle() {
-		Style style = StyleUtil.getStyle();
-		if (style != null) {
-			// Labels (Images). Making all JLabels bordered would be undesired
-			jlblBodies.setBorder(style.getBorderDown());
-			jlblClothes.setBorder(style.getBorderDown());
-			jlblFinalResult.setBorder(style.getBorderDown());
-			jlblHairs.setBorder(style.getBorderDown());
-			jlblHeads.setBorder(style.getBorderDown());
 		}
 	}
 
