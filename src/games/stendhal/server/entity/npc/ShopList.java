@@ -484,6 +484,13 @@ public final class ShopList {
 		return sb.toString();
 	}
 
+	/**
+	 * Add an item to a shop
+	 * 
+	 * @param name the shop name
+	 * @param item the item to add
+	 * @param price the price for the item
+	 */
 	public void add(final String name, final String item, final int price) {
 		Map<String, Integer> shop;
 
