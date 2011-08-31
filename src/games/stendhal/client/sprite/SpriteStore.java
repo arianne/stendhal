@@ -14,8 +14,11 @@ package games.stendhal.client.sprite;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.sprite.TileSprite.TSRef;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -164,6 +167,71 @@ public class SpriteStore {
 			sprite = loadSprite(ref);
 			if (sprite != null) {
 				cache.add(ref, sprite);
+			}
+		}
+
+		return sprite;
+	}
+	
+	/**
+	 * Get a colored version of a sprite.
+	 * 
+	 * @param ref base sprite reference
+	 * @param colorString hexadecimal representation of the color
+	 * @return colored sprite
+	 */
+	public Sprite getColoredSprite(final String ref, final String colorString) {
+		Color color;
+		try {
+			color = new Color(Integer.parseInt(colorString, 16));
+		} catch (NumberFormatException e) {
+			logger.info("Invalid color: " + colorString);
+			return null;
+		}
+		return getColoredSprite(ref, colorString, color);
+	}
+	 
+	/**
+	 * Get a colored version of a sprite.
+	 * 
+	 * @param ref base sprite reference
+	 * @param color painting color
+	 * @return base sprite colored with color
+	 */
+	public Sprite getColoredSprite(final String ref, final Color color) {
+		return getColoredSprite(ref, Integer.toHexString(color.getRGB()), color);
+	}
+	
+	/**
+	 * Get a colored version of a sprite.
+	 * 
+	 * @param ref base sprite reference
+	 * @param colorName  hexadecimal representation of the color
+	 * @param color
+	 * @return colored sprite
+	 */
+	private Sprite getColoredSprite(final String ref, final String colorName, 
+			final Color color) {
+		final SpriteCache cache = SpriteCache.get();
+
+		String realRef = ref + "#" + colorName;
+		Sprite sprite = cache.get(realRef);
+		if (sprite == null) {
+			Sprite tmpSprite = getSprite(ref);
+			if (tmpSprite != null) {
+				int width = tmpSprite.getWidth();
+				int height = tmpSprite.getHeight();
+				BufferedImage image = gc.createCompatibleImage(width, height,
+						Transparency.BITMASK);
+				Graphics2D g = image.createGraphics();
+				tmpSprite.draw(g, 0, 0);
+				g.setColor(color);
+				g.setComposite(Blend.Color);
+				g.fillRect(0, 0, width, height);
+				g.dispose();
+				
+				sprite = new ImageSprite(image);
+				cache.add(realRef, sprite);
 			}
 		}
 
