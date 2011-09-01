@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
  * Changes the outfit for the player
  */
 public class OutfitAction implements ActionListener {
-
+	private static String COLOR_MAP = "outfit_colors";
 
 	public static void register() {
 		CommandCenter.register(OUTFIT, new OutfitAction());
@@ -41,8 +41,18 @@ public class OutfitAction implements ActionListener {
 				new GameEvent(player.getName(), OUTFIT, action.get(VALUE)).raise();
 				player.setOutfit(outfit, false);
 				// players may change hair and dress colors
-				player.put("outfit_colors", "hair", action.get("hair"));
-				player.put("outfit_colors", "dress", action.get("dress"));
+				String color = action.get("hair");
+				if (color != null) {
+					player.put(COLOR_MAP, "hair", color);
+				} else {
+					player.remove(COLOR_MAP, "hair");
+				}
+				color = action.get("dress");
+				if (color != null) {
+					player.put("outfit_colors", "dress", color);
+				} else {
+					player.remove(COLOR_MAP, "dress");
+				}
 			}
 		}
 	}
