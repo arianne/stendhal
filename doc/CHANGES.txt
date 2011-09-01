@@ -1,5 +1,23 @@
 ﻿Changelog
 ---------
+
+0.97
+
+*world*
+- Semos inhabitants decided to open the new palisade wall a bit and added a new way to the south and west
+
+*website*
+
+*client*
+
+*fixes*
+- Fixed descriptions for Ketteh Wehoh
+- Fixed quest history for MedicineForTad and mentions new place of Tad in Semos Village
+- Fixed some spaces which went into Tads dialogue
+- Blood on gates can't block these anymore
+
+
+
 0.96
 
 *world*
