@@ -302,7 +302,23 @@ public abstract class RPEntity extends ActiveEntity {
 	public int getOutfit() {
 		return outfit;
 	}
+	
+	/**
+	 * Get a color that should be for coloring an outfit part.
+	 * 
+	 * @param part the outfit part
+	 * @return color as a string, or <code>null</code> if the outfit part should
+	 * 	not use coloring
+	 */
+	public String getOutfitColor(String part) {
+		return rpObject.get("outfit_colors", part);
+	}
 
+	/**
+	 * The result of previous attack against this entity.
+	 * 
+	 * @return attack result
+	 */
 	public Resolution getResolution() {
 		return resolution;
 	}

@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 
+import games.stendhal.client.gui.OutfitColor;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
@@ -63,10 +64,11 @@ public class OutfitStore {
 	 * 
 	 * @param code
 	 *            The outfit code.
+	 * @param color coloring data
 	 * 
 	 * @return A walking state tileset.
 	 */
-	protected Sprite buildOutfit(int code) {
+	protected Sprite buildOutfit(int code, OutfitColor color) {
 		int basecode = code % 100;
 		code /= 100;
 		
@@ -91,7 +93,7 @@ public class OutfitStore {
 		final Graphics g = sprite.getGraphics();
 
 		// Dress layer
-		layer = getDressSprite(dresscode);
+		layer = getDressSprite(dresscode, color);
 		layer.draw(g, 0, 0);
 
 		// Head layer
@@ -99,11 +101,11 @@ public class OutfitStore {
 		layer.draw(g, 0, 0);
 
 		// Hair layer
-		layer = getHairSprite(haircode);
+		layer = getHairSprite(haircode, color);
 		layer.draw(g, 0, 0);
 		
 		// Item layer
-		layer = getDetailSprite(detailcode);
+		layer = getDetailSprite(detailcode, color);
 		layer.draw(g, 0, 0);
 
 		return sprite;
@@ -141,16 +143,17 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color coloring data
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getDressSprite(final int index) {
+	public Sprite getDressSprite(final int index, OutfitColor color) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
 
 		final String ref = "data/sprites/outfit/dress_" + index + ".png";
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.DRESS));
 	}
 
 	/**
@@ -169,7 +172,7 @@ public class OutfitStore {
 	 */
 	public Sprite getFailsafeOutfit() {
 		try {
-			return getOutfit(0);
+			return getOutfit(0, OutfitColor.PLAIN);
 		} catch (RuntimeException e) {
 			logger.warn("Cannot build failsafe outfit. Trying to use standard failsafe sprite.", e);
 			return store.getFailsafe();
@@ -181,20 +184,18 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color coloring data
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getHairSprite(final int index) {
+	public Sprite getHairSprite(final int index, OutfitColor color) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
 
 		final String ref = "data/sprites/outfit/hair_" + index + ".png";
-		if (!store.existsSprite(ref)) {
-			return null;
-		}
 
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.HAIR));
 	}
 
 	/**
@@ -219,44 +220,43 @@ public class OutfitStore {
 	 * 
 	 * @param index
 	 *            The resource index.
+	 * @param color coloring data
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getDetailSprite(final int index) {
+	public Sprite getDetailSprite(final int index, OutfitColor color) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
 
 		final String ref = "data/sprites/outfit/detail_" + index + ".png";
-		if (!store.existsSprite(ref)) {
-			return null;
-		}
 
-		return store.getSprite(ref);
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.HAIR));
 	}
 	
 	/**
 	 * Get an outfit sprite.
 	 * 
-	 * The outfit is described by an "outfit code". It is an 8-digit integer of
+	 * The outfit is described by an "outfit code". It is an 10-digit integer of
 	 * the form TTRRHHDDBB where where TT is the number of the detail graphics (optional)
 	 * RR is the number of the hair graphics, HH for the
 	 * head, DD for the dress, and BB for the base.
 	 * 
 	 * @param code
 	 *            The outfit code.
+	 * @param color Colors for coloring some outfit parts
 	 * 
 	 * @return An walking state tileset.
 	 */
-	public Sprite getOutfit(final int code) {
+	public Sprite getOutfit(final int code, OutfitColor color) {
 		final SpriteCache cache = SpriteCache.get();
 
-		final OutfitRef reference = new OutfitRef(code);
-
+		// Use the normalized string for the reference
+		final OutfitRef reference = new OutfitRef(code, color.toString());
 		Sprite sprite = cache.get(reference);
 
 		if (sprite == null) {
-			sprite = buildOutfit(code);
+			sprite = buildOutfit(code, color);
 			cache.add(reference, sprite);
 		}
 
@@ -273,16 +273,19 @@ public class OutfitStore {
 		/*
 		 * The outfit code.
 		 */
-		protected int code;
+		private final int code;
+		private final String colorCode;
 
 		/**
 		 * Create an outfit reference.
 		 * 
 		 * @param code
 		 *            The outfit code.
+		 * @param colorCode color adjustment string
 		 */
-		public OutfitRef(final int code) {
+		public OutfitRef(final int code, String colorCode) {
 			this.code = code;
+			this.colorCode = colorCode;
 		}
 
 		//
@@ -314,7 +317,8 @@ public class OutfitStore {
 		@Override
 		public boolean equals(final Object obj) {
 			if (obj instanceof OutfitRef) {
-				return (getCode() == ((OutfitRef) obj).getCode());
+				OutfitRef other = (OutfitRef) obj;
+				return (getCode() == other.getCode()) && colorCode.equals(other.colorCode);
 			}
 
 			return false;
@@ -327,7 +331,7 @@ public class OutfitStore {
 		 */
 		@Override
 		public int hashCode() {
-			return getCode();
+			return getCode() ^ colorCode.hashCode();
 		}
 
 		/**
@@ -337,7 +341,7 @@ public class OutfitStore {
 		 */
 		@Override
 		public String toString() {
-			return "outfit:" + getCode();
+			return "outfit:" + getCode() + " colors: " + colorCode;
 		}
 	}
 }

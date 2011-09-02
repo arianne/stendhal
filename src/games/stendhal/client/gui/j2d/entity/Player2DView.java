@@ -19,6 +19,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.OutfitColor;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -107,8 +108,10 @@ class Player2DView extends RPEntity2DView {
 		final OutfitStore store = OutfitStore.get();
 
 		try {
-			return store.getOutfit(((RPEntity) entity).getOutfit());
-		} catch (final Exception e) {
+			RPEntity rpentity = (RPEntity) entity;
+			OutfitColor color = OutfitColor.get(entity.getRPObject());
+			return store.getOutfit(rpentity.getOutfit(), color);
+		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
 		}

@@ -16,6 +16,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
@@ -29,6 +30,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -39,11 +42,14 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.WindowConstants;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -66,6 +72,12 @@ public class OutfitDialog extends JDialog {
 	private final SelectorModel head;
 	private final SelectorModel body;
 	private final SelectorModel dress;
+	
+	/**
+	 * Coloring data used to get the initial colors, and to adjust colors should
+	 * the player want those.
+	 */
+	private final OutfitColor outfitColor;
 
 	/** Sprite direction: 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT */
 	private int direction = 2;
@@ -95,10 +107,12 @@ public class OutfitDialog extends JDialog {
 	 * @param parent parent window
 	 * @param title title of the dialog
 	 * @param outfit number of the outfit
+	 * @param outfitColor coloring information
 	 */
-	public OutfitDialog(final Frame parent, final String title, final int outfit) {
-		this(parent, title, outfit, Outfits.HAIR_OUTFITS, Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,
-				Outfits.CLOTHES_OUTFITS);
+	public OutfitDialog(final Frame parent, final String title, final int outfit,
+			OutfitColor outfitColor) {
+		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
+				Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,	Outfits.CLOTHES_OUTFITS);
 	}
 
 	/**
@@ -110,6 +124,7 @@ public class OutfitDialog extends JDialog {
 	 *            a String with the title for the dialog
 	 * @param outfit
 	 *            the current outfit
+	 * @param outfitColor coloring data
 	 * @param total_hairs
 	 *            an integer with the total of sprites with hairs
 	 * @param total_heads
@@ -120,9 +135,12 @@ public class OutfitDialog extends JDialog {
 	 *            an integer with the total of sprites with clothes
 	 */
 	private OutfitDialog(final Frame parent, final String title, int outfit,
-			final int total_hairs, final int total_heads, final int total_bodies,
+			OutfitColor outfitColor, final int total_hairs,
+			final int total_heads, final int total_bodies,
 			final int total_clothes) {
 		super(parent, false);
+		
+		this.outfitColor = outfitColor;
 		
 		hair = new SelectorModel(total_hairs);
 		head = new SelectorModel(total_heads);
@@ -198,7 +216,9 @@ public class OutfitDialog extends JDialog {
 			}
 		};
 		hairLabel = new OutfitLabel(hairRetriever);
-		partialsColumn.add(createSelector(hair, hairLabel));
+		JComponent selector = createSelector(hair, hairLabel);
+		selector.add(createColorSelector(OutfitColor.HAIR, hairLabel));
+		partialsColumn.add(selector);
 		
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
@@ -225,7 +245,9 @@ public class OutfitDialog extends JDialog {
 			}
 		};
 		dressLabel = new OutfitLabel(dressRetriever);
-		partialsColumn.add(createSelector(dress, dressLabel));
+		selector = createSelector(dress, dressLabel);
+		selector.add(createColorSelector(OutfitColor.DRESS, dressLabel));
+		partialsColumn.add(selector);
 		
 		// --------- whole outfit side ----------
 		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
@@ -311,7 +333,7 @@ public class OutfitDialog extends JDialog {
 	 * @return hair sprite
 	 */
 	private Sprite getHairSprite() {
-		return store.getTile(ostore.getHairSprite(hair.getIndex()),
+		return store.getTile(ostore.getHairSprite(hair.getIndex(), outfitColor),
 				PLAYER_WIDTH, direction * PLAYER_HEIGHT, PLAYER_WIDTH,
 				PLAYER_HEIGHT);
 	}
@@ -342,8 +364,116 @@ public class OutfitDialog extends JDialog {
 	 * @return dress sprite
 	 */
 	private Sprite getDressSprite() {
-		return store.getTile(ostore.getDressSprite(dress.getIndex()), PLAYER_WIDTH,
+		return store.getTile(ostore.getDressSprite(dress.getIndex(), outfitColor), PLAYER_WIDTH,
 				direction * PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+	}
+	
+	/**
+	 * Create a color selection component for an outfit part.
+	 * 
+	 * @param key outfit part identifier
+	 * @param label outfit part display that should be kept up to date with the
+	 * 	color changes (in addition of the whole outfit display)
+	 * @return color selection component
+	 */
+	private JComponent createColorSelector(final String key, final OutfitLabel label) {
+		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		final JButton colorButton = new JButton("Color");
+		final JCheckBox enableToggle = new JCheckBox("Custom color");
+		final JColorChooser chooser = new JColorChooser();
+		
+		colorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				int pad = SBoxLayout.COMMON_PADDING;
+				
+				// prevent opening more than one dialog
+				colorButton.setEnabled(false);
+				enableToggle.setEnabled(false);
+				
+				final JDialog colorDialog = new JDialog(OutfitDialog.this, "Select " + key + " color");
+				colorDialog.setResizable(false);
+				colorDialog.getContentPane().setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
+				colorDialog.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						// allow opening again
+						colorButton.setEnabled(true);
+						enableToggle.setEnabled(true);
+						dispose();
+					}
+				});
+		
+				colorDialog.getContentPane().add(chooser);
+				chooser.setColor(outfitColor.getColor(key));
+				// Follow color changes
+				chooser.getSelectionModel().addChangeListener(new ChangeListener() {
+					public void stateChanged(ChangeEvent ev) {
+						outfitColor.setColor(key, chooser.getSelectionModel().getSelectedColor());
+						label.changed();
+						outfitLabel.changed();
+					}
+				});
+				
+				/*
+				 * JColorChooser does not understand that someone could really
+				 * want to get rid of the horrendous preview.
+				 */
+				chooser.setPreviewPanel(new JComponent(){});
+				
+				JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
+				colorDialog.getContentPane().add(buttonBox, SBoxLayout.constraint(SLayout.EXPAND_X));
+				buttonBox.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
+				SBoxLayout.addSpring(buttonBox);
+				JButton closeButton = new JButton("Close");
+				closeButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						colorDialog.dispose();
+						// allow opening again
+						colorButton.setEnabled(true);
+						enableToggle.setEnabled(true);
+					}
+				});
+				buttonBox.add(closeButton);
+				
+				// remove all but the least bad
+				for (AbstractColorChooserPanel c : chooser.getChooserPanels()) {
+					if (!"HSB".equals(c.getDisplayName())) {
+						chooser.removeChooserPanel(c);
+					}
+				}
+				
+				colorDialog.pack();
+				WindowUtils.closeOnEscape(colorDialog);
+				colorDialog.setVisible(true);
+			}
+		});
+		
+		enableToggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (enableToggle.isSelected()) {
+					colorButton.setEnabled(true);
+					// restore previously selected color, if any
+					outfitColor.setColor(key, chooser.getColor());
+					label.changed();
+					outfitLabel.changed();
+				} else {
+					colorButton.setEnabled(false);
+					// use default coloring
+					outfitColor.setColor(key, null);
+					label.changed();
+					outfitLabel.changed();
+				}
+			}
+		});
+		
+		container.add(enableToggle);
+		container.add(colorButton);
+		// get the current state
+		boolean colored = outfitColor.getColor(key) != null;
+		enableToggle.setSelected(colored);
+		colorButton.setEnabled(colored);
+		
+		return container;
 	}
 
 	/**
@@ -372,6 +502,14 @@ public class OutfitDialog extends JDialog {
 		rpaction.put("type", "outfit");
 		rpaction.put("value", body.getIndex() + dress.getIndex() * 100 + head.getIndex()
 				* 100 * 100 + hair.getIndex() * 100 * 100 * 100);
+		Color color = outfitColor.getColor("hair");
+		if (color != null) {
+			rpaction.put(OutfitColor.HAIR, color.getRGB());
+		}
+		color = outfitColor.getColor(OutfitColor.DRESS);
+		if (color != null) {
+			rpaction.put(OutfitColor.DRESS, color.getRGB());
+		}
 		client.send(rpaction);
 	}
 		
@@ -394,7 +532,7 @@ public class OutfitDialog extends JDialog {
 	 * An image label for outfit and outfit parts.
 	 */
 	private static class OutfitLabel extends JLabel implements IndexChangeListener {
-		SpriteRetriever[] retrievers;
+		final SpriteRetriever[] retrievers;
 		
 		/**
 		 * Create a new OutfitLabel.
@@ -575,7 +713,8 @@ public class OutfitDialog extends JDialog {
 			baseDir = args[0] + "/";
 		}
 
-		final OutfitDialog f = new OutfitDialog(null, "Stendhal - Choose outfit", 0);
+		final OutfitDialog f = new OutfitDialog(null, "Stendhal - Choose outfit",
+				0, OutfitColor.PLAIN);
 		// show is required now, because getGraphics() returns null otherwise
 		f.setVisible(true);
 		f.generateAllOutfits(baseDir);

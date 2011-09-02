@@ -29,7 +29,8 @@ public class Blend implements Composite {
 	 * Possible blending modes.
 	 */
 	public enum Mode {
-		COLOR;
+		COLOR,
+		MULTIPLY
 	}
 
 	// ARGB format
@@ -53,6 +54,8 @@ public class Blend implements Composite {
 
 	/** A blending mode that colors the underlying image with the above one. */
 	public static final Blend Color = new Blend(Mode.COLOR);
+	/** A blending mode that multiplies the underlying image with the above one. */
+	public static final Blend Multiply = new Blend(Mode.MULTIPLY);
 
 	/** Blending mode */
 	private final Mode mode;
@@ -69,29 +72,38 @@ public class Blend implements Composite {
 	public CompositeContext createContext(ColorModel srcColorModel,
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
-		switch (mode) {
-		case COLOR:
-			return new ColorBlendContext(srcColorModel, dstColorModel);
-		}
-		return null;
+		return new BlendContext(mode, srcColorModel, dstColorModel);
 	}
 
 	/**
-	 * Color blending mode. Similar to the gimp "color" layer mode.
+	 * Blending mode contexts.
 	 */
-	private static class ColorBlendContext implements CompositeContext {
-		final boolean alpha;
+	private static class BlendContext implements CompositeContext {
+		final boolean hasAlpha;
+		final int maxAlpha;
+		final Composer composer;
 
 		/**
 		 * Create a new ColorBlendContext. The result is treated as a bitmask
 		 * transparency image, if either of the images does not have alpha.
 		 * 
+		 * @param mode blending mode
 		 * @param srcColorModel
 		 * @param dstColorModel
 		 */
-		ColorBlendContext(ColorModel srcColorModel, ColorModel dstColorModel) {
-			alpha = (srcColorModel.getTransparency() == Transparency.TRANSLUCENT) 
+		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel) {
+			hasAlpha = (srcColorModel.getTransparency() == Transparency.TRANSLUCENT)
 			&& (dstColorModel.getTransparency() == Transparency.TRANSLUCENT);
+			maxAlpha = srcColorModel.getAlpha(0xffffffff);
+			
+			switch (mode) {
+			case COLOR: composer = new ColorComposer();
+			break;
+			case MULTIPLY: composer = new MultiplyComposer();
+			break;
+			// Can not really happen, but the compiler is too dumb to know that
+			default: composer = null;
+			}
 		}
 
 		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
@@ -103,11 +115,6 @@ public class Blend implements Composite {
 			int[] srcData = new int[width];
 			int[] dstData = new int[width];
 
-			float[] srcHsl = new float[3];
-			float[] dstHsl = new float[3];
-			int[] result = new int[4];
-			float[] hslResult = new float[3];
-
 			for (int y = 0; y < height; y++) {
 				src.getDataElements(0, y, width, 1, srcData);
 				dstIn.getDataElements(0, y, width, 1, dstData);
@@ -115,32 +122,91 @@ public class Blend implements Composite {
 				for (int x = 0; x < width; x++) {
 					splitRgb(srcData[x], srcPixel);
 					splitRgb(dstData[x], dstPixel);
-					rgb2hsl(srcPixel, srcHsl);
-					rgb2hsl(dstPixel, dstHsl);
-
-					// not all components are needed, so this could be optimized a
-					// bit
-					hslResult[0] = srcHsl[0];
-					hslResult[1] = srcHsl[1];
-					hslResult[2] = dstHsl[2];
-
-
-					hsl2rgb(hslResult, result);
-					if (alpha) {
-						result[ALPHA] = Math.min(255, srcPixel[ALPHA] + dstPixel[ALPHA]);
-					} else {
-						result[ALPHA] = dstPixel[ALPHA];
-					}
-					dstData[x] = mergeRgb(result);
+					dstData[x] = composer.compose(srcPixel, dstPixel);
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
 		}
 
+		// I presume this is meant to release native resources. The
+		// documentation says nothing useful.
 		public void dispose() {
 		}
-	}
+		
+		/**
+		 * Composer for COLOR blending mode.
+		 */
+		private class ColorComposer implements Composer {
+			/**
+			 * Blend 2 pixels, taking the color from upper, and lightness from
+			 * the lower pixel.
+			 * 
+			 * @param srcPixel upper pixel color data
+			 * @param dstPixel lower pixel color data
+			 * @return blended pixel
+			 */
+			public int compose(int[] srcPixel, int[] dstPixel) {
+				// jvm should be smart enough to allocate these on the stack
+				float[] srcHsl = new float[3];
+				float[] dstHsl = new float[3];
+				int[] result = new int[4];
+				float[] hslResult = new float[3];
 
+				rgb2hsl(srcPixel, srcHsl);
+				rgb2hsl(dstPixel, dstHsl);
+
+				// not all components are needed, so this could be optimized a
+				// bit
+				hslResult[0] = srcHsl[0];
+				hslResult[1] = srcHsl[1];
+				hslResult[2] = dstHsl[2];
+				hsl2rgb(hslResult, result);
+				if (hasAlpha) {
+					result[ALPHA] = Math.min(255, srcPixel[ALPHA] + dstPixel[ALPHA]);
+				} else {
+					result[ALPHA] = dstPixel[ALPHA];
+				}
+				return mergeRgb(result);
+			}
+		}
+		
+		/**
+		 * A composer for MULTIPLY blending mode.
+		 */
+		private class MultiplyComposer implements Composer {
+			/**
+			 * Blend 2 pixels by multiplying their values together.
+			 * 
+			 * @param srcPixel upper pixel color data
+			 * @param dstPixel lower pixel color data
+			 * @return blended pixel
+			 */
+			public int compose(int[] srcPixel, int[] dstPixel) {
+				int[] result = new int[4];
+				result[ALPHA] = dstPixel[ALPHA] * srcPixel[ALPHA] / maxAlpha;
+				result[RED] = dstPixel[RED] * srcPixel[RED] / 255;
+				result[GREEN] = dstPixel[GREEN] * srcPixel[GREEN] / 255;
+				result[BLUE] = dstPixel[BLUE] * srcPixel[BLUE] / 255;
+
+				return mergeRgb(result);
+			}
+		}
+		
+		/**
+		 * Interface for blending 2 pixels.
+		 */
+		private interface Composer {
+			/**
+			 * Blend 2 pixels.
+			 * 
+			 * @param srcPixel upper pixel color data
+			 * @param dstPixel lower pixel color data
+			 * @return blended pixel
+			 */
+			int compose(int[] srcPixel, int[] dstPixel);
+		}
+	}
+	
 	/**
 	 * Split ARGB color to its components.
 	 * 
@@ -217,6 +283,7 @@ public class Blend implements Composite {
 				s = diff / (2 - max - min);
 			}
 
+			// hue
 			if (maxVar == RED) {
 				h = (g - b) / diff;
 			} else if (maxVar == GREEN) {
@@ -255,7 +322,6 @@ public class Blend implements Composite {
 			tmp2 = 2f * l - tmp1;
 
 			float hNorm = h / 6;
-			//float hNorm = h;
 			float rf = hue2rgb(limitHue(hNorm + 1f/3f), tmp2, tmp1);
 			float gf = hue2rgb(limitHue(hNorm), tmp2, tmp1);
 			float bf = hue2rgb(limitHue(hNorm - 1f/3f), tmp2, tmp1);

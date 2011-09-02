@@ -172,24 +172,6 @@ public class SpriteStore {
 
 		return sprite;
 	}
-	
-	/**
-	 * Get a colored version of a sprite.
-	 * 
-	 * @param ref base sprite reference
-	 * @param colorString hexadecimal representation of the color
-	 * @return colored sprite
-	 */
-	public Sprite getColoredSprite(final String ref, final String colorString) {
-		Color color;
-		try {
-			color = new Color(Integer.parseInt(colorString, 16));
-		} catch (NumberFormatException e) {
-			logger.info("Invalid color: " + colorString);
-			return null;
-		}
-		return getColoredSprite(ref, colorString, color);
-	}
 	 
 	/**
 	 * Get a colored version of a sprite.
@@ -199,7 +181,11 @@ public class SpriteStore {
 	 * @return base sprite colored with color
 	 */
 	public Sprite getColoredSprite(final String ref, final Color color) {
-		return getColoredSprite(ref, Integer.toHexString(color.getRGB()), color);
+		if (color == null) {
+			return getSprite(ref);
+		} else {
+			return getColoredSprite(ref, Integer.toHexString(color.getRGB()), color);
+		}
 	}
 	
 	/**
@@ -230,7 +216,7 @@ public class SpriteStore {
 				g.fillRect(0, 0, width, height);
 				g.dispose();
 				
-				sprite = new ImageSprite(image);
+				sprite = new ImageSprite(image, realRef);
 				cache.add(realRef, sprite);
 			}
 		}

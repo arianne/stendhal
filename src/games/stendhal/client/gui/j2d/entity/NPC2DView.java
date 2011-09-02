@@ -57,7 +57,7 @@ class NPC2DView extends RPEntity2DView {
 			final int code = ((RPEntity) entity).getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
-				return OutfitStore.get().getOutfit(code);
+				return OutfitStore.get().getOutfit(code, null);
 			} else {
 				// This NPC's outfit is read from a single file.
 				return store.getSprite(translate("npc/"

@@ -153,6 +153,8 @@ public class j2DClient implements UserInterface {
 	private User lastuser;
 
 	private boolean offline;
+	
+	OutfitDialog outfitDialog;
 
 
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
@@ -988,17 +990,24 @@ public class j2DClient implements UserInterface {
 	public void chooseOutfit() {
 		int outfit;
 
-		final RPObject player = userContext.getPlayer();
+		if (outfitDialog == null) {
+			final RPObject player = userContext.getPlayer();
 
-		if (player.has("outfit_org")) {
-			outfit = player.getInt("outfit_org");
+			if (player.has("outfit_org")) {
+				outfit = player.getInt("outfit_org");
+			} else {
+				outfit = player.getInt("outfit");
+			}
+
+			// Here we actually want to call new OutfitColor(). Modifying
+			// OutfitColor.PLAIN would be a bad thing.
+			outfitDialog = new OutfitDialog(mainFrame.getMainFrame(),
+					"Set outfit", outfit, new OutfitColor(player));
+			outfitDialog.setVisible(true);
 		} else {
-			outfit = player.getInt("outfit");
+			outfitDialog.setVisible(true);
+			outfitDialog.toFront();
 		}
-
-		// Should really keep only one instance of this around
-		final OutfitDialog dialog = new OutfitDialog(mainFrame.getMainFrame(), "Set outfit", outfit);
-		dialog.setVisible(true);
 	}
 
 	/**
