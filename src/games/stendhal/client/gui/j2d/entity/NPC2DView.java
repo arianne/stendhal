@@ -19,6 +19,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.OutfitColor;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -57,7 +58,7 @@ class NPC2DView extends RPEntity2DView {
 			final int code = ((RPEntity) entity).getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
-				return OutfitStore.get().getOutfit(code, null);
+				return OutfitStore.get().getOutfit(code, OutfitColor.PLAIN);
 			} else {
 				// This NPC's outfit is read from a single file.
 				return store.getSprite(translate("npc/"
