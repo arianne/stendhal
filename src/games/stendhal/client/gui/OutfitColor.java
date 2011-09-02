@@ -31,8 +31,8 @@ public class OutfitColor {
 	/** Identifier for detail color. */
 	public static final String DETAIL = "detail";
 	
-	public static final OutfitColor PLAIN = new OutfitColor();
 	private static final String[] parts = { DRESS, HAIR, DETAIL };
+	public static final OutfitColor PLAIN = new OutfitColor();
 
 	private Map<String, Color> map = new TreeMap<String, Color>();
 	
