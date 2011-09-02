@@ -169,6 +169,7 @@ public class TagAction implements ActionListener {
 
 			// TODO: add back in when RPEntity supports maybeDropDroppables
 			// result = target.maybeDropDroppables(sender);
+			result = "maybe would have made carrier drop the flag ...";
 			
 		} else if (effect.equals("slow") || effect.equals("slowdown")) {
 
@@ -200,7 +201,7 @@ public class TagAction implements ActionListener {
 		
 		if (result != null) {
 
-			String message = targetName + " " + result;
+			String message = player.getName() + " " + result;
 			
 			// transmit the message
 			target.sendPrivateText(message);
