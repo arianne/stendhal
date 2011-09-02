@@ -25,6 +25,7 @@ import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -274,7 +275,7 @@ public class PlayerTest {
 	 * Tests for isBadBoy.
 	 */
 	@Test
-	public void testIsBadBoy() throws Exception {
+	public void testIsBadBoy() {
 		assertFalse(player.isBadBoy());
 		assertFalse(killer.isBadBoy());
 
@@ -287,7 +288,7 @@ public class PlayerTest {
 	 * Tests for rehabilitate.
 	 */
 	@Test
-	public void testRehabilitate() throws Exception {
+	public void testRehabilitate() {
 		assertFalse(player.isBadBoy());
 		assertFalse(killer.isBadBoy());
 
@@ -304,7 +305,7 @@ public class PlayerTest {
 	 * Tests for getWidth.
 	 */
 	@Test
-	public void testgetWidth() throws Exception {
+	public void testgetWidth() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		assertThat(bob.getWidth(), is(1.0));
 		assertThat(bob.get("width"), is("1"));
@@ -445,5 +446,40 @@ public class PlayerTest {
 			}
 			armorMap.remove(type);
 		}
+	}
+	
+	/**
+	 * Test setting and restoring an outfit
+	 */
+	@Test
+	public void testSetAndRestoreOutfit() {
+		Player player = PlayerTestHelper.createPlayer("test dummy");
+		
+		// no original outfit
+		assertThat(player.returnToOriginalOutfit(), is(false));
+		
+		// plain outfit change
+		player.setOutfit(new Outfit(0xfeedbeef));
+		assertThat(player.getOutfit().getCode(), is(0xfeedbeef));
+		player.put("outfit_colors", "dress", 42);
+		assertThat(player.getInt("outfit_colors", "dress"), is(42));
+		// A temporary outfit should stash the colors
+		player.setOutfit(new Outfit(0xf00f), true);
+		assertThat(player.getOutfit().getCode(), is(0xf00f));
+		// cleared the old...
+		assertThat(player.get("outfit_colors", "dress"), is(nullValue()));
+		// ...and put it in store
+		assertThat(player.getInt("outfit_colors", "dress_orig"), is(42));
+		
+		assertThat(player.returnToOriginalOutfit(), is(true));
+		assertThat(player.getOutfit().getCode(), is(0xfeedbeef));
+		assertThat(player.getInt("outfit_colors", "dress"), is(42));
+		assertThat(player.get("outfit_colors", "dress_orig"), is(nullValue()));
+		
+		player.setOutfit(new Outfit(0xf00f), true);
+		assertThat(player.getInt("outfit_colors", "dress_orig"), is(42));
+		player.setOutfit(new Outfit());
+		// regular outfit change should not use stored colors
+		assertThat(player.get("outfit_colors", "dress"), is(nullValue()));
 	}
 }

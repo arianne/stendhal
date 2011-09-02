@@ -67,6 +67,7 @@ import org.apache.log4j.Logger;
 public class Player extends RPEntity {
 
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
+	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail", "dress", "hair" };
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
@@ -1525,7 +1526,9 @@ public class Player extends RPEntity {
 
 	/**
 	 * Makes this player wear the given outfit. If the given outfit contains
-	 * null parts, the current outfit will be kept for these parts.
+	 * null parts, the current outfit will be kept for these parts. If the
+	 * outfit change includes any colors, they should be changed <b>after</b>
+	 * calling this.
 	 *
 	 * @param outfit
 	 *            The new outfit.
@@ -1539,11 +1542,30 @@ public class Player extends RPEntity {
 		// second slot so that we can return to it later.
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
+			
+			// remember the old color selections.
+			for (String part : RECOLORABLE_OUTFIT_PARTS) {
+				String tmp = part + "_orig";
+				String color = get("outfit_colors", part);
+				if (color != null) {
+					put("outfit_colors", tmp, color);
+					remove("outfit_colors", part);
+				} else if (has("outfit_colors", tmp)) {
+					// old saved colors need to be cleared in any case
+					remove("outfit_colors", tmp);
+				}
+			}
 		}
 
 		// if the new outfit is not temporary, remove the backup
 		if (!temporary && has("outfit_org")) {
 			remove("outfit_org");
+			// clear colors
+			for (String part : RECOLORABLE_OUTFIT_PARTS) {
+				if (has("outfit_colors", part)) {
+					remove("outfit_colors", part);
+				}
+			}
 		}
 
 		// combine the old outfit with the new one, as the new one might
@@ -1572,6 +1594,20 @@ public class Player extends RPEntity {
 		if (originalOutfit != null) {
 			remove("outfit_org");
 			setOutfit(originalOutfit, false);
+
+			// restore old colors
+			for (String part : RECOLORABLE_OUTFIT_PARTS) {
+				String tmp = part + "_orig";
+				String color = get("outfit_colors", tmp);
+				if (color != null) {
+					put("outfit_colors", part, color);
+					remove("outfit_colors", tmp);
+				} else if (has("outfit_colors", part)) {
+					// clear any colors from the temporary outfit if there was
+					// no saved color
+					remove("outfit_colors", part);
+				}
+			}
 			return true;
 		}
 		return false;
@@ -2361,6 +2397,7 @@ public class Player extends RPEntity {
 	 *
 	 * @return language
 	 */
+	@Override
 	public String getLanguage() {
 		return language;
 	}
