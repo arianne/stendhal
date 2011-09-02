@@ -5,8 +5,8 @@
   <!-- capture-the-flag stuff -->
 
   <item name="flag">
-    <type class="misc" subclass="teddy" tileid="-1"/>
-    <description>You see a flag. Its soft and cuddly, and children love them.</description>
+    <type class="token" subclass="flag" tileid="-1"/>
+    <description>You see a flag.</description>
 
     <implementation class-name="games.stendhal.server.entity.item.CaptureTheFlagFlag"/>
     
@@ -26,6 +26,83 @@
       <!-- <slot name="bag"/>     -->
     </equipable>
   </item>
+
+
+  <!-- weapons experiments  -->
+  
+  <!-- TODO: need to use different subclasses, for different images -->
+  <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge --> 
+  
+  
+  <item name="fumble arrow">
+    <type class="ammunition" subclass="fumble_arrow" tileid="-1"/>
+    <description>You see a fumble arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk          value="1"/>
+      <range        value="2"/>
+      <quantity     value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight  value="0.1"/>
+    <value   value="10"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="slowdown arrow">
+    <type class="ammunition" subclass="slowdown_arrow" tileid="-1"/>
+    <description>You see a slowdown arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk          value="1"/>
+      <range        value="2"/>
+      <quantity     value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight  value="0.1"/>
+    <value   value="10"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="speedup arrow">
+    <type class="ammunition" subclass="speedup_arrow" tileid="-1"/>
+    <description>You see a speedup arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <atk          value="1"/>
+      <range        value="2"/>
+      <quantity     value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight  value="0.1"/>
+    <value   value="10"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  
+  
+
 
 
 </items>
