@@ -424,8 +424,6 @@ public class LoginDialog extends JDialog {
 			public void run() {
 				progressBar = new ProgressBar(LoginDialog.this);
 				progressBar.start();
-				// disable this screen when attempting to connect
-				setEnabled(false);
 			}
 		});
 
@@ -470,7 +468,7 @@ public class LoginDialog extends JDialog {
 					progressBar.finish();
 					// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
 					try {
-					setVisible(false);
+						setVisible(false);
 					} catch (NullPointerException npe) {
 						Logger.getLogger(LoginDialog.class).error("Error probably related to bug in JRE occured", npe);
 						me.dispose();
