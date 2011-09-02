@@ -95,10 +95,11 @@ public class StendhalRPAction {
 			final StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
-			// sheep) who are inside a protection area.
-			if (zone.isInProtectionArea(victim)) {
+			// sheep) who are inside a protection area. Also prevent attacking
+			// from such an area, in name of fairness
+			if (zone.isInProtectionArea(victim) || (zone.isInProtectionArea(player))) {
 				logger.info("REJECTED. " + victim.getName()
-						+ " is in a protection zone");
+						+ " is protected by zone");
 
 				final String name = getNiceVictimName(victim);
 
