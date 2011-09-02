@@ -2047,10 +2047,11 @@ public class Player extends RPEntity {
 
 	@Override
 	public void setLevel(int level) {
+		final int oldLevel = super.getLevel();
 		super.setLevel(level);
 
 		// reward players on level up
-		if (super.getLevel() < level) {
+		if (oldLevel < level) {
 			AchievementNotifier.get().onLevelChange(this);
 			addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
 		}
