@@ -9,13 +9,16 @@
 *website*
 
 *client*
+- Outfit parts can be coloured
+- Dialogs can be closed by pressing ESC
 
 *fixes*
 - Fixed descriptions for Ketteh Wehoh
 - Fixed quest history for MedicineForTad and mentions new place of Tad in Semos Village
 - Fixed some spaces which went into Tads dialogue
 - Blood on gates can't block these anymore
-
+- Login dialog gets re-enabled after a failed login
+- Players can not attack others from protected areas
 
 
 0.96
