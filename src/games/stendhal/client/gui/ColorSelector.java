@@ -43,7 +43,6 @@ import javax.swing.event.ChangeListener;
  * selection dialog.
  */
 class ColorSelector extends JPanel {
-	private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
 	final HSLSelectionModel model;
 	final JComponent hueSaturationSelector;
 	final JComponent lightnessSelector;
@@ -142,6 +141,8 @@ class ColorSelector extends JPanel {
 	 * Hue-Saturation part of the selector component.
 	 */
 	private static class HueSaturationSelector extends Selector {
+		private static final String HUE_SATURATION_IMAGE = "data/gui/colors.png";
+		/** background sprite */
 		Sprite hueSprite;
 
 		/**
@@ -161,7 +162,12 @@ class ColorSelector extends JPanel {
 		 */
 		private Sprite getHueSprite() {
 			if (hueSprite == null) {
-				hueSprite = SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
+				if (isEnabled()) {
+					hueSprite = SpriteStore.get().getSprite(HUE_SATURATION_IMAGE);
+				} else {
+					// Desaturated image for disabled selector
+					hueSprite = SpriteStore.get().getColoredSprite(HUE_SATURATION_IMAGE, Color.GRAY);
+				}
 			}
 
 			return hueSprite;
@@ -206,6 +212,17 @@ class ColorSelector extends JPanel {
 			float saturation = 1f - yDiff / (float) height;
 			model.setHS(hue, saturation);
 		}
+		
+		@Override
+		public void setEnabled(boolean enabled) {
+			boolean old = isEnabled();
+			super.setEnabled(enabled);
+			if (old != enabled) {
+				// Force sprite change
+				hueSprite = null;
+				repaint();
+			}
+		}
 	}
 
 	/**
@@ -240,24 +257,32 @@ class ColorSelector extends JPanel {
 			int width = getWidth() - ins.left - ins.right;
 			int height = getWidth() - ins.left - ins.right;
 
-			// calculate start and end colors
-			float[] hsl = new float[3];
-			int[] rgb = new int[4];
-			rgb[0] = 0xff; // alpha
+			Color startColor;
+			Color endColor;
+			if (isEnabled()) {
+				// calculate start and end colors
+				float[] hsl = new float[3];
+				int[] rgb = new int[4];
+				rgb[0] = 0xff; // alpha
 
-			hsl[0] = model.getHue();
-			// to compensate for the incorrect color mode (see below), we adjust
-			// the saturation a bit. This results in imaginary oversaturated
-			// colors but the color space transformations can take care of that.
-			hsl[1] = 5f * model.getSaturation();
-			// 0 would be black, and have no color
-			hsl[2] = 0.08f;
-			Blend.hsl2rgb(hsl, rgb);
-			Color startColor = new Color(Blend.mergeRgb(rgb));
-			// 1 would be white, and have no color
-			hsl[2] = 0.92f;
-			Blend.hsl2rgb(hsl, rgb);
-			Color endColor = new Color(Blend.mergeRgb(rgb));
+				hsl[0] = model.getHue();
+				// to compensate for the incorrect color mode (see below), we adjust
+				// the saturation a bit. This results in imaginary oversaturated
+				// colors but the color space transformations can take care of that.
+				hsl[1] = 5f * model.getSaturation();
+				// 0 would be black, and have no color
+				hsl[2] = 0.08f;
+				Blend.hsl2rgb(hsl, rgb);
+				startColor = new Color(Blend.mergeRgb(rgb));
+				// 1 would be white, and have no color
+				hsl[2] = 0.92f;
+				Blend.hsl2rgb(hsl, rgb);
+				endColor = new Color(Blend.mergeRgb(rgb));
+			} else {
+				// Fake a desaturated gradient.
+				startColor = Color.BLACK;
+				endColor = Color.WHITE;
+			}
 			/*
 			 * A gradient paint is a bit fake, as it won't use the same color
 			 * model for the shift as we actually do. However, that should not 
@@ -292,6 +317,15 @@ class ColorSelector extends JPanel {
 			 */
 			lightness = Math.max(0.01f, Math.min(0.99f, lightness));
 			model.setL(lightness);
+		}
+		
+		@Override
+		public void setEnabled(boolean enabled) {
+			boolean old = isEnabled();
+			super.setEnabled(enabled);
+			if (old != enabled) {
+				repaint();
+			}
 		}
 	}
 
