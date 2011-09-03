@@ -30,6 +30,7 @@ public class Blend implements Composite {
 	 */
 	public enum Mode {
 		COLOR,
+		TRUE_COLOR,
 		MULTIPLY
 	}
 
@@ -52,8 +53,18 @@ public class Blend implements Composite {
 	/** Amount to need shifting to access blue at an integer */
 	private static final int SHIFT_BLUE = (24 - BLUE * 8);
 
-	/** A blending mode that colors the underlying image with the above one. */
+	/**
+	 * A blending mode that colors the destination image with the source color.
+	 */
 	public static final Blend Color = new Blend(Mode.COLOR);
+	// This is a pretty non-standard blend mode, and as far as I know, it has no
+	// common name (if it is even implemented by anyone else)
+	/**
+	 * A blending mode that colors the destination image with the source color.
+	 * Also adjusts the middle lightness values up or down, depending on the
+	 * lightness of the source image.
+	 */
+	public static final Blend TrueColor = new Blend(Mode.TRUE_COLOR);
 	/** A blending mode that multiplies the underlying image with the above one. */
 	public static final Blend Multiply = new Blend(Mode.MULTIPLY);
 
@@ -100,6 +111,8 @@ public class Blend implements Composite {
 			case COLOR: composer = new ColorComposer();
 			break;
 			case MULTIPLY: composer = new MultiplyComposer();
+			break;
+			case TRUE_COLOR: composer = new TrueColorComposer();
 			break;
 			// Can not really happen, but the compiler is too dumb to know that
 			default: composer = null;
@@ -171,6 +184,48 @@ public class Blend implements Composite {
 		}
 		
 		/**
+		 * Composer for the special Stendhal color blend.
+		 */
+		private class TrueColorComposer implements Composer {
+			/**
+			 * Blend 2 pixels, taking the color from upper, and lightness from
+			 * the lower pixel.
+			 * 
+			 * @param srcPixel upper pixel color data
+			 * @param dstPixel lower pixel color data
+			 * @return blended pixel
+			 */
+			public int compose(int[] srcPixel, int[] dstPixel) {
+				// jvm should be smart enough to allocate these on the stack
+				float[] srcHsl = new float[3];
+				float[] dstHsl = new float[3];
+				int[] result = new int[4];
+				float[] hslResult = new float[3];
+
+				rgb2hsl(srcPixel, srcHsl);
+				rgb2hsl(dstPixel, dstHsl);
+
+				// Adjust the brightness
+				float adj = srcHsl[2] - 0.5f; // [-0.5, 0.5]
+				float tmp = dstHsl[2] - 0.5f; // [-0.5, 0.5]
+				// tweaks the middle lights either upward or downward, depending
+				// on if source lightness is high or low
+				float l = dstHsl[2] - 2.0f * adj * ((tmp * tmp) - 0.25f);
+				hslResult[0] = srcHsl[0];
+				hslResult[1] = srcHsl[1];
+				hslResult[2] = l;
+				hsl2rgb(hslResult, result);
+				if (hasAlpha) {
+					result[ALPHA] = Math.min(255, srcPixel[ALPHA] + dstPixel[ALPHA]);
+				} else {
+					result[ALPHA] = dstPixel[ALPHA];
+				}
+				return mergeRgb(result);
+			}
+		}
+
+		
+		/**
 		 * A composer for MULTIPLY blending mode.
 		 */
 		private class MultiplyComposer implements Composer {
@@ -237,6 +292,7 @@ public class Blend implements Composite {
 
 	/**
 	 * Transform ARGB color vector to HSL space. Transparency is dropped.
+	 * Returned lightness is scaled to [0,1], like the other components.
 	 *  
 	 * @param rgb
 	 * @param hsl
@@ -299,7 +355,8 @@ public class Blend implements Composite {
 
 	/**
 	 * Transform HSL color vector to ARGB space. Alpha is kept at 0 for
-	 * everything.
+	 * everything. Lightness should be scaled to [0,1], like the other
+	 * components.
 	 * 
 	 * @param hsl
 	 * @param rgb
@@ -326,9 +383,9 @@ public class Blend implements Composite {
 			float gf = hue2rgb(limitHue(hNorm), tmp2, tmp1);
 			float bf = hue2rgb(limitHue(hNorm - 1f/3f), tmp2, tmp1);
 
-			r = (int) (255 * rf);
-			g = (int) (255 * gf);
-			b = (int) (255 * bf);
+			r = Math.min(255, Math.max(0, (int) (255 * rf)));
+			g = Math.min(255, Math.max(0, (int) (255 * gf)));
+			b = Math.min(255, Math.max(0, (int) (255 * bf)));
 		}
 
 		rgb[RED] = r;
