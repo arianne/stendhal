@@ -145,7 +145,7 @@ public class Blend implements Composite {
 		/**
 		 * Composer for COLOR blending mode.
 		 */
-		private class ColorComposer implements Composer {
+		private static class ColorComposer implements Composer {
 			/**
 			 * Blend 2 pixels, taking the color from upper, and lightness from
 			 * the lower pixel.
@@ -179,7 +179,7 @@ public class Blend implements Composite {
 		/**
 		 * Composer for the special Stendhal color blend.
 		 */
-		private class TrueColorComposer implements Composer {
+		private static class TrueColorComposer implements Composer {
 			/**
 			 * Blend 2 pixels, taking the color from upper, and lightness from
 			 * the lower pixel.
@@ -258,7 +258,7 @@ public class Blend implements Composite {
 	 * @param rgb
 	 * @param result
 	 */
-	private static void splitRgb(int rgb, int[] result) {
+	public static void splitRgb(int rgb, int[] result) {
 		result[ALPHA] = (rgb >> SHIFT_ALPHA) & 0xff;
 		result[RED] = (rgb >> SHIFT_RED) & 0xff;
 		result[GREEN] = (rgb >> SHIFT_GREEN) & 0xff;
@@ -287,7 +287,7 @@ public class Blend implements Composite {
 	 * @param rgb
 	 * @param hsl
 	 */
-	private static void rgb2hsl(int[] rgb, float[] hsl) {
+	public static void rgb2hsl(int[] rgb, float[] hsl) {
 		float h, s, l;
 		int maxVar;
 
