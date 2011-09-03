@@ -16,7 +16,6 @@ import games.stendhal.common.math.Algebra;
 import java.awt.Composite;
 import java.awt.CompositeContext;
 import java.awt.RenderingHints;
-import java.awt.Transparency;
 import java.awt.image.ColorModel;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
@@ -90,7 +89,6 @@ public class Blend implements Composite {
 	 * Blending mode contexts.
 	 */
 	private static class BlendContext implements CompositeContext {
-		final boolean hasAlpha;
 		final int maxAlpha;
 		final Composer composer;
 
@@ -103,8 +101,6 @@ public class Blend implements Composite {
 		 * @param dstColorModel
 		 */
 		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel) {
-			hasAlpha = (srcColorModel.getTransparency() == Transparency.TRANSLUCENT)
-			&& (dstColorModel.getTransparency() == Transparency.TRANSLUCENT);
 			maxAlpha = srcColorModel.getAlpha(0xffffffff);
 			
 			switch (mode) {
@@ -174,11 +170,8 @@ public class Blend implements Composite {
 				hslResult[1] = srcHsl[1];
 				hslResult[2] = dstHsl[2];
 				hsl2rgb(hslResult, result);
-				if (hasAlpha) {
-					result[ALPHA] = Math.min(255, srcPixel[ALPHA] + dstPixel[ALPHA]);
-				} else {
-					result[ALPHA] = dstPixel[ALPHA];
-				}
+				result[ALPHA] = dstPixel[ALPHA];
+				
 				return mergeRgb(result);
 			}
 		}
@@ -215,11 +208,8 @@ public class Blend implements Composite {
 				hslResult[1] = srcHsl[1];
 				hslResult[2] = l;
 				hsl2rgb(hslResult, result);
-				if (hasAlpha) {
-					result[ALPHA] = Math.min(255, srcPixel[ALPHA] + dstPixel[ALPHA]);
-				} else {
-					result[ALPHA] = dstPixel[ALPHA];
-				}
+				result[ALPHA] = dstPixel[ALPHA];
+
 				return mergeRgb(result);
 			}
 		}
@@ -281,7 +271,7 @@ public class Blend implements Composite {
 	 * @param rgbData data to be merged
 	 * @return ARGB as an integer
 	 */
-	private static int mergeRgb(int[] rgbData) {
+	public static int mergeRgb(int[] rgbData) {
 		int rgb = rgbData[ALPHA] << SHIFT_ALPHA;
 		rgb |= rgbData[RED] << SHIFT_RED;
 		rgb |= rgbData[GREEN] << SHIFT_GREEN;
@@ -292,7 +282,7 @@ public class Blend implements Composite {
 
 	/**
 	 * Transform ARGB color vector to HSL space. Transparency is dropped.
-	 * Returned lightness is scaled to [0,1], like the other components.
+	 * All returned components are in range [0, 1].
 	 *  
 	 * @param rgb
 	 * @param hsl
@@ -347,6 +337,8 @@ public class Blend implements Composite {
 			} else {
 				h = 4f + (r - g) / diff;
 			}
+			// Normalize to range [0, 1]. It's more useful than the usual 360
+			h /= 6f;
 		}
 		hsl[0] = h;
 		hsl[1] = s;
@@ -355,13 +347,12 @@ public class Blend implements Composite {
 
 	/**
 	 * Transform HSL color vector to ARGB space. Alpha is kept at 0 for
-	 * everything. Lightness should be scaled to [0,1], like the other
-	 * components.
+	 * everything. All HSL should be scaled to range [0, 1].
 	 * 
 	 * @param hsl
 	 * @param rgb
 	 */
-	static void hsl2rgb(float[] hsl, int[] rgb) {
+	public static void hsl2rgb(float[] hsl, int[] rgb) {
 		int r, g, b;
 		float h = hsl[0];
 		float s = hsl[1];
@@ -378,10 +369,9 @@ public class Blend implements Composite {
 			}
 			tmp2 = 2f * l - tmp1;
 
-			float hNorm = h / 6;
-			float rf = hue2rgb(limitHue(hNorm + 1f/3f), tmp2, tmp1);
-			float gf = hue2rgb(limitHue(hNorm), tmp2, tmp1);
-			float bf = hue2rgb(limitHue(hNorm - 1f/3f), tmp2, tmp1);
+			float rf = hue2rgb(limitHue(h + 1f/3f), tmp2, tmp1);
+			float gf = hue2rgb(limitHue(h), tmp2, tmp1);
+			float bf = hue2rgb(limitHue(h - 1f/3f), tmp2, tmp1);
 
 			r = Math.min(255, Math.max(0, (int) (255 * rf)));
 			g = Math.min(255, Math.max(0, (int) (255 * gf)));
