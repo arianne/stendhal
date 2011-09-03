@@ -212,7 +212,7 @@ public class SpriteStore {
 				Graphics2D g = image.createGraphics();
 				tmpSprite.draw(g, 0, 0);
 				g.setColor(color);
-				g.setComposite(Blend.Color);
+				g.setComposite(Blend.TrueColor);
 				g.fillRect(0, 0, width, height);
 				g.dispose();
 				
