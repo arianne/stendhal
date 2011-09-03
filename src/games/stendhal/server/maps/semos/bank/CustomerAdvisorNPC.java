@@ -46,8 +46,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 			
 			SingletonRepository.getRPWorld().addRPZone(zone);
 			player.teleport(zone, 4, 5, Direction.UP, player);
-			
-			
+			((SpeakerNPC) npc.getEntity()).setDirection(Direction.DOWN);
 		}
 	}
 	
