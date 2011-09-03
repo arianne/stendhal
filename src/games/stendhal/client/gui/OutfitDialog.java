@@ -30,8 +30,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -43,13 +41,12 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.WindowConstants;
-import javax.swing.colorchooser.AbstractColorChooserPanel;
+import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -207,7 +204,7 @@ public class OutfitDialog extends JDialog {
 		final JComponent partialsColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		content.add(partialsColumn);
 
-		// --------- outfit parts side ----------
+		// --------- outfit parts column ----------
 		
 		// Hair
 		SpriteRetriever hairRetriever = new SpriteRetriever() {
@@ -216,9 +213,7 @@ public class OutfitDialog extends JDialog {
 			}
 		};
 		hairLabel = new OutfitLabel(hairRetriever);
-		JComponent selector = createSelector(hair, hairLabel);
-		selector.add(createColorSelector(OutfitColor.HAIR, hairLabel));
-		partialsColumn.add(selector);
+		partialsColumn.add(createSelector(hair, hairLabel));
 		
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
@@ -245,12 +240,21 @@ public class OutfitDialog extends JDialog {
 			}
 		};
 		dressLabel = new OutfitLabel(dressRetriever);
-		selector = createSelector(dress, dressLabel);
-		selector.add(createColorSelector(OutfitColor.DRESS, dressLabel));
-		partialsColumn.add(selector);
+		partialsColumn.add(createSelector(dress, dressLabel));
+		
+		// --------- Color selection column ---------
+		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		content.add(column, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		JComponent selector = createColorSelector("Hair", OutfitColor.HAIR, hairLabel);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(selector);
+		SBoxLayout.addSpring(column);
+		selector = createColorSelector("Dress", OutfitColor.DRESS, dressLabel);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		column.add(selector);
 		
 		// --------- whole outfit side ----------
-		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		column = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		column.setAlignmentY(CENTER_ALIGNMENT);
 		content.add(column);
 
@@ -371,107 +375,51 @@ public class OutfitDialog extends JDialog {
 	/**
 	 * Create a color selection component for an outfit part.
 	 * 
+	 * @param niceName outfit part name that is capitalizes for user to see
 	 * @param key outfit part identifier
 	 * @param label outfit part display that should be kept up to date with the
 	 * 	color changes (in addition of the whole outfit display)
 	 * @return color selection component
 	 */
-	private JComponent createColorSelector(final String key, final OutfitLabel label) {
+	private JComponent createColorSelector(final String niceName, final String key, final OutfitLabel label) {
 		final JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
-		final JButton colorButton = new JButton("Color");
-		final JCheckBox enableToggle = new JCheckBox("Custom color");
-		final JColorChooser chooser = new JColorChooser();
+		final JCheckBox enableToggle = new JCheckBox(niceName + " color");
 		
-		colorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				int pad = SBoxLayout.COMMON_PADDING;
-				
-				// prevent opening more than one dialog
-				colorButton.setEnabled(false);
-				enableToggle.setEnabled(false);
-				
-				final JDialog colorDialog = new JDialog(OutfitDialog.this, "Select " + key + " color");
-				colorDialog.setResizable(false);
-				colorDialog.getContentPane().setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
-				colorDialog.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
-						// allow opening again
-						colorButton.setEnabled(true);
-						enableToggle.setEnabled(true);
-						dispose();
-					}
-				});
-		
-				colorDialog.getContentPane().add(chooser);
-				chooser.setColor(outfitColor.getColor(key));
-				// Follow color changes
-				chooser.getSelectionModel().addChangeListener(new ChangeListener() {
-					public void stateChanged(ChangeEvent ev) {
-						outfitColor.setColor(key, chooser.getSelectionModel().getSelectedColor());
-						label.changed();
-						outfitLabel.changed();
-					}
-				});
-				
-				/*
-				 * JColorChooser does not understand that someone could really
-				 * want to get rid of the horrendous preview.
-				 */
-				chooser.setPreviewPanel(new JComponent(){});
-				
-				JComponent buttonBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
-				colorDialog.getContentPane().add(buttonBox, SBoxLayout.constraint(SLayout.EXPAND_X));
-				buttonBox.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
-				SBoxLayout.addSpring(buttonBox);
-				JButton closeButton = new JButton("Close");
-				closeButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						colorDialog.dispose();
-						// allow opening again
-						colorButton.setEnabled(true);
-						enableToggle.setEnabled(true);
-					}
-				});
-				buttonBox.add(closeButton);
-				
-				// remove all but the least bad
-				for (AbstractColorChooserPanel c : chooser.getChooserPanels()) {
-					if (!"HSB".equals(c.getDisplayName())) {
-						chooser.removeChooserPanel(c);
-					}
-				}
-				
-				colorDialog.pack();
-				WindowUtils.closeOnEscape(colorDialog);
-				colorDialog.setVisible(true);
+		container.add(enableToggle);
+		// get the current state
+		boolean colored = outfitColor.getColor(key) != null;
+		enableToggle.setSelected(colored);
+		final ColorSelector selector = new ColorSelector();
+		selector.setEnabled(colored);
+		selector.setAlignmentX(CENTER_ALIGNMENT);
+		container.add(selector);
+		final ColorSelectionModel model = selector.getSelectionModel(); 
+		model.setSelectedColor(outfitColor.getColor(key));
+		selector.getSelectionModel().addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent ev) {
+				outfitColor.setColor(key, model.getSelectedColor());
+				label.changed();
+				outfitLabel.changed();
 			}
 		});
 		
 		enableToggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (enableToggle.isSelected()) {
-					colorButton.setEnabled(true);
 					// restore previously selected color, if any
-					outfitColor.setColor(key, chooser.getColor());
+					outfitColor.setColor(key, model.getSelectedColor());
 					label.changed();
 					outfitLabel.changed();
+					selector.setEnabled(true);
 				} else {
-					colorButton.setEnabled(false);
 					// use default coloring
 					outfitColor.setColor(key, null);
 					label.changed();
 					outfitLabel.changed();
+					selector.setEnabled(false);
 				}
 			}
 		});
-		
-		container.add(enableToggle);
-		container.add(colorButton);
-		// get the current state
-		boolean colored = outfitColor.getColor(key) != null;
-		enableToggle.setSelected(colored);
-		colorButton.setEnabled(colored);
 		
 		return container;
 	}
