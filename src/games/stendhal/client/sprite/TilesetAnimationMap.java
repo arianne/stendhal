@@ -113,7 +113,7 @@ public class TilesetAnimationMap {
 			return null;
 		}
 
-		final int[] frameIndexes = mapping.getIndexes();
+		final int[] frameIndexes = mapping.getIndices();
 		final int[] frameDelays = mapping.getDelays();
 
 		final Sprite[] frames = new Sprite[frameIndexes.length];
@@ -142,15 +142,21 @@ public class TilesetAnimationMap {
 		/**
 		 * The frame indexes.
 		 */
-		protected int[] indexes;
+		protected int[] indices;
 
 		/**
 		 * The frame delays.
 		 */
 		protected int[] delays;
 
-		public Mapping(final int[] indexes, final int[] delays) {
-			this.indexes = indexes;
+		/**
+		 * Create a new Mapping
+		 * 
+		 * @param indices frame indices
+		 * @param delays frame delays
+		 */
+		private Mapping(final int[] indices, final int[] delays) {
+			this.indices = indices;
 			this.delays = delays;
 		}
 
@@ -158,12 +164,22 @@ public class TilesetAnimationMap {
 		// Mapping
 		//
 
-		public int[] getDelays() {
+		/**
+		 * Get the delays.
+		 * 
+		 * @return delays
+		 */
+		private int[] getDelays() {
 			return delays;
 		}
 
-		public int[] getIndexes() {
-			return indexes;
+		/**
+		 * Get the indices
+		 * 
+		 * @return delays
+		 */
+		private int[] getIndices() {
+			return indices;
 		}
 	}
 }

@@ -59,7 +59,7 @@ public class SlashActionCommand extends ErrorBuffer {
 	 * 
 	 * @return parameter array
 	 */
-	public String[] getParams() {
+	String[] getParams() {
 		return params;
 	}
 
