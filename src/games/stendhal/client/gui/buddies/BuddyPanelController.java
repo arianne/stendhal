@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -25,12 +25,19 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class BuddyPanelController implements PropertyChangeListener {
-	private static PropertyChangeListener instance;
+	/**
+	 * Controller instance. The first class referring (j2dClient) this class
+	 * will need the panel anyway, so it's OK to instantiate it right away.
+	 */
+	private static final BuddyPanelController instance = new BuddyPanelController();
 	
 	private final JComponent buddyPanel;
 	private final BuddyListModel model;
 
-	public BuddyPanelController() {
+	/**
+	 * Creates a new BuddyPanelController.
+	 */
+	private BuddyPanelController() {
 		// The panel is actually just the background
 		buddyPanel = new JPanel();
 		// the default layout manager is too dumb to understand alignment
@@ -40,9 +47,13 @@ public class BuddyPanelController implements PropertyChangeListener {
 		JList list = new BuddyPanel(model);
 		list.setAlignmentX(Component.LEFT_ALIGNMENT);
 		buddyPanel.add(list);
-		instance = this;
 	}
 
+	/**
+	 * Get the graphical component.
+	 * 
+	 * @return buddy panel
+	 */
 	public Component getComponent() {
 		return buddyPanel;
 	}
@@ -78,8 +89,12 @@ public class BuddyPanelController implements PropertyChangeListener {
 		}
 	}
 
-	public static PropertyChangeListener get() {
+	/**
+	 * Get the controller instance.
+	 * 
+	 * @return controller
+	 */
+	public static BuddyPanelController get() {
 		return instance;
 	}
-
 }
