@@ -89,7 +89,6 @@ public class Blend implements Composite {
 	 * Blending mode contexts.
 	 */
 	private static class BlendContext implements CompositeContext {
-		final int maxAlpha;
 		final Composer composer;
 
 		/**
@@ -101,8 +100,6 @@ public class Blend implements Composite {
 		 * @param dstColorModel
 		 */
 		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel) {
-			maxAlpha = srcColorModel.getAlpha(0xffffffff);
-			
 			switch (mode) {
 			case COLOR: composer = new ColorComposer();
 			break;
@@ -129,9 +126,13 @@ public class Blend implements Composite {
 				dstIn.getDataElements(0, y, width, 1, dstData);
 
 				for (int x = 0; x < width; x++) {
-					splitRgb(srcData[x], srcPixel);
 					splitRgb(dstData[x], dstPixel);
-					dstData[x] = composer.compose(srcPixel, dstPixel);
+					// These are alpha preserving modes. Just skip any
+					// transparent destination pixels
+					if (dstPixel[ALPHA] != 0) {
+						splitRgb(srcData[x], srcPixel);
+						dstData[x] = composer.compose(srcPixel, dstPixel);
+					}
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
@@ -228,7 +229,7 @@ public class Blend implements Composite {
 			 */
 			public int compose(int[] srcPixel, int[] dstPixel) {
 				int[] result = new int[4];
-				result[ALPHA] = dstPixel[ALPHA] * srcPixel[ALPHA] / maxAlpha;
+				result[ALPHA] = dstPixel[ALPHA];
 				result[RED] = dstPixel[RED] * srcPixel[RED] / 255;
 				result[GREEN] = dstPixel[GREEN] * srcPixel[GREEN] / 255;
 				result[BLUE] = dstPixel[BLUE] * srcPixel[BLUE] / 255;
