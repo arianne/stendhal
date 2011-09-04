@@ -53,7 +53,7 @@ class Encoder {
 			final String stringLen = decodedString.substring(0, 2);
 			final int len = Integer.parseInt(stringLen);
 			return decodedString.substring(2, len + 2);
-		} catch (final Exception e) {
+		} catch (final RuntimeException e) {
 			return "";
 		}
 	}

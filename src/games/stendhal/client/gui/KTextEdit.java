@@ -25,6 +25,7 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseEvent;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.swing.JComponent;
@@ -401,7 +402,7 @@ public class KTextEdit extends JComponent {
 			}
 
 			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
-		} catch (final Exception ex) {
+		} catch (final IOException ex) {
 			logger.error(ex, ex);
 		}
 	}
