@@ -690,6 +690,9 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
+		if (entity.getRPObject().has("menu")) {
+			list.add(entity.getRPObject().get("menu"));
+		}
 		super.buildActions(list);
 
 		RPEntity rpentity = (RPEntity) entity;
@@ -873,21 +876,38 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 	/**
+	 * Perform the default action.
+	 */
+	@Override
+	public void onAction() {
+		if (entity.getRPObject().has("menu")) {
+			onAction(ActionType.USE);
+		} else {
+			super.onAction();
+		}
+	}
+
+	/**
 	 * Perform an action.
 	 * 
-	 * @param at
+	 * @param action
 	 *            The action.
 	 */
 	@Override
-	public void onAction(final ActionType at) {
+	public void onAction(ActionType action) {
+		ActionType at = action;
+		if (at == null) {
+			at = ActionType.USE;
+		}
 		if (isReleased()) {
 			return;
 		}
 		RPAction rpaction;
 
 		switch (at) {
-		case PUSH:
 		case ATTACK:
+		case PUSH:
+		case USE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
 

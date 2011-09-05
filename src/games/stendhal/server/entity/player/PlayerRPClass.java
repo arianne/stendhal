@@ -144,6 +144,9 @@ public class PlayerRPClass {
 
 		// Maps
 		player.addAttribute("source_usage", Type.MAP, Definition.HIDDEN);
+
+		// client menu override
+		player.addAttribute("menu", Type.STRING, Definition.VOLATILE);
 	}
 
 }

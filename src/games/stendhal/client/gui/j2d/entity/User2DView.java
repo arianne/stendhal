@@ -113,6 +113,10 @@ class User2DView extends Player2DView {
 	 */
 	@Override
 	public void onAction(final ActionType at) {
+		if (at == null) {
+			super.onAction(null);
+			return;
+		}
 
 		switch (at) {
 		case SET_OUTFIT:

@@ -224,6 +224,10 @@ class Player2DView extends RPEntity2DView {
 		if (isReleased()) {
 			return;
 		}
+		if (at == null) {
+			super.onAction(null);
+			return;
+		}
 		switch (at) {
 		case ADD_BUDDY:
 		case IGNORE:
