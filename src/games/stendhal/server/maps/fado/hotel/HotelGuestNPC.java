@@ -15,6 +15,7 @@ package games.stendhal.server.maps.fado.hotel;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -52,12 +53,16 @@ public class HotelGuestNPC implements ZoneConfigurator {
 				addOffer("Well you don't offer me anything so I don't offer anything to you. That is life.");
 				addGoodbye("Bye bye!");
 			}
-		};
 
+		protected void onGoodbye(RPEntity player) {
+			setDirection(Direction.RIGHT);
+		}
+		
+		};
+		
 		npc.setDescription("You see Damon. His eyes even glow in the dark.");
 		npc.setEntityClass("hotelguestnpc");
 		npc.setPosition(77, 23);
-		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);
 	}
