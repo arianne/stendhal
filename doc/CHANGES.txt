@@ -11,6 +11,7 @@
 *client*
 - Outfit parts can be coloured
 - Dialogs can be closed by pressing ESC
+- Buddies can be invited to group directly from the buddy list
 
 *fixes*
 - Fixed descriptions for Ketteh Wehoh
