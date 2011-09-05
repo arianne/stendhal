@@ -58,6 +58,10 @@ class BuddyLabelPopMenu extends JPopupMenu {
 		this.add(whereBuddyMenuItem);
 		whereBuddyMenuItem.addActionListener(new WhereBuddyAction(buddyName));
 		
+		JMenuItem inviteBuddyMenuItem = new JMenuItem("Invite");
+		this.add(inviteBuddyMenuItem);
+		inviteBuddyMenuItem.addActionListener(new InviteBuddyAction(buddyName));
+		
 		if (User.isAdmin()) {
 			JMenuItem teleportToBuddyMenuItem = new JMenuItem("(*)Teleport To");
 			this.add(teleportToBuddyMenuItem);
