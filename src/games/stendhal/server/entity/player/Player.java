@@ -1851,7 +1851,7 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	private boolean disconnected = false;
-	private PlayerUseListener useListener;
+	private UseListener useListener;
 
 	public boolean isDisconnected() {
 		return disconnected;
@@ -2418,7 +2418,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @param actionDisplayName name of useaction visible in the client
 	 * @param listener use event listener
 	 */
-	public void addUseListener(String actionDisplayName, PlayerUseListener listener) {
+	public void setUseListener(String actionDisplayName, UseListener listener) {
 		put("menu", actionDisplayName);
 		this.useListener = listener;
 	}
@@ -2441,6 +2441,6 @@ public class Player extends RPEntity implements UseListener {
 		if ((useListener == null) || (!(user instanceof Player))) {
 			return false;
 		}
-		return useListener.onUsed(this, (Player) user);
+		return useListener.onUsed(user);
 	}
 }

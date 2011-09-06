@@ -25,6 +25,6 @@ import games.stendhal.server.entity.player.Player;
 public class JoinCaptureFlagAction implements ChatAction {
 
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		player.addUseListener("Tag", new CaptureFlagUseListener());
+		player.setUseListener("Tag", new CaptureFlagUseListener(player));
 	}
 }

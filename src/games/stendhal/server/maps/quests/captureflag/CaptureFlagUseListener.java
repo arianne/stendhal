@@ -2,28 +2,37 @@ package games.stendhal.server.maps.quests.captureflag;
 
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.events.UseListener;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.PlayerUseListener;
 
 
 /**
  * handles tagging of players in Capture the Flag games
  */
-public class CaptureFlagUseListener implements PlayerUseListener {
+public class CaptureFlagUseListener implements UseListener {
 
 	// any extra args from the client - can be used for dev, e.g,. specify the effect ...
 	private String senderName;
 	private String targetName;
 	private Player sender;
 	private Player target;
-	
-	private void init(Player used, Player user) {
+
+	/**
+	 * creates a new CaptureFlagUseListener
+	 *
+	 * @param target target player
+	 */
+	public CaptureFlagUseListener(Player target) {
+		this.target = target;
+		this.targetName = target.getName();
+	}
+
+	private void init(Player user) {
 		sender      = user;
 		senderName  = user.getName();
-		targetName  = used.getName();
-		target      = used;
 	}
 
 	/**
@@ -89,14 +98,14 @@ public class CaptureFlagUseListener implements PlayerUseListener {
 	}
 
 	
-	public boolean onUsed(Player used, Player user) {
+	public boolean onUsed(RPEntity user) {
 
 		String result = null;
 		
 		// i think if sender == target, should either prohibit,
 		//    or allow funny self-inflicted wounds
 
-		init(used, (Player) user);
+		init((Player) user);
 
 		/* If the targetis not logged in or if it is a ghost 
 		 * and you don't have the level to see ghosts... */
