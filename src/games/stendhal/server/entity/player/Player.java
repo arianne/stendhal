@@ -2438,9 +2438,9 @@ public class Player extends RPEntity implements UseListener {
 	 * @return true if successful
 	 */
 	public boolean onUsed(RPEntity user) {
-		if (useListener == null) {
+		if ((useListener == null) || (!(user instanceof Player))) {
 			return false;
 		}
-		return useListener.onUsed(this, user);
+		return useListener.onUsed(this, (Player) user);
 	}
 }

@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import marauroa.common.game.RPObject;
 
 /**
  * handling of used actions on players.
@@ -27,5 +26,5 @@ public interface PlayerUseListener {
 	 * @param user the player doing the use
 	 * @return true, if the event is successful, false otherwise
 	 */
-	public boolean onUsed(Player used, RPObject user);
+	public boolean onUsed(Player used, Player user);
 }
