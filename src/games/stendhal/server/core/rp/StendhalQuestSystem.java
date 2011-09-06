@@ -63,6 +63,7 @@ public class StendhalQuestSystem {
 		loadQuest(new Blackjack());
 		loadQuest(new BowsForOuchit());
 		loadQuest(new Campfire());
+		// loadQuest(new CaptureFlagQuest());
 		loadQuest(new ChocolateForElisabeth());
 		loadQuest(new CleanAthorsUnderground());
 		loadQuest(new CleanStorageSpace());
