@@ -1,7 +1,7 @@
 /*
  * TagAction.java
  */
-package games.stendhal.server.actions.chat;
+package games.stendhal.server.maps.quests.captureflag;
 
 import static games.stendhal.common.constants.Actions.TARGET;
 import games.stendhal.server.actions.ActionListener;
@@ -24,7 +24,7 @@ import marauroa.common.game.RPAction;
  * 
  * copied from TellAction
  */
-public class TagAction implements ActionListener {
+public class CaptureFlagUseListener implements ActionListener {
 
 	public static String TAG = "tag";
 	
