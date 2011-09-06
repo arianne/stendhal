@@ -22,8 +22,7 @@ public interface UseListener {
 	/**
 	 * Invoked when the object is used.
 	 * 
-	 * @param user
-	 *            the RPEntity who uses the object
+	 * @param user the RPEntity who uses the object
 	 * @return true if successful
 	 */
 	boolean onUsed(RPEntity user);
