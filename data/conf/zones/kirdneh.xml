@@ -824,6 +824,15 @@
 </zone>
 
 <zone name="0_kirdneh_river_w" level="0" x="500128" y="500512" file="Level 0/kirdneh/river_w.tmx">
+	
+	<point-of-interest x="9" y="68">
+		<name>Kirdneh Little Dungeon Forest Entrance</name>
+		<title>Kirdneh Little Dungeon</title>
+		<type>dungeon</type>
+		<description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
+		<url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+	</point-of-interest>
+
   <portal x="50" y="108" ref="river_house">
     <destination zone="int_kirdneh_river_house_0" ref="entrance" />
   </portal>
@@ -837,7 +846,16 @@
  
   <portal x="22" y="2" ref="downstair">
     <destination zone="-1_fado_great_cave_n_e2" ref="kirdneh_house"/>
-  </portal> 
+  </portal>
+   
+	<point-of-interest x="22" y="2">
+		<name>Kirdneh Little Dungeon House Entrance</name>
+		<title>Kirdneh Little Dungeon</title>
+		<type>dungeon</type>
+		<description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
+		<url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+	</point-of-interest>
+	
   <portal x="15" y="30" ref="entrance">
     <destination zone="0_kirdneh_river_w" ref="river_house"/>
   </portal>

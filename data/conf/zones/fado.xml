@@ -898,7 +898,8 @@ For example say:  11  if you want the room called Water of Love.
   </portal>
 
 	<point-of-interest x="18" y="120">
-		<name>Fado Great Caves</name>
+		<name>Fado Great Caves 2</name>
+		<title>Fado Great Caves</title>
 		<type>dungeon</type>
 		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
 		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
@@ -985,7 +986,7 @@ For example say:  11  if you want the room called Water of Love.
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
 
 	<point-of-interest x="30" y="105">
-		<name>Fado Great Caves 2</name>
+		<name>Fado Great Caves 5</name>
 		<title>Fado Great Caves</title>
 		<type>dungeon</type>
 		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
