@@ -1,51 +1,29 @@
-/*
- * TagAction.java
- */
 package games.stendhal.server.maps.quests.captureflag;
 
-import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
+import games.stendhal.server.entity.player.PlayerUseListener;
 
 
 /**
- * handles /tag (experimental helper for Capture the Flag game, until
- * left-click tag supported) 
- * 
- * /tag <player>
- * 
- * in development/debugging, you can also specify the effect - /tag player1 slowdown
- * 
- * copied from TellAction
+ * handles tagging of players in Capture the Flag games
  */
-public class CaptureFlagUseListener implements ActionListener {
+public class CaptureFlagUseListener implements PlayerUseListener {
 
-	public static String TAG = "tag";
-	
 	// any extra args from the client - can be used for dev, e.g,. specify the effect ...
-	private String args;
 	private String senderName;
 	private String targetName;
 	private Player sender;
 	private Player target;
 	
-	private void init(final Player player, final RPAction action) {
-
-		args        = action.get("args").trim();
-		sender      = player;
-		senderName  = player.getName();
-		targetName  = action.get(TARGET);
-		target      = SingletonRepository.getRuleProcessor().getPlayer(targetName);
-	}
-
-	private boolean validateAction(final RPAction action) {
-		return action.has(TARGET);
+	private void init(Player used, Player user) {
+		sender      = user;
+		senderName  = user.getName();
+		targetName  = used.getName();
+		target      = used;
 	}
 
 	/**
@@ -71,15 +49,7 @@ public class CaptureFlagUseListener implements ActionListener {
 	 */
 	// protected Effect checkEquippedAndInRange
 	// protected String checkEquippedAndInRange() {
-	protected String checkEquippedAndInRange(String text) {
-
-		String type = text;
-
-		// if text is specified, testing - skip range check, equipped, ... 
-		//   this is just in developer mode
-		if (text != null && !text.equals("")) {
-			return text;
-		}
+	protected String checkEquippedAndInRange() {
 		
 		// confirm player is equipped with proper weapons (bow and tag arrow) (fumble, slowdown, paralyze, ...) 
 
@@ -111,7 +81,7 @@ public class CaptureFlagUseListener implements ActionListener {
 
 		// get the type of the equipped arrows, return first word
 		String[] parts = arrows.get("name").split(" ");
-		type = parts[0];
+		String type = parts[0];
 
 		// TODO: if type not one of the special types, return null
 		
@@ -119,23 +89,19 @@ public class CaptureFlagUseListener implements ActionListener {
 	}
 
 	
-	public void onAction(final Player player, final RPAction action) {
+	public boolean onUsed(Player used, Player user) {
 
 		String result = null;
 		
 		// i think if sender == target, should either prohibit,
 		//    or allow funny self-inflicted wounds
-		
-		if (!validateAction(action)) {
-			return;
-		}
 
-		init(player, action);
+		init(used, (Player) user);
 
 		/* If the targetis not logged in or if it is a ghost 
 		 * and you don't have the level to see ghosts... */
 		if (!checkOnline()) {
-			return;
+			return false;
 		}
 
 		// XXX all of this is essentially just going through the combat steps, but 
@@ -143,22 +109,22 @@ public class CaptureFlagUseListener implements ActionListener {
 		// XXX should get back an Effect subclass, or None
 		// this call also removes one arrow from stack
 		// probably more efficient if effect were some sort of enum
-		String effect = this.checkEquippedAndInRange(this.args);
+		String effect = this.checkEquippedAndInRange();
 
 		// System.out.println("  effect: " + effect);
 		
 		if (effect == null) {
-			return;
+			return false;
 		}
 		
 		if (effect.equals("not-equipped")) {
-			player.sendPrivateText("You cannot tag unless equipped with bow and special ammunition");
-			return;
+			user.sendPrivateText("You cannot tag unless equipped with bow and special ammunition");
+			return false;
 		}
 		
 		if (effect.equals("not-in-range")) {
-			player.sendPrivateText("You must be in range to tag a player");
-			return;
+			user.sendPrivateText("You must be in range to tag a player");
+			return false;
 		}
 				
 		
@@ -196,25 +162,26 @@ public class CaptureFlagUseListener implements ActionListener {
 			
 			// did not recognize tag
 			//   don't just silently fail
-			return;
+			return false;
 		}
 		
 		if (result != null) {
 
-			String message = player.getName() + " " + result;
+			String message = user.getName() + " " + result;
 			
 			// transmit the message
 			target.sendPrivateText(message);
 		
 			if (!senderName.equals(targetName)) {
-				player.sendPrivateText(message);
+				user.sendPrivateText(message);
 			}
 		}
 		
 		// maybe change this to mark the last ctf attacker
 		// target.setLastPrivateChatter(senderName);
 		
-		new GameEvent(player.getName(), "tag", targetName, effect, result).raise();
+		new GameEvent(user.getName(), "tag", targetName, effect, result).raise();
+		return true;
 	}
-		
+
 }
