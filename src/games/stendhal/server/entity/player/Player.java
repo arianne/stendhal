@@ -32,6 +32,7 @@ import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.Entity;
@@ -64,7 +65,7 @@ import marauroa.common.game.SyntaxException;
 
 import org.apache.log4j.Logger;
 
-public class Player extends RPEntity {
+public class Player extends RPEntity implements UseListener {
 
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail", "dress", "hair" };
@@ -1850,6 +1851,7 @@ public class Player extends RPEntity {
 	}
 
 	private boolean disconnected = false;
+	private PlayerUseListener useListener;
 
 	public boolean isDisconnected() {
 		return disconnected;
@@ -2409,5 +2411,36 @@ public class Player extends RPEntity {
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	/**
+	 * adds a use listener causing the client to add an use action with the specified name
+	 * @param actionDisplayName name of useaction visible in the client
+	 * @param listener use event listener
+	 */
+	public void addUseListener(String actionDisplayName, PlayerUseListener listener) {
+		put("menu", actionDisplayName);
+		this.useListener = listener;
+	}
+
+	/**
+	 * removes a use event listener
+	 */
+	public void removeUseListener() {
+		remove("menu");
+		this.useListener = null;
+	}
+
+	/**
+	 * Invoked when the object is used.
+	 * 
+	 * @param user the RPEntity who uses the object
+	 * @return true if successful
+	 */
+	public boolean onUsed(RPEntity user) {
+		if (useListener == null) {
+			return false;
+		}
+		return useListener.onUsed(this, user);
 	}
 }
