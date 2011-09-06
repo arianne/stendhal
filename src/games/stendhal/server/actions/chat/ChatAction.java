@@ -20,8 +20,6 @@ import static games.stendhal.common.constants.Actions.SUPPORT;
 import static games.stendhal.common.constants.Actions.TELL;
 import games.stendhal.server.actions.CommandCenter;
 
-import games.stendhal.server.actions.chat.TagAction;
-
 /**
  * Processes /chat, /tell (/msg) and /support.
  */
@@ -38,8 +36,5 @@ public class ChatAction {
 		CommandCenter.register(GROUP_MESSAGE, new GroupMessageAction());
 		CommandCenter.register(SUPPORT, new AskForSupportAction());
 		CommandCenter.register(TELL, new TellAction());
-		
-		CommandCenter.register(TagAction.TAG, new TagAction());
-		
 	}
 }
