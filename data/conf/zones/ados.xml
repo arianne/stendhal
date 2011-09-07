@@ -82,6 +82,7 @@
  <zone name="0_ados_mountain_n2" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2.tmx">
  	<point-of-interest x="63" y="48">
  		<name>Amazon Tunnel West Entrance</name>
+ 		<title>Amazon Tunnel</title>
  		<type>dungeon</type>
  		<description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit. Maybe you will be stranded somewhere... (Player Level 50 - 200)</description>
  		<url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
@@ -270,6 +271,7 @@
         
         <point-of-interest x="40" y="48">
         	<name>Ados Caves Northwest Entrance</name>
+        	<title>Ados Caves</title>
         	<type>dungeon</type>
         	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
         	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
@@ -277,6 +279,7 @@
         
         <point-of-interest x="117" y="37">
         	<name>Ados Caves Northeast Entrance</name>
+        	<title>Ados Caves</title>
         	<type>dungeon</type>
         	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
         	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
@@ -284,6 +287,7 @@
 
         <point-of-interest x="97" y="114">
         	<name>Ados Caves South Entrance</name>
+        	<title>Ados Caves</title>
         	<type>dungeon</type>
         	<description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. (Player Level 80 - 597)</description>
         	<url>http://stendhalgame.org/wiki/Ados_Caves</url>
@@ -2863,6 +2867,7 @@ Southeast: Docks
     
     <point-of-interest x="101" y="52">
     	<name>Ados Sewers Barracks Entrance</name>
+       	<title>Ados Sewers</title>
     	<type>dungeon</type>
     	<description>A confusing labyrinth underneath the city of Ados.</description>
     	<url>http://stendhalgame.org/wiki/Ados_Sewers</url>
@@ -2874,6 +2879,7 @@ Southeast: Docks
     
     <point-of-interest x="71" y="92">
     	<name>Ados Sewers Wall Entrance</name>
+       	<title>Ados Sewers</title>
     	<type>dungeon</type>
     	<description>A confusing labyrinth underneath the city of Ados.</description>
     	<url>http://stendhalgame.org/wiki/Ados_Sewers</url>

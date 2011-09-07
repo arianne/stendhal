@@ -641,6 +641,22 @@ below average.
 			</implementation>
 		</entity>
 		
+		<point-of-interest x="51" y="22">
+			<name>Nalwor Drow Tunnels 1</name>
+			<title>Nalwor Drow Tunnels</title>
+			<type>dungeon</type>
+			<description>The Drow Tunnels are populated by evil dark elves which are really dangerous. But there are also some mystical creatures which are waiting for their next victims... (Player Level 60 - 597)</description>
+			<url>http://stendhalgame.org/wiki/Drow_Tunnels</url>
+		</point-of-interest>
+		
+		<point-of-interest x="18" y="52">
+			<name>Nalwor Drow Tunnels 2</name>
+			<title>Nalwor Drow Tunnels</title>
+			<type>dungeon</type>
+			<description>The Drow Tunnels are populated by evil dark elves which are really dangerous. But there are also some mystical creatures which are waiting for their next victims... (Player Level 60 - 597)</description>
+			<url>http://stendhalgame.org/wiki/Drow_Tunnels</url>
+		</point-of-interest>
+		
 		
 		<portal x="73" y="82" ref="house_70_entrance">
 			<destination zone="int_nalwor_house_70" ref="entrance" />
@@ -676,6 +692,15 @@ below average.
 		<portal x="38" y="90" ref="postoffice_entrance">
 			<destination zone="int_nalwor_postoffice" ref="entrance" />
 		</portal>
+		
+		<point-of-interest x="53" y="89">
+			<name>Nalwor Drow Tunnels 3</name>
+			<title>Nalwor Drow Tunnels</title>
+			<type>dungeon</type>
+			<description>The Drow Tunnels are populated by evil dark elves which are really dangerous. But there are also some mystical creatures which are waiting for their next victims... (Player Level 60 - 597)</description>
+			<url>http://stendhalgame.org/wiki/Drow_Tunnels</url>
+		</point-of-interest>
+		
 		<portal x="48" y="82" ref="flowershop_entrance">
 			<destination zone="int_nalwor_flowershop" ref="entrance" />
 		</portal>
@@ -740,6 +765,15 @@ below average.
 				<parameter name="enterMessage">You hear faintly incantations of dark magic from below. The place reeks of danger.</parameter>
 			</implementation>
 		</entity>
+		
+		<point-of-interest x="100" y="90">
+			<name>Nalwor Drow Tunnels 4</name>
+			<title>Nalwor Drow Tunnels</title>
+			<type>dungeon</type>
+			<description>The Drow Tunnels are populated by evil dark elves which are really dangerous. But there are also some mystical creatures which are waiting for their next victims... (Player Level 60 - 597)</description>
+			<url>http://stendhalgame.org/wiki/Drow_Tunnels</url>
+		</point-of-interest>
+		
 	</zone>
 
 	<zone name="0_nalwor_river_se" level="0" x="500384" y="500384"

@@ -991,6 +991,7 @@ Southeast: Farmhouse
 		
 		<point-of-interest x="62" y="99">
 			<name>Semos Caves South Entrance</name>
+	 		<title>Semos Caves</title>
 			<type>dungeon</type>
 			<description>One of several entrances to the tunnel system below the northern mountains. The way to Mithrilbourgh and connection to Ados caves. (Player Level 15 - 125)</description>
 			<url>http://stendhalgame.org/wiki/Semos_Caves</url>
@@ -998,6 +999,7 @@ Southeast: Farmhouse
 
 		<point-of-interest x="115" y="36">
 			<name>Semos Caves North Entrance</name>
+	 		<title>Semos Caves</title>
 			<type>dungeon</type>
 			<description>One of several entrances to the tunnel system below the northern mountains. The way to Mithrilbourgh and connection to Ados caves. Use with caution, if you are still low level. (Player Level 15 - 125)</description>
 			<url>http://stendhalgame.org/wiki/Semos_Caves</url>

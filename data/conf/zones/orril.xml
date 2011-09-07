@@ -40,6 +40,23 @@
 
 	<zone name="0_orril_mountain_w2" level="0" x="499616" y="500256"
 		file="Level 0/orril/mountain_w2.tmx">
+		
+		<point-of-interest x="74" y="42">
+			<name>Orril Dwarf Mine North Entrance</name>
+			<title>Orril Dwarf Mine</title>
+			<type>dungeon</type>
+			<description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
+			<url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+		</point-of-interest>
+		
+		<point-of-interest x="108" y="111">
+			<name>Orril Dwarf Mine South Entrance</name>
+			<title>Orril Dwarf Mine</title>
+			<type>dungeon</type>
+			<description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
+			<url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+		</point-of-interest>
+		
 	</zone>
 
 	<zone name="0_orril_mountain_w" level="0" x="499744" y="500256"
@@ -71,6 +88,13 @@
 		<portal x="62" y="96" ref="outside_gate">
 			<destination zone="0_orril_castle" ref="inside_gate" />
 		</portal>
+		
+		<point-of-interest x="62" y="96">
+			<name>Orril Castle</name>
+			<type>dungeon</type>
+			<description>Huge Orril Castle is located in the Orril Mountain area. It includes different floors and creatures which young adventurers have to pass before they find a secret place waiting underneath the castle... (Player Level 40 - 150)</description>
+			<url>http://stendhalgame.org/wiki/Orril_Castle</url>
+		</point-of-interest>
 
 		<portal x="63" y="96" ref="outside_gate_right">
 			<destination zone="0_orril_castle" ref="inside_gate_right" />
@@ -92,7 +116,7 @@
 		<portal x="62" y="93" ref="inside_gate">
 			<destination zone="0_orril_castle" ref="outside_gate" />
 		</portal>
-
+		
 		<portal x="63" y="93" ref="inside_gate_right">
 			<destination zone="0_orril_castle" ref="outside_gate_right" />
 		</portal>
@@ -159,6 +183,14 @@
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
+		
+		<point-of-interest x="30" y="31">
+			<name>Orril Dungeon</name>
+			<type>dungeon</type>
+			<description>The Orril Dungeon is also known as the "Rat Dungeon". Maybe you will find your way to something special down in the tunnels... (Player Level 5 - 70)</description>
+			<url>http://stendhalgame.org/wiki/Orril_Dungeon</url>
+		</point-of-interest>
+
 	</zone>
 
 	<zone name="0_orril_river_s_w2" level="0" x="499616" y="500384"
