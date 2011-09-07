@@ -58,6 +58,12 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
+//XXX sjt temp, while i figure out general droppable mechanism
+import games.stendhal.common.EquipActionConsts;
+import games.stendhal.server.entity.item.CaptureTheFlagFlag;
+import games.stendhal.server.actions.equip.DropAction;
+import marauroa.common.game.RPAction;
+
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity {
@@ -958,6 +964,123 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
+	/**
+	 * return list of all droppable items in entity's hands.
+	 * 
+	 * currently only considers items in hands.  no other part of body
+	 * 
+	 * currently, there is only one type of droppable item - CaptureTheFlagFlag.
+	 *     need some more general solution
+	 *     
+	 * @return list of droppable items.  returns null if no droppable items found
+	 */
+	public List<Item> getDroppables() {
+
+		ArrayList<Item> droppables = null;
+		
+		final String[] slots = { "lhand", "rhand" };
+		
+		for (String slot : slots) {
+
+			RPSlot rpslot = getSlot(slot);
+							
+			if (rpslot == null) {
+				continue;
+			}
+
+			// traverse all items in that slot, looking for droppables.
+			for (RPObject object : rpslot) {
+				// XXX hack - need some generic isDroppable
+				if (object instanceof CaptureTheFlagFlag) {
+					if (droppables == null) {
+						droppables = new ArrayList<Item>();
+					}
+					droppables.add((Item)object);
+				}		
+			}
+		}
+		return droppables;
+	}
+
+	/**
+	 * drop specified item from entity's equipment
+	 * 
+	 * note: seems like this.drop(droppable) should work, but
+	 *       the item just disappears - does not end up on ground.
+	 *       
+	 * TODO: probably need to refactor this in to the general drop system
+	 *       (maybe fixing some of the other code paths) 
+	 */
+	public void dropDroppableItem(Item droppable) {
+		
+		// note: this.drop() does not do all necessary operations - 
+		//       item disappears from hand, but disappears competely
+			
+		Player    player = (Player) this;
+		RPObject  parent = droppable.getContainer();
+		RPAction  action = new RPAction();
+			
+		action.put("type",                        "drop");
+		action.put("baseitem",                    droppable.getID().getObjectID());
+		action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
+		action.put(EquipActionConsts.BASE_SLOT,   droppable.getContainerSlot().getName());
+			
+		// TODO: better to drop "behind" the player, if they have been running
+		action.put("x", this.getX());
+		action.put("y", this.getY() + 1);
+			
+		DropAction dropAction = new DropAction();
+		dropAction.onAction(player, action);
+			
+		// TODO: send message to player - you dropped ...
+			
+		this.notifyWorldAboutChanges();
+	}
+	
+
+		
+	/**
+	 * if defender (this entity) is carrying a droopable item,
+	 * then attacker and defender both roll d20, and if attacker
+	 * rolls higher, the defender drops the droppable.
+	 * 
+	 * note that separate rolls are performed for each droppable 
+	 * that the entity is carrying.
+	 * 
+	 * XXX this does not belong here - should be in some Effect framework
+	 * 
+	 * returns string - what happened.  no effect returns null
+	 * 
+	 * @param attacker
+	 * @param defender
+	 */
+	public String maybeDropDroppables(RPEntity attacker) {
+		
+		List<Item> droppables = this.getDroppables();
+		if (droppables == null) {
+			return null;
+		}
+		
+		for (Item droppable : droppables) {
+
+			// roll two dice, tie goes to defender
+			//   TODO: integrate skills, ctf atk/def
+			int attackerRoll = Rand.roll1D20();
+			int defenderRoll = Rand.roll1D20();
+			
+System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
+
+			if (attackerRoll > defenderRoll) {
+				this.dropDroppableItem(droppable);
+				// XXX get description from droppable - what color, ...
+				return "dropped the flag";
+			}
+		}
+		return null;
+	}
+
+	
+	
 	/**
 	 * This method is called when this entity has been attacked by Entity
 	 * attacker and it has been damaged with damage points.

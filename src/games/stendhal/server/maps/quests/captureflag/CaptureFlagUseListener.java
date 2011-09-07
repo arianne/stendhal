@@ -10,14 +10,20 @@ import games.stendhal.server.entity.player.Player;
 
 
 /**
- * handles tagging of players in Capture the Flag games
+ * handles tagging of players in Capture the Flag games.
+ * This is attached to a player to listen for other players tagging
+ * the player.
  */
 public class CaptureFlagUseListener implements UseListener {
 
-	// any extra args from the client - can be used for dev, e.g,. specify the effect ...
+	/*
+	 * note that target is "full time", and many different senders
+	 * may call onUsed
+	 */
 	private String senderName;
-	private String targetName;
 	private Player sender;
+
+	private String targetName;
 	private Player target;
 
 	/**
@@ -26,13 +32,18 @@ public class CaptureFlagUseListener implements UseListener {
 	 * @param target target player
 	 */
 	public CaptureFlagUseListener(Player target) {
-		this.target = target;
+		this.target     = target;
 		this.targetName = target.getName();
 	}
 
-	private void init(Player user) {
-		sender      = user;
-		senderName  = user.getName();
+	/**
+	 * called when tagger tags the target
+	 * 
+	 * @param user
+	 */
+	private void init(Player tagger) {
+		sender      = tagger;
+		senderName  = tagger.getName();
 	}
 
 	/**
@@ -97,7 +108,9 @@ public class CaptureFlagUseListener implements UseListener {
 		return type;
 	}
 
-	
+	/**
+	 * this is called when another player left-clicks on this.target
+	 */
 	public boolean onUsed(RPEntity user) {
 
 		String result = null;
@@ -139,18 +152,10 @@ public class CaptureFlagUseListener implements UseListener {
 		
 		if (effect.equals("fumble") || effect.equals("drop") || effect.equals("")) {
 
-			// TODO: this should be done by an Effect, as part of the Weapon doing damage
-			// XXX this should not be in RPEntity
-
-			// TODO: add back in when RPEntity supports maybeDropDroppables
-			// result = target.maybeDropDroppables(sender);
-			result = "maybe would have made carrier drop the flag ...";
+			result = target.maybeDropDroppables(sender);
 			
 		} else if (effect.equals("slow") || effect.equals("slowdown")) {
 
-			// TODO: this should be done by an Effect, as part of the Weapon doing damage
-			// XXX this should not be in RPEntity
-			
 			// TODO: add back in when RPEntity supports changeSpeed
 			// result = target.maybeSlowDown(sender);
 			
