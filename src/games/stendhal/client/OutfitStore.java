@@ -231,7 +231,7 @@ public class OutfitStore {
 
 		final String ref = "data/sprites/outfit/detail_" + index + ".png";
 
-		return store.getColoredSprite(ref, color.getColor(OutfitColor.HAIR));
+		return store.getColoredSprite(ref, color.getColor(OutfitColor.DETAIL));
 	}
 	
 	/**
