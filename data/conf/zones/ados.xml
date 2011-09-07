@@ -735,6 +735,13 @@ West: Semos
    <portal x="54" y="19" ref="6">
      <destination zone="int_ados_bank" ref="0"/>
    </portal>
+
+	<point-of-interest x="54" y="19">
+		<name>Ados Bank</name>
+		<type>bank</type>
+		<description>A place to store your possessions. This one also houses an affiliate of Semos bank.</description>
+		<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+	</point-of-interest>
    
    <portal x="27" y="39" ref="10">
      <destination zone="int_ados_bakery" ref="0"/>

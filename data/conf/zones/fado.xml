@@ -60,7 +60,14 @@
            <portal x="46" y="38" ref="bank_entrance">
              <destination zone="int_fado_bank" ref="entrance"/>
            </portal> 
-           
+		
+			<point-of-interest x="46" y="38">
+				<name>Fado Bank</name>
+				<type>bank</type>
+				<description>A place to store your possessions.</description>
+				<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+			</point-of-interest>
+		   
            <portal x="56" y="38" ref="bakery_entrance">
              <destination zone="int_fado_bakery" ref="entrance"/>
            </portal>
