@@ -38,11 +38,10 @@ public class CaptureTheFlagFlag extends Item {
 	// this is the detail that you set for the outfit overlay
 	// (and then you have to set a color)
 	int     detailValue = 5;
-	String  color;
+
+	String colorValue   = "0x00ff00";
 	
-	int colorValue = new Color(0, 255, 0).getRGB();
-	
-	// String droppable;
+	// boolean droppable;
 	
 	public CaptureTheFlagFlag(final String name, 
 							  final String clazz, 
@@ -54,7 +53,7 @@ public class CaptureTheFlagFlag extends Item {
 		// this.colorValue = NPCAttrUtils.getAttrInt("color", attributes, 3);
 		String colorStr = attributes.get("color");
 		if (colorStr != null) {
-		  this.colorValue = MathHelper.parseIntDefault(colorStr, 5);
+		    this.colorValue = colorStr;
 		}
 		
 		// this.droppable = NPCAttrUtils.getAttr("droppable", attributes);
@@ -69,10 +68,18 @@ public class CaptureTheFlagFlag extends Item {
 		this("flag", "token", "flag", new HashMap<String,String>());
 	}
 
-	public int getColorValue() {
+	public String getColorValue() {
 		return this.colorValue;
 	}
 
+	/**
+	 * return the detail id for flag
+	 * @return
+	 */
+	public int getDetailValue() {
+		return this.detailValue;
+	}
+	
 	// XXX lift in to some superclass - currently, this is the *only* thing
 	//     that is droppable
 	public boolean isDroppable() {
@@ -98,14 +105,12 @@ public class CaptureTheFlagFlag extends Item {
 
 		Outfit flagOutfit  = new Outfit(this.detailValue, null, null, null, null);
 				
+		equipper.put("outfit_colors", "detail", this.colorValue);
+		
 		equipper.setOutfit(flagOutfit.putOver(equipper.getOutfit()));
 		
-
-		// XXX i think the color needs to be the int for an rgb value
-		equipper.put("outfit_colors", "detail", colorValue);
-		
-		// TODO: update player to establish chance of dropping
-		//       flag every time hit (either hit at all, or hit with special snowball)
+		// equipper.put("outfit_colors", "detail", colorValue);
+		// equipper.put("outfit_colors", "detail", 0x00ff00);
 		
 		return true;
 	}

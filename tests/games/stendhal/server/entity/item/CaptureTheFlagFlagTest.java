@@ -6,6 +6,7 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -14,8 +15,8 @@ import marauroa.common.game.SlotOwner;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
-
 
 
 public class CaptureTheFlagFlagTest {
@@ -39,7 +40,7 @@ public class CaptureTheFlagFlagTest {
 
 	/*
 	 * XXX hack, until i can figure out how to have item.getContainerOwner()
-	 *     to work normally (need slots, ...)
+	 *     work normally (need slots, ...)
 	 *
 	 */
 	class CheatingOwnerCaptureTheFlagFlag extends CaptureTheFlagFlag {
@@ -73,7 +74,7 @@ public class CaptureTheFlagFlagTest {
 	@Test
 	public void testOnEquipped() {
 
-		RPEntity           player = new TestEntity();
+		Player player = PlayerTestHelper.createPlayer("player1");
 		// CaptureTheFlagFlag flag   = new CaptureTheFlagFlag();
 		CaptureTheFlagFlag flag   = new CheatingOwnerCaptureTheFlagFlag();
 		boolean            result;
@@ -87,8 +88,7 @@ public class CaptureTheFlagFlagTest {
 		// in the game, there are restrictions - can only equip to hands 
 		// 
 		
-		int origDetail     = player.getOutfit().getDetail();
-		int flagColorValue = flag.getColorValue();
+		int    origDetail     = player.getOutfit().getDetail();
 		
 		assertEquals(origDetail, (int) player.getOutfit().getDetail());
 		
@@ -96,19 +96,16 @@ public class CaptureTheFlagFlagTest {
 
 		assertEquals(true, result);
 		
-		// confirm change to outfit 		
-		assertEquals(flag.getColorValue(), (int) player.getOutfit().getDetail());
-
-		
+		// confirm change to outfit
+		assertEquals(flag.getDetailValue(),  (int)player.getOutfit().getDetail());
+		assertEquals(flag.getColorValue(),   player.get("outfit_colors", "detail"));
 	}
 	
 
 	@Test
 	public void testOnUnequipped() {
 
-		RPEntity           player   = new TestEntity();
-		// RPEntity           entity   = new TestEntity();
-		// Player             player   = new Player(entity);
+		Player player = PlayerTestHelper.createPlayer("player1");
 		// CaptureTheFlagFlag flag     = new CaptureTheFlagFlag();
 		CaptureTheFlagFlag flag   = new CheatingOwnerCaptureTheFlagFlag();
 		String             slot     = "lhand";
@@ -123,8 +120,7 @@ public class CaptureTheFlagFlagTest {
 		// in the game, there are restrictions - can only equip to hands 
 		// 
 		
-		int origDetail     = player.getOutfit().getDetail();
-		int flagColorValue = flag.getColorValue();
+		int    origDetail     = player.getOutfit().getDetail();
 		
 		// System.out.println("  slot: " + player.getSlot(slot));
 		// RPSlot rpslot = ((EntitySlot) player.getSlot(slot)).getWriteableSlot();
@@ -139,8 +135,9 @@ public class CaptureTheFlagFlagTest {
 		assertEquals(true, result);
 		
 		// confirm change to outfit 		
-		assertEquals(flag.getColorValue(), (int) player.getOutfit().getDetail());
-
+		assertEquals(flag.getDetailValue(), (int)player.getOutfit().getDetail());
+		assertEquals(flag.getColorValue(),  player.get("outfit_colors", "detail"));
+		
 		// flag.removeFromWorld();
 		flag.onUnequipped();
 		// flag.onUnequipped(player, slot, true);
@@ -162,8 +159,9 @@ public class CaptureTheFlagFlagTest {
 	@Test
 	public void test_transferBetweenPlayers() {
 	
-		RPEntity           player1 = new TestEntity("Player1");
-		RPEntity           player2 = new TestEntity("Player2");
+		Player player1 = PlayerTestHelper.createPlayer("player1");
+		Player player2 = PlayerTestHelper.createPlayer("player2");
+
 		// CaptureTheFlagFlag flag    = new CaptureTheFlagFlag();
 		CaptureTheFlagFlag flag   = new CheatingOwnerCaptureTheFlagFlag();		
 		String             slot     = "lhand";
@@ -179,16 +177,13 @@ public class CaptureTheFlagFlagTest {
 		// 
 		
 		int origDetail     = player1.getOutfit().getDetail();
-		int flagColorValue = flag.getColorValue();
-		
-		// System.out.println("  slot: " + player.getSlot(slot));
-		// RPSlot rpslot = ((EntitySlot) player.getSlot(slot)).getWriteableSlot();
 		
 		result = flag.onEquipped(player1, slot);
 		assertEquals(true, result);
 		
 		// confirm change to outfit 		
-		assertEquals(flag.getColorValue(), (int) player1.getOutfit().getDetail());
+		assertEquals(flag.getDetailValue(), (int)player1.getOutfit().getDetail());
+		assertEquals(flag.getColorValue(),  player1.get("outfit_colors", "detail"));
 
 		// flag.removeFromWorld();
 		flag.onUnequipped();
@@ -203,17 +198,13 @@ public class CaptureTheFlagFlagTest {
 		assertEquals(true, result);
 		
 		// confirm change to outfit 		
-		assertEquals(flag.getColorValue(), (int) player2.getOutfit().getDetail());
-
+		assertEquals(flag.getDetailValue(), (int)player2.getOutfit().getDetail());
+		assertEquals(flag.getColorValue(),  player2.get("outfit_colors", "detail"));
+		
 		// flag.removeFromWorld();
 		flag.onUnequipped();
 
 		// confirm player2 back to original value
 		assertEquals(origDetail, (int) player2.getOutfit().getDetail());
-		
-		
-
 	}
-	
-	
 }
