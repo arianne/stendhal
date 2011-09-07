@@ -49,7 +49,7 @@ public class OutfitAction implements ActionListener {
 				}
 				color = action.get("dress");
 				if (color != null) {
-					player.put("outfit_colors", "dress", color);
+					player.put(COLOR_MAP, "dress", color);
 				} else {
 					player.remove(COLOR_MAP, "dress");
 				}
