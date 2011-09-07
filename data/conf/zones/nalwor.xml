@@ -727,6 +727,7 @@ below average.
 		</portal>
 		<portal x="79" y="70" ref="bank_entrance_left">
 			<destination zone="int_nalwor_bank" ref="entrance_left" />
+		</portal>
 	
 		<point-of-interest x="79" y="70">
 			<name>Nalwor Bank Left Entrance</name>
@@ -736,7 +737,6 @@ below average.
 			<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
 		</point-of-interest>
 	   
-		</portal>
 		<portal x="84" y="70" ref="bank_entrance_right">
 			<destination zone="int_nalwor_bank" ref="entrance_right" />
 		</portal>
