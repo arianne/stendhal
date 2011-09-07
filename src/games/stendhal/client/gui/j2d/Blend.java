@@ -219,7 +219,7 @@ public class Blend implements Composite {
 		/**
 		 * A composer for MULTIPLY blending mode.
 		 */
-		private class MultiplyComposer implements Composer {
+		private static class MultiplyComposer implements Composer {
 			/**
 			 * Blend 2 pixels by multiplying their values together.
 			 * 
