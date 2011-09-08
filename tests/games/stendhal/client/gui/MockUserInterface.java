@@ -29,9 +29,20 @@ import games.stendhal.common.NotificationType;
  */
 public class MockUserInterface implements UserInterface {
 	private final SoundSystemFacade sound = new DummySoundSystem();
+	/** Stored last message */
+	private EventLine previousEventLine;
 	
 	public void addEventLine(EventLine line) {
-		// do nothing
+		previousEventLine = line;
+	}
+	
+	/**
+	 * Get the previous message.
+	 * 
+	 * @return last message
+	 */
+	public EventLine getLastEventLine() {
+		return previousEventLine;
 	}
 
 	public void addGameScreenText(double x, double y, String text,
