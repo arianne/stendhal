@@ -13,6 +13,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.PerceptionListenerImpl;
@@ -544,6 +545,7 @@ public class j2DClient implements UserInterface {
 
 	private void cleanup() {
 		chatText.saveCache();
+		getSoundSystemFacade().exit();
 		logger.debug("Exit");
 		System.exit(0);
 	}
@@ -558,28 +560,15 @@ public class j2DClient implements UserInterface {
 		pane.add(comp, JLayeredPane.PALETTE_LAYER);
 	}
 
+	/** Time of receiving the last network activity */
+	long lastMessageHandle;
+	
 	/**
 	 * Start the game loop thread.
 	 *
 	 * @param gameScreen
 	 */
 	public void startGameLoop(final GameScreen gameScreen) {
-		Thread loop = new Thread(new Runnable() {
-			public void run() {
-				gameLoop(gameScreen);
-				// gameLoop runs until the client quit
-				cleanup();
-			}
-		}, "Game loop");
-		loop.start();
-	}
-
-	private void gameLoop(final GameScreen gameScreen) {
-		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
-		int fps = 0;
-		final GameObjects gameObjects = client.getGameObjects();
-		final StaticGameLayers gameLayers = client.getStaticGameLayers();
-
 		try {
 			SoundGroup group = initSoundSystem();
 			group.play("harp-1", 0, null, null, false, true);
@@ -587,151 +576,131 @@ public class j2DClient implements UserInterface {
 			logger.error(e, e);
 		}
 
-		// keep looping until the game ends
-		long refreshTime = System.currentTimeMillis();
-		long lastFpsTime = refreshTime;
-		long lastMessageHandle = refreshTime;
-
+		GameLoop loop = GameLoop.get();
+		final GameObjects gameObjects = client.getGameObjects();
+		final StaticGameLayers gameLayers = client.getStaticGameLayers();
+		
+		loop.runAllways(new GameLoop.PersistentTask() {
+			public void run(long time, int delta) {
+				gameLoop(time, delta, gameLayers, gameObjects);
+			}
+		});
+		
+		loop.runAtQuit(new Runnable() {
+			public void run() {
+				cleanup();
+			}
+		});
+		
+		lastMessageHandle = System.currentTimeMillis();
 		gameRunning = true;
+		
+		loop.start();
+	}
 
-		boolean canExit = false;
-		while (!canExit) {
+	/**
+	 * Main game loop contents. Updates objects, and requests redraws.
+	 * 
+	 * @param time current time
+	 * @param delta difference to previous calling time
+	 * @param gameLayers
+	 * @param gameObjects
+	 */
+	private void gameLoop(final long time, final int delta,
+			final StaticGameLayers gameLayers, final GameObjects gameObjects) {
+		// Check logouts first, in case something goes wrong with the drawing
+		// code
+		
+		if (!gameRunning) {
+			logger.info("Request logout");
 			try {
-				fps++;
-				// figure out what time it is right after the screen flip then
-				// later we can figure out how long we have been doing redrawing
-				// / networking, then we know how long we need to sleep to make
-				// the next flip happen at the right time
-				screenController.nextFrame();
-				final long now = System.currentTimeMillis();
-				final int delta = (int) (now - refreshTime);
-				refreshTime = now;
-
-				logger.debug("Move objects");
-				gameObjects.update(delta);
-
-				if (gameLayers.isAreaChanged()) {
-					// Same thread as the ClientFramework loop, so these should
-					// be save
-					/*
-					 * Update the screen
-					 */
-					screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
-
-					// [Re]create the map.
-
-					final CollisionDetection cd = gameLayers.getCollisionDetection();
-					final CollisionDetection pd = gameLayers.getProtectionDetection();
-
-					if (cd != null) {
-						minimap.update(cd, pd, gameLayers.getArea());
-					}
-					gameLayers.resetChangedArea();
-				}
-
-				final User user = User.get();
-
-				if (user != null) {
-					// check if the player object has changed.
-					// Note: this is an exact object reference check
-					if (user != lastuser) {
-						character.setPlayer(user);
-						keyring.setSlot(user, "keyring");
-						spells.setSlot(user, "spells");
-						inventory.setSlot(user, "bag");
-						lastuser = user;
-						containerPanel.onZoneChangeCompleted();
-					}
-				}
-
-				triggerPainting();
-
-				logger.debug("Query network");
-
-				if (client.loop(0)) {
-					lastMessageHandle = refreshTime;
-				}
-
 				/*
-				 * Process delayed direction release
+				 * We request server permision to logout. Server can deny
+				 * it, unless we are already offline.
 				 */
-				if ((directionRelease != null) && directionRelease.hasExpired()) {
-					client.removeDirection(directionRelease.getDirection(),
-							directionRelease.isFacing());
-
-					directionRelease = null;
-				}
-
-				if (logger.isDebugEnabled()) {
-					if ((refreshTime - lastFpsTime) >= 1000L) {
-						logger.debug("FPS: " + fps);
-						final long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
-						final long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
-
-						logger.debug("Total/Used memory: " + totalMemory + "/"
-								+ (totalMemory - freeMemory));
-
-						fps = 0;
-						lastFpsTime = refreshTime;
-					}
-				}
-
-				// Shows a offline icon if no messages are received in 30 seconds.
-				if ((refreshTime - lastMessageHandle > 30000L)
-						|| !client.getConnectionState()) {
-					setOffline(true);
+				if (offline || client.logout()) {
+					GameLoop.get().stop();
 				} else {
-					setOffline(false);
+					logger.warn("You can't logout now.");
+					gameRunning = true;
 				}
-
-				logger.debug("Start sleeping");
-				// we know how long we want per screen refresh (40ms) then
-				// we add the refresh time and subtract the current time
-				// leaving us with the amount we still need to sleep.
-				long wait = frameLength + refreshTime - System.currentTimeMillis();
-
-				if (wait > 0) {
-					if (wait > 100L) {
-						logger.info("Waiting " + wait + " ms");
-						wait = 100L;
-					}
-
-					try {
-						Thread.sleep(wait);
-					} catch (final InterruptedException e) {
-						logger.error(e, e);
-					}
-				}
-
-				logger.debug("End sleeping");
-
-				if (!gameRunning) {
-					logger.info("Request logout");
-					try {
-						/*
-						 * We request server permision to logout. Server can deny
-						 * it, unless we are already offline.
-						 */
-						if (offline || client.logout()) {
-							canExit = true;
-						} else {
-							logger.warn("You can't logout now.");
-							gameRunning = true;
-						}
-					} catch (final Exception e) { // catch InvalidVersionException, TimeoutException and BannedAddressException
-						/*
-						 * If we get a timeout exception we accept exit request.
-						 */
-						canExit = true;
-						logger.error(e, e);
-					}
-				}
-			} catch (RuntimeException e) {
+			} catch (final Exception e) { // catch InvalidVersionException, TimeoutException and BannedAddressException
+				/*
+				 * If we get a timeout exception we accept exit request.
+				 */
 				logger.error(e, e);
+				GameLoop.get().stop();
+			}
+		}
+		
+		// Shows a offline icon if no messages are received in 30 seconds.
+		if ((time - lastMessageHandle > 30000L)
+				|| !client.getConnectionState()) {
+			setOffline(true);
+		} else {
+			setOffline(false);
+		}
+
+		// figure out what time it is right after the screen flip then
+		// later we can figure out how long we have been doing redrawing
+		// / networking, then we know how long we need to sleep to make
+		// the next flip happen at the right time
+		screenController.nextFrame();
+
+		logger.debug("Move objects");
+		gameObjects.update(delta);
+
+		if (gameLayers.isAreaChanged()) {
+			// Same thread as the ClientFramework loop, so these should
+			// be save
+			/*
+			 * Update the screen
+			 */
+			screenController.setWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+
+			// [Re]create the map.
+
+			final CollisionDetection cd = gameLayers.getCollisionDetection();
+			final CollisionDetection pd = gameLayers.getProtectionDetection();
+
+			if (cd != null) {
+				minimap.update(cd, pd, gameLayers.getArea());
+			}
+			gameLayers.resetChangedArea();
+		}
+
+		final User user = User.get();
+
+		if (user != null) {
+			// check if the player object has changed.
+			// Note: this is an exact object reference check
+			if (user != lastuser) {
+				character.setPlayer(user);
+				keyring.setSlot(user, "keyring");
+				spells.setSlot(user, "spells");
+				inventory.setSlot(user, "bag");
+				lastuser = user;
+				containerPanel.onZoneChangeCompleted();
 			}
 		}
 
-		getSoundSystemFacade().exit();
+		triggerPainting();
+
+		logger.debug("Query network");
+
+		if (client.loop(0)) {
+			lastMessageHandle = time;
+		}
+
+		/*
+		 * Process delayed direction release
+		 */
+		if ((directionRelease != null) && directionRelease.hasExpired()) {
+			client.removeDirection(directionRelease.getDirection(),
+					directionRelease.isFacing());
+
+			directionRelease = null;
+		}
 	}
 
 	private int paintCounter;
