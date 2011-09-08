@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kirdneh.city;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -60,6 +62,10 @@ public class MummyNPC implements ZoneConfigurator {
 				addQuest("I don't have a quest for you but my daughter #Elisabeth searches for chocolate.");
 				addReply("Elisabeth", "She is such a lovely child, I will always care of her!");
 				addGoodbye("Thank you for meeting us here.");
+			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
 			}
 		};
 
