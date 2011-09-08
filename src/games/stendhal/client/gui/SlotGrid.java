@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.IEntity;
@@ -25,8 +26,8 @@ import java.util.List;
 import javax.swing.JComponent;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.RPObject.ID;
 
 import org.apache.log4j.Logger;
 
@@ -68,6 +69,17 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	 * @param slot
 	 */
 	public void setSlot(final IEntity parent, final String slot) {
+		if (!GameLoop.isGameLoop()) {
+			// Game loop can modify slot contents at will, so it's not a good
+			// idea to try to read the contents in the EDT.
+			GameLoop.get().runOnce(new Runnable() {
+				public void run() {
+					setSlot(parent, slot);
+				}
+			});
+			return;
+		}
+		
 		if (this.parent != null) {
 			this.parent.removeContentChangeListener(this);
 		}

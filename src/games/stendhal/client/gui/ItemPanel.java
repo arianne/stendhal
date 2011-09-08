@@ -196,7 +196,10 @@ public class ItemPanel extends JComponent implements DropTarget {
 		// draw the background image
 		background.draw(g, 0, 0);
 		
-		if (view != null) {
+		// Take a temporary copy in case the game loop destroys the view under
+		// us.
+		EntityView entityView = view;
+		if (entityView != null) {
 			// Center the entity view (assume 1x1 tile)
 			final int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
 			final int y = (getHeight() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
@@ -204,7 +207,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			final Graphics2D vg = (Graphics2D) g.create(0, 0, getWidth(),
 					getHeight());
 			vg.translate(x, y);
-			view.draw(vg);
+			entityView.draw(vg);
 			vg.dispose();
 		} else if (placeholder != null){
 			placeholder.draw(g, (getWidth() - placeholder.getWidth()) / 2, 
