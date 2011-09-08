@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -82,6 +84,11 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 				offers.put("icecream", 30);
 				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Bye, enjoy your day!");
+				
+			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
 			}
 		};
 
