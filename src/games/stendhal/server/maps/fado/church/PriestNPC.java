@@ -15,6 +15,7 @@ package games.stendhal.server.maps.fado.church;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 
@@ -60,6 +61,10 @@ public class PriestNPC implements ZoneConfigurator {
 				addQuest("I will #marry people who were engaged in the proper manner. Speak to Sister Benedicta if you are not engaged yet. And remember each to bring a wedding #ring!");
 				addGoodbye("Go well, and safely.");
 				addReply("ring", "Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!");
+			}
+
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
 			}
 		};
 
