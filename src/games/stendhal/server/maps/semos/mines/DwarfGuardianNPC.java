@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -63,6 +64,10 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 				addHelp("Take care when you are running through the tunnels of the Semos mines. There are some strong creatures waiting! If you need a better equipment, you can ask Harold in the Semos Tavern for some offers, maybe he can help you out...");
 				addGoodbye();
 			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.LEFT);
+			}
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
@@ -78,7 +83,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 		npc.setEntityClass("dwarf_guardiannpc");
 		npc.setDescription("You see Phalk. He is a soldier who doesn't want to abandon adventurers to their fate.");
 		npc.setPosition(118, 26);
-		npc.setDirection(Direction.RIGHT);
+		npc.setDirection(Direction.LEFT);
 		npc.initHP(25);
 		zone.add(npc);
 	}
