@@ -37,12 +37,17 @@ public class MockUserInterface implements UserInterface {
 	}
 	
 	/**
-	 * Get the previous message.
+	 * Get the previous message. Wipes it from memory.
 	 * 
 	 * @return last message
 	 */
-	public EventLine getLastEventLine() {
-		return previousEventLine;
+	public String getLastEventLine() {
+		EventLine tmp = previousEventLine;
+		previousEventLine = null;
+		if (tmp != null) {
+			return tmp.getText();
+		}
+		return null;
 	}
 
 	public void addGameScreenText(double x, double y, String text,

@@ -13,10 +13,10 @@
 package games.stendhal.client.actions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.MockUserInterface;
@@ -43,6 +43,18 @@ public class SummonAtActionTest {
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
 	}
+	
+	private static MockUserInterface getInterface() {
+		// Check the message
+		UserInterface ui = ClientSingletonRepository.getUserInterface();
+		// sanity check 
+		if (ui instanceof MockUserInterface) {
+			return (MockUserInterface) ui;
+		}
+		fail();
+		// just for the compiler
+		return null;
+	}
 
 	@Test
 	public void testInvalidAmount() {
@@ -63,14 +75,7 @@ public class SummonAtActionTest {
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
 		
-		// Check the message
-		UserInterface ui = ClientSingletonRepository.getUserInterface();
-		// sanity check 
-		if (ui instanceof MockUserInterface) {
-			assertEquals("Invalid amount: 5x", ((MockUserInterface) ui).getLastEventLine().getText());
-		} else {
-			fail();
-		}
+		assertEquals("Invalid amount: 5x", getInterface().getLastEventLine());
 	}
 
 	/**
@@ -78,9 +83,6 @@ public class SummonAtActionTest {
 	 */
 	@Test
 	public void testExecute() {
-		// create client UI
-		final MockClientUI clientUI = new MockClientUI();
-
 		// create client
 		new MockStendhalClient() {
 			@Override
@@ -96,7 +98,7 @@ public class SummonAtActionTest {
 		// issue "/summonat bag 5 money"
 		final SummonAtAction action = new SummonAtAction();
 		assertTrue(action.execute(new String[]{"player", "bag", "5"}, "money"));
-		assertEquals("", clientUI.getEventBuffer());
+		assertNull(getInterface().getLastEventLine());
 	}
 
 	/**
@@ -104,9 +106,6 @@ public class SummonAtActionTest {
 	 */
 	@Test
 	public void testSpaceHandling() {
-		// create client UI
-		final MockClientUI clientUI = new MockClientUI();
-
 		// create client
 		new MockStendhalClient() {
 			@Override
@@ -122,7 +121,7 @@ public class SummonAtActionTest {
 		// issue "/summonat bag silver sword"
 		final SummonAtAction action = new SummonAtAction();
 		assertTrue(action.execute(new String[]{"player", "bag", "silver"}, "sword"));
-		assertEquals("", clientUI.getEventBuffer());
+		assertNull(getInterface().getLastEventLine());
 	}
 
 	/**
@@ -148,10 +147,6 @@ public class SummonAtActionTest {
 	 */
 	@Test
 	public void testFromChatline() {
-		// create client UI
-		@SuppressWarnings("unused")
-		final MockClientUI clientUI = new MockClientUI();
-
 		// create client
 		new MockStendhalClient() {
 			@Override
@@ -166,5 +161,4 @@ public class SummonAtActionTest {
 		SlashActionRepository.register();
 		ChatLineParser.parseAndHandle("/summonat memem bag 3 greater potion");
 	}
-	
 }
