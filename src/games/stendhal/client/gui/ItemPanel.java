@@ -332,15 +332,22 @@ public class ItemPanel extends JComponent implements DropTarget {
 		private void moveItemToBag() {
 			final RPAction action = new RPAction();
 			
+			// Views and entities can be destroyed by game loop. Grab copies
+			EntityView entityView = view;
+			IEntity parentEntity = parent;
+			if ((entityView == null) || (parentEntity == null)) {
+				return;
+			}
+			
 			action.put(EquipActionConsts.TYPE, "equip");
-			action.put(EquipActionConsts.SOURCE_PATH, view.getEntity().getPath());
+			action.put(EquipActionConsts.SOURCE_PATH, entityView.getEntity().getPath());
 			action.put(EquipActionConsts.TARGET_PATH, 
 					Arrays.asList(Integer.toString(User.get().getID().getObjectID()), "bag"));
 			
 			// Compatibility item identification data
 			// source object and content from THIS container
-			final RPObject content = view.getEntity().getRPObject();
-			action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
+			final RPObject content = entityView.getEntity().getRPObject();
+			action.put(EquipActionConsts.BASE_OBJECT, parentEntity.getID().getObjectID());
 			action.put(EquipActionConsts.BASE_SLOT, getName());
 			action.put(EquipActionConsts.BASE_ITEM, content.getID().getObjectID());
 			// target is player's bag
