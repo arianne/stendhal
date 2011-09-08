@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -65,7 +66,12 @@ public class HighPriestNPC implements ZoneConfigurator {
 						"The fearest creature that Bolrogh army has.");
 				addGoodbye();
 			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.LEFT);
+			}
 		};
+		
 
 		npc.addInitChatMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
@@ -85,13 +91,15 @@ public class HighPriestNPC implements ZoneConfigurator {
 					player.setQuest("AenihataFirstChat", "done");
 					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}
+				
 			}
-		});
+			
+			});
 
 		npc.setEntityClass("highpriestnpc");
+		npc.setDescription("You see Aenihata. He is a high priest and tries to protect Faiumoni with his magical skills.");
 		npc.setPosition(23, 44);
-		npc.setDirection(Direction.RIGHT);
-		npc.setLevel(390);
+		npc.setDirection(Direction.LEFT);
 		npc.initHP(85);
 		zone.add(npc);
 	}
