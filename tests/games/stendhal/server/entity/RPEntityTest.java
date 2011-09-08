@@ -29,9 +29,11 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +46,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.RPClass.ItemTestHelper;
+import utilities.PlayerTestHelper;
+
+// until there is a Droppable interface - CaptureTheFlagFlag is the only droppable
+import games.stendhal.server.entity.item.CaptureTheFlagFlag;
+
 
 public class RPEntityTest {
 
@@ -645,4 +652,109 @@ public class RPEntityTest {
 		verify(item);
 	}
 
+	
+	@Test
+	public void testgetDroppables() {
+		
+		RPEntity entity = new MockRPentity();
+		Item cheese     = SingletonRepository.getEntityManager().getItem("cheese");
+		Item flag       = new CaptureTheFlagFlag();
+		
+		List<Item> droppables;
+		
+		droppables = entity.getDroppables();
+		assertEquals(null, droppables);
+		
+		entity.addSlot(new PlayerSlot("lhand"));
+		entity.addSlot(new PlayerSlot("rhand"));
+		entity.addSlot(new PlayerSlot("bag"));
+
+		// this is not actually legal in the game, due to the item definition.
+		// but this test shows that the flag must be in a hand to be droppable.
+		entity.getSlot("bag").add(flag);
+
+		droppables = entity.getDroppables();
+		assertEquals(null, droppables);
+
+		// only droppable items (flag) are droppable right now
+		entity.getSlot("lhand").add(cheese);
+
+		droppables = entity.getDroppables();
+		assertEquals(null, droppables);
+
+		// flags are droppable
+		entity.getSlot("rhand").add(flag);
+
+		droppables = entity.getDroppables();
+		assertEquals(1, droppables.size());
+		assertEquals("flag", droppables.get(0).get("name"));
+		
+		// remove flag, and we have no droppables any more
+		entity.getSlot("rhand").remove(flag.getID());
+		
+		droppables = entity.getDroppables();
+		assertEquals(null, droppables);
+	}
+
+	
+	@Test
+	public void testdropDroppableItem() {
+
+		// MockStendlRPWorld.get();
+
+		Player     player      = PlayerTestHelper.createPlayer("player");
+		Item       flag        = new CaptureTheFlagFlag();
+		List<Item> droppables;
+
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+
+		StendhalRPZone zone = new StendhalRPZone("testzone", 100, 100);
+
+		zone.add(player);
+		
+		player.getSlot("rhand").add(flag);
+
+		droppables = player.getDroppables();
+		assertEquals(1, droppables.size());
+		assertEquals("flag", droppables.get(0).get("name"));
+		
+		player.dropDroppableItem(flag);
+		
+		droppables = player.getDroppables();
+		assertEquals(null, droppables);
+	}
+	
+
+	@Test
+	public void testmaybeDropDroppables() {
+		
+		Player     player      = PlayerTestHelper.createPlayer("player");
+		Player     attacker    = PlayerTestHelper.createPlayer("attacker");
+		Item       flag        = new CaptureTheFlagFlag();
+		List<Item> droppables;
+
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+		MockStendhalRPRuleProcessor.get().addPlayer(attacker);
+
+		StendhalRPZone zone = new StendhalRPZone("testzone", 100, 100);
+
+		zone.add(player);
+		
+		player.getSlot("rhand").add(flag);
+
+		// XXX i don't really know a better way to test this.
+		//     in theory, this could be in a loop forever.
+		//     but that won't happen
+		
+		while (true) {
+			
+			player.maybeDropDroppables(attacker);
+			
+			droppables = player.getDroppables();
+
+			if (droppables == null) { 
+				break;
+			}
+		}
+	}
 }
