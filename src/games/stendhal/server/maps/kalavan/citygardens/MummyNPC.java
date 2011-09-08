@@ -12,8 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.citygardens;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -56,9 +58,13 @@ public class MummyNPC implements ZoneConfigurator {
 				addHelp("I'll help if I can, but I have to watch my daughter.");
 				addGoodbye("Bye for now.");
 			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.LEFT);
+			}
 		};
 
-		mummyNPC.setDescription("You see a woman, resting on a bench.");
+		mummyNPC.setDescription("You see a woman, resting on a bench while watching her daughter playing.");
 		mummyNPC.setEntityClass("woman_000_npc");
 		mummyNPC.setPosition(53, 88);
 		mummyNPC.initHP(100);
