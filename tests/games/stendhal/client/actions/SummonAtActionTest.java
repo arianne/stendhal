@@ -14,13 +14,18 @@ package games.stendhal.client.actions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.MockUserInterface;
+import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.scripting.ChatLineParser;
 import marauroa.common.game.RPAction;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -29,6 +34,10 @@ import org.junit.Test;
  * @author Martin Fuchs
  */
 public class SummonAtActionTest {
+	@BeforeClass
+	public static void init() {
+		ClientSingletonRepository.setUserInterface(new MockUserInterface());
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -53,6 +62,15 @@ public class SummonAtActionTest {
 
 		// issue "/summonat bag 5x money"
 		assertTrue(action.execute(new String[]{"player", "bag", "5x"}, "money"));
+		
+		// Check the message
+		UserInterface ui = ClientSingletonRepository.getUserInterface();
+		// sanity check 
+		if (ui instanceof MockUserInterface) {
+			assertEquals("Invalid amount: 5x", ((MockUserInterface) ui).getLastEventLine().getText());
+		} else {
+			fail();
+		}
 	}
 
 	/**
@@ -129,7 +147,7 @@ public class SummonAtActionTest {
 	 * Tests for fromChatline.
 	 */
 	@Test
-	public void testFromChatline() throws Exception {
+	public void testFromChatline() {
 		// create client UI
 		@SuppressWarnings("unused")
 		final MockClientUI clientUI = new MockClientUI();
