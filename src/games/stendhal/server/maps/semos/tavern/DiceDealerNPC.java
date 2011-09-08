@@ -15,6 +15,7 @@ package games.stendhal.server.maps.semos.tavern;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.util.Area;
 
@@ -51,6 +52,10 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			        "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
 			addHelp("If you are looking for Ouchit: he's upstairs.");
 			addGoodbye();
+		}
+		
+		protected void onGoodbye(RPEntity player) {
+			setDirection(Direction.DOWN);
 		}
 	};
 
