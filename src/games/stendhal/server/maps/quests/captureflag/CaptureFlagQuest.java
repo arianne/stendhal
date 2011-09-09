@@ -15,8 +15,13 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
+
+import games.stendhal.server.maps.quests.captureflag.JoinCaptureFlagAction;
+import games.stendhal.server.maps.quests.captureflag.LeaveCaptureFlagAction;
+import games.stendhal.server.maps.quests.captureflag.ProvideCTFFlagsAction;
 
 import java.util.List;
 
@@ -53,13 +58,46 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Oh hello."); // TODO: better greeting
-				// TODO: addJob("");
-				// TODO: addHelp("");
+
+				addGreeting("Hi, thanks for helping out with Capture the Flag (CTF) testing.  You can #play, #stop, and request #flag and #arrows.");
+
+				addJob("We are helping to test ideas to make CTF fun.");
+				
+				addHelp("You can test CTF with another player.  One of you puts a #flag in your hand.  The other equips a bow and fumble arrows, and tags (left-clicks) the flag carrier, to make the carrier drop.");
+				
 				add(ConversationStates.ATTENDING,
-						"play", null, ConversationStates.ATTENDING,
-						"Have fun",
-						new JoinCaptureFlagAction());
+					"play",
+					null,
+					ConversationStates.ATTENDING,
+					"Ok, now other players can tag you, if you have the flag and they have special arrows.  Have fun.",
+					new JoinCaptureFlagAction());
+
+				// TODO: if player has not started, say something
+				// TODO: if player has arrows/flag, remove them?
+				add(ConversationStates.ATTENDING,
+					"stop",
+					null, 
+					ConversationStates.ATTENDING,
+					"Thanks for playing.  Come back again.  Please provide feedback in arianne IRC or the wiki",
+					new LeaveCaptureFlagAction());
+
+				// XXX need a condition to check that player has joined game
+				add(ConversationStates.ATTENDING,
+					"flag",
+					null,
+					ConversationStates.ATTENDING,
+					"Here you go.",
+					new ProvideCTFFlagsAction());
+
+				// XXX need a condition to check that player has joined game
+				add(ConversationStates.ATTENDING,
+					"arrows",
+					null,
+					ConversationStates.ATTENDING,
+					"Here you go.  Sorry the arrows look the same right now.  You'll have to look at them to see which type they are.",
+					new ProvideArrowsAction());
+				
+				
 				addGoodbye();
 			}
 		};
