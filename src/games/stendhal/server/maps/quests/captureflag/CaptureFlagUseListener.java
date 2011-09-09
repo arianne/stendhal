@@ -181,7 +181,7 @@ public class CaptureFlagUseListener implements UseListener {
 		
 		if (result != null) {
 
-			String message = user.getName() + " " + result;
+			String message = target.getName() + " " + result;
 			
 			// transmit the message
 			target.sendPrivateText(message);

@@ -2423,6 +2423,10 @@ public class Player extends RPEntity implements UseListener {
 		this.useListener = listener;
 	}
 
+	public UseListener getUseListener() {
+		return this.useListener;
+	}
+	
 	/**
 	 * removes a use event listener
 	 */
@@ -2431,6 +2435,10 @@ public class Player extends RPEntity implements UseListener {
 		this.useListener = null;
 	}
 
+	public boolean hasUseListener() {
+		return (this.useListener != null);
+	}
+	
 	/**
 	 * Invoked when the object is used.
 	 * 

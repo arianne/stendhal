@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
+import games.stendhal.server.maps.quests.captureflag.ProvideArrowsAction;
 
 /**
  * lets the player join a CTF game
@@ -25,6 +26,11 @@ import games.stendhal.server.entity.player.Player;
 public class JoinCaptureFlagAction implements ChatAction {
 
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
+		
+		// TODO: set some rpentity slot
+		
 		player.setUseListener("Tag", new CaptureFlagUseListener(player));
+		
+		new ProvideArrowsAction().fire(player, sentence, npc);
 	}
 }

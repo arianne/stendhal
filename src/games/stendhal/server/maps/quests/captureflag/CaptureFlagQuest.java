@@ -16,6 +16,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.AbstractQuest;
 
@@ -63,23 +64,35 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 				addJob("We are helping to test ideas to make CTF fun.");
 				
-				addHelp("You can test CTF with another player.  One of you puts a #flag in your hand.  The other equips a bow and fumble arrows, and tags (left-clicks) the flag carrier, to make the carrier drop.");
+				addHelp("You can test CTF with other players.  One of you puts a #flag in your hand.  The others equip a bow and fumble arrows, and tags (left-clicks) the flag carrier, to make the carrier drop.  Please don't really attack with them - they hurt.");
 				
+				// TODO: count the number of *full* matches that player has participated in
 				add(ConversationStates.ATTENDING,
 					"play",
-					null,
+					new NotCondition(new PlayingCTFCondition()),
 					ConversationStates.ATTENDING,
-					"Ok, now other players can tag you, if you have the flag and they have special arrows.  Have fun.",
+					"Ok, now other players can tag you, if you have the flag and they have special arrows.  Have fun.  Let me know if you need #help",
 					new JoinCaptureFlagAction());
-
-				// TODO: if player has not started, say something
+				add(ConversationStates.ATTENDING,
+					"play",
+					new PlayingCTFCondition(),
+					ConversationStates.ATTENDING,
+					"You are already playing.",
+					null);
+				
 				// TODO: if player has arrows/flag, remove them?
 				add(ConversationStates.ATTENDING,
 					"stop",
-					null, 
+					new PlayingCTFCondition(),
 					ConversationStates.ATTENDING,
 					"Thanks for playing.  Come back again.  Please provide feedback in arianne IRC or the wiki",
 					new LeaveCaptureFlagAction());
+				add(ConversationStates.ATTENDING,
+						"stop",
+						new NotCondition(new PlayingCTFCondition()),
+						ConversationStates.ATTENDING,
+						"You are not playing right now.",
+						null);
 
 				// XXX need a condition to check that player has joined game
 				add(ConversationStates.ATTENDING,
