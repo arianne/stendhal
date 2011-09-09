@@ -16,6 +16,7 @@ package games.stendhal.server.core.rp;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
+import games.stendhal.server.maps.quests.captureflag.CaptureFlagQuest;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class StendhalQuestSystem {
 		loadQuest(new Blackjack());
 		loadQuest(new BowsForOuchit());
 		loadQuest(new Campfire());
-		// loadQuest(new CaptureFlagQuest());
+		loadQuest(new CaptureFlagQuest());
 		loadQuest(new ChocolateForElisabeth());
 		loadQuest(new CleanAthorsUnderground());
 		loadQuest(new CleanStorageSpace());
