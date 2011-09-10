@@ -22,8 +22,12 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.game.RPAction;
+import marauroa.server.game.container.PlayerEntry;
+import marauroa.server.game.container.PlayerEntryContainer;
 import marauroa.server.game.db.AccountDAO;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
@@ -80,12 +84,30 @@ public class BanAction extends AdministrationAction {
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 						player.getName() + " banned account " + username + " (character: " + bannedName + ") until " + expireStr
 						+ ". Reason: " + reason	+ ".");
+				logoutAccount(username);
 			} catch (SQLException e) {
 				logger.error("Error while trying to ban user", e);
 			}
 		}
-
 	}
+
+	private void logoutAccount(String username) {
+		List<String> characters = new LinkedList<String>();
+		final PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
+		for (PlayerEntry entry : playerContainer) {
+			if (username.equals(entry.username)) {
+				characters.add(entry.character);
+			}
+		}
+	
+		for (String character : characters) {
+			final Player player = SingletonRepository.getRuleProcessor().getPlayer(character);
+			if (player != null) {
+				SingletonRepository.getRuleProcessor().getRPManager().disconnectPlayer(player);
+			}
+		}
+	}
+
 	public static void register() {
 		CommandCenter.register("ban", new BanAction(), 1000);
 	}

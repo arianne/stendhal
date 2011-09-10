@@ -18,9 +18,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-import marauroa.server.game.container.PlayerEntry;
-import marauroa.server.game.container.PlayerEntryContainer;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -42,19 +39,12 @@ public class LogoutPlayer extends ScriptImpl {
 		}
 
 		try {
-			// see processLogoutEvent in
-			// marauroa-1.34/src/marauroa/server/game/GameServerManager.java
-
-			final PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
-			final PlayerEntry entry = playerContainer.get(args.get(0));
-			if (entry == null) {
-				admin.sendPrivateText(args.get(0) + " not found");
+			final Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
+			if (player == null) {
+				admin.sendPrivateText("Player is not online");
 				return;
 			}
-
-			final Player player = (Player) entry.object;
-			SingletonRepository.getRuleProcessor().getRPManager().disconnectPlayer(
-					player);
+			SingletonRepository.getRuleProcessor().getRPManager().disconnectPlayer(player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");
 		} catch (final Exception e) {
 			logger.error(e, e);
