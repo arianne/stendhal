@@ -64,7 +64,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 				addJob("We are helping to test ideas to make CTF fun.");
 				
-				addHelp("You can test CTF with other players.  One of you puts a #flag in your hand.  The others equip a bow and fumble arrows, and tags (left-clicks) the flag carrier, to make the carrier drop.  Please don't really attack with them - they hurt.");
+				addHelp("You can test CTF with other players.  One of you puts a #flag in your hand.  The others equips fumble arrows (and bow), and tags (left-clicks) the flag carrier, to make the carrier drop.  Note that attacking does not work - you have to left-click each time.");
 				
 				// TODO: count the number of *full* matches that player has participated in
 				add(ConversationStates.ATTENDING,
@@ -80,7 +80,6 @@ public class CaptureFlagQuest extends AbstractQuest {
 					"You are already playing.",
 					null);
 				
-				// TODO: if player has arrows/flag, remove them?
 				add(ConversationStates.ATTENDING,
 					"stop",
 					new PlayingCTFCondition(),
@@ -94,23 +93,49 @@ public class CaptureFlagQuest extends AbstractQuest {
 						"You are not playing right now.",
 						null);
 
-				// XXX need a condition to check that player has joined game
 				add(ConversationStates.ATTENDING,
 					"flag",
-					null,
+					new PlayingCTFCondition(),
 					ConversationStates.ATTENDING,
 					"Here you go.",
 					new ProvideCTFFlagsAction());
-
-				// XXX need a condition to check that player has joined game
 				add(ConversationStates.ATTENDING,
-					"arrows",
-					null,
+						"flag",
+						new NotCondition(new PlayingCTFCondition()),
+						ConversationStates.ATTENDING,
+						"You must #play to be able to receive a test flag.",
+						null);
+				
+				// TODO: just use a compound action for all types of ammo
+				add(ConversationStates.ATTENDING,
+					"snowballs",
+					new PlayingCTFCondition(),
 					ConversationStates.ATTENDING,
-					"Here you go.  Sorry the arrows look the same right now.  You'll have to look at them to see which type they are.",
-					new ProvideArrowsAction());
+					"Here you go.  Sorry all the arrows look the same right now.  You'll have to look at them to see which type they are.",
+					new EquipItemAction("fumble arrow", 100));
+				add(ConversationStates.ATTENDING,
+						"snowballs",
+						new NotCondition(new PlayingCTFCondition()),
+						ConversationStates.ATTENDING,
+						"You must #play to be able to get more arrows.",
+						null);
+
+				// TODO: just use a compound action for all types of ammo
+				add(ConversationStates.ATTENDING,
+					"snowballs",
+					new PlayingCTFCondition(),
+					ConversationStates.ATTENDING,
+					"Here you go.  Sorry all the snowballs look the same right now.  You'll have to look at them to see which type they are.",
+					new EquipItemAction("fumble snowball", 100));
+				add(ConversationStates.ATTENDING,
+						"snowballs",
+						new NotCondition(new PlayingCTFCondition()),
+						ConversationStates.ATTENDING,
+						"You must #play to be able to get more arrows.",
+						null);
 				
-				
+				// TODO: remove from game, remove all ctf gear, ...
+				// TODO: the cleanup needs to happen even if player logs out, or walks away (different code path)
 				addGoodbye();
 			}
 		};

@@ -30,8 +30,26 @@
 
   <!-- weapons experiments  -->
   
-  <!-- TODO: need to use different subclasses, for different images -->
   <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge --> 
+  
+  <item name="ctf bow">
+    <type class="ranged" subclass="wooden_bow" tileid="-1"/>
+    <description>You see a ctf bow, specially made for use in Capture the Flag games. With this in one hand, and CTF arrows in the other, you may be able to cause fumbles or slow players down.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="-1"/>
+      <range value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="17280"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
   
   
   <item name="fumble arrow">
@@ -39,7 +57,7 @@
     <description>You see a fumble arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk          value="1"/>
+      <atk          value="-1"/>
       <range        value="2"/>
       <quantity     value="1"/>
       <max_quantity value="2147483647"/>
@@ -61,7 +79,7 @@
     <description>You see a slowdown arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk          value="1"/>
+      <atk          value="-1"/>
       <range        value="2"/>
       <quantity     value="1"/>
       <max_quantity value="2147483647"/>
@@ -83,7 +101,7 @@
     <description>You see a speedup arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
-      <atk          value="1"/>
+      <atk          value="-1"/>
       <range        value="2"/>
       <quantity     value="1"/>
       <max_quantity value="2147483647"/>
@@ -99,11 +117,50 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-  
-  
-  
 
-
+  <item name="fumble snowball">
+    <type class="missile" subclass="snowballs" tileid="-1"/>
+    <description>You see a fumble snowball. With a supply of these, you can try to make a flag carrier drop the flag.</description>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <attributes>
+      <atk          value="-1"/>
+      <range        value="3"/>
+      <quantity     value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight  value="0.1"/>
+    <value   value="80"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="slowdown snowball">
+    <type class="missile" subclass="snowballs" tileid="-1"/>
+    <description>You see a slowdown snowball. With a supply of these, you can try to slow down any CTF player.</description>
+    <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
+    <attributes>
+      <atk          value="-1"/>
+      <range        value="3"/>
+      <quantity     value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight  value="0.1"/>
+    <value   value="80"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 
 </items>
   

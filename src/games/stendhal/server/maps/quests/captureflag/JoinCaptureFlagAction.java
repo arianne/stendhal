@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests.captureflag;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.player.Player;
 
 import games.stendhal.server.maps.quests.captureflag.ProvideArrowsAction;
@@ -30,6 +31,9 @@ public class JoinCaptureFlagAction implements ChatAction {
 		// TODO: set some rpentity slot
 		
 		player.setUseListener("Tag", new CaptureFlagUseListener(player));
+		
+		// only if player does not have bow already
+		new EquipItemAction("ctf bow").fire(player,  sentence, npc);
 		
 		new ProvideArrowsAction().fire(player, sentence, npc);
 	}

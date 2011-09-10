@@ -73,21 +73,28 @@ public class CaptureFlagUseListener implements UseListener {
 		
 		// confirm player is equipped with proper weapons (bow and tag arrow) (fumble, slowdown, paralyze, ...) 
 
-		Item          bow    = sender.getRangeWeapon();
-		StackableItem arrows = sender.getAmmunition();
-
-		if (bow == null) {
-			// System.out.println("    sender not equipped with bow");
-			return "not-equipped";
-		}
+		StackableItem projectiles = sender.getMissileIfNotHoldingOtherWeapon();
 		
-		if (arrows == null) {
-			// System.out.println("    sender not equipped with arrows");
-			return "not-equipped";
+		if (projectiles == null) {
+		
+			Item          bow    = sender.getRangeWeapon();
+
+			if (bow == null) {
+				return "not-equipped";
+			}
+		
+			projectiles = sender.getAmmunition();
+
+			if (projectiles == null) {
+				return "not-equipped";
+			}
+		} else {
+			// trying to tag with a snowball?
 		}
 				
 		// confirm target in range
 		final int maxRange = sender.getMaxRangeForArcher();
+		
 		if (!sender.canDoRangeAttack(target, maxRange)) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
@@ -95,16 +102,17 @@ public class CaptureFlagUseListener implements UseListener {
 			// note: could also be that player does not have enough ammunition
 			return "not-in-range";
 		}
-
-		// take away one arrow
-		arrows.sub(1);
-
+		
 		// get the type of the equipped arrows, return first word
-		String[] parts = arrows.get("name").split(" ");
-		String type = parts[0];
+		String[] parts = projectiles.get("name").split(" ");
+		String   type  = parts[0];
 
+		// TODO: confirm that is is one of the special types
 		// TODO: if type not one of the special types, return null
 		
+		// take away one arrow
+		projectiles.sub(1);
+
 		return type;
 	}
 
