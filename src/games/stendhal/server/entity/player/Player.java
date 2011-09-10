@@ -2463,4 +2463,5 @@ public class Player extends RPEntity implements UseListener {
 		}
 		return useListener.onUsed(user);
 	}
+
 }

@@ -8,6 +8,7 @@ create table if not exists character_stats
   age integer,
   level integer,
   outfit varchar(32),
+  outfit_colors varchar(100),
   xp integer,
   money integer,
 

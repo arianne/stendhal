@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -79,8 +80,8 @@ public class StendhalWebsiteDAO {
 	protected int updateCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
 		final String query = "UPDATE character_stats SET "
 			+ " admin=[admin], sentence='[sentence]', age=[age], level=[level],"
-			+ " outfit=[outfit], xp=[xp], money='[money]', married='[married]'," 
-			+ " atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
+			+ " outfit=[outfit], outfit_colors='[outfit_colors]', xp=[xp], money='[money]',"
+			+ " married='[married]', atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
 			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]',"
 			+ " finger='[finger]'"
@@ -98,7 +99,8 @@ public class StendhalWebsiteDAO {
 		params.put("sentence", instance.getSentence());
 		params.put("age", instance.getAge());
 		params.put("level", instance.getLevel());
-		params.put("outfit", instance.getOutfit().getCode());	
+		params.put("outfit", instance.getOutfit().getCode());
+		params.put("outfit_colors", getOutfitColors(instance));
 		params.put("xp", instance.getXP());
 		params.put("money", instance.getTotalNumberOf("money"));
 		params.put("married", extractSpouseOrNull(instance));
@@ -108,7 +110,7 @@ public class StendhalWebsiteDAO {
 		params.put("karma", (int) instance.getKarma());
 		params.put("head", extractName(instance.getHelmet()));
 		params.put("armor", extractName(instance.getArmor()));
-		params.put("lhand", extractHandName(instance, "lhand"));			
+		params.put("lhand", extractHandName(instance, "lhand"));
 		params.put("rhand", extractHandName(instance, "rhand"));
 		params.put("legs", extractName(instance.getLegs()));
 		params.put("feet", extractName(instance.getBoots()));
@@ -122,13 +124,13 @@ public class StendhalWebsiteDAO {
 	protected void insertIntoCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
 		final String query = "INSERT INTO character_stats"
 			+ " (name, admin, sentence, age, level,"
-			+ " outfit, xp, money, married, atk, def, hp,"
+			+ " outfit, outfit_colors, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
 			+ " legs, feet, cloak, finger, lastseen)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
-			+ " '[outfit]', '[xp]', '[money]', '[married]', '[atk]', '[atk]', '[hp]',"
-			+ " '[karma]', '[head]', '[armor]', '[lhand]', '[rhand]',"
-			+ " '[legs]', '[feet]', '[cloak]', '[finger]', '[lastseen]')";
+			+ " '[outfit]', '[outfit_colors]', '[xp]', '[money]', '[married]',"
+			+ " '[atk]', '[atk]', '[hp]', '[karma]', '[head]', '[armor]',"
+			+ " '[lhand]', '[rhand]', '[legs]', '[feet]', '[cloak]', '[finger]', '[lastseen]')";
 		Map<String, Object> params = getParamsFromPlayer(instance);
 		logger.debug("storeCharacter is running: " + query);
 		transaction.execute(query, params);
@@ -175,5 +177,23 @@ public class StendhalWebsiteDAO {
 		} else {
 			return null;
 		}
+	}
+
+	private String getOutfitColors(final Player player) {
+		Map<String, String> colors = player.getOutfitColors();
+		if (colors == null) {
+			return "";
+		}
+		StringBuilder res = new StringBuilder();
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("detail"), 0)));
+		res.append("_");
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("hair"), 0)));
+		res.append("_");
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("head"), 0)));
+		res.append("_");
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("dress"), 0)));
+		res.append("_");
+		res.append(Integer.toHexString(MathHelper.parseIntDefault(colors.get("base"), 0)));
+		return res.toString();
 	}
 }

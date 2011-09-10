@@ -2292,6 +2292,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	/**
+	 * gets the color map
+	 *
+	 * @return color map
+	 */
+	public Map<String, String> getOutfitColors() {
+		return getMap("outfit_colors");
+	}
+
+	/**
 	 * Sets this RPEntity's outfit.
 	 * 
 	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use

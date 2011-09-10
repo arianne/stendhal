@@ -143,7 +143,13 @@ public class StendhalPlayerDatabase {
 		// 0.93: inactive achievements
 		if (!transaction.doesColumnExist("achievement", "active")) {
 			transaction.execute("ALTER TABLE achievement ADD COLUMN (active INTEGER);", null);
-			transaction.execute("UPDATE achievement SET active = 1;", null);
+			transaction.execute("UPDATE achievement SET active = 1 WHERE active IS NULL;", null);
+		}
+
+		// 0.97: outfit_colors
+		if (!transaction.doesColumnExist("character_stats", "outfit_colors")) {
+			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_colors VARCHAR(100));", null);
+			transaction.execute("UPDATE character_stats SET outfit_colors = '' WHERE outfit_colors IS NULL;", null);
 		}
 	}
 
