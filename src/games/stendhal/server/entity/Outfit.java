@@ -253,6 +253,14 @@ public class Outfit {
 		}
 		return new Outfit(newDetail, newHair, newHead, newDress, newBase);
 	}
+
+	/**
+	 * removes the details
+	 */
+	public void removeDetail() {
+		detail = 0;
+	}
+
 	/**
 	 * Checks whether this outfit is equal to or part of another outfit.
 	 * 
@@ -330,4 +338,5 @@ public class Outfit {
 	public int hashCode() {
 		return this.getCode();
 	}
+
 }

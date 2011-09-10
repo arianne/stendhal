@@ -1593,6 +1593,15 @@ public class Player extends RPEntity implements UseListener {
 	public boolean returnToOriginalOutfit() {
 		final Outfit originalOutfit = getOriginalOutfit();
 		if (originalOutfit != null) {
+
+			// do not restore details layer, unless the detail is still present
+			if (originalOutfit.getDetail() > 0) {
+				final Outfit currentOutfit = getOutfit();
+				if (currentOutfit.getDetail() != originalOutfit.getDetail()) {
+					originalOutfit.removeDetail();
+				}
+			}
+
 			remove("outfit_org");
 			setOutfit(originalOutfit, false);
 
@@ -2423,10 +2432,13 @@ public class Player extends RPEntity implements UseListener {
 		this.useListener = listener;
 	}
 
+	/**
+	 * gets the current UseListener
+	 */
 	public UseListener getUseListener() {
 		return this.useListener;
 	}
-	
+
 	/**
 	 * removes a use event listener
 	 */
