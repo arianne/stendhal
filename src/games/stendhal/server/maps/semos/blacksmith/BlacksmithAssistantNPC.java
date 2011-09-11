@@ -81,6 +81,7 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 				
 				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
 				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
+				addOffer("You might ask Xoderos. He sells some of his selfmade weapons.");
 				addGoodbye();
 			}
 
