@@ -108,6 +108,7 @@ public class GossipNPC implements ZoneConfigurator {
                 addHelp("I'm a... Let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
                 addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
                 addQuest("Thanks for asking, but I don't need anything right now... Gee! I just wish this #sack wasn't so cumbersome.");
+                addOffer("Tz although I carry this #sack with me, it doesn't mean that I have anything for you...But I heard, that the old guy Monogenes over there needs some help...");
                 addGoodbye();
             }
 
