@@ -166,12 +166,13 @@ public class PlinksToy extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"I lost my teddy in the #park over east, where all those #wolves are hanging about.",
 			null);
-
-		npc.add(ConversationStates.ATTENDING, "teddy",
-			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("teddy")),
-			ConversationStates.ATTENDING,
-			"That's not my teddy, I've got him right here! Remember, you found him for me!",
-			null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+					new QuestCompletedCondition(QUEST_SLOT)),
+			ConversationStates.ATTENDING, 
+			"You found my teddy already near by the wolves! I still squeeze and hug it :)", null);
 	}
 
 	@Override
