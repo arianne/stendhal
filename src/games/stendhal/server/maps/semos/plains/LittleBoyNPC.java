@@ -71,6 +71,7 @@ public class LittleBoyNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I play all day.");
 				addHelp("Be careful out east, there are wolves about!");
+				addOffer("Hey, I will not give you my teddy! It's mine! *hug*");
 				addGoodbye();
 			}
 	
