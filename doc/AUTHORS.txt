@@ -127,8 +127,11 @@ Authors of Stendhal are:
   · Artist - wizards tower, pixel general
   · Quest/NPC creation
 - Bluelads4
-  · Coder (NPCs, quests like on Ados Market, items)
+  · Coder (NPCs, quests like on Ados Market, items, sources (with help))
   · Artist - charas (NPCs) + items (gimp)
+  · Maps maker/rebuilding some
+  · Bug fixes so far as possible
+  · Wiki stuff
 - Storyteller  
   · Descriptions (creatures and objects)
   · Audio (background music and sounds)
