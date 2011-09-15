@@ -166,7 +166,7 @@ public abstract class Entity extends RPObject {
 			}
 		}
 
-		if (moved && (getZone() != null)) {
+		if (moved && (zone != null)) {
 			onMoved(oldX, oldY, x, y);
 		}
 
@@ -618,7 +618,7 @@ public abstract class Entity extends RPObject {
 			moved = true;
 		}
 
-		if (moved && (getZone() != null)) {
+		if (moved && (zone != null)) {
 			onMoved(oldX, oldY, x, y);
 		}
 	}
