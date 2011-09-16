@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/food/meals_1.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
@@ -88,7 +87,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA8wAmJjPPJsONjOUNoEiE3RxEgBZkBsToY+YsEmIN4MxVuQxFmxqMUmRilIBeJYII4D4hggzgBieyR5e2yakEA6EjsRie0BxJ5E2L8aSjMBcQ2SuDcQ+6Cp5cGifw0RdsDAXixi2TjUBgJxEAlmEwOwuZ8a4AAQ3wLiQ2TqPwrE94D4OAl6AEjZ/c0ABAAA
+   H4sIAAAAAAAAAGNgoA8wAmJjPPJsONjOUNoEiE3RxEgBZkBsToY+YsEmIN4MxVuQxFmxqMUmRilIBeJYII4D4hggzgBieyR5e2yakEA6EjsRie0BxJ4kuIMJiGuQ+N5A7IOmhgeLvjUk2LEXi1g2DrWBQBxEgtnEAGzupwY4AMS3gPgQmfqPAvE9ID5Ogh4AwG816QAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -108,7 +107,7 @@
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONjYGDgG+QYHRCjBpceYswgxTxquZ8Uc2iln5A7idFPTHzQUj+57icFEGs/qfrRw4AeGADZMZAiAAQAAA==
+   H4sIAAAAAAAAAONjYGDgGyQYBnCJ45LHpgaXHmLMIMU8armfkvChln5C7iRGjpj4INZ+Us0gpIZYOXLspqYZ9MxzAHo0PtEABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

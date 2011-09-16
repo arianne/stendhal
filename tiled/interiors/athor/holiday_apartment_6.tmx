@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/pot/box.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
@@ -93,7 +92,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA44SSVzcIEAIA6kofkWQGwJxPZAbIUkfhqL2vNYxFiB+AQUs1LddbQHm5Dw2gF2CzlgPxAfwCFXh4NNDJgLpXuBuA9NjNogjRFCZzCSpz8bqC8HiHNJ0A8Ad2PRuQAEAAA=
+   H4sIAAAAAAAAAGNgoA44SSVzcIEAIA6kofkWQGwJxPZAbIUkfhqL2vNYxFiB+AQSe6iBTUh47QC7hRywH4gP4JCrw8EmBsyF0r1A3IcmRm2QxgihMxjJ058N1JcDxLkk6AcAAzH85QAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -108,7 +107,7 @@
  </layer>
  <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGDgGeQYHRCjBpceYswgxlxqu59YcygNR2LdiA+Q6mdywghZLzH2kwpIcQd62sCmn1R7aBXHpGIAlWL5CgAEAAA=
+   H4sIAAAAAAAAAONhYGDgGeQYHRCjBpceYswgxlx8biXH/cSGA6XhSGwY4wOkxhk5cYyslxj7SQWkuAM9bWDTT6o9tIpjUjEAnZxUfAAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

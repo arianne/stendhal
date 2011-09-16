@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/pot/box.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
@@ -59,12 +58,12 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXSTwsBQRjH8Zly5ID1Jwec8TrclHcgL0FelJvc3EVxoXgbFBeKi+/ujpq2mYc5eOrT9jT7m2e2nbVSaoNxoC122OOASaAjTlhgBq2Vt1xrc0ytfPKef4tkLdYX8mVEaKCCnJUfGtL8KmpGXTiLK19EyfOMK4+CxTU/pHz5gSFV/D9ceTv3bY9f86NM7tP/4/uzs0Lnl8wFjKSLmMmfccESTXIttHXaS6644Y4HVuiQ66Kn017yxAtvCR7/SwAEAAA=
+   H4sIAAAAAAAAALXSPwrCMBTH8QQcdbDWPzios3oON8EbiEcQD+Umbu5FQRcFvYaCLgq6+C1NIYQ0MYMPPpRH+PUlJFshxA6zQHsccMQJ80BnXLDGElJC2EtaFlZYaHlfSWXkyNcQo406Slp+orjmN9BUWp79mPkqooJvWmVUNKHn983Pa6y4Kr0PW17P+f7xa35q5PL+H+c3Z4XOj9Q7jYsesmX+FTds0CHXRU9mvcsdDzzxQoI+uQGGMutd3vjgC1Y9tagABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoBJgJFMOCpjwqMEnhwzc8cgFQjEtgQAQ8yPR1AY8SJgiQGR44gL44sMciC0oMNsSiK3QxCKRMDkgCoijgTiGTP0DbT8tAQAic14EAAQAAA==
+   H4sIAAAAAAAAAGNgoBJgJFMOCpiAatzxyFEKAqGYlkAAiPmRaGoDHiRMEaAwPPHFhzkQW1BgtiUQW6GJRSJhckAUEEcDcQyZ+gfafloCAB6CccsABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -82,9 +81,9 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNlYGBgHSQYF8AmR6oZ6GYR0k+Mm8j1D7H6kc2hxC5i7KdELynhRsh+XHxC4UEqwGUmIXW0sp+UuKYmBgCUupsmAAQAAA==
+   H4sIAAAAAAAAAGNlYGBgHUQYG8AmTow+fGZh08+Kpg6fubj0E+smUsOEnHAjxX5K9NLSfmLDgxr2E5POaGU/KXFNTQwAUWhr+QAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
