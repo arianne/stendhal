@@ -278,4 +278,15 @@ public class CreatureRespawnPoint implements TurnListener {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		}
 	}
+	
+	/**
+	 * Pops up a new creature.
+	 */
+	public void spawnNow() {
+		if (creatures.size() < maximum) {
+			SingletonRepository.getTurnNotifier().dontNotify(this);
+			//SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
+			onTurnReached(0);
+		};
+	}
 }
