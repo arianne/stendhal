@@ -479,4 +479,12 @@ import org.apache.log4j.Logger;
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
+	
+	public int getRemainingTurns() {
+		return TurnNotifier.get().getRemainingTurns(questTimer);		
+	}
+	
+	public int getRemainingSeconds() {
+		return TurnNotifier.get().getRemainingSeconds(questTimer);		
+	}
 }
