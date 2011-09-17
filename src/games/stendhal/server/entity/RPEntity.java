@@ -1052,7 +1052,6 @@ public abstract class RPEntity extends GuidedEntity {
 	 * returns string - what happened.  no effect returns null
 	 * 
 	 * @param attacker
-	 * @param defender
 	 */
 	public String maybeDropDroppables(RPEntity attacker) {
 		

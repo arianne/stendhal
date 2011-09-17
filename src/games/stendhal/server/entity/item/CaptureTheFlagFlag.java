@@ -22,7 +22,7 @@ import marauroa.common.game.SlotOwner;
 
 /**
  * represents the flag in Capture the Flag games - when player
- * holds flag in hand, outfit diplays flag.  when player
+ * holds flag in hand, outfit displays flag.  when player
  * drops flag, outfit reverts to previous.
  * 
  * @author sjtsp2008
@@ -69,7 +69,7 @@ public class CaptureTheFlagFlag extends Item {
 
 	/**
 	 * return the detail id for flag
-	 * @return
+	 * @return detail id
 	 */
 	public int getDetailValue() {
 		return this.detailValue;
