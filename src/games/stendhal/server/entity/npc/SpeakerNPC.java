@@ -157,6 +157,12 @@ public class SpeakerNPC extends NPC {
 	 * alternative image for website
 	 */
 	private String alternativeImage;
+	
+	/**
+	 * is this speaker can act without players around flag.
+	 * by default switched off.
+	 */
+	private boolean actingAlone=false;
 
 	/**
 	 * Creates a new SpeakerNPC.
@@ -179,7 +185,15 @@ public class SpeakerNPC extends NPC {
 		// set the default perception range for player chatting
 		setPerceptionRange(5);
 	}
+	
+	public void setAllowToActAlone(final boolean allow) {
+		actingAlone=allow;
+	}
 
+	public boolean isAllowedToActAlone() {
+		return(actingAlone);
+	}
+	
 	protected void createPath() {
 		// sub classes can implement this method
 	}
@@ -331,7 +345,7 @@ public class SpeakerNPC extends NPC {
 
 	public void preLogic() {
 
-		if (this.getZone().getPlayerAndFriends().isEmpty() && !isTalking()) {
+		if (this.getZone().getPlayerAndFriends().isEmpty() && !isTalking() && !actingAlone) {
 			return;
 		}
 
