@@ -104,6 +104,7 @@ public enum ActionType {
 
 		@Override
 		public RPAction fillTargetInfo(RPObject rpObject) {
+			// invite action needs to add additional parameters to the RPAction
 			RPAction a = super.fillTargetInfo(rpObject);
 			a.put("action", "invite");
 			a.put("params", rpObject.get("name"));
