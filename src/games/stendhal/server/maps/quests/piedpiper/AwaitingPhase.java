@@ -270,6 +270,7 @@ public class AwaitingPhase extends TPPQuest {
 		piedpiper.initHP(1000);
 		piedpiper.setResistance(0);
 		piedpiper.setVisibility(100);
+		piedpiper.setAllowToActAlone(true);
 		piedpiper.add(ConversationStates.IDLE, 
 							ConversationPhrases.GREETING_MESSAGES, 
 							new GreetingMatchesNameCondition(piedpiper.getName()), true, 
