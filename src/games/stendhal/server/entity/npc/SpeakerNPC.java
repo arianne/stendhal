@@ -186,6 +186,10 @@ public class SpeakerNPC extends NPC {
 		setPerceptionRange(5);
 	}
 	
+	/**
+	 * allow or disallow for npc to act without players in his zone.
+	 * @param allow - flag for allowing/disallowing npc's acting
+	 */
 	public void setAllowToActAlone(final boolean allow) {
 		actingAlone=allow;
 	}
