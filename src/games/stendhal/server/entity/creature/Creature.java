@@ -444,6 +444,10 @@ public class Creature extends NPC {
 		setRespawned(true);
 	}
 
+	public CreatureRespawnPoint getRespawnPoint() {
+		return(point);
+	}
+	
 	/**
 	 * Get the respawn time of the creature.
 	 *
