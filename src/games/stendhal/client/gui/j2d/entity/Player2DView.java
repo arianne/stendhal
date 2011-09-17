@@ -176,6 +176,9 @@ class Player2DView extends RPEntity2DView {
 			if ((serverVersion == null) || (Version.compare(serverVersion, "0.87") > 0)) {
 				list.add(ActionType.TRADE.getRepresentation());
 			}
+			if ((serverVersion == null) || (Version.compare(serverVersion, "0.92") > 0)) {
+				list.add(ActionType.INVITE.getRepresentation());
+			}
 		}
 	}
 
@@ -231,11 +234,11 @@ class Player2DView extends RPEntity2DView {
 		switch (at) {
 		case ADD_BUDDY:
 		case IGNORE:
+		case INVITE:
 		case UNIGNORE:
 		case TRADE:
 			at.send(at.fillTargetInfo(entity.getRPObject()));
 			break;
-			
 		default:
 			super.onAction(at);
 			break;

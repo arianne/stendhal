@@ -99,7 +99,18 @@ public enum ActionType {
 		}
 	},
 	ADMIN_VIEW_NPC_TRANSITIONS("npctransitions", "(*)View Transitions"),
-	KNOCK("knock", "Knock");
+	KNOCK("knock", "Knock"),
+	INVITE("group_management", "Invite") {
+
+		@Override
+		public RPAction fillTargetInfo(RPObject rpObject) {
+			RPAction a = super.fillTargetInfo(rpObject);
+			a.put("action", "invite");
+			a.put("params", rpObject.get("name"));
+			return a;
+		}
+		
+	};
 
 	/**
 	 * the String send to the server, if so.
