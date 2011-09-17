@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,8 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 	private void buildSecondFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
+        final RespawnerOnDeath observer = new RespawnerOnDeath();
+        
 		final Creature creature = manager.getCreature("air elemental");
 		final Creature creature1 = manager.getCreature("madaram windwalker");
 		final Creature creature2 = manager.getCreature("djinn");
@@ -62,18 +65,34 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 		creature2.setXP(0);
 		creature3.setXP(0);
 		
-		creature.setPosition(29,15);
-		creature1.setPosition(1,15);
-		creature2.setPosition(15,28);
-		creature3.setPosition(15,2);
+		//creature.setPosition(29,15);
+		//creature1.setPosition(1,15);
+		//creature2.setPosition(15,28);
+		//creature3.setPosition(15,2);
 
 		creature.setDirection(Direction.LEFT);
 		creature1.setDirection(Direction.RIGHT);
 		creature2.setDirection(Direction.UP);
+		
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 29, 15, creature, 1);
+		final CreatureRespawnPoint point1 = new CreatureRespawnPoint(zone, 1, 15, creature1, 1);
+		final CreatureRespawnPoint point2 = new CreatureRespawnPoint(zone, 15, 28, creature2, 1);
+		final CreatureRespawnPoint point3 = new CreatureRespawnPoint(zone, 15, 2, creature3, 1);
 
-		zone.add(creature);
-		zone.add(creature1);
-		zone.add(creature2);
-		zone.add(creature3);
+        point.addObserver(observer);
+        point1.addObserver(observer);
+        point2.addObserver(observer);
+        point3.addObserver(observer);
+		
+		zone.add(point);
+		zone.add(point1);
+		zone.add(point2);
+		zone.add(point3);
+		
+        point.spawnNow();
+        point1.spawnNow();
+        point2.spawnNow();
+        point3.spawnNow();
+        
 	}
 }
