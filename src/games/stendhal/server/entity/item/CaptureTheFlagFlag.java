@@ -8,18 +8,13 @@
 
 package games.stendhal.server.entity.item;
 
-import java.util.Map;
-import java.util.HashMap;
-
-import games.stendhal.common.MathHelper;
-
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import marauroa.common.game.SlotOwner;
-
-import java.awt.Color;
 
 
 // XXX obviously not about NPC
