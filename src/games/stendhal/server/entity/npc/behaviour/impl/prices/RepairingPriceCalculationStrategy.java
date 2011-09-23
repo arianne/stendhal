@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.behaviour.impl.prices;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -15,7 +16,13 @@ import java.util.Set;
  */
 public class RepairingPriceCalculationStrategy implements PriceCalculationStrategy {
 	
+	private static final double REPAIR_PRICE_FACTOR = 0.05d;
+	
+	private static final double PLAYER_KILLER_MALUS = 2d;
+	
 	private Set<String> items;
+	
+	private Item itemToRepair;
 	
 	/**
 	 * Create a new strategy object for the given items
@@ -27,11 +34,29 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 	}
 
 	public int calculatePrice(Item i, Player p) {
+		itemToRepair = i;
 		return calculatePrice(i.getName(), p);
 	}
 
 	public int calculatePrice(String item, Player p) {
-		return 1;
+		double itemvalue = SingletonRepository.getEconomy().getValue(item);
+		double adjustedFactor = adjustFactorBasedOnMinLevel(item);
+		double repairPrice =  itemvalue * adjustedFactor;
+		// consider bad boy flag for price calculation
+		if (p.isBadBoy()) {
+			repairPrice = repairPrice * PLAYER_KILLER_MALUS;
+		}
+		return Double.valueOf(repairPrice).intValue();
+	}
+
+	private double adjustFactorBasedOnMinLevel(String item) {
+		if(itemToRepair == null) {
+			itemToRepair = SingletonRepository.getEntityManager().getItem(item);
+		}
+		//reset again
+		itemToRepair = null;
+		//TODO adjust similar to min level adjustment
+		return REPAIR_PRICE_FACTOR;
 	}
 
 	public Set<String> dealtItems() {
