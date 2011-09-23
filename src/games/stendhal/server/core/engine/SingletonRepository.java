@@ -16,6 +16,7 @@ import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
+import games.stendhal.server.core.rp.economy.StendhalEconomy;
 import games.stendhal.server.core.rp.group.GroupManager;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
@@ -175,6 +176,15 @@ public class SingletonRepository {
 		}
 		return groupManager;
 	}
+	
+	/**
+	 * gets the StendhalEconomy
+	 * 
+	 * @return the stendhal economy
+	 */
+	public static StendhalEconomy getEconomy() {
+		return StendhalEconomy.get();
+	}
 
 	/**
 	 * Sets a new EntityManager 
@@ -184,5 +194,6 @@ public class SingletonRepository {
 		SingletonRepository.entityManager = entityManager;
 	}
 
+	
 
 }
