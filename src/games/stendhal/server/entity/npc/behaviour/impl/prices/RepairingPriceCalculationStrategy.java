@@ -7,6 +7,10 @@ import java.util.Set;
 /**
  * Special calculation strategy for calculating repair prices
  * 
+ * Repairing price is based on value determined by the StendhalEconomy, player
+ * level (min level has an effect similar to affecting def or rate) 
+ * and player's PK status
+ * 
  * @author madmetzger
  */
 public class RepairingPriceCalculationStrategy implements PriceCalculationStrategy {
