@@ -12,20 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-
-import marauroa.common.game.RPSlot;
 
 /**
  * Showing what is current ThePiedPiper quest state, and when it will switch to next.
