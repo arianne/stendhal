@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2011 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,14 +15,11 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -31,16 +28,11 @@ import java.util.Map;
 /**
  * Represents the behaviour of a NPC who is able to sell outfits to a player.
  */
-public class OutfitChangerBehaviour extends MerchantBehaviour implements
-		LoginListener {
-	protected static final int NEVER_WEARS_OFF = -1;
-	public int endurance;
+public class OutfitChangerBehaviour extends MerchantBehaviour {
+	public static final int NEVER_WEARS_OFF = -1;
+	private int endurance;
 
 	private final String wearOffMessage;
-
-	// TODO: make this persistent, e.g. by replacing this list with one
-	// quest slot reserved for each OutfitChangerBehaviour.
-	List<String> namesOfPlayersWithWornOffOutfits;
 
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
@@ -103,10 +95,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		super(priceList);
 		this.endurance = endurance;
 		this.wearOffMessage = wearOffMessage;
-		if (endurance != NEVER_WEARS_OFF) {
-			SingletonRepository.getLoginNotifier().addListener(this);
-			namesOfPlayersWithWornOffOutfits = new ArrayList<String>();
-		}
 	}
 
 	/**
@@ -143,19 +131,25 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		}
 	}
 
-	protected class OutwearClothes implements TurnListener {
-		WeakReference<Player> ref;
-		String name;
+	/**
+	 * removes the special outfit after it outwore.
+	 */
+	public static class ExpireOutfit implements TurnListener {
+		private String name;
 
-		public OutwearClothes(final Player player) {
-			ref = new WeakReference<Player>(player);
-			name = player.getName();
+		/**
+		 * creates a OutwearClothes turn listener
+		 *
+		 * @param playerName of player
+		 */
+		public ExpireOutfit(String playerName) {
+			name = playerName;
 		}
 
 		@Override
 		public boolean equals(final Object obj) {
-			if (obj instanceof OutwearClothes) {
-				OutwearClothes other = (OutwearClothes) obj;
+			if (obj instanceof ExpireOutfit) {
+				ExpireOutfit other = (ExpireOutfit) obj;
 				return name.equals(other.name);
 			} else {
 				return false;
@@ -169,19 +163,14 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		}
 
 		public void onTurnReached(final int currentTurn) {
-			Player player = ref.get();
+			Player player = SingletonRepository.getRuleProcessor().getPlayer(name);
 			if ((player == null) || player.isDisconnected()) {
-				player = SingletonRepository.getRuleProcessor().getPlayer(name);
+				return;
 			}
-			if (player != null) {
-				onWornOff(player);
-			} else {
-				// The player has logged out before the outfit wore off.
-				// Remove it when the player logs in again.
-				namesOfPlayersWithWornOffOutfits.add(name);
-			}
+			player.sendPrivateText("Your costume has worn off");
+			player.returnToOriginalOutfit();
+			player.remove("outfit_expire_age");
 		}
-
 	}
 
 	/**
@@ -197,15 +186,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		final List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
 		final Outfit newOutfit = Rand.rand(possibleNewOutfits);
 		player.setOutfit(newOutfit.putOver(player.getOutfit()), true);
-
-		if (endurance != NEVER_WEARS_OFF) {
-			// restart the wear-off timer if the player was still wearing
-			// another temporary outfit.
-			SingletonRepository.getTurnNotifier().dontNotify(new OutwearClothes(player));
-			// make the costume disappear after some time
-			SingletonRepository.getTurnNotifier().notifyInTurns(endurance,
-					new OutwearClothes(player));
-		}
+		player.registerOutfitExpireTime(endurance);
 	}
 
 	/**
@@ -258,10 +239,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		}
 	}
 
-	public void onLoggedIn(final Player player) {
-		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {
-			onWornOff(player);
-			namesOfPlayersWithWornOffOutfits.remove(player.getName());
-		}
+	public int getEndurance() {
+		return endurance;
 	}
 }

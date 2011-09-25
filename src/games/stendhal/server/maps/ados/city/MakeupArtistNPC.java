@@ -58,7 +58,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, there. Do you need #help with anything?");
-				addHelp("I sell masks. If you don't like your mask, you can #return and I will remove it, or you can just wait an hour, until it wears off.");
+				addHelp("I sell masks. If you don't like your mask, you can #return and I will remove it, or you can just wait two hours, until it wears off.");
 				
 				// this is a hint that one of the items Anna wants is a dress (goblin dress)
 				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); 
@@ -71,9 +71,8 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 20);
-				// wears off in 12000 turns = 60 minutes
-				// if you change it change her Help message too please
-				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 12000, "Your mask has worn off.");
+				// if you change the wear off time, change her Help message too please
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 5 /*  * 60*/, "Your mask has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 		};

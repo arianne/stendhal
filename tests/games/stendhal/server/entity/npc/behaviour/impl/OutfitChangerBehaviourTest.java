@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,7 +14,7 @@ package games.stendhal.server.entity.npc.behaviour.impl;
 
 import static org.junit.Assert.*;
 
-import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.OutwearClothes;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -27,18 +27,28 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
+/**
+ * tests for OutfitChangerBehaviour
+ */
 public class OutfitChangerBehaviourTest {
-@BeforeClass
-public static void setupBeforeClass() {
-	
-	MockStendlRPWorld.get();
-}
 
-@AfterClass
-public static void teardownAfterClass() throws Exception {
-	
-	MockStendlRPWorld.reset();
-}
+	/**
+	 * prepare tests
+	 */
+	@BeforeClass
+	public static void setupBeforeClass() {
+		
+		MockStendlRPWorld.get();
+	}
+
+	/**
+	 * cleanup after tests
+	 */
+	@AfterClass
+	public static void teardownAfterClass() {
+		MockStendlRPWorld.reset();
+	}
+
 	/**
 	 * Tests for onWornOff.
 	 */
@@ -46,14 +56,13 @@ public static void teardownAfterClass() throws Exception {
 	public void testOnWornOff() {
 		Map<String, Integer> pricelist = new HashMap<String, Integer>();
 		pricelist.put("trunks", Integer.valueOf(50));
-		OutfitChangerBehaviour beh = new OutfitChangerBehaviour(pricelist);
 		Player player = PlayerTestHelper.createPlayer("bob");
-		OutwearClothes cloth = beh.new OutwearClothes(player);
-		OutwearClothes cloth2 = beh.new OutwearClothes(player);
+		ExpireOutfit cloth = new ExpireOutfit(player.getName());
+		ExpireOutfit cloth2 = new ExpireOutfit(player.getName());
 		assertTrue(cloth.equals(cloth2));
 		assertTrue(cloth2.equals(cloth));
 		
-		OutwearClothes cloth3 = beh.new OutwearClothes(PlayerTestHelper.createPlayer("bob"));
+		ExpireOutfit cloth3 = new ExpireOutfit(PlayerTestHelper.createPlayer("bob").getName());
 		
 		assertTrue(cloth.equals(cloth3));
 		assertTrue(cloth3.equals(cloth));

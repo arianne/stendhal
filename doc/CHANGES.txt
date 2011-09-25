@@ -7,6 +7,7 @@
 - Semos inhabitants decided to open the new palisade wall a bit and added a new way to the south and west
 - Semos city tavern/INN owners rebuild their front garden and made it quite comfortable
 - More Semos NPCs help players now if they need some advise of what to do next
+- The duration of special outfits is now based on online time
 
 *website*
 

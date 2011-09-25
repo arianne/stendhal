@@ -14,7 +14,6 @@ package games.stendhal.server.maps.magic.clothing_boutique;
 
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -37,8 +36,8 @@ import marauroa.common.Pair;
 
 public class OutfitLender2NPC implements ZoneConfigurator {
 	
-	// outfits to last for 48 hours normally 
-	public static final int endurance = 48 * 60 * 20 * 10;
+	// outfits to last for 10 hours normally 
+	public static final int endurance = 10 * 60;
 
 	// this constant is to vary the price. N=1 normally but could be a lot smaller on special occasions 
 	private static final double N = 1;
@@ -113,14 +112,7 @@ public class OutfitLender2NPC implements ZoneConfigurator {
 						} else {
 							player.setOutfit(outfit, true);
 						}
-						if (endurance != NEVER_WEARS_OFF) {
-							// restart the wear-off timer if the player was still wearing
-							// another temporary outfit.
-							SingletonRepository.getTurnNotifier().dontNotify(new OutwearClothes(player));
-							// make the costume disappear after some time
-							SingletonRepository.getTurnNotifier().notifyInTurns(endurance,
-									new OutwearClothes(player));
-						}
+						player.registerOutfitExpireTime(endurance);
 					}
 					// override transact agreed deal to only make the player rest to a normal outfit if they want a put on over type.
 					@Override

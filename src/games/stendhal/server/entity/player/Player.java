@@ -46,6 +46,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
@@ -263,16 +264,22 @@ public class Player extends RPEntity implements UseListener {
 		// Ensure that players do not accidentally get stored with zones
 		if (isStorable()) {
 			unstore();
-			logger.error("Player " + getName() + " was marked storable.", new
-					Throwable());
+			logger.error("Player " + getName() + " was marked storable.", new Throwable());
+		}
+
+		// expire outfits
+		if (has("outfit_expire_age")) {
+			int expire = getInt("outfit_expire_age") - getInt("age");
+			ExpireOutfit expireOutfit = new ExpireOutfit(super.getName());
+			SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
 		}
 	}
 
 	/**
 	 * Add an active client direction.
-	 * @param direction
 	 *
-	 *
+	 * @param direction direction
 	 */
 	public void addClientDirection(final Direction direction) {
 		if (hasPath()) {
@@ -285,9 +292,8 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * Remove an active client direction.
-	 * @param direction
 	 *
-	 *
+	 * @param direction direction
 	 */
 	public void removeClientDirection(final Direction direction) {
 		directions.remove(direction);
@@ -2434,6 +2440,8 @@ public class Player extends RPEntity implements UseListener {
 
 	/**
 	 * gets the current UseListener
+	 *
+	 * @return UseListener
 	 */
 	public UseListener getUseListener() {
 		return this.useListener;
@@ -2447,6 +2455,11 @@ public class Player extends RPEntity implements UseListener {
 		this.useListener = null;
 	}
 
+	/**
+	 * has the player a use listener?
+	 *
+	 * @return true if there is a use listener registered, false otherwise
+	 */
 	public boolean hasUseListener() {
 		return (this.useListener != null);
 	}
@@ -2462,6 +2475,32 @@ public class Player extends RPEntity implements UseListener {
 			return false;
 		}
 		return useListener.onUsed(user);
+	}
+
+	/**
+	 * sets the time a outfit wears off
+	 *
+	 * @param expire expire age
+	 */
+	public void registerOutfitExpireTime(int expire) {
+		// ignore outfits that do not expire
+		if (expire < 0) {
+			return;
+		}
+
+		// currently we keep only track of one expire, so takes the smallest
+		// to prevent players from keeping a highly special outfit longer
+		// by renting an outfit with a longer expire time later
+		int oldExpire = Integer.MAX_VALUE;
+		if (has("outfit_expire_age")) {
+			oldExpire = getInt("outfit_expire_age");
+		}
+		int newExpire = Math.min(expire + age, oldExpire);
+		put("outfit_expire_age", newExpire);
+
+		ExpireOutfit expireOutfit = new ExpireOutfit(super.getName());
+		SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+		SingletonRepository.getTurnNotifier().notifyInSeconds((newExpire - age) * 60, expireOutfit);
 	}
 
 }

@@ -51,7 +51,7 @@ public class PlayerRPClass {
 		player.addAttribute("outfit", Type.INT);
 		player.addAttribute("outfit_org", Type.INT, Definition.HIDDEN);
 		player.addAttribute("outfit_colors", Type.MAP);
-		// player.addAttribute("outfit_path", Type.STRING);
+		player.addAttribute("outfit_expire_age", Type.INT, Definition.HIDDEN);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 		player.addAttribute("grumpy", Type.LONG_STRING, Definition.VOLATILE);

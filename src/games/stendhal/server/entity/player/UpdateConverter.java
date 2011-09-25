@@ -313,6 +313,11 @@ public abstract class UpdateConverter {
 				object.put("age", object.getInt("age") * 180 / 200);
 			}
 		}
+
+		// port to 0.97: expire all temporary outfits
+		if (object.has("outfit_org") && !object.has("outfit_expire_age")) {
+			object.put("outfit_expire_age", 0);
+		}
 	}
 
 	/**
