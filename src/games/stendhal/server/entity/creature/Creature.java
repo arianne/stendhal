@@ -444,8 +444,13 @@ public class Creature extends NPC {
 		setRespawned(true);
 	}
 
+	/**
+	 * gets the respan point of this create
+	 *
+	 * @return CreatureRespawnPoint
+	 */
 	public CreatureRespawnPoint getRespawnPoint() {
-		return(point);
+		return point;
 	}
 	
 	/**
