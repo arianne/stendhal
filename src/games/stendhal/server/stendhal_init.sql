@@ -122,20 +122,6 @@ CREATE TABLE IF NOT EXISTS kills (
 /*CREATE INDEX i_kills_killer ON kills (killer_type, killer);*/
 
 
-CREATE TABLE IF NOT EXISTS cid
-  (
-  id INTEGER auto_increment NOT NULL,
-  charname VARCHAR(64) NOT NULL,
-  address VARCHAR(64) NOT NULL,
-  cid VARCHAR(64) NOT NULL,
-  timedate TIMESTAMP default CURRENT_TIMESTAMP,
-  PRIMARY KEY(id)
-  ) 
- ;
-
-/*CREATE INDEX i_cid_charname ON cid(charname);*/
-
-
 CREATE TABLE IF NOT EXISTS npcs (
   id         INTEGER AUTO_INCREMENT NOT NULL,
   name       VARCHAR(64),
