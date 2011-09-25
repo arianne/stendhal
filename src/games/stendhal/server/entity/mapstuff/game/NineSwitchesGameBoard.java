@@ -36,6 +36,15 @@ public class NineSwitchesGameBoard implements TurnListener {
 	private ArrayList<NineSwitchesGameSwitch> switches;
 
 	private String playerName;
+	/** Possible balloon colors */
+	private static final Integer[] balloonColors = {
+		0xff0000, // Red
+		0xffff00, // Yellow
+		0x00ff00, // Green
+		0x00ffff, // Cyan
+		0x0000ff, // Blue
+		0xff00ff // Magenta
+	};
 
 	/**
 	 * creates a new NineSwitcheGameBoard.
@@ -72,8 +81,10 @@ public class NineSwitchesGameBoard implements TurnListener {
 		boolean completed = checkBoard();
 		if (completed) {
 			npc.say("Congratulations, " + user.getName() + " you won! Here take this balloon.");
-			Outfit balloonOutfit = new Outfit(Rand.rand(4) + 1, null, null, null, null);
+			Outfit balloonOutfit = new Outfit(1, null, null, null, null);
 			user.setOutfit(balloonOutfit);
+			user.put("outfit_colors", "detail", Rand.rand(balloonColors));
+			
 			playerName = null;
 			TurnNotifier.get().dontNotify(this);
 		}
