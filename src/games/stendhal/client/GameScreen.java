@@ -765,8 +765,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				for (final RemovableSprite item : texts) {
 					if ((item.getX() == sx) && (item.getY() == sy)) {
 						found = true;
-						sx += (SIZE_UNIT_PIXELS / 2);
-						sx = keepSpriteOnMapX(sprite, sx);
 						sy += (SIZE_UNIT_PIXELS / 2);
 						sy = keepSpriteOnMapY(sprite, sy);
 						break;
