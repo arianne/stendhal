@@ -72,7 +72,7 @@
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2bO04EMQyGp9iGnoI33Af6rUDcBigRJXCepYUTkZEmIkST5I/tyUu29Gu1y2jGX+JMEsfspmnaqVQqFVNPRs8CemmAhaLX6c9OjE6Nro3OjM6NLhZdGl0tf5s/b6b/9tYAC5efYwg/Emul46gkP/Ks3Djijt8DBzrTb8v/Y/Th6Hv5fU/gl+o/jqF+W1/9a10GKr/fpqhs23ONw//u+POZwT7H/iFwz5bHv9RcwYmbGP+t0R3wmzVu/HP559jPiZvR+p9zP+XnW+34r82P+qD8Y/Kn4t+uUe1c/TXJrP1b4U/5gD6DuvYrwf/I8L1H/nvQ59lS8d8jvzW0HUblRy3Fv/euP/K+c/a+W/A/4OhDxz9qMR/m/a3dZ8f26bl7mF74pXxtlR8ZuyPzIz60yo+OzbWcmXt9auy2yk+5D+W5yq/8kvwSud+e+SVyvyPwc3K/I/BL3K8kfyj3k5sH6pXfmnue4p+tlM4l1uCP2aj8fg5Amp9aCxDKy4bGYav9L10LEPKDwu+ecaf2FZL8x+Dn1vzS46q3/ld+5e+NP7RWS53jlTjPK8HPNWo+27ZrrP1K8FNqytx6Mm4tH3KmUGP+Qxgo5zl2jYCsA2q+/9A+5NakUfjRNTZiFP+ptYxS/JImPb9tzY+ssXNqX3vjpz5H+dcNyVVtISSvLcUv+b6Uttr97xq1vp6j2PwhdfYp4UvNd4Q7Rnv9HzSp2K31vq6htdhtLUZVqi30C27bUCwAQAAA
+   H4sIAAAAAAAAAO2bS07EMAyGs5gjsOAN94H9rEDcBlgilsB5hi2ciERqRKia5o/t5oUt/RppHq2/xGkSx7MzxuxUKpWKqUerJwE9N8BC0Yv5tWOrE6srq1OrM6vzSRdWl9Nn7vXa/LXXBli4/BxD+JFYKx1HJfmRe+XGEXf8HjjQmX57/m+r90Bf0/t7Ar9U/3EM9dv7Ov9uyEDln7cpKt/2XOPwvwX+fGSwu9g/RK7Z8viXmis4cbPGf2N1C7znjRv/XH4X+zlxM1r/c66n/HyrHf+1+VEflH9M/lT8+zWqn6s/jczavxX+lA/oPahrvxL8Dwzfe+S/A312lor/Hvm9oe0wKj9qKf594vecve8W/PcgN+L7f+9/t7/1++y1fXruHqYXfilfW+VHxu7I/IgPrfKjY3MpZxZ+PzV2W+WnXIdyX+VXfkl+idxvz/wSud8R+Dm53xH4Ja5Xkj+W+8nNA/XK7y08T5mfrZTOJdbgX7NR+VM5AC4/tRYglpeNjcNW+1+6FiDmB4U/PONO7Ssk+Y/A1635pcdVb/2v/MrfG39srZY6xytxnleCn2vUfLZv17X2K8FPqSkL68m4tXzImUKN+Q9hoJzn+DUCsg6o+fxD+5Bbk0bhR9fYiFH8p9YySvFLmvT8tjU/ssbOqX3tjZ96H+VfNiRXtYWQvLYUv+TzUtpq939o1Pp6jtbmD6mzTwlfaj4jwjHa63/QpGK31vO6hpZit7UYVam20A/RTX7MAEAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="64" height="64">
@@ -80,7 +80,7 @@
    H4sIAAAAAAAAAO3YwQkAMAgDQLd0/006QkGkgr3755lHEgHQI4fzAAAA7HHbiDYkAAAAwB/8QFDX1R89BAAAAACAtw75hDY7AEAAAA==
   </data>
  </layer>
- <layer name="objects" width="64" height="64">
+ <layer name="objects" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ayw6DIBAFUH+1rV3V/193a0wloFgYPGeJiRnCwys6TQBAJM/C9l7MrQvI8Npp39YeoS+Q4926AIr0vs/f3eNH25y4Bi3V2k/2slOKHNXekXGjnV7HS44sc3YcP1WqwLzlKuYW9M15ShwjnZ/0muOPGq0/jE8+g5jkNs4aKU9GEy0vbvebaPXfRcmarjWG6/vU+qbZ2/PNXglp3ieJ5Ir/b+QicpXMlZz8Ye5BvvWaWppVAfzTF/yGXPsAQAAA
   </data>
