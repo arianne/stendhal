@@ -16,8 +16,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.mapstuff.game.NineSwitchesGameBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -27,8 +25,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A Game about Nine switches game for one player
@@ -44,40 +40,24 @@ public class NineSwitchesGame implements LoadableContent {
 	private static final int CHAT_TIMEOUT = 200;
 	
 	private void addBoard() {
-		board = new NineSwitchesGameBoard(zone, 87, 120);
+		board = new NineSwitchesGameBoard(zone, 94, 106);
 	}
 
 	private void addNPC() {
 		npc = new SpeakerNPC("Maltos") {
 			@Override
-			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(88, 119));
-				nodes.add(new Node(88, 117));
-				nodes.add(new Node(84, 117));
-				nodes.add(new Node(84, 121));
-				nodes.add(new Node(86, 121));
-				nodes.add(new Node(84, 121));
-				nodes.add(new Node(84, 124));
-				nodes.add(new Node(88, 124));
-				nodes.add(new Node(88, 123));
-				nodes.add(new Node(88, 124));
-				nodes.add(new Node(91, 124));
-				nodes.add(new Node(91, 121));
-				nodes.add(new Node(90, 121));
-				nodes.add(new Node(91, 121));
-				nodes.add(new Node(91, 117));
-				nodes.add(new Node(88, 117));
-				setPath(new FixedPath(nodes, true));
+				protected void createPath() {
+					// NPC doesn't move
+					setPath(null);
 			}
 
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, welcome to our small game of nine switches. Your task is to make all arrows point to the right."
-						+ "Easy? Well, there is a #catch.");
+						+ " Easy? Well, there is a #catch.");
 				addReply("catch", 
-						"Each switch is linked to its neighbour and will change them as well. You have one minute to solve the puzzle."
-						+ "Do you want to #play?.");
+						" Each switch is linked to its neighbour and will change them as well. You have one minute to solve the puzzle."
+						+ " Do you want to #play?.");
 				addJob("I am the supervisor of this game.");
 				addGoodbye("It was nice to meet you.");
 				add(ConversationStates.ATTENDING,
@@ -89,7 +69,7 @@ public class NineSwitchesGame implements LoadableContent {
 		};
 		npc.setEntityClass("gamesupervisornpc"); 
 		npc.setPlayerChatTimeout(CHAT_TIMEOUT);
-		npc.setPosition(88, 119);
+		npc.setPosition(98, 104);
 		npc.setDescription("You see Maltos. Aren't you jealous of his awesome hair?");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);

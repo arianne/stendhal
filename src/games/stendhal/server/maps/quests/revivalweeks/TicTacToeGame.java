@@ -43,7 +43,7 @@ public class TicTacToeGame implements LoadableContent {
 	 */
 	private void addBoard() {
 		board = new TicTacToeBoard();
-		board.setPosition(87, 111);
+		board.setPosition(83, 114);
 		zone.add(board);
 		board.addToWorld();
 	}
@@ -93,7 +93,7 @@ public class TicTacToeGame implements LoadableContent {
 			}
 		};
 		npc.setEntityClass("paulnpc"); 
-		npc.setPosition(88, 109);
+		npc.setPosition(84, 112);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
