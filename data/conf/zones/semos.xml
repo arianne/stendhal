@@ -88,7 +88,7 @@
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
-		file="Level 0/semos/mountain_n2.tmx">
+		file="Level 0/semos/mountain_n2_mine_town_weeks.tmx">
 
 		<point-of-interest x="90" y="97">
 			<name>Semos Mines</name>
@@ -101,11 +101,9 @@
 			<destination zone="int_semos_frank_house" ref="exit" />
 		</portal>
 
-		<entity x="105" y="114">
+		<entity x="106" y="111">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<!-- This is actually a lie, the real reason is that we cannot tell apart
-				 if someone is behind the top of the tower or in front of it. -->
-			<attribute name="text">Because of the missing guard rail it is too dangerous to enter the tower.</attribute>
+			<attribute name="text">Entrance just allowed for mine workers.</attribute>
 		</entity>
 	</zone>
 
