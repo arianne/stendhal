@@ -105,6 +105,30 @@
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Entrance just allowed for mine workers.</attribute>
 		</entity>
+		
+		<!-- writing on the wooden arch MINE TOWN WEEKS -->
+		<entity x="94" y="118">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+
+		<!-- writing on the wooden arch MINE TOWN WEEKS -->
+		<entity x="95" y="119">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+
+		<!-- writing on the wooden arch MINE TOWN WEEKS -->
+		<entity x="96" y="119">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
 	</zone>
 
 	<zone name="int_semos_frank_house" file="interiors/semos/frank_house.tmx">
