@@ -8,8 +8,11 @@
 - Semos city tavern/INN owners rebuild their front garden and made it quite comfortable
 - More Semos NPCs help players now if they need some advise of what to do next
 - The duration of special outfits is now based on online time
+- Faiumonis inhabitans are excited for the Mine Town Revival Weeks already and decorated Semos City and the Mine Town area
+- Creatures of Kikareukin changed their environment on level 4 and 5
 
 *website*
+- New coloured outfits can be seen on the website
 
 *client*
 - Outfit parts can be coloured
@@ -25,6 +28,8 @@
 - Blood on gates can't block these anymore
 - Login dialog gets re-enabled after a failed login
 - Players can not attack others from protected areas
+- Working on some maps fixed layer errors
+
 
 
 0.96
