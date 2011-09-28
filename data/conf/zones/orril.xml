@@ -32,6 +32,14 @@
 
 	<zone name="0_orril_mountain_nw" level="0" x="499744" y="500128"
 		file="Level 0/orril/mountain_nw.tmx">
+		
+		<point-of-interest x="62" y="40">
+			<name>Kotoch Entrance</name>
+			<type>dungeon</type>
+			<description>Kotoch is a Dungeon which lies in an area of the Orril Mountains. There are lots of routes which you can choose but be careful and keep your eyes open for danger. (Player Level 20 - 65)</description>
+			<url>http://stendhalgame.org/wiki/Kotoch</url>
+		</point-of-interest>
+		
 	</zone>
 
 	<zone name="0_orril_forest_n" level="0" x="499872" y="500128"
