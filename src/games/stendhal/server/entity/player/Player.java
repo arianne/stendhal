@@ -2335,7 +2335,7 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * Increases the count of obtains from the well for the given item
+	 * Increases the count of sales for the given item
 	 * @param name the item name
 	 * @param quantity
 	 */
