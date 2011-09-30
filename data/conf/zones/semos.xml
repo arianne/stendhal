@@ -58,6 +58,14 @@
 				<parameter name="volume">120</parameter>
 			</implementation>
 		</entity>
+		
+		<entity x="44" y="9">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+				<parameter name="sound">water-5</parameter>
+				<parameter name="radius">16</parameter>
+				<parameter name="volume">120</parameter>
+			</implementation>
+		</entity>
 
 		<entity x="77" y="123">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
