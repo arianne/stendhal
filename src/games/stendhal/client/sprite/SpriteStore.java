@@ -18,6 +18,7 @@ import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.sprite.TileSprite.TSRef;
 
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -184,26 +185,31 @@ public class SpriteStore {
 		if (color == null) {
 			return getSprite(ref);
 		} else {
-			return getColoredSprite(ref, Integer.toHexString(color.getRGB()), color);
+			return getModifiedSprite(ref, color, Blend.TrueColor);
 		}
 	}
 	
 	/**
-	 * Get a colored version of a sprite.
+	 * Get a modified version of a sprite.
 	 * 
-	 * @param ref base sprite reference
-	 * @param colorName  hexadecimal representation of the color
-	 * @param color
-	 * @return colored sprite
+	 * @param baseRef base sprite reference
+	 * @param color modifying color
+	 * @param blend composite mode to paint color over the original sprite
+	 * @return base sprite colored with color
 	 */
-	private Sprite getColoredSprite(final String ref, final String colorName, 
-			final Color color) {
+	public Sprite getModifiedSprite(final String baseRef, final Color color, 
+			final Composite blend) {
+		if ((color == null) || (blend == null)) {
+			return getSprite(baseRef);
+		}
+		
+		String colorName = Integer.toHexString(color.getRGB());
 		final SpriteCache cache = SpriteCache.get();
 
-		String realRef = ref + "#" + colorName;
+		String realRef = baseRef + "@" + blend.toString() + "#" + colorName;
 		Sprite sprite = cache.get(realRef);
 		if (sprite == null) {
-			Sprite tmpSprite = getSprite(ref);
+			Sprite tmpSprite = getSprite(baseRef);
 			if (tmpSprite != null) {
 				int width = tmpSprite.getWidth();
 				int height = tmpSprite.getHeight();
@@ -212,7 +218,7 @@ public class SpriteStore {
 				Graphics2D g = image.createGraphics();
 				tmpSprite.draw(g, 0, 0);
 				g.setColor(color);
-				g.setComposite(Blend.TrueColor);
+				g.setComposite(blend);
 				g.fillRect(0, 0, width, height);
 				g.dispose();
 				
