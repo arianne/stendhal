@@ -27,8 +27,7 @@ public class Blend implements Composite {
 	/**
 	 * Possible blending modes.
 	 */
-	public enum Mode {
-		COLOR,
+	private enum Mode {
 		TRUE_COLOR,
 		MULTIPLY
 	}
@@ -52,10 +51,6 @@ public class Blend implements Composite {
 	/** Amount to need shifting to access blue at an integer */
 	private static final int SHIFT_BLUE = (24 - BLUE * 8);
 
-	/**
-	 * A blending mode that colors the destination image with the source color.
-	 */
-	public static final Blend Color = new Blend(Mode.COLOR);
 	// This is a pretty non-standard blend mode, and as far as I know, it has no
 	// common name (if it is even implemented by anyone else)
 	/**
@@ -82,6 +77,9 @@ public class Blend implements Composite {
 	public CompositeContext createContext(ColorModel srcColorModel,
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
+		if (mode == Mode.MULTIPLY) {
+			return new MultiplyContext();
+		}
 		return new BlendContext(mode, srcColorModel, dstColorModel);
 	}
 
@@ -101,10 +99,6 @@ public class Blend implements Composite {
 		 */
 		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel) {
 			switch (mode) {
-			case COLOR: composer = new ColorComposer();
-			break;
-			case MULTIPLY: composer = new MultiplyComposer();
-			break;
 			case TRUE_COLOR: composer = new TrueColorComposer();
 			break;
 			// Can not really happen, but the compiler is too dumb to know that
@@ -142,41 +136,7 @@ public class Blend implements Composite {
 		// documentation says nothing useful.
 		public void dispose() {
 		}
-		
-		/**
-		 * Composer for COLOR blending mode.
-		 */
-		private static class ColorComposer implements Composer {
-			/**
-			 * Blend 2 pixels, taking the color from upper, and lightness from
-			 * the lower pixel.
-			 * 
-			 * @param srcPixel upper pixel color data
-			 * @param dstPixel lower pixel color data
-			 * @return blended pixel
-			 */
-			public int compose(int[] srcPixel, int[] dstPixel) {
-				// jvm should be smart enough to allocate these on the stack
-				float[] srcHsl = new float[3];
-				float[] dstHsl = new float[3];
-				int[] result = new int[4];
-				float[] hslResult = new float[3];
-
-				rgb2hsl(srcPixel, srcHsl);
-				rgb2hsl(dstPixel, dstHsl);
-
-				// not all components are needed, so this could be optimized a
-				// bit
-				hslResult[0] = srcHsl[0];
-				hslResult[1] = srcHsl[1];
-				hslResult[2] = dstHsl[2];
-				hsl2rgb(hslResult, result);
-				result[ALPHA] = dstPixel[ALPHA];
 				
-				return mergeRgb(result);
-			}
-		}
-		
 		/**
 		 * Composer for the special Stendhal color blend.
 		 */
@@ -214,30 +174,7 @@ public class Blend implements Composite {
 				return mergeRgb(result);
 			}
 		}
-
-		
-		/**
-		 * A composer for MULTIPLY blending mode.
-		 */
-		private static class MultiplyComposer implements Composer {
-			/**
-			 * Blend 2 pixels by multiplying their values together.
-			 * 
-			 * @param srcPixel upper pixel color data
-			 * @param dstPixel lower pixel color data
-			 * @return blended pixel
-			 */
-			public int compose(int[] srcPixel, int[] dstPixel) {
-				int[] result = new int[4];
-				result[ALPHA] = dstPixel[ALPHA];
-				result[RED] = dstPixel[RED] * srcPixel[RED] / 255;
-				result[GREEN] = dstPixel[GREEN] * srcPixel[GREEN] / 255;
-				result[BLUE] = dstPixel[BLUE] * srcPixel[BLUE] / 255;
-
-				return mergeRgb(result);
-			}
-		}
-		
+				
 		/**
 		 * Interface for blending 2 pixels.
 		 */
@@ -374,9 +311,9 @@ public class Blend implements Composite {
 			float gf = hue2rgb(limitHue(h), tmp2, tmp1);
 			float bf = hue2rgb(limitHue(h - 1f/3f), tmp2, tmp1);
 
-			r = Math.min(255, Math.max(0, (int) (255 * rf)));
-			g = Math.min(255, Math.max(0, (int) (255 * gf)));
-			b = Math.min(255, Math.max(0, (int) (255 * bf)));
+			r = ((int) (255 * rf)) & 0xff;
+			g = ((int) (255 * gf)) & 0xff;
+			b = ((int) (255 * bf)) & 0xff;
 		}
 
 		rgb[RED] = r;
@@ -419,5 +356,52 @@ public class Blend implements Composite {
 		}
 
 		return hue;
+	}
+	
+	/**
+	 * A fast, approximate multiply mode blend context. The results differ from
+	 * correct multiply by factor of 255/256.
+	 */
+	private static class MultiplyContext implements CompositeContext {
+		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
+			int width = Math.min(src.getWidth(), dstIn.getWidth());
+			int height = Math.min(src.getHeight(), dstIn.getHeight());
+
+			int[] srcData = new int[width];
+			int[] dstData = new int[width];
+
+			for (int y = 0; y < height; y++) {
+				src.getDataElements(0, y, width, 1, srcData);
+				dstIn.getDataElements(0, y, width, 1, dstData);
+
+				for (int x = 0; x < width; x++) {
+					/*
+					 * The lighting code uses multiply composition heavily, so
+					 * it'd better be fast. Avoid splitting the ARGB value to
+					 * separate integers as far as possible. Also divide the
+					 * multiplied result by 256 instead of 255, so that the
+					 * division can be combined in the bit shifts. The shifting
+					 * is done only once, when possible.
+					 */
+					int a = dstData[x];
+					int b = srcData[x];
+					// alpha
+					int result = a & 0xff000000;
+					
+					// blue
+					result |= ((a & 0xff) * (b & 0xff)) >> 8;
+					// green
+					result |= (((a & 0xff00) * (b & 0xff00)) >> 16) & 0xff00;
+					// red would overflow without the first shift
+					result |= ((((a & 0xff0000) >> 16) * (b & 0xff0000)) >> 8) & 0xff0000;
+
+					dstData[x] = result;
+				}
+				dstOut.setDataElements(0, y, width, 1, dstData);
+			}
+		}
+
+		public void dispose() {
+		}
 	}
 }
