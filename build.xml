@@ -756,6 +756,39 @@
 			</fileset>
 		</maprenderer>
 	</target>
+	<target name="renderatlas" description="Generates the files for the Stendhal Atlas" depends="compile_stendhaltools">
+		<taskdef name="maprenderer" classname="games.stendhal.tools.MapRenderer">
+			<classpath>
+				<pathelement path="${build_stendhaltools}"/>
+				<pathelement path="${tiled_jar}"/>
+			</classpath>
+		</taskdef>
+<!--
+7   1  1
+6   2  0.5
+5   4  0.25
+4   8  0.125
+3  16  0.0625
+2  32  0.03125
+1  64  0.015625
+0 128  0.0078125
+-->
+
+		<mkdir dir="tiled/world" />
+		<maprenderer imagePath="${tiled}/world/" zoom="0.0625">
+			<fileset dir="tiled">
+				<include name="Level 0/**/*.tmx"/>
+				<exclude name="**/memory/**" />
+			</fileset>
+		</maprenderer>
+		<mkdir dir="tiled/world/large" />
+		<maprenderer imagePath="${tiled}/world/large" zoom="0.25">
+			<fileset dir="tiled">
+				<include name="Level 0/**/*.tmx"/>
+				<exclude name="**/memory/**" />
+			</fileset>
+		</maprenderer>
+	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes." depends="compile_stendhaltools">
 		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
