@@ -48,13 +48,13 @@ import java.util.Map;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest {
-	private static final String QUEST_SLOT = "paper_chase_2010";
+	private static final String QUEST_SLOT = "paper_chase_2011";
 
-	private static final List<String> NPC_IDLE = Arrays.asList("Hayunn Naratha", "Thanatos", "Pdiddi", "Monogenes");
+	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
-	private List<String> points = Arrays.asList("Hayunn Naratha", "Thanatos", "Haizen", "Zara", "Leander", "Sally", 
-												"Plink", "Jef", "Blacksheep Harry", 
-												"Pdiddi", "Monogenes", "Vulcanus", "Fidorea");
+	private List<String> points = Arrays.asList("Tad", "Haunchy Meatoch", "Balduin", "John", "Kroip", "Stefan", 
+												"Xin Blanca", "Elisabeth", "Andy", 
+												"Pdiddi", "Ketteh Wehoh", "Vulcanus", "Fidorea");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -65,36 +65,33 @@ public class PaperChase extends AbstractQuest {
 
 	private void setupGreetings() {
 		// Each greeting is said by the previous NPC to point to the NPC in the key.
-		greetings.put("Thanatos", "Well done for finding me! I knew you'd remember my book! ");
-		greetings.put("Haizen", "Well, I guess that was an easy clue Hayunn gave you? ");
-		greetings.put("Zara", "I hope Thanatos didn't tell you I'd actually summon that dragon. I'm much too afraid. ");
-		greetings.put("Leander", "You found me! Cyk's told me about a pizza chef who delivers all the way to Athor. ");
-		greetings.put("Sally", "I'm glad that my business is so well known, that you could find me! My daughter is the next person for you to visit. ");
-		greetings.put("Plink", "*smiles* There's another who smiles too. ");
-		greetings.put("Jef", "Yay! You're here! This is so exciting! ");
-		greetings.put("Blacksheep Harry", "Nice to see you! ");
-		greetings.put("Pdiddi", "You got me. ");
-		greetings.put("Monogenes", "Good work on finding me. Now, I may look bald but I'm not really, it's just a short hair cut. ");
-		greetings.put("Vulcanus", "Did you know my name is derived from Greek? ");
-		greetings.put("Fidorea", "Well done for finding me. ");
+		greetings.put("Haunchy Meatoch", "Yay, nice that you found me here in the hostel! ");
+		greetings.put("Balduin", "Howdy partner! See you found your way to me! ");
+		greetings.put("John", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
+		greetings.put("Kroip", "I hope you had a nice sail with the ferry. Thanks for meeting me at the lovely beach of Athor island! ");
+		greetings.put("Stefan", "You is here! Me has pizza in oven, is hot. You goes find else people! ");
+		greetings.put("Xin Blanca", "Hello in Fado Hotel and my kitchen! Good that you meet me! If you aren't on a run, you might help me cutting some carrots. Ok I see, you're busy ;) ");
+		greetings.put("Elisabeth", "Here you are, found me! Good old tavern includes some lucrative business. ");
+		greetings.put("Andy", "Yay you found me! :) ");
+		greetings.put("Pdiddi", "Nice that you found me here! ");
+		greetings.put("Ketteh Wehoh", "There you got me! Got a new delivery of beans some days ago... ");
+		greetings.put("Vulcanus", "Nice that you found me here in the townhall. Moved inside, it was a bit windy in the Village. ");
+		greetings.put("Fidorea", "Did you know my name is derived from Greek? ");
 	}
 	
 
 	private void setupTexts() {
-		texts.put("Thanatos", "The next person you must find, "
-				  + "I'd think he 'knows how to kill creatures', because he would see so many getting killed. Many players "
-				  + "meet their 'match' when they battle to the 'death' under his watch.");
-		texts.put("Haizen", "The next person you should find has magic "
-				  + "which can summon something that even I cannot: a giant red dragon.");
-		texts.put("Zara", "The next person on your trail also has some kind of magical power, they are slowly turning *themselves* red!");
-		texts.put("Leander", "I have no idea where the pizza chef is, but he's the next on your trail!");
-		texts.put("Sally", "She's a girl who loves playing with fire.");
-		texts.put("Plink", "He's a boy who lives on a farm, he smiles if you can help him with his wolf problem. You should go see him next!");
-		texts.put("Jef", "The next person for you to find needs some excitement too! He's been waiting for his"
-				  + " mother to return from market for so long now.");
-		texts.put("Blacksheep Harry", "Next, visit the sheepish man who makes canned tuna for the whole world!"); 
+		texts.put("Haunchy Meatoch", "The next person you should find has his own business running. "
+				  + "He is especially succesful during hot summer days when people meet his stand. Unfortunately he 'runs out of coal' often.");
+		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
+		texts.put("John", "His wife and himself are enjoying their holidays: at least they want to!");
+		texts.put("Kroip", "One of the ones you can hardly understand, but he is really famous for some tasty food.");
+		texts.put("Stefan", "He one is of youngest chef but pretty lonely in huge building he is, Hotel is called. You go find him!");
+		texts.put("Xin Blanca", "He sells and buys good weapons and armor but his work isn't really legal. He has a secret together with the blacksmiths assistant.");
+		texts.put("Elisabeth", "She loves playing and enjoys a tasty in summer melting meal and no, it's not icecream."); 
+		texts.put("Andy", "The next one is sad and wants people to take revenge for his huge lost in life.");
 		texts.put("Pdiddi", "Next you need to see the dodgy geezer who pretends to be running a tavern east of Semos.");
-		texts.put("Monogenes", "Your next clue is to find a human who really is bald. He's pretty old, too.");
+		texts.put("Ketteh Wehoh", "She is a really polite lady who knows the rules of behaving nicely. Meet her in an important city building in Semos.");
 		texts.put("Vulcanus", "Next you must find the son of a god, who greets you in Greek.");
 		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
@@ -190,7 +187,7 @@ public class PaperChase extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING,
-			"I have nothing to do for you. But thanks for asking",
+			"I have nothing to do for you. But thanks for asking.",
 			null);
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -204,7 +201,7 @@ public class PaperChase extends AbstractQuest {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must find the beer-loving author of KNOW HOW TO KILL CREATURES.",
+			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who is a bit ILL and waits for help in a hostel.",
 			startAction);
 
 
