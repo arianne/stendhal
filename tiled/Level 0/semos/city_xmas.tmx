@@ -283,9 +283,9 @@
    H4sIAAAAAAAAA+3ZwQqDMAwAUPGT52E77GP2qTuI7CIVMZUsfQ96lSamLW2mCfhXy7wOxs3DVgOjxt/LqPlUSwB9vObfAIAIzhQi7NVRq7bUHeRR4f3mKIZPgRhbKvzDK47ir56fVnzeaAFiPeypJHTmfp35Lv5MPDf6qbivZl5nAFxT8dwCoI6tF5C1J5B1XnfY69W8g/IR9Z0sRq8TALjDF2v+sOAAQAAA
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.39">
+ <layer name="collision" width="64" height="64" opacity="0.39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+1Y2W4DIQyM+uX99D5VWiFjZny3y0hRsoCP8QFLPp8YfH/JY90fxNcMnZMh8Wfl0bhMhJc/aiOjdjUbjG/aMzrH+BbBH+lbhtP6HYmK/Et2UBntOQJV/K2+Sd+S7ycd2vx/5o/YiOIfHQu0/j0xyNr/mNxovJB1HlTyZ/1/yq+/d+uZccnXaf0v8c+wMZV/NlBe3fl/I9a9403xkPbOaf3JwnKGILJT+J98sPKfuj9X8T/JTomNxhd53vHP4n6y3VVHK3/Np4z872JSCZS/NMes39lGxjIh+ezVtY5p65Gxp25r7e1yseNfkQeWf4Q9lH8FvHuF1ZY2Xt1/KCLOBu0cWn93nEUatByhZyfDfxpO/JAaPvUXMo/4mBFDhn+mDm09Ko+cV6wMex5quhnOFrDvBNnQ+FtqwrMGqc/I/KP1h/Bh6t86V8F/5RPZa9P4S/oZ2xY85VY9HfzRnCGyaJwvf9ucpT8lWYnXdP47fz29icqx+wKSR3Tcgsn8K2Dhr8kh/KXnLjD2kf1X27M9sPQqujbSj6x8ZtVKd/1dXFzw76boWYqu99r51XERi11Ou2xPQ6ePq23El78Q005Ux+ft+fDcQyz1j+iJ0Bnpw259tm/IfbMLFv7RHNa7dJftSmT/H/TUh77/VfZoVc+xtjL2vp1fWfDqR3ow4n5zOi+s96QIWO5GFp+Ze9nJn4z9Q3uW1lvumxdnZMXvB1HJ9dsAQAAA
+   H4sIAAAAAAAAA+1Y2W4DIQyM+uX99D5VWiFjZny3y0hRsoCP8QFLPp8YfH/JY90fxNcMnZMh8Wfl0bhMhJc/aiOjdjUbjG/aMzrH+BbBH+lbhtP6HYmK/Et2UBntOQJV/K2+Sd+S7ycd2vx/5o/YiOIfHQu0/j0xyNr/mNxovJB1HlTyZ/1/yq+/d+uZccnXaf0v8c+wMZV/NlBe3fl/I9a9403xkPbOaf3JwnKGILJT+J98sPKfuj9X8T/JTomNxhd53vHP4n6y3VVHK3/Np4z872JSCZS/NMes39lGxjIh+ezVtY5p65Gxp+7oWtzxr8gDyz/CHsq/At69wmpLG6/uPxQRZ4N2Dq2/O84iDVqO0LOT4T8NJ35IDZ/6C5lHfMyIIcM/U4e2HpVnzidUxnr+SboZzhaw7wTZQN4PGF2eNUh9RuYfrT+ED1P/1rkK/iufyF6bxl/Sz9i24Cm36ungj+YMkUXjfPnb5iz9KclKvKbz3/nr6U1Ujt0XkDyi4xZM5l8BC39NDuEvPXeBsY/sv9qe7YGlV9G1kX5k5TOrVrrr7+Lign83Rc9SdL3Xzq+Oi1jsctplexo6fVxtI778hZh2ojo+b8+H5x5iqX9ET4TOSB9267N9Q+6bXbDwj+aw3qW7bFci+/+gpz70/a+yR6t6jrWVsfft/MqCVz/SgxH3m9N5Yb0nRcByN7L4zNzLTv5k7B/as7Tect+8OCMrfj9p/TbvAEAAAA==
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0" opacity="0.24">
