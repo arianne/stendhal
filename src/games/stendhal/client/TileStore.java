@@ -20,6 +20,8 @@ import games.stendhal.client.sprite.TilesetAnimationMap;
 import games.stendhal.client.sprite.TilesetGroupAnimationMap;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
+import java.awt.Color;
+import java.awt.Composite;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -88,8 +90,11 @@ public class TileStore implements Tileset {
 	 * 
 	 * @param tsdef
 	 *            The tileset definition.
+	 * @param color Color for modifying the tileset image, or <code>null</code>
+	 * @param blend Blend mode for applying the adjustment color, or
+	 * 	<code>null</code>
 	 */
-	private void add(final TileSetDefinition tsdef) {
+	private void add(final TileSetDefinition tsdef, Color color, Composite blend) {
 		String ref = tsdef.getSource();
 		final int baseindex = tsdef.getFirstGid();
 
@@ -126,7 +131,7 @@ public class TileStore implements Tileset {
 		Tileset tileset = tilesetsLoaded.get(ref);
 
 		if (tileset == null) {
-			tileset = new SpriteTileset(store, baseFolder + ref);
+			tileset = new SpriteTileset(store, baseFolder + ref, color, blend);
 			tilesetsLoaded.put(ref, tileset);
 		}
 
@@ -159,18 +164,22 @@ public class TileStore implements Tileset {
 	 * 
 	 * @param in
 	 *            The object stream.
+	 * @param color Color for adjusting the tileset, or <code>null</code>
+	 * @param blend blend mode for applying the adjustment color, or 
+	 * 	<code>null</code>
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void addTilesets(final InputSerializer in) throws IOException,
+	public void addTilesets(final InputSerializer in, final Color color, 
+			final Composite blend) throws IOException,
 			ClassNotFoundException {
 		final int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
 			final TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
 					null, -1));
-			add(tileset);
+			add(tileset, color, blend);
 		}
 	}
 

@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.game.RPObject;
 import marauroa.common.net.InputSerializer;
 
 import org.apache.log4j.Logger;
@@ -86,6 +87,8 @@ public class StaticGameLayers {
 	 * Whether the internal state is valid.
 	 */
 	private boolean isValid;
+	/** Global current zone information */
+	private final ZoneInfo zoneInfo = ZoneInfo.get();
 
 	public StaticGameLayers() {
 		collisions = new HashMap<String, CollisionDetection>();
@@ -160,13 +163,18 @@ public class StaticGameLayers {
 			 * Add tileset
 			 */
 			final TileStore tileset = new TileStore();
-			tileset.addTilesets(new InputSerializer(in));
+			tileset.addTilesets(new InputSerializer(in), 
+					zoneInfo.getZoneColor(), zoneInfo.getColorMethod());
 
 			tilesets.put(area, tileset);
-		} else if (layer.endsWith("_map")) {
-			/*
-			 * It is the minimap image for this zone.
-			 */
+		} else if (layer.equals("data_map")) {
+			// Zone attributes
+			RPObject obj = new RPObject();
+			obj.readObject(new InputSerializer(in));
+			String colorMode = obj.get("color_method");
+			if ("time".equals(colorMode)) {
+				zoneInfo.setColorByDaytime();
+			}
 		} else {
 			/*
 			 * It is a tile layer.
@@ -213,6 +221,7 @@ public class StaticGameLayers {
 		collision = null;
 		protection = null;
 		area = null;
+		zoneInfo.zoneChanged();
 	}
 
 	/**

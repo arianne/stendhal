@@ -13,6 +13,9 @@
 package games.stendhal.client.sprite;
 
 
+import java.awt.Color;
+import java.awt.Composite;
+
 import games.stendhal.client.IGameScreen;
 
 /**
@@ -31,9 +34,13 @@ public class SpriteTileset implements Tileset {
 	 *            A sprite store.
 	 * @param filename
 	 *            A sprite resource path.
+	 * @param color Adjustment color for the tileset, or <code>null</code>
+	 * @param blend Blend mode for applying the adjustment color, or
+	 * 	<code>null</code>
 	 */
-	public SpriteTileset(final SpriteStore store, final String filename) {
-		this(store, store.getSprite(filename), IGameScreen.SIZE_UNIT_PIXELS);
+	public SpriteTileset(final SpriteStore store, final String filename,
+			final Color color, final Composite blend) {
+		this(store, store.getModifiedSprite(filename, color, blend), IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
@@ -46,7 +53,7 @@ public class SpriteTileset implements Tileset {
 	 * @param size
 	 *            The tile size.
 	 */
-	public SpriteTileset(final SpriteStore store, final Sprite sprite,
+	private SpriteTileset(final SpriteStore store, final Sprite sprite,
 			final int size) {
 		if (sprite == null) {
 			tiles = new Sprite[0];
