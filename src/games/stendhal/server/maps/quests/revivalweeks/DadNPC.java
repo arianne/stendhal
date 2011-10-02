@@ -73,7 +73,7 @@ public class DadNPC implements LoadableContent {
 
 
 	/**
-	 * removes Susi from the Mine Town and places her back into her home in Ados.
+	 * removes Susi's father from the Mine Town and places him back into his home in Ados.
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
