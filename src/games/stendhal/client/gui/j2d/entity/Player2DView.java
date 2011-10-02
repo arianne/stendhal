@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.OutfitStore;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
@@ -110,7 +111,9 @@ class Player2DView extends RPEntity2DView {
 		try {
 			RPEntity rpentity = (RPEntity) entity;
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
-			return store.getOutfit(rpentity.getOutfit(), color);
+			ZoneInfo info = ZoneInfo.get();
+			return store.getAdjustedOutfit(rpentity.getOutfit(), color,
+					info.getZoneColor(), info.getColorMethod());
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();

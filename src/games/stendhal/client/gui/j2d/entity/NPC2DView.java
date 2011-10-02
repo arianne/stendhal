@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.OutfitStore;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.NPC;
@@ -53,20 +54,24 @@ class NPC2DView extends RPEntity2DView {
 	@Override
 	protected Sprite getAnimationSprite() {
 		final SpriteStore store = SpriteStore.get();
+		ZoneInfo info = ZoneInfo.get();
 
 		try {
 			final int code = ((RPEntity) entity).getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
-				return OutfitStore.get().getOutfit(code, OutfitColor.PLAIN);
+				return OutfitStore.get().getAdjustedOutfit(code, OutfitColor.PLAIN,
+						info.getZoneColor(), info.getColorMethod());
 			} else {
 				// This NPC's outfit is read from a single file.
-				return store.getSprite(translate("npc/"
-						+ entity.getEntityClass()));
+				return store.getModifiedSprite(translate("npc/"
+						+ entity.getEntityClass()), info.getZoneColor(),
+						info.getColorMethod());
 			}
 		} catch (final Exception e) {
 			logger.error("Cannot build animations", e);
-			return store.getSprite(translate(entity.getEntityClass()));
+			return store.getModifiedSprite(translate(entity.getEntityClass()),
+					info.getZoneColor(), info.getColorMethod());
 		}
 	}
 
