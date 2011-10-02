@@ -209,24 +209,39 @@ public class SpriteStore {
 		String realRef = baseRef + "@" + blend.toString() + "#" + colorName;
 		Sprite sprite = cache.get(realRef);
 		if (sprite == null) {
-			Sprite tmpSprite = getSprite(baseRef);
-			if (tmpSprite != null) {
-				int width = tmpSprite.getWidth();
-				int height = tmpSprite.getHeight();
-				BufferedImage image = gc.createCompatibleImage(width, height,
-						Transparency.BITMASK);
-				Graphics2D g = image.createGraphics();
-				tmpSprite.draw(g, 0, 0);
-				g.setColor(color);
-				g.setComposite(blend);
-				g.fillRect(0, 0, width, height);
-				g.dispose();
-				
-				sprite = new ImageSprite(image, realRef);
-				cache.add(realRef, sprite);
-			}
+			sprite = modifySprite(getSprite(baseRef), color, blend, realRef);
 		}
 
+		return sprite;
+	}
+	
+	/**
+	 * Get a modified variant of a sprite. The existence of a previous instance
+	 * is <b>not</b> checked, so this should not be called unless retrieving
+	 * an existing modified sprite has failed.
+	 * 
+	 * @param base original sprite
+	 * @param color adjustment color
+	 * @param blend blend mode for applying the adjustment color
+	 * @param ref reference for the new sprite
+	 * @return modified sprite
+	 */
+	public Sprite modifySprite(Sprite base, Color color, Composite blend, Object ref) {
+		int width = base.getWidth();
+		int height = base.getHeight();
+		BufferedImage image = gc.createCompatibleImage(width, height,
+				Transparency.BITMASK);
+		Graphics2D g = image.createGraphics();
+		base.draw(g, 0, 0);
+		g.setColor(color);
+		g.setComposite(blend);
+		g.fillRect(0, 0, width, height);
+		g.dispose();
+		
+		Sprite sprite = new ImageSprite(image, ref);
+		SpriteCache cache = SpriteCache.get();
+		cache.add(ref, sprite);
+		
 		return sprite;
 	}
 
