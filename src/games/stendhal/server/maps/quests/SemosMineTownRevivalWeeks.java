@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
+import games.stendhal.server.maps.quests.revivalweeks.FishermansDaughterSellingNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
 import games.stendhal.server.maps.quests.revivalweeks.LoadableContent;
 import games.stendhal.server.maps.quests.revivalweeks.MakeupArtist;
@@ -49,6 +50,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		content.add(new FoundGirl());
 		content.add(new DadNPC());
 		content.add(new MakeupArtist());
+		content.add(new FishermansDaughterSellingNPC());
 		content.add(new PaperChaseSign());
 		content.add(new TicTacToeGame());
 		content.add(new NineSwitchesGame());
