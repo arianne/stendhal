@@ -21,7 +21,7 @@ import games.stendhal.server.maps.ados.city.MakeupArtistNPC;
 import games.stendhal.server.maps.quests.PaperChase;
 
 /**
- * Susi's father during the Semos Mine Town Revival Weeks
+ * Make up Artist Fidorea during the Semos Mine Town Revival Weeks
  */
 public class MakeupArtist implements LoadableContent {
 
@@ -51,7 +51,7 @@ public class MakeupArtist implements LoadableContent {
 
 
 	/**
-	 * removes Susi from the Mine Town and places her back into her home in Ados.
+	 * removes Fidorea from the Mine Town and places her back into her home in Ados.
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
