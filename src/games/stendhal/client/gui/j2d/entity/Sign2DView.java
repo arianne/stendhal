@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Sign;
@@ -57,7 +58,9 @@ class Sign2DView extends Entity2DView {
 			name = "default";
 		}
 
-		setSprite(SpriteStore.get().getSprite(translate(name)));
+		ZoneInfo info = ZoneInfo.get(); 
+		setSprite(SpriteStore.get().getModifiedSprite(translate(name),
+				info.getZoneColor(), info.getColorMethod()));
 	}
 
 	/**

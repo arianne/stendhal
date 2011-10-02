@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
@@ -72,7 +73,9 @@ class GrainField2DView extends StateEntity2DView {
 		}
 
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite(translate(clazz.replace(" ", "_")));
+		ZoneInfo info = ZoneInfo.get();
+		final Sprite tiles = store.getModifiedSprite(translate(clazz.replace(" ", "_")),
+				info.getZoneColor(), info.getColorMethod());
 
 		states = ((GrainField) entity).getMaximumRipeness() + 1;
 

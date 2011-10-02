@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Ring;
@@ -66,7 +67,14 @@ class Ring2DView extends Item2DView {
 	@Override
 	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite(translate(getClassResourcePath()));
+		Sprite tiles;
+		if (isContained()) {
+			tiles = store.getSprite(translate(getClassResourcePath()));
+		} else {
+			ZoneInfo info = ZoneInfo.get();
+			tiles = store.getModifiedSprite(translate(getClassResourcePath()),
+					info.getZoneColor(), info.getColorMethod());
+		}
 
 		working = store.getTile(tiles, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
 				IGameScreen.SIZE_UNIT_PIXELS);

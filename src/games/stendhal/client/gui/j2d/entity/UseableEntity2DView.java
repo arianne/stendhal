@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.UseableEntity;
@@ -53,15 +54,18 @@ class UseableEntity2DView extends Entity2DView {
 	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
+		ZoneInfo info = ZoneInfo.get();
 		if (entity.getType().equals("useable_entity")) {
 			if (entity.getName() == null) {
 				sprite = store.getSprite(translate("signs/transparent"));
 			} else {
-				sprite = store.getSprite(translate("useable/" + getClassResourcePath() + "/" + entity.getName()));
+				sprite = store.getModifiedSprite(translate("useable/" + getClassResourcePath() + "/" + entity.getName()),
+						info.getZoneColor(), info.getColorMethod());
 			}
 		} else {
 			// compatiblity with 0.86 server
-			sprite = store.getSprite(translate("useable/source/" + entity.getType()));
+			sprite = store.getModifiedSprite(translate("useable/source/" + entity.getType()),
+					info.getZoneColor(), info.getColorMethod());
 		}
 
 		/*

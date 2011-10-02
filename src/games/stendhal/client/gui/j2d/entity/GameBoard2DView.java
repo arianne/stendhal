@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
@@ -29,7 +30,9 @@ class GameBoard2DView extends Entity2DView {
 	@Override
 	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
-		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
+		ZoneInfo info = ZoneInfo.get();
+		Sprite sprite = store.getModifiedSprite(translate(getClassResourcePath()),
+				info.getZoneColor(), info.getColorMethod());
 		setSprite(sprite);
 	}
 

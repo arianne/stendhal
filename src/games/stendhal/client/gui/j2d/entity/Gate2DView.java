@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.Sprite;
@@ -40,7 +41,9 @@ public class Gate2DView extends Entity2DView {
 		String imageName = "data/sprites/doors/" + baseImage + "_" + orientation +".png";
 		Sprite[] s = sprites.get(imageName);
 		if (s == null) {
-			Sprite sprite = SpriteStore.get().getSprite(imageName);
+			ZoneInfo info = ZoneInfo.get();
+			Sprite sprite = SpriteStore.get().getModifiedSprite(imageName,
+					info.getZoneColor(), info.getColorMethod());
 			s = new Sprite[2];
 			s[0] = sprite.createRegion(0, 0, 96, 96, null);
 			s[1] = sprite.createRegion(0, 96, 96, 96, null);
