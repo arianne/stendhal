@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.IEntity;
@@ -82,7 +83,9 @@ class Door2DView extends StateEntity2DView {
 			map.put(STATE_OPEN, emptySprite);
 			map.put(STATE_CLOSED, emptySprite);
 		} else {
-			final Sprite tiles = store.getSprite(translate(name));
+			ZoneInfo info = ZoneInfo.get();
+			final Sprite tiles = store.getModifiedSprite(translate(name),
+					info.getZoneColor(), info.getColorMethod());
 
 			width = tiles.getWidth();
 			height = tiles.getHeight() / 2;

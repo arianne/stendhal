@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.Food;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -46,7 +47,9 @@ class Food2DView extends StateEntity2DView {
 	@Override
 	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite(translate(entity.getType()));
+		ZoneInfo info = ZoneInfo.get();
+		final Sprite tiles = store.getModifiedSprite(translate(entity.getType()),
+				info.getZoneColor(), info.getColorMethod());
 
 		final int theight = tiles.getHeight();
 		int i = 0;

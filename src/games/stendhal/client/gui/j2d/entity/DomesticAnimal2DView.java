@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
@@ -178,7 +179,9 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		return SpriteStore.get().getSprite(translate(entity.getType()));
+		ZoneInfo info = ZoneInfo.get();
+		return SpriteStore.get().getModifiedSprite(translate(entity.getType()), 
+				info.getZoneColor(), info.getColorMethod());
 	}
 
 	/**
