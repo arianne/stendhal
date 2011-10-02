@@ -11,11 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.j2d.Blend;
-
 import java.awt.Color;
 import java.awt.Composite;
-import java.util.Calendar;
 
 /**
  * General information about the current zone.
@@ -23,16 +20,6 @@ import java.util.Calendar;
 public class ZoneInfo {
 	/** Singleton instance. */
 	private static final ZoneInfo instance = new ZoneInfo();
-	
-	/** Color to be used near midnight at daylight colored zones. */
-	private static final Color MIDNIGHT_COLOR = new Color(0x47408c);
-	/**
-	 * Color to be used at early night, and early morning before sunrise at
-	 * daylight colored zones.
-	 */
-	private static final Color EARLY_NIGHT_COLOR = new Color(0x774590);
-	/** Color to be used at sunset and sunrise at daylight colored zones */
-	private static final Color SUNSET_COLOR = new Color(0xc0a080);
 	
 	/** Blend mode for coloring the zone, or <code>null</code>. */
 	private Composite colorMethod;
@@ -84,10 +71,10 @@ public class ZoneInfo {
 	/**
 	 * Set zone specific color.
 	 * 
-	 * @param color
+	 * @param rgb
 	 */
-	void setZoneColor(Color color) {
-		this.color = color;
+	void setZoneColor(int rgb) {
+		this.color = new Color(rgb);
 	}
 	
 	/**
@@ -98,28 +85,5 @@ public class ZoneInfo {
 	 */
 	public Color getZoneColor() {
 		return color;
-	}
-	
-	/**
-	 * Choose color method and color to mimic daylight at server time. The
-	 * game lives eternal summer so the nights are short and do not get very
-	 * dark.  
-	 */
-	void setColorByDaytime() {
-		setColorMethod(Blend.Multiply);
-		Calendar now = Calendar.getInstance();
-
-		int hour = now.get(Calendar.HOUR_OF_DAY);
-		// anything but precise, but who cares
-		int diffToMidnight = Math.abs((12 - hour) % 12);
-		if (diffToMidnight > 3) {
-			setZoneColor(null);
-		} else if (diffToMidnight == 3) {
-			setZoneColor(SUNSET_COLOR);
-		} else if (diffToMidnight == 2) {
-			setZoneColor(EARLY_NIGHT_COLOR);
-		} else {
-			setZoneColor(MIDNIGHT_COLOR);
-		}
 	}
 }

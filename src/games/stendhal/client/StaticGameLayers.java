@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.MathHelper;
 import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.Graphics;
@@ -171,9 +173,16 @@ public class StaticGameLayers {
 			// Zone attributes
 			RPObject obj = new RPObject();
 			obj.readObject(new InputSerializer(in));
+
 			String colorMode = obj.get("color_method");
-			if ("time".equals(colorMode)) {
-				zoneInfo.setColorByDaytime();
+			if ("multiply".equals(colorMode)) {
+				zoneInfo.setColorMethod(Blend.Multiply);
+			}
+			String color = obj.get("color");
+			if (color != null) {
+				// Keep working, but use an obviously broken color if parsing
+				// the value fails
+				zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
 			}
 		} else {
 			/*
