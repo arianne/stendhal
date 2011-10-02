@@ -335,7 +335,9 @@ public class StendhalClient extends ClientFramework {
 	protected void onTransfer(final List<TransferContent> items) {
 		for (final TransferContent item : items) {
 			try {
-				cache.store(item, item.data);
+				if (item.cacheable) {
+					cache.store(item, item.data);
+				}
 				contentHandling(item.name, new ByteArrayInputStream(item.data));
 			} catch (final Exception e) {
 				logger.error("onTransfer", e);
