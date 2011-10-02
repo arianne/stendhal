@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
@@ -61,7 +62,15 @@ class Item2DView extends Entity2DView {
 	@Override
 	protected void buildRepresentation(IEntity entity) {
 		final SpriteStore store = SpriteStore.get();
-		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
+		Sprite sprite;
+		// Colour items on the ground, but not in bags, corpses etc.
+		if (!isContained()) {
+			ZoneInfo info = ZoneInfo.get();
+			sprite = store.getModifiedSprite(translate(getClassResourcePath()),
+					info.getZoneColor(), info.getColorMethod());
+		} else {
+			sprite = store.getSprite(translate(getClassResourcePath()));
+		}
 
 		/*
 		 * Items are always 1x1 (they need to fit in entity slots). Extra
