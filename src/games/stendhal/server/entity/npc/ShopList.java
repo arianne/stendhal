@@ -442,6 +442,24 @@ public final class ShopList {
 		shops.add("buypoisons", "deadly poison", 100);
 		shops.add("buypoisons", "mega poison", 500);
 		shops.add("buypoisons", "disease poison", 2000);
+		
+		// Mine Town Revival Weeks Caroline
+		shops.add("sellrevivalweeks", "cherry pie", 80);
+		shops.add("sellrevivalweeks", "apple pie", 80);
+		shops.add("sellrevivalweeks", "vanilla shake", 120);
+		shops.add("sellrevivalweeks", "chocolate shake", 120);
+		shops.add("sellrevivalweeks", "icecream", 60);
+		shops.add("sellrevivalweeks", "chocolate bar", 110);
+		shops.add("sellrevivalweeks", "grilled steak", 200);
+		shops.add("sellrevivalweeks", "hotdog", 170);
+		shops.add("sellrevivalweeks", "cheeseydog", 190);
+		shops.add("sellrevivalweeks", "tuna sandwich", 140);
+		shops.add("sellrevivalweeks", "sandwich", 130);
+		shops.add("sellrevivalweeks", "wine", 25);
+		shops.add("sellrevivalweeks", "beer", 20);
+		shops.add("sellrevivalweeks", "water", 15);
+
+		
 	}
 
 	private static ShopList instance;
