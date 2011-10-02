@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -40,7 +41,9 @@ class Blood2DView extends StateEntity2DView {
 	@Override
 	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite("data/sprites/combat/blood_red.png");
+		ZoneInfo info = ZoneInfo.get();
+		final Sprite tiles = store.getModifiedSprite("data/sprites/combat/blood_red.png",
+				info.getZoneColor(), info.getColorMethod());
 
 		final int theight = tiles.getHeight();
 		int i = 0;

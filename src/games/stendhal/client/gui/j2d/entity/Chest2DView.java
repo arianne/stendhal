@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.IEntity;
@@ -86,7 +87,9 @@ class Chest2DView extends StateEntity2DView {
 	@Override
 	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
-		final Sprite tiles = store.getSprite(translate(entity.getType()));
+		ZoneInfo info = ZoneInfo.get();
+		final Sprite tiles = store.getModifiedSprite(translate(entity.getType()),
+				info.getZoneColor(), info.getColorMethod());
 
 		map.put(STATE_CLOSED, store.getTile(tiles, 0, 0,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));

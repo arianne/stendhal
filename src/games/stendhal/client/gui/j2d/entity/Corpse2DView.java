@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.Corpse;
@@ -100,11 +101,14 @@ class Corpse2DView extends Entity2DView {
 	protected void buildRepresentation(IEntity entity) {
 		final String imageName = entity.getRPObject().get("image");
 		Sprite sprite = null;
+		ZoneInfo info = ZoneInfo.get();
 		boolean showBlood = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
 		if (showBlood) {
-			sprite = SpriteStore.get().getSprite(translate("corpse/"  + imageName));
+			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/"  + imageName),
+					info.getZoneColor(), info.getColorMethod());
 		} else {
-			sprite = SpriteStore.get().getSprite(translate("corpse/harmless"));
+			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless"),
+					info.getZoneColor(), info.getColorMethod());
 		}
 
 		width = sprite.getWidth();
