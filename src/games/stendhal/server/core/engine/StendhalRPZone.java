@@ -77,6 +77,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Logger logger = Logger.getLogger(StendhalRPZone.class);
 
 	private final List<TransferContent> contents;
+	
+	private ZoneAttributes attributes;
 
 	private Point entryPoint;
 
@@ -346,27 +348,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * 
 	 * @param attr attributes
 	 */
-	public void setAttributes(RPObject attr) {
-		final TransferContent content = new TransferContent();
-		// Old clients ignore layer names ending in _map 
-		content.name = getName() + ".data_map";
-		content.cacheable = true;
-		final ByteArrayOutputStream array = new ByteArrayOutputStream();
-		final OutputSerializer serializer = new OutputSerializer(array);
-		try {
-			attr.writeObject(serializer);
-		} catch (IOException e) {
-			logger.error("Failed to set attributes", e);
-		}
-		content.data = array.toByteArray();
-		content.timestamp = CRC.cmpCRC(content.data);
-		// Remove old attributes, if needed
-		if (!contents.isEmpty() && (contents.get(0).name.equals(content.name))) {
-			contents.remove(0);
-		}
-		// Ensure the attributes comes first, so that the client has coloring
-		// information 
-		contents.add(0, content);
+	public void setAttributes(ZoneAttributes attr) {
+		attributes = attr;
 	}
 
 	public void addCollisionLayer(final String name, final LayerDefinition collisionLayer)
@@ -639,6 +622,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public List<TransferContent> getContents() {
+		if (attributes != null) {
+			TransferContent attr = attributes.getContents();
+			// Remove old attributes, if needed
+			if (!contents.isEmpty() && (contents.get(0).name.equals(attr.name))) {
+				contents.remove(0);
+			}
+			// Ensure the attributes comes first, so that the client has coloring
+			// information 
+			contents.add(0, attr);
+		}
 		return contents;
 	}
 
