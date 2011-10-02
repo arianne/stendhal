@@ -15,6 +15,7 @@ package games.stendhal.server.maps.ados.market;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -28,16 +29,19 @@ import java.util.Map;
 public class FishermansDaughterNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone);
+		createFishermansDaughterSellingNPC(zone);
 	}
 
-	private void buildNPC(final StendhalRPZone zone) {
+	public void createFishermansDaughterSellingNPC(final StendhalRPZone zone) {
+
+
 		final SpeakerNPC npc = new SpeakerNPC("Caroline") {
-		    
+			@Override
 			protected void createPath() {
 				setPath(null);
-			}
 
+			}
+			
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, nice to meet you!");
@@ -52,6 +56,10 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 				addReply("Fritz","He is a really lovely dad. He was a fisherman before a huge huge #storm nearly destroyed his boat.");
 				addOffer("I can't offer you anything at the moment, but hopefully soon.");
 				addGoodbye("Thank you for visiting us here and have a nice day.");
+			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
 			}
 		};
 
