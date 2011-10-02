@@ -14,6 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.IEntity;
@@ -128,7 +129,9 @@ class Creature2DView extends RPEntity2DView {
 			resource = getClassResourcePath();
 		}
 
-		return SpriteStore.get().getSprite(translate(resource));
+		ZoneInfo info = ZoneInfo.get();
+		
+		return SpriteStore.get().getModifiedSprite(translate(resource), info.getZoneColor(), info.getColorMethod());
 	}
 
 	//
