@@ -19,6 +19,8 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics;
 
 import org.apache.log4j.Logger;
@@ -249,10 +251,21 @@ public class OutfitStore {
 	 * @return An walking state tileset.
 	 */
 	public Sprite getOutfit(final int code, OutfitColor color) {
-		final SpriteCache cache = SpriteCache.get();
-
 		// Use the normalized string for the reference
-		final OutfitRef reference = new OutfitRef(code, color.toString());
+		final String reference = buildReference(code, color.toString());
+		return getOutfit(code, color, reference);
+	}
+	
+	/**
+	 * Get outfit for a known outfit reference.
+	 * 
+	 * @param code outfit code
+	 * @param color Color information for outfit parts
+	 * @param reference outfit reference
+	 * @return outfit
+	 */
+	private Sprite getOutfit(final int code, OutfitColor color, String reference) {
+		final SpriteCache cache = SpriteCache.get();
 		Sprite sprite = cache.get(reference);
 
 		if (sprite == null) {
@@ -262,86 +275,44 @@ public class OutfitStore {
 
 		return sprite;
 	}
-
-	//
-	//
+	
+	/**
+	 * Get an outfit with color adjustment, such as a player in colored light.
+	 * 
+	 * @param code outfit code
+	 * @param color Color information for outfit parts
+	 * @param adjColor adjustment color for the entire outfit
+	 * @param blend blend mode for applying the adjustment color
+	 * @return color adjusted outfit
+	 */
+	public Sprite getAdjustedOutfit(final int code, OutfitColor color, 
+			Color adjColor, Composite blend) {
+		if ((adjColor == null) || (blend == null)) {
+			return getOutfit(code, color);
+		} else {
+			final SpriteCache cache = SpriteCache.get();
+			// Use the normalized string for the reference
+			final String reference = buildReference(code, color.toString());
+			String fullRef = reference + ":" + adjColor.getRGB() + blend.toString();
+			Sprite sprite = cache.get(fullRef);
+			if (sprite == null) {
+				Sprite plain = getOutfit(code, color);
+				SpriteStore store = SpriteStore.get();
+				sprite = store.modifySprite(plain, adjColor, blend, fullRef);
+				
+			}
+			return sprite;
+		}
+	}
 
 	/**
-	 * Outfit sprite reference.
+	 * Create an unique reference for an outfit.
+	 * 
+	 * @param code outfit code
+	 * @param colorCode color information for outfit parts
+	 * @return outfit reference
 	 */
-	protected static class OutfitRef {
-		/*
-		 * The outfit code.
-		 */
-		private final int code;
-		private final String colorCode;
-
-		/**
-		 * Create an outfit reference.
-		 * 
-		 * @param code
-		 *            The outfit code.
-		 * @param colorCode color adjustment string
-		 */
-		public OutfitRef(final int code, String colorCode) {
-			this.code = code;
-			this.colorCode = colorCode;
-		}
-
-		//
-		// OutfitRef
-		//
-
-		/**
-		 * Get the outfit code.
-		 * 
-		 * @return The outfit code.
-		 */
-		public int getCode() {
-			return code;
-		}
-
-		//
-		// Object
-		//
-
-		/**
-		 * Determine if this equals another object.
-		 * 
-		 * @param obj
-		 *            Another object.
-		 * 
-		 * @return <code>true</code> if the object is an OutfitRef with the
-		 *         same code.
-		 */
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj instanceof OutfitRef) {
-				OutfitRef other = (OutfitRef) obj;
-				return (getCode() == other.getCode()) && colorCode.equals(other.colorCode);
-			}
-
-			return false;
-		}
-
-		/**
-		 * Get the hash code.
-		 * 
-		 * @return The hash code.
-		 */
-		@Override
-		public int hashCode() {
-			return getCode() ^ colorCode.hashCode();
-		}
-
-		/**
-		 * Get the string representation.
-		 * 
-		 * @return The string in the form of <code>outfit:</code><em>code</em>.
-		 */
-		@Override
-		public String toString() {
-			return "outfit:" + getCode() + " colors: " + colorCode;
-		}
+	private String buildReference(final int code, final String colorCode) {
+		return "OUTFIT:" + code + "@" + colorCode;
 	}
 }
