@@ -340,6 +340,34 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		contents.add(content);
 	}
+	
+	/**
+	 * Set zone attributes that should be passed to the client.
+	 * 
+	 * @param attr attributes
+	 */
+	public void setAttributes(RPObject attr) {
+		final TransferContent content = new TransferContent();
+		// Old clients ignore layer names ending in _map 
+		content.name = getName() + ".data_map";
+		content.cacheable = true;
+		final ByteArrayOutputStream array = new ByteArrayOutputStream();
+		final OutputSerializer serializer = new OutputSerializer(array);
+		try {
+			attr.writeObject(serializer);
+		} catch (IOException e) {
+			logger.error("Failed to set attributes", e);
+		}
+		content.data = array.toByteArray();
+		content.timestamp = CRC.cmpCRC(content.data);
+		// Remove old attributes, if needed
+		if (!contents.isEmpty() && (contents.get(0).name.equals(content.name))) {
+			contents.remove(0);
+		}
+		// Ensure the attributes comes first, so that the client has coloring
+		// information 
+		contents.add(0, content);
+	}
 
 	public void addCollisionLayer(final String name, final LayerDefinition collisionLayer)
 			throws IOException {
