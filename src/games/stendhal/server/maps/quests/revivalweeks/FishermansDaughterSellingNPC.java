@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.revivalweeks;
 
+import java.util.Arrays;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -41,7 +43,9 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 			protected void createDialog() {
 				addGreeting("Hello, nice to meet you! Welcome at my small Mine Town market stand!");
 				addJob("I have been asked to work here and sell some tasty snacks and drinks during the Mine Town Revival weeks. An awesome chance to gain some cooking skills for my business which I'm working on at the moment!");
-				addHelp("You should go and enjoy the games and party around the Mine Town :)");
+				addHelp("You should go and enjoy the games and party around the Mine Town :) Hope you tested the new #outfit #colouring already, it's perfect for Halloween days and selfmade costumes :)");
+				addReply(Arrays.asList("outfit", "colouring", "outfit colouring"),
+		        "This is a new feature which came up at the right time for the Semos Mine Town Revival weeks and Halloween. You can recolour your outfit under rightclick - outfit and choose your favourite one for hair and dress! It's awesome!");
 				addReply("susi", "Oh she is a lovely girl! I met her around here, she is so happy that she can celebrate with all of us again!");
 				addOffer("I sell some snacks and drinks during the Mine Town Weeks. Please take a look at the list close to the stand.");
 				addQuest("I heard that #Susi would love to make friends, she is inside of the house. Or you can ask Fidorea next to me about a little run.");
