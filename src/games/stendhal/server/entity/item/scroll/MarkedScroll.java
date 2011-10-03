@@ -16,6 +16,7 @@ package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TeleportNotifier;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -107,6 +108,7 @@ public class MarkedScroll extends TeleportScroll {
 
 		// we use the player as teleporter (last parameter) to give feedback
 		// if something goes wrong.
+		TeleportNotifier.get().notify(player, true);
 		return player.teleport(zone, x, y, null, player);
 	}
 	

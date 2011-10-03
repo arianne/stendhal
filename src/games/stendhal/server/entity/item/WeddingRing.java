@@ -17,6 +17,7 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TeleportNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -207,6 +208,7 @@ public class WeddingRing extends Ring {
 		final Direction dir = spouse.getDirection();
 
 		if (player.teleport(destinationZone, x, y, dir, player)) {
+			TeleportNotifier.get().notify(player, true);
 			storeLastUsed();
 			return true;
 		}
