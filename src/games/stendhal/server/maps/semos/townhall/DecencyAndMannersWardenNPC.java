@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
@@ -41,7 +42,9 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance.");
+				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance. Have you heard about the new #outfit #colouring feature already?");
+				addReply(Arrays.asList("outfit", "colouring", "outfit colouring"),
+						"You can colour your outfits from now on and give it your favourite colour. Choose outfit after right clicking on yourself and colour your hair and dress as you want! Maybe in orange, fitting to Halloween!");
 				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
 				addQuest("The only task I have for you is to behave nicely towards others.");
 				addGoodbye();
