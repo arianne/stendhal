@@ -99,7 +99,6 @@ public class Zone {
 			 * Add tileset
 			 */
 			TileStore store = new TileStore();
-			store = new TileStore();
 			store.addTilesets(new InputSerializer(in));
 			tileset = store;
 		} else if (layer.equals("data_map")) {
