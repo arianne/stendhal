@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import marauroa.common.net.InputSerializer;
 
@@ -60,6 +61,13 @@ public class TileStore implements Tileset {
 	 * The tile sprites.
 	 */
 	private ArrayList<Sprite> tiles;
+	/** Tilesets waiting to be added to the store. */
+	private final List<TileSetDefinition> tilesets = new ArrayList<TileSetDefinition>();
+	/**
+	 * <code>true</code>, if the store has been successfully validated,
+	 *	otherwise <code>false</code>.
+	 */
+	private boolean validated;
 
 	/**
 	 * Create a tile store.
@@ -74,7 +82,7 @@ public class TileStore implements Tileset {
 	 * @param store
 	 *            A sprite store.
 	 */
-	public TileStore(final SpriteStore store) {
+	private TileStore(final SpriteStore store) {
 		this.store = store;
 
 		tiles = new ArrayList<Sprite>();
@@ -160,27 +168,47 @@ public class TileStore implements Tileset {
 	}
 
 	/**
-	 * Add tilesets.
+	 * Add tilesets. The store will require validating afterwards.
 	 * 
 	 * @param in
-	 *            The object stream.
-	 * @param color Color for adjusting the tileset, or <code>null</code>
-	 * @param blend blend mode for applying the adjustment color, or 
+	 *            The object stream. 
 	 * 	<code>null</code>
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void addTilesets(final InputSerializer in, final Color color, 
-			final Composite blend) throws IOException,
+	public void addTilesets(final InputSerializer in) throws IOException,
 			ClassNotFoundException {
 		final int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
 			final TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
 					null, -1));
-			add(tileset, color, blend);
+			tilesets.add(tileset);
 		}
+	}
+	/**
+	 * Try finishing the tile store withan adjustment color and blend mode for
+	 * the tilesets.
+	 * 
+	 * @param color Color for adjusting the tileset, or <code>null</code>
+	 * @param blend blend mode for applying the adjustment color, or
+	 * @return <code>true</code> if the store has been validated successfully,
+	 * 	<code>false</code> otherwise
+	 */
+	boolean validate(final Color color, final Composite blend) {
+		if (!validated) {
+			if (!tilesets.isEmpty()) {
+				for (TileSetDefinition def : tilesets) {
+					add(def, color, blend);
+				}
+				tilesets.clear();
+				validated = true;
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

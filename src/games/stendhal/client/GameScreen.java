@@ -570,16 +570,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
-		LayerRenderer r = gameLayers.getMerged(set, "floor_bundle", "0_floor", "1_terrain", "2_object");
-		if (r != null) {
-			r.draw(graphics, startTileX, startTileY, layerWidth, layerHeight);
-		} else {
-			// Fall back to individual layers in case the layers can't be
-			// merged. (Is that even possible?)
-			gameLayers.draw(graphics, set, "0_floor", startTileX, startTileY, layerWidth, layerHeight);
-			gameLayers.draw(graphics, set, "1_terrain", startTileX, startTileY, layerWidth, layerHeight);
-			gameLayers.draw(graphics, set, "2_object", startTileX, startTileY, layerWidth, layerHeight);
-		}
+		gameLayers.drawLayers(graphics, set, "floor_bundle", startTileX, 
+				startTileY, layerWidth, layerHeight, "0_floor", "1_terrain",
+				"2_object");
 		
 		drawEntities(graphics);
 
@@ -757,6 +750,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * clear for the player there are more than one.
 		 */
 		boolean found = true;
+		int tries = 0;
 
 		while (found) {
 			found = false;
@@ -770,6 +764,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 						break;
 					}
 				}
+			}
+			
+			tries++;
+			// give up, if no location found in a reasonable amount of tries
+			if (tries > 20) {
+				break;
 			}
 		}
 

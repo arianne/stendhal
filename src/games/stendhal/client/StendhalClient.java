@@ -96,6 +96,8 @@ public class StendhalClient extends ClientFramework {
 	private Lock drawingSemaphore = new ReentrantLock();
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
+	/** The zone currently under loading. */
+	private Zone currentZone;
 
 	public static StendhalClient get() {
 		return client;
@@ -241,9 +243,7 @@ public class StendhalClient extends ClientFramework {
 		drawingSemaphore.lock();
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
-
-		/** We clean the game object container */
-		logger.debug("CLEANING static object list");
+		logger.debug("Preparing for zone change");
 		staticLayers.clear();
 
 		/*
@@ -259,7 +259,7 @@ public class StendhalClient extends ClientFramework {
 				return items;
 			}
 
-			staticLayers.setAreaName(name.substring(0, i));
+			currentZone = new Zone(name.substring(0, i));
 		}
 
 		for (ZoneChangeListener listener : zoneChangeListeners) {
@@ -269,6 +269,11 @@ public class StendhalClient extends ClientFramework {
 		contentToLoad = 0;
 
 		for (final TransferContent item : items) {
+			if ("data_map".equals(item.name)) {
+				// Tell the zone to be invalid until the data layer has been
+				// added
+				currentZone.requireDataLayer();
+			}
 			final InputStream is = cache.getItem(item);
 
 			if (is != null) {
@@ -293,6 +298,11 @@ public class StendhalClient extends ClientFramework {
 			if (item.ack) {
 				contentToLoad++;
 			}
+		}
+		
+		// Don't change the zone until it's ready
+		if (currentZone.validate()) {
+			staticLayers.setZone(currentZone);
 		}
 
 		return items;
@@ -325,10 +335,9 @@ public class StendhalClient extends ClientFramework {
 			return;
 		}
 
-		final String area = name.substring(0, i);
 		final String layer = name.substring(i + 1);
 
-		staticLayers.addLayer(area, layer, in);
+		currentZone.addLayer(layer, in);
 	}
 
 	@Override
@@ -343,7 +352,9 @@ public class StendhalClient extends ClientFramework {
 				logger.error("onTransfer", e);
 			}
 		}
-		staticLayers.markAreaChanged();
+		// Prefer preparing the zone outside the EDT, if possible
+		currentZone.validate();
+		staticLayers.setZone(currentZone);
 
 		contentToLoad -= items.size();
 
