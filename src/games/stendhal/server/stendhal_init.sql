@@ -78,9 +78,14 @@ create table if not exists halloffame_archive_alltimes
 /*CREATE INDEX i_halloffame_archive_alltimes_day_charname ON halloffame_archive_alltimes(day, charname);*/
 
 
-CREATE TABLE IF NOT EXISTS itemid (
-  last_id INTEGER
+CREATE TABLE IF NOT EXISTS item (
+  id INTEGER AUTO_INCREMENT NOT NULL,
+  name VARCHAR(64),
+  timedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id)
 );
+
+/* CREATE INDEX i_item_timedate ON item(timedate); */
 
 CREATE TABLE IF NOT EXISTS itemlog (
   id         INTEGER AUTO_INCREMENT NOT NULL,

@@ -14,6 +14,8 @@ package games.stendhal.server.core.engine.dbcommand;
 import games.stendhal.server.entity.RPEntity;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
@@ -61,23 +63,15 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
-	
-		// increment the last_id value (or initialize it in case that table has 0 rows).
-		final int count = transaction.execute("UPDATE itemid SET last_id = last_id+1;", null);
-		if (count < 0) {
-			logger.error("Unexpected return value of execute method: " + count);
-		} else if (count == 0) {
-			// Note: This is just a workaround in case the itemid table is empty.
-			// In case itemlog was emptied, too; this workaround does not work because
-			// there are still items with higher ids out there.
-			logger.warn("Initializing itemid table, this may take a few minutes in case this database is not empty.");
-			transaction.execute("INSERT INTO itemid (last_id) SELECT max(itemid) + 1 FROM itemlog;", null);
-			logger.warn("itemid initialized.");
-		}
-	
-		// read last_id from database
-		final int id = transaction.querySingleCellInt("SELECT last_id FROM itemid", null);
-		item.put(ATTR_ITEM_LOGID, id);
+
+		// insert row into 
+		String sql = "INSERT INTO item (name) VALUES ('[name]')";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", item.get("name"));
+		transaction.execute(sql, params);
+
+		// get the insert id and store it into the item
+		item.put(ATTR_ITEM_LOGID, transaction.getLastInsertId("item", "id"));
 		itemLogInsertName(transaction, item);
 	}
 

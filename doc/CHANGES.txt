@@ -40,6 +40,10 @@
 - Working on some maps fixed layer errors
 
 
+*internal code changes*
+- table itemid was replaced with table item.
+
+
 
 0.96
 

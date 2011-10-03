@@ -150,6 +150,30 @@ public class StendhalPlayerDatabase {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (outfit_colors VARCHAR(100));", null);
 			transaction.execute("UPDATE character_stats SET outfit_colors = '' WHERE outfit_colors IS NULL;", null);
 		}
+
+		// 0.97: convert itemid-table to item-table
+		if (transaction.doesTableExist("itemid")) {
+			int id = transaction.querySingleCellInt("SELECT last_id FROM itemid", null);
+			logger.warn("Migrating from itemid-table to item-table. last_id: " + id);
+			String sql = "INSERT INTO item (id, name, timedate) "
+					+ " SELECT itemid, param1, timedate FROM itemlog WHERE event='register' AND timedate>='2011-10-01' ORDER BY timedate";
+			transaction.execute(sql, null);
+
+			// If there have been no recent log entries, (e. g. the server was offline for some time) 
+			// fake one to get the correct id
+			int count = transaction.querySingleCellInt("SELECT count(id) FROM item", null);
+			if (count == 0) {
+				transaction.execute("INSERT INTO item (id) VALUES (" + id + ")", null);
+			} else {
+				// Make sure that the id from the last register row is at least as high as itemid.last_id.
+				int itemid = transaction.querySingleCellInt("SELECT id FROM item ORDER BY id DESC LIMIT 1", null);
+				if (itemid < id) {
+					// Something went wrong, make sure not to reuse ids.
+					transaction.execute("INSERT INTO item (id) VALUES (" + id + ")", null);
+				}
+			}
+			transaction.execute("DROP TABLE itemid", null);
+		}
 	}
 
 
