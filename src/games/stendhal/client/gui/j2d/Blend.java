@@ -28,8 +28,9 @@ public class Blend implements Composite {
 	 * Possible blending modes.
 	 */
 	private enum Mode {
+		MULTIPLY,
+		SCREEN,
 		TRUE_COLOR,
-		MULTIPLY
 	}
 
 	// ARGB format
@@ -61,6 +62,8 @@ public class Blend implements Composite {
 	public static final Blend TrueColor = new Blend(Mode.TRUE_COLOR);
 	/** A blending mode that multiplies the underlying image with the above one. */
 	public static final Blend Multiply = new Blend(Mode.MULTIPLY);
+	/** Screen blend mode. */
+	public static final Blend Screen = new Blend(Mode.SCREEN);
 
 	/** Blending mode */
 	private final Mode mode;
@@ -77,10 +80,14 @@ public class Blend implements Composite {
 	public CompositeContext createContext(ColorModel srcColorModel,
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
-		if (mode == Mode.MULTIPLY) {
+		switch (mode) {
+		case MULTIPLY:
 			return new MultiplyContext();
+		case SCREEN:
+			return new ScreenContext();
+		default:
+			return new BlendContext(mode, srcColorModel, dstColorModel);
 		}
-		return new BlendContext(mode, srcColorModel, dstColorModel);
 	}
 
 	/**
@@ -399,6 +406,50 @@ public class Blend implements Composite {
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
+		}
+
+		public void dispose() {
+		}
+	}
+	
+	/**
+	 * A context that implements the screen blend mode.
+	 */
+	private static class ScreenContext implements CompositeContext {
+		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
+			int width = Math.min(src.getWidth(), dstIn.getWidth());
+			int height = Math.min(src.getHeight(), dstIn.getHeight());
+
+			int[] srcData = new int[width];
+			int[] dstData = new int[width];
+			
+			int[] srcRgb = new int[4];
+			int[] dstRgb = new int[4];
+			int[] result = new int[4];
+
+			for (int y = 0; y < height; y++) {
+				src.getDataElements(0, y, width, 1, srcData);
+				dstIn.getDataElements(0, y, width, 1, dstData);
+
+				for (int x = 0; x < width; x++) {
+					int a = dstData[x];
+					int b = srcData[x];
+					splitRgb(a, dstRgb);
+					splitRgb(b, srcRgb);
+					
+					result[ALPHA] = dstRgb[ALPHA];
+					result[RED] = screenComponent(srcRgb[RED], dstRgb[RED]);
+					result[GREEN] = screenComponent(srcRgb[GREEN], dstRgb[GREEN]);
+					result[BLUE] = screenComponent(srcRgb[BLUE], dstRgb[BLUE]);
+
+					dstData[x] = mergeRgb(result);
+				}
+				dstOut.setDataElements(0, y, width, 1, dstData);
+			}
+		}
+		
+		private int screenComponent(int a, int b) {
+			return 0xff - (((0xff - a) * (0xff - b)) >> 8);
 		}
 
 		public void dispose() {
