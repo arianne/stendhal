@@ -55,7 +55,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.set.black", "Come to the dark side", "Loot a complete black equipment set",
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "black armor", "black helmet", "black cloak", "black legs", "black boots", "black shield")));
-		itemAchievements.add(createAchievement("item.set.mainio", "Perfect!", "Loot a complete mainio equipment set",
+		itemAchievements.add(createAchievement("item.set.mainio", "Perfect", "Loot a complete mainio equipment set",
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "mainio armor", "mainio helmet", "mainio cloak", "mainio legs", "mainio boots", "mainio shield")));
 		// commented as it is not really a complete equipment set, because the helmet is missing
