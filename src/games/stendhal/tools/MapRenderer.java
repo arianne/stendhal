@@ -21,6 +21,8 @@ package games.stendhal.tools;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -35,8 +37,9 @@ import org.apache.tools.ant.types.FileSet;
 
 import tiled.core.Map;
 import tiled.core.MapLayer;
-import tiled.io.xml.XMLMapTransformer;
-import tiled.view.OrthoMapView;
+import tiled.core.TileLayer;
+import tiled.io.TMXMapReader;
+import tiled.view.OrthogonalRenderer;
 
 /**
  * Renders Stendhal maps from *.tmx into PNG files of the same base name. This class can be started
@@ -59,7 +62,7 @@ public class MapRenderer extends Task {
 		final File file = new File(tmxFile);
 
 		final String filename = file.getAbsolutePath();
-		final Map map = new XMLMapTransformer().readMap(filename);
+		final Map map = new TMXMapReader().readMap(filename);
 		saveImageMap(map, tmxFile);
 	}
 
@@ -97,29 +100,84 @@ public class MapRenderer extends Task {
 					+ file.getName().replaceAll("\\.tmx", ".png");
 		}
 
-		final OrthoMapView myView = new OrthoMapView(map);
-		if (zoom > -1) {
-			myView.setZoom(zoom);
+		final OrthogonalRenderer myView = new OrthogonalRenderer(map);
+		double realZoom;
+		if (zoom > 0) {
+			realZoom = zoom;
+		} else if (level.equals("int") && !area.equals("abstract")) {
+			realZoom = 0.25;
 		} else {
-			if (level.equals("int") && !area.equals("abstract")) {
-				myView.setZoom(0.25);
-			} else {
-				myView.setZoom(0.0625);
+			realZoom = 0.0625; // 1 / 16
+		}
+		final Dimension d = myView.getMapSize();
+		BufferedImage i = null;
+		int width = d.width;
+		int height = d.height;
+		double affineScale = 1.0;
+		AffineTransform scaleMatrix = null;
+		do {
+			try {
+				i = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			} catch (OutOfMemoryError e) {
+				System.err.println("Image too large; compensating...");
+				realZoom *= 2;
+				affineScale /= 2;
+				width /= 2;
+				height /= 2;
+				scaleMatrix = AffineTransform.getScaleInstance(affineScale, affineScale);
+			}
+		} while (i == null);
+		Graphics2D g = i.createGraphics();
+		if (scaleMatrix != null) {
+			g.setTransform(scaleMatrix);
+		}
+		g.setClip(0, 0, d.width, d.height);
+		for (final MapLayer layer : map) {
+			if ((layer instanceof TileLayer) && layer.isVisible()) {
+				myView.paintTileLayer(g, (TileLayer) layer);
 			}
 		}
-
-		final Dimension d = myView.getSize();
-		final BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g = i.createGraphics();
-		g.setClip(0, 0, d.width, d.height);
-		myView.paint(g);
 		g.dispose();
 
-
+		i = scaleImage(i, realZoom);
+		
 		try {
 			ImageIO.write(i, "png", new File(filename));
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Scale an image. Downscaling is done using a multi-stage method.
+	 * 
+	 * @param orig
+	 * @param scale
+	 * @return scaled image
+	 */
+	BufferedImage scaleImage(BufferedImage orig, double scale) {
+		if (scale > 0.5) {
+			int width = (int) (scale * orig.getWidth());
+			int height = (int) (scale * orig.getHeight());
+			BufferedImage copy = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = copy.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+			g.drawImage(orig, 0, 0, width, height, null);
+			g.dispose();
+			return copy;
+		} else if (scale <= 0) {
+			throw new IllegalArgumentException("Scale must be > 0, was " + scale);
+		} else {
+			int width = orig.getWidth() / 2;
+			int height = orig.getHeight() / 2;
+			BufferedImage copy = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = copy.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(orig, 0, 0, width, height, null);
+			g.dispose();
+			return scaleImage(copy, 2 * scale);
 		}
 	}
 

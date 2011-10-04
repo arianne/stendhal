@@ -27,9 +27,9 @@ import tiled.core.MapLayer;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
-import tiled.io.xml.XMLMapTransformer;
-import tiled.io.xml.XMLMapWriter;
-import tiled.mapeditor.util.cutter.BasicTileCutter;
+import tiled.io.TMXMapReader;
+import tiled.io.TMXMapWriter;
+import tiled.util.BasicTileCutter;
 
 /**
  * A tool for converting tileset mappings. 
@@ -160,7 +160,7 @@ public class TilesetConverter {
 	 * @param map the map to be broomed
 	 */
 	private void removeUnusedTilesets(final Map map) {
-		for (final Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext();) {
+		for (final Iterator< ? > sets = map.getTileSets().iterator(); sets.hasNext();) {
 			final TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
@@ -193,7 +193,7 @@ public class TilesetConverter {
 	 */
 	private void addNewTilesets(Map map) throws IOException {
 		// First build up the mapping of old sets
-		for (TileSet set : map.getTilesets()) {
+		for (TileSet set : map.getTileSets()) {
 			setByName.put(set.getTilebmpFile(), set);
 		}		
 		
@@ -277,11 +277,11 @@ public class TilesetConverter {
 		final File file = new File(tmxFile);
 
 		final String filename = file.getAbsolutePath();
-		final Map map = new XMLMapTransformer().readMap(filename);
+		final Map map = new TMXMapReader().readMap(filename);
 		addNewTilesets(map);
 		translateMap(map);
 		removeUnusedTilesets(map);
-		new XMLMapWriter().writeMap(map, filename);
+		new TMXMapWriter().writeMap(map, filename);
 	}
 	
 	/**

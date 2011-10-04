@@ -34,8 +34,8 @@ import tiled.core.MapLayer;
 import tiled.core.Tile;
 import tiled.core.TileLayer;
 import tiled.core.TileSet;
-import tiled.io.xml.XMLMapTransformer;
-import tiled.io.xml.XMLMapWriter;
+import tiled.io.TMXMapReader;
+import tiled.io.TMXMapWriter;
 
 /**
  * Fix maps by loading and saving thems.
@@ -64,7 +64,7 @@ public class MapUpdater extends Task {
 	}
 
 	private void removeUnusedTilesets(final Map map) {
-		for (final Iterator< ? > sets = map.getTilesets().iterator(); sets.hasNext();) {
+		for (final Iterator< ? > sets = map.getTileSets().iterator(); sets.hasNext();) {
 			final TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
@@ -80,9 +80,9 @@ public class MapUpdater extends Task {
 		final File file = new File(tmxFile);
 
 		final String filename = file.getAbsolutePath();
-		final Map map = new XMLMapTransformer().readMap(filename);
+		final Map map = new TMXMapReader().readMap(filename);
 		removeUnusedTilesets(map);
-		new XMLMapWriter().writeMap(map, filename);
+		new TMXMapWriter().writeMap(map, filename);
 	}
 
 	/**
