@@ -27,7 +27,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		List<Achievement> achievements = new LinkedList<Achievement>();
 		achievements.add(createAchievement("obtain.wish", "A wish came true", "Get an item from the wishing well",
 				Achievement.EASY_BASE_SCORE, true, new PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition(0)));
-		achievements.add(createAchievement("obtain.harvest.vegetable", "Vegetarian", "Harvest 3 of all vegetables in Faiumoni.",
+		achievements.add(createAchievement("obtain.harvest.vegetable", "Farmer", "Harvest 3 of all vegetables in Faiumoni.",
 				Achievement.EASY_BASE_SCORE, true, new PlayerHasHarvestedNumberOfItemsGreaterThanCondition(3, "salad",
 														"spinach", "tomato", "leek", "courgette", "broccoli","carrot")));
 		//ultimate collector quest achievement
