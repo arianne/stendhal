@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -38,7 +39,7 @@ import tiled.io.TMXMapReader;
 import tiled.io.TMXMapWriter;
 
 /**
- * Fix maps by loading and saving thems.
+ * Fix maps by loading and saving them.
  * 
  * @author mtotz, miguel
  */
@@ -63,12 +64,45 @@ public class MapUpdater extends Task {
 		return false;
 	}
 
+	/**
+	 * Remove unused tilesets.
+	 * @param map
+	 */
 	private void removeUnusedTilesets(final Map map) {
 		for (final Iterator< ? > sets = map.getTileSets().iterator(); sets.hasNext();) {
 			final TileSet tileset = (TileSet) sets.next();
 
 			if (!isUsedTileset(map, tileset)) {
 				sets.remove();
+			}
+		}
+	}
+	
+	/**
+	 * Remove unused roof layers.
+	 * 
+	 * @param map
+	 */
+	private void removeUnusedLayers(final Map map) {
+		boolean modified = true;
+		while (modified) {
+			modified = false;
+			Vector<MapLayer> layers = map.getLayers();
+			for (int i = 0; i < layers.size(); i++) {
+				MapLayer layer = layers.get(i);
+				if (layer.isEmpty()) {
+					// Client merges floor layers, and removing anything there
+					// prevents it doing that. Removing unused roof layers, however
+					// saves drawing effort.
+					if ("3_roof".equals(layer.getName()) 
+							|| "4_roof_add".equals(layer.getName())) {
+						map.removeLayer(i);
+						// Removing a layer can mess up the indices. Restart
+						// checking.
+						modified = true;
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -82,6 +116,7 @@ public class MapUpdater extends Task {
 		final String filename = file.getAbsolutePath();
 		final Map map = new TMXMapReader().readMap(filename);
 		removeUnusedTilesets(map);
+		removeUnusedLayers(map);
 		new TMXMapWriter().writeMap(map, filename);
 	}
 
@@ -126,5 +161,4 @@ public class MapUpdater extends Task {
 		final MapUpdater converter = new MapUpdater();
 		converter.convert(args[0]);
 	}
-
 }
