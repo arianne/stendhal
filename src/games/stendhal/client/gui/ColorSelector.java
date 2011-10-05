@@ -288,11 +288,11 @@ class ColorSelector extends JPanel {
 				Color endColor = new Color(Blend.mergeRgb(rgb));
 			
 				Graphics2D g2d = (Graphics2D) g;
-				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width / 2, ins.top, midColor);
+				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width / 2f, ins.top, midColor);
 				g2d.setPaint(p);
 				g2d.fillRect(ins.left, ins.top, width / 2, height);
 
-				p = new GradientPaint(ins.left + width / 2, ins.top, midColor, width, ins.top, endColor);
+				p = new GradientPaint(ins.left + width / 2f, ins.top, midColor, width, ins.top, endColor);
 				g2d.setPaint(p);
 				g2d.fillRect(ins.left + width / 2, ins.top, width / 2, height);
 			} else {
