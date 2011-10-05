@@ -196,7 +196,7 @@ public class TileStore implements Tileset {
 	 * @return <code>true</code> if the store has been validated successfully,
 	 * 	<code>false</code> otherwise
 	 */
-	boolean validate(final Color color, final Composite blend) {
+	synchronized boolean validate(final Color color, final Composite blend) {
 		if (!validated) {
 			if (!tilesets.isEmpty()) {
 				for (TileSetDefinition def : tilesets) {
