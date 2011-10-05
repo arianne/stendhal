@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="ground 1" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="water 1" firstgid="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="water 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool.png"/>
  </tileset>
- <tileset name="water 3" firstgid="106" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="water 3" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/pool_corners.png"/>
  </tileset>
- <tileset name="grass 1" firstgid="178" tilewidth="32" tileheight="32">
+ <tileset firstgid="178" name="grass 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_edges.png"/>
  </tileset>
- <tileset name="grass 2" firstgid="214" tilewidth="32" tileheight="32">
+ <tileset firstgid="214" name="grass 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_corners.png"/>
  </tileset>
- <tileset name="tree 1" firstgid="238" tilewidth="32" tileheight="32">
+ <tileset firstgid="238" name="tree 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/palm_tree.png"/>
  </tileset>
- <tileset name="animals 1" firstgid="244" tilewidth="32" tileheight="32">
+ <tileset firstgid="244" name="animals 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="collision" firstgid="271" tilewidth="32" tileheight="32">
+ <tileset firstgid="271" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="bushes" firstgid="272" tilewidth="32" tileheight="32">
+ <tileset firstgid="272" name="bushes" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png"/>
  </tileset>
- <tileset name="corpse" firstgid="281" tilewidth="32" tileheight="32">
+ <tileset firstgid="281" name="corpse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset name="tent" firstgid="285" tilewidth="32" tileheight="32">
+ <tileset firstgid="285" name="tent" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/tent.png"/>
  </tileset>
- <tileset name="giant animals" firstgid="294" tilewidth="32" tileheight="32">
+ <tileset firstgid="294" name="giant animals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_animal.png"/>
  </tileset>
- <tileset name="huge animals" firstgid="296" tilewidth="32" tileheight="32">
+ <tileset firstgid="296" name="huge animals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="ironlamp" firstgid="309" tilewidth="32" tileheight="32">
+ <tileset firstgid="309" name="ironlamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="312" tilewidth="32" tileheight="32">
+ <tileset firstgid="312" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="witch hut" firstgid="318" tilewidth="32" tileheight="32">
+ <tileset firstgid="318" name="witch hut" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/witch_hut.png"/>
  </tileset>
- <tileset name="logs" firstgid="353" tilewidth="32" tileheight="32">
+ <tileset firstgid="353" name="logs" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
- <tileset name="amzoness" firstgid="356" tilewidth="32" tileheight="32">
+ <tileset firstgid="356" name="amzoness" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/amazon.png"/>
  </tileset>
- <tileset name="coconut" firstgid="366" tilewidth="32" tileheight="32">
+ <tileset firstgid="366" name="coconut" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/fruits.png"/>
  </tileset>
- <tileset name="pineapple plant" firstgid="369" tilewidth="32" tileheight="32">
+ <tileset firstgid="369" name="pineapple plant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/pineapple_plant.png"/>
  </tileset>
- <tileset name="../../tileset/ground/grass_2.png" firstgid="375" tilewidth="32" tileheight="32">
+ <tileset firstgid="375" name="../../tileset/ground/grass_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

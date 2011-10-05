@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
- <tileset name="wall2" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="wall2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
- <tileset name="entrance" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
- <tileset name="entrance details" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="entrance details" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ns.png"/>
  </tileset>
- <tileset name="ground" firstgid="79" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground.png"/>
  </tileset>
- <tileset name="barrell" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset firstgid="80" name="barrell" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset name="stool" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="stool" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="table" firstgid="83" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
- <tileset name="collision" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="85" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="sword rack" firstgid="92" tilewidth="32" tileheight="32">
+ <tileset firstgid="92" name="sword rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/sword_rack.png"/>
  </tileset>
- <tileset name="weapon rack" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="weapon rack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">

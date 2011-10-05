@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="2" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/stone_floors.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_skull.png"/>
  </tileset>
- <tileset name="stairs" firstgid="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="16" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="goodies1" firstgid="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="20" name="goodies1" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/jewelry.png"/>
  </tileset>
- <tileset name="mithrilguys" firstgid="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="23" name="mithrilguys" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_soldier.png"/>
  </tileset>
- <tileset name="portal" firstgid="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="32" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="protection" firstgid="39" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset name="stairs down" firstgid="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="stairs down" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs_down.png"/>
  </tileset>
- <tileset name="hell" firstgid="46" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="hell" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="goodies2" firstgid="398" tilewidth="32" tileheight="32">
+ <tileset firstgid="398" name="goodies2" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="../../tileset/ground/green_paving.png" firstgid="404" tilewidth="32" tileheight="32">
+ <tileset firstgid="404" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="422" tilewidth="32" tileheight="32">
+ <tileset firstgid="422" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="543" tilewidth="32" tileheight="32">
+ <tileset firstgid="543" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

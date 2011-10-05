@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
- <tileset name="entrance" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
- <tileset name="black" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="black" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
- <tileset name="stairs" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="bushes" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="bushes" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hosta.png"/>
  </tileset>
- <tileset name="sheep foord" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="sheep foord" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="collision" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portals" firstgid="76" tilewidth="32" tileheight="32">
+ <tileset firstgid="76" name="portals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="blackdragon picture" firstgid="83" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="blackdragon picture" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/blackdragon.png"/>
  </tileset>
- <tileset name="floor" firstgid="87" tilewidth="32" tileheight="32">
+ <tileset firstgid="87" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
- <tileset name="snowman" firstgid="91" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="snowman" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/snowman.png"/>
  </tileset>
- <tileset name="fireplace" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="fireplace" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/furnace.png"/>
  </tileset>
- <tileset name="flames" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
  </tileset>
- <tileset name="tree" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="tree" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce_xmas2.png"/>
  </tileset>
- <tileset name="christmas2" firstgid="105" tilewidth="32" tileheight="32">
+ <tileset firstgid="105" name="christmas2" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce_xmas4.png"/>
  </tileset>
- <tileset name="sparkles" firstgid="111" tilewidth="32" tileheight="32">
+ <tileset firstgid="111" name="sparkles" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/xmas_lights.png"/>
  </tileset>
- <tileset name="obsidian" firstgid="131" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="obsidian" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/obsidian.png"/>
  </tileset>
- <tileset name="square crystals" firstgid="137" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="square crystals" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/square_crystal.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">

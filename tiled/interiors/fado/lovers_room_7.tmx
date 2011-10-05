@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/plant/bush/bushes.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/ground/indoor/soft_blue.png" firstgid="11" tilewidth="32" tileheight="32">
+ <tileset firstgid="11" name="../../tileset/ground/indoor/soft_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/soft_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_green_purple.png" firstgid="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="../../tileset/building/wall/int_green_purple.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/fancy_gate.png" firstgid="42" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="../../tileset/building/decoration/fancy_gate.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" firstgid="48" tilewidth="32" tileheight="32">
+ <tileset firstgid="48" name="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/pot/pot_burgundy.png" firstgid="60" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="../../tileset/item/pot/pot_burgundy.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_burgundy.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/ground/rock/rocks_2.png" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="../../tileset/ground/rock/rocks_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/table/table_with_beer.png" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="../../tileset/furniture/table/table_with_beer.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_beer.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/table/wooden_pale.png" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="../../tileset/furniture/table/wooden_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/ground/rock/green_crystal.png" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="../../tileset/ground/rock/green_crystal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_green_blue.png" firstgid="83" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="../../tileset/building/wall/int_green_blue.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/ground/water/whirlpool.png" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="../../tileset/ground/water/whirlpool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/ground/water/dungeon_water.png" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset firstgid="107" name="../../tileset/ground/water/dungeon_water.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/furniture/light/candelabra.png" firstgid="137" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="../../tileset/furniture/light/candelabra.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/candelabra.png"/>
  </tileset>
- <tileset name="../../tileset/item/drink/bottle_and_glass.png" firstgid="138" tilewidth="32" tileheight="32">
+ <tileset firstgid="138" name="../../tileset/item/drink/bottle_and_glass.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset name="../../tileset/item/food/meals_2.png" firstgid="139" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="../../tileset/item/food/meals_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset name="../../tileset/item/documents/book.png" firstgid="141" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="../../tileset/item/documents/book.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset name="../../tileset/item/drink/red_wine.png" firstgid="145" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="../../tileset/item/drink/red_wine.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
- <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="149" tilewidth="32" tileheight="32">
+ <tileset firstgid="149" name="../../tileset/item/statue/skullpedestal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/object/mine_rails.png" firstgid="151" tilewidth="32" tileheight="32">
+ <tileset firstgid="151" name="../../tileset/object/mine_rails.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/mine_rails.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="169" tilewidth="32" tileheight="32">
+ <tileset firstgid="169" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="resources.png" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset firstgid="170" name="resources.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="large bed" firstgid="176" tilewidth="32" tileheight="32">
+ <tileset firstgid="176" name="large bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
- <tileset name="table" firstgid="182" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/concrete_table.png"/>
  </tileset>
- <tileset name="food" firstgid="191" tilewidth="32" tileheight="32">
+ <tileset firstgid="191" name="food" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">

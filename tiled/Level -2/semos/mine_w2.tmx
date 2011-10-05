@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/demon.png"/>
  </tileset>
- <tileset name="enormous_creature.png" firstgid="19" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="enormous_creature.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/enormous_creature.png"/>
  </tileset>
- <tileset name="slate tiles" firstgid="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="20" name="slate tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/slate_tiles.png"/>
  </tileset>
- <tileset name="ground brown 2" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="ground brown 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_2.png"/>
  </tileset>
- <tileset name="gold crystal" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="gold crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/gold_crystal.png"/>
  </tileset>
- <tileset name="skeleton" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset name="flames" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="rocks" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/rocks.png"/>
  </tileset>
- <tileset name="large green " firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="large green " tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/large_green.png"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_clay.png" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="../../tileset/building/wall/int_clay.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_clay.png"/>
  </tileset>
- <tileset name="wall/int_sandstone" firstgid="182" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="wall/int_sandstone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_sandstone.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

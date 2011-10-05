@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="ship" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ship" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/ship.png"/>
  </tileset>
- <tileset name="flag pole" firstgid="369" tilewidth="32" tileheight="32">
+ <tileset firstgid="369" name="flag pole" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/flagpole.png"/>
  </tileset>
- <tileset name="flag" firstgid="372" tilewidth="32" tileheight="32">
+ <tileset firstgid="372" name="flag" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
- <tileset name="ropes" firstgid="384" tilewidth="32" tileheight="32">
+ <tileset firstgid="384" name="ropes" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/ropes.png"/>
  </tileset>
- <tileset name="collision" firstgid="388" tilewidth="32" tileheight="32">
+ <tileset firstgid="388" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="boardwalk" firstgid="389" tilewidth="32" tileheight="32">
+ <tileset firstgid="389" name="boardwalk" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/boardwalk.png"/>
  </tileset>
- <tileset name="ground" firstgid="407" tilewidth="32" tileheight="32">
+ <tileset firstgid="407" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="log vertical" firstgid="440" tilewidth="32" tileheight="32">
+ <tileset firstgid="440" name="log vertical" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/log_vertical.png"/>
  </tileset>
- <tileset name="stump vertical" firstgid="443" tilewidth="32" tileheight="32">
+ <tileset firstgid="443" name="stump vertical" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_vertical.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

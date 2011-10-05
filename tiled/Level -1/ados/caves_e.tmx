@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/naga.png"/>
  </tileset>
- <tileset name="wall/int_rock" firstgid="48" tilewidth="32" tileheight="32">
+ <tileset firstgid="48" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

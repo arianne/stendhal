@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="hell" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="hell" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="fire" firstgid="353" tilewidth="32" tileheight="32">
+ <tileset firstgid="353" name="fire" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
- <tileset name="ground 2" firstgid="380" tilewidth="32" tileheight="32">
+ <tileset firstgid="380" name="ground 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
- <tileset name="cauldron" firstgid="384" tilewidth="32" tileheight="32">
+ <tileset firstgid="384" name="cauldron" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/cauldron.png"/>
  </tileset>
- <tileset name="statue swordsman" firstgid="432" tilewidth="32" tileheight="32">
+ <tileset firstgid="432" name="statue swordsman" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
- <tileset name="skull carving" firstgid="452" tilewidth="32" tileheight="32">
+ <tileset firstgid="452" name="skull carving" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skull_carving.png"/>
  </tileset>
- <tileset name="chains" firstgid="456" tilewidth="32" tileheight="32">
+ <tileset firstgid="456" name="chains" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/chains.png"/>
  </tileset>
- <tileset name="hanging skeleton" firstgid="460" tilewidth="32" tileheight="32">
+ <tileset firstgid="460" name="hanging skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/hanging_skeleton.png"/>
  </tileset>
- <tileset name="collision" firstgid="466" tilewidth="32" tileheight="32">
+ <tileset firstgid="466" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="huge animal" firstgid="467" tilewidth="32" tileheight="32">
+ <tileset firstgid="467" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="balrog" firstgid="480" tilewidth="32" tileheight="32">
+ <tileset firstgid="480" name="balrog" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/enormous_creature.png"/>
  </tileset>
- <tileset name="demon" firstgid="481" tilewidth="32" tileheight="32">
+ <tileset firstgid="481" name="demon" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/demon.png"/>
  </tileset>
- <tileset name="giant human" firstgid="486" tilewidth="32" tileheight="32">
+ <tileset firstgid="486" name="giant human" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
- <tileset name="elemental" firstgid="499" tilewidth="32" tileheight="32">
+ <tileset firstgid="499" name="elemental" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elemental.png"/>
  </tileset>
- <tileset name="chess" firstgid="506" tilewidth="32" tileheight="32">
+ <tileset firstgid="506" name="chess" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/chess.png"/>
  </tileset>
- <tileset name="table" firstgid="518" tilewidth="32" tileheight="32">
+ <tileset firstgid="518" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/concrete_table.png"/>
  </tileset>
- <tileset name="tomi" firstgid="527" tilewidth="32" tileheight="32">
+ <tileset firstgid="527" name="tomi" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/kicking_tomi.png"/>
  </tileset>
- <tileset name="blood" firstgid="533" tilewidth="32" tileheight="32">
+ <tileset firstgid="533" name="blood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="undead fallen" firstgid="537" tilewidth="32" tileheight="32">
+ <tileset firstgid="537" name="undead fallen" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead_fallen.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

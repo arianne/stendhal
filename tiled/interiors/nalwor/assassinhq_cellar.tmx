@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="20" tilewidth="32" tileheight="32">
- <tileset name="wall1" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_bricks.png"/>
  </tileset>
- <tileset name="entrance_ew" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="entrance_ew" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/bricks_ew.png"/>
  </tileset>
- <tileset name="entrance_ns" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="entrance_ns" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/bricks_ns.png"/>
  </tileset>
- <tileset name="wall2" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="wall2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
- <tileset name="floor" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="earth_entrance" firstgid="58" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="earth_entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ridge/earth_dark.png"/>
  </tileset>
- <tileset name="rocks" firstgid="154" tilewidth="32" tileheight="32">
+ <tileset firstgid="154" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png"/>
  </tileset>
- <tileset name="chest" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset firstgid="170" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="kitchen" firstgid="178" tilewidth="32" tileheight="32">
+ <tileset firstgid="178" name="kitchen" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/cabinets.png"/>
  </tileset>
- <tileset name="dishes" firstgid="206" tilewidth="32" tileheight="32">
+ <tileset firstgid="206" name="dishes" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
- <tileset name="Table" firstgid="212" tilewidth="32" tileheight="32">
+ <tileset firstgid="212" name="Table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset name="small_animal" firstgid="221" tilewidth="32" tileheight="32">
+ <tileset firstgid="221" name="small_animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset name="housewife" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset firstgid="226" name="housewife" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_kalavan.png"/>
  </tileset>
- <tileset name="assassin" firstgid="231" tilewidth="32" tileheight="32">
+ <tileset firstgid="231" name="assassin" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset name="collision" firstgid="241" tilewidth="32" tileheight="32">
+ <tileset firstgid="241" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="242" tilewidth="32" tileheight="32">
+ <tileset firstgid="242" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="intstairs" firstgid="249" tilewidth="32" tileheight="32">
+ <tileset firstgid="249" name="intstairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/int_ns.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="20">

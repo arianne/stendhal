@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="19" height="18" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/item/pot/barrel.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/item/pot/barrel.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/chair/wooden.png" firstgid="3" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="../../tileset/furniture/chair/wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/item/pot/pot_tall.png" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="../../tileset/item/pot/pot_tall.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_tall.png"/>
  </tileset>
- <tileset name="../../tileset/furniture/table/wooden.png" firstgid="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="10" name="../../tileset/furniture/table/wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="11" tilewidth="32" tileheight="32">
+ <tileset firstgid="11" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="12" tilewidth="32" tileheight="32">
+ <tileset firstgid="12" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground2.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="16" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="22" tilewidth="32" tileheight="32">
+ <tileset firstgid="22" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset name="plain colours" firstgid="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="24" name="plain colours" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset name="bench" firstgid="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
- <tileset name="square table" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="square table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square.png"/>
  </tileset>
- <tileset name="bottle and glass" firstgid="38" tilewidth="32" tileheight="32">
+ <tileset firstgid="38" name="bottle and glass" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset name="cognac" firstgid="39" tilewidth="32" tileheight="32">
+ <tileset firstgid="39" name="cognac" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/cognac.png"/>
  </tileset>
- <tileset name="red wine" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="red wine" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
- <tileset name="wall/int_sandstone" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="wall/int_sandstone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_sandstone.png"/>
  </tileset>
  <layer name="0_floor" width="19" height="18">

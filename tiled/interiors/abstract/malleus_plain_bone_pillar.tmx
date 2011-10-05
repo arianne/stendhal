@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="31" height="31" tilewidth="32" tileheight="32">
- <tileset name="..\tileset\logic\portal.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="..\tileset\logic\portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="..\tileset\logic\collision.png" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="..\tileset\logic\collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="..\tileset\ground\rock\hell.png" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="..\tileset\ground\rock\hell.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="..\tileset\ground\yellow_lava.png" firstgid="361" tilewidth="32" tileheight="32">
+ <tileset firstgid="361" name="..\tileset\ground\yellow_lava.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/yellow_lava.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\skeleton.png" firstgid="363" tilewidth="32" tileheight="32">
+ <tileset firstgid="363" name="..\tileset\item\corpse\skeleton.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\skulls.png" firstgid="367" tilewidth="32" tileheight="32">
+ <tileset firstgid="367" name="..\tileset\item\corpse\skulls.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skulls.png"/>
  </tileset>
- <tileset name="..\tileset\furniture\chair\throne.png" firstgid="383" tilewidth="32" tileheight="32">
+ <tileset firstgid="383" name="..\tileset\furniture\chair\throne.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
  <layer name="0_floor" width="31" height="31">

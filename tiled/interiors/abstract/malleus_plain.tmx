@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="100" height="80" tilewidth="32" tileheight="32">
- <tileset name="..\tileset\logic\portal.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="..\tileset\logic\portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="..\tileset\logic\collision.png" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="..\tileset\logic\collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="..\tileset\ground\fire\flames.png" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="..\tileset\ground\fire\flames.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/flames.png"/>
  </tileset>
- <tileset name="..\tileset\building\decoration\fireplace_2.png" firstgid="11" tilewidth="32" tileheight="32">
+ <tileset firstgid="11" name="..\tileset\building\decoration\fireplace_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace_2.png"/>
  </tileset>
- <tileset name="..\tileset\ground\fire\fire.png" firstgid="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="20" name="..\tileset\ground\fire\fire.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
  </tileset>
- <tileset name="..\tileset\item\statue\stone_dragon.png" firstgid="47" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="..\tileset\item\statue\stone_dragon.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/stone_dragon.png"/>
  </tileset>
- <tileset name="..\tileset\sky\stars.png" firstgid="55" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="..\tileset\sky\stars.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/sky/stars.png"/>
  </tileset>
- <tileset name="..\tileset\ground\rock\hell.png" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="..\tileset\ground\rock\hell.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="..\tileset\ground\yellow_lava.png" firstgid="413" tilewidth="32" tileheight="32">
+ <tileset firstgid="413" name="..\tileset\ground\yellow_lava.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/yellow_lava.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\hanging_skeleton.png" firstgid="415" tilewidth="32" tileheight="32">
+ <tileset firstgid="415" name="..\tileset\item\corpse\hanging_skeleton.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/hanging_skeleton.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\skeleton.png" firstgid="421" tilewidth="32" tileheight="32">
+ <tileset firstgid="421" name="..\tileset\item\corpse\skeleton.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\skull_pale.png" firstgid="425" tilewidth="32" tileheight="32">
+ <tileset firstgid="425" name="..\tileset\item\corpse\skull_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
- <tileset name="..\tileset\item\blood\nsew_stains.png" firstgid="426" tilewidth="32" tileheight="32">
+ <tileset firstgid="426" name="..\tileset\item\blood\nsew_stains.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="..\tileset\item\corpse\skulls.png" firstgid="430" tilewidth="32" tileheight="32">
+ <tileset firstgid="430" name="..\tileset\item\corpse\skulls.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skulls.png"/>
  </tileset>
- <tileset name="..\tileset\logic\creature\demon.png" firstgid="446" tilewidth="32" tileheight="32">
+ <tileset firstgid="446" name="..\tileset\logic\creature\demon.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/demon.png"/>
  </tileset>
  <layer name="0_floor" width="100" height="80">

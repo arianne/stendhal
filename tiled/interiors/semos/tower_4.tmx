@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="int blue green" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="int blue green" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="int green blue " firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="int green blue " tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="int green blue 2" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="int green blue 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue_2.png"/>
  </tileset>
- <tileset name="blue green entrance" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="blue green entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset name="blue green 2 entrance" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="blue green 2 entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_2.png"/>
  </tileset>
- <tileset name="ground" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="carpets" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset firstgid="90" name="carpets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset name="collision" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset firstgid="98" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="stairs" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/dark_stairs.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

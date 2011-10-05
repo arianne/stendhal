@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="wall2" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="wall2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue_2.png"/>
  </tileset>
- <tileset name="wall3" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="wall3" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="ground" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/greenGround2.png"/>
  </tileset>
- <tileset name="water" firstgid="42" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="water" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/soft_blue.png"/>
  </tileset>
- <tileset name="waterfall" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="waterfall" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/waterfall.png"/>
  </tileset>
- <tileset name="carpet2" firstgid="165" tilewidth="32" tileheight="32">
+ <tileset firstgid="165" name="carpet2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset name="stairs" firstgid="173" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
- <tileset name="curtain" firstgid="176" tilewidth="32" tileheight="32">
+ <tileset firstgid="176" name="curtain" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
- <tileset name="kamin" firstgid="182" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="kamin" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fireplace.png"/>
  </tileset>
- <tileset name="arrows" firstgid="191" tilewidth="32" tileheight="32">
+ <tileset firstgid="191" name="arrows" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/arrows.png"/>
  </tileset>
- <tileset name="big_entrance" firstgid="201" tilewidth="32" tileheight="32">
+ <tileset firstgid="201" name="big_entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_big.png" trans="ffffff"/>
  </tileset>
- <tileset name="entrance2" firstgid="205" tilewidth="32" tileheight="32">
+ <tileset firstgid="205" name="entrance2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_2.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="213" tilewidth="32" tileheight="32">
+ <tileset firstgid="213" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
- <tileset name="torch_top" firstgid="219" tilewidth="32" tileheight="32">
+ <tileset firstgid="219" name="torch_top" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/torch_top.png"/>
  </tileset>
- <tileset name="brick_base" firstgid="223" tilewidth="32" tileheight="32">
+ <tileset firstgid="223" name="brick_base" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/brick_base.png"/>
  </tileset>
- <tileset name="drink" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset firstgid="226" name="drink" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottle_and_glass.png"/>
  </tileset>
- <tileset name="saule" firstgid="227" tilewidth="32" tileheight="32">
+ <tileset firstgid="227" name="saule" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
- <tileset name="potplant" firstgid="230" tilewidth="32" tileheight="32">
+ <tileset firstgid="230" name="potplant" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset name="collision" firstgid="242" tilewidth="32" tileheight="32">
+ <tileset firstgid="242" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="pillow" firstgid="243" tilewidth="32" tileheight="32">
+ <tileset firstgid="243" name="pillow" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_red.png"/>
  </tileset>
- <tileset name="carpet2" firstgid="244" tilewidth="32" tileheight="32">
+ <tileset firstgid="244" name="carpet2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="256" tilewidth="32" tileheight="32">
+ <tileset firstgid="256" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/question_marks.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="257" tilewidth="32" tileheight="32">
+ <tileset firstgid="257" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/floor_sparkle.png"/>
  </tileset>
- <tileset name="oni" firstgid="275" tilewidth="32" tileheight="32">
+ <tileset firstgid="275" name="oni" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
- <tileset name="../../tileset/ground/green_paving.png" firstgid="280" tilewidth="32" tileheight="32">
+ <tileset firstgid="280" name="../../tileset/ground/green_paving.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

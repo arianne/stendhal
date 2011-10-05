@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="2" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="mtnorcs" firstgid="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="21" name="mtnorcs" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mountain_orc.png"/>
  </tileset>
- <tileset name="mtndwarves" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="mtndwarves" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mountain_dwarf.png"/>
  </tileset>
- <tileset name="ogres" firstgid="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="ogres" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant.png"/>
  </tileset>
- <tileset name="bench" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/bench.png"/>
  </tileset>
- <tileset name="weapons" firstgid="38" tilewidth="32" tileheight="32">
+ <tileset firstgid="38" name="weapons" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/box_of_weapons.png"/>
  </tileset>
- <tileset name="armor" firstgid="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="armor" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/armor.png"/>
  </tileset>
- <tileset name="weaponrack" firstgid="44" tilewidth="32" tileheight="32">
+ <tileset firstgid="44" name="weaponrack" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="weapons4walls" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="weapons4walls" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
- <tileset name="greenstairs" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="greenstairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="bigbed1" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="bigbed1" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
- <tileset name="bigbed1sheet" firstgid="88" tilewidth="32" tileheight="32">
+ <tileset firstgid="88" name="bigbed1sheet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach_top_sheet.png"/>
  </tileset>
- <tileset name="bigbed2" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset firstgid="90" name="bigbed2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_blue.png"/>
  </tileset>
- <tileset name="bigbed2sheet" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="bigbed2sheet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_blue_top_sheet.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset firstgid="98" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy_horizontal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset firstgid="107" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/huge_pot.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="111" tilewidth="32" tileheight="32">
+ <tileset firstgid="111" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/tools.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="120" tilewidth="32" tileheight="32">
+ <tileset firstgid="120" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset firstgid="126" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/tools_rack.png"/>
  </tileset>
- <tileset name="dwarf" firstgid="132" tilewidth="32" tileheight="32">
+ <tileset firstgid="132" name="dwarf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf.png"/>
  </tileset>
- <tileset name="indoor/floor" firstgid="140" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="indoor/floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="143" tilewidth="32" tileheight="32">
+ <tileset firstgid="143" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="264" tilewidth="32" tileheight="32">
+ <tileset firstgid="264" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

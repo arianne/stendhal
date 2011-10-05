@@ -1,124 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="collision" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="armored" firstgid="2" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="armored" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_armored.png"/>
  </tileset>
- <tileset name="beds" firstgid="5" tilewidth="32" tileheight="32">
+ <tileset firstgid="5" name="beds" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach.png"/>
  </tileset>
- <tileset name="trunks" firstgid="11" tilewidth="32" tileheight="32">
+ <tileset firstgid="11" name="trunks" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png"/>
  </tileset>
- <tileset name="tilefloor" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="tilefloor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
- <tileset name="horizontal table" firstgid="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="21" name="horizontal table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_long.png"/>
  </tileset>
- <tileset name="breads" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="breads" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png"/>
  </tileset>
- <tileset name="tablefoods" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="tablefoods" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png"/>
  </tileset>
- <tileset name="bottles" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="bottles" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/bottles_and_cups.png"/>
  </tileset>
- <tileset name="gazingball statues" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="gazingball statues" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/crystal_statues.png"/>
  </tileset>
- <tileset name="smal skeleton" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="smal skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
- <tileset name="chessboard" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="chessboard" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/chess.png"/>
  </tileset>
- <tileset name="wooden table" firstgid="63" tilewidth="32" tileheight="32">
+ <tileset firstgid="63" name="wooden table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset name="sidetable" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset firstgid="72" name="sidetable" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/square_pale.png"/>
  </tileset>
- <tileset name="vertical bench" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="vertical bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="books" firstgid="76" tilewidth="32" tileheight="32">
+ <tileset firstgid="76" name="books" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/books2.png"/>
  </tileset>
- <tileset name="notepads" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset firstgid="80" name="notepads" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/books.png"/>
  </tileset>
- <tileset name="green crystal2" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="green crystal2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal3.png"/>
  </tileset>
- <tileset name="bed topsheet" firstgid="90" tilewidth="32" tileheight="32">
+ <tileset firstgid="90" name="bed topsheet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_peach_top_sheet.png"/>
  </tileset>
- <tileset name="brownfloor" firstgid="92" tilewidth="32" tileheight="32">
+ <tileset firstgid="92" name="brownfloor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="jacuzzi" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="jacuzzi" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png"/>
  </tileset>
- <tileset name="towels" firstgid="133" tilewidth="32" tileheight="32">
+ <tileset firstgid="133" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png"/>
  </tileset>
- <tileset name="lamps" firstgid="139" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="lamps" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/weird_lamp.png"/>
  </tileset>
- <tileset name="horizontal bench" firstgid="151" tilewidth="32" tileheight="32">
+ <tileset firstgid="151" name="horizontal bench" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="sofa" firstgid="154" tilewidth="32" tileheight="32">
+ <tileset firstgid="154" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_blue.png"/>
  </tileset>
- <tileset name="my buddy" firstgid="166" tilewidth="32" tileheight="32">
+ <tileset firstgid="166" name="my buddy" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_animal.png"/>
  </tileset>
- <tileset name="huge animal" firstgid="168" tilewidth="32" tileheight="32">
+ <tileset firstgid="168" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="huger animal" firstgid="181" tilewidth="32" tileheight="32">
+ <tileset firstgid="181" name="huger animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huger_animal.png"/>
  </tileset>
- <tileset name="assassins" firstgid="182" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="assassins" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset name="ochre walls" firstgid="192" tilewidth="32" tileheight="32">
+ <tileset firstgid="192" name="ochre walls" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/ochre_brick_set.png"/>
  </tileset>
- <tileset name="ochre entrance" firstgid="216" tilewidth="32" tileheight="32">
+ <tileset firstgid="216" name="ochre entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/ochre_brick_set_entrances.png"/>
  </tileset>
- <tileset name="superhuman banner" firstgid="244" tilewidth="32" tileheight="32">
+ <tileset firstgid="244" name="superhuman banner" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/superhumans_banner_on_post.png"/>
  </tileset>
- <tileset name="nymph statue" firstgid="252" tilewidth="32" tileheight="32">
+ <tileset firstgid="252" name="nymph statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/nymph_aqua.png"/>
  </tileset>
- <tileset name="blue crystal" firstgid="256" tilewidth="32" tileheight="32">
+ <tileset firstgid="256" name="blue crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/blue_crystal.png"/>
  </tileset>
- <tileset name="protection" firstgid="276" tilewidth="32" tileheight="32">
+ <tileset firstgid="276" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset name="purple crystals" firstgid="277" tilewidth="32" tileheight="32">
+ <tileset firstgid="277" name="purple crystals" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/purple_crystal.png"/>
  </tileset>
- <tileset name="red crystals" firstgid="289" tilewidth="32" tileheight="32">
+ <tileset firstgid="289" name="red crystals" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/red_crystal.png"/>
  </tileset>
- <tileset name="obsidian crystals" firstgid="293" tilewidth="32" tileheight="32">
+ <tileset firstgid="293" name="obsidian crystals" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/obsidian.png"/>
  </tileset>
- <tileset name="square crystals" firstgid="299" tilewidth="32" tileheight="32">
+ <tileset firstgid="299" name="square crystals" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/square_crystal.png"/>
  </tileset>
- <tileset name="wall/int_rock" firstgid="383" tilewidth="32" tileheight="32">
+ <tileset firstgid="383" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

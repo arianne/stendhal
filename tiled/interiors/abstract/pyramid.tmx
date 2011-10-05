@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="castle" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="castle" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/castle.png"/>
  </tileset>
- <tileset name="floor tiles 3" firstgid="321" tilewidth="32" tileheight="32">
+ <tileset firstgid="321" name="floor tiles 3" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="ground" firstgid="333" tilewidth="32" tileheight="32">
+ <tileset firstgid="333" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="swordsman" firstgid="366" tilewidth="32" tileheight="32">
+ <tileset firstgid="366" name="swordsman" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
- <tileset name="skullpost" firstgid="386" tilewidth="32" tileheight="32">
+ <tileset firstgid="386" name="skullpost" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/skull_post.png"/>
  </tileset>
- <tileset name="banners" firstgid="388" tilewidth="32" tileheight="32">
+ <tileset firstgid="388" name="banners" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>
  </tileset>
- <tileset name="hell" firstgid="394" tilewidth="32" tileheight="32">
+ <tileset firstgid="394" name="hell" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="collision" firstgid="746" tilewidth="32" tileheight="32">
+ <tileset firstgid="746" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

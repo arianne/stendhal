@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="22" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/furniture/chair/wooden_pale.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/furniture/chair/wooden_pale.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/building/stairs/stairs.png" firstgid="5" tilewidth="32" tileheight="32">
+ <tileset firstgid="5" name="../../tileset/building/stairs/stairs.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="16" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="dark_red_wall" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="dark_red_wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="dark_red_wall_corners1" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="dark_red_wall_corners1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="fireplace" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="fireplace" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/wood_fire.png"/>
  </tileset>
- <tileset name="map" firstgid="53" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="map" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/worldmap.png"/>
  </tileset>
- <tileset name="table" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_wooden_brown.png"/>
  </tileset>
- <tileset name="banner" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="banner" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/banners.png"/>
  </tileset>
- <tileset name="torch" firstgid="88" tilewidth="32" tileheight="32">
+ <tileset firstgid="88" name="torch" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="books" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="books" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/books2.png"/>
  </tileset>
- <tileset name="assassins" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="100" name="assassins" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
- <tileset name="floor" firstgid="110" tilewidth="32" tileheight="32">
+ <tileset firstgid="110" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floors_3.png"/>
  </tileset>
- <tileset name="red_carpet" firstgid="122" tilewidth="32" tileheight="32">
+ <tileset firstgid="122" name="red_carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_red.png"/>
  </tileset>
- <tileset name="table_long_front_on" firstgid="131" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="table_long_front_on" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="assassin_dagger" firstgid="134" tilewidth="32" tileheight="32">
+ <tileset firstgid="134" name="assassin_dagger" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/assassindagger.png"/>
  </tileset>
- <tileset name="nymph statue" firstgid="135" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="nymph statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/nymph_aqua.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="139" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="155" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_wide_details.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="22">

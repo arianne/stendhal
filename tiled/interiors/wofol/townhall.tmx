@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="60" height="33" tilewidth="32" tileheight="32">
- <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/brown_hole.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="53" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="81" tilewidth="32" tileheight="32">
+ <tileset firstgid="81" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/horizontal_dark.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/postbox.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_side_on_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="100" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="108" tilewidth="32" tileheight="32">
+ <tileset firstgid="108" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="117" tilewidth="32" tileheight="32">
+ <tileset firstgid="117" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="123" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="135" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="142" tilewidth="32" tileheight="32">
+ <tileset firstgid="142" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="60" height="33">

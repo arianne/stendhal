@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="int blue green" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="int blue green" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="int green blue " firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="int green blue " tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="int green blue 2" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="int green blue 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue_2.png"/>
  </tileset>
- <tileset name="ground" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="carpets" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="carpets" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png"/>
  </tileset>
- <tileset name="collision" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset firstgid="82" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="stairs" firstgid="83" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/dark_stairs.png"/>
  </tileset>
- <tileset name="statue" firstgid="85" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/gazingball_statue.png"/>
  </tileset>
- <tileset name="lamp" firstgid="124" tilewidth="32" tileheight="32">
+ <tileset firstgid="124" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/weird_lamp.png"/>
  </tileset>
- <tileset name="chest" firstgid="136" tilewidth="32" tileheight="32">
+ <tileset firstgid="136" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chests_red.png"/>
  </tileset>
- <tileset name="statue" firstgid="140" tilewidth="32" tileheight="32">
+ <tileset firstgid="140" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/crystal_statues.png"/>
  </tileset>
- <tileset name="int blue green entrance" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset firstgid="152" name="int blue green entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_ns_centered.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

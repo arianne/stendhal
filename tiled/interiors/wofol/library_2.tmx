@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="25" height="15" tilewidth="32" tileheight="32">
- <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_paving.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="3" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="7" tilewidth="32" tileheight="32">
+ <tileset firstgid="7" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="23" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="43" tilewidth="32" tileheight="32">
+ <tileset firstgid="43" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="46" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="55" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="59" tilewidth="32" tileheight="32">
+ <tileset firstgid="59" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="60" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset firstgid="61" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_purple.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="15">

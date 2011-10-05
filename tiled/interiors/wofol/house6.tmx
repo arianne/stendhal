@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="32" tileheight="32">
- <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_2.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="3" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_fancy_purple.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="15" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="51" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="87" tilewidth="32" tileheight="32">
+ <tileset firstgid="87" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="88" tilewidth="32" tileheight="32">
+ <tileset firstgid="88" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/small.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="92" tilewidth="32" tileheight="32">
+ <tileset firstgid="92" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_hob_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset firstgid="95" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="101" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="104" tilewidth="32" tileheight="32">
+ <tileset firstgid="104" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="106" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/blue_green.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset firstgid="107" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="116" tilewidth="32" tileheight="32">
+ <tileset firstgid="116" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="123" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="creature/undead.png" firstgid="124" tilewidth="32" tileheight="32">
+ <tileset firstgid="124" name="creature/undead.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">

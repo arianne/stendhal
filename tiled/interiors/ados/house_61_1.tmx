@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/logic/collision.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="walls" firstgid="2" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="walls" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/dojo_walls.png"/>
  </tileset>
- <tileset name="lamp" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="165" tilewidth="32" tileheight="32">
+ <tileset firstgid="165" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="flowers" firstgid="171" tilewidth="32" tileheight="32">
+ <tileset firstgid="171" name="flowers" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/hothouse_flowers.png"/>
  </tileset>
- <tileset name="bush" firstgid="243" tilewidth="32" tileheight="32">
+ <tileset firstgid="243" name="bush" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bush_mult_colored.png"/>
  </tileset>
- <tileset name="mosses" firstgid="249" tilewidth="32" tileheight="32">
+ <tileset firstgid="249" name="mosses" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mosses.png"/>
  </tileset>
- <tileset name="stump" firstgid="265" tilewidth="32" tileheight="32">
+ <tileset firstgid="265" name="stump" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_blue_green.png"/>
  </tileset>
- <tileset name="stump" firstgid="269" tilewidth="32" tileheight="32">
+ <tileset firstgid="269" name="stump" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_pale_brown.png"/>
  </tileset>
- <tileset name="veg" firstgid="273" tilewidth="32" tileheight="32">
+ <tileset firstgid="273" name="veg" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="sheepfood" firstgid="286" tilewidth="32" tileheight="32">
+ <tileset firstgid="286" name="sheepfood" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="green" firstgid="287" tilewidth="32" tileheight="32">
+ <tileset firstgid="287" name="green" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="white bed" firstgid="291" tilewidth="32" tileheight="32">
+ <tileset firstgid="291" name="white bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2.png"/>
  </tileset>
- <tileset name="sheet" firstgid="297" tilewidth="32" tileheight="32">
+ <tileset firstgid="297" name="sheet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_white2_top_sheet.png"/>
  </tileset>
- <tileset name="whirlpool" firstgid="299" tilewidth="32" tileheight="32">
+ <tileset firstgid="299" name="whirlpool" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/whirlpool.png"/>
  </tileset>
- <tileset name="water" firstgid="307" tilewidth="32" tileheight="32">
+ <tileset firstgid="307" name="water" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/dungeon_water.png"/>
  </tileset>
- <tileset name="pebbles" firstgid="337" tilewidth="32" tileheight="32">
+ <tileset firstgid="337" name="pebbles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png"/>
  </tileset>
- <tileset name="rocks" firstgid="340" tilewidth="32" tileheight="32">
+ <tileset firstgid="340" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>
  </tileset>
- <tileset name="../../tileset/ground/grass_2.png" firstgid="344" tilewidth="32" tileheight="32">
+ <tileset firstgid="344" name="../../tileset/ground/grass_2.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/grass_2.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">

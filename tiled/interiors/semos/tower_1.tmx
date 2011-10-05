@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="Untitled" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
- <tileset name="bluecarpet" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="bluecarpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="wall red" firstgid="22" tilewidth="32" tileheight="32">
+ <tileset firstgid="22" name="wall red" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="38" tilewidth="32" tileheight="32">
+ <tileset firstgid="38" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="54" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners_2.png"/>
  </tileset>
- <tileset name="windows" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="windows" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
- <tileset name="collision" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="entrance" firstgid="79" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_fancy.png"/>
  </tileset>
- <tileset name="stairs" firstgid="91" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/dark_stairs.png"/>
  </tileset>
- <tileset name="statue" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
- <tileset name="lamp" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lamp_blue.png"/>
  </tileset>
- <tileset name="paintings" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="paintings" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
- <tileset name="throne" firstgid="115" tilewidth="32" tileheight="32">
+ <tileset firstgid="115" name="throne" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne_small.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

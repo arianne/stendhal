@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
- <tileset name="floor" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/wall_brown.png"/>
  </tileset>
- <tileset name="wall1" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="wall1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="wall_corner" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="wall_corner" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="ofen" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="ofen" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/coal_fire.png"/>
  </tileset>
- <tileset name="table" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_rectangular.png" trans="438e41"/>
  </tileset>
- <tileset name="stool" firstgid="53" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="stool" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="drink" firstgid="54" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="drink" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
- <tileset name="bed" firstgid="58" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
- <tileset name="lamp" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="entrance" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset name="chest" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_pale.png"/>
  </tileset>
- <tileset name="window" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="window" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
- <tileset name="logs" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset firstgid="94" name="logs" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png" trans="7e7b7b"/>
  </tileset>
- <tileset name="webs" firstgid="97" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="webs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/webs.png" trans="fe00fe"/>
  </tileset>
- <tileset name="carpet" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="sink" firstgid="112" tilewidth="32" tileheight="32">
+ <tileset firstgid="112" name="sink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/dark_front_on.png"/>
  </tileset>
- <tileset name="collision" firstgid="118" tilewidth="32" tileheight="32">
+ <tileset firstgid="118" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="119" tilewidth="32" tileheight="32">
+ <tileset firstgid="119" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">

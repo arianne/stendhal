@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
- <tileset name="ground" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/greenGround2.png"/>
  </tileset>
- <tileset name="stairs" firstgid="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="bed" firstgid="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/large_red.png"/>
  </tileset>
- <tileset name="plant 1" firstgid="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="plant 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset name="drawner" firstgid="42" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="drawner" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png"/>
  </tileset>
- <tileset name="table" firstgid="44" tilewidth="32" tileheight="32">
+ <tileset firstgid="44" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="chairs" firstgid="47" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="chairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="books" firstgid="51" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="books" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png"/>
  </tileset>
- <tileset name="portal" firstgid="55" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="collision" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">

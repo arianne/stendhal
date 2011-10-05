@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
- <tileset name="bricked paving" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bricked paving" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/bricked_paving.png"/>
  </tileset>
- <tileset name="collision" firstgid="5" tilewidth="32" tileheight="32">
+ <tileset firstgid="5" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="stairs" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="skeleton" firstgid="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="10" name="skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset name="swordsman" firstgid="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="swordsman" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
- <tileset name="fence chunky" firstgid="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="34" name="fence chunky" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png"/>
  </tileset>
- <tileset name="weapons for walls" firstgid="55" tilewidth="32" tileheight="32">
+ <tileset firstgid="55" name="weapons for walls" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
- <tileset name="portal" firstgid="71" tilewidth="32" tileheight="32">
+ <tileset firstgid="71" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey_green_detail.png"/>
  </tileset>
- <tileset name="indoor/floor" firstgid="96" tilewidth="32" tileheight="32">
+ <tileset firstgid="96" name="indoor/floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="220" tilewidth="32" tileheight="32">
+ <tileset firstgid="220" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset name="indoor/grey_gradients" firstgid="245" tilewidth="32" tileheight="32">
+ <tileset firstgid="245" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">

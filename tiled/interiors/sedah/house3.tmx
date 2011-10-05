@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_pale.png"/>
  </tileset>
- <tileset name="wall2" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="wall2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_purple.png"/>
  </tileset>
- <tileset name="entrance" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png"/>
  </tileset>
- <tileset name="barrell" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="barrell" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset name="barel" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="barel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset name="collision" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset firstgid="78" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="ground2" firstgid="85" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="ground2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_2.png"/>
  </tileset>
- <tileset name="entrance2" firstgid="87" tilewidth="32" tileheight="32">
+ <tileset firstgid="87" name="entrance2" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ew.png"/>
  </tileset>
- <tileset name="entrance 2 details" firstgid="135" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="entrance 2 details" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ew.png"/>
  </tileset>
- <tileset name="stove" firstgid="141" tilewidth="32" tileheight="32">
+ <tileset firstgid="141" name="stove" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/stove.png"/>
  </tileset>
- <tileset name="table 2" firstgid="147" tilewidth="32" tileheight="32">
+ <tileset firstgid="147" name="table 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="dishes" firstgid="150" tilewidth="32" tileheight="32">
+ <tileset firstgid="150" name="dishes" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/crockery/dishes.png"/>
  </tileset>
- <tileset name="meal 1" firstgid="156" tilewidth="32" tileheight="32">
+ <tileset firstgid="156" name="meal 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png"/>
  </tileset>
- <tileset name="meal 2" firstgid="158" tilewidth="32" tileheight="32">
+ <tileset firstgid="158" name="meal 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
- <tileset name="chair" firstgid="160" tilewidth="32" tileheight="32">
+ <tileset firstgid="160" name="chair" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="steel lamp" firstgid="164" tilewidth="32" tileheight="32">
+ <tileset firstgid="164" name="steel lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="167" tilewidth="32" tileheight="32">
+ <tileset firstgid="167" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="stairs" firstgid="173" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="imperials" firstgid="177" tilewidth="32" tileheight="32">
+ <tileset firstgid="177" name="imperials" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="30">

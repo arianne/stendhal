@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="../../tileset/ground/brown.png" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="../../tileset/ground/brown.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="chaos" firstgid="7" tilewidth="32" tileheight="32">
+ <tileset firstgid="7" name="chaos" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/chaos.png"/>
  </tileset>
- <tileset name="huge animal" firstgid="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="brown corners" firstgid="27" tilewidth="32" tileheight="32">
+ <tileset firstgid="27" name="brown corners" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_corners.png"/>
  </tileset>
- <tileset name="brown edges" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="brown edges" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_edges.png"/>
  </tileset>
- <tileset name="rocks" firstgid="53" tilewidth="32" tileheight="32">
+ <tileset firstgid="53" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>
  </tileset>
- <tileset name="various small bushes" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="various small bushes" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png"/>
  </tileset>
- <tileset name="wooden crosses" firstgid="66" tilewidth="32" tileheight="32">
+ <tileset firstgid="66" name="wooden crosses" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/wooden_crosses.png"/>
  </tileset>
- <tileset name="grave marker" firstgid="70" tilewidth="32" tileheight="32">
+ <tileset firstgid="70" name="grave marker" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/grave_marker.png"/>
  </tileset>
- <tileset name="skull posts" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset firstgid="72" name="skull posts" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/gothic/skull_post.png"/>
  </tileset>
- <tileset name="cross" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="cross" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/cross.png"/>
  </tileset>
- <tileset name="skull pedestal" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset firstgid="75" name="skull pedestal" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/skullpedestal.png"/>
  </tileset>
- <tileset name="mythical animal" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="mythical animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_animal.png"/>
  </tileset>
- <tileset name="undead" firstgid="79" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="undead" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="skeletons" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset firstgid="93" name="skeletons" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/hanging_skeleton.png"/>
  </tileset>
- <tileset name="skeleton" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset firstgid="99" name="skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png"/>
  </tileset>
- <tileset name="skull pale" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="skull pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png"/>
  </tileset>
- <tileset name="wall/int_rock" firstgid="104" tilewidth="32" tileheight="32">
+ <tileset firstgid="104" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

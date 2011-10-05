@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
- <tileset name="int_wall_dark_red_corners" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="int_wall_dark_red_corners" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="int_wall_dark_red" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="int_wall_dark_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="stone" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="stone" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/stone.png"/>
  </tileset>
- <tileset name="bricked_edges" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="bricked_edges" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
- <tileset name="stairs" firstgid="60" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="fairypool" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="fairypool" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
- <tileset name="blobcreature" firstgid="80" tilewidth="32" tileheight="32">
+ <tileset firstgid="80" name="blobcreature" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/blobcreature.png"/>
  </tileset>
- <tileset name="elf" firstgid="84" tilewidth="32" tileheight="32">
+ <tileset firstgid="84" name="elf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="collision" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset firstgid="94" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="pool_and_face" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset firstgid="95" name="pool_and_face" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/pool_and_face.png"/>
  </tileset>
- <tileset name="green_stone" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="green_stone" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
- <tileset name="blue_circle" firstgid="115" tilewidth="32" tileheight="32">
+ <tileset firstgid="115" name="blue_circle" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/blue_circle.png"/>
  </tileset>
- <tileset name="green_stone_3" firstgid="119" tilewidth="32" tileheight="32">
+ <tileset firstgid="119" name="green_stone_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/green_stone_3.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="122" tilewidth="32" tileheight="32">
+ <tileset firstgid="122" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/stone2.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">

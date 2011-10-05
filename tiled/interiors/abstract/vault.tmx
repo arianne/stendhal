@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="9" height="10" tilewidth="32" tileheight="32">
- <tileset name="brick wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="brick wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_bricks.png"/>
  </tileset>
- <tileset name="doorway" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="doorway" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/bricks_ns.png"/>
  </tileset>
- <tileset name="brick wall, lower part" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="brick wall, lower part" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
  </tileset>
- <tileset name="collision" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="tiles" firstgid="38" tilewidth="32" tileheight="32">
+ <tileset firstgid="38" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tan.png"/>
  </tileset>
- <tileset name="wastebin" firstgid="42" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="wastebin" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/wastebin.png"/>
  </tileset>
- <tileset name="stool" firstgid="45" tilewidth="32" tileheight="32">
+ <tileset firstgid="45" name="stool" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png"/>
  </tileset>
- <tileset name="big table" firstgid="46" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="big table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset name="lamps" firstgid="52" tilewidth="32" tileheight="32">
+ <tileset firstgid="52" name="lamps" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lights_candle.png"/>
  </tileset>
  <layer name="0_floor" width="9" height="10">

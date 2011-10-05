@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="wall" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_purple.png"/>
  </tileset>
- <tileset name="ground" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brownground.png"/>
  </tileset>
- <tileset name="entrance" firstgid="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="entrance" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/green_purple_ns_ew.png"/>
  </tileset>
- <tileset name="ground 2" firstgid="58" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="ground 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
- <tileset name="bed" firstgid="62" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="bed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset name="collision" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="plants" firstgid="72" tilewidth="32" tileheight="32">
+ <tileset firstgid="72" name="plants" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
  </tileset>
- <tileset name="plants 1" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="plants 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="shelf" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset firstgid="77" name="shelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">

@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="ground" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="steel lamp" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="steel lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="corpse" firstgid="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="15" name="corpse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_dark.png"/>
  </tileset>
- <tileset name="portal" firstgid="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="17" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="corpse 2" firstgid="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="24" name="corpse 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset name="rocks" firstgid="28" tilewidth="32" tileheight="32">
+ <tileset firstgid="28" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png"/>
  </tileset>
- <tileset name="crystal" firstgid="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="32" name="crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pink_crystal.png"/>
  </tileset>
- <tileset name="collision" firstgid="41" tilewidth="32" tileheight="32">
+ <tileset firstgid="41" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="crystal 2" firstgid="42" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="crystal 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png"/>
  </tileset>
- <tileset name="huge animals" firstgid="51" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="huge animals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="animals" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="animals" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="91" tilewidth="32" tileheight="32">
+ <tileset firstgid="91" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="babarians" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset firstgid="95" name="babarians" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_barbarian.png"/>
  </tileset>
- <tileset name="wall/int_rock" firstgid="102" tilewidth="32" tileheight="32">
+ <tileset firstgid="102" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

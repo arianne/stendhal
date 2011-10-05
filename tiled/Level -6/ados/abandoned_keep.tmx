@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset name="tiles" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
  </tileset>
- <tileset name="collision" firstgid="7" tilewidth="32" tileheight="32">
+ <tileset firstgid="7" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="hell tiles" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="hell tiles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="huge animal corpse" firstgid="360" tilewidth="32" tileheight="32">
+ <tileset firstgid="360" name="huge animal corpse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset name="torch" firstgid="364" tilewidth="32" tileheight="32">
+ <tileset firstgid="364" name="torch" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="blood" firstgid="372" tilewidth="32" tileheight="32">
+ <tileset firstgid="372" name="blood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="pole" firstgid="376" tilewidth="32" tileheight="32">
+ <tileset firstgid="376" name="pole" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/flagpole.png"/>
  </tileset>
- <tileset name="flag" firstgid="379" tilewidth="32" tileheight="32">
+ <tileset firstgid="379" name="flag" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
- <tileset name="huge animal" firstgid="391" tilewidth="32" tileheight="32">
+ <tileset firstgid="391" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="404" tilewidth="32" tileheight="32">
+ <tileset firstgid="404" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="portal" firstgid="416" tilewidth="32" tileheight="32">
+ <tileset firstgid="416" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="giant human" firstgid="423" tilewidth="32" tileheight="32">
+ <tileset firstgid="423" name="giant human" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
- <tileset name="dwarf" firstgid="436" tilewidth="32" tileheight="32">
+ <tileset firstgid="436" name="dwarf" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="444" tilewidth="32" tileheight="32">
+ <tileset firstgid="444" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="565" tilewidth="32" tileheight="32">
+ <tileset firstgid="565" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">

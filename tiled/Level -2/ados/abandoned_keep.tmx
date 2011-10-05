@@ -1,78 +1,79 @@
-<?xml version="1.0"?>
-<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
- <tileset name="Sin nombre" firstgid="1" tilewidth="32" tileheight="32">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/strawberry.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="2" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/dark_blue.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="11" tilewidth="32" tileheight="32">
+ <tileset firstgid="11" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="23" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/brown_rug.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="47" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/rug_border.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="56" tilewidth="32" tileheight="32">
+ <tileset firstgid="56" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="65" tilewidth="32" tileheight="32">
+ <tileset firstgid="65" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/red_purple.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="74" tilewidth="32" tileheight="32">
+ <tileset firstgid="74" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/border2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="86" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/fancy_blue_red.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="94" tilewidth="32" tileheight="32">
+ <tileset firstgid="94" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset firstgid="95" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/wooden_rectangular.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="101" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/picture/oil_paintings.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="117" tilewidth="32" tileheight="32">
+ <tileset firstgid="117" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="123" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="Sin nombre" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer.png"/>
  </tileset>
- <tileset name="warmer2" firstgid="125" tilewidth="32" tileheight="32">
+ <tileset firstgid="125" name="warmer2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/kitchen/warmer_2.png"/>
  </tileset>
- <tileset name="coal fire" firstgid="131" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="coal fire" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/coal_fire.png"/>
  </tileset>
- <tileset name="green stairs" firstgid="135" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="green stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="portal" firstgid="139" tilewidth="32" tileheight="32">
+ <tileset firstgid="139" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="duregar" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset firstgid="146" name="duregar" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf_duergar.png"/>
  </tileset>
- <tileset name="newbed" firstgid="154" tilewidth="32" tileheight="32">
+ <tileset firstgid="154" name="newbed" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bed_grey2.png"/>
  </tileset>
- <tileset name="bedsheet" firstgid="157" tilewidth="32" tileheight="32">
+ <tileset firstgid="157" name="bedsheet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/bed_grey2_top_sheet.png"/>
  </tileset>
- <tileset name="indoor/floor" firstgid="158" tilewidth="32" tileheight="32">
+ <tileset firstgid="158" name="indoor/floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="161" tilewidth="32" tileheight="32">
+ <tileset firstgid="161" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="282" tilewidth="32" tileheight="32">
+ <tileset firstgid="282" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">

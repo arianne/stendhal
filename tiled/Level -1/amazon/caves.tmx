@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <tileset name="ground" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="table" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
  </tileset>
- <tileset name="statue" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="statue" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
- <tileset name="throne" firstgid="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="15" name="throne" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/throne.png"/>
  </tileset>
- <tileset name="lamp" firstgid="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="21" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="barell closed" firstgid="22" tilewidth="32" tileheight="32">
+ <tileset firstgid="22" name="barell closed" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>
  </tileset>
- <tileset name="barell 2" firstgid="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="24" name="barell 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>
  </tileset>
- <tileset name="steel lamp" firstgid="26" tilewidth="32" tileheight="32">
+ <tileset firstgid="26" name="steel lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="flames" firstgid="29" tilewidth="32" tileheight="32">
+ <tileset firstgid="29" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png"/>
  </tileset>
- <tileset name="rug" firstgid="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="35" name="rug" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/pink_rug.png"/>
  </tileset>
- <tileset name="amazoness" firstgid="47" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="amazoness" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/amazon.png"/>
  </tileset>
- <tileset name="blood" firstgid="57" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="blood" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/floor_stain.png"/>
  </tileset>
- <tileset name="corpse" firstgid="58" tilewidth="32" tileheight="32">
+ <tileset firstgid="58" name="corpse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_dark.png"/>
  </tileset>
- <tileset name="portal" firstgid="60" tilewidth="32" tileheight="32">
+ <tileset firstgid="60" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="collision" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="wall/int_rock" firstgid="68" tilewidth="32" tileheight="32">
+ <tileset firstgid="68" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">

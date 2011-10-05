@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="15" height="20" tilewidth="32" tileheight="32">
- <tileset name="drink" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="drink" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png"/>
  </tileset>
- <tileset name="lamp" firstgid="5" tilewidth="32" tileheight="32">
+ <tileset firstgid="5" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="book shelves 3" firstgid="6" tilewidth="32" tileheight="32">
+ <tileset firstgid="6" name="book shelves 3" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="chest" firstgid="12" tilewidth="32" tileheight="32">
+ <tileset firstgid="12" name="chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_pale.png"/>
  </tileset>
- <tileset name="logs" firstgid="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="logs" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png" trans="7e7b7b"/>
  </tileset>
- <tileset name="carpet" firstgid="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="16" name="carpet" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/blue.png"/>
  </tileset>
- <tileset name="collision" firstgid="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="portal" firstgid="26" tilewidth="32" tileheight="32">
+ <tileset firstgid="26" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="oriental_table" firstgid="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="33" name="oriental_table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/oriental_table.png"/>
  </tileset>
- <tileset name="sofa" firstgid="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa.png"/>
  </tileset>
- <tileset name="sofa_red" firstgid="43" tilewidth="32" tileheight="32">
+ <tileset firstgid="43" name="sofa_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_red.png"/>
  </tileset>
- <tileset name="table_with_beer_dark" firstgid="49" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="table_with_beer_dark" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_beer_dark.png"/>
  </tileset>
- <tileset name="large_chest" firstgid="59" tilewidth="32" tileheight="32">
+ <tileset firstgid="59" name="large_chest" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="sea_horse" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset firstgid="67" name="sea_horse" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
- <tileset name="wall/int_grey" firstgid="79" tilewidth="32" tileheight="32">
+ <tileset firstgid="79" name="wall/int_grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_grey.png"/>
  </tileset>
- <tileset name="entrance/grey" firstgid="200" tilewidth="32" tileheight="32">
+ <tileset firstgid="200" name="entrance/grey" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
- <tileset name="indoor/grey_gradients" firstgid="225" tilewidth="32" tileheight="32">
+ <tileset firstgid="225" name="indoor/grey_gradients" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/grey_gradients.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="20">

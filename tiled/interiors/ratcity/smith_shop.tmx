@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="18" height="16" tilewidth="32" tileheight="32">
- <tileset name="portal" firstgid="1" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="collision" firstgid="8" tilewidth="32" tileheight="32">
+ <tileset firstgid="8" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="lamp" firstgid="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset name="stairs" firstgid="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="10" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/green_stairs.png"/>
  </tileset>
- <tileset name="int blue green" firstgid="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="int blue green" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
- <tileset name="int green blue" firstgid="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="int green blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
- <tileset name="door" firstgid="46" tilewidth="32" tileheight="32">
+ <tileset firstgid="46" name="door" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
- <tileset name="floor" firstgid="54" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/plain_colours.png"/>
  </tileset>
- <tileset name="floor" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="64" name="floor" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/floor_tiles.png"/>
  </tileset>
- <tileset name="weapons" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset firstgid="73" name="weapons" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
- <tileset name="weapons 2" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset firstgid="89" name="weapons 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="table" firstgid="107" tilewidth="32" tileheight="32">
+ <tileset firstgid="107" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_plain.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="16">
