@@ -12,7 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.events.TeleportListener;
+import games.stendhal.server.core.events.TeleportNotifier;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -47,8 +50,9 @@ import java.util.Map;
  *
  * @author hendrik
  */
-public class PaperChase extends AbstractQuest {
+public class PaperChase extends AbstractQuest implements TeleportListener {
 	private static final String QUEST_SLOT = "paper_chase_2011";
+	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
@@ -201,7 +205,8 @@ public class PaperChase extends AbstractQuest {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who is a bit ILL and waits for help in a hostel.",
+			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who is a bit ILL and waits for help in a hostel."
+			+ " You may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
 
@@ -248,6 +253,7 @@ public class PaperChase extends AbstractQuest {
 		setupGreetings();
 		setupTexts();
 		createHallOfFameSign();
+		TeleportNotifier.get().registerListener(this);
 	}
 
 
@@ -264,5 +270,17 @@ public class PaperChase extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
+	}
+
+
+	public void onTeleport(Player player, boolean playerAction) {
+		if (!playerAction) {
+			return;
+		}
+
+		if (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT, 0).equals("done")) {
+			int startAgeWithPenalty = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, 1), 0) - TELEPORT_PENALTY_IN_MINUTES;
+			player.setQuest(QUEST_SLOT, 1, Integer.toString(startAgeWithPenalty));
+		}
 	}
 }
