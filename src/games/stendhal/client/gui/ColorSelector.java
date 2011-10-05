@@ -257,43 +257,55 @@ class ColorSelector extends JPanel {
 			int width = getWidth() - ins.left - ins.right;
 			int height = getWidth() - ins.left - ins.right;
 
-			Color startColor;
-			Color endColor;
 			if (isEnabled()) {
-				// calculate start and end colors
+				/*
+				 * A gradient paint is a bit fake, as it won't use the same
+				 * color model for the shift as we actually do. However, that
+				 * should not be a problem because we never show the user the
+				 * actual selected color, so she won't be able to see the slight
+				 * difference.
+				 * 
+				 * Do the paint in 2 parts, to get the correct saturation for
+				 * the mid lightness.
+				 */
+				// calculate start, end and middle colors
 				float[] hsl = new float[3];
 				int[] rgb = new int[4];
 				rgb[0] = 0xff; // alpha
 
 				hsl[0] = model.getHue();
-				// to compensate for the incorrect color mode (see below), we adjust
-				// the saturation a bit. This results in imaginary oversaturated
-				// colors but the color space transformations can take care of that.
-				hsl[1] = 5f * model.getSaturation();
+				hsl[1] = model.getSaturation();
 				// 0 would be black, and have no color
 				hsl[2] = 0.08f;
 				Blend.hsl2rgb(hsl, rgb);
-				startColor = new Color(Blend.mergeRgb(rgb));
+				Color startColor = new Color(Blend.mergeRgb(rgb));
+				hsl[2] = 0.5f;
+				Blend.hsl2rgb(hsl, rgb);
+				Color midColor = new Color(Blend.mergeRgb(rgb));
 				// 1 would be white, and have no color
 				hsl[2] = 0.92f;
 				Blend.hsl2rgb(hsl, rgb);
-				endColor = new Color(Blend.mergeRgb(rgb));
+				Color endColor = new Color(Blend.mergeRgb(rgb));
+			
+				Graphics2D g2d = (Graphics2D) g;
+				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width / 2, ins.top, midColor);
+				g2d.setPaint(p);
+				g2d.fillRect(ins.left, ins.top, width / 2, height);
+
+				p = new GradientPaint(ins.left + width / 2, ins.top, midColor, width, ins.top, endColor);
+				g2d.setPaint(p);
+				g2d.fillRect(ins.left + width / 2, ins.top, width / 2, height);
 			} else {
 				// Fake a desaturated gradient.
-				startColor = Color.BLACK;
-				endColor = Color.WHITE;
+				Color startColor = Color.BLACK;
+				Color endColor = Color.WHITE;
+		
+				Graphics2D g2d = (Graphics2D) g;
+				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width, ins.top, endColor);
+				g2d.setPaint(p);
+				g2d.fillRect(ins.left, ins.top, width, height);
 			}
-			/*
-			 * A gradient paint is a bit fake, as it won't use the same color
-			 * model for the shift as we actually do. However, that should not 
-			 * be a problem because we never show the user the actual selected
-			 * color, so she won't be able to see the slight difference.
-			 */
-			Graphics2D g2d = (Graphics2D) g;
-			GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width, ins.top, endColor);
-			g2d.setPaint(p);
-			g2d.fillRect(ins.left, ins.top, width, height);
-
+			
 			// Draw a line. white is not visible on black, and the vice versa,
 			// so draw them both
 			g.setColor(Color.BLACK);
