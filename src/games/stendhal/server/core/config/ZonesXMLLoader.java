@@ -162,7 +162,7 @@ public final class ZonesXMLLoader {
 	}
 
 	private static final String[] REQUIRED_LAYERS = { "0_floor", "1_terrain",
-			"2_object", "3_roof", "objects", "collision", "protection" };
+			"2_object", "objects", "collision", "protection" };
 
 	private boolean verifyMap(final ZoneDesc zdesc, final StendhalMapStructure zonedata) {
 		for (final String layer : REQUIRED_LAYERS) {
@@ -201,10 +201,13 @@ public final class ZonesXMLLoader {
 		zone.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
 		zone.addLayer(name + ".1_terrain", zonedata.getLayer("1_terrain"));
 		zone.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
-		zone.addLayer(name + ".3_roof", zonedata.getLayer("3_roof"));
-
-		final LayerDefinition layer = zonedata.getLayer("4_roof_add");
-
+		
+		// Roof layers are optional
+		LayerDefinition layer = zonedata.getLayer("3_roof");
+		if (layer != null) {
+			zone.addLayer(name + ".3_roof", layer);
+		}
+		layer = zonedata.getLayer("4_roof_add");
 		if (layer != null) {
 			zone.addLayer(name + ".4_roof_add", layer);
 		}
