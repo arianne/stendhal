@@ -24,6 +24,7 @@ import games.stendhal.server.maps.quests.captureflag.JoinCaptureFlagAction;
 import games.stendhal.server.maps.quests.captureflag.LeaveCaptureFlagAction;
 import games.stendhal.server.maps.quests.captureflag.ProvideCTFFlagsAction;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -36,12 +37,12 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 	@Override
 	public String getSlotName() {
-		return null;
+		return "capture_the_flag";
 	}
 
 	@Override
 	public List<String> getHistory(Player player) {
-		return null;
+		return new LinkedList<String>();
 	}
 
 	@Override
