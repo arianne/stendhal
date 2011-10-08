@@ -1,7 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-  <item name="dress">
+
+  <item name="barbarian armor">
+    <type class="armor" subclass="barbarian_armor" tileid="-1"/>
+    <description>You see a suit of barbarian armor. It's dirty and smelly, but still, rather strong.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="15"/>
+      <min_level value="35"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="23625"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
+  <item name="black armor">
+    <type class="armor" subclass="black_armor" tileid="-1"/>
+    <description>You see a suit of black armor. Does it put you in a dark mood?</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="26"/>
+	  <min_level value="200"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="123032"/>
+    <susceptibility type="dark" value="0.9"/>
+    <susceptibility type="light" value="1.2"/>  
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="blue armor">
+    <type class="armor" subclass="blue_armor" tileid="-1"/>
+    <description>You see a suit of blue armor. The colour is stunning azure.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="13"/>
+      <min_level value="25"/>
+    </attributes>
+    <weight value="35.0"/>
+    <value value="18000"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="chain armor">
+    <type class="armor" subclass="chain_armor" tileid="-1"/>
+    <description>You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="6"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="chaos armor">
+    <type class="armor" subclass="chaos_armor" tileid="-1"/>
+    <description>You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="20"/>
+	  <min_level value="100"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="56000"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
+<item name="dress">
     <type class="armor" subclass="dress" tileid="-1"/>
     <description>You see a dress, which provides practically no defence. It is barely worth picking up.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    
@@ -16,6 +108,133 @@
       <slot name="bag"/>
       <slot name="trade"/>
       <slot name="armor"/>
+    </equipable>
+  </item>
+
+  <item name="dwarvish armor">
+    <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
+    <description>You see a dwarvish armor. It's made with ingenuity and skill.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="17"/>
+	  <min_level value="50"/>
+    </attributes>
+    <weight value="40.0"/>
+    <value value="34391"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
+  <item name="elvish armor">
+    <type class="armor" subclass="elvish_armor" tileid="-1"/>
+    <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="14"/>
+      <min_level value="30"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="19208"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="enhanced chainmail">
+    <type class="armor" subclass="enhanced_chainmail" tileid="-1"/>
+    <description>You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="7"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="2401"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="golden armor">
+    <type class="armor" subclass="golden_armor" tileid="-1"/>
+    <description>You see a suit of golden armor. It's made from the best materials with great attention to detail.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="16"/>
+      <min_level value="40"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="28672"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="golden chainmail">
+    <type class="armor" subclass="golden_chainmail" tileid="-1"/>
+    <description>You see a valuable suit of golden chainmail. It is crafted from fine links of expensive metal.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="9"/>
+      <min_level value="5"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="5103"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="ice armor">
+    <type class="armor" subclass="ice_armor" tileid="-1"/>
+    <description>You see a suit of ice armor, to protect even the coldest of hearts.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="19"/>
+	  <min_level value="80"/>
+    </attributes>
+    <weight value="35.0"/>
+    <value value="48013"/>
+    <susceptibility type="ice" value="0.7"/>
+    <susceptibility type="fire" value="1.5"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+
+  <item name="iron scale armor">
+    <type class="armor" subclass="iron_scale_armor" tileid="-1"/>
+    <description>You see a suit of iron scale armor, whose rounded scales will protect you from many blows.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="8"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="3584"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
     </equipable>
   </item>
 
@@ -72,6 +291,87 @@
     </equipable>
   </item>
 
+
+ <item name="magic plate armor">
+    <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
+    <description>You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="24"/>
+	  <min_level value="150"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="96768"/>
+    <susceptibility type="fire" value="0.95"/>
+    <susceptibility type="ice" value="0.95"/>
+    <susceptibility type="dark" value="0.95"/>
+    <susceptibility type="light" value="0.95"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+
+  <item name="mainio armor">
+    <type class="armor" subclass="mainio_armor" tileid="-1"/>
+    <description>You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="22"/>
+	  <min_level value="125"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="86000"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
+
+  <item name="mithril armor">
+    <type class="armor" subclass="mithril_armor" tileid="-1"/>
+    <description>You see a suit of mithril armor. Its tightly woven links are truly amazing.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="29"/>
+    </attributes>
+    <weight value="42.0"/>
+    <value value="323032"/>
+    <susceptibility type="dark" value="1.2"/>
+    <susceptibility type="light" value="0.9"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+</items>
+
+  <item name="pauldroned iron cuirass">
+    <type class="armor" subclass="enhanced_iron_cuirass" tileid="-1"/>
+    <description>You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="9"/>
+      <min_level value="5"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="5103"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="armor"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="pauldroned leather cuirass">
     <type class="armor" subclass="enhanced_leather_cuirass" tileid="-1"/>
     <description>You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.</description>
@@ -89,14 +389,15 @@
     </equipable>
   </item>
 
-  <item name="studded armor">
-    <type class="armor" subclass="studded_armor" tileid="-1"/>
-    <description>You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.</description>
+  <item name="plate armor">
+    <type class="armor" subclass="plate_armor" tileid="-1"/>
+    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="5"/>
+      <def value="10"/>
+      <min_level value="10"/>
     </attributes>
-    <weight value="25.0"/>
-    <value value="875"/>
+    <weight value="45.0"/>
+    <value value="7000"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -106,31 +407,15 @@
     </equipable>
   </item>
 
-  <item name="chain armor">
-    <type class="armor" subclass="chain_armor" tileid="-1"/>
-    <description>You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.</description>
+  <item name="red armor">
+    <type class="armor" subclass="red_armor" tileid="-1"/>
+    <description>You see a suit of red armor. The colour is a striking crimson.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="6"/>
+      <def value="12"/>
+      <min_level value="20"/>
     </attributes>
     <weight value="45.0"/>
-    <value value="1512"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="enhanced chainmail">
-    <type class="armor" subclass="enhanced_chainmail" tileid="-1"/>
-    <description>You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="7"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="2401"/>
+    <value value="12000"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -157,159 +442,6 @@
     </equipable>
   </item>
 
-  <item name="iron scale armor">
-    <type class="armor" subclass="iron_scale_armor" tileid="-1"/>
-    <description>You see a suit of iron scale armor, whose rounded scales will protect you from many blows.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="8"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="3584"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="golden chainmail">
-    <type class="armor" subclass="golden_chainmail" tileid="-1"/>
-    <description>You see a valuable suit of golden chainmail. It is crafted from fine links of expensive metal.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="9"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="5103"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="pauldroned iron cuirass">
-    <type class="armor" subclass="enhanced_iron_cuirass" tileid="-1"/>
-    <description>You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="9"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="5103"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="plate armor">
-    <type class="armor" subclass="plate_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="10"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="7000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="red armor">
-    <type class="armor" subclass="red_armor" tileid="-1"/>
-    <description>You see a suit of red armor. The colour is a striking crimson.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="12"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="12000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="blue armor">
-    <type class="armor" subclass="blue_armor" tileid="-1"/>
-    <description>You see a suit of blue armor. The colour is stunning azure.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="13"/>
-    </attributes>
-    <weight value="35.0"/>
-    <value value="18000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="elvish armor">
-    <type class="armor" subclass="elvish_armor" tileid="-1"/>
-    <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="14"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="19208"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="barbarian armor">
-    <type class="armor" subclass="barbarian_armor" tileid="-1"/>
-    <description>You see a suit of barbarian armor. It's dirty and smelly, but still, rather strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="15"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="23625"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="armor"/>
-    </equipable>
-  </item>
-
-  <item name="golden armor">
-    <type class="armor" subclass="golden_armor" tileid="-1"/>
-    <description>You see a suit of golden armor. It's made from the best materials with great attention to detail.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="16"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="28672"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
   <item name="shadow armor">
     <type class="armor" subclass="shadow_armor" tileid="-1"/>
     <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
@@ -327,24 +459,6 @@
       <slot name="armor"/>
       <slot name="bag"/>
       <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="dwarvish armor">
-    <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
-    <description>You see a dwarvish armor. It's made with ingenuity and skill.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="17"/>
-	  <min_level value="50"/>
-    </attributes>
-    <weight value="40.0"/>
-    <value value="34391"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="armor"/>
     </equipable>
   </item>
 
@@ -368,41 +482,20 @@
     </equipable>
   </item>
 
-  <item name="ice armor">
-    <type class="armor" subclass="ice_armor" tileid="-1"/>
-    <description>You see a suit of ice armor, to protect even the coldest of hearts.</description>
+  <item name="studded armor">
+    <type class="armor" subclass="studded_armor" tileid="-1"/>
+    <description>You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="19"/>
-	  <min_level value="80"/>
+      <def value="5"/>
     </attributes>
-    <weight value="35.0"/>
-    <value value="48013"/>
-    <susceptibility type="ice" value="0.7"/>
-    <susceptibility type="fire" value="1.5"/>
+    <weight value="25.0"/>
+    <value value="875"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
       <slot name="armor"/>
       <slot name="bag"/>
       <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="chaos armor">
-    <type class="armor" subclass="chaos_armor" tileid="-1"/>
-    <description>You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="20"/>
-	  <min_level value="100"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="56000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="armor"/>
     </equipable>
   </item>
 
@@ -423,83 +516,3 @@
       <slot name="armor"/>
     </equipable>
   </item>
-
-  <item name="mainio armor">
-    <type class="armor" subclass="mainio_armor" tileid="-1"/>
-    <description>You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="22"/>
-	  <min_level value="125"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="86000"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="armor"/>
-    </equipable>
-  </item>
-
-  <item name="magic plate armor">
-    <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
-    <description>You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="24"/>
-	  <min_level value="150"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="96768"/>
-    <susceptibility type="fire" value="0.95"/>
-    <susceptibility type="ice" value="0.95"/>
-    <susceptibility type="dark" value="0.95"/>
-    <susceptibility type="light" value="0.95"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="black armor">
-    <type class="armor" subclass="black_armor" tileid="-1"/>
-    <description>You see a suit of black armor. Does it put you in a dark mood?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="26"/>
-	  <min_level value="200"/>
-    </attributes>
-    <weight value="45.0"/>
-    <value value="123032"/>
-    <susceptibility type="dark" value="0.9"/>
-    <susceptibility type="light" value="1.2"/>  
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
-  <item name="mithril armor">
-    <type class="armor" subclass="mithril_armor" tileid="-1"/>
-    <description>You see a suit of mithril armor. Its tightly woven links are truly amazing.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="29"/>
-    </attributes>
-    <weight value="42.0"/>
-    <value value="323032"/>
-    <susceptibility type="dark" value="1.2"/>
-    <susceptibility type="light" value="0.9"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="armor"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-</items>
