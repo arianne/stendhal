@@ -13,6 +13,7 @@ package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -68,7 +69,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	private static final String ATTR_NATURE = "nature";
 
-	private static final List<String> ITEMS_IN_HAND = Arrays.asList("staff","spellbook");
+	private static final List<String> ITEMS_IN_HANDS = Arrays.asList("staff","spellbook");
 
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
@@ -91,6 +92,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			//set last casting time for calculation of cooldown
 			setTimestamp(System.currentTimeMillis());
 			//log gameEvent
+			new GameEvent(caster.getName(), "cast-spell", getName(), target.getTitle()).raise();
 		}
 	}
 
@@ -130,7 +132,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	}
 
 	private boolean checkEquipment(final Player caster) {
-		for (final String item : ITEMS_IN_HAND) {
+		for (final String item : ITEMS_IN_HANDS) {
 			final OrCondition staffCondition = new OrCondition(
 					new PlayerHasItemEquippedInSlot(item, "rhand"),
 					new PlayerHasItemEquippedInSlot(item, "lhand"));
