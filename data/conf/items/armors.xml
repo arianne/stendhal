@@ -352,7 +352,6 @@
       <slot name="trade"/>
     </equipable>
   </item>
-</items>
 
   <item name="pauldroned iron cuirass">
     <type class="armor" subclass="enhanced_iron_cuirass" tileid="-1"/>
@@ -498,7 +497,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+ 
   <item name="xeno armor">
     <type class="armor" subclass="xeno_armor" tileid="-1"/>
     <description>You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.</description>
@@ -516,3 +515,6 @@
       <slot name="armor"/>
     </equipable>
   </item>
+  
+ </items>
+  
