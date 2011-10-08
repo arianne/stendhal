@@ -33,11 +33,18 @@ import java.util.List;
  * @author hendrik, sjtsp
  */
 public class CaptureFlagQuest extends AbstractQuest {
+	
+	/** name for the internal slot to store quest data */
+	private static final String SLOT_NAME = "capture_the_flag";
+	
+	/** player visible name for the quest */
+	private static final String QUEST_NAME = "CaptureTheFlag";
+	
 	private StendhalRPZone zone = null;
 
 	@Override
 	public String getSlotName() {
-		return "capture_the_flag";
+		return SLOT_NAME;
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class CaptureFlagQuest extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "CaptureTheFlag";
+		return QUEST_NAME;
 	}
 
 	private void addTeamManagerNPC() {
