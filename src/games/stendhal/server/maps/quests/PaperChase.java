@@ -238,7 +238,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "Fidorea"), new SystemPropertyCondition("stendhal.minetown")),
 			ConversationStates.ATTENDING, 
-			"Very good. You did the complete quest, talking to all those people around the world. I will add you name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
+			"Very good. You did the complete quest, talking to all those people around the world. I will add your name to the sign for everyone to see. And here are some magic scrolls as reward. They will help you on further travels.",
 			reward);
 	}
 
