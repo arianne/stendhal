@@ -12,10 +12,13 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemEquippedInSlot;
 import games.stendhal.server.entity.npc.condition.PlayerManaGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.trade.Dateable;
@@ -35,7 +38,7 @@ import org.apache.log4j.Logger;
  * @author timothyb89, madmetzger
  */
 public abstract class Spell extends PassiveEntity implements EquipListener, Dateable {
-	
+
 	public static final String RPCLASS_SPELL = "spell";
 
 	/**The spell name attribute name.*/
@@ -65,9 +68,11 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	private static final String ATTR_NATURE = "nature";
 
+	private static final List<String> ITEMS_IN_HAND = Arrays.asList("staff","spellbook");
+
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
-	
+
 	/**
 	 * Casts this spell if all preconditions are fulfilled:
 	 *  - caster has enough mana
@@ -78,7 +83,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param caster the player who tries to cast this spell
 	 * @param target the entity the spell is aimed at
 	 */
-	public void cast(Player caster, Entity target) {
+	public void cast(final Player caster, final Entity target) {
 		if(checkPreConditions(caster, target)) {
 			//deduct mana
 			caster.setMana(caster.getMana() - getMana());
@@ -88,29 +93,27 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			//log gameEvent
 		}
 	}
-	
-	private boolean checkPreConditions(Player caster, Entity target) {
-		//     * use/implement standard conditions for checks
-		//     * use/implement standard actions for mana usage etc
-		
+
+	private boolean checkPreConditions(final Player caster, final Entity target) {
+
 		//check for sufficient mana
 		if (!new PlayerManaGreaterThanCondition(getMana()-1).fire(caster, null, null)) {
 			caster.sendPrivateText("You have not sufficent mana to cast your spell \""+getName()+"\".");
 			return false;
 		}
-		
+
 		//check minimum level
 		if (new LevelLessThanCondition(getMinimumLevel()).fire(caster, null, null)) {
 			caster.sendPrivateText("You did not reach the minimum level for your spell \""+getName()+"\" yet.");
 			return false;
 		}
-		
-		long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000L; 
+
+		final long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000L; 
 		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
 			caster.sendPrivateText("Your spell \""+getName()+"\" did not yet cool down.");
 			return false;
 		}
-		
+
 		//check if target is valid for spell?
 		if (!isTargetValid(caster, target)) {
 			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
@@ -118,7 +121,24 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		//check other preconditions like having learned that school?
 		//check for right equipment
+		if (!checkEquipment(caster)) {
+			return false;
+		}
+
 		//no check failed so preconditions are fulfilled
+		return true;
+	}
+
+	private boolean checkEquipment(final Player caster) {
+		for (final String item : ITEMS_IN_HAND) {
+			final OrCondition staffCondition = new OrCondition(
+					new PlayerHasItemEquippedInSlot(item, "rhand"),
+					new PlayerHasItemEquippedInSlot(item, "lhand"));
+			if(staffCondition.fire(caster, null, null)) {
+				caster.sendPrivateText("You must have "+Grammar.a_noun(item)+" in your hands to cast a spell.");
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -129,7 +149,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param target
 	 */
 	protected abstract void doEffects(Player caster, Entity target);
-	
+
 	/**
 	 * Checks if the target Entity is applicable for this spell. Basically each Entity can target of a spell.
 	 * Subclasses have to override this method if they want to be more strict in the choice of the target.
@@ -138,7 +158,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param target the target Entity to check the applicability for 
 	 * @return true iff target is applicable to this spell
 	 */
-	protected boolean isTargetValid(Entity caster, Entity target) {
+	protected boolean isTargetValid(final Entity caster, final Entity target) {
 		return true;
 	}
 
@@ -165,7 +185,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		entity.addAttribute("class", Type.STRING);
 		entity.addAttribute("subclass", Type.STRING);
 	}
-	
+
 	/**
 	 * Creates a spell from an RPObject
 	 * 
@@ -176,7 +196,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		setNature(Nature.parse(object.get(ATTR_NATURE)));
 		setRPClass(RPCLASS_SPELL);
 	}
-	
+
 	/**
 	 * Creates a new {@link Spell}
 	 * Sub classes of {@link Spell} *have to* provide a constructor with this order of parameters!
@@ -195,8 +215,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param regen the amount to regen with each effect turn
 	 */
 	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
-					final int def, final double lifesteal, final int mana, final int minimumlevel,
-					final int range, final int rate, final int regen) {
+			final int def, final double lifesteal, final int mana, final int minimumlevel,
+			final int range, final int rate, final int regen) {
 		setRPClass(RPCLASS_SPELL);
 		put(ATTR_NAME, name);
 		put("subclass", name);
@@ -216,7 +236,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	}
 
 	public boolean canBeEquippedIn(final String slot) {
-		return possibleSlots.contains(slot);
+		return this.possibleSlots.contains(slot);
 	}
 
 	/**
@@ -230,7 +250,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get the spell amount.
 	 * 
@@ -242,7 +262,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell atk.
 	 * 
@@ -254,7 +274,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell cooldown.
 	 * 
@@ -266,7 +286,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell def.
 	 * 
@@ -278,7 +298,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell lifesteal.
 	 * 
@@ -290,7 +310,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell mana.
 	 * 
@@ -302,7 +322,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell minimum level.
 	 * 
@@ -314,7 +334,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell range.
 	 * 
@@ -326,7 +346,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell rate.
 	 * 
@@ -338,7 +358,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Get the spell regen.
 	 * 
@@ -360,17 +380,17 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 		return timeStamp;
 	}
-	
-	public void setTimestamp(long time) {
+
+	public void setTimestamp(final long time) {
 		put(ATTR_TIMESTAMP, Long.toString(time));
 	}
 
-	public void setNature(Nature nature) {
+	public void setNature(final Nature nature) {
 		put(ATTR_NATURE, nature.name());
 	}
 
 	public Nature getNature() {
 		return Nature.parse(get(ATTR_NATURE));
 	}
-	
+
 }
