@@ -57,15 +57,15 @@ public abstract class PlayerTestHelper {
 	public static Player createPlayer(final String name) {
 		generatePlayerRPClasses();
 
-		RPObject object = new RPObject();
+		final RPObject object = new RPObject();
 		object.put("name", name);
 		final Player pl = (Player) new PlayerTransformer().transform(object);
-		Iterator<RPEvent> eventsIterator = pl.eventsIterator();
+		final Iterator<RPEvent> eventsIterator = pl.eventsIterator();
 		while(eventsIterator.hasNext()) {
 			eventsIterator.next();
 			eventsIterator.remove();
 		}
-		
+
 		pl.setName(name);
 
 		//addEmptySlots(pl);
@@ -169,7 +169,7 @@ public abstract class PlayerTestHelper {
 	 */
 	public static void removePlayer(final Player player) {
 		if (player != null) {
-			String name = player.getName();
+			final String name = player.getName();
 
 			MockStendlRPWorld.get().remove(player.getID());
 			MockStendhalRPRuleProcessor.get().getOnlinePlayers().remove(player);
@@ -245,6 +245,19 @@ public abstract class PlayerTestHelper {
 	}
 
 	/**
+	 * 
+	 * @param player
+	 * @param clazz
+	 * @param slot
+	 * @return
+	 */
+	public static boolean equipWithItemToSlot(final Player player, final String clazz, final String slot) {
+		ItemTestHelper.generateRPClasses();
+		final Item item = SingletonRepository.getEntityManager().getItem(clazz);
+		return player.equip(slot, item);
+	}
+
+	/**
 	 * Reset the conversation state of the named NPC.
 	 * 
 	 * @param npcName
@@ -269,8 +282,8 @@ public abstract class PlayerTestHelper {
 
 
 	public static void addEmptySlots(final Player player) {
-//		"bag", "rhand", "lhand", "head", "armor",
-//		"legs", "feet", "finger", "cloak", "keyring"
+		//		"bag", "rhand", "lhand", "head", "armor",
+		//		"legs", "feet", "finger", "cloak", "keyring"
 		player.addSlot(new PlayerSlot("bag"));
 		player.addSlot(new PlayerSlot("lhand"));
 		player.addSlot(new PlayerSlot("rhand"));
@@ -330,8 +343,8 @@ public abstract class PlayerTestHelper {
 	}
 
 	public static void dumpQuests(final Player player) {
-		List<String> quests = player.getQuests();
-		for (String quest : quests) {
+		final List<String> quests = player.getQuests();
+		for (final String quest : quests) {
 			logger.info(quest + "=" + player.getQuest(quest));
 		}
 	}
@@ -344,7 +357,7 @@ public abstract class PlayerTestHelper {
 	 * @param seconds
 	 */
 	public static void setPastTime(final Player player, final String questSlot, final int index, final long seconds) {
-		long pastTime = new Date().getTime() - seconds*1000;
+		final long pastTime = new Date().getTime() - seconds*1000;
 
 		player.setQuest(questSlot, 2, Long.toString(pastTime));
 	}
@@ -354,17 +367,17 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @return message text
 	 */
-	public static String getPrivateReply(Player player) {
+	public static String getPrivateReply(final Player player) {
 		String reply = null;
-		
-		for (RPEvent event : player.events()) {
+
+		for (final RPEvent event : player.events()) {
 			if (event.getName().equals(Events.PRIVATE_TEXT)) {
 				reply = event.get("text");
 			}
 		}
-		
+
 		player.clearEvents();
-		
+
 		return reply;
 	}
 }
