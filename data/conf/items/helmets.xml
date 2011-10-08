@@ -191,6 +191,7 @@
     <description>You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="16"/>
+      <min_level value="85"/>
     </attributes>
     <weight value="15.0"/>
     <value value="39208"/>
@@ -208,6 +209,7 @@
     <description>You see a mithril helmet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="29"/>
+      <min_level value="200"/>
     </attributes>
     <weight value="12.0"/>
     <value value="323032"/>
