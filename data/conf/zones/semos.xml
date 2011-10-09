@@ -163,6 +163,32 @@
 			<attribute name="class">blackboard</attribute>
 			
 		  </entity>
+		  
+	<!-- tables during Mine Town -->
+		<entity x="55" y="111">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
+		<entity x="61" y="111">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
+		<entity x="67" y="111">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
 			
 		
 	</zone>
