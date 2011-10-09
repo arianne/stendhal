@@ -597,8 +597,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity is poisoned
 	public final void onPoisoned(final int amount) {
+		poisoned = true;
 		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
-			poisoned = true;
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
 							getTitle() + " is poisoned, losing "
@@ -790,10 +790,11 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Poisoned
 		 */
-//		if (object.has("poisoned")) {
-//			// TODO: To remove the - sign on poison.
-//			// onPoisoned(Math.abs(object.getInt("poisoned")));
-//		}
+		if (object.has("poisoned")) {
+			// Don't call onPoisoned to avoid adding event lines; just set
+			// poisoned so that views get correctly drawn.
+			poisoned = true;
+		}
 
 		/*
 		 * Ghost mode feature.
