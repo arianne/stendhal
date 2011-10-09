@@ -88,11 +88,11 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		texts.put("Haunchy Meatoch", "The next person you should find has his own business running. "
 				  + "He is especially succesful during hot summer days when people meet his stand. Unfortunately he 'runs out of coal' often.");
 		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
-		texts.put("John", "His wife and himself are enjoying their holidays: at least they want to!");
-		texts.put("Kroip", "One of the ones you can hardly understand, but he is really famous for some tasty food.");
+		texts.put("John", "Now look for a couple who are enjoying their holidays: at least they want to!");
+		texts.put("Kroip", "The next, well, person, is one of the ones you can hardly understand, but he is really famous for some tasty food.");
 		texts.put("Stefan", "He one is of youngest chef but pretty lonely in huge building he is, Hotel is called. You go find him!");
-		texts.put("Xin Blanca", "He sells and buys good weapons and armor but his work isn't really legal. He has a secret together with the blacksmiths assistant.");
-		texts.put("Elisabeth", "She loves playing and enjoys a tasty in summer melting meal and no, it's not icecream."); 
+		texts.put("Xin Blanca", "The next person sells and buys good weapons and armor but his work isn't really legal. He has a secret together with the blacksmiths assistant.");
+		texts.put("Elisabeth", "Now your quest takes you to a young lady. She loves playing and enjoys a tasty in summer melting meal and no, it's not icecream."); 
 		texts.put("Andy", "The next one is sad and wants people to take revenge for his huge lost in life.");
 		texts.put("Pdiddi", "Next you need to see the dodgy geezer who pretends to be running a tavern east of Semos.");
 		texts.put("Ketteh Wehoh", "She is a really polite lady who knows the rules of behaving nicely. Meet her in an important city building in Semos.");
@@ -153,17 +153,17 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	private void addTaskToNPC(final int idx) {
 		final String state = points.get(idx);
 		final SpeakerNPC npc = npcs.get(state);
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), new SystemPropertyCondition("stendhal.minetown"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase", "paperchase"), new SystemPropertyCondition("stendhal.minetown"),
 				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 		if (NPC_IDLE.contains(state)) {
-			npc.add(ConversationStates.ANY, Arrays.asList("paper", "chase"), new SystemPropertyCondition("stendhal.minetown"),
+			npc.add(ConversationStates.ANY, Arrays.asList("paper", "chase", "paperchase"), new SystemPropertyCondition("stendhal.minetown"),
 					ConversationStates.ANY, null, new PaperChasePoint(idx));
 		}
 	}
 
 
 	private void createHallOfFameSign() {
-		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world:\n", "P", 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behave of Fidorea:\n", "P", 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
