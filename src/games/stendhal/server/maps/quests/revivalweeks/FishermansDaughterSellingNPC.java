@@ -26,7 +26,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.maps.ados.market.FishermansDaughterNPC;
 
 /**
- * Caroline during the Semos Mine Town Revival Weeks
+ * Caroline during the Mine Town Revival Weeks
  */
 public class FishermansDaughterSellingNPC implements LoadableContent {
 	private final ShopList shops = SingletonRepository.getShopList();

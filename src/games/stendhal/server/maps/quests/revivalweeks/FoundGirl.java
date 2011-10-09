@@ -105,10 +105,10 @@ public class FoundGirl implements LoadableContent {
 		// Revival Weeks
 		npc.add(
 			ConversationStates.ATTENDING,
-			Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks", "Semos Mine", "Semos Mine Town", 
-					"Semos Mine Town Revival", "Semos Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
+			Arrays.asList("Mine", "Town", "Revival", "Weeks", "Mine Town", 
+					"Mine Town Revival", "Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
 			ConversationStates.ATTENDING,
-			"During the Revival Weeks we #celebrate the old and now mostly dead Semos Mine Town. "
+			"During the Revival Weeks we #celebrate the old and now mostly dead Mine Town north of Semos City. "
 			+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
 			+ "Now that I am found we can party again!",
 			null);

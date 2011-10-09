@@ -118,7 +118,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 			// player does not have this quest or finished it
 			if (questState == null) {
-				raiser.say("Please talk to Fidorea in the Semos Mine Town to start the paper chase.");
+				raiser.say("Please talk to Fidorea in the Mine Town north of Semos to start the paper chase.");
 				return;
 			}
 

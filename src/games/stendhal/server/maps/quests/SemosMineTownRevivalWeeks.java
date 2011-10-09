@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * <p>Creates a special version of Susi by the semos mine town.
+ * <p>Creates a special version of Susi by the mine town.
  * <p>Creates a special version of Susi's father in a nearby house.
  * <p>Puts a sign by the tower to say why it is shut.
  */

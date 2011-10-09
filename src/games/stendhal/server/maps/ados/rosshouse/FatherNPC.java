@@ -60,7 +60,7 @@ public class FatherNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					Arrays.asList("Semos", "Mine", "Town", "Revival", "Weeks"),
 					ConversationStates.ATTENDING,
-					"During the Revival Weeks at the end of October we celebrate the old and now mostly dead Semos Mine Town.",
+					"During the Revival Weeks at the end of October we celebrate the old and now mostly dead Mine Town north of Semos City.",
 					null);
 			}
 

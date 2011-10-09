@@ -188,7 +188,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					"Just tell me if you want to #hire a #gown, #hire a #green #dress, #hire #glasses, #hire #other #glasses, #hire a #hat, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny #suit or #hire an #orange outfit.",
 					new ExamineChatAction("outfits.png", "Outfits", "Price varies"));
 				addJob("I work in this clothes boutique. It's no ordinary shop, we use magic to put our clients into fantastic outfits. Ask about the #offer.");
-				// addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Semos Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
+				// addJob("I normally work in a clothes boutique, we use magic to put our clients into fantastic outfits. I'm here for Mine Town Revival Weeks, where we #offer our outfits at greatly reduced prices, but they last for less time!");
 				addHelp("Our hired outfits wear off after some time, but you can always come back for more!");
 				addGoodbye("Bye!");
 				final OutfitChangerBehaviour behaviour = new SpecialOutfitChangerBehaviour(priceList, endurance, "Your magical outfit has worn off.");

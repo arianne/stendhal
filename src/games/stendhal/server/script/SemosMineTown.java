@@ -20,7 +20,7 @@ import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
 import java.util.List;
 
 /**
- * Starts or stops the Semos Mine Town Revival Weeks.
+ * Starts or stops the Mine Town Revival Weeks.
  * 
  * @author hendrik
  */
@@ -42,22 +42,22 @@ public class SemosMineTown extends ScriptImpl {
 	}
 
 	/**
-	 * starts the Semos Mine Town Revival Weeks
+	 * starts the Mine Town Revival Weeks
 	 */
 	private void startSemosMineTowns(Player admin) {
 		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) != null) {
-			admin.sendPrivateText("Semos Mine Town Revival Weeks are already active.");
+			admin.sendPrivateText("Mine Town Revival Weeks are already active.");
 			return;
 		}
 		StendhalQuestSystem.get().loadQuest(new SemosMineTownRevivalWeeks());
 	}
 
 	/**
-	 * ends the Semos Mine Town Revival Weeks
+	 * ends the Mine Town Revival Weeks
 	 */
 	private void stopSemosMineTowns(Player admin) {
 		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) == null) {
-			admin.sendPrivateText("Semos Mine Town Revival Weeks are not active.");
+			admin.sendPrivateText("Mine Town Revival Weeks are not active.");
 			return;
 		}
 		StendhalQuestSystem.get().unloadQuest(SemosMineTownRevivalWeeks.QUEST_NAME);
