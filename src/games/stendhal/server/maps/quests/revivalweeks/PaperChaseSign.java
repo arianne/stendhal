@@ -19,7 +19,7 @@ public class PaperChaseSign implements LoadableContent {
 	 */
 	private void createHallOfFameSign() {
 		sign = new Sign();
-		sign.setPosition(94, 110);
+		sign.setPosition(69, 106);
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		zone.add(sign);
 		updateQuest();
