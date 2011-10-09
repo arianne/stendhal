@@ -1,116 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/weapons_rack.png"/>
+  <image source="../../tileset/item/armor/weapons_rack.png" width="288" height="64"/>
  </tileset>
  <tileset firstgid="19" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="20" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/suit_of_armor2.png"/>
+  <image source="../../tileset/item/armor/suit_of_armor2.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="24" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/sword_rack.png"/>
+  <image source="../../tileset/item/armor/sword_rack.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="28" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/dark_red.png"/>
+  <image source="../../tileset/furniture/carpet/dark_red.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="37" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/carpet/blue.png"/>
+  <image source="../../tileset/furniture/carpet/blue.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="46" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+  <image source="../../tileset/ground/indoor/floor_tiles.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="55" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/weapons_for_walls.png"/>
+  <image source="../../tileset/item/armor/weapons_for_walls.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="71" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/armor.png"/>
+  <image source="../../tileset/item/armor/armor.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="75" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png" width="96" height="64"/>
  </tileset>
  <tileset firstgid="81" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/vendors_table.png"/>
+  <image source="../../tileset/furniture/table/vendors_table.png" width="224" height="96"/>
  </tileset>
  <tileset firstgid="102" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/armor/bloodied_small_axe.png"/>
+  <image source="../../tileset/item/armor/bloodied_small_axe.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="103" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/long_front_on_pale.png"/>
+  <image source="../../tileset/furniture/table/long_front_on_pale.png" width="32" height="96"/>
  </tileset>
  <tileset firstgid="106" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/textile/blankets.png"/>
+  <image source="../../tileset/item/textile/blankets.png" width="96" height="128"/>
  </tileset>
  <tileset firstgid="118" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/rectangular_with_meals.png"/>
+  <image source="../../tileset/furniture/table/rectangular_with_meals.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="127" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/documents/books.png"/>
+  <image source="../../tileset/item/documents/books.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="131" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/light/dark_torch.png"/>
+  <image source="../../tileset/furniture/light/dark_torch.png" width="64" height="128"/>
  </tileset>
  <tileset firstgid="139" name="Sin nombre" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/sacks.png"/>
+  <image source="../../tileset/item/sacks.png" width="64" height="32"/>
  </tileset>
  <tileset firstgid="141" name="portal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png"/>
+  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
  </tileset>
  <tileset firstgid="148" name="mtndwarves" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/mountain_dwarf.png"/>
+  <image source="../../tileset/logic/creature/mountain_dwarf.png" width="160" height="32"/>
  </tileset>
  <tileset firstgid="153" name="weaponss" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/weapon/skull_spear.png"/>
+  <image source="../../tileset/item/weapon/skull_spear.png" width="32" height="64"/>
  </tileset>
  <tileset firstgid="155" name="weapons2" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/weapon/spear.png"/>
+  <image source="../../tileset/item/weapon/spear.png" width="32" height="64"/>
  </tileset>
  <tileset firstgid="157" name="wall/int_grey" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_grey.png"/>
+  <image source="../../tileset/building/wall/int_grey.png" width="352" height="352"/>
  </tileset>
  <tileset firstgid="278" name="entrance/grey" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/grey.png"/>
+  <image source="../../tileset/building/entrance/grey.png" width="160" height="160"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2auU4DMRBAHaWg46o5QrivAgH/uxxdECno8xWp8y3YYi0NJmvPeMZrb3DxBNIq9ry1kx3PTqOUetG8EnnTvGsWmiZyjFgk5rZjzDTXkczbGMwYH5pJT3w6cz9HYsZYti7nmgskl+1nVm0MyzauA81hYo7aueDcsf4r4H+l8Ot+0+F/TFzHGE6q/yD9T4kMxf8L6S8F9Ldz5/Kfjn7WwPwN+e+O/jJtWXct5A/nLtXfXSuXBcC91rWnSvIP7X/Xv1G/cxW7/m5OQhkz9/ff9/vnxmpylacAc4J/Cb9/FP8lwp+yp6q/nP+t5g7J/Qb5j0f4dXfZGuX3HzN+/03825qdjmewjz3NfgH+EvFzyenPpVH82sWkgxT+EIkayswzPpfU/lxs/cP8z6ld5PKXqKGkvM+lrj+Mq/r756HWLSBnAv5TZgxcfwlMnkH1N3lNqngo/tS8oivPoPrH5jWYOkrIH15fV7eIheIvOafPD+PfKJn3OyF3i9T7ISl/TN2iNHx1FKo/Zt+Whu85mssfey6t/mX4wxrz0Px9tfnqX/d/9a/PP6z/WOj73yfwzMX1lzqLYGOXPnNx/f/b+QcifRbB+jdK5sy1zoniLwE8i2D9+6pLh/yletVi61/cnjquv9R9Hmr987/4c+qsufwl6tJ91VlLWn8L5/03pVctlb9UjpQix0jl747JpVG8/vnc/tz4TZ7xGAmlVy2Vv4n/IRL7/jvWnxprCv8lw98+/6p/9e/DH1NH8dUthu7v5hpu/3uobmHHdOfO5S/Z/75wroXuKZy7VH/Iumew2/9O6akrwb/PXN31L2H/p+xV2zR/Kap/2f6cXrXYnjqOv8lJYv1trpKyhtIFnDvWX6L/38Qg9X6oz7ntGN8T2F5/AEAAAA==
+   H4sIAAAAAAAAC+2auU4DMRBAHaWg46o5QrivAgH/uxxdECno8xWp8y3YYi0NJmvPeMZrb3DxBNIq9ry1kx3PTqOUetG8EnnTvGsWmiZyjFgk5rZjzDTXkczbGMwYH5pJT3w6cz9HYsZYti7nmgskl+1nVm0MyzauA81hYo7aueDcsf4r4H+l8Ot+0+F/TFzHGE6q/yD9T4kMxf8L6S8F9Ldz5/Kfjn7WwPwN+e+O/jJtWXct5A/nLtXfXSuXBcC91rWnSvIP7X/Xv1G/cxW7/m5OQhkz9/ff9/vnxmpylacAc4J/Cb9/FP8lwp+yp6q/nP+t5g7J/Qb5j0f4dXfZGuX3HzN+/03825qdjmewjz3NfgH+EvFzyenPpVH82sWkgxT+EIkayswzPpfU/lxs/cP8z6ld5PKXqKGkvM+lrj+Mq/r756HWLSBnAv5TZgxcfwlMnkH1N3lNqngo/tS8oivPoPrH5jWYOkrIH15fV7eIheIvOafPD+PfKJn3OyF3i9T7ISl/TN2iNHx1FKo/Zt+Whu85mssfey6t/mX4wxrz0Px9tfnqX/d/9a/PP6z/WOj73yfwzMX1lzqLYGOXPnNx/f/b+QcifRbB+jdK5sy1zoniLwE8i2D9+6pLh/yletVi61/cnjquv9R9Hmr987/4c+qsufwl6tJ91VlLWn8L5/03pVctlb9UjpQix0jl747JpVG8/vnc/tz4TZ7xGAmlVy2Vv4n/IRL7/jvWnxprCv8lw98+/6p/9e/DH1NH8dUthu7v5hpu/3uobmHHdOfO5S/Z/75wroXuKZy7VH/Iumew2/9O6akrwb/PXN31L2H/p+xV2zR/Kap/2f6cXrXYnjqOv8lJYv1trpKyhtIFnDvWX6L/38Qg9X6oz7ntGN8T2F5/AEAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3azWrCQBSG4ZNt/2y7qKIbF11JcdvSllKKFHWRy3DTi1AKvYnixfYLSTCILYbJIT99H/gYjJPMEcbNyZgh8eU0FwC65iYy60e7z7fR73MPGRTmD0veG7r2n88ueb2J+tk4VEZ718oo3t91q5Lzx3t7blrhHmzy2lWZFGq+c6x/c+S8J78SAAAAAABAR3zUXUCDePcNT5S58qoslBdlqTwq98q149r/hWeP3Vsdtef949mB72JL9+y3cqqcKefKhdJTLpWtcmW7vRt7Fluh5HfnvdM3S/+TXdDmHnubawcAAAAAAIC/pFf5YGlf/V15NnrqVQs5/+7lmDPu+Zw63w+0+d1EW6yzcZONnzXV0VShPfaQ8+/09wEAoX4ABxU/pABAAAA=
+   H4sIAAAAAAAAC+3azWrCQBSG4ZNt/2y7qKIbF11JcdvSllKKFHWRy3DTi1AKvYnixfYLSTCILYbJIT99H/gYjJPMEcbNyZgh8eU0FwC65iYy60e7z7fR73MPGRTmD0veG7r2n88ueb2J+tk4VEZ718oo3t91q5Lzx3t7blrhHmzy2lWZFGq+c6x/c+S8J78SAAAAAABAR3zUXUCDePcNT5S58qoslBdlqTwq98q149r/hWeP3Vsdtef949mB72JL9+y3cqqcKefKhdJTLpWtcmW7vRt7Fluh5HfnvdM3S/+TXdDmHnubawcAAAAAAIC/pFf5YGlf/V15NnrqVQs5/+7lmDPu+Zw63w+0+d1EW6yzcZONnzXV0VShPfaQ8+/09wEAoX4ABxU/pABAAAA=
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bPW7CQBCG4QXCT/pEEAlCgUJyF6qEm3AHIo5BQU8BNbkag1gEcQDHnrXX9r6P9AlhrdkZCbkYFmPSW0l2kqVkq/icslqbY/+H3n881+LLzncBnm18F+AZ/VfLU4Lr3dqx/1Etw4JuuLf3s33tSV4i15K4vP+avq3hI0X/A7nn1WaY4n7N3q5oathEkufeRfAmdY9t3kvaQ5EtYt7jt3lGawEAAAAAqKq4uaHGTHIYF3Xu5DGjvbW+Ha1BPv4z3/+UfEUyjayZmPN3ti5pSB4kTUlL0jZ/v7uTHGqPU+YZs4vaQ+/ftbyff1X7bRIAAAAAAMCVa/P1os7U4c6ts+9J14RCM2PXnn/3+d+Dk9DPv2tq0J5/L0L/voU+36f/sNF/uNr2+d8I+Pnvwh71ULMWAEAAAA==
+   H4sIAAAAAAAAC+3bPW7CQBCG4SVOAukTJUgECkTIXbgNdwBxjBT0FFCTqzEWi0j4lT1jr+19H+kTwrLZGclyMaydy28p2Up+JBvF79TVyu37T3v/DVxLKNvQBQS2Dl1AYPTfLK8Zjr+39v0PWwUWdMWttd/854eke3Isi7/XX9LzNXzn6P9Trun7DHJcr1nbiqaG9UnKXLsKRlL3l8+4pj1U2eLOd/w3K+hcAAAAAACa6t7cUGMqScdFnRt5KWhtrbnROSiH1Xx/4o737IMkkTxKniTPkrY7v3cnuiVNaq/zjNmi9tj7t1b2869p/00CAAAAAABYuTRfr+pMHXau7X3Pek4sNDN27f73kO8eHMS+/11Tg3b/exX6Dy32+T79x43+49X2z/8k4ue/hR2hrQ9dAEAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SMQqAMAwF0F6rU0f1iMVjeEEd0sVJEFuw78HnE8iQISnxxhEBAAAAAACYTflod2ZLdI7eRh0CD9Tb3P51vbJ3vgUAAAAAAAAA4C9OH0iJQwBAAAA=
+   H4sIAAAAAAAAC+3SMQqAMAwF0F6rU0f1iMVjeEEd0sVJEFuw78HnE8iQISnxxhEBAAAAAACYTflod2ZLdI7eRh0CD9Tb3P51vbJ3vgUAAAAAAAAA4C9OH0iJQwBAAAA=
   </data>
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aOw7CMAwA0N5/gQEVjssC6kLFYLv5vSd1ddzKSSXH2xZ3/zzAfJ5FcR9FcaNerRNIsLdOYCIz1MOVqvZ1JK79EFP1D4BK9j09c64CAACwAr31a/3rofd6J3emZf8ksra6BwAAYBVmHwByZc08Op8PPXyLUXrzo+TJbz3UeqbZ3ufr7A5plJn36DlxS8kC1vUGggDcDABAAAA=
+   H4sIAAAAAAAAC+3aOw7CMAwA0N5/gQEVjssC6kLFYLv5vSd1ddzKSSXH2xZ3/zzAfJ5FcR9FcaNerRNIsLdOYCIz1MOVqvZ1JK79EFP1D4BK9j09c64CAACwAr31a/3rofd6J3emZf8ksra6BwAAYBVmHwByZc08Op8PPXyLUXrzo+TJbz3UeqbZ3ufr7A5plJn36DlxS8kC1vUGggDcDABAAAA=
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.19">
+ <layer name="collision" width="64" height="64" opacity="0.19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VYa6EIAyEuYP3v+v7tQkxD2zpzFCxkzRrtLTzuQWv1toVjJ+idd4YvXZ7QbLMdF+zUmNVUe+jOqvr79cKFX/xv41/5tnLw+Qf1Yr8v09nFupM6+v1dft7o54z3xFZvjeIbxLCF2M9g58x/yfyz55n4kfU9Oao5sfznt8y/6y9ups/GlGviD21M4r/u/xRJkRuNnYmP/odsMTkR/pS9Sl+TC7al6rP2/iV5+XOXio/an4rm8rLDn4Ln8rLk07mtyor/5Pn+1qGru43E7/HezTHUiMjv0oI/kivez3vzLZ/aqCl5M8o1Pxn5M+6/792/rFnIeJ9hT8aXi5m7x381vk/mX/2DpQ9LZ5O4bf0UnrK2IulKL/Kl6pP8WNy0b5UfbLyM86YUR9ELppBdc4yc3eHin83Z/Gfx+9VNn6vin+83jIjJ/OvrF/Zq56cld4e/63Z6vS5p/EzxOBn+Hp6HvGyys9UlN/r18tvqXW/9kh1/jFU/MVf/Hj/Fd+LP7tsxVoAQAAA
+   H4sIAAAAAAAAC+2VYa6EIAyEuYP3v+v7tQkxD2zpzFCxkzRrtLTzuQWv1toVjJ+idd4YvXZ7QbLMdF+zUmNVUe+jOqvr79cKFX/xv41/5tnLw+Qf1Yr8v09nFupM6+v1dft7o54z3xFZvjeIbxLCF2M9g58x/yfyz55n4kfU9Oao5sfznt8y/6y9ups/GlGviD21M4r/u/xRJkRuNnYmP/odsMTkR/pS9Sl+TC7al6rP2/iV5+XOXio/an4rm8rLDn4Ln8rLk07mtyor/5Pn+1qGru43E7/HezTHUiMjv0oI/kivez3vzLZ/aqCl5M8o1Pxn5M+6/792/rFnIeJ9hT8aXi5m7x381vk/mX/2DpQ9LZ5O4bf0UnrK2IulKL/Kl6pP8WNy0b5UfbLyM86YUR9ELppBdc4yc3eHin83Z/Gfx+9VNn6vin+83jIjJ/OvrF/Zq56cld4e/63Z6vS5p/EzxOBn+Hp6HvGyys9UlN/r18tvqXW/9kh1/jFU/MVf/Hj/Fd+LP7tsxVoAQAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
 </map>
