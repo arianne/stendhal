@@ -65,12 +65,13 @@ public class BakerNPC implements ZoneConfigurator {
 				nodes.add(new Node(7, 12));
 				nodes.add(new Node(7, 6));
 				nodes.add(new Node(2, 6));
-				nodes.add(new Node(2, 4));
-				nodes.add(new Node(8, 4));
-				nodes.add(new Node(8, 3));
+				nodes.add(new Node(2, 3));
+				nodes.add(new Node(9, 3));
 				nodes.add(new Node(2, 3));
 				nodes.add(new Node(2, 6));
-				nodes.add(new Node(27, 6));
+				nodes.add(new Node(15, 6));
+				nodes.add(new Node(15, 5));
+				nodes.add(new Node(27, 5));
 				nodes.add(new Node(27, 3));
 				setPath(new FixedPath(nodes, true));
 			}
