@@ -88,7 +88,7 @@ public class TicTacToeGame implements LoadableContent {
 				add(ConversationStates.IDLE,
 						Arrays.asList("play", "game", "yes"),
 						ConversationStates.IDLE,
-						"",
+						null,
 						new PlayAction(board));
 			}
 		};
