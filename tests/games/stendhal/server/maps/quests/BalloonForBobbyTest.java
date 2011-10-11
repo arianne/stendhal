@@ -128,7 +128,7 @@ public class BalloonForBobbyTest {
 		assertTrue(player.isQuestCompleted(questSlot));
 		
 		// Mine Town weeks are on: it should not matter if player has a balloon or not
-		StendhalQuestSystem.get().loadQuest(new SemosMineTownRevivalWeeks());
+		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());
 		
 		// Player HAS balloon; Mine Town Weeks ARE ON
 		player.setOutfit(outfitWithBalloon);
@@ -144,12 +144,12 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 		
-		StendhalQuestSystem.get().unloadQuest(SemosMineTownRevivalWeeks.QUEST_NAME);
+		StendhalQuestSystem.get().unloadQuest(MineTownRevivalWeeks.QUEST_NAME);
 		
 		
 		// Player HAS NO balloon; Mine Town Weeks ARE ON
 		player.setOutfit(outfitNoBalloon);
-		StendhalQuestSystem.get().loadQuest(new SemosMineTownRevivalWeeks());
+		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());
 		
 		en.step(player, "hi");
 		assertEquals("Hm?", getReply(npc));
@@ -162,6 +162,6 @@ public class BalloonForBobbyTest {
 		en.step(player, "bye");
 		assertEquals("Good bye.", getReply(npc));
 
-		StendhalQuestSystem.get().unloadQuest(SemosMineTownRevivalWeeks.QUEST_NAME);
+		StendhalQuestSystem.get().unloadQuest(MineTownRevivalWeeks.QUEST_NAME);
 	}
 }

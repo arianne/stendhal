@@ -52,7 +52,7 @@ public class FatherNPC implements ZoneConfigurator {
 				addJob("I'm looking after my daughter Susi.");
 				addHelp("If you need help finding any buildings in Ados, the guard Julius will give you a map. He is by the city entrance.");
 				addOffer("Sorry I do not have anything to offer you, but there are two places to eat in Ados - the tavern and a bar.");
-				addQuest("At the end of October we will be visiting the #Semos #Mine #Town #Revival #Weeks");
+				addQuest("At the end of October we will be visiting the #Mine #Town #Revival #Weeks");
 				addGoodbye("Bye, nice to meet you.");
 
 				// Revival Weeks

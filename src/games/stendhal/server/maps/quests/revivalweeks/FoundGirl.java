@@ -97,7 +97,7 @@ public class FoundGirl implements LoadableContent {
 		// greeting
 		addGreetingDependingOnQuestState();
 
-		npc.addJob("I am just a litte girl waiting for my father to take me out of the house. We will have lots of fun here at the #Semos #Mine #Town #Revival #Weeks!");
+		npc.addJob("I am just a litte girl waiting for my father to take me out of the house. We will have lots of fun here at the #Mine #Town #Revival #Weeks!");
 		npc.addGoodbye("Have fun!");
 		npc.addHelp("Just have fun.");
 		npc.addOffer("I can offer you my #friendship.");
@@ -139,14 +139,14 @@ public class FoundGirl implements LoadableContent {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						noFriends),
 				ConversationStates.ATTENDING,
-				"Guess what, we are having another #Semos #Mine #Town #Revival #Weeks.", null);
+				"Guess what, we are having another #Town #Revival #Weeks.", null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						anyFriends),
 				ConversationStates.ATTENDING,
 				null, new SayTextWithPlayerNameAction("Hello [name], nice to meet you again. "
-						+ "Guess what, we are having another #Semos #Mine #Town #Revival #Weeks."));
+						+ "Guess what, we are having another #Town #Revival #Weeks."));
 		// TODO: Tell old friends about renewal
 	}
 
@@ -165,7 +165,7 @@ public class FoundGirl implements LoadableContent {
 				ConversationPhrases.QUEST_MESSAGES,
 				currentFriends,
 				ConversationStates.ATTENDING,
-				"I have made a lot of friends during the #Semos #Mine #Town #Revival #Weeks.",
+				"I have made a lot of friends during the #Town #Revival #Weeks.",
 				null);
 	}
 

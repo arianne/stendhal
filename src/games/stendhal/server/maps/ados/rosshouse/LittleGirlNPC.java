@@ -69,7 +69,7 @@ public class LittleGirlNPC implements ZoneConfigurator {
 				addJob("I am just a little girl.");
 				addGoodbye("Have fun!");
 
-				addQuest("I might see you some time at the #Semos #Mine #Town #Revival #Weeks.");
+				addQuest("I might see you some time at the #Mine #Town #Revival #Weeks.");
 
 				// Revival Weeks
 				add(
