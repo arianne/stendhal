@@ -16,6 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.game.NineSwitchesGameBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -65,6 +66,10 @@ public class NineSwitchesGame implements LoadableContent {
 						ConversationStates.ATTENDING,
 						"Good luck.",
 						new PlayAction(board));
+			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
 			}
 		};
 		npc.setEntityClass("gamesupervisornpc"); 
