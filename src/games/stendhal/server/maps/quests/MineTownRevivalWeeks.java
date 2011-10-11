@@ -31,7 +31,7 @@ import java.util.List;
  * <p>Creates a special version of Susi's father in a nearby house.
  * <p>Puts a sign by the tower to say why it is shut.
  */
-public class SemosMineTownRevivalWeeks extends AbstractQuest {
+public class MineTownRevivalWeeks extends AbstractQuest {
 
 	public static final String QUEST_NAME = "SemosMineTownRevivalWeeks";
 	private static final String QUEST_SLOT = "semos_mine_town_revival";

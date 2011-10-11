@@ -15,7 +15,7 @@ package games.stendhal.server.script;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.SemosMineTownRevivalWeeks;
+import games.stendhal.server.maps.quests.MineTownRevivalWeeks;
 
 import java.util.List;
 
@@ -24,12 +24,12 @@ import java.util.List;
  * 
  * @author hendrik
  */
-public class SemosMineTown extends ScriptImpl {
+public class MineTown extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
 		if (args.size() != 1) {
-			admin.sendPrivateText("/script SemosMineTown.class {true|false}");
+			admin.sendPrivateText("/script MineTown.class {true|false}");
 			return;
 		}
 
@@ -45,22 +45,22 @@ public class SemosMineTown extends ScriptImpl {
 	 * starts the Mine Town Revival Weeks
 	 */
 	private void startSemosMineTowns(Player admin) {
-		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) != null) {
+		if (StendhalQuestSystem.get().getQuest(MineTownRevivalWeeks.QUEST_NAME) != null) {
 			admin.sendPrivateText("Mine Town Revival Weeks are already active.");
 			return;
 		}
-		StendhalQuestSystem.get().loadQuest(new SemosMineTownRevivalWeeks());
+		StendhalQuestSystem.get().loadQuest(new MineTownRevivalWeeks());
 	}
 
 	/**
 	 * ends the Mine Town Revival Weeks
 	 */
 	private void stopSemosMineTowns(Player admin) {
-		if (StendhalQuestSystem.get().getQuest(SemosMineTownRevivalWeeks.QUEST_NAME) == null) {
+		if (StendhalQuestSystem.get().getQuest(MineTownRevivalWeeks.QUEST_NAME) == null) {
 			admin.sendPrivateText("Mine Town Revival Weeks are not active.");
 			return;
 		}
-		StendhalQuestSystem.get().unloadQuest(SemosMineTownRevivalWeeks.QUEST_NAME);
+		StendhalQuestSystem.get().unloadQuest(MineTownRevivalWeeks.QUEST_NAME);
 	}
 
 }

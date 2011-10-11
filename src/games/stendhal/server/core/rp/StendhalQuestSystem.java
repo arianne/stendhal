@@ -156,7 +156,7 @@ public class StendhalQuestSystem {
 		loadQuest(new ZooFood());
 
 		if (System.getProperty("stendhal.minetown") != null) {
-			loadQuest(new SemosMineTownRevivalWeeks());
+			loadQuest(new MineTownRevivalWeeks());
 		}
 
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
