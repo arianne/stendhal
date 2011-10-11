@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * factory for item related achievements.
+ * factory for obtaining items related achievements.
  *
  * @author madmetzger
  */
@@ -24,15 +24,15 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 
 	@Override
 	public Collection<Achievement> createAchievements() {
-		List<Achievement> achievements = new LinkedList<Achievement>();
+		final List<Achievement> achievements = new LinkedList<Achievement>();
 		achievements.add(createAchievement("obtain.wish", "A wish came true", "Get an item from the wishing well",
 				Achievement.EASY_BASE_SCORE, true, new PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition(0)));
-		achievements.add(createAchievement("obtain.harvest.vegetable", "Farmer", "Harvest 3 of all vegetables in Faiumoni.",
+		achievements.add(createAchievement("obtain.harvest.vegetable", "Farmer", "Harvest 3 of all vegetables that grow in Faiumoni.",
 				Achievement.EASY_BASE_SCORE, true, new PlayerHasHarvestedNumberOfItemsGreaterThanCondition(3, "salad",
-														"spinach", "tomato", "leek", "courgette", "broccoli","carrot")));
+						"spinach", "leek", "courgette", "broccoli","carrot")));
 		//ultimate collector quest achievement
 		achievements.add(createAchievement("quest.special.collector", "Ultimate Collector", "Finish ultimate collector quest",
-												Achievement.HARD_BASE_SCORE, true, new QuestCompletedCondition("ultimate_collector")));
+				Achievement.HARD_BASE_SCORE, true, new QuestCompletedCondition("ultimate_collector")));
 		return achievements;
 	}
 
