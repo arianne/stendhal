@@ -35,11 +35,47 @@ import marauroa.common.Pair;
 
 public class AwaitingPhase extends TPPQuest {
 	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
+	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();
 	private final int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
-	private List<Pair<StendhalRPZone, List<Node>>> fullpath = 
+	private List<Pair<StendhalRPZone, List<Node>>> fullpathin = 
 		new LinkedList<Pair<StendhalRPZone, List<Node>>>();
-
+	private List<Pair<StendhalRPZone, List<Node>>> fullpathout = 
+			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+	
+	private void addConversations() {
+		TPP_Phase myphase = AWAITING;
+		
+		// Player asking about rats.
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				Arrays.asList("rats", "rats!"), 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				"Well, we tried to clean up the city. "+
+	    		"You can get a #reward for your help now, ask about #details "+
+				  "if you want to know more.", 
+				null);
+		
+		// Player asking about details.
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"details", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				null, 
+				new DetailsKillingsAction());
+		
+		// Player asked about reward
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"reward", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				null, 
+				new RewardPlayerAction());
+	}
+	
 	/**
 	 * constructor
 	 * @param timings 
@@ -49,6 +85,7 @@ public class AwaitingPhase extends TPPQuest {
 		super(timings);
 		minPhaseChangeTime = timings.get(AWAITING_TIME_MIN);
 		maxPhaseChangeTime = timings.get(AWAITING_TIME_MAX);
+		addConversations();
 	}
 
 	public void prepare() {
@@ -111,6 +148,28 @@ public class AwaitingPhase extends TPPQuest {
 			}
 		}		
 	}
+	
+	/**
+	 * helper class for switching phase to next phase, 
+	 * wrapper of observer around a function.
+	 * 
+	 * @author yoriy
+	 */
+	private final class PhaseSwitcher implements Observer {
+
+		private ITPPQuest myphase; 
+		
+		public void update(Observable arg0, Object arg1) {
+			myphase.phaseToNextPhase(
+					ThePiedPiper.getNextPhaseClass(ThePiedPiper.getPhase()), 
+					Arrays.asList("normal switching"));			
+		}
+		
+		public PhaseSwitcher(ITPPQuest phase) {
+			myphase = phase;
+		}
+		
+	}
 
 	/**
 	 * chatting between 2 NPCs
@@ -119,10 +178,10 @@ public class AwaitingPhase extends TPPQuest {
 	private static final class NPCChatting implements Observer, TurnListener {
 		private final SpeakerNPC mayor;
 		private final SpeakerNPC piper;
-		private ITPPQuest phase;
 		private int count=0;
 		private final List<String> conversations = new LinkedList<String>(); 
-
+		final private Observer next;
+		
 		private void fillConversations() {
 			//piper
 			conversations.add("Good day, Mayor Chalmers. What did you call me here for?");
@@ -156,10 +215,10 @@ public class AwaitingPhase extends TPPQuest {
 		 * @param piper - second npc
 		 * @param phase - phase class object
 		 */
-		public NPCChatting(SpeakerNPC mayor, SpeakerNPC piper, ITPPQuest phase) {
+		public NPCChatting(SpeakerNPC mayor, SpeakerNPC piper, Observer n) {
 			this.mayor=mayor;
 			this.piper=piper;
-			this.phase=phase;
+			this.next=n;
 			fillConversations();
 		}
 		
@@ -198,9 +257,8 @@ public class AwaitingPhase extends TPPQuest {
 				TurnNotifier.get().dontNotify(this);
 				mayor.setCurrentState(ConversationStates.IDLE);
 				mayor.followPath();
-				phase.phaseToNextPhase(
-						ThePiedPiper.getNextPhaseClass(ThePiedPiper.getPhase()), 
-						Arrays.asList("normal switching"));
+                // going ahead
+				next.update(null, null);
 				return;
 			}
 			TurnNotifier.get().dontNotify(this);
@@ -209,19 +267,20 @@ public class AwaitingPhase extends TPPQuest {
 	}	
 	
 	/**
-	 * prepare NPC to walk through his multizone path.
+	 * prepare NPC to walk through his multizone pathes and do some actions during that.
 	 */
 	private void leadNPC() {
-		final StendhalRPZone zone = fullpath.get(0).first();
-		final int x=fullpath.get(0).second().get(0).getX();
-		final int y=fullpath.get(0).second().get(0).getY();
+		final StendhalRPZone zone = fullpathin.get(0).first();
+		final int x=fullpathin.get(0).second().get(0).getX();
+		final int y=fullpathin.get(0).second().get(0).getY();
 		piedpiper.setPosition(x, y);
-		piedpiper.pathnotifier.setObserver(
-				new MultiZonesFixedPath(piedpiper, fullpath, 
-						new NPCFollowing(ThePiedPiper.getMainNPC(), piedpiper,
-								new NPCChatting(ThePiedPiper.getMainNPC(), piedpiper, this))));
-		piedpiper.setPath(new FixedPath(fullpath.get(0).second(), false));
 		zone.add(piedpiper);
+		Observer o = new MultiZonesFixedPath(piedpiper, fullpathin, 
+						new NPCFollowing(mainNPC, piedpiper,
+							new NPCChatting(mainNPC, piedpiper,
+								new MultiZonesFixedPath(piedpiper, fullpathout, 
+									new PhaseSwitcher(this)))));
+		o.update(null, null);
 	}
 	
 	public int getMinTimeOut() {
@@ -277,7 +336,8 @@ public class AwaitingPhase extends TPPQuest {
 							ConversationStates.IDLE, 
 							"hello", 
 							null);
-		fullpath = PathesBuildHelper.getAwaitingPhasePath();
+		fullpathin = PathesBuildHelper.getAwaitingPhasePathIn();
+		fullpathout = PathesBuildHelper.getAwaitingPhasePathOut();
 		leadNPC();
 	}
 	

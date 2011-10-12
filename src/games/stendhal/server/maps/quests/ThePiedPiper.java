@@ -13,19 +13,8 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.common.grammar.Grammar;
-import games.stendhal.common.parser.Sentence;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.ChatAction;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.piedpiper.AwaitingPhase;
@@ -33,7 +22,8 @@ import games.stendhal.server.maps.quests.piedpiper.ITPPQuest;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 import games.stendhal.server.maps.quests.piedpiper.InactivePhase;
 import games.stendhal.server.maps.quests.piedpiper.InvasionPhase;
-import games.stendhal.server.maps.quests.piedpiper.TPPQuestInPhaseCondition;
+import games.stendhal.server.maps.quests.piedpiper.OutgoingPhase;
+
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -77,16 +67,13 @@ import org.apache.log4j.Logger;
  public class ThePiedPiper extends AbstractQuest implements ITPPQuestConstants {
 
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);
-	private LinkedList<Creature> rats = new LinkedList<Creature>();
+
 	
 	private static LinkedList<ITPPQuest> phases = new LinkedList<ITPPQuest>();
     private static TPP_Phase phase = INACTIVE;
     
 	protected LinkedHashMap<String, Integer> timings = new LinkedHashMap<String, Integer>();
-	
-	public static SpeakerNPC getMainNPC() {
-		return SingletonRepository.getNPCList().get("Mayor Chalmers");
-	}
+
 	
 	/**
 	 * function will set timings to either test server or game server.
@@ -207,97 +194,6 @@ import org.apache.log4j.Logger;
 					new LinkedList<String>(Arrays.asList("pied piper")));
 		}
 	}
-	
-	public int getRatsCount() {
-		return(getRats().size());
-	}
-
-	/**
-	 *  NPC's actions when player asks for his reward.
-	 */
-	class RewardPlayerAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
-		    	final int quantity = calculateReward(player);
-		    	// to avoid giving karma without job
-		    	if(quantity==0) {
-		    		mayor.say("You didn't kill any rats which invaded the city, so you don't deserve a reward.");
-		    		return;
-		    	}
-		    	player.addKarma(5);
-		    	final StackableItem moneys = (StackableItem) SingletonRepository.getEntityManager()
-		    				.getItem("money");
-		    	moneys.setQuantity(quantity);
-		    	player.equipOrPutOnGround(moneys);
-		    	mayor.say("Please take "+quantity+" money, thank you very much for your help.");
-		    	player.setQuest(QUEST_SLOT, "done");
-			}
-	}
-
-	/**
-	 * NPC's answers when player ask for details.
-	 */
-	class DetailsKillingsAction implements ChatAction {
-		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
-			if (calculateReward(player)==0) {
-				mayor.say("You killed no rats during the #rats invasion. "+
-						  "To get a #reward you have to kill at least "+
-						  "one rat at that time.");
-				return;
-			}
-			final StringBuilder sb = new StringBuilder("Well, from the last reward, you killed ");
-			long moneys = 0;
-			int kills = 0;
-			for(int i=0; i<RAT_TYPES.size(); i++) {
-				try {
-					kills=Integer.parseInt(player.getQuest(QUEST_SLOT,i+1));
-				} catch (NumberFormatException nfe) {
-					// Have no records about this creature in player's slot.
-					// Treat it as he never killed this creature.
-					kills=0;
-				}
-				// must add 'and' word before last creature in list
-				if(i==(RAT_TYPES.size()-1)) {
-					sb.append("and ");
-				}
-
-				sb.append(Grammar.quantityplnoun(kills, RAT_TYPES.get(i), "a"));
-				sb.append(", ");
-				moneys = moneys + kills*RAT_REWARDS.get(i);
-			}
-			sb.append("so I will give you ");
-			sb.append(moneys);
-			sb.append(" money as a #reward for that job.");
-			mayor.say(sb.toString());
-		}
-	}
-
-
-	/**
-	 * function for calculating reward's moneys for player
-	 *
-	 * @param player
-	 * 			- player which must be rewarded
-	 * @return
-	 * 			gold amount for hunting rats.
-	 */
-	private int calculateReward(Player player) {
-		int moneys = 0;
-		int kills = 0;
-		for(int i=0; i<RAT_TYPES.size(); i++) {
-			try {
-				final String killed = player.getQuest(QUEST_SLOT,i+1);
-				// have player quest slot or not yet?
-				if (killed != null) {
-					kills=Integer.decode(killed);
-				}
-			} catch (NumberFormatException nfe) {
-				// player's quest slot don't contain valid number
-				// so he didn't killed such creatures.
-			}
-			moneys = moneys + kills*RAT_REWARDS.get(i);
-		}
-		return(moneys);
-	}
 
 
 	/**
@@ -313,91 +209,6 @@ import org.apache.log4j.Logger;
 		}
 	}
 
-	/**
-	 *   add states to NPC's FSM
-	 */
-	private void prepareNPC() {
-
-		
-		// Player asking about rats when quest is inactive
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				Arrays.asList("rats", "rats!"), 
-				new TPPQuestInPhaseCondition(INACTIVE),
-				ConversationStates.ATTENDING, 
-				"Ados isn't being invaded by rats right now. You can still "+
-				  "get a #reward for the last time you helped. You can ask for #details "+
-				  "if you want.", 
-				null);
-		
-		// Player asking about rats at invasion time.
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				Arrays.asList("rats", "rats!"), 
-				new TPPQuestInPhaseCondition(INVASION),
-				ConversationStates.ATTENDING, 
-				null, 
-				new ChatAction() {
-					public void fire(Player player, Sentence sentence, EventRaiser npc) {
-						npc.say("There " + Grammar.isare(getRats().size()) + 
-								" still about "+Integer.toString(getRats().size())+
-								" rats alive.");
-					}	
-				});
-		
-		// Player asking about rats when quest is neither inactive nor invasion phase
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				Arrays.asList("rats", "rats!"), 
-				new AndCondition(
-					new NotCondition(new TPPQuestInPhaseCondition(INACTIVE)),
-					new NotCondition(new TPPQuestInPhaseCondition(INVASION))),
-				ConversationStates.ATTENDING, 
-				"The rats are gone. "+
-	    		"You can get #reward for your help now, ask about #details "+
-				  "if you want to know more.", 
-				null);		
-		
-		// Player asked about reward at invasion time
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				"reward", 
-				new TPPQuestInPhaseCondition(INVASION),
-				ConversationStates.ATTENDING, 
-				"Ados is being invaded by rats! "+
-				  "I dont want to reward you now, "+
-				  " until all rats are dead.", 
-				null);
-		
-		// Player asked about reward not at invasion time
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				"reward", 
-				new NotCondition(new TPPQuestInPhaseCondition(INVASION)),
-				ConversationStates.ATTENDING, 
-				null, 
-				new RewardPlayerAction());
-		
-		//Player asked about details at invasion time
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				"details", 
-				new TPPQuestInPhaseCondition(INVASION),
-				ConversationStates.ATTENDING, 
-				"Ados is being invaded by rats! "+
-				  "I dont want to either reward you or "+
-				  "explain details to you now,"+
-				  " until all rats are dead.", 
-				null);
-		
-		getMainNPC().add(
-				ConversationStates.ATTENDING, 
-				"details", 
-				new NotCondition(new TPPQuestInPhaseCondition(INVASION)),
-				ConversationStates.ATTENDING, 
-				null, 
-				new DetailsKillingsAction());
-	}
 	
 	/**
 	 * first start
@@ -405,8 +216,9 @@ import org.apache.log4j.Logger;
 	private void startQuest() {	
 		setTimings();
 		getPhases().add(new InactivePhase(timings));
-		getPhases().add(new InvasionPhase(timings, getRats()));
+		getPhases().add(new InvasionPhase(timings));
 		getPhases().add(new AwaitingPhase(timings));
+		//getPhases().add(new OutgoingPhase(timings));
 		setNewNotificationTime(
 				getDefaultPhaseClass().getMinTimeOut(),
 				getDefaultPhaseClass().getMaxTimeOut());
@@ -445,8 +257,7 @@ import org.apache.log4j.Logger;
 				"The Pied Piper",
 				"Ados City has a rat problem from time to time.",
 				true);
-				
-		prepareNPC();
+
 		super.addToWorld();
 		startQuest();
 	}
@@ -467,13 +278,6 @@ import org.apache.log4j.Logger;
 		return phases;
 	}
 
-	public void setRats(LinkedList<Creature> rats) {
-		this.rats = rats;
-	}
-
-	public LinkedList<Creature> getRats() {
-		return rats;
-	}
 
 	@Override
 	public String getRegion() {

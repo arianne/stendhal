@@ -13,6 +13,8 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
@@ -22,6 +24,10 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -37,15 +43,58 @@ public class InvasionPhase extends TPPQuest {
 	private int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
 	protected LinkedList<Creature> rats = new LinkedList<Creature>();
+	
+	private void addConversations(final SpeakerNPC mainNPC) {
+		TPP_Phase myphase = INVASION;
+		
+		// Player asking about rats at invasion time.
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				Arrays.asList("rats", "rats!"), 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				null, 
+				new ChatAction() {
+					public void fire(Player player, Sentence sentence, EventRaiser npc) {
+						npc.say("There " + Grammar.isare(TPPQuestHelperFunctions.getRats().size()) + 
+								" still about "+Integer.toString(TPPQuestHelperFunctions.getRats().size())+
+								" rats alive.");
+					}	
+				});
+		
+		//Player asked about details at invasion time.
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"details", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				"Ados is being invaded by rats! "+
+				  "I dont want to either reward you or "+
+				  "explain details to you now,"+
+				  " until all rats are dead.", 
+				null);		
+		
+		// Player asked about reward at invasion time.
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"reward", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				"Ados is being invaded by rats! "+
+				  "I dont want to reward you now, "+
+				  " until all rats are dead.", 
+				null);
+	}
 
 	/**
 	 * constructor
 	 */
-	public InvasionPhase(Map<String, Integer> timings, LinkedList<Creature> rats) {
+	public InvasionPhase(Map<String, Integer> timings) {
 		super(timings);
 		minPhaseChangeTime = timings.get(INVASION_TIME_MIN);
 		maxPhaseChangeTime = timings.get(INVASION_TIME_MAX);
-		this.rats=rats;
+		this.rats=TPPQuestHelperFunctions.getRats();
+		addConversations(TPPQuestHelperFunctions.getMainNPC());
 	}
 
 
@@ -288,5 +337,7 @@ public class InvasionPhase extends TPPQuest {
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_INVASION;
 	}
+	
+
 	
 }

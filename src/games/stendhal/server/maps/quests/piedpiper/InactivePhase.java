@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,10 +25,48 @@ public class InactivePhase extends TPPQuest {
 	private int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
 	
+	private void addConversations(final SpeakerNPC mainNPC) {
+		TPP_Phase myphase = INACTIVE;
+		
+		// Player asking about rats
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				Arrays.asList("rats", "rats!"), 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				"Ados isn't being invaded by rats right now. You can still "+
+				  "get a #reward for the last time you helped. You can ask for #details "+
+				  "if you want.", 
+				null);
+		
+		// Player asking about details
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"details", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				null, 
+				new DetailsKillingsAction());
+		
+		// Player asked about reward
+		mainNPC.add(
+				ConversationStates.ATTENDING, 
+				"reward", 
+				new TPPQuestInPhaseCondition(myphase),
+				ConversationStates.ATTENDING, 
+				null, 
+				new RewardPlayerAction());		
+	}
+	
+	/**
+	 * constructor
+	 * @param timings
+	 */
 	public InactivePhase(Map<String, Integer> timings) {
 		super(timings);
 		minPhaseChangeTime=timings.get(INACTIVE_TIME_MIN);
-		maxPhaseChangeTime=timings.get(INACTIVE_TIME_MAX);		
+		maxPhaseChangeTime=timings.get(INACTIVE_TIME_MAX);	
+		addConversations(TPPQuestHelperFunctions.getMainNPC());
 	}
 
 

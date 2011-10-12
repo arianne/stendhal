@@ -31,7 +31,7 @@ public class PathesBuildHelper {
 	 * route for pied piper incoming
 	 * @return - incoming path
 	 */
-	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePath() {
+	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePathIn() {
 		final List<Pair<StendhalRPZone, List<Node>>> fullPath = 
 			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
 		
@@ -165,5 +165,73 @@ public class PathesBuildHelper {
 		
 		return fullPath;		
 	}
+	
+	
+	/**
+	 * route for pied piper outgoing
+	 * @return - outgoing path
+	 */
+	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePathOut() {
+		final List<Pair<StendhalRPZone, List<Node>>> fullPath = 
+			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+		
+		final List<Node> localroute = new LinkedList<Node>();
+		
+		// 2 floor
+		localroute.clear();
+		localroute.add(new Node(26,14));
+		localroute.add(new Node(26,3));
+		localroute.add(new Node(35,3));
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
+				getZone("int_ados_town_hall_2"), new LinkedList<Node>(localroute)));			
+		
+		// 1 floor
+		localroute.clear();
+		localroute.add(new Node(37,3));
+		localroute.add(new Node(37,15));
+		localroute.add(new Node(6,15));
+		localroute.add(new Node(6,7));
+		localroute.add(new Node(2,7));
+		localroute.add(new Node(2,4));		
+		localroute.add(new Node(3,4));
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
+				getZone("int_ados_town_hall_1"), new LinkedList<Node>(localroute)));
+		
+		// town hall 
+		localroute.clear();
+		localroute.add(new Node(5,4));
+		localroute.add(new Node(9,4));
+		localroute.add(new Node(9,8));
+		localroute.add(new Node(22,8));		
+		localroute.add(new Node(22,16));
+		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
+				getZone("int_ados_town_hall"), new LinkedList<Node>(localroute)));
+		
+		return fullPath;
+	}		
+
+	
+	/**
+	 * route for pied piper outgoing event
+	 * @return - outgoing path
+	 */
+	public static List<List<Pair<StendhalRPZone, List<Node>>>> getOutgoingPhasePathes() {
+		final LinkedList<List<Pair<StendhalRPZone, List<Node>>>> fullPath = 
+			new LinkedList<List<Pair<StendhalRPZone, List<Node>>>>();
+		
+		final List<Node> localroute = new LinkedList<Node>();
+		final List<Pair<StendhalRPZone, List<Node>>> globalroute = new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+		
+		localroute.clear();
+		
+		globalroute.clear();
+		globalroute.add(new Pair<StendhalRPZone, List<Node>>(
+				getZone("int_ados_town_hall_2"), 
+				new LinkedList<Node>(localroute)));
+		
+		fullPath.add(globalroute);
+		return fullPath;		
+	}
+
 
 }
