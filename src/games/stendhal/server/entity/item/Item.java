@@ -568,7 +568,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
-	@Override
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on
 		// the ground
@@ -651,7 +650,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		removeFromWorld();
 	}
 
-	@Override
 	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
 			// ground
