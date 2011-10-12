@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.thepiedpiper;
 import static org.junit.Assert.assertEquals;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.maps.quests.ThePiedPiper;
+import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 
 
 import java.util.LinkedList;
@@ -20,7 +21,7 @@ public class AwaitingPhaseTest extends TPPTestHelper {
         ThePiedPiper.setPhase(TPP_Phase.TPP_INACTIVE);
 		ThePiedPiper.switchToNextPhase();
 		//quest.phaseInactiveToInvasion();		
-		killRats(quest.getRatsCount()/2);
+		killRats(TPPQuestHelperFunctions.getRatsCount()/2);
 		questHistory.add("I have killed some rats in Ados city already, and am trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		// [18:19] Mayor Chalmers shouts: Saddanly, rats captured city, they are living now under all Ados buildings. I am now in need of call Piped Piper, rats exterminator. Thank to all who tryed to clean up Ados,  you are welcome to get your reward.

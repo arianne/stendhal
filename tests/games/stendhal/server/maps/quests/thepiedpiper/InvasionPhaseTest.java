@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.maps.quests.ThePiedPiper;
+import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 
 public class InvasionPhaseTest extends TPPTestHelper {
 
@@ -29,12 +30,12 @@ public class InvasionPhaseTest extends TPPTestHelper {
         en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There " + Grammar.isare(quest.getRatsCount()) + 
-				" still about "+ quest.getRatsCount() + " rats alive.", getReply(npc));
+		assertEquals("There " + Grammar.isare(TPPQuestHelperFunctions.getRatsCount()) + 
+				" still about "+ TPPQuestHelperFunctions.getRatsCount() + " rats alive.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 		assertTrue(quest.getHistory(player).isEmpty());
-		killRats(quest.getRatsCount());
+		killRats(TPPQuestHelperFunctions.getRatsCount());
 		// [17:58] Mayor Chalmers shouts: No rats in Ados now, exclude those who always lived in storage and haunted house. Rats hunters are welcome to get their reward.
 		LinkedList<String> questHistory = new LinkedList<String>();
 		questHistory.add("I have killed some rats in Ados city already, and am trying to kill more.");
@@ -73,8 +74,8 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));
 		en.step(player, "rats");
-		assertEquals("There "+ Grammar.isare(quest.getRatsCount()) +
-				" still about "+ quest.getRatsCount() +" rats alive.", getReply(npc));
+		assertEquals("There "+ Grammar.isare(TPPQuestHelperFunctions.getRatsCount()) +
+				" still about "+ TPPQuestHelperFunctions.getRatsCount() +" rats alive.", getReply(npc));
 		en.step(player, "details");
 		assertEquals("Ados is being invaded by rats! I dont want to either reward you or "+
 				  "explain details to you now, until all rats are dead.", getReply(npc));
@@ -85,7 +86,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		en.step(player, "bye");
 		assertEquals("Good day to you.", getReply(npc));
 
-		killRats(quest.getRatsCount());
+		killRats(TPPQuestHelperFunctions.getRatsCount());
 		questHistory.add("I have killed some rats in Ados city already, and am trying to kill more.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "hi");
@@ -105,7 +106,7 @@ public class InvasionPhaseTest extends TPPTestHelper {
 		assertEquals(questHistory, quest.getHistory(player));
 		ThePiedPiper.switchToNextPhase();
 		//quest.phaseInactiveToInvasion();	
-		killRats(quest.getRatsCount());
+		killRats(TPPQuestHelperFunctions.getRatsCount());
 		assertEquals(questHistory, quest.getHistory(player));
 		en.step(player, "hi");
 		assertEquals("On behalf of the citizens of Ados, welcome.", getReply(npc));

@@ -12,6 +12,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
+import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 
 
 import org.apache.log4j.Logger;
@@ -114,9 +115,9 @@ public class TPPTestHelper implements ITPPQuestConstants {
 		int count=0;
 		logger.info("number of rats to kill: "+numb);
 		for (int i=0; i<numb;i++) {
-			String name = quest.getRats().get(0).getName();
+			String name = TPPQuestHelperFunctions.getRats().get(0).getName();
 			int kind = RAT_TYPES.indexOf(name);
-			killRat(quest.getRats().get(0),count);
+			killRat(TPPQuestHelperFunctions.getRats().get(0),count);
 			count++;			
 			killedRats[kind]++;
 			rewardMoneys = rewardMoneys + RAT_REWARDS.get(kind);
