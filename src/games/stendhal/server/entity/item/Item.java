@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
@@ -30,8 +29,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.log4j.Logger;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
@@ -60,7 +57,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * mean time an item is constantly usable in hours
 	 */
 	private static final long MEAN_LIFETIME = 12 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
-	
+
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
@@ -118,7 +115,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private Item() {
 		setRPClass("item");
 		put("type", "item");
-		possibleSlots = new LinkedList<String>();
+		this.possibleSlots = new LinkedList<String>();
 		update();
 	}
 
@@ -131,9 +128,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public Item(final Item item) {
 		super(item);
 		setRPClass("item");
-		possibleSlots = new ArrayList<String>(item.possibleSlots);
-		damageType = item.damageType;
-		susceptibilities = item.susceptibilities;
+		this.possibleSlots = new ArrayList<String>(item.possibleSlots);
+		this.damageType = item.damageType;
+		this.susceptibilities = item.susceptibilities;
 	}
 
 	public static void generateRPClass() {
@@ -220,7 +217,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	public void setEquipableSlots(final List<String> slots) {
 		// save slots
-		possibleSlots = slots;
+		this.possibleSlots = slots;
 	}
 
 	/**
@@ -241,7 +238,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return PlantGrower or null
 	 */
 	public PassiveEntityRespawnPoint getPlantGrower() {
-		return plantGrower;
+		return this.plantGrower;
 	}
 
 	/**
@@ -301,13 +298,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * Propose increase the degree of deterioration. If degree increases is decided by random
 	 */
 	public void deteriorate() {
-		double propabilityForMeanExp = Rand.propabilityForMeanExp(MEAN_LIFETIME / 300 * this.getAttackRate());
-		if(Rand.flipCoin(propabilityForMeanExp) && getDeterioration() <= MAX_DETERIORATION) {
-			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"deteriorated from "+this.getDeterioration()+".");
-			this.add("deterioration", 1);
-		} else {
-			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"did not deteriorate from "+this.getDeterioration()+".");
-		}
+		//		double propabilityForMeanExp = Rand.propabilityForMeanExp(MEAN_LIFETIME / 300 * this.getAttackRate());
+		//		if(Rand.flipCoin(propabilityForMeanExp) && getDeterioration() <= MAX_DETERIORATION) {
+		//			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"deteriorated from "+this.getDeterioration()+".");
+		//			this.add("deterioration", 1);
+		//		} else {
+		//			Logger.getLogger(getClass()).debug("The item"+ this.getName() +"did not deteriorate from "+this.getDeterioration()+".");
+		//		}
 	}
 
 	/**
@@ -398,7 +395,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/** @return the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
-		return possibleSlots;
+		return this.possibleSlots;
 	}
 
 	/**
@@ -408,7 +405,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return The player name, or <code>null</code>.
 	 */
 	public String getBoundTo() {
-			return get("bound");
+		return get("bound");
 	}
 
 	public boolean isBound() {
@@ -495,7 +492,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return type of damage
 	 */
 	public Nature getDamageType() {
-		return damageType;
+		return this.damageType;
 	}
 
 	/**
@@ -503,8 +500,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *
 	 * @param type type of damage
 	 */
-	public void setDamageType(Nature type) {
-		damageType = type;
+	public void setDamageType(final Nature type) {
+		this.damageType = type;
 	}
 
 	/**
@@ -514,10 +511,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param type type of damage to be checked
 	 * @return susceptibility to damage of type <code>type</code>
 	 */
-	public double getSusceptibility(Nature type) {
+	public double getSusceptibility(final Nature type) {
 		double value = 1.0;
-		if (susceptibilities != null) {
-			Double sus = susceptibilities.get(type);
+		if (this.susceptibilities != null) {
+			final Double sus = this.susceptibilities.get(type);
 			if (sus != null) {
 				value = sus.doubleValue();
 			}
@@ -531,7 +528,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *
 	 * @param susceptibilities susceptibilities to be used
 	 */
-	public void setSusceptibilities(Map<Nature, Double> susceptibilities) {
+	public void setSusceptibilities(final Map<Nature, Double> susceptibilities) {
 		this.susceptibilities = susceptibilities;
 	}
 
@@ -566,11 +563,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onRemoveFromGround() {
 		// stop the timer so that the item won't degrade anymore
 		SingletonRepository.getTurnNotifier().dontNotify(this);
-		if (plantGrower != null) {
-			plantGrower.onFruitPicked(this);
+		if (this.plantGrower != null) {
+			this.plantGrower.onFruitPicked(this);
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on
 		// the ground
@@ -583,8 +581,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	@Override
 	public String describe() {
 		String text = "You see " + Grammar.a_noun(getTitle()) + ".";
-		StringBuilder stats = new StringBuilder();
-		String levelwarning = "";
+		final StringBuilder stats = new StringBuilder();
+		final String levelwarning = "";
 		if (hasDescription()) {
 			text = getDescription();
 		}
@@ -626,8 +624,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			stats.append(" LIFESTEAL: ");
 			stats.append(get("lifesteal"));
 		}
-		if ((susceptibilities != null) && !susceptibilities.isEmpty()) {
-			for (Entry<Nature, Double> entry : susceptibilities.entrySet()) {
+		if ((this.susceptibilities != null) && !this.susceptibilities.isEmpty()) {
+			for (final Entry<Nature, Double> entry : this.susceptibilities.entrySet()) {
 				stats.append(" ");
 				stats.append(entry.getKey());
 				stats.append(": ");
@@ -653,20 +651,21 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		removeFromWorld();
 	}
 
+	@Override
 	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
 			// ground
 			return true;
 		}
 
-		return possibleSlots.contains(slot);
+		return this.possibleSlots.contains(slot);
 	}
 
 
 	public void removeFromWorld() {
-		
+
 		this.onUnequipped();
-		
+
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -725,12 +724,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
-	public void setFromCorpse(boolean fromCorpse) {
+	public void setFromCorpse(final boolean fromCorpse) {
 		this.fromCorpse = fromCorpse;
 	}
 
 	public boolean isFromCorpse() {
-		return fromCorpse;
+		return this.fromCorpse;
 	}
 
 	/**
@@ -745,8 +744,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return 0;
 		}
 	}
-	
-	
+
+
 	/**
 	 * opportunity to affect the player when equipped
 	 * 
@@ -754,11 +753,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * TODO: should this return some sort of undoable thing (if it can be undone?)
 	 */
-	public boolean onEquipped(RPEntity equipper, String slot) {
-		
+	public boolean onEquipped(final RPEntity equipper, final String slot) {
+
 		// this.prevEntity = equipper;
 		// this.prevSlot   = slot;
-		
+
 		return false;
 	}
 
