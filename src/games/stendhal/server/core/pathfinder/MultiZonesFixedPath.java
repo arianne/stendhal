@@ -42,7 +42,7 @@ public class MultiZonesFixedPath implements Observer {
 			final List<Pair<StendhalRPZone, List<Node>>> rt, 
 			final Observer o) {
 		ent=entity;
-		count=0;
+		count=-1;
 		route=rt;
 		finishnotifier.setObserver(o);
 	}
@@ -58,6 +58,11 @@ public class MultiZonesFixedPath implements Observer {
 	 *  add npc to next zone in list
 	 */
 	private void addToZone() {
+		// adding observers only at first update 
+		if(count==0) {
+			ent.pathnotifier.addObserver(this);
+			ent.pathnotifier.notifyObservers();
+		}
 		int x= route.get(count).second().get(0).getX();
 		int y= route.get(count).second().get(0).getY();
 		ent.setPosition(x, y);
@@ -74,6 +79,7 @@ public class MultiZonesFixedPath implements Observer {
 			addToZone();
 		} else {
 			// last route finished
+			ent.pathnotifier.removeObserver(this);
 			finishnotifier.setChanges();
 			finishnotifier.notifyObservers();
 		}
