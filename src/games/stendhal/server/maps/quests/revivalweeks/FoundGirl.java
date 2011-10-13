@@ -116,7 +116,7 @@ public class FoundGirl implements LoadableContent {
 			ConversationStates.ATTENDING,
 			Arrays.asList("celebrate", "celebration", "party"),
 			ConversationStates.ATTENDING,
-			"You can get a costume from Saskia just outside this house or you can try to solve a difficult puzzle in the other house. Or just play a game of Tic Tac Toe against your #friends.",
+			"You can get a mask from Fidorea just outside this house or you can try to solve a difficult puzzle in the other house. Or just play a game of Tic Tac Toe against your #friends or ask Maltos about a nice game.",
 			null);
 
 		// friends
