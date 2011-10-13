@@ -247,6 +247,12 @@ public class Zone {
 			if (!validate()) {
 				return null;
 			}
+			
+			// The partial sublayers won't be needed for anything anymore, and
+			// they can be dropped to save some memory
+			for (String layer : layerNames) {
+				layers.remove(layer);
+			}
 
 			r = new CompositeLayerRenderer(subLayers);
 			layers.put(compositeName, r);
