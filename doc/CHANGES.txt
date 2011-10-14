@@ -1,6 +1,16 @@
 ﻿Changelog
 ---------
 
+0.98
+
+*world*
+- Some garlic seeds have been planted by Sue in the Kalavan City Gardens
+- Fado hotel chopped old trees down and planted new pines
+
+*fixes*
+- Farmer achievement can be made
+
+
 0.97
 
 * Revival Weeks*
