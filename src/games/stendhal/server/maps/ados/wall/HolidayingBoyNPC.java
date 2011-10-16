@@ -45,8 +45,8 @@ public class HolidayingBoyNPC implements ZoneConfigurator {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(114, 77));
 				nodes.add(new Node(98, 77));
-				nodes.add(new Node(98, 69));
-				nodes.add(new Node(116, 69));
+				nodes.add(new Node(98, 68));
+				nodes.add(new Node(116, 68));
 				nodes.add(new Node(116, 77));
 				setPath(new FixedPath(nodes, true));
 			}
