@@ -123,6 +123,10 @@ public class OutfitColor {
 	 * 	used
 	 */
 	public void setColor(String key, Color value) {
-		map.put(key, value);
+		if (value != null) {
+			map.put(key, value);
+		} else {
+			map.remove(key);
+		}
 	}
 }
