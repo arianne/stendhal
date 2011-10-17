@@ -414,7 +414,7 @@ public class ReverseArrow extends AbstractQuest implements
 		zone.add(exit);
 
 		final Sign sign = new Sign();
-		sign.setPosition(96, 102);
+		sign.setPosition(97, 102);
 		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
 		entranceZone.add(sign);
 	}
