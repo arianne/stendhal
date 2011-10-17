@@ -6,9 +6,11 @@
 *world*
 - Some garlic seeds have been planted by Sue in the Kalavan City Gardens
 - Fado hotel chopped old trees down and planted new pines
+- Some Ados inhabitants started to decorate their town a bit
+- Haizens furniture arrived
 
 *fixes*
-- Farmer achievement can be made
+- Farmer achievement can be reached due to garlic grower implementation
 
 
 0.97
