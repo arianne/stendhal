@@ -96,7 +96,7 @@
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
-		file="Level 0/semos/mountain_n2_mine_town_weeks.tmx">
+		file="Level 0/semos/mountain_n2.tmx">
 
 		<point-of-interest x="90" y="97">
 			<name>Semos Mines</name>
@@ -113,83 +113,6 @@
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Entrance just allowed for mine workers.</attribute>
 		</entity>
-		
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="94" y="118">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="95" y="119">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="96" y="119">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks 2011!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-		
-		<!-- Caroline Shop signs for MINE TOWN WEEKS -->
-		
-		<entity x="60" y="105">
-	  		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">sellrevivalweeks</parameter>
-			<parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
-			<parameter name="seller">true</parameter>
-			<parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
-			</implementation>
-			
-			<attribute name="class">blackboard</attribute>
-			
-	    </entity>
-		
-		 <entity x="55" y="105">
-	  		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">sellrevivalweeks</parameter>
-			<parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
-			<parameter name="seller">true</parameter>
-			<parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
-			</implementation>
-			
-			<attribute name="class">blackboard</attribute>
-			
-		  </entity>
-		  
-	<!-- tables during Mine Town -->
-		<entity x="55" y="110">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="61" y="110">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="67" y="110">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-			
 		
 	</zone>
 
@@ -1287,7 +1210,7 @@ Mature sheep wanted: please speak to Sato.
 	</zone>
 
 	<zone name="0_semos_city" level="0" x="500064" y="500000"
-		file="Level 0/semos/city_halloween.tmx">
+		file="Level 0/semos/city.tmx">
 		<title>The City of Semos</title>
 		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.office.StoredEntityMoveConfigurator">
@@ -1590,40 +1513,6 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 			<attribute name="text">Blacksmith's - Weapons and Tools</attribute>
 			<attribute name="width">1</attribute>
 			<attribute name="height">1</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
-
-		<!-- MINE TOWN WEEKS signs-->
-		
-		<entity x="53" y="3">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-			<attribute name="text">#Mine #Town #Revival #Weeks #2011! Enjoy the #third #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
-		
-		<entity x="14" y="4">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-			<attribute name="text">#Mine #Town #Revival #Weeks #2011! Enjoy the #third #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
-		
-		<entity x="16" y="48">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-			<attribute name="text">#Mine #Town #Revival #Weeks #2011! Enjoy the #third #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-			<attribute name="class">transparent</attribute>
-		</entity>
-		
-		<entity x="58" y="49">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-			<attribute name="text">#Mine #Town #Revival #Weeks #2011! Enjoy the #third #festival and meet #Susi and her father while celebrating with snacks and drinks! Just take the path up to the #North #from #Semos #City to reach the #Mine #Town! Choose your most #favourite #colour and celebrate the festivals with your #selfmade #coloured #outfit!</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
 			<attribute name="class">transparent</attribute>
 		</entity>
 
