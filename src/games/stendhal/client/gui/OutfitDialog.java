@@ -81,6 +81,8 @@ public class OutfitDialog extends JDialog {
 
 	private final SpriteStore store = SpriteStore.get();
 	private final OutfitStore ostore = OutfitStore.get();
+	
+	private final List<ResetListener> resetListeners = new ArrayList<ResetListener>();
 
 	private JButton okButton;
 
@@ -104,7 +106,8 @@ public class OutfitDialog extends JDialog {
 	 * @param parent parent window
 	 * @param title title of the dialog
 	 * @param outfit number of the outfit
-	 * @param outfitColor coloring information
+	 * @param outfitColor coloring information. <b>Note that outfitColor
+	 *	can be modified by the dialog.</b> 
 	 */
 	public OutfitDialog(final Frame parent, final String title, final int outfit,
 			OutfitColor outfitColor) {
@@ -421,6 +424,28 @@ public class OutfitDialog extends JDialog {
 			}
 		});
 		
+		// For restoring the state
+		resetListeners.add(new ResetListener() {
+			public void reset() {
+				Color color = outfitColor.getColor(key);
+				boolean colored = color != null;
+				if (colored) {
+					/*
+					 * Changing the model triggers setting the color in
+					 * outfitColor, and null color is interpreted as grey in the
+					 * selector model, so avoid setting that.
+					 * 
+					 * As a side effect, the color selector remembers the
+					 * previously selected color for non colored outfit parts.
+					 * That is likely a better default than mid grey anyway.  
+					 */
+					model.setSelectedColor(color);
+				}
+				selector.setEnabled(colored);
+				enableToggle.setSelected(colored);
+			}
+		});
+		
 		return container;
 	}
 
@@ -474,6 +499,42 @@ public class OutfitDialog extends JDialog {
 			hairLabel.setBorder(style.getBorderDown());
 			headLabel.setBorder(style.getBorderDown());
 		}
+	}
+	
+	/**
+	 * Set the state of the selector.
+	 * 
+	 * @param outfit outfit code
+	 * @param colors color state. Unlike the one passed to the constructor, this
+	 * 	will not be modified
+	 */
+	void setState(int outfit, OutfitColor colors) {
+		// Copy the original colors
+		outfitColor.setColor(OutfitColor.DRESS, colors.getColor(OutfitColor.DRESS));
+		outfitColor.setColor(OutfitColor.HAIR, colors.getColor(OutfitColor.HAIR));
+		
+		// analyze the outfit code
+		int bodiesIndex = outfit % 100;
+		outfit = outfit / 100;
+		int clothesIndex = outfit % 100;
+		outfit = outfit / 100;
+		int headsIndex = outfit % 100;
+		outfit = outfit / 100;
+		int hairsIndex = outfit % 100;
+		
+		body.setIndex(bodiesIndex);
+		dress.setIndex(clothesIndex);
+		head.setIndex(headsIndex);
+		hair.setIndex(hairsIndex);
+
+		// Color selectors, and their toggles
+		for (ResetListener l : resetListeners) {
+			l.reset();
+		}
+	}
+	
+	private interface ResetListener {
+		void reset();
 	}
 	
 	/**

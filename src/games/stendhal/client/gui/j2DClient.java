@@ -958,22 +958,22 @@ public class j2DClient implements UserInterface {
 	 */
 	public void chooseOutfit() {
 		int outfit;
+		final RPObject player = userContext.getPlayer();
 
+		if (player.has("outfit_org")) {
+			outfit = player.getInt("outfit_org");
+		} else {
+			outfit = player.getInt("outfit");
+		}
+		
 		if (outfitDialog == null) {
-			final RPObject player = userContext.getPlayer();
-
-			if (player.has("outfit_org")) {
-				outfit = player.getInt("outfit_org");
-			} else {
-				outfit = player.getInt("outfit");
-			}
-
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
 			outfitDialog = new OutfitDialog(mainFrame.getMainFrame(),
 					"Set outfit", outfit, new OutfitColor(player));
 			outfitDialog.setVisible(true);
 		} else {
+			outfitDialog.setState(outfit, OutfitColor.get(player));
 			outfitDialog.setVisible(true);
 			outfitDialog.toFront();
 		}
