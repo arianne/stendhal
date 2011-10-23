@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.GameEvent;
@@ -69,7 +70,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	private static final String ATTR_NATURE = "nature";
 
-	private static final List<String> ITEMS_IN_HANDS = Arrays.asList("staff","spellbook");
+	private static final List<String> ITEMS_IN_HANDS = Arrays.asList("magic wand","spellbook");
 
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
@@ -100,25 +101,25 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 		//check for sufficient mana
 		if (!new PlayerManaGreaterThanCondition(getMana()-1).fire(caster, null, null)) {
-			caster.sendPrivateText("You have not sufficent mana to cast your spell \""+getName()+"\".");
+			caster.sendPrivateText(NotificationType.INFORMATION, "You have not sufficent mana to cast your spell \""+getName()+"\".");
 			return false;
 		}
 
 		//check minimum level
 		if (new LevelLessThanCondition(getMinimumLevel()).fire(caster, null, null)) {
-			caster.sendPrivateText("You did not reach the minimum level for your spell \""+getName()+"\" yet.");
+			caster.sendPrivateText(NotificationType.INFORMATION, "You did not reach the minimum level for your spell \""+getName()+"\" yet.");
 			return false;
 		}
 
 		final long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000L; 
 		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
-			caster.sendPrivateText("Your spell \""+getName()+"\" did not yet cool down.");
+			caster.sendPrivateText(NotificationType.INFORMATION, "Your spell \""+getName()+"\" did not yet cool down.");
 			return false;
 		}
 
 		//check if target is valid for spell?
 		if (!isTargetValid(caster, target)) {
-			caster.sendPrivateText("The target is not valid for your spell \""+getName()+"\".");
+			caster.sendPrivateText(NotificationType.INFORMATION, "The target is not valid for your spell \""+getName()+"\".");
 			return false;
 		}
 		//check other preconditions like having learned that school?
@@ -137,7 +138,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 					new PlayerHasItemEquippedInSlot(item, "rhand"),
 					new PlayerHasItemEquippedInSlot(item, "lhand"));
 			if(staffCondition.fire(caster, null, null)) {
-				caster.sendPrivateText("You must have "+Grammar.a_noun(item)+" in your hands to cast a spell.");
+				caster.sendPrivateText(NotificationType.INFORMATION, "You must have "+Grammar.a_noun(item)+" in your hands to cast a spell.");
 				return false;
 			}
 		}
