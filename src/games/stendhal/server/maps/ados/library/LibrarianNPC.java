@@ -52,8 +52,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(9, 9));
-				nodes.add(new Node(9, 27));
+				nodes.add(new Node(10, 9));
+				nodes.add(new Node(10, 27));
 				nodes.add(new Node(20, 27));
 				nodes.add(new Node(20, 10));
 				setPath(new FixedPath(nodes, true));
@@ -95,7 +95,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("investigatornpc");
-		npc.setPosition(9, 9);
+		npc.setPosition(10, 9);
 		npc.initHP(100);
 		npc.setDescription("Wikipedian is the Ados librarian. His name predicts: He knows a lot.");
 		zone.add(npc);
