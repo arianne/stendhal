@@ -203,16 +203,28 @@ public class SpriteStore {
 			return getSprite(baseRef);
 		}
 		
-		String colorName = Integer.toHexString(color.getRGB());
 		final SpriteCache cache = SpriteCache.get();
 
-		String realRef = baseRef + "@" + blend.toString() + "#" + colorName;
+		String realRef = createModifiedRef(baseRef, color, blend);
 		Sprite sprite = cache.get(realRef);
 		if (sprite == null) {
 			sprite = modifySprite(getSprite(baseRef), color, blend, realRef);
 		}
 
 		return sprite;
+	}
+	
+	/**
+	 * Get a reference string for a modified sprite.
+	 * 
+	 * @param baseRef reference for the base sprite
+	 * @param color
+	 * @param blend
+	 * @return reference string
+	 */
+	public String createModifiedRef(String baseRef, Color color, Composite blend) {
+		String colorName = Integer.toHexString(color.getRGB());
+		return baseRef + "@" + blend.toString() + "#" + colorName;
 	}
 	
 	/**

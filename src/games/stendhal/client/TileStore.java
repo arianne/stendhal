@@ -136,11 +136,17 @@ public class TileStore implements Tileset {
 			}
 		}
 
-		Tileset tileset = tilesetsLoaded.get(ref);
+		String realRef;
+		if ((color != null) && (blend != null)) {
+			realRef = store.createModifiedRef(ref, color, blend);
+		} else {
+			realRef = ref;
+		}
+		Tileset tileset = tilesetsLoaded.get(realRef);
 
 		if (tileset == null) {
 			tileset = new SpriteTileset(store, baseFolder + ref, color, blend);
-			tilesetsLoaded.put(ref, tileset);
+			tilesetsLoaded.put(realRef, tileset);
 		}
 
 		final int size = tileset.getSize();
