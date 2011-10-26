@@ -48,7 +48,7 @@ public class Zone {
 	 * <code>true</code>, if the zone has been succesfully validated since the
 	 * last change, <code>false</code> otherwise.
 	 */
-	private boolean isValid;
+	private volatile boolean isValid;
 	/**
 	 * If <code>true</code>, the zone needs a data layer added before it can be
 	 * validated.
@@ -147,7 +147,7 @@ public class Zone {
 	 * 	real width 
 	 */
 	double getWidth() {
-		if (!validate()) {
+		if (!isValid) {
 			return 0.0;
 		}
 		return collision.getWidth();
@@ -160,7 +160,7 @@ public class Zone {
 	 * 	real height
 	 */
 	double getHeight() {
-		if (!validate()) {
+		if (!isValid) {
 			return 0.0;
 		}
 		return collision.getHeight();
@@ -192,7 +192,7 @@ public class Zone {
 	 */
 	void draw(Graphics g, final String layer, final int x, final int y,
 			final int width, final int height) {
-		if (!validate()) {
+		if (!isValid) {
 			return;
 		}
 
@@ -244,7 +244,7 @@ public class Zone {
 			}
 			// Make sure the sub layers have their tiles defined before passing
 			// them to CompositeLayerRenderer
-			if (!validate()) {
+			if (!isValid) {
 				return null;
 			}
 			
