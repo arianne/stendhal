@@ -11,6 +11,8 @@
 		<sequence>
 			<element name="title" type="string" minOccurs="0" maxOccurs="1" />
 			<choice minOccurs="0" maxOccurs="unbounded">
+				<element name="attributes" type="Q1:attributeGroup"
+					minOccurs="0" maxOccurs="unbounded"/>
 				<element name="configurator" type="Q1:configurator"
 					minOccurs="0" maxOccurs="unbounded"/>
 				<element name="point-of-interest" type="Q1:point-of-interest" minOccurs="0"
@@ -49,6 +51,14 @@
 		</sequence>
 		<attribute name="x" type="int"></attribute>
 		<attribute name="y" type="int"></attribute>
+	</complexType>
+	
+	<complexType name="attributeGroup">
+		<sequence>
+			<element name="parameter" type="Q1:parameterType" minOccurs="1"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
 	</complexType>
 	
 	<complexType name="portal">
