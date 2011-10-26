@@ -301,7 +301,7 @@ public class StendhalClient extends ClientFramework {
 		}
 		
 		// Don't change the zone until it's ready
-		if (currentZone.validate()) {
+		if ((contentToLoad == 0) && currentZone.validate()) {
 			staticLayers.setZone(currentZone);
 		}
 
