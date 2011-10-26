@@ -1428,7 +1428,12 @@ in roaches.
     </portal>
    </zone> 
 
-   <zone name="int_ados_twilight_zone" file="interiors/ados/twilight_zone.tmx">
+	<zone name="int_ados_twilight_zone" file="interiors/ados/sewing_room.tmx">
+		<attributes>
+			<parameter name="color_method">screen</parameter>
+			<!-- mid-grey -->
+			<parameter name="color">8421504</parameter>
+		</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>  
