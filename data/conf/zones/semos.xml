@@ -10,6 +10,9 @@
 
 	<zone name="0_semos_mountain_n_w4" level="0" x="499616" y="499744"
 		file="Level 0/semos/mountain_n_w4.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 			<parameter name="x">77</parameter>
 			<parameter name="y">47</parameter>
@@ -46,10 +49,16 @@
 
 	<zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744"
 		file="Level 0/semos/mountain_n2_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744"
 		file="Level 0/semos/mountain_n2_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 
 		<entity x="77" y="127">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -97,6 +106,9 @@
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
 		file="Level 0/semos/mountain_n2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 
 		<point-of-interest x="90" y="97">
 			<name>Semos Mines</name>
@@ -126,6 +138,9 @@
 
 	<zone name="0_semos_mountain_n2_e" level="0" x="500128" y="499744"
 		file="Level 0/semos/mountain_n2_e.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="int_mithrilbourgh_stores" file="interiors/mithrilbourgh/stores.tmx">
@@ -168,6 +183,9 @@
 
 	<zone name="0_semos_mountain_n2_e2" level="0" x="500256" y="499744"
 		file="Level 0/semos/mountain_n2_e2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 
 		<portal x="67" y="47" ref="stores_entrance">
 			<destination zone="int_mithrilbourgh_stores" ref="entrance" />
@@ -208,10 +226,16 @@
 
 	<zone name="0_semos_mountain_n_w3" level="0" x="499744" y="499872"
 		file="Level 0/semos/mountain_n_w3.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_semos_mountain_n_w2" level="0" x="499872" y="499872"
 		file="Level 0/semos/mountain_n_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.gnomevillage.GarbiddleNPC"/>
@@ -878,6 +902,9 @@
 
        	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
 		file="Level 0/semos/plains_n.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
 		<configurator class-name="games.stendhal.server.maps.semos.plains.AddPostmanListener"/>
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
@@ -974,6 +1001,9 @@ South: Semos city
 
 	<zone name="0_semos_plains_ne" level="0" x="500128" y="499872"
 		file="Level 0/semos/plains_ne.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.plains.HoeingManNPC" />
 
@@ -991,10 +1021,16 @@ Southeast: Farmhouse
 
 	<zone name="0_semos_plains_n_e2" level="0" x="500192" y="499872"
 		file="Level 0/semos/plains_n_e2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_semos_mountain_n_e2" level="0" x="500256" y="499872"
 		file="Level 0/semos/mountain_n_e2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		
 		<point-of-interest x="62" y="99">
 			<name>Semos Caves South Entrance</name>
@@ -1016,10 +1052,16 @@ Southeast: Farmhouse
 
 	<zone name="0_semos_mountain_w2" level="0" x="499744" y="500000"
 		file="Level 0/semos/mountain_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_semos_plains_w" level="0" x="499872" y="500000"
 		file="Level 0/semos/plains_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<portal x="85" y="26" ref="jail_entrance_left">
 			<destination zone="-1_semos_jail" ref="entrance" />
 		</portal>
@@ -1094,6 +1136,9 @@ The sharper minded amongst you might prefer to click directly on the creature. I
 
 	<zone name="0_semos_village_w" level="0" x="500000" y="500000"
 		file="Level 0/semos/village_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		
         <configurator class-name="games.stendhal.server.maps.semos.village.RatsCreatures" />
 		<configurator
@@ -1212,6 +1257,9 @@ Mature sheep wanted: please speak to Sato.
 	<zone name="0_semos_city" level="0" x="500064" y="500000"
 		file="Level 0/semos/city.tmx">
 		<title>The City of Semos</title>
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.office.StoredEntityMoveConfigurator">
 			<parameter name="oldx">44</parameter>
@@ -2248,6 +2296,9 @@ Holy mackerel! These chips are tasty.
 
 	<zone name="0_semos_road_e" level="0" x="500128" y="500000"
 		file="Level 0/semos/road_e.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 			<parameter name="x">103</parameter>
 			<parameter name="y">49</parameter>
@@ -2345,6 +2396,9 @@ East: Ados city
 
 	<zone name="0_semos_road_se" level="0" x="500128" y="500064"
 		file="Level 0/semos/road_se.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	
 		<entity x="72" y="25">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -2358,6 +2412,9 @@ East: Ados city
 
 	<zone name="0_semos_plains_s" level="0" x="500000" y="500064"
 		file="Level 0/semos/plains_s.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		
       <configurator
             class-name="games.stendhal.server.maps.semos.plains.ExperiencedWarriorNPC" />
@@ -2415,6 +2472,9 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="0_semos_forest_s" level="0" x="500000" y="500128"
 		file="Level 0/semos/forest_s.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">

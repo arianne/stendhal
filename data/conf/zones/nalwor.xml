@@ -28,15 +28,23 @@
 
 	<zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128" accessible="false"
 		file="Level 0/nalwor/forest_nw.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_nalwor_forest_n" level="0" x="500256" y="500128"
 		file="Level 0/nalwor/forest_n.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128"
 		file="Level 0/nalwor/forest_ne.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="93" y="116">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -66,7 +74,9 @@
 
 	<zone name="0_nalwor_forest_n_e2" level="0" x="500512" y="500128"
 		file="Level 0/nalwor/forest_n_e2.tmx">
-	
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 			<entity x="0" y="85">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -79,7 +89,9 @@
 
 	<zone name="0_nalwor_forest_w" level="0" x="500128" y="500256"
 		file="Level 0/nalwor/forest_w.tmx">
-					
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 			<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -632,7 +644,9 @@ below average.
 
 	<zone name="0_nalwor_city" level="0" x="500256" y="500256"
 		file="Level 0/nalwor/city.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 			<entity x="0" y="46">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -753,10 +767,16 @@ below average.
 
 	<zone name="0_nalwor_forest_e" level="0" x="500384" y="500256"
 		file="Level 0/nalwor/forest_e.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_nalwor_river_sw" level="0" x="500128" y="500384"
 		file="Level 0/nalwor/river_sw.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		 	
 		 	<entity x="87" y="83">
 				<implementation
@@ -776,6 +796,9 @@ below average.
 
 	<zone name="0_nalwor_river_s" level="0" x="500256" y="500384"
 		file="Level 0/nalwor/river_s.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="98" y="88">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
 				<parameter name="width">5</parameter>
@@ -796,6 +819,9 @@ below average.
 
 	<zone name="0_nalwor_river_se" level="0" x="500384" y="500384"
 		file="Level 0/nalwor/river_se.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="185" y="64">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">

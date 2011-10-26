@@ -28,11 +28,16 @@
 
 	<zone name="0_orril_mountain_n2_w2" level="0" x="499616" y="500000"
 		file="Level 0/orril/mountain_n2_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_orril_mountain_nw" level="0" x="499744" y="500128"
 		file="Level 0/orril/mountain_nw.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<point-of-interest x="62" y="40">
 			<name>Kotoch Entrance</name>
 			<type>dungeon</type>
@@ -44,11 +49,16 @@
 
 	<zone name="0_orril_forest_n" level="0" x="499872" y="500128"
 		file="Level 0/orril/forest_n.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_orril_mountain_w2" level="0" x="499616" y="500256"
 		file="Level 0/orril/mountain_w2.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<point-of-interest x="74" y="42">
 			<name>Orril Dwarf Mine North Entrance</name>
 			<title>Orril Dwarf Mine</title>
@@ -69,6 +79,9 @@
 
 	<zone name="0_orril_mountain_w" level="0" x="499744" y="500256"
 		file="Level 0/orril/mountain_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<portal x="107" y="113" ref="orb_destination">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
@@ -77,7 +90,9 @@
 
 	<zone name="0_orril_castle" level="0" x="499872" y="500256"
 		file="Level 0/orril/castle.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="0" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">a_weird_place</parameter>
@@ -175,7 +190,9 @@
 
 	<zone name="0_orril_forest_e" level="0" x="500000" y="500256"
 		file="Level 0/orril/forest_e.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
@@ -203,6 +220,9 @@
 
 	<zone name="0_orril_river_s_w2" level="0" x="499616" y="500384"
 		file="Level 0/orril/river_s_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="36" y="26">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
@@ -219,10 +239,16 @@
 
 	<zone name="0_orril_river_sw" level="0" x="499744" y="500384"
 		file="Level 0/orril/river_sw.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
 	<zone name="0_orril_river_s" level="0" x="499872" y="500384"
 		file="Level 0/orril/river_s.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.maps.orril.river.CampingGirlNPC" />
 		<configurator
 			class-name="games.stendhal.server.maps.orril.river.GoldProspectorNPC" />
@@ -294,7 +320,9 @@
 
 	<zone name="0_orril_river_se" level="0" x="500000" y="500384"
 		file="Level 0/orril/river_se.tmx">
-		
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<entity x="68" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>

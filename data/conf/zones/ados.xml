@@ -8,9 +8,15 @@
 
  <!--  Ground level -->
   <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
  </zone>
  
  <zone name="0_ados_mountain_n2_w" level="0" x="500512" y="499744" file="Level 0/ados/mountain_n2_w.tmx">
+   <attributes>
+			<parameter name="color_method">time</parameter>
+   </attributes>
    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
    <configurator class-name="games.stendhal.server.maps.ados.entwives.EntwifeNPC"/>
         <portal x="18" y="52" ref="ent1n">
@@ -80,6 +86,9 @@
  </zone>
 
  <zone name="0_ados_mountain_n2" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2.tmx">
+    <attributes>
+			<parameter name="color_method">time</parameter>
+	</attributes>
  	<point-of-interest x="63" y="48">
  		<name>Amazon Tunnel West Entrance</name>
  		<title>Amazon Tunnel</title>
@@ -90,9 +99,15 @@
  </zone>
 
  <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="Level 0/ados/wall_n2.tmx">
+ 	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  </zone>
 
  <zone name="0_ados_city_n2" level="0" x="500896" y="499744" file="Level 0/ados/city_n2.tmx">
+ 	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.market.WeaponryTraderNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.BBQGrillmasterNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
@@ -258,6 +273,9 @@
     
 
  <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
  
         <entity x="124" y="122">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -296,6 +314,9 @@
  </zone>
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
+ 	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
   
         <entity x="5" y="124">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -378,6 +399,9 @@ areas.
  </zone>
 
 	<zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="Level 0/ados/outside_nw.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
 		<configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
 		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
@@ -494,6 +518,9 @@ West: Semos
   </zone>
    
  <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
 
@@ -604,6 +631,9 @@ West: Semos
  </zone>
 
  <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="Level 0/ados/city_n.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
    <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
    <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
    <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" /> 
@@ -2707,6 +2737,9 @@ My fee:
  </zone>
 
   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
    <configurator class-name="games.stendhal.server.maps.ados.forest.FarmerNPC"/>
    <configurator class-name="games.stendhal.server.maps.ados.forest.SickleingHalfelfNPC"/>
    <portal x="21" y="100" ref="farm">
@@ -2740,6 +2773,9 @@ My fee:
   </zone>
 
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
     
         <entity x="123" y="43">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -2777,6 +2813,9 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
      <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
      
         <entity x="3" y="35">
@@ -2800,7 +2839,9 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
-   
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
         <entity x="1" y="1">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
                 <parameter name="sound">lost_in_the_fog</parameter>
@@ -2811,6 +2852,9 @@ Southeast: Docks
    </zone>
 
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingManNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingBoyNPC"/>
     
@@ -2926,6 +2970,9 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
  <configurator class-name="games.stendhal.server.maps.ados.city.ForeignWomanNPC"/>
         <entity x="80" y="12">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -3187,11 +3234,17 @@ Southeast: Docks
    </zone>
 
    <zone name="0_ados_ocean_e" level="0" x="501024" y="500000" accessible="false" file="Level 0/ados/ocean_e.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 <!-- temporarily no teleport in since it is not accessible to players most of the time and if we run a raid there, players shouldn't mark scrolls -->
      <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
    </zone>
   
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
      <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
    
             <entity x="1" y="1">
@@ -3213,6 +3266,9 @@ Southeast: Docks
    </zone>
    
  <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
+ 	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  <!-- Removed till vaults ready <portal x="49" y="33" ref="down_left">
    <destination zone="-1_ados_vaults" ref="up_left"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
@@ -3230,6 +3286,9 @@ Southeast: Docks
  </zone>
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
+ 	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
    <configurator class-name="games.stendhal.server.maps.ados.city.ManWithHatNPC"/>
         <entity x="85" y="10">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -3501,6 +3560,9 @@ Southeast: Docks
  </zone> -->
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
      <configurator class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC" />
         <entity x="96" y="105">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -3516,16 +3578,24 @@ Southeast: Docks
  
 
  <zone name="0_ados_coast_sw" level="0" x="500768" y="500256" file="Level 0/ados/coast_sw.tmx">
-
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  </zone>
 
  <zone name="0_ados_coast_s" level="0" x="500896" y="500256" file="Level 0/ados/coast_s.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  </zone>
 
 
 
 
  <zone name="0_ados_river_s2_w2" level="0" x="500640" y="500384" file="Level 0/ados/river_s2_w2.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  </zone>
 
 

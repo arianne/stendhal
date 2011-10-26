@@ -41,7 +41,9 @@
  </zone>
 
  <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
-	
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
 	<entity x="43" y="90">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      	<parameter name="species">red lionfish</parameter>
@@ -66,6 +68,9 @@
 
 
  <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
   <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC"/>
  <entity x="11" y="81">
 	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -97,7 +102,9 @@
  </zone>
 
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
-  
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
   	 <entity x="13" y="38">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      	<parameter name="species">red lionfish</parameter>
@@ -110,7 +117,9 @@
  </zone>
 
  <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
- 	
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes> 	
  	 <entity x="62" y="109">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      	<parameter name="species">red lionfish</parameter>

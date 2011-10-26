@@ -28,6 +28,9 @@
  <!--  Ground level -->
 
 	<zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 		<configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC"/>
 		<configurator class-name="games.stendhal.server.maps.fado.city.NunNPC"/>
 		<configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC"/>
@@ -715,6 +718,9 @@ For example say:  11  if you want the room called Water of Love.
      </zone>
 
 <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
   <entity x="63" y="82">
     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -739,6 +745,9 @@ For example say:  11  if you want the room called Water of Love.
 
 
 <zone name="0_fado_forest_e" level="0" x="499872" y="500512" file="Level 0/fado/forest_e.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
   <portal x="65" y="68" ref="palace_entrance_left">
    <destination zone="int_oni_palace_0" ref="entrance1_right"/>
    <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
@@ -821,6 +830,9 @@ For example say:  11  if you want the room called Water of Love.
   </portal>
  </zone>
 <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
  <configurator class-name="games.stendhal.server.maps.fado.forest.OldWomanNPC" />
   <configurator class-name="games.stendhal.server.maps.fado.forest.WitchNPC" />
@@ -841,7 +853,9 @@ For example say:  11  if you want the room called Water of Love.
 </zone>
 
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
-
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
 	<point-of-interest x="30" y="105">
 		<name>Fado Great Caves 5</name>
 		<title>Fado Great Caves</title>
@@ -852,6 +866,9 @@ For example say:  11  if you want the room called Water of Love.
 
 </zone>
 <zone name="0_fado_forest_s_e2" level="0" x="500000" y="500640" file="Level 0/fado/forest_s_e2.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
  <configurator class-name="games.stendhal.server.maps.fado.forest.GreeterNPC" />
 
 	<point-of-interest x="12" y="11">

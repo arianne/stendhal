@@ -27,6 +27,9 @@
  <!-- Level 0 (Ground) -->
 
      <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
       <configurator class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC"/>
       <configurator class-name="games.stendhal.server.maps.athor.ship.CaptainNPC"/>
 
@@ -97,6 +100,9 @@
      </zone>
 
      <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
      	<entity x="90" y="45">
     		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      		<parameter name="species">clownfish</parameter>
@@ -105,6 +111,9 @@
      </zone>
      
      <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />
@@ -833,6 +842,9 @@
      </zone>
 
     <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="Level 0/athor/island_e.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
 	</zone>
 
  <!-- Level -1 -->

@@ -21,6 +21,9 @@
  <!-- Level 0 (Ground) -->
 
  <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC"/>
   <configurator class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC"/>
@@ -832,7 +835,9 @@
 </zone>
 
 <zone name="0_kirdneh_river_w" level="0" x="500128" y="500512" file="Level 0/kirdneh/river_w.tmx">
-	
+	<attributes>
+		<parameter name="color_method">time</parameter>
+	</attributes>
 	<point-of-interest x="9" y="68">
 		<name>Kirdneh Little Dungeon Forest Entrance</name>
 		<title>Kirdneh Little Dungeon</title>
