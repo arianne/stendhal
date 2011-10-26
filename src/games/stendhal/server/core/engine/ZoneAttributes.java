@@ -17,6 +17,8 @@ import games.stendhal.common.MathHelper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.net.OutputSerializer;
@@ -72,9 +74,25 @@ public class ZoneAttributes {
 	 * @param key
 	 * @param value
 	 */
-	public void put(String key, String value) {
-		attr.put(key, value);
+	private void put(String key, String value) {
+		// Interpret special values
+		if ("color_method".equals(key) && "time".equals(value)) {
+			setColorByDaytime();
+		} else {
+			attr.put(key, value);
+		}
 		invalidate();
+	}
+	
+	/**
+	 * Set all attributes.
+	 * 
+	 * @param map map of attributes
+	 */
+	public void putAll(Map<String, String> map) {
+		for (Entry<String, String> entry : map.entrySet()) {
+			put(entry.getKey(), entry.getValue());
+		}
 	}
 	
 	/**
@@ -82,7 +100,7 @@ public class ZoneAttributes {
 	 * will set the appropriate blend mode, and keep updating the the color
 	 * value as needed.
 	 */
-	public void setColorByDaytime() {
+	private void setColorByDaytime() {
 		put("color_method", "multiply");
 		colorByDaytime = true;
 	}

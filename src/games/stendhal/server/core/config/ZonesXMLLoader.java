@@ -9,6 +9,7 @@ package games.stendhal.server.core.config;
 //
 //
 
+import games.stendhal.server.core.config.zone.AttributesXMLReader;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
 import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
 import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
@@ -47,6 +48,8 @@ public final class ZonesXMLLoader {
 	 */
 	private static final Logger logger = Logger.getLogger(ZonesXMLLoader.class);
 
+	/** Zone attributes reader. */
+	private static final SetupXMLReader attributesReader = new AttributesXMLReader();
 	/**
 	 * The ConfiguratorDescriptor XML reader.
 	 */
@@ -358,7 +361,9 @@ public final class ZonesXMLLoader {
 
 			SetupDescriptor setupDesc = null;
 
-			if (tag.equals("configurator")) {
+			if (tag.equals("attributes")) {
+				setupDesc = attributesReader.read(child);
+			} else if (tag.equals("configurator")) {
 				setupDesc = configuratorReader.read(child);
 			} else if (tag.equals("implementation")) {
 				desc.setImplementation(child.getAttribute("class-name"));
