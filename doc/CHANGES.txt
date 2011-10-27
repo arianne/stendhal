@@ -1,6 +1,11 @@
 ﻿Changelog
 ---------
 
+0.99
+- Zones can be colored according to hour, and otherwise
+- Outfit dialog resets to current outfit, when opened
+- Thee new outfits
+
 0.98
 
 *world*
