@@ -33,7 +33,7 @@ public class StendhalQuestSystem {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalQuestSystem.class);
 
-	private final List<IQuest> quests = new LinkedList<IQuest>();
+	private final static List<IQuest> quests = new LinkedList<IQuest>();
 
 
 	private StendhalQuestSystem() {
@@ -49,6 +49,15 @@ public class StendhalQuestSystem {
 		return stendhalQuestSystem;
 	}
 
+	/**
+	 * 
+	 * @param player
+	 */
+	public static void updatePlayerQuests(Player player) {
+		for(int i=0; i<quests.size(); i++) {
+			quests.get(i).updatePlayer(player);
+		}
+	}
 
 	/**
 	 * Initializes the QuestSystem.

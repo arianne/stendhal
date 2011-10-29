@@ -28,7 +28,13 @@ public interface IQuest {
 	 * @return - QuestInfo object with info about this quest
 	 */
 	QuestInfo getQuestInfo(Player player);
+	
+	/**
+	 * 
+	 */
+	void updatePlayer(Player player);
 
+	
 	/**
 	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
 	 */

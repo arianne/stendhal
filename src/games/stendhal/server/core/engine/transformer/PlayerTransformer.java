@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
@@ -92,6 +93,8 @@ public class PlayerTransformer implements Transformer {
 		convertOldfeaturesList(player);
 
 		player.updateItemAtkDef();
+		
+		StendhalQuestSystem.updatePlayerQuests(player);
 
 		UpdateConverter.updateQuests(player);
 

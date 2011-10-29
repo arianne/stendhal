@@ -33,6 +33,10 @@ public abstract class AbstractQuest implements IQuest {
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
 	}
+	
+	public void updatePlayer(Player player) {
+		return;
+	}
 
 	/**
 	 * fill fields of questInfo object with info about this quest
