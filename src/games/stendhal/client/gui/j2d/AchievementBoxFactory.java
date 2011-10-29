@@ -69,6 +69,8 @@ public class AchievementBoxFactory {
 			categoryImage = ImageIO.read(AchievementBoxFactory.class.getClassLoader().getResourceAsStream(imageName));
 		} catch (IOException e) {
 			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image: " + imageName, e);
+		} catch (RuntimeException e) {
+			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image: " + imageName, e);
 		}
 		// Calculate size for the message box
 		String fontName = WtWindowManager.getInstance().getProperty("ui.logfont", FONT_NAME);
