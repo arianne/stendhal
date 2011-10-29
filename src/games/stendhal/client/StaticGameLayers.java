@@ -63,8 +63,10 @@ public class StaticGameLayers {
 	 */
 	public void setZone(Zone zone) {
 		currentZone = zone;
-		setAreaName(zone.getName());
-		markAreaChanged();
+		if (!zone.getName().equals(area)) {
+			setAreaName(zone.getName());
+			markAreaChanged();
+		}
 	}
 
 	/**
@@ -190,15 +192,6 @@ public class StaticGameLayers {
 			return currentZone.getProtection();
 		}
 		return null;
-	}
-
-	/**
-	 * 
-	 * @return the current area/map
-	 * 
-	 */
-	public String getArea() {
-		return area;
 	}
 
 	/**

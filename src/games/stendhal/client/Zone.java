@@ -54,6 +54,12 @@ public class Zone {
 	 * validated.
 	 */
 	private boolean requireData;
+	/**
+	 * Update property of the zone. <code>false</code> usually, but
+	 * <code>true</code> when the zone is an update (such as
+	 * changed colors) to the current zone. 
+	 */
+	private boolean update;
 	
 	/**
 	 * Create a new zone.
@@ -62,6 +68,30 @@ public class Zone {
 	 */
 	Zone(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Check if the zone is an update to another zone, rather than one where
+	 * the player has just moved to.
+	 * 
+	 * @return <code>true</code>, if the zone is an update, <code>false</code>
+	 *	otherwise
+	 */
+	boolean isUpdate() {
+		return update;
+	}
+	
+	/**
+	 * Set the update property of the zone. Zone data that is a color update
+	 * should be prepared in a background thread, as far as possible, to avoid
+	 * pausing the client. For normal zone changes, the update status should be
+	 * <code>false</code>.
+	 * 
+	 * @param update <code>false</code> for normal zone changes. 
+	 * 	<code>true</code> when the zone is an update to the current zone
+	 */
+	void setUpdate(boolean update) {
+		this.update = update;
 	}
 	
 	/**

@@ -243,9 +243,8 @@ public class StendhalClient extends ClientFramework {
 		drawingSemaphore.lock();
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
-		logger.debug("Preparing for zone change");
-		staticLayers.clear();
 
+		String oldZone = (currentZone != null) ? currentZone.getName() : null;
 		/*
 		 * Set the new area name
 		 */
@@ -262,8 +261,15 @@ public class StendhalClient extends ClientFramework {
 			currentZone = new Zone(name.substring(0, i));
 		}
 
-		for (ZoneChangeListener listener : zoneChangeListeners) {
-			listener.onZoneChange();
+		// Is it just a reload for new coloring?
+		boolean isColorUpdate = currentZone.getName().equals(oldZone);
+		currentZone.setUpdate(isColorUpdate);
+		if (!isColorUpdate) {
+			logger.debug("Preparing for zone change");
+			staticLayers.clear();
+			for (ZoneChangeListener listener : zoneChangeListeners) {
+				listener.onZoneChange();
+			}
 		}
 
 		contentToLoad = 0;
@@ -301,8 +307,8 @@ public class StendhalClient extends ClientFramework {
 		}
 		
 		// Don't change the zone until it's ready
-		if ((contentToLoad == 0) && currentZone.validate()) {
-			staticLayers.setZone(currentZone);
+		if (contentToLoad == 0) {
+			validateAndUpdateZone(currentZone);
 		}
 
 		return items;
@@ -326,6 +332,14 @@ public class StendhalClient extends ClientFramework {
 		return (contentToLoad != 0);
 	}
 
+	/**
+	 * Load layer data
+	 * 
+	 * @param name name of the layer
+	 * @param in
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void contentHandling(final String name, final InputStream in)
 			throws IOException, ClassNotFoundException {
 		final int i = name.indexOf('.');
@@ -352,9 +366,7 @@ public class StendhalClient extends ClientFramework {
 				logger.error("onTransfer", e);
 			}
 		}
-		// Prefer preparing the zone outside the EDT, if possible
-		currentZone.validate();
-		staticLayers.setZone(currentZone);
+		validateAndUpdateZone(currentZone);
 
 		contentToLoad -= items.size();
 
@@ -647,5 +659,45 @@ public class StendhalClient extends ClientFramework {
 		 * Called when the user is changing zone.
 		 */
 		void onZoneChange();
+	}
+	
+	/**
+	 * Validate a zone (prepare the tilesets), and set it as the current zone.
+	 * Zones that are just updates (changed colors, for example), get validated
+	 * in a background thread.
+	 *
+	 * @param zone zone to be validated
+	 */
+	private void validateAndUpdateZone(final Zone zone) {
+		// Build the tileset data in a background thread for updates, so that
+		// the client does not pause when zone colors change.
+		if (zone.isUpdate()) {
+			Thread worker = new Thread() {
+				@Override
+				public void run() {
+					zone.validate();
+					// Push "zone change" back to the game loop, so that zone
+					// name checking works correctly, and that there aren't two
+					// zone changes happening from two different threads.
+					GameLoop.get().runOnce(new Runnable() {
+						public void run() {
+							if (!zone.getName().equals(staticLayers.getAreaName())) {
+								/*
+								 * The player has changed zones while the zone,
+								 * update was running. Just throw the zone away
+								 * as outdated.
+								 */
+								return;
+							}
+							staticLayers.setZone(zone);
+						}
+					});
+				}
+			};
+			worker.start();
+		} else {
+			zone.validate();
+			staticLayers.setZone(zone);
+		}
 	}
 }
