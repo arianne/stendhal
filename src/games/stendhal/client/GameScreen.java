@@ -41,6 +41,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -1240,6 +1241,14 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 */
 		boolean locked() {
 			return !(sizeReceived && playerReceived);
+		}
+	}
+	
+	public void onZoneUpdate() {
+		// * Update the coloring of the entity views. *
+		for (Entry<IEntity, EntityView> entry : entities.entrySet()) {
+			// initialize() should trigger making a new image
+			entry.getValue().initialize(entry.getKey());
 		}
 	}
 

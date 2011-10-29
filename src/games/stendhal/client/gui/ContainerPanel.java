@@ -154,6 +154,10 @@ public class ContainerPanel extends JScrollPane implements Inspector, StendhalCl
 		}
 	}
 	
+	public void onZoneUpdate() {
+		// Ignore recoloring events
+	}
+	
 	/**
 	 * Call this when the user entity at the new zone has been constructed.
 	 */

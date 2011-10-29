@@ -659,6 +659,10 @@ public class StendhalClient extends ClientFramework {
 		 * Called when the user is changing zone.
 		 */
 		void onZoneChange();
+		/**
+		 * Called when the zone is updated, such as when the coloring changes.
+		 */
+		void onZoneUpdate();
 	}
 	
 	/**
@@ -690,6 +694,9 @@ public class StendhalClient extends ClientFramework {
 								return;
 							}
 							staticLayers.setZone(zone);
+							for (ZoneChangeListener listener : zoneChangeListeners) {
+								listener.onZoneUpdate();
+							}
 						}
 					});
 				}
