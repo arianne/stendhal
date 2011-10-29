@@ -26,6 +26,7 @@ import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.TradeState;
+import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.WordList;
@@ -149,9 +150,11 @@ public class Player extends RPEntity implements UseListener {
 	private Set<String> reachedAchievements;
 
 	/**
-	 * prefered language
+	 * preferred language
 	 */
 	private String language;
+
+	private String clientVersion;
 
 	public static void generateRPClass() {
 		try {
@@ -1416,7 +1419,7 @@ public class Player extends RPEntity implements UseListener {
 
 		notifyWorldAboutChanges();
 	}
-	
+
 	public void clearFoodList() {
 		itemsToConsume.clear();
 	}
@@ -1549,7 +1552,7 @@ public class Player extends RPEntity implements UseListener {
 		// second slot so that we can return to it later.
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
-			
+
 			// remember the old color selections.
 			for (String part : RECOLORABLE_OUTFIT_PARTS) {
 				String tmp = part + "_orig";
@@ -1852,10 +1855,20 @@ public class Player extends RPEntity implements UseListener {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
 
-	public void setSentence(final String arg) {
-		put("sentence", arg);
+	/**
+	 * sets the player sentence
+	 *
+	 * @param sentence sentence to store
+	 */
+	public void setSentence(final String sentence) {
+		put("sentence", sentence);
 	}
 
+	/**
+	 * gets the player sentence displayed on the web site
+	 *
+	 * @return player sentence
+	 */
 	public String getSentence() {
 		String result = "";
 		if (has("sentence")) {
@@ -1868,10 +1881,42 @@ public class Player extends RPEntity implements UseListener {
 	private boolean disconnected = false;
 	private UseListener useListener;
 
+	/**
+	 * checks whether this client is flagged as disconnected
+	 *
+	 * @return true, if the client is disconnected; false otherwise.
+	 */
 	public boolean isDisconnected() {
 		return disconnected;
 	}
 
+	/**
+	 * sets the client version
+	 *
+	 * @param version
+	 */
+	public void setClientVersion(String version) {
+		this.clientVersion = version;
+	}
+
+	/**
+	 * checks if the client is newer than the requested version
+	 *
+	 * @param version requested version
+	 * @return check the client is newer
+	 */
+	public boolean isClientNewerThan(String version) {
+		if (clientVersion == null) {
+			return false;
+		}
+		return Version.compare(clientVersion, version) <= 0;
+	}
+
+	/**
+	 * gets a list of all rings of life that are not broken
+	 *
+	 * @return list of rings of life
+	 */
 	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
 		final List<RingOfLife> result = new LinkedList<RingOfLife>();
 
@@ -2463,10 +2508,10 @@ public class Player extends RPEntity implements UseListener {
 	public boolean hasUseListener() {
 		return (this.useListener != null);
 	}
-	
+
 	/**
 	 * Invoked when the object is used.
-	 * 
+	 *
 	 * @param user the RPEntity who uses the object
 	 * @return true if successful
 	 */

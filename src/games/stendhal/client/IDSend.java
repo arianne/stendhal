@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.common.Debug;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,48 +21,79 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
 import java.util.Random;
 
+import marauroa.common.crypto.Hash;
 import marauroa.common.game.RPAction;
 import marauroa.common.io.Persistence;
 
 import org.apache.log4j.Logger;
 
+/**
+ * sends id
+ */
 public final class IDSend {
-	
+
 	/** the logger instance. */
 	private static final Logger logger = Logger
 			.getLogger(IDSend.class);
-	
+
 	/** filename for the settings persistence. */
 	private static final String FILE_NAME = "cid";
-	
-	private static String computerID = null;
-	
+
+	private static String clientid = null;
+
+	/**
+	 * sends id, version and distribution
+	 */
 	public static void send() {
 		readID();
 		if(!haveID()) {
 			generateID();
 			saveID();
 		}
-		
+
 		if(!haveID()) {
 			return;
 		}
-		
+
 		final RPAction action = new RPAction();
 
 		action.put("type", "cid");
-		action.put("id", computerID);
+		action.put("id", clientid);
+		String version = Debug.VERSION;
+		if (Debug.PRE_RELEASE_VERSION != null) {
+			version = version + " - " + Debug.PRE_RELEASE_VERSION;
+		}
+		action.put("version", version);
 
+		try {
+			Class<?> clazz = Class.forName("games.stendhal.client.update.Starter");
+			if (clazz != null) {
+				Object[] objects = clazz.getSigners();
+				if ((objects != null) && objects instanceof Certificate[]) {
+					Certificate[] certs = (Certificate[]) objects;
+					if ((certs.length > 0)) {
+						byte[] key = certs[0].getPublicKey().getEncoded();
+						System.out.println(Hash.toHexString(Hash.hash(key)));
+						action.put("dist", Hash.toHexString(Hash.hash(key)));
+					}
+				}
+			}
+
+		// Throwable: both errors and exceptions
+		} catch (Throwable e) {
+			logger.error(e, e);
+		}
 		ClientSingletonRepository.getClientFramework().send(action);
-		
+
 	}
-	
+
 	private static void generateID() {
-		computerID = generateRandomString();
+		clientid = generateRandomString();
 	}
-	
+
 	private final static String CHARS =
 		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
 	/**
@@ -75,17 +108,17 @@ public final class IDSend {
 			int pos = (int) (rnd.nextFloat() * CHARS.length());
 			res.append(CHARS.charAt(pos));
 		}
-	
+
 		return res.toString();
 	}
 
 	private static boolean haveID() {
-		if(computerID == null) {
+		if(clientid == null) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	private static void readID() {
 		try {
 			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(), FILE_NAME);
@@ -97,8 +130,8 @@ public final class IDSend {
 			      byte b = (byte)result;
 			      buf.write(b);
 			      result = bis.read();
-			    }        
-			    computerID = buf.toString().trim();
+			    }
+			    clientid = buf.toString().trim();
 			} finally {
 			    bis.close();
 				is.close();
@@ -114,7 +147,7 @@ public final class IDSend {
 					stendhal.getGameFolder(), FILE_NAME);
 			final OutputStreamWriter writer = new OutputStreamWriter(os);
 			try {
-				writer.write(computerID);
+				writer.write(clientid);
 			} finally {
 				writer.close();
 			}
@@ -122,6 +155,6 @@ public final class IDSend {
 			// ignore exception
 			logger.error("Can't write " + stendhal.getGameFolder() + FILE_NAME, e);
 		}
-		
+
 	}
 }

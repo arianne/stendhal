@@ -41,6 +41,9 @@ public class CIDSubmitAction implements ActionListener {
 
 			final String cid = action.get(ID);
 			final String pName = player.getName();
+			if (action.has("version")) {
+				player.setClientVersion(action.get("version"));
+			}
 
 			//add to idList
 			if (idList.containsKey(cid)) {

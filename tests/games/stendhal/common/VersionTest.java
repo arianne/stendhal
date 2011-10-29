@@ -62,6 +62,10 @@ public class VersionTest {
 		assertEquals("VersionCompare 0.52 < 0.52.1", -1, Version.compare("0.52", "0.52.1"));
 		assertEquals("VersionCompare 0.53 > 0.52", 1, Version.compare("0.53", "0.52"));
 		assertEquals("VersionCompare 0.52 < 0.53", -1, Version.compare("0.52", "0.53"));
+		assertEquals("VersionCompare 0.52 < 0.53", -1, Version.compare("0.52.5", "0.53"));
+		assertEquals("VersionCompare 0.52 < 0.53", -5, Version.compare("0.52", "0.52.5"));
+		assertEquals("VersionCompare 0.52 < 0.53", -1, Version.compare("0.52 PRE_RELEASE 2011-10-29", "0.53"));
+		assertEquals("VersionCompare 0.52 < 0.53", -1, Version.compare("0.52", "0.53 PRE_RELEASE 2011-10-29"));
 	}
 
 	/**
