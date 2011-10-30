@@ -34,6 +34,7 @@ public class StatsPanel extends JPanel {
 	private final StatLabel hpLabel, atkLabel, defLabel, xpLabel, levelLabel, moneyLabel;
 	private final StatusIconPanel statusIcons;
 	private final KarmaIndicator karmaIndicator;
+	private final ManaIndicator manaIndicator;
 	
 	StatsPanel() {
 		super();
@@ -46,6 +47,11 @@ public class StatsPanel extends JPanel {
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		karmaIndicator.setToolTipText("Karma");
 		add(karmaIndicator);
+		
+		manaIndicator = new ManaIndicator();
+		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+		manaIndicator.setToolTipText("Mana");
+		add(manaIndicator);
 		
 		hpLabel = new StatLabel();
 		add(hpLabel);
@@ -109,6 +115,24 @@ public class StatsPanel extends JPanel {
 	 */
 	void setKarma(double karma) {
 		karmaIndicator.setValue(karma);
+	}
+
+	/**
+	 * Set player mana.
+	 * 
+	 * @param mana
+	 */
+	void setMana(double mana) {
+		manaIndicator.setMana(mana);
+	}
+
+	/**
+	 * Set player mana.
+	 * 
+	 * @param mana
+	 */
+	void setBaseMana(double base_mana) {
+		manaIndicator.setBaseMana(base_mana);
 	}
 	
 	/**

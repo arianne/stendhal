@@ -54,6 +54,9 @@ public class StatsPanelController {
 	private int defxp;
 	private int itemDef;
 	
+	private int mana;
+	private int base_mana;
+	
 	/**
 	 * Create a new <code>StatsPanelController</code>. There
 	 * should be only one, so the constructor is hidden.
@@ -134,6 +137,10 @@ public class StatsPanelController {
 		
 		listener = new KarmaChangeListener();
 		pcs.addPropertyChangeListener("karma", listener);
+		
+		listener = new ManaChangeListener();
+		pcs.addPropertyChangeListener("mana", listener);
+		pcs.addPropertyChangeListener("base_mana", listener);
 	}
 	
 	/**
@@ -458,6 +465,29 @@ public class StatsPanelController {
 				panel.setKarma(Double.parseDouble(newKarma));
 			} catch (NumberFormatException e) {
 				Logger.getLogger(StatsPanelController.class).error("Invalid karma value", e);
+			}
+		}
+	}
+	
+	/**
+	 * Listener for mana changes.
+	 */
+	private class ManaChangeListener implements PropertyChangeListener {
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+		
+			try {
+				if (event.getPropertyName().equals("mana")) {
+					mana = Integer.parseInt((String) event.getNewValue());
+					panel.setMana(mana);
+				} else {
+					base_mana = Integer.parseInt((String) event.getNewValue());
+					panel.setBaseMana(base_mana);
+				}
+			} catch (NumberFormatException e) {
+				Logger.getLogger(StatsPanelController.class).error("Invalid mana value", e);
 			}
 		}
 	}
