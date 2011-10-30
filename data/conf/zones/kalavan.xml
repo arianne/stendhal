@@ -361,6 +361,7 @@
 	<parameter name="x">10</parameter>
 	<parameter name="y">13</parameter>
   </configurator>
+  
   <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 	<parameter name="x">5</parameter>
 	<parameter name="y">21</parameter>
@@ -370,19 +371,42 @@
   <portal x="8" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_1_entrance"/>
   </portal>
+  
   <!--  left table -->
 		<entity x="15" y="17">
 			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
 			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
+			<attribute name="width">1</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
+		<entity x="16" y="17">
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+			<attribute name="width">1</attribute>
 			<attribute name="height">4</attribute>
 		</entity>
+		
+		<entity x="15" y="20">
+			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+			<attribute name="width">1</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
 		<!--  right table -->
   <entity x="20" y="13">
    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
    <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-   <attribute name="width">3</attribute>
+   <attribute name="width">1</attribute>
    <attribute name="height">2</attribute>
+  </entity>
+  
+  <entity x="21" y="14">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+   <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+   <attribute name="width">2</attribute>
+   <attribute name="height">1</attribute>
   </entity>
   <!-- toilet -->
   <entity x="17" y="1">
