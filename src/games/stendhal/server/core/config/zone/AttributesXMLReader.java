@@ -23,7 +23,7 @@ public class AttributesXMLReader extends SetupXMLReader {
 	private static class AttributesDescriptor extends SetupDescriptor {
 		@Override
 		public void setup(StendhalRPZone zone) {
-			ZoneAttributes attr = new ZoneAttributes(zone.getName());
+			ZoneAttributes attr = new ZoneAttributes(zone);
 			attr.putAll(getParameters());
 			zone.setAttributes(attr);
 		}

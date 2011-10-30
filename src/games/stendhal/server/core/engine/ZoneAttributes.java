@@ -12,11 +12,15 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.common.CRC;
-import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.entity.player.Player;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -47,25 +51,35 @@ public class ZoneAttributes {
 	/** An object for storing the attributes. */
 	private final RPObject attr = new RPObject();
 	/**
+	 * The zone where these attributes belong to.
+	 */
+	private final StendhalRPZone zone;
+	/**
 	 * <code>true</code>, if the the current binary content is valid, 
 	 * <code>false</code> if it needs to be rewritten.
 	 */
 	private boolean valid;
-	/**
-	 * <code>true</code>, if the zone should be coloured according to the
-	 * normal sunlight, <code>false</code> otherwise. 
-	 */
-	private boolean colorByDaytime;
 	
 	/**
-	 * Create new ZoneAttributes.
+	 * Cereate new ZoneAttributes.
 	 * 
-	 * @param mapName name of the map
+	 * @param zone
 	 */
-	public ZoneAttributes(String mapName) {
+	public ZoneAttributes(StendhalRPZone zone) {
 		attr.setID(RPObject.INVALID_ID);
-		content.name = mapName + ".data_map";
+		// old client ignore layers ending in _map, thus the odd choice of name
+		content.name = zone.getName() + ".data_map";
 		content.cacheable = false;
+		this.zone = zone;
+	}
+	
+	/**
+	 * Get the zone where these attributes belong to.
+	 * 
+	 * @return zone
+	 */
+	StendhalRPZone getZone() {
+		return zone;
 	}
 	
 	/**
@@ -77,10 +91,20 @@ public class ZoneAttributes {
 	private void put(String key, String value) {
 		// Interpret special values
 		if ("color_method".equals(key) && "time".equals(value)) {
-			setColorByDaytime();
+			Daylight.get().manageAttributes(this);
 		} else {
 			attr.put(key, value);
 		}
+		invalidate();
+	}
+	
+	/**
+	 * Remove an attribute.
+	 * 
+	 * @param key attribute name
+	 */
+	void remove(String key) {
+		attr.remove(key);
 		invalidate();
 	}
 	
@@ -96,25 +120,12 @@ public class ZoneAttributes {
 	}
 	
 	/**
-	 * Call this, if the zone should be colored by the daylight. The attributes
-	 * will set the appropriate blend mode, and keep updating the the color
-	 * value as needed.
-	 */
-	private void setColorByDaytime() {
-		put("color_method", "multiply");
-		colorByDaytime = true;
-	}
-	
-	/**
 	 * Get the contents.
 	 * 
 	 * @return Attributes packed as a layer. The content is a serialized
 	 *	RPObject with the attributes.
 	 */
 	TransferContent getContents() {
-		if (colorByDaytime) {
-			updateDaytimeColor();
-		}
 		if (!valid) {
 			validate();
 		}
@@ -147,41 +158,109 @@ public class ZoneAttributes {
 	}
 	
 	/**
-	 * Update the zone color according to the hour.
+	 * Manager for daylight colored zones.
 	 */
-	private void updateDaytimeColor() {
-		Calendar cal = Calendar.getInstance();
+	private static class Daylight implements TurnListener {
+		/** Time between checking if the color should be changed. Seconds. */ 
+		private static final int CHECK_INTERVAL = 61;
+		/** Singleton instance. */
+		private static final Daylight instance = new Daylight();
+		/** Color corresponding to the current time. */
+		Integer currentColor;
+		
+		/** Managed zones, and their attributes */
+		private final List<ZoneAttributes> zones = new ArrayList<ZoneAttributes>(); 
+		
+		/**
+		 * Create a new Daylight instance. Do not use this.
+		 */
+		private Daylight() {
+			onTurnReached(0);
+		}
+		
+		/**
+		 * Get the Daylight instance.
+		 * 
+		 * @return singleton instance
+		 */
+		static Daylight get() {
+			return instance;
+		}
+		
+		/**
+		 * Make a zone color managed by the daylight colorer.
+		 *  
+		 * @param attr attributes of the zone
+		 */
+		void manageAttributes(ZoneAttributes attr) {
+			zones.add(attr);
+			// Set the initial values
+			attr.put("color_method", "multiply");
+			setZoneColor(attr, currentColor);
+		}
 
-		int hour = cal.get(Calendar.HOUR_OF_DAY);
-		// anything but precise, but who cares
-		int diffToMidnight = Math.min(hour, 24 - hour);
-		if (diffToMidnight > 3) {
-			setZoneColor(null);
-		} else if (diffToMidnight == 3) {
-			setZoneColor(SUNSET_COLOR);
-		} else if (diffToMidnight == 2) {
-			setZoneColor(EARLY_NIGHT_COLOR);
-		} else {
-			setZoneColor(MIDNIGHT_COLOR);
+		public void onTurnReached(int currentTurn) {
+			updateDaytimeColor();
+			SingletonRepository.getTurnNotifier().notifyInSeconds(CHECK_INTERVAL, this);
 		}
-	}
-	
-	/**
-	 * Set the zone color. Flags the contents invalid if the color changed.
-	 * 
-	 * @param color
-	 */
-	private void setZoneColor(Integer color) {
-		String oldColor = attr.get("color");
-		if (color == null) {
-			if (attr.remove("color") != null) {
-				invalidate();
+		
+		/**
+		 * Update the zone color according to the hour.
+		 */
+		private void updateDaytimeColor() {
+			Calendar cal = Calendar.getInstance();
+
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			// anything but precise, but who cares
+			int diffToMidnight = Math.min(hour, 24 - hour);
+			if (diffToMidnight > 3) {
+				setZoneColors(null);
+			} else if (diffToMidnight == 3) {
+				setZoneColors(SUNSET_COLOR);
+			} else if (diffToMidnight == 2) {
+				setZoneColors(EARLY_NIGHT_COLOR);
+			} else {
+				setZoneColors(MIDNIGHT_COLOR);
 			}
-			return;
 		}
-		if (!color.equals(MathHelper.parseInt(oldColor))) {
-			attr.put("color", color.intValue());
-			invalidate();
+		
+		/**
+		 * Set the current daylight color. Notifies all the managed zones if
+		 * the color has changed.
+		 * 
+		 * @param color
+		 */
+		private void setZoneColors(Integer color) {
+			if (((color == null) && (currentColor != null))
+					|| ((color != null) && !color.equals(currentColor))) {
+				for (ZoneAttributes attr : zones) {
+					setZoneColor(attr, color);
+				}
+			}
+			currentColor = color;
+		}
+		
+		/**
+		 * Set the color of a zone. Notifies all the players with a recent
+		 * enough client
+		 * 
+		 * @param attr attributes of the zone
+		 * @param color new color value
+		 */
+		private void setZoneColor(ZoneAttributes attr, Integer color) {
+			if (color == null) {
+				attr.remove("color");
+			} else {
+				attr.put("color", color.toString());
+			}
+			// Notify resident players about the changed color
+			for (Player player : attr.getZone().getPlayers()) {
+				// Old clients do not understand content transfer that just
+				// update the old map, and end up with no entities on the screen
+				if (player.isClientNewerThan("0.97")) {
+					StendhalRPAction.transferContent(player);
+				}
+			}
 		}
 	}
 }
