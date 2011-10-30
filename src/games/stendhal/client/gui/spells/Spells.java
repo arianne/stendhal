@@ -13,27 +13,26 @@ import javax.swing.SwingUtilities;
 public class Spells extends SlotWindow implements FeatureChangeListener {
 
 	private static final long serialVersionUID = 79889495195014549L;
-	
+
 	public Spells() {
 		super("spells", 3, 1);
 		//panel window, no closing allowed
 		setCloseable(false);
 	}
-	
-	private void disableSpells() {
-		/*
-		 * disabling spells should not happen unless we
-		 * decide to implement some harm that could let
-		 * a player lose his magical abilities
-		 * (i.e. proper equipment is not worn?)
-		 */
+
+	public void featureDisabled(final String name) {
+		if (name.equals("spells")) {
+			if(!isVisible()) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						setVisible(false);
+					}
+				});
+			}
+		}
 	}
 
-	public void featureDisabled(String name) {
-		disableSpells();
-	}
-
-	public void featureEnabled(String name, String value) {
+	public void featureEnabled(final String name, final String value) {
 		if (name.equals("spells")) {
 			if(!isVisible()) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -44,5 +43,5 @@ public class Spells extends SlotWindow implements FeatureChangeListener {
 			}
 		}
 	}
-	
+
 }
