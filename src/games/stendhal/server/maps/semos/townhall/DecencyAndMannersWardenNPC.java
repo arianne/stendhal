@@ -57,7 +57,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.setDescription("Ketteh Wehoh is the town Decency and Manners Warden who stants in the townhall of Semos.");
+		npc.setDescription("Ketteh Wehoh is the town Decency and Manners Warden who stands in the Townhall of Semos.");
 		npc.setEntityClass("elegantladynpc");
 
 		npc.setDirection(Direction.RIGHT);
