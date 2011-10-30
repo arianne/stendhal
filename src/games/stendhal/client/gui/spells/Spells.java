@@ -22,7 +22,7 @@ public class Spells extends SlotWindow implements FeatureChangeListener {
 
 	public void featureDisabled(final String name) {
 		if (name.equals("spells")) {
-			if(!isVisible()) {
+			if(isVisible()) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						setVisible(false);
