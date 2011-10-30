@@ -83,6 +83,8 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nXP:     " + inspected.getXP());
 			st.append("\nLevel:  " + inspected.getLevel());
 			st.append("\nKarma:  " + inspected.getKarma());
+			st.append("\nMana:  " + inspected.getMana() + " / "
+					+ inspected.getBaseMana());
 			st.append("\nequips");
 			
 			for (final RPSlot slot : inspected.slots()) {
