@@ -2,4 +2,5 @@
 <groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="spells/light.xml" />
+	<group uri="spells/fire.xml" />
 </groups>
