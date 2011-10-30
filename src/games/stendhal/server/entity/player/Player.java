@@ -1918,7 +1918,7 @@ public class Player extends RPEntity implements UseListener {
 		if (clientVersion == null) {
 			return false;
 		}
-		return Version.compare(clientVersion, version) <= 0;
+		return Version.compare(clientVersion, version) > 0;
 	}
 
 	/**

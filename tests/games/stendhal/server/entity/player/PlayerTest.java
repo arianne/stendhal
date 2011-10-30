@@ -482,4 +482,30 @@ public class PlayerTest {
 		// regular outfit change should not use stored colors
 		assertThat(player.get("outfit_colors", "dress"), is(nullValue()));
 	}
+	
+	/**
+	 * Test comparing client version to a known constant
+	 */
+	@Test
+	public void testClientVersion() {
+		Player player = PlayerTestHelper.createPlayer("test dummy");
+		
+		player.setClientVersion("0.42");
+		assertThat(player.isClientNewerThan("0.41"), is(true));
+		assertThat(player.isClientNewerThan("0.41.5"), is(true));
+		assertThat(player.isClientNewerThan("0.42"), is(false));
+		assertThat(player.isClientNewerThan("0.42.1"), is(false));
+		assertThat(player.isClientNewerThan("0.53"), is(false));
+		assertThat(player.isClientNewerThan("1.0"), is(false));
+		assertThat(player.isClientNewerThan("1.53"), is(false));
+		assertThat(player.isClientNewerThan("0.53.1"), is(false));
+		
+		// a bit future proofing
+		player.setClientVersion("0.99");
+		assertThat(player.isClientNewerThan("0.100"), is(false));
+		player.setClientVersion("1.0");
+		assertThat(player.isClientNewerThan("0.100"), is(true));
+		assertThat(player.isClientNewerThan("1.1"), is(false));
+		assertThat(player.isClientNewerThan("0.99"), is(true));
+	}
 }
