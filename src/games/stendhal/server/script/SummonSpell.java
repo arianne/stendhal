@@ -9,8 +9,8 @@ import games.stendhal.server.entity.spell.Spell;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
+import marauroa.common.game.RPSlot;
 /**
  * Summon a spell into the spells slot for the given player.
  * 
@@ -20,18 +20,22 @@ import marauroa.common.game.RPObject.ID;
 public class SummonSpell  extends ScriptImpl{
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 		if(args.size() != 2) {
 			admin.sendPrivateText("Usage: [character] [spell name].");
 			return;
 		}
-		EntityManager em = SingletonRepository.getEntityManager();
-		Spell spell = em.getSpell(args.get(1));
-		String name = args.get(0);
-		Player player = SingletonRepository.getRuleProcessor().getPlayer(name);
-		RPSlot slot = player.getSlot("spells");
+		final EntityManager em = SingletonRepository.getEntityManager();
+		final Spell spell = em.getSpell(args.get(1));
+		if(spell == null) {
+			admin.sendPrivateText("The spell "+ args.get(1) +" was not found.");
+			return;
+		}
+		final String name = args.get(0);
+		final Player player = SingletonRepository.getRuleProcessor().getPlayer(name);
+		final RPSlot slot = player.getSlot("spells");
 		ID id = null;
-		for(RPObject o : slot) {
+		for(final RPObject o : slot) {
 			if(spell.getName().equalsIgnoreCase(o.get("name"))) {
 				id = o.getID();
 			}
@@ -41,5 +45,5 @@ public class SummonSpell  extends ScriptImpl{
 		}
 		slot.add(spell);
 	}
-	
+
 }
