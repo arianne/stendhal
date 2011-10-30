@@ -765,7 +765,7 @@ public class Player extends RPEntity implements UseListener {
 		if (enabled) {
 			setFeature(name, "");
 		} else {
-			setFeature(name, null);
+			unsetFeature(name);
 		}
 	}
 
@@ -781,6 +781,15 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public void setFeature(final String name, final String value) {
 		put("features", name, value);
+	}
+	
+	/**
+	 * Unset a client feature
+	 * 
+	 * @param name The feature mnemonic
+	 */
+	public void unsetFeature(final String name) {
+		remove("features", name);
 	}
 
 	/**
