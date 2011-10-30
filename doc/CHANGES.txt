@@ -1,12 +1,13 @@
 ﻿Changelog
 ---------
 
-0.99
+0.98
+
+*client*
+
 - Zones can be colored according to hour, and otherwise
 - Outfit dialog resets to current outfit, when opened
-- Three new outfits
-
-0.98
+- Three new outfits available
 
 *world*
 - Some garlic seeds have been planted by Sue in the Kalavan City Gardens
