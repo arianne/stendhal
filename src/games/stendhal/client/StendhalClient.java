@@ -230,6 +230,7 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		if (inBatchUpdate && (contentToLoad == 0)) {
+			validateAndUpdateZone(currentZone);
 			inBatchUpdate = false;
 			drawingSemaphore.unlock();
 		}
@@ -305,11 +306,6 @@ public class StendhalClient extends ClientFramework {
 				contentToLoad++;
 			}
 		}
-		
-		// Don't change the zone until it's ready
-		if (contentToLoad == 0) {
-			validateAndUpdateZone(currentZone);
-		}
 
 		return items;
 	}
@@ -366,7 +362,6 @@ public class StendhalClient extends ClientFramework {
 				logger.error("onTransfer", e);
 			}
 		}
-		validateAndUpdateZone(currentZone);
 
 		contentToLoad -= items.size();
 
