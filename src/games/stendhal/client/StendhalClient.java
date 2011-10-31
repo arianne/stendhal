@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JOptionPane;
@@ -93,7 +92,7 @@ public class StendhalClient extends ClientFramework {
 	 * Whether the client is in a batch update.
 	 */
 	private boolean inBatchUpdate = false;
-	private Lock drawingSemaphore = new ReentrantLock();
+	private ReentrantLock drawingSemaphore = new ReentrantLock();
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 	/** The zone currently under loading. */
@@ -232,7 +231,16 @@ public class StendhalClient extends ClientFramework {
 		if (inBatchUpdate && (contentToLoad == 0)) {
 			validateAndUpdateZone(currentZone);
 			inBatchUpdate = false;
-			drawingSemaphore.unlock();
+			/*
+			 * Rapid zone change can cause two content transfers in a row. 
+			 * Similarly a zone update that happens when the player changes
+			 * zones. Only the latter will ever get a perception, so we need to
+			 * release any locks we are holding, or the game screen will be
+			 * permanently frozen.
+			 */
+			while (drawingSemaphore.getHoldCount() > 0) {
+				drawingSemaphore.unlock();
+			}
 		}
 	}
 
