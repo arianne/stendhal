@@ -196,6 +196,9 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 */
 	public Spell(final RPObject object) {
 		super(object);
+		if(!object.has(ATTR_TIMESTAMP)) {
+			setTimestamp(0);
+		}
 		setNature(Nature.parse(object.get(ATTR_NATURE)));
 		setRPClass(RPCLASS_SPELL);
 	}
@@ -235,6 +238,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_RATE, rate);
 		put(ATTR_REGEN, regen);
 		put(ATTR_NATURE, nature.name());
+		put(ATTR_TIMESTAMP, 0);
 		put("type", "spell");
 	}
 
@@ -379,7 +383,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		try {
 			timeStamp = Long.parseLong(get(ATTR_TIMESTAMP));
 		} catch (final NumberFormatException e) {
-			Logger.getLogger(Spell.class).error("Invalid timestamp: " + get(ATTR_TIMESTAMP), e);
+			Logger.getLogger(Spell.class).debug("Invalid timestamp: " + get(ATTR_TIMESTAMP)+" Will return default value 0", e);
 		}
 		return timeStamp;
 	}
