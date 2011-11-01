@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spells xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../spells.xsd ">
+	<spell name="lifedrain">
+		<implementation class-name="games.stendhal.server.entity.spell.AttackingSpell"/>
+		<nature value="dark"/>
+		<attributes>
+			<mana value="5" />
+			<cooldown value="3" />
+			<minimum-level value="0" />
+			<range value="10" />
+			<atk value="10" />
+			<def value="0" />
+			<amount value="5" />
+			<regen  value="0" />
+			<rate  value="1" />			
+			<lifesteal value="0.15" />
+		</attributes>
+	</spell>
+</spells>

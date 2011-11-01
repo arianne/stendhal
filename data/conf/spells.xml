@@ -3,4 +3,5 @@
 	xsi:schemaLocation="stendhal groups.xsd ">
 	<group uri="spells/light.xml" />
 	<group uri="spells/fire.xml" />
+	<group uri="spells/dark.xml" />
 </groups>
