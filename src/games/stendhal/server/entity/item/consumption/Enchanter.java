@@ -13,31 +13,13 @@
 package games.stendhal.server.entity.item.consumption;
 
 import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.player.Player;
 
-public final class FeederFactory {
-	private static Stuffer stuffer = new Stuffer();
-	private static Enchanter enchanter = new Enchanter();
-	private static Immunizer imunizer = new Immunizer();
-	private static Poisoner poisoner = new Poisoner();
-	private static Eater eater = new Eater();
+class Enchanter implements Feeder {
 
-	public static Feeder get(final ConsumableItem item) {
-		if (item.getName().contains("potion")) {
-			return stuffer;
-		}
-		
-		if(item.getName().contains("mana")) {
-			return enchanter;
-		}
-		
-		if (item.getRegen() == 0) {
-			return imunizer;
-		} else if (item.getRegen() < 0) {
-			return poisoner;
-		} else {
-			return eater;
-		}
-
+	public boolean feed(final ConsumableItem item, final Player player) {
+		player.addMana(((ConsumableItem) item.splitOff(1)).getAmount(), true);
+		return true;
 	}
 
 }

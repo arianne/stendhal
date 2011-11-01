@@ -388,6 +388,38 @@ public abstract class RPEntity extends GuidedEntity {
 
 		return given;
 	}
+	
+	/**
+	 * Give mana to the entity.
+	 * 
+	 * @param mana
+	 * 			The amount of mana to add/substract.
+	 * @param tell
+	 * 			Whether to tell the entity that mana has been added.
+	 * 
+	 * @return Amount of mana actually refilled.
+	 */
+	public int addMana(int mana, boolean tell) {
+		int old_mana = getMana();
+		int new_mana = old_mana + mana;
+		int given = 0;
+		
+		// no negative mana
+		new_mana = Math.max(new_mana, 0);
+
+		// maximum is base_mana
+		new_mana = Math.min(new_mana, getBaseMana());
+		
+		given = new_mana - old_mana;
+		
+		if(tell) {
+			//TODO: Add notification for increased mana
+		}
+		
+		setMana(new_mana);
+		
+		return given;
+	}
 
 	@Override
 	public void update() {
