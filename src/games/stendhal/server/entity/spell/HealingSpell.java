@@ -18,11 +18,11 @@
 
 package games.stendhal.server.entity.spell;
 
-import marauroa.common.game.RPObject;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.effect.HealingEffect;
+import marauroa.common.game.RPObject;
 
 
 /**
@@ -53,6 +53,7 @@ public class HealingSpell extends Spell {
 	protected boolean isTargetValid(Entity caster, Entity target) {
 		if (target instanceof Player) {
 			if (!caster.equals(target)) {
+				//switch to false if caster should not be the target
 				return true;
 			}
 		}
