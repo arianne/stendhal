@@ -169,9 +169,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private int speed;
 
-	/** A hack to avoid flashes at zone changes */
-	private final AreaChangingLock areaChangingLock = new AreaChangingLock();
-
 	static {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
@@ -499,11 +496,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 */
 		if (StendhalClient.get().tryAcquireDrawingSemaphore()) {
 			try {
-				if (!areaChangingLock.locked()) {
-					super.paintImmediately(x, y, w, h);
-				} else {
-					logger.debug("Skipped drawing");
-				}
+				super.paintImmediately(x, y, w, h);
 			} finally {
 				StendhalClient.get().releaseDrawingSemaphore();
 			}
@@ -701,8 +694,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		wh = (int) height;
 		calculateView(x, y);
 		center();
-		
-		areaChangingLock.onSizeReceived();
 	}
 
 	/*
@@ -1106,7 +1097,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 			calculateView(ix, iy);
 		}
-		areaChangingLock.onPositionReceived();
 	}
 
 	//
@@ -1204,46 +1194,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		Collections.sort(staticSprites);
 	}
 	
-	/**
-	 * A hack to suppress drawing until the GameScreen has the needed data.
-	 */
-	private static class AreaChangingLock {
-		private boolean playerReceived;
-		private boolean sizeReceived;
-		
-		/**
-		 * Called when zone change starts. (Player is removed)
-		 */
-		void lock() {
-			playerReceived = false;
-			sizeReceived = false;
-		}
-		
-		/**
-		 * Called when the position information is received.
-		 */
-		void onPositionReceived() {
-			playerReceived = true;
-		}
-		
-		/**
-		 * Called when map size information is received.
-		 */
-		void onSizeReceived() {
-			sizeReceived = true;
-		}
-		
-		/**
-		 * Check if drawing should be suppressed.
-		 * 
-		 * @return <code>true</code>, if drawing should be suppressed,
-		 * 	<code>false</code> otherwise
-		 */
-		boolean locked() {
-			return !(sizeReceived && playerReceived);
-		}
-	}
-	
 	public void onZoneUpdate() {
 		// * Update the coloring of the entity views. *
 		for (Entry<IEntity, EntityView> entry : entities.entrySet()) {
@@ -1254,7 +1204,5 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	public void onZoneChange() {
 		removeAllObjects();
-		// The user was removed as well
-		areaChangingLock.lock();
 	}
 }
