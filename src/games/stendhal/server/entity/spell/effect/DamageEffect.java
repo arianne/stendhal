@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
  * Used attributes:
  * - amount: How often will this effect hit a player
  * - atk: for usage of the usual damage calcuation acting as a weapon
+ * - lifesteal: percentage of health points healed based on damage done
  * 
  * @author madmetzger
  */
@@ -56,11 +57,13 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	}
 	
 	public void onTurnReached(int currentTurn) {
-		if(numberOfLeftOverHits > 0) {
+		if(numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
 			int damageDone = damageOrigin.damageDone(rpEntityToDamage, getAtk(), getNature());
 			rpEntityToDamage.damage(damageDone, damageOrigin);
+			int toSteal = damageDone * Double.valueOf(getLifesteal()).intValue();
+			damageOrigin.heal(toSteal);
 			numberOfLeftOverHits = numberOfLeftOverHits -1;
-			if (numberOfLeftOverHits > 0) {
+			if (numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(getRate(), new TurnListenerDecorator(this));
 			}
 		}
