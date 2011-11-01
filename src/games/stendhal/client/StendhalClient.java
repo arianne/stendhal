@@ -249,7 +249,6 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * A batch update has begun
 		 */
-		drawingSemaphore.lock();
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
 
@@ -275,6 +274,8 @@ public class StendhalClient extends ClientFramework {
 		currentZone.setUpdate(isColorUpdate);
 		if (!isColorUpdate) {
 			logger.debug("Preparing for zone change");
+			// Only true zone changes need to lock drawing
+			drawingSemaphore.lock();
 			staticLayers.clear();
 			for (ZoneChangeListener listener : zoneChangeListeners) {
 				listener.onZoneChange();
