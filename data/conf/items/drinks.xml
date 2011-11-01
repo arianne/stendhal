@@ -276,6 +276,27 @@
     </equipable>
   </item>
 
+  <item name="mana">
+    <type class="drink" subclass="mana" tileid="-1"/>
+    <description>You see an bottle of mana, to increase your mana rapidly.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="20"/>
+      <frequency value="1"/>
+      <quantity value="1"/>
+      <regen value="0"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="poison">
     <type class="drink" subclass="poison" tileid="-1"/>
     <description>You see a bottle of poison. Don't drink it!</description>
