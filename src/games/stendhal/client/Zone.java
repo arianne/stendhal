@@ -147,6 +147,10 @@ public class Zone {
 				// Keep working, but use an obviously broken color if parsing
 				// the value fails.
 				zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
+			} else {
+				// Ensure there's no old color left. That can happen in the
+				// morning on a daylight colored zone.
+				zoneInfo.setColorMethod(null);
 			}
 			// OK to try validating after this
 			requireData = false;
