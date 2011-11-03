@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.listener;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 
 /**
  * A position change multicaster.
@@ -20,14 +22,8 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	/**
 	 * The position change listeners.
 	 */
-	protected PositionChangeListener[] listeners;
-
-	/**
-	 * Create a position change multicaster.
-	 */
-	public PositionChangeMulticaster() {
-		listeners = new PositionChangeListener[0];
-	}
+	private final CopyOnWriteArrayList<PositionChangeListener> listeners = 
+		new CopyOnWriteArrayList<PositionChangeListener>();
 
 	//
 	// PositionChangeMulticaster
@@ -36,17 +32,11 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	/**
 	 * Add a position change listener.
 	 * 
-	 * @param l
+	 * @param listener
 	 *            The listener.
 	 */
-	public void add(final PositionChangeListener l) {
-		final int len = listeners.length;
-
-		final PositionChangeListener[] newListeners = new PositionChangeListener[len + 1];
-		System.arraycopy(listeners, 0, newListeners, 0, len);
-		newListeners[len] = l;
-
-		listeners = newListeners;
+	public void add(final PositionChangeListener listener) {
+		listeners.add(listener);
 	}
 
 	/**
@@ -56,25 +46,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 *            The listener.
 	 */
 	public void remove(final PositionChangeListener listener) {
-		int idx = listeners.length;
-
-		while (idx-- != 0) {
-			if (listeners[idx] == listener) {
-				final PositionChangeListener[] newListeners = new PositionChangeListener[listeners.length - 1];
-
-				if (idx != 0) {
-					System.arraycopy(listeners, 0, newListeners, 0, idx);
-				}
-
-				if (++idx != listeners.length) {
-					System.arraycopy(listeners, idx, newListeners, idx - 1,
-							listeners.length - idx);
-				}
-
-				listeners = newListeners;
-				break;
-			}
-		}
+		listeners.remove(listener);
 	}
 
 	//
@@ -90,9 +62,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 *            The new Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
-		final PositionChangeListener[] list = listeners;
-
-		for (final PositionChangeListener l : list) {
+		for (final PositionChangeListener l : listeners) {
 			l.positionChanged(x, y);
 		}
 	}
