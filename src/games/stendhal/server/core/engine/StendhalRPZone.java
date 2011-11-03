@@ -70,6 +70,14 @@ import marauroa.server.game.rp.MarauroaRPZone;
 import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
+	/**
+	 * When calculating the danger level, short distance between creatures
+	 * (weighted with creature levels) has an effect of adding to the total
+	 * score. Adjust this constant to make the effect stronger or weaker. Value
+	 * of 0 would mean that the danger level is equal to the level of the
+	 * highest level creature.
+	 */
+	private static final double DANGER_WEIGHT_CREATURE_DENSITY = 1.0;
 
 	TeleportationRules teleRules = new TeleportationRules();
 
@@ -77,7 +85,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Logger logger = Logger.getLogger(StendhalRPZone.class);
 
 	private final List<TransferContent> contents;
-	
+
+	/** Data layer for zone attributes. */
 	private ZoneAttributes attributes;
 
 	private Point entryPoint;
@@ -429,6 +438,59 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Calculate danger level for the zone, and store it in the data layer.
+	 */
+	public void calculateDangerLevel() {
+		// Avoid divide by zero
+		int maxLevel = 1;
+		int levelSum = 1;
+		for (CreatureRespawnPoint spawner : respawnPoints) {
+			Creature creature = spawner.getPrototypeCreature();
+			// Rare creatures should not count
+			if (creature.isRare()) {
+				continue;
+			}
+			// Add 1, so that level 0 creatures do not get completely ignored.
+			int level = creature.getLevel() + 1;
+			maxLevel = Math.max(level, maxLevel);
+			levelSum += level;
+		}
+		// Avoid divide by zero
+		int area = getFreeArea() + 1;
+		/*
+		 * Use as the level of the highest level creature as the base, and
+		 * adjust it upwards by creatures near the same level, inversely
+		 * proportionally to the average distance between the creatures. 
+		 */
+		double dangerLevel = maxLevel * (1 + DANGER_WEIGHT_CREATURE_DENSITY * (levelSum - maxLevel) / (double) maxLevel / Math.sqrt(area)) - 1;
+		/*
+		 * Leave out if 0; the client does not need it, and it can save needing
+		 * to send a data layer for zones that do not have any other attributes.
+		 */
+		if (maxLevel > 0) {
+			if (attributes == null) {
+				attributes = new ZoneAttributes(this);
+			}
+			attributes.put("danger_level", Double.toString(dangerLevel));
+		}
+	}
+	
+	/**
+	 * Get the area of the zone, excluding static collisions.
+	 */
+	private int getFreeArea() {
+		int res = 0;
+		for (int y = 0; y < getHeight(); y++) {
+			for (int x = 0; x < getWidth(); x++) {
+				if (!collides(x, y)) {
+					res++;
+				}
+			}
+		}
+		return res;
 	}
 
 	/**

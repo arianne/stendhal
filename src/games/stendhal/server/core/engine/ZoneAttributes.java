@@ -88,7 +88,7 @@ public class ZoneAttributes {
 	 * @param key
 	 * @param value
 	 */
-	private void put(String key, String value) {
+	void put(String key, String value) {
 		// Interpret special values
 		if ("color_method".equals(key) && "time".equals(value)) {
 			Daylight.get().manageAttributes(this);

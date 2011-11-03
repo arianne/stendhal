@@ -157,6 +157,9 @@ public final class ZonesXMLLoader {
 					while (diter.hasNext()) {
 						diter.next().setup(zone);
 					}
+					// Zone configurators can add creatures, so this should be
+					// done after them
+					zone.calculateDangerLevel();
 				}
 			} catch (final Exception ex) {
 				logger.error("Error loading zone: " + name, ex);
