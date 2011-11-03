@@ -19,24 +19,43 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.dbcommand.LogGameEventCommand;
 
 
+/**
+ * a game event for logging
+ */
 public class GameEvent {
-	public final String source;
-	public final String event;
-	public final String[] params;
+	private final String source;
+	private final String event;
+	private final String[] params;
 
+	/**
+	 * creates a new GameEvent object
+	 *
+	 * @param source source of the event, usually a character
+	 * @param event  name of event
+	 * @param params paramter
+	 */
 	public GameEvent(final String source, final String event, final String... params) {
 		this.source = source;
 		this.event = event;
 		this.params = params;
 	}
 	
+	/**
+	 * creates a new GameEvent object
+	 *
+	 * @param source source of the event, usually a character
+	 * @param event  name of event
+	 * @param params paramter
+	 */
 	public GameEvent(final String source, final String event, final List<String> params) {
 		this.source = source;
 		this.event = event;
-		String[] a= new String[0];
-		this.params = params.toArray(a);
+		this.params = params.toArray(new String[params.size()]);
 	}
 
+	/**
+	 * writes the envent to the database
+	 */
 	public void raise() {
 		DBCommand command = new LogGameEventCommand(source, event, params);
 		DBCommandQueue.get().enqueue(command);
