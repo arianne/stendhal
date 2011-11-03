@@ -22,8 +22,6 @@ import games.stendhal.server.maps.quests.piedpiper.ITPPQuest;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 import games.stendhal.server.maps.quests.piedpiper.InactivePhase;
 import games.stendhal.server.maps.quests.piedpiper.InvasionPhase;
-import games.stendhal.server.maps.quests.piedpiper.OutgoingPhase;
-
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
