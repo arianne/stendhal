@@ -148,8 +148,10 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 *      	  The protection map.
 	 * @param zone
 	 *            The zone name.
+	 * @param dangerLevel zone danger level
 	 */
-	public void update(final CollisionDetection cd, final CollisionDetection pd, final String zone) {
+	public void update(final CollisionDetection cd, final CollisionDetection pd,
+			final String zone, final double dangerLevel) {
 		// Panel will do the relevant part in EDT.
 		panel.update(cd, pd, zone);
 	}

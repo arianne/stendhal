@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InputSerializer;
 
@@ -60,6 +62,8 @@ public class Zone {
 	 * changed colors) to the current zone. 
 	 */
 	private boolean update;
+	/** Danger level of the zone */
+	private double dangerLevel;
 	
 	/**
 	 * Create a new zone.
@@ -136,6 +140,7 @@ public class Zone {
 			RPObject obj = new RPObject();
 			obj.readObject(new InputSerializer(in));
 
+			// *** coloring ***
 			String colorMode = obj.get("color_method");
 			if ("multiply".equals(colorMode)) {
 				zoneInfo.setColorMethod(Blend.Multiply);
@@ -151,6 +156,16 @@ public class Zone {
 				// Ensure there's no old color left. That can happen in the
 				// morning on a daylight colored zone.
 				zoneInfo.setColorMethod(null);
+			}
+			
+			// ** other attributes **
+			String danger = obj.get("danger_level");
+			if (danger != null) {
+				try {
+					dangerLevel = Double.valueOf(danger);
+				} catch (NumberFormatException e) {
+					Logger.getLogger(Zone.class).warn("Invalid danger level: " + danger, e);
+				}
 			}
 			// OK to try validating after this
 			requireData = false;
@@ -198,6 +213,15 @@ public class Zone {
 			return 0.0;
 		}
 		return collision.getHeight();
+	}
+	
+	/**
+	 * Get the zone danger level.
+	 * 
+	 * @return danger level
+	 */
+	double getDangerLevel() {
+		return dangerLevel;
 	}
 	
 	/**

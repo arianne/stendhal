@@ -39,6 +39,15 @@ public class StaticGameLayers {
 		area = null;
 		areaChanged = true;
 	}
+	
+	/**
+	 * Get the danger level of the current zone.
+	 * 
+	 * @return danger level
+	 */
+	public double getDangerLevel() {
+		return currentZone.getDangerLevel();
+	}
 
 	/** @return width in world units. */
 	public double getWidth() {

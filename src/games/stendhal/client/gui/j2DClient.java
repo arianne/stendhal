@@ -665,7 +665,7 @@ public class j2DClient implements UserInterface {
 			final CollisionDetection pd = gameLayers.getProtectionDetection();
 
 			if (cd != null) {
-				minimap.update(cd, pd, gameLayers.getAreaName());
+				minimap.update(cd, pd, gameLayers.getAreaName(), gameLayers.getDangerLevel());
 			}
 			gameLayers.resetChangedArea();
 		}
