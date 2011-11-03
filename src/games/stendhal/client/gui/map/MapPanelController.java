@@ -23,6 +23,7 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WalkBlocker;
+import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.CollisionDetection;
 
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-public class MapPanelController implements GameObjects.GameObjectListener {
+public class MapPanelController implements GameObjects.GameObjectListener, PositionChangeListener {
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
 	private MapPanel panel;
 	final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
@@ -74,18 +75,7 @@ public class MapPanelController implements GameObjects.GameObjectListener {
 	public void addEntity(final IEntity entity) {
 		MapObject object = null;
 		
-		if (entity instanceof User) {
-			entity.addChangeListener(new EntityChangeListener() {
-				public void entityChanged(final IEntity entity, final Object property) {
-					if (property == IEntity.PROP_POSITION) {
-						positionChanged(entity.getX(), entity.getY());
-					}
-				}
-			});
-			positionChanged(entity.getX(), entity.getY());
-			
-			object = new PlayerMapObject(entity);
-		} else if (entity instanceof Player) {
+		if (entity instanceof Player) {
 			object = new PlayerMapObject(entity);
 		} else if (entity instanceof Portal) {
 			final Portal portal = (Portal) entity;
@@ -172,7 +162,7 @@ public class MapPanelController implements GameObjects.GameObjectListener {
 	 * @param y
 	 *            The Y coordinate (in world units).
 	 */
-	private void positionChanged(final double x, final double y) {
+	public void positionChanged(final double x, final double y) {
 		/*
 		 * The client gets occasionally spurious events.
 		 * Suppress repainting unless the position actually changed

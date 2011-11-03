@@ -428,6 +428,7 @@ public class j2DClient implements UserInterface {
 	 */
 	private JComponent createLeftPanel() {
 		minimap = new MapPanelController(client);
+		positionChangeListener.add(minimap);
 		final StatsPanelController stats = StatsPanelController.get();
 		final BuddyPanelController buddies = BuddyPanelController.get();
 		ScrolledViewport buddyScroll = new ScrolledViewport((JComponent) buddies.getComponent());
