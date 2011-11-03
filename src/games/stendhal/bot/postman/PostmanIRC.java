@@ -188,7 +188,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	private void handlePossibleFlood(String channel, String sender, String hostname, String message) {
-		if (floodDetection.count(sender, message) > 5) {
+		if (floodDetection.isFlooding(sender, message)) {
 			floodDetection.clear(sender);
 
 			int cnt = kickedHostnames.getCount(hostname);
@@ -199,6 +199,7 @@ public class PostmanIRC extends PircBot {
 				sendMessage("ChanServ", "op " + channel);
 			} else {
 				for (final String channelName : channels) {
+					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodKick(sender, this));
 					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodBan(hostname, this));
 					sendMessage("ChanServ", "op " + channelName);
 				}

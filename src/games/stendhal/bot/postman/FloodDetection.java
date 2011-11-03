@@ -15,15 +15,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Pair;
-
 /**
  * Detects floods
  *
  * @author hendrik
  */
 class FloodDetection {
-	private List<Pair<String, String>> lastMessages = new LinkedList<Pair<String, String>>();
+	private List<IrcMessage> lastMessages = new LinkedList<IrcMessage>();
 
 	/**
 	 * adds a new message to the memory
@@ -32,8 +30,8 @@ class FloodDetection {
 	 * @param message message
 	 */
 	public void add(String sender, String message) {
-		lastMessages.add(new Pair<String, String>(sender, message));
-		if (lastMessages.size() > 20) {
+		lastMessages.add(new IrcMessage(sender, message));
+		if (lastMessages.size() > 100) {
 			lastMessages.remove(0);
 		}
 	}
@@ -42,17 +40,49 @@ class FloodDetection {
 	 * counts the number of recent identical messages from the same sender
 	 *
 	 * @param sender   sender
+	 * @param timestamp look only for mesasge newer than this
 	 * @param message  messages
 	 * @return count
 	 */
-	public int count(String sender, String message) {
+	private int countIdenticalMessages(String sender, long timestamp, String message) {
 		int res = 0;
-		for (Pair<String, String> pair : lastMessages) {
-			if (pair.first().equals(sender) && pair.second().equals(message)) {
+		for (IrcMessage msg : lastMessages) {
+			if (msg.getSender().equals(sender) && (msg.getTimestamp() > timestamp) && msg.getMessage().equals(message)) {
 				res++;
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * counts the number of recent message from the same sender
+	 *
+	 * @param sender   sender
+	 * @param timestamp look only for mesasge newer than this
+	 * @return count
+	 */
+	private int countMessagesFromSender(String sender, long timestamp) {
+		int res = 0;
+		for (IrcMessage msg : lastMessages) {
+			if (msg.getSender().equals(sender) && (msg.getTimestamp() > timestamp)) {
+				res++;
+			}
+		}
+		return res;
+	}
+
+	/**
+	 * is this user flooding
+	 *
+	 * @param sender   sender
+	 * @param message  messages
+	 * @return true, if the user is flooding, false otherwise
+	 */
+	public boolean isFlooding(String sender, String message) {
+		return (this.countIdenticalMessages(sender, System.currentTimeMillis() - 60*1000, message) > 5)
+			|| (this.countIdenticalMessages(sender, System.currentTimeMillis() - 3 * 60*1000, message) > 10)
+			|| (this.countMessagesFromSender(sender, System.currentTimeMillis() - 60*1000) > 20)
+			|| (this.countMessagesFromSender(sender, System.currentTimeMillis() - 3 * 60*1000) > 50);
 	}
 
 	/**
@@ -61,9 +91,9 @@ class FloodDetection {
 	 * @param sender sender
 	 */
 	public void clear(String sender) {
-		Iterator<Pair<String, String>> itr = lastMessages.iterator();
+		Iterator<IrcMessage> itr = lastMessages.iterator();
 		while (itr.hasNext()) {
-			if (itr.next().first().equals(sender)) {
+			if (itr.next().getSender().equals(sender)) {
 				itr.remove();
 			}
 		}
