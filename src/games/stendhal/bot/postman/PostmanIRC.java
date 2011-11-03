@@ -12,16 +12,21 @@
  ***************************************************************************/
 package games.stendhal.bot.postman;
 
+import games.stendhal.server.util.CounterMap;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.PircBot;
+import org.jibble.pircbot.ReplyConstants;
 
 /**
  * IRC Bot for postman.
@@ -30,13 +35,19 @@ import org.jibble.pircbot.PircBot;
  */
 public class PostmanIRC extends PircBot {
 
-	public static List<String> channels = new LinkedList<String>();
-	
+	private static List<String> channels = new LinkedList<String>();
+
 	private static final String STENDHAL_POSTMAN_CONF = ".stendhal-postman-conf.xml";
 	private static final String STENDHAL_POSTMAN_ANSWERS = ".stendhal-postman-answers.xml";
 	
 	private static final Logger LOGGER = Logger.getLogger(PostmanIRC.class);
-	
+
+	/** myNick targetNick additionalData? :comment */
+	// postman-bot-TEST hendrik hendrik :is logged in as
+	// postman-bot-TEST hendrik :End of /WHOIS list.
+	static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
+
+
 	private static String supportChannel;
 
 	private static String mainChannel;
@@ -45,10 +56,14 @@ public class PostmanIRC extends PircBot {
 
 	private final String gameServer;
 
+	private final FloodDetection floodDetection = new FloodDetection();
+
+	private CounterMap<String> kickedHostnames = new CounterMap<String>();
+
 	/**
 	 * Creates a new PostmanIRC.
 	 * 
-	 * @param gameServer
+	 * @param gameServer name of game server
 	 */
 	public PostmanIRC(final String gameServer) {
 		this.gameServer = gameServer;
@@ -59,6 +74,7 @@ public class PostmanIRC extends PircBot {
 
 			channels.add(supportChannel);
 			channels.add(mainChannel);
+			channels.add(prop.getProperty("chat"));
 			channels.remove(null);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
@@ -68,9 +84,9 @@ public class PostmanIRC extends PircBot {
 	/**
 	 * Postman IRC bot.
 	 * 
-	 * @throws IOException
-	 * @throws IrcException
-	 * @throws InterruptedException
+	 * @throws IOException  in case input/output error
+	 * @throws IrcException in case of an irc issue
+	 * @throws InterruptedException in case of a timeout
 	 */
 	public void connect() throws IOException, IrcException,
 			InterruptedException {
@@ -80,7 +96,7 @@ public class PostmanIRC extends PircBot {
 
 			setName(nick);
 			setLogin(prop.getProperty("login"));
-			setVersion("0.4");
+			setVersion("0.5");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -117,10 +133,21 @@ public class PostmanIRC extends PircBot {
 		t.start();
 	}
 
+	/**
+	 * sends a message to the support channel
+	 *
+	 * @param text text to send
+	 */
 	void sendSupportMessage(final String text) {
 		sendMultilineMessage(supportChannel, text.replaceAll("Please use #/supportanswer .*", "").trim());
 	}
 
+	/**
+	 * sends a multi line message to a target (channel or nickname)
+	 *
+	 * @param target  target
+	 * @param message message
+	 */
 	public final void sendMultilineMessage(String target, String message) {
 		StringTokenizer st = new StringTokenizer(message, "\r\n");
 		while (st.hasMoreTokens()) {
@@ -128,13 +155,26 @@ public class PostmanIRC extends PircBot {
 		}
 	}
 
+	/**
+	 * sends a message to all channels
+	 *
+	 * @param text message to send
+	 */
 	void sendMessageToAllChannels(final String text) {
 		for (final String channelName : channels) {
 			sendMultilineMessage(channelName, text);
 		}
 	}
 
-	
+	/**
+	 * gets the game account name associated to an irc account
+	 * 
+	 * @param ircAccountName irc account
+	 * @return game account
+	 */
+	String getGameUsername(String ircAccountName) {
+		return prop.getProperty("ircaccount-" + ircAccountName);
+	}
 
 	@Override
 	protected void onMessage(String channel, String sender, String login,
@@ -143,13 +183,96 @@ public class PostmanIRC extends PircBot {
 		if ((message != null) && message.startsWith("$")) {
 			handleCanedResponse(channel, message);
 		}
+		floodDetection.add(sender, message);
+		handlePossibleFlood(channel, sender, hostname, message);
+	}
+
+	private void handlePossibleFlood(String channel, String sender, String hostname, String message) {
+		if (floodDetection.count(sender, message) > 5) {
+			floodDetection.clear(sender);
+
+			int cnt = kickedHostnames.getCount(hostname);
+			kickedHostnames.add(hostname);
+
+			if (cnt < 2) {
+				EventRaiser.get().addEventHandler(EventType.IRC_OP, channel, new IrcFloodKick(sender, this));
+				sendMessage("ChanServ", "op " + channel);
+			} else {
+				for (final String channelName : channels) {
+					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodBan(hostname, this));
+					sendMessage("ChanServ", "op " + channelName);
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void onPrivateMessage(String sender, String login, String hostname, String message) {
+		super.onPrivateMessage(sender, login, hostname, message);
+
+		EventHandler handler = CommandFactory.create(message, sender, this);
+		if (handler != null) {
+			EventRaiser.get().addEventHandler(EventType.IRC_WHOIS, sender, handler);
+			sendRawLineViaQueue("WHOIS "+ sender); 
+		} else if (message.equals("help")) {
+			sendHelpReply(sender);
+		} else if (message.startsWith("$")) {
+			handleCanedResponse(sender, message);
+		}
+	}
+
+	private void sendHelpReply(String sender) {
+		sendMessage(sender, "Hello, I am postman.");
+		sendMessage(sender, "In Stendhal I deliver messages to players and on IRC I help admins.");
+		sendMessage(sender, " ");
+		listCanedResponses(sender);
+		sendMessage(sender, " ");
+		sendMessage(sender, "Admin commands:");
+		sendMessage(sender, " /msg postman ban >target> <hours> <message>");
+		sendMessage(sender, " /msg postman adminnote <target> <message>");
+		sendMessage(sender, " /msg postman ircban <ip>");
+		sendMessage(sender, " /msg postman npcshout <name> <message>");
+		sendMessage(sender, " /msg postman support <message>");
+		sendMessage(sender, " /msg postman supporta <message>");
+		sendMessage(sender, " /msg postman tellall <message>");
+	}
+
+	@Override
+	protected void onServerResponse(int code, String response) {
+		super.onServerResponse(code, response);
+
+		// 330 is confirmed account someone is logged in to
+		if ((code == 330) || (code == ReplyConstants.RPL_ENDOFWHOIS)) {
+			Matcher matcher = PostmanIRC.patternWhoisResponse.matcher(response);
+			if (matcher.find()) {
+				// group(1): nick, group(2): account or ""
+				EventRaiser.get().fire(EventType.IRC_WHOIS, matcher.group(1), matcher.group(2));
+			}
+		}
+	}
+
+	
+	private void listCanedResponses(String target) {
+		// load answer file (reload it every time so that it can be edited)
+		Properties answers = new Properties();
+		try {
+			answers.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_ANSWERS));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Object key : answers.keySet()) {
+			sb.append(" " + key);
+		}
+
+		sendMessage(target, "I know the following caned messages:" + sb.toString());
 	}
 
 	private long lastCommand;
 
-	
 	private void handleCanedResponse(String channel, String message) {
-
 		// prevent flooding
 		if (lastCommand + 5000 > System.currentTimeMillis()) {
 			return;
@@ -164,15 +287,16 @@ public class PostmanIRC extends PircBot {
 		}
 
 		// load answer file (reload it every time so that it can be edited)
+		Properties answers = new Properties();
 		try {
-			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_ANSWERS));
+			answers.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_ANSWERS));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		// get the entry, do nothing if not defined
-		String canedMessage = prop.getProperty(command);
+		String canedMessage = answers.getProperty(command);
 		if (canedMessage == null) {
 			return;
 		}
@@ -189,21 +313,22 @@ public class PostmanIRC extends PircBot {
 	}
 
 	/**
-	 * For testing only.
-	 * 
-	 * @param args
-	 *            ignored
-	 * @throws IOException
-	 *             IOException
-	 * @throws IrcException
-	 *             IrcException
-	 * @throws InterruptedException
-	 *             InterruptedException
+	 * bans an ip-address in all channels
+	 *
+	 * @param address address to ban
 	 */
-	public static void main(final String[] args) throws IOException, IrcException,
-			InterruptedException {
-		// Now start our bot up.
-		final PostmanIRC bot = new PostmanIRC(null);
-		bot.connect();
+	public void banIp(String address) {
+		for (final String channelName : channels) {
+			EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcBan(address, this));
+			sendMessage("ChanServ", "op " + channelName);
+		}
 	}
+
+	@Override
+	protected void onOp(String channel, String sourceNick, String sourceLogin, String sourceHostname, String recipient) {
+		super.onOp(channel, sourceNick, sourceLogin, sourceHostname, recipient);
+		EventRaiser.get().fire(EventType.IRC_OP, channel, null);
+		sendMessage("ChanServ", "deop " + channel);
+	}
+
 }
