@@ -15,6 +15,8 @@
 	<property name="build_client_data" value="${buildroot}/build_client_data"/>
 	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data"/>
 	<property name="build_client_music_data" value="${buildroot}/build_client_music_data"/>
+	
+	<property name="build_postman" value="${buildroot}/buildbot/"/>
 
 	<property name="build_server" value="${buildroot}/build_server"/>
 	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
@@ -879,7 +881,7 @@
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests,report_test"/>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient">
+	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_stendhaltools, compile_stendhaltextclient, postman">
 		<mkdir dir="${build_tests}"/>
 
 		<copy todir="${build_tests}">
@@ -902,6 +904,7 @@
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
 				<pathelement path="${build_server_maps}"/>
+				<pathelement path="${build_postman}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${hamcrest_jar}"/>
@@ -928,6 +931,7 @@
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_stendhaltextclient}"/>
+				<pathelement path="${build_postman}"/>
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${cglib_jar}"/>
