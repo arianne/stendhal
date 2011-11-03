@@ -19,21 +19,24 @@ package games.stendhal.bot.postman;
 public class IrcFloodKick extends EventHandler {
 	private String sender;
 	private PostmanIRC postmanIRC;
+	private String kickMessage;
 
 	/**
 	 * creates a IrcBan instance
 	 *
 	 * @param sender ip address to ban
 	 * @param postmanIRC PostmanIRC
+	 * @param kickMessage message on kick
 	 */
-	public IrcFloodKick(String sender, PostmanIRC postmanIRC) {
+	public IrcFloodKick(String sender, PostmanIRC postmanIRC, String kickMessage) {
 		this.sender = sender;
 		this.postmanIRC = postmanIRC;
+		this.kickMessage = kickMessage;
 	}
 
 	@Override
 	public void fire(EventType eventType, String channel, String furtherData) {
-		postmanIRC.kick(channel, sender, "Please use http://pastebin.com/ to paste large amounts of text.");
+		postmanIRC.kick(channel, sender, kickMessage);
 	}
 
 }

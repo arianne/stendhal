@@ -52,7 +52,7 @@ public class PostmanIRC extends PircBot {
 
 	private static String mainChannel;
 
-	private final Properties prop = new Properties();
+	private final Properties conf = new Properties();
 
 	private final String gameServer;
 
@@ -68,13 +68,13 @@ public class PostmanIRC extends PircBot {
 	public PostmanIRC(final String gameServer) {
 		this.gameServer = gameServer;
 		try {
-			this.prop.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
-			supportChannel = prop.getProperty("support");
-			mainChannel = prop.getProperty("main");
+			this.conf.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
+			supportChannel = conf.getProperty("support");
+			mainChannel = conf.getProperty("main");
 
 			channels.add(supportChannel);
 			channels.add(mainChannel);
-			channels.add(prop.getProperty("chat"));
+			channels.add(conf.getProperty("chat"));
 			channels.remove(null);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
@@ -90,13 +90,13 @@ public class PostmanIRC extends PircBot {
 	 */
 	public void connect() throws IOException, IrcException,
 			InterruptedException {
-		if (Boolean.parseBoolean(prop.getProperty("irc"))) {
-			final String nick = prop.getProperty("name");
-			final String pass = prop.getProperty("pass");
+		if (Boolean.parseBoolean(conf.getProperty("irc"))) {
+			final String nick = conf.getProperty("name");
+			final String pass = conf.getProperty("pass");
 
 			setName(nick);
-			setLogin(prop.getProperty("login"));
-			setVersion("0.5");
+			setLogin(conf.getProperty("login"));
+			setVersion("0.5.1");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -173,7 +173,7 @@ public class PostmanIRC extends PircBot {
 	 * @return game account
 	 */
 	String getGameUsername(String ircAccountName) {
-		return prop.getProperty("ircaccount-" + ircAccountName);
+		return conf.getProperty("ircaccount-" + ircAccountName);
 	}
 
 	@Override
@@ -195,11 +195,11 @@ public class PostmanIRC extends PircBot {
 			kickedHostnames.add(hostname);
 
 			if (cnt < 2) {
-				EventRaiser.get().addEventHandler(EventType.IRC_OP, channel, new IrcFloodKick(sender, this));
+				EventRaiser.get().addEventHandler(EventType.IRC_OP, channel, new IrcFloodKick(sender, this, conf.getProperty("floodkick-message", "Please use http://pastebin.com/ to paste large amounts of text.")));
 				sendMessage("ChanServ", "op " + channel);
 			} else {
 				for (final String channelName : channels) {
-					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodKick(sender, this));
+					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodKick(sender, this, conf.getProperty("floodkick-message", "Please use http://pastebin.com/ to paste large amounts of text.")));
 					EventRaiser.get().addEventHandler(EventType.IRC_OP, channelName, new IrcFloodBan(hostname, this));
 					sendMessage("ChanServ", "op " + channelName);
 				}
