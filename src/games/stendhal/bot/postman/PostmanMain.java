@@ -35,18 +35,24 @@ import marauroa.common.net.message.TransferContent;
  */
 public class PostmanMain extends Thread {
 
+	/** name of character */
 	protected String character;
-	
+
+	/** instance of postman client */
 	protected Postman postman;
 
+	/** timestamp of last received perception message, used for timing out */
 	protected long lastPerceptionTimestamp;
 
+	/** objects in the zone */
 	protected Map<RPObject.ID, RPObject> world_objects;
 
+	/** client framework */
 	protected marauroa.client.ClientFramework clientManager;
 
+	/** perception handler */
 	protected PerceptionHandler handler;
-	
+
 	private final String host;
 
 	private final String username;
