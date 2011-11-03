@@ -23,17 +23,23 @@ import org.apache.log4j.Logger;
 public class AdminNoteAction extends AdministrationAction {
 	@Override
 	protected void perform(final Player player, final RPAction action) {
+		String sender = player.getName();
+		if (action.has("sender") && (player.getName().equals("postman"))) {
+			sender = action.get("sender");
+		}
+
 		if (action.has("target")) {
 			String target = action.get("target");
 			String adminnote = action.get("note");
 
-			Logger.getLogger(AdminNoteAction.class).info(player.getName() + " has added an adminnote to " + target + " saying: " + adminnote);
-			new GameEvent(player.getName(), "adminnote",  target, adminnote).raise();				
+			Logger.getLogger(AdminNoteAction.class).info(sender + " has added an adminnote to " + target + " saying: " + adminnote);
+			new GameEvent(sender, "adminnote",  target, adminnote).raise();				
 			SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
-					player.getName() + " has added an adminnote to " + target
+					sender + " has added an adminnote to " + target
 					+ " saying: " + adminnote);
 		}
 	}
+
 	public static void register() {
 		CommandCenter.register("adminnote", new AdminNoteAction(), 100);
 	}

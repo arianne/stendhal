@@ -250,6 +250,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
+		String sender = player.getName();
+		if (action.has("sender") && (player.getName().equals("postman"))) {
+			sender = action.get("sender");
+		}
+
 		String text = "usage: #/script #[-list|-execute|-load|-unload] #<filename> #[<args>]\n mode is either load (default) or remove";
 		if (action.has("target")) {
 
@@ -318,7 +323,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 			final List<String> args = parser.readAllParameters(errors);
 
-			new GameEvent(player.getName(), "script", script, mode, args.toString()).raise();
+			new GameEvent(sender, "script", script, mode, args.toString()).raise();
 
 			// execute script
 			script = script.trim();

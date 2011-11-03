@@ -49,6 +49,10 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		if (!player.getChatBucket().checkAndAdd()) {
 			return;
 		}
+		String sender = player.getName();
+		if (action.has("sender") && (player.getName().equals("postman"))) {
+			sender = action.get("sender");
+		}
 
 		if (action.has(TARGET) && action.has(TEXT)) {
 			String reply = action.get(TEXT);
@@ -65,22 +69,22 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 					player.sendPrivateText(reply + " is not a recognised shortcut. Please check #/gmhelp #support for a list.");
 					// send no support answer message if the shortcut wasn't understood
 					return;
-				}				
+				}
 			}
 			
-			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
+			final String message = sender + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + reply;
 
-			new GameEvent(player.getName(), SUPPORTANSWER, action.get(TARGET), reply).raise();
+			new GameEvent(sender, SUPPORTANSWER, action.get(TARGET), reply).raise();
 			if (supported != null) {
 
-				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + player.getTitle() + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
+				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + sender + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
 			} else {
 				// that player is not logged in. Do they exist at all or are they just offline? Try sending a message with postman.
-				DBCommand command = new StoreMessageCommand(player.getName(), action.get(TARGET), "In answer to your support question:\n" + reply + " \nIf you wish to reply, use /support.", "S");
+				DBCommand command = new StoreMessageCommand(sender, action.get(TARGET), "In answer to your support question:\n" + reply + " \nIf you wish to reply, use /support.", "S");
 				DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 				TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			}

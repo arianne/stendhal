@@ -47,14 +47,20 @@ public class BanAction extends AdministrationAction {
 				reason = action.get("reason");
 			}
 			int hours = 1;
-			
+
 			try {
 				hours = Integer.parseInt(action.get("hours"));
 			} catch (final NumberFormatException e) {
 				player.sendPrivateText(NotificationType.ERROR, "Please ban for a whole number of hours, or -1 hours for a permanent ban. Shorter times than 1 hour can use /jail.");
 				return; 
 			}
-			
+
+			String sender = player.getName();
+			if (action.has("sender") && (player.getName().equals("postman"))) {
+				sender = action.get("sender");
+			}
+
+
 			try {
 
 				// look up username
@@ -78,11 +84,11 @@ public class BanAction extends AdministrationAction {
 				player.sendPrivateText("You have banned account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
 
 				// logging
-				logger.info(player.getName() + " has banned  account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
-				new GameEvent(player.getName(), "ban",  bannedName, expireStr, reason).raise();
+				logger.info(sender + " has banned  account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
+				new GameEvent(sender, "ban",  bannedName, expireStr, reason).raise();
 				
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
-						player.getName() + " banned account " + username + " (character: " + bannedName + ") until " + expireStr
+						sender + " banned account " + username + " (character: " + bannedName + ") until " + expireStr
 						+ ". Reason: " + reason	+ ".");
 				logoutAccount(username);
 			} catch (SQLException e) {

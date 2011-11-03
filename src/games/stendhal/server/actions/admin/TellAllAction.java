@@ -21,8 +21,10 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * shouts a message to all players as "administrator".
+ */
 public class TellAllAction extends AdministrationAction {
-
 
 	public static void register() {
 		CommandCenter.register(TELLALL, new TellAllAction(), 200);
@@ -31,10 +33,15 @@ public class TellAllAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
+		String sender = player.getName();
+		if (action.has("sender") && (player.getName().equals("postman"))) {
+			sender = action.get("sender");
+		}
+
 		if (action.has(TEXT)) {
 			final String message = "Administrator SHOUTS: " + action.get(TEXT);
 			
-			new GameEvent(player.getName(), TELLALL, action.get(TEXT)).raise();
+			new GameEvent(sender, TELLALL, action.get(TEXT)).raise();
 
 			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.SUPPORT, message);
 		}

@@ -40,6 +40,7 @@ public class Postman {
 	private static final String GREETING = "Hi, I am the postman. How can I #help you?";
 	private static final String INTRO = "I store messages for offline players and deliver them on login.\n";
 	private static final String HELP_MESSAGE = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
+	private static Postman instance;
 
 	/**
 	 * Creates a new postman.
@@ -52,6 +53,7 @@ public class Postman {
 	public Postman(final ClientFramework clientManager, final PostmanIRC postmanIRC) {
 		this.clientManager = clientManager;
 		this.postmanIRC = postmanIRC;
+		instance = this;
 	}
 
 
@@ -140,7 +142,7 @@ public class Postman {
 	 *            text
 	 */
 	public void processPrivateTalkEvent(final RPObject object,
-			final String texttype, final String text) {
+			@SuppressWarnings("unused") final String texttype, final String text) {
 
 		try {
 			if (object == null) {
@@ -255,6 +257,9 @@ public class Postman {
 		send(chat);
 	}
 
+	/**
+	 * teleports postman to his favorite spot
+	 */
 	void teleportPostman() {
 		final RPAction teleport = new RPAction();
 		teleport.put("type", "teleport");
@@ -274,5 +279,130 @@ public class Postman {
 
 	private void send(final RPAction action) {
 		clientManager.send(action);
+	}
+
+	/**
+	 * gets the postman intance
+	 *
+	 * @return Postman
+	 */
+	public static Postman get() {
+		return instance;
+	}
+
+
+	/**
+	 * sends a support answer
+	 *
+	 * @param sender  sender
+	 * @param target  target
+	 * @param message message
+	 */
+	public void supportAnswer(String sender, String target, String message) {
+		final RPAction tell = new RPAction();
+
+		tell.put("type", "supportanswer");
+		tell.put("sender", sender);
+		tell.put("target", target);
+		tell.put("text", message);
+		send(tell);
+	}
+
+	/**
+	 * sends a support answer
+	 *
+	 * @param sender  sender
+	 * @param target  target
+	 * @param hours   hours
+	 * @param message message
+	 */
+	public void ban(String sender, String target, String hours, String message) {
+		final RPAction ban = new RPAction();
+
+		ban.put("type", "ban");
+		ban.put("sender", sender);
+		ban.put("target", target);
+		ban.put("hours", hours);
+		ban.put("reason", message);
+		send(ban);
+	}
+
+	/**
+	 * sends a support answer
+	 *
+	 * @param sender  sender
+	 * @param ip      ip
+	 * @param mask    mask
+	 * @param message message
+	 */
+	public void ipban(String sender, String ip, String mask, String message) {
+		final RPAction ban = new RPAction();
+
+		ban.put("type", "ban");
+		ban.put("sender", sender);
+		ban.put("ip", ip);
+		ban.put("mask", mask);
+		ban.put("reason", message);
+		send(ban);
+	}
+
+	/**
+	 * shouts as an NPC
+	 *
+	 * @param charname name of character
+	 * @param target  target
+	 * @param message message
+	 */
+	public void npcShout(String charname, String target, String message) {
+		final RPAction action = new RPAction();
+		action.put("type", "script");
+		action.put("sender", charname);
+		action.put("target", "NPCShout.class");
+		action.put("args", target + " " + message);
+		send(action);
+	}
+
+	/**
+	 * sends a support query
+	 *
+	 * @param charname name of character
+	 * @param message message
+	 */
+	public void support(String charname, String message) {
+		final RPAction action = new RPAction();
+		action.put("type", "support");
+		action.put("sender", charname);
+		action.put("text", message);
+		send(action);
+	}
+
+	/**
+	 * attaches an admin note
+	 * 
+	 * @param charname name of character
+	 * @param target  target player
+	 * @param message message
+	 */
+	public void adminNote(String charname, String target, String message) {
+		final RPAction action = new RPAction();
+		action.put("type", "adminnote");
+		action.put("sender", charname);
+		action.put("target", target);
+		action.put("note", message);
+		send(action);
+	}
+
+	/**
+	 * shouts as admin
+	 * 
+	 * @param charname name of character
+	 * @param message message
+	 */
+	public void tellAll(String charname, String message) {
+		final RPAction action = new RPAction();
+		action.put("type", "tellall");
+		action.put("sender", charname);
+		action.put("text", message);
+		send(action);
 	}
 }

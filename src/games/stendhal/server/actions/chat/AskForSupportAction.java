@@ -36,6 +36,11 @@ public class AskForSupportAction  implements ActionListener {
 			return;
 		}
 
+		String sender = player.getName();
+		if (action.has("sender") && (player.getName().equals("postman"))) {
+			sender = action.get("sender");
+		}
+
 		if (action.has(TEXT)) {
 
 			if ("".equals(action.get(TEXT).trim())) {
@@ -45,9 +50,9 @@ public class AskForSupportAction  implements ActionListener {
 
 			if (Jail.isInJail(player) || GagManager.isGagged(player)) {
 				// check if the player sent a support message before
-				if (lastMsg.containsKey(player.getName())) {
+				if (lastMsg.containsKey(sender)) {
 					final Long timeLastMsg = System.currentTimeMillis()
-							- lastMsg.get(player.getName());
+							- lastMsg.get(sender);
 
 					// the player have to wait one minute since the last support
 					// message was sent
@@ -57,16 +62,16 @@ public class AskForSupportAction  implements ActionListener {
 					}
 				}
 
-				lastMsg.put(player.getName(), System.currentTimeMillis());
+				lastMsg.put(sender, System.currentTimeMillis());
 			}
 
 			final String message = action.get(TEXT)
-					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
+					+ "\r\nPlease use #/supportanswer #" + sender
 					+ " to answer.";
 
-			new GameEvent(player.getName(), "support", player.getName(), action.get(TEXT)).raise();
+			new GameEvent(sender, "support", sender, action.get(TEXT)).raise();
 
-			SingletonRepository.getRuleProcessor().sendMessageToSupporters(player.getTitle(), message);
+			SingletonRepository.getRuleProcessor().sendMessageToSupporters(sender, message);
 
 			player.sendPrivateText("You ask for support: "
 					+ action.get(TEXT)
