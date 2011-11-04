@@ -108,6 +108,32 @@
      		<parameter name="species">clownfish</parameter>
     		</implementation>
   		</entity>
+  		
+	<!-- table around palms -->
+  		
+  	<entity x="109" y="62">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+		</entity>
+		
+  	<entity x="112" y="69">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+	</entity>
+		
+  	<entity x="103" y="74">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+			<attribute name="width">4</attribute>
+			<attribute name="height">1</attribute>
+	</entity>
      </zone>
      
      <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
