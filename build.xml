@@ -1046,6 +1046,7 @@
 				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${build_stendhaltools}"/>
 				<pathelement path="${build_stendhaltextclient}"/>
+				<pathelement path="${build_postman}"/>
 				<pathelement path="${easymock_jar}"/>
 				<pathelement path="${easymockclassextension_jar}"/>
 				<pathelement path="${cglib_jar}"/>
