@@ -12,6 +12,8 @@
 package games.stendhal.bot.postman;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -23,18 +25,19 @@ import org.junit.Test;
  * @author hendrik
  */
 public class PostmanIRCTest {
+	private static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
 
 	/**
 	 * tests the pattern
 	 */
 	@Test
 	public void testWhoisResponseParsing() {
-		Matcher m = PostmanIRC.patternWhoisResponse.matcher("postman-bot-TEST hendrik_ hendrik :is logged in as");
+		Matcher m = patternWhoisResponse.matcher("postman-bot-TEST hendrik_ hendrik :is logged in as");
 		assertTrue("Pattern matches: ", m.find());
 		assertThat(m.group(1), equalTo("hendrik_"));
 		assertThat(m.group(2), equalTo("hendrik"));
 
-		m = PostmanIRC.patternWhoisResponse.matcher("postman-bot-TEST hendrik_ :End of /WHOIS list.");
+		m = patternWhoisResponse.matcher("postman-bot-TEST hendrik_ :End of /WHOIS list.");
 		assertTrue("Pattern matches: ", m.find());
 		assertThat(m.group(1), equalTo("hendrik_"));
 		assertThat(m.group(2), equalTo(""));

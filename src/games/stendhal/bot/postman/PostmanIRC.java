@@ -45,7 +45,7 @@ public class PostmanIRC extends PircBot {
 	/** myNick targetNick additionalData? :comment */
 	// postman-bot-TEST hendrik hendrik :is logged in as
 	// postman-bot-TEST hendrik :End of /WHOIS list.
-	static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
+	private static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
 
 
 	private static String supportChannel;
