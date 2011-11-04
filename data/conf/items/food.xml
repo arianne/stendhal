@@ -22,6 +22,90 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+    <item name="pear">
+    <type class="food" subclass="pear" tileid="-1"/>
+    <description>You see a pear. Its lovely smell convinces you of taking it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="10"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+    <item name="watermelon">
+    <type class="food" subclass="watermelon" tileid="-1"/>
+    <description>You see a watermelon. It freshes your throat during hot summer days.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="15"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+    <item name="pomegranate">
+    <type class="food" subclass="pomegranate" tileid="-1"/>
+    <description>You see a pomegranate. If you eat it, you will be in a great shape soon.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="15"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+   <item name="banana">
+    <type class="food" subclass="banana" tileid="-1"/>
+    <description>You see a banana. Take care of monkeys when you have them in your bag!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="10"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
 
   <item name="butter">
     <type class="food" subclass="butter" tileid="-1"/>
