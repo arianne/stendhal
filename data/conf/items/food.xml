@@ -107,6 +107,27 @@
     </equipable>
   </item>
 
+  <item name="grapes">
+    <type class="food" subclass="grapes" tileid="-1"/>
+    <description>You see a bunch of grapes. They look quite juicy and tasty.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="15"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
   <item name="butter">
     <type class="food" subclass="butter" tileid="-1"/>
     <description>You see some butter. It is an ingredient or can be eaten if you like.</description>
