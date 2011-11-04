@@ -145,6 +145,11 @@ public class PassiveEntityRespawnPointFactory {
 		case 2:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("pineapple", 1200);
 			break;
+		case 3:
+			passiveEntityrespawnPoint = new VegetableGrower("watermelon");
+			passiveEntityrespawnPoint
+					.setDescription("You see a watermelon vine.");
+			break;
 		default:
 			passiveEntityrespawnPoint = null;
 			break;
