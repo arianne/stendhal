@@ -94,7 +94,6 @@ public class StaticGameLayers {
 
 	/** Prepare for zone change. */
 	public void clear() {
-		area = null;
 		zoneInfo.zoneChanged();
 	}
 
