@@ -19,6 +19,7 @@ import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.AttackEvent;
 
 import org.apache.log4j.Logger;
 /**
@@ -58,9 +59,17 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	
 	public void onTurnReached(int currentTurn) {
 		if(numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
+			damageOrigin.setTarget(rpEntityToDamage);
+			rpEntityToDamage.rememberAttacker(damageOrigin);
+			
 			int damageDone = damageOrigin.damageDone(rpEntityToDamage, getAtk(), getNature());
-			rpEntityToDamage.damage(damageDone, damageOrigin);
-			int toSteal = damageDone * Double.valueOf(getLifesteal()).intValue();
+			int toSteal = (int) Math.ceil(damageDone * Double.valueOf(getLifesteal()));
+			
+			if(damageDone > 0) {
+				rpEntityToDamage.onDamaged(damageOrigin, damageDone);
+				damageOrigin.addEvent(new AttackEvent(true, damageDone, getNature()));
+			}
+			
 			damageOrigin.heal(toSteal);
 			numberOfLeftOverHits = numberOfLeftOverHits -1;
 			if (numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
