@@ -63,6 +63,7 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 			rpEntityToDamage.rememberAttacker(damageOrigin);
 			
 			int damageDone = damageOrigin.damageDone(rpEntityToDamage, getAtk(), getNature());
+			damageDone = Math.min(damageDone, rpEntityToDamage.getBaseHP());
 			int toSteal = (int) Math.ceil(damageDone * Double.valueOf(getLifesteal()));
 			
 			if(damageDone > 0) {
