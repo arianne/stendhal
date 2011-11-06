@@ -75,9 +75,8 @@ import marauroa.common.Pair;
 public class KillMonks extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "kill_monks";
-	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_HOUR * 24 * 7;
+	private static final int WEEK_IN_MINUTES = MathHelper.MINUTES_IN_ONE_WEEK;
 	protected HashMap<String, Pair<Integer, Integer>> creaturestokill = new HashMap<String, Pair<Integer,Integer>>();
-	  protected HashMap<String, List<String>> creatures = new HashMap<String, List<String>>();
 	
 	@Override
 	public String getSlotName() {
