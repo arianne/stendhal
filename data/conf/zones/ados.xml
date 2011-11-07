@@ -1085,8 +1085,78 @@ Please leave my mail at my neighbour's house.
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
+    
+    <entity x="25" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+      <parameter name="slot">bank_ados</parameter>
+     </implementation>
+    </entity>
+    <entity x="24" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="25" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
+    
+    <entity x="27" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+      <parameter name="slot">bank_ados</parameter>
+     </implementation>
+    </entity>
+    <entity x="28" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="27" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
+ 
+     <entity x="36" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+      <!-- semos slot -->
+      <parameter name="slot">bank</parameter>
+     </implementation>
+    </entity>
 
+    <entity x="37" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="36" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
 
+  <entity x="34" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+      <!-- semos slot -->
+      <parameter name="slot">bank</parameter>
+     </implementation>
+    </entity>
+
+    <entity x="33" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="34" y="2">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
 
     <entity x="8" y="1">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
