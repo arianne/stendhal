@@ -64,7 +64,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting();
+				addGreeting("Oh hello there, did I just catch you admiring my beautiful #hat?");
 				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				final Map<String, Integer> offerings = new HashMap<String, Integer>();

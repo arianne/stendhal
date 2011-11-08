@@ -1,0 +1,289 @@
+package games.stendhal.server.maps.quests;
+ 
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.npc.action.*;
+import games.stendhal.server.entity.npc.condition.*;
+import games.stendhal.server.entity.player.*;
+import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.ItemCollection;
+
+import java.util.*;
+
+/**
+ * QUEST: Fruits for Coralia
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Coralia (Bar-maid of Ado tavern)</li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li>Coralia introduces herself and asks for some fresh fruit for her hat.</li>
+ * <li>You collect the items.</li>
+ * <li>Coralia sees yours items, asks for them then thanks you.</li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li>UNDECIDED XP</li>
+ * <li>UNDECIDED ITEMS</li>
+ * <li>Karma: UNDECIDED</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>UNDECIDED - but repeating would fit in with the withering of the fruit</li>
+ * </ul>
+ */
+public class FruitsForCoralia extends AbstractQuest {
+ 
+	
+	
+	/**
+	 * NOTE: Reward has not been set, nor has the XP.
+	 * left them default here, but in the JUnit test
+	 * called reward item "REWARD" temporarily
+	 */
+	
+    public static final String QUEST_SLOT = "fruits_coralia";
+    
+    /** 
+     * The delay between repeating quests.
+     * 1 week
+     */
+	private static final int REQUIRED_MINUTES = 1440;
+    
+    /**
+	 * Required items for the quest.
+	 */
+	protected static final String NEEDED_ITEMS = "apple=4;cherry=9";
+ 
+    @Override
+    public void addToWorld() {
+        super.addToWorld();
+        fillQuestInfo("Fruits for Coralia",
+				"The Ados Tavern barmaid, Coralia, searches for fresh fruit for her exotic hat.",
+				true);
+        prepareQuestStep();
+        prepareBringingStep();
+    }
+ 
+    @Override
+    public String getSlotName() {
+        return QUEST_SLOT;
+    }
+ 
+    @Override
+    public String getName() {
+        return "FruitsForCoralia";
+    }
+    
+ 	@Override
+ 	public int getMinLevel() {
+ 		return 0;
+ 	}
+ 	
+ 	@Override
+ 	public boolean isRepeatable(final Player player) {
+ 		return new AndCondition(
+ 					new QuestStateStartsWithCondition(QUEST_SLOT, "done;"),
+ 					new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)).fire(player, null, null);
+ 	}
+ 	
+ 	@Override
+ 	public boolean isCompleted(final Player player) {
+ 		return new QuestStateStartsWithCondition(QUEST_SLOT ,"done;").fire(player, null, null);
+ 	}
+ 	
+ 	@Override
+ 	public String getRegion() {
+ 		return Region.ADOS_CITY;
+ 	}
+ 
+ 	@Override
+	public List<String> getHistory(final Player player) {
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("Coralia asked me for some fresh fruit for her hat.");
+		final String questState = player.getQuest(QUEST_SLOT);
+		
+		if ("rejected".equals(questState)) {
+			// quest rejected
+			res.add("I decided not find Coralia some fruit, I have better things to do.");
+		} else if (!player.isQuestCompleted(QUEST_SLOT)) {
+			// not yet finished
+			final ItemCollection missingItems = new ItemCollection();
+			missingItems.addFromQuestStateString(questState);
+			res.add("I still need to bring Coralia " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
+		} else if (isRepeatable(player)) {
+			// may be repeated now
+			res.add("It's been a while since I brought Coralia fresh fruit for her hat, I wonder if the fruit has withered?");
+        } else {
+        	// not (currently) repeatable
+        	res.add("I brought Coralia the fruit she needed for her hat and she restored it to it's old radiance.");
+		}
+		return res;
+	}
+    
+    public void prepareQuestStep() {
+    	SpeakerNPC npc = npcs.get("Coralia");
+    	
+    	// various quest introductions
+    	
+    	// offer quest first time
+    	npc.add(ConversationStates.ATTENDING,
+    		ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "fruit"),
+    		new AndCondition(
+    			new QuestNotStartedCondition(QUEST_SLOT),
+    			new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+    		ConversationStates.QUEST_OFFERED,
+    		"Would you be kind enough to find me some fresh fruit for my hat? I'd be ever so grateful!",
+    		null);
+    	
+    	// ask for quest again after rejected
+    	npc.add(ConversationStates.ATTENDING, 
+    		ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
+    		new QuestInStateCondition(QUEST_SLOT, "rejected"),
+    		ConversationStates.QUEST_OFFERED, 
+    		"Are you willing to find me some fresh fruit for my hat yet?",
+    		null);
+    	
+    	// repeat quest
+    	npc.add(ConversationStates.ATTENDING,
+            ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
+            new AndCondition(
+            	new QuestCompletedCondition(QUEST_SLOT),
+            	new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+            ConversationStates.QUEST_OFFERED,
+            "I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore.. " +
+            "Would you be kind enough to find me some more?",
+            null);
+    	    	
+    	// quest inactive    	
+    	npc.add(ConversationStates.ATTENDING,
+        	ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
+        	new AndCondition(
+        		new QuestCompletedCondition(QUEST_SLOT),
+        		new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
+        	ConversationStates.ATTENDING,
+        	"Doesn't my hat look so fresh? I don't need any new fresh fruit for it yet, but thanks for enquiring!",
+        	null);
+    	
+    	// end of quest introductions
+    	
+    	
+    	// introduction chat    	
+    	npc.add(ConversationStates.ATTENDING,
+        	"hat",
+        	new AndCondition(
+        		new QuestNotStartedCondition(QUEST_SLOT),
+        		new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
+        	ConversationStates.ATTENDING,
+        	"It's a shame for you to see it all withered like this, it really needs some fresh #fruit...",
+        	null);
+    	
+    	// accept quest response
+    	npc.add(ConversationStates.QUEST_OFFERED,
+    		ConversationPhrases.YES_MESSAGES,
+    		null,
+    		ConversationStates.QUESTION_1,
+    		null,
+			new MultipleActions(
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! Could you bring me these fresh fruits: [items]?")));
+    	
+    	// reject quest response
+    	npc.add(ConversationStates.QUEST_OFFERED,
+        	ConversationPhrases.NO_MESSAGES,
+        	null,
+        	ConversationStates.ATTENDING,
+        	"These exotic hats don't keep themselves you know..",
+        	new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+    	
+    	// meet again during quest
+    	npc.add(ConversationStates.IDLE, 
+    		ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(
+				new QuestActiveCondition(QUEST_SLOT),
+				new GreetingMatchesNameCondition(npc.getName())),
+			ConversationStates.ATTENDING,
+			"Hello again. If you've brought me some fresh fruits for my #hat, I'll happily take them!",
+			null);
+
+   	
+    	
+    	// specific fruit info
+    	npc.add(ConversationStates.QUESTION_1,
+        	"apples",
+        	new QuestActiveCondition(QUEST_SLOT),
+        	ConversationStates.QUESTION_1,
+        	"Glowing, radiant apples! The ones I have just now came from somewhere east of Semos.",
+        	null);
+    	
+    	npc.add(ConversationStates.QUESTION_1,
+        	"cherries",
+        	new QuestActiveCondition(QUEST_SLOT),
+        	ConversationStates.QUESTION_1,
+        	"There's an old lady in Fado who sells the most beautifully vibrant cherries.",
+        	null);
+    }
+    
+    
+    private void prepareBringingStep() {
+		final SpeakerNPC npc = npcs.get("Coralia");
+		
+		// ask for required items
+    	npc.add(ConversationStates.ATTENDING, 
+    		ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
+    		new QuestActiveCondition(QUEST_SLOT),
+    		ConversationStates.QUESTION_2, 
+    		null,
+    		new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I'd still like [items]. Have you brought any?"));
+    	
+    	// player says he didn't bring any items
+		npc.add(ConversationStates.QUESTION_2, 
+			ConversationPhrases.NO_MESSAGES,
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_1,
+			null,
+			new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh, that's a shame, do tell me when you find some. I'd still like [items]."));
+    	
+    	// player says he has a required item with him
+		npc.add(ConversationStates.QUESTION_2,
+			ConversationPhrases.YES_MESSAGES,
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.QUESTION_2, 
+			"Wonderful, what fresh delights have you brought?",
+			null);
+    	
+		// set up next step
+    	ChatAction completeAction = new  MultipleActions(
+			new SetQuestAction(QUEST_SLOT, "done"),
+			new SayTextAction("My hat has never looked so delightful! Thank you ever so much! Here, take this as a reward."),
+			new IncreaseXPAction(50),
+			new IncreaseKarmaAction(5),
+			new EquipItemAction("minor potion", 5),
+			new SetQuestToTimeStampAction(QUEST_SLOT, 1)
+		);
+    	
+    	// add triggers for the item names
+    	final ItemCollection items = new ItemCollection();
+    	items.addFromQuestStateString(NEEDED_ITEMS);
+    	for (final Map.Entry<String, Integer> item : items.entrySet()) {
+    		npc.add(ConversationStates.QUESTION_2,
+    			item.getKey(),
+    			new QuestActiveCondition(QUEST_SLOT),
+    			ConversationStates.QUESTION_2,
+    			null,
+    			new CollectRequestedItemsAction(item.getKey(),
+    				QUEST_SLOT,
+    				"Wonderful! Did you bring anything else with you?", "I already have enough of those.",
+    				completeAction,
+    				ConversationStates.ATTENDING));
+    	}
+    }
+}
