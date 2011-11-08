@@ -23,6 +23,8 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WalkBlocker;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.CollisionDetection;
 
@@ -34,7 +36,9 @@ import javax.swing.SwingUtilities;
 
 public class MapPanelController implements GameObjects.GameObjectListener, PositionChangeListener {
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
-	private MapPanel panel;
+	private final JComponent container;
+	private final MapPanel panel;
+	private final InformationPanel infoPanel;
 	final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
 	double x, y;
 
@@ -45,7 +49,14 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	private volatile boolean needsRefresh;
 	
 	public MapPanelController(final StendhalClient client) {
+		container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		
 		panel = new MapPanel(this, client);
+		container.add(panel);
+		
+		infoPanel = new InformationPanel();
+		container.add(infoPanel, SBoxLayout.constraint(SLayout.EXPAND_X));
+		
 		client.getGameObjects().addGameObjectListener(this);
 	}
 	
@@ -59,11 +70,12 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	}
 	
 	/**
-	 * Get the map panel component
+	 * Get the map panel component.
+	 * 
 	 * @return component
 	 */
 	public JComponent getComponent() {
-		return panel;
+		return container;
 	}
 	
 	/**
@@ -153,7 +165,13 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	public void update(final CollisionDetection cd, final CollisionDetection pd,
 			final String zone, final double dangerLevel) {
 		// Panel will do the relevant part in EDT.
-		panel.update(cd, pd, zone);
+		panel.update(cd, pd);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				infoPanel.setZoneName(zone);
+				infoPanel.setDangerLevel(dangerLevel);
+			}
+		});
 	}
 	
 	/**

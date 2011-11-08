@@ -22,10 +22,8 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Transparency;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -58,8 +56,6 @@ class MapPanel extends JComponent {
 	private static final int MAP_WIDTH = 128;
 	/** height of the minimap. */
 	private static final int MAP_HEIGHT = 128;
-	/** height of the title */
-	private static final int TITLE_HEIGHT = 15;
 	/** Minimum scale of the map; the minimum size of one tile in pixels */
 	private static final int MINIMUM_SCALE = 2;
 	
@@ -102,18 +98,6 @@ class MapPanel extends JComponent {
 	private Image mapImage;
 	
 	/**
-	 * Name of the map. This should be accessed only in the event dispatch
-	 * thread.
-	 */
-	private String title;
-	/**
-	 * Title label of the map, or <code>null</code> if the current map does not
-	 * have a rendered version of the name yet. This should be accessed only in
-	 * the event dispatch thread.
-	 */
-	private Image titleImage;
-	
-	/**
 	 * Create a new MapPanel.
 	 * 
 	 * @param controller 
@@ -124,7 +108,7 @@ class MapPanel extends JComponent {
 		this.controller = controller;
 		// black area outside the map
 		setBackground(Color.black);
-		updateSize(new Dimension(MAP_WIDTH, MAP_HEIGHT + TITLE_HEIGHT));
+		updateSize(new Dimension(MAP_WIDTH, MAP_HEIGHT));
 		setOpaque(true);
 		
 		// handle clicks for moving.
@@ -144,7 +128,6 @@ class MapPanel extends JComponent {
 		
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		drawTitle(g);
 		// The rest of the things should be drawn inside the actual map area
 		g.clipRect(0, 0, width, height);
 		// also choose the origin so that we can simply draw to the 
@@ -193,30 +176,6 @@ class MapPanel extends JComponent {
 	 */
 	private void drawMap(final Graphics g) {
 		g.drawImage(mapImage, 0, 0, null);
-	}
-	
-	/**
-	 * Draw the map title. This must be called from the event dispatch thread.
-	 * 
-	 * @param g The graphics context
-	 */
-	private void drawTitle(final Graphics g) {
-		if (title == null) {
-			return;
-		}
-		if (titleImage == null) {
-			final Rectangle2D rect = g.getFontMetrics().getStringBounds(title, g);
-			int w = (int) rect.getWidth() + 1;
-			titleImage = getGraphicsConfiguration().createCompatibleImage(w, TITLE_HEIGHT, Transparency.OPAQUE);
-			Graphics ig = titleImage.getGraphics();
-			ig.setColor(Color.BLACK);
-			ig.fillRect(0, 0, w, TITLE_HEIGHT);
-			ig.setColor(Color.WHITE);
-			ig.drawString(title, 0, TITLE_HEIGHT - 3);
-			ig.dispose();
-		}
-		int startX = Math.max(0, (width - titleImage.getWidth(null)) / 2);
-		g.drawImage(titleImage, startX, height, null);
 	}
 	
 	/**
@@ -299,10 +258,8 @@ class MapPanel extends JComponent {
 	 *            The collision map.
 	 * @param pd  
 	 *      	  The protection map.
-	 * @param zone
-	 *            The zone name.
 	 */
-	void update(final CollisionDetection cd, final CollisionDetection pd, final String zone) {
+	void update(final CollisionDetection cd, final CollisionDetection pd) {
 		// calculate the size and scale of the map
 		final int mapWidth = cd.getWidth();
 		final int mapHeight = cd.getHeight();
@@ -334,15 +291,13 @@ class MapPanel extends JComponent {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				title = zone;
-				titleImage = null;
 				// Swap the image only after the new one is ready
 				mapImage = newMapImage;
 				// Update the other data
 				MapPanel.this.scale = scale;
 				MapPanel.this.width = width;
 				MapPanel.this.height = height;
-				updateSize(new Dimension(MAP_WIDTH, height + TITLE_HEIGHT));
+				updateSize(new Dimension(MAP_WIDTH, height));
 				updateView();
 			}
 		});
