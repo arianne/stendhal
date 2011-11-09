@@ -44,12 +44,18 @@ public class HealerNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>(); 
 				nodes.add(new Node(26, 5));
-				nodes.add(new Node(33, 5));
-				nodes.add(new Node(33, 16));
-				nodes.add(new Node(26, 16));
-				nodes.add(new Node(26, 13));
-				nodes.add(new Node(7, 13));
-				nodes.add(new Node(7, 5));
+				nodes.add(new Node(29, 5));
+				nodes.add(new Node(29, 3));
+				nodes.add(new Node(37, 3));
+				nodes.add(new Node(37, 9));
+				nodes.add(new Node(22, 9));
+				nodes.add(new Node(22, 12));
+				nodes.add(new Node(5, 12));
+				nodes.add(new Node(5, 9));
+				nodes.add(new Node(26, 9));
+				nodes.add(new Node(26, 3));
+				nodes.add(new Node(8, 3));
+				nodes.add(new Node(26, 4));
 				setPath(new FixedPath(nodes, true));
 			}
 
