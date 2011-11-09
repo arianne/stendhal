@@ -1160,10 +1160,18 @@ Please leave my mail at my neighbour's house.
      </implementation>
     </entity>
 
-    <entity x="8" y="1">
+    <entity x="17" y="5">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
-Under new management. Chests to the right are still held by Semos Bank Merchants Ltd.
+Please respect the privacy of other customers. Our customer advisor #Rachel will give information about our bank. Your Ados Bank Merchants Ltd. service.
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+   
+    <entity x="2" y="5">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+Please respect the privacy of other customers. Our customer advisor #Rachel will give information about our bank. Your Ados Bank Merchants Ltd. service.
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
