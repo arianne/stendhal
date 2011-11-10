@@ -614,7 +614,9 @@ public class OutfitDialog extends JDialog {
 		 */
 		void setIndex(int index) {
 			if ((index < 0) || (index >= n)) {
-				throw new IndexOutOfBoundsException();
+				LOGGER.warn("Index out of allowed range [0-" + n + "]: " + index, 
+						new Throwable());
+				index = 0;
 			}
 			this.index = index;
 			fire();
