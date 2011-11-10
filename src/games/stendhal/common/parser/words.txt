@@ -856,6 +856,7 @@ vulcano	OBJ	vulcanos
 war	OBJ	wars
 wardrobe	OBJ	wardrobes
 water	OBJ-FOO-FLU	waters
+watermelon	OBJ-FOO watermelons
 way	OBJ	ways
 weapon	OBJ	weapons
 weave	OBJ	weaves

@@ -253,7 +253,8 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 		
 		// [19:05] pinch earns 50 experience points.
-		assertTrue(player.isEquipped("REWARD"));
+		assertTrue(player.isEquipped("crepes suzette"));
+		assertTrue(player.isEquipped("minor potion"));
 		assertThat(player.getXP(), greaterThan(xp));
 		assertThat(player.getKarma(), greaterThan(karma));
 
@@ -314,7 +315,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 
 		// changed quest slot to done;0
-		player.setQuest(questSlot, "done;0");
+		player.setQuest(questSlot, 1, "0");
 		assertEquals("I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore.. Would you be kind enough to find me some more?", getReply(npc));
 
 		// -----------------------------------------------

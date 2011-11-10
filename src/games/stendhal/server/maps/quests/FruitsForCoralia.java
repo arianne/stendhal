@@ -27,15 +27,18 @@ import java.util.*;
  * 
  * REWARD:
  * <ul>
- * <li>UNDECIDED XP</li>
- * <li>UNDECIDED ITEMS</li>
- * <li>Karma: UNDECIDED</li>
+ * <li>XP: 300</li>
+ * <li><1-5> Crepes Suzettes</li>
+ * <li><2-8> Minor Potions</li>
+ * <li>Karma: 5</li>
  * </ul>
  * 
  * REPETITIONS:
  * <ul>
- * <li>UNDECIDED - but repeating would fit in with the withering of the fruit</li>
+ * <li>After 1 week, fit with the withering of the fruit</li>
  * </ul>
+ * 
+ * @author pinchanzee
  */
 public class FruitsForCoralia extends AbstractQuest {
  
@@ -58,7 +61,7 @@ public class FruitsForCoralia extends AbstractQuest {
     /**
 	 * Required items for the quest.
 	 */
-	protected static final String NEEDED_ITEMS = "apple=4;cherry=9";
+	protected static final String NEEDED_ITEMS = "apple=4;banana=5;cherry=9;grapes=2";
  
     @Override
     public void addToWorld() {
@@ -218,18 +221,40 @@ public class FruitsForCoralia extends AbstractQuest {
     	
     	// specific fruit info
     	npc.add(ConversationStates.QUESTION_1,
-        	"apples",
+        	"apple",
         	new QuestActiveCondition(QUEST_SLOT),
         	ConversationStates.QUESTION_1,
         	"Glowing, radiant apples! The ones I have just now came from somewhere east of Semos.",
         	null);
     	
     	npc.add(ConversationStates.QUESTION_1,
-        	"cherries",
+            "banana",
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.QUESTION_1,
+            "There's one particularly exotic island with bananas.. Keep west, though - lets just say the bananas aren't meaty or fleshy enough for those in the east.",
+            null);
+    	
+    	npc.add(ConversationStates.QUESTION_1,
+        	"cherry",
         	new QuestActiveCondition(QUEST_SLOT),
         	ConversationStates.QUESTION_1,
         	"There's an old lady in Fado who sells the most beautifully vibrant cherries.",
         	null);
+    	
+    	npc.add(ConversationStates.QUESTION_1,
+            "grapes",
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.QUESTION_1,
+            "I think there's an old house on Orril mountain that's covered in vines.",
+            null);
+    	/*
+    	npc.add(ConversationStates.QUESTION_1,
+            "watermelon",
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.QUESTION_1,
+            "One of the huge watermelons from Kalavan gardens would make a nice new centrepiece for my hat.",
+            null);
+        */
     }
     
     
@@ -264,9 +289,10 @@ public class FruitsForCoralia extends AbstractQuest {
     	ChatAction completeAction = new  MultipleActions(
 			new SetQuestAction(QUEST_SLOT, "done"),
 			new SayTextAction("My hat has never looked so delightful! Thank you ever so much! Here, take this as a reward."),
-			new IncreaseXPAction(50),
+			new IncreaseXPAction(300),
 			new IncreaseKarmaAction(5),
-			new EquipItemAction("minor potion", 5),
+			new EquipRandomAmountOfItemAction("crepes suzette", 1, 5),
+			new EquipRandomAmountOfItemAction("minor potion", 2, 8),
 			new SetQuestToTimeStampAction(QUEST_SLOT, 1)
 		);
     	
