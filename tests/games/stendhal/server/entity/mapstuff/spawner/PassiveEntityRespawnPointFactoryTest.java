@@ -370,7 +370,7 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertNotNull(value_0);
 		assertTrue(value_0 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
-				"It looks like there's a piece of meat sprout growing here.",
+				"You see some leftovers of animal food. Might be meat.",
 				((PassiveEntityRespawnPoint) value_0).getDescription());
 
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
@@ -378,7 +378,7 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertNotNull(value_1);
 		assertTrue(value_1 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
-				"It looks like there's a piece of ham sprout growing here.",
+				"You see some leftovers of animal food. Looks like ham.",
 				((PassiveEntityRespawnPoint) value_1).getDescription());
 
 		PassiveEntityRespawnPoint value_2 = PassiveEntityRespawnPointFactory
@@ -386,21 +386,21 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertNotNull(value_2);
 		assertTrue(value_2 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
-				"It looks like there's a piece of chicken sprout growing here.",
+				"You see some leftovers of animal food. Maybe chicken?",
 				((PassiveEntityRespawnPoint) value_2).getDescription());
 
 		PassiveEntityRespawnPoint value_3 = PassiveEntityRespawnPointFactory
 				.create(clazz, 3, null, 0, 0);
 		assertNotNull(value_3);
 		assertTrue(value_3 instanceof PassiveEntityRespawnPoint);
-		assertEquals("It looks like there's a roach sprout growing here.",
+		assertEquals("You see some shimmering fish scales like from a roach.",
 				((PassiveEntityRespawnPoint) value_3).getDescription());
 
 		PassiveEntityRespawnPoint value_4 = PassiveEntityRespawnPointFactory
 				.create(clazz, 4, null, 0, 0);
 		assertNotNull(value_4);
 		assertTrue(value_4 instanceof PassiveEntityRespawnPoint);
-		assertEquals("It looks like there's a char sprout growing here.",
+		assertEquals("You see some red fish scales like from a char.",
 				((PassiveEntityRespawnPoint) value_4).getDescription());
 
 		PassiveEntityRespawnPoint value_5 = PassiveEntityRespawnPointFactory
