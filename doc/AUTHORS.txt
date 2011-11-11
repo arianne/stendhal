@@ -145,6 +145,7 @@ Authors of Stendhal are:
 - monsterdhal
   . Coder (just some simple stuff, so far)
   . Wiki (corrections and little details every once a while)
+- Filipe aka filinep
   
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
