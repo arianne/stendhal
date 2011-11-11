@@ -11,19 +11,22 @@
 - Relative zone danger level is shown below the map
 
 *world*
+
 - Some garlic seeds have been planted by Sue in the Kalavan City Gardens
-- You can place items on your tables in your Kalavan City houses now
+- Rachel, the Ados bank customer adviser, started to work
+- You can place items on your tables in your Kalavan City houses and in your holiday apartments on Athor island now
 - Fado hotel chopped old trees down and planted new pines
 - Some Ados inhabitants started to decorate their town a bit outside and inside houses
 - Ados Bank got a new style and more bank chests 
-- Rachel, the Ados bank customer adviser, started to work
 - Hikers saw some new vegetation growing around Semos and Ados mountains
 - The Revival Weeks ended and the Mine Town is clean again, same as Semos city
 - Haizens furniture arrived
 - Are you thirsty, need vacation and some tasty drinks? Visit the new Athor island cocktailbar and relax
 - Ortiv Milquetoast is prepared for mixing his potion now and build a chemistry corner up in his house
+- Semos mine maps at level -2 withered and got a new ground style
 
 *fixes*
+
 - Farmer achievement can be reached due to garlic grower implementation
 
 
