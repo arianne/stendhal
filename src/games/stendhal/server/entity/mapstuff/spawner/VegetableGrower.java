@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
@@ -27,6 +28,7 @@ import marauroa.common.game.RPObject;
 public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		UseListener {
 	private String vegetableName;
+	private String notRipeEnoughMessage;
 
 	protected final void setVegetableName(final String vegetableName) {
 		this.vegetableName = vegetableName;
@@ -36,8 +38,15 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		return vegetableName;
     }
 
+	protected final void setNotRipeEnoughMessage(final String notRipeEnoughMessage) {
+		this.notRipeEnoughMessage = notRipeEnoughMessage;
+	}
 
-    /**
+    protected String getNotRipeEnoughMessage() {
+		return notRipeEnoughMessage;
+	}
+
+	/**
      * Create a VegetableGrower from an RPObject. Used when restoring growers
      * from the DB.
      * 
@@ -50,6 +59,8 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 			final int maxRipeness, final int growthRate) {
 		super(object, "items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", maxRipeness, growthRate);
 		vegetableName = name;
+		setDescription("It looks like there's "
+				+ Grammar.a_noun(name) + " sprouting here.");
 		update();
 	}
 
@@ -61,6 +72,22 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 	public VegetableGrower(final String name) {
 		super("items/grower/" + name + "_grower", "items/grower/" + name + " grower", "Pick", 1, 1, 1);
 		vegetableName = name;
+		setDescription("It looks like there's "
+				+ Grammar.a_noun(name) + " sprouting here.");
+	}
+	
+	/**
+	 * Create a new VegetableGrower for an item.
+	 * 
+	 * @param name item name
+	 * @param notRipeEnoughMessage 
+	 * 		The message displayed when the
+	 * 		player tries to pick the item but it is
+	 * 		not yet ripe enough.
+	 */
+	public VegetableGrower(final String name, final String notRipeEnoughMessage) {
+		this(name);
+		this.notRipeEnoughMessage = notRipeEnoughMessage;
 	}
 
 	@Override
@@ -68,13 +95,13 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		String text;
 		switch (getRipeness()) {
 		case 0:
-			text = "You see a planted " + vegetableName + " seed.";
+			text = getDescription();
 			break;
 		case 1:
-			text = "You see a ripe " + vegetableName + ".";
+			text = "You see " + Grammar.a_noun(vegetableName) + ".";
 			break;
 		default:
-			text = "You see an unripe " + vegetableName + ".";
+			text = "You see an unripe " +  Grammar.fullForm(vegetableName) + ".";
 			break;
 		}
 		return text;
@@ -98,12 +125,15 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 				entity.equipOrPutOnGround(grain);
 				return true;
 			} else if (entity instanceof Player) {
-				((Player) entity).sendPrivateText("This " + vegetableName
-						+ " is not yet ripe enough to pick.");
+				String message = "This " + Grammar.fullForm(vegetableName)
+						+ " is not yet ripe enough to pick.";
+				if(notRipeEnoughMessage != null) {
+					message = notRipeEnoughMessage;
+				}
+				((Player) entity).sendPrivateText(message);
 			}
 		} else if (entity instanceof Player) {
-		((Player) entity).sendPrivateText("You are too far away from the " + vegetableName
-						+ ".");
+			((Player) entity).sendPrivateText("You are too far away.");
 		}
 		return false;
 	}

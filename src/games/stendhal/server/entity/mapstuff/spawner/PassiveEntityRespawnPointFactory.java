@@ -96,7 +96,7 @@ public class PassiveEntityRespawnPointFactory {
 		case 0:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("egg", 900);
 			passiveEntityrespawnPoint
-					.setDescription("If you were a hen, you'd like to drop a egg in this spot once in a while.");
+					.setDescription("If you were a hen, you'd like to drop an egg in this spot once in a while.");
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
@@ -110,19 +110,24 @@ public class PassiveEntityRespawnPointFactory {
 		switch (type) {
 		case 0:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("meat", 100);
+			passiveEntityrespawnPoint.setDescription("You see some leftovers of animal food. Might be meat.");
 			break;
 		case 1:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("ham", 100);
+			passiveEntityrespawnPoint.setDescription("You see some leftovers of animal food. Looks like ham.");
 			break;
 		case 2:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("chicken", 100);
+			passiveEntityrespawnPoint.setDescription("You see some leftovers of animal food. Maybe chicken?");
 			break;
 		case 3:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("roach", 100);
+			passiveEntityrespawnPoint.setDescription("You see some shimmering fish scales like from a roach.");
 			break;
 
 		case 4:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("char", 100);
+			passiveEntityrespawnPoint.setDescription("You see some red fish scales like from a char.");
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
@@ -141,6 +146,8 @@ public class PassiveEntityRespawnPointFactory {
 			break;
 		case 1:
 			passiveEntityrespawnPoint = new VegetableGrower("tomato");
+			passiveEntityrespawnPoint
+					.setDescription("You see a tomato plant.");
 			break;
 		case 2:
 			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("pineapple", 1200);
@@ -156,7 +163,7 @@ public class PassiveEntityRespawnPointFactory {
 					.setDescription("You see a place where a banana looks likely to fall.");
 			break;
 		case 5:
-			passiveEntityrespawnPoint = new VegetableGrower("grapes");
+			passiveEntityrespawnPoint = new VegetableGrower("grapes", "There are no grapes on this vine yet.");
 			passiveEntityrespawnPoint
 					.setDescription("You see a grape vine.");
 			break;
@@ -253,7 +260,7 @@ public class PassiveEntityRespawnPointFactory {
 		PassiveEntityRespawnPoint passiveEntityrespawnPoint;
 		switch (type) {
 		case 0:
-			passiveEntityrespawnPoint = new VegetableGrower("wood");
+			passiveEntityrespawnPoint = new VegetableGrower("wood", "There isn't anything to pick yet but wood might fall down soon.");
 			passiveEntityrespawnPoint.setDescription("You see a log shaped indent in the ground.");
 			break;
 		case 1:
@@ -290,12 +297,15 @@ public class PassiveEntityRespawnPointFactory {
 		switch (type) {
 		case 0:
 			passiveEntityrespawnPoint = new VegetableGrower("button mushroom");
+			passiveEntityrespawnPoint.setDescription("You notice a tiny button mushroom growing in the soil.");
 			break;
 		case 1:
 			passiveEntityrespawnPoint = new VegetableGrower("porcini");
+			passiveEntityrespawnPoint.setDescription("You notice a tiny porcini growing in the soil.");
 			break;
 		case 2:
 			passiveEntityrespawnPoint = new VegetableGrower("toadstool");
+			passiveEntityrespawnPoint.setDescription("You notice a tiny toadstool growing in the soil.");
 			break;
 		default:
 			passiveEntityrespawnPoint = null;
