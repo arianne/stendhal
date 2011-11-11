@@ -51,6 +51,7 @@ final class PrefixManager
 		register("sprig of ", "sprigs of ", "arandula");
 		register("root of ", "roots of ", "mandragora");
 		register("bunch of ", "bunches of ", "daisies");
+		register("bunch of ", "bunches of ", "grapes");
 		register("can of ", "cans of ", "oil");
 
 		register("bottle of ", "bottles of ", "beer");
