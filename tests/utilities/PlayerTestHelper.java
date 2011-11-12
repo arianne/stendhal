@@ -249,7 +249,7 @@ public abstract class PlayerTestHelper {
 	 * @param player
 	 * @param clazz
 	 * @param slot
-	 * @return
+	 * @return true if it could be equipped to slot, false otherwise
 	 */
 	public static boolean equipWithItemToSlot(final Player player, final String clazz, final String slot) {
 		ItemTestHelper.generateRPClasses();
