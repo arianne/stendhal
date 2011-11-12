@@ -213,7 +213,7 @@ public class AwaitingPhase extends TPPQuest {
 		 * constructor
 		 * @param mayor - first npc
 		 * @param piper - second npc
-		 * @param phase - phase class object
+		 * @param n - observer n
 		 */
 		public NPCChatting(SpeakerNPC mayor, SpeakerNPC piper, Observer n) {
 			this.mayor=mayor;

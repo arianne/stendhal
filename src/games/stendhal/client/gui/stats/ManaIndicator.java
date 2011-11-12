@@ -77,7 +77,7 @@ public class ManaIndicator extends JComponent implements PropertyChangeListener 
 	 * Set the base_mana value. This method may be called outside the event dispatch
 	 * thread.
 	 * 
-	 * @param mana
+	 * @param base_mana
 	 */
 	public void setBaseMana(double base_mana) {
 		this.base_mana = (int) Math.floor(base_mana);
