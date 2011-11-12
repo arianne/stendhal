@@ -112,7 +112,7 @@ public class FlowerGrowerTest {
 				fl.describe(),
 				is("You see a fully grown someotheritem, ready to pull from the ground."));
 		fl.setRipeness(5);
-		assertThat(fl.describe(), is("You see an unripe someotherItem."));
+		assertThat(fl.describe(), is("You see an unripe someotheritem."));
 	}
 
 	/**
