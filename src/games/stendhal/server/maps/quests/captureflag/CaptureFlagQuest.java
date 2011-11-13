@@ -162,4 +162,9 @@ public class CaptureFlagQuest extends AbstractQuest {
 		addTeamManagerNPC();
 	}
 
+	@Override
+	public String getNPCName() {
+		return "Thumb";
+	}
+
 }
