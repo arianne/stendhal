@@ -511,7 +511,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		}
 		Graphics2D g2d = (Graphics2D) g;
 
-		// Draw the GameLayers from bootom to top, relies on exact naming of the
+		// Draw the GameLayers from bottom to top, relies on exact naming of the
 		// layers
 		final String set = gameLayers.getAreaName();
 		
@@ -565,13 +565,14 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		
 		gameLayers.drawLayers(graphics, set, "floor_bundle", startTileX, 
-				startTileY, layerWidth, layerHeight, "0_floor", "1_terrain",
-				"2_object");
+				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",
+				"1_terrain", "2_object");
 		
 		drawEntities(graphics);
 
-		gameLayers.draw(graphics, set, "3_roof", startTileX, startTileY, layerWidth, layerHeight);
-		gameLayers.draw(graphics, set, "4_roof_add", startTileX, startTileY, layerWidth, layerHeight);
+		gameLayers.drawLayers(graphics, set, "roof_bundle", startTileX,
+				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
+				"4_roof_add");
 		
 		drawTopEntities(graphics);
 		

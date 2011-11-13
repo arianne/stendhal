@@ -15,6 +15,7 @@ import games.stendhal.client.sprite.CompositeSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteCache;
 
+import java.awt.Composite;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,11 @@ public class CompositeLayerRenderer extends TileRenderer {
 	 * Create a CompositeLayerRenderer from a set of {@link TileRenderer}s
 	 * 
 	 * @param layerRenderers TileRenderers used for compositing
+	 * @param blend composite mode for drawing the adjustment layer
+	 * @param adjustLayer adjustment layer
 	 */
-	public CompositeLayerRenderer(List<TileRenderer> layerRenderers) {
+	public CompositeLayerRenderer(List<TileRenderer> layerRenderers,
+			Composite blend, TileRenderer adjustLayer) {
 		LayerRenderer lr = layerRenderers.get(0);
 		width = lr.getWidth();
 		height = lr.getHeight();
@@ -39,15 +43,18 @@ public class CompositeLayerRenderer extends TileRenderer {
 			maps[i] = ((TileRenderer) layer).spriteMap;
 			i++;				
 		}
-		createComposites(layerRenderers);
+		createComposites(layerRenderers, blend, adjustLayer);
 	}
 
 	/**
 	 * Fill the spriteMap with composite sprites.
 	 * 
 	 * @param renderers slave layers
+	 * @param blend composite mode for drawing the adjustment layer
+	 * @param adjustLayer adjustment layer
 	 */
-	private void createComposites(List<TileRenderer> renderers) {
+	private void createComposites(List<TileRenderer> renderers,
+			Composite blend, TileRenderer adjustLayer) {
 		int size = width * height;
 		spriteMap = new Sprite[size];
 		SpriteCache cache = SpriteCache.get();
@@ -59,7 +66,12 @@ public class CompositeLayerRenderer extends TileRenderer {
 			for (TileRenderer r : renderers) {
 				slaveSprites.add(r.tileset.getSprite(r.map[i]));
 			}
-			spriteMap[i] = CompositeSprite.getComposite(cache, slaveSprites);
+			Sprite adjSprite = null;
+			if (adjustLayer != null) {
+				adjSprite = adjustLayer.tileset.getSprite(adjustLayer.map[i]);
+			}
+			spriteMap[i] = CompositeSprite.getComposite(cache, slaveSprites,
+					blend, adjSprite);
 			slaveSprites.clear();
 		}
 		

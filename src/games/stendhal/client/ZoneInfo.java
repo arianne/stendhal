@@ -22,7 +22,9 @@ public class ZoneInfo {
 	private static final ZoneInfo instance = new ZoneInfo();
 	
 	/** Blend mode for coloring the zone, or <code>null</code>. */
-	private Composite colorMethod;
+	private Composite colorBlend;
+	/** Blend mode for coloring effect layers, or <code>null</code>. */
+	private Composite effectBlend;
 	/** Color for the current zone, or <code>null</code>. */
 	private Color color;
 	
@@ -45,7 +47,8 @@ public class ZoneInfo {
 	 * Call when zone changes. Clears zone dependent data.
 	 */
 	void zoneChanged() {
-		colorMethod = null;
+		colorBlend = null;
+		effectBlend = null;
 		color = null;
 	}
 	
@@ -55,7 +58,7 @@ public class ZoneInfo {
 	 * @param method
 	 */
 	void setColorMethod(Composite method) {
-		colorMethod = method;
+		colorBlend = method;
 	}
 	
 	/**
@@ -65,7 +68,27 @@ public class ZoneInfo {
 	 * @return blend mode
 	 */
 	public Composite getColorMethod() {
-		return colorMethod;
+		return colorBlend;
+	}
+	
+	/**
+	 * Get the effect layer blend mode. Mode for blending the effect layers to
+	 * the tiles underneath.
+	 * 
+	 * @param blend
+	 */
+	void setEffectBlend(Composite blend) {
+		effectBlend = blend;
+	}
+	
+	/**
+	 * Get the effect layer blend mode. Mode for blending the effect layers to
+	 * the tiles underneath.
+	 * 
+	 * @return blend mode
+	 */
+	Composite getEffectBlend() {
+		return effectBlend;
 	}
 	
 	/**

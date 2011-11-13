@@ -16,6 +16,7 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.MathHelper;
 import games.stendhal.tools.tiled.LayerDefinition;
 
+import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
@@ -141,24 +142,23 @@ public class Zone {
 			obj.readObject(new InputSerializer(in));
 
 			// *** coloring ***
-			String colorMode = obj.get("color_method");
-			if ("multiply".equals(colorMode)) {
-				zoneInfo.setColorMethod(Blend.Multiply);
-			} else if ("screen".equals(colorMode)) {
-				zoneInfo.setColorMethod(Blend.Screen);
-			}
+			// Ensure there's no old color left. That can happen in the
+			// morning on a daylight colored zone.
+			zoneInfo.setColorMethod(null);
+
+			// getBlend calls below may need the color, so check that one first
 			String color = obj.get("color");
 			if (color != null) {
 				// Keep working, but use an obviously broken color if parsing
 				// the value fails.
 				zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
-			} else {
-				// Ensure there's no old color left. That can happen in the
-				// morning on a daylight colored zone.
-				zoneInfo.setColorMethod(null);
+				zoneInfo.setColorMethod(getBlend(obj.get("color_method")));
 			}
 			
-			// ** other attributes **
+			// * effect blend *
+			zoneInfo.setEffectBlend(getBlend(obj.get("blend_method")));
+			
+			// *** other attributes ***
 			String danger = obj.get("danger_level");
 			if (danger != null) {
 				try {
@@ -178,6 +178,25 @@ public class Zone {
 			layers.put(layer, content);
 		}
 		isValid = false;
+	}
+	
+	/**
+	 * Get composite mode from a string identifier.
+	 * 
+	 * @param colorMode blend mode as a string, or <code>null</code>
+	 * @return blend mode, or <null>
+	 */
+	private Composite getBlend(String colorMode) {
+		if ("multiply".equals(colorMode)) {
+			return Blend.Multiply;
+		} else if ("screen".equals(colorMode)) {
+			return Blend.Screen;
+		} else if ("bleach".equals(colorMode)) {
+			if (zoneInfo.getZoneColor() != null) {
+				return Blend.createBleach(zoneInfo.getZoneColor());
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -282,12 +301,14 @@ public class Zone {
 	 * Get a composite representation of multiple tile layers.
 	 * 
 	 * @param compositeName name to be used for the composite for caching
+	 * @param adjustName name of the adjustment layer
 	 * @param layerNames names of the layers making up the composite starting
 	 * from the bottom
 	 * @return layer corresponding to all sub layers or <code>null</code> if
 	 * 	they can not be merged
 	 */
-	LayerRenderer getMerged(String compositeName, String ... layerNames) {
+	LayerRenderer getMerged(String compositeName, String adjustName,
+			String ... layerNames) {
 		LayerRenderer r = layers.get(compositeName);
 		if (r == null) {
 			List<TileRenderer> subLayers = new ArrayList<TileRenderer>(layerNames.length);
@@ -295,10 +316,16 @@ public class Zone {
 				LayerRenderer subLayer = layers.get(layerNames[i]);
 				if (subLayer instanceof TileRenderer) {
 					subLayers.add((TileRenderer) subLayer);
-				} else {
+				} else if (subLayer != null) {
 					// Can't merge
 					return null;
 				}
+			}
+			
+			TileRenderer adjLayer = null;
+			LayerRenderer subLayer = layers.get(adjustName);
+			if (subLayer instanceof TileRenderer) {
+				adjLayer = (TileRenderer) subLayer;
 			}
 			// Make sure the sub layers have their tiles defined before passing
 			// them to CompositeLayerRenderer
@@ -311,8 +338,20 @@ public class Zone {
 			for (String layer : layerNames) {
 				layers.remove(layer);
 			}
+			layers.remove(adjustName);
 
-			r = new CompositeLayerRenderer(subLayers);
+			// ** adjustment layer **
+			Composite adjustment = zoneInfo.getEffectBlend();
+			if (adjLayer == null) {
+				adjustment = null;
+			}
+			if (adjustment == null) {
+				// Set to null, so that we don't needlessly fetch the sprites
+				// in an unused layer.
+				adjLayer = null;
+			}
+			
+			r = new CompositeLayerRenderer(subLayers, adjustment, adjLayer);
 			layers.put(compositeName, r);
 		}
 		return r;

@@ -36,7 +36,7 @@ public class CompositeSpriteTest {
 		slaves.add(empty1);
 		
 		SpriteCache cache = new SpriteCache();
-		Sprite result = CompositeSprite.getComposite(cache, slaves);
+		Sprite result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue((result == empty0) || (result == empty1));
 		
 		Sprite empty2 = new EmptySprite(32, 32, 0xaaaa);
@@ -44,7 +44,7 @@ public class CompositeSpriteTest {
 		slaves.add(empty0);
 		slaves.add(empty1);
 		slaves.add(empty2);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue((result == empty0) || (result == empty1) || (result == empty2));
 	}
 	
@@ -64,14 +64,14 @@ public class CompositeSpriteTest {
 		slaves.add(image);
 		
 		SpriteCache cache = new SpriteCache();
-		Sprite result = CompositeSprite.getComposite(cache, slaves);
+		Sprite result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 		
 		// Then the other way around
 		slaves.clear();
 		slaves.add(image);
 		slaves.add(empty0);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 		
 		// lastly an image between two empty sprites
@@ -79,7 +79,7 @@ public class CompositeSpriteTest {
 		slaves.add(empty0);
 		slaves.add(image);
 		slaves.add(empty1);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 	}
 	
@@ -98,7 +98,7 @@ public class CompositeSpriteTest {
 		slaves.add(image);
 		
 		SpriteCache cache = new SpriteCache();
-		Sprite result = CompositeSprite.getComposite(cache, slaves);
+		Sprite result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 		
 		// The same with 3 copies
@@ -106,7 +106,7 @@ public class CompositeSpriteTest {
 		slaves.add(image);
 		slaves.add(image);
 		slaves.add(image);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 		
 		// complicated sample with a couple of empty images
@@ -120,7 +120,7 @@ public class CompositeSpriteTest {
 		slaves.add(image);
 		slaves.add(empty0);
 		slaves.add(empty0);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result == image);
 	}
 	
@@ -140,7 +140,7 @@ public class CompositeSpriteTest {
 		slaves.add(image1);
 		
 		SpriteCache cache = new SpriteCache();
-		Sprite result = CompositeSprite.getComposite(cache, slaves);
+		Sprite result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result instanceof CompositeSprite);
 		assertEquals(0xffff, result.getReference().hashCode());
 		
@@ -148,7 +148,7 @@ public class CompositeSpriteTest {
 		slaves.add(image0);
 		slaves.add(image1);
 		slaves.add(image2);
-		result = CompositeSprite.getComposite(cache, slaves);
+		result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result instanceof CompositeSprite);
 		assertEquals(0x5555, result.getReference().hashCode());
 	}
@@ -168,7 +168,7 @@ public class CompositeSpriteTest {
 		slaves.add(image1);
 		
 		SpriteCache cache = new SpriteCache();
-		Sprite result = CompositeSprite.getComposite(cache, slaves);
+		Sprite result = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result instanceof CompositeSprite);
 		assertEquals(0xffff, result.getReference().hashCode());
 		
@@ -177,7 +177,7 @@ public class CompositeSpriteTest {
 		slaves.add(image0);
 		slaves.add(new EmptySprite(32, 32, "plugh"));
 		slaves.add(image1);
-		Sprite result2 = CompositeSprite.getComposite(cache, slaves);
+		Sprite result2 = CompositeSprite.getComposite(cache, slaves, null, null);
 		assertTrue(result2 instanceof CompositeSprite);
 		assertTrue(result == result2);
 	}

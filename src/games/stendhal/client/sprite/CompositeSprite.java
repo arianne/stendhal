@@ -11,7 +11,12 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
+import java.awt.Composite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,24 +36,36 @@ public class CompositeSprite implements Sprite {
 	// One Sprite to rule them all...
 	/** The layer Sprites making up the composite. */
 	private List<Sprite> slaves;
+	private Composite blend;
+	private Sprite adjSprite;
 	/** Reference object made up from the meaningful slave references */ 
 	private final CompositeRef reference;
+	private BufferedImage buffer;
 	
 	/**
 	 * Get a composite of at least one {@link Sprite}. Note that the result
 	 * is not necessarily a CompositeSprite, but can well be one of the slave
 	 * sprites if the said sprite is enough to represent the entire composite.
+	 * The composite can have also one sprite, which is composited above the
+	 * others using a special blend mode.
 	 * 
 	 * @param cache Cache to look up a previously stored, and storing
 	 * 	newly created composites
 	 * @param slaves Sprites making up the composite. The list should be
 	 *	non-null and not empty. Also the sprites themselves should be non-null.
+	 * @param blend Blend mode for the special adjustment sprite, or
+	 * 	<code>null</code>, if no adjustments are wanted
+	 * @param adj adjustment sprite, or <code>null</code>
 	 * @return A Sprite representing a composite of the slave Sprites
 	 */
-	public static Sprite getComposite(SpriteCache cache, List<Sprite> slaves) {
+	public static Sprite getComposite(SpriteCache cache, List<Sprite> slaves,
+			Composite blend, Sprite adj) {
 		ListIterator<Sprite> iter = slaves.listIterator();
 		Sprite empty = null;
 		Sprite previous = null;
+		if ((blend == null) || (adj == null) || (adj instanceof EmptySprite)) {
+			blend = null;
+		}
 		while (iter.hasNext()) {
 			Sprite sprite = iter.next();
 			if (sprite instanceof EmptySprite) {
@@ -75,14 +92,21 @@ public class CompositeSprite implements Sprite {
 			return empty;
 		case 1:
 			// Composite of one non empty sprite. Just return that one.
-			return slaves.get(0);
+			Sprite loner = slaves.get(0);
+			if ((blend == null) || !(loner instanceof ImageSprite)) {
+				return loner;
+			}
+			// Needs composition for the blending anyway. Fall through! Avoid
+			// modifying the original sprite by making a copy of it.
+			slaves.clear();
+			slaves.add(new ImageSprite(loner));
 		default:
 			// A proper composite. Return either a previously generated one,
 			// or create a new and cache that
-			CompositeRef ref = new CompositeRef(slaves);
+			CompositeRef ref = new CompositeRef(slaves, blend, adj);
 			Sprite composite = cache.get(ref);
 			if (composite == null) {
-				composite = new CompositeSprite(slaves, ref);
+				composite = new CompositeSprite(slaves, blend, adj, ref);
 				cache.add(composite);
 			}
 			return composite;
@@ -98,10 +122,15 @@ public class CompositeSprite implements Sprite {
 	 * 	Sprite stack
 	 * @param reference Identifier for cache lookups
 	 */
-	private CompositeSprite(List<Sprite> slaves, CompositeRef reference) {
+	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj, 
+			CompositeRef reference) {
 		// Get a copy. The caller can modify the list
 		this.slaves = new LinkedList<Sprite>(slaves);
 		this.reference = reference;
+		if (blend != null) {
+			this.adjSprite = adj;
+			this.blend = blend;
+		}
 	}
 
 	public Sprite createRegion(int x, int y, int width, int height, Object ref) {
@@ -112,8 +141,25 @@ public class CompositeSprite implements Sprite {
 		if (!composited) {
 			composite();
 		}
-		for (Sprite sprite : slaves) {
-			sprite.draw(g, x, y);
+		
+		if (blend == null) {
+			for (Sprite sprite : slaves) {
+				sprite.draw(g, x, y);
+			}
+		} else {
+			if (buffer == null) {
+				buffer = GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice().getDefaultConfiguration()
+				.createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
+			}
+			Graphics2D g2d = buffer.createGraphics();
+			for (Sprite sprite : slaves) {
+				sprite.draw(g2d, 0, 0);
+			}
+			g2d.setComposite(blend);
+			adjSprite.draw(g2d, 0, 0);
+			g2d.dispose();
+			g.drawImage(buffer, x, y, null);
 		}
 	}
 
@@ -163,7 +209,9 @@ public class CompositeSprite implements Sprite {
 						floor = new ImageSprite(floor);
 						copied = true;
 					}
-					current.draw(floor.getGraphics(), 0, 0);
+					Graphics g = floor.getGraphics();
+					current.draw(g, 0, 0);
+					g.dispose();
 				} else {
 					floor = (ImageSprite) current;
 				}
@@ -181,6 +229,24 @@ public class CompositeSprite implements Sprite {
 			newSlaves.add(floor);
 		}
 		slaves = newSlaves;
+		
+		// Adjustment effect
+		if (blend != null) {
+			// Can handle only mergeable stacks
+			if (slaves.size() == 1) {
+				Sprite tmp = slaves.get(0);
+				if (tmp instanceof ImageSprite) {
+					Graphics g = ((ImageSprite) tmp).getGraphics();
+					if (g instanceof Graphics2D) {
+						((Graphics2D) g).setComposite(blend);
+						adjSprite.draw(g, 0, 0);
+						g.dispose();
+					}
+					blend = null;
+					adjSprite = null;
+				}
+			}
+		}
 		composited = true;
 	}
 	
@@ -188,7 +254,9 @@ public class CompositeSprite implements Sprite {
 	 * Reference object for identifying equal composite sprite stacks.
 	 */
 	private static class CompositeRef {
+		/** References of the slave and adjustment sprites */
 		private final Object[] refs;
+		/** hash code */
 		private final int hash;
 		
 		/**
@@ -196,10 +264,20 @@ public class CompositeSprite implements Sprite {
 		 * 
 		 * @param slaves Meaningful sprites making up the composite,
 		 * 	<em>before</em> merging them.
+		 * @param blend composite mode of the adjustment sprite, or
+		 * 	<code>null</code>
+		 * @param adj adjustment sprite, or <code>null</code>
 		 */
-		public CompositeRef(List<Sprite> slaves) {
-			refs = new Object[slaves.size()];
+		CompositeRef(List<Sprite> slaves, Composite blend, Sprite adj) {
 			int tmphash = 0;
+			if (blend == null) {
+				refs = new Object[slaves.size()];
+			} else {
+				refs = new Object[slaves.size() + 1];
+				Object ref = adj.getReference();
+				refs[slaves.size()] = ref + "@" + blend.toString();
+				tmphash = (ref == null) ? 42 : ref.hashCode();
+			}
 			for (int i = 0; i < slaves.size(); i++) {
 				Object ref = slaves.get(i).getReference();
 				refs[i] = ref;

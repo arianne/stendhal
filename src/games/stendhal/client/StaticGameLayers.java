@@ -147,11 +147,13 @@ public class StaticGameLayers {
 	 * @param y
 	 * @param width
 	 * @param height
+	 * @param adjustLayer name of the adjustment layer
 	 * @param layers names of the layer set, starting from the bottom
 	 */
-	public void drawLayers(Graphics g, final String area, final String compositeName, final int x,
-			final int y, final int width, final int height, String ... layers) {
-		LayerRenderer lr = getMerged(area, compositeName, layers);
+	public void drawLayers(Graphics g, final String area, final String compositeName,
+			final int x, final int y, final int width, final int height,
+			String adjustLayer, String ... layers) {
+		LayerRenderer lr = getMerged(area, compositeName, adjustLayer, layers);
 		if (lr != null) {
 			lr.draw(g, x, y, width, height);
 		}
@@ -162,15 +164,17 @@ public class StaticGameLayers {
 	 * 
 	 * @param area area name
 	 * @param compositeName name to be used for the composite for caching
+	 * @param adjustLayer name of the adjustment layer
 	 * @param layers names of the layers making up the composite starting from
 	 * 	the bottom
 	 * @return layer corresponding to all sub layers or <code>null</code> if
 	 * 	they can not be merged
 	 */
-	private LayerRenderer getMerged(String area, String compositeName, String ... layers) {
+	private LayerRenderer getMerged(String area, String compositeName, 
+			String adjustLayer, String ... layers) {
 		if (currentZone != null) {
 			if (currentZone.getName().equals(area)) {
-				return currentZone.getMerged(compositeName, layers);
+				return currentZone.getMerged(compositeName, adjustLayer, layers);
 			} else {
 				logger.warn("Trying to draw zone: " + area + ", but the current zone is: " + currentZone.getName());
 			}
