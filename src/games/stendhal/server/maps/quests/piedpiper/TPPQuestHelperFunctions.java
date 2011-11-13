@@ -12,8 +12,10 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 	
 	private static LinkedList<Creature> rats = new LinkedList<Creature>();	
 	
+	public static String getMainNPCName = "Mayor Chalmers"; 
+	
 	public static SpeakerNPC getMainNPC() {
-		return SingletonRepository.getNPCList().get("Mayor Chalmers");
+		return SingletonRepository.getNPCList().get(getMainNPCName);
 	}
 	
 	/**
