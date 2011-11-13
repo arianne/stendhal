@@ -209,15 +209,12 @@ public final class ZonesXMLLoader {
 		zone.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
 		
 		// Roof layers are optional
-		LayerDefinition layer = zonedata.getLayer("3_roof");
-		if (layer != null) {
-			zone.addLayer(name + ".3_roof", layer);
-		}
-		layer = zonedata.getLayer("4_roof_add");
-		if (layer != null) {
-			zone.addLayer(name + ".4_roof_add", layer);
-		}
-
+		loadOptionalLayer(zone, zonedata, "3_roof");
+		loadOptionalLayer(zone, zonedata, "4_roof_add");
+		// Effect layers are optional too
+		loadOptionalLayer(zone, zonedata, "blend_ground");
+		loadOptionalLayer(zone, zonedata, "blend_roof");
+	
 		zone.addCollisionLayer(name + ".collision",
 				zonedata.getLayer("collision"));
 		zone.addProtectionLayer(name + ".protection",
@@ -242,6 +239,22 @@ public final class ZonesXMLLoader {
 		zone.populate(zonedata.getLayer("objects"));
 
 		return zone;
+	}
+	
+	/**
+	 * Load an optional layer, if present, to a zone.
+	 * 
+	 * @param zone
+	 * @param zonedata
+	 * @param layerName
+	 * @throws IOException
+	 */
+	private void loadOptionalLayer(StendhalRPZone zone, 
+			StendhalMapStructure zonedata, String layerName) throws IOException {
+		LayerDefinition layer = zonedata.getLayer(layerName);
+		if (layer != null) {
+			zone.addLayer(zone.getName() + "." + layerName, layer);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
