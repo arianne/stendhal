@@ -13,6 +13,7 @@ package games.stendhal.client.gui.j2d;
 
 import games.stendhal.common.math.Algebra;
 
+import java.awt.Color;
 import java.awt.Composite;
 import java.awt.CompositeContext;
 import java.awt.RenderingHints;
@@ -28,6 +29,7 @@ public class Blend implements Composite {
 	 * Possible blending modes.
 	 */
 	private enum Mode {
+		BLEACH,
 		MULTIPLY,
 		SCREEN,
 		TRUE_COLOR,
@@ -67,6 +69,8 @@ public class Blend implements Composite {
 
 	/** Blending mode */
 	private final Mode mode;
+	/** Color for blend modes that need it. <code>null</code> for most. */
+	private Color color;
 
 	/**
 	 * Create a new Blend.
@@ -81,6 +85,8 @@ public class Blend implements Composite {
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
 		switch (mode) {
+		case BLEACH:
+			return new BleachContext(color);
 		case MULTIPLY:
 			return new MultiplyContext();
 		case SCREEN:
@@ -88,6 +94,20 @@ public class Blend implements Composite {
 		default:
 			return new BlendContext(mode, srcColorModel, dstColorModel);
 		}
+	}
+	
+	/**
+	 * Create a new Bleach blend for a color. The blend removes the effect of
+	 * multiplying with the color, using the lightness of the source image
+	 * as the degree to bleach the color.
+	 * 
+	 * @param color
+	 * @return Bleach blend for color
+	 */
+	public static Blend createBleach(Color color) {
+		Blend rval = new Blend(Mode.BLEACH);
+		rval.color = color;
+		return rval;
 	}
 
 	/**
@@ -363,6 +383,75 @@ public class Blend implements Composite {
 		}
 
 		return hue;
+	}
+	
+	/**
+	 * Blend context for removing effect of color multiply. This is yet another
+	 * Stendhal specific blend mode that does not have an established name.
+	 */
+	private static class BleachContext implements CompositeContext {
+		/** Color components of the color to be removed. */
+		final int red, green, blue;
+		/** Brightness of the bleached color. */
+		final int lightFactor;
+		
+		/**
+		 * Create a new BleachContext for a color.
+		 * 
+		 * @param c color to be bleached
+		 */
+		BleachContext(Color c) {
+			int color = c.getRGB();
+			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
+			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
+			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
+			lightFactor = red + green + blue + 1;
+		}
+		
+		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
+			int width = Math.min(src.getWidth(), dstIn.getWidth());
+			int height = Math.min(src.getHeight(), dstIn.getHeight());
+
+			int[] srcData = new int[width];
+			int[] dstData = new int[width];
+
+			for (int y = 0; y < height; y++) {
+				src.getDataElements(0, y, width, 1, srcData);
+				dstIn.getDataElements(0, y, width, 1, dstData);
+
+				for (int x = 0; x < width; x++) {
+					int[] a = new int[4];
+					splitRgb(dstData[x], a);
+					int b[] = new int[4];
+					splitRgb(srcData[x], b);
+					int[] res = new int[4];
+					res[ALPHA] = a[ALPHA];
+					int light = (b[RED] + b[GREEN] + b[BLUE]) * 256 / lightFactor;
+					res[RED] = bleachComponent(light, a[RED], red);
+					res[GREEN] = bleachComponent(light, a[GREEN], green);
+					res[BLUE] = bleachComponent(light, a[BLUE], blue);
+					dstData[x] = mergeRgb(res);
+				}
+				dstOut.setDataElements(0, y, width, 1, dstData);
+			}
+		}
+		
+		/**
+		 * Bleach an individual color component.
+		 * 
+		 * @param light amount to be bleached. The relative brightness of the
+		 * 	source image pixel
+		 * @param bg bleached pixel
+		 * @param color component value of the bleaching color
+		 * @return bleached value of the color component
+		 */
+		private int bleachComponent(int light, int bg, int color) {
+			int mod = (light * color) / 256 + 256 - light;
+			return bg * 256 / mod;
+		}
+
+		public void dispose() {
+		}
 	}
 	
 	/**
