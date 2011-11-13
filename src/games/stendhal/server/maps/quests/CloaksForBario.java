@@ -254,4 +254,8 @@ public class CloaksForBario extends AbstractQuest {
 	public int getMinLevel() {
 		return 20;
 	}
+	@Override
+	public String getNPCName() {
+		return "Bario";
+	}
 }

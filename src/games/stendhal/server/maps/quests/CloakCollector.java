@@ -241,4 +241,9 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	public String getRegion() {
 		return Region.FADO_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Josephine";
+	}
 }

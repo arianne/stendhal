@@ -328,4 +328,9 @@ and ask for horse hair.
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Ouchit";
+	}
 }

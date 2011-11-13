@@ -278,4 +278,9 @@ public class Campfire extends AbstractQuest {
 	public int getMinLevel() {
 		return 0;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Sally";
+	}
 }

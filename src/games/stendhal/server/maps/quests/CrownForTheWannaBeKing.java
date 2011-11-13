@@ -311,4 +311,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	public int getMinLevel() {
 		return 100;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Ivan Abe";
+	}
 }

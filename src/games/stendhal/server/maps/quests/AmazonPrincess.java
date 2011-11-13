@@ -240,4 +240,9 @@ npc.add(ConversationStates.ATTENDING,
 	public String getRegion() {
 		return Region.AMAZON_ISLAND;
 	}
+	
+	@Override
+	public String getNPCName() {
+		return "Princess Esclara";
+	}
 }
