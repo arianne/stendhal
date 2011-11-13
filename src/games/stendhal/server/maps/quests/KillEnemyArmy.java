@@ -538,5 +538,10 @@ import marauroa.common.Pair;
 		}
 		return history; 
  	}
+
+	@Override
+	public String getNPCName() {
+		return "Despot Halb Errvl";
+	}
 }
 

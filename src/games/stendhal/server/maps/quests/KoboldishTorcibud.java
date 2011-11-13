@@ -472,4 +472,9 @@ public class KoboldishTorcibud extends AbstractQuest {
                         completeAction, ConversationStates.ATTENDING));
         }
     }
+
+	@Override
+	public String getNPCName() {
+		return "Wrviliza";
+	}
 }

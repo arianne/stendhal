@@ -211,5 +211,10 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Santa";
+	}
 	
 }

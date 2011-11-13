@@ -174,4 +174,9 @@ public class Maze extends AbstractQuest {
 	protected Portal getPortal() {
 		return maze.getPortal();
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Haizen";
+	}
 }

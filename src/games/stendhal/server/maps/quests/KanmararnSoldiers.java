@@ -480,4 +480,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public int getMinLevel() {
 		return 40;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Henry";
+	}
 }

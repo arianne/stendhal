@@ -225,4 +225,9 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 	public boolean isCompleted(final Player player) {
 		return new QuestStateStartsWithCondition(QUEST_SLOT,"killed").fire(player, null, null);
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Zogfang";
+	}
 }

@@ -374,5 +374,9 @@ import org.apache.log4j.Logger;
 	public String getRegion() {
 		return Region.AMAZON_ISLAND;
 	}
+	@Override
+	public String getNPCName() {
+		return "Lorenz";
+	}
 }
  

@@ -367,4 +367,8 @@ public class MedicineForTad extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
+	@Override
+	public String getNPCName() {
+		return "Tad";
+	}
 }

@@ -338,5 +338,10 @@ import org.apache.log4j.Logger;
 	public String getName() {
 		return("KillBlordroughs");
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Despot Halb Errvl";
+	}
 }
  

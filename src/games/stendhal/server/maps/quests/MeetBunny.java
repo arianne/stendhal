@@ -171,4 +171,9 @@ public class MeetBunny extends AbstractQuest {
 		return new ArrayList<String>();
 	}
 
+	@Override
+	public String getNPCName() {
+		return "Easter Bunny";
+	}
+
 }

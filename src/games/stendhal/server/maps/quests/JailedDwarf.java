@@ -113,4 +113,9 @@ public class JailedDwarf extends AbstractQuest {
 	public int getMinLevel() {
 		return 60;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Hunel";
+	}
 }

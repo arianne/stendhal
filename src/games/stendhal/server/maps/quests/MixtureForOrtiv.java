@@ -271,5 +271,10 @@ public class MixtureForOrtiv extends AbstractQuest {
 		
 		return "Mixture for Ortiv";
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Ortiv Milquetoast";
+	}
 	
 }

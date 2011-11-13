@@ -365,4 +365,9 @@ public class KillDarkElves extends AbstractQuest {
 	public String getRegion() {
 		return Region.NALWOR_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Maerion";
+	}
 }

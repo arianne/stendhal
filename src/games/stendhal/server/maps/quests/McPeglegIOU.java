@@ -133,4 +133,8 @@ public class McPeglegIOU extends AbstractQuest {
 	public int getMinLevel() {
 		return 40;
 	}
+	@Override
+	public String getNPCName() {
+		return "McPegleg";
+	}
 }

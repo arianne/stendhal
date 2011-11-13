@@ -91,4 +91,10 @@ public class Marriage extends AbstractQuest {
 		return Region.FADO_CITY;
 	}
 
+
+	@Override
+	public String getNPCName() {
+		return "Sister Benedicta";
+	}
+
 }
