@@ -293,6 +293,6 @@ import org.apache.log4j.Logger;
 
 	@Override
 	public String getNPCName() {
-		return TPPQuestHelperFunctions.getMainNPCName;
+		return TPPQuestHelperFunctions.MAIN_NPC_NAME;
 	}
 }
