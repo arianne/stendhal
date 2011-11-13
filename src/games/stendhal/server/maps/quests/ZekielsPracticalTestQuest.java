@@ -349,4 +349,9 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	public String getName() {
 		return "ZekielsPracticalTest";
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Zekiel the guardian";
+	}
 }

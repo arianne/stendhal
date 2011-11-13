@@ -289,4 +289,9 @@ import org.apache.log4j.Logger;
 	public int getRemainingSeconds() {
 		return TurnNotifier.get().getRemainingSeconds(questTimer);		
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Mayor Chalmers";
+	}
 }

@@ -215,4 +215,9 @@ public class ToysCollector extends AbstractQuest implements
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Anna";
+	}
 }

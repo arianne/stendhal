@@ -264,4 +264,9 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 	public String getRegion() {
 		return Region.NALWOR_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Grafindle";
+	}
 }

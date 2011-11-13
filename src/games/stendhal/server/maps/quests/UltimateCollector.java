@@ -323,4 +323,9 @@ public class UltimateCollector extends AbstractQuest {
 	public int getMinLevel() {
 		return 100;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Balduin";
+	}
 }

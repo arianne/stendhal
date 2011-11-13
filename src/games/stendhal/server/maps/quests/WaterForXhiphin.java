@@ -276,5 +276,10 @@ public class WaterForXhiphin extends AbstractQuest {
 	public String getRegion() {
 		return Region.FADO_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Xhiphin Zohos";
+	}
 	
 }

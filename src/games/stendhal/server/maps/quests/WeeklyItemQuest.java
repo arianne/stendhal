@@ -361,4 +361,9 @@ public class WeeklyItemQuest extends AbstractQuest {
 	public String getRegion() {
 		return Region.KIRDNEH_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Hazel";
+	}
 }

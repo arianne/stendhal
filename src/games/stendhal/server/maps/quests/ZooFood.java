@@ -284,4 +284,9 @@ public class ZooFood extends AbstractQuest {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,DELAY)).fire(player, null, null);
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Katinka";
+	}
 }

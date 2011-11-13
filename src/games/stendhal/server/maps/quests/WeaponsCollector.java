@@ -211,4 +211,9 @@ public class WeaponsCollector extends AbstractQuest implements
 	public int getMinLevel() {
 		return 30;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Balduin";
+	}
 }
