@@ -43,6 +43,11 @@ public class AbstractQuestTest {
 		public List<String> getHistory(final Player player) {
 			return new ArrayList<String>();
 		}
+
+		@Override
+		public String getNPCName() {
+			return QUESTNPCNAME;
+		}
 	}
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -58,6 +63,9 @@ public class AbstractQuestTest {
 	private static String QUESTSlotSTRING = "TESTQUEST";
 
 	private static String QUESTNAMESTRING = "test quest name";
+	
+	private static String QUESTNPCNAME = "test npc name";
+
 
 	/**
 	 * Tests for getHintGetHistory.
@@ -177,6 +185,16 @@ public class AbstractQuestTest {
 		final AbstractQuest quest = new Mockquest();
 		assertTrue("abstract quests are visible by default",
 				quest.isVisibleOnQuestStatus());
+	}
+	
+	/**
+	 * Tests for getNPCName.
+	 */
+	@Test
+	public final void testGetNPCName() {
+		final AbstractQuest quest = new Mockquest();
+		
+		assertEquals(QUESTNPCNAME, quest.getNPCName());
 	}
 
 }
