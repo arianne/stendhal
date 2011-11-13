@@ -416,5 +416,9 @@ import org.apache.log4j.Logger;
 	public int getMinLevel() {
 		return 30;
 	}
+	@Override
+	public String getNPCName() {
+		return "Phalk";
+	}
 }
  

@@ -391,4 +391,9 @@ public class StuffForVulcanus extends AbstractQuest {
 	public int getMinLevel() {
 		return 80;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Vulcanus";
+	}
 }

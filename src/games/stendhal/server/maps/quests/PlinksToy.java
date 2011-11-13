@@ -192,4 +192,9 @@ public class PlinksToy extends AbstractQuest {
 		return "PlinksToy";
 	}
 
+	@Override
+	public String getNPCName() {
+		return "Plink";
+	}
+
 }

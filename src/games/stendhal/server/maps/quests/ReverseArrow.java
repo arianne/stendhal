@@ -525,4 +525,9 @@ public class ReverseArrow extends AbstractQuest implements
 			}
 			return res;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Gamblos";
+	}
 }

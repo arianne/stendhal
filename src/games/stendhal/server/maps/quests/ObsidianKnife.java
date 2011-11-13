@@ -534,4 +534,9 @@ public class ObsidianKnife extends AbstractQuest {
 	public int getMinLevel() {
 		return REQUIRED_LEVEL;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Alrak";
+	}
 }

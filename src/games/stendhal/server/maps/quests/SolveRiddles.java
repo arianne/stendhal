@@ -314,5 +314,10 @@ public class SolveRiddles extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Grim Reaper";
+	}
 	
 }

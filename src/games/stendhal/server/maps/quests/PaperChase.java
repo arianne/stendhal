@@ -283,4 +283,10 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			player.setQuest(QUEST_SLOT, 1, Integer.toString(startAgeWithPenalty));
 		}
 	}
+
+
+	@Override
+	public String getNPCName() {
+		return "Fidorea";
+	}
 }

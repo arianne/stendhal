@@ -227,4 +227,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 	public int getMinLevel() {
 		return 50;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Zara";
+	}
 }
