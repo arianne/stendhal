@@ -277,4 +277,9 @@ public class FishSoupForHughie extends AbstractQuest {
 	public int getMinLevel() {
 		return 10;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Anastasia";
+	}
 }

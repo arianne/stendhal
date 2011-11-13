@@ -232,4 +232,9 @@ public class ElvishArmor extends AbstractQuest implements
 	public int getMinLevel() {
 		return 60;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Lupos";
+	}
 }

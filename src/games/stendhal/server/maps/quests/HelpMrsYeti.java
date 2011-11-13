@@ -417,5 +417,10 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 	public int getMinLevel() {
 		return 60;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Mrs. Yeti";
+	}
 }
  

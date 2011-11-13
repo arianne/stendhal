@@ -166,4 +166,9 @@ public class DiceGambling extends AbstractQuest {
 		return Region.SEMOS_CITY;
 	}
 
+	@Override
+	public String getNPCName() {
+		return "Ricardo";
+	}
+
 }

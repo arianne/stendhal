@@ -337,4 +337,8 @@ public class ElfPrincess extends AbstractQuest {
 	public String getRegion() {
 		return Region.NALWOR_CITY;
 	}
+	@Override
+	public String getNPCName() {
+		return "Tywysoga";
+	}
 }

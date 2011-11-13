@@ -195,4 +195,8 @@ public class HatForMonogenes extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
+	@Override
+	public String getNPCName() {
+		return "Monogenes";
+	}
 }

@@ -320,4 +320,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 	public String getRegion() {
 		return Region.KALAVAN;
 	}
+	@Override
+	public String getNPCName() {
+		return "Annie Jones";
+	}
 }

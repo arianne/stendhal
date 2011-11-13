@@ -431,4 +431,9 @@ public class FishSoup extends AbstractQuest {
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Florence Boullabaisse";
+	}
 }

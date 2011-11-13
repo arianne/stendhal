@@ -400,4 +400,9 @@ public class DailyItemQuest extends AbstractQuest {
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Mayor Chalmers";
+	}
 }

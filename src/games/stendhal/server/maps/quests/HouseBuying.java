@@ -57,4 +57,9 @@ public class HouseBuying extends AbstractQuest {
 	public boolean isCompleted(final Player player) {
 		return quest.isCompleted(player);
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Barrett Holmes";
+	}
 }

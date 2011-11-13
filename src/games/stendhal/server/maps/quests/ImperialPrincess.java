@@ -331,4 +331,9 @@ public class ImperialPrincess extends AbstractQuest {
 	public String getRegion() {
 		return Region.KALAVAN;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Princess Ylflia";
+	}
 }

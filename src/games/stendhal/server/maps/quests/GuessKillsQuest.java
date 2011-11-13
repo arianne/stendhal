@@ -340,4 +340,9 @@ public class GuessKillsQuest extends AbstractQuest {
                         new SetQuestAction(QUEST_SLOT, 0, "done"),
                         new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
     }
+
+	@Override
+	public String getNPCName() {
+		return "Crearid";
+	}
 }

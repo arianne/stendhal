@@ -310,4 +310,9 @@ public class FindGhosts extends AbstractQuest {
 	public int getMinLevel() {
 		return 10;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Carmen";
+	}
 }

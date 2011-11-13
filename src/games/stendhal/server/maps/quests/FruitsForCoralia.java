@@ -312,4 +312,9 @@ public class FruitsForCoralia extends AbstractQuest {
     				ConversationStates.ATTENDING));
     	}
     }
+
+	@Override
+	public String getNPCName() {
+		return "Coralia";
+	}
 }

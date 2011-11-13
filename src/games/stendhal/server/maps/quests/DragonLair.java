@@ -160,4 +160,8 @@ public class DragonLair extends AbstractQuest {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
 						 new TimePassedCondition(QUEST_SLOT,1,MathHelper.MINUTES_IN_ONE_WEEK)).fire(player, null, null);
 	}
+	@Override
+	public String getNPCName() {
+		return "Wishman";
+	}
 }

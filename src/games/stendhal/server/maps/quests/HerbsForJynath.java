@@ -193,4 +193,9 @@ public class HerbsForJynath extends AbstractQuest {
             "Exactly what I needed! Wonderful! Thank you for your help.",
             new MultipleActions(rewardActions));
     }
+
+	@Override
+	public String getNPCName() {
+		return "Jynath";
+	}
 }

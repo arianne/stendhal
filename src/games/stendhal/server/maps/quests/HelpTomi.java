@@ -182,4 +182,8 @@ public class HelpTomi extends AbstractQuest {
 	public boolean isRepeatable(final Player player) {
 		return true;
 	}
+	@Override
+	public String getNPCName() {
+		return "Tomi";
+	}
 }

@@ -313,4 +313,9 @@ public class HerbsForCarmen extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Carmen";
+	}
 }

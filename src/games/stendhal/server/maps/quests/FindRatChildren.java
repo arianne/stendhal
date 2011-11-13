@@ -311,4 +311,9 @@ public class FindRatChildren extends AbstractQuest {
 	public int getMinLevel() {
 		return 10;
 	}
+
+	@Override
+	public String getNPCName() {
+		return "Agnus";
+	}
 }
