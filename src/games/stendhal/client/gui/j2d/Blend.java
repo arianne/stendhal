@@ -390,10 +390,11 @@ public class Blend implements Composite {
 	 * Stendhal specific blend mode that does not have an established name.
 	 */
 	private static class BleachContext implements CompositeContext {
+		// Using floats is faster than doing everything in integer
 		/** Color components of the color to be removed. */
-		final int red, green, blue;
-		/** Brightness of the bleached color. */
-		final int lightFactor;
+		final float red, green, blue;
+		/** Inverse of brightness of the bleached color. */
+		final float lightFactor;
 		
 		/**
 		 * Create a new BleachContext for a color.
@@ -405,7 +406,7 @@ public class Blend implements Composite {
 			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
 			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
 			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
-			lightFactor = red + green + blue + 1;
+			lightFactor = 256f / (red + green + blue + 1);
 		}
 		
 		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
@@ -415,22 +416,21 @@ public class Blend implements Composite {
 			int[] srcData = new int[width];
 			int[] dstData = new int[width];
 
+			int[] a = new int[4];
+			int[] b = new int[4];
+			
 			for (int y = 0; y < height; y++) {
 				src.getDataElements(0, y, width, 1, srcData);
 				dstIn.getDataElements(0, y, width, 1, dstData);
 
 				for (int x = 0; x < width; x++) {
-					int[] a = new int[4];
 					splitRgb(dstData[x], a);
-					int b[] = new int[4];
 					splitRgb(srcData[x], b);
-					int[] res = new int[4];
-					res[ALPHA] = a[ALPHA];
-					int light = (b[RED] + b[GREEN] + b[BLUE]) * 256 / lightFactor;
-					res[RED] = bleachComponent(light, a[RED], red);
-					res[GREEN] = bleachComponent(light, a[GREEN], green);
-					res[BLUE] = bleachComponent(light, a[BLUE], blue);
-					dstData[x] = mergeRgb(res);
+					float light = (b[RED] + b[GREEN] + b[BLUE]) * lightFactor;
+					a[RED] = bleachComponent(light, a[RED], red);
+					a[GREEN] = bleachComponent(light, a[GREEN], green);
+					a[BLUE] = bleachComponent(light, a[BLUE], blue);
+					dstData[x] = mergeRgb(a);
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
@@ -445,9 +445,9 @@ public class Blend implements Composite {
 		 * @param color component value of the bleaching color
 		 * @return bleached value of the color component
 		 */
-		private int bleachComponent(int light, int bg, int color) {
-			int mod = (light * color) / 256 + 256 - light;
-			return bg * 256 / mod;
+		private int bleachComponent(float light, int bg, float color) {
+			float mod = (light * color) / 256f + 256f - light;
+			return (int) (bg * 256f / mod);
 		}
 
 		public void dispose() {
