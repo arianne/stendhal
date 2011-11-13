@@ -131,4 +131,11 @@ public interface IQuest {
 	 */
 	String getRegion();
 	
+	/**
+	 * Returns the starter NPC for the quest, or null if there is none
+	 *
+	 * @return NPC name, or null for quests with no starter NPC
+	 */
+	String getNPCName();
+	
 }

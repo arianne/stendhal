@@ -114,4 +114,13 @@ public abstract class AbstractQuest implements IQuest {
 	public String getRegion() {
 		return null;
 	}
+	
+	/**
+	 * Returns the starter NPC for the quest, or null if there is none
+	 *
+	 * @return NPC name, or null for quests with no starter NPC
+	 */
+	public String getNPCName() {
+		return null;
+	}
 }
