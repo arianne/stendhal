@@ -181,7 +181,6 @@ public class Blend implements Composite {
 				float[] srcHsl = new float[3];
 				float[] dstHsl = new float[3];
 				int[] result = new int[4];
-				float[] hslResult = new float[3];
 
 				rgb2hsl(srcPixel, srcHsl);
 				rgb2hsl(dstPixel, dstHsl);
@@ -192,10 +191,8 @@ public class Blend implements Composite {
 				// tweaks the middle lights either upward or downward, depending
 				// on if source lightness is high or low
 				float l = dstHsl[2] - 2.0f * adj * ((tmp * tmp) - 0.25f);
-				hslResult[0] = srcHsl[0];
-				hslResult[1] = srcHsl[1];
-				hslResult[2] = l;
-				hsl2rgb(hslResult, result);
+				srcHsl[2] = l;
+				hsl2rgb(srcHsl, result);
 				result[ALPHA] = dstPixel[ALPHA];
 
 				return mergeRgb(result);
