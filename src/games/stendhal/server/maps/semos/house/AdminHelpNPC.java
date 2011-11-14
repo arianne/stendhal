@@ -18,9 +18,11 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SayNPCNamesForUnstartedQuestsAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
+import games.stendhal.server.maps.Region;
 
 import java.util.Map;
 
@@ -51,6 +53,24 @@ public class AdminHelpNPC implements ZoneConfigurator {
 						ConversationStates.IDLE,
 						"Have fun!",
 						new TeleportAction("int_admin_playground", 20, 20, Direction.DOWN));
+			    add(ConversationStates.ATTENDING,
+						"semos",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new SayNPCNamesForUnstartedQuestsAction(Region.SEMOS_CITY));
+			    add(ConversationStates.ATTENDING,
+						"nalwor",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new SayNPCNamesForUnstartedQuestsAction(Region.NALWOR_CITY));
+			    add(ConversationStates.ATTENDING,
+						"ados",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new SayNPCNamesForUnstartedQuestsAction(Region.ADOS_CITY));
 				addGoodbye("Bye, remember to take care of yourself.");
 			}
 
