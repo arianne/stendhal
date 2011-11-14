@@ -28,7 +28,7 @@
 *fixes*
 
 - Farmer achievement can be reached due to garlic grower implementation
-
+- stop player vs player attack if either player move into a protection zone
 
 0.97
 
