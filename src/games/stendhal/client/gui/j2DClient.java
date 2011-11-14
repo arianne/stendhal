@@ -51,7 +51,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -301,7 +300,6 @@ public class j2DClient implements UserInterface {
 		 */
 		// Create the main window
 		mainFrame = new MainFrame();
-		mainFrame.getMainFrame().getContentPane().setBackground(Color.black);
 		JComponent glassPane = DragLayer.get();
 		mainFrame.getMainFrame().setGlassPane(glassPane);
 		glassPane.setVisible(true);
