@@ -271,7 +271,7 @@
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
 		</entity>
-
+        
 		<portal x="39" y="5" ref="jynath_house_entrance">
 			<destination zone="int_orril_jynath_house" ref="entrance" />
 		</portal>
@@ -291,6 +291,10 @@
 	<zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.tmx">
 		<configurator
 			class-name="games.stendhal.server.maps.orril.magician_house.WitchNPC" />
+
+        <portal x="15" y="30" ref="entrance_left">
+            <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
+        </portal>
 
 		<portal x="16" y="30" ref="entrance">
 			<destination zone="0_orril_river_s" ref="jynath_house_entrance" />
