@@ -235,14 +235,20 @@ public class ZoneAttributes {
 					|| ((color != null) && !color.equals(currentColor))) {
 				for (ZoneAttributes attr : zones) {
 					setZoneColor(attr, color);
+					if (color != null) {
+						attr.put("blend_method", "bleach");
+					} else {
+						attr.remove("blend_method");
+					}
 				}
 			}
 			currentColor = color;
 		}
 		
 		/**
-		 * Set the color of a zone. Notifies all the players with a recent
-		 * enough client
+		 * Set the color of a zone. Sets the blend mode of the effect layers to
+		 * bleach, if needed. Notifies all the players with a recent enough
+		 * client.
 		 * 
 		 * @param attr attributes of the zone
 		 * @param color new color value
@@ -250,8 +256,10 @@ public class ZoneAttributes {
 		private void setZoneColor(ZoneAttributes attr, Integer color) {
 			if (color == null) {
 				attr.remove("color");
+				attr.remove("blend_method");
 			} else {
 				attr.put("color", color.toString());
+				attr.put("blend_method", "bleach");
 			}
 			// Notify resident players about the changed color
 			for (Player player : attr.getZone().getPlayers()) {
