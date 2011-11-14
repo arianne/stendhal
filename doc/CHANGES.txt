@@ -21,8 +21,8 @@
 - Hikers saw some new vegetation growing around Semos and Ados mountains
 - The Revival Weeks ended and the Mine Town is clean again, same as Semos city
 - Haizens furniture arrived
-- Are you thirsty, need vacation and some tasty drinks? Visit the new Athor island cocktailbar and relax
-- Ortiv Milquetoast is prepared for mixing his potion now and build a chemistry corner up in his house
+- Are you thirsty, need vacation and some tasty drinks? Visit the new Athor island cocktail bar and relax
+- Ortiv Milquetoast is prepared for mixing his potion now and set up a chemistry corner in his house
 - Semos mine maps at level -2 withered and got a new ground style
 
 *fixes*
@@ -33,7 +33,7 @@
 0.97
 
 * Revival Weeks*
-- Faiumonis inhabitans are excited for the Mine Town Revival Weeks already and decorated Semos City and the Mine Town area
+- Faiumoni's inhabitants are excited for the Mine Town Revival Weeks already and decorated Semos City and the Mine Town area
 - Caroline finally found her way to the Mine Town for selling snacks and drinks
 - NPCs and games have been moved in relation to the former years 
 
@@ -64,7 +64,7 @@
 - Fixed descriptions for Ketteh Wehoh
 - Fixed quest history for MedicineForTad and mentions new place of Tad in Semos Village
 - Fixed some spaces which went into Tads dialogue
-- Fixed missing collision in Semos ciy with rebuilding the palisade wall
+- Fixed missing collision in Semos city with rebuilding the palisade wall
 - Blood on gates can't block these anymore
 - Login dialog gets re-enabled after a failed login
 - Players can not attack others from protected areas
