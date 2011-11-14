@@ -457,5 +457,52 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
+	
+
+
+	/**
+	 * gets a list of the unique npc names for unstarted quests in a specified region
+	 *
+	 * @param player Player to return the list for
+	 * @param region Region to check in
+	 * @return list of the unique npc names for unstarted quests in a specified region
+	 */
+	public List<String> getNPCNamesForUnstartedQuestsInRegionForLevel(Player player, String region) {
+        final int playerlevel = player.getLevel();
+		List<String> res = new LinkedList<String>();
+		for (final IQuest quest : quests) {
+			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus() && quest.getMinLevel()<playerlevel) {
+				// don't add a name twice
+				if (!res.contains(quest.getNPCName())) {
+					res.add(quest.getNPCName());
+				}
+			}
+		}
+		return res;
+	}
+
+
+	/**
+	 * gets quest descriptions for unstarted quests in a specified region matching a specific npc name
+	 *
+	 * @param player Player to return the list for
+	 * @param region Region to check in
+	 * @return quest description (there may be more than one)
+	 */
+	public List<String> getQuestDescriptionForUnstartedQuestInRegionFromNPCName(Player player, String region, String name) {
+        final int playerlevel = player.getLevel();
+		List<String> res = new LinkedList<String>();
+        if (name == null) {
+            return res;
+        }
+		for (final IQuest quest : quests) {
+			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus() && quest.getMinLevel()<playerlevel && name.equals(quest.getNPCName())) {
+				res.add(quest.getQuestInfo(player).getDescription());
+			}
+		}
+		return res;
+	}
+
+
 
 }
