@@ -28,6 +28,8 @@ import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.common.CollisionDetection;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -49,12 +51,14 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	private volatile boolean needsRefresh;
 	
 	public MapPanelController(final StendhalClient client) {
-		container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		container = new MapContainer();
+		container.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		panel = new MapPanel(this, client);
 		container.add(panel);
 		
 		infoPanel = new InformationPanel();
+		infoPanel.setBackground(Color.BLACK);
 		container.add(infoPanel, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		client.getGameObjects().addGameObjectListener(this);
@@ -203,6 +207,17 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 					setNeedsRefresh(true);
 				}
 			});
+		}
+	}
+
+	/**
+	 * A container with black background to hold the map and related widgets.
+	 */
+	private static class MapContainer extends JComponent {
+		@Override
+		public void paintComponent(Graphics g) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, getWidth(), getHeight());
 		}
 	}
 }

@@ -14,9 +14,7 @@ package games.stendhal.client.gui.map;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -53,7 +51,6 @@ public class InformationPanel extends JComponent {
 	 */
 	InformationPanel() {
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
-		setBackground(Color.BLACK);
 		
 		// ** Zone name **
 		nameLabel = new JLabel();
@@ -63,14 +60,16 @@ public class InformationPanel extends JComponent {
 			nameLabel.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD));
 		}
 		nameLabel.setAlignmentX(CENTER_ALIGNMENT);
-		nameLabel.setBackground(Color.BLACK);
 		nameLabel.setOpaque(true);
+		nameLabel.setBackground(getBackground());
 		add(nameLabel);
 		
 		// ** Danger display **
 		dangerIndicator = new DangerIndicator(MAX_SKULLS);
 		dangerIndicator.setAlignmentX(CENTER_ALIGNMENT);
 		add(dangerIndicator);
+		// Default to safe, so that we always have a tooltip
+		setToolTipText(dangerLevelStrings[0]);
 	}
 	
 	/**
@@ -96,13 +95,6 @@ public class InformationPanel extends JComponent {
 		}
 	}
 	
-	@Override
-	public void paintComponent(Graphics g) {
-		// Draw solid background.
-		g.setColor(getBackground());
-		g.fillRect(0, 0, getWidth(), getHeight());
-	}
-	
 	/**
 	 * A skull row component for danger level display.
 	 */
@@ -120,7 +112,6 @@ public class InformationPanel extends JComponent {
 		 */
 		DangerIndicator(int maxSkulls) {
 			setLayout(new SBoxLayout(SBoxLayout.HORIZONTAL));
-			setOpaque(false);
 			indicators = new JComponent[maxSkulls];
 			for (int i = 0; i < maxSkulls; i++) {
 				JLabel indicator = new JLabel(skullIcon);
