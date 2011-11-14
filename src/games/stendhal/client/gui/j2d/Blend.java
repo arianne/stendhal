@@ -511,7 +511,6 @@ public class Blend implements Composite {
 			
 			int[] srcRgb = new int[4];
 			int[] dstRgb = new int[4];
-			int[] result = new int[4];
 
 			for (int y = 0; y < height; y++) {
 				src.getDataElements(0, y, width, 1, srcData);
@@ -523,12 +522,11 @@ public class Blend implements Composite {
 					splitRgb(a, dstRgb);
 					splitRgb(b, srcRgb);
 					
-					result[ALPHA] = dstRgb[ALPHA];
-					result[RED] = screenComponent(srcRgb[RED], dstRgb[RED]);
-					result[GREEN] = screenComponent(srcRgb[GREEN], dstRgb[GREEN]);
-					result[BLUE] = screenComponent(srcRgb[BLUE], dstRgb[BLUE]);
+					dstRgb[RED] = screenComponent(srcRgb[RED], dstRgb[RED]);
+					dstRgb[GREEN] = screenComponent(srcRgb[GREEN], dstRgb[GREEN]);
+					dstRgb[BLUE] = screenComponent(srcRgb[BLUE], dstRgb[BLUE]);
 
-					dstData[x] = mergeRgb(result);
+					dstData[x] = mergeRgb(dstRgb);
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
