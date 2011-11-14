@@ -202,6 +202,14 @@ public class StendhalRPAction {
 		defender.rememberAttacker(player);
 		if (defender instanceof Player) {
 			player.storeLastPVPActionTime();
+			
+			// did the player or victim move into a protected area?
+			if(zone.isInProtectionArea(defender) || zone.isInProtectionArea(player)) {
+				logger.debug("Attack from " + player + " to " + defender
+						+ " stopped because " + player + " or " + defender + " moved into protected area.");
+				player.stopAttack();
+				return false;
+			}
 		}
 
 		boolean missileUsed = false;
