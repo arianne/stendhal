@@ -51,6 +51,9 @@
    <destination zone="0_kirdneh_city" ref="pool"/>
    <attribute name="hidden"/>
   </portal>
+  <portal x="9" y="92" ref="tavern_left">
+   <destination zone="int_kirdneh_inn" ref="entrance_left"/>
+  </portal>
   <portal x="10" y="92" ref="tavern">
    <destination zone="int_kirdneh_inn" ref="entrance"/>
   </portal>
@@ -758,6 +761,9 @@
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC"/>
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC"/>
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.ItemsOnTable"/>
+  <portal x="17" y="23" ref="entrance_left">
+   <destination zone="0_kirdneh_city" ref="tavern_left"/>
+  </portal>
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="tavern"/>
   </portal>
