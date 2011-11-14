@@ -88,7 +88,8 @@
 - Tad moved to Semos Hostel and Ketteh Wehoh, in the town hall, will remind about his quest
 - the quest log hints if a quest which has been started isn't suitable for the current level
 - danger signs are more prominent
-
+- protect areas near healer npcs Katerina and Jynath and widen the entrances to avoid common social problems
+ 
 *website*
 - added an interactive Atlas to the website
 - improvements to the arianne.sourceforge.net website including an rss feed
