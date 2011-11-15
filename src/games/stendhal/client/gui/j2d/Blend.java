@@ -61,38 +61,38 @@ public class Blend implements Composite {
 	 * Also adjusts the middle lightness values up or down, depending on the
 	 * lightness of the source image.
 	 */
-	public static final Blend TrueColor = new Blend(Mode.TRUE_COLOR);
+	public static final Blend TrueColor = new Blend(Mode.TRUE_COLOR, null);
 	/** A blending mode that multiplies the underlying image with the above one. */
-	public static final Blend Multiply = new Blend(Mode.MULTIPLY);
+	public static final Blend Multiply = new Blend(Mode.MULTIPLY, null);
 	/** Screen blend mode. */
-	public static final Blend Screen = new Blend(Mode.SCREEN);
+	public static final Blend Screen = new Blend(Mode.SCREEN, null);
 
 	/** Blending mode */
 	private final Mode mode;
 	/** Color for blend modes that need it. <code>null</code> for most. */
-	private Color color;
+	private final Color color;
+	/** Cached name for toString() */
+	private String name;
 
 	/**
 	 * Create a new Blend.
 	 * 
-	 * @param mode blending mode
+	 * @param mode Blending mode
+	 * @param color Color for modes that need it 
 	 */
-	private Blend(Mode mode) {
+	private Blend(Mode mode, Color color) {
 		this.mode = mode;
+		this.color = color;
 	}
 
 	public CompositeContext createContext(ColorModel srcColorModel,
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
 		switch (mode) {
-		case BLEACH:
-			return new BleachContext(color);
 		case MULTIPLY:
 			return new MultiplyContext();
-		case SCREEN:
-			return new ScreenContext();
 		default:
-			return new BlendContext(mode, srcColorModel, dstColorModel);
+			return new BlendContext(mode, srcColorModel, dstColorModel, color);
 		}
 	}
 	
@@ -105,9 +105,20 @@ public class Blend implements Composite {
 	 * @return Bleach blend for color
 	 */
 	public static Blend createBleach(Color color) {
-		Blend rval = new Blend(Mode.BLEACH);
-		rval.color = color;
-		return rval;
+		return new Blend(Mode.BLEACH, color);
+	}
+	
+	@Override
+	public String toString() {
+		// Sprite cache uses blend names, so give it something constant 
+		if (name == null) {
+			String colorName = "";
+			if (color != null) {
+				colorName = "(" + Integer.toHexString(color.getRGB()) + ")";
+			}
+			name = mode + colorName;
+		}
+		return name;
 	}
 
 	/**
@@ -123,10 +134,16 @@ public class Blend implements Composite {
 		 * @param mode blending mode
 		 * @param srcColorModel
 		 * @param dstColorModel
+		 * @param color Color for modes that need it
 		 */
-		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel) {
+		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel,
+				Color color) {
 			switch (mode) {
 			case TRUE_COLOR: composer = new TrueColorComposer();
+			break;
+			case SCREEN: composer = new ScreenComposer();
+			break;
+			case BLEACH: composer = new BleachComposer(color);
 			break;
 			// Can not really happen, but the compiler is too dumb to know that
 			default: composer = null;
@@ -163,54 +180,134 @@ public class Blend implements Composite {
 		// documentation says nothing useful.
 		public void dispose() {
 		}
-				
+	}
+	
+	/**
+	 * Interface for blending 2 pixels.
+	 */
+	private interface Composer {
 		/**
-		 * Composer for the special Stendhal color blend.
+		 * Blend 2 pixels.
+		 * 
+		 * @param srcPixel upper pixel color data
+		 * @param dstPixel lower pixel color data
+		 * @return blended pixel
 		 */
-		private static class TrueColorComposer implements Composer {
-			/**
-			 * Blend 2 pixels, taking the color from upper, and lightness from
-			 * the lower pixel.
-			 * 
-			 * @param srcPixel upper pixel color data
-			 * @param dstPixel lower pixel color data
-			 * @return blended pixel
-			 */
-			public int compose(int[] srcPixel, int[] dstPixel) {
-				// jvm should be smart enough to allocate these on the stack
-				float[] srcHsl = new float[3];
-				float[] dstHsl = new float[3];
-				int[] result = new int[4];
-
-				rgb2hsl(srcPixel, srcHsl);
-				rgb2hsl(dstPixel, dstHsl);
-
-				// Adjust the brightness
-				float adj = srcHsl[2] - 0.5f; // [-0.5, 0.5]
-				float tmp = dstHsl[2] - 0.5f; // [-0.5, 0.5]
-				// tweaks the middle lights either upward or downward, depending
-				// on if source lightness is high or low
-				float l = dstHsl[2] - 2.0f * adj * ((tmp * tmp) - 0.25f);
-				srcHsl[2] = l;
-				hsl2rgb(srcHsl, result);
-				result[ALPHA] = dstPixel[ALPHA];
-
-				return mergeRgb(result);
-			}
+		int compose(int[] srcPixel, int[] dstPixel);
+	}
+	
+	/**
+	 * Blend composer for removing effect of color multiply. This is yet another
+	 * Stendhal specific blend mode that does not have an established name.
+	 */
+	private static class BleachComposer implements Composer {
+		// Using floats is faster than doing everything in integer
+		/** Color components of the color to be removed. */
+		final float red, green, blue;
+		/** Inverse of brightness of the bleached color. */
+		final float lightFactor;
+		
+		/**
+		 * Create a new BleachComposer for a color.
+		 * 
+		 * @param c color to be bleached
+		 */
+		BleachComposer(Color c) {
+			int color = c.getRGB();
+			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
+			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
+			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
+			lightFactor = 256f / (red + green + blue + 1);
 		}
-				
+		
 		/**
-		 * Interface for blending 2 pixels.
+		 * Blend 2 pixels, taking the color from upper, and lightness from
+		 * the lower pixel.
+		 * 
+		 * @param srcPixel upper pixel color data
+		 * @param dstPixel lower pixel color data
+		 * @return blended pixel
 		 */
-		private interface Composer {
-			/**
-			 * Blend 2 pixels.
-			 * 
-			 * @param srcPixel upper pixel color data
-			 * @param dstPixel lower pixel color data
-			 * @return blended pixel
-			 */
-			int compose(int[] srcPixel, int[] dstPixel);
+		public int compose(int[] srcPixel, int[] dstPixel) {
+			float light = (srcPixel[RED] + srcPixel[GREEN] + srcPixel[BLUE]) * lightFactor;
+			dstPixel[RED] = bleachComponent(light, dstPixel[RED], red);
+			dstPixel[GREEN] = bleachComponent(light, dstPixel[GREEN], green);
+			dstPixel[BLUE] = bleachComponent(light, dstPixel[BLUE], blue);
+
+			return mergeRgb(dstPixel);
+		}
+		
+		/**
+		 * Bleach an individual color component.
+		 * 
+		 * @param light amount to be bleached. The relative brightness of the
+		 * 	source image pixel
+		 * @param bg bleached pixel
+		 * @param color component value of the bleaching color
+		 * @return bleached value of the color component
+		 */
+		private int bleachComponent(float light, int bg, float color) {
+			float mod = (light * color) / 256f + 256f - light;
+			return (int) (bg * 256f / mod);
+		}
+	}
+	
+	/**
+	 * A composer that implements the screen blend mode.
+	 */
+	private static class ScreenComposer implements Composer {
+		public int compose(int[] srcPixel, int[] dstPixel) {
+			dstPixel[RED] = screenComponent(srcPixel[RED], dstPixel[RED]);
+			dstPixel[GREEN] = screenComponent(srcPixel[GREEN], dstPixel[GREEN]);
+			dstPixel[BLUE] = screenComponent(srcPixel[BLUE], dstPixel[BLUE]);
+
+			return mergeRgb(dstPixel);
+		}
+		
+		/**
+		 * Apply screen composition to an individual color component of a pixel.
+		 * 
+		 * @param a
+		 * @param b
+		 * @return screened color value
+		 */
+		private int screenComponent(int a, int b) {
+			return 0xff - (((0xff - a) * (0xff - b)) >> 8);
+		}
+	}		
+			
+	/**
+	 * Composer for the special Stendhal color blend.
+	 */
+	private static class TrueColorComposer implements Composer {
+		private final float[] srcHsl = new float[3];
+		private final float[] dstHsl = new float[3];
+		private final int[] result = new int[4];
+		
+		/**
+		 * Blend 2 pixels, taking the color from upper, and lightness from
+		 * the lower pixel. Adjusts the lightness slightly by the lightness of
+		 * the upper pixel.
+		 * 
+		 * @param srcPixel upper pixel color data
+		 * @param dstPixel lower pixel color data
+		 * @return blended pixel
+		 */
+		public int compose(int[] srcPixel, int[] dstPixel) {
+			rgb2hsl(srcPixel, srcHsl);
+			rgb2hsl(dstPixel, dstHsl);
+
+			// Adjust the brightness
+			float adj = srcHsl[2] - 0.5f; // [-0.5, 0.5]
+			float tmp = dstHsl[2] - 0.5f; // [-0.5, 0.5]
+			// tweaks the middle lights either upward or downward, depending
+			// on if source lightness is high or low
+			float l = dstHsl[2] - 2.0f * adj * ((tmp * tmp) - 0.25f);
+			srcHsl[2] = l;
+			hsl2rgb(srcHsl, result);
+			result[ALPHA] = dstPixel[ALPHA];
+
+			return mergeRgb(result);
 		}
 	}
 	
@@ -381,79 +478,11 @@ public class Blend implements Composite {
 
 		return hue;
 	}
-	
-	/**
-	 * Blend context for removing effect of color multiply. This is yet another
-	 * Stendhal specific blend mode that does not have an established name.
-	 */
-	private static class BleachContext implements CompositeContext {
-		// Using floats is faster than doing everything in integer
-		/** Color components of the color to be removed. */
-		final float red, green, blue;
-		/** Inverse of brightness of the bleached color. */
-		final float lightFactor;
-		
-		/**
-		 * Create a new BleachContext for a color.
-		 * 
-		 * @param c color to be bleached
-		 */
-		BleachContext(Color c) {
-			int color = c.getRGB();
-			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
-			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
-			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
-			lightFactor = 256f / (red + green + blue + 1);
-		}
-		
-		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
-			int width = Math.min(src.getWidth(), dstIn.getWidth());
-			int height = Math.min(src.getHeight(), dstIn.getHeight());
 
-			int[] srcData = new int[width];
-			int[] dstData = new int[width];
-
-			int[] a = new int[4];
-			int[] b = new int[4];
-			
-			for (int y = 0; y < height; y++) {
-				src.getDataElements(0, y, width, 1, srcData);
-				dstIn.getDataElements(0, y, width, 1, dstData);
-
-				for (int x = 0; x < width; x++) {
-					splitRgb(dstData[x], a);
-					splitRgb(srcData[x], b);
-					float light = (b[RED] + b[GREEN] + b[BLUE]) * lightFactor;
-					a[RED] = bleachComponent(light, a[RED], red);
-					a[GREEN] = bleachComponent(light, a[GREEN], green);
-					a[BLUE] = bleachComponent(light, a[BLUE], blue);
-					dstData[x] = mergeRgb(a);
-				}
-				dstOut.setDataElements(0, y, width, 1, dstData);
-			}
-		}
-		
-		/**
-		 * Bleach an individual color component.
-		 * 
-		 * @param light amount to be bleached. The relative brightness of the
-		 * 	source image pixel
-		 * @param bg bleached pixel
-		 * @param color component value of the bleaching color
-		 * @return bleached value of the color component
-		 */
-		private int bleachComponent(float light, int bg, float color) {
-			float mod = (light * color) / 256f + 256f - light;
-			return (int) (bg * 256f / mod);
-		}
-
-		public void dispose() {
-		}
-	}
 	
 	/**
 	 * A fast, approximate multiply mode blend context. The results differ from
-	 * correct multiply by factor of 255/256.
+	 * correct multiply by factor of 1 - 255/256.
 	 */
 	private static class MultiplyContext implements CompositeContext {
 		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
@@ -492,48 +521,6 @@ public class Blend implements Composite {
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
-		}
-
-		public void dispose() {
-		}
-	}
-	
-	/**
-	 * A context that implements the screen blend mode.
-	 */
-	private static class ScreenContext implements CompositeContext {
-		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
-			int width = Math.min(src.getWidth(), dstIn.getWidth());
-			int height = Math.min(src.getHeight(), dstIn.getHeight());
-
-			int[] srcData = new int[width];
-			int[] dstData = new int[width];
-			
-			int[] srcRgb = new int[4];
-			int[] dstRgb = new int[4];
-
-			for (int y = 0; y < height; y++) {
-				src.getDataElements(0, y, width, 1, srcData);
-				dstIn.getDataElements(0, y, width, 1, dstData);
-
-				for (int x = 0; x < width; x++) {
-					int a = dstData[x];
-					int b = srcData[x];
-					splitRgb(a, dstRgb);
-					splitRgb(b, srcRgb);
-					
-					dstRgb[RED] = screenComponent(srcRgb[RED], dstRgb[RED]);
-					dstRgb[GREEN] = screenComponent(srcRgb[GREEN], dstRgb[GREEN]);
-					dstRgb[BLUE] = screenComponent(srcRgb[BLUE], dstRgb[BLUE]);
-
-					dstData[x] = mergeRgb(dstRgb);
-				}
-				dstOut.setDataElements(0, y, width, 1, dstData);
-			}
-		}
-		
-		private int screenComponent(int a, int b) {
-			return 0xff - (((0xff - a) * (0xff - b)) >> 8);
 		}
 
 		public void dispose() {
