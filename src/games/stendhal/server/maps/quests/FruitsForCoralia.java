@@ -61,7 +61,7 @@ public class FruitsForCoralia extends AbstractQuest {
     /**
 	 * Required items for the quest.
 	 */
-	protected static final String NEEDED_ITEMS = "apple=4;banana=5;cherry=9;grapes=2";
+	protected static final String NEEDED_ITEMS = "apple=4;banana=5;cherry=9;grapes=2;pear=4;watermelon=1;pomegranate=2";
  
     @Override
     public void addToWorld() {
@@ -247,14 +247,27 @@ public class FruitsForCoralia extends AbstractQuest {
             ConversationStates.QUESTION_1,
             "I think there's an old house on Orril mountain that's covered in vines.",
             null);
-    	/*
+    	
+    	npc.add(ConversationStates.QUESTION_1,
+        	"pear",
+        	new QuestActiveCondition(QUEST_SLOT),
+        	ConversationStates.QUESTION_1,
+        	"I think I saw some pear trees in the northern mountains near a beautiful waterfall.",
+        	null);
+    	
     	npc.add(ConversationStates.QUESTION_1,
             "watermelon",
             new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.QUESTION_1,
             "One of the huge watermelons from Kalavan gardens would make a nice new centrepiece for my hat.",
             null);
-        */
+    	
+    	npc.add(ConversationStates.QUESTION_1,
+            "pomegranate",
+            new QuestActiveCondition(QUEST_SLOT),
+            ConversationStates.QUESTION_1,
+            "I have never seen pomegranate trees growing in wild nature. I heard of a man living south of the great river cultivating them in his garden.",
+            null);
     }
     
     
