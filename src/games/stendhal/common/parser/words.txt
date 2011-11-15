@@ -319,6 +319,7 @@ boot	OBJ	boots
 bottle	OBJ	bottles
 bow	OBJ	bows
 box	OBJ	boxes
+bunch OBJ bunches
 brain	OBJ	brains
 branch	OBJ	branches
 brandy	OBJ-FOO-FLU	brandies
@@ -599,6 +600,7 @@ machine	OBJ	machines
 mackerel	OBJ-FOO	mackerels
 madaram	OBJ	madarams
 magic	OBJ	magics
+magic wand OBJ magic wands
 mainio	OBJ	mainios
 mandragora	OBJ
 manner	OBJ	manners
