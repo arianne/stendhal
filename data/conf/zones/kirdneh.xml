@@ -851,6 +851,14 @@
 		<description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
 		<url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
 	</point-of-interest>
+	
+	        <entity x="52" y="114">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+          <attribute name="text">You see a mailbox. It says: Ortiv Milquetoast, former teacher.</attribute>
+          <attribute name="class">transparent</attribute>
+          <attribute name="width">1</attribute>
+          </entity> 
+          
 
   <portal x="50" y="108" ref="river_house">
     <destination zone="int_kirdneh_river_house_0" ref="entrance" />
