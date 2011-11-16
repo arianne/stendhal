@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2011 - Stendhal                    *
  ***************************************************************************
@@ -96,7 +95,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		assertEquals("It's a shame for you to see it all withered like this, it really needs some fresh #fruit...", getReply(npc));
+		assertEquals("It's a shame for you to see it all withered like this, it really needs some fresh #fruits...", getReply(npc));
 
 		// -----------------------------------------------
 
@@ -104,7 +103,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		assertEquals("Would you be kind enough to find me some fresh fruit for my hat? I'd be ever so grateful!", getReply(npc));
+		assertEquals("Would you be kind enough to find me some fresh fruits for my hat? I'd be ever so grateful!", getReply(npc));
 
 		// -----------------------------------------------
 
@@ -139,7 +138,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		assertEquals("Are you willing to find me some fresh fruit for my hat yet?", getReply(npc));
+		assertEquals("Are you willing to find me some fresh fruits for my hat yet?", getReply(npc));
 
 		// -----------------------------------------------
 
@@ -295,7 +294,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 
 		// -----------------------------------------------
 
-		assertEquals("Doesn't my hat look so fresh? I don't need any new fresh fruit for it yet, but thanks for enquiring!", getReply(npc));
+		assertEquals("Doesn't my hat look so fresh? I don't need any new fresh fruits for it yet, but thanks for enquiring!", getReply(npc));
 
 		// -----------------------------------------------
 
@@ -327,6 +326,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		// -----------------------------------------------
 
 		player.setQuest(questSlot, "done;0");
+		//player.setQuest(questSlot, 1, "0");	This doesn't seem to work either.
 		
 		
 		//TODO: correct test (or fix bug in quest ^^)
