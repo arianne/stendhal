@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.common.parser.TriggerList;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -35,9 +36,10 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 		this.region=region;
 	}
 
+	
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		
-		return SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region).contains(sentence.getTriggerExpression());
+		TriggerList npcs =  new TriggerList(SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region));
+		return npcs.contains(sentence.getTriggerExpression());
 	}
 
 	@Override
