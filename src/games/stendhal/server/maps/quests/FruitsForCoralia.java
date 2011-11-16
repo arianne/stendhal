@@ -20,7 +20,7 @@ import java.util.*;
  * 
  * STEPS:
  * <ul>
- * <li>Coralia introduces herself and asks for some fresh fruit for her hat.</li>
+ * <li>Coralia introduces herself and asks a vareity of fresh fruits for her hat.</li>
  * <li>You collect the items.</li>
  * <li>Coralia sees yours items, asks for them then thanks you.</li>
  * </ul>
@@ -35,7 +35,7 @@ import java.util.*;
  * 
  * REPETITIONS:
  * <ul>
- * <li>After 1 week, fit with the withering of the fruit</li>
+ * <li>After 1 week, fit with the withering of the fruits</li>
  * </ul>
  * 
  * @author pinchanzee
@@ -67,7 +67,7 @@ public class FruitsForCoralia extends AbstractQuest {
     public void addToWorld() {
         super.addToWorld();
         fillQuestInfo("Fruits for Coralia",
-				"The Ados Tavern barmaid, Coralia, searches for fresh fruit for her exotic hat.",
+				"The Ados Tavern barmaid, Coralia, searches for fresh fruits for her exotic hat.",
 				true);
         prepareQuestStep();
         prepareBringingStep();
@@ -111,12 +111,12 @@ public class FruitsForCoralia extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("Coralia asked me for some fresh fruit for her hat.");
+		res.add("Coralia asked me for some fresh fruits for her hat.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		
 		if ("rejected".equals(questState)) {
 			// quest rejected
-			res.add("I decided not find Coralia some fruit, I have better things to do.");
+			res.add("I decided not find Coralia some fruits, I have better things to do.");
 		} else if (!player.isQuestCompleted(QUEST_SLOT)) {
 			// not yet finished
 			final ItemCollection missingItems = new ItemCollection();
@@ -124,10 +124,10 @@ public class FruitsForCoralia extends AbstractQuest {
 			res.add("I still need to bring Coralia " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
 		} else if (isRepeatable(player)) {
 			// may be repeated now
-			res.add("It's been a while since I brought Coralia fresh fruit for her hat, I wonder if the fruit has withered?");
+			res.add("It's been a while since I brought Coralia fresh fruits for her hat, I wonder if the fruits have withered?");
         } else {
         	// not (currently) repeatable
-        	res.add("I brought Coralia the fruit she needed for her hat and she restored it to it's old radiance.");
+        	res.add("I brought Coralia the fruits she needed for her hat and she restored it to it's old radiance.");
 		}
 		return res;
 	}
@@ -144,7 +144,7 @@ public class FruitsForCoralia extends AbstractQuest {
     			new QuestNotStartedCondition(QUEST_SLOT),
     			new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
     		ConversationStates.QUEST_OFFERED,
-    		"Would you be kind enough to find me some fresh fruit for my hat? I'd be ever so grateful!",
+    		"Would you be kind enough to find me some fresh fruits for my hat? I'd be ever so grateful!",
     		null);
     	
     	// ask for quest again after rejected
@@ -152,7 +152,7 @@ public class FruitsForCoralia extends AbstractQuest {
     		ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, "hat"),
     		new QuestInStateCondition(QUEST_SLOT, "rejected"),
     		ConversationStates.QUEST_OFFERED, 
-    		"Are you willing to find me some fresh fruit for my hat yet?",
+    		"Are you willing to find me some fresh fruits for my hat yet?",
     		null);
     	
     	// repeat quest
@@ -173,7 +173,7 @@ public class FruitsForCoralia extends AbstractQuest {
         		new QuestCompletedCondition(QUEST_SLOT),
         		new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
         	ConversationStates.ATTENDING,
-        	"Doesn't my hat look so fresh? I don't need any new fresh fruit for it yet, but thanks for enquiring!",
+        	"Doesn't my hat look so fresh? I don't need any new fresh fruits for it yet, but thanks for enquiring!",
         	null);
     	
     	// end of quest introductions
@@ -186,7 +186,7 @@ public class FruitsForCoralia extends AbstractQuest {
         		new QuestNotStartedCondition(QUEST_SLOT),
         		new QuestNotInStateCondition(QUEST_SLOT, "rejected")),
         	ConversationStates.ATTENDING,
-        	"It's a shame for you to see it all withered like this, it really needs some fresh #fruit...",
+        	"It's a shame for you to see it all withered like this, it really needs some fresh #fruits...",
         	null);
     	
     	// accept quest response
