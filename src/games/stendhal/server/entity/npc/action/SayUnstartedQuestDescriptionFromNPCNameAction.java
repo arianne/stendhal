@@ -13,7 +13,6 @@ package games.stendhal.server.entity.npc.action;
 
 import java.util.List;
 
-import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -42,7 +41,12 @@ public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction
 		List<String> npcnames = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
 		for (String name :  npcnames) {
 			if (name.equalsIgnoreCase(sentence.getTriggerExpression().toString())) {
-				raiser.say(Grammar.enumerateCollection(SingletonRepository.getStendhalQuestSystem().getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player,region,name)));
+				List<String> descs = SingletonRepository.getStendhalQuestSystem().getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player,region,name);
+				StringBuffer answer = new StringBuffer();
+				for (String desc : descs) {
+					answer.append(desc + " ");
+				}
+				raiser.say(answer.toString().trim());
 			}
 		} 	
 	}
