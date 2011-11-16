@@ -19,9 +19,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SayNPCNamesForUnstartedQuestsAction;
+import games.stendhal.server.entity.npc.action.SayUnstartedQuestDescriptionFromNPCNameAction;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.condition.AdminCondition;
+import games.stendhal.server.entity.npc.condition.TriggerIsNPCNameForUnstartedQuestCondition;
 import games.stendhal.server.maps.Region;
 
 import java.util.Map;
@@ -71,6 +73,24 @@ public class AdminHelpNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 						null,
 						new SayNPCNamesForUnstartedQuestsAction(Region.ADOS_CITY));
+			    add(ConversationStates.ATTENDING,
+						"",
+						new TriggerIsNPCNameForUnstartedQuestCondition(Region.SEMOS_CITY),
+						ConversationStates.ATTENDING,
+						null,
+						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.SEMOS_CITY));
+			    add(ConversationStates.ATTENDING,
+						"",
+						new TriggerIsNPCNameForUnstartedQuestCondition(Region.NALWOR_CITY),
+						ConversationStates.ATTENDING,
+						null,
+						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.NALWOR_CITY));
+			    add(ConversationStates.ATTENDING,
+						"",
+						new TriggerIsNPCNameForUnstartedQuestCondition(Region.ADOS_CITY),
+						ConversationStates.ATTENDING,
+						null,
+						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.ADOS_CITY));
 				addGoodbye("Bye, remember to take care of yourself.");
 			}
 
