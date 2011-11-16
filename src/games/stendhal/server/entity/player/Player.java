@@ -154,7 +154,16 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	private String language;
 
+	/**
+	 * version of the client
+	 */
 	private String clientVersion;
+
+
+	/**
+	 * last client action timestamp
+	 */
+	private long lastClientActionTimestamp = System.currentTimeMillis();
 
 	public static void generateRPClass() {
 		try {
@@ -2461,6 +2470,25 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public int getNumberOfRepetitions(final String questname, final int index) {
 		return quests.getNumberOfRepetitions(questname, index);
+	}
+
+
+	/**
+	 * gets the timestmap this client sent the last action
+	 *
+	 * @return action timestmap
+	 */
+	public long getLastClientActionTimestamp() {
+		return lastClientActionTimestamp;
+	}
+
+	/**
+	 * sets the timestamp at which this client sent the last action.
+	 *
+	 * @param lastClientActionTimestamp action timestmap
+	 */
+	public void setLastClientActionTimestamp(long lastClientActionTimestamp) {
+		this.lastClientActionTimestamp = lastClientActionTimestamp;
 	}
 
 	/**

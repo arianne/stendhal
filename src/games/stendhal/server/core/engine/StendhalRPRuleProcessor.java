@@ -28,6 +28,7 @@ import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.player.AfkTimeouter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
@@ -111,6 +112,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private void init() {
 		String[] params = {};
 		new GameEvent("server system", "startup", params).raise();
+		AfkTimeouter.create();
 	}
 
 	/**
@@ -252,6 +254,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void execute(final RPObject caster, final RPAction action) {
+		if (caster instanceof Player) {
+			((Player) caster).setLastClientActionTimestamp(System.currentTimeMillis());
+		}
 		CommandCenter.execute(caster, action);
 	}
 
