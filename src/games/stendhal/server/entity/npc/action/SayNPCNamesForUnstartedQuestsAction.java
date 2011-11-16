@@ -46,7 +46,7 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
         	verb = "needs";  
         }
 		if (npcs.size()>0) {
-        	raiser.say(Grammar.enumerateCollection(npcs) + " " + verb + " your help.");
+        	raiser.say(Grammar.enumerateCollectionWithHash(npcs) + " " + verb + " your help.");
         } else {
         	raiser.say("You have already embarked upon all quests which you can handle, near " + region + ".");
         }
