@@ -87,7 +87,7 @@ public class InformationPanel extends JComponent {
 	 * @param dangerLevel danger level
 	 */
 	void setDangerLevel(double dangerLevel) {
-		int skulls = (int) Math.min(5, Math.round(2 * (dangerLevel + 1) / (User.getPlayerLevel() + 1)));
+		int skulls = (int) Math.min(5, Math.round(2 * dangerLevel / (User.getPlayerLevel() + 1)));
 		if (this.dangerLevel != skulls) {
 			this.dangerLevel = skulls;
 			dangerIndicator.setRelativeDanger(skulls);
