@@ -43,5 +43,8 @@ public enum Category {
 	/** ados item quests */
 	QUEST_ADOS_ITEMS,
 	/** semos monster quest */
-	QUEST_SEMOS_MONSTER;
+	QUEST_SEMOS_MONSTER,
+	/** kirdneh item quest */
+	QUEST_KIRDNEH_ITEM;
+	
 }

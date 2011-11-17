@@ -34,9 +34,6 @@ public class AdosItemQuestAchievementsFactory extends AbstractAchievementFactory
 												Achievement.MEDIUM_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily_item", 2, 249)));
 		achievements.add(createAchievement("quest.special.daily_item.0500", "Ados' Hoarder", "Finish daily item quest 500 times",
 												Achievement.HARD_BASE_SCORE, true, new QuestStateGreaterThanCondition("daily_item", 2, 499)));
-		//weekly item quest achievement
-		achievements.add(createAchievement("quest.special.weekly_item.0005", "Archaeologist", "Finish weekly item quest 5 times",
-												Achievement.HARD_BASE_SCORE, true, new QuestStateGreaterThanCondition("weekly_item", 2, 4)));
 		return achievements;
 	}
 

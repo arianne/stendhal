@@ -71,6 +71,7 @@ public abstract class AbstractAchievementFactory {
 		list.add(new QuestAchievementFactory());
 		list.add(new SemosMonsterQuestAchievementFactory());
 		list.add(new UndergroundZoneAchievementFactory());
+		list.add(new KirdnehItemAchievementFactory());
 		return list;
 	}
 
