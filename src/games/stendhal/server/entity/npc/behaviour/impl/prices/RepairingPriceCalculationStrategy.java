@@ -35,7 +35,7 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 
 	public int calculatePrice(Item i, Player p) {
 		itemToRepair = i;
-		return calculatePrice(i.getName(), p);
+		return calculatePrice(itemToRepair.getName(), p);
 	}
 
 	public int calculatePrice(String item, Player p) {
