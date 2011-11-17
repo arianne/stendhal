@@ -31,13 +31,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * This is an item.
@@ -59,7 +59,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * mean time an item is constantly usable in hours
 	 */
-	private static final long MEAN_LIFETIME = 1 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
+	private static final long MEAN_LIFETIME = 12 * MathHelper.MILLISECONDS_IN_ONE_HOUR;
 	
 	// 10 minutes
 	public static final int DEGRADATION_TIMEOUT = 10 * MathHelper.SECONDS_IN_ONE_MINUTE;
@@ -159,7 +159,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
 
 		//Some items can be damaged in combat or during use. This rises the degree of deterioration
-		entity.addAttribute("deterioration", Type.INT, Definition.HIDDEN);
+		entity.addAttribute("deterioration", Type.INT, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		// Some items(food) have amount of something
 		// (a bottle, a piece of meat).
