@@ -113,28 +113,6 @@ public class StaticGameLayers {
 	public String getAreaName() {
 		return area;
 	}
-
-	/**
-	 * Draw a layer.
-	 * 
-	 * @param g graphics
-	 * @param area zone name
-	 * @param layer layer name
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	public void draw(Graphics g, final String area, final String layer, final int x,
-			final int y, final int width, final int height) {
-		if (currentZone != null) {
-			if (currentZone.getName().equals(area)) {
-				currentZone.draw(g, layer, x, y, width, height);
-			} else {
-				logger.warn("Trying to draw zone: " + area + ", but the current zone is: " + currentZone.getName());
-			}
-		}
-	}
 	
 	/**
 	 * Draw a set of layers.
