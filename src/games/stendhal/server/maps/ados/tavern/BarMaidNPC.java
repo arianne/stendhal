@@ -81,7 +81,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		tavernMaid.setEntityClass("maidnpc");
 		tavernMaid.setPosition(13, 9);
 		tavernMaid.initHP(100);
-		tavernMaid.setDescription("You see Coralia. She carries the food she sells on her hat.");
+		tavernMaid.setDescription("You see Coralia. She carries exotic fruits on her hat.");
 		zone.add(tavernMaid);
 	}
 }
