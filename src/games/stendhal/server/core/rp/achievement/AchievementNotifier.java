@@ -165,7 +165,6 @@ public final class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.QUEST);
 		getAndCheckAchievementsInCategory(player, Category.QUEST_ADOS_ITEMS);
 		getAndCheckAchievementsInCategory(player, Category.QUEST_SEMOS_MONSTER);
-		getAndCheckAchievementsInCategory(player, Category.QUEST_KIRDNEH_ITEM);
 		getAndCheckAchievementsInCategory(player, Category.FRIEND);
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
