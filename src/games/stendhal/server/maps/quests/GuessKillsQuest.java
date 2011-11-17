@@ -168,7 +168,7 @@ public class GuessKillsQuest extends AbstractQuest {
         		Arrays.asList(triggers),
                 new AndCondition(questNotDone, requirement),
                 ConversationStates.QUEST_STARTED,
-                "We did not finish our game last time would you like to continue?",
+                "We did not finish our game last time, would you like to continue?",
                 null);
         
         //if quest not finished and player wants to continue
@@ -332,7 +332,7 @@ public class GuessKillsQuest extends AbstractQuest {
                 new MultipleActions(
                         new ChatAction() {
                             public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                                npc.say("Unfortunately you're a ways off. The correct answer is " +
+                                npc.say("Unfortunately you're way off. The correct answer is " +
                                         (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE)) +
                                         ". Good effort though.");
                             }

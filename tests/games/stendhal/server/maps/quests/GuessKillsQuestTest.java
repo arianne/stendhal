@@ -109,11 +109,11 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Greetings", getReply(npc));
 		en.step(player, "play");
-		assertEquals("We did not finish our game last time would you like to continue?", getReply(npc));
+		assertEquals("We did not finish our game last time, would you like to continue?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh well. Your loss, now what can I do for you?", getReply(npc));
 		en.step(player, "play");
-		assertEquals("We did not finish our game last time would you like to continue?", getReply(npc));
+		assertEquals("We did not finish our game last time, would you like to continue?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Let me see... you have 3 guesses left... and if I recall correctly I asked you... how many deers do think you have killed?", getReply(npc));
 		en.step(player, "8");
@@ -168,9 +168,9 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "88");
 		
 		if (reply.contains("rat")) {
-			assertEquals("Unfortunately you're a ways off. The correct answer is 10. Good effort though.", getReply(npc));
+			assertEquals("Unfortunately you're way off. The correct answer is 10. Good effort though.", getReply(npc));
 		} else {
-			assertEquals("Unfortunately you're a ways off. The correct answer is 1001. Good effort though.", getReply(npc));
+			assertEquals("Unfortunately you're way off. The correct answer is 1001. Good effort though.", getReply(npc));
 		}
 
 		en.step(player, "play");
