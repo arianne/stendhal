@@ -126,7 +126,7 @@
   
   <creature name="superogre">
     <type class="giant" subclass="superogre" tileid="giant.png:4"/>
-    <description></description>
+    <description>You see a superogre which belongs to the family of very material creatures, the Ogres. Ever since this one happened upon a peculiar helmet and has been revered among its peers. Take care, it throws a mean punch!</description>
     <attributes>
       <atk value="296"/>
       <def value="52"/>

@@ -230,7 +230,7 @@
   
   <creature name="elder skeleton">
     <type class="undead" subclass="elder_skeleton" tileid="undead.png:7"/>
-    <description></description>
+    <description>You see the bones of an old man. He lived to a ripe old age, and is sure to know a thing or two that separates him from all the vengeful skeletons that died young.</description>
     <attributes>
       <atk value="253"/>
       <def value="49"/>
