@@ -20,9 +20,9 @@ import java.util.*;
  * 
  * STEPS:
  * <ul>
- * <li>Coralia introduces herself and asks a vareity of fresh fruits for her hat.</li>
+ * <li>Coralia introduces herself and asks for a variety of fresh fruits for her hat.</li>
  * <li>You collect the items.</li>
- * <li>Coralia sees yours items, asks for them then thanks you.</li>
+ * <li>Coralia sees your items, asks for them then thanks you.</li>
  * </ul>
  * 
  * REWARD:
@@ -96,11 +96,6 @@ public class FruitsForCoralia extends AbstractQuest {
  	}
  	
  	@Override
- 	public boolean isCompleted(final Player player) {
- 		return new QuestStateStartsWithCondition(QUEST_SLOT ,"done;").fire(player, null, null);
- 	}
- 	
- 	@Override
  	public String getRegion() {
  		return Region.ADOS_CITY;
  	}
@@ -127,7 +122,7 @@ public class FruitsForCoralia extends AbstractQuest {
 			res.add("It's been a while since I brought Coralia fresh fruits for her hat, I wonder if the fruits have withered?");
         } else {
         	// not (currently) repeatable
-        	res.add("I brought Coralia the fruits she needed for her hat and she restored it to it's old radiance.");
+        	res.add("I brought Coralia the fruits she needed for her hat and she restored it to its old radiance.");
 		}
 		return res;
 	}
@@ -162,7 +157,7 @@ public class FruitsForCoralia extends AbstractQuest {
             	new QuestCompletedCondition(QUEST_SLOT),
             	new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
             ConversationStates.QUEST_OFFERED,
-            "I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore.. " +
+            "I'm sorry to say that the fruits you brought for my hat aren't very fresh anymore. " +
             "Would you be kind enough to find me some more?",
             null);
     	    	
@@ -245,7 +240,7 @@ public class FruitsForCoralia extends AbstractQuest {
             "grapes",
             new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.QUESTION_1,
-            "I think there's an old house on Orril mountain that's covered in vines.",
+            "I think there's an old house on Or'ril mountain that's covered in vines.",
             null);
     	
     	npc.add(ConversationStates.QUESTION_1,
