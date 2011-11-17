@@ -309,6 +309,32 @@
      		<parameter name="species">surgeonfish</parameter>
     		</implementation>
   		</entity>
+  		
+		<!--  scrying orbs -->
+		<entity x="54" y="59">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+				<parameter name="x">63</parameter>
+				<parameter name="y">65</parameter>
+			</implementation>
+		</entity>
+		<entity x="54" y="69">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+				<parameter name="x">63</parameter>
+				<parameter name="y">65</parameter>
+			</implementation>
+		</entity>
+		<entity x="72" y="59">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+				<parameter name="x">63</parameter>
+				<parameter name="y">65</parameter>
+			</implementation>
+		</entity>
+		<entity x="72" y="69">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+				<parameter name="x">63</parameter>
+				<parameter name="y">65</parameter>
+			</implementation>
+		</entity>
 <!--  -->  
    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
       <entity x="34" y="65">
