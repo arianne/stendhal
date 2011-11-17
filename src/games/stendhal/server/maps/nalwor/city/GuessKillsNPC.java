@@ -91,7 +91,7 @@ public class GuessKillsNPC implements ZoneConfigurator {
                 addHelp("I'm not sure how I can help you. On some days I like to #play #games.");
                 addReply(ConversationPhrases.QUEST_MESSAGES, "There's nothing I need right now although occasionally I like to #play #games.");
 
-                //play and games reply is in the quest class: GuessKillsQuest
+                //play and games reply is in the quest class: GuessKills
 
                 addGoodbye("Goodbye deary.");
             }

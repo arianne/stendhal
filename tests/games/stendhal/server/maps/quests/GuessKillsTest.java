@@ -31,7 +31,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CreatureTestHelper;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
-public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
+public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 
 	private Player player = null;
 	private SpeakerNPC npc = null;
@@ -46,7 +46,7 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME);
 	}
 
-	public GuessKillsQuestTest() {
+	public GuessKillsTest() {
 		super(ZONE_NAME, "Crearid");
 	}
 
@@ -55,7 +55,7 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		new GuessKillsNPC().configureZone(zone, null);
 
-		AbstractQuest quest = new GuessKillsQuest();
+		AbstractQuest quest = new GuessKills();
 		quest.addToWorld();
 
 		questSlot = quest.getSlotName();
@@ -109,11 +109,11 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "hi");
 		assertEquals("Greetings", getReply(npc));
 		en.step(player, "play");
-		assertEquals("We did not finish our game last time, would you like to continue?", getReply(npc));
+		assertEquals("We did not finish our game last time would you like to continue?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Oh well. Your loss, now what can I do for you?", getReply(npc));
 		en.step(player, "play");
-		assertEquals("We did not finish our game last time, would you like to continue?", getReply(npc));
+		assertEquals("We did not finish our game last time would you like to continue?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Let me see... you have 3 guesses left... and if I recall correctly I asked you... how many deers do think you have killed?", getReply(npc));
 		en.step(player, "8");
@@ -121,7 +121,7 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "5");
 		assertEquals("Wrong again. You have one more try.", getReply(npc));
 		en.step(player, "981");
-		assertEquals("Wow, that was pretty close. The exact number is 1001.", getReply(npc));
+		assertEquals("Wow, that was pretty close. Well done!", getReply(npc));
 
 		// Reset quest because of timestamp
 		player.setQuest(questSlot, "done;0;");
@@ -167,12 +167,10 @@ public class GuessKillsQuestTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Wrong again. You have one more try.", getReply(npc));
 		en.step(player, "88");
 		
-		if (reply.contains("rat")) {
-			assertEquals("Unfortunately you're way off. The correct answer is 10. Good effort though.", getReply(npc));
-		} else {
-			assertEquals("Unfortunately you're way off. The correct answer is 1001. Good effort though.", getReply(npc));
-		}
-
+		reply = getReply(npc);
+		assertEquals(reply.startsWith("Unfortunately that is incorrect. The correct answer is in the region of "), true);
+		assertEquals(reply.endsWith("Good effort though."), true);
+		
 		en.step(player, "play");
 		assertEquals("I've had plenty of fun for now, thanks. Come back some other time.", getReply(npc));
 	}

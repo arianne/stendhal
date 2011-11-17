@@ -66,7 +66,7 @@ import java.util.List;
  * <li>Weekly</li>
  * </ul>
  */
-public class GuessKillsQuest extends AbstractQuest {
+public class GuessKills extends AbstractQuest {
 
     public static final String QUEST_SLOT = "guess_kills";
 
@@ -87,7 +87,7 @@ public class GuessKillsQuest extends AbstractQuest {
     }
 
     public String getName() {
-        return "GuessKillsQuest";
+        return "GuessKills";
     }
 
     public List<String> getHistory(final Player player) {
@@ -168,7 +168,7 @@ public class GuessKillsQuest extends AbstractQuest {
         		Arrays.asList(triggers),
                 new AndCondition(questNotDone, requirement),
                 ConversationStates.QUEST_STARTED,
-                "We did not finish our game last time, would you like to continue?",
+                "We did not finish our game last time would you like to continue?",
                 null);
         
         //if quest not finished and player wants to continue
@@ -299,14 +299,8 @@ public class GuessKillsQuest extends AbstractQuest {
                 "",
                 new AndCondition(isNumber, close, new NotCondition(exact)),
                 ConversationStates.ATTENDING,
-                null,
+                "Wow, that was pretty close. Well done!",
                 new MultipleActions(
-                        new ChatAction() {
-                            public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                                npc.say("Wow, that was pretty close. The exact number is " +
-                                        (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE)) + ".");
-                            }
-                        },
                         new SetQuestAction(QUEST_SLOT, 0, "done"),
                         new SetQuestToTimeStampAction(QUEST_SLOT, 1),
                         new IncreaseXPAction(CLOSE_REWARD)));
@@ -332,9 +326,11 @@ public class GuessKillsQuest extends AbstractQuest {
                 new MultipleActions(
                         new ChatAction() {
                             public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                                npc.say("Unfortunately you're way off. The correct answer is " +
-                                        (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE)) +
-                                        ". Good effort though.");
+                            	int exactNumber = (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE));
+                            	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
+                            	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
+                            	+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())
+                            	+ ". Good effort though.");
                             }
                         },
                         new SetQuestAction(QUEST_SLOT, 0, "done"),
