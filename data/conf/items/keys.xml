@@ -145,6 +145,22 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+  
+  <item name="gate key">
+    <type class="key" subclass="purple" tileid="-1"/>
+    <description>You should not see this description</description>
+    <implementation class-name="games.stendhal.server.entity.item.GateKey"/>
+    <attributes/>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
 
   <!-- admin only item. *nothing* should drop this -->
   <item name="master key">
