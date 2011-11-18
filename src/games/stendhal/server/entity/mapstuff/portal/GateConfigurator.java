@@ -31,6 +31,7 @@ public class GateConfigurator implements ZoneConfigurator {
 		final String orientation = attributes.get("orientation");
 		final String image = attributes.get("image");
 		final int autoclose = MathHelper.parseInt(attributes.get("autoclose"));
+		final String id = attributes.containsKey("identifier") ? attributes.get("identifier") : null;
 		
 		ChatCondition condition = null;
 		final String condString = attributes.get("condition");
@@ -46,7 +47,7 @@ public class GateConfigurator implements ZoneConfigurator {
 		}
 		final String message = attributes.get("message");
 
-		buildGate(zone, x, y, orientation, image, condition, autoclose, message);
+		buildGate(zone, x, y, orientation, image, condition, autoclose, message, id);
 	}
 	
 	/**
@@ -61,15 +62,17 @@ public class GateConfigurator implements ZoneConfigurator {
 	 * @param autoclose delay in seconds before shutting the gate automatically,
 	 * 	or 0 if it should stay open
 	 * @param message message to send to the player if opening is refused
+	 * @param id identifier of the gate used to match to a key
 	 */
 	private void buildGate(final StendhalRPZone zone, final int x, final int y, 
 			final String orientation, final String image, ChatCondition condition,
-			int autoclose, String message) {
+			int autoclose, String message, String id) {
 		final Gate gate = new Gate(orientation, image, condition);
 		
 		gate.setPosition(x, y);
 		gate.setAutoCloseDelay(autoclose);
 		gate.setRefuseMessage(message);
+		gate.setIdentifier(id);
 		zone.add(gate);
 	}
 }

@@ -31,7 +31,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	private static final String VERTICAL = "v";
 	private static final String ORIENTATION = "orientation";
 	private static final String IMAGE = "image";
-	
+	private static final String GATE_ID = "identifier";
 	private static final String DEFAULT_IMAGE = "fence_gate";
 
 	public static void generateGateRPClass() {
@@ -40,18 +40,22 @@ public class Gate extends Entity implements UseListener, TurnListener {
 			gate.isA("entity");
 			gate.addAttribute(ORIENTATION, Type.STRING);
 			gate.addAttribute(IMAGE, Type.STRING);
+			gate.addAttribute(GATE_ID, Type.STRING);
 		}
 	}
 	
 	/** Current state of the gate. */
 	private boolean isOpen;
+	
 	/** Condition for allowing use of the gate. */
 	private final ChatCondition condition;
+	
 	/** 
 	 * Time the door should keep open before closing. 0 if it should
 	 * not close automatically.
 	 */
 	private int autoCloseDelay;
+	
 	/** Message send to a player trying to open a locked gate. */
 	private String refuseMessage;
 
@@ -62,16 +66,21 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * @param image image used for the gate
 	 * @param condition conditions required for opening the gate, or <code>null</code>
 	 * 	if no checking is required
+	 * @param id name used to identify this gate
 	 */
-	Gate(final String orientation, String image, ChatCondition condition) {
+	public Gate(final String orientation, String image, ChatCondition condition) {
 		setRPClass("gate");
 		put("type", "gate");
+		put(GATE_ID, "");
+		
 		setOrientation(orientation);
 		setOpen(false);
+		
 		if (condition == null) {
 			condition = new AlwaysTrueCondition();
 		}
 		this.condition = condition;
+		
 		if (image != null) {
 			put(IMAGE, image);
 		} else {
@@ -102,7 +111,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	/**
 	 * Open the gate.
 	 */
-	void open() {
+	public void open() {
 		setOpen(true);
 	}
 
@@ -111,14 +120,14 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * 
 	 * @return true iff the gate is open
 	 */
-	boolean isOpen() {
+	public boolean isOpen() {
 		return isOpen;
 	}
 
 	/**
 	 * Close the gate.
 	 */
-	void close() {
+	public void close() {
 		setOpen(false);
 	}
 
@@ -140,7 +149,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * 
 	 * @param seconds time to keep the gate open
 	 */
-	void setAutoCloseDelay(int seconds) {
+	public void setAutoCloseDelay(int seconds) {
 		autoCloseDelay = seconds;
 	}
 	
@@ -187,19 +196,47 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	}
 	
 	/**
+	 * Get the identifier of the gate
+	 * 
+	 * @return the gate's identifier
+	 */
+	public String getIdentifier() {
+		if (has("id")) {
+			return get(GATE_ID);
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Sets this gate's identifier
+	 * 
+	 * @param id the new identifier of the gate
+	 */
+	public void setIdentifier(String id) {
+		if (id != null) {
+			put(GATE_ID, id);
+		}
+	}
+	
+	/**
 	 * Set the message to be send to the player if she's not allowed to open
 	 * the gate
 	 * 
 	 * @param message
 	 */
-	void setRefuseMessage(String message) {
+	public void setRefuseMessage(String message) {
 		refuseMessage = message;
 	}
 
+	/**
+	 * Callback for the turn notifier to automatically close the gate if the 
+	 * interval is set 
+	 */
 	public void onTurnReached(int currentTurn) {
 		setOpen(false);
 		/*
-		 * If something was on the way, the closing failed.
+		 * If something was in the way, the closing failed.
 		 * Try again after the usual delay. 
 		 */
 		if (isOpen) {
