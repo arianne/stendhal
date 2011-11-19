@@ -32,7 +32,7 @@ public class FullSpellCreator extends AbstractSpellCreator {
 									(Object) defaultSpell.getDef(), (Object) defaultSpell.getLifesteal(),
 									(Object) defaultSpell.getMana(),
 									(Object) defaultSpell.getMinimumLevel(), (Object) defaultSpell.getRange(),
-									(Object) defaultSpell.getRate(), (Object) defaultSpell.getRegen());
+									(Object) defaultSpell.getRate(), (Object) defaultSpell.getRegen(), (Object) defaultSpell.getModifier());
 	}
 
 }

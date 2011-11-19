@@ -273,6 +273,12 @@ public class DefaultSpell {
 	}
 
 	/**
+	 * @return the modifier value
+	 */
+	public double getModifier() {
+		return this.modifier;
+	}
+	/**
 	 * @param modifier the modifier to set
 	 */
 	public void setModifier(String modifier) {
