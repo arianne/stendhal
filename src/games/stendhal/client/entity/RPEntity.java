@@ -947,8 +947,8 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Base HP
 			 */
-			if (changes.has("base_hp")) {
-				base_hp = changes.getInt("base_hp");
+			if (changes.has("modified_base_hp")) {
+				base_hp = changes.getInt("modified_base_hp");
 				hpRatioChange = true;
 			}
 

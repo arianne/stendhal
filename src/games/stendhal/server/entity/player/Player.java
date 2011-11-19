@@ -272,7 +272,7 @@ public class Player extends RPEntity implements UseListener {
 		tradescore = 0;
 		baseSpeed = 1.0;
 		update();
-
+		this.updateModifiedAttributes();
 		// Ensure that players do not accidentally get stored with zones
 		if (isStorable()) {
 			unstore();

@@ -163,6 +163,7 @@ public class Creature extends NPC {
 
 		// set the default movement range
 		setMovementRange(20);
+		updateModifiedAttributes();
 	}
 
 	/**
@@ -218,6 +219,7 @@ public class Creature extends NPC {
 			LOGGER.debug(getID() + " Created " + get("class") + ":"
 					+ this);
 		}
+		updateModifiedAttributes();
 	}
 
 

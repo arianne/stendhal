@@ -21,10 +21,10 @@ import java.util.HashMap;
 
 import javax.swing.SwingUtilities;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * Object for listening for various user state changes that should
@@ -95,7 +95,7 @@ public class StatsPanelController {
 	public void registerListeners(PropertyChangeSupport pcs) {
 		PropertyChangeListener listener = new HPChangeListener(); 
 		pcs.addPropertyChangeListener("hp", listener);
-		pcs.addPropertyChangeListener("base_hp", listener);
+		pcs.addPropertyChangeListener("modified_base_hp", listener);
 		
 		listener = new ATKChangeListener();
 		pcs.addPropertyChangeListener("atk", listener);
@@ -211,7 +211,7 @@ public class StatsPanelController {
 			
 			if (event.getPropertyName().equals("hp")) {
 				hp = Integer.parseInt((String) event.getNewValue());
-			} else {
+			} else if (event.getPropertyName().equals("modified_base_hp")) {
 				maxhp = Integer.parseInt((String) event.getNewValue());
 			}
 			updateHP();
