@@ -4,4 +4,5 @@
 	<group uri="spells/light.xml" />
 	<group uri="spells/fire.xml" />
 	<group uri="spells/dark.xml" />
+	<group uri="spells/ice.xml" />
 </groups>
