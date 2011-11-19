@@ -34,6 +34,8 @@ public abstract class AbstractEffect implements Effect {
 	private final int rate;
 	
 	private final int regen;
+	
+	private final double modifier;
 
 	/**
 	 * @param amount
@@ -44,7 +46,7 @@ public abstract class AbstractEffect implements Effect {
 	 * @param regen
 	 */
 	public AbstractEffect(Nature nature, int amount, int atk, int def, double lifesteal,
-			int rate, int regen) {
+			int rate, int regen, double modifier) {
 		super();
 		this.amount = amount;
 		this.atk = atk;
@@ -53,6 +55,7 @@ public abstract class AbstractEffect implements Effect {
 		this.rate = rate;
 		this.regen = regen;
 		this.nature = nature;
+		this.modifier = modifier;
 	}
 
 	/**
@@ -96,6 +99,10 @@ public abstract class AbstractEffect implements Effect {
 
 	public Nature getNature() {
 		return nature;
+	}
+
+	protected double getModifier() {
+		return modifier;
 	}
 
 }

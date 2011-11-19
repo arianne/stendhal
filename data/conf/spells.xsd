@@ -36,6 +36,7 @@
     		<element name="regen" type="Q3:attribute-integer" minOccurs="0" />
     		<element name="rate" type="Q3:attribute-integer" minOccurs="0" />
     		<element name="lifesteal" type="Q3:attribute-float" minOccurs="0" />
+    		<element name="modifier" type="Q3:attribute-float" minOccurs="0"/>
     	</sequence>
     </complexType>
     

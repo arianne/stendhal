@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.spell.effect;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+
+import org.apache.log4j.Logger;
 
 /**
  * Effect for healing a player
@@ -46,8 +46,8 @@ public class HealingEffect extends AbstractEffect implements TurnListener {
 	 * @param regen
 	 */
 	public HealingEffect(Nature nature, int amount, int atk, int def, double lifesteal, int rate,
-			int regen) {
-		super(nature, amount, atk, def, lifesteal, rate, regen);
+			int regen, double modifier) {
+		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 		this.restAmount = amount;
 	}
 

@@ -104,16 +104,39 @@ public final class SpellXMLLoader extends DefaultHandler {
 		if(qName.equals("spell")) {
 			DefaultSpell spell = new DefaultSpell(name, implementation);
 			spell.setNature(nature);
-			spell.setAmount(attributeValues.get("amount"));
-			spell.setAtk(attributeValues.get("atk"));
-			spell.setCooldown(attributeValues.get("cooldown"));
-			spell.setDef(attributeValues.get("def"));
-			spell.setLifesteal(attributeValues.get("lifesteal"));
-			spell.setMana(attributeValues.get("mana"));
-			spell.setMinimumLevel(attributeValues.get("minimum-level"));
-			spell.setRange(attributeValues.get("range"));
-			spell.setRate(attributeValues.get("rate"));
-			spell.setRegen(attributeValues.get("regen"));
+			if(attributeValues.containsKey("amount")) {
+				spell.setAmount(attributeValues.get("amount"));
+			}
+			if(attributeValues.containsKey("atk")) {
+				spell.setAtk(attributeValues.get("atk"));
+			}
+			if(attributeValues.containsKey("cooldown")) {
+				spell.setCooldown(attributeValues.get("cooldown"));
+			}
+			if(attributeValues.containsKey("def")) {
+				spell.setDef(attributeValues.get("def"));
+			}
+			if(attributeValues.containsKey("lifesteal")) {
+				spell.setLifesteal(attributeValues.get("lifesteal"));
+			}
+			if(attributeValues.containsKey("mana")) {
+				spell.setMana(attributeValues.get("mana"));
+			}
+			if(attributeValues.containsKey("minimum-level")) {
+				spell.setMinimumLevel(attributeValues.get("minimum-level"));
+			}
+			if(attributeValues.containsKey("range")) {
+				spell.setRange(attributeValues.get("range"));
+			}
+			if(attributeValues.containsKey("rate")) {
+				spell.setRate(attributeValues.get("rate"));
+			}
+			if(attributeValues.containsKey("regen")) {
+				spell.setRegen(attributeValues.get("regen"));
+			}
+			if(attributeValues.containsKey("modifier")) {
+				spell.setModifier(attributeValues.get("modifier"));
+			}
 			loadedSpells.add(spell);
 		}
 		if(qName.equals("attributes")) {

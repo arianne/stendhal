@@ -368,4 +368,8 @@ public class DefaultEntityManager implements EntityManager {
 	public Collection<Spell> getSpells() {
 		return createdSpell.values();
 	}
+
+	public Collection<String> getConfiguredItems() {
+		return classToItem.keySet();
+	}
 }

@@ -45,8 +45,8 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	private int numberOfLeftOverHits;
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
-			double lifesteal, int rate, int regen) {
-		super(nature, amount, atk, def, lifesteal, rate, regen);
+			double lifesteal, int rate, int regen, double modifier) {
+		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 	}
 
 	public void act(Player caster, Entity target) {

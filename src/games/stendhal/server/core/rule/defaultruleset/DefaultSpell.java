@@ -59,6 +59,8 @@ public class DefaultSpell {
 	private int rate;
 	
 	private double lifesteal;
+	
+	private double modifier;
 
 	/**
 	 * Creates a new {@link DefaultSpell}
@@ -80,7 +82,7 @@ public class DefaultSpell {
 			construct = implementation.getConstructor(new Class[] {
 					String.class, Nature.class, int.class, int.class, int.class,
 					int.class, double.class, int.class, int.class,
-					int.class, int.class, int.class});
+					int.class, int.class, int.class, double.class});
 
 			this.creator = new FullSpellCreator(this, construct);
 		} catch (final NoSuchMethodException ex) {
@@ -268,6 +270,13 @@ public class DefaultSpell {
 	 */
 	public Nature getNature() {
 		return nature;
+	}
+
+	/**
+	 * @param modifier the modifier to set
+	 */
+	public void setModifier(String modifier) {
+		this.modifier = Double.parseDouble(modifier);
 	}
 
 }

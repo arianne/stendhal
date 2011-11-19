@@ -14,8 +14,8 @@ import java.util.Date;
 public class ModifyBaseHpEffect extends AbstractEffect {
 
 	public ModifyBaseHpEffect(Nature nature, int amount, int atk, int def,
-			double lifesteal, int rate, int regen) {
-		super(nature, amount, atk, def, lifesteal, rate, regen);
+			double lifesteal, int rate, int regen, double modifier) {
+		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 	}
 
 	public void act(Player caster, Entity target) {
@@ -23,8 +23,8 @@ public class ModifyBaseHpEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, RPEntity target) {
-		Date expire = new Date(System.currentTimeMillis() + 60000);
-		target.addBaseHpModifier(expire, 0.5);
+		Date expire = new Date(System.currentTimeMillis() + getAmount()*1000);
+		target.addBaseHpModifier(expire, getModifier());
 	}
 
 }

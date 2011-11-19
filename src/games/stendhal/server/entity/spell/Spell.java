@@ -72,6 +72,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 
 	private static final List<String> ITEMS_IN_HANDS = Arrays.asList("magic wand","spellbook");
 
+	private static final String ATTR_MODIFIER = "modifier";
+
 	/** list of possible slots for this item. */
 	private final List<String> possibleSlots = Arrays.asList("spells");
 
@@ -183,6 +185,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		entity.addAttribute(ATTR_RANGE, Type.INT);
 		entity.addAttribute(ATTR_RATE, Type.INT);
 		entity.addAttribute(ATTR_REGEN, Type.INT);
+		entity.addAttribute(ATTR_MODIFIER, Type.FLOAT);
 		entity.addAttribute(ATTR_TIMESTAMP, Type.STRING);
 		// class = nature
 		entity.addAttribute("class", Type.STRING);
@@ -222,7 +225,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 */
 	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel,
-			final int range, final int rate, final int regen) {
+			final int range, final int rate, final int regen, double modifier) {
 		setRPClass(RPCLASS_SPELL);
 		put(ATTR_NAME, name);
 		put("subclass", name);
@@ -238,6 +241,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put(ATTR_RATE, rate);
 		put(ATTR_REGEN, regen);
 		put(ATTR_NATURE, nature.name());
+		put(ATTR_MODIFIER, modifier);
 		put(ATTR_TIMESTAMP, 0);
 		put("type", "spell");
 	}
@@ -400,4 +404,14 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		return Nature.parse(get(ATTR_NATURE));
 	}
 
+	public double getModifier() {
+		if(has(ATTR_MODIFIER)) {
+			return getDouble(ATTR_MODIFIER);
+		}
+		return 0d;
+	}
+	
+	public void setModifier(double modifier) {
+		put(ATTR_MODIFIER, modifier);
+	}
 }

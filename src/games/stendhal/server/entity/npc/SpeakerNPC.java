@@ -184,6 +184,7 @@ public class SpeakerNPC extends NPC {
 
 		// set the default perception range for player chatting
 		setPerceptionRange(5);
+		updateModifiedAttributes();
 	}
 	
 	/**
@@ -364,7 +365,7 @@ public class SpeakerNPC extends NPC {
 				setAttending(null);
 			}
 			if (hasPath()) {
-				setSpeed(baseSpeed);
+				setSpeed(getBaseSpeed());
 			}
 			applyMovement();
 		} else if (attending != null) {

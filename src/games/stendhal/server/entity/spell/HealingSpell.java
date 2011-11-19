@@ -34,9 +34,9 @@ public class HealingSpell extends Spell {
 	
 	public HealingSpell(final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel, final int range,
-			final int rate, final int regen) {
+			final int rate, final int regen, double modifier) {
 		super(name, nature, amount, atk, cooldown, def, lifesteal, mana, minimumlevel, range,
-				rate, regen);
+				rate, regen, modifier);
 	}
 	
 	public HealingSpell(RPObject object) {
@@ -46,7 +46,7 @@ public class HealingSpell extends Spell {
 	@Override
 	protected void doEffects(Player caster, Entity target) {
 		//implement healing here
-		new HealingEffect(getNature(), getAmount(), getAtk(), getDef(), getLifesteal(), getRate(), getRegen()).act(caster, target);
+		new HealingEffect(getNature(), getAmount(), getAtk(), getDef(), getLifesteal(), getRate(), getRegen(), getModifier()).act(caster, target);
 	}
 
 	@Override
