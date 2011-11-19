@@ -13,8 +13,12 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.entity.modifier.AttributeModifier;
+import games.stendhal.server.entity.modifier.GuidedEntityModifierHandler;
+import games.stendhal.server.entity.modifier.ModifiedAttributeUpdater;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Date;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -22,12 +26,15 @@ import marauroa.common.game.RPObject;
 /**
  * An entity that has speed/direction and is guided via a Path.
  */
-public abstract class GuidedEntity extends ActiveEntity {
+public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttributeUpdater {
+	
 	protected double baseSpeed;
 
 	private final EntityGuide guide = new EntityGuide();
 
 	public Registrator pathnotifier = new Registrator();
+	
+	private final GuidedEntityModifierHandler modifierHandler;
 
 	/**
 	 * Create a guided entity.
@@ -35,6 +42,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public GuidedEntity() {
 		baseSpeed = 0;
 		guide.guideMe(this);
+		modifierHandler = new GuidedEntityModifierHandler(this);
 	}
 
 	/**
@@ -47,6 +55,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 		super(object);
 		baseSpeed = 0;
 		guide.guideMe(this);
+		modifierHandler = new GuidedEntityModifierHandler(this);
 		update();
 	}
 
@@ -60,8 +69,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
-		return baseSpeed;
-
+		return modifierHandler.modifySpeed(this.baseSpeed);
+	}
+	
+	public void addSpeedModifier(Date expire, double modifier) {
+		AttributeModifier am = AttributeModifier.createSpeedModifier(expire, modifier);
+		modifierHandler.addModifier(am);
 	}
 
 	//
@@ -207,8 +220,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 		if (getSpeed() > 0) {
 			int resistance = getLocalResistance();
 
-			if ((getSpeed() < baseSpeed) || (resistance != 0)) {
-				setSpeed(baseSpeed * (100 - resistance) / 100.0);
+			if ((getSpeed() < getBaseSpeed()) || (resistance != 0)) {
+				setSpeed(getBaseSpeed() * (100 - resistance) / 100.0);
 			}
 		}
 	}
@@ -270,4 +283,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 		stop();
 		clearPath();
 	}
+
+	public void updateModifiedAttributes() {
+		//implement here update mechanism if an attribute needs to be transfered in a 
+		//modified state to the client
+	}
+	
 }
