@@ -127,12 +127,12 @@ public class StatsPanel extends JPanel {
 	}
 
 	/**
-	 * Set player mana.
+	 * Set player base mana.
 	 * 
-	 * @param mana
+	 * @param baseMana
 	 */
-	void setBaseMana(double base_mana) {
-		manaIndicator.setBaseMana(base_mana);
+	void setBaseMana(double baseMana) {
+		manaIndicator.setBaseMana(baseMana);
 	}
 	
 	/**
