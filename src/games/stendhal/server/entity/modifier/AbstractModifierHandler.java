@@ -48,13 +48,17 @@ public abstract class AbstractModifierHandler {
 	 */
 	public void removeExpiredModifiers() {
 		Iterator<AttributeModifier> iterator = modifiers.iterator();
+		boolean updateNeeded = false;
 		while(iterator.hasNext()) {
 			AttributeModifier am = iterator.next();
 			if(am.isExpired()) {
 				iterator.remove();
+				updateNeeded = true;
 			}
 		}
-		this.affectedEntity.updateModifiedAttributes();
+		if(updateNeeded) {
+			this.affectedEntity.updateModifiedAttributes();
+		}
 	}
 	
 }
