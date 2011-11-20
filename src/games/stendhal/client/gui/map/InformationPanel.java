@@ -27,6 +27,13 @@ public class InformationPanel extends JComponent {
 	/** Maximum number of skull icons in the danger indicator. */
 	private static final int MAX_SKULLS = 5;
 	/**
+	 * Value to added to the player level when calculating the amount of skulls
+	 * to show. <b>Must be at least 1.</b>. Higher values mean that low level 
+	 * players require higher danger level at a zone for a certain amount of
+	 * skulls.
+	 */
+	private static final int SKULLS_LEVEL_ADD = 3;
+	/**
 	 * Textual description of the danger level. There should be MAX_SKULLS + 1
 	 * of these.
 	 */
@@ -87,7 +94,7 @@ public class InformationPanel extends JComponent {
 	 * @param dangerLevel danger level
 	 */
 	void setDangerLevel(double dangerLevel) {
-		int skulls = (int) Math.min(5, Math.round(2 * dangerLevel / (User.getPlayerLevel() + 1)));
+		int skulls = (int) Math.min(5, Math.round(2 * dangerLevel / (User.getPlayerLevel() + SKULLS_LEVEL_ADD)));
 		if (this.dangerLevel != skulls) {
 			this.dangerLevel = skulls;
 			dangerIndicator.setRelativeDanger(skulls);
