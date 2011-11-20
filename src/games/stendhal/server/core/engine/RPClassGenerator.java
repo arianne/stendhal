@@ -25,6 +25,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.ItemInformation;
+import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
@@ -111,6 +112,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("door")) {
 			Door.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("expiration_tracker")) {
+			ExpirationTracker.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("fire")) {
 			Fire.generateRPClass();

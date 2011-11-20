@@ -14,6 +14,7 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.engine.transformer.ArrestWarrantTransformer;
 import games.stendhal.server.core.engine.transformer.EarningTransformer;
+import games.stendhal.server.core.engine.transformer.ExpirationTrackerTransformer;
 import games.stendhal.server.core.engine.transformer.FlowerGrowerTransFormer;
 import games.stendhal.server.core.engine.transformer.HousePortalTransformer;
 import games.stendhal.server.core.engine.transformer.MarketTransformer;
@@ -23,6 +24,7 @@ import games.stendhal.server.core.engine.transformer.RentedSignTransformer;
 import games.stendhal.server.core.engine.transformer.SpellTransformer;
 import games.stendhal.server.core.engine.transformer.StoredChestTransformer;
 import games.stendhal.server.core.engine.transformer.Transformer;
+import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.spell.Spell;
@@ -63,6 +65,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		transformerMap.put(Market.MARKET_RPCLASS_NAME, new MarketTransformer());
 		transformerMap.put("player", new PlayerTransformer());
 		transformerMap.put(Spell.RPCLASS_SPELL, new SpellTransformer());
+		transformerMap.put(ExpirationTracker.RPCLASS_EXPIRATION_TRACKER, new ExpirationTrackerTransformer());
 	}
 	
 	private void fixRPClass(final RPObject object) {
