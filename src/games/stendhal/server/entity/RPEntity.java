@@ -14,13 +14,11 @@ package games.stendhal.server.entity;
 
 
 import games.stendhal.common.Constants;
-import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
-import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -30,15 +28,11 @@ import games.stendhal.server.core.engine.dbcommand.LogKillEventCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.item.CaptureTheFlagFlag;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
-import games.stendhal.server.entity.modifier.AttributeModifier;
-import games.stendhal.server.entity.modifier.ModifiedAttributeUpdater;
-import games.stendhal.server.entity.modifier.RPEntityModifierHandler;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.AttackEvent;
@@ -46,7 +40,6 @@ import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -57,7 +50,6 @@ import java.util.WeakHashMap;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -66,14 +58,16 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
+//XXX sjt temp, while i figure out general droppable mechanism
+import games.stendhal.common.EquipActionConsts;
+import games.stendhal.server.entity.item.CaptureTheFlagFlag;
+import games.stendhal.server.actions.equip.DropAction;
+import marauroa.common.game.RPAction;
+
 import org.apache.log4j.Logger;
 
-public abstract class RPEntity extends GuidedEntity implements ModifiedAttributeUpdater {
+public abstract class RPEntity extends GuidedEntity {
 	
-	private static final String ATTR_DEF_MODIFIED = "modified_def";
-
-	private static final String ATTR_MODIFIED_BASE_HP = "modified_base_hp";
-
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
 	private static final float BOOTS_DEF_MULTIPLIER = 1.0f;
@@ -119,8 +113,6 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	private int mana;
 
 	private int base_mana;
-	
-	private RPEntityModifierHandler modifierHandler;
 
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
@@ -209,19 +201,16 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 			entity.addAttribute("base_mana", Type.INT);
 
 			entity.addAttribute("base_hp", Type.SHORT);
-			byte flags = (byte)(Definition.PRIVATE|Definition.VOLATILE);
-			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.INT, flags);
 			entity.addAttribute("hp", Type.SHORT);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
-			entity.addAttribute(ATTR_DEF_MODIFIED, Type.SHORT, flags);
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
-					flags);
+					(byte) (Definition.PRIVATE | Definition.VOLATILE));
 			entity.addAttribute("def_item", Type.INT,
-					flags);
+					(byte) (Definition.PRIVATE | Definition.VOLATILE));
 
 			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
 			entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use
@@ -254,7 +243,6 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
-		modifierHandler = new RPEntityModifierHandler(this);
 	}
 
 	public RPEntity() {
@@ -264,7 +252,6 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
-		modifierHandler = new RPEntityModifierHandler(this);
 	}
 
 	/**
@@ -697,19 +684,14 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	public void incAtkXP() {
 		setAtkXP(atk_xp + 1);
 	}
-	
-	private void setInitialDef(final int def) {
+
+	public void setDef(final int def) {
 		this.def = def;
 		put("def", def);
 	}
 
-	public void setDef(final int def) {
-		this.setInitialDef(def);
-		this.updateModifiedAttributes();
-	}
-
 	public int getDef() {
-		return this.modifierHandler.modifyDef(def);
+		return def;
 	}
 
 	/**
@@ -723,12 +705,12 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 		
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
-		final int levels = newLevel - (def - 10);
+		final int levels = newLevel - (getDef() - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setInitialDef(this.def + (int) Math.signum(levels) * 1);
-			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+			setDef(this.def + (int) Math.signum(levels) * 1);
+			new GameEvent(getName(), "def", Integer.toString(getDef())).raise();
 		}
 	}
 
@@ -761,11 +743,6 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	 *            The base HP to set.
 	 */
 	public void setBaseHP(final int newhp) {
-		setInitialBaseHP(newhp);
-		this.updateModifiedAttributes();
-	}
-
-	private void setInitialBaseHP(final int newhp) {
 		this.base_hp = newhp;
 		try {
 			put("base_hp", newhp);
@@ -780,26 +757,7 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
-		return this.modifierHandler.modifyHp(base_hp);
-	}
-	
-	/**
-	 * Add a temporal base hp modifier to the entity
-	 * @param expire
-	 * @param modifier
-	 */
-	public void addBaseHpModifier(Date expire, double modifier) {
-		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
-	}
-	
-	/**
-	 * Add a temporal def modifier to the entity
-	 * @param expire
-	 * @param modifier
-	 */
-
-	public void addDefModifier(Date expire, double modifier) {
-		this.modifierHandler.addModifier(AttributeModifier.createDefModifier(expire, modifier));
+		return base_hp;
 	}
 
 	/**
@@ -2714,19 +2672,4 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String getLanguage() {
 		return null;
 	}
-	
-	public void updateModifiedAttributes() {
-		//base hp
-		updateModifiedBaseHP(getBaseHP());
-		//def
-		this.put(ATTR_DEF_MODIFIED, getDef());
-		super.updateModifiedAttributes();
-	}
-
-	private void updateModifiedBaseHP(int modifiedValue) {
-		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
-		//on change of the base hp the base hp may fall below the current hp
-		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
-	}
-
 }

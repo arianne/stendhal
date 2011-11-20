@@ -206,7 +206,6 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		player.update();
-		player.updateModifiedAttributes();
 		Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
 		RPSlot slot = player.getSlot("armor");
 		slot.add(entity);
@@ -272,7 +271,6 @@ public class Player extends RPEntity implements UseListener {
 		tradescore = 0;
 		baseSpeed = 1.0;
 		update();
-		this.updateModifiedAttributes();
 		// Ensure that players do not accidentally get stored with zones
 		if (isStorable()) {
 			unstore();

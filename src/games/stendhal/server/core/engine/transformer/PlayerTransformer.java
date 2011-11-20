@@ -93,7 +93,6 @@ public class PlayerTransformer implements Transformer {
 		convertOldfeaturesList(player);
 
 		player.updateItemAtkDef();
-		
 		StendhalQuestSystem.updatePlayerQuests(player);
 
 		UpdateConverter.updateQuests(player);

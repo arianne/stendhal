@@ -37,7 +37,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import marauroa.common.Log4J;
@@ -757,27 +756,27 @@ public class RPEntityTest {
 		}
 	}
 	
-	@Test
-	public void testModifiedBaseHP() throws Exception {
-		final RPEntity entity = new RPEntity() {
-			@Override
-			protected void dropItemsOn(final Corpse corpse) {
-				// do nothing
-
-			}
-			@Override
-			public void logic() {
-				// do nothing
-			}
-		};
-		assertThat(entity.getBaseHP(), is(0));
-		entity.initHP(100);
-		assertThat(entity.getBaseHP(), is(100));
-		long expireTimestampAsLong = System.currentTimeMillis()+1000;
-		entity.addBaseHpModifier(new Date(expireTimestampAsLong), 0.5d);
-		assertThat(entity.getBaseHP(), is(150));
-		while(expireTimestampAsLong >= System.currentTimeMillis()) {
-		}
-		assertThat(entity.getBaseHP(), is(100));
-	}
+//	@Test
+//	public void testModifiedBaseHP() throws Exception {
+//		final RPEntity entity = new RPEntity() {
+//			@Override
+//			protected void dropItemsOn(final Corpse corpse) {
+//				// do nothing
+//
+//			}
+//			@Override
+//			public void logic() {
+//				// do nothing
+//			}
+//		};
+//		assertThat(entity.getBaseHP(), is(0));
+//		entity.initHP(100);
+//		assertThat(entity.getBaseHP(), is(100));
+//		long expireTimestampAsLong = System.currentTimeMillis()+1000;
+//		entity.addBaseHpModifier(new Date(expireTimestampAsLong), 0.5d);
+//		assertThat(entity.getBaseHP(), is(150));
+//		while(expireTimestampAsLong >= System.currentTimeMillis()) {
+//		}
+//		assertThat(entity.getBaseHP(), is(100));
+//	}
 }

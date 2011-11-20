@@ -13,12 +13,8 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.entity.modifier.AttributeModifier;
-import games.stendhal.server.entity.modifier.GuidedEntityModifierHandler;
-import games.stendhal.server.entity.modifier.ModifiedAttributeUpdater;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Date;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -26,7 +22,7 @@ import marauroa.common.game.RPObject;
 /**
  * An entity that has speed/direction and is guided via a Path.
  */
-public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttributeUpdater {
+public abstract class GuidedEntity extends ActiveEntity {
 	
 	protected double baseSpeed;
 
@@ -34,7 +30,6 @@ public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttri
 
 	public Registrator pathnotifier = new Registrator();
 	
-	private final GuidedEntityModifierHandler modifierHandler;
 
 	/**
 	 * Create a guided entity.
@@ -42,7 +37,6 @@ public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttri
 	public GuidedEntity() {
 		baseSpeed = 0;
 		guide.guideMe(this);
-		modifierHandler = new GuidedEntityModifierHandler(this);
 	}
 
 	/**
@@ -55,7 +49,6 @@ public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttri
 		super(object);
 		baseSpeed = 0;
 		guide.guideMe(this);
-		modifierHandler = new GuidedEntityModifierHandler(this);
 		update();
 	}
 
@@ -69,14 +62,9 @@ public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttri
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
-		return modifierHandler.modifySpeed(this.baseSpeed);
+		return this.baseSpeed;
 	}
 	
-	public void addSpeedModifier(Date expire, double modifier) {
-		AttributeModifier am = AttributeModifier.createSpeedModifier(expire, modifier);
-		modifierHandler.addModifier(am);
-	}
-
 	//
 	// GuidedEntity
 	//
@@ -282,11 +270,6 @@ public abstract class GuidedEntity extends ActiveEntity implements ModifiedAttri
 	protected void handleObjectCollision() {
 		stop();
 		clearPath();
-	}
-
-	public void updateModifiedAttributes() {
-		//implement here update mechanism if an attribute needs to be transfered in a 
-		//modified state to the client
 	}
 	
 }

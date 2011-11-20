@@ -95,14 +95,14 @@ public class StatsPanelController {
 	public void registerListeners(PropertyChangeSupport pcs) {
 		PropertyChangeListener listener = new HPChangeListener(); 
 		pcs.addPropertyChangeListener("hp", listener);
-		pcs.addPropertyChangeListener("modified_base_hp", listener);
+		pcs.addPropertyChangeListener("base_hp", listener);
 		
 		listener = new ATKChangeListener();
 		pcs.addPropertyChangeListener("atk", listener);
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
-		pcs.addPropertyChangeListener("def", listener);
+		pcs.addPropertyChangeListener("modified_def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
 		listener = new XPChangeListener();
@@ -211,7 +211,7 @@ public class StatsPanelController {
 			
 			if (event.getPropertyName().equals("hp")) {
 				hp = Integer.parseInt((String) event.getNewValue());
-			} else if (event.getPropertyName().equals("modified_base_hp")) {
+			} else if (event.getPropertyName().equals("base_hp")) {
 				maxhp = Integer.parseInt((String) event.getNewValue());
 			}
 			updateHP();
