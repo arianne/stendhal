@@ -209,17 +209,19 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 			entity.addAttribute("base_mana", Type.INT);
 
 			entity.addAttribute("base_hp", Type.SHORT);
-			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.INT, (byte)(Definition.PRIVATE|Definition.VOLATILE));
+			byte flags = (byte)(Definition.PRIVATE|Definition.VOLATILE);
+			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.INT, flags);
 			entity.addAttribute("hp", Type.SHORT);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute(ATTR_DEF_MODIFIED, Type.SHORT, flags);
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
-					(byte) (Definition.PRIVATE | Definition.VOLATILE));
+					flags);
 			entity.addAttribute("def_item", Type.INT,
-					(byte) (Definition.PRIVATE | Definition.VOLATILE));
+					flags);
 
 			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
 			entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use
@@ -695,14 +697,19 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	public void incAtkXP() {
 		setAtkXP(atk_xp + 1);
 	}
-
-	public void setDef(final int def) {
+	
+	private void setInitialDef(final int def) {
 		this.def = def;
 		put("def", def);
 	}
 
+	public void setDef(final int def) {
+		this.setInitialDef(def);
+		this.updateModifiedAttributes();
+	}
+
 	public int getDef() {
-		return def;
+		return this.modifierHandler.modifyDef(def);
 	}
 
 	/**
@@ -716,12 +723,12 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 		
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
-		final int levels = newLevel - (getDef() - 10);
+		final int levels = newLevel - (def - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setDef(this.def + (int) Math.signum(levels) * 1);
-			new GameEvent(getName(), "def", Integer.toString(getDef())).raise();
+			setInitialDef(this.def + (int) Math.signum(levels) * 1);
+			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
 		}
 	}
 
@@ -754,13 +761,17 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 	 *            The base HP to set.
 	 */
 	public void setBaseHP(final int newhp) {
+		setInitialBaseHP(newhp);
+		this.updateModifiedAttributes();
+	}
+
+	private void setInitialBaseHP(final int newhp) {
 		this.base_hp = newhp;
 		try {
 			put("base_hp", newhp);
 		} catch (IllegalArgumentException e) {
 			logger.error("Failed to set base HP to " + newhp + ". Entity was: " + this, e);
 		}
-		this.updateModifiedAttributes();
 	}
 
 	/**
@@ -772,8 +783,23 @@ public abstract class RPEntity extends GuidedEntity implements ModifiedAttribute
 		return this.modifierHandler.modifyHp(base_hp);
 	}
 	
+	/**
+	 * Add a temporal base hp modifier to the entity
+	 * @param expire
+	 * @param modifier
+	 */
 	public void addBaseHpModifier(Date expire, double modifier) {
 		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
+	}
+	
+	/**
+	 * Add a temporal def modifier to the entity
+	 * @param expire
+	 * @param modifier
+	 */
+
+	public void addDefModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createDefModifier(expire, modifier));
 	}
 
 	/**
@@ -2690,9 +2716,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 	
 	public void updateModifiedAttributes() {
-		super.updateModifiedAttributes();
 		//base hp
 		updateModifiedBaseHP(getBaseHP());
+		//def
+		this.put(ATTR_DEF_MODIFIED, getDef());
+		super.updateModifiedAttributes();
 	}
 
 	private void updateModifiedBaseHP(int modifiedValue) {
@@ -2700,5 +2728,5 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		//on change of the base hp the base hp may fall below the current hp
 		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
 	}
-	
+
 }
