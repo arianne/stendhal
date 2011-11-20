@@ -102,7 +102,7 @@ public class StatsPanelController {
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
-		pcs.addPropertyChangeListener("modified_def", listener);
+		pcs.addPropertyChangeListener("def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
 		listener = new XPChangeListener();
