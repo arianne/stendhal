@@ -14,11 +14,13 @@ package games.stendhal.server.entity;
 
 
 import games.stendhal.common.Constants;
+import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
+import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -28,11 +30,14 @@ import games.stendhal.server.core.engine.dbcommand.LogKillEventCommand;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.CaptureTheFlagFlag;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
+import games.stendhal.server.entity.modifier.AttributeModifier;
+import games.stendhal.server.entity.modifier.RPEntityModifierHandler;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.AttackEvent;
@@ -40,6 +45,7 @@ import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -50,6 +56,7 @@ import java.util.WeakHashMap;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -58,16 +65,14 @@ import marauroa.server.db.command.DBCommandQueue;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
-//XXX sjt temp, while i figure out general droppable mechanism
-import games.stendhal.common.EquipActionConsts;
-import games.stendhal.server.entity.item.CaptureTheFlagFlag;
-import games.stendhal.server.actions.equip.DropAction;
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity {
 	
+	private static final String ATTR_MODIFIED_DEF = "modified_def";
+
+	private static final String ATTR_MODIFIED_BASE_HP = "modified_base_hp";
+
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
 	private static final float BOOTS_DEF_MULTIPLIER = 1.0f;
@@ -113,6 +118,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private int mana;
 
 	private int base_mana;
+	
+	private RPEntityModifierHandler modifierHandler;
 
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
@@ -201,6 +208,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("base_mana", Type.INT);
 
 			entity.addAttribute("base_hp", Type.SHORT);
+			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, (byte)(Definition.PRIVATE | Definition.VOLATILE));
 			entity.addAttribute("hp", Type.SHORT);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
@@ -243,6 +251,7 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
+		modifierHandler = new RPEntityModifierHandler(this);
 	}
 
 	public RPEntity() {
@@ -252,6 +261,7 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
+		modifierHandler = new RPEntityModifierHandler(this);
 	}
 
 	/**
@@ -749,6 +759,7 @@ public abstract class RPEntity extends GuidedEntity {
 		} catch (IllegalArgumentException e) {
 			logger.error("Failed to set base HP to " + newhp + ". Entity was: " + this, e);
 		}
+		this.updateModifiedAttributes();
 	}
 
 	/**
@@ -757,7 +768,17 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
-		return base_hp;
+		return this.modifierHandler.modifyHp(base_hp);
+	}
+	
+	/**
+	 * Add a temporarily valid modifier to the base hp
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addBaseHpModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
 	}
 
 	/**
@@ -2671,5 +2692,17 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public String getLanguage() {
 		return null;
+	}
+
+	public void updateModifiedAttributes() {
+		super.updateModifiedAttributes();
+		//base hp
+		updateModifiedBaseHP(getBaseHP());
+	}
+
+	private void updateModifiedBaseHP(int modifiedValue) {
+		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
+		//on change of the base hp the base hp may fall below the current hp
+		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
 	}
 }

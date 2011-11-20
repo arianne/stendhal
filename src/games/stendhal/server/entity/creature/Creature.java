@@ -163,6 +163,8 @@ public class Creature extends NPC {
 
 		// set the default movement range
 		setMovementRange(20);
+		
+		updateModifiedAttributes();
 	}
 
 	/**
@@ -212,7 +214,7 @@ public class Creature extends NPC {
 		}
 
 		update();
-
+		updateModifiedAttributes();
 		stop();
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug(getID() + " Created " + get("class") + ":"
@@ -235,6 +237,7 @@ public class Creature extends NPC {
 		setAIProfiles(new HashMap<String, String>());
 
 		susceptibilities = new EnumMap<Nature, Double>(Nature.class);
+		updateModifiedAttributes();
 	}
 
 	/**
@@ -313,7 +316,7 @@ public class Creature extends NPC {
 		}
 
 		update();
-
+		updateModifiedAttributes();
 		stop();
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug(getID() + " Created " + clazz + ":" + this);

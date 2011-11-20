@@ -284,6 +284,7 @@ public class Player extends RPEntity implements UseListener {
 			SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
 			SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
 		}
+		updateModifiedAttributes();
 	}
 
 	/**

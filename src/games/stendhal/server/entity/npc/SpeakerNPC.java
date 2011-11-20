@@ -184,6 +184,7 @@ public class SpeakerNPC extends NPC {
 
 		// set the default perception range for player chatting
 		setPerceptionRange(5);
+		updateModifiedAttributes();
 	}
 	
 	/**
