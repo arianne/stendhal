@@ -206,7 +206,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		player.update();
-
+		player.updateModifiedAttributes();
 		Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
 		RPSlot slot = player.getSlot("armor");
 		slot.add(entity);
