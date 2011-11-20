@@ -449,12 +449,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		int levelSum = 1;
 		for (CreatureRespawnPoint spawner : respawnPoints) {
 			Creature creature = spawner.getPrototypeCreature();
-			// Rare creatures should not count
+			// Rare creatures should not count.
 			if (creature.isRare()) {
 				continue;
 			}
 			// Add 1, so that level 0 creatures do not get completely ignored.
 			int level = creature.getLevel() + 1;
+			// The level restriction is a hack to keep the chess pieces from
+			// being included.
+			if (level > 1000) {
+				continue;
+			}
 			maxLevel = Math.max(level, maxLevel);
 			levelSum += level;
 		}
