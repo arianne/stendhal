@@ -214,6 +214,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, (byte)(Definition.PRIVATE | Definition.VOLATILE));
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
 					(byte) (Definition.PRIVATE | Definition.VOLATILE));
@@ -456,7 +457,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
-			setDefXP(def_xp);
+			setDefXpInternal(def_xp, false);
 		}
 
 		if (has("base_hp")) {
@@ -696,31 +697,52 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public void setDef(final int def) {
+		setDefInternal(def, true);
+	}
+
+	private void setDefInternal(final int def, boolean notify) {
 		this.def = def;
 		put("def", def);
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
 	}
 
 	public int getDef() {
-		return def;
+		return modifierHandler.modifyDef(def);
+	}
+	
+	/**
+	 * Add a temporary modifier to this entity
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addDefModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createDefModifier(expire, modifier));
 	}
 
 	/**
 	 * Set defense XP.
 	 * 
-	 * @param def the new value
+	 * @param defXp the new value
 	 */
-	public void setDefXP(final int def) {
-		this.def_xp = def;
+	public void setDefXP(final int defXp) {
+		setDefXpInternal(defXp, true);
+	}
+
+	private void setDefXpInternal(final int defXp, boolean notify) {
+		this.def_xp = defXp;
 		put("def_xp", def_xp);
 		
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
-		final int levels = newLevel - (getDef() - 10);
+		final int levels = newLevel - (this.def - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setDef(this.def + (int) Math.signum(levels) * 1);
-			new GameEvent(getName(), "def", Integer.toString(getDef())).raise();
+			setDefInternal(this.def + (int) Math.signum(levels) * 1, notify);
+			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
 		}
 	}
 
@@ -2698,6 +2720,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		super.updateModifiedAttributes();
 		//base hp
 		updateModifiedBaseHP(getBaseHP());
+		//def
+		updateModifiedDef(getDef());
+	}
+
+	private void updateModifiedDef(int modifiedDef) {
+		this.put(ATTR_MODIFIED_DEF, modifiedDef);
 	}
 
 	private void updateModifiedBaseHP(int modifiedValue) {

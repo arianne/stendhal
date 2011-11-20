@@ -102,7 +102,7 @@ public class StatsPanelController {
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
-		pcs.addPropertyChangeListener("def", listener);
+		pcs.addPropertyChangeListener("modified_def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
 		listener = new XPChangeListener();
@@ -312,7 +312,7 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().equals("def")) {
+			if (event.getPropertyName().equals("modified_def")) {
 				def =  Integer.parseInt((String) event.getNewValue());
 			} else {
 				defxp = Integer.parseInt((String) event.getNewValue());

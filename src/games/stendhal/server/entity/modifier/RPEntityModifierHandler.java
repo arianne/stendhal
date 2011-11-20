@@ -34,7 +34,7 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 		for (AttributeModifier m : this.getModifiers()) {
 			cumulatedModifier = cumulatedModifier * (1d + m.getDefModifier());
 		}
-		return Double.valueOf(Math.ceil(cumulatedModifier * def)).intValue();
+		return Math.min(Double.valueOf(Math.ceil(cumulatedModifier * def)).intValue(), 597);
 	}
 
 }
