@@ -290,7 +290,7 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 	}
 
 	public void updateModifiedAttributes() {
-		//base speed does not get transfered to the client?
+		//TODO base speed does not get transfered to the client? testing showed, that speed is used at client side
 	}
 	
 }
