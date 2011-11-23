@@ -26,7 +26,7 @@ import marauroa.common.game.RPObject;
 
 
 /**
- * A healing spell. It recovers once the HP of a player by the given amount
+ * A healing spell. It the HP of a player by the given amount
  *  
  * @author timothyb89, madmetzger 
  */
@@ -53,7 +53,7 @@ public class HealingSpell extends Spell {
 	protected boolean isTargetValid(Entity caster, Entity target) {
 		if (target instanceof Player) {
 			if (!caster.equals(target)) {
-				//switch to false if caster should not be the target
+				//switch to false if caster should not be be able to heal himself
 				return true;
 			}
 		}
