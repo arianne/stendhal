@@ -40,6 +40,8 @@ import org.apache.log4j.Logger;
  * @author timothyb89, madmetzger
  */
 public abstract class Spell extends PassiveEntity implements EquipListener, Dateable {
+	
+	private static final Logger LOGGER = Logger.getLogger(Spell.class);
 
 	public static final String RPCLASS_SPELL = "spell";
 
@@ -387,7 +389,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		try {
 			timeStamp = Long.parseLong(get(ATTR_TIMESTAMP));
 		} catch (final NumberFormatException e) {
-			Logger.getLogger(Spell.class).debug("Invalid timestamp: " + get(ATTR_TIMESTAMP)+" Will return default value 0", e);
+			LOGGER.debug("Invalid timestamp: " + get(ATTR_TIMESTAMP)+" Will return default value 0", e);
 		}
 		return timeStamp;
 	}
