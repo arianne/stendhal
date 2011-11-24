@@ -9,6 +9,7 @@ public class ExpirationTrackerTransformer implements Transformer {
 		
 		entity.setPosition(object.getInt("x"), object.getInt("y"));
 		entity.setIdentifier(object.get("identifier"));
+		entity.setPlayer(object.get("player"));
 		entity.setExpirationTime(Long.parseLong(object.get("expires")));
 		
 		return entity;

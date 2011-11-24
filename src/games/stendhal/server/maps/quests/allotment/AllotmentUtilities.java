@@ -1,9 +1,8 @@
 package games.stendhal.server.maps.quests.allotment;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -18,6 +17,11 @@ import games.stendhal.server.entity.player.Player;
 
 public class AllotmentUtilities implements TurnListener {
 	/**
+	 * Name of the quest used for quest slot
+	 */
+	public static String QUEST_SLOT = "allotment_rental";
+	
+	/**
 	 * Prefix that allotment names have
 	 */
 	private static String ALLOTMENT_PREFIX = "Allotment ";
@@ -30,7 +34,7 @@ public class AllotmentUtilities implements TurnListener {
 	/**
 	 * Amount of time which an allotment can be rented out
 	 */
-	private static long RENTAL_TIME = MathHelper.MILLISECONDS_IN_ONE_MINUTE * 2;
+	public static long RENTAL_TIME = MathHelper.MILLISECONDS_IN_ONE_MINUTE * 2;
 	
 	/**
 	 * 
@@ -137,12 +141,13 @@ public class AllotmentUtilities implements TurnListener {
 	 * 
 	 * @return true if successful, false otherwise
 	 */
-	public boolean setExpirationTime(final String zoneName, final String allotment) {
+	public boolean setExpirationTime(final String zoneName, final String allotment, final String player) {
 		for (Entity entity : getTrackers(zoneName)) {
 			ExpirationTracker tracker = (ExpirationTracker) entity;
 
 			if (tracker.getIdentifier().equals(ALLOTMENT_PREFIX + allotment)) {
 				tracker.setExpirationTime(System.currentTimeMillis() + RENTAL_TIME);
+				tracker.setPlayer(player);
 				
 				return true;
 			}
@@ -159,11 +164,13 @@ public class AllotmentUtilities implements TurnListener {
 	 * 
 	 * @return a key to the allotment
 	 */
-	public GateKey getKey(final String zoneName, final String allotment) {
+	public GateKey getKey(final String zoneName, final String player) {
 		for (Entity e : getTrackers(zoneName)) {
-			if (((ExpirationTracker) e).getIdentifier().equals(ALLOTMENT_PREFIX + allotment)) {
+			ExpirationTracker tracker = (ExpirationTracker) e;
+			if (tracker.getPlayer().equals(player)) {
+				
 				final GateKey key = (GateKey) SingletonRepository.getEntityManager().getItem("gate key");
-				key.setup(ALLOTMENT_PREFIX + allotment, ((ExpirationTracker) e).getExpirationTime());
+				key.setup(ALLOTMENT_PREFIX + tracker.getIdentifier(), tracker.getExpirationTime());
 				
 				return key;
 			}
@@ -173,15 +180,70 @@ public class AllotmentUtilities implements TurnListener {
 	}
 	
 	/**
+	 * Gets the rental time left given a player
+	 * 
+	 * @param player the player who is enquiring about the time left
+	 * 
+	 * @return the time remaining till the allotment expires
+	 */
+	public long getTimeLeftPlayer(final String zoneName, final String player) {
+		for (Entity e : getTrackers(zoneName)) {
+			ExpirationTracker tracker = (ExpirationTracker) e;
+			if (tracker.getPlayer().equals(player)) {
+				return tracker.getExpirationTime() - System.currentTimeMillis();
+			}
+		}
+			
+		return 0;
+	}
+	
+	/**
+	 * Gets the rental time left given an allotment 
+	 * 
+	 * @param allotment the allotment to check
+	 * 
+	 * @return the time remaining till the allotment expires
+	 */
+	public long getTimeLeftAllotment(final String zoneName, final String allotment) {
+		for (Entity e : getTrackers(zoneName)) {
+			ExpirationTracker tracker = (ExpirationTracker) e;
+			if (tracker.getIdentifier().equals(ALLOTMENT_PREFIX + allotment)) {
+				return tracker.getExpirationTime() - System.currentTimeMillis();
+			}
+		}
+			
+		return 0;
+	}
+	
+	/**
 	 * Checks if an allotment exists
 	 * 
 	 * @param zoneName the zone where the allotment is in
 	 * @param allotment
 	 * @return
 	 */
-	public boolean hasAllotment(final String zoneName, final String allotment) {
+	public boolean isValidAllotment(final String zoneName, final String allotment) {
 		for (Entity e : getTrackers(zoneName)) {
 			if (((ExpirationTracker) e).getIdentifier().equals(ALLOTMENT_PREFIX + allotment)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Checks if an allotment is available
+	 * 
+	 * @param zoneName the zone where the allotment is in
+	 * @param allotment
+	 * @return
+	 */
+	public boolean isAvailableAllotment(final String zoneName, final String allotment) {
+		for (Entity e : getTrackers(zoneName)) {
+			if (((ExpirationTracker) e).getIdentifier().equals(ALLOTMENT_PREFIX + allotment) &&
+				((ExpirationTracker) e).getExpirationTime() < System.currentTimeMillis()) {
+				
 				return true;
 			}
 		}
@@ -195,8 +257,8 @@ public class AllotmentUtilities implements TurnListener {
 	 * @param zoneName the zone to get allotments for
 	 * @return a list of available allotment numbers
 	 */
-	public Set<String> getAvailableAllotments(final String zoneName) {
-		Set<String> available = new HashSet<String>();
+	public List<String> getAvailableAllotments(final String zoneName) {
+		List<String> available = new ArrayList<String>();
 		
 		for (Entity e : getTrackers(zoneName)) {
 			if (((ExpirationTracker) e).getIdentifier().startsWith(ALLOTMENT_PREFIX) &&
@@ -218,6 +280,7 @@ public class AllotmentUtilities implements TurnListener {
 			for (String zoneName : zones) {
 				for (Entity trackerEntity : getTrackers(zoneName)) {
 					ExpirationTracker tracker = (ExpirationTracker) trackerEntity;
+					boolean renterFound = false;
 					
 					if (tracker.getExpirationTime() <= System.currentTimeMillis()) {
 						final String name = tracker.getIdentifier();
@@ -237,8 +300,25 @@ public class AllotmentUtilities implements TurnListener {
 								for (Player player : getPlayers(zoneName)) {
 									if (player.getArea().intersects(allotment.getArea())) {
 										player.teleport(getZone(zoneName), tracker.getX(), tracker.getY(), null, null);
+										player.sendPrivateText("The rental time has expired. You will now be excorted out of the allotment. Thank you for your cooperation.");
+									}
+									
+									if (player.getName().equals(tracker.getPlayer())) {
+										renterFound = true;
 									}
 								}
+							}
+						}
+						
+						// TODO: tell renter and set quest slot
+						// tell the renter if they're not in the allotment
+						if (!renterFound) {
+							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayer());
+							
+							if (player != null) {
+								player.sendPrivateText("This is just to notify you that the allotment that you rented has expired.");
+							} else {
+								//TODO: schedule a message at login
 							}
 						}
 					}
@@ -256,6 +336,7 @@ public class AllotmentUtilities implements TurnListener {
 			for (String zoneName : zones) {
 				for (Entity trackerEntity : getTrackers(zoneName)) {
 					ExpirationTracker tracker = (ExpirationTracker) trackerEntity;
+					boolean renterFound = false;
 					
 					if (tracker.getExpirationTime() - WARN_TIME * 1000 <= System.currentTimeMillis()) {
 						final String name = tracker.getIdentifier();
@@ -269,7 +350,20 @@ public class AllotmentUtilities implements TurnListener {
 									if (player.getArea().intersects(allotment.getArea())) {
 										player.sendPrivateText("You have " + WARN_TIME + " minutes left before your rental time expires. You are kindly asked to finish up and exit in an orderly fashion. Kind regards, Semos Allotment Rentals Staff.");
 									}
+									
+									if (player.getName().equals(tracker.getPlayer())) {
+										renterFound = true;
+									}
 								}
+							}
+						}
+						
+						// tell the renter if they're not in the allotment
+						if (!renterFound) {
+							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayer());
+							
+							if (player != null) {
+								player.sendPrivateText("This is just to notify you that the allotment that you rented is going to expire in " + WARN_TIME + "minutes.");
 							}
 						}
 					}
