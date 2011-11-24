@@ -18,7 +18,7 @@
 - Fado hotel beergarden style changed a bit
 - Reworked Ados interiors in some houses
 - Ados Bank got more bank chests
-- Semos and Ados mountain have more vegetation
+- Semos and Ados mountain got more vegetation
 - Semos Mine Town Revival weeks ended
 - Athor cocktail bar got a new style
 - Ortiv Milquetoast interior reworked
