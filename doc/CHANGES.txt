@@ -1,6 +1,12 @@
 ﻿Changelog
 ---------
 
+0.99
+
+*world*
+
+- Added allotment rental in Semos mountains with new NPC
+
 0.98
 
 *client*
@@ -23,7 +29,8 @@
 - Athor cocktail bar got a new style
 - Ortiv Milquetoast interior reworked
 - Semos mine maps at level -2 got a new ground style
-- new achievements for the weekly item quest
+- New achievements for the weekly item quest
+- New Guess Kills quest in Nalwor City with new NPC, Crearid
 
 *fixes*
 
