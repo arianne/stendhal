@@ -12,23 +12,27 @@
 
 *world*
 
-- Some garlic seeds have been planted by Sue in the Kalavan City Gardens
-- Rachel, the Ados bank customer adviser, started to work
-- You can place items on your tables in your Kalavan City houses and in your holiday apartments on Athor island now
-- Fado hotel chopped old trees down and planted new pines
-- Some Ados inhabitants started to decorate their town a bit outside and inside houses
-- Ados Bank got a new style and more bank chests 
-- Hikers saw some new vegetation growing around Semos and Ados mountains
-- The Revival Weeks ended and the Mine Town is clean again, same as Semos city
-- Haizens furniture arrived
-- Are you thirsty, need vacation and some tasty drinks? Visit the new Athor island cocktail bar and relax
-- Ortiv Milquetoast is prepared for mixing his potion now and set up a chemistry corner in his house
-- Semos mine maps at level -2 withered and got a new ground style
+- Garlic grows in the Kalavan City Gardens
+- Introducing new NPC Rachel in Ados bank
+- Kalavan City houses and Athor holiday apartments have usable tables now
+- Fado hotel beergarden style changed a bit
+- Reworked Ados interiors in some houses
+- Ados Bank got more bank chests
+- Semos and Ados mountain got more vegetation
+- Semos Mine Town Revival weeks ended
+- Athor cocktail bar got a new style
+- Ortiv Milquetoast interior reworked
+- Semos mine maps at level -2 got a new ground style
+- New achievements for the weekly item quest
+- New Guess Kills quest in Nalwor City with new NPC, Crearid
 
 *fixes*
 
 - Farmer achievement can be reached due to garlic grower implementation
 - stop player vs player attack if either player move into a protection zone
+
+
+
 
 0.97
 
@@ -133,8 +137,6 @@ read http://stendhalgame.org/wiki/Automatic_Software_Updater
 - John and Jane on Athor island have a disrupted holiday
 - Andy, at Ados cemetery, seeks revenge
 - Harold pays owed earnings instantly on start of dialogue
-
-
 
 *fixes*
 - fixed not showing zone achievements
