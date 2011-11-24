@@ -54,7 +54,7 @@ public class AfkTimeouter implements TurnListener {
 		Collection<Player> players = StendhalRPRuleProcessor.get().getOnlinePlayers().getAllPlayers();
 		Set<Player> toDisconnect = new HashSet<Player>();
 		for (Player player : players) {
-			if (System.currentTimeMillis() - player.getLastClientActionTimestamp() > afkDisconnect) {
+			if (System.currentTimeMillis() - player.getLastClientActionTimestamp() > afkDisconnect * 1000) {
 				if (player.getAdminLevel() < 1000) {
 					toDisconnect.add(player);
 				}
