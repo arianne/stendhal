@@ -192,7 +192,7 @@ public class FruitsForCoralia extends AbstractQuest {
     		null,
 			new MultipleActions(
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! Could you bring me these fresh fruits: [items]?")));
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items]?")));
     	
     	// reject quest response
     	npc.add(ConversationStates.QUEST_OFFERED,
@@ -240,7 +240,7 @@ public class FruitsForCoralia extends AbstractQuest {
             "grapes",
             new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.QUESTION_1,
-            "I think there's an old house on Or'ril mountain that's covered in vines.",
+            "There's a beautiful little temple in the mountains north of Semos that's covered in grape vines!  I've also heard of some by an old house in Or'ril mountains.",
             null);
     	
     	npc.add(ConversationStates.QUESTION_1,
@@ -261,7 +261,7 @@ public class FruitsForCoralia extends AbstractQuest {
             "pomegranate",
             new QuestActiveCondition(QUEST_SLOT),
             ConversationStates.QUESTION_1,
-            "I have never seen pomegranate trees growing in wild nature. I heard of a man living south of the great river cultivating them in his garden.",
+            "I've never seen pomegranate trees growing wild, but I heard of a man living south of the great river cultivating them in his garden.",
             null);
     }
     
