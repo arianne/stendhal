@@ -75,7 +75,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("I'd like some entertainment but you don't look like you're up to it just yet. Come back when you've gained a bit more experience fighting creatures.", getReply(npc));
 		en.step(player, "job");
-		assertEquals("I am just an old woman, I sit around and observe all around me.", getReply(npc));
+		assertEquals("I am just an old woman, I walk around and observe all around me.", getReply(npc));
 		en.step(player, "help");
 		assertEquals("I'm not sure how I can help you. On some days I like to #play #games.", getReply(npc));
 		en.step(player, "play gamEs");
@@ -172,6 +172,6 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(reply.endsWith("Good effort though."), true);
 		
 		en.step(player, "play");
-		assertEquals("I've had plenty of fun for now, thanks. Come back in, lets say 1 week.", getReply(npc));
+		assertEquals(getReply(npc).startsWith("I've had plenty of fun for now, thanks. Come back in, lets say "), true);
 	}
 }

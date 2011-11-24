@@ -87,7 +87,7 @@ public class GuessKillsNPC implements ZoneConfigurator {
             @Override
             protected void createDialog() {
                 addGreeting("Greetings");
-                addJob("I am just an old woman, I sit around and observe all around me.");
+                addJob("I am just an old woman, I walk around and observe all around me.");
                 addHelp("I'm not sure how I can help you. On some days I like to #play #games.");
                 addOffer("I'm afraid I don't have anything to offer you.");
                 addReply(ConversationPhrases.QUEST_MESSAGES, "There's nothing I need right now although occasionally I like to #play #games.");
