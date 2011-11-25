@@ -75,7 +75,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("I'd like some entertainment but you don't look like you're up to it just yet. Come back when you've gained a bit more experience fighting creatures.", getReply(npc));
 		en.step(player, "job");
-		assertEquals("I am just an old woman, I sit around and observe all around me.", getReply(npc));
+		assertEquals("I am just an old woman, I walk around and observe all around me.", getReply(npc));
 		en.step(player, "help");
 		assertEquals("I'm not sure how I can help you. On some days I like to #play #games.", getReply(npc));
 		en.step(player, "play gamEs");
@@ -97,7 +97,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("I'm a little bored at the moment. Would you like to play a game?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("I've been counting how many creatures you have killed, now tell me, how many deers do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer.", getReply(npc));
+		assertEquals("I've been counting how many creatures you have killed, now tell me, how many deer do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, come back when you want to continue.", getReply(npc));
 		
@@ -115,7 +115,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("We did not finish our game last time would you like to continue?", getReply(npc));
 		en.step(player, "yes");
-		assertEquals("Let me see... you have 3 guesses left... and if I recall correctly I asked you... how many deers do think you have killed?", getReply(npc));
+		assertEquals("Let me see... you have 3 guesses left... and if I recall correctly I asked you... how many deer do think you have killed?", getReply(npc));
 		en.step(player, "8");
 		assertEquals("Nope, that is not even close. Try again.", getReply(npc));
 		en.step(player, "5");
@@ -134,7 +134,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		
 		String reply = getReply(npc);
 		assertEquals(reply.startsWith("I've been counting how many creatures you have killed, now tell me, how many "), true);
-		assertEquals(reply.endsWith("s do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
+		assertEquals(reply.endsWith(" do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
 		
 		en.step(player, "sdf");
 		assertEquals("How could that possibly be an answer? Give me a proper number.", getReply(npc));
@@ -157,7 +157,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		
 		reply = getReply(npc);
 		assertEquals(reply.startsWith("I've been counting how many creatures you have killed, now tell me, how many "), true);
-		assertEquals(reply.endsWith("s do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
+		assertEquals(reply.endsWith(" do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
 		
 		en.step(player, "98");
 		assertEquals("Nope, that is not even close. Try again.", getReply(npc));
@@ -172,6 +172,6 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(reply.endsWith("Good effort though."), true);
 		
 		en.step(player, "play");
-		assertEquals("I've had plenty of fun for now, thanks. Come back some other time.", getReply(npc));
+		assertEquals(getReply(npc).startsWith("I've had plenty of fun for now, thanks. Come back in, lets say "), true);
 	}
 }

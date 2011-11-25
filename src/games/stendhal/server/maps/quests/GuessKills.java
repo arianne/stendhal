@@ -13,19 +13,35 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.npc.*;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
-import games.stendhal.server.entity.npc.condition.*;
-import games.stendhal.server.entity.player.*;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.MinTotalCreaturesKilledCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +66,7 @@ import java.util.List;
  * 
  * SLOTS: (subtract from list index to get slot index)
  * <ol>
- * <li>Quest state: done, guess1, guess2 or guess3</li>
+ * <li>Quest state: done, 1, 2 or 3 (where 1, 2 and 3 represent what guess the player is on)</li>
  * <li>Timestamp: last time quest was completed</li>
  * <li>Creature: the creature that was asked about if quest was not completed</li>
  * </ol>
@@ -70,49 +86,97 @@ public class GuessKills extends AbstractQuest {
 
     public static final String QUEST_SLOT = "guess_kills";
 
-    private final int MIN_KILLS_REQUIRED = 1000;
-    private final double ACCURACY = 0.02;
-    private final int EXACT_REWARD = 150;
-    private final int CLOSE_REWARD = 90;
+    private static final double ACCURACY = 0.02;
+    private static final int MIN_KILLS_REQUIRED = 1000;
+    private static final int EXACT_REWARD = 150;
+    private static final int CLOSE_REWARD = 90;
+    private static final int INTERVAL_BETWEEN_TRIES = MathHelper.MINUTES_IN_ONE_WEEK;
+    
     private String CREATURE = "rat";
 
     @Override
     public void addToWorld() {
         super.addToWorld();
+        fillQuestInfo(
+				"The guessing game",
+				"Crearid plays a game where you guess how many creatures you have killed.",
+				true);
         prepareQuestStep();
     }
+    
+    @Override
+	public String getRegion() {
+		return Region.NALWOR_CITY;
+	}
+    
+    @Override
+    public boolean isRepeatable(final Player player) {
+		return true;
+	}
 
+    @Override
     public String getSlotName() {
         return QUEST_SLOT;
     }
 
+    @Override
     public String getName() {
         return "GuessKills";
     }
 
+    @Override
     public List<String> getHistory(final Player player) {
-        final List<String> res = new ArrayList<String>();
-        return res;
+    	final List<String> res = new ArrayList<String>();
+		
+    	if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		
+		final String state = player.getQuest(QUEST_SLOT, 0);
+		final String time = player.getQuest(QUEST_SLOT, 1);
+		final String creature = player.getQuest(QUEST_SLOT, 2);
+		
+		res.add("I have met Crearid. She is an old lady in Nalwor city.");
+		res.add("She asked me to guess how many " + Grammar.plural(creature) + " I have killed.");		
+		
+		if ("1".equals(state)) {
+			res.add("I have three guesses left.");
+		} else if ("2".equals(state)) {
+			res.add("I have two guesses left.");
+		} else if ("3".equals(state)) {
+			res.add("I have one guess left.");
+		} else if ("done".equals(state)) {
+			final long timeRemaining = (MathHelper.parseLong(time) + INTERVAL_BETWEEN_TRIES * MathHelper.MILLISECONDS_IN_ONE_MINUTE)
+					- System.currentTimeMillis();
+			
+			if (timeRemaining > 0) {
+				res.add("I can go see Crearid for another quiz in about " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
+			} else {
+				res.add("I can go see Crearid for another quiz now.");
+			}
+		}
+		
+		return res;
     }
 
     /**
      * Sets the FSM for the NPC with all required responses and interactions
      */
     public void prepareQuestStep() {
-        SpeakerNPC npc = npcs.get("Crearid");
+    	final SpeakerNPC npc = npcs.get("Crearid");
 
         final DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 
-        ChatCondition requirement = new MinTotalCreaturesKilledCondition(MIN_KILLS_REQUIRED);
-        ChatCondition isNumber = new TextHasNumberCondition(Integer.MIN_VALUE, Integer.MAX_VALUE);
-        ChatCondition enoughTimePassed = new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK);
-        ChatCondition wrongAndNotBye = new AndCondition(new NotCondition(isNumber), new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)));
-        ChatCondition questNotDone = new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "guess1"),
-													 new QuestInStateCondition(QUEST_SLOT, 0, "guess2"),
-													 new QuestInStateCondition(QUEST_SLOT, 0, "guess3"));
+        final ChatCondition requirement = new MinTotalCreaturesKilledCondition(MIN_KILLS_REQUIRED);
+        final ChatCondition isNumber = new TextHasNumberCondition(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        final ChatCondition enoughTimePassed = new TimePassedCondition(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES);
+        final ChatCondition wrongAndNotBye = new AndCondition(new NotCondition(isNumber), new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)));
+        final ChatCondition questNotDone = new OrCondition(new QuestInStateCondition(QUEST_SLOT, 0, "1"),
+													 new QuestInStateCondition(QUEST_SLOT, 0, "2"),
+													 new QuestInStateCondition(QUEST_SLOT, 0, "3"));
 
         //checks if guess is exact answer
-        ChatCondition exact = new ChatCondition() {
+        final ChatCondition exact = new ChatCondition() {
             public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
                 final Expression number = sentence.getNumeral();
                 final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
@@ -128,7 +192,7 @@ public class GuessKills extends AbstractQuest {
         };
 
         //checks if guess is close to actual answer
-        ChatCondition close = new ChatCondition() {
+        final ChatCondition close = new ChatCondition() {
             public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
                 final Expression number = sentence.getNumeral();
                 final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
@@ -143,25 +207,24 @@ public class GuessKills extends AbstractQuest {
             }
         };
 
-        ConversationStates[] tries = {ConversationStates.QUESTION_1,
-                                      ConversationStates.QUESTION_2,
-                                      ConversationStates.QUESTION_3};
+        final ConversationStates[] tries = {ConversationStates.QUESTION_1,
+	                                      ConversationStates.QUESTION_2,
+	                                      ConversationStates.QUESTION_3};
         
         //gets the creature from unfinished quest
-        ChatAction getSavedCreature = new ChatAction() {
+        final ChatAction getSavedCreature = new ChatAction() {
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				CREATURE = player.getQuest(QUEST_SLOT, 2);
 				
-				String state = player.getQuest(QUEST_SLOT, 0);
-				int guesses = 4 - Integer.parseInt(state.substring(state.length() - 1));
+				int guesses = 4 - MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, 0), 1);
 				
-				npc.say("Let me see... you have " + guesses + " guess" + (guesses != 1 ? "es" : "") + 
+				npc.say("Let me see... you have " + Grammar.quantityplnoun(guesses, "guess") + 
 						" left... and if I recall correctly I asked you..." +
-						" how many " + CREATURE + "s do think you have killed?");
+						" how many " + Grammar.plural(CREATURE) + " do think you have killed?");
 			}        	
         };
         
-        String[] triggers = {"game", "games", "play", "play game", "play games"};
+        final String[] triggers = {"game", "games", "play", "play game", "play games"};
         
         //if quest not finished and came back
         npc.add(ConversationStates.ATTENDING,
@@ -174,19 +237,21 @@ public class GuessKills extends AbstractQuest {
         //if quest not finished and player wants to continue
         npc.add(ConversationStates.QUEST_STARTED,
         		ConversationPhrases.YES_MESSAGES,
-        		new QuestInStateCondition(QUEST_SLOT, 0, "guess1"),
+        		new QuestInStateCondition(QUEST_SLOT, 0, "1"),
                 ConversationStates.QUESTION_1,
                 null,
                 getSavedCreature);
+        
         npc.add(ConversationStates.QUEST_STARTED,
         		ConversationPhrases.YES_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, "guess2"),
+                new QuestInStateCondition(QUEST_SLOT, 0, "2"),
                 ConversationStates.QUESTION_2,
                 null,
                 getSavedCreature);
+        
         npc.add(ConversationStates.QUEST_STARTED,
         		ConversationPhrases.YES_MESSAGES,
-                new QuestInStateCondition(QUEST_SLOT, 0, "guess3"),
+                new QuestInStateCondition(QUEST_SLOT, 0, "3"),
                 ConversationStates.QUESTION_3,
                 null,
                 getSavedCreature);
@@ -221,8 +286,8 @@ public class GuessKills extends AbstractQuest {
                 Arrays.asList(triggers),
                 new AndCondition(requirement, new NotCondition(enoughTimePassed), new NotCondition(questNotDone)),
                 ConversationStates.ATTENDING,
-                "I've had plenty of fun for now, thanks. Come back some other time.",
-                null);
+                null,
+                new SayTimeRemainingAction(QUEST_SLOT, 1, INTERVAL_BETWEEN_TRIES, "I've had plenty of fun for now, thanks. Come back in, lets say"));
 
         //ask quest question if quest accepted, also gets the creature type to ask about
         npc.add(ConversationStates.QUEST_OFFERED,
@@ -241,11 +306,11 @@ public class GuessKills extends AbstractQuest {
 	                        player.setQuest(QUEST_SLOT, 2, CREATURE);
 	
 	                        npc.say("I've been counting how many creatures you have killed, now tell me, how many " +
-	                                CREATURE + "s do you think you've killed? You have three guesses and I'll accept " +
+	                                Grammar.plural(CREATURE) + " do you think you've killed? You have three guesses and I'll accept " +
 	                                "guesses that are close to the correct answer.");
 	                    }
 	                },
-	                new SetQuestAction(QUEST_SLOT, 0, "guess1")));
+	                new SetQuestAction(QUEST_SLOT, 0, "1")));
 
         //if quest rejected
         npc.add(ConversationStates.QUEST_OFFERED,
@@ -262,12 +327,14 @@ public class GuessKills extends AbstractQuest {
                 ConversationStates.QUESTION_1,
                 "How could that possibly be an answer? Give me a proper number.",
                 null);
+        
         npc.add(ConversationStates.QUESTION_2,
                 "",
                 wrongAndNotBye,
                 ConversationStates.QUESTION_2,
                 "Is that even possible? Give me a valid answer.",
                 null);
+        
         npc.add(ConversationStates.QUESTION_3,
                 "",
                 wrongAndNotBye,
@@ -290,9 +357,9 @@ public class GuessKills extends AbstractQuest {
                 ConversationStates.ATTENDING,
                 "Stupendous! That is the exact number! Either you're very lucky or you really pay attention.",
                 new MultipleActions(
-                        new SetQuestAction(QUEST_SLOT, 0, "done"),
-                        new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-                        new IncreaseXPAction(EXACT_REWARD)));
+                    new SetQuestAction(QUEST_SLOT, 0, "done"),
+                    new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+                    new IncreaseXPAction(EXACT_REWARD)));
 
         //if close answer
         npc.add(tries,
@@ -301,9 +368,9 @@ public class GuessKills extends AbstractQuest {
                 ConversationStates.ATTENDING,
                 "Wow, that was pretty close. Well done!",
                 new MultipleActions(
-                        new SetQuestAction(QUEST_SLOT, 0, "done"),
-                        new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-                        new IncreaseXPAction(CLOSE_REWARD)));
+                    new SetQuestAction(QUEST_SLOT, 0, "done"),
+                    new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+                    new IncreaseXPAction(CLOSE_REWARD)));
 
         //if incorrect answer
         npc.add(ConversationStates.QUESTION_1,
@@ -311,30 +378,32 @@ public class GuessKills extends AbstractQuest {
                 new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
                 ConversationStates.QUESTION_2,
                 "Nope, that is not even close. Try again.",
-                new SetQuestAction(QUEST_SLOT, 0, "guess2"));
+                new SetQuestAction(QUEST_SLOT, 0, "2"));
+        
         npc.add(ConversationStates.QUESTION_2,
                 "",
                 new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
                 ConversationStates.QUESTION_3,
                 "Wrong again. You have one more try.",
-                new SetQuestAction(QUEST_SLOT, 0, "guess3"));
+                new SetQuestAction(QUEST_SLOT, 0, "3"));
+        
         npc.add(ConversationStates.QUESTION_3,
                 "",
                 new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
                 ConversationStates.ATTENDING,
                 null,
                 new MultipleActions(
-                        new ChatAction() {
-                            public void fire(Player player, Sentence sentence, EventRaiser npc) {
-                            	int exactNumber = (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE));
-                            	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
-                            	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
-                            	+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())
-                            	+ ". Good effort though.");
-                            }
-                        },
-                        new SetQuestAction(QUEST_SLOT, 0, "done"),
-                        new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
+                    new ChatAction() {
+                        public void fire(Player player, Sentence sentence, EventRaiser npc) {
+                        	int exactNumber = (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE));
+                        	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
+                        	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)
+                        	+ " and " + Math.round(exactNumber + Math.max(exactNumber * 0.2, 10) - exactNumber * 0.1 * Rand.rand())
+                        	+ ". Good effort though.");
+                        }
+                    },
+                    new SetQuestAction(QUEST_SLOT, 0, "done"),
+                    new SetQuestToTimeStampAction(QUEST_SLOT, 1)));
     }
 
 	@Override
