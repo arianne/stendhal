@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.modifier;
 
+import games.stendhal.server.entity.GuidedEntity;
+
 
 /**
  * A GuidedEntityModifierHandler calculates the actual value of an attribute situated in GuidedEntity based on
@@ -10,7 +12,7 @@ package games.stendhal.server.entity.modifier;
 public class GuidedEntityModifierHandler extends AbstractModifierHandler {
 	
 	public GuidedEntityModifierHandler(
-			ModifiedAttributeUpdater affectedEntity) {
+			GuidedEntity affectedEntity) {
 		super(affectedEntity);
 	}
 

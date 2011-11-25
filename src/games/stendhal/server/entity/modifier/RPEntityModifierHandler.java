@@ -1,4 +1,7 @@
 package games.stendhal.server.entity.modifier;
+
+import games.stendhal.server.entity.RPEntity;
+
 /**
  * A RPEntityModifierHandler calculates the actual value of an attribute situated in RPEntity based on
  * the actual value and the existing modifiers
@@ -7,7 +10,7 @@ package games.stendhal.server.entity.modifier;
  */
 public class RPEntityModifierHandler extends AbstractModifierHandler {
 	
-	public RPEntityModifierHandler(ModifiedAttributeUpdater affectedEntity) {
+	public RPEntityModifierHandler(RPEntity affectedEntity) {
 		super(affectedEntity);
 	}
 
