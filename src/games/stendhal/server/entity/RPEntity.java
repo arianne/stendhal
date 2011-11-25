@@ -208,13 +208,13 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("base_mana", Type.INT);
 
 			entity.addAttribute("base_hp", Type.SHORT);
-			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, (byte)(Definition.PRIVATE | Definition.VOLATILE));
+			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("hp", Type.SHORT);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
-			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, (byte)(Definition.PRIVATE | Definition.VOLATILE));
+			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
 					(byte) (Definition.PRIVATE | Definition.VOLATILE));
