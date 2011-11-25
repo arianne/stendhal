@@ -31,11 +31,14 @@
 - Semos mine maps at level -2 got a new ground style
 - New achievements for the weekly item quest
 - New Guess Kills quest in Nalwor City with new NPC, Crearid
+- New fruits which can be collected around Faiumoni (bananas, grapes, pomegranate, watermelons)
+- Coralia needs some fruit for her hat in a new quest
 
 *fixes*
 
 - Farmer achievement can be reached due to garlic grower implementation
-- stop player vs player attack if either player move into a protection zone
+- Stop player vs player attack if either player move into a protection zone
+- Fixed descriptions for items that can be picked 
 
 
 
