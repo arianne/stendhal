@@ -21,7 +21,6 @@ import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
  
 /**
