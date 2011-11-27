@@ -129,6 +129,13 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	private Date getExpireTimestamp() {
 		return expireTimestamp;
 	}
+	
+	/**
+	 * @return the number of milliseconds till expiry of this attribute modifier
+	 */
+	public long getMillisecondsTillExpire() {
+		return this.getExpireTimestamp().getTime() - System.currentTimeMillis();
+	}
 
 	/**
 	 * @return the modifying factor for base_speed if not this.isExpired() == true, 0 otherwise
@@ -193,6 +200,13 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 
 	public int compareTo(AttributeModifier other) {
 		return Long.valueOf(this.getExpireTimestamp().getTime() - other.getExpireTimestamp().getTime()).intValue();
+	}
+
+	/**
+	 * @return the susceptibilitiesModifier
+	 */
+	public Pair<Nature, Double> getSusceptibilitiesModifier() {
+		return susceptibilitiesModifier;
 	}
 
 }
