@@ -2,9 +2,9 @@ package games.stendhal.server.entity.modifier;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnListenerDecorator;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -18,6 +18,8 @@ public abstract class AbstractModifierHandler {
 	private final ModifiedAttributeUpdater affectedEntity;
 	
 	private Collection<AttributeModifier> modifiers;
+
+	private TurnListener listener;
 	
 	/**
 	 * Create a new AbstractModifierHandler
@@ -25,12 +27,15 @@ public abstract class AbstractModifierHandler {
 	protected AbstractModifierHandler(ModifiedAttributeUpdater affectedEntity) {
 		this.modifiers = new TreeSet<AttributeModifier>();
 		this.affectedEntity = affectedEntity;
-		TurnListener listener = new TurnListenerDecorator(new ModifierCleanUpTurnListener(this));
-		SingletonRepository.getTurnNotifier().notifyInSeconds(1, listener);
 	}
 
 	public void addModifier(AttributeModifier am) {
 		this.modifiers.add(am);
+		if(this.listener == null) {
+			this.listener = new ModifierCleanUpTurnListener(this);
+			int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
+			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds + 1, listener);
+		}
 		this.affectedEntity.updateModifiedAttributes();
 	}
 
@@ -61,4 +66,13 @@ public abstract class AbstractModifierHandler {
 		}
 	}
 	
+	public long getSecondsTillNextExpire() {
+		long next = 0;
+		AttributeModifier min = Collections.min(this.modifiers);
+		if(min != null) {
+			next = min.getMillisecondsTillExpire();
+		}
+		return next / 1000;
+	}
+
 }
