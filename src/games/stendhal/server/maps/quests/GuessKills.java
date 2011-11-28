@@ -377,7 +377,7 @@ public class GuessKills extends AbstractQuest {
                 "",
                 new AndCondition(isNumber, new NotCondition(close), new NotCondition(exact)),
                 ConversationStates.QUESTION_2,
-                "Nope, that is not even close. Try again.",
+                "Nope, that is not right. Try again.",
                 new SetQuestAction(QUEST_SLOT, 0, "2"));
         
         npc.add(ConversationStates.QUESTION_2,

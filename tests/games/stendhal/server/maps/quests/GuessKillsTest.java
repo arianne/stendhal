@@ -117,7 +117,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "yes");
 		assertEquals("Let me see... you have 3 guesses left... and if I recall correctly I asked you... how many deer do think you have killed?", getReply(npc));
 		en.step(player, "8");
-		assertEquals("Nope, that is not even close. Try again.", getReply(npc));
+		assertEquals("Nope, that is not right. Try again.", getReply(npc));
 		en.step(player, "5");
 		assertEquals("Wrong again. You have one more try.", getReply(npc));
 		en.step(player, "981");
@@ -160,7 +160,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(reply.endsWith(" do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer."), true);
 		
 		en.step(player, "98");
-		assertEquals("Nope, that is not even close. Try again.", getReply(npc));
+		assertEquals("Nope, that is not right. Try again.", getReply(npc));
 		en.step(player, "o");
 		assertEquals("Is that even possible? Give me a valid answer.", getReply(npc));
 		en.step(player, "023");
