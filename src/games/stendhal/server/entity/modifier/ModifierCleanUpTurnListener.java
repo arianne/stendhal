@@ -3,9 +3,7 @@
  */
 package games.stendhal.server.entity.modifier;
 
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnListenerDecorator;
 
 /**
  * This TurnListener regularly cleans up expired modifiers handled by
@@ -23,7 +21,6 @@ public class ModifierCleanUpTurnListener implements TurnListener {
 	
 	public void onTurnReached(int currentTurn) {
 		this.modifierHandler.removeExpiredModifiers();
-		SingletonRepository.getTurnNotifier().notifyInSeconds(1, new TurnListenerDecorator(this));
 	}
 
 }

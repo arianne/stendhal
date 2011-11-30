@@ -31,12 +31,18 @@ public abstract class AbstractModifierHandler {
 
 	public void addModifier(AttributeModifier am) {
 		this.modifiers.add(am);
+		updateNextCleanUpRun();
+		this.affectedEntity.updateModifiedAttributes();
+	}
+
+	private void updateNextCleanUpRun() {
 		if(this.listener == null) {
 			this.listener = new ModifierCleanUpTurnListener(this);
-			int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
-			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds + 1, listener);
 		}
-		this.affectedEntity.updateModifiedAttributes();
+		int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
+		if(seconds != 0) {
+			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, listener);
+		}
 	}
 
 	/**
@@ -64,6 +70,7 @@ public abstract class AbstractModifierHandler {
 		if(updateNeeded) {
 			this.affectedEntity.updateModifiedAttributes();
 		}
+		updateNextCleanUpRun();
 	}
 	
 	public long getSecondsTillNextExpire() {
