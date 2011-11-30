@@ -12,15 +12,16 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.TextHasNumberCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
  
 /**
@@ -120,7 +121,6 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					"Would you like to rent an allotment?",
 					null);
 				
-				//TODO: maybe say when the next one expires
 				// if allotment not rented and there are none available then tell player
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("rent", "allotment"),
@@ -128,8 +128,14 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 							new NotCondition(questActive), 
 							new NotCondition(hasAllotments)),
 					ConversationStates.ATTENDING,
-					"I'm sorry, there aren't any available at the moment. Please come back later.",
-					null);				
+					null,
+					new ChatAction() {
+						public void fire(Player player, Sentence sentence, EventRaiser npc) {
+							long diff = rentHelper.getNextExpiryTime(zone.getName()) - System.currentTimeMillis();
+							
+							npc.say("I'm sorry, there aren't any available at the moment. Please come back in about " + TimeUtil.approxTimeUntil((int) (diff / 1000L)) + ".");
+						}					
+				});				
 				
 				// if offer rejected
 				add(ConversationStates.QUEST_OFFERED,
@@ -144,13 +150,15 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					ConversationPhrases.YES_MESSAGES,
 					null,
 					ConversationStates.QUESTION_1,
-					"Which one would you like?",
+					null,
 					new ChatAction() {
 						//say which ones are available
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
-							String reply = Grammar.enumerateCollection(rentHelper.getAvailableAllotments(zone.getName()));
+							List<String> allotments = rentHelper.getAvailableAllotments(zone.getName());
+							String reply = Grammar.enumerateCollection(allotments);
 							
-							npc.say("Allotments " + reply + " are available, or perhaps #none if you've changed your mind.");
+							npc.say("Which one would you like? Let's see... " + Grammar.plnoun(allotments.size(), "allotment") + " " 
+									+ reply + " are available, or perhaps #none if you've changed your mind.");
 						}
 					});
 				
@@ -168,7 +176,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					new TextHasNumberCondition(),
 					ConversationStates.ATTENDING, 
 					null,
-					new MultipleActions(new ChatAction() {
+					new ChatAction() {
 						// does the transaction if possible
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final int number = sentence.getNumeral().getAmount();
@@ -180,12 +188,14 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 							} else {
 								if (rentHelper.getAvailableAllotments(zone.getName()).contains(allotmentNumber)) {
 									if(rentHelper.setExpirationTime(zone.getName(), allotmentNumber, player.getName())) {
-										// TODO: specify rental time 
-										npc.say("Here's your key to allotment " + allotmentNumber + ".");
+										npc.say("Here's your key to allotment " + allotmentNumber + ". You are allowed to use the allotment for the next " 
+												+ TimeUtil.approxTimeUntil((int) (AllotmentUtilities.RENTAL_TIME / 1000L)) + ".");
 										
 										if (!player.equipToInventoryOnly(rentHelper.getKey(zone.getName(), player.getName()))) {
 											npc.say("Oh, you look a bit overloaded there. I'll keep it safe here until you come back. Just ask about your #allotment.");
 										}
+										
+										new SetQuestAction(QUEST_SLOT, 1, Long.toString(AllotmentUtilities.RENTAL_TIME + System.currentTimeMillis())).fire(player, sentence, npc);
 									} else {
 										// error? shouldn't happen
 										npc.say("Uh oh! There appears to be a problem in the paperwork. Please give me some time to sort it out.");
@@ -195,12 +205,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 								}
 							}
 						}					
-					},
-					new ChatAction() {
-						public void fire(Player player, Sentence sentence, EventRaiser npc) {
-							new SetQuestAction(QUEST_SLOT, 1, Long.toString(AllotmentUtilities.RENTAL_TIME + System.currentTimeMillis())).fire(player, sentence, npc);							
-						}						
-					}));
+					});
 				
 				// if player asked about key
 				add(ConversationStates.QUEST_STARTED,
@@ -230,7 +235,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					"time",
 					null,
 					ConversationStates.ATTENDING,
-					"",
+					null,
 					// gets a new key
 					new ChatAction() {
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
@@ -241,6 +246,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 			}
 		};
  
+		//TODO: also copy-pasted change as needed
 		npc.setEntityClass("kid6npc");
 		npc.setPosition(85, 11);
 		npc.initHP(100);

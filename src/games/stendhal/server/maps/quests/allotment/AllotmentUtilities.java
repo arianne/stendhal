@@ -1,8 +1,5 @@
 package games.stendhal.server.maps.quests.allotment;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -14,6 +11,11 @@ import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.area.Allotment;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 public class AllotmentUtilities implements TurnListener {
 	/**
@@ -68,6 +70,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Private constructor, starts periodically checking for rental expirations
 	 */
 	private AllotmentUtilities() {
+		// Gets the ball rolling for periodic checks
 		SingletonRepository.getTurnNotifier().notifyInSeconds(1, this);
 	}
 
@@ -198,6 +201,22 @@ public class AllotmentUtilities implements TurnListener {
 	}
 	
 	/**
+	 * Gets the time that the next allotment expires
+	 * 
+	 * @return the expiry time for the next allotment that expires
+	 */
+	public long getNextExpiryTime(String zoneName) {
+		ArrayList<Long> times = new ArrayList<Long>();
+		for (Entity e : getTrackers(zoneName)) {
+			times.add(((ExpirationTracker) e).getExpirationTime());
+		}
+		
+		Collections.sort(times);
+		
+		return times.get(0);
+	}
+	
+	/**
 	 * Gets the rental time left given an allotment 
 	 * 
 	 * @param allotment the allotment to check
@@ -310,7 +329,6 @@ public class AllotmentUtilities implements TurnListener {
 							}
 						}
 						
-						// TODO: tell renter and set quest slot
 						// tell the renter if they're not in the allotment
 						if (!renterFound) {
 							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayer());
