@@ -11,11 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.NotificationType;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
@@ -44,6 +47,9 @@ class GeneralSettings {
 	private static final String HEALING_MESSAGE_PROPERTY = "ui.healingmessage";
 	
 	private static final String POISON_MESSAGE_PROPERTY = "ui.poisonmessage";
+	
+	/** Property used for toggling map coloring on. */
+	private static final String MAP_COLOR_PROPERTY = "ui.colormaps";
 	
 	/** Container for the setting components */
 	private final JComponent page;
@@ -78,6 +84,22 @@ class GeneralSettings {
 		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
+		
+		// Lighting effects
+		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
+				"Light effects", "Show night time lighting, and other coloring effects");
+		page.add(mapColoring);
+		// Coloring setting needs a map change to take an effect, so we need to
+		// inform the player about the delayed effect.
+		mapColoring.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
+				String tmp = enabled ? "enabled" : "disabled";
+				String msg = "Lighting effects are now " + tmp +
+					". You may need to change map or relogin for it to take effect.";
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
+			}
+		});
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
