@@ -12,6 +12,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.j2d.Blend;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.MathHelper;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -148,7 +149,7 @@ public class Zone {
 
 			// getBlend calls below may need the color, so check that one first
 			String color = obj.get("color");
-			if (color != null) {
+			if (color != null && isColoringEnabled()) {
 				// Keep working, but use an obviously broken color if parsing
 				// the value fails.
 				zoneInfo.setZoneColor(MathHelper.parseIntDefault(color, 0x00ff00));
@@ -178,6 +179,16 @@ public class Zone {
 			layers.put(layer, content);
 		}
 		isValid = false;
+	}
+	
+	/**
+	 * Check if map coloring is enabled.
+	 * 
+	 * @return <code>true</code> if map coloring is enabled, <code>false</code>
+	 *	otherwise
+	 */
+	private boolean isColoringEnabled() {
+		return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.colormaps", "true"));
 	}
 	
 	/**

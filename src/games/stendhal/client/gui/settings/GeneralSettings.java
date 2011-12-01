@@ -45,6 +45,9 @@ class GeneralSettings {
 	
 	private static final String POISON_MESSAGE_PROPERTY = "ui.poisonmessage";
 	
+	/** Property used for toggling map coloring on. */
+	private static final String MAP_COLOR_PROPERTY = "ui.colormaps";
+	
 	/** Container for the setting components */
 	private final JComponent page;
 	
@@ -78,6 +81,11 @@ class GeneralSettings {
 		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
+		
+		// Lighting effects
+		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
+				"Light effects", "Show night time lighting, and other coloring effects");
+		page.add(mapColoring);
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
