@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
+import java.awt.Image;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,7 +57,8 @@ public class CompositeSpriteTest {
 		Sprite empty0 = new EmptySprite(32, 32, 0xf00f);
 		Sprite empty1 = new EmptySprite(32, 32, 0x0ff0);
 		// null image will do fine as long as we don't draw them
-		Sprite image = new ImageSprite(null, 0xaaa);
+		Image img = null;
+		Sprite image = new ImageSprite(img, 0xaaa);
 		
 		// check adding empty first
 		List<Sprite> slaves = new LinkedList<Sprite>();
@@ -90,7 +92,8 @@ public class CompositeSpriteTest {
 	public void testMergeIdentical() {
 		Sprite empty0 = new EmptySprite(32, 32, 0xf00f);
 		// null image will do fine as long as we don't draw them
-		Sprite image = new ImageSprite(null, 0xaaa);
+		Image img = null;
+		Sprite image = new ImageSprite(img, 0xaaa);
 		
 		// fist check the simple case
 		List<Sprite> slaves = new LinkedList<Sprite>();
@@ -130,9 +133,10 @@ public class CompositeSpriteTest {
 	@Test
 	public void testMergeRefs() {
 		// null image will do fine as long as we don't draw them
-		Sprite image0 = new ImageSprite(null, 0xf00f);
-		Sprite image1 = new ImageSprite(null, 0x0ff0);
-		Sprite image2 = new ImageSprite(null, 0xaaaa);
+		Image img = null;
+		Sprite image0 = new ImageSprite(img, 0xf00f);
+		Sprite image1 = new ImageSprite(img, 0x0ff0);
+		Sprite image2 = new ImageSprite(img, 0xaaaa);
 		
 		// fist check the simple case
 		List<Sprite> slaves = new LinkedList<Sprite>();
@@ -159,8 +163,9 @@ public class CompositeSpriteTest {
 	 */
 	public void testCacheBehaviour() {
 		// null image will do fine as long as we don't draw them
-		Sprite image0 = new ImageSprite(null, 0xf00f);
-		Sprite image1 = new ImageSprite(null, 0x0ff0);
+		Image img = null;
+		Sprite image0 = new ImageSprite(img, 0xf00f);
+		Sprite image1 = new ImageSprite(img, 0x0ff0);
 		
 		// fist check the simple case
 		List<Sprite> slaves = new LinkedList<Sprite>();

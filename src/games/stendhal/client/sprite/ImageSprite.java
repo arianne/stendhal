@@ -66,7 +66,7 @@ public class ImageSprite implements Sprite {
 	 *            The source sprite.
 	 */
 	public ImageSprite(final Sprite sprite) {
-		this(sprite, null);
+		this(sprite, sprite.getReference());
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	public ImageSprite(final Sprite sprite, final String reference) {
+	public ImageSprite(final Sprite sprite, final Object reference) {
 		this.reference = reference;
 
 		image = getGC().createCompatibleImage(sprite.getWidth(),
