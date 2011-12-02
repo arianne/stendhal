@@ -73,43 +73,43 @@
   <image source="../../tileset/ground/indoor/grey_gradients.png" width="128" height="64"/>
  </tileset>
  <layer name="0_floor" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACzNjYGAwG2DMSiUMMouBRPVmaHxq0Mhm4/MzOptSO9HFQVgKiOXQsCyN/I8tbJPRML39T2z408r/sDAYqPjHZjet/D8Y0z+94n8vEn/rCPQ/vvQ/Uvw/ktM/pf4nFhNSj0+e1HRKyB5qYAARtyrFgAkAAA==
+  <data encoding="base64" compression="zlib">
+   eJwzY2BgMBtgzEolDDKLgUT1Zmh8atDIZuPzMzqbUjvRxUFYCojl0LAsjfyPLWyT0TC9/U9s+NPK/7AwGKj4x2Y3rfw/GNM/veJ/LxJ/6wj0P770P1L8P5LTP6X+JxYTUo9PntR0SsgeamAAKa1P9w==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC8WVOQ7CMBBF5xIgqICKO7DVQMEVkFjFGWjYOrbLQAmXYevYTsC3iEUYJWFsgxjpKVI0nv+/s3hAREMwcmQMJmAgnKf7p2AG5o4swNJgnu7fgTW51wZswUo4T/WfPL+/0q+Dfgiqf2ng10a/AVIg7aMFMvTK/2v9JqPl6+f54+zqop8DeU+TQvR5fr2mwGZL/HD9Mj3zV0meX62peGv8VbTQJ/q8/5LvJQlKf9QnTz8m8MDLVF9lDdrrmkDrW/lts35Dnz/rooEXPi9poa9K77X0vdPfpm3+qPNHe+lF6Ov3JSh/G3QYXdbvev4oj4kAfb9/Xll6z78HByEUcv9Iz/9p1DwK6D+DC7g6cgN3g3m6/wFzqgEfgAkAAA==
+  <data encoding="base64" compression="zlib">
+   eJzFlTcOAjEQRecSIKiAijuQaqDgCkhEcQYaUke6DJRwGVJHOgHfYi3MyLs4gBjpaaXV9/z53uABEQ3ByJMxmICBYT+pn4IZmHuyAEuLflK/A2vyrw3YgpVhP6E/BfP+yr8O+iEI/dJiXhf/BkiBtEILZOiV/9f+TUZL0fP8cXb18c+BfOBJIf5q/qSypgBiSm+Tebh/mZ75q2SeX6ypBGvUKjr4E33ef5PvRexL6Y/+FPjHPmh0Zesvsur2umbg9a38rlm/4c+fddFiFt4v6eAvSu616Xsnv03X/FHnj5ylF+Ev3xdd/jboMLpM73v+iBkTGn91fl5Zes+/BwdDKOT+kZ7/06h+pNGfwQVcPbmBu0U/qX8Atu3T4g==
   </data>
  </layer>
  <layer name="2_object" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoD9QHgA7kYEKFjElKCYHcGER08CjXhWH/chAAo9+fHLYQBEQ5yHxc/GoFQBiYSAWRMJCWMRg4iIE7JYHYgUoloDSigT04PIfqf4eDMBmAO32BGJxMvSRo4eWIJQINd+A+DsQMzMyMLAwkm+XGJn6+IF2CgCxMBCLUGB/FLkagXYyAjEvEPNRYL8/+VoxADn5tQSJXUyh/XYU6qc0LED2i1JoBqX2Ews4cYhjq9uIAeTqwwd+ALEQMG3/orNeGPgLxGJAM/5TUS8AXBILaIAJAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjYKA/UB4AO5GBChYxJSgmB3BhEdPAo14Vh/3IQAKPfnxy2EAREOch8XPxqBUAYmEgFkTCQljEYOIiBOyWB2IFKJaA0ooE9ODyH6n+HgzAhkT14VS02xOIxUlQL45GDxYQSoSab0D8HYiZGRkYWBjJt0uMTH38QDsFgFgYiEUosD+KXI1AOxmBmBeI+Siw3598rRiAnPxagsQuptB+Owr1UxoWIPtFKTSDUvuJBZw4xLHVbcQAcvXhAz+AWAiYtn/RWS8M/AViMaAZ/6moFwDlNxNO
   </data>
  </layer>
  <layer name="3_roof" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgwASaWMTIAdpUMmckAW4g5gNiHiTMi0UMJs4/MM4cBaNg0IHvQMzMOHD2/wFijgG0fxSgAjUqmZNBpr48KtlPLogeYPuHI/hHZb0AA2BKzYAJAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjYMAEmljEyAHaVDJnJAFuIOYDYh4kzItFDCbOPzDOHAWjYNCB70DMzDhw9v8BYo4BtH8UoAI1KpmTQaa+PCrZTy6IHmD7hyP4R2W9AD8aBkw=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWDCQQjsQOAuARNvhBKF9DHOaOAQhBDovpwmriCMhBMWMkoGAXDFmQNtANGwbAFAKfOXOuACQAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwkEI7EDgLgETb4QShfQxzmjgEIQM9AOoAIIJqxkFIyCYQuyBtoBo2DYAgBq+AMS
   </data>
  </layer>
  <layer name="objects" width="32" height="19">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBjcwGCA9NIKAAAnhrUUgAkAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgY3MBggPTSCgAATEAAYQ==
   </data>
  </layer>
- <layer name="collision" width="32" height="19" visible="0" opacity="0.36">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACzNmYGAwHsVwTA4g1Sxq2o3LTEJ2UaoeXS+pfqGm3wej/YTMJhSGg8l+WoQnKeqHgv2kAnz5j5rmDWX7SXELrvRMqv3oagbSfmLcga/8pYb9xLqNkrKHFEyJfkrtpgUGANDl3EGACQAA
+ <layer name="collision" width="32" height="19" opacity="0.36">
+  <data encoding="base64" compression="zlib">
+   eJztlMEKACAIQ/2n/v/funUQ0tYWJSTspnsqaDOz9jW0E6iXkj3zzFhsvq9FZ1HO/iI/8852eIMfeaN8ZX4FPhrR/Sn9KvORXmb3hPJ9zk3+Sh/R/1XwV3tjfg8ipp5ln1AHgNg6kw==
   </data>
  </layer>
  <layer name="protection" width="32" height="19" opacity="0.18">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQsvoAAAeBoUK4qJgAkAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAHgaCYAAAQ==
   </data>
  </layer>
 </map>
