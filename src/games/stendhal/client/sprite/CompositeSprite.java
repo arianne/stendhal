@@ -99,7 +99,8 @@ public class CompositeSprite implements Sprite {
 			// Needs composition for the blending anyway. Fall through! Avoid
 			// modifying the original sprite by making a copy of it.
 			slaves.clear();
-			slaves.add(new ImageSprite(loner));
+			// Reference needs to be kept to get the composite reference right
+			slaves.add(new ImageSprite(loner, loner.getReference()));
 		default:
 			// A proper composite. Return either a previously generated one,
 			// or create a new and cache that

@@ -66,7 +66,7 @@ public class ImageSprite implements Sprite {
 	 *            The source sprite.
 	 */
 	public ImageSprite(final Sprite sprite) {
-		this(sprite, sprite.getReference());
+		this(sprite, null);
 	}
 
 	/**
