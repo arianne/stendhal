@@ -27,8 +27,12 @@ import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import marauroa.common.crypto.Hash;
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -78,7 +82,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 			new GameEvent(sender, SUPPORTANSWER, action.get(TARGET), reply).raise();
 			if (supported != null) {
 
-				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + sender + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
+				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + anonymisedAdminName(sender) + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
@@ -123,5 +127,13 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		+ " support question using postman: " + supportmessage;
 		
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
+	}
+	
+	private String anonymisedAdminName(String adminName) {
+		final Date now = new Date();
+		SimpleDateFormat formattedDate = new SimpleDateFormat("yyyyMMdd");
+		String dateNow = formattedDate.format(now);
+		BigInteger hashedNameDate = Hash.bytesToBigInt(Hash.hash(adminName+dateNow));
+		return "admin" + hashedNameDate;
 	}
 }
