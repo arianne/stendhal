@@ -15,6 +15,7 @@ package games.stendhal.server.actions;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
+import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -190,7 +191,8 @@ public class AdministrationActionTest {
 		action.put("text", "huhu");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
-		assertEquals("Support (player) tells you: huhu \nIf you wish to reply, use /support.", bob.events().get(0).get("text"));
+		assertThat(bob.events().get(0).get("text"), endsWith("tells you: huhu \nIf you wish to reply, use /support."));
+		assertThat(bob.events().get(0).get("text"), startsWith("Support"));
 		assertEquals("player answers bob's support question: huhu", anptherAdmin.events().get(0).get("text"));
 
 		bob.clearEvents();
