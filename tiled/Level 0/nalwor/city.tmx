@@ -150,6 +150,9 @@
  <tileset name="light5x5" firstgid="911" tilewidth="32" tileheight="32">
   <image source="../../tileset/light/light_5x5.png"/>
  </tileset>
+ <tileset name="door light" firstgid="936" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/door_light.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3cy27TQBSA4SSIFe/JkhUXcdmw6ROxrcSjYQkhBddOfRufMzPf4hdFdZLx+aZxsIDb5XK5SZIkSZIkSZIkSZIkSZIkSdJJvT2o6PNQjLs9kLsSzvZB7iLM7YMcRZvbA9ztA/b2AHv7gL09wJ8/f/7s+bPn349/9JxaLNqUPX/+/Jf6/3yTr2hD/vz58+/Nf+25tuDFn3/t8T++qWvS1mvXlsetfczZ/i1ds+f282v+98fNmW0x3fJZif8x5mv2w/iY0p+L+dfVU6HnOnLu/OuLf9+VvpasXUf0PHqLf9+N3d5fXzZn/O97U8fyr6O9/vfH8K+vo/z9/NcZ/77z+a/vMvjv3Ts9dMb9v0d9HN7bPw19fnA9OMq/xPuL9s3+y+D+bjj+K/+m4p+3UtfmLX0b3L8P/TjBP3ruWYo239PWc42eeaaiDfn35+/+T57OmMmc6fjrR/73v+ffhr+f//j4912Ev89/eeLfd2f7n/1cz9fpPRg99ywtncnc95c8rrT/7+v/v46/5r/cp3RZ1hs99yz16p/hXDJU28yizVv2j17Lmfs8ej1Z6mkmvZwnf/78+fPnz58/f/4t+z9flx1X+3me6T++f95C/B/7H9WwdV609P6Z+3f8S3vzn573UXsoo//U60TPPkMl/PeYbHmf5t++/9NM/Ov1PzP+9fof8fr88/kvfZ6jXn98fPTsM5TtPbmk/9rn7aFM/lNr2nIe0TOtqUzu/GP9S+6rM/dk9ExrKoP/r9vf+Pfp/9pj+dfvX9qSP3/+/Pnn9C+9Jv78+fPnzz96pjXFv++i/T9M/D3zEv5L/41Ab0X7r1nT1P/zU/o8Wu+oP6fXXrQDf/78+bfqf+aaomdaU/z7rhX/6DnWXO3+0fOrvRr9o2fWYvxVah8c9frRs+mlSP+ptUTPQ/v2RvSaJUmSJEmSpOj+APvedl4AAAEA
@@ -192,12 +195,12 @@
  </layer>
  <layer name="blend_ground" width="128" height="128" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Yy2qAMBBAUcH/h7b0/W5p+52dbYtRM1EQcw7MJohZCMHcYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABY52IchsuYq3F+jfO5ju97E3MbcxdzP06vcU4P8W0fY55inmNexuk1zuk1vu1bzHvMR8znOL3GeX3F9/2O+Rnn1wAAAIC/Sv28dr32ma321v/zSv28dn3NO/fYW/9vU+rntetr3rnH3vp/m1I/r11f887/5/QWe+v/7Ur9vHZ97pnSOb3F3vr/8Tmn++acxjl9bO7R/XKP7pv/s775P8P/GbAld4p+uVP0zZ2ib+4UuFMAAMAxLbW6TMvL9r+Wbqg51ltqdZmWl+1/Ld1Qc8xZanWZlpftfy3dUHPMWWp1mZaX7X8t3VBzzFtqdZmWl+1/Ld1QcwQAAAAAAAAAAGAvv6jFxTAAAAEA
+   H4sIAAAAAAAAAO3YSwrDIBRA0YD730f/3w3WWSc14tNCG88BJw/BQUDiXRYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqNulZdnndUjrM7bpmL/xKa9zWp+xTZf8ja953dL6jG2652/8yOuZ1mcAAAAAvJX6eeu8dc+os/X/PqV+3jpv3TPqbP2/T6mft85b94w6W//vU+rnrfPank/39Iiz9f//4J6em3t6bu5p+F3e0XPzfzY3/2dz838GwCjeFHPzppibN8XcvCkAAAB+T63VRVpetP/1dEPNMabW6iItL9r/erqh5hhTa3WRlhftfz3dUHOMqbW6SMuL9r+ebqg5AgAAAAAAAAAA8C0vLZzumwAAAQA=
   </data>
  </layer>
  <layer name="blend_roof" width="128" height="128" opacity="0.21">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aSQqAQAwEwMD8H1RQv2ueoM6CSxXklkOTQ04dAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALQ0lYg5Zyl99kdk4r41b7zl7CdvfXV/RCbg2fz0f/PTAQAAAAAAAAAA4NtquqJ6pu9X0xXVMwUAAAAAAAAAAAAAWjoAGTxaIQAAAQA=
+   H4sIAAAAAAAAAO3asQkAIBADwMDvv4c6pe7wgiB3kD5VqiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/GxUMk9WvW4CQJdNBwAAAAAAAAAAAPhX5yvqZwoAAAAAAAAAAAAA3LQBzY1BOwAAAQA=
   </data>
  </layer>
 </map>
