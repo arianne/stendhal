@@ -201,6 +201,12 @@
  <tileset name="blue lamp" firstgid="862" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/lamp_blue.png"/>
  </tileset>
+ <tileset name="door light" firstgid="865" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/door_light.png"/>
+ </tileset>
+ <tileset name="dim light 7x5" firstgid="877" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/dim_light_7x5.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZQQ7CIBCF4bZJb+ANuuuqd/AQHsL7711YEySlFZkBBn6TF2JVMt9QWNhpGIZJMMseyTmlaspRF378+Mub8ePHjx8/fvzhuhalSNetVVdu/3rxvhV/rcm512qpGT/+XH6NPuB/Z/NGP6HPW/HXuv53J2f+MRCNMyO2l+5r88aja5/frfs1d7To17hv//Vr7kVL/jkxtflj79Hc/pR5e/LPF/Pgx9+6/6wHIY/U92ODHz9+nbm1/Y8foumPOfdbXH9r/qeTVvxnzwj8HP0HZN2fGsvnXwv+2Fjw38bvsTd/7+uPX89PSK7k2A+p+6h0Hfjx4y/nt36O4ZftiT/25nfNvflD/ShdR2k/PShfB378+OUS+3y/dL347flftmpMcQBAAAA=
@@ -231,7 +237,7 @@
    H4sIAAAAAAAAAO3ZwQqDMAwAUPFL52E77GP2zTuI7CIVMZUsfQ96lSamLW2mCfhXy7wOxs3DVgOjxt/LqPlUSwB9vObfAIAIzhQi7NVRq7bUHeRR4f3mKIZPgRhbKvzDK47ir56fVnzeaAFiPeypJHTmfp35Lv5MPDf6qbivZl5nAFxT8dwCoI6tF5C1J5B1XnfY69W8g/IR9Z0sRq8TALjDFzBU9lMAQAAA
   </data>
  </layer>
- <layer name="collision" width="64" height="64" opacity="0.39">
+ <layer name="collision" width="64" height="64" visible="0" opacity="0.39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2Y2Y7DIAxFq/ng+f/HPlWKkJfrFaNwpaphtQ8YCPl8cvT/R+ft/iG+VvQ5WRS/tT06LhMV5UdtVMSuZMPim5TO0A5+lONXb/3PVAc/ZQdtI6Uz1MXv9Y36p3yP2Lj8s/m59MrgtXE6f9TGZP5n7HPrIMPGSfwVNqbyVwvl2j3/b9STvWO8J2llnbg+rbL4eCK/5oOXf+r+3MWvtZ0yNhIvkub4q9g127viaOWXfKqYf25MOoXyU2WW+pxtJK9SlM/RvtY8qT6S9+w7OxYz+a2y8mfYm8Yf2Su8tqT8HeOAKONs0M6h3/NEST6iZycSXyfwa+XaHsqVWdtKZ2e2LPyeOuj8a30g7JbzCW3jPf+s/BlC9qEuaedfVSx7y6bMP9cn92xhRG1W8a/PVbam8Evxr9n2aI0RJGYkHzL4NfvWcUHn+O381jLP+qTarn0inJpPlfzc+vTY19pb/fLwa/tQVJP5O2Tl19oh/FR6l7r4o0LHyjqmVn8je1ZEVbGyO/6urq5q31mR+lE7V1dXV6fpDXsZdRd+Pnv39I6x65qf7HtAhiaftZN82+HLrneh6u9Bz/4s740d6lxz6PcOtDzariPeqP4zv6Vk3W+07y/ee1KGuH6kfI/P0XtZ5Rq2xtC9b9apavy+5TLsjwBAAAA=
   </data>
@@ -243,12 +249,12 @@
  </layer>
  <layer name="blend_ground" width="64" height="64" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Y3QrCMAyG4cLuTcX/f0W9/+swQ4QcxHbBWbf2fSBHPVnGV0IaAgAAAIBfmTQhTFXNmn9/UT5z6XUhtVS1klpX8g820udWaqdqL3WopP+j9HmSOqu6SF0r6b91k17vqh4V9Y7vTBIzI3U+Znp2WDMjdT52enZYMyN17mHlKJatHLnTs8OaGanzrqwcxbKVM3fv2fFpZqTOu7ByFMtWn7kbAitHsWz1lbshsXIUy1YfuQMAAADw4tmvS3sD8uzXJb4Befbr0nbxlme/zrmL57xnnv06xy5e4j3zKPGeeZT45uXFmxcAAAAAAACAoXsCftQqVQBAAAA=
+   H4sIAAAAAAAAAO3YuwqAMAyF4YJP6v36/rN161AaI1o1/T/IlMXAKSE6BwAAAADPqCvnmqDa6u0vyqvz8/ZBDYXNP/p5p6DmwuZf/LxrUFth8wNX1cLOkPp/1wk7Q+r/3SjsDKl/VixHqWzlyt0i7Aypf1YsR6lsWctdLEepbN2Vu6+I5SiVrbtyBwAAAACa+9riPyDNfW3tFj9o7mtrt/hBc1/nusUtvjMNi+9Mw+I70+CfFwAAAAAAAICv2wEjGcQQAEAAAA==
   </data>
  </layer>
  <layer name="blend_roof" width="64" height="64" opacity="0.26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YWwrCMBCF4UD2pmK931H3vw6nD0INY0Jjg0zyfzBg06cmMXNa5wAAAACUMvPOzaUWg2pJJ8+7GtS6secHgBzD3pFz37ou0TNS95Evtrdq33e92N5i3wEANFp/bKFn9pb+sz9uvD5m3bf13Mr1TmovdZA6en3Msth6nuT3WeoidZW6eX3MstR63uX6IfX08TGralvPHDWt57+10hs12lk6Zj6sz512lo55v7b+Ll7yLLWyN0qcpVNnTitz+TZ15rT2PyOjkFEAALAmzJvW8ucvwuxe4/fjmDC71/b9OCXM7i1m+TC7k+UBAACQ4wVg6O3tAEAAAA==
+   H4sIAAAAAAAAAO3YSwrCMBSF4UD2puL7raiT6v734BlKiIktDfWm/wcHbJwoSZrTOgcAAAAAZTTeuedHXn7oXwQA+HdN5szIfQ/8IraOUmuLdQcAiJnoXJgqM58eq9Fc/2+hLJWVsvbxMeu+zedG11tlp+yVg4+PWZaaz6M+n5SzclGuPj5mWW4+b7q+Kw+fHrOqtvnsoqb5HNpYzsaYGs/GNmL30jbP19afxUveS63sqxL3UvZVv53T2j6jo9BRAACwJuzuVrp8H8LuPrYuH3b32t4f54TdfYxdPuzudHkAAAB08QY0p9ZmAEAAAA==
   </data>
  </layer>
 </map>
