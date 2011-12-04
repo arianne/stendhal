@@ -947,6 +947,10 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Base HP
 			 */
+			if (changes.has("base_hp")) {
+				base_hp = changes.getInt("base_hp");
+				hpRatioChange = true;
+			}
 			if (changes.has("modified_base_hp")) {
 				base_hp = changes.getInt("modified_base_hp");
 				hpRatioChange = true;
@@ -1023,8 +1027,12 @@ public abstract class RPEntity extends ActiveEntity {
 			atk = changes.getInt("atk");
 		}
 
+		// handle def
 		if (changes.has("def")) {
 			def = changes.getInt("def");
+		}
+		if (changes.has("modified_def")) {
+			def = changes.getInt("modified_def");
 		}
 
 		if (changes.has("level")) {
