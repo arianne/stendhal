@@ -95,6 +95,8 @@ public class StatsPanelController {
 	public void registerListeners(PropertyChangeSupport pcs) {
 		PropertyChangeListener listener = new HPChangeListener(); 
 		pcs.addPropertyChangeListener("hp", listener);
+		// use both attributes to keep compatibility with older servers
+		pcs.addPropertyChangeListener("base_hp", listener);
 		pcs.addPropertyChangeListener("modified_base_hp", listener);
 		
 		listener = new ATKChangeListener();
@@ -102,6 +104,8 @@ public class StatsPanelController {
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
+		// use both attributes to keep compatibility with older servers
+		pcs.addPropertyChangeListener("def", listener);
 		pcs.addPropertyChangeListener("modified_def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
@@ -312,7 +316,7 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().equals("modified_def")) {
+			if (event.getPropertyName().equals("modified_def") || event.getPropertyName().equals("def")) {
 				def =  Integer.parseInt((String) event.getNewValue());
 			} else {
 				defxp = Integer.parseInt((String) event.getNewValue());
