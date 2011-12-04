@@ -1028,6 +1028,8 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		// handle def
+		// basic def is overriden by modified def, as it has the last word
+		// server side when determining the right value
 		if (changes.has("def")) {
 			def = changes.getInt("def");
 		}
