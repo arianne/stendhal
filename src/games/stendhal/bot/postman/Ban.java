@@ -26,7 +26,7 @@ class Ban extends EventHandler {
 	private PostmanIRC postmanIRC;
 	
 	/** ban target hours message */
-	static final Pattern patternBan = Pattern.compile("^ban ([^ ]*) ([^ ]*) (.*)$");
+	static final Pattern patternBan = Pattern.compile("(?i)^ban ([^ ]*) ([^ ]*) (.*)$");
 
 	/**
 	 * creates a ban handler

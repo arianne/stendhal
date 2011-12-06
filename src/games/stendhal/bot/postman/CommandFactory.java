@@ -31,19 +31,19 @@ public class CommandFactory {
 	public static EventHandler create(String message, String sender, PostmanIRC postmanIRC) {
 		String command = message.toLowerCase(Locale.ENGLISH);
 		if (command.startsWith("adminnote")) {
-			return new AdminNote(command, sender, postmanIRC);
+			return new AdminNote(message, sender, postmanIRC);
 		} else if (command.startsWith("ban")) {
-			return new Ban(command, sender, postmanIRC);
+			return new Ban(message, sender, postmanIRC);
 		} else if (command.startsWith("ircban")) {
-			return new IrcBanAuth(command, sender, postmanIRC);
+			return new IrcBanAuth(message, sender, postmanIRC);
 		} else if (command.startsWith("npcshout")) {
-			return new NPCShout(command, sender, postmanIRC);
+			return new NPCShout(message, sender, postmanIRC);
 		} else if (command.startsWith("supporta")) {
-			return new SupportAnswer(command, sender, postmanIRC);
+			return new SupportAnswer(message, sender, postmanIRC);
 		} else if (command.startsWith("support")) {
-			return new Support(command, sender, postmanIRC);
+			return new Support(message, sender, postmanIRC);
 		} else if (command.startsWith("tellall")) {
-			return new TellAll(command, sender, postmanIRC);
+			return new TellAll(message, sender, postmanIRC);
 		}
 		return null;
 	}

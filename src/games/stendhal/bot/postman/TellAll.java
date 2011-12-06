@@ -26,7 +26,7 @@ class TellAll extends EventHandler {
 	private PostmanIRC postmanIRC;
 	
 	/** tellall message */
-	static final Pattern patternTellall = Pattern.compile("^tellall (.*)$");
+	static final Pattern patternTellall = Pattern.compile("(?i)^tellall (.*)$");
 
 	/**
 	 * creates a tell all

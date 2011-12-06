@@ -25,7 +25,7 @@ public class IrcBanAuth extends EventHandler {
 	private PostmanIRC postmanIRC;
 
 	/** ircban ip */
-	static final Pattern patternIrcBan = Pattern.compile("^ircban (.*)$");
+	static final Pattern patternIrcBan = Pattern.compile("(?i)^ircban (.*)$");
 
 	/**
 	 * creates a IrcBan instance

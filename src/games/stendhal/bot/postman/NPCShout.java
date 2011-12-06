@@ -26,7 +26,7 @@ class NPCShout extends EventHandler {
 	private PostmanIRC postmanIRC;
 	
 	/** adminnote target message */
-	static final Pattern patternNPCShout = Pattern.compile("^{[nN][pP][cC][sS]out ([^ ]*) (.*)$");
+	static final Pattern patternNPCShout = Pattern.compile("(?i)^npcshout ([^ ]*) (.*)$");
 
 	/**
 	 * creates a support answer

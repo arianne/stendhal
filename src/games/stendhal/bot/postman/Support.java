@@ -26,7 +26,7 @@ class Support extends EventHandler {
 	private PostmanIRC postmanIRC;
 	
 	/** support message */
-	static final Pattern patternSupportAnswer = Pattern.compile("^support (.*)$");
+	static final Pattern patternSupportAnswer = Pattern.compile("(?i)^support (.*)$");
 
 	/**
 	 * creates a support answer

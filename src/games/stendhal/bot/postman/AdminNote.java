@@ -26,7 +26,7 @@ class AdminNote extends EventHandler {
 	private PostmanIRC postmanIRC;
 	
 	/** adminnote target message */
-	static final Pattern patternAdminnote = Pattern.compile("^adminnote ([^ ]*) (.*)$");
+	static final Pattern patternAdminnote = Pattern.compile("(?i)^adminnote ([^ ]*) (.*)$");
 
 	/**
 	 * creates a support answer
