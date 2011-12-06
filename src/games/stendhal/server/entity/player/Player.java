@@ -1577,7 +1577,9 @@ public class Player extends RPEntity implements UseListener {
 				String color = get("outfit_colors", part);
 				if (color != null) {
 					put("outfit_colors", tmp, color);
-					remove("outfit_colors", part);
+					if (!"hair".equals(part)) {
+						remove("outfit_colors", part);
+					}
 				} else if (has("outfit_colors", tmp)) {
 					// old saved colors need to be cleared in any case
 					remove("outfit_colors", tmp);
