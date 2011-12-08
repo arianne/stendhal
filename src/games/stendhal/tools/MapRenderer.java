@@ -26,6 +26,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -54,6 +55,10 @@ public class MapRenderer extends Task {
 	private final List<FileSet> filesets = new ArrayList<FileSet>();
 
 	private double zoom;
+	
+	/** Layers that should be rendered on the map image. */
+	private static final List<String> visibleLayers = Arrays.asList( "0_floor",
+			"1_terrain", "2_object", "3_roof", "4_roof_add");
 
 	/** converts the map files.
 	 * @param tmxFile
@@ -70,16 +75,8 @@ public class MapRenderer extends Task {
 		final File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
 		for (final MapLayer layer : map) {
-			if (layer.getName().equals("navigation")
-					|| layer.getName().equals("collision")
-					|| layer.getName().equals("objects")
-					|| layer.getName().equals("protection")) {
-				layer.setVisible(false);
-			} else {
-				layer.setVisible(true);
-			}
+			layer.setVisible(visibleLayers.contains(layer.getName()));
 		}
-
 
 		final String area = file.getParentFile().getName();
 		String level;
