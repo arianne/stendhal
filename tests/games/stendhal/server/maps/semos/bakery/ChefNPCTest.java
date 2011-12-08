@@ -130,7 +130,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 2 #'pieces of cheese', a #'loaf of bread', and a #'piece of ham' for this job. Do you have it?",
+				"I need you to fetch me 2 #'pieces of cheese', a #'loaf of bread', and a #'piece of ham' for this job, which will take 3 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
@@ -188,7 +188,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make 2 sandwiches");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 2 #'loaves of bread', 2 #'pieces of ham', and 4 #'pieces of cheese' for this job. Do you have it?",
+				"I need you to fetch me 2 #'loaves of bread', 2 #'pieces of ham', and 4 #'pieces of cheese' for this job, which will take 6 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");
@@ -246,7 +246,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make 3");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 3 #'loaves of bread', 3 #'pieces of ham', and 6 #'pieces of cheese' for this job. Do you have it?",
+				"I need you to fetch me 3 #'loaves of bread', 3 #'pieces of ham', and 6 #'pieces of cheese' for this job, which will take 9 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST).split(";");

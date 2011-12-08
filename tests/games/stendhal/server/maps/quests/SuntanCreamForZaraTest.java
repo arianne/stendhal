@@ -121,7 +121,7 @@ public class SuntanCreamForZaraTest {
 		en.step(player, "hi");
 		assertEquals("Hallo!", getReply(npc));
 		en.step(player, "mix");
-		assertEquals("I need you to fetch me a #'bottle of minor potion', a #'sprig of arandula', and a #kokuda for this job. Do you have it?", getReply(npc));
+		assertEquals("I need you to fetch me a #'bottle of minor potion', a #'sprig of arandula', and a #kokuda for this job, which will take 10 minutes. Do you have what I need?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("OK, I will mix a suntan cream for you, but that will take some time. Please come back in 10 minutes.", getReply(npc));
 		en.step(player, "bye");

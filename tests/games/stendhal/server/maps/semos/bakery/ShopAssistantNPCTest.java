@@ -124,7 +124,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 2 #'sacks of flour' for this job. Do you have it?",
+				"I need you to fetch me 2 #'sacks of flour' for this job, which will take 10 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST1).split(";");
@@ -171,7 +171,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make 2 breads");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 4 #'sacks of flour' for this job. Do you have it?",
+				"I need you to fetch me 4 #'sacks of flour' for this job, which will take 20 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST1).split(";");
@@ -218,7 +218,7 @@ public class ShopAssistantNPCTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "make 3");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 6 #'sacks of flour' for this job. Do you have it?",
+				"I need you to fetch me 6 #'sacks of flour' for this job, which will take 30 minutes. Do you have what I need?",
 				getReply(npc));
 		en.step(player, "yes");
 		final String[] questStatus = player.getQuest(QUEST1).split(";");

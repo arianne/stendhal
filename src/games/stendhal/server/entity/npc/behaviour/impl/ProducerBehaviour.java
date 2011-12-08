@@ -320,7 +320,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 			res.setAmount(amount);
 			npc.say("I need you to fetch me "
 					+ getRequiredResourceNamesWithHashes(amount)
-					+ " for this job. Do you have it?");
+					+ " for this job, which will take " + TimeUtil.approxTimeUntil(getProductionTime(amount)) + ". Do you have what I need?");
 			return true;
 		}
 	}

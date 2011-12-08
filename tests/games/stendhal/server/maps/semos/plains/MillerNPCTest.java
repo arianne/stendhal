@@ -106,7 +106,7 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(equipWithStackableItem(player, "grain", 10));
 
 		assertTrue(en.step(player, "mill two sacks of flour"));
-		assertEquals("I need you to fetch me 10 #'sheaves of grain' for this job. Do you have it?", getReply(npc));
+		assertEquals("I need you to fetch me 10 #'sheaves of grain' for this job, which will take 4 minutes. Do you have what I need?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("OK, I will mill 2 sacks of flour for you, but that will take some time. Please come back in 4 minutes.", getReply(npc));

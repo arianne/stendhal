@@ -410,7 +410,7 @@ public class VampireSwordTest {
 		en.step(player, "fill");
 		String answer = getReply(npc);
 		assertTrue("answer to 'fill'", answer.startsWith("I need you to fetch me "));
-		assertTrue("answer to 'fill'", answer.endsWith("for this job. Do you have it?"));
+		assertTrue("answer to 'fill'", answer.endsWith("Do you have what I need?"));
 		assertEquals(en.getCurrentState(), ConversationStates.PRODUCTION_OFFERED);
 
 		en.step(player, "bye");
@@ -437,7 +437,7 @@ public class VampireSwordTest {
 			}
 
 			en.step(player, "fill");
-			assertEquals("I need you to fetch me 7 #'bat entrails', 7 #'vampirette entrails', a #'skull ring', and an #'empty goblet' for this job. Do you have it?", getReply(npc));
+			assertEquals("I need you to fetch me 7 #'bat entrails', 7 #'vampirette entrails', a #'skull ring', and an #'empty goblet' for this job, which will take 5 minutes. Do you have what I need?", getReply(npc));
 
 			en.step(player, yes);
 			assertEquals("answer to '" + yes + "'", "OK, I will fill a goblet for you, but that will take some time. Please come back in 5 minutes.", getReply(npc));

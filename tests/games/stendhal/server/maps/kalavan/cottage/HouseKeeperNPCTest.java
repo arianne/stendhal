@@ -114,13 +114,13 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		PlayerTestHelper.equipWithItem(player, "honey");
 
 		assertTrue(en.step(player, "brew"));
-		assertEquals("I need you to fetch me a #'bottle of milk' and a #'jar of honey' for this job. Do you have it?", getReply(npc));
+		assertEquals("I need you to fetch me a #'bottle of milk' and a #'jar of honey' for this job, which will take 3 minutes. Do you have what I need?", getReply(npc));
 
 		assertTrue(en.step(player, "no"));
 		assertEquals("OK, no problem.", getReply(npc));
 
 		assertTrue(en.step(player, "brew"));
-		assertEquals("I need you to fetch me a #'bottle of milk' and a #'jar of honey' for this job. Do you have it?", getReply(npc));
+		assertEquals("I need you to fetch me a #'bottle of milk' and a #'jar of honey' for this job, which will take 3 minutes. Do you have what I need?", getReply(npc));
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("OK, I will brew a cup of tea for you, but that will take some time. Please come back in 3 minutes.", getReply(npc));
