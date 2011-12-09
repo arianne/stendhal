@@ -76,7 +76,6 @@ public final class IDSend {
 					Certificate[] certs = (Certificate[]) objects;
 					if ((certs.length > 0)) {
 						byte[] key = certs[0].getPublicKey().getEncoded();
-						System.out.println(Hash.toHexString(Hash.hash(key)));
 						action.put("dist", Hash.toHexString(Hash.hash(key)));
 					}
 				}
