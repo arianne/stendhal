@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.engine;
+package games.stendhal.server.core.engine; 
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -22,7 +22,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.AfterClass;
@@ -42,17 +41,6 @@ public class PlayerListTest {
 	public static void teardownAfterClass() throws Exception {
 		
 		MockStendlRPWorld.reset();
-	}
-
-	/**
-	 * Tests for playerList.
-	 */
-	@Test
-	public void testPlayerList() {
-		@SuppressWarnings("unused")
-		final
-		PlayerList list = new PlayerList();
-		
 	}
 
 	/**
