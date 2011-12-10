@@ -1098,7 +1098,7 @@ Please leave my mail at my neighbour's house.
      <attribute name="description">You see a small table which you might rest your items on if organising your chest.
      </attribute>
     </entity>
-    <entity x="25" y="2">
+    <entity x="24" y="2">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
@@ -1153,7 +1153,7 @@ Please leave my mail at my neighbour's house.
      <attribute name="description">You see a small table which you might rest your items on if organising your chest.
      </attribute>
     </entity>
-    <entity x="34" y="2">
+    <entity x="33" y="2">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
