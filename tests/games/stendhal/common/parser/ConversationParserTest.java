@@ -330,16 +330,22 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getObjectCount());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("teddy", sentence.getObject(0).getMainWord());
-		assertEquals("my teddy bear", sentence.getObjectName());
-		assertEquals("i love my teddy bear.", sentence.getNormalized());
-		assertEquals("i/SUB-PRO love/VER my teddy bear/OBJ.", sentence.toString());
+//		assertEquals("my teddy bear", sentence.getObjectName());
+//		assertEquals("i love my teddy bear.", sentence.getNormalized());
+//		assertEquals("i/SUB-PRO love/VER my teddy bear/OBJ.", sentence.toString());
+		assertEquals("my teddy", sentence.getObjectName());
+		assertEquals("i love my teddy.", sentence.getNormalized());
+		assertEquals("i/SUB-PRO love/VER my teddy/OBJ.", sentence.toString());
 
 		sentence = ConversationParser.parse("teddy bear");
 		assertFalse(sentence.hasError());
 		assertEquals("teddy", sentence.getTriggerExpression().getMainWord());
-		assertEquals("teddy bear", sentence.getTriggerExpression().getNormalized());
-		assertEquals("teddy bear", sentence.getNormalized());
-		assertEquals("teddy bear/OBJ", sentence.toString());
+//		assertEquals("teddy bear", sentence.getTriggerExpression().getNormalized());
+//		assertEquals("teddy bear", sentence.getNormalized());
+//		assertEquals("teddy bear/OBJ", sentence.toString());
+		assertEquals("teddy", sentence.getTriggerExpression().getNormalized());
+		assertEquals("teddy", sentence.getNormalized());
+		assertEquals("teddy/OBJ", sentence.toString());
 	}
 
 	/**
