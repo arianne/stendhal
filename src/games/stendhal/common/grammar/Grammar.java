@@ -1092,6 +1092,10 @@ public class Grammar {
 			if (last == 'y') {
 				// word finishes with a 'y'
 				return word + "ing";
+			}
+			if (last == 'w') {
+				// word finishes with a 'w'
+				return word + "ing";
 			} else if (isVowel(last)) {
 				// word finishes with a vowel
 				return word.substring(0, word.length() - 1) + "ing";
