@@ -13,13 +13,13 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.common.CRC;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.rp.DaylightPhase;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -35,17 +35,7 @@ import org.apache.log4j.Logger;
  */
 public class ZoneAttributes {
 	private static final Logger logger = Logger.getLogger(ZoneAttributes.class);
-	
-	/** Color to be used near midnight at daylight colored zones. */
-	private static final Integer MIDNIGHT_COLOR = 0x47408c;
-	/**
-	 * Color to be used at early night, and early morning before sunrise at
-	 * daylight colored zones.
-	 */
-	private static final Integer EARLY_NIGHT_COLOR = 0x774590;
-	/** Color to be used at sunset and sunrise at daylight colored zones. */
-	private static final Integer SUNSET_COLOR = 0xc0a080;
-	
+
 	/** Container to wrap the contents to pass as a layer. */
 	private final TransferContent content = new TransferContent();
 	/** An object for storing the attributes. */
@@ -55,14 +45,14 @@ public class ZoneAttributes {
 	 */
 	private final StendhalRPZone zone;
 	/**
-	 * <code>true</code>, if the the current binary content is valid, 
+	 * <code>true</code>, if the the current binary content is valid,
 	 * <code>false</code> if it needs to be rewritten.
 	 */
 	private boolean valid;
-	
+
 	/**
 	 * Cereate new ZoneAttributes.
-	 * 
+	 *
 	 * @param zone
 	 */
 	public ZoneAttributes(StendhalRPZone zone) {
@@ -72,45 +62,45 @@ public class ZoneAttributes {
 		content.cacheable = false;
 		this.zone = zone;
 	}
-	
+
 	/**
 	 * Get the zone where these attributes belong to.
-	 * 
+	 *
 	 * @return zone
 	 */
 	StendhalRPZone getZone() {
 		return zone;
 	}
-	
+
 	/**
 	 * Set an attribute.
-	 * 
+	 *
 	 * @param key
 	 * @param value
 	 */
 	void put(String key, String value) {
 		// Interpret special values
 		if ("color_method".equals(key) && "time".equals(value)) {
-			Daylight.get().manageAttributes(this);
+			DaylightUpdater.get().manageAttributes(this);
 		} else {
 			attr.put(key, value);
 		}
 		invalidate();
 	}
-	
+
 	/**
 	 * Remove an attribute.
-	 * 
+	 *
 	 * @param key attribute name
 	 */
 	void remove(String key) {
 		attr.remove(key);
 		invalidate();
 	}
-	
+
 	/**
 	 * Set all attributes.
-	 * 
+	 *
 	 * @param map map of attributes
 	 */
 	public void putAll(Map<String, String> map) {
@@ -118,10 +108,10 @@ public class ZoneAttributes {
 			put(entry.getKey(), entry.getValue());
 		}
 	}
-	
+
 	/**
 	 * Get the contents.
-	 * 
+	 *
 	 * @return Attributes packed as a layer. The content is a serialized
 	 *	RPObject with the attributes.
 	 */
@@ -129,17 +119,17 @@ public class ZoneAttributes {
 		if (!valid) {
 			validate();
 		}
-		
+
 		return content;
 	}
-	
+
 	/**
 	 * Flag the binary contents needing update.
 	 */
 	private void invalidate() {
 		valid = false;
 	}
-	
+
 	/**
 	 * Regenerate the binary contents.
 	 */
@@ -151,45 +141,45 @@ public class ZoneAttributes {
 		} catch (IOException e) {
 			logger.error("Failed to set attributes", e);
 		}
-		
+
 		content.data = array.toByteArray();
 		content.timestamp = CRC.cmpCRC(content.data);
 		valid = true;
 	}
-	
+
 	/**
 	 * Manager for daylight colored zones.
 	 */
-	private static class Daylight implements TurnListener {
-		/** Time between checking if the color should be changed. Seconds. */ 
+	private static class DaylightUpdater implements TurnListener {
+		/** Time between checking if the color should be changed. Seconds. */
 		private static final int CHECK_INTERVAL = 61;
 		/** Singleton instance. */
-		private static final Daylight instance = new Daylight();
+		private static final DaylightUpdater instance = new DaylightUpdater();
 		/** Color corresponding to the current time. */
 		Integer currentColor;
-		
+
 		/** Managed zones, and their attributes */
-		private final List<ZoneAttributes> zones = new ArrayList<ZoneAttributes>(); 
-		
+		private final List<ZoneAttributes> zones = new ArrayList<ZoneAttributes>();
+
 		/**
 		 * Create a new Daylight instance. Do not use this.
 		 */
-		private Daylight() {
+		private DaylightUpdater() {
 			onTurnReached(0);
 		}
-		
+
 		/**
 		 * Get the Daylight instance.
-		 * 
+		 *
 		 * @return singleton instance
 		 */
-		static Daylight get() {
+		static DaylightUpdater get() {
 			return instance;
 		}
-		
+
 		/**
 		 * Make a zone color managed by the daylight colorer.
-		 *  
+		 *
 		 * @param attr attributes of the zone
 		 */
 		void manageAttributes(ZoneAttributes attr) {
@@ -203,31 +193,18 @@ public class ZoneAttributes {
 			updateDaytimeColor();
 			SingletonRepository.getTurnNotifier().notifyInSeconds(CHECK_INTERVAL, this);
 		}
-		
+
 		/**
 		 * Update the zone color according to the hour.
 		 */
 		private void updateDaytimeColor() {
-			Calendar cal = Calendar.getInstance();
-
-			int hour = cal.get(Calendar.HOUR_OF_DAY);
-			// anything but precise, but who cares
-			int diffToMidnight = Math.min(hour, 24 - hour);
-			if (diffToMidnight > 3) {
-				setZoneColors(null);
-			} else if (diffToMidnight == 3) {
-				setZoneColors(SUNSET_COLOR);
-			} else if (diffToMidnight == 2) {
-				setZoneColors(EARLY_NIGHT_COLOR);
-			} else {
-				setZoneColors(MIDNIGHT_COLOR);
-			}
+			setZoneColors(DaylightPhase.current().getColor());
 		}
-		
+
 		/**
 		 * Set the current daylight color. Notifies all the managed zones if
 		 * the color has changed.
-		 * 
+		 *
 		 * @param color
 		 */
 		private void setZoneColors(Integer color) {
@@ -244,12 +221,12 @@ public class ZoneAttributes {
 			}
 			currentColor = color;
 		}
-		
+
 		/**
 		 * Set the color of a zone. Sets the blend mode of the effect layers to
 		 * bleach, if needed. Notifies all the players with a recent enough
 		 * client.
-		 * 
+		 *
 		 * @param attr attributes of the zone
 		 * @param color new color value
 		 */
