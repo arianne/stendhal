@@ -319,7 +319,6 @@ boot	OBJ	boots
 bottle	OBJ	bottles
 bow	OBJ	bows
 box	OBJ	boxes
-bunch OBJ bunches
 brain	OBJ	brains
 branch	OBJ	branches
 brandy	OBJ-FOO-FLU	brandies
@@ -332,6 +331,7 @@ bug	OBJ	bugs
 building	OBJ	buildings
 bulb	OBJ	bulbs
 bull	OBJ-ANI	bulls
+bunch	OBJ	bunches
 bunny	OBJ-ANI	bunnies
 bureau	OBJ	bureaux
 bus	OBJ	bus
@@ -381,7 +381,7 @@ cloth	OBJ	cloths
 cloudburst	OBJ	cloudbursts
 clownfish	OBJ-FOO-ANI	clownfishes
 club	OBJ	clubs
-coal	OBJ coals
+coal	OBJ	coals
 cocktail	OBJ-FOO-FLU	cocktails
 coconut	OBJ-FOO	coconuts
 cod	OBJ-FOO	cods
@@ -411,6 +411,7 @@ crepe	OBJ-FOO	crepes
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
 crustaceans	OBJ	crustaceans
+ctf	OBJ
 cuirass	OBJ	cuirasses
 dagger	OBJ	daggers
 daisy	OBJ	daisies
@@ -476,6 +477,7 @@ figurine	OBJ	figurines
 finger	OBJ	fingers
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
+flag	OBJ
 flail	OBJ	flails
 flask	OBJ	flasks
 flour	OBJ	flours
@@ -484,6 +486,7 @@ food	OBJ-FOO	foods
 foot	OBJ	feet
 forge	OBJ	forges
 frostshade	OBJ-NAM	frostshades
+fumble	OBJ
 fun	OBJ	funs
 fuse	OBJ	fuses
 future	OBJ	futures
@@ -507,6 +510,7 @@ gold	OBJ	golds
 gown	OBJ	gowns
 gpl	OBJ	gpls
 grain	OBJ-FOO	grains
+grape	OBJ-FOO	grapes
 grass	OBJ-ANI	grasses
 grobble	OBJ	grobbles
 group	OBJ	groups
@@ -564,7 +568,7 @@ karma	OBJ	karmas
 katana	OBJ	katanas
 kekik	OBJ	kekiks
 key	OBJ	keys
-keyring	OBJ keyrings
+keyring	OBJ	keyrings
 kingdom	OBJ	kingdoms
 kirdneh	OBJ-NAM	kirdnehs
 kitchen	OBJ	kitchens
@@ -599,9 +603,9 @@ mace	OBJ	maces
 machine	OBJ	machines
 mackerel	OBJ-FOO	mackerels
 madaram	OBJ	madarams
-magic	OBJ	magics
-magic wand OBJ magic wands
+magic	OBJ	obj
 mainio	OBJ	mainios
+mana	OBJ-FOO-FLU
 mandragora	OBJ
 manner	OBJ	manners
 map	OBJ	maps
@@ -667,6 +671,7 @@ park	OBJ	parks
 patch	OBJ	patches
 path	OBJ	paths
 payment	OBJ	payments
+pear	OBJ-FOO
 pearl	OBJ	pearls
 perch	OBJ-FOO-ANI	perches
 pestle	OBJ	pestles
@@ -689,6 +694,7 @@ playground	OBJ	playgrounds
 plural	OBJ	plurals
 point	OBJ	points
 poison	OBJ-FOO-FLU	poisons
+pomegranate	OBJ-FOO
 porcino	OBJ-FOO	porcini
 portal	OBJ	portals
 position	OBJ	positions
@@ -762,6 +768,7 @@ sign	OBJ	signs
 silk	OBJ	silks
 silver	OBJ	silvers
 skull	OBJ	skulls
+slowdown	OBJ
 snow	OBJ	snows
 snowball	OBJ	snowballs
 snowglobe	OBJ	snowglobes
@@ -774,6 +781,7 @@ spade	OBJ	spades
 spear	OBJ	spears
 species	OBJ	species
 speed	OBJ	speeds
+speedup	OBJ
 spinach	OBJ-FOO	spinaches
 sprig	OBJ	sprigs
 sps	OBJ	sps
@@ -858,7 +866,7 @@ vulcano	OBJ	vulcanos
 war	OBJ	wars
 wardrobe	OBJ	wardrobes
 water	OBJ-FOO-FLU	waters
-watermelon	OBJ-FOO watermelons
+watermelon	OBJ-FOO	watermelons
 way	OBJ	ways
 weapon	OBJ	weapons
 weave	OBJ	weaves
@@ -998,6 +1006,7 @@ covester	SUB-NAM
 cowboy	SUB
 cozart	SUB-NAM
 crab	SUB-ANI	crabs
+crearid	SUB-NAM
 crocodile	SUB-ANI
 cyclops	SUB	cyclopses
 cyk	SUB-NAM
@@ -1299,6 +1308,7 @@ priest	SUB
 purist	SUB
 quartermaster	SUB
 queen	SUB
+rachel	SUB-NAM
 radish	SUB-NAM
 rallman	SUB-NAM
 ramon	SUB-NAM
