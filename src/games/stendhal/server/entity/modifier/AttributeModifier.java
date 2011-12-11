@@ -86,7 +86,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * Create a AttributeModifier only affecting the susceptibilities
 	 * 
 	 * @param expireTimestamp
-	 * @param manaModifier
+	 * @param susceptibilityModifier
 	 * @return an AttributeModifier only affecting mana
 	 */
 	public static AttributeModifier createSusceptibilityModifier(Date expireTimestamp, Pair<Nature, Double> susceptibilityModifier) {

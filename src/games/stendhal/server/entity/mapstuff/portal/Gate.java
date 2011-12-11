@@ -66,7 +66,6 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * @param image image used for the gate
 	 * @param condition conditions required for opening the gate, or <code>null</code>
 	 * 	if no checking is required
-	 * @param id name used to identify this gate
 	 */
 	public Gate(final String orientation, String image, ChatCondition condition) {
 		setRPClass("gate");

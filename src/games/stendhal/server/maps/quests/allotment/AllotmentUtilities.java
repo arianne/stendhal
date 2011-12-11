@@ -140,7 +140,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Sets the new expiration time for an allotment
 	 * 
 	 * @param zoneName the zone where the allotment is
-	 * @param allotmentName the name of the allotment (found in the zone's xml file)
+	 * @param allotment the name of the allotment (found in the zone's xml file)
 	 * 
 	 * @return true if successful, false otherwise
 	 */
@@ -163,7 +163,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Gets a key to an allotment that has been rented out
 	 * 
 	 * @param zoneName the zone the allotment is in
-	 * @param allotment the number of the allotment
+	 * @param player
 	 * 
 	 * @return a key to the allotment
 	 */
@@ -239,7 +239,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * 
 	 * @param zoneName the zone where the allotment is in
 	 * @param allotment
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isValidAllotment(final String zoneName, final String allotment) {
 		for (Entity e : getTrackers(zoneName)) {
@@ -256,7 +256,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * 
 	 * @param zoneName the zone where the allotment is in
 	 * @param allotment
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isAvailableAllotment(final String zoneName, final String allotment) {
 		for (Entity e : getTrackers(zoneName)) {
