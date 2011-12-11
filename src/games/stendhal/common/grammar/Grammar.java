@@ -324,6 +324,7 @@ public class Grammar {
 	 * @param word2
 	 * @return resulting expression: word1 or word2
 	 */
+	
 	public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
 		// handle special cases:
 				// "ice cream" -> "ice"
@@ -332,20 +333,44 @@ public class Grammar {
 				(word2.getMainWord().equals("chocolate") && word1.getMainWord().equals("bar")) ||
 				// "teddy bear" -> "teddy"
 				(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
-		    word2.mergeRight(word1, true);
 
 		    // transform "ice cream" into the item name "icecream"
 		    if (word2.getMainWord().equals("ice")) {
 		    	word2.setNormalized("icecream");
 		    }
-
 		    return word2;
-		} else {
-		    word1.mergeLeft(word2, true);
-
-		    return word1;
-		}
+        } else {
+            word1.mergeLeft(word2, true);
+        }
+        return word2;
+        
 	}
+	
+	// Old code part, can be easily included if a better solution shows up for the teddy bear issue
+	//public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
+		// handle special cases:
+				// "ice cream" -> "ice"
+		//if ((word2.getMainWord().equals("ice") && word1.getMainWord().equals("cream")) ||
+				// "chocolate bar" -> "chocolate"
+		//		(word2.getMainWord().equals("chocolate") && word1.getMainWord().equals("bar")) ||
+				// "teddy bear" -> "teddy"
+		//		(word2.getMainWord().equals("teddy") && word1.getMainWord().equals("bear"))) {
+		//    word2.mergeRight(word1, true);
+
+		    // transform "ice cream" into the item name "icecream"
+		//    if (word2.getMainWord().equals("ice")) {
+		//    	word2.setNormalized("icecream");
+		//    }
+
+	//	    return word2;
+	//	} else {
+	//	    word1.mergeLeft(word2, true);
+
+	//	    return word1;
+	//	}
+//	}
+	
+	
 
 	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression
