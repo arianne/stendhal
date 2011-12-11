@@ -192,14 +192,14 @@ public class FruitsForCoralia extends AbstractQuest {
     		null,
 			new MultipleActions(
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items]?")));
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items].")));
     	
     	// reject quest response
     	npc.add(ConversationStates.QUEST_OFFERED,
         	ConversationPhrases.NO_MESSAGES,
         	null,
         	ConversationStates.ATTENDING,
-        	"These exotic hats don't keep themselves you know..",
+        	"These exotic hats don't keep themselves you know...",
         	new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
     	
     	// meet again during quest
