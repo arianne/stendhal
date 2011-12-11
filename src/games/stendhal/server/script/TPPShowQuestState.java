@@ -45,5 +45,5 @@ public class TPPShowQuestState extends ScriptImpl {
         sb.append(" ("+TimeUtil.timeUntil(seconds, true)+")");
 		//sb.append("\n");
         admin.sendPrivateText(sb.toString());
-	};
+	}
 }

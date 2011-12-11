@@ -287,6 +287,6 @@ public class CreatureRespawnPoint implements TurnListener {
 			SingletonRepository.getTurnNotifier().dontNotify(this);
 			//SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
 			onTurnReached(0);
-		};
+		}
 	}
 }

@@ -32,5 +32,5 @@ public class TPPNextPhase extends ScriptImpl {
         ThePiedPiper.switchToNextPhase();
 		final String Phase = ThePiedPiper.getPhase().toString();
         admin.sendPrivateText("Switched to "+Phase);
-	};
+	}
 }
