@@ -338,15 +338,16 @@ public class Grammar {
 		    if (word2.getMainWord().equals("ice")) {
 		    	word2.setNormalized("icecream");
 		    }
+
 		    return word2;
         } else {
             word1.mergeLeft(word2, true);
         }
+
         return word2;
-        
 	}
-	
-	// Old code part, can be easily included if a better solution shows up for the teddy bear issue
+
+	// Old code part, can be easily included if a better solution shows up for the teddy bear issue (see bug ID 3453600: Toys for Anna quest)
 	//public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
 		// handle special cases:
 				// "ice cream" -> "ice"
@@ -1114,12 +1115,8 @@ public class Grammar {
 		if (word.length() > 2) {
 			char last = word.charAt(word.length()-1);
 
-			if (last == 'y') {
-				// word finishes with a 'y'
-				return word + "ing";
-			}
-			if (last == 'w') {
-				// word finishes with a 'w'
+			if (last == 'y' || last == 'w') {
+				// word finishes with a 'y' or a 'w'
 				return word + "ing";
 			} else if (isVowel(last)) {
 				// word finishes with a vowel
