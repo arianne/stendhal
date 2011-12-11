@@ -15,6 +15,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.SUPPORTANSWER;
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.messages.SupportMessageTemplatesFactory;
@@ -27,12 +28,10 @@ import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.crypto.Hash;
+import marauroa.common.Pair;
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -41,7 +40,25 @@ import marauroa.server.db.command.ResultHandle;
 public class SupportAnswerAction extends AdministrationAction implements TurnListener  {
 	
 	private static final Map<String, String> messageTemplates = new SupportMessageTemplatesFactory().getTemplates();
-
+	
+	/**
+	 * Keeps track of the anonymised admin names and when they were last used
+	 */
+	private Map<String, Pair<String, Long>> adminNames = new HashMap<String, Pair<String, Long>> ();
+	
+	/**
+	 * Amount of time after which an admin name 'anonymiser' will be replaced
+	 */
+	private static final int DELAY = 3 * MathHelper.SECONDS_IN_ONE_HOUR; 
+	
+	/** 
+	 * increments as new names are added to the admin list. 
+	 * not really bothered as it grows, and that we aren't re-using numbers, 
+	 * just easier than checking the list to see what the next number should be
+	 * 
+	 */
+	private int nameCounter = 0;
+		
 	private ResultHandle handle = new ResultHandle();
 	
 	public static void register() {
@@ -82,7 +99,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 			new GameEvent(sender, SUPPORTANSWER, action.get(TARGET), reply).raise();
 			if (supported != null) {
 
-				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + anonymisedAdminName(sender) + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
+				supported.sendPrivateText(NotificationType.SUPPORT, "Support (" + getAnonymisedAdminName(sender) + ") tells you: " + reply + " \nIf you wish to reply, use /support.");
 				supported.notifyWorldAboutChanges();
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 				
@@ -129,11 +146,35 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 	}
 	
-	private String anonymisedAdminName(String adminName) {
-		final Date now = new Date();
-		SimpleDateFormat formattedDate = new SimpleDateFormat("yyyyMMdd");
-		String dateNow = formattedDate.format(now);
-		BigInteger hashedNameDate = Hash.bytesToBigInt(Hash.hash(adminName+dateNow));
-		return "admin" + hashedNameDate;
+
+	/**
+	 * Gets anonymised admin name from map and updates timestamp, 
+	 * or sets new anonymised name if some time has passed since last use of supportanswer
+	 */
+	// may need to make this method public, or put it and the map and counter somewhere else accessible
+	// because we need to deal with postman messages too
+	private String getAnonymisedAdminName(String adminName) {
+		String anonymisedAdminName;
+		// is the name already listed?
+		if(adminNames.containsKey(adminName)) {
+			Long lastTime = adminNames.get(adminName).second();
+			// time has passed, use a new name in place of the last anonymised name 
+			if (System.currentTimeMillis() - lastTime > DELAY * 1000L) {
+				nameCounter++;
+				anonymisedAdminName = "admin"+nameCounter;
+			} else {
+				// just get the name to use from the existing map without changing it
+				anonymisedAdminName = adminNames.get(adminName).first();
+			}
+		} else {
+			// name wasn't listed yet, set up the next name to use
+			nameCounter++;
+			anonymisedAdminName = "admin"+nameCounter;
+		}
+		// whether we changed the name to use or not, update the last used timestamp
+		adminNames.put(adminName, new Pair<String,Long>(anonymisedAdminName, System.currentTimeMillis()));
+		return anonymisedAdminName;
 	}
+
+
 }
