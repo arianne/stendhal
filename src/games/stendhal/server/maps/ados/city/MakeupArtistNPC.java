@@ -72,7 +72,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 20);
 				// if you change the wear off time, change her Help message too please
-				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 5 /*  * 60*/, "Your mask has worn off.");
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 5 * 60, "Your mask has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 		};
