@@ -15,7 +15,7 @@ package games.stendhal.server.script;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.MeetSanta;
+import games.stendhal.server.maps.quests.MeetSanta2;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class Santa extends ScriptImpl {
 			return;
 		}
 		System.setProperty("stendhal.santa", "true");
-		StendhalQuestSystem.get().loadQuest(new MeetSanta());
+		StendhalQuestSystem.get().loadQuest(new MeetSanta2());
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class Santa extends ScriptImpl {
 			return;
 		}
 		System.getProperties().remove("stendhal.santa");
-		StendhalQuestSystem.get().unloadQuest(MeetSanta.QUEST_NAME);
+		StendhalQuestSystem.get().unloadQuest(MeetSanta2.QUEST_NAME);
 	}
 
 }
