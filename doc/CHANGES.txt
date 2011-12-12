@@ -6,6 +6,11 @@
 *world*
 
 - Added allotment rental in Semos mountains with new NPC
+- bridal outfit includes a veil
+- admin names are anonymised in support answer
+- many more outside zones with lighting
+- producers npcs tell the player how long a task will take before starting it
+- scroll eraser which cleans empty scrolls as a rare drop from some wizards
 
 0.98
 
