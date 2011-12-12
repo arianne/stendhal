@@ -14,13 +14,13 @@ package games.stendhal.client.sprite;
 import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.Transparency;
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+
+import org.apache.log4j.Logger;
 
 /**
  * A sprite that merges several {@link Sprite} objects to one, and pre-renders
@@ -28,6 +28,8 @@ import java.util.ListIterator;
  * is drawn. 
  */
 public class CompositeSprite implements Sprite {
+	private static final Logger logger = Logger.getLogger(CompositeSprite.class);
+	
 	/**
 	 * Composition status flag. <code>true</code> it the static image layers
 	 * have been merged, <code>false</code> otherwise.
@@ -40,7 +42,6 @@ public class CompositeSprite implements Sprite {
 	private Sprite adjSprite;
 	/** Reference object made up from the meaningful slave references */ 
 	private final CompositeRef reference;
-	private BufferedImage buffer;
 	
 	/**
 	 * Get a composite of at least one {@link Sprite}. Note that the result
@@ -93,14 +94,10 @@ public class CompositeSprite implements Sprite {
 		case 1:
 			// Composite of one non empty sprite. Just return that one.
 			Sprite loner = slaves.get(0);
-			if ((blend == null) || !(loner instanceof ImageSprite)) {
+			if (blend == null) {
 				return loner;
 			}
-			// Needs composition for the blending anyway. Fall through! Avoid
-			// modifying the original sprite by making a copy of it.
-			slaves.clear();
-			// Reference needs to be kept to get the composite reference right
-			slaves.add(new ImageSprite(loner, loner.getReference()));
+			// Needs composition for the blending anyway. Fall through!
 		default:
 			// A proper composite. Return either a previously generated one,
 			// or create a new and cache that
@@ -142,25 +139,8 @@ public class CompositeSprite implements Sprite {
 		if (!composited) {
 			composite();
 		}
-		
-		if (blend == null) {
-			for (Sprite sprite : slaves) {
-				sprite.draw(g, x, y);
-			}
-		} else {
-			if (buffer == null) {
-				buffer = GraphicsEnvironment.getLocalGraphicsEnvironment()
-				.getDefaultScreenDevice().getDefaultConfiguration()
-				.createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
-			}
-			Graphics2D g2d = buffer.createGraphics();
-			for (Sprite sprite : slaves) {
-				sprite.draw(g2d, 0, 0);
-			}
-			g2d.setComposite(blend);
-			adjSprite.draw(g2d, 0, 0);
-			g2d.dispose();
-			g.drawImage(buffer, x, y, null);
+		for (Sprite sprite : slaves) {
+			sprite.draw(g, x, y);
 		}
 	}
 
@@ -215,6 +195,11 @@ public class CompositeSprite implements Sprite {
 					g.dispose();
 				} else {
 					floor = (ImageSprite) current;
+					// Stacks with blends will always need a copy
+					if (blend != null) {
+						floor = new ImageSprite(floor);
+						copied = true;
+					}
 				}
 			} else {
 				if (floor != null) {
@@ -233,22 +218,58 @@ public class CompositeSprite implements Sprite {
 		
 		// Adjustment effect
 		if (blend != null) {
-			// Can handle only mergeable stacks
-			if (slaves.size() == 1) {
-				Sprite tmp = slaves.get(0);
-				if (tmp instanceof ImageSprite) {
-					Graphics g = ((ImageSprite) tmp).getGraphics();
-					if (g instanceof Graphics2D) {
-						((Graphics2D) g).setComposite(blend);
-						adjSprite.draw(g, 0, 0);
-						g.dispose();
-					}
-					blend = null;
-					adjSprite = null;
-				}
-			}
+			// Blend individual stacks
+			applyBlend(newSlaves);
+			blend = null;
+			adjSprite = null;
 		}
 		composited = true;
+	}
+	
+	/**
+	 * Apply blend to individual sprites of the otherwise merged sprite stack.
+	 *  
+	 * @param stack
+	 */
+	private void applyBlend(List<Sprite> stack) {
+		ListIterator<Sprite> iter = stack.listIterator();
+		while (iter.hasNext()) {
+			Sprite sprite = iter.next();
+			if (sprite instanceof ImageSprite) {
+				Graphics g = ((ImageSprite) sprite).getGraphics();
+				if (g instanceof Graphics2D) {
+					((Graphics2D) g).setComposite(blend);
+					adjSprite.draw(g, 0, 0);
+					g.dispose();
+				}
+			} else if (sprite instanceof AnimatedSprite) {
+				/*
+				 * Create an animated sprite made of composite sprites. The
+				 * individual frames will use the usual mechanism to apply the
+				 * blend only once.
+				 */
+				AnimatedSprite parent = ((AnimatedSprite) sprite);
+				Sprite[] frames = parent.frames;
+				Sprite[] newFrames = new Sprite[frames.length];
+				List<Sprite> tmp = new ArrayList<Sprite>(1);
+				for (int i = 0; i < frames.length; i++) {
+					tmp.add(frames[i]);
+					/*
+					 * The frames of an animated sprite can have the same
+					 * reference as the animated sprite itself, so we can not
+					 * use getComposite() to obtain shared instances. Just make
+					 * a new instance to avoid problems, even though it would
+					 * be nice to render once the partial stacks that appear in
+					 * more than one composite.
+					 */
+					newFrames[i] = new CompositeSprite(tmp, blend, adjSprite, null);
+					tmp.clear();
+				}
+				iter.set(new AnimatedSprite(newFrames, parent.delays, true, null));
+			} else {
+				logger.error("Unhandled sprite with a blend: " + sprite);
+			}
+		}
 	}
 	
 	/**
