@@ -135,6 +135,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 			final Outfit newOutfit = new Outfit(null, hatnumber, null, null, null);
 			//put it on, and store old outfit.
 			player.setOutfit(newOutfit.putOver(oldoutfit), true);
+			player.registerOutfitExpireTime(43200);
 		}
 	}
 
