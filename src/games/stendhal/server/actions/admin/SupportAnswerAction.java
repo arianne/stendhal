@@ -58,6 +58,11 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 	 * 
 	 */
 	private int nameCounter = 0;
+	
+	/**
+	 * the admin who sent the message (needed as a class variable for postman messages)
+	 */
+	private String sender;
 		
 	private ResultHandle handle = new ResultHandle();
 	
@@ -70,7 +75,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		if (!player.getChatBucket().checkAndAdd()) {
 			return;
 		}
-		String sender = player.getName();
+		sender = player.getName();
 		if (action.has("sender") && (player.getName().equals("postman"))) {
 			sender = action.get("sender");
 		}
@@ -105,7 +110,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 				
 			} else {
 				// that player is not logged in. Do they exist at all or are they just offline? Try sending a message with postman.
-				DBCommand command = new StoreMessageCommand(sender, action.get(TARGET), "In answer to your support question:\n" + reply + " \nIf you wish to reply, use /support.", "S");
+				DBCommand command = new StoreMessageCommand(getAnonymisedAdminName(sender), action.get(TARGET), "In answer to your support question:\n" + reply + " \nIf you wish to reply, use /support.", "S");
 				DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 				TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			}
@@ -126,11 +131,10 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		}
 
 		boolean characterExists = checkcommand.targetCharacterExists();
-		String adminName = checkcommand.getSource();
 		String target = checkcommand.getTarget();
 		String supportmessage = checkcommand.getMessage();
-		
-		final Player admin = SingletonRepository.getRuleProcessor().getPlayer(adminName);
+
+		final Player admin = SingletonRepository.getRuleProcessor().getPlayer(sender);
 		
 		if(!characterExists) {
 				if (admin != null) {
@@ -140,7 +144,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 				return;
 		} 
 		
-		final String message = adminName + " answers " + Grammar.suffix_s(target)
+		final String message = sender + " answers " + Grammar.suffix_s(target)
 		+ " support question using postman: " + supportmessage;
 		
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
@@ -151,8 +155,6 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 	 * Gets anonymised admin name from map and updates timestamp, 
 	 * or sets new anonymised name if some time has passed since last use of supportanswer
 	 */
-	// may need to make this method public, or put it and the map and counter somewhere else accessible
-	// because we need to deal with postman messages too
 	private String getAnonymisedAdminName(String adminName) {
 		String anonymisedAdminName;
 		// is the name already listed?
