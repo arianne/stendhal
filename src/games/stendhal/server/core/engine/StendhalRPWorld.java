@@ -130,7 +130,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * @return The number of turns.
 	 */
 	public int getTurnsInSeconds(final int seconds) {
-		return seconds * 1000 / MILLISECONDS_PER_TURN;
+		return seconds * 10 / 3; // prevent overflows: 1000 / MILLISECONDS_PER_TURN;
 	}
 
 	
