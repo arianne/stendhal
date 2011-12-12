@@ -2578,6 +2578,10 @@ public class Player extends RPEntity implements UseListener {
 		int oldExpire = Integer.MAX_VALUE;
 		if (has("outfit_expire_age")) {
 			oldExpire = getInt("outfit_expire_age");
+			if (oldExpire < age) {
+				logger.error("oldExpire " + oldExpire + " for age " + age);
+				oldExpire = Integer.MAX_VALUE;
+			}
 		}
 		int newExpire = Math.min(expire + age, oldExpire);
 		put("outfit_expire_age", newExpire);
