@@ -57,10 +57,6 @@ public class Santa extends ScriptImpl {
 	 * ends Christmas
 	 */
 	private void stopChristmas(Player admin) {
-		if (System.getProperty("stendhal.santa") == null) {
-			admin.sendPrivateText("Santa is not active.");
-			return;
-		}
 		System.getProperties().remove("stendhal.santa");
 		StendhalQuestSystem.get().unloadQuest(MeetSanta2.QUEST_NAME);
 	}
