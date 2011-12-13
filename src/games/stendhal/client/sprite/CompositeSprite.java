@@ -241,6 +241,22 @@ public class CompositeSprite implements Sprite {
 					((Graphics2D) g).setComposite(blend);
 					adjSprite.draw(g, 0, 0);
 					g.dispose();
+					/*
+					 * Some JVMs with some drawing back ends treat an image that
+					 * has been drawn to using special composites ever after as
+					 * a pariah, and trying to draw the said image is apparently
+					 * done using the slowest possible method. That the image
+					 * differs in no way from others, makes no difference (A
+					 * clean copy of all the data results in an image that is
+					 * treated normally). That is a java bug, and the
+					 * workaround is ugly waste of resources, but there seems to
+					 * be no other way. There's no way to tell java that we have
+					 * stopped modifying the image, and it's safe to tuck it in
+					 * VRAM.
+					 * 
+					 * Using ImageSprite for the copying is the simplest method.
+					 */
+					iter.set(new ImageSprite(sprite));
 				}
 			} else if (sprite instanceof AnimatedSprite) {
 				/*
