@@ -123,6 +123,12 @@
  <tileset name="protection" firstgid="1167" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="light5x5" firstgid="1168" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/light_5x5.png"/>
+ </tileset>
+ <tileset name="door light" firstgid="1193" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/door_light.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3cUW6cMBQFUCZSfprsrXtoWkXt/hdQRelE1MKAGcPD5kQ6H/1p3nCvDS0wT8MwPF3E9xnRsyF/5I/8kT/yR/7IH/kjf/bJXgf6tiZ7HehTSfbyb1dpzvrQpr1y1oNtx7ynjK/Yg+jj2bLo7ORfN6sr9iA6l7OuxbPMIf/449zizL3kH318rtABdIHYLuhE+650PuRc/Yj+bOgA8V2I/kycqw+60Q+doHY/omcmtgPR83JsJ6JnAQAAAAAAAAAAAAAAgN59mxA9EzG560F/1uSsA/1ZyvXHbRjeJvy86UAPlnJ/GfLSDkR/Fh7Pf03uOtCPNPu1uec6EP152J7/r435v9sDmrYm/9tCB5wH2vXo+teBttXKPz0P6MD51Tj//759+iP/5pRe+9+znstc/u2YW/ulWcu/LXN7/5as5d2W3N4/dR0n577ksh/v89Ezsm/+afbpnh89I8dl/zLI/go+cp66vxc9F8cYhv9zv/85ei6Oyz/9kf913Nf8/Uf21yL/a3v9jP2rB68nmAn5I3/kj/zZz/he78d9vuh5ODb78f/7v8/c53v+J3pm6pm6zz+Xvfz7kj7jk1v/z4MO9CiX/zjjNPucR54Nm/t7o4/R3tYe39rHY+oZv6nnvB7NPX1ffOqdkKM+81mUZr7H8ck945vmszX/ufeGc98XMPd7IzJpJf8ts86935HLpmTtr3l3ZKkDR3Th6P13j+y3zLaU0Tib+949zmLLuq/ZgRrHYM/jvGfOJXNOzbt2jY736fR5wKlze0nuuecMa/WAfF9L9ujcGt363RCP5t9KN6LmzP3ONPvS/Gqs87n8x3vJ2nPCkX05wwy1Zqu5dmuY6tPRXYh21exL9h5d2J75Hvt2ZBdyIjtS8t2IR84TndmZOrImi7XXImnea2c6og8t7vNn6MfctUjNa+C9enDVNd+qR/eFkj2I81vam/b8dzgAAAAAAAAAAAAAwJK/9XoZOgAAAQA=
@@ -156,6 +162,11 @@
  <layer name="protection" width="128" height="128" opacity="0.34">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XwQ6CMBBFURb+v79sWCs1YmFe23OSbgmdO5i4bXmej/dz1XN7Pp//XdlI/2ytPj066Z9N/7Xpvzb916b/2vSnor0dyHL3f3/9s1R8+3YgR88uv7S3AxnONDnT2S5kanW4qrNdOHb3TCobr7YH1bMc/Yyuen6znFFVz23GM5LqWaV0SXiHCtVNEmc7wjv2Ut0sfZYz3KHyfjPMaLfafTnme2BXvQd2Ikd1f3uQTX+qfxvsR47qPbAPWfSn5Vs7/demP/rzid4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAhewN+DLwAAAQA=
+  </data>
+ </layer>
+ <layer name="blend_ground" width="128" height="128" opacity="0.49">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3dSQpCMRRE0Qyyf1Cxb74NKqIoigu0tuBAvpBzoOaB++YpBQDgf1xqKdfa9yvoyy3t7/o365H2T/2b9Ur7t/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8LVBLWWYjfwD1Jxxmk+yaTbL5m6gKYv0XmarbJ1t9G9Kl97bbJfts4P+zTmm+Sk7aw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/MgHOAL2OQAAAQA=
   </data>
  </layer>
 </map>
