@@ -20,7 +20,6 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -37,7 +36,6 @@ public class EquipAction extends EquipmentAction {
 	@Override
 	protected void execute(final Player player, final RPAction action, final SourceObject source) {
 		// get source and check it
-
 
 		logger.debug("Getting entity name");
 		// is the entity unbound or bound to the right player?
@@ -69,10 +67,7 @@ public class EquipAction extends EquipmentAction {
 
 		// looks good
 		if (source.moveTo(dest, player)) {
-			int amount = 1;
-			if (entity instanceof StackableItem) {
-				amount = ((StackableItem) entity).getQuantity();
-			}
+			int amount = source.getQuantity();
 
 			// Warn about min level
 			if (player.equals(dest.parent)
