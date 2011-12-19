@@ -65,13 +65,13 @@ public class SettingsPanel extends JPanel {
 		groupsAndCommands = new HashMap<String, String[]>();
 		groupsAndCommands.put("help", new String[] {"Manual", "FAQ", "Beginners Guide", "Commands", "Rules"});
 		groupsAndCommands.put("accountcontrol", new String[] {"Change Password", "Merge", "Login History"});
-		groupsAndCommands.put("settings", new String[] {"Settings"});
+		groupsAndCommands.put("settings", new String[] {"Take Screenshot", "Settings"});
 		groupsAndCommands.put("rp", new String[] {"Atlas", "Who", "Hall Of Fame", "Travel Log"});
 	//	groupsAndCommands.put("contribute", new String[] {"Report Bug", "Request Feature", "Chat"});
 		
 		tooltips.put("help", "Help topics");
 		tooltips.put("accountcontrol", "Manage accounts");
-		tooltips.put("settings", "Settings");
+		tooltips.put("settings", "Tools and Settings");
 		tooltips.put("rp", "Game commands");
 	}
 	

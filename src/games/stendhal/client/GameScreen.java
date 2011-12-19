@@ -504,7 +504,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	@Override
-	protected void paintComponent(final Graphics g) {
+	public void paintComponent(final Graphics g) {
 		// sort uses iterators, so it must be wrapped in a synchronized block
 		synchronized (views) {
 			Collections.sort(views, entityViewComparator);

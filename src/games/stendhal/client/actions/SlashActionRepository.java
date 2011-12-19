@@ -100,6 +100,7 @@ public class SlashActionRepository {
 		actions.put("supporta", supporta);
 		actions.put("support", new SupportAction());
 
+		actions.put("takescreenshot", new ScreenshotAction());
 		actions.put("teleport", new TeleportAction());
 		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
