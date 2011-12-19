@@ -198,14 +198,13 @@ public class Blend implements Composite {
 	
 	/**
 	 * Blend composer for removing effect of color multiply. This is yet another
-	 * Stendhal specific blend mode that does not have an established name.
+	 * Stendhal specific blend mode that does not have an established name. Both
+	 * the images are supposed to have been multiplied by the same color.
 	 */
 	private static class BleachComposer implements Composer {
 		// Using floats is faster than doing everything in integer
 		/** Color components of the color to be removed. */
 		final float red, green, blue;
-		/** Inverse of brightness of the bleached color. */
-		final float lightFactor;
 		
 		/**
 		 * Create a new BleachComposer for a color.
@@ -217,24 +216,53 @@ public class Blend implements Composite {
 			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
 			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
 			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
-			lightFactor = 256f / (red + green + blue + 1);
 		}
 		
 		/**
-		 * Blend 2 pixels, taking the color from upper, and lightness from
-		 * the lower pixel.
+		 * Blend 2 pixels. Removes the effect of color multiplication on the
+		 * underlaying image, using the brightness of the original version of the
+		 * overlaying image as the amount of bleaching. The brightness of the
+		 * overlaying image is adjusted so that the color of each pixel is
+		 * assumed to be result of (yet another) multiplication with color
+		 * <b>A</b>. The added brightness to the underlaying image is multiplied
+		 * with the hypothesized color <b>A</b>, so that the overall effect
+		 * looks like colored light.
 		 * 
 		 * @param srcPixel upper pixel color data
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
 		 */
 		public int compose(int[] srcPixel, int[] dstPixel) {
-			float light = (srcPixel[RED] + srcPixel[GREEN] + srcPixel[BLUE]) * lightFactor;
-			dstPixel[RED] = bleachComponent(light, dstPixel[RED], red);
-			dstPixel[GREEN] = bleachComponent(light, dstPixel[GREEN], green);
-			dstPixel[BLUE] = bleachComponent(light, dstPixel[BLUE], blue);
+			// Original values of the overlay pixel. [0, 1]
+			float srcRed = srcPixel[RED] / red;
+			float srcGreen = srcPixel[GREEN] / green;
+			float srcBlue = srcPixel[BLUE] / blue;
+			
+			float light = limitMin(Math.max(srcRed, Math.max(srcGreen, srcBlue)));
+			/*
+			 * Treat lightness of color like it was grey scale, but had been
+			 * multiplied with the color of the light.
+			 */
+			float multRed = limitMin(srcRed / light);
+			float multGreen = limitMin(srcGreen / light);
+			float multBlue = limitMin(srcBlue / light);
+			
+			dstPixel[RED] = bleachComponent(light, dstPixel[RED], red, multRed);
+			dstPixel[GREEN] = bleachComponent(light, dstPixel[GREEN], green, multGreen);
+			dstPixel[BLUE] = bleachComponent(light, dstPixel[BLUE], blue, multBlue);
 
 			return mergeRgb(dstPixel);
+		}
+		
+		/**
+		 * Limit a color value to > 0, so that when it is used as a divisor the
+		 * result will not overflow.
+		 * 
+		 * @param colorComponent
+		 * @return colorComponent, or at least 0.001
+		 */
+		private float limitMin(float colorComponent) {
+			return Math.max(0.001f, colorComponent);
 		}
 		
 		/**
@@ -244,11 +272,15 @@ public class Blend implements Composite {
 		 * 	source image pixel
 		 * @param bg bleached pixel
 		 * @param color component value of the bleaching color
+		 * @param multColor color of the source image (the value of the
+		 * 	source pixel = light × multColor)
+		 * 
 		 * @return bleached value of the color component
 		 */
-		private int bleachComponent(float light, int bg, float color) {
-			float mod = (light * color) / 256f + 256f - light;
-			return (int) (bg * 256f / mod);
+		private int bleachComponent(float light, int bg, float color, float multColor) {
+			float mod = (light * color) / 255f + 1f - light;
+			float change = bg / mod - bg;
+			return (int) (bg + change * multColor);
 		}
 	}
 	
