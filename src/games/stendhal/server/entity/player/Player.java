@@ -279,13 +279,6 @@ public class Player extends RPEntity implements UseListener {
 			logger.error("Player " + getName() + " was marked storable.", new Throwable());
 		}
 
-		// expire outfits
-		if (has("outfit_expire_age")) {
-			int expire = getInt("outfit_expire_age") - getInt("age");
-			ExpireOutfit expireOutfit = new ExpireOutfit(super.getName());
-			SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
-			SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
-		}
 	}
 
 	/**
@@ -791,10 +784,10 @@ public class Player extends RPEntity implements UseListener {
 	public void setFeature(final String name, final String value) {
 		put("features", name, value);
 	}
-	
+
 	/**
 	 * Unset a client feature
-	 * 
+	 *
 	 * @param name The feature mnemonic
 	 */
 	public void unsetFeature(final String name) {
@@ -2554,7 +2547,8 @@ public class Player extends RPEntity implements UseListener {
 	 * @param user the RPEntity who uses the object
 	 * @return true if successful
 	 */
-	public boolean onUsed(RPEntity user) {
+	@Override
+    public boolean onUsed(RPEntity user) {
 		if ((useListener == null) || (!(user instanceof Player))) {
 			return false;
 		}

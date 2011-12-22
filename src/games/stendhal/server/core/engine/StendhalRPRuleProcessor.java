@@ -28,6 +28,7 @@ import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.entity.player.AfkTimeouter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
@@ -140,7 +141,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers;
 	}
 
-	public void setContext(final RPServerManager rpman) {
+	@Override
+    public void setContext(final RPServerManager rpman) {
 		try {
 			/*
 			 * Print version information.
@@ -186,11 +188,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	public boolean checkGameVersion(final String game, final String version) {
+	@Override
+    public boolean checkGameVersion(final String game, final String version) {
 		try {
 			if (!game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
-				logger.warn("Client for game " + game + " is trying to login to server for game " 
-						+ Configuration.getConfiguration().get("server_typeGame", "stendhal") 
+				logger.warn("Client for game " + game + " is trying to login to server for game "
+						+ Configuration.getConfiguration().get("server_typeGame", "stendhal")
 						+ ", as defined in server configuration file (usually server.ini) with key server_typeGame (defaults to \"stendhal\" if not present).");
 				return false;
 			}
@@ -249,11 +252,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers.getOnlinePlayer(name);
 	}
 
-	public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
+	@Override
+    public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
 		return true;
 	}
 
-	public void execute(final RPObject caster, final RPAction action) {
+	@Override
+    public void execute(final RPObject caster, final RPAction action) {
 		if (caster instanceof Player) {
 			((Player) caster).setLastClientActionTimestamp(System.currentTimeMillis());
 		}
@@ -265,7 +270,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/** Notify it when a new turn happens. */
-	public synchronized void beginTurn() {
+	@Override
+    public synchronized void beginTurn() {
 		final long start = System.nanoTime();
 
 		try {
@@ -342,7 +348,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void executePlayerLogic() {
 		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			public void execute(final Player player) {
+			@Override
+            public void execute(final Player player) {
 				try {
 					player.logic();
 				} catch (final Exception e) {
@@ -370,7 +377,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 
-	public synchronized void endTurn() {
+	@Override
+    public synchronized void endTurn() {
 		final int currentTurn = getTurn();
 		try {
 
@@ -440,7 +448,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	public synchronized boolean onInit(final RPObject object) {
+	@Override
+    public synchronized boolean onInit(final RPObject object) {
 		try {
 			if (object == null) {
 				logger.error("onInit: object = null", new Throwable());
@@ -474,6 +483,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 				readAdminsFromFile(player);
 				welcome(player);
+
+		        // expire outfits
+		        if (player.has("outfit_expire_age")) {
+		            int expire = player.getInt("outfit_expire_age") - player.getInt("age");
+		            ExpireOutfit expireOutfit = new ExpireOutfit(player.getName());
+		            SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+		            SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
+		        }
 				return true;
 			} else {
 				logger.error("onInit: object is not an instance of Player: " + object, new Throwable());
@@ -532,7 +549,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	public synchronized boolean onExit(final RPObject object) {
+	@Override
+    public synchronized boolean onExit(final RPObject object) {
 		if (object instanceof Player) {
 			try {
 				final Player player = (Player) object;
@@ -569,16 +587,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	public synchronized void onTimeout(final RPObject object) {
+	@Override
+    public synchronized void onTimeout(final RPObject object) {
 		onExit(object);
 	}
 
-	public AccountResult createAccount(final String username, final String password, final String email) {
+	@Override
+    public AccountResult createAccount(final String username, final String password, final String email) {
 		final AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
 
-	public CharacterResult createCharacter(final String username, final String character, final RPObject template) {
+	@Override
+    public CharacterResult createCharacter(final String username, final String character, final RPObject template) {
 		final CharacterCreator creator = new CharacterCreator(username, character, template);
 		return creator.create();
 	}
@@ -608,7 +629,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new Task<Player>() {
 
-			public void execute(final Player player) {
+			@Override
+            public void execute(final Player player) {
 				player.sendPrivateText(NotificationType.SUPPORT, message);
 				player.notifyWorldAboutChanges();
 			}
@@ -617,7 +639,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new FilterCriteria<Player>() {
 
-			public boolean passes(final Player p) {
+			@Override
+            public boolean passes(final Player p) {
 				return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
 			}
 
@@ -653,14 +676,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-					public void execute(final Player player) {
+					@Override
+                    public void execute(final Player player) {
 						player.notifyOnline(playerToNotifyAbout.getName());
 					}
 				});
 
 			} else {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-					public void execute(final Player player) {
+					@Override
+                    public void execute(final Player player) {
 						player.notifyOffline(playerToNotifyAbout.getName());
 					}
 				});
@@ -675,7 +700,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogin(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			public void execute(final Player player) {
+			@Override
+            public void execute(final Player player) {
 				if(playerToNotifyAbout.isGhost()) {
 					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
 					if (player.isGhost()) {
@@ -698,7 +724,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogout(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-			public void execute(final Player player) {
+			@Override
+            public void execute(final Player player) {
 				player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
 			}
 		});
@@ -724,7 +751,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * gets the content type for the requested resource
-	 * 
+	 *
 	 * @param resource name of resource
 	 * @return mime content/type or <code>null</code>
 	 */
@@ -741,7 +768,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * gets an input stream to the requested resource
-	 * 
+	 *
 	 * @param resource name of resource
 	 * @return InputStream or <code>null</code>
 	 */
