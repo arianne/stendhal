@@ -28,6 +28,7 @@ import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.entity.player.AfkTimeouter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
@@ -189,8 +190,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public boolean checkGameVersion(final String game, final String version) {
 		try {
 			if (!game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
-				logger.warn("Client for game " + game + " is trying to login to server for game " 
-						+ Configuration.getConfiguration().get("server_typeGame", "stendhal") 
+				logger.warn("Client for game " + game + " is trying to login to server for game "
+						+ Configuration.getConfiguration().get("server_typeGame", "stendhal")
 						+ ", as defined in server configuration file (usually server.ini) with key server_typeGame (defaults to \"stendhal\" if not present).");
 				return false;
 			}
@@ -474,6 +475,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 				readAdminsFromFile(player);
 				welcome(player);
+
+				// expire outfits
+				if (player.has("outfit_expire_age")) {
+					int expire = player.getInt("outfit_expire_age") - player.getAge();
+					ExpireOutfit expireOutfit = new ExpireOutfit(player.getName());
+					SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+					SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
+				}
 				return true;
 			} else {
 				logger.error("onInit: object is not an instance of Player: " + object, new Throwable());
@@ -724,7 +733,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * gets the content type for the requested resource
-	 * 
+	 *
 	 * @param resource name of resource
 	 * @return mime content/type or <code>null</code>
 	 */
@@ -741,7 +750,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * gets an input stream to the requested resource
-	 * 
+	 *
 	 * @param resource name of resource
 	 * @return InputStream or <code>null</code>
 	 */

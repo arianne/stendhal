@@ -276,14 +276,6 @@ public class Player extends RPEntity implements UseListener {
 			unstore();
 			logger.error("Player " + getName() + " was marked storable.", new Throwable());
 		}
-
-		// expire outfits
-		if (has("outfit_expire_age")) {
-			int expire = getInt("outfit_expire_age") - getInt("age");
-			ExpireOutfit expireOutfit = new ExpireOutfit(super.getName());
-			SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
-			SingletonRepository.getTurnNotifier().notifyInSeconds(Math.max(0, expire * 60), expireOutfit);
-		}
 		updateModifiedAttributes();
 	}
 
@@ -790,10 +782,10 @@ public class Player extends RPEntity implements UseListener {
 	public void setFeature(final String name, final String value) {
 		put("features", name, value);
 	}
-	
+
 	/**
 	 * Unset a client feature
-	 * 
+	 *
 	 * @param name The feature mnemonic
 	 */
 	public void unsetFeature(final String name) {
@@ -1577,7 +1569,7 @@ public class Player extends RPEntity implements UseListener {
 				if (color != null) {
 					put("outfit_colors", tmp, color);
 					if (!"hair".equals(part)) {
-					    remove("outfit_colors", part);
+					remove("outfit_colors", part);
 					}
 				} else if (has("outfit_colors", tmp)) {
 					// old saved colors need to be cleared in any case
