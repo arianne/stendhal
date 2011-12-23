@@ -267,7 +267,7 @@ public class SheepGrowing extends AbstractQuest {
                         new QuestInStateCondition(QUEST_SLOT,"start"),
                         new NotCondition(playerHasFullWeightSheep)),
                 ConversationStates.IDLE,
-                "Hello. You should have sheep from Nishiya for me, he owes me one! But I want a full weight one, so come back when you have one. Bye!",
+                "Hello. You should have a sheep from Nishiya for me, he owes me one! But I want a full weight one, so come back when you have one. Bye!",
                 null);
 
         // Player answers yes - Sheep is given to Sato
@@ -338,7 +338,7 @@ public class SheepGrowing extends AbstractQuest {
                 ConversationPhrases.YES_MESSAGES,
                 new QuestInStateCondition(QUEST_SLOT, "handed_over"),
                 ConversationStates.IDLE,
-                "Thank you! You doesn't know how much I have to do these days. " +
+                "Thank you! You don't know how much I have to do these days. " +
                 "You really helped me out.",
                 new MultipleActions(reward));
         // Player answers no -
