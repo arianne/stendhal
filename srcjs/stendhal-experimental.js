@@ -22,8 +22,8 @@ stendhal.ui.gamewindow.svgdraw = function() {
 
 stendhal.ui.gamewindow.svgpaintLayer = function(drawingLayer) {
 			var layer = stendhal.data.map.layers[drawingLayer];
-			for (var y=0; y < Math.min(stendhal.data.map.zoneSizeY, stendhal.data.map.sizeY); y++) {
-				for (var x=0; x < Math.min(stendhal.data.map.zoneSizeX, stendhal.data.map.sizeX); x++) {
+			for (var y=0; y < stendhal.data.map.zoneSizeY; y++) {
+				for (var x=0; x < stendhal.data.map.zoneSizeX; x++) {
 					var gid = layer[(this.offsetY + y) * stendhal.data.map.numberOfXTiles + (this.offsetX + x)];
 					if (gid > 0) {
 						var tileset = stendhal.data.map.getTilesetForGid(gid);
