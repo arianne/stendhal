@@ -1311,6 +1311,9 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 </zone>
 
 <zone name="int_magic_shrine" file="interiors/magic/shrine.tmx">
+	<attributes>
+			<parameter name="blend_method">truecolor</parameter>
+	</attributes>
  <configurator class-name="games.stendhal.server.maps.magic.shrine.PriestessNPC" />
   <portal x="11" y="23" ref="entrance_left">
    <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_left"/>
