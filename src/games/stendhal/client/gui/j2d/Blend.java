@@ -169,7 +169,10 @@ public class Blend implements Composite {
 					// transparent destination pixels
 					if (dstPixel[ALPHA] != 0) {
 						splitRgb(srcData[x], srcPixel);
-						dstData[x] = composer.compose(srcPixel, dstPixel);
+						// Skip transparent source pixels.
+						if (srcPixel[ALPHA] != 0) {
+							dstData[x] = composer.compose(srcPixel, dstPixel);
+						}
 					}
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
@@ -539,17 +542,18 @@ public class Blend implements Composite {
 					 */
 					int a = dstData[x];
 					int b = srcData[x];
-					// alpha
-					int result = a & 0xff000000;
-					
-					// blue
-					result |= ((a & 0xff) * (b & 0xff)) >> 8;
-					// green
-					result |= (((a & 0xff00) * (b & 0xff00)) >> 16) & 0xff00;
-					// red would overflow without the first shift
-					result |= ((((a & 0xff0000) >> 16) * (b & 0xff0000)) >> 8) & 0xff0000;
-
-					dstData[x] = result;
+					// Ignore transparent source pixels
+					if ((b & 0xff000000) != 0) {
+						// alpha
+						int result = a & 0xff000000;
+						// blue
+						result |= ((a & 0xff) * (b & 0xff)) >> 8;
+						// green
+						result |= (((a & 0xff00) * (b & 0xff00)) >> 16) & 0xff00;
+							// red would overflow without the first shift
+						result |= ((((a & 0xff0000) >> 16) * (b & 0xff0000)) >> 8) & 0xff0000;
+						dstData[x] = result;
+					}
 				}
 				dstOut.setDataElements(0, y, width, 1, dstData);
 			}
