@@ -229,12 +229,12 @@ stendhal.data.map = {
 		this.layers.push(layer);
 	},
 
-	load: function(location) {
-		if (this.lastMap != location) {
-			this.lastMap = location;
+	load: function(locat) {
+		if (this.lastMap != locat) {
+			this.lastMap = locat;
 			var body = document.getElementById("body")
 			body.style.cursor = "wait";
-			var temp = /([^_]*)_([^_]*)_(.*)/(location);
+			var temp = /([^_]*)_([^_]*)_(.*)/.exec(locat);
 			if (temp[1] == "int") {
 				temp[1] = "interiors"
 			} else {
