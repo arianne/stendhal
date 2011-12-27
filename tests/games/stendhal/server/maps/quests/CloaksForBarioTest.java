@@ -61,7 +61,7 @@ public class CloaksForBarioTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me?", getReply(npc));
+		assertEquals("Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me.", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?", getReply(npc));
 		en.step(player, "no");

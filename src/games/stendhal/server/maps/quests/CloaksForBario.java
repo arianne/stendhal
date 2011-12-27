@@ -93,7 +93,7 @@ public class CloaksForBario extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
-				"Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me?",
+				"Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me.",
 				null);
 
 		// player is willing to help
