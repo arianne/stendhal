@@ -27,6 +27,8 @@ stendhal.ui.gamewindow.dumpPattern = function() {
 	var res = "";
 	for (var gid in stendhal.ui.gamewindow.pattern) {
 		if (stendhal.ui.gamewindow.pattern.hasOwnProperty(gid)) {
+			var patternWidth = stendhal.ui.gamewindow.pattern[gid].width; 
+			var patternHeight = stendhal.ui.gamewindow.pattern[gid].height; 
 			var tileset = stendhal.data.map.getTilesetForGid(parseInt(gid));
 			var base = stendhal.data.map.firstgids[tileset];
 			var idx = gid - base;
@@ -35,9 +37,6 @@ stendhal.ui.gamewindow.dumpPattern = function() {
 			try {
 				if (aImages[tileset].height > 0) {
 
-					// 2 32 160 32 12.8
-					
-					console.log(gid, tileset, idx, stendhal.data.map.tileWidth, tilesetWidth, stendhal.data.map.tileHeight, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight);
 					res = res
 						+ '<pattern id="p' 
 						+ gid
@@ -47,13 +46,13 @@ stendhal.ui.gamewindow.dumpPattern = function() {
 						+ ' '
 						+ Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight
 						+ ' '
-						+ stendhal.data.map.tileWidth
+						+ (stendhal.data.map.tileWidth * patternWidth)
 						+ ' '
-						+ stendhal.data.map.tileHeight
+						+ (stendhal.data.map.tileHeight * patternHeight)
 						+ '" width="'
-						+ stendhal.data.map.tileWidth
+						+ (stendhal.data.map.tileWidth * patternWidth)
 						+ '" height="'
-						+ stendhal.data.map.tileWidth
+						+ (stendhal.data.map.tileWidth * patternHeight)
 						+ '">'
 						+ '<image x="0" y="0" width="'
 						+ aImages[tileset].width
@@ -79,7 +78,7 @@ stendhal.ui.gamewindow.svgpaintLayer = function(drawingLayer) {
 						var rect = stendhal.ui.gamewindow.discoverRect(layer, x, y);
 						if (typeof(rect) != "undefined") {
 							stendhal.ui.gamewindow.cleanRect(layer, rect);
-							stendhal.ui.gamewindow.pattern[gid] = gid;
+							stendhal.ui.gamewindow.pattern[gid] = {width: 1, height: 1};
 							stendhal.ui.gamewindow.svgdata = stendhal.ui.gamewindow.svgdata
 								+ '<rect x="'
 								+ (x * this.targetTileWidth)
@@ -160,7 +159,7 @@ stendhal.ui.gamewindow.discoverRect = function(layer, x0, y0) {
 
 			if (expandX) {
 				xM++;
-				for (var y = y0; y < Math.min(yM + 1, stendhal.data.map.numberOfYTiles); y++) {
+				for (var y = y0; y <= Math.min(yM, stendhal.data.map.numberOfYTiles); y++) {
 					if (gid != layer[y * mapWidth + xM]) {
 						expandX = false;
 						xM--;
@@ -170,7 +169,7 @@ stendhal.ui.gamewindow.discoverRect = function(layer, x0, y0) {
 			}
 			if (expandY) {
 				yM++;
-				for (var x = x0; x <= Math.min(xM + 1, stendhal.data.map.numberOfXTiles); x++) {
+				for (var x = x0; x <= Math.min(xM, stendhal.data.map.numberOfXTiles); x++) {
 					if (gid != layer[yM * mapWidth + x]) {
 						expandY = false;
 						yM--
@@ -190,6 +189,5 @@ stendhal.ui.gamewindow.cleanRect = function(layer, rect) {
 		for (var x = rect.x1; x <= rect.x2; x++) {
 			layer[y * stendhal.data.map.numberOfXTiles + x] = 0;
 		}
-//		console.log(rect, stendhal.data.map.numberOfXTiles, layer);
 	}
 }
