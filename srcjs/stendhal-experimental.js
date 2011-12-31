@@ -27,13 +27,17 @@ stendhal.ui.gamewindow.dumpPattern = function() {
 	var res = "";
 	for (var gid in stendhal.ui.gamewindow.pattern) {
 		if (stendhal.ui.gamewindow.pattern.hasOwnProperty(gid)) {
-			var tileset = stendhal.data.map.getTilesetForGid(gid);
+			var tileset = stendhal.data.map.getTilesetForGid(parseInt(gid));
 			var base = stendhal.data.map.firstgids[tileset];
 			var idx = gid - base;
 			var tilesetWidth = aImages[tileset].width;
 
 			try {
 				if (aImages[tileset].height > 0) {
+
+					// 2 32 160 32 12.8
+					
+					console.log(gid, tileset, idx, stendhal.data.map.tileWidth, tilesetWidth, stendhal.data.map.tileHeight, Math.floor((idx * stendhal.data.map.tileWidth) / tilesetWidth) * stendhal.data.map.tileHeight);
 					res = res
 						+ '<pattern id="p' 
 						+ gid
@@ -47,9 +51,9 @@ stendhal.ui.gamewindow.dumpPattern = function() {
 						+ ' '
 						+ stendhal.data.map.tileHeight
 						+ '" width="'
-						+ aImages[tileset].width
+						+ stendhal.data.map.tileWidth
 						+ '" height="'
-						+ aImages[tileset].height
+						+ stendhal.data.map.tileWidth
 						+ '">'
 						+ '<image x="0" y="0" width="'
 						+ aImages[tileset].width
@@ -83,7 +87,7 @@ stendhal.ui.gamewindow.svgpaintLayer = function(drawingLayer) {
 								+ (y * this.targetTileHeight)
 								+ '" width="'
 								+ (stendhal.data.map.tileWidth * (rect.x2 - x + 1))
-								+ ' " height="'
+								+ '" height="'
 								+ (stendhal.data.map.tileHeight * (rect.y2 - y + 1))
 								+ '" fill="url(#p'
 								+ gid
@@ -93,7 +97,6 @@ stendhal.ui.gamewindow.svgpaintLayer = function(drawingLayer) {
 				}
 			}
 			
-			return;
 
 			for (var y=0; y < stendhal.data.map.zoneSizeY; y++) {
 				for (var x=0; x < stendhal.data.map.zoneSizeX; x++) {
