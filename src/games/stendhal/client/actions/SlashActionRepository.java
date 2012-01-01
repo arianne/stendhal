@@ -93,6 +93,7 @@ public class SlashActionRepository {
 		actions.put("vol", new VolumeAction());
 		
 		actions.put("storemessage", new StoreMessageAction());
+		actions.put("postmessage", new StoreMessageAction());
 		
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
