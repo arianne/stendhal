@@ -79,12 +79,21 @@
 
 	<zone name="0_orril_mountain_w" level="0" x="499744" y="500256"
 		file="Level 0/orril/mountain_w.tmx">
+		
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
 		<portal x="107" y="113" ref="orb_destination">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+		</portal>
+		
+		<portal x="26" y="62" ref="door_left">
+			<destination zone="int_constantines_villa_entrance" ref="entrance" />
+		</portal>
+		
+		<portal x="27" y="62" ref="door_right">
+			<destination zone="int_constantines_villa_entrance" ref="entrance" />
 		</portal>
 	</zone>
 
@@ -484,6 +493,141 @@
 		</entity>
 	</zone>
 
+ <zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
+        <portal x="15" y="49" ref="entrance">
+            <destination zone="0_orril_mountain_w" ref="door_left" />
+        </portal>
+        
+        <portal x="13" y="0" ref="barracks1">
+            <destination zone="int_constantines_villa_barracks" ref="door1" />
+        </portal>
+        
+        <portal x="14" y="0" ref="barracks2">
+            <destination zone="int_constantines_villa_barracks" ref="door2" />
+        </portal>
+        
+        <portal x="15" y="0" ref="barracks3">
+            <destination zone="int_constantines_villa_barracks" ref="door3" />
+        </portal>
+        
+         <portal x="16" y="0" ref="barracks4">
+            <destination zone="int_constantines_villa_barracks" ref="door4" />
+        </portal>
+        
+         <portal x="17" y="0" ref="barracks5">
+            <destination zone="int_constantines_villa_barracks" ref="door5" />
+        </portal>
+        
+         <portal x="6" y="44" ref="livingroom1">
+            <destination zone="int_constantines_villa_livingroom" ref="door1" />
+        </portal>
+        
+        <portal x="6" y="43" ref="livingroom2">
+            <destination zone="int_constantines_villa_livingroom" ref="door2" />
+        </portal>
+        
+        <portal x="6" y="42" ref="livingroom3">
+            <destination zone="int_constantines_villa_livingroom" ref="door3" />
+        </portal>
+        
+        <portal x="6" y="31" ref="livingroom4">
+            <destination zone="int_constantines_villa_livingroom" ref="door4" />
+        </portal>
+        
+        <portal x="6" y="30" ref="livingroom5">
+            <destination zone="int_constantines_villa_livingroom" ref="door5" />
+        </portal>
+        
+        <portal x="6" y="29" ref="livingroom6">
+            <destination zone="int_constantines_villa_livingroom" ref="door6" />
+        </portal>
+    </zone>
+    
+<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
+
+        <portal x="50" y="18" ref="door_right_1">
+            <destination zone="int_constantines_villa_library" ref="library1" />
+        </portal>
+    
+         <portal x="50" y="19" ref="door_right_2">
+            <destination zone="int_constantines_villa_library" ref="library2" />
+        </portal>
+        
+         <portal x="50" y="20" ref="door_right_3">
+            <destination zone="int_constantines_villa_library" ref="library3" />
+        </portal>
+        
+         <portal x="50" y="21" ref="door_right_4">
+            <destination zone="int_constantines_villa_library" ref="library4" />
+        </portal>
+        
+        <portal x="13" y="29" ref="door1">
+            <destination zone="int_constantines_villa_entrance" ref="barracks1" />
+        </portal>
+        
+        <portal x="14" y="29" ref="door2">
+            <destination zone="int_constantines_villa_entrance" ref="barracks2" />
+        </portal>
+        
+        <portal x="15" y="29" ref="door3">
+            <destination zone="int_constantines_villa_entrance" ref="barracks3" />
+        </portal>
+        
+        <portal x="16" y="29" ref="door4">
+            <destination zone="int_constantines_villa_entrance" ref="barracks4" />
+        </portal>
+        
+        <portal x="17" y="29" ref="door5">
+            <destination zone="int_constantines_villa_entrance" ref="barracks5" />
+        </portal>
+    </zone>
+    
+<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
+    
+    	<portal x="49" y="44" ref="door1">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom1" />
+        </portal>
+        
+        <portal x="49" y="43" ref="door2">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom2" />
+        </portal>
+        
+        <portal x="49" y="42" ref="door3">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom3" />
+        </portal>
+        
+        <portal x="49" y="31" ref="door4">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom4" />
+        </portal>
+        
+        <portal x="49" y="30" ref="door5">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom5" />
+        </portal>
+        
+        <portal x="49" y="29" ref="door6">
+            <destination zone="int_constantines_villa_entrance" ref="livingroom6" />
+        </portal>
+        
+</zone>
+
+<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
+		
+		<portal x="0" y="18" ref="library1">
+            <destination zone="int_constantines_villa_barracks" ref="door_right_1" />
+        </portal>
+        
+        <portal x="0" y="19" ref="library2">
+            <destination zone="int_constantines_villa_barracks" ref="door_right_2" />
+        </portal>
+        
+        <portal x="0" y="20" ref="library3">
+            <destination zone="int_constantines_villa_barracks" ref="door_right_3" />
+        </portal>
+        
+        <portal x="0" y="21" ref="library4">
+            <destination zone="int_constantines_villa_barracks" ref="door_right_4" />
+        </portal>
+</zone>
 	<!-- Level -1 -->
 
 	<zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128"
