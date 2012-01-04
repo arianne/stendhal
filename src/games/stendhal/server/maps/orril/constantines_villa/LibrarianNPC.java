@@ -47,7 +47,6 @@ public class LibrarianNPC implements ZoneConfigurator {
 				nodes.add(new Node(11, 7));
                 nodes.add(new Node(18, 7));
                 nodes.add(new Node(18, 17));  
-                nodes.add(new Node(11, 17));
                	setPath(new FixedPath(nodes, true));
 
 			}
