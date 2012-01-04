@@ -493,7 +493,7 @@
 		</entity>
 	</zone>
 
- <zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
+ 	<zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
         <portal x="15" y="49" ref="entrance">
             <destination zone="0_orril_mountain_w" ref="door_left" />
         </portal>
@@ -543,7 +543,7 @@
         </portal>
     </zone>
     
-<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
+	<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
 
         <portal x="50" y="18" ref="door_right_1">
             <destination zone="int_constantines_villa_library" ref="library1" />
@@ -582,7 +582,7 @@
         </portal>
     </zone>
     
-<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
+	<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
     
     	<portal x="49" y="44" ref="door1">
             <destination zone="int_constantines_villa_entrance" ref="livingroom1" />
@@ -608,9 +608,12 @@
             <destination zone="int_constantines_villa_entrance" ref="livingroom6" />
         </portal>
         
-</zone>
+	</zone>
 
-<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
+	<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
+		
+		<configurator class-name="games.stendhal.server.maps.orril.constantines_villa.LibrarianNPC" />
+
 		
 		<portal x="0" y="18" ref="library1">
             <destination zone="int_constantines_villa_barracks" ref="door_right_1" />
