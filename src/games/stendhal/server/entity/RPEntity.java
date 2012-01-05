@@ -70,8 +70,12 @@ import org.apache.log4j.Logger;
 public abstract class RPEntity extends GuidedEntity {
 	
 	private static final String ATTR_MODIFIED_DEF = "modified_def";
+	
+	private static final String ATTR_MODIFIED_ATK = "modified_atk";
 
 	private static final String ATTR_MODIFIED_BASE_HP = "modified_base_hp";
+	
+	private static final String ATTR_MODIFIED_BASE_MANA = "modified_base_mana";
 
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
@@ -206,12 +210,14 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("xp", Type.INT);
 			entity.addAttribute("mana", Type.INT);
 			entity.addAttribute("base_mana", Type.INT);
+			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.SHORT, Definition.VOLATILE);
 
 			entity.addAttribute("base_hp", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("hp", Type.SHORT);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute(ATTR_MODIFIED_ATK, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, Definition.VOLATILE);
@@ -449,7 +455,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		if (has("atk_xp")) {
 			atk_xp = getInt("atk_xp");
-			setAtkXP(atk_xp);
+			setAtkXpInternal(atk_xp, false);
 		}
 
 		if (has("def")) {
@@ -657,12 +663,29 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public void setAtk(final int atk) {
+		setAtkInternal(atk, true);
+	}
+
+	private void setAtkInternal(final int atk, boolean notify) {
 		this.atk = atk;
 		put("atk", atk);
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
 	}
 
 	public int getAtk() {
-		return atk;
+		return this.modifierHandler.modifyAtk(atk);
+	}
+	
+	/**
+	 * Add a temporary atk modifier to this entity
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addAtkModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createAtkModifier(expire, modifier));
 	}
 
 	/**
@@ -671,16 +694,20 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param atk the new value
 	 */
 	public void setAtkXP(final int atk) {
+		setAtkXpInternal(atk, true);
+	}
+
+	private void setAtkXpInternal(final int atk, boolean notify) {
 		this.atk_xp = atk;
 		put("atk_xp", atk_xp);
 
 		// Handle level changes
 		final int newLevel = Level.getLevel(atk_xp);
-		final int levels = newLevel - (getAtk() - 10);
+		final int levels = newLevel - (this.atk - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setAtk(this.atk + (int) Math.signum(levels) * 1);
+			setAtkInternal(this.atk + (int) Math.signum(levels) * 1, notify);
 			new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
 		}
 	}
@@ -713,7 +740,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 	
 	/**
-	 * Add a temporary modifier to this entity
+	 * Add a temporary def modifier to this entity
 	 * 
 	 * @param expire
 	 * @param modifier
@@ -844,7 +871,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return base mana
 	 */
 	public int getBaseMana() {
-		return base_mana;
+		return this.modifierHandler.modifyMana(this.base_mana);
 	}
 
 	/**
@@ -867,6 +894,17 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setBaseMana(final int newBaseMana) {
 		base_mana = newBaseMana;
 		put("base_mana", newBaseMana);
+		this.updateModifiedAttributes();
+	}
+	
+	/**
+	 * Add a temporarily valid modifier to the base hp
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addBaseManaModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createManaModifier(expire, modifier));
 	}
 
 	/**
@@ -2720,17 +2758,31 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		super.updateModifiedAttributes();
 		//base hp
 		updateModifiedBaseHP(getBaseHP());
+		//base mana
+		updateModifiedBaseMana(getBaseMana());
 		//def
 		updateModifiedDef(getDef());
+		//atk
+		updateModifiedAtk(getAtk());
 	}
 
 	private void updateModifiedDef(int modifiedDef) {
 		this.put(ATTR_MODIFIED_DEF, modifiedDef);
+	}
+	
+	private void updateModifiedAtk(int modifiedAtk) {
+		this.put(ATTR_MODIFIED_ATK, modifiedAtk);
 	}
 
 	private void updateModifiedBaseHP(int modifiedValue) {
 		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
 		//on change of the base hp the base hp may fall below the current hp
 		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
+	}
+	
+	private void updateModifiedBaseMana(int modifiedValue) {
+		this.put(ATTR_MODIFIED_BASE_MANA, modifiedValue);
+		//on change of the base mana the base hp may fall below the current mana
+		this.setMana(Math.min(this.getMana(), this.getBaseMana()));
 	}
 }

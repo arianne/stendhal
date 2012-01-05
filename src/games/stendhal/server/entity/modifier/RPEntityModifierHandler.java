@@ -39,5 +39,31 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 		}
 		return Math.min(Double.valueOf(Math.ceil(cumulatedModifier * def)).intValue(), 597);
 	}
+	
+	/**
+	 * Calculate the modified value of atk
+	 * @param atk
+	 * @return modified atk
+	 */
+	public int modifyAtk(int atk) {
+		double cumulatedModifier = 1d;
+		for (AttributeModifier m : this.getModifiers()) {
+			cumulatedModifier = cumulatedModifier * (1d + m.getAtkModifier());
+		}
+		return Math.min(Double.valueOf(Math.ceil(cumulatedModifier * atk)).intValue(), 597);
+	}
+	
+	/**
+	 * Calculate the modified value of mana
+	 * @param baseMana
+	 * @return modified mana
+	 */
+	public int modifyMana(int baseMana) {
+		double cumulatedModifier = 1d;
+		for (AttributeModifier m : this.getModifiers()) {
+			cumulatedModifier = cumulatedModifier * (1d + m.getManaModifier());
+		}
+		return Double.valueOf(Math.ceil(cumulatedModifier * baseMana)).intValue();
+	}
 
 }

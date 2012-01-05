@@ -230,6 +230,7 @@ public class MagicExtnTest {
 
 		// increase Mana value to enable the player casting the raise stats spell
 		pl.setMana(120);
+		pl.setBaseMana(120);
 		action = new RPAction();
 		action.put("type", "spell");
 		action.put("target", "raise stats");
