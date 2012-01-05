@@ -34,13 +34,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * QUEST: Quest to get a receipe for a potion for Imorgen
+ * QUEST: Quest to get a recipe for a potion for Imorgen
  * <p>
  * 
  * PARTICIPANTS: 
  * <ul>
  * <li>Cameron</li>
- * <li>Imorgen</li> (later or before)
  * </ul>
  * 
  * STEPS:
@@ -50,12 +49,12 @@ import java.util.Map;
  * <li> Cameron knows the beginning of a sentence out of each book he is searching for.</li>
  * <li> You have to find the book and tell Cameron the rest of the sentence. He chooses the book randomly.</li>
  * <li> He knows then that you found the book and that these aren't lost.</li>
- * <li> You'll get a reward for your efforts.</li>
+ * <li> You'll reward you for your efforts.</li>
  * </ul>
  * 
  * REWARD:
  *  <ul>
- *  <li>A receipe which Imorgen needs for her potion</li>
+ *  <li>A recipe which Imorgen needs for her potion</li>
  *  </ul>
  * 
  * REPETITIONS: 
@@ -71,19 +70,19 @@ public class TheMissingBooks extends AbstractQuest {
 
 	private static Map<String, String> quotes = new HashMap<String, String>();
 	static {
-		quotes.put("#Down #in #the #deep #sea #around #Athor #island...", 
+		quotes.put("Down in the deep sea around Athor island...", 
 						"it lays, hidden under soft sand - the mighty treasure of Faiumoni.");
-		quotes.put("#As #a #mighty #warrior,...",
+		quotes.put("As a mighty warrior,...",
 						"you always need to wear a powerful armor in fights.");
-		quotes.put("#You #don't #believe #in #magic? #The #potion...",
+		quotes.put("You don't believe in magic? The potion...",
 						"of love, made from the hands of a magician, even works for Yetis.");
-		quotes.put("#Hungry? #Thirsty? #Tired?...",
-				"A break might help. Take a look around the lovely nature of Faiumoni and find relaxing places to make a stop at. Even when you are busy during tasks, a healthy snack will power you up.");
-		quotes.put("#And #there #they #were: #two #strangers, #alone #in #the #tunnel...",
-						"of Amazon island, heading out for reaching the right entrance to a life full of joy and piece - at least they hoped for that.");
-		quotes.put("#Oh #my #oh #my #oh #my! #What #for #a #huge #creature #I'm #looking #at! #It's #red, #it's #huge,...",
+		quotes.put("Hungry? Thirsty? Tired?...",
+						"A break might help. Take a look around the lovely nature of Faiumoni and find relaxing places to make a stop at. Even when you are busy during tasks, a healthy snack will power you up.");
+		quotes.put("And there they were: two strangers, alone in the tunnel...",
+						"of Amazon island, heading out for reaching the right entrance to a life full of joy and peace - at least they hoped for that.");
+		quotes.put("Oh my oh my oh my! What for a huge creature I'm looking at! It's red, it's huge,...",
 						"it's powerful, it has a hard forehand...Could that be it? It is a balrog!");
-		quotes.put("#You #need #some #flour, #some #eggs, #some #butter, #some #sugar, #some #chocolate #and #some #milk...",
+		quotes.put("You need some flour, some eggs, some butter, some sugar, some chocolate and some milk...",
 						"a hot drink for the winter, some rat to make it silk. Now after waiting for some time and after the job is done: a crepes suzette that is you hold enjoy it and have fun!");
 	}
 
@@ -100,14 +99,14 @@ public class TheMissingBooks extends AbstractQuest {
 		}
 		res.add("I met Cameron in Constantines Villa. He asked me to find a quote out of a book for him.");
 		if (!player.isQuestCompleted(QUEST_SLOT)) {
-			res.add("The end of the sentence I must find starts with" + player.getQuest(QUEST_SLOT) + ".");
+			res.add("The end of the sentence I must find starts with: " + player.getQuest(QUEST_SLOT) + ".");
 		} else {
-			res.add("I told the sentence to Cameron and he gave me a receipe which I can bring to Imorgen now.");
+			res.add("I told the sentence to Cameron and he gave me a recipe which Imorgen might need.");
 		}
 		return res;
 	}
 
-	private void createReceipe() {
+	private void createRecipe() {
 		final SpeakerNPC npc = npcs.get("Cameron");
 
 		npc.add(ConversationStates.IDLE,
@@ -177,15 +176,15 @@ public class TheMissingBooks extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String startsentence = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(startsentence);
-
+					
 					final Sentence answer = sentence.parseAsMatchingSource();
 					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
 
 					if (answer.matchesFull(expected)) {
 						npc.say("Yes, you found it! I'm so relieved now that at least one of the seven books I lost is still in my library. Here, take this receives for the effort you had! I bet, Imorgen will be happy about it!");
-						final Item receipe = SingletonRepository.getEntityManager().getItem("receipe");
-						receipe.setBoundTo(player.getName());
-						player.equipOrPutOnGround(receipe);
+						final Item recipe = SingletonRepository.getEntityManager().getItem("recipe");
+						recipe.setBoundTo(player.getName());
+						player.equipOrPutOnGround(recipe);
 						player.addXP(1000);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();
@@ -207,7 +206,7 @@ public class TheMissingBooks extends AbstractQuest {
 				"The missing books",
 				"Cameron, the librarian of Constantines Villa, searches some of his precious books.",
 				false);
-		createReceipe();
+		createRecipe();
 	}
 	@Override
 	public String getName() {
