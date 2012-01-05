@@ -64,6 +64,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		        "He is my boss and the owner of this huge Villa, I haven't seen him for some time in here, seems like he is busy or on vacation...");
 				addReply("vacation", "Don't ask me where he is, I'm the last one who gets any information in here... And books are more important for me anyway.");
 				addOffer("Sorry, I have nothing to offer for you.");
+				addGoodbye("We read...ehm...see us again soon!");
 				
 			}
 		};
