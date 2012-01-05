@@ -16,13 +16,13 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 
 	/**
 	 * Calculate the modified value of base hp
-	 * @param hp
+	 * @param base_hp
 	 * @return modified base hp
 	 */
-	public int modifyHp(int hp) {
+	public int modifyBaseHp(int hp) {
 		double cumulatedModifier = 1d;
 		for (AttributeModifier m : this.getModifiers()) {
-			cumulatedModifier = cumulatedModifier * (1d + m.getHpModifier());
+			cumulatedModifier = cumulatedModifier * (1d + m.getBaseHpModifier());
 		}
 		return Double.valueOf(Math.ceil(cumulatedModifier * hp)).intValue();
 	}
@@ -54,14 +54,14 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 	}
 	
 	/**
-	 * Calculate the modified value of mana
+	 * Calculate the modified value of base mana
 	 * @param baseMana
-	 * @return modified mana
+	 * @return modified base mana
 	 */
-	public int modifyMana(int baseMana) {
+	public int modifyBaseMana(int baseMana) {
 		double cumulatedModifier = 1d;
 		for (AttributeModifier m : this.getModifiers()) {
-			cumulatedModifier = cumulatedModifier * (1d + m.getManaModifier());
+			cumulatedModifier = cumulatedModifier * (1d + m.getBaseManaModifier());
 		}
 		return Double.valueOf(Math.ceil(cumulatedModifier * baseMana)).intValue();
 	}

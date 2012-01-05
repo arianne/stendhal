@@ -75,7 +75,11 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private static final String ATTR_MODIFIED_BASE_HP = "modified_base_hp";
 	
+	private static final String ATTR_MODIFIED_HP = "modified_hp";
+	
 	private static final String ATTR_MODIFIED_BASE_MANA = "modified_base_mana";
+	
+	private static final String ATTR_MODIFIED_MANA = "modified_mana";
 
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
@@ -817,7 +821,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
-		return this.modifierHandler.modifyHp(base_hp);
+		return this.modifierHandler.modifyBaseHp(base_hp);
 	}
 	
 	/**
@@ -827,7 +831,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addBaseHpModifier(Date expire, double modifier) {
-		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
+		this.modifierHandler.addModifier(AttributeModifier.createBaseHpModifier(expire, modifier));
 	}
 
 	/**
@@ -871,7 +875,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return base mana
 	 */
 	public int getBaseMana() {
-		return this.modifierHandler.modifyMana(this.base_mana);
+		return this.modifierHandler.modifyBaseMana(this.base_mana);
 	}
 
 	/**
@@ -904,7 +908,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addBaseManaModifier(Date expire, double modifier) {
-		this.modifierHandler.addModifier(AttributeModifier.createManaModifier(expire, modifier));
+		this.modifierHandler.addModifier(AttributeModifier.createBaseManaModifier(expire, modifier));
 	}
 
 	/**

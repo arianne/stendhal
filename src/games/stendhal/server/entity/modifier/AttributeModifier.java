@@ -21,9 +21,9 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	
 	private final double defModifier;
 	
-	private final double hpModifier;
+	private final double baseHpModifier;
 	
-	private final double manaModifier;
+	private final double baseManaModifier;
 	
 	private final Pair<Nature, Double> susceptibilitiesModifier;
 	
@@ -64,22 +64,22 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * Create a AttributeModifier only affecting HP
 	 * 
 	 * @param expireTimestamp
-	 * @param hpModifier
+	 * @param baseHpModifier
 	 * @return an AttributeModifier only affecting HP
 	 */
-	public static AttributeModifier createHpModifier(Date expireTimestamp, double hpModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, hpModifier, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+	public static AttributeModifier createBaseHpModifier(Date expireTimestamp, double baseHpModifier) {
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, baseHpModifier, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
 	 * Create a AttributeModifier only affecting mana
 	 * 
 	 * @param expireTimestamp
-	 * @param manaModifier
+	 * @param baseManaModifier
 	 * @return an AttributeModifier only affecting mana
 	 */
-	public static AttributeModifier createManaModifier(Date expireTimestamp, double manaModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, manaModifier, new Pair<Nature, Double>(Nature.CUT, 0d));
+	public static AttributeModifier createBaseManaModifier(Date expireTimestamp, double baseManaModifier) {
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, baseManaModifier, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -111,8 +111,8 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 		this.speedModifier = speedModifier;
 		this.atkModifier = atkModifier;
 		this.defModifier = defModifier;
-		this.hpModifier = hpModifier;
-		this.manaModifier = manaModifier;
+		this.baseHpModifier = hpModifier;
+		this.baseManaModifier = manaModifier;
 		this.susceptibilitiesModifier = susceptibility;
 	}
 
@@ -170,19 +170,19 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	/**
 	 * @return the modifying factor for  base_hp if not this.isExpired() == true, 0 otherwise
 	 */
-	public double getHpModifier() {
+	public double getBaseHpModifier() {
 		if(!this.isExpired()) {
-			return hpModifier;
+			return baseHpModifier;
 		}
 		return 0d;
 	}
 
 	/**
-	 * @return the modifying factor for mana if not this.isExpired() == true, 0 otherwise
+	 * @return the modifying factor for base_mana if not this.isExpired() == true, 0 otherwise
 	 */
-	public double getManaModifier() {
+	public double getBaseManaModifier() {
 		if(!this.isExpired()) {
-			return manaModifier;
+			return baseManaModifier;
 		}
 		return 0d;
 	}
