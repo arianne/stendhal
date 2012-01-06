@@ -246,27 +246,20 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected List<TransferContent> onTransferREQ(final List<TransferContent> items) {
-		/*
-		 * A batch update has begun
-		 */
+		// A batch update has begun
 		inBatchUpdate = true;
 		logger.debug("Batch update started");
 
 		String oldZone = (currentZone != null) ? currentZone.getName() : null;
-		/*
-		 * Set the new area name
-		 */
-		if (!items.isEmpty()) {
-			final String name = items.get(0).name;
 
-			final int i = name.indexOf('.');
-
-			if (i == -1) {
-				logger.error("Old server, please upgrade");
-				return items;
+		// Set the new area name
+		for (TransferContent item : items) {
+			final String name = item.name;
+			final int i = name.indexOf(".0_floor");
+			if (i > -1) {
+				currentZone = new Zone(name.substring(0, i));
+				break;
 			}
-
-			currentZone = new Zone(name.substring(0, i));
 		}
 
 		// Is it just a reload for new coloring?
