@@ -13,11 +13,11 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.parser.ConvCtxForMatchingSource;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
-import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -178,10 +178,10 @@ public class TheMissingBooks extends AbstractQuest {
 					final String quote = quotes.get(startsentence);
 					
 					final Sentence answer = sentence.parseAsMatchingSource();
-					final Sentence expected = ConversationParser.parse(quote, new SimilarExprMatcher());
+					final Sentence expected = ConversationParser.parse(quote, new ConvCtxForMatchingSource());
 
 					if (answer.matchesFull(expected)) {
-						npc.say("Yes, you found it! I'm so relieved now that at least one of the seven books I lost is still in my library. Here, take this receives for the effort you had! I bet, Imorgen will be happy about it!");
+						npc.say("Yes, you found it! I'm so relieved now that at least one of the seven books I lost is still in my library. Here, take this recipe for the effort! I bet, Imorgen will be happy about it! Please don't lose it, it's an original one.");
 						final Item recipe = SingletonRepository.getEntityManager().getItem("recipe");
 						recipe.setBoundTo(player.getName());
 						player.equipOrPutOnGround(recipe);
