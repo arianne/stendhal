@@ -11,6 +11,10 @@
 - many more outside zones with lighting
 - producers npcs tell the player how long a task will take before starting it
 - scroll eraser which cleans empty scrolls as a rare drop from some wizards
+- outfit image improvements, more depth and differentiation of some duplicates
+
+*fixes*
+- allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
 
 0.98
 
