@@ -206,12 +206,25 @@ public class SuppliesForPhalkTest {
 		en.step(player, "bye");
 		assertEquals("Goodbye, comrade.", getReply(npc));
 		
-		// test that he does not reply to Phalk any more.
+		// test for subsequent reply to 'Phalk'
 		en.step(player, "hi");
 		assertEquals("Greetings. Have you come to enlist as a soldier?", getReply(npc));
 		npc.remove("text");
 		en.step(player, "phalk");
-		assertFalse(npc.has("text"));
+		assertEquals("Take the armor I gave you to Phalk. If you lost it the replacement price is 10000 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "no");
+		assertEquals("Okay, but Phalk will only accept golden armor from me, with his name on it.", getReply(npc));
+		en.step(player, "phalk");
+		assertEquals("Take the armor I gave you to Phalk. If you lost it the replacement price is 10000 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Sorry, you don't have enough money.", getReply(npc));
+		
+		PlayerTestHelper.equipWithStackableItem(player, "money", 10000);
+		en.step(player, "phalk");
+		assertEquals("Take the armor I gave you to Phalk. If you lost it the replacement price is 10000 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Ok, here you are.", getReply(npc));
+
 		en.step(player, "task");
 		assertEquals("Oh, thanks but no thanks. I don't need anything.", getReply(npc));
 		en.step(player, "bye");
@@ -262,12 +275,27 @@ public class SuppliesForPhalkTest {
 		en.step(player, "bye");
 		assertEquals("Bye, and please don't attack too many of my friends.", getReply(npc));
 		
-		// test that he does not reply to Phalk any more.
+		// test for subsequent reply to 'Phalk'
 	    en.step(player, "hi");
 		assertEquals("Welcome to the Kobold City of Wofol. I hope you come in peace.", getReply(npc));
 		npc.remove("text");
+		
 		en.step(player, "phalk");
-		assertFalse(npc.has("text"));
+		assertEquals("Take the cloak I gave you to Phalk. If you lost it the replacement price is 250 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "no");
+		assertEquals("Okay, but Phalk will only accept a dwarf cloak from me, with his name sewn in.", getReply(npc));
+		en.step(player, "phalk");
+		assertEquals("Take the cloak I gave you to Phalk. If you lost it the replacement price is 250 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Sorry, you don't have enough money.", getReply(npc));
+		
+		PlayerTestHelper.equipWithStackableItem(player, "money", 250);
+		en.step(player, "phalk");
+		assertEquals("Take the cloak I gave you to Phalk. If you lost it the replacement price is 250 money. Do you want to pay for a replacement for Phalk?", getReply(npc));
+		en.step(player, "yes");
+		assertEquals("Ok, here you are.", getReply(npc));
+
+
 		en.step(player, "bye");
 		assertEquals("Bye, and please don't attack too many of my friends.", getReply(npc));
     }		

@@ -243,6 +243,49 @@ import org.apache.log4j.Logger;
 				ConversationStates.ATTENDING, 
 				"Your type are all liars, aren't they? Come back when you have the payment.",
 				null);
+		
+		
+		// player got the cloak already but lost it?
+		npc.add(ConversationStates.ATTENDING, "Phalk",
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")) ,
+				ConversationStates.QUEST_ITEM_QUESTION, 
+				"Take the cloak I gave you to Phalk. If you lost it the replacement price is 250 money. Do you want to pay for a replacement for Phalk?",
+				null);
+		
+		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
+		actions2.add(new DropItemAction("money",250));
+		actions2.add(new ChatAction() {
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
+					cloak.setInfoString("Phalk");
+					cloak.setDescription("You see a brand new dwarf cloak, with the name 'Phalk' sewn into the label by Wrvil.");
+					// remember the description
+					cloak.setPersistent(true);
+					cloak.setBoundTo(player.getName());
+					player.equipOrPutOnGround(cloak);
+				}
+			});		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")),
+						new PlayerHasItemWithHimCondition("money",250)),
+				ConversationStates.ATTENDING, 
+				"Ok, here you are.",
+				new MultipleActions(actions2)
+		);
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak"),
+				new NotCondition(new PlayerHasItemWithHimCondition("money",250))),
+				ConversationStates.ATTENDING, 
+				"Sorry, you don't have enough money.",
+				null);
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.NO_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 1, "cloak")),
+				ConversationStates.ATTENDING, 
+				"Okay, but Phalk will only accept a dwarf cloak from me, with his name sewn in.",
+				null);
 
 	}
 	
@@ -282,7 +325,7 @@ import org.apache.log4j.Logger;
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
 				armor.setInfoString("Phalk");
-				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed inside.");
+				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed on it.");
 				// remember the description
 				armor.setPersistent(true);
 				armor.setBoundTo(player.getName());
@@ -306,6 +349,48 @@ import org.apache.log4j.Logger;
 				new NotCondition(new PlayerHasItemWithHimCondition("gold bar",20))),
 				ConversationStates.ATTENDING, 
 				"Army disciplinary actions are pretty serious, so don't lie to me.",
+				null);
+		
+		// player got the armor already but lost it?
+		npc.add(ConversationStates.ATTENDING, "Phalk",
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")) ,
+				ConversationStates.QUEST_ITEM_QUESTION, 
+				"Take the armor I gave you to Phalk. If you lost it the replacement price is 10000 money. Do you want to pay for a replacement for Phalk?",
+				null);
+		
+		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
+		actions2.add(new DropItemAction("money",10000));
+		actions2.add(new ChatAction() {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
+				armor.setInfoString("Phalk");
+				armor.setDescription("You see a shining golden armor, with the name 'Phalk' inscribed on it.");
+				// remember the description
+				armor.setPersistent(true);
+				armor.setBoundTo(player.getName());
+				player.equipOrPutOnGround(armor);
+			}
+		});		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
+				new AndCondition(
+						new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")),
+						new PlayerHasItemWithHimCondition("money",10000)),
+				ConversationStates.ATTENDING, 
+				"Ok, here you are.",
+				new MultipleActions(actions2)
+		);
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor"),
+				new NotCondition(new PlayerHasItemWithHimCondition("money",10000))),
+				ConversationStates.ATTENDING, 
+				"Sorry, you don't have enough money.",
+				null);
+		
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.NO_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "clothes"),new QuestInStateCondition(QUEST_SLOT, 2, "armor")),
+				ConversationStates.ATTENDING, 
+				"Okay, but Phalk will only accept golden armor from me, with his name on it.",
 				null);
 		
 	}
