@@ -455,15 +455,19 @@
 
 		<copy todir="${build_client_data}/data/sprites">
 			<fileset dir="${sprites}">
-				<exclude name="**/*.xcf" />
 				<exclude name="**/*.bz2" />
+				<exclude name="**/*.gz" />
+				<exclude name="**/*.xcf" />
+				<exclude name="**/*.xcf.*" />
 			</fileset>
 		</copy>
 
 		<copy todir="${build_client_data}/data/tileset">
 			<fileset dir="${tiled}/tileset">
-				<exclude name="**/*.xcf" />
 				<exclude name="**/*.bz2" />
+				<exclude name="**/*.gz" />
+				<exclude name="**/*.xcf" />
+				<exclude name="**/*.xcf.*" />
 			</fileset>
 		</copy>
 
@@ -475,6 +479,10 @@
 				<exclude name="panelwood006.jpg"/>
 				<exclude name="panelwood032.gif"/>
 				<exclude name="panelwood003.jpg"/>
+				<exclude name="**/*.bz2" />
+				<exclude name="**/*.gz" />
+				<exclude name="**/*.xcf" />
+				<exclude name="**/*.xcf.*" />
 			</fileset>
 		</copy>
 
