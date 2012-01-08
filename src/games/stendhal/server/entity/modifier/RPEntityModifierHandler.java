@@ -13,18 +13,31 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 	public RPEntityModifierHandler(RPEntity affectedEntity) {
 		super(affectedEntity);
 	}
+	
+	/**
+	 * Calculate the modified value of hp
+	 * @param hp
+	 * @return modified hp
+	 */
+	public int modifyHp(int hp) {
+		double cumulatedModifier = 1d;
+		for (AttributeModifier m : this.getModifiers()) {
+			cumulatedModifier = cumulatedModifier * (1d + m.getHpModifier());
+		}
+		return Double.valueOf(Math.ceil(cumulatedModifier * hp)).intValue();
+	}
 
 	/**
 	 * Calculate the modified value of base hp
 	 * @param base_hp
 	 * @return modified base hp
 	 */
-	public int modifyBaseHp(int hp) {
+	public int modifyBaseHp(int baseHp) {
 		double cumulatedModifier = 1d;
 		for (AttributeModifier m : this.getModifiers()) {
 			cumulatedModifier = cumulatedModifier * (1d + m.getBaseHpModifier());
 		}
-		return Double.valueOf(Math.ceil(cumulatedModifier * hp)).intValue();
+		return Double.valueOf(Math.ceil(cumulatedModifier * baseHp)).intValue();
 	}
 
 	/**
@@ -51,6 +64,19 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 			cumulatedModifier = cumulatedModifier * (1d + m.getAtkModifier());
 		}
 		return Math.min(Double.valueOf(Math.ceil(cumulatedModifier * atk)).intValue(), 597);
+	}
+	
+	/**
+	 * Calculate the modified value of mana
+	 * @param mana
+	 * @return modified mana
+	 */
+	public int modifyMana(int mana) {
+		double cumulatedModifier = 1d;
+		for (AttributeModifier m : this.getModifiers()) {
+			cumulatedModifier = cumulatedModifier * (1d + m.getManaModifier());
+		}
+		return Double.valueOf(Math.ceil(cumulatedModifier * mana)).intValue();
 	}
 	
 	/**

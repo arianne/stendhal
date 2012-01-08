@@ -213,12 +213,14 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("level", Type.SHORT);
 			entity.addAttribute("xp", Type.INT);
 			entity.addAttribute("mana", Type.INT);
+			entity.addAttribute(ATTR_MODIFIED_MANA, Type.INT, Definition.VOLATILE);
 			entity.addAttribute("base_mana", Type.INT);
-			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.SHORT, Definition.VOLATILE);
+			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.INT, Definition.VOLATILE);
 
 			entity.addAttribute("base_hp", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("hp", Type.SHORT);
+			entity.addAttribute(ATTR_MODIFIED_HP, Type.SHORT, Definition.VOLATILE);
 
 			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
 			entity.addAttribute(ATTR_MODIFIED_ATK, Type.SHORT, Definition.VOLATILE);
@@ -833,6 +835,16 @@ public abstract class RPEntity extends GuidedEntity {
 	public void addBaseHpModifier(Date expire, double modifier) {
 		this.modifierHandler.addModifier(AttributeModifier.createBaseHpModifier(expire, modifier));
 	}
+	
+	/**
+	 * Add a temporarily valid modifier to the hp
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addHpModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
+	}
 
 	/**
 	 * Set the HP. <br>
@@ -849,6 +861,7 @@ public abstract class RPEntity extends GuidedEntity {
 		} catch (IllegalArgumentException e) {
 			logger.error("Failed to set HP to " + hp + ". Entity was: " + this, e);
 		}
+		this.updateModifiedAttributes();
 	}
 
 	/**
@@ -857,7 +870,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The current HP.
 	 */
 	public int getHP() {
-		return hp;
+		return this.modifierHandler.modifyHp(hp);
 	}
 
 	/**
@@ -866,7 +879,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return mana
 	 */
 	public int getMana() {
-		return mana;
+		return this.modifierHandler.modifyMana(mana);
 	}
 
 	/**
@@ -887,6 +900,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setMana(final int newMana) {
 		mana = newMana;
 		put("mana", newMana);
+		this.updateModifiedAttributes();
 	}
 
 	/**
@@ -902,7 +916,17 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 	
 	/**
-	 * Add a temporarily valid modifier to the base hp
+	 * Add a temporarily valid modifier to the mana
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addManaModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createManaModifier(expire, modifier));
+	}
+	
+	/**
+	 * Add a temporarily valid modifier to the base mana
 	 * 
 	 * @param expire
 	 * @param modifier
@@ -2758,10 +2782,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return null;
 	}
 
+	@Override
 	public void updateModifiedAttributes() {
 		super.updateModifiedAttributes();
+		//hp
+		updateModifiedHp(getHP());
 		//base hp
 		updateModifiedBaseHP(getBaseHP());
+		//mana
+		updateModifiedMana(getMana());
 		//base mana
 		updateModifiedBaseMana(getBaseMana());
 		//def
@@ -2777,11 +2806,19 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	private void updateModifiedAtk(int modifiedAtk) {
 		this.put(ATTR_MODIFIED_ATK, modifiedAtk);
 	}
+	
+	private void updateModifiedHp(int modifiedHp) {
+		this.put(ATTR_MODIFIED_HP, modifiedHp);
+	}
 
 	private void updateModifiedBaseHP(int modifiedValue) {
 		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
 		//on change of the base hp the base hp may fall below the current hp
 		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
+	}
+	
+	private void updateModifiedMana(int modifiedMana) {
+		this.put(ATTR_MODIFIED_MANA, modifiedMana);
 	}
 	
 	private void updateModifiedBaseMana(int modifiedValue) {
