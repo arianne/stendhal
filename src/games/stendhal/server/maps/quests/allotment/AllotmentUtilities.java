@@ -150,7 +150,7 @@ public class AllotmentUtilities implements TurnListener {
 
 			if (tracker.getIdentifier().equals(ALLOTMENT_PREFIX + allotment)) {
 				tracker.setExpirationTime(System.currentTimeMillis() + RENTAL_TIME);
-				tracker.setPlayer(player);
+				tracker.setPlayerName(player);
 				
 				return true;
 			}
@@ -170,7 +170,7 @@ public class AllotmentUtilities implements TurnListener {
 	public GateKey getKey(final String zoneName, final String player) {
 		for (Entity e : getTrackers(zoneName)) {
 			ExpirationTracker tracker = (ExpirationTracker) e;
-			if (tracker.getPlayer().equals(player)) {
+			if (tracker.getPlayerName().equals(player)) {
 				
 				final GateKey key = (GateKey) SingletonRepository.getEntityManager().getItem("gate key");
 				key.setup(ALLOTMENT_PREFIX + tracker.getIdentifier(), tracker.getExpirationTime());
@@ -192,7 +192,7 @@ public class AllotmentUtilities implements TurnListener {
 	public long getTimeLeftPlayer(final String zoneName, final String player) {
 		for (Entity e : getTrackers(zoneName)) {
 			ExpirationTracker tracker = (ExpirationTracker) e;
-			if (tracker.getPlayer().equals(player)) {
+			if (tracker.getPlayerName().equals(player)) {
 				return tracker.getExpirationTime() - System.currentTimeMillis();
 			}
 		}
@@ -322,7 +322,7 @@ public class AllotmentUtilities implements TurnListener {
 										player.sendPrivateText("The rental time has expired. You will now be excorted out of the allotment. Thank you for your cooperation.");
 									}
 									
-									if (player.getName().equals(tracker.getPlayer())) {
+									if (player.getName().equals(tracker.getPlayerName())) {
 										renterFound = true;
 									}
 								}
@@ -331,7 +331,7 @@ public class AllotmentUtilities implements TurnListener {
 						
 						// tell the renter if they're not in the allotment
 						if (!renterFound) {
-							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayer());
+							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayerName());
 							
 							if (player != null) {
 								player.sendPrivateText("This is just to notify you that the allotment that you rented has expired.");
@@ -369,7 +369,7 @@ public class AllotmentUtilities implements TurnListener {
 										player.sendPrivateText("You have " + WARN_TIME + " minutes left before your rental time expires. You are kindly asked to finish up and exit in an orderly fashion. Kind regards, Semos Allotment Rentals Staff.");
 									}
 									
-									if (player.getName().equals(tracker.getPlayer())) {
+									if (player.getName().equals(tracker.getPlayerName())) {
 										renterFound = true;
 									}
 								}
@@ -378,7 +378,7 @@ public class AllotmentUtilities implements TurnListener {
 						
 						// tell the renter if they're not in the allotment
 						if (!renterFound) {
-							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayer());
+							Player player = SingletonRepository.getRuleProcessor().getPlayer(tracker.getPlayerName());
 							
 							if (player != null) {
 								player.sendPrivateText("This is just to notify you that the allotment that you rented is going to expire in " + WARN_TIME + "minutes.");
