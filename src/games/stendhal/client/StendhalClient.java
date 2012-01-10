@@ -16,11 +16,13 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -263,9 +265,9 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		// Is it just a reload for new coloring?
-		boolean isColorUpdate = currentZone.getName().equals(oldZone);
-		currentZone.setUpdate(isColorUpdate);
-		if (!isColorUpdate) {
+		boolean isZoneChange = (currentZone != null) && (!currentZone.getName().equals(oldZone));
+		currentZone.setUpdate(!isZoneChange);
+		if (isZoneChange) {
 			logger.debug("Preparing for zone change");
 			// Only true zone changes need to lock drawing
 			drawingSemaphore.lock();
@@ -299,8 +301,7 @@ public class StendhalClient extends ClientFramework {
 					item.ack = true;
 				}
 			} else {
-				logger.debug("Content " + item.name
-						+ " is NOT on cache. We have to transfer");
+				logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
 				item.ack = true;
 			}
 
@@ -338,18 +339,18 @@ public class StendhalClient extends ClientFramework {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	private void contentHandling(final String name, final InputStream in)
-			throws IOException, ClassNotFoundException {
+	private void contentHandling(final String name, final InputStream in) throws IOException, ClassNotFoundException {
 		final int i = name.indexOf('.');
 
-		if (i == -1) {
-			logger.error("Old server, please upgrade");
-			return;
+		if (name.endsWith(".jar")) {
+			in.close();
+			DataLoader.addURL(new File(cache.getFilename(name)).toURL());
+		} else {
+			if (i > -1) {
+				final String layer = name.substring(i + 1);
+				currentZone.addLayer(layer, in);
+			}
 		}
-
-		final String layer = name.substring(i + 1);
-
-		currentZone.addLayer(layer, in);
 	}
 
 	@Override

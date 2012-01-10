@@ -71,7 +71,7 @@ public class Cache {
 			logger.error("Cannot get item from cache because .. is not allowed in name " + item.name);
 			return null;
 		}
-		String filename = stendhal.getGameFolder() + "cache/" + item.name;
+		String filename = getFilename(item.name);
 		byte[] data = readFileContent(filename);
 		if (data == null) {
 			return null;
@@ -153,5 +153,19 @@ public class Cache {
 		} catch (IOException e) {
 			logger.error("store", e);
 		}
+	}
+
+	/**
+	 * gets the filename
+	 *
+	 * @param name name
+	 * @return filename
+	 */
+	public String getFilename(String name) {
+		if (name.indexOf("..") > -1) {
+			logger.error("Cannot access item in cache because .. is not allowed in name " + name);
+			return null;
+		}
+		return stendhal.getGameFolder() + "cache/" + name;
 	}
 }
