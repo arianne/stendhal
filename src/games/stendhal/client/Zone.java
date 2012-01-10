@@ -27,10 +27,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InputSerializer;
+
+import org.apache.log4j.Logger;
 
 /**
  * Layer data of a zone.

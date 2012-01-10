@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.imageviewer;
 
+import games.stendhal.client.sprite.DataLoader;
+
 import java.net.URL;
 
 import marauroa.common.game.RPEvent;
@@ -54,7 +56,7 @@ public final class RPEventImageViewer {
 			if (path.startsWith("http://")) {
 				url = new URL(path);
 			} else {
-				url = RPEventImageViewer.class.getResource(path);
+				url = DataLoader.getResource(path);
 			}
 			return url;
 		} catch (final Exception e) {

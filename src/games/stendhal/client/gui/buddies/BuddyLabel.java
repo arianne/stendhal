@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
+import games.stendhal.client.sprite.DataLoader;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,12 +35,12 @@ class BuddyLabel extends JLabel implements ListCellRenderer {
 	/**
 	 * The online icon image.
 	 */
-	private static ImageIcon onlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_online.png"));
+	private static ImageIcon onlineIcon = new ImageIcon(DataLoader.getResource("data/gui/buddy_online.png"));
 
 	/**
 	 * The offline icon image.
 	 */
-	private static ImageIcon offlineIcon = new ImageIcon(BuddyLabel.class.getClassLoader().getResource("data/gui/buddy_offline.png"));
+	private static ImageIcon offlineIcon = new ImageIcon(DataLoader.getResource("data/gui/buddy_offline.png"));
 
 	void setOnline(final boolean online) {
 		this.setEnabled(online);

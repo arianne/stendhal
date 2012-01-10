@@ -338,7 +338,7 @@ public class Postman {
 	public void ipban(String sender, String ip, String mask, String message) {
 		final RPAction ban = new RPAction();
 
-		ban.put("type", "ban");
+		ban.put("type", "ipban");
 		ban.put("sender", sender);
 		ban.put("ip", ip);
 		ban.put("mask", mask);

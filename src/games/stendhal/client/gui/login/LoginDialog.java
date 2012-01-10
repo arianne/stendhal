@@ -14,9 +14,10 @@ package games.stendhal.client.gui.login;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.ProgressBar;
+import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Component;
@@ -305,7 +306,7 @@ public class LoginDialog extends JDialog {
 	 * @return JButton
 	 */
 	private JButton createRemoveButton() {
-		final URL url = getClass().getClassLoader().getResource("data/gui/trash.png");
+		final URL url = DataLoader.getResource("data/gui/trash.png");
 		ImageIcon icon = new ImageIcon(url);
 		JButton button = new JButton(icon);
 		// Clear the margins that buttons normally add

@@ -20,6 +20,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.wt.ButtonCommandList;
+import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -94,7 +95,7 @@ public class SettingsPanel extends JPanel {
 	 *            The menu label, which also defines the image to look up, and the group of commands if relevant.
 	 */
 	public void add(final String label) {
-		ImageIcon icon = new ImageIcon(SettingsPanel.class.getClassLoader().getResource("data/gui/"+label+".png"));
+		ImageIcon icon = new ImageIcon(DataLoader.getResource("data/gui/"+label+".png"));
 		final JButton button = new JButton(icon);
 		button.setMargin(new Insets(BUTTON_PADDING, BUTTON_PADDING, BUTTON_PADDING, BUTTON_PADDING));
 		/*

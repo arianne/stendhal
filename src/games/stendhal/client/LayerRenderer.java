@@ -15,9 +15,9 @@ package games.stendhal.client;
 //
 //
 
-import java.awt.Graphics;
-
 import games.stendhal.client.sprite.Tileset;
+
+import java.awt.Graphics;
 
 /**
  * This is a helper base class to render a layer.

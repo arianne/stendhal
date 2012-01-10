@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.sprite.DataLoader;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -115,8 +117,7 @@ public class CreditsDialog extends JDialog {
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {
-		final URL url = this.getClass().getClassLoader().getResource(
-				"games/stendhal/client/gui/credits.txt");
+		final URL url = DataLoader.getResource("games/stendhal/client/gui/credits.txt");
 		final List<String> res = new LinkedList<String>();
 		try {
 			final BufferedReader br = new BufferedReader(new InputStreamReader(

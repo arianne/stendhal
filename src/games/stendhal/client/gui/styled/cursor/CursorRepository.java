@@ -12,6 +12,8 @@
 
 package games.stendhal.client.gui.styled.cursor;
 
+import games.stendhal.client.sprite.DataLoader;
+
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
@@ -48,7 +50,7 @@ public class CursorRepository {
 		String imageName = "data/sprites/cursor/" + stendhalCursor.getImageName();
 
 		// load image file
-		URL url = this.getClass().getClassLoader().getResource(imageName);
+		URL url = DataLoader.getResource(imageName);
 		if (url == null) {
 			logger.error("Can't find image: " + imageName, new Throwable());
 			cursorMap.put(stendhalCursor, Cursor.getDefaultCursor());

@@ -13,6 +13,7 @@ package games.stendhal.client.gui.map;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.Font;
 
@@ -107,7 +108,7 @@ public class InformationPanel extends JComponent {
 	 */
 	private static class DangerIndicator extends JComponent {
 		/** Indicator icon image. */
-		private static final ImageIcon skullIcon = new ImageIcon(DangerIndicator.class.getClassLoader().getResource("data/gui/danger.png"));
+		private static final ImageIcon skullIcon = new ImageIcon(DataLoader.getResource("data/gui/danger.png"));
 
 		/** The indicator icons */
 		private final JComponent[] indicators;

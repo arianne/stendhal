@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.SpriteTileset;
@@ -225,7 +226,7 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		final URL url = TileStore.class.getClassLoader().getResource(baseFolder + "tileset/animation.seq");
+		final URL url = DataLoader.getResource(baseFolder + "tileset/animation.seq");
 
 		if (url != null) {
 			try {
@@ -254,7 +255,7 @@ public class TileStore implements Tileset {
 	private static String getResourceBase() {
 		String path = "data/";
 
-		if (TileStore.class.getClassLoader().getResource("tiled/tileset/README") != null) {
+		if (DataLoader.getResource("tiled/tileset/README") != null) {
 			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
 			path = "tiled/";
 		}

@@ -16,6 +16,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.gui.ComponentPaintCache;
 import games.stendhal.client.gui.ComponentPaintCache.Cacheable;
 import games.stendhal.client.gui.ScrolledViewport;
+import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -157,7 +158,7 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		}
 		String itemName = item.get("class") + "/" + itemSubclass;
 		String imagePath = "/data/sprites/items/" + itemName + ".png";
-		URL url = ItemListImageViewerEvent.class.getResource(imagePath);
+		URL url = DataLoader.getResource(imagePath);
 		return url;
 	}
 	

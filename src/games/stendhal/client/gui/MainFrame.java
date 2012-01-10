@@ -13,6 +13,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
 
@@ -51,7 +52,7 @@ public class MainFrame {
 	}
 
 	private void setIcon() {
-		final URL url = this.getClass().getClassLoader().getResource(
+		final URL url = DataLoader.getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
 		getMainFrame().setIconImage(new ImageIcon(url).getImage());
 	}

@@ -16,6 +16,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Version;
@@ -92,7 +93,7 @@ public class StendhalFirstScreen extends JFrame {
 			try {
 				// Call via reflection to keep supporting java 1.5
 				Method m = ge.getClass().getMethod("registerFont", Font.class);
-				m.invoke(ge, Font.createFont(Font.TRUETYPE_FONT, StendhalFirstScreen.class.getClassLoader().getResourceAsStream(FONT)));
+				m.invoke(ge, Font.createFont(Font.TRUETYPE_FONT, DataLoader.getResourceAsStream(FONT)));
 			} catch (IOException e) {
 				logger.error("Error loading custom font", e);
 			} catch (FontFormatException e) {
@@ -132,8 +133,7 @@ public class StendhalFirstScreen extends JFrame {
 		this.client = client;
 		StendhalFirstScreen.instance = this;
 
-		final URL url = this.getClass().getClassLoader().getResource(
-				ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
+		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
 		final ImageIcon imageIcon = new ImageIcon(url);
 		background = imageIcon.getImage();
 
@@ -291,8 +291,7 @@ public class StendhalFirstScreen extends JFrame {
 				+ " - a multiplayer online game using Arianne");
 		this.setResizable(false);
 
-		final URL url = this.getClass().getClassLoader().getResource(
-				ClientGameConfiguration.get("GAME_ICON"));
+		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}

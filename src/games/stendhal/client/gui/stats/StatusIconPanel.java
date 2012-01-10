@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -25,9 +26,9 @@ public class StatusIconPanel extends JComponent {
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = -6263002049434805442L;
-	private static final ImageIcon eatingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/eat.png"));
-	private static final ImageIcon chokingIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/choking.png"));
-	private static final ImageIcon poisonIcon = new ImageIcon(StatusIconPanel.class.getClassLoader().getResource("data/sprites/ideas/poisoned.png"));
+	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
+	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
+	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/poisoned.png"));
 	
 	private final static Sprite awaySprite, grumpySprite;
 	static {

@@ -12,6 +12,7 @@
 package games.stendhal.client.gui.j2d;
 
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 
@@ -66,7 +67,7 @@ public class AchievementBoxFactory {
 		BufferedImage categoryImage = gc.createCompatibleImage(32, 32, Transparency.BITMASK);
 		String imageName = ACHIEVEMENT_IMAGE_FOLDER + category.toLowerCase(Locale.ENGLISH) + ".png";
 		try {
-			categoryImage = ImageIO.read(AchievementBoxFactory.class.getClassLoader().getResourceAsStream(imageName));
+			categoryImage = ImageIO.read(DataLoader.getResourceAsStream(imageName));
 		} catch (IOException e) {
 			Logger.getLogger(AchievementBoxFactory.class).error("Error loading achievement box image: " + imageName, e);
 		} catch (RuntimeException e) {

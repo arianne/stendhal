@@ -265,7 +265,7 @@ public class SpriteStore {
 	 * @return if sprite exists in store false otherwise
 	 */
 	public boolean existsSprite(final String ref) {
-		final URL url = this.getClass().getClassLoader().getResource(ref);
+		final URL url = DataLoader.getResource(ref);
 		return url != null;
 	}
 
@@ -286,7 +286,7 @@ public class SpriteStore {
 				logger.info("Loading sprite from a URL...");
 				url = new URL(ref);
 			} else {
-				url = this.getClass().getClassLoader().getResource(ref);
+				url = DataLoader.getResource(ref);
 			}
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);

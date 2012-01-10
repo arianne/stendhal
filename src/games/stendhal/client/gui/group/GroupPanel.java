@@ -20,6 +20,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.common.NotificationType;
 
 import java.awt.Component;
@@ -66,11 +67,11 @@ class GroupPanel {
 	/** Tooptip for inviting members to an existing group */
 	private static final String INVITE_TOOLTIP = "Invite a new member";
 	/** Image used for the group message button */
-	private static final ImageIcon MESSAGE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/chat.png"));
+	private static final ImageIcon MESSAGE_ICON = new ImageIcon(DataLoader.getResource("data/gui/chat.png"));
 	/** Image used for the invite button */
-	private static final ImageIcon INVITE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/buddy_online.png"));
+	private static final ImageIcon INVITE_ICON = new ImageIcon(DataLoader.getResource("data/gui/buddy_online.png"));
 	/** Image used for the leave group button */
-	private static final ImageIcon LEAVE_ICON = new ImageIcon(GroupPanel.class.getClassLoader().getResource("data/gui/buddy_offline.png"));
+	private static final ImageIcon LEAVE_ICON = new ImageIcon(DataLoader.getResource("data/gui/buddy_offline.png"));
 	
 	/** The main containing component. */
 	private final JComponent pane;

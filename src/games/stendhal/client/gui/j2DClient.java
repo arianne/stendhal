@@ -45,6 +45,7 @@ import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.SoundSystemFacade;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
+import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
@@ -1224,8 +1225,8 @@ public class j2DClient implements UserInterface {
 	public SoundSystemFacade getSoundSystemFacade() {
 		if (soundSystemFacade == null) {
 			try {
-				if ((j2DClient.class.getClassLoader().getResource("data/sound/harp-1.ogg") != null)
-						|| (j2DClient.class.getClassLoader().getResource("data/music/the_old_tavern.ogg") != null)) {
+				if ((DataLoader.getResource("data/sound/harp-1.ogg") != null)
+						|| (DataLoader.getResource("data/music/the_old_tavern.ogg") != null)) {
 					soundSystemFacade = new games.stendhal.client.sound.sound.SoundSystemFacadeImpl();
 				} else {
 					soundSystemFacade = new NoSoundFacade();
