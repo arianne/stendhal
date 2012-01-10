@@ -542,6 +542,7 @@ public abstract class Entity extends RPObject {
 			if (has("zone")) {
 				ret += " in zone " + get("zone");
 			}
+			logger.error("Missing description for " + this);
 			return ret;
 		}
 	}
