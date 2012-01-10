@@ -13,10 +13,10 @@
 package games.stendhal.client;
 
 import games.stendhal.common.CRC;
+import games.stendhal.common.IO;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,7 +72,7 @@ public class Cache {
 			return null;
 		}
 		String filename = getFilename(item.name);
-		byte[] data = readFileContent(filename);
+		byte[] data = IO.readFileContent(filename);
 		if (data == null) {
 			return null;
 		}
@@ -98,37 +98,7 @@ public class Cache {
 		return null;
 	}
 
-	/**
-	 * reads a file into a byte array
-	 *
-	 * @param filename name of file
-	 * @return byte-array or <code>null</code> in case the file cannot be read
-	 */
-	private static byte[] readFileContent(String filename) {
-		File file = new File(filename);
-		if (!file.exists()) {
-			return null;
-		}
-		int offset = 0;
-		int numRead = 0;
-		int size = (int) file.length();
-		byte[] res = new byte[size];
 
-		// we need that loop because java does not garantee, 
-		// that read(...) returns the complete remaining stream at once
-		try {
-			InputStream is = new FileInputStream(file);
-			while ((offset < size) && numRead > -1) {
-				numRead = is.read(res, offset, size - offset);
-				offset += numRead;
-			}
-			is.close();
-		} catch (IOException e) {
-			logger.warn(e, e);
-			return null;
-		}
-		return res;
-	}
 
 	/**
 	 * Stores an item in cache.
