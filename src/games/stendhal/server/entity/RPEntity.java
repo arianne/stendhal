@@ -212,23 +212,23 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.isA("active_entity");
 			entity.addAttribute("name", Type.STRING);
 			entity.addAttribute(ATTR_TITLE, Type.STRING);
-			entity.addAttribute("level", Type.SHORT);
+			entity.addAttribute("level", Type.SHORT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_LEVEL, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("xp", Type.INT);
-			entity.addAttribute("mana", Type.INT);
+			entity.addAttribute("mana", Type.INT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_MANA, Type.INT, Definition.VOLATILE);
-			entity.addAttribute("base_mana", Type.INT);
+			entity.addAttribute("base_mana", Type.INT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.INT, Definition.VOLATILE);
 
-			entity.addAttribute("base_hp", Type.SHORT);
+			entity.addAttribute("base_hp", Type.SHORT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, Definition.VOLATILE);
-			entity.addAttribute("hp", Type.SHORT);
+			entity.addAttribute("hp", Type.SHORT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_HP, Type.SHORT, Definition.VOLATILE);
 
-			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute("atk", Type.SHORT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_ATK, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
-			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
