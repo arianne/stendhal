@@ -91,5 +91,18 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 		}
 		return Double.valueOf(Math.ceil(cumulatedModifier * baseMana)).intValue();
 	}
+	
+	/**
+	 * Calculate the modified value of level
+	 * @param baseMana
+	 * @return modified level
+	 */
+	public int modifyLevel(int level) {
+		double cumulatedModifier = 1d;
+		for (AttributeModifier m : this.getModifiers()) {
+			cumulatedModifier = cumulatedModifier * (1d + m.getLevelModifier());
+		}
+		return Double.valueOf(Math.ceil(cumulatedModifier * level)).intValue();
+	}
 
 }

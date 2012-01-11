@@ -80,6 +80,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private static final String ATTR_MODIFIED_BASE_MANA = "modified_base_mana";
 	
 	private static final String ATTR_MODIFIED_MANA = "modified_mana";
+	
+	private static final String ATTR_MODIFIED_LEVEL = "modified_level";
 
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
@@ -211,6 +213,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("name", Type.STRING);
 			entity.addAttribute(ATTR_TITLE, Type.STRING);
 			entity.addAttribute("level", Type.SHORT);
+			entity.addAttribute(ATTR_MODIFIED_LEVEL, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("xp", Type.INT);
 			entity.addAttribute("mana", Type.INT);
 			entity.addAttribute(ATTR_MODIFIED_MANA, Type.INT, Definition.VOLATILE);
@@ -662,10 +665,21 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setLevel(final int level) {
 		this.level = level;
 		put("level", level);
+		this.updateModifiedAttributes();
 	}
 
 	public int getLevel() {
-		return level;
+		return this.modifierHandler.modifyLevel(level);
+	}
+	
+	/**
+	 * Add a temporary level modifier to this entity
+	 * 
+	 * @param expire
+	 * @param modifier
+	 */
+	public void addLevelModifier(Date expire, double modifier) {
+		this.modifierHandler.addModifier(AttributeModifier.createLevelModifier(expire, modifier));
 	}
 
 	public void setAtk(final int atk) {
@@ -855,13 +869,19 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            The HP to set.
 	 */
 	public void setHP(final int hp) {
+		setHpInternal(hp, true);
+	}
+
+	private void setHpInternal(final int hp, final boolean notify) {
 		this.hp = hp;
 		try {
 			put("hp", hp);
 		} catch (IllegalArgumentException e) {
 			logger.error("Failed to set HP to " + hp + ". Entity was: " + this, e);
 		}
-		this.updateModifiedAttributes();
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
 	}
 
 	/**
@@ -898,9 +918,15 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            new amount of mana
 	 */
 	public void setMana(final int newMana) {
+		setManaInternal(newMana, true);
+	}
+
+	private void setManaInternal(final int newMana, boolean notify) {
 		mana = newMana;
 		put("mana", newMana);
-		this.updateModifiedAttributes();
+		if(notify) {
+			this.updateModifiedAttributes();
+		}
 	}
 
 	/**
@@ -2785,10 +2811,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	@Override
 	public void updateModifiedAttributes() {
 		super.updateModifiedAttributes();
-		//hp
-		updateModifiedHp(getHP());
 		//base hp
 		updateModifiedBaseHP(getBaseHP());
+		//hp
+		updateModifiedHp(getHP());
 		//mana
 		updateModifiedMana(getMana());
 		//base mana
@@ -2797,6 +2823,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		updateModifiedDef(getDef());
 		//atk
 		updateModifiedAtk(getAtk());
+		//level
+		updateModifiedLevel(getLevel());
 	}
 
 	private void updateModifiedDef(int modifiedDef) {
@@ -2814,7 +2842,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	private void updateModifiedBaseHP(int modifiedValue) {
 		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
 		//on change of the base hp the base hp may fall below the current hp
-		this.setHP(Math.min(this.getHP(), this.getBaseHP()));
+		this.setHpInternal(Math.min(this.getHP(), this.getBaseHP()), false);
 	}
 	
 	private void updateModifiedMana(int modifiedMana) {
@@ -2824,6 +2852,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	private void updateModifiedBaseMana(int modifiedValue) {
 		this.put(ATTR_MODIFIED_BASE_MANA, modifiedValue);
 		//on change of the base mana the base hp may fall below the current mana
-		this.setMana(Math.min(this.getMana(), this.getBaseMana()));
+		this.setManaInternal(Math.min(this.getMana(), this.getBaseMana()), false);
+	}
+	
+	private void updateModifiedLevel(int modifiedLevel) {
+		this.put(ATTR_MODIFIED_LEVEL, modifiedLevel);
 	}
 }

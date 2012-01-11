@@ -29,6 +29,8 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	
 	private final double baseManaModifier;
 	
+	private final double levelModifier;
+	
 	private final Pair<Nature, Double> susceptibilitiesModifier;
 	
 	/**
@@ -39,7 +41,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting speed
 	 */
 	public static AttributeModifier createSpeedModifier(Date expireTimestamp, double speedModifier) {
-		return new AttributeModifier(expireTimestamp, speedModifier, 0d, 0d, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, speedModifier, 0d, 0d, 0d, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -50,7 +52,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting ATK
 	 */
 	public static AttributeModifier createAtkModifier(Date expireTimestamp, double atkModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, atkModifier, 0d, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, atkModifier, 0d, 0d, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -61,7 +63,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting DEF
 	 */
 	public static AttributeModifier createDefModifier(Date expireTimestamp, double defModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, defModifier, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, 0d, defModifier, 0d, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -72,7 +74,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting HP
 	 */
 	public static AttributeModifier createHpModifier(Date expireTimestamp, double hpModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, hpModifier, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, hpModifier, 0d, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -83,7 +85,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting base hp
 	 */
 	public static AttributeModifier createBaseHpModifier(Date expireTimestamp, double baseHpModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, baseHpModifier, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, baseHpModifier, 0d, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -94,7 +96,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting mana
 	 */
 	public static AttributeModifier createManaModifier(Date expireTimestamp, double manaModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, manaModifier, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, manaModifier, 0d, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -105,7 +107,18 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting base mana
 	 */
 	public static AttributeModifier createBaseManaModifier(Date expireTimestamp, double baseManaModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, 0d, baseManaModifier, new Pair<Nature, Double>(Nature.CUT, 0d));
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, 0d, baseManaModifier, 0d, new Pair<Nature, Double>(Nature.CUT, 0d));
+	}
+	
+	/**
+	 * Create a AttributeModifier only affecting level
+	 * 
+	 * @param expireTimestamp
+	 * @param levelModifier
+	 * @return an AttributeModifier only affecting level
+	 */
+	public static AttributeModifier createLevelModifier(Date expireTimestamp, double levelModifier) {
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, 0d, 0d, levelModifier, new Pair<Nature, Double>(Nature.CUT, 0d));
 	}
 	
 	/**
@@ -116,7 +129,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 * @return an AttributeModifier only affecting mana
 	 */
 	public static AttributeModifier createSusceptibilityModifier(Date expireTimestamp, Pair<Nature, Double> susceptibilityModifier) {
-		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, 0d, 0d, susceptibilityModifier);
+		return new AttributeModifier(expireTimestamp, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, susceptibilityModifier);
 	}
 	
 	/**
@@ -132,7 +145,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	 */
 	private AttributeModifier(Date expireTimestamp, double speedModifier,
 			double atkModifier, double defModifier, double hpModifier, double baseHpModifier,
-			double manaModifier, double baseManaModifier, Pair<Nature, Double> susceptibility) {
+			double manaModifier, double baseManaModifier, double levelModifier, Pair<Nature, Double> susceptibility) {
 		this.expireTimestamp = expireTimestamp;
 		this.speedModifier = speedModifier;
 		this.atkModifier = atkModifier;
@@ -141,6 +154,7 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 		this.baseHpModifier = baseHpModifier;
 		this.manaModifier = manaModifier;
 		this.baseManaModifier = baseManaModifier;
+		this.levelModifier = levelModifier;
 		this.susceptibilitiesModifier = susceptibility;
 	}
 
@@ -253,6 +267,16 @@ public class AttributeModifier implements Comparable<AttributeModifier> {
 	public double getManaModifier() {
 		if(!this.isExpired()) {
 			return manaModifier;
+		}
+		return 0d;
+	}
+	
+	/**
+	 * @return the levelModifier if not this.isExpired() == true, 0 otherwise
+	 */
+	public double getLevelModifier() {
+		if(!this.isExpired()) {
+			return levelModifier;
 		}
 		return 0d;
 	}
