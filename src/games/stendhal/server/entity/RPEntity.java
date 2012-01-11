@@ -1008,7 +1008,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected void updateLevel() {
 		final int newLevel = Level.getLevel(getXP());
-		final int oldLevel = getLevel();
+		final int oldLevel = getInt("level");
 		final int levels = newLevel - oldLevel;
 
 		// In case we level up several levels at a single time.
