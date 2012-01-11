@@ -94,26 +94,22 @@ public class StatsPanelController {
 	 */
 	public void registerListeners(PropertyChangeSupport pcs) {
 		PropertyChangeListener listener = new HPChangeListener(); 
-		pcs.addPropertyChangeListener("hp", listener);
-		// use both attributes to keep compatibility with older servers
-		pcs.addPropertyChangeListener("base_hp", listener);
-		pcs.addPropertyChangeListener("modified_base_hp", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "base_hp", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "hp", listener);
 		
 		listener = new ATKChangeListener();
-		pcs.addPropertyChangeListener("atk", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "atl", listener);
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
-		// use both attributes to keep compatibility with older servers
-		pcs.addPropertyChangeListener("def", listener);
-		pcs.addPropertyChangeListener("modified_def", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "def", listener);
 		pcs.addPropertyChangeListener("def_xp", listener);
 		
 		listener = new XPChangeListener();
 		pcs.addPropertyChangeListener("xp", listener);
 		
 		listener = new LevelChangeListener();
-		pcs.addPropertyChangeListener("level", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "level", listener);
 		
 		listener = new WeaponChangeListener();
 		pcs.addPropertyChangeListener("atk_item", listener);
@@ -143,8 +139,13 @@ public class StatsPanelController {
 		pcs.addPropertyChangeListener("karma", listener);
 		
 		listener = new ManaChangeListener();
-		pcs.addPropertyChangeListener("mana", listener);
-		pcs.addPropertyChangeListener("base_mana", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "base_mana", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "mana", listener);
+	}
+	
+	private void addPropertyChangeListenerWithModifiedSupport(PropertyChangeSupport pcs, String attribute, PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(attribute, listener);
+		pcs.addPropertyChangeListener("modified_"+attribute, listener);
 	}
 	
 	/**
@@ -213,10 +214,10 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().equals("hp")) {
-				hp = Integer.parseInt((String) event.getNewValue());
-			} else {
+			if (event.getPropertyName().endsWith("base_hp")) {
 				maxhp = Integer.parseInt((String) event.getNewValue());
+			} else {
+				hp = Integer.parseInt((String) event.getNewValue());
 			}
 			updateHP();
 		}
@@ -298,10 +299,10 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if ("atk".equals(event.getPropertyName())) {
-				atk = Integer.parseInt((String) event.getNewValue());
-			} else {
+			if ("atk_xp".equals(event.getPropertyName())) {
 				atkxp = Integer.parseInt((String) event.getNewValue());
+			} else {
+				atk = Integer.parseInt((String) event.getNewValue());
 			}
 			updateAtk();
 		}
@@ -316,10 +317,10 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().equals("modified_def") || event.getPropertyName().equals("def")) {
-				def =  Integer.parseInt((String) event.getNewValue());
-			} else {
+			if (event.getPropertyName().equals("def_xp")) {
 				defxp = Integer.parseInt((String) event.getNewValue());
+			} else {
+				def =  Integer.parseInt((String) event.getNewValue());
 			}
 			updateDef();
 		}
@@ -483,12 +484,12 @@ public class StatsPanelController {
 			}
 		
 			try {
-				if (event.getPropertyName().equals("mana")) {
-					mana = Integer.parseInt((String) event.getNewValue());
-					panel.setMana(mana);
-				} else {
+				if (event.getPropertyName().endsWith("base_mana")) {
 					base_mana = Integer.parseInt((String) event.getNewValue());
 					panel.setBaseMana(base_mana);
+				} else {
+					mana = Integer.parseInt((String) event.getNewValue());
+					panel.setMana(mana);
 				}
 			} catch (NumberFormatException e) {
 				Logger.getLogger(StatsPanelController.class).error("Invalid mana value", e);
