@@ -25,11 +25,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.impl.attack.HandToHand;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
@@ -281,6 +279,7 @@ public class HandToHandTest {
 		assertFalse("in same zone, on same spot and dead", hth.hasValidTarget(creature));
 
 		creature.setTarget(victim);
+		victim.setBaseHP(10);
 		victim.setHP(1);
 		assertTrue("in same zone, on same spot", hth.hasValidTarget(creature));
 

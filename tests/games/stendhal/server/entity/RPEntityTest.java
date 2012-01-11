@@ -375,7 +375,7 @@ public class RPEntityTest {
 		MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		final RPEntity attacker = new RPEntity() {
-
+			
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
@@ -418,6 +418,7 @@ public class RPEntityTest {
 		zone.add(defender);
 
 		attacker.setTarget(defender);
+		defender.setBaseHP(100);
 		defender.setHP(100);
 
 		assertTrue(zone.has(defender.getID()));
@@ -474,6 +475,7 @@ public class RPEntityTest {
 
 			}
 		};
+		attacker.updateModifiedAttributes();
 
 		final RPEntity defender = new RPEntity() {
 
@@ -494,11 +496,13 @@ public class RPEntityTest {
 
 			}
 		};
+		defender.updateModifiedAttributes();
 
 		zone.add(attacker);
 		zone.add(defender);
 
 		attacker.setTarget(defender);
+		defender.setBaseHP(100);
 		defender.setHP(100);
 
 		assertTrue(zone.has(defender.getID()));
@@ -531,12 +535,14 @@ public class RPEntityTest {
 	public void testIsAttacking() {
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		final RPEntity attacker = new MockRPentity();
+		attacker.updateModifiedAttributes();
 		assertFalse("attacktarget = null", attacker.isAttacking());
 		final RPEntity defender = new MockRPentity();
-
+		defender.updateModifiedAttributes();
 		zone.add(attacker);
 		zone.add(defender);
 		attacker.setTarget(defender);
+		defender.setBaseHP(1);
 		defender.setHP(1);
 		assertTrue(attacker.isAttacking());
 		defender.setHP(0);

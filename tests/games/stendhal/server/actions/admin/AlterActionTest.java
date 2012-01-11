@@ -234,7 +234,7 @@ public class AlterActionTest {
 		assertEquals(100, player.getHP());
 		action.perform(player, rpAction);
 		assertEquals("reset to base", 10, player.getHP());
-		
+		player.setBaseHP(100);
 		player.setHP(100);
 		rpAction.put("value", "-10");
 		assertEquals(100, player.getHP());
@@ -277,7 +277,7 @@ public class AlterActionTest {
 		assertEquals(100, playerAway.getHP());
 		action.perform(player, rpAction);
 		assertEquals("reset to base", 10, playerAway.getHP());
-		
+		playerAway.setBaseHP(100);
 		playerAway.setHP(100);
 		rpAction.put("value", "-10");
 		assertEquals(100, playerAway.getHP());
