@@ -98,7 +98,7 @@ public class StatsPanelController {
 		addPropertyChangeListenerWithModifiedSupport(pcs, "hp", listener);
 		
 		listener = new ATKChangeListener();
-		addPropertyChangeListenerWithModifiedSupport(pcs, "atl", listener);
+		addPropertyChangeListenerWithModifiedSupport(pcs, "atk", listener);
 		pcs.addPropertyChangeListener("atk_xp", listener);
 		
 		listener = new DEFChangeListener();
