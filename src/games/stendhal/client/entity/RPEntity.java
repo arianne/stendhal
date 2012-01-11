@@ -971,6 +971,18 @@ public abstract class RPEntity extends ActiveEntity {
 
 				hpRatioChange = true;
 			}
+			if (changes.has("modified_hp")) {
+				final int newHP = changes.getInt("modified_hp");
+				final int change = newHP - hp;
+
+				hp = newHP;
+
+				if (object.has("hp") && (change != 0)) {
+					onHPChange(change);
+				}
+
+				hpRatioChange = true;
+			}
 
 			/*
 			 * HP ratio
@@ -1026,6 +1038,9 @@ public abstract class RPEntity extends ActiveEntity {
 		if (changes.has("atk")) {
 			atk = changes.getInt("atk");
 		}
+		if (changes.has("modified_atk")) {
+			atk = changes.getInt("modified_atk");
+		}
 
 		// handle def
 		// basic def is overriden by modified def, as it has the last word
@@ -1039,6 +1054,9 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (changes.has("level")) {
 			level = changes.getInt("level");
+		}
+		if (changes.has("modified_level")) {
+			level = changes.getInt("modified_level");
 		}
 
 		if (changes.has("atk_xp")) {
@@ -1060,9 +1078,15 @@ public abstract class RPEntity extends ActiveEntity {
 		if (changes.has("mana")) {
 			mana = changes.getInt("mana");
 		}
+		if (changes.has("modified_mana")) {
+			mana = changes.getInt("modified_mana");
+		}
 
 		if (changes.has("base_mana")) {
 			base_mana = changes.getInt("base_mana");
+		}
+		if (changes.has("modified_base_mana")) {
+			base_mana = changes.getInt("modified_base_mana");
 		}
 
 		if (changes.has("ghostmode")) {
