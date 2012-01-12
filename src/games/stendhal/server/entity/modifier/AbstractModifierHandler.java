@@ -13,14 +13,12 @@ import java.util.TreeSet;
  * 
  * @author madmetzger
  */
-public abstract class AbstractModifierHandler {
+public abstract class AbstractModifierHandler implements TurnListener {
 	
 	private final ModifiedAttributeUpdater affectedEntity;
 	
 	private Collection<AttributeModifier> modifiers;
 
-	private TurnListener listener;
-	
 	/**
 	 * Create a new AbstractModifierHandler
 	 */
@@ -36,12 +34,10 @@ public abstract class AbstractModifierHandler {
 	}
 
 	private void updateNextCleanUpRun() {
-		if(this.listener == null) {
-			this.listener = new ModifierCleanUpTurnListener(this);
-		}
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 		int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
 		if(seconds != 0) {
-			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, listener);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, this);
 		}
 	}
 
@@ -80,6 +76,10 @@ public abstract class AbstractModifierHandler {
 			next = min.getMillisecondsTillExpire();
 		}
 		return next / 1000;
+	}
+	
+	public void onTurnReached(int currentTurn) {
+		this.removeExpiredModifiers();
 	}
 
 }
