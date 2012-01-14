@@ -3,6 +3,7 @@ package games.stendhal.server.entity.modifier;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 
+import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import java.util.TreeSet;
  */
 public abstract class AbstractModifierHandler implements TurnListener {
 	
-	private final ModifiedAttributeUpdater affectedEntity;
+	private final WeakReference<ModifiedAttributeUpdater> affectedEntity;
 	
 	private Collection<AttributeModifier> modifiers;
 
@@ -24,13 +25,13 @@ public abstract class AbstractModifierHandler implements TurnListener {
 	 */
 	protected AbstractModifierHandler(ModifiedAttributeUpdater affectedEntity) {
 		this.modifiers = new TreeSet<AttributeModifier>();
-		this.affectedEntity = affectedEntity;
+		this.affectedEntity = new WeakReference<ModifiedAttributeUpdater>(affectedEntity);
 	}
 
 	public void addModifier(AttributeModifier am) {
 		this.modifiers.add(am);
 		updateNextCleanUpRun();
-		this.affectedEntity.updateModifiedAttributes();
+		this.affectedEntity.get().updateModifiedAttributes();
 	}
 
 	private void updateNextCleanUpRun() {
@@ -64,7 +65,7 @@ public abstract class AbstractModifierHandler implements TurnListener {
 			}
 		}
 		if(updateNeeded) {
-			this.affectedEntity.updateModifiedAttributes();
+			this.affectedEntity.get().updateModifiedAttributes();
 		}
 		updateNextCleanUpRun();
 	}
