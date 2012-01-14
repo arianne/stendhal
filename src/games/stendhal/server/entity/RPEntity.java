@@ -212,23 +212,23 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.isA("active_entity");
 			entity.addAttribute("name", Type.STRING);
 			entity.addAttribute(ATTR_TITLE, Type.STRING);
-			entity.addAttribute("level", Type.SHORT, Definition.HIDDEN);
+			entity.addAttribute("level", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_LEVEL, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("xp", Type.INT);
 			entity.addAttribute("mana", Type.INT, Definition.HIDDEN);
 			entity.addAttribute(ATTR_MODIFIED_MANA, Type.INT, Definition.VOLATILE);
-			entity.addAttribute("base_mana", Type.INT, Definition.HIDDEN);
+			entity.addAttribute("base_mana", Type.INT);
 			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.INT, Definition.VOLATILE);
 
-			entity.addAttribute("base_hp", Type.SHORT, Definition.HIDDEN);
+			entity.addAttribute("base_hp", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_BASE_HP, Type.SHORT, Definition.VOLATILE);
-			entity.addAttribute("hp", Type.SHORT, Definition.HIDDEN);
+			entity.addAttribute("hp", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_HP, Type.SHORT, Definition.VOLATILE);
 
-			entity.addAttribute("atk", Type.SHORT, Definition.HIDDEN);
+			entity.addAttribute("atk", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_ATK, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
-			entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
+			entity.addAttribute("def", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_DEF, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
 			entity.addAttribute("atk_item", Type.INT,
@@ -267,7 +267,6 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
-		modifierHandler = new RPEntityModifierHandler(this);
 	}
 
 	public RPEntity() {
@@ -277,7 +276,12 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
-		modifierHandler = new RPEntityModifierHandler(this);
+	}
+	
+	private void initModifierHandler() {
+		if(this.modifierHandler == null) {
+			this.modifierHandler = new RPEntityModifierHandler(this);
+		}
 	}
 
 	/**
@@ -669,6 +673,9 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public int getLevel() {
+		if(this.modifierHandler == null) {
+			return this.level;
+		}
 		return this.modifierHandler.modifyLevel(level);
 	}
 	
@@ -679,6 +686,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addLevelModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createLevelModifier(expire, modifier));
 	}
 
@@ -695,6 +703,9 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public int getAtk() {
+		if(this.modifierHandler == null) {
+			return this.atk;
+		}
 		return this.modifierHandler.modifyAtk(atk);
 	}
 	
@@ -705,6 +716,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addAtkModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createAtkModifier(expire, modifier));
 	}
 
@@ -756,6 +768,9 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	public int getDef() {
+		if(this.modifierHandler == null) {
+			return this.def;
+		}
 		return modifierHandler.modifyDef(def);
 	}
 	
@@ -766,6 +781,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addDefModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createDefModifier(expire, modifier));
 	}
 
@@ -837,6 +853,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
+		if(this.modifierHandler == null) {
+			return this.base_hp;
+		}
 		return this.modifierHandler.modifyBaseHp(base_hp);
 	}
 	
@@ -847,6 +866,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addBaseHpModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createBaseHpModifier(expire, modifier));
 	}
 	
@@ -857,6 +877,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addHpModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createHpModifier(expire, modifier));
 	}
 
@@ -890,6 +911,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The current HP.
 	 */
 	public int getHP() {
+		if(this.modifierHandler == null) {
+			return this.hp;
+		}
 		return this.modifierHandler.modifyHp(hp);
 	}
 
@@ -899,6 +923,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return mana
 	 */
 	public int getMana() {
+		if(this.modifierHandler == null) {
+			return this.mana;
+		} 
 		return this.modifierHandler.modifyMana(mana);
 	}
 
@@ -908,6 +935,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return base mana
 	 */
 	public int getBaseMana() {
+		if(this.modifierHandler == null) {
+			return this.base_mana;
+		}
 		return this.modifierHandler.modifyBaseMana(this.base_mana);
 	}
 
@@ -948,6 +978,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addManaModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createManaModifier(expire, modifier));
 	}
 	
@@ -958,6 +989,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param modifier
 	 */
 	public void addBaseManaModifier(Date expire, double modifier) {
+		initModifierHandler();
 		this.modifierHandler.addModifier(AttributeModifier.createBaseManaModifier(expire, modifier));
 	}
 
@@ -1008,7 +1040,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected void updateLevel() {
 		final int newLevel = Level.getLevel(getXP());
-		final int oldLevel = getInt("level");
+		final int oldLevel = has("level") ? getInt("level") : 0;
 		final int levels = newLevel - oldLevel;
 
 		// In case we level up several levels at a single time.
@@ -2828,34 +2860,62 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	private void updateModifiedDef(int modifiedDef) {
-		this.put(ATTR_MODIFIED_DEF, modifiedDef);
+		if(modifiedDef != this.def) {
+			this.put(ATTR_MODIFIED_DEF, modifiedDef);
+		} else {
+			this.remove(ATTR_MODIFIED_DEF);
+		}
 	}
 	
 	private void updateModifiedAtk(int modifiedAtk) {
-		this.put(ATTR_MODIFIED_ATK, modifiedAtk);
+		if(modifiedAtk != this.atk) {
+			this.put(ATTR_MODIFIED_ATK, modifiedAtk);
+		} else {
+			this.remove(ATTR_MODIFIED_ATK);
+		}
 	}
 	
 	private void updateModifiedHp(int modifiedHp) {
-		this.put(ATTR_MODIFIED_HP, modifiedHp);
+		if(modifiedHp != this.hp) {
+			this.put(ATTR_MODIFIED_HP, modifiedHp);
+		} else {
+			this.remove(ATTR_MODIFIED_HP);
+		}
 	}
 
 	private void updateModifiedBaseHP(int modifiedValue) {
-		this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
-		//on change of the base hp the base hp may fall below the current hp
-		this.setHpInternal(Math.min(this.getHP(), this.getBaseHP()), false);
+		if(modifiedValue != this.base_hp) {
+			this.put(ATTR_MODIFIED_BASE_HP, modifiedValue);
+			//on change of the base hp the base hp may fall below the current hp
+			this.setHpInternal(Math.min(this.getHP(), this.getBaseHP()), false);
+		} else {
+			this.remove(ATTR_MODIFIED_BASE_HP);
+		}
 	}
 	
 	private void updateModifiedMana(int modifiedMana) {
-		this.put(ATTR_MODIFIED_MANA, modifiedMana);
+		if(modifiedMana != this.mana) {
+			this.put(ATTR_MODIFIED_MANA, modifiedMana);
+		} else {
+			this.remove(ATTR_MODIFIED_MANA);
+		}
 	}
 	
 	private void updateModifiedBaseMana(int modifiedValue) {
-		this.put(ATTR_MODIFIED_BASE_MANA, modifiedValue);
-		//on change of the base mana the base hp may fall below the current mana
-		this.setManaInternal(Math.min(this.getMana(), this.getBaseMana()), false);
+		if(modifiedValue != this.base_mana) {
+			this.put(ATTR_MODIFIED_BASE_MANA, modifiedValue);
+			//on change of the base mana the base hp may fall below the current mana
+			this.setManaInternal(Math.min(this.getMana(), this.getBaseMana()), false);
+		} else {
+			this.remove(ATTR_MODIFIED_BASE_MANA);
+		}
 	}
 	
 	private void updateModifiedLevel(int modifiedLevel) {
-		this.put(ATTR_MODIFIED_LEVEL, modifiedLevel);
+		if(modifiedLevel != this.level) {
+			this.put(ATTR_MODIFIED_LEVEL, modifiedLevel);
+		} else {
+			this.remove(ATTR_MODIFIED_LEVEL);
+		}
 	}
 }
