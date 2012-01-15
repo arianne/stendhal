@@ -47,9 +47,20 @@ import org.apache.log4j.Logger;
  * fighting and player teleport support
  */
 public class StendhalRPAction {
-
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
+	
+	/**
+	 * The amount to weight ATK and DEF in player strength calculation. Higher
+	 * means more weight to stats vs level. Value 0.73 has been obtained from
+	 * a least square fit of players equally strong to an actual player killer.
+	 */
+	private static final double STRENGTH_STATS_MULTIPLIER = 0.73;
+	/**
+	 * Maximum strength ratio where it is still acceptable to attack another
+	 * player otherwise than in a self defense situation.
+	 */
+	private static final double ACCEPTABLE_STRENGTH_RATIO = 0.75;
 
 	/** server manager. */
 	private static RPServerManager rpman;
@@ -111,7 +122,7 @@ public class StendhalRPAction {
 			if (victim instanceof Player) {
 				// disable attacking much weaker players, except in
 				// self defense
-				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, victim)) {
+				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, (Player) victim)) {
 					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");
 
 					return;
@@ -146,8 +157,19 @@ public class StendhalRPAction {
 	 * @return <code>true</code> if the victim is strong enough to allow
 	 *  the attack to happen, <code>false</code> otherwise.
 	 */
-	private static boolean victimIsStrongEnough(final Player player, final RPEntity victim) {
-		return victim.getLevel() + 2.0 >= 0.75 * player.getLevel();
+	private static boolean victimIsStrongEnough(final Player player, final Player victim) {
+		return getPlayerStrength(victim) >= ACCEPTABLE_STRENGTH_RATIO * getPlayerStrength(player);
+	}
+	
+	/**
+	 * Get the relative strength of a player, ignoring equipment.
+	 * 
+	 * @param player
+	 * @return player strength
+	 */
+	private static double getPlayerStrength(final Player player) {
+		return STRENGTH_STATS_MULTIPLIER * (player.getAtk() + player.getDef())
+			+ player.getLevel();
 	}
 
 	/**
