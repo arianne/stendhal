@@ -175,6 +175,12 @@ public class StendhalRPActionTest {
 		final Player jekyll = PlayerTestHelper.createPlayer("jekyll");
 		final Player hyde = PlayerTestHelper.createPlayer("hyde");
 		
+		// First with 0 stats so that they do not mess the level comparisons
+		jekyll.setAtk(0);
+		jekyll.setDef(0);
+		hyde.setAtk(0);
+		hyde.setDef(0);
+		
 		zone.add(jekyll);
 		zone.add(hyde);
 		
@@ -183,7 +189,7 @@ public class StendhalRPActionTest {
 			for (int attackerLevel = (int) (1.3 * defenderLevel); 0.74 * attackerLevel  <= defenderLevel + 2; attackerLevel++) {
 				hyde.setLevel(attackerLevel);
 				StendhalRPAction.startAttack(hyde, jekyll);
-				if ((jekyll.getLevel() + 2.0) < hyde.getLevel() * 0.75) {
+				if ((jekyll.getLevel()) < hyde.getLevel() * 0.75) {
 					assertNull("Attacking a too weak player. Level " + hyde.getLevel() + " vs Level " + jekyll.getLevel(), 
 							hyde.getAttackTarget());
 					
@@ -191,7 +197,7 @@ public class StendhalRPActionTest {
 							"Your conscience would trouble you if you carried out this attack.", getPrivateReply(hyde));
 					hyde.clearEvents();
 					
-					// check that self defence works
+					// check that self defense works
 					StendhalRPAction.startAttack(jekyll, hyde);
 					StendhalRPAction.startAttack(hyde, jekyll);
 					assertSame("Self defence against a weak enemy", hyde.getAttackTarget(), jekyll);
@@ -203,6 +209,23 @@ public class StendhalRPActionTest {
 				hyde.stopAttack();
 			}
 		}
+		
+		// check the skill effect separately
+		jekyll.setLevel(0);
+		hyde.setLevel(0);
+		// 0 skills have already been checked
+		hyde.setAtk(10);
+		jekyll.setAtk(10);
+		StendhalRPAction.startAttack(hyde, jekyll);
+		assertSame(hyde.getAttackTarget(), jekyll);
+		hyde.stopAttack();
+		hyde.setDef(5);
+		StendhalRPAction.startAttack(hyde, jekyll);
+		assertNull(hyde.getAttackTarget());
+		// Should be make jekyll strong enough
+		jekyll.setDef(2);
+		StendhalRPAction.startAttack(hyde, jekyll);
+		assertSame(hyde.getAttackTarget(), jekyll);
 	}
 	
 	@Test
