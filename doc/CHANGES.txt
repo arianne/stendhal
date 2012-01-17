@@ -12,6 +12,7 @@
 - producers npcs tell the player how long a task will take before starting it
 - scroll eraser which cleans empty scrolls as a rare drop from some wizards
 - outfit image improvements, more depth and differentiation of some duplicates
+- allow pushing of players with items under them by moving the items with the player
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
