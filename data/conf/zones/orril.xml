@@ -546,6 +546,8 @@
     </zone>
     
 	<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
+ 		<configurator class-name="games.stendhal.server.maps.orril.constantines_villa.GuardBarracksNPC" />
+
 
         <portal x="50" y="18" ref="door_right_1">
             <destination zone="int_constantines_villa_library" ref="library1" />

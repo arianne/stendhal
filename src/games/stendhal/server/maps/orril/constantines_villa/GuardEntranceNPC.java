@@ -82,7 +82,7 @@ public class GuardEntranceNPC implements ZoneConfigurator {
 			//Greeting and goodbye message in quest code TheMissingBooks.java
 			
 			protected void createDialog() {
-				addGreeting("Hey! What are you doing in here! Out with you, burgler!"); 
+				addGreeting("Hey, [name]! Why are you sneaking around in here? Out with you, NOW!");
 
 				
 			}
