@@ -18,6 +18,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -99,18 +100,6 @@ public class PushAction implements ActionListener {
 		if (rpEntity instanceof SpeakerNPC) {
 			return false;
 		}
-
-		// prevent pushing a player off an item
-		if (rpEntity instanceof Player) {
-			// prevent pushing a player off an item
-			final Set<Item> items = player.getZone().getItemsOnGround();
-			for (final Item item : items) {
-				if (rpEntity.getArea().intersects(item.getArea())) {
-					player.sendPrivateText("You cannot push now because there is an item below " + rpEntity.getName() + ".");
-					return false;
-				}
-			}
-		}
 		
 		// players cannot push rp entities with area larger than 4
 		/* I (kymara) looked in java api for Rectangle2D and couldn't find how to
@@ -140,6 +129,22 @@ public class PushAction implements ActionListener {
 	 * @param y new y-position
 	 */
 	private void move(final Player player, final RPEntity rpEntity, final int x, final int y) {
+		
+		// move items under players, with the players, when pushed
+		if (rpEntity instanceof Player) {
+			final Set<Item> items = player.getZone().getItemsOnGround();
+			for (final Item item : items) {
+				if (rpEntity.getArea().intersects(item.getArea())) {
+					item.setPosition(x, y);
+					item.notifyWorldAboutChanges();
+					// log the item ground-to-ground displacement
+					// but who caused it to move, the pusher or the pushed?
+					// currently the source of the ground-to-ground movement of the item is set as the pusher
+					new ItemLogger().displace(player, item, player.getZone(), rpEntity.getX(), rpEntity.getY(), x, y);
+				}
+			}
+		}
+		
 		new GameEvent(player.getName(), "push", rpEntity.getName(), rpEntity.getZone().getName(), rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y).raise();
 		rpEntity.setPosition(x, y);
 		rpEntity.notifyWorldAboutChanges();
