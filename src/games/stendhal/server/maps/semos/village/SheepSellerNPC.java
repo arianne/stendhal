@@ -49,10 +49,10 @@ public class SheepSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(33, 45));
+				nodes.add(new Node(33, 44));
 				nodes.add(new Node(33, 43));
-				nodes.add(new Node(23, 43));
-				nodes.add(new Node(23, 45));
+				nodes.add(new Node(24, 43));
+				nodes.add(new Node(24, 44));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -109,7 +109,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 
 		npc.setEntityClass("sellernpc");
 		npc.setDescription("Nishiya patrols the paths, watching his sheep. You can buy one from him.");
-		npc.setPosition(33, 45);
+		npc.setPosition(33, 44);
 		npc.initHP(100);
 		zone.add(npc);
 	}
