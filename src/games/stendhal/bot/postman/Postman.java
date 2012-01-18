@@ -235,7 +235,7 @@ public class Postman {
 		action.put("source", from);
 		action.put("target", param);
 		action.put("text", msg);
-		send(action);
+		clientManager.send(action);
 	}
 
 	private void tell(final String to, final String message) {
@@ -247,14 +247,14 @@ public class Postman {
 		tell.put("type", "tell");
 		tell.put("target", to);
 		tell.put("text", message);
-		send(tell);
+		clientManager.send(tell);
 	}
 
 	private void chat(final String message) {
 		final RPAction chat = new RPAction();
 		chat.put("type", "chat");
 		chat.put("text", message);
-		send(chat);
+		clientManager.send(chat);
 	}
 
 	/**
@@ -267,18 +267,14 @@ public class Postman {
 		teleport.put("zone", POSTMAN_ZONE);
 		teleport.put("x", X_COORD);
 		teleport.put("y", Y_COORD);
-		send(teleport);
+		clientManager.send(teleport);
 	}
 
 	private void dumpPlayerPosition() {
 		final RPAction chat = new RPAction();
 		chat.put("type", "script");
 		chat.put("target", "PlayerPositionMonitoring.class");
-		send(chat);
-	}
-
-	private void send(final RPAction action) {
-		clientManager.send(action);
+		clientManager.send(chat);
 	}
 
 	/**
@@ -305,7 +301,7 @@ public class Postman {
 		tell.put("sender", sender);
 		tell.put("target", target);
 		tell.put("text", message);
-		send(tell);
+		clientManager.send(tell);
 	}
 
 	/**
@@ -324,7 +320,7 @@ public class Postman {
 		ban.put("target", target);
 		ban.put("hours", hours);
 		ban.put("reason", message);
-		send(ban);
+		clientManager.send(ban);
 	}
 
 	/**
@@ -343,7 +339,7 @@ public class Postman {
 		ban.put("ip", ip);
 		ban.put("mask", mask);
 		ban.put("reason", message);
-		send(ban);
+		clientManager.send(ban);
 	}
 
 	/**
@@ -359,7 +355,7 @@ public class Postman {
 		action.put("sender", charname);
 		action.put("target", "NPCShout.class");
 		action.put("args", target + " " + message);
-		send(action);
+		clientManager.send(action);
 	}
 
 	/**
@@ -373,7 +369,7 @@ public class Postman {
 		action.put("type", "support");
 		action.put("sender", charname);
 		action.put("text", message);
-		send(action);
+		clientManager.send(action);
 	}
 
 	/**
@@ -389,7 +385,7 @@ public class Postman {
 		action.put("sender", charname);
 		action.put("target", target);
 		action.put("note", message);
-		send(action);
+		clientManager.send(action);
 	}
 
 	/**
@@ -403,6 +399,6 @@ public class Postman {
 		action.put("type", "tellall");
 		action.put("sender", charname);
 		action.put("text", message);
-		send(action);
+		clientManager.send(action);
 	}
 }
