@@ -288,9 +288,8 @@ public class RPClassGenerator {
 
 		if (!RPClass.hasRPClass("chat")) {
 			createChatActionRPClass();
-		}
-
-		if (!RPClass.hasRPClass("tell")) {
+			createCidActionRPClass();
+			createMoveToActionRPClass();
 			createTellActionRPClass();
 		}
 	}
@@ -306,6 +305,28 @@ public class RPClassGenerator {
 		RPClass.bakeAll();
 	}
 
+	private void createChatActionRPClass() {
+		RPClass chatAction = new RPClass("chat");
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
+	}
+
+	private void createCidActionRPClass() {
+		RPClass action = new RPClass("cstatus");
+		action.addAttribute("cid", Type.STRING);
+		action.addAttribute("version", Type.STRING);
+		action.addAttribute("build", Type.STRING);
+		action.addAttribute("dist", Type.STRING);
+	}
+
+	private void createMoveToActionRPClass() {
+		RPClass action = new RPClass("moveto");
+		action.addAttribute("double_click", Type.FLAG);
+		action.addAttribute("extend", Type.INT);
+		action.addAttribute("x", Type.INT);
+		action.addAttribute("y", Type.INT);
+	}
+
 	private void createTellActionRPClass() {
 		RPClass chatAction;
 		chatAction = new RPClass("tell");
@@ -313,11 +334,4 @@ public class RPClassGenerator {
 		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
 	}
-
-	private void createChatActionRPClass() {
-		RPClass chatAction = new RPClass("chat");
-		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
-		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
-	}
-
 }

@@ -93,7 +93,7 @@ public class CommandCenter {
 		BuddyAction.register();
 		CastSpellAction.register();
 		ChatAction.register();
-		CIDSubmitAction.register();
+		CStatusAction.register();
 		DisplaceAction.register();
 		DropAction.register();
 		EquipAction.register();
@@ -159,7 +159,11 @@ public class CommandCenter {
 		if (action == null) {
 			return UNKNOWN_ACTION;
 		} else {
-			return getAction(action.get("type"));
+			String type = action.getRPClass().getName();
+			if (type.equals("")) {
+				type = action.get("type");
+			}
+			return getAction(type);
 		}
 	}
 

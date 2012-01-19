@@ -12,6 +12,7 @@
 package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.CID;
+import static games.stendhal.common.constants.Actions.CSTATUS;
 import static games.stendhal.common.constants.Actions.ID;
 import games.stendhal.server.entity.player.Player;
 
@@ -23,7 +24,7 @@ import marauroa.common.game.RPAction;
 /**
  * handles CID actions.
  */
-public class CIDSubmitAction implements ActionListener {
+public class CStatusAction implements ActionListener {
 
 	/** Key is ID, value contains list of names */
 	public static final Map<String, String> idList = new HashMap<String, String>();
@@ -33,16 +34,21 @@ public class CIDSubmitAction implements ActionListener {
 
 	/** registers the action */
 	public static void register() {
-		CommandCenter.register(CID, new CIDSubmitAction());
+		CommandCenter.register(CID, new CStatusAction());
+		CommandCenter.register(CSTATUS, new CStatusAction());
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-		if (action.has(ID)) {
+		if (action.has(CID) || action.has(ID)) {
 
-			final String cid = action.get(ID);
+			String cid = action.get(CID);
+			if (cid == null) {
+				cid = action.get(ID);
+			}
 			final String pName = player.getName();
 			if (action.has("version")) {
 				player.setClientVersion(action.get("version"));
+//				dataProvider.provideData(player, action.get("version"));
 			}
 
 			//add to idList
@@ -58,5 +64,6 @@ public class CIDSubmitAction implements ActionListener {
 			//add to nameList
 			nameList.put(pName, cid);
 		}
+		
 	}
 }

@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.actions.CIDSubmitAction;
+import games.stendhal.server.actions.CStatusAction;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.transformer.OfferTransformer;
@@ -58,7 +58,7 @@ public class MarketTest {
 	
 	@Before
 	public void before() {
-		CIDSubmitAction.nameList.clear();
+		CStatusAction.nameList.clear();
 	}
 	
 	/**
@@ -645,8 +645,8 @@ public class MarketTest {
 		george.equipToInventoryOnly(item);
 		
 		// ensure different CIDs
-		CIDSubmitAction.nameList.put("george", "georgescid");
-		CIDSubmitAction.nameList.put("ernie", "erniescid");
+		CStatusAction.nameList.put("george", "georgescid");
+		CStatusAction.nameList.put("ernie", "erniescid");
 		
 		Offer offer = market.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
@@ -684,7 +684,7 @@ public class MarketTest {
 		erniesMoney.setQuantity(price);
 		george.equipToInventoryOnly(item);
 		
-		CIDSubmitAction.nameList.put("ernie", "erniescid");
+		CStatusAction.nameList.put("ernie", "erniescid");
 		
 		Offer offer = market.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
@@ -722,7 +722,7 @@ public class MarketTest {
 		erniesMoney.setQuantity(price);
 		george.equipToInventoryOnly(item);
 		
-		CIDSubmitAction.nameList.put("george", "georgescid");
+		CStatusAction.nameList.put("george", "georgescid");
 		
 		Offer offer = market.createOffer(george, item, price, 1);
 		Player ernie = PlayerTestHelper.createPlayer("ernie");
@@ -761,14 +761,14 @@ public class MarketTest {
 		george.equipToInventoryOnly(item);
 		george.equipToInventoryOnly(money);
 		
-		CIDSubmitAction.nameList.put("george", "georgescid");
+		CStatusAction.nameList.put("george", "georgescid");
 		
 		Offer offer = market.createOffer(george, item, price, Integer.valueOf(1));
 		
 		assertThat(george.getTradescore(), is(0));
 		
 		// switch cid in between
-		CIDSubmitAction.nameList.put("george", "georgesfakecid");
+		CStatusAction.nameList.put("george", "georgesfakecid");
 		market.acceptOffer(offer, george);
 		
 		assertThat(george.getTradescore(), is(0));

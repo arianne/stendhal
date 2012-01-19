@@ -2582,4 +2582,13 @@ public class Player extends RPEntity implements UseListener {
 		SingletonRepository.getTurnNotifier().notifyInSeconds((newExpire - age) * 60, expireOutfit);
 	}
 
+	/**
+	 * gets the client version
+	 *
+	 * @return client version
+	 */
+	public String getClientVersion() {
+		return clientVersion;
+	}
+
 }

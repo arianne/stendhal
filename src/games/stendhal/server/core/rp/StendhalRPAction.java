@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.DataProvider;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -36,8 +37,10 @@ import games.stendhal.server.events.AttackEvent;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.rp.RPServerManager;
 
@@ -344,19 +347,34 @@ public class StendhalRPAction {
 	/**
 	 * send the content of the zone the player is in to the client.
 	 *
-	 * @param player
+	 * @param player player
 	 */
 	public static void transferContent(final Player player) {
+		final StendhalRPZone zone = player.getZone();
+		transferContent(player, zone.getContents());
+	}
 
+
+	private static DataProvider dataProvider = new DataProvider();
+	/**
+	 * transfers arbritary content
+	 *
+	 * @param player   player
+	 * @param contents content
+	 */
+	public static void transferContent(Player player, List<TransferContent> contents) {
 		if (rpman != null) {
-			final StendhalRPZone zone = player.getZone();
-			rpman.transferContent(player, zone.getContents());
-
+			List<TransferContent> allContent = new LinkedList<TransferContent>(contents);
+			List<TransferContent> temp = dataProvider.getData(player.getClientVersion());
+			if (temp != null) {
+				allContent.addAll(temp);
+			}
+			rpman.transferContent(player, allContent);
 		} else {
 			logger.warn("rpmanager not found");
 		}
 	}
-
+	
 	/**
 	 * Change an entity's zone based on it's global world coordinates.
 	 *
@@ -760,4 +778,5 @@ public class StendhalRPAction {
 
 		return false;
 	}
+
 }

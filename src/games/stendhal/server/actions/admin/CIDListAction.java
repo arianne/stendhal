@@ -14,7 +14,7 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.common.constants.Actions.CIDLIST;
 import static games.stendhal.common.constants.Actions.TARGET;
-import games.stendhal.server.actions.CIDSubmitAction;
+import games.stendhal.server.actions.CStatusAction;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -43,8 +43,8 @@ class CIDListAction extends AdministrationAction {
 				return;
 			}
 
-			final Map<String, String> nameList = CIDSubmitAction.nameList;
-			final Map<String, String> idList = CIDSubmitAction.idList;
+			final Map<String, String> nameList = CStatusAction.nameList;
+			final Map<String, String> idList = CStatusAction.idList;
 			
 			//Lets use a clean name instead of what ever the admin inputed
 			String playerName = target.getName();

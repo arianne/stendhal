@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.trade;
 
-import games.stendhal.server.actions.CIDSubmitAction;
+import games.stendhal.server.actions.CStatusAction;
 import games.stendhal.server.core.engine.transformer.ItemTransformer;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
@@ -196,7 +196,7 @@ public class Offer extends Entity implements Dateable {
 	}
 
 	private String getPlayerCID(Player player) {
-		Map<String, String> nameList = CIDSubmitAction.nameList;
+		Map<String, String> nameList = CStatusAction.nameList;
 		String cid = nameList.get(player.getName());
 		if (cid == null) {
 			return "";
