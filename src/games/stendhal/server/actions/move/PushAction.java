@@ -60,25 +60,25 @@ public class PushAction implements ActionListener {
 	/**
 	 * Tries to push the entity.
 	 *
-	 * @param player player pushing
-	 * @param rpEntity entity pushed
+	 * @param pusher player pushing
+	 * @param pushed entity pushed
 	 */
-	private void tryPush(final Player player, final RPEntity rpEntity) {
-		if (canPush(player, rpEntity)) {
-			final Direction dir = player.getDirectionToward(rpEntity);
+	private void tryPush(final Player pusher, final RPEntity pushed) {
+		if (canPush(pusher, pushed)) {
+			final Direction dir = pusher.getDirectionToward(pushed);
 
-			final int x = rpEntity.getX() + dir.getdx();
-			final int y = rpEntity.getY() + dir.getdy();
+			final int x = pushed.getX() + dir.getdx();
+			final int y = pushed.getY() + dir.getdy();
 
-			final StendhalRPZone zone = player.getZone();
-			if (!zone.collides(rpEntity, x, y)) {
-				move(player, rpEntity, x, y);
+			final StendhalRPZone zone = pusher.getZone();
+			if (!zone.collides(pushed, x, y)) {
+				move(pusher, pushed, x, y);
 				// Stop players running toward to make trapping harder. Don't
 				// stop anyone just following a path (again to make annoying
 				// others harder)
-				if (dir.oppositeDirection() == rpEntity.getDirection()
-						&& !rpEntity.hasPath()) {
-					rpEntity.stop();
+				if (dir.oppositeDirection() == pushed.getDirection()
+						&& !pushed.hasPath()) {
+					pushed.stop();
 				}
 			}
 		}
@@ -87,67 +87,64 @@ public class PushAction implements ActionListener {
 	/**
 	 * Can this push be done according to the rules?
 	 *
-	 * @param player   player pushing
-	 * @param rpEntity entity pushed
+	 * @param pusher player pushing
+	 * @param pushed entity pushed
 	 * @return true, if the push is possible, false otherwise
 	 */
-	private boolean canPush(final Player player, final RPEntity rpEntity) {
+	private boolean canPush(final Player pusher, final RPEntity pushed) {
 
 		// If object is a NPC we ignore the push action because
 		// NPC don't use the pathfinder and would get confused
 		// outside their fixed path. Apart from that some NPCs
 		// may block a way by intention.
-		if (rpEntity instanceof SpeakerNPC) {
+		if (pushed instanceof SpeakerNPC) {
 			return false;
 		}
 		
 		// players cannot push rp entities with area larger than 4
-		/* I (kymara) looked in java api for Rectangle2D and couldn't find how to
-		* get the value for area so i have done w * h . I guessed at .size() but didn't work 
-		* if this is ok please delete these comments */
-		if (rpEntity.getArea().getWidth() * rpEntity.getArea().getHeight() > 4) {
-			player.sendPrivateText("You're strong, but not that strong!");
+		if (pushed.getArea().getWidth() * pushed.getArea().getHeight() > 4) {
+			pusher.sendPrivateText("You're strong, but not that strong!");
 			return false;
 		}
 
 		// the number of pushes is limited per time 
-		if (!player.canPush(rpEntity)) {
-			player.sendPrivateText("Give yourself a breather before you start pushing again.");
+		if (!pusher.canPush(pushed)) {
+			pusher.sendPrivateText("Give yourself a breather before you start pushing again.");
 			return false;
 		}
 
 		// the player must be in range. 
-		return (player.nextTo(rpEntity));
+		return (pusher.nextTo(pushed));
 	}
 
 	/**
 	 * Moves the entity to the new position.
 	 *
-	 * @param player   player pushing
-	 * @param rpEntity entity pushed
+	 * @param pusher player pushing
+	 * @param pushed entity pushed
 	 * @param x new x-position
 	 * @param y new y-position
 	 */
-	private void move(final Player player, final RPEntity rpEntity, final int x, final int y) {
+	private void move(final Player pusher, final RPEntity pushed, final int x, final int y) {
 		
 		// move items under players, with the players, when pushed
-		if (rpEntity instanceof Player) {
-			final Set<Item> items = player.getZone().getItemsOnGround();
+		if (pushed instanceof Player) {
+			final Set<Item> items = pusher.getZone().getItemsOnGround();
 			for (final Item item : items) {
-				if (rpEntity.getArea().intersects(item.getArea())) {
+				if (pushed.getArea().intersects(item.getArea())) {
 					item.setPosition(x, y);
 					item.notifyWorldAboutChanges();
 					// log the item ground-to-ground displacement
 					// but who caused it to move, the pusher or the pushed?
 					// currently the source of the ground-to-ground movement of the item is set as the pusher
-					new ItemLogger().displace(player, item, player.getZone(), rpEntity.getX(), rpEntity.getY(), x, y);
+					new ItemLogger().displace(pusher, item, pusher.getZone(), pushed.getX(), pushed.getY(), x, y);
 				}
 			}
 		}
 		
-		new GameEvent(player.getName(), "push", rpEntity.getName(), rpEntity.getZone().getName(), rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y).raise();
-		rpEntity.setPosition(x, y);
-		rpEntity.notifyWorldAboutChanges();
-		player.onPush(rpEntity);
+		new GameEvent(pusher.getName(), "push", pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
+		pushed.setPosition(x, y);
+		pushed.notifyWorldAboutChanges();
+		pusher.onPush(pushed);
 	}
 }
