@@ -11,11 +11,15 @@
 - many more outside zones with lighting
 - producers npcs tell the player how long a task will take before starting it
 - scroll eraser which cleans empty scrolls as a rare drop from some wizards
+- Inactive: New achievements for the weekly item quest
 - outfit image improvements, more depth and differentiation of some duplicates
 - allow pushing of players with items under them by moving the items with the player
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
+
+
+
 
 0.98
 
@@ -39,7 +43,6 @@
 - Athor cocktail bar got a new style
 - Ortiv Milquetoast interior reworked
 - Semos mine maps at level -2 got a new ground style
-- New achievements for the weekly item quest
 - New Guess Kills quest in Nalwor City with new NPC, Crearid
 - New fruits which can be collected around Faiumoni (bananas, grapes, pomegranate, watermelons)
 - Coralia needs some fruit for her hat in a new quest
