@@ -633,13 +633,8 @@ public class j2DClient implements UserInterface {
 			}
 		}
 		
-		// Shows a offline icon if no messages are received in 30 seconds.
-		if ((time - lastMessageHandle > 30000L)
-				|| !client.getConnectionState()) {
-			setOffline(true);
-		} else {
-			setOffline(false);
-		}
+		// Shows a offline icon if the connection is broken
+		setOffline(!client.getConnectionState());
 
 		// figure out what time it is right after the screen flip then
 		// later we can figure out how long we have been doing redrawing
@@ -719,12 +714,12 @@ public class j2DClient implements UserInterface {
 
 	private SoundGroup initSoundSystem() {
 		SoundGroup group = getSoundSystemFacade().getGroup(SoundLayer.USER_INTERFACE.groupName);
-		group.loadSound("harp-1", "audio:/harp-1.ogg", Type.OGG, false);
-		group.loadSound("click-4", "audio:/click-4.ogg", Type.OGG, false);
-		group.loadSound("click-5", "audio:/click-5.ogg", Type.OGG, false);
-		group.loadSound("click-6", "audio:/click-6.ogg", Type.OGG, false);
-		group.loadSound("click-8", "audio:/click-8.ogg", Type.OGG, false);
-		group.loadSound("click-10", "audio:/click-10.ogg", Type.OGG, false);
+		group.loadSound("harp-1", "harp-1.ogg", Type.OGG, false);
+		group.loadSound("click-4", "click-4.ogg", Type.OGG, false);
+		group.loadSound("click-5", "click-5.ogg", Type.OGG, false);
+		group.loadSound("click-6", "click-6.ogg", Type.OGG, false);
+		group.loadSound("click-8", "click-8.ogg", Type.OGG, false);
+		group.loadSound("click-10", "click-10.ogg", Type.OGG, false);
 		return group;
 	}
 

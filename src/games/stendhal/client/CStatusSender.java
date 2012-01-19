@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,18 +25,18 @@ import java.util.Random;
 
 import marauroa.common.crypto.Hash;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 import marauroa.common.io.Persistence;
 
 import org.apache.log4j.Logger;
 
 /**
- * sends id
+ * sends client status information
  */
-public final class IDSend {
+public final class CStatusSender {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger
-			.getLogger(IDSend.class);
+	private static final Logger logger = Logger.getLogger(CStatusSender.class);
 
 	/** filename for the settings persistence. */
 	private static final String FILE_NAME = "cid";
@@ -49,27 +48,43 @@ public final class IDSend {
 	 */
 	public static void send() {
 		readID();
-		if(!haveID()) {
+		if (!haveID()) {
 			generateID();
 			saveID();
 		}
 
-		if(!haveID()) {
-			return;
-		}
-
 		final RPAction action = new RPAction();
 
-		action.put("type", "cid");
-		action.put("id", clientid);
+		// compatibility with old servers
+		if (RPClass.getRPClass("cstatus") != null) {
+			action.put("type", "cstatus");
+		} else {
+			action.put("type", "cid");
+		}
+
+		// a client id to help with the investigation of hacked accounts
+		// especially in the common "angry sibling" case.
+		if (clientid != null) {
+			action.put("cid", clientid);
+		}
+
+		// the client version, the server will deactivate certain features that
+		// are incompatible with old clients. E. g. changing of light and dark
+		// in the current zone is implemented by retransmitting the tileset
+		// information. an old client would mistake that for a zone change and
+		// hang.
 		String version = Debug.VERSION;
 		if (Debug.PRE_RELEASE_VERSION != null) {
 			version = version + " - " + Debug.PRE_RELEASE_VERSION;
 		}
 		action.put("version", version);
 
+		// extract the signer of the client, so that we can ask bug
+		// reporters to try again with the official client, if they
+		// are using an unofficial one.
 		try {
-			Class<?> clazz = Class.forName("games.stendhal.client.update.Starter");
+			Class<?> clazz = Class
+					.forName("games.stendhal.client.update.Starter");
 			if (clazz != null) {
 				Object[] objects = clazz.getSigners();
 				if ((objects != null) && objects instanceof Certificate[]) {
@@ -81,25 +96,39 @@ public final class IDSend {
 				}
 			}
 
-		// Throwable: both errors and exceptions
+			// Throwable: both errors and exceptions
 		} catch (Throwable e) {
 			logger.error(e, e);
 		}
-		ClientSingletonRepository.getClientFramework().send(action);
 
+		// Get build number. The class is not in CVS to prevent lots of unwanted
+		// conflicts. This has, however, the side effect, that it is missing in
+		// an IDE (e. g. Eclipes) environment.
+		// The build number is especially helpful for pre releases
+		try {
+			Class<?> clazz = Class.forName("games.stendhal.client.StendhalBuild");
+			Object buildNumber = clazz.getMethod("getBuildNumber").invoke(null);
+			if (buildNumber != null) {
+				action.put("build", buildNumber.toString());
+			}
+		} catch (Throwable e) {
+			logger.debug(e, e);
+		}
+
+		ClientSingletonRepository.getClientFramework().send(action);
 	}
 
 	private static void generateID() {
 		clientid = generateRandomString();
 	}
 
-	private final static String CHARS =
-		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
+	private final static String CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
+
 	/**
-	* generates a random string
-	*
-	* @return random string
-	*/
+	 * generates a random string
+	 * 
+	 * @return random string
+	 */
 	private static String generateRandomString() {
 		final StringBuffer res = new StringBuffer();
 		final Random rnd = new SecureRandom();
@@ -112,7 +141,7 @@ public final class IDSend {
 	}
 
 	private static boolean haveID() {
-		if(clientid == null) {
+		if (clientid == null) {
 			return false;
 		}
 		return true;
@@ -121,18 +150,18 @@ public final class IDSend {
 	private static void readID() {
 		try {
 			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(), FILE_NAME);
-		    final BufferedInputStream bis = new BufferedInputStream(is);
+			final BufferedInputStream bis = new BufferedInputStream(is);
 			try {
-			    ByteArrayOutputStream buf = new ByteArrayOutputStream();
-			    int result = bis.read();
-			    while(result != -1) {
-			      byte b = (byte)result;
-			      buf.write(b);
-			      result = bis.read();
-			    }
-			    clientid = buf.toString().trim();
+				ByteArrayOutputStream buf = new ByteArrayOutputStream();
+				int result = bis.read();
+				while (result != -1) {
+					byte b = (byte) result;
+					buf.write(b);
+					result = bis.read();
+				}
+				clientid = buf.toString().trim();
 			} finally {
-			    bis.close();
+				bis.close();
 				is.close();
 			}
 		} catch (final IOException e) {
@@ -142,8 +171,7 @@ public final class IDSend {
 
 	private static void saveID() {
 		try {
-			final OutputStream os = Persistence.get().getOutputStream(false,
-					stendhal.getGameFolder(), FILE_NAME);
+			final OutputStream os = Persistence.get().getOutputStream(false, stendhal.getGameFolder(), FILE_NAME);
 			final OutputStreamWriter writer = new OutputStreamWriter(os);
 			try {
 				writer.write(clientid);
@@ -151,7 +179,6 @@ public final class IDSend {
 				writer.close();
 			}
 		} catch (final IOException e) {
-			// ignore exception
 			logger.error("Can't write " + stendhal.getGameFolder() + FILE_NAME, e);
 		}
 

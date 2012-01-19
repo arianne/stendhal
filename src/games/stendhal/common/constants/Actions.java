@@ -109,11 +109,10 @@ public final class Actions {
 	//away
 	public static final String AWAY = "away";
 
-	//CID submit
+	//CStatus
+	public static final String CSTATUS = "cstatus";
 	public static final String CID = "cid";
 	public static final String ID = "id";
-	
-	//CID List
 	public static final String CIDLIST = "cidlist";
 	
 	//attack

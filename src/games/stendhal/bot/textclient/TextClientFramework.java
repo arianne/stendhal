@@ -14,7 +14,7 @@ package games.stendhal.bot.textclient;
 
 import games.stendhal.bot.core.StandardClientFramework;
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.IDSend;
+import games.stendhal.client.CStatusSender;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.common.NotificationType;
@@ -130,7 +130,7 @@ public class TextClientFramework extends StandardClientFramework {
 
 	@Override
 	public void execute() throws IOException, InterruptedException {
-		IDSend.send();
+		CStatusSender.send();
 		if (!createAccount) {
 			new LoginScript(this).adminLogin();
 		}

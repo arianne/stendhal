@@ -86,7 +86,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 		}
 		if (object.has("sound")) {
 			soundName = object.get("sound");
-			group.loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, streaming);
+			group.loadSound(soundName, soundName + ".ogg", Type.OGG, streaming);
 		}
 	}
 

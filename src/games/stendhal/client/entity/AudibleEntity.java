@@ -43,7 +43,7 @@ public abstract class AudibleEntity extends RPEntity {
 		}
 
 		for (String name : soundNames) {
-			if (group.loadSound(name, "audio:/" + name + ".ogg", Type.OGG, false)) {
+			if (group.loadSound(name, name + ".ogg", Type.OGG, false)) {
 				soundNameList.add(name);
 			}
 		}

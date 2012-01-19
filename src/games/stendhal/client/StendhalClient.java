@@ -22,7 +22,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -42,6 +41,7 @@ import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.InvalidVersionException;
 import marauroa.common.net.message.MessageS2CPerception;
@@ -265,15 +265,17 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		// Is it just a reload for new coloring?
-		boolean isZoneChange = (currentZone != null) && (!currentZone.getName().equals(oldZone));
-		currentZone.setUpdate(!isZoneChange);
-		if (isZoneChange) {
-			logger.debug("Preparing for zone change");
-			// Only true zone changes need to lock drawing
-			drawingSemaphore.lock();
-			staticLayers.clear();
-			for (ZoneChangeListener listener : zoneChangeListeners) {
-				listener.onZoneChange();
+		if (currentZone != null) {
+			boolean isZoneChange = !currentZone.getName().equals(oldZone);
+			currentZone.setUpdate(!isZoneChange);
+			if (isZoneChange) {
+				logger.debug("Preparing for zone change");
+				// Only true zone changes need to lock drawing
+				drawingSemaphore.lock();
+				staticLayers.clear();
+				for (ZoneChangeListener listener : zoneChangeListeners) {
+					listener.onZoneChange();
+				}
 			}
 		}
 
@@ -344,7 +346,7 @@ public class StendhalClient extends ClientFramework {
 
 		if (name.endsWith(".jar")) {
 			in.close();
-			DataLoader.addURL(new File(cache.getFilename(name)).toURL());
+			DataLoader.addJarFile(cache.getFilename(name));
 		} else {
 			if (i > -1) {
 				final String layer = name.substring(i + 1);
@@ -704,5 +706,15 @@ public class StendhalClient extends ClientFramework {
 			zone.validate();
 			staticLayers.setZone(zone);
 		}
+	}
+
+	@Override
+	public void send(RPAction action) {
+		String type = action.get("type");
+		if (RPClass.getRPClass(type) != null) {
+			action.setRPClass(type);
+			action.remove("type");
+		}
+		super.send(action);
 	}
 }

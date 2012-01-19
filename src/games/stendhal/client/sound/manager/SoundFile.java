@@ -17,7 +17,6 @@ import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
 import games.stendhal.client.sound.system.processors.PCMStreamConverter;
 import games.stendhal.client.sound.system.SignalProcessor;
 
-import games.stendhal.common.resource.Resource;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +36,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
     private int                   mSampleRate;
 	private SignalProcessor       mGenerator = null;
 	private Recorder              mRecorder  = null;
-	private final Resource        mResource;
+	private final AudioResource        mAudioResource;
 	private final boolean         mEnableStreaming;
     private final int             mOutputNumSamples;
     private final Type            mFileType;
@@ -57,23 +56,23 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		}
 	};
 
-    public SoundFile(Resource resource, Type fileType, int outputNumSamplesPerChannel, boolean enableStreaming) throws IOException
+    public SoundFile(AudioResource audioResource, Type fileType, int outputNumSamplesPerChannel, boolean enableStreaming) throws IOException
     {
-		assert resource != null;
-		assert fileType != null;
 
-		if(!resource.exists())
-            throw new IOException("audio resource doesn't exist: " + resource.getURI());
+    	InputStream stream = audioResource.getInputStream();
+		if(stream == null) {
+            throw new IOException("audio AudioResource doesn't exist: " + audioResource.getName());
+		}
 
-		mResource         = resource;
+		mAudioResource         = audioResource;
         mFileType         = fileType;
         mEnableStreaming  = enableStreaming;
         mOutputNumSamples = outputNumSamplesPerChannel;
 
-        SignalProcessor decoder = chooseDecoder(resource, fileType, outputNumSamplesPerChannel);
+        SignalProcessor decoder = chooseDecoder(stream, fileType, outputNumSamplesPerChannel);
 
         if(decoder == null)
-            throw new IOException("could not load audio resource: " + resource.getURI());
+            throw new IOException("could not load audio AudioResource: " + audioResource.getName());
 
         if(enableStreaming)
         {
@@ -99,9 +98,9 @@ public class SoundFile extends SignalProcessor implements Cloneable
         }
     }
 
-	private SoundFile(Recorder recorder, Resource resource, Type fileType, int outputNumSamplesPerChannel)
+	private SoundFile(Recorder recorder, AudioResource audioResource, Type fileType, int outputNumSamplesPerChannel)
 	{
-		mResource         = resource;
+		mAudioResource         = audioResource;
 		mFileType         = fileType;
 		mOutputNumSamples = outputNumSamplesPerChannel;
 		mEnableStreaming  = false;
@@ -139,13 +138,13 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
 		if(mGenerator instanceof Recorder.Player)
 		{
-			file = new SoundFile(mRecorder, mResource, mFileType, mOutputNumSamples);
+			file = new SoundFile(mRecorder, mAudioResource, mFileType, mOutputNumSamples);
 		}
 		else
 		{
 			try
 			{
-				file = new SoundFile(mResource, mFileType, mOutputNumSamples, mEnableStreaming);
+				file = new SoundFile(mAudioResource, mFileType, mOutputNumSamples, mEnableStreaming);
 			}
 			catch(IOException exception)
 			{
@@ -164,7 +163,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
             try
             {
-                decoder.open(mResource.getInputStream(), 256, mOutputNumSamples);
+                decoder.open(mAudioResource.getInputStream(), 256, mOutputNumSamples);
             }
             catch(IOException exception) { }
             
@@ -176,7 +175,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
             try
             {
-                AudioInputStream stream = AudioSystem.getAudioInputStream(mResource.getInputStream());
+                AudioInputStream stream = AudioSystem.getAudioInputStream(mAudioResource.getInputStream());
                 converter.open(stream, stream.getFormat(), mOutputNumSamples);
             }
             catch(IOException                   exception) { }
@@ -189,7 +188,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		}
     }
 
-	private SignalProcessor chooseDecoder(Resource resource, Type fileType, int outputNumSamplesPerChannel)
+	private SignalProcessor chooseDecoder(InputStream stream, Type fileType, int outputNumSamplesPerChannel)
     {
         SignalProcessor decoder = null;
 
@@ -198,8 +197,6 @@ public class SoundFile extends SignalProcessor implements Cloneable
         case OGG:
             try
             {
-                InputStream stream = resource.getInputStream();
-
 				if(stream != null)
 				{
 					OggVorbisDecoder oggdec = new OggVorbisDecoder(stream, 256, outputNumSamplesPerChannel);
@@ -215,11 +212,11 @@ public class SoundFile extends SignalProcessor implements Cloneable
         case WAV:
             try
             {
-                AudioInputStream stream = AudioSystem.getAudioInputStream(new BufferedInputStream(resource.getInputStream()));
-                decoder                 = new PCMStreamConverter(stream, stream.getFormat(), outputNumSamplesPerChannel);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(stream));
+                decoder                 = new PCMStreamConverter(stream, audioStream.getFormat(), outputNumSamplesPerChannel);
 
-                mNumChannels = stream.getFormat().getChannels();
-                mSampleRate  = (int)stream.getFormat().getSampleRate();
+                mNumChannels = audioStream.getFormat().getChannels();
+                mSampleRate  = (int)audioStream.getFormat().getSampleRate();
             }
             catch(Exception exception) { decoder = null; }
             break;

@@ -50,7 +50,7 @@ public class SoundEvent extends Event<Entity> {
 		SoundGroup group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
 		String soundName = event.get("sound");
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)entity.getX(), (float)entity.getY()), radius/4.0f, radius);
-		group.loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, false);
+		group.loadSound(soundName, soundName + ".ogg", Type.OGG, false);
 		group.play(soundName, volume, 0, area, null, false, true);
 	}
 

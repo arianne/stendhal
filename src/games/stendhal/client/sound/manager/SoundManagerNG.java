@@ -21,7 +21,6 @@ import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.common.math.Algebra;
-import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -223,13 +222,13 @@ public class SoundManagerNG
 		mSoundSystem.start();
 	}
 	
-	public synchronized Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
+	public synchronized Sound openSound(AudioResource AudioResource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
 		Sound sound = null;
 
         try
         {
-            SoundFile file = new SoundFile(resource, fileType, numSamplesPerChunk, enableStreaming);
+            SoundFile file = new SoundFile(AudioResource, fileType, numSamplesPerChunk, enableStreaming);
             sound = new Sound();
             sound.file.set(file);
         }

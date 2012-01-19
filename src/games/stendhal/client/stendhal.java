@@ -22,7 +22,6 @@ import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
-import games.stendhal.common.resource.ResourceManager;
 
 import java.awt.Dimension;
 import java.io.File;
@@ -42,7 +41,6 @@ public class stendhal {
 
 	private static final String LOG_FOLDER = "log/";
 	private static final Logger logger = Logger.getLogger(stendhal.class);
-	private static final ResourceManager RESOURCE_MANAGER = new ResourceManager();
 
 	private static boolean doLogin;
 
@@ -70,11 +68,6 @@ public class stendhal {
 		GAME_NAME = ClientGameConfiguration.get("GAME_NAME");
 		STENDHAL_FOLDER = separator + GAME_NAME.toLowerCase(Locale.ENGLISH) + separator;
 		initGameFolder();
-
-		/** setup the search locations for the resource manager */
-		RESOURCE_MANAGER.addScheme("sound" , "data/sounds");
-		RESOURCE_MANAGER.addScheme("music" , "data/music");
-		RESOURCE_MANAGER.addScheme("audio" , "data/sounds", "data/music");
 	}
 
 	public static final String VERSION = Version.getVersion();
@@ -217,14 +210,6 @@ public class stendhal {
 		}
 	}
 
-	/**
-	 * Get the singleton instance for the resource manager
-	 * 
-	 * @return the current resource manager 
-	 */
-	public static ResourceManager getResourceManager() {
-		return RESOURCE_MANAGER;
-	}
 	
 	/**
 	 * Get the location of persistent game client data.
@@ -274,7 +259,7 @@ public class stendhal {
 		});
 		
 		waitForLogin();
-		IDSend.send();
+		CStatusSender.send();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

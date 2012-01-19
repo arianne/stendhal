@@ -74,8 +74,7 @@ public abstract class ChatLineParser {
 			}
 		} else {
 			// Chat command. The most frequent one.
-			final RPAction chat = new RPAction();
-
+			final RPAction chat = new RPAction("chat");
 			chat.put("type", "chat");
 			chat.put("text", text);
 

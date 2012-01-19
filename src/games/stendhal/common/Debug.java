@@ -28,6 +28,8 @@ public class Debug {
 	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
 	public static final String VERSION = "0.98.5";
 
+	/** pre release suffix */
+	// Note: This line is updated by build.xml using a regexp so be sure to adjust it in case you modify this line.
 	public static final String PRE_RELEASE_VERSION = null;
 
 	/**

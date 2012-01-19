@@ -14,11 +14,11 @@ package games.stendhal.client.sound.sound;
 
 import games.stendhal.client.MemoryCache;
 import games.stendhal.client.WorldObjects.WorldListener;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.manager.AudibleArea;
+import games.stendhal.client.sound.manager.AudioResource;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundFile;
 import games.stendhal.client.sound.manager.SoundFile.Type;
@@ -26,7 +26,6 @@ import games.stendhal.client.sound.manager.SoundManagerNG;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
-import games.stendhal.common.resource.ResourceLocator;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -64,12 +63,12 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		private final MemoryCache<String, Sound> mGroupSounds = new MemoryCache<String, Sound>();
 		private boolean streaming = false;
 
-		public boolean loadSound(String name, String fileURI, SoundFile.Type fileType, boolean enableStreaming) {
+		public boolean loadSound(String name, String filename, SoundFile.Type fileType, boolean enableStreaming) {
 			try {
 				Sound sound = ExtendedSoundManager.this.mSounds.get(name);
 	
 				if (sound == null) {
-					sound = openSound(mResourceLocator.getResource(fileURI), fileType, 256, enableStreaming);
+					sound = openSound(new AudioResource(filename), fileType, 256, enableStreaming);
 	
 					if (sound != null)
 						ExtendedSoundManager.this.mSounds.put(name, sound);
@@ -121,7 +120,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 				if (mEnabled) {
 					Sound sound = mGroupSounds.get(soundName);
 					if (sound == null) {
-						loadSound(soundName, "audio:/" + soundName + ".ogg", Type.OGG, this.streaming);
+						loadSound(soundName, soundName + ".ogg", Type.OGG, this.streaming);
 						sound = mGroupSounds.get(soundName);
 					}
 
@@ -157,7 +156,6 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 	private final MemoryCache<String, Sound> mSounds = new MemoryCache<String, Sound>();
 	private final Map<String, Group> mGroups = new LinkedHashMap<String, Group>();
-	private final ResourceLocator mResourceLocator = stendhal.getResourceManager();
 	private float mMasterVolume = 1.0f;
 
 	ExtendedSoundManager() {

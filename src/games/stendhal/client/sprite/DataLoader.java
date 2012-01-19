@@ -11,10 +11,20 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.List;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import org.apache.log4j.Logger;
 
 /**
  * loads data
@@ -23,8 +33,10 @@ import java.util.List;
  * 
  */
 public class DataLoader {
-	private static URLClassLoader classLoader = null;
-	private static List<URL> urls;
+	private static Logger logger = Logger.getLogger(DataLoader.class);
+	private static Set<String> knownFiles = new HashSet<String>();
+	private static Map<String, File> contentFilenameMapping = new HashMap<String, File>();
+	private static Map<String, ZipFile> contentZipFilesMapping = new HashMap<String, ZipFile>();
 
 	/**
 	 * Finds the resource with the given name. A resource is some data (images,
@@ -43,14 +55,16 @@ public class DataLoader {
 	 *         adequate privileges to get the resource.
 	 */
 	public static URL getResource(String name) {
-		URL url = null;
-		if (classLoader != null) {
-			url = classLoader.getResource(name);
+		String slashlessName = stripLeadingSlash(name);
+		File file = contentFilenameMapping.get(slashlessName);
+		if (file != null) {
+			try {
+				return new URL("jar:" + file.toURI().toASCIIString() + "!/" + slashlessName);
+			} catch (MalformedURLException e) {
+				logger.error(e, e);
+			}
 		}
-		if (url == null) {
-			url = DataLoader.class.getClassLoader().getResource(name);
-		}
-		return url;
+		return DataLoader.class.getClassLoader().getResource(slashlessName);
 	}
 
 	/**
@@ -70,24 +84,61 @@ public class DataLoader {
 	 * @since 1.1
 	 */
 	public static InputStream getResourceAsStream(String name) {
-		InputStream is = null;
-		if (classLoader != null) {
-			is = classLoader.getResourceAsStream(name);
+		String slashlessName = stripLeadingSlash(name);
+		ZipFile file = contentZipFilesMapping.get(slashlessName);
+		if (file != null) {
+			ZipEntry entry = file.getEntry(slashlessName);
+			try {
+				return file.getInputStream(entry);
+			} catch (IOException e) {
+				logger.error(e, e);
+			}
 		}
-		if (is == null) {
-			is = DataLoader.class.getClassLoader().getResourceAsStream(name);
-		}
-		return is;
+		return DataLoader.class.getClassLoader().getResourceAsStream(slashlessName);
 	}
 
 	/**
-	 * adds an URL
+	 * removes a leading slash
 	 *
-	 * @param url url
+	 * @param name filename with or without leading slash
+	 * @return filename without leading slash
 	 */
-	public static void addURL(URL url) {
-		urls.add(url);
-		classLoader = new URLClassLoader(urls.toArray(new URL[urls.size()]));
+	private static String stripLeadingSlash(String name) {
+		if (name.length() < 1 || name.charAt(0) != '/') {
+			return name;
+		}
+		return name.substring(1);
+	}
+
+	/**
+	 * adds a .jar file to the repository
+	 *
+	 * @param filename name of .jar file
+	 */
+	public static void addJarFile(String filename) {
+		try {
+			if (knownFiles.contains(filename)) {
+				return;
+			}
+			File file = new File(filename);
+			if (!file.canRead()) {
+				return;
+			}
+
+			knownFiles.add(filename);
+			ZipFile zipFile = new ZipFile(file);
+			Enumeration<? extends ZipEntry> entries = zipFile.entries();
+			while (entries.hasMoreElements()) {
+				ZipEntry entry = entries.nextElement();
+				if (!entry.isDirectory()) {
+					String name = stripLeadingSlash(entry.getName());
+					contentFilenameMapping.put(name, file);
+					contentZipFilesMapping.put(name, zipFile);
+				}
+			}
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
 	}
 
 }

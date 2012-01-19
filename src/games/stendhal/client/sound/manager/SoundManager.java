@@ -20,7 +20,6 @@ import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.SoundLayers;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
 import games.stendhal.common.math.Algebra;
-import games.stendhal.common.resource.Resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -192,18 +191,18 @@ public final class SoundManager
 		mSoundSystem.start();
     }
 
-	public Sound openSound(Resource resource, SoundFile.Type fileType)
+	public Sound openSound(AudioResource AudioResource, SoundFile.Type fileType)
     {
-		return openSound(resource, fileType, OUTPUT_NUM_SAMPLES, true);
+		return openSound(AudioResource, fileType, OUTPUT_NUM_SAMPLES, true);
     }
 
-	public synchronized Sound openSound(Resource resource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
+	public synchronized Sound openSound(AudioResource AudioResource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
 		Sound sound = null;
 
         try
         {
-            SoundFile file = new SoundFile(resource, fileType, numSamplesPerChunk, enableStreaming);
+            SoundFile file = new SoundFile(AudioResource, fileType, numSamplesPerChunk, enableStreaming);
             sound = new Sound();
             sound.file.set(file);
         }
