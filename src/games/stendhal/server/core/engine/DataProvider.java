@@ -92,6 +92,9 @@ public class DataProvider {
 	 * @return content
 	 */
 	public List<TransferContent> getData(String version) {
+		if (data == null) {
+			return null;
+		}
 		return data.get(version);
 	}
 }
