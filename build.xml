@@ -400,7 +400,7 @@
 		<tstamp>
 			<format property="timestamp" pattern="yyyy-MM-dd HH:mm:ss" />
 		</tstamp>
-		<echo file="${src}/games/stendhal/client/StendhalBuild.java" force="true">
+		<echo file="${src}/games/stendhal/client/StendhalBuild.java">
 			package games.stendhal.client;
 			public class StendhalBuild {
 			private static final String BUILD_NUMBER = "${timestamp}";
@@ -428,6 +428,7 @@
 				<pathelement path="${jorbis_jar}"/>
 			</classpath>
 		</javac>
+		<delete file="${src}/games/stendhal/client/StendhalBuild.java" quiet="true" failonerror="false" />
 
 		<!-- compile Starter.java for Java 1.2. So we will be able to
 		 display a dialogbox if running on an old Java Version -->
@@ -721,7 +722,7 @@
 	<target name="compile_stendhaltools" description="compiles the Stendhal build tools">
 		<mkdir dir="${build_stendhaltools}"/>
 
-		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="false">
+		<javac srcdir="${src}" destdir="${build_stendhaltools}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}" includeantruntime="true">
 			<include name="games/stendhal/tools/**/*.java"/>
 			<include name="games/stendhal/tools/*.java"/>
 			<compilerarg value="-encoding"/>
