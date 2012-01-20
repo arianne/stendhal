@@ -17,9 +17,7 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.DataLoader;
-import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Direction;
-import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -178,40 +176,6 @@ public class StendhalClient extends ClientFramework {
 
 		// Notify zone entering.
 		WorldObjects.fireZoneEntered(zoneid);
-	}
-
-	/**
-	 * connect to the Stendhal game server and if successful, check, if the
-	 * server runs StendhalHttpServer extension. In that case it checks, if
-	 * server version equals the client's.
-	 * 
-	 * @throws IOException
-	 */
-	@Override
-	public void connect(final String host, final int port) throws IOException {
-		super.connect(host, port);
-		// if connect was successful try if server has http service, too
-		String urlHost = host;
-		if (host.indexOf(":") > -1) {
-			urlHost = "[" + host + "]";
-		}
-		final String testServer = "http://" + urlHost + "/";
-		final HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
-		final String version = httpClient.fetchFirstLine();
-		if (version != null) {
-			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
-				// custom title, warning icon
-				JOptionPane.showMessageDialog(
-						StendhalFirstScreen.get(),
-						"Your client may not function properly.\nThe version of this server is "
-								+ version
-								+ " but your client is version "
-								+ stendhal.VERSION
-								+ ".\nYou can download version " + version + " from http://arianne.sourceforge.net ",
-						"Version Mismatch With Server",
-						JOptionPane.WARNING_MESSAGE);
-			}
-		}
 	}
 
 	@Override
