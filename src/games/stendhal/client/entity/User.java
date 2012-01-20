@@ -15,10 +15,8 @@ package games.stendhal.client.entity;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.WorldObjects;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.Version;
 import games.stendhal.common.grammar.Grammar;
 
 import java.awt.geom.Rectangle2D;
@@ -248,21 +246,6 @@ public class User extends Player {
 				}
 			}
 
-			if (changes.has("release")) {
-				serverVersion = changes.get("release");
-				if (!Version.checkCompatibility(serverVersion,
-						stendhal.VERSION)) {
-					ClientSingletonRepository.getUserInterface().addEventLine(
-							new HeaderLessEventLine(
-							"Your client may not function properly.\nThe version of this server is "
-									+ serverVersion
-									+ " but your client is version "
-									+ stendhal.VERSION
-									+ ".\nYou can download version " + serverVersion + " from http://arianne.sourceforge.net ",
-							NotificationType.ERROR));
-				}
-			}
-			
 			if (changes.hasSlot("!ignore")) {
 				RPObject ign = changes.getSlot("!ignore").getFirst();
 				if (ign != null) {

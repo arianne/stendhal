@@ -14,6 +14,8 @@ package games.stendhal.server.actions;
 import static games.stendhal.common.constants.Actions.CID;
 import static games.stendhal.common.constants.Actions.CSTATUS;
 import static games.stendhal.common.constants.Actions.ID;
+import games.stendhal.common.NotificationType;
+import games.stendhal.common.Version;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -39,16 +41,12 @@ public class CStatusAction implements ActionListener {
 	}
 
 	public void onAction(final Player player, final RPAction action) {
+		final String pName = player.getName();
 		if (action.has(CID) || action.has(ID)) {
 
 			String cid = action.get(CID);
 			if (cid == null) {
 				cid = action.get(ID);
-			}
-			final String pName = player.getName();
-			if (action.has("version")) {
-				player.setClientVersion(action.get("version"));
-//				dataProvider.provideData(player, action.get("version"));
 			}
 
 			//add to idList
@@ -64,6 +62,20 @@ public class CStatusAction implements ActionListener {
 			//add to nameList
 			nameList.put(pName, cid);
 		}
-		
+
+		if (action.has("version")) {
+			String clientVersion = action.get("version");
+			player.setClientVersion(clientVersion);
+			String serverVersion = Version.VERSION;
+			if (!Version.checkCompatibility(serverVersion, clientVersion)) {
+				player.sendPrivateText(NotificationType.ERROR,
+					"Your client may not function properly.\nThe version of this server is "
+					+ serverVersion
+					+ " but your client is version "
+					+ clientVersion
+					+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
+			}
+		}
+
 	}
 }
