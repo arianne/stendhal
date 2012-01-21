@@ -30,14 +30,17 @@ public abstract class AbstractModifierHandler implements TurnListener {
 
 	public void addModifier(AttributeModifier am) {
 		this.modifiers.add(am);
-		updateNextCleanUpRun();
-		this.affectedEntity.get().updateModifiedAttributes();
+		ModifiedAttributeUpdater temp = this.affectedEntity.get();
+		if (temp != null) {
+			updateNextCleanUpRun();
+			temp.updateModifiedAttributes();
+		}
 	}
 
 	private void updateNextCleanUpRun() {
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
-		if(seconds != 0) {
+		if (seconds != 0) {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, this);
 		}
 	}
@@ -64,12 +67,14 @@ public abstract class AbstractModifierHandler implements TurnListener {
 				updateNeeded = true;
 			}
 		}
-		if(updateNeeded) {
-			this.affectedEntity.get().updateModifiedAttributes();
+
+		ModifiedAttributeUpdater temp = this.affectedEntity.get();
+		if (updateNeeded && (temp != null)) {
+			temp.updateModifiedAttributes();
 		}
 		updateNextCleanUpRun();
 	}
-	
+
 	public long getSecondsTillNextExpire() {
 		long next = 0;
 		AttributeModifier min = Collections.min(this.modifiers);
