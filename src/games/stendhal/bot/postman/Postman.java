@@ -192,7 +192,7 @@ public class Postman {
 									"Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
 											+ HELP_MESSAGE);
 						}
-					} else if (arianneCmd.equalsIgnoreCase("shouts:") || arianneCmd.equalsIgnoreCase("rented")) {
+					} else if (text.matches("[^:]* shouts: .*")) {
 						postmanIRC.sendMessageToAllChannels(text);
 					} else if (texttype.equalsIgnoreCase("support")) {
 						postmanIRC.sendSupportMessage(text);
