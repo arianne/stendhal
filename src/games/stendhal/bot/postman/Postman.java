@@ -194,18 +194,9 @@ public class Postman {
 						}
 					} else if (arianneCmd.equalsIgnoreCase("shouts:") || arianneCmd.equalsIgnoreCase("rented")) {
 						postmanIRC.sendMessageToAllChannels(text);
-					} else if (arianneCmd.equalsIgnoreCase("asks")
-							|| arianneCmd.equalsIgnoreCase("answers")
-							|| arianneCmd.equalsIgnoreCase("answer")
-							   // for the new account messages
-							|| "Support:".equals(from)
-							   // for the npc zone shouts
-							|| arianneCmd.equalsIgnoreCase("shouts")) {
-						// answer is a typo in old server
+					} else if (texttype.equalsIgnoreCase("support")) {
 						postmanIRC.sendSupportMessage(text);
-						if (arianneCmd.equalsIgnoreCase("asks")) {
-							dumpPlayerPosition();
-						}
+						dumpPlayerPosition();
 					}
 				}
 
