@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
+import marauroa.server.game.container.PlayerEntryContainer;
 
 /**
  * handles asking for /support.
@@ -69,11 +71,14 @@ public class AskForSupportAction  implements ActionListener {
 					+ "\r\nPlease use #/supportanswer #" + sender
 					+ " to answer.";
 
-			new GameEvent(sender, "support", sender, action.get(TEXT)).raise();
+			String username = PlayerEntryContainer.getContainer().get(player).username;
 
-			SingletonRepository.getRuleProcessor().sendMessageToSupporters(sender, message);
+			new GameEvent(sender, "support", username, action.get(TEXT)).raise();
 
-			player.sendPrivateText("You ask for support: "
+			String temp = sender + " (" + username + ")";
+			SingletonRepository.getRuleProcessor().sendMessageToSupporters(temp, message);
+
+			player.sendPrivateText(NotificationType.SUPPORT, "You ask for support: "
 					+ action.get(TEXT)
 					+ "\nIt may take a little time until your question is answered.");
 			player.notifyWorldAboutChanges();
