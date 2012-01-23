@@ -25,7 +25,8 @@ public class AttackEvent extends RPEvent {
 	private static final String HIT_ATTR = "hit";
 	private static final String DAMAGE_ATTR = "damage";
 	private static final String DAMAGE_TYPE_ATTR = "type";
-	
+	private static final String TARGET_ATTR = "target";
+
 	/**
 	 * Creates the rpclass.
 	 */
@@ -34,6 +35,9 @@ public class AttackEvent extends RPEvent {
 		rpclass.addAttribute(HIT_ATTR, Type.FLAG);
 		rpclass.addAttribute(DAMAGE_ATTR, Type.INT);
 		rpclass.addAttribute(DAMAGE_TYPE_ATTR, Type.INT);
+
+		// there is a name clash with the attack event
+		rpclass.addAttribute(TARGET_ATTR, Type.STRING);
 	}
 
 	/**
