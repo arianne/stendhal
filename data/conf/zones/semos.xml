@@ -3606,7 +3606,7 @@ Mature sheep wanted: please speak to Sato
 
 	<!--  Level 1 -->
 
-	<zone name="1_dreamscape" file="interiors/abstract/dreamscape.tmx">
+	<zone name="1_dreamscape" file="interiors/abstract/dreamscape_patchwork.tmx">
 		<!--
 			Don't allow teleporting in as we don't want marked scrolls made or ring
 			abused

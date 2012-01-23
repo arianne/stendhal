@@ -5,7 +5,6 @@
 
 *world*
 
-- Added allotment rental in Semos mountains with new NPC
 - bridal outfit includes a veil
 - admin names are anonymised in support answer
 - many more outside zones with lighting
@@ -14,6 +13,7 @@
 - Inactive: New achievements for the weekly item quest
 - outfit image improvements, more depth and differentiation of some duplicates
 - allow pushing of players with items under them by moving the items with the player
+- alternative dreamscape map (on rotation)
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
