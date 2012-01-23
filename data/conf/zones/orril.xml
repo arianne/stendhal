@@ -494,7 +494,7 @@
 	</zone>
 
  	<zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
- 			<configurator class-name="games.stendhal.server.maps.orril.constantines_villa.GuardEntranceNPC" />
+ 			<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardEntranceNPC" />
  	
         <portal x="15" y="49" ref="entrance">
             <destination zone="0_orril_mountain_w" ref="door_left" />
@@ -546,7 +546,7 @@
     </zone>
     
 	<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
- 		<configurator class-name="games.stendhal.server.maps.orril.constantines_villa.GuardBarracksNPC" />
+ 		<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardBarracksNPC" />
 
 
         <portal x="50" y="18" ref="door_right_1">
@@ -616,7 +616,7 @@
 
 	<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
 		
-		<configurator class-name="games.stendhal.server.maps.orril.constantines_villa.LibrarianNPC" />
+		<configurator class-name="games.stendhal.server.maps.orril.constantines.LibrarianNPC" />
 
 		
 		<portal x="0" y="18" ref="library1">
