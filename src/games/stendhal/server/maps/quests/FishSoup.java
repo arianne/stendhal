@@ -415,12 +415,6 @@ public class FishSoup extends AbstractQuest {
 		return "FishSoup";
 	}
 	
-	
-	@Override
-	public int getMinLevel() {
-		return 20;
-	}
-	
 	@Override
 	public boolean isRepeatable(final Player player) {
 		return	new AndCondition(new QuestCompletedCondition(QUEST_SLOT),
