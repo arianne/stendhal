@@ -14,6 +14,7 @@
 - outfit image improvements, more depth and differentiation of some duplicates
 - allow pushing of players with items under them by moving the items with the player
 - alternative dreamscape map (on rotation)
+- introducing new NPC Marie-Henri in Ados library
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
