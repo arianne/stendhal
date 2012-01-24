@@ -34,7 +34,6 @@ public class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
 	private StatsPanel panel;
 	private static	StatsPanelController instance;
-	private static int counter = 0;
 	
 	/**
 	 * The money objects.
@@ -171,8 +170,6 @@ public class StatsPanelController {
 	 * Called when HP or max HP has changed.
 	 */
 	private void updateHP() {
-		System.out.println("Counter HP Updates: "+counter);
-		counter++;
 		
 		int maxhpvalue = maxhp;
 		if(maxhpModified != 0) {
