@@ -311,6 +311,16 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		put("stage", stage);
 		modify();
 	}
+	
+	@Override
+	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+		super.onMoved(oldX, oldY, newX, newY);
+		if (corpseOwner != null) {
+			// Restart owner timer to make the life of thieves harder
+			SingletonRepository.getTurnNotifier().dontNotify(itemForRewardsReleaser);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(PROTECTION_TIME, itemForRewardsReleaser);
+		}
+	}
 
 	/**
 	 * degradates this corpse and remove it if it is completely rotten
