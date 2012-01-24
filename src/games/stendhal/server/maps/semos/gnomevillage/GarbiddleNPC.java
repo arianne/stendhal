@@ -58,7 +58,7 @@ public class GarbiddleNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to our wonderful village.");
 				addJob("I'm here to buy supplies for a rainy day.");
-				addHelp("I buy several things.  Please read the sign to see what we need.");
+				addHelp("I buy several things. Please read the sign to see what we need.");
 				addOffer("Read the sign to see what we need.");
 				addQuest("Thanks for asking, but I am fine.");
 				addGoodbye("Bye now. So glad you stopped in to visit us.");
