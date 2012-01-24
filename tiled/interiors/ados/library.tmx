@@ -90,7 +90,7 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2QSQoCMRBFcyo9grpzdulwAXWn3kMv4XAdaXE+ic+F0IQuOg2dhNh58CgIlV/wlfo/bnjHB54x0d5s88QXvvGCV+0tZLbCdMVJm8eS88c4ydn53dzjoeT7U5zl7OyEGQmXmqAr6oKuchvY1GwZ7km7RXKrTuzfL7F/v1S9/zZ2sJ+y5zB3gEPNUcZe0f5Nc33z7SndUVeV179Jrq2eQuk/izkucGn5j8QK17ix+OcD4cz17QAQAAA=
+   H4sIAAAAAAAAC+2QSQoCMRBFcyo9grpzdqntBdSdeg+9hOJ1RNF2OInPXRO6MA0ZiJ0Hj4LipwJfqf/jjjk+8IwXbeeaJ77wjVe8abuY2QnTFydt2maKM8PsAY+W/89w/iOzF2YiXhqCvmgK+rrbwrZmxzAnZavcrTup/7Ck/sNS9/672MNhwYHHuyMca05KclX7N70bmm9PxY76yl7/Jndd9RRL/2UscIkrx28k1rjBrcM3HyzRZo0AEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
