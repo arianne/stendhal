@@ -130,6 +130,7 @@ public class StendhalQuestSystem {
 		loadQuest(new MeetHayunn());
 		loadQuest(new MeetIo());
 		loadQuest(new MeetKetteh());
+		loadQuest(new MeetMarieHenri());
 		loadQuest(new MeetMonogenes());
 		loadQuest(new MeetSanta());
 		loadQuest(new MeetZynn());
