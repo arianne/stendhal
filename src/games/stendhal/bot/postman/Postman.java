@@ -59,12 +59,12 @@ public class Postman {
 
 	/**
 	 * Processes a talk event.
-	 * 
+	 *
 	 * @param object
 	 *            the talking person
 	 */
 	public void processPublicTalkEvent(final RPObject object) {
-		
+
 		try {
 			if (object == null) {
 				return;
@@ -73,7 +73,7 @@ public class Postman {
 			final int ydiff = object.getInt("y") - Integer.parseInt(Y_COORD);
 			if (xdiff * xdiff + ydiff * ydiff > 36) {
 				logger.debug("***Postman*** object x: " + object.getInt("x") + ", object y: " + object.getInt("y")
-							 + ", postman x " + Integer.parseInt(X_COORD) + ", postman y: " + Integer.parseInt(Y_COORD) 
+							 + ", postman x " + Integer.parseInt(X_COORD) + ", postman y: " + Integer.parseInt(Y_COORD)
 							 + ", xdiff: " + xdiff + ", ydiff:  " + ydiff);
 				return;
 			}
@@ -97,7 +97,7 @@ public class Postman {
 						if (st.hasMoreTokens()) {
 							cmd = st.nextToken();
 						}
-						if (cmd.equalsIgnoreCase("hi") 
+						if (cmd.equalsIgnoreCase("hi")
 								|| cmd.equalsIgnoreCase("hello")
 								|| cmd.equalsIgnoreCase("hallo")
 								|| cmd.equalsIgnoreCase("greetings")
@@ -133,7 +133,7 @@ public class Postman {
 
 	/**
 	 * Processes a talk event.
-	 * 
+	 *
 	 * @param object
 	 *            RPObject
 	 * @param texttype
@@ -159,17 +159,17 @@ public class Postman {
 
 					final StringTokenizer st = new StringTokenizer(text, " ");
 					final String from = st.nextToken();
-					
+
 					// tells
 					final String arianneCmd = st.nextToken();
-					
+
 					// you:
-					st.nextToken(); 
+					st.nextToken();
 
 					if (arianneCmd.equals("tells")) {
 						// Command was send by a player
 						// cmd
-						String cmd = st.nextToken(); 
+						String cmd = st.nextToken();
 						if (cmd.startsWith("/")) {
 							cmd = cmd.substring(1);
 						}
@@ -194,6 +194,9 @@ public class Postman {
 						}
 					} else if (text.matches("[^:]* shouts: .*")) {
 						postmanIRC.sendMessageToAllChannels(text);
+					} else if (text.matches("[^:]* rented .*")) {
+						// for signs
+						postmanIRC.sendMessageToAllChannels(text);
 					} else if (texttype.equalsIgnoreCase("support")) {
 						postmanIRC.sendSupportMessage(text);
 						dumpPlayerPosition();
@@ -212,15 +215,15 @@ public class Postman {
 		String msg = "";
 		// System.err.println("!" + from + "! !" + cmd + "! !" + msg + "!");
 		if (st.hasMoreTokens()) {
-			
+
 			// player
-			param = st.nextToken(); 
+			param = st.nextToken();
 		}
 		if (st.hasMoreTokens()) {
 			// the rest of the message
-			msg = st.nextToken("\0").trim(); 
+			msg = st.nextToken("\0").trim();
 		}
-		
+
 		final RPAction action = new RPAction();
 		action.put("type", "storemessageonbehalfofplayer");
 		action.put("source", from);
@@ -365,7 +368,7 @@ public class Postman {
 
 	/**
 	 * attaches an admin note
-	 * 
+	 *
 	 * @param charname name of character
 	 * @param target  target player
 	 * @param message message
@@ -381,7 +384,7 @@ public class Postman {
 
 	/**
 	 * shouts as admin
-	 * 
+	 *
 	 * @param charname name of character
 	 * @param message message
 	 */
