@@ -15,10 +15,17 @@
 - allow pushing of players with items under them by moving the items with the player
 - alternative dreamscape map (on rotation)
 - introducing new NPC Marie-Henri in Ados library
+- dry grass at mountain areas
+- include ATK and DEF to the player strenght calculation when checking if attacking is allowed
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
 
+*client*
+- Animated blends are much faster than before
+- A menu item for taking screenshots
+- Bleach mode supports colored light
+- Blend layers can use any available blend mode
 
 
 
