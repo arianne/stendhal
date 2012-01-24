@@ -34,6 +34,7 @@ public class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
 	private StatsPanel panel;
 	private static	StatsPanelController instance;
+	private static int counter = 0;
 	
 	/**
 	 * The money objects.
@@ -45,6 +46,7 @@ public class StatsPanelController {
 	private int xp;
 	private int hp;
 	private int maxhp;
+	private int maxhpModified;
 	
 	private int atk;
 	private int atkxp;
@@ -169,7 +171,14 @@ public class StatsPanelController {
 	 * Called when HP or max HP has changed.
 	 */
 	private void updateHP() {
-		final String text = "HP: " + hp + "/" + maxhp;
+		System.out.println("Counter HP Updates: "+counter);
+		counter++;
+		
+		int maxhpvalue = maxhp;
+		if(maxhpModified != 0) {
+			maxhpvalue = maxhpModified;
+		}
+		final String text = "HP: " + hp + "/" + maxhpvalue;
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				panel.setHP(text);
@@ -214,10 +223,17 @@ public class StatsPanelController {
 				return;
 			}
 			
-			if (event.getPropertyName().endsWith("base_hp")) {
-				maxhp = Integer.parseInt((String) event.getNewValue());
-			} else {
-				hp = Integer.parseInt((String) event.getNewValue());
+			String newValue = (String) event.getNewValue();
+			if (event.getPropertyName().equals("base_hp")) {
+				maxhp = Integer.parseInt(newValue);
+			} else if (event.getPropertyName().equals("base_hp_modified")){
+				if(newValue != null) {
+					maxhpModified = Integer.parseInt(newValue);
+				} else {
+					maxhpModified = 0;
+				}
+			} else if (event.getPropertyName().equals("hp")) {
+				hp = Integer.parseInt(newValue);
 			}
 			updateHP();
 		}
@@ -301,7 +317,7 @@ public class StatsPanelController {
 			
 			if ("atk_xp".equals(event.getPropertyName())) {
 				atkxp = Integer.parseInt((String) event.getNewValue());
-			} else {
+			} else if ("atk".equals(event.getPropertyName())){
 				atk = Integer.parseInt((String) event.getNewValue());
 			}
 			updateAtk();
@@ -319,7 +335,7 @@ public class StatsPanelController {
 			
 			if (event.getPropertyName().equals("def_xp")) {
 				defxp = Integer.parseInt((String) event.getNewValue());
-			} else {
+			} else if ("def".equals(event.getPropertyName())) {
 				def =  Integer.parseInt((String) event.getNewValue());
 			}
 			updateDef();
@@ -353,7 +369,9 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			level = Integer.parseInt((String) event.getNewValue());
+			if(event.getPropertyName().equals("level")) {
+				level = Integer.parseInt((String) event.getNewValue());
+			}
 			updateLevel();
 		}
 	}
