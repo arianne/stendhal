@@ -17,6 +17,7 @@
 - introducing new NPC Marie-Henri in Ados library
 - dry grass at mountain areas
 - include ATK and DEF to the player strenght calculation when checking if attacking is allowed
+- corpse owner timer of protected corpses is restarted when the corpse is moved
 
 *fixes*
 - allow Supplies for Phalk to be continued if the special armor or cloak was accidentally sold
