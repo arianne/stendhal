@@ -18,8 +18,6 @@ import games.stendhal.client.gui.login.CreateAccountDialog;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.client.update.HttpClient;
-import games.stendhal.common.Version;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -47,13 +45,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
 /**
  * Summary description for LoginGUI.
- * 
+ *
  */
 @SuppressWarnings("serial")
 public class StendhalFirstScreen extends JFrame {
@@ -61,7 +58,7 @@ public class StendhalFirstScreen extends JFrame {
 	private static final Logger logger = Logger.getLogger(StendhalFirstScreen.class);
 	private static final int BUTTON_WIDTH = 160;
 	private static final int BUTTON_HEIGHT = 32;
-	
+
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
 	/** Font used for the html areas */
@@ -77,7 +74,7 @@ public class StendhalFirstScreen extends JFrame {
 	private JButton createAccountButton;
 	private JButton helpButton;
 	private JButton creditButton;
-	
+
 	// load an atmospheric font for the text
 	static {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -124,7 +121,7 @@ public class StendhalFirstScreen extends JFrame {
 
 	/**
 	 * Creates the first screen.
-	 * 
+	 *
 	 * @param client
 	 *            StendhalClient
 	 */
@@ -141,11 +138,11 @@ public class StendhalFirstScreen extends JFrame {
 
 		this.setVisible(true);
 	}
-	
+
 	/**
 	 * Detect the preferred screen by where the mouse is the moment the method
 	 * is called. This is for multi-monitor support.
-	 * 
+	 *
 	 * @return GraphicsEnvironment of the current screen
 	 */
 	private static GraphicsConfiguration detectScreen() {
@@ -155,7 +152,7 @@ public class StendhalFirstScreen extends JFrame {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Set the application name for the windowing system.
 	 */
@@ -163,7 +160,7 @@ public class StendhalFirstScreen extends JFrame {
 		/*
 		 * WM_CLASS for X window managers that use it
 		 * (A workaround, see java RFE 6528430)
-		 * 
+		 *
 		 * Used for example in collapsing the window list in gnome 2, and
 		 * for the application menu in gnome 3.
 		 */
@@ -199,7 +196,7 @@ public class StendhalFirstScreen extends JFrame {
 				g.drawImage(background, 0, 0, this);
 			}
 		});
-		
+
 		Font font = new Font(FONT_NAME, Font.PLAIN, 16);
 
 		//
@@ -275,7 +272,7 @@ public class StendhalFirstScreen extends JFrame {
 		final Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
 
-		int x = (background.getWidth(null) - BUTTON_WIDTH) / 2; 
+		int x = (background.getWidth(null) - BUTTON_WIDTH) / 2;
 		addComponent(contentPane, loginButton, x, 300, BUTTON_WIDTH, BUTTON_HEIGHT);
 		addComponent(contentPane, createAccountButton, x, 340, BUTTON_WIDTH, BUTTON_HEIGHT);
 		addComponent(contentPane, helpButton, x, 380, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -306,7 +303,6 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void login() {
-		checkVersion();
 		new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
 	}
 
@@ -318,40 +314,19 @@ public class StendhalFirstScreen extends JFrame {
 		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/Stendhal_Manual");
 	}
 
-	private void checkVersion() {
-		final HttpClient httpClient = new HttpClient(
-				ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
-		final String version = httpClient.fetchFirstLine();
-		if (version != null) {
-			if (Version.compare(version, stendhal.VERSION) > 0) {
-				// custom title, warning icon
-				JOptionPane.showMessageDialog(
-						this,
-						"Your client is out of date. Latest version is "
-								+ version
-								+ ". But you are using "
-								+ stendhal.VERSION
-								+ ".\nDownload from http://arianne.sourceforge.net",
-						"Client out of date", JOptionPane.WARNING_MESSAGE);
-			}
-		}
-
-	}
-
 	/**
 	 * Opens the create account dialog after checking the server version.
 	 */
 	public void createAccount() {
-		checkVersion();
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
 	}
 
-	/** Adds Component Without a Layout Manager (Absolute Positioning). 
-	 * @param container 
-	 * @param c 
-	 * @param x 
-	 * @param y 
-	 * @param width 
+	/** Adds Component Without a Layout Manager (Absolute Positioning).
+	 * @param container
+	 * @param c
+	 * @param x
+	 * @param y
+	 * @param width
 	 * @param height */
 	private void addComponent(final Container container, final Component c, final int x, final int y,
 			final int width, final int height) {

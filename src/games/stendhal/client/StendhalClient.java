@@ -17,11 +17,15 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.DataLoader;
+import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -670,6 +674,34 @@ public class StendhalClient extends ClientFramework {
 			zone.validate();
 			staticLayers.setZone(zone);
 		}
+	}
+
+	/**
+	 * connect to the Stendhal game server and if successful, check, if the
+	 * server runs StendhalHttpServer extension. In that case it checks, if
+	 * server version equals the client's.
+	 *
+	 * @throws IOException
+	 */
+	@Override
+	public void connect(final String host, final int port) throws IOException {
+		String gameName = ClientGameConfiguration.get("GAME_NAME").toLowerCase(Locale.ENGLISH);
+
+		String url = "http://arianne.sourceforge.net/versioncheck/"
+				+ URLEncoder.encode(gameName, "UTF-8") + "/"
+				+ URLEncoder.encode(host, "UTF-8") + "/"
+				+ URLEncoder.encode(Integer.toString(port), "UTF-8") + "/"
+				+ URLEncoder.encode(Version.getVersion(), "UTF-8");
+		HttpClient httpClient = new HttpClient(url);
+		String message = httpClient.fetchFirstLine();
+		if ((message != null) && (message.trim().length() > 0)) {
+			JOptionPane.showMessageDialog(
+				StendhalFirstScreen.get(),
+				message, "Version Check",
+				JOptionPane.WARNING_MESSAGE);
+		}
+
+		super.connect(host, port);
 	}
 
 	@Override
