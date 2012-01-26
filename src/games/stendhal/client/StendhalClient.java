@@ -79,7 +79,7 @@ public class StendhalClient extends ClientFramework {
 	private String character = null;
 
 	private final UserContext userContext;
-	
+
 	/** Listeners to be called when zone changes. */
 	private final List<ZoneChangeListener> zoneChangeListeners = new ArrayList<ZoneChangeListener>();
 
@@ -92,7 +92,7 @@ public class StendhalClient extends ClientFramework {
 	 * Whether the client is in a batch update.
 	 */
 	private boolean inBatchUpdate = false;
-	private ReentrantLock drawingSemaphore = new ReentrantLock();
+	private final ReentrantLock drawingSemaphore = new ReentrantLock();
 
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 	/** The zone currently under loading. */
@@ -149,7 +149,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Handle sync events before they are dispatched.
-	 * 
+	 *
 	 * @param zoneid
 	 *            The zone entered.
 	 */
@@ -198,7 +198,7 @@ public class StendhalClient extends ClientFramework {
 			validateAndUpdateZone(currentZone);
 			inBatchUpdate = false;
 			/*
-			 * Rapid zone change can cause two content transfers in a row. 
+			 * Rapid zone change can cause two content transfers in a row.
 			 * Similarly a zone update that happens when the player changes
 			 * zones. Only the latter will ever get a perception, so we need to
 			 * release any locks we are holding, or the game screen will be
@@ -278,10 +278,10 @@ public class StendhalClient extends ClientFramework {
 
 		return items;
 	}
-	
+
 	/**
 	 * Add a listener to be called when the player changes zone.
-	 * 
+	 *
 	 * @param listener
 	 */
 	public void addZoneChangeListener(ZoneChangeListener listener) {
@@ -290,7 +290,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Determine if we are in the middle of transfering new content.
-	 * 
+	 *
 	 * @return <code>true</code> if more content is to be transfered.
 	 */
 	public boolean isInTransfer() {
@@ -299,7 +299,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Load layer data
-	 * 
+	 *
 	 * @param name name of the layer
 	 * @param in
 	 * @throws IOException
@@ -404,7 +404,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Add an active player movement direction.
-	 * 
+	 *
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -458,14 +458,14 @@ public class StendhalClient extends ClientFramework {
 	} else {
 		action = new MoveRPAction(dir);
 	}
-		
+
 	send(action);
 	}
 
 
 /**
 	 * Remove a player movement direction.
-	 * 
+	 *
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -557,7 +557,7 @@ public class StendhalClient extends ClientFramework {
 	 *
 	 * @param object
 	 *            An object.
-	 * 
+	 *
 	 * @return <code>true</code> if it is the user object.
 	 */
 	public boolean isUser(final RPObject object) {
@@ -570,7 +570,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Return the Cache instance.
-	 * 
+	 *
 	 * @return cache
 	 */
 	public Cache getCache() {
@@ -592,7 +592,7 @@ public class StendhalClient extends ClientFramework {
 
 	public RPObject getPlayer() {
 		return userContext.getPlayer();
-		
+
 	}
 
 	@Override
@@ -628,7 +628,7 @@ public class StendhalClient extends ClientFramework {
 		 */
 		void onZoneUpdate();
 	}
-	
+
 	/**
 	 * Validate a zone (prepare the tilesets), and set it as the current zone.
 	 * Zones that are just updates (changed colors, for example), get validated
@@ -674,8 +674,11 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	public void send(RPAction action) {
+
+		// work around a bug in the chat-action definition in 0.98 and below
 		String type = action.get("type");
-		if (RPClass.getRPClass(type) != null) {
+		String serverVersion = User.getServerRelease();
+		if (((serverVersion == null) || (serverVersion.compareTo("0.99")) >= 0) && (RPClass.getRPClass(type) != null)) {
 			action.setRPClass(type);
 			action.remove("type");
 		}
