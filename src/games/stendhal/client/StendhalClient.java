@@ -33,6 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -697,7 +698,7 @@ public class StendhalClient extends ClientFramework {
 		if ((message != null) && (message.trim().length() > 0)) {
 			JOptionPane.showMessageDialog(
 				StendhalFirstScreen.get(),
-				message, "Version Check",
+				new JLabel(message), "Version Check",
 				JOptionPane.WARNING_MESSAGE);
 		}
 

@@ -68,12 +68,17 @@ public class CStatusAction implements ActionListener {
 			player.setClientVersion(clientVersion);
 			String serverVersion = Version.VERSION;
 			if (!Version.checkCompatibility(serverVersion, clientVersion)) {
-				player.sendPrivateText(NotificationType.ERROR,
-					"Your client may not function properly.\nThe version of this server is "
-					+ serverVersion
-					+ " but your client is version "
-					+ clientVersion
-					+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
+				if (serverVersion.compareTo(clientVersion) < 0) {
+					player.sendPrivateText(NotificationType.ERROR,
+						"There may be some compatibility problems because the server is outdated.");
+				} else {
+					player.sendPrivateText(NotificationType.ERROR,
+						"Your client may not function properly.\nThe version of this server is "
+						+ serverVersion
+						+ " but your client is version "
+						+ clientVersion
+						+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
+				}
 			}
 		}
 
