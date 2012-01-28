@@ -1010,6 +1010,14 @@ Please leave my mail at my neighbour's house.
  
    <zone name="int_ados_bank" file="interiors/ados/bank.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bank.BankNPC" />
+    
+    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+			<parameter name="x">17</parameter>
+			<parameter name="y">4</parameter>
+			<parameter name="image">fence_gate</parameter>
+			<parameter name="orientation">v</parameter>
+			<parameter name="autoclose">2</parameter>
+	</configurator>
    
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city_n" ref="6"/>
