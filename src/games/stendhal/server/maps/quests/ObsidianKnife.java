@@ -141,7 +141,7 @@ public class ObsidianKnife extends AbstractQuest {
 		if (questState.equals("food_brought")) {
 			return res;
 		}
-		res.add("I need to ask in a library about a gem_book for Alrak.");
+		res.add("I need to ask in a library about a gem book for Alrak.");
 		if (questState.equals("seeking_book")) {
 			return res;
 		}
