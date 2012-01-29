@@ -66,6 +66,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new SayTextWithPlayerNameAction("Hi again, [name]. How can I #help you this time?"));
+				addGoodbye();
 				
 				// A little trick to make NPC remember if it has met
 		        // player before and react accordingly
@@ -75,7 +76,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestNotCompletedCondition("Zynn")), 
-						ConversationStates.INFORMATION_1, 
+						ConversationStates.ATTENDING, 
 						"Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.",
 						new SetQuestAction("Zynn", "done"));
 				
