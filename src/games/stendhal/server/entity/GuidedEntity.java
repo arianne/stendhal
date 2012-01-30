@@ -73,7 +73,10 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
-		return modifierHandler.modifySpeed(this.baseSpeed);
+		if(this.modifierHandler != null) {
+			return modifierHandler.modifySpeed(this.baseSpeed);
+		}
+		return this.baseSpeed;
 	}
 	
 	/**
