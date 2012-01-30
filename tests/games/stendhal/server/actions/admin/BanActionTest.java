@@ -13,7 +13,10 @@
 package games.stendhal.server.actions.admin;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -26,10 +29,12 @@ import marauroa.server.game.db.DAORegister;
 import marauroa.server.game.db.DatabaseFactory;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
+@Ignore // TODO: undo bans, doing a rollback is not helpful because the bans are done by the BanAction using another transaction
 public class BanActionTest {
 
 	@BeforeClass
