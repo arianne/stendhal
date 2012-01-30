@@ -34,7 +34,7 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 
 	public Registrator pathnotifier = new Registrator();
 	
-	private final GuidedEntityModifierHandler modifierHandler;
+	private GuidedEntityModifierHandler modifierHandler;
 	
 	/**
 	 * Create a guided entity.
@@ -42,7 +42,6 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 	public GuidedEntity() {
 		baseSpeed = 0;
 		guide.guideMe(this);
-		modifierHandler = new GuidedEntityModifierHandler(this);
 	}
 
 	/**
@@ -55,13 +54,18 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 		super(object);
 		baseSpeed = 0;
 		guide.guideMe(this);
-		modifierHandler = new GuidedEntityModifierHandler(this);
 		update();
 	}
 
 	//
 	// TEMP for Transition
 	//
+	
+	private void initModifierHandler() {
+		if(this.modifierHandler == null) {
+			this.modifierHandler = new GuidedEntityModifierHandler(this);
+		}
+	}
 
 	/**
 	 * Get the normal movement speed.
@@ -78,6 +82,7 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 	 * @param modifier
 	 */
 	public void addSpeedModifier(Date expire, double modifier) {
+		this.initModifierHandler();
 		AttributeModifier am = AttributeModifier.createSpeedModifier(expire, modifier);
 		modifierHandler.addModifier(am);
 	}
