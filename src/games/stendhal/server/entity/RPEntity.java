@@ -2863,7 +2863,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if(modifiedDef != this.def) {
 			this.put(ATTR_MODIFIED_DEF, modifiedDef);
 		} else {
-			this.remove(ATTR_MODIFIED_DEF);
+			if(this.has(ATTR_MODIFIED_DEF)) {
+				this.remove(ATTR_MODIFIED_DEF);
+			}
 		}
 	}
 	
@@ -2871,7 +2873,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if(modifiedAtk != this.atk) {
 			this.put(ATTR_MODIFIED_ATK, modifiedAtk);
 		} else {
-			this.remove(ATTR_MODIFIED_ATK);
+			if(this.has(ATTR_MODIFIED_ATK)) {
+				this.remove(ATTR_MODIFIED_ATK);
+			}
 		}
 	}
 	
@@ -2879,7 +2883,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if(modifiedHp != this.hp) {
 			this.put(ATTR_MODIFIED_HP, modifiedHp);
 		} else {
-			this.remove(ATTR_MODIFIED_HP);
+			if(this.has(ATTR_MODIFIED_HP)) {
+				this.remove(ATTR_MODIFIED_HP);
+				logger.error("Entferne "+ATTR_MODIFIED_HP);
+			}
 		}
 	}
 
@@ -2889,7 +2896,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			//on change of the base hp the base hp may fall below the current hp
 			this.setHpInternal(Math.min(this.getHP(), this.getBaseHP()), false);
 		} else {
-			this.remove(ATTR_MODIFIED_BASE_HP);
+			if(this.has(ATTR_MODIFIED_BASE_HP)) {
+				this.remove(ATTR_MODIFIED_BASE_HP);
+			}
 		}
 	}
 	
@@ -2897,7 +2906,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if(modifiedMana != this.mana) {
 			this.put(ATTR_MODIFIED_MANA, modifiedMana);
 		} else {
-			this.remove(ATTR_MODIFIED_MANA);
+			if(this.has(ATTR_MODIFIED_MANA)) {
+				this.remove(ATTR_MODIFIED_MANA);
+			}
 		}
 	}
 	
@@ -2907,7 +2918,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			//on change of the base mana the base hp may fall below the current mana
 			this.setManaInternal(Math.min(this.getMana(), this.getBaseMana()), false);
 		} else {
-			this.remove(ATTR_MODIFIED_BASE_MANA);
+			if(this.has(ATTR_MODIFIED_BASE_MANA)) {
+				this.remove(ATTR_MODIFIED_BASE_MANA);
+			}
 		}
 	}
 	
@@ -2915,7 +2928,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if(modifiedLevel != this.level) {
 			this.put(ATTR_MODIFIED_LEVEL, modifiedLevel);
 		} else {
-			this.remove(ATTR_MODIFIED_LEVEL);
+			if(this.has(ATTR_MODIFIED_LEVEL)) {
+				this.remove(ATTR_MODIFIED_LEVEL);
+			}
 		}
 	}
 }
