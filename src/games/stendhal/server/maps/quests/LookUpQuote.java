@@ -116,6 +116,7 @@ public class LookUpQuote extends AbstractQuest {
 				}
 			});
 
+		// TODO: rewrite this to use standard conditions and actions
 		fisherman.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
@@ -159,6 +160,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Too bad. I would have had a nice reward for you.", null);
 
+		// TODO: rewrite this to use standard conditions and actions
 		fisherman.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
