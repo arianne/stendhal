@@ -170,6 +170,7 @@ public class TheMissingBooks extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Too bad. I would have had a nice reward for you which you might need later.", null);
 
+		// TODO: rewrite this to use standard conditions and actions
 		npc.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
