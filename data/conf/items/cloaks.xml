@@ -201,7 +201,7 @@
   
   <item name="golden cloak">
     <type class="cloak" subclass="golden_cloak" tileid="-1"/>
-    <description>You see a golden cloak.  See how the light glistens off the gold, it is a prized possession.</description>
+    <description>You see a golden cloak. See how the light glistens off the gold, it is a prized possession.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="19"/>
       <min_level value="105"/>
