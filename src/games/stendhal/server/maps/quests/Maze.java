@@ -58,7 +58,7 @@ public class Maze extends AbstractQuest {
 			if (!player.hasQuest(getSlotName())) {
 				return res;
 			}
-			res.add("Haizen created a magial maze for me to solve.");
+			res.add("Haizen created a magical maze for me to solve.");
 
 			if (player.getZone().getName().endsWith("_maze")) {
 				res.add("I am currently trapped in the maze.");
