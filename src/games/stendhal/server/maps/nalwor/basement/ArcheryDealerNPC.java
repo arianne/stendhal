@@ -63,6 +63,7 @@ public class ArcheryDealerNPC implements ZoneConfigurator  {
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyarcherstuff")), false);			    
 			}};
 			npc.setPosition(10, 5);
+			npc.setDescription("You see the beautiful mage elf Merenwen. She buys some nice archery stuff.");
 			npc.setEntityClass("mageelfnpc");
 			zone.add(npc);		
 	}
