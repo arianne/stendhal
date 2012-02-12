@@ -138,6 +138,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 			};
 			
 			npc.setPosition(101, 103);
+			npc.setDescription("You see Eliza. She takes customers on board of the Athor island ferry.");
 			npc.setEntityClass("woman_008_npc");
 			npc.setDirection(Direction.LEFT);
 			zone.add(npc);		
