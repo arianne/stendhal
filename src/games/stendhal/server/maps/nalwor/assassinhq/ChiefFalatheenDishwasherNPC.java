@@ -54,6 +54,7 @@ public class ChiefFalatheenDishwasherNPC implements ZoneConfigurator  {
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);			    
 			}};
 			npc.setPosition(20, 3);
+			npc.setDescription("You see a strong looking man. He ate lots of healthy vegetables to look like that!");
 			npc.setEntityClass("chieffalatheennpc");
 			zone.add(npc);		
 	}
