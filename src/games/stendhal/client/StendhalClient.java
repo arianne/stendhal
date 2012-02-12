@@ -678,16 +678,17 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * connect to the Stendhal game server and if successful, check, if the
-	 * server runs StendhalHttpServer extension. In that case it checks, if
-	 * server version equals the client's.
+	 * Connect to the server, and if our version is too outdated, display a message.
 	 *
-	 * @throws IOException
+	 * @throws IOException in case of an input/output error
 	 */
 	@Override
 	public void connect(final String host, final int port) throws IOException {
 		String gameName = ClientGameConfiguration.get("GAME_NAME").toLowerCase(Locale.ENGLISH);
 
+		// include gamename, so that arianne.sf.net can ignore non stendhal games
+		// include server name and port because we want to support different versions for
+		// the main server and the test server
 		String url = "http://arianne.sourceforge.net/versioncheck/"
 				+ URLEncoder.encode(gameName, "UTF-8") + "/"
 				+ URLEncoder.encode(host, "UTF-8") + "/"
