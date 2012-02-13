@@ -322,6 +322,7 @@ public class Blackjack extends AbstractQuest {
 
 		ramon.setEntityClass("naughtyteen2npc");
 		ramon.setPosition(26, 36);
+		ramon.setDescription("Ramon wants to play some rounds of blackjack with you. Do you want to give it a try?");
 		ramon.setDirection(Direction.DOWN);
 		ramon.initHP(100);
 		zone.add(ramon);
