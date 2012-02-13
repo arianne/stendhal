@@ -103,6 +103,7 @@ public class AdminHelpNPC implements ZoneConfigurator {
 		};
 		new HealerAdder().addHealer(npc, 0);
 		npc.setPosition(16, 7);
+		npc.setDescription("You see Skye. She knows everything, Admins should know and always has a smile on her face for them :)");
 		npc.setDirection(Direction.DOWN);
 		npc.setEntityClass("beautifulgirlnpc");
 		zone.add(npc);
