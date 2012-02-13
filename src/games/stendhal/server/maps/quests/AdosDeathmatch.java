@@ -221,6 +221,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 		npc.setEntityClass("darkwizardnpc");
 		npc.setPosition(x, y);
+		npc.setDescription("You see Thanatos. He watches strong warriors in their Deathmatch.");
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		// The assistant is near the spikes, so give him better ears for the
