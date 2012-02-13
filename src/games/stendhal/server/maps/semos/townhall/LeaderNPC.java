@@ -105,6 +105,7 @@ public class LeaderNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setLevel(150);
+		npc.setDescription("You see Lieutenant Drilenun who talks to his three cadets.");
 		npc.setEntityClass("bossmannpc");
 		npc.setPosition(23, 15);
 		npc.initHP(100);
