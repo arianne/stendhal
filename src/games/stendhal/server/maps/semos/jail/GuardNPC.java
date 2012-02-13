@@ -89,6 +89,7 @@ public class GuardNPC implements ZoneConfigurator  {
 				addGoodbye();
 			}};
 			npc.setPosition(9, 7);
+			npc.setDescription("You see one of the Semos jail keepers, Marcus.");
 			npc.setEntityClass("youngsoldiernpc");
 			zone.add(npc);		
 	}
