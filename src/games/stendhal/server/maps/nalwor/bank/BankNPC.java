@@ -68,6 +68,7 @@ public class BankNPC implements ZoneConfigurator {
 
 		oldnpc.setDirection(Direction.DOWN);
 		oldnpc.setEntityClass("elfbankeroldnpc");
+		oldnpc.setDescription("You see Grafindle who works in Nalwor bank.");
 		oldnpc.setPosition(13, 17);
 		oldnpc.initHP(100);
 		zone.add(oldnpc);
