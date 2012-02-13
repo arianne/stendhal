@@ -61,6 +61,7 @@ public class StichardRallmanNPC implements ZoneConfigurator {
 		};
 
 		stallman.setEntityClass("richardstallmannpc");
+		stallman.setDescription("Stichard Rallman knows everything about free software and licences.");
 		stallman.setPosition(24, 19);
 		stallman.setDirection(Direction.DOWN);
 		stallman.initHP(100);
