@@ -88,6 +88,7 @@ public class MrsYetiNPC implements ZoneConfigurator {
 		};
 
 		yetifemale.setEntityClass("yetifemalenpc");
+		yetifemale.setDescription("You see Mrs. Yeti, a white hairy lady with huge feet!");
 		yetifemale.setPosition(102, 19);
 		yetifemale.initHP(100);
 		zone.add(yetifemale);

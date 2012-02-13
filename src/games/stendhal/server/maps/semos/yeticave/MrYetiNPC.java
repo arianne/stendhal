@@ -67,6 +67,7 @@ public class MrYetiNPC implements ZoneConfigurator {
 		};
 
 		yetimale.setEntityClass("yetimalenpc");
+		yetimale.setDescription("You see Mr. Yeti, a white hairy man with huge feet!");
 		yetimale.setPosition(29, 29);
 		yetimale.initHP(100);
 		zone.add(yetimale);
