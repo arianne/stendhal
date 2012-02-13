@@ -49,6 +49,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 
 		rose.setEntityClass("gypsywomannpc");
 		rose.initHP(100);
+		rose.setDescription("You see Rose Leigh. She jumps from place to place with a basket filled with lovely rhosyds.");
 
 		// start in int_semos_house
 		final StendhalRPZone	zone = SingletonRepository.getRPWorld().getZone("int_semos_house");
