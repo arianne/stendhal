@@ -1,6 +1,15 @@
 ﻿Changelog
 ---------
 
+1.00
+
+* lots of testing
+* nice descriptions for many NPCs
+* fixed map bugs
+* added social buttons to website 
+
+
+
 0.99
 
 *world*
