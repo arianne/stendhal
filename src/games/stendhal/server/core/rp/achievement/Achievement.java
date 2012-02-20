@@ -23,13 +23,13 @@ import games.stendhal.server.entity.player.Player;
 public class Achievement {
 
 	/** base score for easy achievements */
-	public static final int EASY_BASE_SCORE = 10;
+	public static final int EASY_BASE_SCORE = 1;
 
 	/** base score for achievements of medium difficulty */
-	public static final int MEDIUM_BASE_SCORE = 50;
+	public static final int MEDIUM_BASE_SCORE = 2;
 
 	/** base score for difficult achievements */
-	public static final int HARD_BASE_SCORE = 1000;
+	public static final int HARD_BASE_SCORE = 5;
 
 	private final String identifier;
 
