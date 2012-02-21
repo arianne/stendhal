@@ -124,7 +124,7 @@ public class OutfitChangerAdder {
 								// but it doesn't recognise it here ...
 							} else if (outfitBehaviour.getEndurance() != -1) {
 								// timeUntil takes a parameter in seconds so we multiply the endurance in minutes by 60
-								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (60*outfitBehaviour.getEndurance())) + ".");
+								npc.say("Thanks! You can wear this for " +  TimeUtil.timeUntil((int) (60*outfitBehaviour.getEndurance())) + ".");
 							} else {
 								npc.say("Thanks!");
 							}
