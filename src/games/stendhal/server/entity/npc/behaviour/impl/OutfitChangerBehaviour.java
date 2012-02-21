@@ -30,6 +30,8 @@ import java.util.Map;
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour {
 	public static final int NEVER_WEARS_OFF = -1;
+	
+	/** outfit expiry in minutes */
 	private int endurance;
 
 	private final String wearOffMessage;
@@ -238,7 +240,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			returnToOriginalOutfit(player);
 		}
 	}
-
+	/**
+	 * Outfit expiry period in minutes
+	 * @return endurance in minutes
+	 */
 	public int getEndurance() {
 		return endurance;
 	}
