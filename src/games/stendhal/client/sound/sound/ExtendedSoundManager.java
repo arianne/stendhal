@@ -43,7 +43,7 @@ import org.apache.log4j.Logger;
  * @author hendrik, silvio
  */
 public class ExtendedSoundManager extends SoundManagerNG implements WorldListener {
-	private Logger logger = Logger.getLogger(ExtendedSoundManager.class);
+	private static Logger logger = Logger.getLogger(ExtendedSoundManager.class);
 
 	private static class Multiplicator {
 
@@ -146,7 +146,13 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 	static
 	{
+		WtWindowManager wm = WtWindowManager.getInstance();
 		mDeviceEvaluator = new DeviceEvaluator();
+		String userSelected = wm.getProperty("sound.device", "auto");
+		if (!userSelected.equals("auto - recommended")) {
+			logger.info("User selected sound device: " + userSelected);
+			mDeviceEvaluator.setRating(Pattern.compile(Pattern.quote(userSelected)), null, 100);
+		}
 		mDeviceEvaluator.setRating(Pattern.compile(".*pulseaudio.*", Pattern.CASE_INSENSITIVE), null, 2);
 		mDeviceEvaluator.setRating(Pattern.compile(".*plughw.0.0.*"), null, 1);
 		mDeviceEvaluator.setRating(Pattern.compile(".*Java Sound Audio Engine.*"), null, -1);
@@ -230,4 +236,5 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 			}
 		}
 	}
+
 }
