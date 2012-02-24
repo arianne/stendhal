@@ -19,6 +19,7 @@ import games.stendhal.client.sound.system.Time;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class NoSoundFacade implements SoundSystemFacade {
 
@@ -67,6 +68,10 @@ public class NoSoundFacade implements SoundSystemFacade {
 
 	public void zoneLeft(String zoneName) {
 		// do nothing
+	}
+
+	public List<String> getDeviceNames() {
+		return new LinkedList<String>();
 	}
 
 }

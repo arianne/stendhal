@@ -17,11 +17,14 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.SoundHandle;
 import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -102,5 +105,13 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 
 	public void changeVolume(float volume) {
 		manager.changeVolume(volume);
+	}
+
+	public List<String> getDeviceNames() {
+		List<String> res = new LinkedList<String>();
+		for (Device device : manager.getDevices()) {
+			res.add(device.getName());
+		}
+		return res;
 	}
 }

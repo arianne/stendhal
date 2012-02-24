@@ -16,6 +16,7 @@ import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.sound.system.Time;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * this class is the interface between the game logic and the
@@ -47,5 +48,7 @@ public interface SoundSystemFacade extends WorldListener {
 	public Collection<String> getGroupNames();
 
 	public void changeVolume(float volume);
+
+	public List<String> getDeviceNames();
 	
 }
