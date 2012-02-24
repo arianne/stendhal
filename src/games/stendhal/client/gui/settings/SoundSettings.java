@@ -28,8 +28,6 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Mixer;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -50,7 +48,7 @@ class SoundSettings {
 	/** Name of the sound device property. */
 	private static final String DEVICE_PROPERTY = "sound.device";
 	/** Default value of the sound device property. */
-	private static final String DEFAULT_DEVICE = "auto";
+	private static final String DEFAULT_DEVICE = "auto - recommended";
 	
 	/** Container for the setting components */
 	private final JComponent page;
@@ -194,8 +192,8 @@ class SoundSettings {
 		
 		// Fill with available device names
 		selector.addItem(DEFAULT_DEVICE);
-		for (Mixer.Info info : AudioSystem.getMixerInfo()) {
-			selector.addItem(info.getName());
+		for (String name : ClientSingletonRepository.getSound().getDeviceNames()) {
+			selector.addItem(name);
 		}
 		
 		final WtWindowManager wm = WtWindowManager.getInstance();
@@ -206,6 +204,7 @@ class SoundSettings {
 			public void actionPerformed(ActionEvent e) {
 				Object selected = selector.getSelectedItem();
 				wm.setProperty(DEVICE_PROPERTY, (selected != null) ? selected.toString() : DEFAULT_DEVICE);
+				wm.save();
 				// Warn the user about the delayed effect
 				String msg = "Changing the sound device will take effect when you next time restart the game.";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));

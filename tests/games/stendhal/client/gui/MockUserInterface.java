@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.util.Collection;
-
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.sound.SoundGroup;
 import games.stendhal.client.sound.SoundHandle;
@@ -22,6 +20,10 @@ import games.stendhal.client.sound.manager.AudibleArea;
 import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.NotificationType;
+
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * An user interface that does nothing, but provides the things client side
@@ -108,7 +110,11 @@ public class MockUserInterface implements UserInterface {
 
 		public void zoneLeft(String zoneName) {
 			// do nothing
-		}		
+		}
+
+		public List<String> getDeviceNames() {
+			return new LinkedList<String>();
+		}
 	}
 	
 	/**
