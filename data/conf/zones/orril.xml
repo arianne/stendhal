@@ -496,9 +496,11 @@
  	<zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
  		<!--<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardEntranceNPC" />-->
  	
+ 	<!-- 
         <portal x="15" y="49" ref="entrance">
             <destination zone="0_orril_mountain_w" ref="door_left" />
-        </portal>
+        </portal> 
+        -->
         
         <portal x="13" y="0" ref="barracks1">
             <destination zone="int_constantines_villa_barracks" ref="door1" />
