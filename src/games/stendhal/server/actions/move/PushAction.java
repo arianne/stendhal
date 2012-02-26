@@ -75,10 +75,20 @@ public class PushAction implements ActionListener {
 				move(pusher, pushed, x, y);
 				// Stop players running toward to make trapping harder. Don't
 				// stop anyone just following a path (again to make annoying
-				// others harder)
+				// others harder).
 				if (dir.oppositeDirection() == pushed.getDirection()
 						&& !pushed.hasPath()) {
 					pushed.stop();
+				}
+				if (!(pushed instanceof Player)) {
+					/*
+					 * Clear path of creatures, so that they know to get a new
+					 * one after the one followed has been broken. Has the nice
+					 * side effect that it's possible to make a creature stop
+					 * chasing someone, and pick a new target.
+					 * ("Hey you, try chasing me instead!")
+					 */
+					pushed.setPath(null);
 				}
 			}
 		}
