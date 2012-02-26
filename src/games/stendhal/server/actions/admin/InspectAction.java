@@ -25,7 +25,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class InspectAction extends AdministrationAction {
-	
+
 	public static void register() {
 		CommandCenter.register(INSPECT, new InspectAction(), 600);
 	}
@@ -68,7 +68,8 @@ public class InspectAction extends AdministrationAction {
 			} else {
 				st.append("unnamed");
 			}
-
+			st.append(" defined in ");
+			st.append(inspected.getClass().getName());
 			st.append(" and has the following attributes:");
 
 			// st.append(target.toString());
@@ -86,11 +87,11 @@ public class InspectAction extends AdministrationAction {
 			st.append("\nMana:  " + inspected.getMana() + " / "
 					+ inspected.getBaseMana());
 			st.append("\nequips");
-			
+
 			for (final RPSlot slot : inspected.slots()) {
 				// showing these is either irrelevant, private, or spams too much
 				if (slot.getName().equals("!buddy")
-					|| slot.getName().equals("!ignore") 
+					|| slot.getName().equals("!ignore")
 					|| slot.getName().equals("!visited")
 					|| slot.getName().equals("!tutorial")
 					|| slot.getName().equals("skills")
