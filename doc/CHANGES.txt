@@ -1,6 +1,15 @@
 ﻿Changelog
 ---------
 
+1.01
+*world*
+- added a greeter NPCs before Haizen's hut (inactive)
+
+*other*
+- reworked the spam protection
+- Admin command (*) inspect includes Java class name
+
+
 1.00
 
 * lots of testing
