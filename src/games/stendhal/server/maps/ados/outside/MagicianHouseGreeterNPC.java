@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2011-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,9 +21,8 @@ import java.util.Map;
 
 /**
  * Builds a NPC outside Magician house in Ados  (name:Venethiel) who is the pupil of Magician Haizen
- * 
- * @author geomac 
  *
+ * @author geomac
  */
 public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 
@@ -32,36 +30,31 @@ public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 		createMagicianHouseGreeterNPC(zone);
 	}
 
-	public void createMagicianHouseGreeterNPC(final StendhalRPZone zone) {
-
-
+	private void createMagicianHouseGreeterNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Venethiel") {
-			@Override
-			protected void createPath() {
-				setPath(null);
 
-			}
-			
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello, Can you #help me!");
-				addHelp("Will you ask Haizen for a #maze to complete? There are #scrolls for you, if you are fast enough!");
-				addReply("maze", "I'm afraid you will lose your way!");
-				addReply("scrolls", "You only have ten minutes to pick up the scrolls.");
-				addQuest("I am asking players to complete the #maze. Haizen will then make me his #assistant"); 
-				addReply("assistant", "If you get tired, you'll have to log off to back to #Haizen.");
+				addGreeting("Hello, I am so excited about the magical #maze!");
+				addHelp("If you get tired, you'll have to log off to back to #Haizen.");
+				addReply("maze", "I'm afraid you will lose your way, but there are #scrolls for you to find.");
+				addReply("scrolls", "You only have ten minutes to pick up the scrolls in the #maze.");
+				addQuest("I am asking players to complete the #maze. Haizen will then make me his #assistant");
+				addReply("assistant", "On day, I may learn how to use magic.");
 				addReply("Haizen", "He is teaching me about magic.");
 				addOffer("I can offer you some #advice.");
-				addReply("advice", "It would be helpful to look upon the mini map often.");
+				addReply("advice", "It would be helpful to look upon the mini map often. ");
 				addGoodbye("Thank you and have a nice day.");
 			}
-			
+
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
 		};
 
 		npc.setDescription("You see Venethiel. She wants to learn about magic.");
+		// TODO: have a unique image, perhaps something that looks like a wannabe magician.
 		npc.setEntityClass("kid5npc");
 		npc.setPosition(70, 52);
 		npc.setDirection(Direction.DOWN);
