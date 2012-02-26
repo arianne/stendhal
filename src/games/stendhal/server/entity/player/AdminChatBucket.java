@@ -21,8 +21,8 @@ package games.stendhal.server.entity.player;
 public class AdminChatBucket extends PlayerChatBucket {
 
 	@Override
-	public boolean checkAndAdd() {
+	public boolean checkAndAdd(int count) {
 		return true;
 	}
-	
+
 }

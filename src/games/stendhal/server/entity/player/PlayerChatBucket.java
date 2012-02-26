@@ -23,18 +23,19 @@ import games.stendhal.server.util.IntRingBuffer;
 public class PlayerChatBucket {
 	private static final int TIMEFRAME_IN_TURNS = 10000 / 300;
 
-	private IntRingBuffer lastChatTurns = new IntRingBuffer(5);
+	private final IntRingBuffer lastChatTurns = new IntRingBuffer(10);
 
 	/**
 	 * checks that the bucket is not full, yet and adds the turn in case there is still room.
 	 *
+	 * @param length length of chat message
 	 * @return true if the bucket is not full, yet; false otherwise.
 	 */
-	public boolean checkAndAdd() {
+	public boolean checkAndAdd(int length) {
 		int turn = SingletonRepository.getRuleProcessor().getTurn();
 		boolean res = check(turn);
 		if (res) {
-			add(turn);
+			add(turn, length);
 		}
 		return res;
 	}
@@ -54,8 +55,12 @@ public class PlayerChatBucket {
 	 * adds the current turn to the ring buffer
 	 *
 	 * @param turn currentTurn
+	 * @param length length of chat message
 	 */
-	private void add(int turn) {
-		lastChatTurns.add(turn);
+	private void add(int turn, int length) {
+		// use <= to ensure at least one addition
+		for (int i = 0; i <= length / 50; i++) {
+			lastChatTurns.add(turn);
+		}
 	}
 }

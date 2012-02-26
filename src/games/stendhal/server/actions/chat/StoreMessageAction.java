@@ -23,7 +23,6 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnListenerDecorator;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPAction;
 import marauroa.server.db.command.DBCommand;
 import marauroa.server.db.command.DBCommandQueue;
@@ -33,46 +32,49 @@ import marauroa.server.db.command.ResultHandle;
  * Stores a message to another player for postman to deliver
  */
 public class StoreMessageAction implements ActionListener, TurnListener {
-	
+
 	/** For identifying the results of this command */
-	private ResultHandle handle = new ResultHandle();
-	
+	private final ResultHandle handle = new ResultHandle();
+
 	/**
 	 * registers "store message" action processor.
 	 */
 	public static void register() {
 		CommandCenter.register("storemessage", new StoreMessageAction());
 	}
-	
+
 	/**
 	 * Sends the command to store the message and starts waiting for the results.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param action
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!action.has(TARGET) || !action.has(TEXT)) {
 			return;
 		}
-		if (action.has(TARGET) && action.has(TEXT)) {
-			String message = action.get(TEXT);
-			DBCommand command = new StoreMessageCommand(player.getName(), action.get(TARGET), message, "P");
-			DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
-			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
+
+		String message = action.get(TEXT);
+		if (!player.getChatBucket().checkAndAdd(message.length())) {
+			return;
 		}
+
+		DBCommand command = new StoreMessageCommand(player.getName(), action.get(TARGET), message, "P");
+		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
+		TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
-	
+
 	/**
 	 * Completes handling the store message action, and
 	 * Notifies the player who sent the message of the outcome
-	 * 
+	 *
 	 * @param currentTurn ignored
 	 */
 	public void onTurnReached(int currentTurn) {
 		StoreMessageCommand checkcommand = DBCommandQueue.get().getOneResult(StoreMessageCommand.class, handle);
-		
+
 		if (checkcommand == null) {
 			TurnNotifier.get().notifyInTurns(0, new TurnListenerDecorator(this));
 			return;
@@ -81,7 +83,7 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 		boolean characterExists = checkcommand.targetCharacterExists();
 		String source = checkcommand.getSource();
 		String target = checkcommand.getTarget();
-		
+
 		final Player sourceplayer = SingletonRepository.getRuleProcessor().getPlayer(source);
 
 
@@ -94,8 +96,8 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 			}
 			sourceplayer.setLastPrivateChatter("postman");
 		}
-		
+
 		return;
-	} 
+	}
 
 }

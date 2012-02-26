@@ -85,7 +85,7 @@ class PlayerTrade {
 			return false;
 		}
 
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!player.getChatBucket().checkAndAdd(0)) {
 			return false;
 		}
 

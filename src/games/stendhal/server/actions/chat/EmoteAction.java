@@ -22,13 +22,18 @@ import marauroa.common.game.RPAction;
 
 /**
  * Handles emote actions.
- * 
+ *
  * @author raignarok
  */
 public class EmoteAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+
+		if (!action.has(TEXT)) {
+			return;
+		}
+
+		if (!player.getChatBucket().checkAndAdd(action.get(TEXT).length())) {
 			return;
 		}
 
@@ -36,17 +41,15 @@ public class EmoteAction implements ActionListener {
 			return;
 		}
 
-		if (action.has(TEXT)) {
-			//emote actions are treated as normal chat actions
-			//on the client side, !me is replaced with the name
-			final String text = "!me " + action.get(TEXT);
-			player.put("text", text);
- 
-			new GameEvent(player.getName(), "chat", null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+		//emote actions are treated as normal chat actions
+		//on the client side, !me is replaced with the name
+		final String text = "!me " + action.get(TEXT);
+		player.put("text", text);
 
-			player.notifyWorldAboutChanges();
-			SingletonRepository.getRuleProcessor().removePlayerText(player);
-		}
+		new GameEvent(player.getName(), "chat", null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+
+		player.notifyWorldAboutChanges();
+		SingletonRepository.getRuleProcessor().removePlayerText(player);
 	}
 
 }

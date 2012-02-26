@@ -26,7 +26,12 @@ import marauroa.common.game.RPAction;
 public class PublicChatAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!action.has(TEXT)) {
+			return;
+		}
+
+		final String text = action.get(TEXT);
+		if (!player.getChatBucket().checkAndAdd(text.length())) {
 			return;
 		}
 
@@ -34,14 +39,11 @@ public class PublicChatAction implements ActionListener {
 			return;
 		}
 
-		if (action.has(TEXT)) {
-			final String text = action.get(TEXT);
-			player.put("text", text);
-			new GameEvent(player.getName(), "chat",  null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+		player.put("text", text);
+		new GameEvent(player.getName(), "chat",  null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 
-			player.notifyWorldAboutChanges();
-			SingletonRepository.getRuleProcessor().removePlayerText(player);
-		}
+		player.notifyWorldAboutChanges();
+		SingletonRepository.getRuleProcessor().removePlayerText(player);
 	}
 
 }

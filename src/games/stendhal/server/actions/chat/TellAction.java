@@ -25,7 +25,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * handles /tell-action (/msg-action). 
+ * handles /tell-action (/msg-action).
  */
 public class TellAction implements ActionListener {
 	private String text;
@@ -86,7 +86,7 @@ public class TellAction implements ActionListener {
 			// Send away response
 			tellIgnorePostman(sender, "Please use postman to send a message to " + receiverName + ", who is away: " + away);
 			return false;
-		} 
+		}
 		return true;
 	}
 
@@ -97,7 +97,11 @@ public class TellAction implements ActionListener {
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!validateAction(action)) {
+			return;
+		}
+
+		if (!player.getChatBucket().checkAndAdd(action.get(TEXT).length())) {
 			return;
 		}
 
@@ -110,13 +114,10 @@ public class TellAction implements ActionListener {
 			return;
 		}
 
-		if (!validateAction(action)) {
-			return;
-		}
 
 		init(player, action);
 
-		/* If the receiver is not logged in or if it is a ghost 
+		/* If the receiver is not logged in or if it is a ghost
 		 * and you don't have the level to see ghosts... */
 		if (!checkOnline()) {
 			return;
@@ -160,10 +161,10 @@ public class TellAction implements ActionListener {
 			if (!senderFound) {
 				// sender is not a buddy
 				if (grumpy.length() == 0) {
-					tellIgnorePostman(sender, 
+					tellIgnorePostman(sender,
 						receiverName + " has a closed mind, and is seeking solitude from all but close friends");
 				} else {
-					tellIgnorePostman(sender, 
+					tellIgnorePostman(sender,
 						receiverName + " is seeking solitude from all but close friends: " + grumpy);
 				}
 				return false;

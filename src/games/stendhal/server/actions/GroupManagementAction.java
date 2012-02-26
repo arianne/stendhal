@@ -101,7 +101,7 @@ public class GroupManagementAction implements ActionListener {
 
 		// TODO: make checks reusable, some of these checks are used at many places
 
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!player.getChatBucket().checkAndAdd(0)) {
 			return;
 		}
 		if (player == targetPlayer) {

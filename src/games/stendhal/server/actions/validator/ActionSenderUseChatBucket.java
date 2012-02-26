@@ -30,7 +30,7 @@ public class ActionSenderUseChatBucket implements ActionValidator {
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
 	public String validate(Player player, RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!player.getChatBucket().checkAndAdd(0)) {
 			return ""; // empty error message to give little feedback to the spammer
 		}
 		return null;

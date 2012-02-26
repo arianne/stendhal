@@ -34,7 +34,7 @@ public class AskForSupportAction  implements ActionListener {
 	private final Map<String, Long> lastMsg = new HashMap<String, Long>();
 
 	public void onAction(final Player player, final RPAction action) {
-		if (!player.getChatBucket().checkAndAdd()) {
+		if (!action.has(TEXT)) {
 			return;
 		}
 
@@ -43,45 +43,47 @@ public class AskForSupportAction  implements ActionListener {
 			sender = action.get("sender");
 		}
 
-		if (action.has(TEXT)) {
-
-			if ("".equals(action.get(TEXT).trim())) {
-				player.sendPrivateText("Usage /support <your message here>");
-				return;
-			}
-
-			if (Jail.isInJail(player) || GagManager.isGagged(player)) {
-				// check if the player sent a support message before
-				if (lastMsg.containsKey(sender)) {
-					final Long timeLastMsg = System.currentTimeMillis()
-							- lastMsg.get(sender);
-
-					// the player have to wait one minute since the last support
-					// message was sent
-					if (timeLastMsg < 60000) {
-						player.sendPrivateText("Until your sentence is over you may only send one support message per minute.");
-						return;
-					}
-				}
-
-				lastMsg.put(sender, System.currentTimeMillis());
-			}
-
-			final String message = action.get(TEXT)
-					+ "\r\nPlease use #/supportanswer #" + sender
-					+ " to answer.";
-
-			String username = PlayerEntryContainer.getContainer().get(player).username;
-
-			new GameEvent(sender, "support", username, action.get(TEXT)).raise();
-
-			String temp = sender + " (" + username + ")";
-			SingletonRepository.getRuleProcessor().sendMessageToSupporters(temp, message);
-
-			player.sendPrivateText(NotificationType.SUPPORT, "You ask for support: "
-					+ action.get(TEXT)
-					+ "\nIt may take a little time until your question is answered.");
-			player.notifyWorldAboutChanges();
+		String text = action.get(TEXT).trim();
+		if ("".equals(text)) {
+			player.sendPrivateText("Usage /support <your message here>");
+			return;
 		}
+
+		if (!player.getChatBucket().checkAndAdd(text.length())) {
+			return;
+		}
+
+		if (Jail.isInJail(player) || GagManager.isGagged(player)) {
+			// check if the player sent a support message before
+			if (lastMsg.containsKey(sender)) {
+				final Long timeLastMsg = System.currentTimeMillis()
+						- lastMsg.get(sender);
+
+				// the player have to wait one minute since the last support
+				// message was sent
+				if (timeLastMsg < 60000) {
+					player.sendPrivateText("Until your sentence is over you may only send one support message per minute.");
+					return;
+				}
+			}
+
+			lastMsg.put(sender, System.currentTimeMillis());
+		}
+
+		final String message = action.get(TEXT)
+				+ "\r\nPlease use #/supportanswer #" + sender
+				+ " to answer.";
+
+		String username = PlayerEntryContainer.getContainer().get(player).username;
+
+		new GameEvent(sender, "support", username, action.get(TEXT)).raise();
+
+		String temp = sender + " (" + username + ")";
+		SingletonRepository.getRuleProcessor().sendMessageToSupporters(temp, message);
+
+		player.sendPrivateText(NotificationType.SUPPORT, "You ask for support: "
+				+ action.get(TEXT)
+				+ "\nIt may take a little time until your question is answered.");
+		player.notifyWorldAboutChanges();
 	}
 }
