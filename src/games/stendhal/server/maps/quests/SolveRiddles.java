@@ -266,8 +266,15 @@ public class SolveRiddles extends AbstractQuest {
 						player.teleport(zone, 31, 23, Direction.UP, player);
 						// clear quest slot so riddle is chosen randomly for player next time
 						player.removeQuest(QUEST_SLOT);
-						player.sendPrivateText(NotificationType.POSITIVE, "You solved the riddle correctly and earned " + xpreward + " XP.");
+						int oldXp = player.getXP();
 						player.addXP(xpreward);
+						int xpDiff = player.getXP() - oldXp;
+						StringBuilder msg = new StringBuilder("You solved the riddle correctly");
+						if (xpDiff > 0) {
+							msg.append(" and earned " + xpreward + " XP");
+						}
+						msg.append(".");
+						player.sendPrivateText(NotificationType.POSITIVE, msg.toString());
 						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.IDLE);
 					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(triggerText)) {
