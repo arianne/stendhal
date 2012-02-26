@@ -434,7 +434,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		final String name = getName();
 
 		if (name != null) {
-			return name;
+			return Grammar.article_noun(name, definite);
 		} else {
 			return super.getDescriptionName(definite);
 		}
