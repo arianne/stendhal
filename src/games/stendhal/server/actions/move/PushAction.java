@@ -38,113 +38,123 @@ import marauroa.common.game.RPAction;
  */
 public class PushAction implements ActionListener {
 
-	public static void register() {
-		final PushAction push = new PushAction();
-		CommandCenter.register(PUSH, push);
-	}
+    public static void register() {
+        final PushAction push = new PushAction();
+        CommandCenter.register(PUSH, push);
+    }
 
-	public void onAction(final Player player, final RPAction action) {
+    public void onAction(final Player player, final RPAction action) {
 
-		// evaluate the target parameter
-		final Entity entity = EntityHelper.entityFromTargetName(
-			action.get(TARGET), player);
+        // evaluate the target parameter
+        final Entity entity = EntityHelper.entityFromTargetName(
+            action.get(TARGET), player);
 
-		if ((entity == null) || !(entity instanceof RPEntity)) {
-			return;
-		}
-		final RPEntity rpEntity = (RPEntity) entity;
+        if ((entity == null) || !(entity instanceof RPEntity)) {
+            return;
+        }
+        final RPEntity rpEntity = (RPEntity) entity;
 
-		tryPush(player, rpEntity);
-	}
+        tryPush(player, rpEntity);
+    }
 
-	/**
-	 * Tries to push the entity.
-	 *
-	 * @param pusher player pushing
-	 * @param pushed entity pushed
-	 */
-	private void tryPush(final Player pusher, final RPEntity pushed) {
-		if (canPush(pusher, pushed)) {
-			final Direction dir = pusher.getDirectionToward(pushed);
+    /**
+     * Tries to push the entity.
+     *
+     * @param pusher player pushing
+     * @param pushed entity pushed
+     */
+    private void tryPush(final Player pusher, final RPEntity pushed) {
+        if (canPush(pusher, pushed)) {
+            final Direction dir = pusher.getDirectionToward(pushed);
 
-			final int x = pushed.getX() + dir.getdx();
-			final int y = pushed.getY() + dir.getdy();
+            final int x = pushed.getX() + dir.getdx();
+            final int y = pushed.getY() + dir.getdy();
 
-			final StendhalRPZone zone = pusher.getZone();
-			if (!zone.collides(pushed, x, y)) {
-				move(pusher, pushed, x, y);
-				// Stop players running toward to make trapping harder. Don't
-				// stop anyone just following a path (again to make annoying
-				// others harder)
-				if (dir.oppositeDirection() == pushed.getDirection()
-						&& !pushed.hasPath()) {
-					pushed.stop();
-				}
-			}
-		}
-	}
+            final StendhalRPZone zone = pusher.getZone();
+            if (!zone.collides(pushed, x, y)) {
+                move(pusher, pushed, x, y);
+                // Stop players running toward to make trapping harder. Don't
+                // stop anyone just following a path (again to make annoying
+                // others harder).
+                if (dir.oppositeDirection() == pushed.getDirection()
+                        && !pushed.hasPath()) {
+                    pushed.stop();
+                }
+                if (!(pushed instanceof Player)) {
+                    /*
+                     * Clear path of creatures, so that they know to get a new
+                     * one after the one followed has been broken. Has the nice
+                     * side effect that it's possible to make a creature stop
+                     * chasing someone, and pick a new target.
+                     * ("Hey you, try chasing me instead!")
+                     */
+                    pushed.setPath(null);
+                }
+            }
+        }
+    }
 
-	/**
-	 * Can this push be done according to the rules?
-	 *
-	 * @param pusher player pushing
-	 * @param pushed entity pushed
-	 * @return true, if the push is possible, false otherwise
-	 */
-	private boolean canPush(final Player pusher, final RPEntity pushed) {
+    /**
+     * Can this push be done according to the rules?
+     *
+     * @param pusher player pushing
+     * @param pushed entity pushed
+     * @return true, if the push is possible, false otherwise
+     */
+    private boolean canPush(final Player pusher, final RPEntity pushed) {
 
-		// If object is a NPC we ignore the push action because
-		// NPC don't use the pathfinder and would get confused
-		// outside their fixed path. Apart from that some NPCs
-		// may block a way by intention.
-		if (pushed instanceof SpeakerNPC) {
-			return false;
-		}
-		
-		// players cannot push rp entities with area larger than 4
-		if (pushed.getArea().getWidth() * pushed.getArea().getHeight() > 4) {
-			pusher.sendPrivateText("You're strong, but not that strong!");
-			return false;
-		}
+        // If object is a NPC we ignore the push action because
+        // NPC don't use the pathfinder and would get confused
+        // outside their fixed path. Apart from that some NPCs
+        // may block a way by intention.
+        if (pushed instanceof SpeakerNPC) {
+            return false;
+        }
 
-		// the number of pushes is limited per time 
-		if (!pusher.canPush(pushed)) {
-			pusher.sendPrivateText("Give yourself a breather before you start pushing again.");
-			return false;
-		}
+        // players cannot push rp entities with area larger than 4
+        if (pushed.getArea().getWidth() * pushed.getArea().getHeight() > 4) {
+            pusher.sendPrivateText("You're strong, but not that strong!");
+            return false;
+        }
 
-		// the player must be in range. 
-		return (pusher.nextTo(pushed));
-	}
+        // the number of pushes is limited per time
+        if (!pusher.canPush(pushed)) {
+            pusher.sendPrivateText("Give yourself a breather before you start pushing again.");
+            return false;
+        }
 
-	/**
-	 * Moves the entity to the new position.
-	 *
-	 * @param pusher player pushing
-	 * @param pushed entity pushed
-	 * @param x new x-position
-	 * @param y new y-position
-	 */
-	private void move(final Player pusher, final RPEntity pushed, final int x, final int y) {
-		
-		// move items under players, with the players, when pushed
-		if (pushed instanceof Player) {
-			final Set<Item> items = pusher.getZone().getItemsOnGround();
-			for (final Item item : items) {
-				if (pushed.getArea().intersects(item.getArea())) {
-					item.setPosition(x, y);
-					item.notifyWorldAboutChanges();
-					// log the item ground-to-ground displacement
-					// but who caused it to move, the pusher or the pushed?
-					// currently the source of the ground-to-ground movement of the item is set as the pusher
-					new ItemLogger().displace(pusher, item, pusher.getZone(), pushed.getX(), pushed.getY(), x, y);
-				}
-			}
-		}
-		
-		new GameEvent(pusher.getName(), "push", pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
-		pushed.setPosition(x, y);
-		pushed.notifyWorldAboutChanges();
-		pusher.onPush(pushed);
-	}
+        // the player must be in range.
+        return (pusher.nextTo(pushed));
+    }
+
+    /**
+     * Moves the entity to the new position.
+     *
+     * @param pusher player pushing
+     * @param pushed entity pushed
+     * @param x new x-position
+     * @param y new y-position
+     */
+    private void move(final Player pusher, final RPEntity pushed, final int x, final int y) {
+
+        // move items under players, with the players, when pushed
+        if (pushed instanceof Player) {
+            final Set<Item> items = pusher.getZone().getItemsOnGround();
+            for (final Item item : items) {
+                if (pushed.getArea().intersects(item.getArea())) {
+                    item.setPosition(x, y);
+                    item.notifyWorldAboutChanges();
+                    // log the item ground-to-ground displacement
+                    // but who caused it to move, the pusher or the pushed?
+                    // currently the source of the ground-to-ground movement of the item is set as the pusher
+                    new ItemLogger().displace(pusher, item, pusher.getZone(), pushed.getX(), pushed.getY(), x, y);
+                }
+            }
+        }
+
+        new GameEvent(pusher.getName(), "push", pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
+        pushed.setPosition(x, y);
+        pushed.notifyWorldAboutChanges();
+        pusher.onPush(pushed);
+    }
 }
