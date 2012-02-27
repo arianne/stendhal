@@ -17,7 +17,6 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -83,16 +82,28 @@ import java.util.List;
  * </ul>
  */
 public class GuessKills extends AbstractQuest {
+	public static final String QUEST_SLOT = "guess_kills";
 
-    public static final String QUEST_SLOT = "guess_kills";
+	private static final double ACCURACY = 0.02;
+	private static final int MIN_KILLS_REQUIRED = 1000;
+	private static final int EXACT_REWARD = 150;
+	private static final int CLOSE_REWARD = 90;
+	private static final int INTERVAL_BETWEEN_TRIES = MathHelper.MINUTES_IN_ONE_WEEK;
+	/** List of existing creatures that may be asked about. */
+	private static final List<Creature> POSSIBLE_CREATURES = new ArrayList<Creature>();
 
-    private static final double ACCURACY = 0.02;
-    private static final int MIN_KILLS_REQUIRED = 1000;
-    private static final int EXACT_REWARD = 150;
-    private static final int CLOSE_REWARD = 90;
-    private static final int INTERVAL_BETWEEN_TRIES = MathHelper.MINUTES_IN_ONE_WEEK;
-    
-    private String CREATURE = "rat";
+	private String CREATURE = "rat";
+
+	/**
+	 * Create new quest instance.
+	 */
+	public GuessKills() {
+		for (Creature creature : SingletonRepository.getEntityManager().getCreatures()) {
+			if (!creature.isRare()) {
+				POSSIBLE_CREATURES.add(creature);
+			}
+		}
+	}
 
     @Override
     public void addToWorld() {
@@ -164,8 +175,6 @@ public class GuessKills extends AbstractQuest {
      */
     public void prepareQuestStep() {
     	final SpeakerNPC npc = npcs.get("Crearid");
-
-        final DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 
         final ChatCondition requirement = new MinTotalCreaturesKilledCondition(MIN_KILLS_REQUIRED);
         final ChatCondition isNumber = new TextHasNumberCondition(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -299,7 +308,7 @@ public class GuessKills extends AbstractQuest {
 	                new ChatAction() {
 	                    public void fire(Player player, Sentence sentence, EventRaiser npc) {
 	                        do {
-	                            CREATURE = ((Creature) Rand.rand(manager.getCreatures().toArray())).getName();
+	                            CREATURE = Rand.rand(POSSIBLE_CREATURES).getName();
 	                        } while(!player.hasKilled(CREATURE));
 	                        
 	                        // This can't be in a SetQuestAction because CREATURE is dynamic
