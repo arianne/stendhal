@@ -603,7 +603,7 @@ mace	OBJ	maces
 machine	OBJ	machines
 mackerel	OBJ-FOO	mackerels
 madaram	OBJ	madarams
-magic	OBJ	obj
+magic	OBJ	magic
 mainio	OBJ	mainios
 mana	OBJ-FOO-FLU
 mandragora	OBJ
