@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -583,6 +583,8 @@ public class AdministrationActionTest {
 
 	/**
 	 * Tests for jail.
+	 * @throws SQLException 
+	 * @throws IOException 
 	 */
 	@Test
 	public final void testJail() throws SQLException, IOException {
@@ -829,10 +831,11 @@ public class AdministrationActionTest {
 		action.put("target", "#1");
 
 		assertTrue(CommandCenter.execute(pl, action));
-		assertTrue(pl
-				.events().get(0).get("text")
-				.startsWith(
-						"Inspected creature is called \"rat\" and has the following attributes:"));
+		assertThat(pl.events().get(0).get("text"),
+				startsWith(
+						"Inspected creature is called \"rat\" defined in "
+						+ "games.stendhal.server.entity.creature.RaidCreature "
+						+ "and has the following attributes:"));
 	}
 
 	/**
