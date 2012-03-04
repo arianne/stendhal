@@ -104,7 +104,7 @@
   </creature>
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
-    <description>You see a bloody zombie. Can you see the drops of blood that fall from his body?</description>
+    <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
     <attributes>
       <atk value="182"/>
       <def value="34"/>
