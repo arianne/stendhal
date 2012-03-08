@@ -206,6 +206,7 @@
   
    <creature name="monk">
     <type class="human" subclass="monk" tileid="human.png:4"/>
+    <description>You see a monk. Monks are very calm and peaceful. They live alone among themselves, but they don't want to be interrupted by anyone.</description>
     <attributes>
       <atk value="261"/>
       <def value="75"/>
@@ -547,7 +548,7 @@
 
   <creature name="darkmonk">
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
-    <description></description>
+    <description>You see a Darkmonk. Darkmonks can control dark powers, and they will do anything to get you out of their way!</description>
     <attributes>
       <atk value="334"/>
       <def value="102"/>
@@ -718,7 +719,7 @@
   
   <creature name="imperial elite guardian">
     <type class="human" subclass="imperial_elite_guardian" tileid="human_imperial.png:7"/>
-    <description></description>
+    <description>You see an Imperial Elite Guardian. He is a very well trained guardian and he will protect his environment until the end.</description>
     <attributes>
       <atk value="376"/>
       <def value="52"/>

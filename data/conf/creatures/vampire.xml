@@ -34,6 +34,7 @@
 
   <creature name="vampirette">
     <type class="vampire" subclass="vampirette_evil" tileid="vampire.png:4"/>
+    <description>You see a Vampirette. Beware of its sharp teeth! She wants to drink your blood and turn you into a vampire!</description>
     <attributes>
       <atk value="353"/>
       <def value="43"/>

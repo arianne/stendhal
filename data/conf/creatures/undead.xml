@@ -329,7 +329,7 @@
  
   <creature name="demon skeleton">
     <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
-    <description></description>
+    <description>You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!</description>
     <attributes>
       <atk value="316"/>
       <def value="102"/>
@@ -549,7 +549,7 @@
   
   <creature name="fallen priest">
     <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
-    <description></description>
+    <description>You see a fallen priest. He was once just a regular human priest, until the dark powers corrupted him and turned him to the dark side. </description>
     <attributes>
       <atk value="546"/>
       <def value="80"/>

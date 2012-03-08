@@ -70,6 +70,7 @@
   
   <creature name="ice golem">
     <type class="golem" subclass="ice_golem" tileid="golem.png:2"/>
+    <description>You see an Ice golem. Ice Golems are elementals made out of ice. You should watch out for its icy fists or you might get hurt.</description>
     <attributes>
       <atk value="381"/>
       <def value="53"/>

@@ -243,7 +243,7 @@
   
   <creature name="dark elf wizard">
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
-    <description></description>
+    <description>Dark elf wizards are very powerful and dangerous. They are specialised in dark magic.</description>
     <attributes>
       <atk value="615"/>
       <def value="103"/>
