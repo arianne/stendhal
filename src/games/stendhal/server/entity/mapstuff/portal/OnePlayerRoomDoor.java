@@ -57,6 +57,6 @@ public class OnePlayerRoomDoor extends Door {
 	protected boolean isAllowed(final RPEntity user) {
 		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		final StendhalRPZone zone = world.getZone(super.getDestinationZone());
-		return (zone.getPlayerAndFriends().size() == 0);
+		return (zone.getPlayers().size() == 0);
 	}
 }
