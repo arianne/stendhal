@@ -35,7 +35,7 @@
   
   <creature name="dark elf archer">
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
-    <description></description>
+    <description>You see a dark elf archer. Dark elf archer's flawless aim can be fatal for those who dare to oppose them.</description>
     <attributes>
       <atk value="385"/>
       <def value="125"/>

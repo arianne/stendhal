@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
+    
    <creature name="albino elf swordsman">
     <type class="albino_elf" subclass="albino_elf_swordsman" tileid="albino_elf.png:4"/>
-    <description></description>
+    <description>You see an albino elf swordsman who is a professional in using swords. He can attack you from behind in a blink of an eye.</description>
     <attributes>
       <atk value="330"/>
       <def value="57"/>
@@ -34,7 +35,7 @@
 
   <creature name="albino elf archer">
     <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
-    <description></description>
+    <description>You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a 100 meter distance.</description>
     <attributes>
       <atk value="345"/>
       <def value="94"/>
@@ -67,7 +68,7 @@
   
   <creature name="albino elf magician">
     <type class="albino_elf" subclass="albino_elf_magician" tileid="albino_elf.png:2"/>
-    <description></description>
+    <description>You see an albino elf magician. He knows all the secrets of magic. You'd be better to not let him unleash his full power!</description>
     <attributes>
       <atk value="432"/>
       <def value="58"/>
@@ -99,7 +100,7 @@
 
   <creature name="albino elf queen">
     <type class="albino_elf" subclass="albino_elf_queen" tileid="albino_elf.png:3"/>
-    <description></description>
+    <description>You see an albino elf queen. She is the matriarch of the albino elf race and she will do everything to protect it.</description>
     <attributes>
       <atk value="454"/>
       <def value="48"/>
@@ -129,7 +130,7 @@
 
   <creature name="albino elf king">
     <type class="albino_elf" subclass="albino_elf_king" tileid="albino_elf.png:1"/>
-    <description></description>
+    <description>You see an albino elf king. He is the patriarch of albino elves and won countless of battles with his powerful albino elf army.</description>
     <attributes>
       <atk value="461"/>
       <def value="53"/>

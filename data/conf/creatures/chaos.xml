@@ -4,7 +4,7 @@
 
   <creature name="chaos soldier">
     <type class="chaos" subclass="chaos_soldier" tileid="chaos.png:4"/>
-    <description></description>
+    <description>You see a chaos soldier. Chaos soldiers are servants of the evil. Killing you is one of their evil plans.</description>
     <attributes>
       <atk value="543"/>
       <def value="81"/>
@@ -36,7 +36,7 @@
  
   <creature name="chaos warrior">
     <type class="chaos" subclass="chaos_warrior" tileid="chaos.png:5"/>
-    <description></description>
+    <description>You see a chaos warrior. This chaotic creature is fighting with a big blade to slay his enemies.</description>
     <attributes>
       <atk value="604"/>
       <def value="81"/>
@@ -72,7 +72,7 @@
   
   <creature name="chaos commander">
     <type class="chaos" subclass="chaos_commander" tileid="chaos.png:0"/>
-    <description></description>
+    <description>You see a chaos commander who is working on an evil plan. You should take care of him before he fulfills his duty.</description>
     <attributes>
       <atk value="654"/>
       <def value="91"/>
@@ -109,7 +109,7 @@
   
   <creature name="chaos sorcerer">
     <type class="chaos" subclass="chaos_sorceror" tileid="chaos.png:6"/>
-    <description></description>
+    <description>You see a chaos sorcerer. Chaos sorcerers will cast some evil spells on you if you don't obey them.</description>
     <attributes>
       <atk value="670"/>
       <def value="123"/>
@@ -173,7 +173,7 @@
   
   <creature name="chaos lord">
     <type class="chaos" subclass="chaos_lord" tileid="chaos.png:2"/>
-    <description></description>
+    <description>You see a chaos lord who is one of the strongest chaos creatures in Faiumoni. You should prepare well before attacking him.</description>
     <attributes>
       <atk value="807"/>
       <def value="92"/>
