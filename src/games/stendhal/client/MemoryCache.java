@@ -14,7 +14,8 @@ package games.stendhal.client;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A Map like cache that uses SoftReferences to store the cached items to allow
@@ -26,7 +27,7 @@ import java.util.HashMap;
  */
 public final class MemoryCache<K, V> {
 	/** The actual map to store things */
-	private final HashMap<K, Reference<V>> map = new HashMap<K, Reference<V>>();
+	private final Map<K, Reference<V>> map = new ConcurrentHashMap<K, Reference<V>>();
 
 	/** Queue for the collected references. */
 	private final ReferenceQueue<V> queue = new ReferenceQueue<V>();
@@ -40,9 +41,11 @@ public final class MemoryCache<K, V> {
 	 */
 	public V get(K key) {
 		pruneMap();
-		Reference<V> ref = map.get(key);
-		if (ref != null) {
-			return ref.get();
+		if (key != null) {
+			Reference<V> ref = map.get(key);
+			if (ref != null) {
+				return ref.get();
+			}
 		}
 		return null;
 	}
@@ -55,8 +58,8 @@ public final class MemoryCache<K, V> {
 	 */
 	public void put(K key, V value) {
 		pruneMap();
-		// Disallow storing null keys
-		if (key == null) {
+		// Disallow storing null keys and values
+		if ((key == null) || (value == null)) {
 			return;
 		}
 		Reference<V> ref = new Entry<K, V>(key, value, queue);
