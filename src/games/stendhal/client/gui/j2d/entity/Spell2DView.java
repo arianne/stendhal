@@ -17,32 +17,18 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a spell.
  */
 class Spell2DView extends Entity2DView {
-	
+
 	private static final Logger logger = Logger.getLogger(Spell2DView.class);
 
 	//
 	// Entity2DView
 	//
-
-	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		super.buildActions(list);
-	}
 
 	/**
 	 * Build the visual representation of this entity.
@@ -60,9 +46,9 @@ class Spell2DView extends Entity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return The drawing index.
 	 */
 	@Override
@@ -72,10 +58,10 @@ class Spell2DView extends Entity2DView {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name.
-	 * 
+	 *
 	 * @return The full resource name.
 	 */
 	@Override
@@ -89,7 +75,7 @@ class Spell2DView extends Entity2DView {
 
 	/**
 	 * An entity was changed.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -118,7 +104,7 @@ class Spell2DView extends Entity2DView {
 
 	/**
 	 * Perform an action.
-	 * 
+	 *
 	 * @param at
 	 *            The action.
 	 */

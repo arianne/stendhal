@@ -21,43 +21,43 @@ import java.util.Map;
 
 
 public class InactivePhase extends TPPQuest {
-	
-	private int minPhaseChangeTime;
-	private int maxPhaseChangeTime;
-	
+
+	private final int minPhaseChangeTime;
+	private final int maxPhaseChangeTime;
+
 	private void addConversations(final SpeakerNPC mainNPC) {
 		TPP_Phase myphase = INACTIVE;
-		
+
 		// Player asking about rats
 		mainNPC.add(
-				ConversationStates.ATTENDING, 
-				Arrays.asList("rats", "rats!"), 
+				ConversationStates.ATTENDING,
+				Arrays.asList("rats", "rats!"),
 				new TPPQuestInPhaseCondition(myphase),
-				ConversationStates.ATTENDING, 
+				ConversationStates.ATTENDING,
 				"Ados isn't being invaded by rats right now. You can still "+
 				  "get a #reward for the last time you helped. You can ask for #details "+
-				  "if you want.", 
+				  "if you want.",
 				null);
-		
+
 		// Player asking about details
 		mainNPC.add(
-				ConversationStates.ATTENDING, 
-				"details", 
+				ConversationStates.ATTENDING,
+				"details",
 				new TPPQuestInPhaseCondition(myphase),
-				ConversationStates.ATTENDING, 
-				null, 
+				ConversationStates.ATTENDING,
+				null,
 				new DetailsKillingsAction());
-		
+
 		// Player asked about reward
 		mainNPC.add(
-				ConversationStates.ATTENDING, 
-				"reward", 
+				ConversationStates.ATTENDING,
+				"reward",
 				new TPPQuestInPhaseCondition(myphase),
-				ConversationStates.ATTENDING, 
-				null, 
-				new RewardPlayerAction());		
+				ConversationStates.ATTENDING,
+				null,
+				new RewardPlayerAction());
 	}
-	
+
 	/**
 	 * constructor
 	 * @param timings
@@ -65,40 +65,35 @@ public class InactivePhase extends TPPQuest {
 	public InactivePhase(Map<String, Integer> timings) {
 		super(timings);
 		minPhaseChangeTime=timings.get(INACTIVE_TIME_MIN);
-		maxPhaseChangeTime=timings.get(INACTIVE_TIME_MAX);	
+		maxPhaseChangeTime=timings.get(INACTIVE_TIME_MAX);
 		addConversations(TPPQuestHelperFunctions.getMainNPC());
 	}
 
 
+	@Override
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
-	
 
+	@Override
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
-	
 
-	
-
+	@Override
 	public void phaseToDefaultPhase(List<String> comments) {
-		// not used		
+		// not used
 	}
 
-
-	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
-		super.phaseToNextPhase(nextPhase, comments);
-	}
-	
-
+	@Override
 	public void prepare() {
 
 	}
-	
 
+
+	@Override
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_INACTIVE;
 	}
-	
+
 }

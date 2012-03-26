@@ -36,9 +36,9 @@ public class User extends Player {
 	private static User instance;
 	private static String groupLootmode;
 	private static Set<String> groupMembers;
-	private HashSet<String> ignore = new HashSet<String>();
+	private final HashSet<String> ignore = new HashSet<String>();
 
-	private String serverVersion = null;
+	private final String serverVersion = null;
 
 	/**
 	 * is the user object not set, yet?
@@ -65,14 +65,9 @@ public class User extends Player {
 		instance = this;
 	}
 
-	
-	 @Override
-	public void onPrivateListen(final String texttype, final String text) {
-		super.onPrivateListen(texttype, text);
-	 }
 	/**
 	 * When the entity's position changed.
-	 * 
+	 *
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -189,7 +184,7 @@ public class User extends Player {
 	/**
 	 * The absolute world area (coordinates) where the player can possibly hear.
 	 * sounds
-	 * 
+	 *
 	 * @return Rectangle2D area
 	 */
 	public Rectangle2D getHearingArea() {
@@ -200,21 +195,8 @@ public class User extends Player {
 	}
 
 	/**
-	 * Initialize this entity for an object.
-	 * 
-	 * @param object
-	 *            The object.
-	 * 
-	 * @see #release()
-	 */
-	@Override
-	public void initialize(final RPObject object) {
-		super.initialize(object);
-	}
-
-	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -275,7 +257,7 @@ public class User extends Player {
 
 	/**
 	 * Query the version of the server we are currently connected to.
-	 * 
+	 *
 	 * @return server version string
 	 */
 	public String getServerVersion() {
@@ -284,7 +266,7 @@ public class User extends Player {
 
 	/**
 	 * Returns the objectid for the named item.
-	 * 
+	 *
 	 * @param slotName
 	 *            name of slot to search
 	 * @param itemName
@@ -338,7 +320,7 @@ public class User extends Player {
 		if (User.isNull()) {
 			return false;
 		}
-		
+
 		return User.get().ignore.contains(name);
 	}
 
@@ -385,7 +367,7 @@ public class User extends Player {
 	/**
 	 * Add players to the set of ignored players.
 	 * Player names are the attributes prefixed with '_'.
-	 *  
+	 *
 	 * @param ignoreObj The container object for player names
 	 */
 	private void addIgnore(RPObject ignoreObj) {
@@ -395,11 +377,11 @@ public class User extends Player {
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove players from the set of ignored players.
 	 * Player names are the attributes prefixed with '_'.
-	 * 
+	 *
 	 * @param ignoreObj The container object for player names
 	 */
 	private void removeIgnore(RPObject ignoreObj) {

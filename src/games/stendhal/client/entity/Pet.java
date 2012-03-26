@@ -12,17 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.RPObject;
 
-/** A Pet entity. */
+/**
+ * A Pet entity.
+ */
 public class Pet extends DomesticAnimal {
-	
-	@Override
-	public void initialize(RPObject object) {
-		super.initialize(object);
-	}
 
 	@Override
 	protected void probableChat(final int chance) {
+		// do not chat
 	}
 }

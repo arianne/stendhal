@@ -163,7 +163,7 @@ public class Creature extends NPC {
 
 		// set the default movement range
 		setMovementRange(20);
-		
+
 		updateModifiedAttributes();
 	}
 
@@ -455,7 +455,7 @@ public class Creature extends NPC {
 	public CreatureRespawnPoint getRespawnPoint() {
 		return point;
 	}
-	
+
 	/**
 	 * Get the respawn time of the creature.
 	 *
@@ -701,20 +701,12 @@ public class Creature extends NPC {
 		return getAIProfiles().keySet().contains("rare");
 	}
 
-	/** need to recalculate the ai when we stop the attack. */
-	@Override
-	public void stopAttack() {
-
-		super.stopAttack();
-	}
-
 	/**
-	 *  poisons attacktarget with the behavior in Poisoner.
+	 *  poisons attack target with the behavior in Poisoner.
 	 *
 	 *
-	 * @throws NullPointerException if attacktarget is null
+	 * @throws NullPointerException if attack target is null
 	 */
-
 	public void tryToPoison() {
 
 		final RPEntity entity = getAttackTarget();

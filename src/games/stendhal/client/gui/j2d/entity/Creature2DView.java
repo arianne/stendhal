@@ -97,7 +97,7 @@ class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 * 
+	 *
 	 * @param map
 	 *            The map to populate.
 	 * @param tiles
@@ -118,7 +118,7 @@ class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 * 
+	 *
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -130,7 +130,7 @@ class Creature2DView extends RPEntity2DView {
 		}
 
 		ZoneInfo info = ZoneInfo.get();
-		
+
 		return SpriteStore.get().getModifiedSprite(translate(resource), info.getZoneColor(), info.getColorMethod());
 	}
 
@@ -138,35 +138,11 @@ class Creature2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
-	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		super.buildActions(list);
 
-	}
-
-	/**
-	 * Draw the entity.
-	 * 
-	 * @param g2d
-	 *            The graphics to drawn on.
-	 */
-	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-
-		super.draw(g2d, x, y, width, height);
-
-	}
 
 	/**
 	 * Reorder the actions list (if needed). Please use as last resort.
-	 * 
+	 *
 	 * @param list
 	 *            The list to reorder.
 	 */
@@ -179,10 +155,10 @@ class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 * 
+	 *
 	 * @param name
 	 *            The resource name.
-	 * 
+	 *
 	 * @return The full resource name.
 	 */
 	@Override
@@ -196,7 +172,7 @@ class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
