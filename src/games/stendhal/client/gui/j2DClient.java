@@ -92,26 +92,6 @@ public class j2DClient implements UserInterface {
 	 */
 	private static j2DClient sharedUI;
 
-	/**
-	 * Get the default UI.
-	 * @return  the instance
-	 */
-	public static j2DClient get() {
-		return sharedUI;
-	}
-
-	/**
-	 * Set the shared [singleton] value.
-	 *
-	 * @param sharedUI
-	 *            The Stendhal UI.
-	 */
-	public static void setDefault(final j2DClient sharedUI) {
-		j2DClient.sharedUI = sharedUI;
-		ClientSingletonRepository.setUserInterface(sharedUI);
-	}
-
-
 	private static final long serialVersionUID = 3356310866399084117L;
 
 	/** the logger instance. */
@@ -154,7 +134,7 @@ public class j2DClient implements UserInterface {
 	private User lastuser;
 
 	private boolean offline;
-	
+
 	OutfitDialog outfitDialog;
 
 
@@ -165,6 +145,28 @@ public class j2DClient implements UserInterface {
 	protected DelayedDirectionRelease directionRelease;
 
 	private UserContext userContext;
+
+
+
+	/**
+	 * Get the default UI.
+	 * @return  the instance
+	 */
+	public static j2DClient get() {
+		return sharedUI;
+	}
+
+	/**
+	 * Set the shared [singleton] value.
+	 *
+	 * @param sharedUI
+	 *            The Stendhal UI.
+	 */
+	public static void setDefault(final j2DClient sharedUI) {
+		j2DClient.sharedUI = sharedUI;
+		ClientSingletonRepository.setUserInterface(sharedUI);
+	}
+
 
 	private final IPerceptionListener perceptionListener = new PerceptionListenerImpl() {
 		int times;
@@ -562,7 +564,7 @@ public class j2DClient implements UserInterface {
 
 	/** Time of receiving the last network activity */
 	long lastMessageHandle;
-	
+
 	/**
 	 * Start the game loop thread.
 	 *
@@ -579,28 +581,28 @@ public class j2DClient implements UserInterface {
 		GameLoop loop = GameLoop.get();
 		final GameObjects gameObjects = client.getGameObjects();
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
-		
+
 		loop.runAllways(new GameLoop.PersistentTask() {
 			public void run(long time, int delta) {
 				gameLoop(time, delta, gameLayers, gameObjects);
 			}
 		});
-		
+
 		loop.runAtQuit(new Runnable() {
 			public void run() {
 				cleanup();
 			}
 		});
-		
+
 		lastMessageHandle = System.currentTimeMillis();
 		gameRunning = true;
-		
+
 		loop.start();
 	}
 
 	/**
 	 * Main game loop contents. Updates objects, and requests redraws.
-	 * 
+	 *
 	 * @param time current time
 	 * @param delta difference to previous calling time
 	 * @param gameLayers
@@ -610,7 +612,7 @@ public class j2DClient implements UserInterface {
 			final StaticGameLayers gameLayers, final GameObjects gameObjects) {
 		// Check logouts first, in case something goes wrong with the drawing
 		// code
-		
+
 		if (!gameRunning) {
 			logger.info("Request logout");
 			try {
@@ -632,7 +634,7 @@ public class j2DClient implements UserInterface {
 				GameLoop.get().stop();
 			}
 		}
-		
+
 		// Shows a offline icon if the connection is broken
 		setOffline(!client.getConnectionState());
 
@@ -960,7 +962,7 @@ public class j2DClient implements UserInterface {
 		} else {
 			outfit = player.getInt("outfit");
 		}
-		
+
 		if (outfitDialog == null) {
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
