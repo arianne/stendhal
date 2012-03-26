@@ -46,7 +46,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(3), ou.getHead());
 		assertEquals(Integer.valueOf(4), ou.getDress());
 		assertEquals(Integer.valueOf(5), ou.getBase());
-		
+
 		final Outfit outfit2 = new Outfit(-1, -2, -3, -4, -5);
 		assertEquals(Integer.valueOf(-1), outfit2.getDetail());
 		assertEquals(Integer.valueOf(-2), outfit2.getHair());
@@ -80,12 +80,6 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
 		assertEquals(Integer.valueOf(4), ou.getBase());
-		// coded octal
-		ou = new Outfit(01020304); 
-		assertEquals(Integer.valueOf(0), ou.getHair());
-		assertEquals(Integer.valueOf(27), ou.getHead());
-		assertEquals(Integer.valueOf(5), ou.getDress());
-		assertEquals(Integer.valueOf(32), ou.getBase());
 
 	}
 
@@ -108,8 +102,8 @@ public class OutfitTest {
 
 		Outfit result = orig.putOver(pullover);
 		assertEquals(12345678, result.getCode());
-		
-		
+
+
 		orig = new Outfit(null, 12, 34, 56, null);
 		result = orig.putOver(pullover);
 		assertEquals(Integer.valueOf(12), result.getHair());
@@ -173,10 +167,10 @@ public class OutfitTest {
 		of = new Outfit(null, Outfits.HAIR_OUTFITS, 0, 0, 0);
 		assertFalse(of.isChoosableByPlayers());
 		of = new Outfit(null, 0, Outfits.HEAD_OUTFITS, 0, 0);
-		
+
 		assertFalse(of.isChoosableByPlayers());
 		of = new Outfit(null, 0, 0, Outfits.CLOTHES_OUTFITS, 0);
-		
+
 		assertFalse(of.isChoosableByPlayers());
 		of = new Outfit(null, 0, 0, 0, Outfits.BODY_OUTFITS);
 		assertFalse(of.isChoosableByPlayers());
@@ -196,7 +190,7 @@ public class OutfitTest {
 		 of = new Outfit(null, 0, 0, 1, 0);
 		assertFalse(of.isNaked());
 	}
-	
+
 	/**
 	 * Tests for removeOutfit
 	 */
@@ -209,11 +203,11 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(34), result.getHead());
 		assertEquals(Integer.valueOf(56), result.getDress());
 		assertEquals(Integer.valueOf(78), result.getBase());
-		
+
 		orig = new Outfit(null, 12, 34, 56, null);
 		result = orig.removeOutfit(new Outfit(1, null, null, null, null));
 		assertEquals(12345600, result.getCode());
-		
+
 		orig = new Outfit(12345678);
 		result = orig.removeOutfit(new Outfit(12345678));
 		assertEquals(0, result.getCode());

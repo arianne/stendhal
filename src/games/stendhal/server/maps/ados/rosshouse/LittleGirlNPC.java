@@ -78,13 +78,13 @@ public class LittleGirlNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					"During the Revival Weeks at the end of October we celebrate the old and now mostly dead dead Mine Town north of Semos City.",
 					null);
-				
+
 				// help
 				addHelp("Have fun.");
 			}
 		};
 
-		npc.setOutfit(new Outfit(0, 04, 07, 32, 13));
+		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
 		npc.setPosition(3, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

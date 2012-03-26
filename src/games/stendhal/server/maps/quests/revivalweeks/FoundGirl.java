@@ -84,16 +84,16 @@ public class FoundGirl implements LoadableContent {
 		};
 
 		//	npcs.add(npc);
-		npc.setOutfit(new Outfit(0, 04, 07, 32, 13));
+		npc.setOutfit(new Outfit(0, 4, 7, 32, 13));
 		npc.setPosition(4, 17);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npc.setSpeed(1.0);
 		zone.add(npc);
 	}
-	
+
 	private void addDialog() {
-		
+
 		// greeting
 		addGreetingDependingOnQuestState();
 
@@ -105,7 +105,7 @@ public class FoundGirl implements LoadableContent {
 		// Revival Weeks
 		npc.add(
 			ConversationStates.ATTENDING,
-			Arrays.asList("Mine", "Town", "Revival", "Weeks", "Mine Town", 
+			Arrays.asList("Mine", "Town", "Revival", "Weeks", "Mine Town",
 					"Mine Town Revival", "Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
 			ConversationStates.ATTENDING,
 			"During the Revival Weeks we #celebrate the old and now mostly dead Mine Town north of Semos City. "
@@ -122,13 +122,13 @@ public class FoundGirl implements LoadableContent {
 		// friends
 		npc.add(
 			ConversationStates.ATTENDING, Arrays.asList("friend", "friends", "friendship"),
-			new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR))), 
+			new QuestInStateCondition("susi", Integer.toString(Calendar.getInstance().get(Calendar.YEAR))),
 			ConversationStates.ATTENDING,
 			"Thanks for being a friend.", null);
 
 		addFirstQuest();
 		addSecondQuest();
-		
+
 		// quest
 		addQuest();
 	}
@@ -141,7 +141,7 @@ public class FoundGirl implements LoadableContent {
 				ConversationStates.ATTENDING,
 				"Guess what, we are having another #Town #Revival #Weeks.", null);
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						anyFriends),
 				ConversationStates.ATTENDING,
@@ -182,12 +182,12 @@ public class FoundGirl implements LoadableContent {
 			new TriggerExactlyInListCondition("A circle is round,", "A circle is round"),
 			ConversationStates.INFORMATION_2, "\"it has no end.\"",
 			null);
-		npc.add(ConversationStates.INFORMATION_2, 
+		npc.add(ConversationStates.INFORMATION_2,
 			"",
 			new TriggerExactlyInListCondition("it has no end.", "it has no end"),
 			ConversationStates.INFORMATION_3,
 			"\"That's how long,\"", null);
-		npc.add(ConversationStates.INFORMATION_3, 
+		npc.add(ConversationStates.INFORMATION_3,
 			"",
 			new TriggerExactlyInListCondition(
 				"That's how long,", "That's how long",
@@ -196,7 +196,7 @@ public class FoundGirl implements LoadableContent {
 			"\"I will be your friend.\"", null);
 
 		ChatAction reward = new MultipleActions(new IncreaseKarmaAction(10), new IncreaseXPAction(25), new SetQuestToYearAction("susi"));
-		npc.add(ConversationStates.INFORMATION_4, 
+		npc.add(ConversationStates.INFORMATION_4,
 			"",
 			new TriggerExactlyInListCondition("I will be your friend.", "I will be your friend"),
 			ConversationStates.ATTENDING,
@@ -211,7 +211,7 @@ public class FoundGirl implements LoadableContent {
 				ConversationStates.INFORMATION_5,
 				"Please repeat:\r\n                        \"Make new friends,\"",
 				null);
-		npc.add(ConversationStates.INFORMATION_5, 
+		npc.add(ConversationStates.INFORMATION_5,
 				"",
 				new TriggerExactlyInListCondition("Make new friends,", "Make new friends"),
 				ConversationStates.INFORMATION_6, "\"but keep the old.\"",

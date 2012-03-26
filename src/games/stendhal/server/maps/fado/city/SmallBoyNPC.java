@@ -66,7 +66,7 @@ public class SmallBoyNPC implements ZoneConfigurator {
 				addHelp("I wonder if a #balloon could fly high enough to touch the clouds...");
 				addJob("A Job? Is that something you can eat?");
 				addReply("balloon", "One day, i will have enough balloons to fly away!");
-				addReply(Arrays.asList("xkcd", "tables", "sql", "student", "drop", "table"), 
+				addReply(Arrays.asList("xkcd", "tables", "sql", "student", "drop", "table"),
 						"Yes, it's true, my full name is Robert'); DROP TABLE students;-- but you can call me Bobby.");
 				addGoodbye("Good bye.");
 			}
@@ -75,10 +75,10 @@ public class SmallBoyNPC implements ZoneConfigurator {
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.RIGHT);
 			}
-			
+
 		};
 
-		boynpc.setOutfit(new Outfit(0,33,18,03,0));
+		boynpc.setOutfit(new Outfit(0, 33, 18, 3, 0));
 		boynpc.setPosition(42, 30);
 		boynpc.setDirection(Direction.RIGHT);
 		boynpc.initHP(100);
