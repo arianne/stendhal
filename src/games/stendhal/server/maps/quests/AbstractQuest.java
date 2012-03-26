@@ -33,9 +33,9 @@ public abstract class AbstractQuest implements IQuest {
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
 	}
-	
+
 	public void updatePlayer(Player player) {
-		return;
+		// do nothing, but may be overridden by children
 	}
 
 	/**
@@ -114,7 +114,7 @@ public abstract class AbstractQuest implements IQuest {
 	public String getRegion() {
 		return null;
 	}
-	
+
 	/**
 	 * Returns the starter NPC for the quest, or null if there is none
 	 *
