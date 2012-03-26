@@ -145,37 +145,32 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
 				.create(clazz, 1, null, 0, 0);
 		assertNotNull(value_1);
-		assertTrue(value_1 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see a small vein of iron ore.",
-				((PassiveEntityRespawnPoint) value_1).getDescription());
+				value_1.getDescription());
 
 		PassiveEntityRespawnPoint value_2 = PassiveEntityRespawnPointFactory
 				.create(clazz, 2, null, 0, 0);
 		assertNotNull(value_2);
-		assertTrue(value_2 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see a trace of a gold shimmer.",
-				((PassiveEntityRespawnPoint) value_2).getDescription());
+				value_2.getDescription());
 
 		PassiveEntityRespawnPoint value_3 = PassiveEntityRespawnPointFactory
 				.create(clazz, 3, null, 0, 0);
 		assertNotNull(value_3);
-		assertTrue(value_3 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see a trace of a silvery shimmer.",
-				((PassiveEntityRespawnPoint) value_3).getDescription());
+				value_3.getDescription());
 
 		PassiveEntityRespawnPoint value_4 = PassiveEntityRespawnPointFactory
 				.create(clazz, 4, null, 0, 0);
 		assertNotNull(value_4);
-		assertTrue(value_4 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see tiny gold shards.",
-				((PassiveEntityRespawnPoint) value_4).getDescription());
+				value_4.getDescription());
 
 		PassiveEntityRespawnPoint value_5 = PassiveEntityRespawnPointFactory
 				.create(clazz, 5, null, 0, 0);
 		assertNotNull(value_5);
-		assertTrue(value_5 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see tiny pieces of mithril ore.",
-				((PassiveEntityRespawnPoint) value_5).getDescription());
+				value_5.getDescription());
 
 		PassiveEntityRespawnPoint value_6 = PassiveEntityRespawnPointFactory
 				.create(clazz, 6, null, 0, 0);
@@ -206,9 +201,8 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_0 = PassiveEntityRespawnPointFactory
 				.create(clazz, 0, null, 0, 0);
 		assertNotNull(value_0);
-		assertTrue(value_0 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see a place where an apple looks likely to fall.",
-				((PassiveEntityRespawnPoint) value_0).getDescription());
+				value_0.getDescription());
 
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
 				.create(clazz, 1, null, 0, 0);
@@ -278,7 +272,7 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertNotNull(value_11);
 		assertTrue(value_11 instanceof VegetableGrower);
 		assertEquals("garlic", ((VegetableGrower) value_11).getVegetableName());
-		
+
 		PassiveEntityRespawnPoint value_12 = PassiveEntityRespawnPointFactory
 				.create(clazz, 12, null, 0, 0);
 		assertNotNull(value_12);
@@ -301,24 +295,21 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_0 = PassiveEntityRespawnPointFactory
 				.create(clazz, 0, null, 0, 0);
 		assertNotNull(value_0);
-		assertTrue(value_0 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see trace elements of some red crystal.",
-				((PassiveEntityRespawnPoint) value_0).getDescription());
+				value_0.getDescription());
 
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
 				.create(clazz, 1, null, 0, 0);
 		assertNotNull(value_1);
-		assertTrue(value_1 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
 				"You see evidence of a sapphire stone being here recently.",
-				((PassiveEntityRespawnPoint) value_1).getDescription());
+				value_1.getDescription());
 
 		PassiveEntityRespawnPoint value_2 = PassiveEntityRespawnPointFactory
 				.create(clazz, 2, null, 0, 0);
 		assertNotNull(value_2);
-		assertTrue(value_2 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see trace elements of the precious gem emerald.",
-				((PassiveEntityRespawnPoint) value_2).getDescription());
+				value_2.getDescription());
 
 		PassiveEntityRespawnPoint value_3 = PassiveEntityRespawnPointFactory
 				.create(clazz, 3, null, 0, 0);
@@ -336,9 +327,8 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_0 = PassiveEntityRespawnPointFactory
 				.create(clazz, 0, null, 0, 0);
 		assertNotNull(value_0);
-		assertTrue(value_0 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see a place where a coconut looks likely to fall.",
-				((PassiveEntityRespawnPoint) value_0).getDescription());
+				value_0.getDescription());
 
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
 				.create(clazz, 1, null, 0, 0);
@@ -349,9 +339,8 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_2 = PassiveEntityRespawnPointFactory
 				.create(clazz, 2, null, 0, 0);
 		assertNotNull(value_2);
-		assertTrue(value_2 instanceof PassiveEntityRespawnPoint);
 		assertEquals("It looks like there's a pineapple sprout growing here.",
-				((PassiveEntityRespawnPoint) value_2).getDescription());
+				value_2.getDescription());
 
 		PassiveEntityRespawnPoint value_8 = PassiveEntityRespawnPointFactory
 				.create(clazz, 8, null, 0, 0);
@@ -368,40 +357,35 @@ public class PassiveEntityRespawnPointFactoryTest {
 		PassiveEntityRespawnPoint value_0 = PassiveEntityRespawnPointFactory
 				.create(clazz, 0, null, 0, 0);
 		assertNotNull(value_0);
-		assertTrue(value_0 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
 				"You see some leftovers of animal food. Might be meat.",
-				((PassiveEntityRespawnPoint) value_0).getDescription());
+				value_0.getDescription());
 
 		PassiveEntityRespawnPoint value_1 = PassiveEntityRespawnPointFactory
 				.create(clazz, 1, null, 0, 0);
 		assertNotNull(value_1);
-		assertTrue(value_1 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
 				"You see some leftovers of animal food. Looks like ham.",
-				((PassiveEntityRespawnPoint) value_1).getDescription());
+				value_1.getDescription());
 
 		PassiveEntityRespawnPoint value_2 = PassiveEntityRespawnPointFactory
 				.create(clazz, 2, null, 0, 0);
 		assertNotNull(value_2);
-		assertTrue(value_2 instanceof PassiveEntityRespawnPoint);
 		assertEquals(
 				"You see some leftovers of animal food. Maybe chicken?",
-				((PassiveEntityRespawnPoint) value_2).getDescription());
+				value_2.getDescription());
 
 		PassiveEntityRespawnPoint value_3 = PassiveEntityRespawnPointFactory
 				.create(clazz, 3, null, 0, 0);
 		assertNotNull(value_3);
-		assertTrue(value_3 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see some shimmering fish scales like from a roach.",
-				((PassiveEntityRespawnPoint) value_3).getDescription());
+				value_3.getDescription());
 
 		PassiveEntityRespawnPoint value_4 = PassiveEntityRespawnPointFactory
 				.create(clazz, 4, null, 0, 0);
 		assertNotNull(value_4);
-		assertTrue(value_4 instanceof PassiveEntityRespawnPoint);
 		assertEquals("You see some red fish scales like from a char.",
-				((PassiveEntityRespawnPoint) value_4).getDescription());
+				value_4.getDescription());
 
 		PassiveEntityRespawnPoint value_5 = PassiveEntityRespawnPointFactory
 				.create(clazz, 5, null, 0, 0);
