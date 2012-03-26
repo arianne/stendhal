@@ -34,12 +34,15 @@ public class Postman {
 	private static final String Y_COORD = "85";
 	private static final String X_COORD = "112";
 	private static final String POSTMAN_ZONE = "0_semos_plains_n";
-	private static Logger logger = Logger.getLogger(Postman.class);
-	private final ClientFramework clientManager;
-	private final PostmanIRC postmanIRC;
+
 	private static final String GREETING = "Hi, I am the postman. How can I #help you?";
 	private static final String INTRO = "I store messages for offline players and deliver them on login.\n";
 	private static final String HELP_MESSAGE = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
+
+	private static Logger logger = Logger.getLogger(Postman.class);
+	private final ClientFramework clientManager;
+	private final PostmanIRC postmanIRC;
+	private String lastShout;
 	private static Postman instance;
 
 	/**
@@ -193,7 +196,10 @@ public class Postman {
 											+ HELP_MESSAGE);
 						}
 					} else if (text.matches("[^:]* shouts: .*")) {
-						postmanIRC.sendMessageToAllChannels(text);
+						if (!text.equals(lastShout)) {
+							postmanIRC.sendMessageToAllChannels(text);
+							lastShout = text;
+						}
 					} else if (text.matches("[^:]* rented .*")) {
 						// for signs
 						postmanIRC.sendMessageToAllChannels(text);
