@@ -12,24 +12,30 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sound.system.processors.Recorder;
+import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
 import games.stendhal.client.sound.system.processors.PCMStreamConverter;
-import games.stendhal.client.sound.system.SignalProcessor;
+import games.stendhal.client.sound.system.processors.Recorder;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author silvio
  */
 public class SoundFile extends SignalProcessor implements Cloneable
+
 {
+	private static Logger logger = Logger.getLogger(SoundFile.class);
+
     public static enum Type { OGG, WAV }
 
 	private int                   mNumChannels;
@@ -71,8 +77,9 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
         SignalProcessor decoder = chooseDecoder(stream, fileType, outputNumSamplesPerChannel);
 
-        if(decoder == null)
-            throw new IOException("could not load audio AudioResource: " + audioResource.getName());
+        if(decoder == null) {
+			throw new IOException("could not load audio AudioResource: " + audioResource.getName());
+		}
 
         if(enableStreaming)
         {
@@ -85,6 +92,11 @@ public class SoundFile extends SignalProcessor implements Cloneable
             mRecorder.connectTo(decoder, false);
 
             while(mRecorder.request()) {
+    			try {
+    				Thread.sleep(1);
+    			} catch (InterruptedException e) {
+    				logger.error(e, e);
+    			}
                 /* pass */
             }
 
@@ -93,7 +105,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 
 			Recorder.Player player = mRecorder.createPlayer(outputNumSamplesPerChannel);
 			player.connectTo(mPropagator, true);
-			
+
             mGenerator = player;
         }
     }
@@ -106,7 +118,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		mEnableStreaming  = false;
 		mRecorder         = recorder;
 		mGenerator        = recorder.createPlayer(outputNumSamplesPerChannel);
-		
+
 		mGenerator.connectTo(mPropagator, true);
 	}
 
@@ -166,7 +178,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
                 decoder.open(mAudioResource.getInputStream(), 256, mOutputNumSamples);
             }
             catch(IOException exception) { }
-            
+
         }
         else if(mGenerator instanceof PCMStreamConverter)
         {
