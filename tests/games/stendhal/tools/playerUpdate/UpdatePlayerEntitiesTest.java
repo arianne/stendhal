@@ -14,9 +14,11 @@ package games.stendhal.tools.playerUpdate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeThat;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
@@ -55,18 +57,19 @@ public class UpdatePlayerEntitiesTest {
 		try {
 			PlayerModifier pm = new PlayerModifier();
 			Player loaded = pm.loadPlayer(transaction, "george");
-			assertNotNull("pm can only handle existing players, so if this fails first create a player called george in db by login", loaded);
+			// "pm can only handle existing players, so if this fails first create a player called george in db by login"
+			assumeThat(loaded, notNullValue());
 			if (loaded.getSlot("bag").size() > 0) {
 				loaded.getSlot("bag").remove(loaded.getSlot("bag").getFirst().getID());
 			}
 			//assertEquals(null, loaded.getSlot("bag").getFirst());
-			
+
 			EntityManager em = SingletonRepository.getEntityManager();
-			Item item = (Item) em.getItem("leather armor");
+			Item item = em.getItem("leather armor");
 			item.put("name", "leather_armor_+1");
 			loaded.equipToInventoryOnly(item);
 			assertTrue(loaded.getSlot("bag").has(item.getID()));
-	
+
 			assertTrue(pm.savePlayer(transaction, loaded));
 			UpdatePlayerEntities updatePlayerEntities = new UpdatePlayerEntities();
 			Player changing = updatePlayerEntities.createPlayerFromRPO(loaded);
@@ -75,7 +78,7 @@ public class UpdatePlayerEntitiesTest {
 
 			Player secondLoaded = pm.loadPlayer(transaction, "george");
 			assertNotNull(secondLoaded);
-			
+
 			assertNotNull(secondLoaded.getSlot("bag"));
 			assertNotNull(secondLoaded.getSlot("bag").getFirst());
 			assertThat(secondLoaded.getSlot("bag").getFirst().get("name"), not(is("leather_armor_+1")));
