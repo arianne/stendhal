@@ -61,7 +61,7 @@ public class TextClient {
 					System.out.println(username);
 				}
 
-				if ((username != null) 
+				if ((username != null)
 						&& (character != null) && (host != null)
 						&& (port != null)) {
 					if (password == null) {
@@ -69,11 +69,11 @@ public class TextClient {
 						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 						password = br.readLine();
 						System.out.print("\u001B[m");
-						
+
 					}
 					System.out.println("Connecting");
 					new TextUI();
-					Thread thread = new Thread(new InputReader());
+					Thread thread = new Thread(new InputReader(), "TextClient InputReader");
 					thread.setDaemon(true);
 					thread.start();
 

@@ -64,14 +64,14 @@ import org.apache.log4j.Logger;
 
 /**
  * Server login dialog.
- * 
+ *
  */
 public class LoginDialog extends JDialog {
-	
+
 	private static final long serialVersionUID = -1182930046629241075L;
 
 	protected ProfileList profiles;
-	
+
 	private JComboBox profilesComboBox;
 
 	private JCheckBox saveLoginBox;
@@ -149,12 +149,12 @@ public class LoginDialog extends JDialog {
 
 		profilesComboBox = new JComboBox();
 		profilesComboBox.addActionListener(new ProfilesCB());
-		
+
 		/*
 		 * Remove profile button
 		 */
 		removeButton = createRemoveButton();
-		
+
 		// Container for the profiles list and the remove button
 		JComponent box = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		profilesComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -211,7 +211,7 @@ public class LoginDialog extends JDialog {
 		contentPane.add(l, c);
 
 		usernameField = new JTextField();
-	
+
 		c.gridx = 1;
 		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
@@ -299,10 +299,10 @@ public class LoginDialog extends JDialog {
 			this.setLocationRelativeTo(owner);
 		}
 	}
-	
+
 	/**
 	 * Create the remove character button.
-	 * 
+	 *
 	 * @return JButton
 	 */
 	private JButton createRemoveButton() {
@@ -319,7 +319,7 @@ public class LoginDialog extends JDialog {
 				removeButton_actionPerformed(e);
 			}
 		});
-		
+
 		return button;
 	}
 
@@ -372,7 +372,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Run the connection procces in separate thread. added by TheGeneral
 		 */
-		final Thread t = new Thread(new ConnectRunnable(profile));
+		final Thread t = new Thread(new ConnectRunnable(profile), "Login");
 		t.start();
 	}
 
@@ -388,7 +388,7 @@ public class LoginDialog extends JDialog {
 		profile = (Profile) profilesComboBox.getSelectedItem();
 		Object[] options = { "Remove", "Cancel" };
 
-		Integer confirmRemoveProfile = (Integer)JOptionPane.showOptionDialog(this,
+		Integer confirmRemoveProfile = JOptionPane.showOptionDialog(this,
 			"This will permanently remove a user profile from your local list of accounts.\n"
 			+ "It will not delete an account on any servers.\n"
 			+ "Are you sure you want to remove \'" + profile.getUser() + "@" + profile.getHost() + "\' profile?",
@@ -417,7 +417,7 @@ public class LoginDialog extends JDialog {
 	}
 	/**
 	 * Connect to a server using a given profile.
-	 * @param profile 
+	 * @param profile
 	 */
 	public void connect(final Profile profile) {
 		// We are not in EDT
@@ -448,7 +448,7 @@ public class LoginDialog extends JDialog {
 				}
 			});
 			String message = "unable to connect to server";
-			
+
 			if (profile != null) {
 				message = message + " " + profile.getHost() + ":" + profile.getPort();
 			} else {
@@ -458,7 +458,7 @@ public class LoginDialog extends JDialog {
 			handleError("Unable to connect to server. Did you misspell the server name?", "Connection failed");
 			return;
 		}
-		
+
 		final JDialog me=this;
 		try {
 			client.setAccountUsername(profile.getUser());
@@ -495,7 +495,7 @@ public class LoginDialog extends JDialog {
 	}
 
 	/**
-	 * Displays the error message, removes the progress bar and 
+	 * Displays the error message, removes the progress bar and
 	 * either enabled the login dialog in interactive mode or exits
 	 * the client in non interactive mode.
 	 *
@@ -549,7 +549,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Populate the profiles combobox and select the default.
-	 * @param profiles 
+	 * @param profiles
 	 */
 	protected void populateProfiles(final ProfileList profiles) {
 		profilesComboBox.removeAllItems();

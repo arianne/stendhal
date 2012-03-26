@@ -22,10 +22,10 @@ import java.util.List;
 /**
  * Shuts down the server in a regular fashion. You should warn connected players
  * to logout if that is still possible.
- * 
+ *
  * If the server is started in a loop, it will come up again: while sleep 60; do
  * java -jar marauroa -c marauroa.ini -l; done
- * 
+ *
  * @author M. Fuchs
  */
 public class ServerShutdown extends ScriptImpl {
@@ -41,13 +41,12 @@ public class ServerShutdown extends ScriptImpl {
 			new Runnable() {
     			public void run() {
     				//marauroad.finish() is already called using a JRE shutdown hook, so we don't need
-    				// to call it here directly: 
+    				// to call it here directly:
     				//marauroad.getMarauroa().finish();
 
     				System.exit(0);
     			}
-			}
-		).start();
+			}, "Server Shutdown").start();
 	}
 
 }

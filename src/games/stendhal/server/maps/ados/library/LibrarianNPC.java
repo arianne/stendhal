@@ -72,9 +72,9 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        int pos = text.indexOf(" ");
 						        if (pos > -1) {
 							        String title = text.substring(pos + 1).trim();
-	
+
 							        final WikipediaAccess access = new WikipediaAccess(title);
-							        final Thread thread = new Thread(access);
+							        final Thread thread = new Thread(access, "WikipediaAccess");
 							        thread.setPriority(Thread.MIN_PRIORITY);
 							        thread.setDaemon(true);
 							        thread.start();

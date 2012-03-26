@@ -21,7 +21,7 @@ import javax.swing.JEditorPane;
 import javax.swing.SwingUtilities;
 
 /**
- * adds support &lt;meta http-equiv="refresh" content="30; url=http://arianne.sf.net/"&gt; 
+ * adds support &lt;meta http-equiv="refresh" content="30; url=http://arianne.sf.net/"&gt;
  *
  * @author hendrik
  */
@@ -34,7 +34,7 @@ public class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListen
 		browser = (JEditorPane) event.getSource();
 		String html = browser.getText();
 		if (parseHtml(html)) {
-			Thread thread = new Thread(this);
+			Thread thread = new Thread(this, "UpdateProgressBar");
 			thread.setDaemon(true);
 			thread.start();
 		}
