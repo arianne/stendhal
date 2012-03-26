@@ -16,16 +16,14 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 
 /**
  * A list of ArrestWarrants as frontend for the zone storage.
- * 
+ *
  * @author hendrik
  */
 public class ArrestWarrantList extends StorableEntityList<ArrestWarrant> {
 
-	private static final long serialVersionUID = 9038872708537070249L;
-
 	/**
 	 * Creates a new ArrestWarrantList.
-	 * 
+	 *
 	 * @param zone
 	 *            zone to store the ArrestWarrants in
 	 */

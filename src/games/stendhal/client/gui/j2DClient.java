@@ -92,8 +92,6 @@ public class j2DClient implements UserInterface {
 	 */
 	private static j2DClient sharedUI;
 
-	private static final long serialVersionUID = 3356310866399084117L;
-
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
