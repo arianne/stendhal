@@ -23,7 +23,7 @@ import java.util.Locale;
  * Sane mouse handling for components that want to implement drag and drop or
  * pass mouse events to EntityViews.
  */
-abstract class MouseHandler implements MouseListener, MouseMotionListener {
+public abstract class MouseHandler implements MouseListener, MouseMotionListener {
 	/** <code>true</code> if the right mouse button is down */
 	private boolean rightMouseButtonPressed;
 	/** The time at which a mouse button was last pressed. */

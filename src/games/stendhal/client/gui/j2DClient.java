@@ -804,9 +804,26 @@ public class j2DClient implements UserInterface {
 			}
 
 			processDirectionPress(direction, e.isControlDown());
+			break;
+		case KeyEvent.VK_0:
+		case KeyEvent.VK_1:
+		case KeyEvent.VK_2:
+		case KeyEvent.VK_3:
+		case KeyEvent.VK_4:
+		case KeyEvent.VK_5:
+		case KeyEvent.VK_6:
+		case KeyEvent.VK_7:
+		case KeyEvent.VK_8:
+		case KeyEvent.VK_9:
+			switchToSpellCastingState(e);
+			break;
 		}
 	}
 
+	private void switchToSpellCastingState(KeyEvent e) {
+		this.screen.switchToSpellCasting(e);
+	}
+	
 	protected void onKeyReleased(final KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:

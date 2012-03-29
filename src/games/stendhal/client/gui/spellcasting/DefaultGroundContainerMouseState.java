@@ -1,0 +1,153 @@
+package games.stendhal.client.gui.spellcasting;
+
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.DragLayer;
+import games.stendhal.client.gui.GroundContainer;
+import games.stendhal.client.gui.j2d.RemovableSprite;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.wt.EntityViewCommandList;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+
+public class DefaultGroundContainerMouseState extends GroundContainerMouseState {
+
+	public DefaultGroundContainerMouseState(GroundContainer ground) {
+		super(ground);
+	}
+
+	@Override
+	protected boolean onMouseClick(Point point) {
+		// Context menu detection
+		if (ignoreClick) {
+			ignoreClick = false;
+			return false;
+		}
+		// on MS Windows releasing the mouse after a drag&drop action is
+		// counted as mouse click: https://sourceforge.net/support/tracker.php?aid=2976895
+		if ((Math.abs(point.getX() - xOnMousePressed) > 10) 
+			|| (Math.abs(point.getY() - yOnMousePressed) > 10)) {
+			return false;
+		}
+		
+		// for the text pop up....
+		final RemovableSprite text = ground.getScreen().getTextAt(point.x, point.y);
+		if (text != null) {
+			ground.getScreen().removeText(text);
+			return true;
+		}
+
+		// get clicked entity
+		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
+
+		// for the clicked entity....
+		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
+		if ((view != null) && view.isInteractive()) {
+			if (isCtrlDown()) {
+				view.onAction();
+				return true;
+			} else if (isShiftDown()) {
+				view.onAction(ActionType.LOOK);
+				return true;
+			} else if (!doubleClick) {
+				return view.onHarmlessAction();
+			}
+		} else if (windowWasActiveOnMousePressed && !isCtrlDown()) {
+			if (!doubleClick) {
+				ground.createAndSendMoveToAction(location, false);
+				// let it pass "unhandled", so that the possible double click
+				// move can be sent to server as well
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	protected boolean onMouseDoubleClick(Point point) {
+		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
+
+		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+
+		if ((view != null) && view.isInteractive()) {
+			// ... do the default action
+			view.onAction();
+			return true;
+		} else {
+			ground.createAndSendMoveToAction(location, true);
+			return true;
+		}
+	}
+
+	@Override
+	protected void onMouseRightClick(Point point) {
+		ignoreClick = false;
+		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
+		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+
+		if (view != null) {
+			// ... show context menu (aka command list)
+			final String[] actions = view.getActions();
+
+			if (actions.length > 0) {
+				final IEntity entity = view.getEntity();
+
+				JPopupMenu menu = new EntityViewCommandList(entity.getType(), actions, view);
+				menu.show(ground.getCanvas(), point.x - MENU_OFFSET, point.y - MENU_OFFSET);
+				contextMenuFlag = true;
+				/*
+				 * Tricky way to detect recent popup menues. We need the
+				 * information to prevent walking when hiding the menu.
+				 */
+				menu.addPopupMenuListener(new PopupMenuListener() {
+					public void popupMenuCanceled(PopupMenuEvent e) {
+						//ignore
+					}
+					public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+						/*
+						 *  Hidden. inform onMouseClick; unfortunately this gets
+						 *  called before onMousePressed, so we need to push it
+						 *  pack to the event queue
+						 */
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								contextMenuFlag = false;	
+							}
+						});
+					}
+					public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
+						// ignore
+					}
+				});
+			}
+		}
+	}
+
+	@Override
+	protected void onDragStart(Point point) {
+		ignoreClick = false;
+		// Find the entity under the starting point
+		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
+		final EntityView view = ground.getScreen().getMovableEntityViewAt(location.getX(),
+				location.getY());
+
+		if (view != null) {
+			// Let the DragLayer handle the drawing and dropping.
+			DragLayer.get().startDrag(view.getEntity());
+		}
+	}
+
+	@Override
+	public void switchState() {
+		this.ground.setNewMouseHandlerState(new SpellCastingGroundContainerMouseState(this.ground));
+	}
+
+}

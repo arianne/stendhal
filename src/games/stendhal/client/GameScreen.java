@@ -21,6 +21,7 @@ import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
+import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.NotificationType;
@@ -33,6 +34,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,6 +47,9 @@ import java.util.Map.Entry;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -1205,5 +1210,28 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	public void onZoneChange() {
 		removeAllObjects();
+	}
+
+	public void switchToSpellCasting(KeyEvent e) {
+		SpellCastingGroundContainerMouseState newState = new SpellCastingGroundContainerMouseState(this.ground);
+		RPObject spell = findSpell(e);
+		newState.setSpell(spell);
+		this.ground.setNewMouseHandlerState(newState);
+	}
+	
+	private RPObject findSpell(KeyEvent e) {
+		RPObject player = StendhalClient.get().getPlayer();
+		Integer number = Integer.valueOf(String.valueOf(e.getKeyChar()));
+		RPSlot slot = player.getSlot("spells");
+		Integer counter = Integer.valueOf(1);
+		for (RPObject spell : slot) {
+			if(number.equals(counter)) {
+				logger.info(spell);
+				return spell;
+			}
+			counter = Integer.valueOf(counter.intValue() + 1);
+		}
+		logger.info(player);
+		return null;
 	}
 }
