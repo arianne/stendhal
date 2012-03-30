@@ -23,12 +23,12 @@ class HelpAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
@@ -47,7 +47,7 @@ class HelpAction implements SlashAction {
 				"- /sentence <text> \tWrites the sentence that appears on Website.",
 				"* Items: ",
 				"- /drop [quantity] <item>\tDrop a certain number of an item",
-				"- /markscroll <text> \tMark your empty scroll and add a text label",				
+				"- /markscroll <text> \tMark your empty scroll and add a text label",
 				"* Buddies and Enemies: ",
 				"- /add <player> \tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
@@ -60,7 +60,8 @@ class HelpAction implements SlashAction {
 				"- /grumpy <message> \tSets a message to ignore all non-buddies.",
 				"- /grumpy \t\tRemove status grumpy",
 				"- /name <pet> <name> \tGive a name to your pet",
-				"* Misc: ", 
+				"- /profile [<name>] \t Opens the profile of a character",
+				"* Misc: ",
 				"- /clickmode \t\t switches between single click mode and double click mode",
 				"- /info \t\tFind out what the current server time is",
 				"- /mute\t\tMute or unmute the sounds",
@@ -76,7 +77,7 @@ class HelpAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
@@ -85,7 +86,7 @@ class HelpAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {

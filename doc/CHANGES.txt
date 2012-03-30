@@ -6,8 +6,9 @@
 - added a greeter NPCs before Haizen's hut (inactive)
 
 *other*
-- reworked the spam protection
-- Admin command (*) inspect includes Java class name
+- added /profile <name> action
+- reworked the in-game spam protection
+- admin command (*) inspect includes Java class name
 
 
 1.00
