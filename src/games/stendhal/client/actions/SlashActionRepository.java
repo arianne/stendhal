@@ -43,9 +43,9 @@ public class SlashActionRepository {
 		actions.put("answer", new AnswerAction());
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
-		
+
 		actions.put("ban", new BanAction());
-		
+
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
 		actions.put("clientinfo", new ClientInfoAction());
@@ -53,7 +53,7 @@ public class SlashActionRepository {
 		actions.put("config", new ConfigAction());
 
 		actions.put("drop", new DropAction());
-		
+
 		actions.put("cast", new CastSpellAction());
 
 		actions.put("gag", new GagAction());
@@ -71,14 +71,15 @@ public class SlashActionRepository {
 		actions.put("jail", new JailAction());
 
 		actions.put("listproducers", new ListProducersAction());
-		
+
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
-		
+
 		actions.put("names", who);
-		
+
 		actions.put("p", groupMessage);
+		actions.put("profile", new ProfileAction());
 		actions.put("travellog", new TravelLogAction());
 
 		actions.put("quit", new QuitAction());
@@ -91,10 +92,10 @@ public class SlashActionRepository {
 		actions.put("sound", new SoundAction());
 		actions.put("volume", new VolumeAction());
 		actions.put("vol", new VolumeAction());
-		
+
 		actions.put("storemessage", new StoreMessageAction());
 		actions.put("postmessage", new StoreMessageAction());
-		
+
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
 		actions.put("supportanswer", supporta);
@@ -115,7 +116,7 @@ public class SlashActionRepository {
 
 	/**
 	 * Gets the Action object for the specified Action name.
-	 * 
+	 *
 	 * @param name
 	 *            name of Action
 	 * @return Action object
