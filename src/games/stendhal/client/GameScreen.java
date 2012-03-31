@@ -64,6 +64,21 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private static final long serialVersionUID = -4070406295913030925L;
 
 	private static Logger logger = Logger.getLogger(GameScreen.class);
+	
+	/** Map KeyEvents to a number, i.e. to determine position in spells slot based on pressed key **/
+	private static final Map<Integer, Integer> keyEventMapping = new HashMap<Integer, Integer>();
+	static {
+		keyEventMapping.put(KeyEvent.VK_1, Integer.valueOf(1));
+		keyEventMapping.put(KeyEvent.VK_2, Integer.valueOf(2));
+		keyEventMapping.put(KeyEvent.VK_3, Integer.valueOf(3));
+		keyEventMapping.put(KeyEvent.VK_4, Integer.valueOf(4));
+		keyEventMapping.put(KeyEvent.VK_5, Integer.valueOf(5));
+		keyEventMapping.put(KeyEvent.VK_6, Integer.valueOf(6));
+		keyEventMapping.put(KeyEvent.VK_7, Integer.valueOf(7));
+		keyEventMapping.put(KeyEvent.VK_8, Integer.valueOf(8));
+		keyEventMapping.put(KeyEvent.VK_9, Integer.valueOf(9));
+		keyEventMapping.put(KeyEvent.VK_0, Integer.valueOf(10));
+	}
 
 	/**
 	 * Comparator used to sort entities to display.
@@ -1218,7 +1233,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	public void switchToSpellCasting(KeyEvent e) {
 		RPObject spell = findSpell(e);
-		switchToSpellCastingState(spell);
+		// only if a spell was found switch to spell casting
+		// i.e. Ctrl + 9 was issued, but player only has 8 spell would return null
+		if(spell != null) {
+			switchToSpellCastingState(spell);
+		}
 	}
 
 	/**
@@ -1234,17 +1253,15 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	private RPObject findSpell(KeyEvent e) {
 		RPObject player = StendhalClient.get().getPlayer();
-		Integer number = Integer.valueOf(String.valueOf(e.getKeyChar()));
+		Integer position = keyEventMapping.get(e.getKeyCode());
 		RPSlot slot = player.getSlot("spells");
 		Integer counter = Integer.valueOf(1);
 		for (RPObject spell : slot) {
-			if(number.equals(counter)) {
-				logger.info(spell);
+			if(counter.equals(position)) {
 				return spell;
 			}
 			counter = Integer.valueOf(counter.intValue() + 1);
 		}
-		logger.info(player);
 		return null;
 	}
 }
