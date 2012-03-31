@@ -57,7 +57,7 @@ import java.util.List;
  * <p>
  * REWARD: <li> 20 cod or perch <li> 500 XP <li> 20 karma in total
  * <p>
- * REPETITIONS: <li> Unlimited, but 12 hours of waiting is
+ * REPETITIONS: <li> Unlimited, but 2 hours of waiting is
  * required between repetitions
  */
  
