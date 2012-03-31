@@ -38,7 +38,7 @@
   
   <creature name="minotaur king">
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
-    <description></description>
+    <description>You see a Minotaur King. He doesn't have to escape from his labyrinth to be very angry...</description>
     <attributes>
       <atk value="481"/>
       <def value="57"/>
