@@ -33,6 +33,7 @@ import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.j2d.entity.Spell2DView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
@@ -1249,5 +1250,9 @@ public class j2DClient implements UserInterface {
 			}
 		}
 		return soundSystemFacade;
+	}
+
+	public void switchToSpellState(RPObject spell) {
+		this.screen.switchToSpellCastingState(spell);
 	}
 }

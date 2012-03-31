@@ -1212,11 +1212,24 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		removeAllObjects();
 	}
 
+	/**
+	 * Switch to spell casting triggered by a key event
+	 * @param e triggering key event
+	 */
 	public void switchToSpellCasting(KeyEvent e) {
-		SpellCastingGroundContainerMouseState newState = new SpellCastingGroundContainerMouseState(this.ground);
 		RPObject spell = findSpell(e);
-		newState.setSpell(spell);
+		switchToSpellCastingState(spell);
+	}
+
+	/**
+	 * Switch to spell casting with an already chosen spell
+	 * 
+	 * @param spell the chosen spell
+	 */
+	public void switchToSpellCastingState(RPObject spell) {
+		SpellCastingGroundContainerMouseState newState = new SpellCastingGroundContainerMouseState(this.ground);
 		this.ground.setNewMouseHandlerState(newState);
+		newState.setSpell(spell);
 	}
 	
 	private RPObject findSpell(KeyEvent e) {

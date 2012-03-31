@@ -15,14 +15,16 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sprite.SpriteStore;
+
 
 import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a spell.
  */
-class Spell2DView extends Entity2DView {
+public class Spell2DView extends Entity2DView {
 
 	private static final Logger logger = Logger.getLogger(Spell2DView.class);
 
@@ -66,12 +68,17 @@ class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected String translate(final String name) {
-		return "data/sprites/spells/" + name + ".png";
+		String translatedname = translateName(name);
+		return "data/sprites/spells/" + translatedname + ".png";
 	}
 
 	//
 	// EntityChangeListener
 	//
+
+	private String translateName(String name) {
+		return name.replaceAll(" ", "_");
+	}
 
 	/**
 	 * An entity was changed.
@@ -115,7 +122,7 @@ class Spell2DView extends Entity2DView {
 		}
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			j2DClient.get().switchToSpellState(this.entity.getRPObject());
 			break;
 
 
@@ -124,4 +131,5 @@ class Spell2DView extends Entity2DView {
 			break;
 		}
 	}
+
 }
