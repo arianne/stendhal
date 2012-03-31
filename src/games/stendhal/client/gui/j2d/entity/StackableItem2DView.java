@@ -15,6 +15,8 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.TextSprite;
 
@@ -105,21 +107,18 @@ public class StackableItem2DView extends Item2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (showQuantity && (quantitySprite != null)) {
-			/*
-			 * NOTE: This has be calibrated to fit the size of an entity slot
-			 * visual.
-			 */
-			int qx;
+			drawQuantity(g2d, x, y, width);
+		}
+	}
 
-			if (isContained()) {
-				// Right alignment
-				qx = x + width + 5 - quantitySprite.getWidth();
-			} else {
-				// Center alignment
-				qx = x + (width - quantitySprite.getWidth()) / 2;
-			}
-
-			quantitySprite.draw(g2d, qx, y - 5);
+	public void drawQuantity(final Graphics2D g2d, final int x, final int y,
+			final int width) {
+		if (isContained()) {
+			// Right alignment
+			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.RIGHT, x, y, width);
+		} else {
+			// Center alignment
+			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.CENTER, x, y, width);
 		}
 	}
 
