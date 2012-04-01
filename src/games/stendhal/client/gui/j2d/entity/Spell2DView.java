@@ -13,11 +13,20 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.TextSprite;
 
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -125,11 +134,33 @@ public class Spell2DView extends Entity2DView {
 			j2DClient.get().switchToSpellState(this.entity.getRPObject());
 			break;
 
-
 		default:
 			super.onAction(at);
 			break;
 		}
+	}
+
+	/**
+	 * Additionally draws the position of this spell in the spells slot
+	 */
+	@Override
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(g2d, x, y, width, height);
+		TextSprite positionSprite = TextSprite.createTextSprite(getPositionInSlot(), Color.WHITE);
+		DrawingHelper.drawAlignedSprite(g2d, positionSprite, HorizontalAlignment.LEFT, x, y, width);
+	}
+
+
+	private String getPositionInSlot() {
+		RPSlot slot = this.entity.getRPObject().getContainerSlot();
+		Integer position = Integer.valueOf(1);
+		for (RPObject spell : slot) {
+			if(spell.equals(this.entity.getRPObject())) {
+				break;
+			}
+			position = Integer.valueOf(position.intValue() + 1);
+		}
+		return position.toString();
 	}
 
 }
