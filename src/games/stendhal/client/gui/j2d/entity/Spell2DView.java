@@ -21,6 +21,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.TextSprite;
 
@@ -147,7 +148,7 @@ public class Spell2DView extends Entity2DView {
 	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
 		super.draw(g2d, x, y, width, height);
 		TextSprite positionSprite = TextSprite.createTextSprite(getPositionInSlot(), Color.WHITE);
-		DrawingHelper.drawAlignedSprite(g2d, positionSprite, HorizontalAlignment.LEFT, x, y, width);
+		DrawingHelper.drawAlignedSprite(g2d, positionSprite, HorizontalAlignment.LEFT, VerticalAlignment.TOP, x, y, width, height);
 	}
 
 

@@ -17,6 +17,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.TextSprite;
 
@@ -107,18 +108,18 @@ public class StackableItem2DView extends Item2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (showQuantity && (quantitySprite != null)) {
-			drawQuantity(g2d, x, y, width);
+			drawQuantity(g2d, x, y, width, height);
 		}
 	}
 
-	public void drawQuantity(final Graphics2D g2d, final int x, final int y,
-			final int width) {
+	private void drawQuantity(final Graphics2D g2d, final int x, final int y,
+			final int width, int height) {
 		if (isContained()) {
 			// Right alignment
-			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.RIGHT, x, y, width);
+			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, x, y, width, height);
 		} else {
 			// Center alignment
-			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.CENTER, x, y, width);
+			DrawingHelper.drawAlignedSprite(g2d, quantitySprite, HorizontalAlignment.CENTER, VerticalAlignment.TOP, x, y, width, height);
 		}
 	}
 

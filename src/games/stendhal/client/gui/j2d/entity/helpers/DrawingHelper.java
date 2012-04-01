@@ -10,11 +10,37 @@ import java.awt.Graphics2D;
  */
 public class DrawingHelper {
 
-	public static void drawAlignedSprite(Graphics2D g2d, Sprite sprite, HorizontalAlignment a, int x, int y, int width) {
+	public static void drawAlignedSprite(Graphics2D g2d, Sprite sprite,
+			HorizontalAlignment horizontalAlign, VerticalAlignment verticalAlign,
+			int x, int y, int width, int height) {
 		/*
 		 * NOTE: This has be calibrated to fit the size of an entity slot
 		 * visual.
 		 */
+		int qx = alignHorizontal(sprite, horizontalAlign, x, width);
+		int qy = alignVertical(sprite, verticalAlign, y, height);
+		sprite.draw(g2d, qx, qy);
+	}
+
+	private static int alignVertical(Sprite sprite,
+			VerticalAlignment verticalAlign, int y, int height) {
+		int qy = y;
+		switch(verticalAlign) {
+		case TOP:
+			qy = y - 5;
+			break;
+		case MIDDLE:
+			qy = y + (height - sprite.getHeight()) / 2;
+			break;
+		case BOTTOM:
+			qy = y + height + 5 - sprite.getHeight();
+			break;
+		}
+		return qy;
+	}
+
+	private static int alignHorizontal(Sprite sprite, HorizontalAlignment a,
+			int x, int width) {
 		int qx = x;
 
 		switch (a) {
@@ -28,7 +54,7 @@ public class DrawingHelper {
 			qx = x + 5;
 			break;
 		}
-		sprite.draw(g2d, qx, y - 5);
+		return qx;
 	}
 
 }
