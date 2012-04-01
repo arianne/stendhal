@@ -10,6 +10,18 @@ import java.awt.Graphics2D;
  */
 public class DrawingHelper {
 
+	/**
+	 * Align a sprite in a defined area
+	 * 
+	 * @param g2d
+	 * @param sprite the sprite to draw
+	 * @param horizontalAlign (left, center, right)
+	 * @param verticalAlign (top, middle, bottom)
+	 * @param x 
+	 * @param y 
+	 * @param width
+	 * @param height
+	 */
 	public static void drawAlignedSprite(Graphics2D g2d, Sprite sprite,
 			HorizontalAlignment horizontalAlign, VerticalAlignment verticalAlign,
 			int x, int y, int width, int height) {
