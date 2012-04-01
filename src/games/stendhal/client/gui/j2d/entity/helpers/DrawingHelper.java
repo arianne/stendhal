@@ -11,7 +11,8 @@ import java.awt.Graphics2D;
 public class DrawingHelper {
 
 	/**
-	 * Align a sprite in a defined area
+	 * Align a sprite in a defined area, which is defined by upper left corner (x,y)
+	 * and width to the right and height downwards
 	 * 
 	 * @param g2d
 	 * @param sprite the sprite to draw
