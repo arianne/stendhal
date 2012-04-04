@@ -29,7 +29,7 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 
 	/**
 	 * Calculate the modified value of base hp
-	 * @param base_hp
+	 * @param baseHp
 	 * @return modified base hp
 	 */
 	public int modifyBaseHp(int baseHp) {
@@ -94,7 +94,7 @@ public class RPEntityModifierHandler extends AbstractModifierHandler {
 	
 	/**
 	 * Calculate the modified value of level
-	 * @param baseMana
+	 * @param level
 	 * @return modified level
 	 */
 	public int modifyLevel(int level) {

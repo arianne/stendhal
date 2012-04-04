@@ -57,12 +57,11 @@ public abstract class GroundContainerMouseState extends MouseHandler {
 	}
 	
 	/**
-	 * @param screen
+	 * @param ground
 	 */
 	public GroundContainerMouseState(GroundContainer ground) {
 		super();
 		this.ground = ground;
 	}
-
 
 }
