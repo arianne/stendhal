@@ -1768,8 +1768,8 @@
   </creature>
 
   <creature name="blordrough quartermaster">
-    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
-    <description></description>
+    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"></type>
+    <description>You see a man who gave up his life as a puppet of the Blordrough army, all for the love of dragons. He is wonderfully happy.</description>
     <attributes>
       <atk value="727"/>
       <def value="94"/>
@@ -1871,7 +1871,7 @@
 
   <creature name="blordrough corporal">
     <type class="human" subclass="armored_leader" tileid="human_armored.png:1"/>
-    <description></description>
+    <description>You see a man who feels his past indicates how he should be treated now but desparately wishes to exercise his intelect in a game of chess.</description>
     <attributes>
       <atk value="842"/>
       <def value="97"/>
@@ -1908,7 +1908,7 @@
 
   <creature name="blordrough storm trooper">
     <type class="human" subclass="super_human" tileid="human_armored.png:2"/>
-    <description></description>
+    <description>You see a man who is but a fraction of his former glory as one of the most feared foes of Faiumoni.  Now, his main concern is keeping his house clean and tidy.</description>
     <attributes>
       <atk value="921"/>
       <def value="98"/>
