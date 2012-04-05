@@ -53,12 +53,12 @@ import java.util.List;
  * REPETITIONS:None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
-	
+
 	// quest slot changed ready for 2011
-	private static final String QUEST_SLOT = "meet_santa_11";
+	private static final String QUEST_SLOT = "meet_santa_12";
 	// date changed ready for 2011
     private static final GregorianCalendar notXmas = new GregorianCalendar(2012, Calendar.JANUARY, 6);
-    
+
 	public static final String QUEST_NAME = "MeetSanta";
 
 	/** the Santa NPC. */
@@ -72,7 +72,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	private SpeakerNPC createSanta() {
 		santa = new SpeakerNPC("Santa") {
 			@Override
@@ -90,8 +90,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
-					    public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) { 
-					    	addHat(player);	    
+					    public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					    	addHat(player);
 					    }
 					}
 				);
@@ -167,24 +167,24 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		}
 		npc.getZone().remove(npc);
 	}
-	
+
 	@Override
 	public void addToWorld() {
-		
+
 		super.addToWorld();
 		fillQuestInfo(
 				"Meet Santa",
 				"Jingle bells, jingle bells, jingle all the way... Ho Ho Ho! Santa Claus delivers presents around Christmas time.",
 				false);
 		SingletonRepository.getLoginNotifier().addListener(this);
-		
+
 		if (System.getProperty("stendhal.santa") != null) {
 			// activate santa here
 			createSanta();
 			teleporterBehaviour = new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
 		}
 	}
-	
+
 	/**
 	 * removes a quest from the world.
 	 *
@@ -202,12 +202,12 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public String getName() {
 		return "MeetSanta";
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
@@ -217,5 +217,5 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public String getNPCName() {
 		return "Santa";
 	}
-	
+
 }
