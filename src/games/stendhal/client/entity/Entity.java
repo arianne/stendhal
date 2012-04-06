@@ -43,8 +43,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/**
 	 * Change listeners.
 	 */
-	protected EntityChangeListener[] changeListeners;
-	
+	private final List<EntityChangeListener<? extends IEntity>> changeListeners = new CopyOnWriteArrayList<EntityChangeListener<? extends IEntity>>(); 
 	private final List<ContentChangeListener> contentChangeListeners = new CopyOnWriteArrayList<ContentChangeListener>(); 
 
 	/** The arianne object associated with this game entity. */
@@ -102,8 +101,6 @@ public class Entity implements RPObjectChangeListener, IEntity {
 		type = null;
 		x = 0.0;
 		y = 0.0;
-
-		changeListeners = new EntityChangeListener[0];
 	}
 
 	//
@@ -113,16 +110,8 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#addChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
-	public void addChangeListener(final EntityChangeListener listener) {
-		EntityChangeListener[] newListeners;
-
-		final int len = changeListeners.length;
-
-		newListeners = new EntityChangeListener[len + 1];
-		System.arraycopy(changeListeners, 0, newListeners, 0, len);
-		newListeners[len] = listener;
-
-		changeListeners = newListeners;
+	public void addChangeListener(final EntityChangeListener<? extends IEntity> listener) {
+		changeListeners.add(listener);
 	}
 
 	public void addContentChangeListener(final ContentChangeListener listener) {
@@ -139,10 +128,9 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * @param property
 	 *            The changed property.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void fireChange(final  Property property) {
-		final EntityChangeListener[] listeners = changeListeners;
-		
-		for (final EntityChangeListener l : listeners) {
+		for (final EntityChangeListener l : changeListeners) {
 			l.entityChanged(this, property);
 		}
 	}
@@ -472,29 +460,8 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#removeChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
-	public void removeChangeListener(final EntityChangeListener listener) {
-		EntityChangeListener[] newListeners;
-		int idx;
-
-		idx = changeListeners.length;
-
-		while (idx-- != 0) {
-			if (changeListeners[idx] == listener) {
-				newListeners = new EntityChangeListener[changeListeners.length - 1];
-
-				if (idx != 0) {
-					System.arraycopy(changeListeners, 0, newListeners, 0, idx);
-				}
-
-				if (++idx != changeListeners.length) {
-					System.arraycopy(changeListeners, idx, newListeners,
-							idx - 1, changeListeners.length - idx);
-				}
-
-				changeListeners = newListeners;
-				break;
-			}
-		}
+	public void removeChangeListener(final EntityChangeListener<?> listener) {
+		changeListeners.remove(listener);
 	}
 
 	/* (non-Javadoc)
