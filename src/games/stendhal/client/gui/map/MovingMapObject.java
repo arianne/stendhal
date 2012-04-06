@@ -18,7 +18,7 @@ import java.awt.Graphics;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 
-public class MovingMapObject extends MapObject implements EntityChangeListener {
+public class MovingMapObject extends MapObject implements EntityChangeListener<IEntity> {
 	/**
 	 * The color of a general entity (pale green).
 	 */

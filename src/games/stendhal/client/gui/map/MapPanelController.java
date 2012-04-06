@@ -119,7 +119,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			
 			// changes to objects that should trigger a refresh
 			if (object instanceof MovingMapObject) {
-				entity.addChangeListener(new EntityChangeListener() {
+				entity.addChangeListener(new EntityChangeListener<IEntity>() {
 					public void entityChanged(final IEntity entity, final Object property) {
 						if ((property == IEntity.PROP_POSITION) 
 								|| (property == RPEntity.PROP_GHOSTMODE)
