@@ -13,7 +13,6 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.helpers.DrawingHelper;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
@@ -26,8 +25,10 @@ import java.awt.Graphics2D;
 
 /**
  * The 2D view of a stackable item.
+ * 
+ * @param <T> stackable item type
  */
-public class StackableItem2DView extends Item2DView {
+public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> {
 
 	/**
 	 * The quantity value changed.
@@ -45,7 +46,7 @@ public class StackableItem2DView extends Item2DView {
 	protected boolean showQuantity;
 
 	@Override
-	public void initialize(final IEntity entity) {
+	public void initialize(final T entity) {
 		super.initialize(entity);
 		quantitySprite = getQuantitySprite(entity);
 		quantityChanged = false;
@@ -63,11 +64,11 @@ public class StackableItem2DView extends Item2DView {
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
-	protected Sprite getQuantitySprite(IEntity entity) {
+	protected Sprite getQuantitySprite(T entity) {
 		int quantity;
 		String label;
 
-		quantity = ((StackableItem) entity).getQuantity();
+		quantity = entity.getQuantity();
 
 		if (quantity <= 1) {
 			return null;
@@ -145,7 +146,7 @@ public class StackableItem2DView extends Item2DView {
 	protected void update() {
 		super.update();
 
-		IEntity entity  = this.entity;
+		T entity  = this.entity;
 		if (quantityChanged && (entity != null)) {
 			quantitySprite = getQuantitySprite(entity);
 			quantityChanged = false;
@@ -165,7 +166,7 @@ public class StackableItem2DView extends Item2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == StackableItem.PROP_QUANTITY) {

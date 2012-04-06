@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Sign;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
@@ -20,9 +21,7 @@ import java.util.List;
 /**
  * The 2D view of a shop-sign.
  */
-class ShopSign2DView extends Sign2DView {
-
-
+class ShopSign2DView extends Sign2DView<Sign> {
 	//
 	// Entity2DView
 	//

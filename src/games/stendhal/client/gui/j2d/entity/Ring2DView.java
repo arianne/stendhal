@@ -16,7 +16,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Ring;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -24,7 +23,7 @@ import games.stendhal.client.sprite.SpriteStore;
 /**
  * The 2D view of a ring.
  */
-class Ring2DView extends Item2DView {
+class Ring2DView extends Item2DView<Ring> {
 
 	/**
 	 * The working sprite.
@@ -51,7 +50,7 @@ class Ring2DView extends Item2DView {
 	}
 	
 	@Override
-	public void initialize(final IEntity entity) {
+	public void initialize(final Ring entity) {
 		super.initialize(entity);
 		setSprite(getStateSprite());
 	}
@@ -65,7 +64,7 @@ class Ring2DView extends Item2DView {
 	 * 
 	 */
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(Ring entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite tiles;
 		if (isContained()) {
@@ -91,7 +90,7 @@ class Ring2DView extends Item2DView {
 	 * @return A sprite.
 	 */
 	protected Sprite getStateSprite() {
-		if (((Ring) entity).isWorking()) {
+		if (entity.isWorking()) {
 			return working;
 		} else {
 			return broken;
@@ -144,7 +143,7 @@ class Ring2DView extends Item2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final Ring entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Ring.PROP_WORKING) {

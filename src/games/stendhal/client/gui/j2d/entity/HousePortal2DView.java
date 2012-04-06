@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.List;
 // we don't extend portal because that would remove Look from the list of actions. 
 // we want it at the top so we couldn't just add it back in.
 
-class HousePortal2DView extends InvisibleEntity2DView {
+class HousePortal2DView extends InvisibleEntity2DView<IEntity> {
 
 	//
 	// Entity2DView

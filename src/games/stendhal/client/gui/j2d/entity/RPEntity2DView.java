@@ -43,8 +43,10 @@ import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of an RP entity.
+ * 
+ * @param <T> type of RPEntity
  */
-abstract class RPEntity2DView extends ActiveEntity2DView {
+abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> {
 	private static final int ICON_OFFSET = 8;
 	
 	/** Number of frames in attack sprites */
@@ -151,7 +153,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	@Override
-	public void initialize(final IEntity entity) {
+	public void initialize(final T entity) {
 		super.initialize(entity);
 		titleSprite = createTitleSprite();
 		titleChanged = false;
@@ -217,8 +219,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @return The title sprite.
 	 */
 	protected Sprite createTitleSprite() {
-		final String titleType = ((RPEntity) entity).getTitleType();
-		final int adminlevel = ((RPEntity) entity).getAdminLevel();
+		final String titleType = entity.getTitleType();
+		final int adminlevel = entity.getAdminLevel();
 		Color nameColor = null;
 
 		if (titleType != null) {
@@ -322,10 +324,8 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		final int bx = x + ((width - barWidth) / 2);
 		final int by = y - 3;
-
-		RPEntity rpentity = (RPEntity) entity;
 		
-		final float hpRatio = rpentity.getHpRatio();
+		final float hpRatio = entity.getHpRatio();
 
 		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		final float g = Math.min(hpRatio * 2.0f, 1.0f);
@@ -394,17 +394,15 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawIdeas(final Graphics2D g2d, final int x,
 			final int y, final int height) {
-		RPEntity rpentity = (RPEntity) entity;
-		
-		if (rpentity.isEating()) {
-			if (rpentity.isChoking()) {
+		if (entity.isEating()) {
+			if (entity.isChoking()) {
 				chokingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			} else {
 				eatingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
 			}
 		}
 
-		if (rpentity.isPoisoned()) {
+		if (entity.isPoisoned()) {
 			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2 * ICON_OFFSET);
 		}
 	}
@@ -425,9 +423,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
-		RPEntity rpentity = (RPEntity) entity;
-		
-		Rectangle2D wrect = rpentity.getArea();
+		Rectangle2D wrect = entity.getArea();
 		final Rectangle srect = new Rectangle((int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
@@ -435,7 +431,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 		
 		final double DIVISOR = 1.414213562; // sqrt(2)
 		
-		if (rpentity.isBeingAttacked()) {
+		if (entity.isBeingAttacked()) {
 			// Draw red box around 
 			//g2d.setColor(Color.white);
 			//g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
@@ -447,7 +443,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 					srect.width + 0, circleHeight, 0, 360);
 		}
 
-		if (rpentity.isAttacking(User.get())) {
+		if (entity.isAttacking(User.get())) {
 			// Draw orange box around
 			//g2d.setColor(Color.white);
 			//g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4, srect.height - 4);
@@ -461,12 +457,12 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		drawAttack(g2d, x, y, width, height);
 
-		if (rpentity.isDefending()) {
+		if (entity.isDefending()) {
 			// Draw bottom right combat icon
 			final int sx = srect.x + srect.width - ICON_OFFSET;
 			final int sy = y + height - 2 * ICON_OFFSET;
 
-			switch (rpentity.getResolution()) {
+			switch (entity.getResolution()) {
 			case BLOCKED:
 				blockedSprite.draw(g2d, sx, sy);
 				break;
@@ -494,27 +490,25 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param height height of the attacker
 	 */
 	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		RPEntity rpentity = (RPEntity) entity;
-		
-		if (rpentity.isAttacking() && rpentity.getShownDamageType() != null) {
+		if (entity.isAttacking() && entity.getShownDamageType() != null) {
 			if (frameBladeStrike < NUM_ATTACK_FRAMES) {
-				RPEntity target = rpentity.getAttackTarget();
+				RPEntity target = entity.getAttackTarget();
 
 				// A hack to check if it's a distance attack for proof
 				// of concept arrow drawing. Should be specified in the
 				// attack event itself
-				final Rectangle2D area = rpentity.getArea();
-				area.setRect(rpentity.getX() - 0.25, rpentity.getY() - 0.25, rpentity.getWidth()
-						+ 2 * 0.25, rpentity.getHeight() + 2 * 0.25);
+				final Rectangle2D area = entity.getArea();
+				area.setRect(entity.getX() - 0.25, entity.getY() - 0.25, entity.getWidth()
+						+ 2 * 0.25, entity.getHeight() + 2 * 0.25);
 				
 				if (area.intersects(target.getArea())) {
-					drawStrike(g2d, rpentity, x, y, width, height);
+					drawStrike(g2d, entity, x, y, width, height);
 				} else {
-					drawDistanceAttack(g2d, rpentity, target, x, y, width, height);
+					drawDistanceAttack(g2d, entity, target, x, y, width, height);
 				}
 				frameBladeStrike++;
 			} else {
-				rpentity.doneStriking();
+				entity.doneStriking();
 				frameBladeStrike = 0;
 			}
 		}
@@ -667,7 +661,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
+	protected void buildSprites(T entity, final Map<Object, Sprite> map) {
 		final Sprite tiles = getAnimationSprite();
 
 		width = tiles.getWidth() / getTilesX();
@@ -839,7 +833,7 @@ abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == RPEntity.PROP_ADMIN_LEVEL) {

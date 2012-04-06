@@ -41,12 +41,15 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an entity.
+ * 
+ * @param <T> type of entity
  */
-public abstract class Entity2DView implements EntityView, EntityChangeListener {
+public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
+	EntityChangeListener<T> {
 	/**
 	 * The entity this view is for.
 	 */
-	protected IEntity entity;
+	protected T entity;
 	
 	/**
 	 * The entity drawing composite.
@@ -114,7 +117,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	private volatile boolean released = false;
 
-	public void initialize(final IEntity entity) {
+	public void initialize(final T entity) {
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
 		}
@@ -166,7 +169,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * 
 	 * @param entity the eEntity to build the representation for
 	 */
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
@@ -179,7 +182,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param sheight
 	 *            The sprite height (in pixels).
 	 */
-	protected void calculateOffset(IEntity entity, final int swidth, final int sheight) {
+	protected void calculateOffset(T entity, final int swidth, final int sheight) {
 		final Rectangle2D area = entity.getArea();
 
 		calculateOffset(swidth, sheight, (int) (IGameScreen.SIZE_UNIT_PIXELS * area.getWidth()),
@@ -605,7 +608,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Handle updates.
 	 */
 	protected void update() {
-		IEntity entity = this.entity;
+		T entity = this.entity;
 		if (entity == null) {
 			return;
 		}
@@ -644,7 +647,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param property
 	 *            The property identifier.
 	 */
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		changed = true;
 
 		if (property == IEntity.PROP_ANIMATED) {
@@ -691,7 +694,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * 
 	 * @return The view's entity.
 	 */
-	public IEntity getEntity() {
+	public T getEntity() {
 		return entity;
 	}
 

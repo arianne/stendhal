@@ -15,8 +15,10 @@ package games.stendhal.client.entity;
 
 /**
  * An entity change listener.
+ * 
+ * @param <T> entity type 
  */
-public interface EntityChangeListener {
+public interface EntityChangeListener<T extends IEntity> {
 	/**
 	 * An entity was changed.
 	 * 
@@ -25,5 +27,5 @@ public interface EntityChangeListener {
 	 * @param property
 	 *            The property identifier.
 	 */
-	void entityChanged(IEntity entity, Object property);
+	void entityChanged(T entity, Object property);
 }

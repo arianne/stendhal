@@ -16,7 +16,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.Food;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -26,7 +25,7 @@ import java.util.Map;
 /**
  * The 2D view of food.
  */
-class Food2DView extends StateEntity2DView {
+class Food2DView extends StateEntity2DView<Food> {
 
 	/**
 	 * The number of states.
@@ -45,7 +44,7 @@ class Food2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
+	protected void buildSprites(Food entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		ZoneInfo info = ZoneInfo.get();
 		final Sprite tiles = store.getModifiedSprite(translate(entity.getType()),
@@ -68,8 +67,8 @@ class Food2DView extends StateEntity2DView {
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState(IEntity entity) {
-		return Integer.valueOf(((Food) entity).getAmount());
+	protected Object getState(Food entity) {
+		return Integer.valueOf(entity.getAmount());
 	}
 
 	//
@@ -103,7 +102,7 @@ class Food2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final Food entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Food.PROP_AMOUNT) {

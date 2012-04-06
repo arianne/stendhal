@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * The 2D view of a pet.
  */
-class Pet2DView extends DomesticAnimal2DView {
+class Pet2DView extends DomesticAnimal2DView<Pet> {
 	/**
 	 * The weight that a pet becomes fat (big).
 	 */
@@ -57,7 +57,7 @@ class Pet2DView extends DomesticAnimal2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 		User user = User.get();
-		Pet pet = (Pet) entity;
+		Pet pet = entity;
 		if (user != null) {
 			if (!user.hasPet()) {
 				list.add(ActionType.OWN.getRepresentation());

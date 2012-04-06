@@ -20,15 +20,17 @@ import java.awt.Graphics2D;
 
 /**
  * The 2D view of an invisible entity.
+ * 
+ * @param <T> entity type 
  */
-class InvisibleEntity2DView extends Entity2DView {
+class InvisibleEntity2DView<T extends IEntity> extends Entity2DView<T> {
 
 	//
 	// Entity2DView
 	//
 
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 	}
 
 	/**

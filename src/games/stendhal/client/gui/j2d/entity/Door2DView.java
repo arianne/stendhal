@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * The 2D view of a door.
  */
-class Door2DView extends StateEntity2DView {
+class Door2DView extends StateEntity2DView<Door> {
 	/*
 	 * The closed state.
 	 */
@@ -69,7 +69,7 @@ class Door2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
+	protected void buildSprites(Door entity, final Map<Object, Sprite> map) {
 		final String name = entity.getEntityClass();
 
 		final SpriteStore store = SpriteStore.get();
@@ -105,8 +105,8 @@ class Door2DView extends StateEntity2DView {
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState(IEntity entity) {
-		if (((Door) entity).isOpen()) {
+	protected Object getState(Door entity) {
+		if (entity.isOpen()) {
 			return STATE_OPEN;
 		} else {
 			return STATE_CLOSED;
@@ -191,7 +191,7 @@ class Door2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final Door entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {
@@ -230,7 +230,7 @@ class Door2DView extends StateEntity2DView {
 
 	@Override
 	public boolean isInteractive() {
-		return ((Door) entity).isUseable();
+		return entity.isUseable();
 	}
 
 	@Override

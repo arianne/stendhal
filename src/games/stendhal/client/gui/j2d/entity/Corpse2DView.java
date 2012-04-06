@@ -38,8 +38,10 @@ import marauroa.common.game.RPSlot;
 
 /**
  * The 2D view of a corpse.
+ * 
+ * @param <T> corpse type 
  */
-class Corpse2DView extends Entity2DView {
+class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 
 	/**
 	 * The corpse height.
@@ -98,7 +100,7 @@ class Corpse2DView extends Entity2DView {
 	 * @param entity Entity to display
 	 */
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		final String imageName = entity.getRPObject().get("image");
 		Sprite sprite = null;
 		ZoneInfo info = ZoneInfo.get();
@@ -177,7 +179,7 @@ class Corpse2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {
@@ -221,7 +223,7 @@ class Corpse2DView extends Entity2DView {
 		switch (at) {
 		case INSPECT:
 			boolean addListener = slotWindow == null;
-			RPSlot content = ((Corpse) entity).getContent();
+			RPSlot content = entity.getContent();
 			slotWindow = inspector.inspectMe(entity, content, slotWindow, 2, 2);
 			SlotWindow window = slotWindow;
 			if (window != null) {
@@ -307,7 +309,7 @@ class Corpse2DView extends Entity2DView {
 	@Override
 	public StendhalCursor getCursor() {
 		StendhalCursor cursor = super.getCursor();
-		Corpse corpse = (Corpse) entity;
+		Corpse corpse = entity;
 
 		// server override?
 		if ((cursor != StendhalCursor.UNKNOWN) || (corpse == null)) {
@@ -349,8 +351,7 @@ class Corpse2DView extends Entity2DView {
 			autoOpenedAlready = true;
 			boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoinspectcorpses", "true"));
 			if (autoRaiseCorpse) {
-				Corpse corpse = (Corpse) entity;
-				if ((corpse.getCorpseOwner() != null) && corpse.getCorpseOwner().equals(User.getCharacterName()) && !corpse.isEmpty()) {
+				if ((entity.getCorpseOwner() != null) && entity.getCorpseOwner().equals(User.getCharacterName()) && !entity.isEmpty()) {
 					onAction(ActionType.INSPECT);
 				}
 			}

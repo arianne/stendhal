@@ -26,8 +26,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an animated entity.
+ * 
+ * @param <T> entity type 
  */
-abstract class StateEntity2DView extends Entity2DView {
+abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 	/**
 	 * Log4J.
 	 */
@@ -48,7 +50,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 *  
 	 * @param entity the entity to build animations for 
 	 */
-	protected void buildAnimations(IEntity entity) {
+	protected void buildAnimations(T entity) {
 		buildSprites(entity, sprites);
 	}
 
@@ -59,7 +61,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * @param map
 	 *            The map to populate. 
 	 */
-	protected abstract void buildSprites(IEntity entity, final Map<Object, Sprite> map);
+	protected abstract void buildSprites(T entity, final Map<Object, Sprite> map);
 	
 	/**
 	 * Get a keyed state sprite.
@@ -79,7 +81,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * @param entity 
 	 * @return The model state.
 	 */
-	protected abstract Object getState(IEntity entity);
+	protected abstract Object getState(T entity);
 
 	/**
 	 * Get the current animated sprite.
@@ -87,7 +89,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * @param entity 
 	 * @return The appropriate sprite for the current state.
 	 */
-	protected Sprite getStateSprite(IEntity entity) {
+	protected Sprite getStateSprite(T entity) {
 		final Object state = getState(entity);
 		final Sprite sprite = getSprite(state);
 
@@ -108,7 +110,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		buildAnimations(entity);
 
 		setSprite(getStateSprite(entity));
@@ -119,7 +121,7 @@ abstract class StateEntity2DView extends Entity2DView {
 	 * 
 	 * @param entity
 	 */
-	protected void proceedChangedState(IEntity entity) {
+	protected void proceedChangedState(T entity) {
 		setSprite(getStateSprite(entity));
 	}
 }

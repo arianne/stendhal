@@ -21,10 +21,12 @@ import java.util.List;
 
 /**
  * The 2D view of a user.
+ * 
+ * @param <T> user 
  */
-class User2DView extends Player2DView {
+class User2DView<T extends User> extends Player2DView<T> {
 	@Override
-	public void initialize(final IEntity entity) {
+	public void initialize(final T entity) {
 		super.initialize(entity);
 		j2DClient.get().setPosition(entity.getX(), entity.getY());
 	}
@@ -69,7 +71,7 @@ class User2DView extends Player2DView {
 		list.add(ActionType.SET_OUTFIT.getRepresentation());
 		list.add(ActionType.WHERE.getRepresentation());
 
-		User user = (User) entity;
+		User user = entity;
 		if (user != null) {
 			if (user.hasSheep()) {
 				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
@@ -94,7 +96,7 @@ class User2DView extends Player2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_POSITION) {

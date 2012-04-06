@@ -34,8 +34,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an NPC.
+ * 
+ * @param <T> type of NPC
  */
-class NPC2DView extends RPEntity2DView {
+class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 	/**
 	 * Log4J.
 	 */
@@ -88,7 +90,7 @@ class NPC2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {
@@ -114,11 +116,10 @@ class NPC2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		NPC npc = (NPC) entity;
 		super.drawTop(g2d, x, y, width, height);
         
-		if (npc.getIdea() != null) {
-			Sprite sprite = SpriteStore.get().getSprite("data/sprites/ideas/" + npc.getIdea() + ".png");
+		if (entity.getIdea() != null) {
+			Sprite sprite = SpriteStore.get().getSprite("data/sprites/ideas/" + entity.getIdea() + ".png");
 			sprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
 

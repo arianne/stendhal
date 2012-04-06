@@ -24,8 +24,10 @@ import java.util.List;
 
 /**
  * The 2D view of a useable entity
+ * 
+ * @param <T> type of useable entity 
  */
-class UseableEntity2DView extends Entity2DView {
+class UseableEntity2DView<T extends UseableEntity> extends Entity2DView<T> {
 
 	private ActionType action;
 
@@ -51,7 +53,7 @@ class UseableEntity2DView extends Entity2DView {
 	//
 
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
 		ZoneInfo info = ZoneInfo.get();
@@ -78,7 +80,7 @@ class UseableEntity2DView extends Entity2DView {
 		int frames = imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width;
 		
 		// Just use the normal sprite if there are no animation frames
-		int state = ((UseableEntity) entity).getState();
+		int state = entity.getState();
 		if (frames > 1) {
 			sprite = store.getAnimatedSprite(sprite,
 					0, state * IGameScreen.SIZE_UNIT_PIXELS * height,
@@ -105,7 +107,7 @@ class UseableEntity2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if ((property == IEntity.PROP_CLASS) || (property == IEntity.PROP_STATE)) {

@@ -19,8 +19,10 @@ import games.stendhal.common.Direction;
 
 /**
  * The 2D view of an animated entity.
+ * 
+ * @param <T> entity type 
  */
-abstract class ActiveEntity2DView extends StateEntity2DView {
+abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T> {
 
 
 	//
@@ -84,7 +86,7 @@ abstract class ActiveEntity2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == ActiveEntity.PROP_DIRECTION) {

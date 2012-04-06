@@ -34,8 +34,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a player.
+ * 
+ * @param <T> player type
  */
-class Player2DView extends RPEntity2DView {
+class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	/**
 	 * The logger.
 	 */
@@ -161,16 +163,15 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		RPEntity player = (RPEntity) entity;
-		if (!player.isGhostMode()) {
+		if (!entity.isGhostMode()) {
 			super.buildActions(list);
 			
-			boolean hasBuddy = User.hasBuddy(player.getName());
+			boolean hasBuddy = User.hasBuddy(entity.getName());
 			if (!hasBuddy) {
 				list.add(ActionType.ADD_BUDDY.getRepresentation());
 			}
 			
-			if (User.isIgnoring(player.getName())) {
+			if (User.isIgnoring(entity.getName())) {
 				list.add(ActionType.UNIGNORE.getRepresentation());
 			} else if (!hasBuddy)  {
 				list.add(ActionType.IGNORE.getRepresentation());
@@ -193,9 +194,7 @@ class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		Player player = (Player) entity;
-		
-		boolean newIgnoreStatus = User.isIgnoring(player.getName());
+		boolean newIgnoreStatus = User.isIgnoring(entity.getName());
 		if (newIgnoreStatus != ignored) {
 			visibilityChanged = true;
 			ignored = newIgnoreStatus;
@@ -204,13 +203,13 @@ class Player2DView extends RPEntity2DView {
 		
 		super.draw(g2d, x, y, width, height);
 
-		if (player.isAway()) {
+		if (entity.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
-		if (player.isGrumpy()) {
+		if (entity.isGrumpy()) {
 			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
-		if (player.isBadBoy()) {
+		if (entity.isBadBoy()) {
 			skullSprite.draw(g2d, x , y);
 		}
 	}

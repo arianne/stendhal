@@ -26,8 +26,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a sign.
+ * 
+ * @param <T> sign type
  */
-class Sign2DView extends Entity2DView {
+class Sign2DView<T extends Sign> extends Entity2DView<T> {
 	private static Logger logger = Logger.getLogger(Sign2DView.class);
 
 	//
@@ -51,7 +53,7 @@ class Sign2DView extends Entity2DView {
 	}
 
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		String name = getClassResourcePath();
 
 		if (name == null) {
@@ -103,7 +105,7 @@ class Sign2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {
@@ -152,7 +154,7 @@ class Sign2DView extends Entity2DView {
 	 * @return ActionType
 	 */
 	private ActionType getActionType() {
-		Sign sign = (Sign) entity;
+		Sign sign = entity;
 		if (sign == null) {
 			// The user switched maps, but we still need a reasonable return
 			// value

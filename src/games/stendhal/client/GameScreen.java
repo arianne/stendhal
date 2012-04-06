@@ -113,7 +113,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * The entity to view map.
 	 */
-	protected Map<IEntity, EntityView> entities;
+	protected Map<IEntity, EntityView<IEntity>> entities;
 
 	/** Actual width of the world in world units. */
 	protected int ww;
@@ -253,7 +253,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
-		entities = new HashMap<IEntity, EntityView>();
+		entities = new HashMap<IEntity, EntityView<IEntity>>();
 
 		// create ground
 		ground = new GroundContainer(client, this, this);
@@ -327,7 +327,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void addEntity(final IEntity entity) {
-		final EntityView view = EntityViewFactory.create(entity);
+		final EntityView<IEntity> view = EntityViewFactory.create(entity);
 
 		if (view != null) {
 			entities.put(entity, view);
@@ -1217,7 +1217,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	public void onZoneUpdate() {
 		// * Update the coloring of the entity views. *
-		for (Entry<IEntity, EntityView> entry : entities.entrySet()) {
+		for (Entry<IEntity, EntityView<IEntity>> entry : entities.entrySet()) {
 			// initialize() should trigger making a new image
 			entry.getValue().initialize(entry.getKey());
 		}

@@ -13,11 +13,12 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Sign;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
-public class TradeCenterSign2DView extends Sign2DView {
+public class TradeCenterSign2DView extends Sign2DView<Sign> {
 
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.gui.j2d.entity.Entity2DView#buildActions(java.util.List)

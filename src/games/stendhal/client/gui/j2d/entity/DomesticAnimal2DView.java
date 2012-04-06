@@ -19,7 +19,6 @@ import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -31,8 +30,10 @@ import java.util.Map;
 
 /**
  * The 2D view of a domestic animal.
+ * 
+ * @param <T> type of domestic animal
  */
-abstract class DomesticAnimal2DView extends RPEntity2DView {
+abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2DView<T> {
 	/**
 	 * The down facing big state.
 	 */
@@ -80,7 +81,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	@Override
 	protected Sprite getSprite(final Object state) {
-		if (((DomesticAnimal) entity).getWeight() < getBigWeight()) {
+		if (entity.getWeight() < getBigWeight()) {
 			return super.getSprite(state);
 		}
 		switch (((ActiveEntity) entity).getDirection()) {
@@ -118,7 +119,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 * @return The sprite representing the current idea, or null.
 	 */
 	protected Sprite getIdeaSprite() {
-		final String idea = ((DomesticAnimal) entity).getIdea();
+		final String idea = entity.getIdea();
 
 		if (idea == null) {
 			return null;
@@ -244,7 +245,7 @@ abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == DomesticAnimal.PROP_IDEA) {

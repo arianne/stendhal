@@ -36,8 +36,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an item.
+ * 
+ * @param <T> item type
  */
-class Item2DView extends Entity2DView {
+class Item2DView<T extends Item> extends Entity2DView<T> {
 	/**
 	 * Log4J.
 	 */
@@ -60,7 +62,7 @@ class Item2DView extends Entity2DView {
 	 * Build the visual representation of this entity.
 	 */
 	@Override
-	protected void buildRepresentation(IEntity entity) {
+	protected void buildRepresentation(T entity) {
 		final SpriteStore store = SpriteStore.get();
 		Sprite sprite;
 		// Colour items on the ground, but not in bags, corpses etc.
@@ -147,7 +149,7 @@ class Item2DView extends Entity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {
@@ -274,7 +276,7 @@ class Item2DView extends Entity2DView {
 	 * not accessible. 
 	 */
 	private RPSlot getContent() {
-		return ((Item) entity).getContent();
+		return entity.getContent();
 	}
 
 	/**

@@ -25,8 +25,10 @@ import java.awt.Rectangle;
 
 /**
  * The view of an entity.
+ * 
+ * @param <T> type of the entity
  */
-public interface EntityView {
+public interface EntityView<T extends IEntity> {
 	/**
 	 * Get the list of actions.
 	 * 
@@ -39,7 +41,7 @@ public interface EntityView {
 	 * 
 	 * @return The view's entity.
 	 */
-	public IEntity getEntity();
+	public T getEntity();
 
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).
@@ -84,7 +86,7 @@ public interface EntityView {
 
 	public void setContained(boolean b);
 
-	public void initialize(IEntity entity);
+	public void initialize(T entity);
 
 	/**
 	 * is this entity interactive so that the player can click or move it?

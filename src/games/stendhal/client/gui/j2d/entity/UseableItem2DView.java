@@ -16,6 +16,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * The 2D view of a useable item.
  */
-class UseableItem2DView extends StackableItem2DView {
+class UseableItem2DView extends StackableItem2DView<StackableItem> {
 
 	//
 	// Entity2DView

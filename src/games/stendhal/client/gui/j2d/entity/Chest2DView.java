@@ -17,7 +17,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.InternalWindow;
 import games.stendhal.client.gui.SlotWindow;
@@ -34,7 +33,7 @@ import javax.swing.SwingUtilities;
 /**
  * The 2D view of a chest.
  */
-class Chest2DView extends StateEntity2DView {
+class Chest2DView extends StateEntity2DView<Chest> {
 	/*
 	 * The closed state.
 	 */
@@ -85,7 +84,7 @@ class Chest2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
+	protected void buildSprites(Chest entity, final Map<Object, Sprite> map) {
 		final SpriteStore store = SpriteStore.get();
 		ZoneInfo info = ZoneInfo.get();
 		final Sprite tiles = store.getModifiedSprite(translate(entity.getType()),
@@ -105,8 +104,8 @@ class Chest2DView extends StateEntity2DView {
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState(IEntity entity) {
-		if (((Chest) entity).isOpen()) {
+	protected Object getState(Chest entity) {
+		if (entity.isOpen()) {
 			return STATE_OPEN;
 		} else {
 			return STATE_CLOSED;
@@ -128,7 +127,7 @@ class Chest2DView extends StateEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		Chest chest = (Chest) entity;
+		Chest chest = entity;
 		if (chest != null && chest.isOpen()) {
 			list.add(ActionType.INSPECT.getRepresentation());
 			list.add(ActionType.CLOSE.getRepresentation());
@@ -170,8 +169,7 @@ class Chest2DView extends StateEntity2DView {
 		super.update();
 
 		if (openChanged) {
-			Chest chest = (Chest) entity;
-			if (chest.isOpen()) {
+			if (entity.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
 					showWindow();
@@ -200,7 +198,7 @@ class Chest2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final Chest entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {
@@ -230,7 +228,7 @@ class Chest2DView extends StateEntity2DView {
 			break;
 
 		case OPEN:
-			if (!((Chest) entity).isOpen()) {
+			if (!entity.isOpen()) {
 				// If it was closed, open it and inspect it...
 				requestOpen = true;
 			}
@@ -280,7 +278,7 @@ class Chest2DView extends StateEntity2DView {
 	 */
 	private void showWindow() {
 		boolean addListener = slotWindow == null;
-		slotWindow = inspector.inspectMe(entity, ((Chest) entity).getContent(),
+		slotWindow = inspector.inspectMe(entity, entity.getContent(),
 				slotWindow, 5, 6);
 		/*
 		 * Register a listener for window closing so that we can

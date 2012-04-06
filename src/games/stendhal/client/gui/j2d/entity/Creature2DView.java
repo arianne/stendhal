@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * The 2D view of a creature.
  */
-class Creature2DView extends RPEntity2DView {
+class Creature2DView extends RPEntity2DView<Creature> {
 
 	/** the patrolpath. */
 	private List<Node> patrolPath;
@@ -123,7 +123,7 @@ class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		String resource = ((Creature) entity).getMetamorphosis();
+		String resource = entity.getMetamorphosis();
 
 		if (resource == null) {
 			resource = getClassResourcePath();
@@ -179,7 +179,7 @@ class Creature2DView extends RPEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final Creature entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {

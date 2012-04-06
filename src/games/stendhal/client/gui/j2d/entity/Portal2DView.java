@@ -21,8 +21,10 @@ import java.util.List;
 
 /**
  * The 2D view of a portal.
+ * 
+ * @param <T> type of Portal 
  */
-class Portal2DView extends InvisibleEntity2DView {
+class Portal2DView<T extends Portal> extends InvisibleEntity2DView<T> {
 
 	//
 	// Entity2DView
@@ -37,7 +39,7 @@ class Portal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		Portal portal = (Portal) entity; 
+		Portal portal = entity; 
 		if ((portal != null) && !portal.isHidden()) {
 			list.add(ActionType.USE.getRepresentation());
 
@@ -55,7 +57,7 @@ class Portal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	public void onAction() {
-		if (!((Portal) entity).isHidden()) {
+		if (!entity.isHidden()) {
 			onAction(ActionType.USE);
 		}
 	}
@@ -85,7 +87,7 @@ class Portal2DView extends InvisibleEntity2DView {
 
 	@Override
 	public boolean isInteractive() {
-		return ((Portal) entity).isUseable();
+		return entity.isUseable();
 	}
 
 	@Override

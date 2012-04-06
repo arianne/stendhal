@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * The 2D view of a sheep.
  */
-class Sheep2DView extends DomesticAnimal2DView {
+class Sheep2DView extends DomesticAnimal2DView<Sheep> {
 	/**
 	 * The weight that a sheep becomes fat (big).
 	 */
@@ -57,7 +57,7 @@ class Sheep2DView extends DomesticAnimal2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 		User user = User.get();
-		Sheep sheep = (Sheep) entity;
+		Sheep sheep = entity;
 
 		if (user != null) {
 			if (!user.hasSheep()) {

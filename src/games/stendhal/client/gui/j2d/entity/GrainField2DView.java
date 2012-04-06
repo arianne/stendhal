@@ -30,8 +30,10 @@ import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a grain field.
+ * 
+ * @param <T> grower type
  */
-class GrainField2DView extends StateEntity2DView {
+class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	
 	/**
 	 * The number of states.
@@ -63,7 +65,7 @@ class GrainField2DView extends StateEntity2DView {
 	 *            The map to populate.
 	 */
 	@Override
-	protected void buildSprites(IEntity entity, final Map<Object, Sprite> map) {
+	protected void buildSprites(T entity, final Map<Object, Sprite> map) {
 		int width = getWidth();
 		String clazz = entity.getEntityClass();
 
@@ -77,7 +79,7 @@ class GrainField2DView extends StateEntity2DView {
 		final Sprite tiles = store.getModifiedSprite(translate(clazz.replace(" ", "_")),
 				info.getZoneColor(), info.getColorMethod());
 
-		states = ((GrainField) entity).getMaximumRipeness() + 1;
+		states = entity.getMaximumRipeness() + 1;
 
 		final int tileSetHeight = tiles.getHeight();
 		final int imageHeight = tileSetHeight / states;
@@ -112,8 +114,8 @@ class GrainField2DView extends StateEntity2DView {
 	 * @return The current state.
 	 */
 	@Override
-	protected Object getState(IEntity entity) {
-		return Integer.valueOf(((GrainField) entity).getRipeness());
+	protected Object getState(T entity) {
+		return Integer.valueOf(entity.getRipeness());
 	}
 
 	//
@@ -198,7 +200,7 @@ class GrainField2DView extends StateEntity2DView {
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
+	public void entityChanged(final T entity, final Object property) {
 		super.entityChanged(entity, property);
 
 		if (property == IEntity.PROP_CLASS) {

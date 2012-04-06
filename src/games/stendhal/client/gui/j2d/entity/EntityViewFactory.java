@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.Triple;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.util.HashMap;
@@ -80,7 +81,8 @@ public class EntityViewFactory {
 	 *
 	 * @return The corresponding view, or <code>null</code>.
 	 */
-	public static EntityView create(final IEntity entity) {
+	@SuppressWarnings("unchecked")
+	public static EntityView<IEntity> create(final IEntity entity) {
 
 		try {
 			final String type = entity.getType();
@@ -90,7 +92,7 @@ public class EntityViewFactory {
 					&& StendhalClient.get().getCharacter() != null) {
 				if (StendhalClient.get().getCharacter().equalsIgnoreCase(entity.getName())) {
 					User2DView user2DView = new User2DView();
-					user2DView.initialize(entity);
+					user2DView.initialize((User) entity);
 					return user2DView;
 				}
 			}
@@ -113,7 +115,7 @@ public class EntityViewFactory {
 				}
 			}
 
-			final EntityView en = entityClass.newInstance();
+			final EntityView<IEntity> en = entityClass.newInstance();
 			en.initialize(entity);
 
 			return en;
