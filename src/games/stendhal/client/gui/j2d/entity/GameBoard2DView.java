@@ -22,7 +22,7 @@ import games.stendhal.client.sprite.SpriteStore;
 /**
  * The 2D view of an game board.
  */
-class GameBoard2DView extends Entity2DView {
+class GameBoard2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Build the visual representation of this entity.

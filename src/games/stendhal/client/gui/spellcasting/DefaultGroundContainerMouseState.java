@@ -48,7 +48,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
 
 		// for the clicked entity....
-		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+		final EntityView<?> view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
 		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 		if ((view != null) && view.isInteractive()) {
 			if (isCtrlDown()) {
@@ -75,7 +75,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 	protected boolean onMouseDoubleClick(Point point) {
 		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
 
-		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+		final EntityView<?> view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
 
 		if ((view != null) && view.isInteractive()) {
 			// ... do the default action
@@ -91,7 +91,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 	protected void onMouseRightClick(Point point) {
 		ignoreClick = false;
 		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
-		final EntityView view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
+		final EntityView<?> view = ground.getScreen().getEntityViewAt(location.getX(), location.getY());
 
 		if (view != null) {
 			// ... show context menu (aka command list)
@@ -136,7 +136,7 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 		ignoreClick = false;
 		// Find the entity under the starting point
 		final Point2D location = ground.getScreen().convertScreenViewToWorld(point);
-		final EntityView view = ground.getScreen().getMovableEntityViewAt(location.getX(),
+		final EntityView<?> view = ground.getScreen().getMovableEntityViewAt(location.getX(),
 				location.getY());
 
 		if (view != null) {

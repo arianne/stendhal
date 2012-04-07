@@ -115,7 +115,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		Point2D point2 = screen.convertScreenViewToWorld(point);
 
 		// is the cursor aiming at an entity?
-		final EntityView view = screen.getEntityViewAt(point2.getX(), point2.getY());
+		final EntityView<?> view = screen.getEntityViewAt(point2.getX(), point2.getY());
 		if (view != null) {
 			cursor = view.getCursor();
 		}

@@ -46,7 +46,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	private static DragLayer instance;
 	
 	/** The dragged entity, or <code>null</code> if nothing is being dragged. */
-	private Entity2DView dragged;
+	private Entity2DView<?> dragged;
 	/** Current mouse location. */
 	private Point point;
 	
@@ -102,7 +102,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 */
 	public void startDrag(IEntity entity) {
 		if (entity != null) {
-			Entity2DView dragged = (Entity2DView) EntityViewFactory.create(entity);
+			Entity2DView<IEntity> dragged = (Entity2DView<IEntity>) EntityViewFactory.create(entity);
 			/*
 			 * Make it contained, so that the view knows to ignore the entity
 			 * coordinates
@@ -113,7 +113,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			 * modifiers.
 			 */
 			if (dragged instanceof StackableItem2DView) {
-				((StackableItem2DView) dragged).setShowQuantity(false);
+				((StackableItem2DView<?>) dragged).setShowQuantity(false);
 			}
 			
 			this.dragged = dragged;

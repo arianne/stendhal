@@ -72,7 +72,7 @@ public class ItemPanelTest {
 		assertEquals("Default cursor", dummy.getCursor(), panel.getCursor());
 		panel.setEntity(item);
 		// Get the cursor from the view
-		EntityView view = EntityViewFactory.create(item);
+		EntityView<?> view = EntityViewFactory.create(item);
 		assertEquals("Cursor from the entity view", 
 				cursors.get(view.getCursor()).toString(),
 				panel.getCursor().toString());

@@ -64,7 +64,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 	/**
 	 * The entity view being held.
 	 */
-	private EntityView view;
+	private EntityView<?> view;
 	/** The entity to whom the displayed slot belongs to */
 	private IEntity parent;
 	/**
@@ -144,7 +144,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 * 
 	 * @param view new view, or <code>null</code>
 	 */
-	private void setEntityView(EntityView view) {
+	private void setEntityView(EntityView<?> view) {
 		this.view = view;
 		if (view != null) {
 			view.setContained(true);
@@ -198,7 +198,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		
 		// Take a temporary copy in case the game loop destroys the view under
 		// us.
-		EntityView entityView = view;
+		EntityView<?> entityView = view;
 		if (entityView != null) {
 			// Center the entity view (assume 1x1 tile)
 			final int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
@@ -333,7 +333,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			final RPAction action = new RPAction();
 			
 			// Views and entities can be destroyed by game loop. Grab copies
-			EntityView entityView = view;
+			EntityView<?> entityView = view;
 			IEntity parentEntity = parent;
 			if ((entityView == null) || (parentEntity == null)) {
 				return;

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 //
@@ -21,7 +22,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 /**
  * The 2D view of a walk blocker.
  */
-class WalkBlocker2DView extends InvisibleEntity2DView {
+class WalkBlocker2DView extends InvisibleEntity2DView<IEntity> {
 
 	//
 	// Entity2DView

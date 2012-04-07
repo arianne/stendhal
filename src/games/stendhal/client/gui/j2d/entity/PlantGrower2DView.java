@@ -12,12 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
+import games.stendhal.client.entity.IEntity;
+
 
 
 /**
  * The 2D view of a plant grower.
  */
-class PlantGrower2DView extends Entity2DView {
+class PlantGrower2DView extends Entity2DView<IEntity> {
 
 	//
 	// Entity2DView

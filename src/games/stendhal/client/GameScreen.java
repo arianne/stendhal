@@ -108,7 +108,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * The entity views.
 	 */
-	protected List<EntityView> views;
+	protected List<EntityView<?>> views;
 
 	/**
 	 * The entity to view map.
@@ -249,7 +249,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		speed = 0;
 
 		// Drawing is done in EDT
-		views = Collections.synchronizedList(new LinkedList<EntityView>());
+		views = Collections.synchronizedList(new LinkedList<EntityView<?>>());
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
@@ -348,10 +348,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param view
 	 *            A view.
 	 */
-	private void addEntityView(final EntityView view) {
+	private void addEntityView(final EntityView<?> view) {
 		views.add(view);
 		if (view instanceof Entity2DView) {
-			final Entity2DView inspectable = (Entity2DView) view;
+			final Entity2DView<?> inspectable = (Entity2DView<?>) view;
 			
 			inspectable.setInspector(ground);
 		}	
@@ -364,7 +364,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void removeEntity(final IEntity entity) {
-		final EntityView view = entities.remove(entity);
+		final EntityView<?> view = entities.remove(entity);
 
 		if (view != null) {
 			removeEntityView(view);
@@ -377,7 +377,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param view
 	 *            A view.
 	 */
-	private void removeEntityView(final EntityView view) {
+	private void removeEntityView(final EntityView<?> view) {
 		view.release();
 		views.remove(view);
 	}
@@ -621,7 +621,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// We are in EDT now. The main thread can add or remove new views at any
 		// time. Manual synchronization on iteration is mandated by the spec.
 		synchronized (views) {
-			for (final EntityView view : views) {
+			for (final EntityView<?> view : views) {
 				try {
 					view.draw(g);
 				} catch (RuntimeException e) {
@@ -640,7 +640,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// We are in EDT now. The main thread can add or remove new views at any
 		// time. Manual synchronization on iteration is mandated by the spec.
 		synchronized (views) {
-			for (final EntityView view : views) {
+			for (final EntityView<?> view : views) {
 				view.drawTop(g);
 			}
 		}
@@ -875,8 +875,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
-	public EntityView getEntityViewAt(final double x, final double y) {
-		ListIterator<EntityView> it;
+	public EntityView<?> getEntityViewAt(final double x, final double y) {
+		ListIterator<EntityView<?>> it;
 
 		synchronized (views) {
 			/*
@@ -885,7 +885,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			it = views.listIterator(views.size());
 
 			while (it.hasPrevious()) {
-				final EntityView view = it.previous();
+				final EntityView<?> view = it.previous();
 
 				IEntity entity = view.getEntity();
 				if (entity != null) {
@@ -904,7 +904,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			it = views.listIterator(views.size());
 
 			while (it.hasPrevious()) {
-				final EntityView view = it.previous();
+				final EntityView<?> view = it.previous();
 
 				if (view.getArea().contains(sx, sy)) {
 					return view;
@@ -921,8 +921,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#getMovableEntityViewAt(double,
 	 *      double)
 	 */
-	public EntityView getMovableEntityViewAt(final double x, final double y) {
-		ListIterator<EntityView> it;
+	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
+		ListIterator<EntityView<?>> it;
 
 		synchronized (views) {
 			/*
@@ -931,7 +931,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			it = views.listIterator(views.size());
 
 			while (it.hasPrevious()) {
-				final EntityView view = it.previous();
+				final EntityView<?> view = it.previous();
 
 				if (view.isMovable()) {
 					if (view.getEntity().getArea().contains(x, y)) {
@@ -949,7 +949,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			it = views.listIterator(views.size());
 
 			while (it.hasPrevious()) {
-				final EntityView view = it.previous();
+				final EntityView<?> view = it.previous();
 
 				if (view.isMovable()) {
 					if (view.getArea().contains(sx, sy)) {
@@ -1124,12 +1124,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	//
 
 	private static class EntityViewComparator implements
-			Comparator<EntityView> {
+			Comparator<EntityView<?>> {
 		//
 		// Comparator
 		//
 
-		public int compare(final EntityView view1, final EntityView view2) {
+		public int compare(final EntityView<?> view1, final EntityView<?> view2) {
 			int rv;
 
 			rv = view1.getZIndex() - view2.getZIndex();

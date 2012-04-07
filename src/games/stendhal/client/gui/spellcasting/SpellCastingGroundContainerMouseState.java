@@ -32,7 +32,7 @@ public class SpellCastingGroundContainerMouseState extends
 		Point2D point2d = screen.convertScreenViewToWorld(point);
 		double x = point2d.getX();
 		double y = point2d.getY();
-		EntityView target = screen.getEntityViewAt(x, y);
+		EntityView<?> target = screen.getEntityViewAt(x, y);
 		if(target == null) {
 			target = screen.getMovableEntityViewAt(x, y);
 		}

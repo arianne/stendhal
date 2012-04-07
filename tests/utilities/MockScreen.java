@@ -147,15 +147,15 @@ public class MockScreen implements IGameScreen {
 	public void setOffline(final boolean offline) {
 	}
 
-	public EntityView createView(final IEntity entity) {
+	public EntityView<?> createView(final IEntity entity) {
 		return null;
 	}
 
-	public EntityView getEntityViewAt(final double x, final double y) {
+	public EntityView<?> getEntityViewAt(final double x, final double y) {
 		return null;
 	}
 
-	public EntityView getMovableEntityViewAt(final double x, final double y) {
+	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
 		return null;
 	}
 

@@ -11,16 +11,15 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
-import javax.swing.SwingUtilities;
-
 import games.stendhal.client.entity.EntityChangeListener;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.RPEntity;
+
+import javax.swing.SwingUtilities;
 
 /**
  * Listener for entity HP ratio changes.
  */
-class MemberHealthListener implements EntityChangeListener {
+class MemberHealthListener implements EntityChangeListener<RPEntity> {
 	private final MemberListModel model;
 	private final Member member;
 	
@@ -36,9 +35,9 @@ class MemberHealthListener implements EntityChangeListener {
 		this.member = member;
 	}
 	
-	public void entityChanged(IEntity entity, Object property) {
+	public void entityChanged(RPEntity entity, Object property) {
 		if (property == RPEntity.PROP_HP_RATIO) {
-			if (member.setHpRatio(((RPEntity) entity).getHpRatio())) {
+			if (member.setHpRatio(entity.getHpRatio())) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						model.memberChanged(member);

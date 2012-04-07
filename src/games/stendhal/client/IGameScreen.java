@@ -77,7 +77,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	EntityView getEntityViewAt(double x, double y);
+	EntityView<?> getEntityViewAt(double x, double y);
 
 	/**
 	 * Get a movable entity view at given coordinates.
@@ -89,7 +89,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	EntityView getMovableEntityViewAt(final double x,
+	EntityView<?> getMovableEntityViewAt(final double x,
 			final double y);
 
 	/**

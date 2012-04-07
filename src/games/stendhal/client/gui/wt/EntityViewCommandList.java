@@ -26,7 +26,7 @@ public class EntityViewCommandList extends CommandList {
 	
 
 	/** the entity associated with the command list. */
-	private final EntityView view;
+	private final EntityView<?> view;
 
 	/**
 	 * Create an entity view command list.
@@ -38,7 +38,7 @@ public class EntityViewCommandList extends CommandList {
 	 * @param view
 	 *            The entity view.
 	 */
-	public EntityViewCommandList(final String name, final String[] items, final EntityView view) {
+	public EntityViewCommandList(final String name, final String[] items, final EntityView<?> view) {
 		super(name, items);
 		this.view = view;
 	}

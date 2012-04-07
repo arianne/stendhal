@@ -206,7 +206,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		character.remove("last_player_kill_time");
 		player.initialize(character);
 		
-		EntityView view = EntityViewFactory.create(player);
+		EntityView<?> view = EntityViewFactory.create(player);
 		// this if-block is there to be compatible with Stendhal 0.84 that is missing information
 		Icon icon = null;
 		if (view != null) {
@@ -250,7 +250,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 * @param view view of the player
 	 * @return A front view image of the player
 	 */
-	private Image createCharacterImage(EntityView view) {
+	private Image createCharacterImage(EntityView<?> view) {
 		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, Transparency.BITMASK);
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		

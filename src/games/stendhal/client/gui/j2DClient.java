@@ -793,7 +793,7 @@ public class j2DClient implements UserInterface {
 			if (e.isAltGraphDown()) {
 				final User user = User.get();
 
-				final EntityView view = screen.getEntityViewAt(user.getX()
+				final EntityView<?> view = screen.getEntityViewAt(user.getX()
 						+ direction.getdx(), user.getY() + direction.getdy());
 
 				if (view != null) {
