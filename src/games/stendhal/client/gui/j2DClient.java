@@ -33,7 +33,6 @@ import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.j2d.entity.Spell2DView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
@@ -207,7 +206,13 @@ public class j2DClient implements UserInterface {
 		screenController = null;
 	}
 
-	public j2DClient(final StendhalClient client, final GameScreen gameScreen, final UserContext userContext) {
+	/**
+	 * Create new j2DClient.
+	 * 
+	 * @param client
+	 * @param userContext
+	 */
+	public j2DClient(final StendhalClient client, final UserContext userContext) {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
@@ -566,10 +571,8 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * Start the game loop thread.
-	 *
-	 * @param gameScreen
 	 */
-	public void startGameLoop(final GameScreen gameScreen) {
+	public void startGameLoop() {
 		try {
 			SoundGroup group = initSoundSystem();
 			group.play("harp-1", 0, null, null, false, true);

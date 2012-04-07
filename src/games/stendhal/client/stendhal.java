@@ -263,10 +263,9 @@ public class stendhal {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				GameScreen gameScreen = GameScreen.get();
-				j2DClient locclient = new j2DClient(client, gameScreen, userContext);
+				j2DClient locclient = new j2DClient(client, userContext);
 				perceptionDispatch.register(locclient.getPerceptionListener());
-				locclient.startGameLoop(gameScreen);
+				locclient.startGameLoop();
 			}
 		});
 	}
