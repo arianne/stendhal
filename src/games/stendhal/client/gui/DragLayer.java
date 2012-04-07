@@ -44,14 +44,14 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	private static final long serialVersionUID = -726066169323112688L;
 
 	private static DragLayer instance;
-	
+
 	/** The dragged entity, or <code>null</code> if nothing is being dragged. */
 	private Entity2DView<?> dragged;
 	/** Current mouse location. */
 	private Point point;
-	
+
 	private int oldX, oldY, width, height;
-	
+
 	/**
 	 * Create a new DragLayer.
 	 */
@@ -62,16 +62,16 @@ public class DragLayer extends JComponent implements AWTEventListener {
 		 * them does not really work (despite being what the official swing
 		 * tutorial recommends), because enter and leave events to the
 		 * components have already been lost.
-		 * 
+		 *
 		 * Adding a mouse movement listener after the drag has started does not
 		 * work either, because it does not get the mouse events belonging to
 		 * the drag, but starts working only later.
 		 */
 		Toolkit.getDefaultToolkit().addAWTEventListener(this, AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
-		
+
 		setOpaque(false);
 	}
-	
+
 	@Override
 	public boolean contains(int x, int y) {
 		/*
@@ -84,22 +84,23 @@ public class DragLayer extends JComponent implements AWTEventListener {
 
 	/**
 	 * Get the DragLayer instance.
-	 * 
+	 *
 	 * @return drag layer
 	 */
 	public static DragLayer get() {
 		if (instance == null) {
-			instance = new DragLayer(); 
+			instance = new DragLayer();
 		}
 		return instance;
 	}
-	
+
 	/**
-	 * Start dragging an entity. The DragLayer will take care of drawing, 
+	 * Start dragging an entity. The DragLayer will take care of drawing,
 	 * updating the position and dropping it to the right DropTarget.
-	 * 
+	 *
 	 * @param entity dragged entity
 	 */
+	@SuppressWarnings("rawtypes") // cannot cast from <IEntity> to <? extends StackableItem> in Java 5
 	public void startDrag(IEntity entity) {
 		if (entity != null) {
 			Entity2DView<IEntity> dragged = (Entity2DView<IEntity>) EntityViewFactory.create(entity);
@@ -113,13 +114,13 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			 * modifiers.
 			 */
 			if (dragged instanceof StackableItem2DView) {
-				((StackableItem2DView<?>) dragged).setShowQuantity(false);
+				((StackableItem2DView) dragged).setShowQuantity(false);
 			}
-			
+
 			this.dragged = dragged;
 		}
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		if ((point != null) && (dragged != null)) {
@@ -132,15 +133,15 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	/**
 	 * Stop dragging the item, and let the component below the cursor handle
 	 * the dropped entity.
-	 * 
+	 *
 	 * @param event The mouse event that triggered the drop
 	 */
 	private void stopDrag(MouseEvent event) {
 		Container parent = getParent();
 		Point containerPoint = SwingUtilities.convertPoint(this, point, parent);
-		// Find out the underlying component  
+		// Find out the underlying component
 		Component component = SwingUtilities.getDeepestComponentAt(parent, containerPoint.x, containerPoint.y);
-		
+
 		if ((component != null) && (component instanceof DropTarget)) {
 			IEntity entity = dragged.getEntity();
 			if (entity != null) {
@@ -153,20 +154,20 @@ public class DragLayer extends JComponent implements AWTEventListener {
 					// Dropping everything
 					((DropTarget) component).dropEntity(entity, -1, componentPoint);
 				}
-			} 
+			}
 		}
 
 		dragged = null;
 	}
-	
+
 	/**
 	 * Determine if the user should be given a chooser popup for selecting the
 	 * amount of items to be dropped.
-	 * 
+	 *
 	 * @param event the mouse event that triggered the drop
 	 * @param entity dropped entity
-	 * 
-	 * @return <code>true</code> if a chooser should be displayed, 
+	 *
+	 * @return <code>true</code> if a chooser should be displayed,
 	 * 	<code>false</code> otherwise
 	 */
 	private boolean showAmountChooser(MouseEvent event, IEntity entity) {
@@ -182,10 +183,10 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent e) {
-		if (e instanceof MouseEvent) { 
-			MouseEvent event = (MouseEvent) e; 
+		if (e instanceof MouseEvent) {
+			MouseEvent event = (MouseEvent) e;
 
-			MouseEvent converted = SwingUtilities.convertMouseEvent(event.getComponent(), event, this); 
+			MouseEvent converted = SwingUtilities.convertMouseEvent(event.getComponent(), event, this);
 			point = converted.getPoint();
 
 			if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
@@ -198,7 +199,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			// We are interested only in DnD, so we can ignore any other events
 		}
 	}
-	
+
 	/**
 	 * Request drawing the component after a drag related mouse event
 	 */
@@ -210,7 +211,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 		 */
 		if ((width != 0) && (height != 0)) {
 			/*
-			 * Paint over the old occupied area. This will probably be 
+			 * Paint over the old occupied area. This will probably be
 			 * merged with the next repaint by the RepaintManager.
 			 */
 			repaint(oldX, oldY, width, height);
