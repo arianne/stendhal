@@ -39,44 +39,43 @@ import org.apache.log4j.Logger;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
-
-	
-
 	/**
 	 * Admin Level property.
 	 */
 	public static final Property PROP_ADMIN_LEVEL = new Property();
-
 	/**
 	 * ghostmode property.
 	 */
 	public static final Property PROP_GHOSTMODE = new Property();
-
 	/**
 	 * group membership.
 	 */
 	public static final Property PROP_GROUP_MEMBERSHIP = new Property();
-
 	/**
 	 * Indicator text property. Fired if they are added or removed.
 	 */
 	public static final Property PROP_TEXT_INDICATORS = new Property();
-
 	/**
 	 * Outfit property.
 	 */
 	public static final Property PROP_OUTFIT = new Property();
-
 	/**
 	 * Title Type property.
 	 */
 	public static final Property PROP_TITLE_TYPE = new Property();
-	
 	/**
 	 * Hp and max HP property.
 	 */
 	public static final Property PROP_HP_RATIO = new Property();
-
+	/**
+	 * Eating property.
+	 */
+	public static final Property PROP_EATING = new Property();
+	/**
+	 * Poisoned property.
+	 */
+	public static final Property PROP_POISONED = new Property();
+	
 	/**
 	 * The value of an outfit that isn't set.
 	 */
@@ -553,13 +552,16 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	// When entity eats food
-	public final void onEat() {
-		eating = true;
-	}
-
-	public void onStopEating() {
-		eating = false;
+	/**
+	 * Set the eating status.
+	 * 
+	 * @param eating
+	 */
+	private void setEating(boolean eating) {
+		if (this.eating != eating) {
+			this.eating = eating;
+			fireChange(PROP_EATING);
+		}
 	}
 
 	// When entity gets healed
@@ -567,15 +569,18 @@ public abstract class RPEntity extends ActiveEntity {
 		// do nothing for normal rpentities
 	}
 
-	// When entity chokes on food
-	public final void onChoking() {
-		choking = true;
+	/**
+	 * Set the choking status.
+	 * 
+	 * @param choking
+	 */
+	private void setChoking(boolean choking) {
+		if (this.choking != choking) {
+			this.choking = choking;
+			fireChange(PROP_EATING);
+		}
 	}
-
-	public void onStopChoking() {
-		choking = false;
-	}
-
+	
 	// When entity adjusts HP
 	public void onHPChange(final int amount) {
 		if (User.squaredDistanceTo(x, y) < 15 * 15) {
@@ -597,7 +602,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity is poisoned
 	public final void onPoisoned(final int amount) {
-		poisoned = true;
+		setPoisoned(true);
 		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
@@ -606,9 +611,17 @@ public abstract class RPEntity extends ActiveEntity {
 							+ ".", NotificationType.POISON));
 		}
 	}
-
-	public void onPoisonEnd() {
-		poisoned = false;
+	
+	/**
+	 * Set the poisoning status.
+	 * 
+	 * @param poisoned
+	 */
+	private void setPoisoned(boolean poisoned) {
+		if (this.poisoned != poisoned) {
+			this.poisoned = poisoned;
+			fireChange(PROP_POISONED);
+		}
 	}
 
 	// Called when entity listen to text from talker
@@ -778,14 +791,14 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Eating
 		 */
 		if (object.has("eating")) {
-			onEat();
+			setEating(true);
 		}
 
 		/*
 		 * Choking
 		 */
 		if (object.has("choking")) {
-			onChoking();
+			setChoking(true);
 		}
 		/*
 		 * Poisoned
@@ -793,7 +806,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (object.has("poisoned")) {
 			// Don't call onPoisoned to avoid adding event lines; just set
 			// poisoned so that views get correctly drawn.
-			poisoned = true;
+			setPoisoned(true);
 		}
 
 		/*
@@ -917,14 +930,14 @@ public abstract class RPEntity extends ActiveEntity {
 			 * Eating
 			 */
 			if (changes.has("eating")) {
-				onEat();
+				setEating(true);
 			}
 
 			/*
 			 * Choking
 			 */
 			if (changes.has("choking")) {
-				onChoking();
+				setChoking(true);
 			}
 
 			/*
@@ -1173,21 +1186,21 @@ public abstract class RPEntity extends ActiveEntity {
 		 * No longer poisoned?
 		 */
 		if (changes.has("poisoned")) {
-			onPoisonEnd();
+			setPoisoned(false);
 		}
 
 		/*
 		 * No longer eating?
 		 */
 		if (changes.has("eating")) {
-			onStopEating();
+			setEating(false);
 		}
 
 		/*
 		 * No longer choking?
 		 */
 		if (changes.has("choking")) {
-			onStopChoking();
+			setChoking(false);
 		}
 
 		if (changes.has("ghostmode")) {

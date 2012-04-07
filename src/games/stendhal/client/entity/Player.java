@@ -27,7 +27,10 @@ public class Player extends AudibleEntity {
 	 * Grumpy property.
 	 */
 	public static final Property PROP_GRUMPY = new Property();
-	
+	/**
+	 * Player killer property.
+	 */
+	public static final Property PROP_PLAYER_KILLER = new Property();
 	
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 	
@@ -118,7 +121,6 @@ public class Player extends AudibleEntity {
 			addTextIndicator("Grumpy", NotificationType.INFORMATION);
 		} else {
 			addTextIndicator("Receptive", NotificationType.INFORMATION);
-
 		}
 	}
 
@@ -189,6 +191,7 @@ public class Player extends AudibleEntity {
 		
 		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = true;
+			fireChange(PROP_PLAYER_KILLER);
 		}
 		
 	}
@@ -217,6 +220,7 @@ public class Player extends AudibleEntity {
 		}
 		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = false;
+			fireChange(PROP_PLAYER_KILLER);
 		}
 	}
 }
