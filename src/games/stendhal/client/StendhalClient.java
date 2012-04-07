@@ -331,7 +331,20 @@ public class StendhalClient extends ClientFramework {
 				if (item.cacheable) {
 					cache.store(item, item.data);
 				}
-				contentHandling(item.name, new ByteArrayInputStream(item.data));
+				/*
+				 * For laggy connections: in two fast consecutive zone changes
+				 * it can happen that the data for the first zone arrives only
+				 * after the data for the second has been already offered. Ie.
+				 * the zone has changed but the client receives data for the
+				 * previous zone. Discard that and keep waiting for the real
+				 * data.
+				 */
+				if (item.name.startsWith(currentZone.getName() + ".")) {
+					contentHandling(item.name, new ByteArrayInputStream(item.data));
+				} else {
+					// Still waiting for the real data
+					contentToLoad++;
+				}
 			} catch (final Exception e) {
 				logger.error("onTransfer", e);
 			}
