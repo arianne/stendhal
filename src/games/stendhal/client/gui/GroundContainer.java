@@ -19,8 +19,6 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.j2d.RemovableSprite;
-import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.spellcasting.DefaultGroundContainerMouseState;
 import games.stendhal.client.gui.spellcasting.GroundContainerMouseState;
 import games.stendhal.client.gui.styled.cursor.CursorRepository;
@@ -104,33 +102,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * @return cursor
 	 */
 	public StendhalCursor getCursor(Point point) {
-		StendhalCursor cursor = null;
-
-		// is the cursor aiming at a text box?
-		final RemovableSprite text = screen.getTextAt(point.x, point.y);
-		if (text != null) {
-			return StendhalCursor.NORMAL;
-		}
-
-		Point2D point2 = screen.convertScreenViewToWorld(point);
-
-		// is the cursor aiming at an entity?
-		final EntityView<?> view = screen.getEntityViewAt(point2.getX(), point2.getY());
-		if (view != null) {
-			cursor = view.getCursor();
-		}
-
-		// is the cursor pointing on the ground?
-		if (cursor == null) {
-			cursor = StendhalCursor.WALK;
-			StaticGameLayers layers = client.getStaticGameLayers();
-			if ((layers.getCollisionDetection() != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
-				cursor = StendhalCursor.STOP;
-			} else if (calculateZoneChangeDirection(point2) != null) {
-				cursor = StendhalCursor.WALK_BORDER;					
-			}
-		}
-		return cursor;
+		return state.getCursor(point);
 	}
 	
 	/**
@@ -164,7 +136,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * @param point click point in world coordinates
 	 * @return Direction of the zone to change to, <code>null</code> if no zone change should happen
 	 */
-	private Direction calculateZoneChangeDirection(Point2D point) {
+	public Direction calculateZoneChangeDirection(Point2D point) {
 		StaticGameLayers layers = StendhalClient.get().getStaticGameLayers();
 		double x = point.getX();
 		double y = point.getY();

@@ -1,11 +1,13 @@
 package games.stendhal.client.gui.spellcasting;
 
+import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.DragLayer;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.EntityViewCommandList;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
@@ -148,6 +150,36 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 	@Override
 	public void switchState() {
 		this.ground.setNewMouseHandlerState(new SpellCastingGroundContainerMouseState(this.ground));
+	}
+
+	@Override
+	public StendhalCursor getCursor(Point point) {
+		StendhalCursor cursor = null;
+
+		// is the cursor aiming at a text box?
+		final RemovableSprite text = ground.getScreen().getTextAt(point.x, point.y);
+		if (text != null) {
+			return StendhalCursor.NORMAL;
+		}
+
+		Point2D point2 = ground.getScreen().convertScreenViewToWorld(point);
+		final EntityView<?> view = ground.getScreen().getEntityViewAt(point2.getX(), point2.getY());
+		// is the cursor aiming at an entity?
+		if (view != null) {
+			cursor = view.getCursor();
+		}
+
+		// is the cursor pointing on the ground?
+		if (cursor == null) {
+			cursor = StendhalCursor.WALK;
+			StaticGameLayers layers = ground.getClient().getStaticGameLayers();
+			if ((layers.getCollisionDetection() != null) && layers.getCollisionDetection().collides((int) point2.getX(), (int) point2.getY())) {
+				cursor = StendhalCursor.STOP;
+			} else if (ground.calculateZoneChangeDirection(point2) != null) {
+				cursor = StendhalCursor.WALK_BORDER;					
+			}
+		}
+		return cursor;
 	}
 
 }

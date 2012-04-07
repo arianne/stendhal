@@ -3,11 +3,17 @@
  */
 package games.stendhal.client.gui.spellcasting;
 
+import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.MouseHandler;
+import games.stendhal.client.gui.j2d.RemovableSprite;
+import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.KeyboardFocusManager;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 
 
 /**
@@ -56,6 +62,14 @@ public abstract class GroundContainerMouseState extends MouseHandler {
 		super.mousePressed(e);
 	}
 	
+	/**
+	 * Get cursor for a point.
+	 * 
+	 * @param point
+	 * @return cursor
+	 */
+	public abstract StendhalCursor getCursor(Point point);
+
 	/**
 	 * @param ground
 	 */

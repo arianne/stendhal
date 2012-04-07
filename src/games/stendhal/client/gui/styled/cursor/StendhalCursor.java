@@ -32,6 +32,7 @@ public enum StendhalCursor {
 	ITEM_PICK_UP_FROM_SLOT("itempickupfromslot.png", new Point(1, 1)),
 	ITEM_USE("itemuse.png", new Point(1, 1)),
 	PORTAL("portal.png", new Point(1, 1)),
+	SPELLCASTING("usemagic.png", new Point(1,1)),
 	STOP("stop.png", new Point(1, 1)),
 	UNKNOWN("unknown.png", new Point(1, 1)),
 	WALK("walk.png", new Point(1, 1)),

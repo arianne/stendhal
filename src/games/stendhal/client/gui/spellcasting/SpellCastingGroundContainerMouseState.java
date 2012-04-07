@@ -4,6 +4,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.actions.CastSpellAction;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.entity.EntityView;
+import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -62,6 +63,16 @@ public class SpellCastingGroundContainerMouseState extends
 
 	public void setSpell(RPObject spell) {
 		this.spell = spell;
+	}
+
+	@Override
+	public StendhalCursor getCursor(Point point) {
+		Point2D point2 = ground.getScreen().convertScreenViewToWorld(point);
+		final EntityView<?> view = ground.getScreen().getEntityViewAt(point2.getX(), point2.getY());
+		if(view != null) {
+			return StendhalCursor.SPELLCASTING;
+		}
+		return StendhalCursor.NORMAL;
 	}
 
 }
