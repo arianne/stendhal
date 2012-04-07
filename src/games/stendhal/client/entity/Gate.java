@@ -33,7 +33,7 @@ public class Gate implements IEntity {
 		radius = 6;
 	}
 
-	public void addChangeListener(final EntityChangeListener listener) {
+	public void addChangeListener(final EntityChangeListener<?> listener) {
 		// unused
 	}
 
@@ -151,7 +151,7 @@ public class Gate implements IEntity {
 		// do nothing
 	}
 
-	public void removeChangeListener(final EntityChangeListener listener) {
+	public void removeChangeListener(final EntityChangeListener<?> listener) {
 		// unused
 	}
 

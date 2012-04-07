@@ -59,7 +59,7 @@ public interface IEntity {
 	 * @param listener
 	 *            The listener.
 	 */
-	void addChangeListener(final EntityChangeListener listener);
+	void addChangeListener(final EntityChangeListener<?> listener);
 
 	/**
 	 * Get the area the entity occupies.
@@ -225,7 +225,7 @@ public interface IEntity {
 	 * @param listener
 	 *            The listener.
 	 */
-	void removeChangeListener(final EntityChangeListener listener);
+	void removeChangeListener(final EntityChangeListener<?> listener);
 
 	/**
 	 * Update cycle.

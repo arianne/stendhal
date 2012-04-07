@@ -110,8 +110,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#addChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void addChangeListener(final EntityChangeListener listener) {
+	public void addChangeListener(final EntityChangeListener<?> listener) {
 		changeListeners.add(listener);
 	}
 
@@ -461,8 +460,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.entity.IEntity#removeChangeListener(games.stendhal.client.entity.EntityChangeListener)
 	 */
-	@SuppressWarnings("rawtypes")
-	public void removeChangeListener(final EntityChangeListener listener) {
+	public void removeChangeListener(final EntityChangeListener<?> listener) {
 		changeListeners.remove(listener);
 	}
 
