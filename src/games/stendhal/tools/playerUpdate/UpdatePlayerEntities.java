@@ -56,7 +56,7 @@ public class UpdatePlayerEntities {
 
 	Player createPlayerFromRPO(final RPObject next) {
 		UpdateConverter.updatePlayerRPObject(next);
-		final Player p = (Player) new Player(next);
+		final Player p = new Player(next);
 		UpdateConverter.updateQuests(p);
 		return p;
 	}

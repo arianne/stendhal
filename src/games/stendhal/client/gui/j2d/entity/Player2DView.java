@@ -111,10 +111,9 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		final OutfitStore store = OutfitStore.get();
 
 		try {
-			RPEntity rpentity = (RPEntity) entity;
 			OutfitColor color = OutfitColor.get(entity.getRPObject());
 			ZoneInfo info = ZoneInfo.get();
-			return store.getAdjustedOutfit(rpentity.getOutfit(), color,
+			return store.getAdjustedOutfit(entity.getOutfit(), color,
 					info.getZoneColor(), info.getColorMethod());
 		} catch (final RuntimeException e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
@@ -125,8 +124,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	@Override
 	protected AlphaComposite getComposite() {
 		// Check for ghostmode to avoid ignored ghostmode admins becoming visible
-		RPEntity rpentity = (RPEntity) entity;
-		if (User.isIgnoring(rpentity.getName()) && !rpentity.isGhostMode()) {
+		if (User.isIgnoring(entity.getName()) && !entity.isGhostMode()) {
 			return AlphaComposite.DstOut;
 		}
 		return super.getComposite();

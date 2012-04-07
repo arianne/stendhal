@@ -439,7 +439,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			int circleHeight = (int) ((srect.height - 2) / DIVISOR);
 			// Avoid showing much smaller area than the creature covers
 			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
-			g2d.drawArc(srect.x, (int) (srect.y + srect.height - circleHeight), 
+			g2d.drawArc(srect.x, srect.y + srect.height - circleHeight, 
 					srect.width + 0, circleHeight, 0, 360);
 		}
 
@@ -451,7 +451,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			int circleHeight = (int) ((srect.height - 4) / DIVISOR);
 			// Avoid showing much smaller area than the creature covers
 			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2 - 2);
-			g2d.drawArc(srect.x + 1, (int) (srect.y + srect.height - circleHeight - 1), 
+			g2d.drawArc(srect.x + 1, srect.y + srect.height - circleHeight - 1, 
 					srect.width - 2, circleHeight, 0, 360);
 		}
 
@@ -689,8 +689,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 		super.buildActions(list);
 
-		RPEntity rpentity = (RPEntity) entity;
-		if (rpentity.isAttackedBy(User.get())) {
+		if (entity.isAttackedBy(User.get())) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());
@@ -775,7 +774,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		/*
 		 * Hide while in ghostmode.
 		 */
-		if (((RPEntity) entity).isGhostMode()) {
+		if (entity.isGhostMode()) {
 			if (isVisibleGhost()) {
 				return super.getVisibility() / 2;
 			} else {
@@ -853,7 +852,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 	
 	private void onFloatersChanged() {
-		Iterator<RPEntity.TextIndicator> it = ((RPEntity) entity).getTextIndicators();
+		Iterator<RPEntity.TextIndicator> it = entity.getTextIndicators();
 		Map<RPEntity.TextIndicator, Sprite> newFloaters = new HashMap<RPEntity.TextIndicator, Sprite>();
 		
 		while (it.hasNext()) {
