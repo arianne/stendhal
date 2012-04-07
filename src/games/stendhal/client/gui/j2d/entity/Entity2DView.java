@@ -23,6 +23,8 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -35,6 +37,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -110,6 +113,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * Some model value changed.
 	 */
 	private boolean changed;
+	/** Additional sprites attached to the view. Can be <code>null</code>. */
+	private List<AttachedSprite> attachedSprites;
 	
 	/**
 	 * Flag for detecting that the view has been released <code>true</code> if
@@ -218,6 +223,69 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	protected void markChanged() {
 		changed = true;
 	}
+	
+	/**
+	 * Attach a sprite to the view. These are drawn on top of the main view
+	 * sprite. 
+	 * 
+	 * @param sprite 
+	 * @param xAlign alignment in horizontal direction
+	 * @param yAlign alignment in vertical direction
+	 * @param xOffset x coordinate offset that is used <b>in addition</b> to
+	 * 	the alignment information 
+	 * @param yOffset y coordinate offset that is used <b>in addition</b> to
+	 * 	the alignment information
+	 */
+	void attachSprite(Sprite sprite, HorizontalAlignment xAlign,
+			VerticalAlignment yAlign, int xOffset, int yOffset) {
+		int x = xOffset;
+		switch (xAlign) {
+		case LEFT:
+			break;
+		case RIGHT:
+			x += getWidth() - sprite.getWidth();
+			break;
+		case CENTER:
+			x += (getWidth() - sprite.getWidth()) / 2;
+			break;
+		}
+		
+		int y = yOffset;
+		switch (yAlign) {
+		case TOP:
+			break;
+		case MIDDLE:
+			y += (getHeight() - sprite.getHeight()) / 2;
+			break;
+		case BOTTOM:
+			y += getHeight() - sprite.getHeight();
+			break;
+		}
+		
+		if (attachedSprites == null) {
+			attachedSprites = new ArrayList<AttachedSprite>();
+		}
+		attachedSprites.add(new AttachedSprite(sprite, x, y));
+	}
+	
+	/**
+	 * Detach a sprite that has been previously attached to the view.
+	 * 
+	 * @param sprite sprite to be detached
+	 */
+	void detachSprite(Sprite sprite) {
+		if (attachedSprites == null) {
+			return;
+		}
+		Iterator<AttachedSprite> it = attachedSprites.iterator();
+		while (it.hasNext()) {
+			AttachedSprite as = it.next();
+			if (as.sprite == sprite) {
+				it.remove();
+				break;
+			}
+		}
+	}
 
 	/**
 	 * Draw the entity.
@@ -246,9 +314,6 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		} finally {
 			g2d.setComposite(oldComposite);
 		}
-
-		drawEffect(g2d, r.x, r.y, r.width, r.height);
-
 	}
 	
 	private boolean isOnScreen(Graphics2D g2d, Rectangle r) {
@@ -281,25 +346,23 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 			g2d.setColor(Color.green);
 			g2d.draw(entity.getArea());
 		}
+		
+		drawAttachedSprites(g2d, x, y);
 	}
-
+	
 	/**
-	 * Draw the effect part. This is drawn independent of the visibility
-	 * setting.
+	 * Draw all attached sprites.
 	 * 
 	 * @param g2d
-	 *            The graphics context.
-	 * @param x
-	 *            The drawn X coordinate.
-	 * @param y
-	 *            The drawn Y coordinate.
-	 * @param width
-	 *            The drawn entity width.
-	 * @param height
-	 *            The drawn entity height.
+	 * @param x x position of the view
+	 * @param y y position of the view
 	 */
-	protected void drawEffect(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
+	private void drawAttachedSprites(Graphics2D g2d, int x, int y) {
+		if (attachedSprites != null) {
+			for (AttachedSprite sprite : attachedSprites) {
+				sprite.draw(g2d, x, y);
+			}
+		}
 	}
 
 	/**
@@ -801,5 +864,41 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	public StendhalCursor getCursor() {
 		String cursorName = entity.getCursor();
 		return StendhalCursor.valueOf(cursorName, StendhalCursor.UNKNOWN);
+	}
+	
+	/**
+	 * Container for sprites attached to the view.
+	 */
+	private static class AttachedSprite {
+		/** Attached sprite */
+		final Sprite sprite;
+		/** x offset compared to the EntityView's location */
+		int xOffset;
+		/** y offset compared to the EntityView's location */
+		int yOffset;
+		
+		/**
+		 * Create a new AttachedSprite.
+		 * 
+		 * @param sprite
+		 * @param x x position relative to the EntityView
+		 * @param y y position relative to the EntityView
+		 */
+		AttachedSprite(Sprite sprite, int x, int y) {
+			this.sprite = sprite;
+			this.xOffset = x;
+			this.yOffset = y;
+		}
+		
+		/**
+		 * Draw the sprite at the EntityView's location.
+		 * 
+		 * @param g
+		 * @param x x coordinate of the view
+		 * @param y y coordinate of the view
+		 */
+		void draw(Graphics2D g, int x, int y) {
+			sprite.draw(g, x + xOffset, y + yOffset);
+		}
 	}
 }
