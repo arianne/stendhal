@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,12 +19,13 @@ import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
 
-import java.awt.Graphics2D;
 import java.util.Map;
 
 
@@ -65,12 +66,10 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	private Sprite ideaSprite;
 
 
-
 	/**
 	 * Create a 2D view of a animal.
 	 */
 	public DomesticAnimal2DView() {
-
 		ideaSprite = null;
 		ideaChanged = false;
 	}
@@ -204,22 +203,6 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	//
 
 	/**
-	 * Draw the entity.
-	 * 
-	 * @param g2d
-	 *            The graphics to drawn on.
-	 */
-	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		super.draw(g2d, x, y, width, height);
-
-		if (ideaSprite != null) {
-			ideaSprite.draw(g2d, x + width - 8, y - 8);
-		}
-	}
-
-	/**
 	 * Handle updates.
 	 */
 	@Override
@@ -227,7 +210,11 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 		super.update();
 
 		if (ideaChanged) {
+			detachSprite(ideaSprite);
 			ideaSprite = getIdeaSprite();
+			if (ideaSprite != null) {
+				attachSprite(ideaSprite, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 8, -8);
+			}
 			ideaChanged = false;
 		}
 	}
