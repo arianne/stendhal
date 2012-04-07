@@ -18,9 +18,10 @@ import games.stendhal.client.OutfitStore;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.OutfitColor;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -54,7 +55,6 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	private static Sprite grumpySprite;
 	
 	private boolean ignored = false;
-
 	
 	/**
 	 * Sprite representing recently killing of other player.
@@ -74,7 +74,30 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
 				2000);
 	}
-
+	
+	/**
+	 * Create a new Player2DView.
+	 */
+	public Player2DView() {
+		addIconManager(new StatusIconManager(Player.PROP_AWAY, awaySprite,
+				HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 20, -10) {
+					@Override
+					boolean show(T player) {
+						return player.isAway();
+					}} );
+		addIconManager(new StatusIconManager(Player.PROP_GRUMPY, grumpySprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.TOP, -8, -6) {
+					@Override
+					boolean show(T player) {
+						return player.isGrumpy();
+					}} );
+		addIconManager(new StatusIconManager(Player.PROP_PLAYER_KILLER, skullSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.TOP, 0, 0) {
+					@Override
+					boolean show(T player) {
+						return player.isBadBoy();
+					}} );
+	}
 
 	//
 	// RPEntity2DView
@@ -200,16 +223,6 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		}
 		
 		super.draw(g2d, x, y, width, height);
-
-		if (entity.isAway()) {
-			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
-		}
-		if (entity.isGrumpy()) {
-			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
-		}
-		if (entity.isBadBoy()) {
-			skullSprite.draw(g2d, x , y);
-		}
 	}
 
 	//
@@ -247,7 +260,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 
 	@Override
 	public boolean isInteractive() {
-		if (((RPEntity) entity).isGhostMode() && !isVisibleGhost()) {
+		if (entity.isGhostMode() && !isVisibleGhost()) {
 			return false;
 		}
 		return super.isInteractive();

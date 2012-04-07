@@ -16,8 +16,11 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -32,6 +35,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -68,19 +72,14 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * strike sprites sorted by damage type. Those in turn are
 	 * retrievable by the attack direction.
 	 */
-	private static Map<Nature, Map<Direction, Sprite[]>> bladeStrikeSprites;
+	private static final Map<Nature, Map<Direction, Sprite[]>> bladeStrikeSprites;
 
-	private static Sprite eatingSprite;
-
-	private static Sprite poisonedSprite;
-
-	private static Sprite chokingSprite;
-
-	private static Sprite hitSprite;
-
-	private static Sprite blockedSprite;
-
-	private static Sprite missedSprite;
+	private static final Sprite eatingSprite;
+	private static final Sprite poisonedSprite;
+	private static final Sprite chokingSprite;
+	private static final Sprite hitSprite;
+	private static final Sprite blockedSprite;
+	private static final Sprite missedSprite;
 	
 	/** Temporary text sprites, like HP and XP changes. */
 	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
@@ -109,10 +108,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * The drawn width.
 	 */
 	protected int width;
-	
-	/** Put ideas on top? */
-	private static final boolean ideasontop = (System
-			.getProperty("stendhal.ideasontop") != null);
+	/** Status icon managers */
+	private final List<StatusIconManager> iconManagers = new ArrayList<StatusIconManager>();
 
 	static {
 		final SpriteStore st = SpriteStore.get();
@@ -151,6 +148,29 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 	}
 
+	/**
+	 * Create a new RPEntity2DView
+	 */
+	public RPEntity2DView() {
+		addIconManager(new StatusIconManager(Player.PROP_EATING, eatingSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+					@Override
+					boolean show(T rpentity) {
+						return rpentity.isEating() && !rpentity.isChoking();
+					}} );
+		addIconManager(new StatusIconManager(Player.PROP_EATING, chokingSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+					@Override
+					boolean show(T rpentity) {
+						return rpentity.isChoking();
+					}} );
+		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, -poisonedSprite.getWidth(), 0) {
+					@Override
+					boolean show(T rpentity) {
+						return rpentity.isPoisoned();
+					}} );
+	}
 
 	@Override
 	public void initialize(final T entity) {
@@ -280,6 +300,15 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		return new AnimatedSprite(frames, 100, false);
 	}
+	
+	/**
+	 * Add a new status icon manager.
+	 * 
+	 * @param manager
+	 */
+	void addIconManager(StatusIconManager manager) {
+		iconManagers.add(manager);
+	}
 
 	/**
 	 * Draw the floating text indicators (floaters).
@@ -380,34 +409,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 
 	/**
-	 * Draw the entity ideas. (eating, choking, poisoned, etc)
-	 * 
-	 * @param g2d
-	 *            The graphics context.
-	 * @param x
-	 *            The drawn X coordinate.
-	 * @param y
-	 *            The drawn Y coordinate.
-
-	 * @param height
-	 *            The drawn entity height.
-	 */
-	protected void drawIdeas(final Graphics2D g2d, final int x,
-			final int y, final int height) {
-		if (entity.isEating()) {
-			if (entity.isChoking()) {
-				chokingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
-			} else {
-				eatingSprite.draw(g2d, x, y + height - 2 * ICON_OFFSET);
-			}
-		}
-
-		if (entity.isPoisoned()) {
-			poisonedSprite.draw(g2d, x - ICON_OFFSET, y + height - 2 * ICON_OFFSET);
-		}
-	}
-
-	/**
 	 * Draw the combat indicators. 
 	 * 
 	 * @param g2d
@@ -432,9 +433,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		final double DIVISOR = 1.414213562; // sqrt(2)
 		
 		if (entity.isBeingAttacked()) {
-			// Draw red box around 
-			//g2d.setColor(Color.white);
-			//g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
+			// Draw red circle around
 			g2d.setColor(Color.red);
 			int circleHeight = (int) ((srect.height - 2) / DIVISOR);
 			// Avoid showing much smaller area than the creature covers
@@ -444,9 +443,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 
 		if (entity.isAttacking(User.get())) {
-			// Draw orange box around
-			//g2d.setColor(Color.white);
-			//g2d.drawRect(srect.x + 2, srect.y + 2, srect.width - 4, srect.height - 4);
+			// Draw orange circle around
 			g2d.setColor(Color.orange);
 			int circleHeight = (int) ((srect.height - 4) / DIVISOR);
 			// Avoid showing much smaller area than the creature covers
@@ -669,6 +666,15 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		buildSprites(map, tiles, width, height);
 		calculateOffset(entity, width, height);
+		
+		/*
+		 * Set icons for a newly created entity.
+		 * These need to be after the main sprite is ready, so that the
+		 * dimensions are correct for the sprite placement.
+		 */
+		for (StatusIconManager handler : iconManagers) {
+			handler.check(entity);
+		}
 	}
 
 	//
@@ -718,10 +724,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		drawCombat(g2d, x, y, width, height);
 		super.draw(g2d, x, y, width, height);
 
-		if (!ideasontop) {
-			drawIdeas(g2d, x, y, height);
-		}
-
 		if (Debug.SHOW_ENTITY_VIEW_AREA) {
 			g2d.setColor(Color.cyan);
 			g2d.drawRect(x, y, width, height);
@@ -749,9 +751,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void drawTop(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
 		drawStatusBar(g2d, x, y, width);
-		if (ideasontop) {
-			drawIdeas(g2d, x, y, height);
-		}
 	}
 
 	/**
@@ -849,6 +848,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		} else if (property == RPEntity.PROP_TEXT_INDICATORS) {
 			onFloatersChanged();
 		}
+		
+		for (StatusIconManager handler : iconManagers) {
+			handler.check(property, entity);
+		}
 	}
 	
 	private void onFloatersChanged() {
@@ -916,6 +919,86 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		default:
 			super.onAction(at);
 			break;
+		}
+	}
+	
+	/**
+	 * A manager for a status icon. Observes property changes and shows and
+	 * hides the icon as needed.
+	 */
+	abstract class StatusIconManager {
+		/** Observed property */
+		private final Object property;
+		/** Icon sprite */
+		private final Sprite sprite;
+		private final HorizontalAlignment xAlign;
+		private final VerticalAlignment yAlign;
+		private final int xOffset, yOffset;
+		
+		/**
+		 * Create a new StatusIconManager.
+		 * 
+		 * @param property observed property
+		 * @param sprite icon sprite
+		 * @param xAlign
+		 * @param yAlign
+		 * @param xOffset
+		 * @param yOffset
+		 */
+		StatusIconManager(Object property, Sprite sprite,
+				HorizontalAlignment xAlign, VerticalAlignment yAlign,
+				int xOffset, int yOffset) {
+			this.property = property;
+			this.sprite = sprite;
+			this.xAlign = xAlign;
+			this.yAlign = yAlign;
+			this.xOffset = xOffset;
+			this.yOffset = yOffset;
+		}
+		
+		/**
+		 * Check if the icon should be shown.
+		 * 
+		 * @param entity
+		 * @return <code>true</code> if the icon should be shown,
+		 * 	<code>false</code> otherwise
+		 */
+		abstract boolean show(T entity);
+		
+		/**
+		 * Check the entity at a property change. Show or hide the icon if
+		 * needed.
+		 * 
+		 * @param changedProperty
+		 * @param entity
+		 */
+		void check(Object changedProperty, T entity) {
+			if (property == changedProperty) {
+				check(entity);
+			}
+		}
+		
+		/**
+		 * Check the status of an entity, and show or hide the icon if
+		 * needed.
+		 * 
+		 * @param entity
+		 */
+		void check(T entity) {
+			setVisible(show(entity));
+		}
+		
+		/**
+		 * Attach or detach the icon sprite, depending on visibility.
+		 * 
+		 * @param visible
+		 */
+		private void setVisible(boolean visible) {
+			if (visible) {
+				attachSprite(sprite, xAlign, yAlign, xOffset, yOffset);
+			} else {
+				detachSprite(sprite);
+			}
 		}
 	}
 }
