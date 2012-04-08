@@ -59,8 +59,6 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 	
 	public void onTurnReached(int currentTurn) {
 		if(numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
-			damageOrigin.setTarget(rpEntityToDamage);
-			rpEntityToDamage.rememberAttacker(damageOrigin);
 			
 			int damageDone = damageOrigin.damageDone(rpEntityToDamage, getAtk(), getNature());
 			damageDone = Math.min(damageDone, rpEntityToDamage.getBaseHP());
