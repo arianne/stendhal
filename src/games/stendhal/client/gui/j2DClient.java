@@ -1042,6 +1042,7 @@ public class j2DClient implements UserInterface {
 		
 		// ** Private channel **
 		edit = new KTextEdit();
+		edit.setChannelName("personal");
 		/*
 		 * Give it a different background color to make it different from the
 		 * main chat log.

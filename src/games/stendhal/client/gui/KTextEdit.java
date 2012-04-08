@@ -51,9 +51,6 @@ public class KTextEdit extends JComponent {
 	/** Color of the time stamp written before the lines */ 
 	protected static final Color HEADER_COLOR = Color.gray;
 
-	/** Location for saving chat log file. */
-	private static final String GAME_LOG_FILE = stendhal.getGameFolder() + "gamechat.log";
-	
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 	
@@ -66,6 +63,8 @@ public class KTextEdit extends JComponent {
 	 * last line when more lines are added, <code>false</code> otherwise.
 	 */
 	private boolean autoScrollEnabled;
+	/** Name of the log */
+	private String name = "";
 	/** Background color when not highlighting unread messages */
 	private Color defaultBackground = Color.white;
 	
@@ -100,7 +99,7 @@ public class KTextEdit extends JComponent {
 	/**
 	 * Basic Constructor.
 	 */
-	public KTextEdit() {
+	KTextEdit() {
 		buildGUI();
 	}
 
@@ -386,6 +385,15 @@ public class KTextEdit extends JComponent {
 	}
 	
 	/**
+	 * Set the name of the logged channel.
+	 * 
+	 * @param name channel name
+	 */
+	void setChannelName(String name) {
+		this.name = name;
+	}
+	
+	/**
 	 * Set a clear warning for the user that there are new, unread lines.
 	 * @param warn true if the warning indicator should be shown, false otherwise
 	 */
@@ -398,19 +406,33 @@ public class KTextEdit extends JComponent {
 	}
 	
 	/**
+	 * Get name of the file where logs should be saved on request.
+	 * 
+	 * @return file name
+	 */
+	private String getSaveFileName() {
+		if ("".equals(name)) {
+			return stendhal.getGameFolder() + "gamechat.log";
+		} else {
+			return stendhal.getGameFolder() + "gamechat-" + name + ".log";
+		}
+	}
+	
+	/**
 	 * Save the contents into the log file and inform the user about it.
 	 */
 	public void save() {
+		String fname = getSaveFileName();
 		FileWriter fo;
 		try {
-			fo = new FileWriter(GAME_LOG_FILE);
+			fo = new FileWriter(fname);
 			try {
 				textPane.write(fo);
 			} finally {
 				fo.close();
 			}
 
-			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
+			addLine("", "Chat log has been saved to " + fname, NotificationType.CLIENT);
 		} catch (final IOException ex) {
 			logger.error(ex, ex);
 		}
