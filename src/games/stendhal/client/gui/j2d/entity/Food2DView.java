@@ -26,12 +26,6 @@ import java.util.Map;
  * The 2D view of food.
  */
 class Food2DView extends StateEntity2DView<Food> {
-
-	/**
-	 * The number of states.
-	 */
-	protected int states;
-
 	//
 	// StateEntity2DView
 	//
@@ -110,15 +104,8 @@ class Food2DView extends StateEntity2DView<Food> {
 		}
 	}
 
-	public void setStates(final int i) {
-		states = 6;
-		
-	}
-
 	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.LOOK;
 	}
-
-	
 }
