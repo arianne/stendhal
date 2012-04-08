@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -67,6 +66,8 @@ public class KTextEdit extends JComponent {
 	 * last line when more lines are added, <code>false</code> otherwise.
 	 */
 	private boolean autoScrollEnabled;
+	/** Background color when not highlighting unread messages */
+	private Color defaultBackground = Color.white;
 	
 	
 	/** Listener for opening the popup menu when it's requested. */
@@ -314,31 +315,29 @@ public class KTextEdit extends JComponent {
 		final int currentLocation = vbar.getValue();
 		
 		setAutoScrollEnabled((vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum()));
-		if(isNotificationTypeEnabled(type)) {
-			insertNewline();
+		insertNewline();
 
-			final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-			final String dateString = formatter.format(new Date());
-			insertTimestamp(dateString);
+		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+		final String dateString = formatter.format(new Date());
+		insertTimestamp(dateString);
 
-			insertHeader(header);
-			insertText(line, type);
-			
-			// wait a bit so that the scroll bar knows where it should scroll 
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					if (isAutoScrollEnabled()) {
-						scrollToBottom();
-					} else {
-						// the scroll bar insists changing its value, so jump back.
-						// in a sane toolkit it would be possible to defer drawing
-						// until this
-						vbar.setValue(currentLocation);
-						setUnreadLinesWarning(true);
-					}
+		insertHeader(header);
+		insertText(line, type);
+
+		// wait a bit so that the scroll bar knows where it should scroll 
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (isAutoScrollEnabled()) {
+					scrollToBottom();
+				} else {
+					// the scroll bar insists changing its value, so jump back.
+					// in a sane toolkit it would be possible to defer drawing
+					// until this
+					vbar.setValue(currentLocation);
+					setUnreadLinesWarning(true);
 				}
-			});
-		}
+			}
+		});
 	}
 
 	/**
@@ -377,6 +376,16 @@ public class KTextEdit extends JComponent {
 	}
 	
 	/**
+	 * Set the background color to be used normally, when not highlighting
+	 * unread messages.
+	 * 
+	 * @param color background color
+	 */
+	void setDefaultBackground(Color color) {
+		defaultBackground = color;
+	}
+	
+	/**
 	 * Set a clear warning for the user that there are new, unread lines.
 	 * @param warn true if the warning indicator should be shown, false otherwise
 	 */
@@ -384,7 +393,7 @@ public class KTextEdit extends JComponent {
 		if (warn) {
 			textPane.setBackground(Color.pink);
 		} else {
-			textPane.setBackground(Color.white);
+			textPane.setBackground(defaultBackground);
 		}
 	}
 	
@@ -404,23 +413,6 @@ public class KTextEdit extends JComponent {
 			addLine("", "Chat log has been saved to " + GAME_LOG_FILE, NotificationType.CLIENT);
 		} catch (final IOException ex) {
 			logger.error(ex, ex);
-		}
-	}
-
-	/**
-	 * Check if a notification type is enabled to be noticed about
-	 * 
-	 * @param type
-	 * @return true if the given type should be printed out
-	 */
-	protected boolean isNotificationTypeEnabled(NotificationType type) {
-		switch (type) {
-		case HEAL:
-			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.healingmessage", "false"));
-		case POISON:
-			return Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.poisonmessage", "false"));
-		default:
-			return true;
 		}
 	}
 }

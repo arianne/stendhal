@@ -52,6 +52,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -67,6 +68,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JComponent;
@@ -74,7 +78,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 import javax.swing.plaf.TabbedPaneUI;
 
 import marauroa.client.net.IPerceptionListener;
@@ -103,7 +106,8 @@ public class j2DClient implements UserInterface {
 
 	private JLayeredPane pane;
 
-	private KTextEdit gameLog;
+	/** Chat channels */
+	private NotificationChannelManager channelManager;
 
 	private ContainerPanel containerPanel;
 
@@ -274,8 +278,8 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Game log
 		 */
-		gameLog = new KTextEdit();
-		gameLog.setPreferredSize(new Dimension(getWidth(), 171));
+		JComponent chatLogArea = createLogArea();
+		chatLogArea.setPreferredSize(new Dimension(getWidth(), 171));
 
 		final KeyListener keyListener = new GameKeyHandler();
 
@@ -315,14 +319,17 @@ public class j2DClient implements UserInterface {
 		// left side panel
 		JComponent leftColumn = createLeftPanel();
 
-		// Chat entry and chat log
-		final JComponent chatBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		// Chat entry and chat log. The chatlogs are in tabs so they need a
+		// patterned background.
+		final JComponent chatBox = new JPanel();
+		chatBox.setBorder(null);
+		chatBox.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway
 		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
 
-		chatBox.add(gameLog, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
+		chatBox.add(chatLogArea, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
 		chatBox.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 
@@ -395,7 +402,7 @@ public class j2DClient implements UserInterface {
 		 */
 		final int width = mainFrame.getMainFrame().getWidth()
 		- minimap.getComponent().getWidth() - containerPanel.getWidth();
-		final int height = mainFrame.getMainFrame().getHeight() - gameLog.getHeight();
+		final int height = mainFrame.getMainFrame().getHeight() - chatLogArea.getHeight();
 
 		mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
 		mainFrame.getMainFrame().setVisible(true);
@@ -764,16 +771,6 @@ public class j2DClient implements UserInterface {
 		}
 
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_L:
-			if (e.isControlDown()) {
-				/*
-				 * Ctrl+L Make game log visible
-				 */
-				SwingUtilities.getRoot(gameLog).setVisible(true);
-			}
-
-			break;
-
 		case KeyEvent.VK_R:
 			if (e.isControlDown()) {
 				/*
@@ -941,7 +938,7 @@ public class j2DClient implements UserInterface {
 	 *
 	 */
 	public void addEventLine(final EventLine line) {
-		gameLog.addLine(line);
+		channelManager.addEventLine(line);
 	}
 
 	/**
@@ -994,6 +991,75 @@ public class j2DClient implements UserInterface {
 			outfitDialog.toFront();
 		}
 	}
+	
+	/**
+	 * Create the chat log tabs.
+	 * 
+	 * @return chat log area
+	 */
+	private JComponent createLogArea() {
+		//JPanel bg = new JPanel();
+		JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
+		//bg.add(tabs);
+		List<JComponent> logs = createNotificationChannels();
+		
+		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
+		for (JComponent tab : logs) {
+			tabs.add(it.next().getName(), tab);
+		}
+		
+		//return bg;
+		return tabs;
+	}
+	
+	/**
+	 * Create chat channels.
+	 * 
+	 * @return Chat log components of the notification channels
+	 */
+	private List<JComponent> createNotificationChannels() {
+		List<JComponent> list = new ArrayList<JComponent>();
+		channelManager = new NotificationChannelManager();
+		KTextEdit edit = new KTextEdit();
+		list.add(edit);
+		
+		// ** Main channel **
+		// Compatibility hack. Sets the default string for main channel from
+		// the old configuration values.
+		String mainDefault = "";
+		WtWindowManager wm = WtWindowManager.getInstance();
+		if (!Boolean.parseBoolean(wm.getProperty("ui.healingmessage", "false"))) {
+			mainDefault += NotificationType.HEAL;
+		}
+		if (!Boolean.parseBoolean(wm.getProperty("ui.poisonmessage", "false"))) {
+			if (!"".equals(mainDefault)) {
+				mainDefault += ",";
+			}
+			mainDefault += NotificationType.POISON;
+		}
+
+		channelManager.addChannel(new NotificationChannel("Main", edit, true, mainDefault));
+		
+		// ** Private channel **
+		edit = new KTextEdit();
+		/*
+		 * Give it a different background color to make it different from the
+		 * main chat log.
+		 */
+		edit.setDefaultBackground(new Color(200, 200, 255));
+		list.add(edit);
+		/*
+		 * Types shown by default in the private/group tab. Admin messages
+		 * should occur everywhere, of course, and not be possible to be
+		 * disabled in preferences.
+		 */
+		String personalDefault = NotificationType.PRIVMSG.toString() + ","
+				+ NotificationType.CLIENT + "," + NotificationType.GROUP + "," 
+				+ NotificationType.TUTORIAL + "," + NotificationType.SUPPORT;
+		channelManager.addChannel(new NotificationChannel("Personal", edit, false, personalDefault));
+		
+		return list;
+	}
 
 	/**
 	 * Get the main window component.
@@ -1035,8 +1101,15 @@ public class j2DClient implements UserInterface {
 
 	}
 
+	/**
+	 * Clear visible channel logs.
+	 */
 	public void clearGameLog() {
-		gameLog.clear();
+		for (NotificationChannel channel : channelManager.getChannels()) {
+			if (channel.isLogVisible()) {
+				channel.clear();
+			}
+		}
 	}
 
 	/**
