@@ -78,6 +78,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
 
 import marauroa.client.net.IPerceptionListener;
@@ -998,17 +1000,35 @@ public class j2DClient implements UserInterface {
 	 * @return chat log area
 	 */
 	private JComponent createLogArea() {
-		//JPanel bg = new JPanel();
-		JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
-		//bg.add(tabs);
+		final JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
+		tabs.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int i = tabs.getSelectedIndex();
+				NotificationChannel channel = channelManager.getChannels().get(i);
+				channelManager.setVisibleChannel(channel);
+				// Remove modified marker
+				String channelName = tabs.getTitleAt(i);
+				if (channelName.startsWith("* ")) {
+					tabs.setTitleAt(i, channelName.substring(2));
+				}
+			}});
 		List<JComponent> logs = createNotificationChannels();
 		
 		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
 		}
+		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
+			public void channelModified(int index) {
+				// Mark the tab as modified so that the user can see there's
+				// new text
+				String channelName = tabs.getTitleAt(index);
+				if (!channelName.startsWith("* ")) {
+					tabs.setTitleAt(index, "* " + channelName);
+				}
+			}
+		});
 		
-		//return bg;
 		return tabs;
 	}
 	
@@ -1042,7 +1062,7 @@ public class j2DClient implements UserInterface {
 		
 		// ** Private channel **
 		edit = new KTextEdit();
-		edit.setChannelName("personal");
+		edit.setChannelName("Personal");
 		/*
 		 * Give it a different background color to make it different from the
 		 * main chat log.
@@ -1103,14 +1123,10 @@ public class j2DClient implements UserInterface {
 	}
 
 	/**
-	 * Clear visible channel logs.
+	 * Clear the visible channel log.
 	 */
 	public void clearGameLog() {
-		for (NotificationChannel channel : channelManager.getChannels()) {
-			if (channel.isLogVisible()) {
-				channel.clear();
-			}
-		}
+		channelManager.getVisibleChannel().clear();
 	}
 
 	/**

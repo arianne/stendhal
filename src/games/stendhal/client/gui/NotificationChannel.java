@@ -106,11 +106,15 @@ class NotificationChannel {
 	 * displayed.
 	 * 
 	 * @param line
+	 * @return <code>true</code> if the channel accepted the message,
+	 * 	<code>false</code> otherwise
 	 */
-	void addEventLine(final EventLine line) {
+	boolean addEventLine(final EventLine line) {
 		if (eventTypes.contains(line.getType())) {
 			channel.addLine(line);
+			return true;
 		}
+		return false;
 	}
 	
 	/**
@@ -118,14 +122,5 @@ class NotificationChannel {
 	 */
 	void clear() {
 		channel.clear();
-	}
-	
-	/**
-	 * Check if the channel log is the currently displayed one.
-	 * 
-	 * @return <code>true</code> if the channel log is currently visible
-	 */
-	boolean isLogVisible() {
-		return true;
 	}
 }
