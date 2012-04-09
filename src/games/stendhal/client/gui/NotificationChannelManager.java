@@ -12,6 +12,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.common.NotificationType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,12 +63,18 @@ public class NotificationChannelManager {
 	 * @param line
 	 */
 	void addEventLine(final EventLine line) {
-		int i = 0;
-		for (NotificationChannel channel : channels) {
-			if (channel.addEventLine(line) && (channel != visibleChannel)) {
-				fireHiddenChannelModified(i);
+		// Pass client messages only to the visible channel
+		if (line.getType() == NotificationType.CLIENT) {
+			visibleChannel.addEventLine(line);
+		} else {
+			// Everything else to all the channels (that listen to the type)
+			int i = 0;
+			for (NotificationChannel channel : channels) {
+				if (channel.addEventLine(line) && (channel != visibleChannel)) {
+					fireHiddenChannelModified(i);
+				}
+				i++;
 			}
-			i++;
 		}
 	}
 	
