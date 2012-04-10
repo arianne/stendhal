@@ -36,6 +36,7 @@ class NotificationChannel {
 	/**
 	 * Create a new NotificationChannel.
 	 * 
+	 * @param channelName name of the channel
 	 * @param channel text area for showing the event log
 	 * @param blackList if <code>true</code>, the channel will default to
 	 *	showing everything that has not been explicitly blacklisted. Otherwise
