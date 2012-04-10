@@ -17,8 +17,10 @@ import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.listener.RPObjectChangeListener;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import marauroa.common.game.RPObject;
 
@@ -51,7 +53,7 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * The feature change listeners.
 	 */
-	protected FeatureChangeListener[] featureListeners;
+	private final List<FeatureChangeListener> featureListeners = new CopyOnWriteArrayList<FeatureChangeListener>();
 
 	/**
 	 * The admin level.
@@ -81,7 +83,6 @@ public class UserContext implements RPObjectChangeListener {
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
-		featureListeners = new FeatureChangeListener[0];
 	}
 
 	//
@@ -95,15 +96,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The listener.
 	 */
 	public void addFeatureChangeListener(final FeatureChangeListener l) {
-		FeatureChangeListener[] newListeners;
-
-		final int len = featureListeners.length;
-
-		newListeners = new FeatureChangeListener[len + 1];
-		System.arraycopy(featureListeners, 0, newListeners, 0, len);
-		newListeners[len] = l;
-
-		featureListeners = newListeners;
+		featureListeners.add(l);
 	}
 
 
@@ -115,11 +108,9 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The name of the feature.
 	 */
 	protected void fireFeatureDisabled(final String name) {
-		final FeatureChangeListener[] listeners = featureListeners;
-
 		logger.debug("Feature disabled: " + name);
 
-		for (final FeatureChangeListener l : listeners) {
+		for (final FeatureChangeListener l : featureListeners) {
 			l.featureDisabled(name);
 		}
 	}
@@ -133,11 +124,9 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The optional feature value.
 	 */
 	protected void fireFeatureEnabled(final String name, final String value) {
-		final FeatureChangeListener[] listeners = featureListeners;
-
 		logger.debug("Feature enabled: " + name + " = " + value);
 
-		for (final FeatureChangeListener l : listeners) {
+		for (final FeatureChangeListener l : featureListeners) {
 			l.featureEnabled(name, value);
 		}
 	}
@@ -187,28 +176,7 @@ public class UserContext implements RPObjectChangeListener {
 	 *            The listener.
 	 */
 	public void removeFeatureChangeListener(final FeatureChangeListener listener) {
-		FeatureChangeListener[] newListeners;
-		int idx;
-
-		idx = featureListeners.length;
-
-		while (idx-- != 0) {
-			if (featureListeners[idx] == listener) {
-				newListeners = new FeatureChangeListener[featureListeners.length - 1];
-
-				if (idx != 0) {
-					System.arraycopy(featureListeners, 0, newListeners, 0, idx);
-				}
-
-				if (++idx != featureListeners.length) {
-					System.arraycopy(featureListeners, idx, newListeners,
-							idx - 1, featureListeners.length - idx);
-				}
-
-				featureListeners = newListeners;
-				break;
-			}
-		}
+		featureListeners.remove(listener);
 	}
 
 
