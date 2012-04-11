@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,12 +16,16 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.entity.creature.Creature;
 
 class Patroller extends StandOnIdle {
-
 	private int minX;
 	private int maxX;
 	private int minY;
 	private int maxY;
 	
+	/**
+	 * Recalculate limits of the patrolling area.
+	 * 
+	 * @param creature
+	 */
 	private void initArea(final Creature creature) {
 		minX = creature.getX() - 3;
 		maxX = creature.getX() + 2 + (int) (creature.getWidth());
@@ -29,15 +33,25 @@ class Patroller extends StandOnIdle {
 		maxY = creature.getY() + 2 + (int) (creature.getHeight());
 	}
 
+	@Override
 	public void perform(final Creature creature) {
 		if (!creature.getZone().getPlayerAndFriends().isEmpty()) {
 			if (creature.hasPath()) {
 				creature.followPath();
-			} else {
-				if (retreatUnderFire(creature)) {
-					return;
+			} else if (!retreatUnderFire(creature)) {
+				/*
+				 * Move before turning, so that the turning looks smooth to the
+				 * client.
+				 */
+				if (creature.getDirection() != Direction.STOP) {
+					creature.setSpeed(creature.getBaseSpeed());
 				}
+				creature.applyMovement();
 				
+				/*
+				 * Check if the creature is outside the patrolling area (ie.
+				 * followed or escaped a player).
+				 */
 				if (weWouldLeaveArea(creature, Direction.STOP)) {
 					initArea(creature);
 				}
@@ -57,16 +71,21 @@ class Patroller extends StandOnIdle {
 						}
 					}
 				}
-
-				if (creature.getDirection() != Direction.STOP) {
-					creature.setSpeed(creature.getBaseSpeed());
-				}
-
+				// already moved.
+				return;
 			}
 			creature.applyMovement();
 		}
 	}
 
+	/**
+	 * Check if next step would move the creature outside the patrolling area.
+	 * 
+	 * @param creature
+	 * @param d
+	 * @return <code>true</code> if the creature would leave the area,
+	 * 	<code>false</code> otherwise
+	 */
 	private boolean weWouldLeaveArea(final Creature creature, final Direction d) {
 		return (creature.getY() + d.getdy() < minY)
 				|| (creature.getY() + d.getdy() > maxY)
