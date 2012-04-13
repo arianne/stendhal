@@ -16,6 +16,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
@@ -28,6 +29,7 @@ public class ProducerRegister {
 	private static ProducerRegister instance;
 	
 	private final List<Pair<String, ProducerBehaviour>> producers;
+	private final List<Pair<String, MultiProducerBehaviour>> multiproducers;
 	
 	public static ProducerRegister get() {
 		if (instance == null) {
@@ -39,6 +41,7 @@ public class ProducerRegister {
 	protected ProducerRegister() {
 		instance = this;
 		producers  = new LinkedList<Pair<String, ProducerBehaviour>>();
+		multiproducers  = new LinkedList<Pair<String, MultiProducerBehaviour>>();
 	}
 	
 	/**
@@ -57,11 +60,21 @@ public class ProducerRegister {
 		Pair<String, ProducerBehaviour> pair = new Pair<String, ProducerBehaviour>(npcName, behaviour);
 		producers.add(pair);
 	}
+
+	public void add(final String npcName, final MultiProducerBehaviour behaviour) {
+		// insert lower case names ?
+		// final String name = npcName.toLowerCase();
+		Pair<String, MultiProducerBehaviour> pair = new Pair<String, MultiProducerBehaviour>(npcName, behaviour);
+		multiproducers.add(pair);
+	}
 	
 	public List<Pair<String, ProducerBehaviour>> getProducers() {
 		return producers;
 	}
 	
+	public List<Pair<String, MultiProducerBehaviour>> getMultiProducers() {
+		return multiproducers;
+	}
 	
 	public String listWorkingProducers(final Player player) {
 		final StringBuilder sb = new StringBuilder("");
@@ -97,7 +110,7 @@ public class ProducerRegister {
 		}
 		return sb.toString();
 	}
-	
+
 	public List<String> getWorkingProducerNames(final Player player) {
 		List<String> res = new LinkedList<String>();
 
@@ -213,7 +226,48 @@ public class ProducerRegister {
 		}
 		return "";
 	}
+
+	public String listWorkingMultiProducers(final Player player) {
+		final StringBuilder sb = new StringBuilder("");
+
+		// Open orders - do not state if ready to collect or not, yet
+
+		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
+			String npcName = producer.first();
+			MultiProducerBehaviour behaviour = producer.second();
+			String questSlot =  behaviour.getQuestSlot();
+			String activity =  behaviour.getProductionActivity();
+
+			//String product =  behaviour.getProductName();
+
+			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+                
+                final String orderString = player.getQuest(questSlot);
+                final String[] order = orderString.split(";");
+                //final long orderTime = Long.parseLong(order[2]);
+                final int amount = Integer.parseInt(order[0]);
+                final String product = order[1];
+
+				if (behaviour.isOrderReady(player)) {
+					// put all completed orders first - player wants to collect these!
+					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity) 
+							+ " your " + Grammar.plnoun(amount,product) + ".");
+				} else {
+					String timeleft = behaviour.getApproximateRemainingTime(player);
+					// put all ongoing orders last
+					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
+				}
+						
+			}
+		}
+
+		if (!"".equals(sb.toString())) {
+			sb.insert(0,"\r\nOrders: ");
+		} else {
+			sb.append("You have no ongoing or uncollected orders.");
+		}
+		return sb.toString();
+	}
 	
 }
-
-
