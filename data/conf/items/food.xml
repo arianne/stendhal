@@ -803,6 +803,27 @@
     </equipable>
   </item>
 
+  <item name="smoked meat">
+    <type class="food" subclass="meat_smoked" tileid="-1"/>
+    <description>You see a piece of smoked meat.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="120"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="10"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="2"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="trout">
     <type class="food" subclass="trout" tileid="-1"/>
     <description>You see a trout.</description>
@@ -811,6 +832,27 @@
       <frequency value="15"/>
       <quantity value="1"/>
       <regen value="4"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="2"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="smoked trout">
+    <type class="food" subclass="trout_smoked" tileid="-1"/>
+    <description>You see a smoked trout.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="90"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="8"/>
     </attributes>
     <weight value="1.0"/>
     <value value="2"/>
@@ -845,6 +887,27 @@
     </equipable>
   </item>
 
+  <item name="smoked cod">
+    <type class="food" subclass="cod_smoked" tileid="-1"/>
+    <description>You see a smoked cod.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="80"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="8"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="2"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="ham">
     <type class="food" subclass="ham" tileid="-1"/>
     <description>You see a juicy ham.</description>
@@ -853,6 +916,27 @@
       <frequency value="20"/>
       <quantity value="1"/>
       <regen value="6"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="3"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
+  <item name="smoked ham">
+    <type class="food" subclass="ham_smoked" tileid="-1"/>
+    <description>You see a smoked ham.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="160"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="12"/>
     </attributes>
     <weight value="1.0"/>
     <value value="3"/>
