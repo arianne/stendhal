@@ -155,6 +155,7 @@ import marauroa.common.Pair;
 		enemys.put("mountain dwarf",
 				Arrays.asList("mountain dwarf",
 							  "mountain elder dwarf",
+							  "mountain dwarf guardian",
 							  "mountain hero dwarf",
 							  "mountain leader dwarf",
 							  "Dhohr Nuggetcutter",
