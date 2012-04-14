@@ -103,6 +103,30 @@ public class ProducerRegister {
 			}
 		}
 
+		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
+			String npcName = producer.first();
+			MultiProducerBehaviour behaviour = producer.second();
+			String questSlot =  behaviour.getQuestSlot();
+			String activity =  behaviour.getProductionActivity();
+			if (player.hasQuest(questSlot) && !player.isQuestCompleted(questSlot)) {
+                final String orderString = player.getQuest(questSlot);
+                final String[] order = orderString.split(";");
+                //final long orderTime = Long.parseLong(order[2]);
+                final int amount = Integer.parseInt(order[0]);
+                final String product = order[1];
+				if (behaviour.isOrderReady(player)) {
+					// put all completed orders first - player wants to collect these!
+					sb.insert(0,"\n" + npcName + " has finished " + Grammar.gerundForm(activity) 
+							+ " your " + Grammar.plnoun(amount,product) + ".");
+				} else {
+					String timeleft = behaviour.getApproximateRemainingTime(player);
+					// put all ongoing orders last
+					sb.append("\n" + npcName + " is " + Grammar.gerundForm(activity) 
+							+ " " + Grammar.quantityplnoun(amount, product, "a") + " and will be ready in " + timeleft + ".");
+				}
+			}
+		}
+
 		if (!"".equals(sb.toString())) {
 			sb.insert(0,"\r\nOrders: ");
 		} else {
