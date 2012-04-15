@@ -101,58 +101,6 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 
     private static Logger logger = Logger.getLogger(MultiProducerBehaviour.class);
 
-
-    /**
-     *
-     * FIXME:
-     * The following code is only meant to be a temporary placeholder
-     * This constructor is not useable yet.
-     *
-     */
-    /**
-     * Creates a new MultiProducerBehaviour.
-     * 
-     * @param questSlot
-     *            the slot that is used to store the status of the production
-     * @param productionActivity
-     *            the name of the activity, e.g. "build", "brew", "bake"
-	 * @param productsNames
-	 *            the set of products that the NPC is able to provide.
-     *            They rll must be valid items names.
-     * @param requiredResourcesPerProduct
-     *            a mapping which maps the name of each product to 
-     *            a mapping of resources required for that product, stated as <item, quantity> 
-     * @param productionTimesPerProduct
-     *            a mapping which maps the name of each product to 
-     *            the amount of time required to produce it
-     */
-    /*
-    public MultiProducerBehaviour(final String questSlot, final String productionActivity,
-            final HashSet<String> productsNames,
-            final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct,
-            final HashMap<String, Integer> productionTimesPerProduct) {
-     *
-     * We need some way to iterate through each of the products names and
-     * build a productsBound mapping that maps each name to false
-     *
-        HashMap<String, Boolean> productsBound;
-
-        Iterator p = productsNames.keySet().iterator();
-        while (p.hasNext()) {
-            productName = (String) p.next();
-            productsBound = <productName, false>
-        }
-
-        this(questSlot, productionActivity, productsNames,
-                requiredResourcesPerProduct, productionTimesPerProduct, productsBound);
-     *
-     * FIXME:
-     * The above code is only meant to be a temporary placeholder
-     * This constructor is not useable yet.
-     *
-    }
-     */
-
     /**
      * Creates a new MultiProducerBehaviour.
      * 
