@@ -15,7 +15,7 @@ public class Spells extends SlotWindow implements FeatureChangeListener {
 	private static final long serialVersionUID = 79889495195014549L;
 
 	public Spells() {
-		super("spells", 3, 1);
+		super("spells", 3, 2);
 		//panel window, no closing allowed
 		setCloseable(false);
 	}
