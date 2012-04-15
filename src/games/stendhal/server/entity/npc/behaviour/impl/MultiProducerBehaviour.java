@@ -79,7 +79,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	//private final String productName;
 
 	/**
-	 * Products the NPC is providing (is this needed?)
+	 * Products the NPC is providing
 	 */
     private final HashSet<String> productsNames;
 
@@ -131,10 +131,10 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
             final HashSet<String> productsNames,
             final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct,
             final HashMap<String, Integer> productionTimesPerProduct) {
-    *
-    * We need some way to iterate through each of the products names and
-    * build a productsBound mapping that maps each name to false
-    *
+     *
+     * We need some way to iterate through each of the products names and
+     * build a productsBound mapping that maps each name to false
+     *
         HashMap<String, Boolean> productsBound;
 
         Iterator p = productsNames.keySet().iterator();
@@ -145,10 +145,13 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 
         this(questSlot, productionActivity, productsNames,
                 requiredResourcesPerProduct, productionTimesPerProduct, productsBound);
-    *
-    *
+     *
+     * FIXME:
+     * The above code is only meant to be a temporary placeholder
+     * This constructor is not useable yet.
+     *
     }
-    */
+     */
 
     /**
      * Creates a new MultiProducerBehaviour.
@@ -302,7 +305,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 *            The amount of products that were requested
      * @return A string describing the required resources with hashes.
      */
-    protected String getRequiredResourceNamesWithHashes(final String productName, final int amount) {
+    public String getRequiredResourceNamesWithHashes(final String productName, final int amount) {
         // use sorted TreeSet instead of HashSet
         final Set<String> requiredResourcesWithHashes = new TreeSet<String>();
         for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerProduct(productName).entrySet()) {
@@ -324,12 +327,11 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 *            The amount of products that were requested
 	 * @return A string describing the required resources.
 	 */
-    protected String getRequiredResourceNames(final String productName, final int amount) {
+    public String getRequiredResourceNames(final String productName, final int amount) {
 		// use sorted TreeSet instead of HashSet
 		final Set<String> requiredResources = new TreeSet<String>();
 		for (final Map.Entry<String, Integer> entry : getRequiredResourcesPerProduct(productName).entrySet()) {
-			requiredResources.add(Grammar.quantityplnoun(amount
-                    * entry.getValue(), entry.getKey()));
+			requiredResources.add(Grammar.quantityplnoun(amount * entry.getValue(), entry.getKey()));
 		}
 		return Grammar.enumerateCollection(requiredResources);
 	}
