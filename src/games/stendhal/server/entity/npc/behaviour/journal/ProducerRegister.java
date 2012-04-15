@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -148,6 +149,14 @@ public class ProducerRegister {
 				return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ".";
 			}
 		}
+		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
+			if(npcName.equals(producer.first())) {
+				MultiProducerBehaviour behaviour = producer.second();
+				String activity =  behaviour.getProductionActivity();
+				HashSet<String> products =  behaviour.getProductsNames();
+				return npcName + " " + Grammar.plural(activity) + " " + Grammar.enumerateCollection(products) + ".";
+			}
+		}
 		return "";
 	}
 
@@ -193,6 +202,12 @@ public class ProducerRegister {
 		return res;
 	}
 
+	/**
+     * gets the names of all the NPCs to whom the player has asked to produce something
+     *
+	 * @param player player to get the details for
+	 * @return NPC names
+     */
 	public List<String> getWorkingProducerNames(final Player player) {
 		List<String> res = new LinkedList<String>();
 		for (final Pair<String, ProducerBehaviour> producer : producers) {
