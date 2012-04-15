@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -180,6 +181,22 @@ public class ProducerRegister {
 				return  npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
 			}
 		}
+		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
+			MultiProducerBehaviour behaviour = producer.second();
+			HashSet<String> products =  behaviour.getProductsNames();
+            Iterator i = products.iterator();
+            String product;
+
+            while (i.hasNext()) {
+                product = i.next().toString();
+                if(itemName.equals(product)) {
+                    String npcName = producer.first();
+                    String activity =  behaviour.getProductionActivity();
+                    String resources = behaviour.getRequiredResourceNames(product, 1);
+                    return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
+                }
+            }
+		}
 		return "";
 	}
 
@@ -198,6 +215,19 @@ public class ProducerRegister {
 			if (item.isOfClass(clazz)) {
 				res.add(product);
 			}
+		}
+		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
+			final MultiProducerBehaviour behaviour = producer.second();
+			final HashSet<String> products =  behaviour.getProductsNames();
+            Iterator i = products.iterator();
+            String product;
+            while (i.hasNext()) {
+                product = i.next().toString();
+                final Item item = SingletonRepository.getEntityManager().getItem(product);
+                if (item.isOfClass(clazz)) {
+                    res.add(product);
+                }
+            }
 		}
 		return res;
 	}
