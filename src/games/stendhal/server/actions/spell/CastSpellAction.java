@@ -13,11 +13,13 @@
 package games.stendhal.server.actions.spell;
 import static games.stendhal.common.constants.Actions.CASTSPELL;
 import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
+import games.stendhal.server.entity.spell.exception.SpellException;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 /**
@@ -36,7 +38,11 @@ public class CastSpellAction implements ActionListener {
 		action.put("baseobject", player.getID().getObjectID());
 		Entity target = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 		Spell spell = (Spell) EntityHelper.entityFromSlot(player, action);
-		spell.cast(player, target);
+		try {
+			spell.cast(player, target);
+		} catch (SpellException e) {
+			player.sendPrivateText(NotificationType.INFORMATION, e.getMessage());
+		}
 	}
 
 }

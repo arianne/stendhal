@@ -23,6 +23,11 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemEquippedInSlot;
 import games.stendhal.server.entity.npc.condition.PlayerManaGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.spell.exception.InsufficientManaException;
+import games.stendhal.server.entity.spell.exception.InvalidSpellTargetException;
+import games.stendhal.server.entity.spell.exception.LevelRequirementNotFulfilledException;
+import games.stendhal.server.entity.spell.exception.SpellException;
+import games.stendhal.server.entity.spell.exception.SpellNotCooledDownException;
 import games.stendhal.server.entity.trade.Dateable;
 
 import java.util.Arrays;
@@ -89,7 +94,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param caster the player who tries to cast this spell
 	 * @param target the entity the spell is aimed at
 	 */
-	public void cast(final Player caster, final Entity target) {
+	public void cast(final Player caster, final Entity target) throws SpellException {
 		if(checkPreConditions(caster, target)) {
 			//deduct mana
 			caster.setMana(caster.getMana() - getMana());
@@ -101,47 +106,54 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		}
 	}
 
-	private boolean checkPreConditions(final Player caster, final Entity target) {
+	private boolean checkPreConditions(final Player caster, final Entity target) throws SpellException {
 
 		//check for sufficient mana
 		if (!new PlayerManaGreaterThanCondition(getMana()-1).fire(caster, null, null)) {
-			caster.sendPrivateText(NotificationType.INFORMATION, "You have not sufficent mana to cast your spell \""+getName()+"\".");
-			return false;
+			throw new InsufficientManaException("You have not sufficent mana to cast your spell \""+getName()+"\".");
 		}
 
 		//check minimum level
 		if (new LevelLessThanCondition(getMinimumLevel()).fire(caster, null, null)) {
-			caster.sendPrivateText(NotificationType.INFORMATION, "You did not reach the minimum level for your spell \""+getName()+"\" yet.");
-			return false;
+			throw new LevelRequirementNotFulfilledException("You did not reach the minimum level for your spell \""+getName()+"\" yet.");
 		}
 
-		final long earliestPossibleNextCastingTime = getTimestamp() + getCooldown()*1000L; 
-		if(System.currentTimeMillis() < earliestPossibleNextCastingTime) {
-			caster.sendPrivateText(NotificationType.INFORMATION, "Your spell \""+getName()+"\" did not yet cool down.");
-			return false;
+		if(!isCooledDown()) {
+			throw new SpellNotCooledDownException("Your spell \""+getName()+"\" did not yet cool down.");
 		}
 
 		//check if target is valid for spell?
 		if (!isTargetValid(caster, target)) {
-			caster.sendPrivateText(NotificationType.INFORMATION, "The target is not valid for your spell \""+getName()+"\".");
-			return false;
+			throw new InvalidSpellTargetException("The target is not valid for your spell \""+getName()+"\".");
 		}
 		//check other preconditions like having learned that school?
 		//check for right equipment
-		if (!checkEquipment(caster)) {
-			return false;
-		}
+		//remove comment, when equipment
+//		if (!checkEquipment(caster)) {
+//			return false; equipment exception
+//		}
 
 		//no check failed so preconditions are fulfilled
 		return true;
 	}
 
+	protected boolean isCooledDown() {
+		long currentTime = System.currentTimeMillis();
+		long lastCastTime = getTimestamp();
+		long coolDownTime = getCooldown() * 1000L;
+		long timeWhenBeingCooledDown = lastCastTime + coolDownTime;
+		boolean isCooledDown = currentTime > timeWhenBeingCooledDown;
+		return isCooledDown;
+	}
+
+	// warning suppressed as not yet used
+	@SuppressWarnings("unused")
 	private boolean checkEquipment(final Player caster) {
 		for (final String item : ITEMS_IN_HANDS) {
 			final OrCondition staffCondition = new OrCondition(
 					new PlayerHasItemEquippedInSlot(item, "rhand"),
 					new PlayerHasItemEquippedInSlot(item, "lhand"));
-			if(staffCondition.fire(caster, null, null)) {
+			if(!staffCondition.fire(caster, null, null)) {
 				caster.sendPrivateText(NotificationType.INFORMATION, "You must have "+Grammar.a_noun(item)+" in your hands to cast a spell.");
 				return false;
 			}
