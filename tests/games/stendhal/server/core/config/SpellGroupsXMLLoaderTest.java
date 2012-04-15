@@ -53,7 +53,7 @@ public class SpellGroupsXMLLoaderTest {
 		List<DefaultSpell> list = loader.load();
 		assertThat(Boolean.valueOf(list.isEmpty()), is(Boolean.FALSE));
 		DefaultSpell spell = list.get(0);
-		assertThat(spell.getName(), is("heal"));
+		assertThat(spell.getName(), is("healtest"));
 		assertThat(spell.getNature(), is(Nature.LIGHT));
 		assertThat(spell.getImplementationClass(), notNullValue());
 		assertThat(spell.getImplementationClass().getName(), is("games.stendhal.server.entity.spell.HealingSpell"));
@@ -68,9 +68,9 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(spell.getRate(),is(Integer.valueOf(1)));
 		assertThat(spell.getRegen(),is(Integer.valueOf(100)));
 		SingletonRepository.getEntityManager().addSpell(spell);
-		Spell entity = SingletonRepository.getEntityManager().getSpell("heal");
+		Spell entity = SingletonRepository.getEntityManager().getSpell("healtest");
 		assertThat(entity, notNullValue());
-		assertThat(entity.getName(), is("heal"));
+		assertThat(entity.getName(), is("healtest"));
 		assertThat(entity.getNature(), is(Nature.LIGHT));
 		assertThat(entity.getAmount(),is(Integer.valueOf(100)));
 		assertThat(entity.getAtk(),is(Integer.valueOf(0)));
