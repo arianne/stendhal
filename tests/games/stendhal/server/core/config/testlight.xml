@@ -7,7 +7,7 @@
 		<attributes>
 			<mana value="5" />
 			<cooldown value="3" />
-			<minimum-level value="0" />
+			<minimum-level value="10" />
 			<range value="10" />
 			<atk value="0" />
 			<def value="0" />

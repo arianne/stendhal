@@ -63,7 +63,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(spell.getDef(),is(Integer.valueOf(0)));
 		assertThat(spell.getLifesteal(),is(Double.valueOf(0.5)));
 		assertThat(spell.getMana(),is(Integer.valueOf(5)));
-		assertThat(spell.getMinimumLevel(),is(Integer.valueOf(0)));
+		assertThat(spell.getMinimumLevel(),is(Integer.valueOf(10)));
 		assertThat(spell.getRange(),is(Integer.valueOf(10)));
 		assertThat(spell.getRate(),is(Integer.valueOf(1)));
 		assertThat(spell.getRegen(),is(Integer.valueOf(100)));
@@ -78,7 +78,7 @@ public class SpellGroupsXMLLoaderTest {
 		assertThat(entity.getDef(),is(Integer.valueOf(0)));
 		assertThat(entity.getLifesteal(),is(Double.valueOf(0.5)));
 		assertThat(entity.getMana(),is(Integer.valueOf(5)));
-		assertThat(entity.getMinimumLevel(),is(Integer.valueOf(0)));
+		assertThat(entity.getMinimumLevel(),is(Integer.valueOf(10)));
 		assertThat(entity.getRange(),is(Integer.valueOf(10)));
 		assertThat(entity.getRate(),is(Integer.valueOf(1)));
 		assertThat(entity.getRegen(),is(Integer.valueOf(100)));
