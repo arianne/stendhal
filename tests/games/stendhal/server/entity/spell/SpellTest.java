@@ -17,6 +17,7 @@ import games.stendhal.server.entity.spell.exception.SpellNotCooledDownException;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,15 +30,21 @@ import utilities.RPClass.CreatureTestHelper;
  */
 public class SpellTest {
 	
+	private Spell spell;
+
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
-		CreatureTestHelper.generateRPClasses();
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() {
 		MockStendlRPWorld.reset();
+	}
+	
+	@Before
+	public void setUp() {
+		this.spell = SingletonRepository.getEntityManager().getSpell("heal"); 
 	}
 	
 	private Player createWizard() {
@@ -50,7 +57,6 @@ public class SpellTest {
 
 	@Test
 	public void testIsTargetValid() {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Player target = createTarget();
 		boolean targetValid = spell.isTargetValid(caster, target);
@@ -70,7 +76,6 @@ public class SpellTest {
 	
 	@Test(expected=InvalidSpellTargetException.class)
 	public void testIsTargetValidCreature() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Creature creature = SingletonRepository.getEntityManager().getCreature("rat");
 		boolean creatureTargetValid = spell.isTargetValid(caster, creature);
@@ -80,7 +85,6 @@ public class SpellTest {
 	
 	@Test(expected=InvalidSpellTargetException.class)
 	public void testIsTargetValidItem() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Item i = SingletonRepository.getEntityManager().getItem("axe");
 		boolean itemIsInvalid = spell.isTargetValid(caster, i);
@@ -90,14 +94,12 @@ public class SpellTest {
 	
 	@Test
 	public void testCopyConstructor() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Spell copy = new HealingSpell(spell);
 		assertThat(copy, is(spell));
 	}
 	
 	@Test(expected=SpellNotCooledDownException.class)
 	public void testCoolDownNegative() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		long lastCastTime = System.currentTimeMillis() + spell.getCooldown();
 		spell.put("timestamp", String.valueOf(lastCastTime));
 		Player target = createTarget();
@@ -107,7 +109,6 @@ public class SpellTest {
 	
 	@Test
 	public void testCoolDownPositive() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		spell.put("timestamp", String.valueOf(0L));
 		assertThat(Boolean.valueOf(spell.isCooledDown()), is(Boolean.TRUE));
 		Player target = createTarget();
@@ -117,7 +118,6 @@ public class SpellTest {
 	
 	@Test
 	public void testPossibleSlots() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		boolean inSpells = spell.canBeEquippedIn("spells");
 		assertThat(Boolean.valueOf(inSpells), is(Boolean.TRUE));
 		boolean inBag = spell.canBeEquippedIn("bag");
@@ -126,7 +126,6 @@ public class SpellTest {
 	
 	@Test(expected=InsufficientManaException.class)
 	public void testManaCheckNegative() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		caster.setMana(0);
 		caster.setBaseMana(0);
@@ -136,7 +135,6 @@ public class SpellTest {
 	
 	@Test
 	public void testManaCheckPositive() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Player target = createTarget();
 		spell.cast(caster, target);
@@ -144,16 +142,14 @@ public class SpellTest {
 	
 	@Test(expected=LevelRequirementNotFulfilledException.class)
 	public void testLevelCheckNegative() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
-		caster.setLevel(5);
+		caster.setLevel(1);
 		Player target = createTarget();
 		spell.cast(caster, target);
 	}
 	
 	@Test
 	public void testLevelCheckPositive() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Player target = createTarget();
 		spell.cast(caster, target);
@@ -161,7 +157,6 @@ public class SpellTest {
 
 	@Test
 	public void testEffectHeal() throws Exception {
-		Spell spell = SingletonRepository.getEntityManager().getSpell("heal");
 		Player caster = createWizard();
 		Player target = createTarget();
 		target.setBaseHP(500);
