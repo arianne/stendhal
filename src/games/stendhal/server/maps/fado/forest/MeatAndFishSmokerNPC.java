@@ -35,21 +35,21 @@ import java.util.HashSet;
  * @author omero 
  */
 public class MeatAndFishSmokerNPC implements ZoneConfigurator {
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
-	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
-	}
+    /**
+     * Configure a zone.
+     *
+     * @param   zone        The zone to be configured.
+     * @param   attributes  Configuration attributes.
+     */
+    public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
+        buildNPC(zone, attributes);
+    }
 
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
-		final SpeakerNPC npc = new SpeakerNPC("Olmo") {
+    private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+        final SpeakerNPC npc = new SpeakerNPC("Olmo") {
 
-			@Override
-			protected void createPath() {
+            @Override
+            protected void createPath() {
                 final List<Node> nodes = new LinkedList<Node>();
                 nodes.add(new Node(26, 53));
                 nodes.add(new Node(26, 58));
@@ -61,15 +61,25 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 nodes.add(new Node(22, 50));
                 nodes.add(new Node(22, 53));
 
-				setPath(new FixedPath(nodes, true));
-			}
+                setPath(new FixedPath(nodes, true));
+            }
 
-			@Override
-			protected void createDialog() {
-				addJob("I'm a multiproducer. I can #smoke meat, ham, trout or cod for you.");
-				addOffer("I will #smoke meat, ham, trout or cod for you, if you bring me what is needed.");
-				addHelp("Ask me to #smoke you meat, ham, trout or cod, that's what I'm good at.");
-				addGoodbye("S' veg!");
+            @Override
+            protected void createDialog() {
+                addJob("I can #smoke you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod. Just ask me to!");
+                addOffer("I will #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked cod, but you'll have to bring me what is needed.");
+                addHelp("Ask me to #smoke for you #smoked #meat, #smoked #ham, #smoked #trout or #smoked #cod, that's what I'm good at when you bring me what is needed.");
+
+                addReply(Arrays.asList("smoked", "smoked meat", "smoked ham", "smoked trout", "smoked cod"),
+                    "The true secret is which herbs and which wood will make the perfect #smoke.");
+                addReply(Arrays.asList("sclaria", "kekik"),
+                    "It grows in many places, at the edges or well in the depths of a forest.");
+                addReply(Arrays.asList("trout", "cod"),
+                    "I wouldn't reveal you where my favorite fishing spots are but I would suggest you go find some books on the subject in one of those scholarly places.");
+                addReply(Arrays.asList("meat","ham"),
+                    "I don't care if it comes from lion or elephant... I can #smoke that for you!"); 
+                    
+                addGoodbye("S' veg!");
 
                 final HashSet<String> productsNames = new HashSet<String>();
                 productsNames.add("smoked meat");
@@ -77,25 +87,25 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 productsNames.add("smoked trout");
                 productsNames.add("smoked cod");
 
-				final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
-				reqRes_smokedMeat.put("wood", 2);
-				reqRes_smokedMeat.put("meat", 1);
-				reqRes_smokedMeat.put("kekik", 1);
+                final Map<String, Integer> reqRes_smokedMeat = new TreeMap<String, Integer>();
+                reqRes_smokedMeat.put("wood", 2);
+                reqRes_smokedMeat.put("meat", 1);
+                reqRes_smokedMeat.put("kekik", 1);
 
-				final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
-				reqRes_smokedHam.put("wood", 3);
-				reqRes_smokedHam.put("ham", 1);
-				reqRes_smokedHam.put("kekik", 2);
+                final Map<String, Integer> reqRes_smokedHam = new TreeMap<String, Integer>();
+                reqRes_smokedHam.put("wood", 3);
+                reqRes_smokedHam.put("ham", 1);
+                reqRes_smokedHam.put("kekik", 2);
 
-				final Map<String, Integer> reqRes_smokedTrout = new TreeMap<String, Integer>();
-				reqRes_smokedTrout.put("wood", 1);
-				reqRes_smokedTrout.put("trout", 1);
-				reqRes_smokedTrout.put("sclaria", 1);
+                final Map<String, Integer> reqRes_smokedTrout = new TreeMap<String, Integer>();
+                reqRes_smokedTrout.put("wood", 1);
+                reqRes_smokedTrout.put("trout", 1);
+                reqRes_smokedTrout.put("sclaria", 1);
 
-				final Map<String, Integer> reqRes_smokedCod = new TreeMap<String, Integer>();
-				reqRes_smokedCod.put("wood", 1);
-				reqRes_smokedCod.put("cod", 1);
-				reqRes_smokedCod.put("sclaria", 2);
+                final Map<String, Integer> reqRes_smokedCod = new TreeMap<String, Integer>();
+                reqRes_smokedCod.put("wood", 1);
+                reqRes_smokedCod.put("cod", 1);
+                reqRes_smokedCod.put("sclaria", 2);
 
 
                 final HashMap<String, Map<String, Integer>> requiredResourcesPerProduct = new HashMap<String, Map<String, Integer>>();
@@ -116,7 +126,7 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 productsBound.put("smoked trout", true);
                 productsBound.put("smoked cod", false);
 
-				final MultiProducerBehaviour behaviour = new MultiProducerBehaviour(
+                final MultiProducerBehaviour behaviour = new MultiProducerBehaviour(
                     "olmo_smoke_meatandfish",
                     "smoke",
                     productsNames,
@@ -124,16 +134,16 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                     productionTimesPerProduct,
                     productsBound);
 
-				new MultiProducerAdder().addMultiProducer(this, behaviour,
-				        "Hi there. Sure you smelled the aroma coming from  my #smoked products! I can #smoke you meat, ham, trout or cod if you ask me!");
-			}
-		};
+                new MultiProducerAdder().addMultiProducer(this, behaviour,
+                        "Hi there! Sure you smelled the aroma coming from  my #smoked products!");
+            }
+        };
 
-		npc.setEntityClass("meatandfishsmokernpc");
-		npc.setDirection(Direction.DOWN);
-		npc.setPosition(26, 53);
-		npc.initHP(100);
-		npc.setDescription("You see Olmo. He seems busy smoking meat and fish.");
-		zone.add(npc);
-	}
+        npc.setEntityClass("meatandfishsmokernpc");
+        npc.setDirection(Direction.DOWN);
+        npc.setPosition(26, 53);
+        npc.initHP(100);
+        npc.setDescription("You see Olmo. He seems busy smoking meat and fish.");
+        zone.add(npc);
+    }
 }
