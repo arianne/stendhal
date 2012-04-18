@@ -77,8 +77,9 @@ public class PlayerLootedItemsHandler {
 	 * @return the number of loots from corpses
 	 */
 	public int getNumberOfLootsForItem(String item) {
-		if(player.containsKey(LOOTED_ITEMS, item)) {
-			return player.getInt(LOOTED_ITEMS, item);
+		Integer lootedNumber = looted.get(item);
+		if(lootedNumber != null) {
+			return lootedNumber.intValue();
 		}
 		return 0;
 	}
