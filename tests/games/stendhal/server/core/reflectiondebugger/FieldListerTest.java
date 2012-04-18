@@ -33,9 +33,10 @@ public class FieldListerTest {
 		FieldLister fl = new FieldLister(new MockChildClass());
 		fl.scan();
 		Map<String, Pair<String, String>> fields = fl.getResult();
-
-		// field created by ecl-emma to track coverage data
+		
+		// fields created by ecl-emma to track coverage data
 		fields.remove("$VRc");
+		fields.remove("$jacocoData");
 
 		assertThat(fields.size(), is(5));
 		
