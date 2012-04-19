@@ -334,7 +334,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 	
 	@Override
 	public String getRegion() {
-		return Region.KIRDNEH_CITY;
+		return Region.KIRDNEH;
 	}
 	@Override
 	public String getNPCName() {

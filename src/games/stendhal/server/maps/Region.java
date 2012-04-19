@@ -24,7 +24,7 @@ public final class Region {
 	public static final String SEMOS_SURROUNDS = "Semos Surrounds";
 	public static final String FADO_CITY = "Fado City";
 	public static final String NALWOR_CITY = "Nalwor City";
-	public static final String KIRDNEH_CITY = "Kirdneh City";
+	public static final String KIRDNEH = "Kirdneh";
 	public static final String KALAVAN = "Kalavan";
 	private Region() {
 		// hide constructor

@@ -359,7 +359,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 	
 	@Override
 	public String getRegion() {
-		return Region.KIRDNEH_CITY;
+		return Region.KIRDNEH;
 	}
 
 	@Override

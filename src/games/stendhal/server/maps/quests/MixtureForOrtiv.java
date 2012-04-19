@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.ArrayList;
@@ -277,4 +278,8 @@ public class MixtureForOrtiv extends AbstractQuest {
 		return "Ortiv Milquetoast";
 	}
 	
+	@Override
+	public String getRegion() {
+		return Region.KIRDNEH;
+	}
 }
