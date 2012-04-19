@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -222,4 +223,10 @@ public class KillGnomes extends AbstractQuest {
 	public String getNPCName() {
 		return "Jenny";
 	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
+	}
+	
 }

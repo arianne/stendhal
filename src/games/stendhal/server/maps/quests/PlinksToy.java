@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -197,4 +198,9 @@ public class PlinksToy extends AbstractQuest {
 		return "Plink";
 	}
 
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
+	}
+	
 }

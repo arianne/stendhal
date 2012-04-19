@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -334,5 +335,10 @@ public class WeaponsCollector2 extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Balduin";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_SURROUNDS;
 	}
 }

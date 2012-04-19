@@ -18,6 +18,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
@@ -215,5 +216,10 @@ public class WeaponsCollector extends AbstractQuest implements
 	@Override
 	public String getNPCName() {
 		return "Balduin";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_SURROUNDS;
 	}
 }

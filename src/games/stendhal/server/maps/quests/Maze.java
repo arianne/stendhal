@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.maze.MazeGenerator;
 import games.stendhal.server.maps.quests.maze.MazeSign;
 
@@ -178,5 +179,10 @@ public class Maze extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Haizen";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_SURROUNDS;
 	}
 }

@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.revivalweeks.DadNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FishermansDaughterSellingNPC;
 import games.stendhal.server.maps.quests.revivalweeks.FoundGirl;
@@ -89,4 +90,10 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
+	}
+	
 }

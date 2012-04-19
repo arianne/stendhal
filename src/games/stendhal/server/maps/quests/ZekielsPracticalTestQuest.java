@@ -32,6 +32,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -353,5 +354,10 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Zekiel the guardian";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
 	}
 }
