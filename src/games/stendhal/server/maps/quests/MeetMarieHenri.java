@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,6 +76,11 @@ public class MeetMarieHenri extends AbstractQuest {
 		return "MeetMarieHenri";
 	}
 
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
+	}
+	
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
