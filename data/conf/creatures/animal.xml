@@ -591,6 +591,40 @@
     </ai>
   </creature>
 
+  <creature name="killer bee">
+    <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
+    <description>You see a killer bee which will sting you to death!</description>
+    <attributes>
+      <atk value="245"/>
+      <def value="35"/>
+      <hp value="100"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="40"/>
+    <experience value="1"/>
+    <respawn value="900"/>
+    <corpse name="small_boneless"/>
+    <drops>
+      <item value="honey" quantity="[1,5]" probability="80.0"/>
+      <item value="poison" quantity="[1,1]" probability="50.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="steel arrow" quantity="10000"/>
+      <slot name="rhand" item="wooden bow" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="BbzzZZzzz!"/>
+      </says>
+      <profile name="poisonous" params="50,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="green slime">
     <type class="animal" subclass="green_slime" tileid="animal.png:12"/>
     <description>You see a green slime, sticky and shiny.</description>
