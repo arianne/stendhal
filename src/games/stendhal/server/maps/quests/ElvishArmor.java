@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
@@ -236,5 +237,11 @@ public class ElvishArmor extends AbstractQuest implements
 	@Override
 	public String getNPCName() {
 		return "Lupos";
+	}
+	
+	// it's technically in Fado forest but much nearer Kirdneh city
+	@Override
+	public String getRegion() {
+		return Region.KIRDNEH;
 	}
 }
