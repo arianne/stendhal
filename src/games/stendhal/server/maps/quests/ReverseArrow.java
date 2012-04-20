@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -529,5 +530,10 @@ public class ReverseArrow extends AbstractQuest implements
 	@Override
 	public String getNPCName() {
 		return "Gamblos";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
 	}
 }
