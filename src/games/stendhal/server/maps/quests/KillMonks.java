@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -243,5 +244,10 @@ public class KillMonks extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Andy";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
 	}
 }
