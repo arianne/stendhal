@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.common.grammar.Grammar;
@@ -28,7 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 
-	private final String region;
+	private final List<String> regions;
 
 	/**
 	 * Creates a new SayNPCNamesForUnstartedQuestsAction.
@@ -36,11 +38,24 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 	 * @param region region of NPC
 	 */
 	public SayNPCNamesForUnstartedQuestsAction(String region) {
-		this.region = region;
+		this.regions = Arrays.asList(region);
+	}
+	
+	/**
+	 * Creates a new SayNPCNamesForUnstartedQuestsAction.
+	 * 
+	 * @param regions regions of NPC
+	 */
+	public SayNPCNamesForUnstartedQuestsAction(List<String> regions) {
+		this.regions = regions;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		List<String> npcs = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
+		List<String> npcs = new LinkedList<String>();
+		for (String region: regions) {
+			List<String> npcsInRegion = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
+			npcs.addAll(npcsInRegion);		
+		}
         String verb = "need";
         if (npcs.size()==1) { 
         	verb = "needs";  
@@ -48,14 +63,14 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 		if (npcs.size()>0) {
         	raiser.say(Grammar.enumerateCollectionWithHash(npcs) + " " + verb + " your help.");
         } else {
-        	raiser.say("You have already embarked upon all quests which you can handle, near " + region + ".");
+        	raiser.say("You have already embarked upon all quests which you can handle, near " + Grammar.enumerateCollection(regions) + ".");
         }
         	
 	}
 
 	@Override
 	public String toString() {
-		return "SayNPCNamesForUnstartedQuestsAction in region <" + region +  ">";
+		return "SayNPCNamesForUnstartedQuestsAction in region <" + regions.toString() +  ">";
 	}
 
 

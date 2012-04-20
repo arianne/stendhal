@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.parser.Sentence;
@@ -26,7 +27,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Gives description for unstarted quest based on npc name
  */
 public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction {
-	private final String region;
+	
+	private final List<String> regions;
 
 	/**
 	 * Creates a new SayUnstartedQuestDescriptionFromNPCNameAction.
@@ -34,26 +36,37 @@ public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction
 	 * @param region region of NPC
 	 */
 	public SayUnstartedQuestDescriptionFromNPCNameAction(String region) {
-		this.region = region;
+		this.regions = Arrays.asList(region);
 	}
-
+	
+	/**
+	 * Creates a new SayUnstartedQuestDescriptionFromNPCNameAction.
+	 * 
+	 * @param regions regions of NPC
+	 */
+	public SayUnstartedQuestDescriptionFromNPCNameAction(List<String> regions) {
+		this.regions = regions;
+	}
+	
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		List<String> npcnames = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
-		for (String name :  npcnames) {
-			if (name.equalsIgnoreCase(sentence.getTriggerExpression().toString())) {
-				List<String> descs = SingletonRepository.getStendhalQuestSystem().getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player,region,name);
-				StringBuffer answer = new StringBuffer();
-				for (String desc : descs) {
-					answer.append(desc + " ");
-				}
-				raiser.say(answer.toString().trim());
+		for (String region: regions) {
+			List<String> npcnames = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
+			for (String name :  npcnames) {
+				if (name.equalsIgnoreCase(sentence.getTriggerExpression().toString())) {
+					List<String> descs = SingletonRepository.getStendhalQuestSystem().getQuestDescriptionForUnstartedQuestInRegionFromNPCName(player,region,name);
+					StringBuffer answer = new StringBuffer();
+					for (String desc : descs) {
+						answer.append(desc + " ");
+					}
+					raiser.say(answer.toString().trim());
+				}	
 			}
-		} 	
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "SayUnstartedQuestDescriptionFromNPCNameAction in region <" + region +  ">";
+		return "SayUnstartedQuestDescriptionFromNPCNameAction in region <" + regions.toString() +  ">";
 	}
 
 

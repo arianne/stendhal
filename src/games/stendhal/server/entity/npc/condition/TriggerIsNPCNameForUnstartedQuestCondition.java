@@ -11,6 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.TriggerList;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -25,7 +29,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Was the trigger phrase a name of an NPC for an unstarted quest in the region? (Use with a ""-trigger in npc.add)
  */
 public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition {
-	private final String region;
+	
+	private final List<String> regions;
 
 	/**
 	 * Creates a new TriggerIsNPCNameForUnstartedQuestCondition
@@ -33,18 +38,29 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 	 * @param region
 	 */
 	public TriggerIsNPCNameForUnstartedQuestCondition(final String region) {
-		this.region=region;
+		this.regions=Arrays.asList(region);
 	}
-
+	
+	/**
+	 * Creates a new TriggerIsNPCNameForUnstartedQuestCondition
+	 * 
+	 * @param regions
+	 */
+	public TriggerIsNPCNameForUnstartedQuestCondition(final List<String> regions) {
+		this.regions=regions;
+	}
 	
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
-		TriggerList npcs =  new TriggerList(SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region));
-		return npcs.contains(sentence.getTriggerExpression());
+		List<String> npcs = new LinkedList<String>();
+		for (String region: regions) {
+			npcs.addAll(SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region));
+		}
+		return (new TriggerList(npcs)).contains(sentence.getTriggerExpression());
 	}
 
 	@Override
 	public String toString() {
-		return "Trigger is name of npc for unstarted quest in <" + region + ">";
+		return "Trigger is name of npc for unstarted quest in <" + regions.toString() + ">";
 	}
 
 	@Override
