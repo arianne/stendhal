@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -231,5 +232,10 @@ public class SuntanCreamForZara extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Zara";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ATHOR_ISLAND;
 	}
 }

@@ -20,6 +20,7 @@ public final class Region {
 	public static final String ADOS_CITY = "Ados City";
 	public static final String ADOS_SURROUNDS = "Ados Surrounds";
 	public static final String AMAZON_ISLAND = "Amazon Island";
+	public static final String ATHOR_ISLAND = "Athor Island";
 	public static final String SEMOS_CITY = "Semos City";
 	public static final String SEMOS_SURROUNDS = "Semos Surrounds";
 	public static final String FADO_CITY = "Fado City";
