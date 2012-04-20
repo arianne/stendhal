@@ -314,7 +314,7 @@ public class FindGhosts extends AbstractQuest {
 
 	@Override
 	public String getNPCName() {
-		return "Carmen";
+		return "Carena";
 	}
 	
 	@Override
