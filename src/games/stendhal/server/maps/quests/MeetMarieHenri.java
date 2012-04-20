@@ -61,7 +61,7 @@ public class MeetMarieHenri extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 		fillQuestInfo("Meet Marie-Henri",
-				"A famous french writer is testing my general knowledge.",
+				"A famous French writer tests general knowledge in Ados Library.",
 				false);
 		createSteps();
 	}
