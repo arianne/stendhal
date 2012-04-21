@@ -595,19 +595,19 @@
     <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
     <description>You see a killer bee which will sting you to death!</description>
     <attributes>
-      <atk value="245"/>
-      <def value="35"/>
+      <atk value="100"/>
+      <def value="75"/>
       <hp value="100"/>
-      <speed value="0.5"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="40"/>
-    <experience value="1"/>
+    <level value="30"/>
+    <experience value="1500"/>
     <respawn value="900"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="honey" quantity="[1,5]" probability="80.0"/>
-      <item value="poison" quantity="[1,1]" probability="50.0"/>
+      <item value="honey" quantity="[1,2]" probability="15.0"/>
+      <item value="poison" quantity="[1,1]" probability="15.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="steel arrow" quantity="10000"/>
