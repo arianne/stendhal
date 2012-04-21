@@ -1,9 +1,5 @@
-/* CC-BY Hendrik Brummermann <nhb_web@nexgo.de>
- * (But becomes GPL because it is required to link against GPL code).
- */
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -144,8 +140,7 @@ public class Postman {
 	 * @param text
 	 *            text
 	 */
-	public void processPrivateTalkEvent(final RPObject object,
-			@SuppressWarnings("unused") final String texttype, final String text) {
+	public void processPrivateTalkEvent(final RPObject object, final String texttype, final String text) {
 
 		try {
 			if (object == null) {
@@ -195,9 +190,11 @@ public class Postman {
 									"Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
 											+ HELP_MESSAGE);
 						}
+					} else if (text.startsWith("Administrator SHOUTS: ")) {
+						postmanIRC.sendMessageToAllChannels(text);
 					} else if (text.matches("[^:]* shouts: .*")) {
 						if (!text.equals(lastShout)) {
-							postmanIRC.sendMessageToAllChannels(text);
+							postmanIRC.sendMessageToSignChannels(text);
 							lastShout = text;
 						}
 					} else if (text.matches("[^:]* rented .*")) {
