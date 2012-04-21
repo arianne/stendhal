@@ -53,11 +53,15 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
                 final List<Node> nodes = new LinkedList<Node>();
                 nodes.add(new Node(26, 53));
                 nodes.add(new Node(26, 58));
-                nodes.add(new Node(23, 58));
+                nodes.add(new Node(22, 58));
                 nodes.add(new Node(29, 58));
-                nodes.add(new Node(26, 58));
-                nodes.add(new Node(26, 53));
-                nodes.add(new Node(22, 53));
+                nodes.add(new Node(29, 52));
+                nodes.add(new Node(31, 52));
+                nodes.add(new Node(27, 52));
+                nodes.add(new Node(27, 53));
+                nodes.add(new Node(25, 53));
+                nodes.add(new Node(25, 52));
+                nodes.add(new Node(22, 52));
                 nodes.add(new Node(22, 50));
                 nodes.add(new Node(22, 53));
 
