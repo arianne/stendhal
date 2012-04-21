@@ -64,6 +64,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -280,15 +281,34 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Game log
 		 */
-		JComponent chatLogArea = createLogArea();
+		final JComponent chatLogArea = createLogArea();
 		chatLogArea.setPreferredSize(new Dimension(getWidth(), 171));
 
+		// *** Key handling ***
 		final KeyListener keyListener = new GameKeyHandler();
-
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
 		chatText.addKeyListener(keyListener);
 		screen.addKeyListener(keyListener);
+		// Also redirect key presses to the chatlog tabs, so that the tabs
+		// can be switched with ctrl-PgUp/Down
+		chatText.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				/*
+				 * Redispatch only if CTRL is pressed. Otherwise any arrow key
+				 * press will be interpreted as switching log tabs.
+				 * 
+				 * What should be used for Macs?
+				 */
+				if (e.isControlDown()) {
+					chatLogArea.dispatchEvent(e);
+					// The log tab contents like stealing the focus if they get
+					// key events.
+					chatText.getPlayerChatText().requestFocus();
+				}
+			}
+		});
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
