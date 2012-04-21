@@ -202,7 +202,7 @@ public class Postman {
 						}
 					} else if (text.matches("[^:]* rented .*")) {
 						// for signs
-						postmanIRC.sendMessageToAllChannels(text);
+						postmanIRC.sendMessageToSignChannels(text);
 					} else if (texttype.equalsIgnoreCase("support")) {
 						postmanIRC.sendSupportMessage(text);
 						dumpPlayerPosition();

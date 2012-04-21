@@ -30,16 +30,15 @@ import org.jibble.pircbot.ReplyConstants;
 
 /**
  * IRC Bot for postman.
- * 
+ *
  * @author hendrik
  */
 public class PostmanIRC extends PircBot {
 
-	private static List<String> channels = new LinkedList<String>();
 
 	private static final String STENDHAL_POSTMAN_CONF = ".stendhal-postman-conf.xml";
 	private static final String STENDHAL_POSTMAN_ANSWERS = ".stendhal-postman-answers.xml";
-	
+
 	private static final Logger LOGGER = Logger.getLogger(PostmanIRC.class);
 
 	/** myNick targetNick additionalData? :comment */
@@ -48,9 +47,15 @@ public class PostmanIRC extends PircBot {
 	private static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
 
 
+	private static List<String> channels = new LinkedList<String>();
+
+	private static List<String> signChannels = new LinkedList<String>();
+
 	private static String supportChannel;
 
 	private static String mainChannel;
+
+	private static String chatChannel;
 
 	private final Properties conf = new Properties();
 
@@ -58,11 +63,11 @@ public class PostmanIRC extends PircBot {
 
 	private final FloodDetection floodDetection = new FloodDetection();
 
-	private CounterMap<String> kickedHostnames = new CounterMap<String>();
+	private final CounterMap<String> kickedHostnames = new CounterMap<String>();
 
 	/**
 	 * Creates a new PostmanIRC.
-	 * 
+	 *
 	 * @param gameServer name of game server
 	 */
 	public PostmanIRC(final String gameServer) {
@@ -71,11 +76,15 @@ public class PostmanIRC extends PircBot {
 			this.conf.loadFromXML(new FileInputStream(STENDHAL_POSTMAN_CONF));
 			supportChannel = conf.getProperty("support");
 			mainChannel = conf.getProperty("main");
+			chatChannel = conf.getProperty("chat");
 
 			channels.add(supportChannel);
 			channels.add(mainChannel);
-			channels.add(conf.getProperty("chat"));
+			channels.add(chatChannel);
 			channels.remove(null);
+
+			signChannels.add(supportChannel);
+			signChannels.add(chatChannel);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
 		}
@@ -83,7 +92,7 @@ public class PostmanIRC extends PircBot {
 
 	/**
 	 * Postman IRC bot.
-	 * 
+	 *
 	 * @throws IOException  in case input/output error
 	 * @throws IrcException in case of an irc issue
 	 * @throws InterruptedException in case of a timeout
@@ -167,8 +176,20 @@ public class PostmanIRC extends PircBot {
 	}
 
 	/**
+	 * sends a message to all channels
+	 *
+	 * @param text message to send
+	 */
+	void sendMessageToSignChannels(String text) {
+		for (final String channelName : signChannels) {
+			sendMultilineMessage(channelName, text);
+		}
+	}
+
+
+	/**
 	 * gets the game account name associated to an irc account
-	 * 
+	 *
 	 * @param ircAccountName irc account
 	 * @return game account
 	 */
@@ -214,7 +235,7 @@ public class PostmanIRC extends PircBot {
 		EventHandler handler = CommandFactory.create(message, sender, this);
 		if (handler != null) {
 			EventRaiser.get().addEventHandler(EventType.IRC_WHOIS, sender, handler);
-			sendRawLineViaQueue("WHOIS "+ sender); 
+			sendRawLineViaQueue("WHOIS "+ sender);
 		} else if (message.equals("help")) {
 			sendHelpReply(sender);
 		} else if (message.startsWith("$")) {
@@ -252,7 +273,7 @@ public class PostmanIRC extends PircBot {
 		}
 	}
 
-	
+
 	private void listCanedResponses(String target) {
 		// load answer file (reload it every time so that it can be edited)
 		Properties answers = new Properties();
@@ -331,5 +352,4 @@ public class PostmanIRC extends PircBot {
 		EventRaiser.get().fire(EventType.IRC_OP, channel, null);
 		sendMessage("ChanServ", "deop " + channel);
 	}
-
 }
