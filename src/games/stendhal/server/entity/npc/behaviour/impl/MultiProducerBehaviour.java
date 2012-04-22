@@ -54,9 +54,6 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 * player will get, product is the name of the ordered product, and time is
 	 * the time when the order was given, in milliseconds since the epoch.</li>
 	 * </ul>
-	 *
-     * Note: This description needs to be fixed.
-     *
 	 */
     private final String questSlot;
 
@@ -66,20 +63,19 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
     private final String productionActivity;
 
 	/**
-	 * For each of the products, in which units the product is counted, e.g. "bags", "pieces", "pounds"
+	 * TODO: For each of the products, in which units the product is counted, e.g. "bags", "pieces", "pounds"
      * This is not used at the moment.
 	 */
     //private final HashMap<String, Map<String, String>> productsUnits;
 
-	/**
-	 * The unit in which the product is counted, e.g. "bags", "pieces", "pounds"
-	 */
-	// private String productUnit;
-
+    /**
+     * TODO: Use this to return a 'default' product among the ones the NPC is able to produce?
+     * This is not used at the moment.
+     */
 	//private final String productName;
 
 	/**
-	 * Products the NPC is providing
+	 * The set of products the NPC is providing
 	 */
     private final HashSet<String> productsNames;
 
@@ -98,26 +94,27 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 */
     private final HashMap<String, Integer> productionTimesPerProduct;
 
-
     private static Logger logger = Logger.getLogger(MultiProducerBehaviour.class);
 
     /**
      * Creates a new MultiProducerBehaviour.
      * 
      * @param questSlot
-     *            the slot that is used to store the status of the ordered production
+     *            The slot that is used to store the status of the production.
      * @param productionActivity
-     *            the name of the activity, e.g. "build", "brew", "bake"
+     *            The name of the activity, e.g. "build", "brew", "bake"
 	 * @param productsNames
-	 *            the set of items that the NPC is able to provide.
+	 *            The set of items that the NPC is able to produce.
      *            All must be valid items names.
      * @param requiredResourcesPerProduct
-     *            a mapping which maps the name of each product to 
-     *            a mapping of resources required for that product, stated as <item, quantity> 
+     *            The mapping which maps the name of each product to 
+     *            the mapping of resources required for producing that product, stated as <item, quantity> 
      * @param productionTimesPerProduct
-     *            a mapping of the name of a product to the amount of time required to produce it
+     *            The mapping of the name of a product to
+     *            the amount of time required to produce it
      * @param productsBound
-     *            a mapping of the name of a product to wether or not that product is bound to the player.
+     *            The mapping of the name of a product to
+     *            whether or not that product will be bound to the player.
      */
     public MultiProducerBehaviour(
             final String questSlot,
@@ -138,8 +135,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         this.productsBound = productsBound;
 
 		// add the activity word as verb to the word list in case it is still missing there
-        logger.info("Registering activity [" + productionActivity + "] in the word list");
-		//WordList.getInstance().registerName(productionActivity, ExpressionType.VERB);
+        //logger.info("Registering activity [" + productionActivity + "] in the word list");
 		WordList.getInstance().registerVerb(productionActivity);
 
         // iterate through each of the required resource items and add them as a object to the word list
@@ -147,7 +143,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         Iterator<String> i = requiredResourcesPerProduct.keySet().iterator();
         while (i.hasNext()) {
             requiredResourceName = (String) i.next();
-            logger.info("Registering required resource item [" + requiredResourceName + "] in the word list as OBJECT");
+            //logger.info("Registering required resource item [" + requiredResourceName + "] in the word list as OBJECT");
 			WordList.getInstance().registerName(requiredResourceName, ExpressionType.OBJECT);
 		}
     }
@@ -164,7 +160,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         return productionActivity;
     }
 
-//	protected String getProductUnit() {
+//	protected String getProductUnit(final String productName) {
 //	return productsUnits.get(productName);
 //	}
 
@@ -177,13 +173,21 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         return productsNames;
     }
 
+    /**
+     * Return how much time is required to make the requested amount of products
+     * 
+     * @param productName
+     * @param amount
+     * @return amount of time to produce amount of product
+     */
     protected int getProductionTime(final String productName, final int amount) {
         return productionTimesPerProduct.get(productName) * amount;
     }
 
 	/**
-	 * Determine whether the produced item should be player bound.
-	 * 
+	 * Return whether the requested product will be bound to the player.
+	 *
+	 * @param productName
 	 * @return <code>true</code> if the product should be bound.
 	 */
 	public boolean isProductBound(final String productName) {
@@ -228,7 +232,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
     }
 
     /**
-     * Checks how many items are being produced on this particular order
+     * Checks how many items are being produced for this particular order
      * 
      * @param player
      * @return number of items
@@ -241,8 +245,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
     }
 
     /**
-     * At the time the order is made,
-     * Gets a nicely formulated string that describes the amounts and names of
+     * Return a nicely formulated string that describes the amounts and names of
      * the resources that are required to produce <i>amount</i> units of the
      * choosen product, with hashes prepended to the resource names in order to
      * highlight them, e.g. "4 #wood, 2 #iron, and 6 #leather".
@@ -264,8 +267,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
     }
 
 	/**
-     * At the time the order is made,
-	 * Gets a nicely formulated string that describes the amounts and names of
+	 * Return a nicely formulated string that describes the amounts and names of
 	 * the resources that are required to produce <i>amount</i> units of the
 	 * chosen product.
 	 *
@@ -378,7 +380,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 * At the time the player returns to pick up the finished product,
      * check that the NPC is done with the order.
      * If that is the case, the player is given the product,
-     * otherwise the NPC asks the player to come back later.
+     * otherwise the NPC tells to the player to come back later.
 	 * 
 	 * @param npc
 	 *            The producing NPC
