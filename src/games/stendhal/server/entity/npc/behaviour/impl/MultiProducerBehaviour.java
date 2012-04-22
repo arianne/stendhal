@@ -144,7 +144,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 
         // iterate through each of the required resource items and add them as a object to the word list
         String requiredResourceName;
-        Iterator i = requiredResourcesPerProduct.keySet().iterator();
+        Iterator<String> i = requiredResourcesPerProduct.keySet().iterator();
         while (i.hasNext()) {
             requiredResourceName = (String) i.next();
             logger.info("Registering required resource item [" + requiredResourceName + "] in the word list as OBJECT");
