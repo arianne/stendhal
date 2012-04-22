@@ -184,11 +184,11 @@ public class ProducerRegister {
 		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
 			MultiProducerBehaviour behaviour = producer.second();
 			HashSet<String> products =  behaviour.getProductsNames();
-            Iterator i = products.iterator();
+            Iterator<String> i = products.iterator();
             String product;
 
             while (i.hasNext()) {
-                product = i.next().toString();
+                product = (String) i.next();
                 if(itemName.equals(product)) {
                     String npcName = producer.first();
                     String activity =  behaviour.getProductionActivity();
@@ -219,10 +219,10 @@ public class ProducerRegister {
 		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
 			final MultiProducerBehaviour behaviour = producer.second();
 			final HashSet<String> products =  behaviour.getProductsNames();
-            Iterator i = products.iterator();
+            Iterator<String> i = products.iterator();
             String product;
             while (i.hasNext()) {
-                product = i.next().toString();
+                product = (String) i.next();
                 final Item item = SingletonRepository.getEntityManager().getItem(product);
                 if (item.isOfClass(clazz)) {
                     res.add(product);
