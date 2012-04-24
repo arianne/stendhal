@@ -72,7 +72,7 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 	        }
 		}
 		if (finishedregions.size() > 0) {
-			sb.append("You've already helped everyone in " + Grammar.enumerateCollection(finishedregions) + " who'd have a task you can handle. ");
+			sb.append("There's noone in " + Grammar.enumerateCollection(finishedregions) + " who'd have a task you can handle, or that you haven't helped already.");
 		} 
 		raiser.say(sb.toString().trim());
         
