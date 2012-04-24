@@ -75,7 +75,7 @@ public class Campfire extends AbstractQuest {
 
 	private static final int REQUIRED_WOOD = 10;
 	
-	private static final int REQUIRED_MINUTES = 5;
+	private static final int REQUIRED_MINUTES = 60;
 
 	private static final String QUEST_SLOT = "campfire";
 

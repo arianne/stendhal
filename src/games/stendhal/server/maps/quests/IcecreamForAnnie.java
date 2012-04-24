@@ -57,7 +57,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	private static final String QUEST_SLOT = "icecream_for_annie";
 
 	/** The delay between repeating quests. */
-	private static final int REQUIRED_MINUTES = 30;
+	private static final int REQUIRED_MINUTES = 60;
 
 	@Override
 	public String getSlotName() {
