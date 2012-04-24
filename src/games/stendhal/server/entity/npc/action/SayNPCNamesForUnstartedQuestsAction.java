@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * says the list of the npc names for unstarted quests in a specified region in the form npc1, npc2, and npc3 all need your help.
+ * Says the list of the NPC names for unstarted quests in a specified region in the form npc1, npc2, and npc3 all need your help.
  */
 public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 
@@ -51,20 +51,31 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		List<String> npcs = new LinkedList<String>();
+		// to build up the message the npc will say
+		StringBuilder sb = new StringBuilder();	
+		// capture the regions with no quests remaining so that we can list them all at the end
+		List<String> finishedregions = new LinkedList<String>();
+
 		for (String region: regions) {
-			List<String> npcsInRegion = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
-			npcs.addAll(npcsInRegion);		
+			// to hold the list of npcs for each region
+			List<String> npcs = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
+			String verb = "need";
+	        if (npcs.size()==1) { 
+	        	verb = "needs";  
+	        }
+			if (npcs.size()>0) {
+	        	sb.append("In " + region + " ");
+	        	sb.append(Grammar.enumerateCollectionWithHash(npcs));
+	        	sb.append(" " + verb + " your help. ");
+	        } else {
+	        	finishedregions.add(region);
+	        }
 		}
-        String verb = "need";
-        if (npcs.size()==1) { 
-        	verb = "needs";  
-        }
-		if (npcs.size()>0) {
-        	raiser.say(Grammar.enumerateCollectionWithHash(npcs) + " " + verb + " your help.");
-        } else {
-        	raiser.say("You have already embarked upon all quests which you can handle, near " + Grammar.enumerateCollection(regions) + ".");
-        }
+		if (finishedregions.size() > 0) {
+			sb.append("You've already helped everyone in " + Grammar.enumerateCollection(finishedregions) + " who'd have a task you can handle. ");
+		} 
+		raiser.say(sb.toString().trim());
+        
         	
 	}
 
