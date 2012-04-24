@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -504,6 +505,11 @@ import org.apache.log4j.Logger;
 	@Override
 	public String getNPCName() {
 		return "Phalk";
+	}
+		
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_MINES;
 	}
 }
  

@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,5 +137,10 @@ public class McPeglegIOU extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "McPegleg";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_DUNGEONS;
 	}
 }

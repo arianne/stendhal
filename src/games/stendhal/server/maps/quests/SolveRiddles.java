@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -327,4 +328,8 @@ public class SolveRiddles extends AbstractQuest {
 		return "Grim Reaper";
 	}
 	
+	@Override
+	public String getRegion() {
+		return Region.HELL;
+	}
 }

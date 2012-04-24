@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,5 +186,10 @@ public class HelpTomi extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Tomi";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.HELL;
 	}
 }

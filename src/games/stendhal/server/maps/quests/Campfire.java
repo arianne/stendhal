@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -282,5 +283,10 @@ public class Campfire extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Sally";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ORRIL;
 	}
 }

@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,17 +58,17 @@ import org.apache.log4j.Logger;
  * </ul>
  *
  * STEPS:
-Mrs. Yeti lifes in a cave somewhere in semos mountain. She is mournful, because Mr. Yeti turn away from her. Thats why she ask the player for help. She like to have a special potion and some other stuff as a present for her husband.
-
-There is only one witch who, who can make the special potion. Mrs. Yeti tell the player where she lives. The player go for the witch. Once he found her, she tell the player, that she will help, but need some ingriedents.
-
-When the player is bringing in the collected stuff, she has to tell him, that her magic knife is damaged and she need a new one and send the player to a blacksmith. He has to craft a new magic knife for the witch.
-
-The blacksmith is willing to help. But need some stuff too, to craft the magic knife. He sends the player to collect it. The player brings in the needed items and the blacksmith could start make the knife, but he is too hungry to start it right now. Player has to bring him some food and he starts crafting the knife. But the player has to wait a bit until he is ready with it.
-
-After bring the knife to the witch, he tell the player that she forgot an important item. The player has to get it and bring it to here. After a while the special potion is ready. And the player can bring it to Mrs. Yeti.
-
-Mrs. Yeti is very happy about the special potion. But she needs some other things to make her husband happy. The player has to collect a baby dragon for her. After player bring the baby dragon to her, she is happy as never befor.
+ * Mrs. Yeti lifes in a cave somewhere in semos mountain. She is mournful, because Mr. Yeti turn away from her. Thats why she ask the player for help. She like to have a special potion and some other stuff as a present for her husband.
+ *
+ * There is only one witch who, who can make the special potion. Mrs. Yeti tell the player where she lives. The player go for the witch. Once he found her, she tell the player, that she will help, but need some ingriedents.
+ * 
+ * When the player is bringing in the collected stuff, she has to tell him, that her magic knife is damaged and she need a new one and send the player to a blacksmith. He has to craft a new magic knife for the witch.
+ * 
+ * The blacksmith is willing to help. But need some stuff too, to craft the magic knife. He sends the player to collect it. The player brings in the needed items and the blacksmith could start make the knife, but he is too hungry to start it right now. Player has to bring him some food and he starts crafting the knife. But the player has to wait a bit until he is ready with it.
+ * 
+ * After bring the knife to the witch, he tell the player that she forgot an important item. The player has to get it and bring it to here. After a while the special potion is ready. And the player can bring it to Mrs. Yeti.
+ * 
+ * Mrs. Yeti is very happy about the special potion. But she needs some other things to make her husband happy. The player has to collect a baby dragon for her. After player bring the baby dragon to her, she is happy as never befor.
  *
  * REWARD:
  * <ul>
@@ -421,6 +422,11 @@ Mrs. Yeti is very happy about the special potion. But she needs some other thing
 	@Override
 	public String getNPCName() {
 		return "Mrs. Yeti";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_YETI_CAVE;
 	}
 }
  

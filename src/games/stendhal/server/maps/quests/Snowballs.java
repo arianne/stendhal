@@ -38,6 +38,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -290,6 +291,11 @@ public class Snowballs extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Mr. Yeti";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_YETI_CAVE;
 	}
 	
 }

@@ -39,6 +39,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
 
 import java.lang.ref.WeakReference;
@@ -404,5 +405,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	@Override
 	public String getNPCName() {
 		return "Javier X";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CAVES;
 	}
 }

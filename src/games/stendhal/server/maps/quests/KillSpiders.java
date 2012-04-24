@@ -31,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -276,5 +277,10 @@ public class KillSpiders extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Morgrin";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CAVES;
 	}
 }

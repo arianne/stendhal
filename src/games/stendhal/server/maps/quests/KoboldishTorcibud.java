@@ -46,6 +46,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.TimeUtil;
 
@@ -476,5 +477,10 @@ public class KoboldishTorcibud extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Wrviliza";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_MINES;
 	}
 }

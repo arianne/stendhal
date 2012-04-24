@@ -28,6 +28,7 @@ import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -544,5 +545,10 @@ public class StuffForBaldemar extends AbstractQuest {
 	@Override
 	public String getNPCName() {
 		return "Baldemar";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.FADO_CAVES;
 	}
 }
