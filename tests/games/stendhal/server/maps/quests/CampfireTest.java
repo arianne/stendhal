@@ -246,7 +246,7 @@ public class CampfireTest {
 
 			en.setCurrentState(ConversationStates.ATTENDING);
 			en.step(player, request);
-			assertEquals("Thanks, but I think the wood you brought me already will last me another 5 minutes.", getReply(npc));
+			assertTrue("Thanks, but I think the wood you brought me already will last me another 60 minutes.".equals(getReply(npc)) || "Thanks, but I think the wood you brought me already will last me another 1 hour.".equals(getReply(npc)));
 			assertEquals(ConversationStates.ATTENDING, en.getCurrentState());
 			assertEquals("quest state unchanged", questState, player.getQuest(CAMPFIRE));
 		}
@@ -257,7 +257,7 @@ public class CampfireTest {
 	 */
 	@Test
 	public void testRepeatQuest() {
-		final String questState = Long.toString(new Date().getTime() - 6 * 60 * 1000);
+		final String questState = Long.toString(new Date().getTime() - 61 * 60 * 1000);
 		for (String request : ConversationPhrases.QUEST_MESSAGES) {
 			final Engine en = npc.getEngine();
 			player.setQuest(CAMPFIRE, questState);
