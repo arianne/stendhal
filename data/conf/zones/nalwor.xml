@@ -92,6 +92,7 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
+		<configurator class-name="games.stendhal.server.maps.nalwor.forest.OracleNPC" />
 			<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
 				<parameter name="sound">deep_forest</parameter>
