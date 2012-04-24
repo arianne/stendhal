@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class OracleNPC implements ZoneConfigurator {
 	
-	private final List<String> regions = Arrays.asList(Region.KALAVAN, Region.KIRDNEH, Region.FADO_CITY);
+	private final List<String> regions = Arrays.asList(Region.KALAVAN, Region.KIRDNEH, Region.FADO_CITY, Region.FADO_CAVES);
 
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
@@ -42,7 +42,7 @@ public class OracleNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Zinnia") {
+		final SpeakerNPC npc = new SpeakerNPC("Lobelia") {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello. You caught me enjoying the flowers here.");
@@ -54,10 +54,10 @@ public class OracleNPC implements ZoneConfigurator {
 						null,
 						new SayUnstartedQuestDescriptionFromNPCNameAction(regions));
 				addQuest("There are friends in " + Grammar.enumerateCollection(regions) + " who could need #help from you.");
-				addJob("I sometimes tend the flowers here, but really that is a job for Sue the gardener.");
+				addJob("I sometimes tend the beautiful flowers here, but really that is a job for lovely Sue, the gardener.");
 				addOffer("Like my #sisters in other areas, I'm here to guide you on how to #help others.");
 				addReply("sisters", "My sisters and I all have the #name of a flower. Find them to learn how to #help those nearest them.");
-				addReply("name", "Zinnia is a flower which can come in the same emerald green as my dress.");
+				addReply("name", "Lobelia are tiny purple flowers. Perhaps you can see some in the flowerbeds. I just love it here, Sue is so clever.");
 				addEmotionReply("hugs", "hugs");
 				addGoodbye("Thank you, nice to see you.");
 			}
@@ -81,8 +81,8 @@ public class OracleNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setPosition(22,111);
-		npc.setDescription("You see Zinnia. She's gazing intently at the flowerbeds around her.");
-		npc.setEntityClass("oracle3npc");
+		npc.setDescription("You see Lobelia. She's gazing intently at the flowerbeds around her.");
+		npc.setEntityClass("oracle4npc");
 		zone.add(npc);
 	}
 
