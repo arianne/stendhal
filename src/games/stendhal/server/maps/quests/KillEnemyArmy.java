@@ -40,6 +40,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -543,6 +544,11 @@ import marauroa.common.Pair;
 	@Override
 	public String getNPCName() {
 		return "Despot Halb Errvl";
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_SURROUNDS;
 	}
 }
 
