@@ -2985,7 +2985,7 @@ Southeast: Docks
 		</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingManNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingBoyNPC"/>
-    
+    <configurator class-name="games.stendhal.server.maps.ados.wall.OracleNPC"/>
     	<!-- table at Holiday House -->
     <entity x="109" y="74">
 			<implementation
