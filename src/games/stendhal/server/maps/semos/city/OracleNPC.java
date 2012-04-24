@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -23,6 +24,7 @@ import games.stendhal.server.entity.npc.action.SayUnstartedQuestDescriptionFromN
 import games.stendhal.server.entity.npc.condition.TriggerIsNPCNameForUnstartedQuestCondition;
 import games.stendhal.server.maps.Region;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,8 @@ import java.util.Map;
  */
 public class OracleNPC implements ZoneConfigurator {
 	
+	private final List<String> regions = Arrays.asList(Region.SEMOS_CITY, Region.SEMOS_SURROUNDS);
+	
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);
@@ -39,18 +43,19 @@ public class OracleNPC implements ZoneConfigurator {
 
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Periwinkle") {
+			
 			@Override
 			public void createDialog() {
 				addGreeting("Roses are red, violets are blue, Semos needs #help, what can you do?");
-				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(Region.SEMOS_CITY));
+				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(regions));
 			    add(ConversationStates.ATTENDING,
 						"",
-						new TriggerIsNPCNameForUnstartedQuestCondition(Region.SEMOS_CITY),
+						new TriggerIsNPCNameForUnstartedQuestCondition(regions),
 						ConversationStates.ATTENDING,
 						null,
-						new SayUnstartedQuestDescriptionFromNPCNameAction(Region.SEMOS_CITY));
-				addQuest("Oh, there are so many others who need #help, I wouldn't ask you anything new.");
-				addJob("I have no real occupation, my skill is in guiding you in how to #help others.");
+						new SayUnstartedQuestDescriptionFromNPCNameAction(regions));
+				addQuest("Oh, there are so many others who may need #help in " + Grammar.enumerateCollection(regions) + ", I wouldn't ask you anything new.");
+				addJob("I have no real occupation, my skill is in guiding you in how to #help others, especially in " + Grammar.enumerateCollection(regions) + ".");
 				addOffer("*giggles* I don't sell anything. I can tell you about my #sisters or my #name, if you like.");
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
