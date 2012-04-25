@@ -62,7 +62,7 @@ import org.apache.log4j.Logger;
  * QUEST: V.S.O.P. Koboldish Torcibud
  * <p>
  * PARTICIPANTS: <ul><li> Wrviliza, the Kobold Barmaid in Wo'fol bar </ul>
- * 
+ * <p>
  * STEPS: <ul><li> Wrviliza will ask some items and ingredients 
  * to refurbish her stock of supplies for making her famous koboldish torcibud
  * <li> gather the items and ingredients and bring them to the bar
@@ -71,9 +71,9 @@ import org.apache.log4j.Logger;
  * <li> accepting the quest grants some Karma
  * <li> rejecting the quest wastes some Karma
  * </ul>
- *
+ * <p>
  * REWARD: <ul><li>healing V.S.O.P. Koboldish Torcibud <li>500 XP</ul>
- *
+ * <p>
  * REPETITIONS: <ul><li> unlimited
  * <li>once every 3 to 6 days (randomly determined at quest completion time</ul>
  *
@@ -196,6 +196,16 @@ public class KoboldishTorcibud extends AbstractQuest {
         return 18;
     }
     
+	@Override
+	public String getRegion() {
+		return Region.SEMOS_MINES;
+	}
+
+	@Override
+	public String getNPCName() {
+		return "Wrviliza";
+	}
+
     @Override
     public boolean isRepeatable(final Player player) {
         return new AndCondition(
@@ -473,14 +483,4 @@ public class KoboldishTorcibud extends AbstractQuest {
                         completeAction, ConversationStates.ATTENDING));
         }
     }
-
-	@Override
-	public String getNPCName() {
-		return "Wrviliza";
-	}
-	
-	@Override
-	public String getRegion() {
-		return Region.SEMOS_MINES;
-	}
 }
