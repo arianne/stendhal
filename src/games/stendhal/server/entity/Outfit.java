@@ -19,21 +19,21 @@ import org.apache.log4j.Logger;
 /**
  * A data structure that represents the outfit of an RPEntity. This RPEntity can
  * either be an NPC which uses the outfit sprite system, or of a player.
- * 
+ *
  * You can use this data structure so that you don't have to deal with the way
  * outfits are stored internally.
- * 
+ *
  * An outfit can contain up to five parts: detail, hair, head, dress, and base.
- * 
+ *
  * Note, however, that you can create outfit objects that consist of less than
  * five parts by setting the other parts to <code>null</code>. For example,
  * you can create a dress outfit that you can combine with the player's current
  * so that the player gets the dress, but keeps his hair, head, and base.
  *
  * Not all outfits can be chosen by players.
- *  
+ *
  * @author daniel
- * 
+ *
  */
 public class Outfit {
 
@@ -42,18 +42,18 @@ public class Outfit {
 
 	/** The detail index, as a value between 0 and 99, or null. */
 	private Integer detail;
-	
+
 	/** The hair index, as a value between 0 and 99, or null. */
-	private Integer hair;
+	private final Integer hair;
 
 	/** The head index, as a value between 0 and 99, or null. */
-	private Integer head;
+	private final Integer head;
 
 	/** The dress index, as a value between 0 and 99, or null. */
-	private Integer dress;
+	private final Integer dress;
 
 	/** The base index, as a value between 0 and 99, or null. */
-	private Integer base;
+	private final Integer base;
 
 	/**
 	 * Creates a new default outfit (naked person).
@@ -66,7 +66,7 @@ public class Outfit {
 	 * Creates a new outfit. Set some of the parameters to null if you want an
 	 * entity that put on this outfit to keep on the corresponding parts of its
 	 * current outfit.
-	 * 
+	 *
 	 * @param detail
 	 *            The index of the detail style, or null
 	 * @param hair
@@ -88,27 +88,27 @@ public class Outfit {
 
 	/**
 	 * Creates a new outfit based on a numeric code.
-	 * 
+	 *
 	 * @param code
 	 *            A 10-digit decimal number where the last part (from the right) stands for base,
 	 *            the next for dress, then head, then hair, then detail
 	 */
 	public Outfit(final int code) {
-		
+
 		this.base = code % 100;
-		
+
 		this.dress = code / 100 % 100;
-		
+
 		this.head = code / 10000 % 100;
-		
+
 		this.hair = code / 1000000 % 100;
-		
+
 		this.detail = code / 100000000 % 100;
 	}
 
 	/**
 	 * Gets the index of this outfit's base style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain a base.
 	 */
 	public Integer getBase() {
@@ -117,7 +117,7 @@ public class Outfit {
 
 	/**
 	 * Gets the index of this outfit's dress style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain a dress.
 	 */
 	public Integer getDress() {
@@ -127,7 +127,7 @@ public class Outfit {
 
 	/**
 	 * Gets the index of this outfit's hair style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain hair.
 	 */
 	public Integer getHair() {
@@ -136,16 +136,16 @@ public class Outfit {
 
 	/**
 	 * Gets the index of this outfit's head style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain a head.
 	 */
 	public Integer getHead() {
 		return head;
 	}
-	
+
 	/**
 	 * Gets the index of this outfit's detail style.
-	 * 
+	 *
 	 * @return The index, or null if this outfit doesn't contain a detail.
 	 */
 	public Integer getDetail() {
@@ -155,20 +155,40 @@ public class Outfit {
 
 	/**
 	 * Represents this outfit in a numeric code.
-	 * 
+	 *
 	 * @return A 10-digit decimal number where the first pair of digits stand for
 	 *         detail, the second pair for hair, the third pair for head, the
 	 *         fourth pair for dress, and the fifth pair for base
 	 */
 	public int getCode() {
-		return detail * 100000000 + hair * 1000000 + head * 10000 + dress * 100 + base;
+		int de = 0;
+		int ha = 0;
+		int he = 0;
+		int dr = 0;
+		int ba = 0;
+		if (detail != null) {
+			de = detail.intValue();
+		}
+		if (hair != null) {
+			ha = hair.intValue();
+		}
+		if (head != null) {
+			he = hair.intValue();
+		}
+		if (dress != null) {
+			dr = dress.intValue();
+		}
+		if (base != null) {
+			ba = base.intValue();
+		}
+		return de * 100000000 + ha * 1000000 + he * 10000 + dr * 100 + ba;
 	}
 
 	/**
 	 * Gets the result that you get when you wear this outfit over another
 	 * outfit. Note that this new outfit can contain parts that are marked as
 	 * NONE; in this case, the parts from the other outfit will be used.
-	 * 
+	 *
 	 * @param other
 	 *            the outfit that should be worn 'under' the current one
 	 * @return the combined outfit
@@ -213,7 +233,7 @@ public class Outfit {
 	 * Gets the result that you get when you remove (parts of) an outfit.
 	 * Removes the parts in the parameter, from the current outfit.
 	 * NOTE: If a part does not match, the current outfit part will remain the same.
-	 * 
+	 *
 	 * @param other
 	 *            the outfit that should be removed from the current one
 	 * @return the new outfit, with the parameter-outfit removed
@@ -263,7 +283,7 @@ public class Outfit {
 
 	/**
 	 * Checks whether this outfit is equal to or part of another outfit.
-	 * 
+	 *
 	 * @param other
 	 *            Another outfit.
 	 * @return true iff this outfit is part of the given outfit.
@@ -279,20 +299,20 @@ public class Outfit {
 	/**
 	 * Checks whether this outfit may be selected by a normal player as normal
 	 * outfit. It returns false for special event and GM outfits.
-	 * 
+	 *
 	 * @return true if it is a normal outfit
 	 */
 	public boolean isChoosableByPlayers() {
-		return (detail == null || detail == 0) 
-			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0) 
+		return (detail == null || detail == 0)
+			&& (hair < Outfits.HAIR_OUTFITS) && (hair >= 0)
 		    && (head < Outfits.HEAD_OUTFITS) && (head >= 0)
-			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0) 
+			&& (dress < Outfits.CLOTHES_OUTFITS) && (dress >= 0)
 			&& (base < Outfits.BODY_OUTFITS) && (base >= 0);
 	}
 
 	/**
 	 * Is outfit missing a dress?
-	 * 
+	 *
 	 * @return true if naked, false if dressed
 	 */
 	public boolean isNaked() {
@@ -301,9 +321,9 @@ public class Outfit {
 
 	/**
 	 * Create a random unisex outfit, with a 'normal' face and unisex base
-	 * 
+	 *
 	 * <ul>
-	 * <li>hair number (1 to 26) selection of hairs which look ok with both goblin 
+	 * <li>hair number (1 to 26) selection of hairs which look ok with both goblin
 	 *     face and cute face (later hairs only look right with cute face)</li>
 	 * <li>head numbers (1 to 15) to avoid the cut eye, pink eyes, weird green eyeshadow etc</li>
 	 * <li>dress numbers (1 to 16) from the early outfits before lady player base got introduced i.e. they are all unisex</li>
@@ -320,9 +340,9 @@ public class Outfit {
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(0, newHair, newHead, newDress, newBase);
 	}
-	
+
 	@Override
-	public boolean equals(Object other) {	
+	public boolean equals(Object other) {
 
 		if (!(other instanceof Outfit)) {
 			return false;
@@ -333,7 +353,7 @@ public class Outfit {
 		}
 
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return this.getCode();
