@@ -272,7 +272,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             null
         );
 
-        // Player has done the quest already but not enough time has passed since completing it
+        // Player has previously done the quest, enough time has passed since completing it
         npc.add(ConversationStates.ATTENDING,
             ConversationPhrases.QUEST_MESSAGES,
             new AndCondition(
