@@ -135,7 +135,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         this.productsBound = productsBound;
 
 		// add the activity word as verb to the word list in case it is still missing there
-        //logger.info("Registering activity [" + productionActivity + "] in the word list");
+        logger.debug("Registering VERB [" + productionActivity + "] in the word list");
 		WordList.getInstance().registerVerb(productionActivity);
 
         // iterate through each of the required resource items and add them as a object to the word list
@@ -143,7 +143,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         Iterator<String> i = requiredResourcesPerProduct.keySet().iterator();
         while (i.hasNext()) {
             requiredResourceName = (String) i.next();
-            //logger.info("Registering required resource item [" + requiredResourceName + "] in the word list as OBJECT");
+            logger.debug("Registering OBJECT [" + requiredResourceName + "] in the word list");
 			WordList.getInstance().registerName(requiredResourceName, ExpressionType.OBJECT);
 		}
     }
