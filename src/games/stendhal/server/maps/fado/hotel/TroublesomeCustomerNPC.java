@@ -44,11 +44,15 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Gah! Outrageous Place! Been waiting forever for someone to show up!");
-				addHelp("HELP?! You want ME to ...help... YOU?! Now... Ask me a #task you can do for me!");
-				addQuest("A task for you? Yes! Eventually! Was about TIME someone asked!"); 
+				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!"); 
 				addJob("Ah! Finally... Want a #task?");
-				addOffer("If you do your #task well, you get a nice tip from me!");
-				addGoodbye("Bye bye!");
+				addOffer("Do a #task for me and you get a generous tip from me!");
+				addGoodbye("Buzz off now!");
+                
+				/**
+                 * Additional behavior code is in games.stendhal.server.maps.quests.MealForGroongo
+                 */
+
 			}
 
 			protected void onGoodbye(RPEntity player) {
