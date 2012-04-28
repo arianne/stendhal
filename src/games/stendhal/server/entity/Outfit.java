@@ -173,7 +173,7 @@ public class Outfit {
 			ha = hair.intValue();
 		}
 		if (head != null) {
-			he = hair.intValue();
+			he = head.intValue();
 		}
 		if (dress != null) {
 			dr = dress.intValue();
