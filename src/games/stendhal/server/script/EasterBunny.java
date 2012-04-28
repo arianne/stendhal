@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * Starts or stops EasterBunny.
- * 
+ *
  * @author kymara
  */
 public class EasterBunny extends ScriptImpl {
@@ -57,10 +57,6 @@ public class EasterBunny extends ScriptImpl {
 	 * ends Easter
 	 */
 	private void stopEaster(Player admin) {
-		if (System.getProperty("stendhal.easterbunny") == null) {
-			admin.sendPrivateText("Easter Bunny is not active.");
-			return;
-		}
 		System.getProperties().remove("stendhal.easterbunny");
 		StendhalQuestSystem.get().unloadQuest(MeetBunny.QUEST_NAME);
 	}
