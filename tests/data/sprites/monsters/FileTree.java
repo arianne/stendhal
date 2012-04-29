@@ -18,6 +18,7 @@ package data.sprites.monsters;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 import javax.swing.JTree;
 import javax.swing.event.TreeExpansionEvent;
@@ -152,6 +153,7 @@ public class FileTree extends JTree {
 				}
 				// Get list of contents
 				final String[] names = file.list();
+				Arrays.sort(names);
 
 				// Process the directories
 				for (int i = 0; i < names.length; i++) {
