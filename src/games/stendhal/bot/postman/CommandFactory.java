@@ -34,6 +34,8 @@ public class CommandFactory {
 			return new AdminNote(message, sender, postmanIRC);
 		} else if (command.startsWith("ban")) {
 			return new Ban(message, sender, postmanIRC);
+		} else if (command.startsWith("flashthing")) {
+			return new FlashThing(message, sender, postmanIRC);
 		} else if (command.startsWith("ircban")) {
 			return new IrcBanAuth(message, sender, postmanIRC);
 		} else if (command.startsWith("npcshout")) {

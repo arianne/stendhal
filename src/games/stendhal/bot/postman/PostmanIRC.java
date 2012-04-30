@@ -352,4 +352,11 @@ public class PostmanIRC extends PircBot {
 		EventRaiser.get().fire(EventType.IRC_OP, channel, null);
 		sendMessage("ChanServ", "deop " + channel);
 	}
+
+	/**
+	 * forgets about the hosts that had been kiced for flooding
+	 */
+	public void flashThing() {
+		kickedHostnames.clear();
+	}
 }
