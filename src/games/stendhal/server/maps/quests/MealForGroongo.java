@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAct
 import games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction;
+import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -57,6 +58,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import marauroa.common.Pair;
 import marauroa.common.game.IRPZone;
 import org.apache.log4j.Logger;
 
@@ -65,33 +67,33 @@ import org.apache.log4j.Logger;
  * <p>
  * PARTICIPANTS:
  * <ul>
- * 	<li> Groongo Rahnnt, The Troublesome Customer
- *	<li> Stefan, The Fado's Hotel Chef
+ *  <li> Groongo Rahnnt, The Troublesome Customer
+ *  <li> Stefan, The Fado's Hotel Chef
  * </ul>
- * <p>
+ *
  * STEPS:
  * <ul>
- * 	<li> Groongo is hungry, asks the player to bring him something to eat,
- *	<li> The player checks with Stefan, he will tell him what he needs to fulfill Groongo's request,
- *	<li> The player has to fetch the required items/foodstuff,
- *	<li> The player talks again with Stefan, gives him the resources,
- *	<li> Stefan tells the player how much time he requires to prepare Groongo's order,
- *	<li> After enough time has elapsed, the player can collect Groongo's order from Stefan,
- *	<li> The player delivers the order to Grongo's,
- *	<li> Groongo is happy and gives the player a reward of some kind.   
+ *  <li> Groongo is hungry, asks the player to bring him something to eat,
+ *  <li> The player checks with Stefan, he will tell him what he needs to fulfill Groongo's request,
+ *  <li> The player has to fetch the required items/foodstuff,
+ *  <li> The player talks again with Stefan, gives him the resources,
+ *  <li> Stefan tells the player how much time he requires to prepare Groongo's order,
+ *  <li> After enough time has elapsed, the player can collect Groongo's order from Stefan,
+ *  <li> The player delivers the order to Grongo's,
+ *  <li> Groongo is happy and gives the player a reward of some kind.   
  * </ul>
- * <p>
+ *
  * REWARD:
  * <ul>
- *	<li> none defined yet
+ * <li> none defined yet
  * </ul>
- * <p>
+ *
  * REPETITIONS:
  * <ul>
- *	<li>unlimited
- *	<li>once or twice a day?
+ *  <li>unlimited
+ *  <li>once or twice a day?
  * </ul>
- * <p>
+ *
  * @author omero
  */
 public class MealForGroongo extends AbstractQuest {
@@ -99,12 +101,32 @@ public class MealForGroongo extends AbstractQuest {
     private static Logger logger = Logger.getLogger(MealForGroongo.class);
 
     /**
+     * 
+     * FIXME omero: Quest states are not fully defined yet.
+     * 
      * QUEST_SLOT will be used to hold the different states of the quest.
      *
-     * QUEST_SLOT sub slot 0 will hold the main states, which can be:
+     * QUEST_SLOT sub slot 0
+     * will hold the main states, which can be:
      * - rejected, the player has refused to undertake the quest
-     * - a list of semicolon separated key=value token pairs.
+     * - inprogress, 
      * - done, the player has completed the quest
+     *
+     * QUEST_SLOT sub slot 1
+     * will either hold 
+     * - a main dish,
+     * - a dessert,
+     * - the timestamp the quest was last completed
+     * 
+     * QUEST_SLOT sub slot 2 will look like
+     * chicken=1:rice=1:tomato=1:garlic=1:trout=1:perch=1:onion=1:
+     * 
+     * instead of semicolon separated item=amount token pairs
+     * chicken=1;rice=1;tomato=1;garlic=1;trout=1;perch=1;onion=1
+     * 
+     * We cannot use directly:
+     * final ItemCollection missingIngredients = new ItemCollection();
+     * missingIngredients.addFromQuestStateString(player.getQuest(QUEST_SLOT, 2));
      *
      * When the quest is completed,
      * QUEST_SLOT sub slot 1 will be marked with a timestamp 1-2 days in the future
@@ -119,15 +141,15 @@ public class MealForGroongo extends AbstractQuest {
     // how much XP is given as the reward
     // TODO omero: XP_REWARD needs to be adjusted
     private static final int XP_REWARD = 1000;
-    
+
     @Override
     public void addToWorld() {
         super.addToWorld();
         fillQuestInfo(
-            "Meal for Groongo Rahnnt, the troublesome customer",
+            "Meal for Groongo Rahnnt",
             "Groongo is hungry and wants to have a meal at Fado's Restaurant.",
             true);
-        
+
         // FIXME omero: this quest will require a yet unknown number of stages
         stageBeginQuest();
         stageCollectIngredients();
@@ -143,12 +165,7 @@ public class MealForGroongo extends AbstractQuest {
             return res;
         }
 
-        res.add("I've met Groongo Rahnnt, the troublesome customer in Fado's restaurant.");
-
-        /**
-         * NOTE:
-         * Retrieving QUEST_SLOT without sub slot index 0 will break the if/then logic below.
-         */
+        res.add("I've met Groongo Rahnnt in Fado's restaurant.");
         final String questState = player.getQuest(QUEST_SLOT, 0);
         logger.info("Quest state: <" + questState + ">");
         if ("rejected".equals(questState)) {
@@ -171,48 +188,58 @@ public class MealForGroongo extends AbstractQuest {
                 res.add("He will be fine for " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
             }
         } else {
-            final ItemCollection missingItems = new ItemCollection();
-            final ItemCollection missingIngredients = new ItemCollection();
-            /**
-             * 
-             * NOTE:
-             * The quest is running,
-             * QUEST_SLOT sub slot 0 holds a semicolon separated list of key=value token pairs.
-             * Do not use player.getQuest(QUEST_SLOT, 0) as that would only retrieve the first token pair.
-             * 
-             */
-            missingItems.addFromQuestStateString(player.getQuest(QUEST_SLOT));
-            res.add("I've agreed to bring Groongo a decent meal,"
-                + " consisting of " + Grammar.enumerateCollection(missingItems.toStringList()));
+        	String ingredients = "";
+        	final ItemCollection missingIngredients = new ItemCollection();
+        	
+        	if ("fetch_maindish".equals(questState)) {
+        		ingredients = getRequiredIngredientsForMainDish(player.getQuest(QUEST_SLOT,1));
+        		missingIngredients.addFromQuestStateString(ingredients);
+            	res.add("I've agreed to bring Groongo " +
+            			Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 1))) +
+            			" and I'm helping Chef Stefan finding the ingredients to prepare it: " +
+            			Grammar.enumerateCollection(missingIngredients.toStringList()) + "."
+            	);
+        	} else {
+        		ingredients = getRequiredIngredientsForDessert(player.getQuest(QUEST_SLOT, 2));
+        		missingIngredients.addFromQuestStateString(ingredients);
+            	res.add("I've already brought Chef Stefan the ingredients to prepare " +
+            			Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT, 1)))
+            	);
+            	res.add("Along with that, Groongo now also wants " +
+            			Grammar.a_noun(getRequiredDessertFancyName(player.getQuest(QUEST_SLOT, 2))) +
+            			" and I'm helping Chef Stefan finding the ingredients to prepare it: " +
+            			Grammar.enumerateCollection(missingIngredients.toStringList()) + "."
+            	);
+        	}
         }
         return res;
     }
- 
+
     @Override
     public String getSlotName() {
         return QUEST_SLOT;
     }
- 
+
     @Override
-        public String getName() {
+    public String getName() {
         return "MealForGroongo";
     }
 
     @Override
-        public int getMinLevel() {
-    	// TODO omero: minlevel needs to be adjusted
+    public int getMinLevel() {
+        // TODO omero: minlevel needs to be adjusted
         return 30;
     }
-    
-	@Override
-	public String getRegion() {
-		return Region.FADO_CITY;
-	}
 
-	@Override
-	public String getNPCName() {
-		return "Groongo Rahnnt";
-	}
+    @Override
+    public String getRegion() {
+        return Region.FADO_CITY;
+    }
+
+    @Override
+    public String getNPCName() {
+        return "Groongo Rahnnt";
+    }
 
     @Override
     public boolean isRepeatable(final Player player) {
@@ -227,151 +254,315 @@ public class MealForGroongo extends AbstractQuest {
     }
 
     private String getRequiredMainDish() {
-    	// Main dishes Groongo will require for the quest
-    	final List<String> requiredMainDish =
-    			Arrays.asList(
-    					"paella",
-    					"ciorba",
-    					"lasagne",
-    					"schnitzel",
-    					"consomme",
-    					"paidakia",
-    					"kuskus",
-    					"kushari"
-    					);
+        // Main dishes Groongo will require for the quest
+        final List<String> requiredMainDish =
+                Arrays.asList(
+                        "paella",
+                        "ciorba",
+                        "lasagne",
+                        "schnitzel",
+                        "consomme",
+                        "paidakia",
+                        "kuskus",
+                        "kushari"
+                        );
 
-    	return requiredMainDish.get(Rand.randUniform(0,requiredMainDish.size()));
+        return requiredMainDish.get(Rand.rand(requiredMainDish.size()));
     }
-    
+
     private String getRequiredDessert() {
-	    // Desserts Groongo will ask for the quest
-	    final List<String> requiredDesserts =
-	    		Arrays.asList(
-	    				"brigadeiro",
-	    				"macedonia",
-	    				"slagroomtart",
-	    				"vatrushka" //,
-	    				//"tarte a la rhubarbe",
-	    				//"schwarzwalder kirschtorte",
-	    				//"ngat biang",
-	    				//"gulab jamun"
-	    				);
+        // Desserts Groongo will ask for the quest
+        // All desserts are temporary for developing purposes, subject to change 
+        final List<String> requiredDesserts =
+                Arrays.asList(
+                        "macedonia",
+                        "slagroomtart",
+                        "brigadeiro",
+                        "vatrushka"
+                        );
 
-	    return requiredDesserts.get(Rand.randUniform(0,requiredDesserts.size()));
+                        //"tarte a la rhubarbe",
+                        //"schwarzwalder kirschtorte",
+                        //"ngat biang",
+                        //"gulab jamun"
+        
+        return requiredDesserts.get(Rand.rand(requiredDesserts.size()));
     }
 
-    /*
-	private String getRequiredMainDishFancyName() {
-     	// used only to build sentences
-     	// to avoid requiring the player to type long and complicated fancy dish names
-    	final Map<String, String> requiredMainDishFancyName = new HashMap<String, String>();
-    	requiredMainDishFancyName.put("paella", "paella de pescado");
-    	requiredMainDishFancyName.put("ciorba", "ciorba de burta cu smantena");
-    	requiredMainDishFancyName.put("lasagne", "lasagne alla bolognese");
-    	requiredMainDishFancyName.put("jaegerschnitzel", "jaegerschnitzel");
-    	requiredMainDishFancyName.put("consomme", "consomme du jour");
-    	requiredMainDishFancyName.put("paidakia", "paidakia meh piperi");
-    	requiredMainDishFancyName.put("kuskus", "couscous");
-    	requiredMainDishFancyName.put("kushari", "kushari");
+    private String getRequiredMainDishFancyName(final String requiredMainDish) {
+        // used only to build sentences
+        // to avoid requiring the player to type long and complicated fancy dish names
+        final Map<String, String> requiredMainDishFancyName = new HashMap<String, String>();
+        requiredMainDishFancyName.put("paella", "paella de pescado");
+        requiredMainDishFancyName.put("ciorba", "ciorba de burta cu smantena");
+        requiredMainDishFancyName.put("lasagne", "lasagne alla bolognese");
+        requiredMainDishFancyName.put("jaegerschnitzel", "jaegerschnitzel");
+        requiredMainDishFancyName.put("consomme", "consomme du jour");
+        requiredMainDishFancyName.put("paidakia", "paidakia meh piperi");
+        requiredMainDishFancyName.put("kuskus", "couscous");
+        requiredMainDishFancyName.put("kushari", "kushari");
+        
+        return requiredMainDishFancyName.get(requiredMainDish);
 
     }
-     */
+
+    private String getRequiredDessertFancyName(final String requiredDessert) {
+        // used only to build sentences
+        // to avoid requiring the player to type long and complicated fancy dessert names
+        final Map<String, String> requiredDessertFancyName = new HashMap<String, String>();
+        requiredDessertFancyName.put("brigadeiro", "brigadeiro");
+        requiredDessertFancyName.put("macedonia", "macedonia di frutta");
+        requiredDessertFancyName.put("slagroomtart", "slagroomtart");
+        requiredDessertFancyName.put("vatrushka", "vatrushka");
+
+        return requiredDessertFancyName.get(requiredDessert);
+    }
 
     /**
      * Returns required ingredients and quantities to collect for preparing the main dish
      *
-     * @param mainDish
+     * @param requiredMainDish
      * @return A string composed of semicolon separated key=value token pairs.
      */
-    /*
-    private Map<String, Integer> getRequiredIngredientsForMainDish(final String mainDish) {
+    private String getRequiredIngredientsForMainDish(final String requiredMainDish) {
 
-    	final Map<String, Integer> requiredIngredients_paella = new TreeMap<String, Integer>();
-	    requiredIngredients_paella.put("rice", 1);
-	    requiredIngredients_paella.put("onion", 1);
-	    requiredIngredients_paella.put("garlic", 1);
-	    requiredIngredients_paella.put("tomato", 1);	    
-	    requiredIngredients_paella.put("chicken", 1);
-	    requiredIngredients_paella.put("perch", 1);
-	    requiredIngredients_paella.put("trout", 1);
+        final HashMap<String, Integer> requiredIngredients_paella = new HashMap<String, Integer>();
+        requiredIngredients_paella.put("rice", 1);
+        requiredIngredients_paella.put("onion", 1);
+        requiredIngredients_paella.put("garlic", 1);
+        requiredIngredients_paella.put("tomato", 1);        
+        requiredIngredients_paella.put("chicken", 1);
+        requiredIngredients_paella.put("perch", 1);
+        requiredIngredients_paella.put("trout", 1);
 
-	    final Map<String, Integer> requiredIngredients_ciorba = new TreeMap<String, Integer>();
-	    requiredIngredients_ciorba.put("cow entrails", 1);
-	    requiredIngredients_ciorba.put("pinto bean", 1);
-	    requiredIngredients_ciorba.put("onion", 1);
-	    requiredIngredients_ciorba.put("garlic", 1);
-	    requiredIngredients_ciorba.put("milk", 1);
-	    requiredIngredients_ciorba.put("salt", 1);
-	    requiredIngredients_ciorba.put("pepper", 1);
+        final HashMap<String, Integer> requiredIngredients_ciorba = new HashMap<String, Integer>();
+        requiredIngredients_ciorba.put("cow entrails", 1);
+        requiredIngredients_ciorba.put("pinto bean", 1);
+        requiredIngredients_ciorba.put("onion", 1);
+        requiredIngredients_ciorba.put("garlic", 1);
+        requiredIngredients_ciorba.put("milk", 1);
+        requiredIngredients_ciorba.put("salt", 1);
+        requiredIngredients_ciorba.put("pepper", 1);
 
-	    final Map<String, Integer> requiredIngredients_lasagne = new TreeMap<String, Integer>();
-	    requiredIngredients_lasagne.put("meat", 1);
-	    requiredIngredients_lasagne.put("tomato", 1);
-	    requiredIngredients_lasagne.put("carrot", 1);
-	    requiredIngredients_lasagne.put("cheese", 1);
-	    requiredIngredients_lasagne.put("flour", 1);
-	    requiredIngredients_lasagne.put("egg", 1);
-	    requiredIngredients_lasagne.put("olive oil", 1);
-	    
-	    final Map<String, Integer> requiredIngredients_schnitzel = new TreeMap<String, Integer>();
-	    requiredIngredients_schnitzel.put("potato", 1);
-	    requiredIngredients_schnitzel.put("porcini", 1);
-	    requiredIngredients_schnitzel.put("button mushroom", 1);
-	    requiredIngredients_schnitzel.put("ham", 1);
-	    requiredIngredients_schnitzel.put("meat", 1);
-	    requiredIngredients_schnitzel.put("milk", 1);
-	    requiredIngredients_schnitzel.put("cheese", 1);
+        final HashMap<String, Integer> requiredIngredients_lasagne = new HashMap<String, Integer>();
+        requiredIngredients_lasagne.put("meat", 1);
+        requiredIngredients_lasagne.put("tomato", 1);
+        requiredIngredients_lasagne.put("carrot", 1);
+        requiredIngredients_lasagne.put("cheese", 1);
+        requiredIngredients_lasagne.put("flour", 1);
+        requiredIngredients_lasagne.put("egg", 1);
+        requiredIngredients_lasagne.put("olive oil", 1);
+        
+        final HashMap<String, Integer> requiredIngredients_schnitzel = new HashMap<String, Integer>();
+        requiredIngredients_schnitzel.put("potato", 1);
+        requiredIngredients_schnitzel.put("porcini", 1);
+        requiredIngredients_schnitzel.put("button mushroom", 1);
+        requiredIngredients_schnitzel.put("ham", 1);
+        requiredIngredients_schnitzel.put("meat", 1);
+        requiredIngredients_schnitzel.put("milk", 1);
+        requiredIngredients_schnitzel.put("cheese", 1);
 
-	    final Map<String, Integer> requiredIngredients_consomme = new TreeMap<String, Integer>();
-	    requiredIngredients_consomme.put("onion", 1);
-	    requiredIngredients_consomme.put("garlic", 1);
-	    requiredIngredients_consomme.put("carrot", 1);
-	    requiredIngredients_consomme.put("chicken", 1);
-	    requiredIngredients_consomme.put("meat", 1);
-	    requiredIngredients_consomme.put("sclaria", 1);
-	    requiredIngredients_consomme.put("kekik", 1);
-	    
-	    final Map<String, Integer> requiredIngredients_paidakia = new TreeMap<String, Integer>();
-	    requiredIngredients_paidakia.put("meat", 1);
-	    requiredIngredients_paidakia.put("pepper", 1);
-	    requiredIngredients_paidakia.put("salt", 1);
-	    requiredIngredients_paidakia.put("olive oil", 1);
-	    requiredIngredients_paidakia.put("potato", 1);
-	    requiredIngredients_paidakia.put("kekik", 1);
-	    requiredIngredients_paidakia.put("lemon", 1);
+        final HashMap<String, Integer> requiredIngredients_consomme = new HashMap<String, Integer>();
+        requiredIngredients_consomme.put("onion", 1);
+        requiredIngredients_consomme.put("garlic", 1);
+        requiredIngredients_consomme.put("carrot", 1);
+        requiredIngredients_consomme.put("chicken", 1);
+        requiredIngredients_consomme.put("meat", 1);
+        requiredIngredients_consomme.put("sclaria", 1);
+        requiredIngredients_consomme.put("kekik", 1);
+        
+        final HashMap<String, Integer> requiredIngredients_paidakia = new HashMap<String, Integer>();
+        requiredIngredients_paidakia.put("meat", 1);
+        requiredIngredients_paidakia.put("pepper", 1);
+        requiredIngredients_paidakia.put("salt", 1);
+        requiredIngredients_paidakia.put("olive oil", 1);
+        requiredIngredients_paidakia.put("potato", 1);
+        requiredIngredients_paidakia.put("kekik", 1);
+        requiredIngredients_paidakia.put("lemon", 1);
 
-	    final Map<String, Integer> requiredIngredients_kushari = new TreeMap<String, Integer>();
-	    requiredIngredients_kushari.put("rice", 1);
-	    requiredIngredients_kushari.put("lentils", 1);
-	    requiredIngredients_kushari.put("onion", 1);
-	    requiredIngredients_kushari.put("garlic", 1);
-	    requiredIngredients_kushari.put("tomato", 1);
-	    requiredIngredients_kushari.put("jalapeno", 1);
-	    requiredIngredients_kushari.put("olive oil", 1);
-	    
-	    final Map<String, Integer> requiredIngredients_kuskus = new TreeMap<String, Integer>();
-	    requiredIngredients_kuskus.put("flour", 1);
-	    requiredIngredients_kuskus.put("water", 1);
-	    requiredIngredients_kuskus.put("courgette", 1);
-	    requiredIngredients_kuskus.put("onion", 1);
-	    requiredIngredients_kuskus.put("garlic", 1);
-	    requiredIngredients_kuskus.put("salt", 1);
-	    requiredIngredients_kuskus.put("pepper", 1);
-	
-	    final HashMap<String, Map<String, Integer>> requiredIngredientsPerMainDish = new HashMap<String, Map<String, Integer>>();
-	    requiredIngredientsPerMainDish.put("paella", requiredIngredients_paella);
-	    requiredIngredientsPerMainDish.put("ciorba", requiredIngredients_ciorba);
-	    requiredIngredientsPerMainDish.put("lasagne", requiredIngredients_lasagne);
-	    requiredIngredientsPerMainDish.put("schnitzel", requiredIngredients_schnitzel);
-	    requiredIngredientsPerMainDish.put("consomme", requiredIngredients_consomme);
-	    requiredIngredientsPerMainDish.put("paidakia", requiredIngredients_paidakia);
-	    requiredIngredientsPerMainDish.put("kuskus", requiredIngredients_kuskus);
-	    requiredIngredientsPerMainDish.put("kushari", requiredIngredients_kushari);
-	    
-	    return requiredIngredientsPerMainDish.get(mainDish);
+        final HashMap<String, Integer> requiredIngredients_kushari = new HashMap<String, Integer>();
+        requiredIngredients_kushari.put("rice", 1);
+        requiredIngredients_kushari.put("lentils", 1);
+        requiredIngredients_kushari.put("onion", 1);
+        requiredIngredients_kushari.put("garlic", 1);
+        requiredIngredients_kushari.put("tomato", 1);
+        requiredIngredients_kushari.put("jalapeno", 1);
+        requiredIngredients_kushari.put("olive oil", 1);
+        
+        final HashMap<String, Integer> requiredIngredients_kuskus = new HashMap<String, Integer>();
+        requiredIngredients_kuskus.put("flour", 1);
+        requiredIngredients_kuskus.put("water", 1);
+        requiredIngredients_kuskus.put("courgette", 1);
+        requiredIngredients_kuskus.put("onion", 1);
+        requiredIngredients_kuskus.put("garlic", 1);
+        requiredIngredients_kuskus.put("salt", 1);
+        requiredIngredients_kuskus.put("pepper", 1);
+
+        final HashMap<String, HashMap<String, Integer>> requiredIngredientsForMainDish = new HashMap<String, HashMap<String, Integer>>();
+        requiredIngredientsForMainDish.put("paella", requiredIngredients_paella);
+        requiredIngredientsForMainDish.put("ciorba", requiredIngredients_ciorba);
+        requiredIngredientsForMainDish.put("lasagne", requiredIngredients_lasagne);
+        requiredIngredientsForMainDish.put("schnitzel", requiredIngredients_schnitzel);
+        requiredIngredientsForMainDish.put("consomme", requiredIngredients_consomme);
+        requiredIngredientsForMainDish.put("paidakia", requiredIngredients_paidakia);
+        requiredIngredientsForMainDish.put("kuskus", requiredIngredients_kuskus);
+        requiredIngredientsForMainDish.put("kushari", requiredIngredients_kushari);
+
+
+        String ingredients = "";
+        final HashMap<String, Integer>  requiredIngredients = requiredIngredientsForMainDish.get(requiredMainDish);
+        for (final Map.Entry<String, Integer> entry : requiredIngredients.entrySet()) {
+            ingredients = ingredients + entry.getKey() + "=" + entry.getValue() + ";";
+        }
+
+        //return requiredIngredientsForMainDish.get(requiredMainDish);
+        return ingredients;
     }
+
+    /**
+     * Returns required ingredients and quantities to collect for preparing the dessert
+     *
+     * @param requiredDessert
+     * @return A string composed of semicolon separated key=value token pairs.
      */
+    private String getRequiredIngredientsForDessert(final String requiredDessert) {
+
+        // All ingredients are temporary for developing purposes, subject to change
+        final HashMap<String, Integer> requiredIngredients_brigadeiro = new HashMap<String, Integer>();
+        requiredIngredients_brigadeiro.put("milk", 1);
+        requiredIngredients_brigadeiro.put("sugar", 2);
+        requiredIngredients_brigadeiro.put("butter", 4);        
+        requiredIngredients_brigadeiro.put("coconut", 3); // will be cacao pod... monkeys?
+
+        final HashMap<String, Integer> requiredIngredients_macedonia = new HashMap<String, Integer>();
+        requiredIngredients_macedonia.put("banana", 5);
+        requiredIngredients_macedonia.put("apple", 7);
+        requiredIngredients_macedonia.put("pear", 9);
+        requiredIngredients_macedonia.put("watermelon", 4);
+
+        final HashMap<String, Integer> requiredIngredients_slagroomtart = new HashMap<String, Integer>();
+        requiredIngredients_slagroomtart.put("milk", 13);
+        requiredIngredients_slagroomtart.put("sugar", 14);
+        requiredIngredients_slagroomtart.put("egg", 15);
+        requiredIngredients_slagroomtart.put("pineapple", 16);
+
+        final HashMap<String, Integer> requiredIngredients_vatrushka = new HashMap<String, Integer>();
+        requiredIngredients_vatrushka.put("flour", 2);
+        requiredIngredients_vatrushka.put("sugar", 4);
+        requiredIngredients_vatrushka.put("cheese", 8);
+        requiredIngredients_vatrushka.put("cherry", 16);
+        
+        final HashMap<String, HashMap<String, Integer>> requiredIngredientsForDessert = new HashMap<String, HashMap<String, Integer>>();
+        requiredIngredientsForDessert.put("brigadeiro", requiredIngredients_brigadeiro);
+        requiredIngredientsForDessert.put("macedonia", requiredIngredients_macedonia);
+        requiredIngredientsForDessert.put("slagroomtart", requiredIngredients_slagroomtart);
+        requiredIngredientsForDessert.put("vatrushka", requiredIngredients_vatrushka);
+
+        String ingredients = "";
+        final HashMap<String, Integer>  requiredIngredients = requiredIngredientsForDessert.get(requiredDessert);
+        for (final Map.Entry<String, Integer> entry : requiredIngredients.entrySet()) {
+            ingredients = ingredients + entry.getKey() + "=" + entry.getValue() + ";";
+        }
+
+        //return requiredIngredientsForDessert.get(requiredDessert);
+        return ingredients;
+
+    }
+
+    class initQuestAction implements ChatAction {
+        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+
+            final String requiredMainDish = getRequiredMainDish();
+
+            /*
+            String requiredIngredients = "";
+            final HashMap<String, Integer> requiredIngredientsForMainDish = getRequiredIngredientsForMainDish(requiredMainDish);
+            for (final Map.Entry<String, Integer> entry : requiredIngredientsForMainDish.entrySet()) {
+                requiredIngredients = requiredIngredients + entry.getKey() + "=" + entry.getValue() + ":";
+            }
+            //player.setQuest(QUEST_SLOT, "inprogress" + ";" + requiredMainDish + ";" + requiredIngredientsForMainDish + ";");
+            //player.setQuest(QUEST_SLOT, "inprogress" + ";" + requiredMainDish + ";" + requiredIngredients + ";");
+            */
+            
+            player.setQuest(QUEST_SLOT, 0, "fetch_maindish");
+            player.setQuest(QUEST_SLOT, 1, requiredMainDish);
+            SpeakerNPC.say(
+                    "Bah! I'm really in the mood of trying " +
+                    Grammar.a_noun(getRequiredMainDishFancyName(requiredMainDish)) +
+                    ". Now go ask Chef Stefan to prepare my #meal, at once!"
+            );
+            logger.info("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+        }
+    }
+
+    class advanceQuestAction implements ChatAction {
+        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+
+            final String requiredDessert = getRequiredDessert();
+
+            player.setQuest(QUEST_SLOT, 0, "fetch_dessert");
+            player.setQuest(QUEST_SLOT, 1, requiredDessert);
+            SpeakerNPC.say(
+                    "Bah! I'm really in the mood of trying " +
+                    Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
+                    ". Now go ask Chef Stefan to prepare my #dessert, at once!"
+            );
+            logger.info("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+        }
+    }
     
+    // Groongo uses this to remind the player of what he has to bring him currently
+    class checkQuestInProgressAction implements ChatAction {
+        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+            SpeakerNPC.say(
+                    "Bah! I've asked for " +
+                    Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT,1))) +
+                    ". Did you bring that to me?"
+            );
+            logger.info("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+        }
+    }
+
+    // Stefan uses this to tell the player what ingredients he still needs
+    // in order to prepare what Groongo has currently ordered
+    class checkIngredientsForMainDishAction implements ChatAction {
+        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        	//String storedIngredients = player.getQuest(QUEST_SLOT, 2).replaceAll(":",";");
+        	//logger.info("storedIngredients <" + storedIngredients +">");
+
+        	final ItemCollection missingIngredients = new ItemCollection();
+            missingIngredients.addFromQuestStateString(getRequiredIngredientsForMainDish(player.getQuest(QUEST_SLOT, 1)));
+
+            SpeakerNPC.say(
+                    "Oh! So you've been asked for " +
+                    Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT,1))) +
+                    ". For that I'll need some ingredients that at the moment I'm missing: " +
+                    Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
+                    ". Do you happen to have any of those already?"
+            );
+            logger.info("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+        }
+    }
+
+    class checkIngredientsForDessertAction implements ChatAction {
+        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        	//String storedIngredients = player.getQuest(QUEST_SLOT, 2).replaceAll(":",";");
+        	//logger.info("storedIngredients <" + storedIngredients +">");
+
+        	final ItemCollection missingIngredients = new ItemCollection();
+            missingIngredients.addFromQuestStateString(getRequiredIngredientsForDessert(player.getQuest(QUEST_SLOT, 1)));
+
+            SpeakerNPC.say(
+                    "Oh! So you've been asked for " +
+                    Grammar.a_noun(getRequiredDessertFancyName(player.getQuest(QUEST_SLOT,1))) +
+                    ". For that I'll need some ingredients that at the moment I'm missing: " +
+                    Grammar.enumerateCollection(missingIngredients.toStringListWithHash()) +
+                    ". Do you happen to have any of those already?"
+            );
+            logger.info("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+        }
+    }
+
     // quest started or rejected
     public void stageBeginQuest() {
      
@@ -384,8 +575,8 @@ public class MealForGroongo extends AbstractQuest {
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new AndCondition(
-            		new GreetingMatchesNameCondition(npc.getName()),
-            		new QuestInStateCondition(QUEST_SLOT, "rejected")),
+                    new GreetingMatchesNameCondition(npc.getName()),
+                    new QuestInStateCondition(QUEST_SLOT, "rejected")),
             ConversationStates.QUEST_OFFERED,
             "Gah! [insults player]" +
             " I'm all covered with dust after waiting this much..." +
@@ -416,7 +607,7 @@ public class MealForGroongo extends AbstractQuest {
             "Ah, here you are! Will you now bring me another decent #meal?",
             null
         );
-        
+
         // Player has done the quest in the past,
         // not enough time has elapsed to take the quest again
         npc.add(ConversationStates.ATTENDING,
@@ -428,7 +619,7 @@ public class MealForGroongo extends AbstractQuest {
             new SayTimeRemainingUntilTimeReachedAction(QUEST_SLOT, 1,
                 "I'm not so hungry now... I will be fine for")
         );
-        
+
         // Player is curious about meal when offered the quest
         npc.add(ConversationStates.QUEST_OFFERED,
             "meal",
@@ -440,30 +631,64 @@ public class MealForGroongo extends AbstractQuest {
         );
 
         // Player accepts the quest and gets to know what Groongo wants
-        // set the quest slot (still have to decide which)
+        // set the quest slot (still have to decide how)
         // switch to stageCollectIngredients, stageQuestRunning...?
         npc.add(ConversationStates.QUEST_OFFERED,
-            ConversationPhrases.YES_MESSAGES, null,
+            ConversationPhrases.YES_MESSAGES,
+            new QuestNotStartedCondition(QUEST_SLOT),
             // here we want to transition to the collect ingredients stage
             // turning idle for the time being
-            // ConversationStates.QUESTION_1, null,
             ConversationStates.IDLE, null,
+            new initQuestAction()
+            /*
+             * TODO omero: delete what follows once quest is working as expected.
+             * All of the following code has been moved into initQuestAction,
+             * it is kept here as a reminder.
+             * 
             new MultipleActions(
-            		new ChatAction() {
-            			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-            				// compose a meal with a main dish and a dessert
-            				final String decentMeal = getRequiredMainDish() + "=1;" + getRequiredDessert() + "=1;";
-            				player.setQuest(QUEST_SLOT, decentMeal);
-            			}
-            		},
-            		// FIXME omero: are we sure we want to award karma here?
-            		//new IncreaseKarmaAction(20),
-                    // FIXME omero: we don't deal with 'real' ingame items...
-                    // new appropriate action is required to say fancy dishes/desserts names
-            		// It is important that we say what Groongo wants AFTER we've set the QUEST_SLOT
-            		new SayRequiredItemsFromCollectionAction(
-                        QUEST_SLOT,
-                        "I really want to try some [items]"))
+                    new ChatAction() {
+                        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+
+                            final String requiredMainDish = getRequiredMainDish();
+
+                            
+
+							//ATTEMPT 1)
+                            //String requiredIngredients = "";
+                            final Map<String, Integer> requiredIngredientsForMainDish = getRequiredIngredientsForMainDish(requiredMainDish); 
+                            for (final Map.Entry<String, Integer> entry : requiredIngredientsForMainDish.entrySet()) {
+                                requiredIngredients = requiredIngredients + entry.getKey() + "=" + entry.getValue() + ";";
+                            }
+                            final Map<String, Integer> requiredIngredientsForDessert = getRequiredIngredientsForDessert(requiredDessert); 
+                            for (final Map.Entry<String, Integer> entry : requiredIngredientsForDessert.entrySet()) {
+                                requiredIngredients = requiredIngredients + entry.getKey() + "=" + entry.getValue() + ";";
+                            }
+                            //
+                            //  trying to retrieve quest slot whith index 2 will result in getting "carrot=1",
+                            //  and not "carrot=1;cheese=1;egg=1;flour=1;meat=1;olive oil=1;tomato=1"
+                            //
+
+							//ATTEMPT 2)
+                            final HashMap<String, Integer> reqIng = new HashMap<String, Integer>();
+                            for (final Map.Entry<String, Integer> entry : requiredIngredientsForMainDish.entrySet()) {
+                            	requiredIngredients = requiredIngredients + entry.getKey() + "=" + entry.getValue() + ";";
+                            	reqIng.put(entry.getKey(), entry.getValue());
+                            }
+							
+							//ATTEMPT 3) (have the getRequiredIngredientsForMainDish() return an HashMap)
+                            final HashMap<String, Integer> requiredIngredientsForMainDish = getRequiredIngredientsForMainDish(requiredMainDish);
+                            
+                            // If the HashMap is stored directly into the QUEST_SLOT sub slot 2, it will look like:
+                            // inprogress;lasagne;carrot=1;cheese=1;egg=1;flour=1;meat=1;olive oil=1;tomato=1
+                            //player.setQuest(QUEST_SLOT, "inprogress" + ";" + requiredMainDish + ";" + requiredIngredients);
+                            //player.setQuest(QUEST_SLOT, "inprogress" + ";" + requiredMainDish + ";" + requiredIngredientsForMainDish + ";");
+
+                        }
+                    },
+                    //new IncreaseKarmaAction(20),
+                    new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I really want to try [items]")
+            )
+            */
         );
 
         // Player is not inclined to comply with the request.
@@ -477,9 +702,9 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.IDLE,
             "Stop pestering me and get lost in a dungeon then!",
             new MultipleActions(
-            		new SetQuestAction(QUEST_SLOT, "rejected"),
-            		new DecreaseKarmaAction(20.0))
-		);
+                    new SetQuestAction(QUEST_SLOT, "rejected"),
+                    new DecreaseKarmaAction(20.0))
+        );
 
         // Player has refused the quest in the past,
         // Player is still not inclined to comply with the request,
@@ -490,8 +715,8 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.IDLE,
             "Stat away from me and get lost in a forest then!",
             new MultipleActions(
-            		new SetQuestAction(QUEST_SLOT, "rejected"),
-            		new DecreaseKarmaAction(100.0))
+                    new SetQuestAction(QUEST_SLOT, "rejected"),
+                    new DecreaseKarmaAction(100.0))
         );
     }
 
@@ -499,34 +724,84 @@ public class MealForGroongo extends AbstractQuest {
 
         final SpeakerNPC npc = npcs.get("Stefan");
 
+        npc.add(ConversationStates.IDLE,
+                ConversationPhrases.GREETING_MESSAGES,
+                new AndCondition(
+                        new GreetingMatchesNameCondition(npc.getName()),
+                        new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish")),
+                ConversationStates.QUESTION_1,
+                null,
+                new checkIngredientsForMainDishAction()
+        );
+
+        /*
+        npc.add(ConversationStates.IDLE,
+                ConversationPhrases.GREETING_MESSAGES,
+                new AndCondition(
+                        new GreetingMatchesNameCondition(npc.getName()),
+                        new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert")),
+                ConversationStates.QUESTION_2,
+                null,
+                new checkIngredientsForDessertAction()
+        );
+        */
+
+        // Player says no, he doesn't have any ingredients yet for main dish
+        npc.add(ConversationStates.QUESTION_1,
+                ConversationPhrases.NO_MESSAGES,
+                null,
+                ConversationStates.IDLE,
+                // Stefan needs all the ingredients at once to start cooking
+                "Oh, be sure to bring me those ingredients all at once!",
+                null
+        );
+
+        // Player collected all the ingredients
+        /*
+        ChatAction completeAction = new MultipleActions(
+            new ChatAction() {
+                public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+                	logger.info("bravo1");
+                	SpeakerNPC.say("bravo1");
+                }
+            },
+            new ChatAction() {
+                public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+                	
+                	logger.info("bravo2 <" + player.getQuest(QUEST_SLOT) + ">");
+                	SpeakerNPC.say("bravo2 <" + player.getQuest(QUEST_SLOT) + ">");
+                }
+            }
+        );
+        */
     }
-    
+
     public void stageDeliverMeal() {
 
         final SpeakerNPC npc = npcs.get("Groongo Rahnnt");
-
-        // Player says his greetings to Groongo and the quest is running
+        
+        // Player says his greetings to Groongo,
+        // the quest is running
         npc.add(ConversationStates.IDLE,
             ConversationPhrases.GREETING_MESSAGES,
             new AndCondition(
-            		new GreetingMatchesNameCondition(npc.getName()),
-            		new QuestActiveCondition(QUEST_SLOT)),
+                    new GreetingMatchesNameCondition(npc.getName()),
+                    new QuestActiveCondition(QUEST_SLOT)),
             ConversationStates.QUESTION_1,
             "Finally! Do you have my #meal already?",
-            null);
+            null
+        );
 
         // Player says meal to be reminded of what is still missing
+        // quest is running
         npc.add(ConversationStates.QUESTION_1,
             "meal", null,
             ConversationStates.QUESTION_1,
             null,
-            // FIXME omero: we don't deal with 'real' ingame items...
-            // new appropriate action is required to say fancy dishes/desserts names            
-            new SayRequiredItemsFromCollectionAction(
-                QUEST_SLOT,
-                "Hey! I'm still waiting for my [items]. Do you have some?"));
+            new checkQuestInProgressAction()
+        );
 
-        // Player answers no when asked if he has brought any items
+        // Player answers no
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.NO_MESSAGES,
             new QuestNotCompletedCondition(QUEST_SLOT),
@@ -534,14 +809,21 @@ public class MealForGroongo extends AbstractQuest {
             "Then hurry up, go and fetch it!",
             null);
 
-        /*	
+        // Player answers yes  
         npc.add(ConversationStates.QUESTION_1,
             ConversationPhrases.YES_MESSAGES, null,
-            ConversationStates.QUESTION_1,
-            "Fine, what did you bring?",
+            ConversationStates.IDLE,
+            "Excellent! Let's see...",
+            // here we will trigger the action that checks
+            // that the player has indeed completed stage2 (meal+dessert)
             null
         );
-    	 */
+        
+        ChatAction addRewardAction = new ChatAction() {
+        	public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        		SpeakerNPC.say("bravo3");
+        	}
+        };
 
     }
 }
