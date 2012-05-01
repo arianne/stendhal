@@ -33,7 +33,7 @@ public class GenerateINI {
 	/** The name of the output file. */
 	private static String filename = "server.ini";
 
-	
+
 	/** Where data is read from. */
 	private static BufferedReader in = new BufferedReader(
 			new InputStreamReader(System.in));
@@ -63,11 +63,11 @@ public class GenerateINI {
 
 	private static RSAKey rsakey;
 
-	
+
 	/**
 	 * reads a String from the input. When no String is chosen the defaultValue
 	 * is used.
-	 * 
+	 *
 	 * @param input
 	 *            the buffered input, usually System.in
 	 * @param defaultValue
@@ -95,7 +95,7 @@ public class GenerateINI {
 	/**
 	 * reads a String from the input. When no String is choosen the errorMessage
 	 * is is displayed and the application is terminated.
-	 * 
+	 *
 	 * @param input
 	 *            the input stream, usually System.in
 	 * @param errorMessage
@@ -121,7 +121,7 @@ public class GenerateINI {
 
 	/**
 	 * Makes the first letter of the source uppercase.
-	 * 
+	 *
 	 * @param source
 	 *            the string
 	 * @return *T*he string, with first letter is upper case.
@@ -212,7 +212,7 @@ public class GenerateINI {
 	}
 
 	private static String getRSAKeyBits() {
-		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
+		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create (minimum 512) [512]: ");
 		final String keySize = getStringWithDefault(in, "512");
 		return keySize;
 	}
