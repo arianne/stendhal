@@ -55,6 +55,7 @@ import games.stendhal.server.util.TimeUtil;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -78,7 +79,7 @@ import org.apache.log4j.Logger;
  *  <li> The player checks with Stefan, he will tell him what he needs to fulfill Groongo's request,
  *  <li> The player has to fetch the required items/foodstuff,
  *  <li> The player talks again with Stefan, gives him the resources,
- *  <li> Stefan tells the player how much time he requires to prepare Groongo's order,
+ *  <li> Stefan tells the player how much time (10-15mins) he requires to prepare Groongo's order,
  *  <li> After enough time has elapsed, the player can collect Groongo's order from Stefan,
  *  <li> The player delivers the order to Grongo's,
  *  <li> Groongo is happy and gives the player a reward of some kind.   
@@ -131,11 +132,10 @@ public class MealForGroongo extends AbstractQuest {
      * because we want to keep full history of what's going on
      * 
      * NOTE:
-     * In a sub slot, ingredients cannot be stored as a collection of
-     * key=value token pairs.
-     * 
-     * chicken=1:rice=1:tomato=1:garlic=1:trout=1:perch=1:onion=1:
-     * chicken=1;rice=1;tomato=1;garlic=1;trout=1;perch=1;onion=1;
+     * In a sub slot, ingredients cannot (currently) be stored
+     * as a collection of key=value token pairs, like e.g.:
+     * - chicken=1;rice=1;tomato=1;garlic=1;trout=1;perch=1;onion=1;
+     * - chicken=1:rice=1:tomato=1:garlic=1:trout=1:perch=1:onion=1:
      * 
      * We cannot use directly:
      * final ItemCollection missingIngredients = new ItemCollection();
@@ -155,6 +155,29 @@ public class MealForGroongo extends AbstractQuest {
     // how much XP is given as the reward
     // TODO omero: XP_REWARD needs to be adjusted
     private static final int XP_REWARD = 1000;
+
+    private static final List<String> REQUIRED_MAIN_DISHES =
+            Arrays.asList(
+                "paella",
+                "ciorba",
+                "lasagne",
+                "schnitzel",
+                "consomme",
+                "paidakia",
+                "kuskus",
+                "kushari"
+            );
+    private static final List<String> REQUIRED_DESSERTS =
+            Arrays.asList(
+                "macedonia",
+                "slagroomtart",
+                "brigadeiro",
+                "vatrushka"
+                //"tarte a la rhubarbe",
+                //"schwarzwalder kirschtorte",
+                //"ngat biang",
+                //"gulab jamun"
+            );
 
     @Override
     public void addToWorld() {
@@ -275,38 +298,13 @@ public class MealForGroongo extends AbstractQuest {
     private String getRequiredMainDish() {
         // Main dishes Groongo will require for the quest
     	// All main dishes are temporary for developing purposes, subject to change
-        final List<String> requiredMainDish =
-                Arrays.asList(
-                        "paella",
-                        "ciorba",
-                        "lasagne",
-                        "schnitzel",
-                        "consomme",
-                        "paidakia",
-                        "kuskus",
-                        "kushari"
-                        );
-
-        return requiredMainDish.get(Rand.rand(requiredMainDish.size()));
+        return REQUIRED_MAIN_DISHES.get(Rand.rand(REQUIRED_MAIN_DISHES.size()));
     }
 
     private String getRequiredDessert() {
         // Desserts Groongo will ask for the quest
         // All desserts are temporary for developing purposes, subject to change 
-        final List<String> requiredDesserts =
-                Arrays.asList(
-                        "macedonia",
-                        "slagroomtart",
-                        "brigadeiro",
-                        "vatrushka"
-                        );
-
-                        //"tarte a la rhubarbe",
-                        //"schwarzwalder kirschtorte",
-                        //"ngat biang",
-                        //"gulab jamun"
-        
-        return requiredDesserts.get(Rand.rand(requiredDesserts.size()));
+        return REQUIRED_DESSERTS.get(Rand.rand(REQUIRED_DESSERTS.size()));
     }
 
     private String getRequiredMainDishFancyName(final String requiredMainDish) {
@@ -400,7 +398,7 @@ public class MealForGroongo extends AbstractQuest {
         //requiredIngredients_paidakia.put("pepper", 1);
         //requiredIngredients_paidakia.put("salt", 1);
         //requiredIngredients_paidakia.put("olive oil", 1);
-        requiredIngredients_paidakia.put("potato", 1);
+        //requiredIngredients_paidakia.put("potato", 1);
         requiredIngredients_paidakia.put("kekik", 1);
         //requiredIngredients_paidakia.put("lemon", 1);
 
@@ -441,6 +439,7 @@ public class MealForGroongo extends AbstractQuest {
 
         //return requiredIngredientsForMainDish.get(requiredMainDish);
         return ingredients;
+        
     }
 
     /**
@@ -497,8 +496,6 @@ public class MealForGroongo extends AbstractQuest {
 
     class advanceQuestAction implements ChatAction {
         public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
-
-            logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
             if ("fetch_maindish".equals(player.getQuest(QUEST_SLOT, 0))) {
             	SpeakerNPC.say("go ask dessert now");
             	player.setQuest(QUEST_SLOT, 0, "choose_dessert");
@@ -509,23 +506,28 @@ public class MealForGroongo extends AbstractQuest {
                 	SpeakerNPC.say("go deliver meal now");
                 	player.setQuest(QUEST_SLOT, 0, "deliver_decentmeal");
             }
+
+            logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+
         }
     }
 
     
     class chooseMainDishAction implements ChatAction {
         public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
-
             final String requiredMainDish = getRequiredMainDish();
 
             player.setQuest(QUEST_SLOT, 0, "fetch_maindish");
             player.setQuest(QUEST_SLOT, 1, requiredMainDish);
+            
             SpeakerNPC.say(
                     "Bah! I really feel like trying " +
                     Grammar.a_noun(getRequiredMainDishFancyName(requiredMainDish)) +
                     ". Now go ask Chef Stefan to prepare my #meal, at once!"
             );
+            
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+
         }
     }
 
@@ -544,7 +546,9 @@ public class MealForGroongo extends AbstractQuest {
                     Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
                     ". Now go ask Chef Stefan to prepare my #dessert, at once!"
             );
+
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+
         }
     }
     
@@ -557,7 +561,9 @@ public class MealForGroongo extends AbstractQuest {
                     Grammar.a_noun(getRequiredMainDishFancyName(player.getQuest(QUEST_SLOT,1))) +
                     ". Did you bring that to me?"
             );
+
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
+
         }
     }
 
@@ -834,21 +840,51 @@ public class MealForGroongo extends AbstractQuest {
                 new AndCondition(
                         new GreetingMatchesNameCondition(npc.getName()),
                         new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish")),
+                ConversationStates.ATTENDING,
+                // FIXME omero: greetings line should reflect the quest has started
+                "Hello! MAINDISH!",
+                null
+        );
+
+        // Player remembers generic instructions from Groongo,
+        // Player says 'meal'
+        npc.add(ConversationStates.ATTENDING,
+                "meal",
+                new AndCondition(
+                        new GreetingMatchesNameCondition(npc.getName()),
+                        new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish")),
                 ConversationStates.QUESTION_1,
                 null,
                 new checkIngredientsForMainDishAction()
         );
 
-        // Player says no
+        // Player remembers Groongo asked for a specific main dish
+        // Player says one of the known REQUIRED_MAIN_DISHES
+        // Add all the main dishes trigger words
+        Iterator<String> i = REQUIRED_MAIN_DISHES.iterator();
+        while (i.hasNext()) {
+            npc.add(ConversationStates.ATTENDING,
+                    i.next(),
+                    new QuestInStateCondition(QUEST_SLOT, 0, "fetch_maindish"),
+                    ConversationStates.QUESTION_1,
+                    null,
+                    new checkIngredientsForMainDishAction()
+            );
+        }
+
+        // Player has been asked if he has the ingredients for main dish,
+        // Player answers negatively
         npc.add(ConversationStates.QUESTION_1,
                 ConversationPhrases.NO_MESSAGES,
                 null,
-                ConversationStates.IDLE,
+                ConversationStates.ATTENDING,
                 "Be sure to bring me those ingredients all at once!",
                 null
         );
 
-        // Player says yes
+        // Player has been asked if he has the ingredients for main dish,
+        // Player answers affirmatively,
+        // the quest is possibly advanced to the next step
         npc.add(ConversationStates.QUESTION_1,
                 ConversationPhrases.YES_MESSAGES,
                 null,
@@ -859,24 +895,6 @@ public class MealForGroongo extends AbstractQuest {
                 		ConversationStates.IDLE)
         );
 
-        // Player collected all the ingredients
-        /*
-        ChatAction completeAction = new MultipleActions(
-            new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
-                	logger.warn("bravo1");
-                	SpeakerNPC.say("bravo1");
-                }
-            },
-            new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
-                	
-                	logger.warn("bravo2 <" + player.getQuest(QUEST_SLOT) + ">");
-                	SpeakerNPC.say("bravo2 <" + player.getQuest(QUEST_SLOT) + ">");
-                }
-            }
-        );
-        */
     }
     
     public void stageCollectIngredientsForDessert() {
@@ -888,20 +906,40 @@ public class MealForGroongo extends AbstractQuest {
                 new AndCondition(
                         new GreetingMatchesNameCondition(npc.getName()),
                         new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert")),
+                ConversationStates.ATTENDING,
+                // FIXME omero: greetings line should reflect the quest has advanced
+                "Hello! DESSERT!",
+                null
+        );
+        
+        // Player remembers generic instructions from Groongo,
+        // Player says 'dessert'
+        npc.add(ConversationStates.ATTENDING,
+                "dessert",
+                new AndCondition(
+                        new GreetingMatchesNameCondition(npc.getName()),
+                        new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert")),
                 ConversationStates.QUESTION_1,
                 null,
                 new checkIngredientsForDessertAction()
         );
 
-        // Player says no, he doesn't have any ingredients yet for main dish
-        npc.add(ConversationStates.QUESTION_1,
-                ConversationPhrases.NO_MESSAGES,
-                null,
-                ConversationStates.IDLE,
-                "Be sure to bring me those ingredients all at once!",
-                null
-        );
-        // Player says no, he doesn't have any ingredients yet for dessert
+        // Player remembers Groongo asked for a specific dessert
+        // Player says one of the known REQUIRED_DESSERTS
+        // Add all the desserts trigger words
+        Iterator<String> i = REQUIRED_DESSERTS.iterator();
+        while (i.hasNext()) {
+            npc.add(ConversationStates.ATTENDING,
+                    i.next(),
+                    new QuestInStateCondition(QUEST_SLOT, 0, "fetch_dessert"),
+                    ConversationStates.QUESTION_1,
+                    null,
+                    new checkIngredientsForDessertAction()
+            );
+        }
+
+        // Player has been asked if he has the ingredients for dessert,
+        // Player answers negatively
         npc.add(ConversationStates.QUESTION_1,
                 ConversationPhrases.NO_MESSAGES,
                 null,
@@ -910,7 +948,9 @@ public class MealForGroongo extends AbstractQuest {
                 null
         );
 
-        // Player says yes
+        // Player has been asked if he has the ingredients for dessert,
+        // Player answers affirmatively,
+        // the quest is possibly advanced to the next step
         npc.add(ConversationStates.QUESTION_1,
                 ConversationPhrases.YES_MESSAGES,
                 null,
@@ -920,7 +960,7 @@ public class MealForGroongo extends AbstractQuest {
                 		new advanceQuestAction(),
                 		ConversationStates.IDLE)
         );
-
+        
     }
 
     public void stageWaitForMeal() {
