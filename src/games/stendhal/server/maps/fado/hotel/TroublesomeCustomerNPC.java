@@ -46,7 +46,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 				addGreeting("Gah! Outrageous Place! Been waiting forever for someone to show up!");
 				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!"); 
 				addJob("Ah! Finally... Want a #task?");
-				addOffer("Do a #task for me and you get a generous tip from me!");
+				addOffer("Do a #task for me and you get a generous tip!");
 				addGoodbye("Buzz off now!");
                 
 				/**
