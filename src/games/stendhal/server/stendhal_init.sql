@@ -225,3 +225,13 @@ CREATE TABLE IF NOT EXISTS pending_achievement (
 );
 
 /* CREATE INDEX i_pending_achievement_charname ON pending_achievement(charname);*/
+
+create table if not exists statistics_archive
+  (
+  id integer auto_increment not null,
+  name varchar(32) not null,
+  val integer not null,
+  day date not null,
+  primary key(id)
+  );
+
