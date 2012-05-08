@@ -224,17 +224,17 @@ order by ln(xp*(ifnull(score*1000,0)+0.0001)/(age+1))*1000 desc) As scoretable,
 -- statistics
 
 INSERT INTO statistics_archive (name, val, day)
-SELECT 'account_30', count(DISTINCT player_id), CURRENT_DATE() 
+SELECT 'accounts_30', count(DISTINCT player_id), CURRENT_DATE() 
 FROM loginEvent 
 WHERE timedate>date_sub(CURRENT_TIMESTAMP, interval 30 day) AND result=1;
 
 INSERT INTO statistics_archive (name, val, day)
-SELECT 'account_7', count(DISTINCT player_id), CURRENT_DATE() 
+SELECT 'accounts_7', count(DISTINCT player_id), CURRENT_DATE() 
 FROM loginEvent 
 WHERE timedate>date_sub(CURRENT_TIMESTAMP, interval 7 day) AND result=1;
 
 INSERT INTO statistics_archive (name, val, day)
-SELECT 'account_1', count(DISTINCT player_id), CURRENT_DATE() 
+SELECT 'accounts_1', count(DISTINCT player_id), CURRENT_DATE() 
 FROM loginEvent 
 WHERE timedate>date_sub(CURRENT_TIMESTAMP, interval 1 day) AND result=1;
 
