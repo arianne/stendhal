@@ -63,7 +63,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 		
 		npc.setDescription("You see Groongo Rahnt. He seems impatient to get the attention of someone!");
 		npc.setEntityClass("customeronchairnpc");
-		npc.setPosition(67, 30);
+		npc.setPosition(70, 24);
 		npc.initHP(100);
 		zone.add(npc);
 	}
