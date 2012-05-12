@@ -372,4 +372,8 @@ public class DefaultEntityManager implements EntityManager {
 	public Collection<String> getConfiguredItems() {
 		return classToItem.keySet();
 	}
+
+	public Collection<String> getConfiguredSpells() {
+		return nameToSpell.keySet();
+	}
 }

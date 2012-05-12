@@ -147,5 +147,10 @@ public interface EntityManager {
 	 * @return a collection of spells that are used at least once
 	 */
 	Collection<Spell> getSpells();
+	
+	/**
+	 * @return a collection of all available spells
+	 */
+	Collection<String> getConfiguredSpells();
 
 }
