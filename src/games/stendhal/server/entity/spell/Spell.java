@@ -101,6 +101,8 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 			doEffects(caster, target);
 			//set last casting time for calculation of cooldown
 			setTimestamp(System.currentTimeMillis());
+			//increase skill for nature
+			caster.increaseMagicSkill(getNature(), 1);
 			//log gameEvent
 			new GameEvent(caster.getName(), "cast-spell", getName(), target.getTitle()).raise();
 		}

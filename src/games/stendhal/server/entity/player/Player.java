@@ -23,6 +23,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
+import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.TradeState;
@@ -30,6 +31,7 @@ import games.stendhal.common.Version;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.WordList;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -680,6 +682,46 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public String getSkill(final String key) {
 		return getKeyedSlot("skills", key);
+	}
+	
+	/**
+	 * Get the current value for the skill of a magic nature
+	 * @param nature the nature to get the skill for
+	 * @return current skill value
+	 */
+	public int getMagicSkill(final Nature nature) {
+		int skillValue = 0;
+		String skill = getSkill(nature.toString());
+		if(skill != null) {
+			try {
+				Integer skillInteger = Integer.parseInt(skill);
+				skillValue = skillInteger.intValue();
+			} catch (NumberFormatException e) {
+				logger.error(e, e);
+			}
+		}
+		return skillValue;
+	}
+	
+	/**
+	 * Increase the skill points for a magic nature by a given amount
+	 * @param nature
+	 * @param amount
+	 */
+	public void increaseMagicSkill(final Nature nature, int amount) {
+		int oldValue = getMagicSkill(nature);
+		int newValue = oldValue + amount;
+		// Handle level changes
+		final int newLevel = Level.getLevel(newValue);
+		final int levels = newLevel - (Level.getLevel(oldValue) - 10);
+
+		// In case we level up several levels at a single time.
+		for (int i = 0; i < Math.abs(levels); i++) {
+			// set in map
+			// log event
+		}
+		setSkill(nature.toString(), 
+				Integer.valueOf(newValue).toString());
 	}
 
 	/**
