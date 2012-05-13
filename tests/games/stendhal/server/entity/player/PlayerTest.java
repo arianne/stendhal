@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.number.IsCloseTo.closeTo;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -507,5 +508,17 @@ public class PlayerTest {
 		assertThat(player.isClientNewerThan("0.100"), is(true));
 		assertThat(player.isClientNewerThan("1.1"), is(false));
 		assertThat(player.isClientNewerThan("0.99"), is(true));
+	}
+	
+	@Test
+	public void testMagicSkill() throws Exception {
+		Player player = PlayerTestHelper.createPlayer("harry");
+		for (Nature nature : Nature.values()) {
+			assertThat(player.getMagicSkill(nature), is(0));
+		}
+		player.increaseMagicSkill(Nature.LIGHT, 1);
+		assertThat(player.getMagicSkill(Nature.LIGHT), is(1));
+		player.setSkill(Nature.LIGHT.toString(), "blah");
+		assertThat(player.getMagicSkill(Nature.LIGHT), is(0));
 	}
 }
