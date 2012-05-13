@@ -689,9 +689,9 @@ public class Player extends RPEntity implements UseListener {
 	 * @param nature the nature to get the skill for
 	 * @return current skill value
 	 */
-	public int getMagicSkill(final Nature nature) {
+	public int getMagicSkillXp(final Nature nature) {
 		int skillValue = 0;
-		String skill = getSkill(nature.toString());
+		String skill = getSkill(nature.toString()+"_xp");
 		if(skill != null) {
 			try {
 				Integer skillInteger = Integer.parseInt(skill);
@@ -708,20 +708,38 @@ public class Player extends RPEntity implements UseListener {
 	 * @param nature
 	 * @param amount
 	 */
-	public void increaseMagicSkill(final Nature nature, int amount) {
-		int oldValue = getMagicSkill(nature);
+	public void increaseMagicSkillXp(final Nature nature, int amount) {
+		int oldValue = getMagicSkillXp(nature);
 		int newValue = oldValue + amount;
 		// Handle level changes
 		final int newLevel = Level.getLevel(newValue);
-		final int levels = newLevel - (Level.getLevel(oldValue) - 10);
+		int oldLevel = Level.getLevel(oldValue);
+		final int levels = newLevel - (oldLevel - 10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
+			Integer oneup = getMagicSkill(nature) + (int) Math.signum(levels) * 1;
 			// set in map
+			setSkill(nature.toString(), oneup.toString());
 			// log event
+			new GameEvent(getName(), "nature-"+nature.toString(), oneup.toString()).raise();
 		}
-		setSkill(nature.toString(), 
+		setSkill(nature.toString()+"_xp", 
 				Integer.valueOf(newValue).toString());
+	}
+	
+	public int getMagicSkill(final Nature nature) {
+		int skillLevel = 0;
+		String skillString = getSkill(nature.toString());
+		if(skillString != null) {
+			try {
+				Integer skillInteger = Integer.parseInt(skillString);
+				skillLevel = skillInteger.intValue();
+			} catch (NumberFormatException e) {
+				logger.error(e, e);
+			}
+		}
+		return skillLevel;
 	}
 
 	/**

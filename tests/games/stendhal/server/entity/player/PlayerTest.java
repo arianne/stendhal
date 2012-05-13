@@ -514,11 +514,11 @@ public class PlayerTest {
 	public void testMagicSkill() throws Exception {
 		Player player = PlayerTestHelper.createPlayer("harry");
 		for (Nature nature : Nature.values()) {
-			assertThat(player.getMagicSkill(nature), is(0));
+			assertThat(player.getMagicSkillXp(nature), is(0));
 		}
-		player.increaseMagicSkill(Nature.LIGHT, 1);
-		assertThat(player.getMagicSkill(Nature.LIGHT), is(1));
+		player.increaseMagicSkillXp(Nature.LIGHT, 1);
+		assertThat(player.getMagicSkillXp(Nature.LIGHT), is(1));
 		player.setSkill(Nature.LIGHT.toString(), "blah");
-		assertThat(player.getMagicSkill(Nature.LIGHT), is(0));
+		assertThat(player.getMagicSkillXp(Nature.LIGHT), is(0));
 	}
 }

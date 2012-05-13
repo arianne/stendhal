@@ -175,7 +175,7 @@ public class SpellTest {
 		TurnNotifier.get().logic(currentTurnForDebugging + 1);
 		assertThat(Integer.valueOf(caster.getMana()), lessThanOrEqualTo(Integer.valueOf(1000)));
 		assertThat(Integer.valueOf(target.getHP()), greaterThan(Integer.valueOf(1)));
-		assertThat(caster.getMagicSkill(healingSpell.getNature()), is(1));
+		assertThat(caster.getMagicSkillXp(healingSpell.getNature()), is(1));
 	}
 	
 	@Test
@@ -211,7 +211,7 @@ public class SpellTest {
 			TurnNotifier.get().logic(currentTurnForDebugging + i);
 		}
 		assertThat(Integer.valueOf(targetCreature.getHP()), lessThan(startingValue));
-		assertThat(caster.getMagicSkill(attackSpell.getNature()), is(1));
+		assertThat(caster.getMagicSkillXp(attackSpell.getNature()), is(1));
 	}
 
 }
