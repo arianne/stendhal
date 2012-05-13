@@ -68,15 +68,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * FIXME omero: investigate 'stackable item'
- * 
- * NOTE:
  * ---------------------------
- * We use a separate sub slot for for main dish and dessert
- * because we want to keep full history of what's going on
- *
- * use this quest slot template for testing
- * player.setQuest(QUEST_SLOT, "prepare_decentmeal;ciorba;slagroomtart;1336246794962");
+ * FIXME omero: investigate 'stackable item'
+ * FIXME omero: use this quest slot template for testing
+ * prepare_decentmeal;inprogress;consomme;brigadeiro;1336946510085
  * ---------------------------
  */
 
@@ -100,16 +95,17 @@ import org.apache.log4j.Logger;
  *  <li> The player checks back with Groongo to ask for a dessert of his choice,
  *  <li> The player tells Stefan which dessert Groongo wants along with the main dish,
  *  <li> Stefan tells the player which ingredients he's missing for preparing the dessert,
- *  <li> The player goes fetching the ingredients for the main dish and brings them to Stefan,   
- *  <li> Stefan tells the player how much time (10-15mins) he requires to prepare Groongo's order,
- *  <li> After enough time has elapsed, the player can collect Groongo's order from Stefan,
+ *  <li> The player goes fetching the ingredients for the dessert and brings them to Stefan,   
+ *  <li> Stefan tells the player how much time (10-15mins) he requires to prepare Groongo's decent meal,
+ *  <li> After enough time has elapsed, the player gets the decent meal from Stefan,
  *  <li> The player may deliver the decent meal to Grongo
- *  <li> Groongo is finaly happy and gives the player a reward of some kind.   
+ *  <li> Groongo is finaly happy and gives the player a reward of some kind, hints player to say 'thanks' to Stefan
+ *  <li> The player then has a limited time to get a better reward    
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li> none defined yet
+ * <li> both 'normal' and 'better' rewards are for testing purpouses only.
  * </ul>
  *
  * REPETITIONS:
@@ -226,7 +222,6 @@ public class MealForGroongo extends AbstractQuest {
                 "kirschtorte",
                 "gulab"
             );
-
 
     @Override
     public void addToWorld() {
