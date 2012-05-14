@@ -32,22 +32,22 @@ public class TimePassedCondition implements ChatCondition {
 
 	private final String questname;
 	private final int delay;
-	private final int arg;
+	private final int index;
 	
 	/**
 	 * Creates a new TimePassedCondition .
 	 * 
 	 * @param questname
 	 *            name of quest-slot
-	 * @param arg
+	 * @param index
 	 *            position of the timestamp within the quest slot 'array'
 	 * @param delay
 	 *            delay in minutes
 	 */
-	public TimePassedCondition(final String questname, final int arg, final int delay) {
+	public TimePassedCondition(final String questname, final int index, final int delay) {
 		this.questname = questname;
 		this.delay = delay;
-		this.arg = arg;
+		this.index = index;
 	}
 	/**
 	 * Creates a new TimePassedCondition, where the timestamp alone is stored in the quest state.
@@ -60,7 +60,7 @@ public class TimePassedCondition implements ChatCondition {
 	public TimePassedCondition(final String questname, final int delayInMinutes) {
 		this.questname = questname;
 		this.delay = delayInMinutes;
-		this.arg = 0;
+		this.index = 0;
 	}
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -70,7 +70,7 @@ public class TimePassedCondition implements ChatCondition {
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";"); 
 			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
-		    if (tokens.length - 1 < arg) {
+		    if (tokens.length - 1 < index) {
                 // old quest status, the split did not work, so we assume enough time is passed.
                 return true;		
             }
@@ -79,7 +79,7 @@ public class TimePassedCondition implements ChatCondition {
 			// if this is > 0, the time has not yet passed
             long questtime;            
             try {
-			    questtime = Long.parseLong(tokens[arg]);
+			    questtime = Long.parseLong(tokens[index]);
 		    } catch (final NumberFormatException e) {
                 // set to 0 if it was no Long, as if this quest was done at the beginning of time.
 			    questtime = 0;
