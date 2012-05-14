@@ -1218,32 +1218,17 @@ Buy sheep from Nishiya to get the best prices!
 Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep (try to get a weight of at least 100).
    </attribute>
 		</entity>
-
-		<!-- writing on the wooden arch -->
-		<entity x="57" y="42">
+		
+		<entity x="55" y="43">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
+			<attribute name="text">
+TO SEMOS
+
+Mature sheep wanted: please speak to Sato.
+   </attribute>
 		</entity>
 
-		<!-- writing on the wooden arch -->
-		<entity x="57" y="43">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- writing on the wooden arch -->
-		<entity x="57" y="44">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<entity x="60" y="48">
+		<entity x="55" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
 TO SEMOS
@@ -1289,6 +1274,44 @@ Mature sheep wanted: please speak to Sato.
 			<parameter name="message">The gate is locked.</parameter>
 		</configurator>
 
+		<!-- writing on the wooden arch -->
+		
+		<entity x="3" y="42">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="3" y="43">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="3" y="44">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+
+		<!-- writing on the wooden arch -->
+		<entity x="3" y="45">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+
+		<!-- writing on the wooden arch -->
+		<entity x="57" y="46">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
 
 		<point-of-interest x="28" y="38">
 			<name>Semos Dungeon</name>
@@ -1470,10 +1493,10 @@ South: Nalwor forest and Or'ril castle
 
 
 
-		<entity x="4" y="41">
+		<entity x="6" y="40">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
-TO OLD SEMOS VILLAGE
+TO OLD SEMOS VILLAGE WEST
 
 Shepherds wanted: please ask Nishiya
    </attribute>
