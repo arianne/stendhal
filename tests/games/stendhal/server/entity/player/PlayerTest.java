@@ -517,8 +517,10 @@ public class PlayerTest {
 			assertThat(player.getMagicSkillXp(nature), is(0));
 		}
 		player.increaseMagicSkillXp(Nature.LIGHT, 1);
-		assertThat(player.getMagicSkillXp(Nature.LIGHT), is(1));
-		player.setSkill(Nature.LIGHT.toString(), "blah");
-		assertThat(player.getMagicSkillXp(Nature.LIGHT), is(0));
+		int magicSkillXp = player.getMagicSkillXp(Nature.LIGHT);
+		assertThat(magicSkillXp, is(1));
+		player.setSkill(Nature.LIGHT.toString()+"_xp", "blah");
+		int magicSkillXpLater = player.getMagicSkillXp(Nature.LIGHT);
+		assertThat(magicSkillXpLater, is(0));
 	}
 }
