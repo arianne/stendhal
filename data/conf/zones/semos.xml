@@ -1313,6 +1313,33 @@ Mature sheep wanted: please speak to Sato.
 			<attribute name="resistance">0</attribute>
 		</entity>
 
+		<!-- writing on the wooden arch South -->
+		
+		<entity x="10" y="57">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<!-- writing on the wooden arch South -->
+		
+		<entity x="9" y="57">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<!-- writing on the wooden arch South -->
+		
+		<entity x="8" y="57">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Semos</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
 		<point-of-interest x="28" y="38">
 			<name>Semos Dungeon</name>
 			<type>dungeon</type>
