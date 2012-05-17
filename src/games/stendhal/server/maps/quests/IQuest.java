@@ -28,13 +28,13 @@ public interface IQuest {
 	 * @return - QuestInfo object with info about this quest
 	 */
 	QuestInfo getQuestInfo(Player player);
-	
+
 	/**
-	 * 
+	 * @param player Player
 	 */
 	void updatePlayer(Player player);
 
-	
+
 	/**
 	 * adds the quest to the game world (e.g. by placing SpeakerNPCs there)
 	 */
@@ -43,7 +43,7 @@ public interface IQuest {
 	/**
 	 * removes a quest from the world.
 	 *
-	 * @return true if the quest could be unloaded, false otherwise 
+	 * @return true if the quest could be unloaded, false otherwise
 	 */
 	boolean removeFromWorld();
 
@@ -89,8 +89,8 @@ public interface IQuest {
 	 * <p>
 	 * The hint system will ensure that the same hint is not displayed twice.
 	 * This class creates a list of useful hints (without hints about already
-	 * completed parts). The texts will be looked up in quest.xml
-	 * 
+	 * completed parts).
+	 *
 	 * @param player
 	 *            Player
 	 * @return list of history item-names
@@ -107,35 +107,37 @@ public interface IQuest {
 	/**
 	 * Returns the minimum level of player expected to start the quest. Used for choosing which hints to give.
 	 * To set a hard minimum level requirement for doing the quest, use level related ChatConditions in the quest methods
+	 *
 	 * @return level
 	 */
 	int getMinLevel();
-	
+
 	/**
 	 * Returns the slot name of the quest.
 	 *
 	 * @return slot name
 	 */
 	String getSlotName();
-	
+
 	/**
 	 * Determines whether the quest should be shown in the Quest Status/Progress log
 	 *
+	 * @return true, if the quest is visible, false otherwise
 	 */
 	boolean isVisibleOnQuestStatus();
-	
+
 	/**
 	 * Returns the region where the quest adventure takes place (or begins), or null for global quests
-	 * 
+	 *
 	 * @return region, or null for global quests
 	 */
 	String getRegion();
-	
+
 	/**
 	 * Returns the starter NPC for the quest, or null if there is none
 	 *
 	 * @return NPC name, or null for quests with no starter NPC
 	 */
 	String getNPCName();
-	
+
 }

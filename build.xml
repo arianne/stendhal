@@ -284,7 +284,6 @@
 				<include name="creatures/*.xml"/>
 				<include name="items.xml"/>
 				<include name="items/*.xml"/>
-				<include name="quests.xml"/>
 				<include name="zones.xml"/>
 				<include name="zones/*.xml"/>
 				<include name="riddles-example.xml"/>
@@ -995,13 +994,10 @@
 	</target>
 
 	<target name="checkxml" description="Verify XML files are well-formed">
-		<xmlvalidate failonerror="yes" lenient="yes" warn="yes">
-			<fileset file="data/conf/quests.xml"/>
-		</xmlvalidate>
 		<schemavalidate failonerror="yes" lenient="yes" warn="yes">
 			<schema namespace="stendhal" file="${config_dir}/zones.xsd"/>
 			<fileset dir="${config_dir}/zones">
-							<include name="*.xml"/>
+					<include name="*.xml"/>
 			</fileset>
 		</schemavalidate>
 		<schemavalidate>
