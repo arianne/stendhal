@@ -12,22 +12,19 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Singleton class that contains inventory and prices of NPC stores.
- * 
  */
 public final class ShopList {
 
 	static {
-		final ShopList shops = SingletonRepository.getShopList();
+		final ShopList shops = ShopList.get();
 
 		shops.add("food&drinks", "beer", 10);
 		shops.add("food&drinks", "wine", 15);
@@ -54,7 +51,7 @@ public final class ShopList {
 		shops.add("superhealing", "greater antidote", 100);
 		shops.add("superhealing", "potion", 250);
 		shops.add("superhealing", "greater potion", 500);
-		shops.add("superhealing", "mega potion", 1500); 
+		shops.add("superhealing", "mega potion", 1500);
 
 		shops.add("scrolls", "home scroll", 250);
 		shops.add("scrolls", "summon scroll", 200);
@@ -118,7 +115,7 @@ public final class ShopList {
 		shops.add("buystuff", "chain armor", 29);
 		shops.add("buystuff", "chain helmet", 25);
 		shops.add("buystuff", "chain legs", 27);
-		
+
 		shops.add("selltools", "small axe", 15);
 		shops.add("selltools", "hand axe", 25);
 		shops.add("selltools", "axe", 40);
@@ -145,7 +142,7 @@ public final class ShopList {
 		shops.add("buyprecious", "diamond", 800);
 		shops.add("buyprecious", "obsidian", 1000);
 		shops.add("buyprecious", "mithril bar", 2500);
-		
+
 		// rare weapons shop
 		shops.add("buyrare", "scimitar", 65);
 		shops.add("buyrare", "katana", 70);
@@ -223,7 +220,7 @@ public final class ShopList {
 		shops.add("boots&helm", "chaos boots", 4000);
         shops.add("boots&helm", "green thing boots", 6000);
         shops.add("boots&helm", "xeno boots", 8000);
- 
+
 		// helmet shop (mithrilbourgh)
 		// Note the shop sign is done by hand in
 		// games.stendhal.server.maps.mithrilbourgh.stores
@@ -282,16 +279,16 @@ public final class ShopList {
 		shops.add("buymainio", "mainio helmet", 8000);
 		shops.add("buymainio", "mainio legs", 7000);
 		shops.add("buymainio", "mainio shield", 16000);
-		
+
 		// assassinhq principal Femme Fatale)
 		shops.add("buy4assassins", "buckler", 20);
 		shops.add("buy4assassins", "aventail", 25);
-		shops.add("buy4assassins", "robins hat", 30);		
+		shops.add("buy4assassins", "robins hat", 30);
 		shops.add("buy4assassins", "leather boots", 30);
 		shops.add("buy4assassins", "dwarf cloak", 60);
 		shops.add("buy4assassins", "dwarvish armor", 17000);
 		shops.add("buy4assassins", "assassin dagger", 7000);
-		
+
 		// mountain dwarf buyer of odds and ends -3 ados abandoned keep)
 		shops.add("buyoddsandends", "shuriken", 20);
 		shops.add("buyoddsandends", "amulet", 800);
@@ -315,15 +312,15 @@ public final class ShopList {
 		shops.add("buyarcherstuff", "crossbow", 400);
 		shops.add("buyarcherstuff", "longbow", 300);
 		shops.add("buyarcherstuff", "composite bow", 350);
-		shops.add("buyarcherstuff", "hunter crossbow", 800);	
-		shops.add("buyarcherstuff", "mithril bow", 2000);	
-		
-		// selling arrows 
+		shops.add("buyarcherstuff", "hunter crossbow", 800);
+		shops.add("buyarcherstuff", "mithril bow", 2000);
+
+		// selling arrows
 		shops.add("sellarrows", "wooden arrow", 2);
 		shops.add("sellarrows", "steel arrow", 7);
 		shops.add("sellarrows", "golden arrow", 25);
 		shops.add("sellarrows", "power arrow", 45);
-		
+
 		// assassinhq chief falatheen the dishwasher and veggie buyer)
 		// sign is hard coded so if you change this change the sign
 		shops.add("buyveggiesandherbs", "carrot", 5);
@@ -335,10 +332,10 @@ public final class ShopList {
 		shops.add("buyveggiesandherbs", "tomato", 20);
 		shops.add("buyveggiesandherbs", "onion", 20);
 		shops.add("buyveggiesandherbs", "arandula", 10);
-		shops.add("buyveggiesandherbs", "kokuda", 200);	
+		shops.add("buyveggiesandherbs", "kokuda", 200);
 		shops.add("buyveggiesandherbs", "kekik", 25);
 		shops.add("buyveggiesandherbs", "sclaria", 25);
-		
+
 		// gnome village buyer in 0 ados mountain n2 w2)
 		shops.add("buy4gnomes", "leather armor", 25);
 		shops.add("buy4gnomes", "club", 3);
@@ -347,7 +344,7 @@ public final class ShopList {
 		shops.add("buy4gnomes", "apple", 5);
 		shops.add("buy4gnomes", "marbles", 50);
 		shops.add("buy4gnomes", "wooden shield", 20);
-		
+
 		// hotdog lady in athor)
 		shops.add("buy4hotdogs", "sausage", 30);
 		shops.add("buy4hotdogs", "cheese sausage", 25);
@@ -356,7 +353,7 @@ public final class ShopList {
 		shops.add("buy4hotdogs", "canned tuna", 15);
 		shops.add("buy4hotdogs", "ham", 15);
 		shops.add("buy4hotdogs", "cheese", 5);
-		
+
 		shops.add("sellhotdogs", "hotdog", 160);
 		shops.add("sellhotdogs", "cheeseydog", 180);
 		shops.add("sellhotdogs", "tuna sandwich", 130);
@@ -375,7 +372,7 @@ public final class ShopList {
 		shops.add("sellmagic", "chocolate shake", 110);
 		shops.add("sellmagic", "chocolate bar", 100);
 		shops.add("sellmagic", "licorice", 100);
-		
+
 		// kirdneh city armor)
 		shops.add("buykirdneharmor", "blue armor", 13000);
 		shops.add("buykirdneharmor", "stone armor", 18000);
@@ -384,8 +381,8 @@ public final class ShopList {
 		shops.add("buykirdneharmor", "barbarian armor", 5000);
 		shops.add("buykirdneharmor", "green dragon shield", 13000);
 		shops.add("buykirdneharmor", "xeno shield", 20000);
-		
-		
+
+
 		// amazon cloaks shop
 		shops.add("buyamazoncloaks", "vampire cloak", 14000);
 		shops.add("buyamazoncloaks", "xeno cloak", 18000);
@@ -395,7 +392,7 @@ public final class ShopList {
 		shops.add("buyamazoncloaks", "blue striped cloak", 280);
 		shops.add("buyamazoncloaks", "red dragon cloak", 4000);
 		shops.add("buyamazoncloaks", "bone dragon cloak", 1500);
-		
+
 		// kirdneh city fishy market)
 		shops.add("buyfishes", "perch", 22);
 		shops.add("buyfishes", "mackerel", 20);
@@ -408,7 +405,7 @@ public final class ShopList {
 
 		// semos trading - swords)
 		shops.add("tradeswords", "dagger", 10);
-		
+
 		// party time! For maria for example. Bit more expensive than normal
 		shops.add("sellparty", "pina colada", 100);
 		shops.add("sellparty", "chocolate bar", 100);
@@ -418,8 +415,8 @@ public final class ShopList {
 		shops.add("sellparty", "icecream", 50);
 		shops.add("sellparty", "hotdog", 180);
 		shops.add("sellparty", "sandwich", 140);
-		
-		
+
+
 		// black items (balduin, when ultimate collector quest completed)
 		shops.add("buyblack", "black armor", 60000);
 		shops.add("buyblack", "black boots", 10000);
@@ -430,10 +427,10 @@ public final class ShopList {
 		shops.add("buyblack", "black sword", 20000);
 		shops.add("buyblack", "black scythe", 40000);
 		shops.add("buyblack", "black halberd", 30000);
-		
-		// ados market 
+
+		// ados market
 		shops.add("buyadosarmors", "blue shield", 900);
-		
+
 		// Athor ferry
 		shops.add("buypoisons", "poison", 40);
 		shops.add("buypoisons", "toadstool", 60);
@@ -442,7 +439,7 @@ public final class ShopList {
 		shops.add("buypoisons", "deadly poison", 100);
 		shops.add("buypoisons", "mega poison", 500);
 		shops.add("buypoisons", "disease poison", 2000);
-		
+
 		// Mine Town Revival Weeks Caroline
 		shops.add("sellrevivalweeks", "cherry pie", 195);
 		shops.add("sellrevivalweeks", "apple pie", 195);
@@ -459,14 +456,14 @@ public final class ShopList {
 		shops.add("sellrevivalweeks", "beer", 20);
 		shops.add("sellrevivalweeks", "water", 15);
 
-		
+
 	}
 
 	private static ShopList instance;
 
 	/**
 	 * Returns the Singleton instance.
-	 * 
+	 *
 	 * @return The instance
 	 */
 	public static ShopList get() {
@@ -482,14 +479,32 @@ public final class ShopList {
 		contents = new HashMap<String, Map<String, Integer>>();
 	}
 
+	/**
+	 * gets the items offered by a shop with their prices
+	 *
+	 * @param name name of shop
+	 * @return items and prices
+	 */
 	public Map<String, Integer> get(final String name) {
 		return contents.get(name);
 	}
-	
+
+	/**
+	 * gets a set of all shops
+	 *
+	 * @return set of shops
+	 */
 	public Set<String> getShops() {
 		return contents.keySet();
 	}
 
+	/**
+	 * converts a shop into a human readable form
+	 *
+	 * @param name   name of shop
+	 * @param header prefix
+	 * @return human readable description
+	 */
 	public String toString(final String name, final String header) {
 		final Map<String, Integer> items = contents.get(name);
 
@@ -504,7 +519,7 @@ public final class ShopList {
 
 	/**
 	 * Add an item to a shop
-	 * 
+	 *
 	 * @param name the shop name
 	 * @param item the item to add
 	 * @param price the price for the item
