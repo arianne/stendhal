@@ -19,8 +19,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
-// TODO omero: do we need this for rewarding the player?
-//import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -28,7 +27,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
-import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -55,25 +53,20 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-// TODO omero: do we want to place the decent meal on Groongo's table?
-//import marauroa.common.game.IRPZone;
 import marauroa.common.Pair;
 
 import org.apache.log4j.Logger;
 
-/**
- * ---------------------------
- * FIXME omero: investigate 'stackable item'
- * 
- * NOTE: quest templates for testing
+/** 
+ * NOTE: quest slot templates for testing
  * ---------------------------
  * fetch_dessert;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207220454
  * deliver_decentmeal;inprogress;paella;chicken=2,tomato=3,garlic=3,trout=1,perch=1,onion=2,;gulab;flour=2,fierywater=2,honey=2,sugar=4,;1337207289602
@@ -91,11 +84,10 @@ import org.apache.log4j.Logger;
  *  <li> Stefan, The Fado's Hotel Restaurant Chef
  * </ul>
  *
- * FIXME omero: Quest steps are not fully defined yet.
  * STEPS:
  * <ul>
  *  <li> Groongo is hungry, asks the player to bring him a decent meal,
- *  <li> The player talks to Stefan and he will tell him what he needs to fulfill Groongo's request,
+ *  <li> The player talks to Stefan and he will tell him what ingredients he's missing,
  *  <li> The player goes fetching the ingredients for the main dish,
  *  <li> The player brings Stefan the ingredients he needs,
  *  <li> Stefan tells the player to ask Groongo which dessert he would like along the main dish,
@@ -128,8 +120,6 @@ public class MealForGroongo extends AbstractQuest {
     private static Logger logger = Logger.getLogger(MealForGroongo.class);
 
     /**
-     * FIXME omero: Quest states are not fully defined yet.
-     *
      * QUEST_SLOT will be used to hold the different states of the quest.
      * Each sub slot will only always serve one purpose as stated below. 
      *
@@ -192,23 +182,20 @@ public class MealForGroongo extends AbstractQuest {
     public static final String QUEST_SLOT = "meal_for_groongo";
 
     //How long it takes Chef Stefan to prepare a decent meal (main dish and dessert)
-    private static final int MEALREADY_DELAY = 1;
-    
+    private static final int MEALREADY_DELAY = 15;
+
     //How much time the player has to get a better reward
     private static final int BRINGTHANKS_DELAY = 10;
-    
-    //Every when the quest can be repeated
-    //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
 
+    //Every when the quest can be repeated
     // FIXME omero: for testing only
     private static final int REPEATQUEST_DELAY = 1;
-        
+    //private static final int REPEATQUEST_DELAY = 1 * MathHelper.MINUTES_IN_ONE_DAY;
+
     // how much XP is given as the reward
-    // FIXME omero: XP_REWARD needs to be adjusted
     private static final int XP_REWARD = 1000;
 
     // which main dishes Groongo will ask for the quest
-    // FIXME omero: REQUIRED_MAIN_DISHES is still subject to changes
     private static final List<String> REQUIRED_MAIN_DISHES =
             Arrays.asList(
                 "paella",
@@ -222,7 +209,6 @@ public class MealForGroongo extends AbstractQuest {
             );
 
     // which desserts Groongo will ask for the quest
-    // FIXME omero: REQUIRED_DESSERTS is still subject to changes
     private static final List<String> REQUIRED_DESSERTS =
             Arrays.asList(
                 "macedonia",
@@ -244,7 +230,6 @@ public class MealForGroongo extends AbstractQuest {
             "Groongo is hungry and wants to have a decent meal at Fado's Hotel Restaurant.",
             true);
 
-        // FIXME omero: this quest will require a yet unknown number of stages
         stageBeginQuest();
         stageCollectIngredientsForMainDish();
         stageCheckForDessert();
@@ -256,7 +241,7 @@ public class MealForGroongo extends AbstractQuest {
 
     @Override
     public List<String> getHistory(final Player player) {
-    	// FIXME omero: the quest states are not fully defined yet
+
         final List<String> res = new ArrayList<String>();
 
         if (!player.hasQuest(QUEST_SLOT)) {
@@ -572,8 +557,8 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         logger.warn(" ingredients <" + ingredients + ">");
-        // TODO omero: strip the last comma from the returned string
-        return ingredients;
+        // strip the last comma from the returned string
+        return ingredients.substring(0, ingredients.length()-1);
 
     }
 
@@ -657,8 +642,8 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         logger.warn(" ingredients <" + ingredients + ">");
-        // TODO omero: strip the last comma from the returned string
-        return ingredients;
+        // strip the last comma from the returned string
+        return ingredients.substring(0, ingredients.length()-1);
 
     }
 
@@ -683,8 +668,15 @@ public class MealForGroongo extends AbstractQuest {
             	player.setQuest(QUEST_SLOT, 0, "fetch_dessert");
             	SpeakerNPC.say("Oh! A delicious choice indeed!");
             } else if ("fetch_dessert".equals(player.getQuest(QUEST_SLOT, 0))) {
+            	final long timestamp = Long.parseLong(player.getQuest(QUEST_SLOT, 6));
+                final long timeToWaitForMealReady = (
+            		timestamp
+            		+ MEALREADY_DELAY * MathHelper.MILLISECONDS_IN_ONE_MINUTE
+            		- System.currentTimeMillis());
                 player.setQuest(QUEST_SLOT, 0, "prepare_decentmeal");
-                SpeakerNPC.say("FIXME omero: the meal will be ready soon");
+                SpeakerNPC.say(
+            		"Perfect! The decent meal for our troublesome customer will be ready in " +
+        			TimeUtil.approxTimeUntil((int) (timeToWaitForMealReady / 1000L)) + ".");
             } else if ("prepare_decentmeal".equals(player.getQuest(QUEST_SLOT, 0))) {
             	final Item decentMeal = SingletonRepository.getEntityManager().getItem("decent meal");
             	final String decentMealDescription =
@@ -787,14 +779,14 @@ public class MealForGroongo extends AbstractQuest {
             player.setQuest(QUEST_SLOT, 0, "tell_dessert");
             player.setQuest(QUEST_SLOT, 4, requiredDessert);
             player.setQuest(QUEST_SLOT, 5, requiredIngredientsForDessert);
-            
-            // FIXME omero: more elaborate sentence here with trigger word related to dessert 
+             
             SpeakerNPC.say(
                     "Indeed, I shouldn't have forgot that! With " +
                     Grammar.article_noun(getRequiredMainDishFancyName(requiredMainDish), true) +
                     " I will try " +
                     Grammar.a_noun(getRequiredDessertFancyName(requiredDessert)) +
-                    ". Now go ask Chef Stefan to prepare my #dessert, at once!"
+                    ". Now go ask Chef Stefan to prepare my #" + requiredDessert +
+                    " for #dessert, at once!"
             );
 
             logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
@@ -1027,7 +1019,7 @@ public class MealForGroongo extends AbstractQuest {
         		new NotCondition(
     				new QuestCompletedCondition(QUEST_SLOT))),
             ConversationStates.QUEST_OFFERED,
-            "Finally! [insults player]" +
+            "It was about time! [insults player]" +
             " I've been waiting here for so long that I've now got cobwebs under my armpits..." +
             " Are you going to bring me a decent #meal now?",
             null
@@ -1109,7 +1101,7 @@ public class MealForGroongo extends AbstractQuest {
             "Stat away from me and get lost in a forest then!",
             new MultipleActions(
                 new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-                new DecreaseKarmaAction(100.0))
+                new DecreaseKarmaAction(20.0))
         );
     }
 
@@ -1176,10 +1168,7 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.IDLE,
             null,
             new collectAllRequestedIngredientsAtOnceAction(
-        		new MultipleActions(
-    				new SetQuestToTimeStampAction(QUEST_SLOT, 6),
-    				new advanceQuestInProgressAction()
-        		),
+				new advanceQuestInProgressAction(),
         		ConversationStates.IDLE)
         );
     }
@@ -1252,11 +1241,11 @@ public class MealForGroongo extends AbstractQuest {
             ConversationStates.QUESTION_1,
             null,
             new MultipleActions (
-        		new SetQuestToTimeStampAction(QUEST_SLOT, 6),
         		new advanceQuestInProgressAction(),
         		new checkIngredientsForDessertAction()
             )
         );
+
     	// Player knows which dessert Groongo wants,
         // Add all desserts as triggers
     	// Advance the quest
@@ -1268,7 +1257,6 @@ public class MealForGroongo extends AbstractQuest {
                 ConversationStates.QUESTION_1,
                 null,
                 new MultipleActions (
-            		new SetQuestToTimeStampAction(QUEST_SLOT, 6),
             		new advanceQuestInProgressAction(),
             		new checkIngredientsForDessertAction()
                 )
@@ -1303,7 +1291,7 @@ public class MealForGroongo extends AbstractQuest {
             new checkQuestInProgressAction()
         );
 
-        // Player says dessert to ask Groongo which one he'd like
+        // Player says dessert to have Groongo choose which one he'd like
         // Advance the quest
         npc_customer.add(
         	ConversationStates.ATTENDING,
@@ -1345,6 +1333,7 @@ public class MealForGroongo extends AbstractQuest {
         );
 
         // Player says one of the defined REQUIRED_MAIN_DISHES
+        // when involved in fetching the ingredients for dessert already
         // Add all the main dishes trigger words
         Iterator<String> i = REQUIRED_MAIN_DISHES.iterator();
         while (i.hasNext()) {
@@ -1359,6 +1348,7 @@ public class MealForGroongo extends AbstractQuest {
         }
 
         // Player says one of the defined REQUIRED_DESSERTS
+        // remind him of the ingredients he has to fetch
         // Add all the desserts trigger words
         Iterator<String> j = REQUIRED_DESSERTS.iterator();
         while (j.hasNext()) {
@@ -1391,7 +1381,7 @@ public class MealForGroongo extends AbstractQuest {
             null,
             new collectAllRequestedIngredientsAtOnceAction(
         		new MultipleActions(
-    				// meal will not be ready before MEALREADY_DELAY from now
+    				// meal will be ready in MEALREADY_DELAY from now
     				new SetQuestToTimeStampAction(QUEST_SLOT, 6),
     				new advanceQuestInProgressAction()
         		),
@@ -1419,8 +1409,9 @@ public class MealForGroongo extends AbstractQuest {
            				new TimePassedCondition(QUEST_SLOT, 6, MEALREADY_DELAY)))),
             ConversationStates.IDLE,
             null,
-            new SayTimeRemainingAction(QUEST_SLOT, 6, MEALREADY_DELAY,        		
-        		"The meal for our troublesome customer won't be ready before")
+            new SayTimeRemainingAction(QUEST_SLOT, 6, MEALREADY_DELAY,
+        		"Please come back in while." +
+        		" The meal for our troublesome customer won't be ready before")
         );
         
         // Player checks back with Stefan when the decent meal is ready
@@ -1536,9 +1527,7 @@ public class MealForGroongo extends AbstractQuest {
          * This is intended to be the better end of the quest.
          * After getting his decent meal, Groongo hints the player 
          * to bring his #thanks to Chef Stefan.
-         * 
-         * FIXME omero: setup the better reward.
-         */
+         */ 
 		final List<ChatAction> betterEndQuestActions = new LinkedList<ChatAction>();
 		betterEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		betterEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 1, "complete"));
@@ -1546,13 +1535,32 @@ public class MealForGroongo extends AbstractQuest {
 		betterEndQuestActions.add(
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					int amountOfPies = Rand.randUniform(10, 15);
-					new EquipItemAction("pie", amountOfPies, true).fire(player, null, null);
-					npc.say(" FIXME omero: Here, take " +
-						Grammar.thisthese(amountOfPies) + " " +
-						Grammar.quantityNumberStrNoun(amountOfPies, "pie") +
-						" and some money as my better reward!"
+					final int amountOfMoneys = Rand.randUniform(2000, 4000);
+					final int amountOfSandwiches = Rand.randUniform(6, 12);
+					final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+					final StackableItem sandwich = (StackableItem) SingletonRepository.getEntityManager().getItem("sandwich");
+
+					money.setQuantity(amountOfMoneys);
+					sandwich.setQuantity(amountOfSandwiches);
+					sandwich.setBoundTo(player.getName());
+					sandwich.setDescription("You see an experimental sandwich made by Chef Stefan.");
+					sandwich.put("amount", (player.getBaseHP()/2));
+					sandwich.put("frequency", 10);
+					sandwich.put("regen", 50);
+					sandwich.put("persistent", 1);
+					
+					npc.say("Very well! Your help has been precious to me." +
+						" Please, accept " +
+						Grammar.thisthese(amountOfSandwiches) + " experimental " +
+						Grammar.quantityNumberStrNoun(amountOfSandwiches, "sandwich") +
+						" and " +
+						Grammar.thisthese(amountOfMoneys) + " " +
+						Grammar.quantityNumberStrNoun(amountOfMoneys, "money") +
+						" as my reward!"
 					);
+
+					player.equipOrPutOnGround(money);
+					player.equipOrPutOnGround(sandwich);
 
 					logger.warn("Quest state <" + player.getQuest(QUEST_SLOT) + ">");
 
@@ -1625,31 +1633,41 @@ public class MealForGroongo extends AbstractQuest {
             null);
 
         /**
-         * This is intended to be the deceiving end of the quest.
+         * This is intended to be the normal end of the quest.
          * After getting his decent meal, Groongo hints the player 
          * to bring his #thanks to Chef Stefan.
-         * 
-         * FIXME omero: setup the normal reward.
          */
-		final List<ChatAction> deceivingEndQuestActions = new LinkedList<ChatAction>();
-		deceivingEndQuestActions.add(new DropInfostringItemAction("decent meal","Decent Meal for Groongo"));
-		deceivingEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
-		deceivingEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 1, "incomplete"));
-		deceivingEndQuestActions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 6));
-		deceivingEndQuestActions.add(new IncrementQuestAction(QUEST_SLOT, 7, 1));
-		deceivingEndQuestActions.add(new IncreaseXPAction(XP_REWARD));
-		deceivingEndQuestActions.add(new IncreaseKarmaAction(50.0));
-		deceivingEndQuestActions.add(
+		final List<ChatAction> normalEndQuestActions = new LinkedList<ChatAction>();
+		normalEndQuestActions.add(new DropInfostringItemAction("decent meal","Decent Meal for Groongo"));
+		normalEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		normalEndQuestActions.add(new SetQuestAction(QUEST_SLOT, 1, "incomplete"));
+		normalEndQuestActions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 6));
+		normalEndQuestActions.add(new IncrementQuestAction(QUEST_SLOT, 7, 1));
+		normalEndQuestActions.add(new IncreaseXPAction(XP_REWARD));
+		normalEndQuestActions.add(new IncreaseKarmaAction(50.0));
+		normalEndQuestActions.add(
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					int amountOfPies = Rand.randUniform(10, 15);
-					new EquipItemAction("pie", amountOfPies, true).fire(player, null, null);
+					final int amountOfMoneys = Rand.randUniform(1000, 1500);
+					final int amountOfPies = Rand.randUniform(10, 15);
+					final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+					final StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem("pie");
+					money.setQuantity(amountOfMoneys);
+					pie.setQuantity(amountOfPies);
+
 					npc.say("Here, take " +
 						Grammar.thisthese(amountOfPies) + " " +
 						Grammar.quantityNumberStrNoun(amountOfPies, "pie") +
-						" and some money as my reward! Please bring my very deserved #thanks to" + 
+						" and " +
+						Grammar.thisthese(amountOfMoneys) + " " +
+						Grammar.quantityNumberStrNoun(amountOfMoneys, "money") +
+						" as my reward! Please bring my very deserved #thanks to" + 
 						" Chef Stefan for preparing such a decent meal!"
 					);
+					
+					player.equipOrPutOnGround(money);
+					player.equipOrPutOnGround(pie);
+					
 				}
 			}
 		);
@@ -1663,8 +1681,8 @@ public class MealForGroongo extends AbstractQuest {
                 new QuestInStateCondition(QUEST_SLOT, 0, "deliver_decentmeal"),
                 new PlayerHasInfostringItemWithHimCondition("decent meal", "Decent Meal for Groongo")),
             ConversationStates.IDLE,
-            " FIXME omero: say the player something about giving #thanks to Stefan (and get the better reward)",
-            new MultipleActions(deceivingEndQuestActions)
+            null,
+            new MultipleActions(normalEndQuestActions)
         );
     }
 }
