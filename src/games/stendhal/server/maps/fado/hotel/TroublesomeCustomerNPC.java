@@ -17,6 +17,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.impl.MonologueBehaviour;
 
 import java.util.Map;
 
@@ -31,10 +32,18 @@ import java.util.Map;
 public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone);
+		final String[] rants = {
+			"... Bah! I wonder how long a hungry customer has to wait before a waiter shows up...",
+			"... Gah! This place must be run by invisible waiters and lazy chefs...",
+			"... Boh! From time to time I'd also like to have a decent meal...",
+			"... Mah! I counted all the tiles on the floor already... Twice...",
+			"... Doh! No wonder this place is almost deserted... One waits forever before ordering a decent meal...",
+			"... Meh! I'll start notching the table legs for every minute I spend waiting forever here..."
+		};
+		new MonologueBehaviour(buildNPC(zone), rants, 1);
 	}
 
-	private void buildNPC(final StendhalRPZone zone) {
+	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Groongo Rahnnt") {
 		    
 			protected void createPath() {
@@ -43,7 +52,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Gah! Outrageous Place! Been waiting forever for someone to show up!");
+				addGreeting("Gah! It was about time that someone showed up eventually!");
 				addHelp("HELP?! You want ME to ...help... YOU?! Ask me for a #task and I'll give you one at once!"); 
 				addJob("Ah! Finally... Want a #task?");
 				addOffer("Do a #task for me and you get a generous tip!");
@@ -60,11 +69,15 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			}
 		
 		};
-		
-		npc.setDescription("You see Groongo Rahnt. He seems impatient to get the attention of someone!");
+
 		npc.setEntityClass("customeronchairnpc");
+		npc.setDescription("You see Groongo Rahnt. He seems impatient to get the attention of someone!");
 		npc.setPosition(70, 24);
+		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);
+
+		return npc;
+
 	}
 }
