@@ -88,8 +88,8 @@ public class RetireeNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(22, 43));
-				nodes.add(new Node(26, 43));
-				nodes.add(new Node(26, 45));
+				nodes.add(new Node(25, 43));
+				nodes.add(new Node(25, 45));
 				nodes.add(new Node(31, 45));
 				nodes.add(new Node(31, 43));
 				nodes.add(new Node(35, 43));
