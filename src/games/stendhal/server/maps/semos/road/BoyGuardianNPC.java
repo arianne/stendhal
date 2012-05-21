@@ -53,7 +53,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 				addGreeting(null, new ChatAction() {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "Hey you! Take care, you are leaving the city now! ";
-						if (player.getLevel() < 60) {
+						if (player.getLevel() < 15) {
 							reply += "Always watch out for animals who might attack you and other evil guys who walk around...";
 						} else {
 							reply += "Better prepare yourself with food or drinks and be careful!";
