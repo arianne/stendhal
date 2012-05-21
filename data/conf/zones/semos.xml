@@ -2354,6 +2354,9 @@ Holy mackerel! These chips are tasty.
 
 	<zone name="0_semos_road_e" level="0" x="500128" y="500000"
 		file="Level 0/semos/road_e.tmx">
+		
+		<configurator class-name="games.stendhal.server.maps.semos.road.BoyGuardianNPC" />
+		
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
