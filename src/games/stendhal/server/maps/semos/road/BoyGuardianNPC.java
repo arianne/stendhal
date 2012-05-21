@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class BoyGuardianNPC implements ZoneConfigurator {
@@ -60,8 +61,14 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 						raiser.say(reply);
 					}
 				});
-				addJob("Ohh my job is it to watch out for baaad creatures!");
-				addHelp("My daddy always tells me to sneak around through forests which aren't known to me... And he said that I should always take something to eat and drink with me for being save!");
+				addJob("Ohh my job is it to watch out for baaad creatures! I got that special #duty by my parents!");
+				addReply("duty", "Yes, a really special and important one!");
+				addHelp("My daddy always tells me to #sneak around through forests which aren't known to me... And he said that I should always take something to #eat #and #drink with me for being save!");
+				addReply("sneak", "Yes if you want to be a warrior like I want to be, you have to work quiet and undetected!");
+				addReply(Arrays.asList("eat","drink","eat and drink"), "Leander, the Semos baker, makes some really tasty sandwiches, mom always buys them there and his bread is yummi, too! Not sure about drinks, maybe you can ask #Carmen or #Margaret?");
+				addReply("Carmen", "She is a famous healer in Semos city. Maybe you saw her on your way from the village into the city :)");
+				addReply("Margaret", "She works in the tavern but I am not allowed to go there without my parents...");
+				addQuest("I'm on a mission :) Watching out for bad bad guys and warn people! But I have nothing to do for you...");
 				addGoodbye("Shhhhh don't talk too loud! Bye and take care!");
 			}
 			
