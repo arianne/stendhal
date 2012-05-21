@@ -78,7 +78,7 @@ import org.apache.log4j.Logger;
 	 * function will set timings to either test server or game server.
 	 */
 	private void setTimings() {
-		if (System.getProperty("stendhal.testserver") == null) {		
+		if (System.getProperty("stendhal.testserver.piedpiper") == null) {		
 			// game timings */
 			timings.put(INACTIVE_TIME_MAX, 60 * 60 * 24 * 21);
 			timings.put(INACTIVE_TIME_MIN, 60 * 60 * 24 * 2);
