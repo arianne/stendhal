@@ -51,6 +51,28 @@
 			<parameter name="message">The gate is locked.</parameter>
 		</configurator>
 
+	<!-- writing on the wooden arch -->
+		
+		<entity x="29" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Fado</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="30" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Fado</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="31" y="2">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Welcome to Fado</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
            
  	<portal x="36" y="17" ref="tavern_entrance_left">
              <destination zone="int_fado_tavern" ref="entrance_left"/>
