@@ -1418,28 +1418,6 @@
 
 
     <!-- quest -->
-   	<item name="decent meal">
-		<type class="food" subclass="decent_meal" tileid="-1" />
-		<description>You see a decent meal for Groongo Rahnnt.</description>
-		<implementation class-name="games.stendhal.server.entity.item.Food" />
-		<attributes>
-			<amount value="1" />
-			<frequency value="1" />
-			<quantity value="1" />
-			<regen value="1" />
-		</attributes>
-		<weight value="1.0" />
-		<value value="1" />
-		<equipable>
-			<slot name="ground" />
-			<slot name="content" />
-			<slot name="lhand" />
-			<slot name="rhand" />
-			<slot name="bag" />
-			<slot name="trade" />
-		</equipable>
-	</item>
-    
 	<item name="easter egg">
 		<type class="food" subclass="easter_egg" tileid="-1" />
 		<description>You see a lovely chocolate easter egg. It's huge!</description>
