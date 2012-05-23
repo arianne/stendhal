@@ -4,6 +4,11 @@
 1.01
 *world*
 - added a greeter NPCs before Haizen's hut (inactive)
+- introducing Will to Semos road/exit of Semos city 
+- reworked Fado hotel restaurant 
+- more creature descriptions added
+- moving Semos city wall into the city
+- Monogenes made his way next to the bird station in Semos city
 
 *other*
 - added /profile <name> action
