@@ -88,7 +88,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 		});
 
 		npc.setEntityClass("boyguardnpc");
-		npc.setDescription("You see Will. He wants to be a mighty guardian in his future.");
+		npc.setDescription("You see Will. He wants to be a professional city guard in his future.");
 		npc.setPosition(6, 43);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
