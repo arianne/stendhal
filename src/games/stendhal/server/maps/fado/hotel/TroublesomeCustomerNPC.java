@@ -37,7 +37,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 			"... Gah! This place must be run by invisible waiters and lazy chefs...",
 			"... Boh! From time to time I'd also like to have a decent meal...",
 			"... Mah! I counted all the tiles on the floor already... Twice...",
-			"... Doh! No wonder this place is almost deserted... One waits forever before ordering a decent meal...",
+			"... Doh! No wonder this place is almost deserted... One waits forever before enjoying a decent meal...",
 			"... Meh! I'll start notching the table legs for every minute I spend waiting forever here..."
 		};
 		new MonologueBehaviour(buildNPC(zone), rants, 1);
