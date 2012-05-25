@@ -99,7 +99,7 @@ public class FoodMill extends Item implements UseListener {
 
         /* all is okay, lets process this item */
     	final Item item = SingletonRepository.getEntityManager().getItem(output);
-    	user.drop(input);
+    	user.drop((Item)first);
     	user.drop(container);
     	user.equipOrPutOnGround(item);
 
