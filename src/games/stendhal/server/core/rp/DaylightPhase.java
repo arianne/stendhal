@@ -30,7 +30,7 @@ public enum DaylightPhase {
 	SUNRISE (0xc0a080),
 
 	/** during the day */
-	DAY (null),
+	DAY (),
 
 	/** the sun is setting */
 	SUNSET (0xc0a080),
@@ -40,8 +40,12 @@ public enum DaylightPhase {
 
 	private Integer color;
 
-	private DaylightPhase(Integer color) {
-		this.color = color;
+	private DaylightPhase(int color) {
+		this.color = Integer.valueOf(color);
+	}
+
+	private DaylightPhase() {
+		this.color = null;
 	}
 
 	/**
