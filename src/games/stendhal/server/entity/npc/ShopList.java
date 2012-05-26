@@ -534,6 +534,6 @@ public final class ShopList {
 			contents.put(name, shop);
 		}
 
-		shop.put(item, price);
+		shop.put(item, Integer.valueOf(price));
 	}
 }
