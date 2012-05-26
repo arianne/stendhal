@@ -257,7 +257,11 @@ public class ItemPanel extends JComponent implements DropTarget {
 		@Override
 		protected void onDragStart(Point point) {
 			if (view != null) {
-				DragLayer.get().startDrag(view.getEntity());
+				if(view.isMovable()) {
+					DragLayer.get().startDrag(view.getEntity());
+				} else {
+					//send a nice message to the user
+				}
 			}
 		}
 
