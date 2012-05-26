@@ -15,13 +15,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * 
  * @author madmetzger
  */
-public class PlayerHasHarvestedNumberOfItemsGreaterThanCondition implements ChatCondition {
+public class PlayerHasHarvestedNumberOfItemsCondition implements ChatCondition {
 
 	private final List<String> itemMinedList;
 	
 	private final int quantity;
 	
-	public PlayerHasHarvestedNumberOfItemsGreaterThanCondition(int number, String... items) {
+	public PlayerHasHarvestedNumberOfItemsCondition(int number, String... items) {
 		itemMinedList = new ArrayList<String>();
 		if(items != null) {
 			for(String item : items) {
@@ -48,7 +48,7 @@ public class PlayerHasHarvestedNumberOfItemsGreaterThanCondition implements Chat
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerHasHarvestedNumberOfItemsGreaterThanCondition.class);
+				PlayerHasHarvestedNumberOfItemsCondition.class);
 	}
 	
 	@Override

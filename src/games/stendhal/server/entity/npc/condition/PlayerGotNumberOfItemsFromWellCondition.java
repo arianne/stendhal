@@ -8,11 +8,11 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-public class PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition implements ChatCondition {
+public class PlayerGotNumberOfItemsFromWellCondition implements ChatCondition {
 	
 	private final int number;
 	
-	public PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition(int quantity) {
+	public PlayerGotNumberOfItemsFromWellCondition(int quantity) {
 		number = quantity;
 	}
 
@@ -33,7 +33,7 @@ public class PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition implemen
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerHasObtainedNumberOfItemsFromWellGreaterThanCondition.class);
+				PlayerGotNumberOfItemsFromWellCondition.class);
 	}
 
 }
