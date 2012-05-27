@@ -75,7 +75,7 @@ public class TheMissingBooks extends AbstractQuest {
 		quotes.put("As a mighty warrior,...",
 						"you always need to wear a powerful armor in fights.");
 		quotes.put("You don't believe in magic? The potion...",
-						"of love, made from the hands of a magician, even works for Yetis.");
+						"of love, made made from a magician's hand, even works for Yetis.");
 		quotes.put("Hungry? Thirsty? Tired?...",
 						"A break might help. Take a look around the lovely nature of Faiumoni and find relaxing places to make a stop at. Even when you are busy during tasks, a healthy snack will power you up.");
 		quotes.put("And there they were: two strangers, alone in the tunnel...",
@@ -83,7 +83,7 @@ public class TheMissingBooks extends AbstractQuest {
 		quotes.put("Oh my oh my oh my! What for a huge creature I'm looking at! It's red, it's huge,...",
 						"it's powerful, it has a hard forehand...Could that be it? It is a balrog!");
 		quotes.put("You need some flour, some eggs, some butter, some sugar, some chocolate and some milk...",
-						"a hot drink for the winter, some rat to make it silk. Now after waiting for some time and after the job is done: a crepes suzette that is you hold enjoy it and have fun!");
+						"a hot drink for the winter, some rat to make it silk. Now after waiting for some time and after the job is done: a crepes suzette that is you hold, enjoy it and have fun!");
 	}
 
 
@@ -186,7 +186,7 @@ public class TheMissingBooks extends AbstractQuest {
 						final Item recipe = SingletonRepository.getEntityManager().getItem("recipe");
 						recipe.setBoundTo(player.getName());
 						player.equipOrPutOnGround(recipe);
-						player.addXP(1000);
+						player.addXP(500);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();
 					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(sentence.getTriggerExpression().getNormalized())) {
