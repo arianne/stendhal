@@ -240,25 +240,30 @@ public class Grammar {
 	 * @return either "a " or "an " as appropriate
 	 */
 	private static String a_an(final String noun) {
+		String lowerCaseString = noun.toLowerCase();
 		final char initial;
-		if (noun.length() > 0) {
-			initial = Character.toLowerCase(noun.charAt(0));
+		if (lowerCaseString.length() == 0) {
+			return "a ";
 		} else {
-			initial = ' ';
+			initial = lowerCaseString.charAt(0);
 		}
-		final char second;
-		if (noun.length() > 1) {
-			second = Character.toLowerCase(noun.charAt(1));
-		} else {
-			second = ' ';
+		
+		if (lowerCaseString.length()==1){
+			if (isVowel(initial) && initial != 'u') {
+				return "an ";
+			} else {
+				return "a ";
+			}
 		}
-		if ((initial == 'e') && (second == 'u')) {
+		
+	
+		if ("eu".equals(lowerCaseString.substring(0, 2))){
 			return "a ";
 		}
 		if (isVowel(initial)) {
 			return "an ";
 		}
-		if ((initial == 'y') && isConsonant(second)) {
+		if ((initial == 'y') && isConsonant(lowerCaseString.charAt(1))) {
 			return "an ";
 		}
 		
@@ -329,8 +334,6 @@ public class Grammar {
 		// handle special cases:
 				// "ice cream" -> "ice"
 		if ((word1.getMainWord().equals("ice") && word2.getMainWord().equals("cream")) ||
-				// "chocolate bar" -> "chocolate"
-				(word1.getMainWord().equals("chocolate") && word2.getMainWord().equals("bar")) ||
 				// "teddy bear" -> "teddy"
 				(word1.getMainWord().equals("teddy") && word2.getMainWord().equals("bear"))) {
 
@@ -346,32 +349,6 @@ public class Grammar {
             return word2;
         }
 	}
-
-	// Old code part, can be easily included if a better solution shows up for the teddy bear issue (see bug ID 3453600: Toys for Anna quest)
-	//public static Expression mergeCompoundNoun(Expression word1, final Expression word2) {
-		// handle special cases:
-				// "ice cream" -> "ice"
-		//if ((word1.getMainWord().equals("ice") && word2.getMainWord().equals("cream")) ||
-				// "chocolate bar" -> "chocolate"
-		//		(word1.getMainWord().equals("chocolate") && word2.getMainWord().equals("bar")) ||
-				// "teddy bear" -> "teddy"
-		//		(word1.getMainWord().equals("teddy") && word2.getMainWord().equals("bear"))) {
-		//    word1.mergeRight(word2, true);
-
-		    // transform "ice cream" into the item name "icecream"
-		//    if (word1.getMainWord().equals("ice")) {
-		//    	word1.setNormalized("icecream");
-		//    }
-
-	//	    return word1;
-	//	} else {
-	//	    word2.mergeLeft(word1, true);
-
-	//	    return word2;
-	//	}
-//	}
-	
-	
 
 	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression

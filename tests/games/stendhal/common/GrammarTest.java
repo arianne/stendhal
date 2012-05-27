@@ -140,8 +140,13 @@ public class GrammarTest {
 		assertEquals("an yclept", Grammar.a_noun("yclept"));
 		assertEquals("a s", Grammar.a_noun("s"));
 		assertEquals("an a", Grammar.a_noun("a"));
+		assertEquals("an e", Grammar.a_noun("e"));
+		assertEquals("an i", Grammar.a_noun("i"));
+		assertEquals("an o", Grammar.a_noun("o"));
+		assertEquals("a u", Grammar.a_noun("u"));
 		assertEquals("a ", Grammar.a_noun(""));
 		assertEquals("a eupepsia", Grammar.a_noun("eupepsia"));
+		assertEquals("a eu", Grammar.a_noun("eu"));
 	}
 
 	/**
@@ -169,7 +174,7 @@ public class GrammarTest {
 		assertEquals("suit of iron armor", Grammar.fullForm("iron armor"));
 		assertEquals("pair of iron legs", Grammar.fullForm("iron legs"));
 		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
-
+		assertEquals("chocolate",Grammar.fullForm("chocolate"));
 		assertEquals("ice cream", Grammar.fullForm("icecream"));
 	}
 
@@ -219,6 +224,7 @@ public class GrammarTest {
 	 */
 	@Test
 	public void testPluralItem() {
+		testPluralisationAndSingularisation("chocolate bars","chocolate bar");
 		testPluralisationAndSingularisation("money", "money");
 		testPluralisationAndSingularisation("sandwiches", "sandwich");
 		testPluralisationAndSingularisation("knives", "knife");

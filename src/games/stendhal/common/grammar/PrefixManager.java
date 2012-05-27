@@ -25,6 +25,33 @@ import java.util.Map;
 final class PrefixManager
 {
 	/**
+	 * Entry for registering singular/plural prefixes for a keyword.
+	 */
+	private static class PrefixEntry {
+		public final String keyword;
+		public final String prefixPlural;
+		public final String prefixSingular;
+
+		public PrefixEntry(final String keyword, final String prefixSingular, final String prefixPlural) {
+			this.keyword = keyword;
+			this.prefixSingular = prefixSingular;
+			this.prefixPlural = prefixPlural;
+		}
+	}
+
+
+	public static PrefixManager s_instance = new PrefixManager();
+
+	private Collection<String> pluralPrefixes = new HashSet<String>();
+
+	private Collection<PrefixEntry> prefixEndList = new ArrayList<PrefixEntry>();
+
+
+	private Map<String, PrefixEntry> prefixMap = new HashMap<String, PrefixEntry>();
+
+	private Collection<String> singularPrefixes = new HashSet<String>();
+
+	/**
 	 * Initialise the map of nouns and prefix expressions.
 	 */
 	public PrefixManager() {
@@ -74,44 +101,6 @@ final class PrefixManager
 
 
 	/**
-	 * Define the singular and plural prefix strings for an item name with full match,
-	 * for example "piece of paper".
-	 * @param prefixSingular
-	 * @param prefixPlural
-	 * @param noun
-	 */
-	private void register(final String prefixSingular, final String prefixPlural, final String noun) {
-		prefixMap.put(noun, new PrefixEntry(noun, prefixSingular, prefixPlural));
-
-		registerPrefix(prefixSingular, prefixPlural);
-	}
-
-	/**
-	 * Define the singular and plural prefix strings for an item name to be matched at the end,
-	 * for example "bottle of ... potion".
-	 * @param prefixSingular
-	 * @param prefixPlural
-	 * @param endString
-	 */
-	private void registerEnd(final String prefixSingular, final String prefixPlural, final String endString) {
-		prefixEndList.add(new PrefixEntry(endString, prefixSingular, prefixPlural));
-
-		registerPrefix(prefixSingular, prefixPlural);
-	}
-
-	/**
-	 * Register a pair of singular and plural prefix strings to be removed
-	 * when parsing item names, for example "suits of leather armor".
-	 * @param prefixSingular
-	 * @param prefixPlural
-	 */
-	private void registerPrefix(final String prefixSingular, final String prefixPlural) {
-		singularPrefixes.add(prefixSingular);
-		pluralPrefixes.add(prefixPlural);
-	}
-
-
-	/**
 	 * Prefix one of the registered nouns with an expression like "piece of".
 	 * 
 	 * @param str noun to process
@@ -137,6 +126,12 @@ final class PrefixManager
 	}
 
 	/**
+	 * @return collection of all registered plural prefixes.
+	 */
+	public Collection<String> getPluralPrefixes() {
+		return pluralPrefixes;
+	}
+	/**
 	 * @return collection of all registered singular prefixes.
 	 */
 	public Collection<String> getSingularPrefixes() {
@@ -144,34 +139,39 @@ final class PrefixManager
 	}
 
 	/**
-	 * @return collection of all registered plural prefixes.
+	 * Define the singular and plural prefix strings for an item name with full match,
+	 * for example "piece of paper".
+	 * @param prefixSingular
+	 * @param prefixPlural
+	 * @param noun
 	 */
-	public Collection<String> getPluralPrefixes() {
-		return pluralPrefixes;
+	private void register(final String prefixSingular, final String prefixPlural, final String noun) {
+		prefixMap.put(noun, new PrefixEntry(noun, prefixSingular, prefixPlural));
+
+		registerPrefix(prefixSingular, prefixPlural);
+	}
+	/**
+	 * Define the singular and plural prefix strings for an item name to be matched at the end,
+	 * for example "bottle of ... potion".
+	 * @param prefixSingular
+	 * @param prefixPlural
+	 * @param endString
+	 */
+	private void registerEnd(final String prefixSingular, final String prefixPlural, final String endString) {
+		prefixEndList.add(new PrefixEntry(endString, prefixSingular, prefixPlural));
+
+		registerPrefix(prefixSingular, prefixPlural);
 	}
 
 
 	/**
-	 * Entry for registering singular/plural prefixes for a keyword.
+	 * Register a pair of singular and plural prefix strings to be removed
+	 * when parsing item names, for example "suits of leather armor".
+	 * @param prefixSingular
+	 * @param prefixPlural
 	 */
-	private static class PrefixEntry {
-		public final String keyword;
-		public final String prefixSingular;
-		public final String prefixPlural;
-
-		public PrefixEntry(final String keyword, final String prefixSingular, final String prefixPlural) {
-			this.keyword = keyword;
-			this.prefixSingular = prefixSingular;
-			this.prefixPlural = prefixPlural;
-		}
+	private void registerPrefix(final String prefixSingular, final String prefixPlural) {
+		singularPrefixes.add(prefixSingular);
+		pluralPrefixes.add(prefixPlural);
 	}
-
-	private Map<String, PrefixEntry> prefixMap = new HashMap<String, PrefixEntry>();
-	private Collection<PrefixEntry> prefixEndList = new ArrayList<PrefixEntry>();
-
-	private Collection<String> singularPrefixes = new HashSet<String>();
-	private Collection<String> pluralPrefixes = new HashSet<String>();
-
-
-	public static PrefixManager s_instance = new PrefixManager();
 }

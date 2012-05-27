@@ -92,7 +92,7 @@ public class ItemParser {
 
     			// search for items to sell with compound names, ending with the given expression
     			for(String name : itemNames) {
-    				if (name.endsWith(" "+chosenName)) {
+    				if (name.endsWith(" "+chosenName)||(name.startsWith(chosenName+" "))) {
     					mayBeItems.add(name);
     				}
     			}
