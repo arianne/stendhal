@@ -28,6 +28,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SlotOwner;
 
 public class ReorderAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(ReorderAction.class);
@@ -74,6 +75,10 @@ public class ReorderAction implements ActionListener {
 		for (RPObject obj : objectsCopy) {
 			slot.addPreservingId(obj);
 		}
+		SlotOwner parent = entity.getContainerOwner();
+		if (parent instanceof Entity) {
+			((Entity) parent).notifyWorldAboutChanges();
+		}
 	}
 	
 	/**
@@ -110,12 +115,9 @@ public class ReorderAction implements ActionListener {
 			}
 			
 			if (object instanceof Corpse) {
-				Corpse corpse = (Corpse) object;
-				if (!corpse.mayUse(player)) {
-					logger.debug(player.getName() + " tried to access eCorpse owned by " + corpse.getCorpseOwner());
-					player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
-					return false;
-				}
+				// Disable reordering corpse contents. It causes problems for
+				// the automatically closing inspector windows in the client.
+				return false;
 			}
 			
 			object = object.getContainer();
