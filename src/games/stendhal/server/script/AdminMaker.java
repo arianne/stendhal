@@ -14,6 +14,7 @@ package games.stendhal.server.script;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -229,7 +230,7 @@ public class AdminMaker extends ScriptImpl {
 		super.load(admin, args, sandbox);
 		
 		// Require parameter -Dstendhal.testserver=junk
-		if (System.getProperty("stendhal.testserver") == null) {
+		if (!ServerModeUtil.isTestServer()) {
 			final String msg = "Server must be started with this vm parameter: -Dstendhal.testserver=junk";
 			if (admin != null) {
 				admin.sendPrivateText(msg);

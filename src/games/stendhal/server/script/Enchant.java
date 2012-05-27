@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
@@ -60,7 +61,7 @@ public class Enchant extends ScriptImpl {
 			return;
 		}
 		
-		if (tempCreature.isRare() && System.getProperty("stendhal.testserver") == null) {
+		if (tempCreature.isRare() && !ServerModeUtil.isTestServer()) {
 			// Rare creatures should not be summoned even in raids
 			// Require parameter -Dstendhal.testserver=junk
 			admin.sendPrivateText("Rare creatures may not be summoned.");

@@ -10,6 +10,8 @@ package games.stendhal.server.core.config.zone;
 //
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
+import games.stendhal.server.core.config.annotations.TestServerOnly;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 import org.apache.log4j.Logger;
@@ -100,12 +102,17 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 * Apply class
 		 */
 		if (obj instanceof ZoneConfigurator) {
-			LOGGER.info("Configuring zone [" + zone.getName() + "] with: "
-					+ classNameTemp);
-
-			((ZoneConfigurator) obj).configureZone(zone, getParameters());
+			if(ServerModeUtil.isActiveInCurrentServerContext(obj)) {
+				LOGGER.info("Configuring zone [" + zone.getName() + "] with: "
+						+ classNameTemp);
+				((ZoneConfigurator) obj).configureZone(zone, getParameters());
+			} else {
+				LOGGER.info("Configuring zone [" + zone.getName() + "] skipping: "
+						+ classNameTemp);
+			}
 		} else {
 			LOGGER.warn("Unsupported zone configurator: " + classNameTemp);
 		}
 	}
+
 }

@@ -18,6 +18,7 @@ import static games.stendhal.common.constants.Actions.X;
 import static games.stendhal.common.constants.Actions.Y;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -118,7 +119,7 @@ public class SummonAction extends AdministrationAction {
 							 final Entity entityToBePlaced;
 							if (manager.isCreature(type)) {	
 								entityToBePlaced = new RaidCreature((Creature) entity);
-								if (((Creature) entity).isRare() && System.getProperty("stendhal.testserver") == null) {
+								if (((Creature) entity).isRare() && !ServerModeUtil.isTestServer()) {
 									// Rare creatures should not be summoned even in raids
 									// Require parameter -Dstendhal.testserver=junk
 									error("Rare creatures may not be summoned.");

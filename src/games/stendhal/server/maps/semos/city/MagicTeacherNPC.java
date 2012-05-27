@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.config.annotations.TestServerOnly;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
@@ -19,12 +20,12 @@ import java.util.Map;
 
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
 /**
- * An NPC for testing purposes, that easily enables a player to play around with magic 
+ * An NPC for testing purposes, that easily enables a player to play around with magic
  * 
  * @author madmetzger
  */
+@TestServerOnly
 public class MagicTeacherNPC implements ZoneConfigurator {
 	
 	/**
@@ -68,30 +69,25 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 		
 	}
 
-	private static final Logger logger = Logger.getLogger(MagicTeacherNPC.class);
-
 	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		if(System.getProperty("stendhal.testserver") != null) {
-			logger.debug("stendhal.testserver active -> Adding Test NPC for magic");
-			SpeakerNPC npc = new SpeakerNPC("Mirlen") {
+		Map<String, String> attributes) {
+		SpeakerNPC npc = new SpeakerNPC("Mirlen") {
 
-				@Override
-				protected void createDialog() {
-					add(ConversationStates.ATTENDING, "teach", null, ConversationStates.SERVICE_OFFERED, "Do you want to learn about magic?", null);
-					add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new TeachMagicAction());
-				}
-				
-			};
-			npc.addGreeting("Hello, I am the magic teacher! I can #teach you about magic.");
-			npc.addJob("My job is to #teach you a bit about magic, so you can try it out here.");
-			npc.addHelp("If you need further help #https://stendhalgame.org/wiki/Ideas_for_Stendhal/Magic or you can ask in #'#arianne' for help.");
-			npc.addOffer("I can offer to #teach you about magic.");
-			npc.addGoodbye("Stay magical!");
-			npc.setPosition(20, 26);
-			npc.setEntityClass("blueoldwizardnpc");
-			zone.add(npc);
-		}
+			@Override
+			protected void createDialog() {
+				add(ConversationStates.ATTENDING, "teach", null, ConversationStates.SERVICE_OFFERED, "Do you want to learn about magic?", null);
+				add(ConversationStates.SERVICE_OFFERED, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new TeachMagicAction());
+			}
+			
+		};
+		npc.addGreeting("Hello, I am the magic teacher! I can #teach you about magic.");
+		npc.addJob("My job is to #teach you a bit about magic, so you can try it out here.");
+		npc.addHelp("If you need further help #https://stendhalgame.org/wiki/Ideas_for_Stendhal/Magic or you can ask in #'#arianne' for help.");
+		npc.addOffer("I can offer to #teach you about magic.");
+		npc.addGoodbye("Stay magical!");
+		npc.setPosition(20, 26);
+		npc.setEntityClass("blueoldwizardnpc");
+		zone.add(npc);
 	}
 
 }

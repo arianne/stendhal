@@ -13,6 +13,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
@@ -63,7 +64,7 @@ public class Plague extends ScriptImpl {
 		
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
-		} else if (tempCreature.isRare() && System.getProperty("stendhal.testserver") == null) {
+		} else if (tempCreature.isRare() && !ServerModeUtil.isTestServer()) {
 			// Rare creatures should not be summoned even in raids
 			// Require parameter -Dstendhal.testserver=junk
 			admin.sendPrivateText("Creatures with the rare property may only be summoned on test servers " 
