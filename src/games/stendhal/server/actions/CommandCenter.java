@@ -24,6 +24,7 @@ import games.stendhal.server.actions.chat.StoreMessageAction;
 import games.stendhal.server.actions.equip.DisplaceAction;
 import games.stendhal.server.actions.equip.DropAction;
 import games.stendhal.server.actions.equip.EquipAction;
+import games.stendhal.server.actions.equip.ReorderAction;
 import games.stendhal.server.actions.move.FaceAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.actions.move.MoveToAction;
@@ -112,6 +113,7 @@ public class CommandCenter {
 		ProgressStatusQueryAction.register();
 		PushAction.register();
 		QuestListAction.register();
+		ReorderAction.register();
 		SentenceAction.register();
 		StoreMessageAction.register();
 		StopAction.register();
