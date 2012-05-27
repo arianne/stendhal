@@ -619,7 +619,83 @@
 	<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
 		
 	<!--<configurator class-name="games.stendhal.server.maps.orril.constantines.LibrarianNPC" />-->
+	
+		<entity x="28" y="17">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+The hidden secrets of Athor island
+-By Sara Beth-
+Down in the deep sea around Athor island it lays, hidden under soft sand - the mighty treasure of Faiumoni.
+      	</attribute>
+      		<attribute name="resistance">0</attribute>
+			<attribute name="class">book_red</attribute>
+		</entity>
+		
+		<entity x="6" y="3">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Success in fights: a manual
+-By Hayunn Naratha-
+As a mighty warrior, you always need to wear a powerful armor in fights.
+     	</attribute>
+     		<attribute name="resistance">0</attribute>
+			<attribute name="class">book_blue</attribute>
+		</entity>
+		
+		<entity x="3" y="27">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Wooooza! Magic and its powerful potions
+-By Salva Mattori-
+You don't believe in magic? The potion of love, made from a magician's hand, even works for Yetis.
+	 	</attribute>
+	 		<attribute name="resistance">0</attribute>
+			<attribute name="class">book_green</attribute>
+		</entity>
+		
+		<entity x="25" y="13">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Adventurers and their tricks: Supplies and breaks are always needed!
+-By Thanatos-
+Hungry? Thirsty? Tired? A break might help. Take a look around the lovely nature of Faiumoni and find relaxing places to make a stop at. Even when you are busy during tasks, a healthy snack will power you up.
+			</attribute>
+			<attribute name="resistance">0</attribute>
+			<attribute name="class">book_gray</attribute>
+		</entity>
+		
+		<entity x="5" y="13">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Paradies love - or drama?
+-By Tamara-
+And there they were: two strangers, alone in the tunnel of Amazon island, heading out for reaching the right entrance to a life full of joy and peace - at least they hoped for that.
+			</attribute>
+			<attribute name="resistance">0</attribute>
+			<attribute name="class">book_purple</attribute>
+		</entity>
+		
+		<entity x="15" y="15">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Diaries of a warrior
+-By Lieutenant Drilenun-
+Oh my oh my oh my! What for a huge creature I'm looking at! It's red, it's huge it's powerful, it has a hard forehand...Could that be it? It is a balrog!"		
+			</attribute>
+			<attribute name="resistance">0</attribute>
+			<attribute name="class">book_turquoise</attribute>
+		</entity>
 
+		<entity x="20" y="27">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+Baking for starters
+-By Gaston-
+You need some flour, some eggs, some butter, some sugar, some chocolate and some milk, a hot drink for the winter, some rat to make it silk. Now after waiting for some time and after the job is done: a crepes suzette that is you hold, enjoy it and have fun!
+			</attribute>	
+			<attribute name="resistance">0</attribute>
+			<attribute name="class">book_white</attribute>
+		</entity>
 		
 		<portal x="0" y="18" ref="library1">
             <destination zone="int_constantines_villa_barracks" ref="door_right_1" />
