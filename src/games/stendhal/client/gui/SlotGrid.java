@@ -57,6 +57,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 		
 		for (int i = 0; i < width * height; i++) {
 			ItemPanel panel = new ItemPanel(null, null);
+			panel.setItemNumber(i);
 			panels.add(panel);
 			add(panel);
 		}

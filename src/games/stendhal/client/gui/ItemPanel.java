@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.GameLoop;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
@@ -39,6 +40,7 @@ import javax.swing.JPopupMenu;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class ItemPanel extends JComponent implements DropTarget {
 	/**
@@ -79,6 +81,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 	private JPopupMenu popupMenu;
 	/** The inspector the included entity should use */
 	private Inspector inspector;
+	private int itemNumber;
 	
 	/**
 	 * Create a new ItemPanel.
@@ -100,6 +103,15 @@ public class ItemPanel extends JComponent implements DropTarget {
 		ItemPanelMouseHandler drag = new ItemPanelMouseHandler();
 		addMouseMotionListener(drag);
 		addMouseListener(drag);
+	}
+	
+	/**
+	 * Set item number for purposes of reordering slot contents.
+	 * 
+	 * @param itemNumber
+	 */
+	void setItemNumber(int itemNumber) {
+		this.itemNumber = itemNumber;
 	}
 	
 	/**
@@ -221,6 +233,16 @@ public class ItemPanel extends JComponent implements DropTarget {
 			return;
 		}
 		
+		// Reorder, instead of a move
+		if (entity.getRPObject().getContainerSlot() == parent.getSlot(getName())) {
+			// Don't reorder, if the user has chosen a non-standard amount
+			if (amount != -1) {
+				return;
+			}
+			reorder(entity);
+			return;
+		}
+		
 		// Fill in appropriate action data
 		RPAction action = new RPAction();
 		action.put(EquipActionConsts.TYPE, "equip");
@@ -248,6 +270,42 @@ public class ItemPanel extends JComponent implements DropTarget {
 		action.put(EquipActionConsts.TARGET_SLOT, getName());
 		
 		StendhalClient.get().send(action);
+	}
+	
+	/**
+	 * Generate a reordering action for an entity in the slot.
+	 * 
+	 * @param entity
+	 */
+	private void reorder(final IEntity entity) {
+		// Don't needlessly send reordering commands to servers that do not
+		// understand them
+		if (User.getServerRelease().compareTo("1.00.5") < 0) {
+			return;
+		}
+		// GameLoop may modify slot contents, so we need to scan the contents in
+		// the same thread.
+		GameLoop.get().runOnce(new Runnable() {
+			public void run() {
+				RPObject rpobject = entity.getRPObject();
+				RPSlot slot = rpobject.getContainerSlot();
+				int i = 0;
+				for (RPObject content : slot) {
+					if (content == rpobject) {
+						if (itemNumber != i) {
+							RPAction action = new RPAction();
+							action.put(EquipActionConsts.TYPE, "reorder");
+							action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
+							action.put("new_position", itemNumber);
+							
+							StendhalClient.get().send(action);
+							return;
+						}
+					}
+					i++;
+				}
+			}
+		});
 	}
 	
 	/**
