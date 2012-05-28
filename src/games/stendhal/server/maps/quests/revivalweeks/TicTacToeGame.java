@@ -36,7 +36,7 @@ import java.util.Arrays;
 public class TicTacToeGame implements LoadableContent {
 	private StendhalRPZone zone = null;
 	private TicTacToeBoard board;
-	private SpeakerNPC npc;
+	private SpeakerNPC paul;
 
 	/**
 	 * creates TicTacToeBoard and adds it to the world.
@@ -52,7 +52,7 @@ public class TicTacToeGame implements LoadableContent {
 	 * adds the NPC which moderates the game to the world.
 	 */
 	private void addNPC() {
-		npc = new SpeakerNPC("Paul Sheriff") {
+		paul = new SpeakerNPC("Paul Sheriff") {
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
@@ -84,7 +84,14 @@ public class TicTacToeGame implements LoadableContent {
 						ConversationPhrases.GOODBYE_MESSAGES, 
 						ConversationStates.IDLE,
 						"It was nice to meet you.",
-						null);
+						new ChatAction() {
+							
+							@Override
+							public void fire(Player player, Sentence sentence, EventRaiser npc) {
+								paul.setDirection(Direction.DOWN);
+								
+							}
+						});
 				add(ConversationStates.IDLE,
 						Arrays.asList("play", "game", "yes"),
 						ConversationStates.IDLE,
@@ -92,10 +99,10 @@ public class TicTacToeGame implements LoadableContent {
 						new PlayAction(board));
 			}
 		};
-		npc.setEntityClass("paulnpc"); 
-		npc.setPosition(84, 112);
-		npc.setDirection(Direction.DOWN);
-		zone.add(npc);
+		paul.setEntityClass("paulnpc"); 
+		paul.setPosition(84, 112);
+		paul.setDirection(Direction.DOWN);
+		zone.add(paul);
 	}
 
 	/**
@@ -146,7 +153,7 @@ public class TicTacToeGame implements LoadableContent {
 
 		addBoard();
 		addNPC();
-		board.setNPC(npc);
+		board.setNPC(paul);
 	}
 
 	/**
@@ -156,7 +163,7 @@ public class TicTacToeGame implements LoadableContent {
 	 */
 	public boolean removeFromWorld() {
 		NPCList.get().remove("Paul Sheriff");
-		zone.remove(npc);
+		zone.remove(paul);
 		zone.remove(board);
 		return true;
 	}
