@@ -133,6 +133,26 @@ public class SummonActionTest {
 		assertNull(zone.getEntityAt(0, 0));
 	}
 	
+	@Test
+	public final void testSummonFishingRod() {
+		final Player pl = PlayerTestHelper.createPlayer("hugo");
+
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+
+		zone.add(pl);
+		pl.setPosition(1, 1);
+		pl.put("adminlevel", 5000);
+		final RPAction action = new RPAction();
+		action.put("type", "summon");
+		action.put("creature", "fishing rod");
+		action.put("x", 0);
+		action.put("y", 0);
+		CommandCenter.execute(pl, action);
+		assertEquals(1, pl.getID().getObjectID());
+		final Item item = (Item) zone.getEntityAt(0, 0);
+		assertEquals("fishing_rod", item.get("subclass"));
+	}
+	
 	/**
 	 * Tests for avoidNFE.
 	 */
