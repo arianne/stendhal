@@ -86,10 +86,8 @@ public class TicTacToeGame implements LoadableContent {
 						"It was nice to meet you.",
 						new ChatAction() {
 							
-							@Override
 							public void fire(Player player, Sentence sentence, EventRaiser npc) {
 								paul.setDirection(Direction.DOWN);
-								
 							}
 						});
 				add(ConversationStates.IDLE,
