@@ -77,9 +77,11 @@ public abstract class AbstractModifierHandler implements TurnListener {
 
 	public long getSecondsTillNextExpire() {
 		long next = 0;
-		AttributeModifier min = Collections.min(this.modifiers);
-		if(min != null) {
-			next = min.getMillisecondsTillExpire();
+		if(this.modifiers != null && !this.modifiers.isEmpty()) {
+			AttributeModifier min = Collections.min(this.modifiers);
+			if(min != null) {
+				next = min.getMillisecondsTillExpire();
+			}
 		}
 		return next / 1000;
 	}
