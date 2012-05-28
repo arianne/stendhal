@@ -54,9 +54,9 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "Hey you! Take care, you are leaving the city now! ";
 						if (player.getLevel() < 15) {
-							reply += "Always watch out for animals who might attack you and other evil guys who walk around...";
+							reply += "Always watch out for animals who might attack you and other evil guys who walk around. Better take some food or drinks with you!";
 						} else {
-							reply += "Better prepare yourself with food or drinks and be careful!";
+							reply += "Oh I see you are mighty and brave already! Have fun :)";
 						}
 						raiser.say(reply);
 					}
