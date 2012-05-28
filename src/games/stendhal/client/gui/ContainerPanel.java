@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
@@ -138,6 +139,7 @@ public class ContainerPanel extends JScrollPane implements Inspector, StendhalCl
 		} else {
 			SlotWindow window = new FreezableSlotWindow(entity.getName(), width, height);
 			window.setSlot(entity, content.getName());
+			window.setAcceptedTypes(EntityMap.getClass("item", null, null));
 			window.setInspector(this);
 			window.setVisible(true);
 			window.setAlignmentX(LEFT_ALIGNMENT);

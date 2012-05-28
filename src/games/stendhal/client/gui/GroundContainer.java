@@ -18,6 +18,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.spellcasting.DefaultGroundContainerMouseState;
 import games.stendhal.client.gui.spellcasting.GroundContainerMouseState;
@@ -260,6 +261,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 			return container;
 		} else {
 			SlotWindow window = new SlotWindow(suspect.getType(), width, height);
+			window.setAcceptedTypes(EntityMap.getClass("item", null, null));
 			window.setSlot(suspect, content.getName());
 			// Only display the window if it's actually going to stay open
 			if (window.isCloseEnough()) {

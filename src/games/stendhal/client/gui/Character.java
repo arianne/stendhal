@@ -16,6 +16,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.ContentChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -89,6 +90,8 @@ public class Character extends InternalManagedWindow implements ContentChangeLis
 		row.add(left);
 		row.add(middle);
 		row.add(right);
+		
+		Class itemClass = EntityMap.getClass("item", null, null);
 
 		/*
 		 * Fill the left column
@@ -100,27 +103,33 @@ public class Character extends InternalManagedWindow implements ContentChangeLis
 		SpriteStore store = SpriteStore.get();
 		ItemPanel panel = new ItemPanel("rhand", store.getSprite("data/gui/weapon-slot.png"));
 		slotPanels.put("rhand", panel);
+		panel.setAcceptedTypes(itemClass);
 		left.add(panel);
 		
 		panel = new ItemPanel("finger", store.getSprite("data/gui/ring-slot.png"));
 		slotPanels.put("finger", panel);
+		panel.setAcceptedTypes(itemClass);
 		left.add(panel);
 		
 		// Fill the middle column
 		panel = new ItemPanel("head", store.getSprite("data/gui/helmet-slot.png"));
 		slotPanels.put("head", panel);
+		panel.setAcceptedTypes(itemClass);
 		middle.add(panel);
 		
 		panel = new ItemPanel("armor", store.getSprite("data/gui/armor-slot.png"));
 		slotPanels.put("armor", panel);
+		panel.setAcceptedTypes(itemClass);
 		middle.add(panel);
 		
 		panel = new ItemPanel("legs", store.getSprite("data/gui/legs-slot.png"));
 		slotPanels.put("legs", panel);
+		panel.setAcceptedTypes(itemClass);
 		middle.add(panel);
 		
 		panel = new ItemPanel("feet", store.getSprite("data/gui/boots-slot.png"));
 		slotPanels.put("feet", panel);
+		panel.setAcceptedTypes(itemClass);
 		middle.add(panel);
 	
 		/*
@@ -132,10 +141,12 @@ public class Character extends InternalManagedWindow implements ContentChangeLis
 		right.add(Box.createVerticalStrut(HAND_YSHIFT * 2));
 		panel = new ItemPanel("lhand", store.getSprite("data/gui/shield-slot.png"));
 		slotPanels.put("lhand", panel);
+		panel.setAcceptedTypes(itemClass);
 		right.add(panel);
 		
 		panel = new ItemPanel("cloak", store.getSprite("data/gui/cloak-slot.png"));
 		slotPanels.put("cloak", panel);
+		panel.setAcceptedTypes(itemClass);
 		right.add(panel);
 		
 		setContent(row);
