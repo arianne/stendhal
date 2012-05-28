@@ -215,7 +215,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("level", Type.SHORT);
 			entity.addAttribute(ATTR_MODIFIED_LEVEL, Type.SHORT, Definition.VOLATILE);
 			entity.addAttribute("xp", Type.INT);
-			entity.addAttribute("mana", Type.INT, Definition.HIDDEN);
+			entity.addAttribute("mana", Type.INT);
 			entity.addAttribute(ATTR_MODIFIED_MANA, Type.INT, Definition.VOLATILE);
 			entity.addAttribute("base_mana", Type.INT);
 			entity.addAttribute(ATTR_MODIFIED_BASE_MANA, Type.INT, Definition.VOLATILE);
