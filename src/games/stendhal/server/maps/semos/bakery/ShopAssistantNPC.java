@@ -173,6 +173,13 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 				    ConversationStates.ATTENDING, 
 				    "No problem. Take as long as you need, but you can't borrow other tools till you return the last, or pay for it.",
 				    null);
+				// does want to pay for it now
+				add(ConversationStates.QUESTION_1, 
+				    ConversationPhrases.YES_MESSAGES, 
+				    new NotCondition(new PlayerHasItemWithHimCondition("money", COST)),  
+				    ConversationStates.ATTENDING, 
+				    "Sorry, but it seems you dont have enough money with you.",
+				    null);
 				 
 				// don't want to return it now
 				add(ConversationStates.QUESTION_2, 
