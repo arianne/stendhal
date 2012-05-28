@@ -54,6 +54,15 @@ public class SlotWindow extends InternalManagedWindow {
 	}
 	
 	/**
+	 * Set the types the panels can accept.
+	 * 
+	 * @param types
+	 */
+	public void setAcceptedTypes(Class ... types) {
+		content.setAcceptedTypes(types);
+	}
+	
+	/**
 	 * Sets the parent entity of the window.
 	 * 
 	 * @param parent

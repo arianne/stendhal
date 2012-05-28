@@ -20,6 +20,7 @@ import games.stendhal.client.entity.Inspector;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -60,6 +61,19 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 			panel.setItemNumber(i);
 			panels.add(panel);
 			add(panel);
+		}
+	}
+	
+	/**
+	 * Set the types the panels can accept.
+	 * 
+	 * @param types
+	 */
+	public void setAcceptedTypes(Class ... types) {
+		// Reuse the same set for all the panels
+		List<Class> list = Arrays.asList(types);
+		for (ItemPanel panel : panels) {
+			panel.setAcceptedTypes(list);
 		}
 	}
 	

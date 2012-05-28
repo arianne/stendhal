@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,4 +26,12 @@ public interface DropTarget {
 	 * @param point location within the DropTarget
 	 */
 	void dropEntity(IEntity entity, int amount, Point point);
+	/**
+	 * Check if the DropTarget can accept a certain entity.
+	 * 
+	 * @param entity entity to be checked
+	 * @return <code>true</code>, if the DropTarget can process the entity in
+	 * 	question, <code>false</code> otherwise
+	 */
+	boolean canAccept(IEntity entity);
 }

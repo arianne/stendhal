@@ -32,6 +32,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -82,6 +83,9 @@ public class ItemPanel extends JComponent implements DropTarget {
 	/** The inspector the included entity should use */
 	private Inspector inspector;
 	private int itemNumber;
+	
+	/** Object types the panel can accept */
+	private List<Class> acceptedTypes = new ArrayList<Class>();
 	
 	/**
 	 * Create a new ItemPanel.
@@ -418,5 +422,32 @@ public class ItemPanel extends JComponent implements DropTarget {
 			
 			StendhalClient.get().send(action);
 		}
+	}
+	
+	/**
+	 * Set the types the panel can accept.
+	 * 
+	 * @param types
+	 */
+	void setAcceptedTypes(Class ... types) {
+		acceptedTypes = Arrays.asList(types);
+	}
+	
+	/**
+	 * Set the types the panel can accept.
+	 * 
+	 * @param types
+	 */
+	void setAcceptedTypes(List<Class> types) {
+		acceptedTypes = types;
+	}
+
+	public boolean canAccept(IEntity entity) {
+		for (Class<?> c : acceptedTypes) {
+			if (c.isAssignableFrom(entity.getClass())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

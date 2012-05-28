@@ -26,6 +26,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.buddies.BuddyPanelController;
 import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -523,16 +524,21 @@ public class j2DClient implements UserInterface {
 
 		// Create the bag window
 		inventory = new SlotWindow("bag", 3, 4);
+		inventory.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		inventory.setCloseable(false);
 		inventory.setInspector(containerPanel);
 		containerPanel.addRepaintable(inventory);
 
 		keyring = new KeyRing();
+		// keyring's types are more limited, but it's simpler to let the server
+		// handle those
+		keyring.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(keyring);
 		client.addFeatureChangeListener(keyring);
 
 		spells = new Spells();
+		spells.setAcceptedTypes(EntityMap.getClass("spell", null, null));
 		spells.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(spells);
 		client.addFeatureChangeListener(spells);

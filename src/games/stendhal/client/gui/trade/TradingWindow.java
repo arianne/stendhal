@@ -12,6 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.gui.trade;
 
+import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.factory.EntityMap;
+import games.stendhal.client.gui.InternalManagedWindow;
+import games.stendhal.client.gui.SlotGrid;
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.common.TradeState;
+import games.stendhal.common.grammar.Grammar;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,14 +31,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
-import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.gui.InternalManagedWindow;
-import games.stendhal.client.gui.SlotGrid;
-import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.common.TradeState;
-import games.stendhal.common.grammar.Grammar;
 
 /**
  * The trading window. Panels for each of the trader's trading slots and
@@ -106,6 +107,7 @@ class TradingWindow extends InternalManagedWindow {
 		myColumn.add(myOfferLabel);
 		
 		mySlots = new SlotGrid(2, 2);
+		mySlots.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		myColumn.add(mySlots);
 		slotRow.add(myColumn);
 		

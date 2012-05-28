@@ -19,6 +19,7 @@ import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 
 import java.awt.AWTEvent;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -51,6 +52,13 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	private Point point;
 
 	private int oldX, oldY, width, height;
+	
+	/**
+	 * A speed hack for detecting the underlying component. Keep it in memory
+	 * unless the mouse location has changed to avoid scanning the component
+	 * tree at every redraw.
+	 */
+	private Component underlyingComponent;
 
 	/**
 	 * Create a new DragLayer.
@@ -127,7 +135,34 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.translate(point.x, point.y);
 			dragged.draw(g2d);
+			
+			// Draw an indicator about invalid dropping area, if needed
+			if (getCurrentDropTarget() == null) {
+				g2d.setColor(Color.RED);
+				g2d.drawOval(dragged.getWidth() - 11, dragged.getHeight() - 11, 10, 10);
+				g2d.drawLine(dragged.getWidth() - 9, dragged.getHeight() - 9, dragged.getWidth() - 2, dragged.getHeight() - 2);
+			}
 		}
+	}
+	
+	/**
+	 * Get the drop target capable of accepting the dragged entity at the
+	 * current location.
+	 * 
+	 * @return drop target, or <code>null</code> if the component below is not a
+	 * 	DropTarget, or it is not capable of accepting the dragged entity 
+	 */
+	private DropTarget getCurrentDropTarget() {
+		if (underlyingComponent == null) {
+			Container parent = getParent();
+			Point containerPoint = SwingUtilities.convertPoint(this, point, parent);
+			underlyingComponent = SwingUtilities.getDeepestComponentAt(parent, containerPoint.x, containerPoint.y);
+		}
+		if ((underlyingComponent instanceof DropTarget) 
+				&& (((DropTarget) underlyingComponent).canAccept(dragged.getEntity()))) {
+			return (DropTarget) underlyingComponent;
+		}
+		return null;
 	}
 
 	/**
@@ -137,22 +172,19 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * @param event The mouse event that triggered the drop
 	 */
 	private void stopDrag(MouseEvent event) {
-		Container parent = getParent();
-		Point containerPoint = SwingUtilities.convertPoint(this, point, parent);
-		// Find out the underlying component
-		Component component = SwingUtilities.getDeepestComponentAt(parent, containerPoint.x, containerPoint.y);
-
-		if ((component != null) && (component instanceof DropTarget)) {
-			IEntity entity = dragged.getEntity();
+		IEntity entity = dragged.getEntity();
+		DropTarget target = getCurrentDropTarget();
+		if ((target != null) && target.canAccept(entity)
+				&& (target instanceof Component)) {
 			if (entity != null) {
-				Point componentPoint = SwingUtilities.convertPoint(this, point, component);
+				Point componentPoint = SwingUtilities.convertPoint(this, point, (Component) target);
 				if (showAmountChooser(event, entity)) {
 					// Delegate dropping to the amount chooser
-					DropAmountChooser chooser = new DropAmountChooser((StackableItem) entity, (DropTarget) component, componentPoint);
-					chooser.show(component, componentPoint);
+					DropAmountChooser chooser = new DropAmountChooser((StackableItem) entity, target, componentPoint);
+					chooser.show((Component) target, componentPoint);
 				} else {
 					// Dropping everything
-					((DropTarget) component).dropEntity(entity, -1, componentPoint);
+					target.dropEntity(entity, -1, componentPoint);
 				}
 			}
 		}
@@ -190,8 +222,10 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			point = converted.getPoint();
 
 			if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
+				underlyingComponent = null;
 				requestDraw();
 			} else if ((event.getID() == MouseEvent.MOUSE_RELEASED) && (dragged != null)) {
+				underlyingComponent = null;
 				stopDrag(event);
 				requestDraw();
 				point = null;

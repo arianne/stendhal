@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.Item;
 import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.AchievementBoxFactory;
@@ -1263,5 +1265,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			counter = Integer.valueOf(counter.intValue() + 1);
 		}
 		return null;
+	}
+
+	public boolean canAccept(IEntity entity) {
+		if ((entity instanceof Item) || (entity instanceof Corpse)) {
+			return true;
+		}
+		return false;
 	}
 }
