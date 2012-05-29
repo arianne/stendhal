@@ -51,7 +51,7 @@ class BuildSourceFromPath implements PartialBuilder {
 				return;
 			}
 
-			final RPSlot slot = ((EntitySlot) entity.getSlot(slotName)).getWriteableSlot();
+			final RPSlot slot = entity.getSlot(slotName);
 			if (slot == null) {
 				data.setErrorMessage("");
 				return;

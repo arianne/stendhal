@@ -36,8 +36,8 @@ class BuildSourceFromOldActionFormat implements PartialBuilder {
 			data.setErrorMessage("");
 			return;
 		}
-		final RPSlot slot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
-		if (slot == null || !(slot instanceof EntitySlot)) {
+		final RPSlot slot = parent.getSlot(slotName);
+		if (!(slot instanceof EntitySlot)) {
 			data.setErrorMessage("");
 			return;
 		}

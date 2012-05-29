@@ -56,10 +56,6 @@ public class EntitySlot extends RPSlot implements Slot {
 		return true;
 	}
 
-	public RPSlot getWriteableSlot() {
-		return this;
-	}
-
 	public boolean isTargetBoundCheckRequired() {
 		return false;
 	}

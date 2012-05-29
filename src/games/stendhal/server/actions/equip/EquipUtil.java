@@ -16,7 +16,6 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.Iterator;
 import java.util.List;
@@ -89,15 +88,15 @@ public class EquipUtil {
 				return null;
 			}
 			
-			final RPSlot slot = ((EntitySlot) entity.getSlot(slotName)).getWriteableSlot();
+			final RPSlot slot = entity.getSlot(slotName);
 			
 			if (!it.hasNext()) {
-				logger.error("Missing item id");
+				logger.error("Missing entity id");
 				return null;
 			}
 			final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
 			if (!slot.has(itemId)) {
-				logger.debug("Base item(" + entity + ") doesn't contain item(" + itemId + ") on given slot(" + slotName
+				logger.debug("Base entity(" + entity + ") doesn't contain entity(" + itemId + ") on given slot(" + slotName
 						+ ")");
 				return null;
 			}

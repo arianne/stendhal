@@ -308,7 +308,7 @@ class DestinationObject extends MoveableObject {
 	public void addToWorld(Entity entity, final Player player) {
 		if (parent != null) {
 			// drop the entity into a slot
-			final RPSlot rpslot = ((EntitySlot) parent.getSlot(slot)).getWriteableSlot();
+			final RPSlot rpslot = parent.getSlot(slot);
 
 
 			// check if the item can be merged with one already in the slot

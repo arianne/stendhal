@@ -48,13 +48,6 @@ public interface Slot {
 	boolean isItemSlot();
 
 	/**
-	 * returns the slot which must be used for write access.
-	 *
-	 * @return RPSlot which should be used
-	 */
-	RPSlot getWriteableSlot();
-
-	/**
 	 * does this slot require that the bounding of items is check on adding items
 	 *
 	 * @return true, if bound items have to be checked, false otherwise

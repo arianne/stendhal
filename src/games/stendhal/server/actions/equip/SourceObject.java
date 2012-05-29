@@ -103,7 +103,7 @@ class SourceObject extends MoveableObject {
 
 			return invalidSource;
 		}
-		final RPSlot baseSlot = ((EntitySlot) parent.getSlot(slotName)).getWriteableSlot();
+		final RPSlot baseSlot = parent.getSlot(slotName);
 
 		if (!isValidBaseSlot(player, baseSlot)) {
 			return invalidSource;
@@ -197,7 +197,7 @@ class SourceObject extends MoveableObject {
 				return invalidSource;
 			}
 			
-			final RPSlot slot = ((EntitySlot) entity.getSlot(slotName)).getWriteableSlot();
+			final RPSlot slot = entity.getSlot(slotName);
 			if (!isValidBaseSlot(player, slot)) {
 				return invalidSource;
 			}
