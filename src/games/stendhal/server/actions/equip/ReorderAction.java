@@ -99,8 +99,18 @@ public class ReorderAction implements ActionListener {
 		if (!reorderableSlots.contains(slot.getName())) {
 			return false;
 		}
-		if (!isReachableSlot(player, slot)) {
-			return false;
+		if (slot instanceof EntitySlot) {
+			if (!isReachableSlot(player, slot)) {
+				return false;
+			}
+		} else if (object != player) {
+			/*
+			 * For anything else but EntitySlots (== spell slot), check that the
+			 * Player is the immediate parent. The reorderableSlots check
+			 * prevents messing slots that must not be accessed directly by the
+			 * player.
+			 */
+			 return false;
 		}
 		do {
 			if (object instanceof Player) {
@@ -135,7 +145,7 @@ public class ReorderAction implements ActionListener {
 	 * 	otherwise
 	 */
 	private boolean isReachableSlot(final Player player, final RPSlot baseSlot) {
-		if (! (baseSlot instanceof EntitySlot)) {
+		if (!(baseSlot instanceof EntitySlot)) {
 			return false;
 		}
 		EntitySlot slot = (EntitySlot) baseSlot;
