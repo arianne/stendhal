@@ -163,5 +163,9 @@ public class Spell2DView extends Entity2DView<IEntity> {
 		}
 		return position.toString();
 	}
-
+	
+	@Override
+	public boolean isMovable() {
+		return true;
+	}
 }
