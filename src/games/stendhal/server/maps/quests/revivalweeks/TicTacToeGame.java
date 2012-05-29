@@ -23,6 +23,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.NPCSetDirection;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -84,12 +85,7 @@ public class TicTacToeGame implements LoadableContent {
 						ConversationPhrases.GOODBYE_MESSAGES, 
 						ConversationStates.IDLE,
 						"It was nice to meet you.",
-						new ChatAction() {
-							
-							public void fire(Player player, Sentence sentence, EventRaiser npc) {
-								paul.setDirection(Direction.DOWN);
-							}
-						});
+						new NPCSetDirection(Direction.DOWN));
 				add(ConversationStates.IDLE,
 						Arrays.asList("play", "game", "yes"),
 						ConversationStates.IDLE,
