@@ -42,9 +42,8 @@ public class TextSprite extends ImageSprite {
 		final GraphicsConfiguration gc = getGC();
 		final Image image = gc.createCompatibleImage(graphics.getFontMetrics().stringWidth(
 				text) + 2, 16, Transparency.BITMASK);
-		final Graphics g2d = image.getGraphics();
 
-		drawOutlineString(g2d, textColor, text, 1, 10);
+		drawOutlineString(image, textColor, text, 1, 10);
 
 		return new TextSprite(image);
 	}
@@ -54,13 +53,13 @@ public class TextSprite extends ImageSprite {
 	 * only with an outline border. The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().
 	 * 
-	 * @param g The graphics context.
+	 * @param image image to draw to
 	 * @param textColor The text color.
 	 * @param text The text to draw.
 	 * @param x X position.
 	 * @param y Y position.
 	 */
-	private static void drawOutlineString(final Graphics g, final Color textColor,
+	private static void drawOutlineString(final Image image, final Color textColor,
 			final String text, final int x, final int y) {
 		/*
 		 * Use light gray as outline for colors < 25% bright. Luminance = 0.299R +
@@ -74,7 +73,7 @@ public class TextSprite extends ImageSprite {
 		} else {
 			outlineColor = Color.lightGray;
 		}
-		drawOutlineString(g, textColor, outlineColor, text, x, y);
+		drawOutlineString(image, textColor, outlineColor, text, x, y);
 	}
 	
 	/**
@@ -82,8 +81,8 @@ public class TextSprite extends ImageSprite {
 	 * only with an outline border. The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().
 	 *
-	 * @param g
-	 *            The graphics context.
+	 * @param image
+	 *            Image to draw to.
 	 * @param textColor
 	 *            The text color.
 	 * @param outlineColor
@@ -95,14 +94,17 @@ public class TextSprite extends ImageSprite {
 	 * @param y
 	 *            The Y position.
 	 */
-	private static void drawOutlineString(final Graphics g, final Color textColor,
+	private static void drawOutlineString(final Image image, final Color textColor,
 			final Color outlineColor, final String text, final int x,
 			final int y) {
+		Graphics g = image.getGraphics();
 		g.setColor(outlineColor);
 		g.drawString(text, x - 1, y - 1);
-		g.drawString(text, x - 1, y + 1);
-		g.drawString(text, x + 1, y - 1);
-		g.drawString(text, x + 1, y + 1);
+		// Reuse the image itself for fewer calls to get full overlap
+		g.drawImage(image, 1, 0, null);
+		g.drawImage(image, 1, 0, null);
+		g.drawImage(image, 0, 1, null);
+		g.drawImage(image, 0, 1, null);
 
 		g.setColor(textColor);
 		g.drawString(text, x, y);
