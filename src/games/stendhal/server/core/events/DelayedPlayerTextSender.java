@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.events;
 
+import static games.stendhal.common.NotificationType.getServerNotificationType;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
@@ -35,7 +36,7 @@ public class DelayedPlayerTextSender implements TurnListener {
 	 * @param seconds 
 	 */
 	public DelayedPlayerTextSender(final Player player, final String message, final int seconds) {
-		this(player, message, NotificationType.PRIVMSG, seconds);
+		this(player, message, getServerNotificationType(player.getClientVersion()), seconds);
 	}
 
 	/**

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -58,7 +59,8 @@ public class ResetSlot extends ScriptImpl {
 		slot.add(new RPObject());
 
 		// notify the player
-		player.sendPrivateText("Your " + args.get(1) + " state was reset by "
+		player.sendPrivateText(NotificationType.SUPPORT, 
+				"Your " + args.get(1) + " state was reset by "
 				+ admin.getTitle());
 	}
 }

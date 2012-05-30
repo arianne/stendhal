@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.admin;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
@@ -46,7 +47,8 @@ class AlterQuestAction extends AdministrationAction {
 			target.setQuest(questName, newQuestState);
 
 			// notify admin and altered player
-			target.sendPrivateText("Admin " + player.getTitle()
+			target.sendPrivateText(NotificationType.SUPPORT, 
+					"Admin " + player.getTitle()
 					+ " changed your state of the quest '" + questName
 					+ "' from '" + oldQuestState + "' to '" + newQuestState
 					+ "'");

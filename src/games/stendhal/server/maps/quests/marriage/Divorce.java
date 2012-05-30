@@ -27,7 +27,6 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.server.db.command.DBCommandQueue;
 
 class Divorce {

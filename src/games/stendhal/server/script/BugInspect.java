@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Task;
@@ -97,7 +98,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 						new GameEvent("bug inspect", "jail", player.getName(), Integer.toString(-1), "possible bug abuse").raise();
 						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible bug abuse");
-						player.sendPrivateText("Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
+						player.sendPrivateText(NotificationType.SUPPORT, "Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
 						player.notifyWorldAboutChanges();
 
 						message = "auto jailed " + player.getName() + " because of a large number of items";

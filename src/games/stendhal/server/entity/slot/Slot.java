@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.slot;
 
 import games.stendhal.server.entity.Entity;
-import marauroa.common.game.RPSlot;
 
 /**
  * A slot which can contain items.

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -50,7 +51,7 @@ public class ResetTutorial extends ScriptImpl {
 		slot.add(new RPObject());
 
 		// notify the player
-		player.sendPrivateText("Your tutorial state was reset by "
-				+ admin.getTitle());
+		player.sendPrivateText(NotificationType.SUPPORT,
+				"Your tutorial state was reset by " + admin.getTitle());
 	}
 }

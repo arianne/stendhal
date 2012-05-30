@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -87,7 +88,8 @@ public class GagManager implements LoginListener {
 		// Send messages
 		policeman.sendPrivateText("You have gagged " + criminalName + " for "
 				+ minutes + " minutes. Reason: " + reason + ".");
-		criminal.sendPrivateText("You have been gagged for " + minutes
+		criminal.sendPrivateText(NotificationType.SUPPORT, 
+				"You have been gagged for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters("GagManager", policeman.getName()
 				+ " gagged " + criminalName + " for " + minutes
@@ -103,10 +105,9 @@ public class GagManager implements LoginListener {
 	 *            player who should be released
 	 */
 	public void release(final Player inmate) {
-
 		if (isGagged(inmate)) {
 			inmate.removeQuest("gag");
-			inmate.sendPrivateText("Your gag sentence is over.");
+			inmate.sendPrivateText(NotificationType.SUPPORT, "Your gag sentence is over.");
 			logger.debug("Player " + inmate.getName() + "released from gag.");
 		}
 	}

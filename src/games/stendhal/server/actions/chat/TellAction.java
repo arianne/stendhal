@@ -14,6 +14,7 @@ package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -140,7 +141,7 @@ public class TellAction implements ActionListener {
 		}
 
 		// transmit the message
-		receiver.sendPrivateText(message);
+		receiver.sendPrivateText(NotificationType.PRIVMSG, message);
 
 		if (!senderName.equals(receiverName)) {
 			player.sendPrivateText("You tell " + receiverName + ": " + text);

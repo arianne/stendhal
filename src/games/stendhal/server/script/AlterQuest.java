@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -57,7 +58,7 @@ public class AlterQuest extends ScriptImpl {
 			target.setQuest(questName, newQuestState);
 
 			// notify admin and altered player
-			target.sendPrivateText("Admin " + admin.getTitle()
+			target.sendPrivateText(NotificationType.SUPPORT, "Admin " + admin.getTitle()
 					+ " changed your state of the quest '" + questName
 					+ "' from '" + oldQuestState + "' to '" + newQuestState
 					+ "'");

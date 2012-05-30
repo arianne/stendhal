@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -152,7 +153,8 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		} else {
 			arrestWarrant.setStarted();
 			imprison(criminal, policeman, minutes);
-			criminal.sendPrivateText("You have been jailed for " + minutes
+			criminal.sendPrivateText(NotificationType.SUPPORT,
+					"You have been jailed for " + minutes
 					+ " minutes. Reason: " + reason + ".");
 		}
 		arrestWarrants.add(arrestWarrant);
@@ -232,7 +234,8 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			final StendhalRPZone exitZone = (StendhalRPZone) world.getRPZone(zoneid);
 
 			inmate.teleport(exitZone, 6, 3, Direction.RIGHT, null);
-			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
+			inmate.sendPrivateText(NotificationType.SUPPORT,
+					"Your sentence is over. You can walk out now.");
 			LOGGER.debug("Player " + inmate.getName() + "released from jail.");
 		}
 
@@ -290,7 +293,8 @@ public class Jail implements ZoneConfigurator, LoginListener {
 				}
 
 				final long timestamp = arrestWarrant.getTimestamp();
-				player.sendPrivateText("You have been jailed "
+				player.sendPrivateText(NotificationType.SUPPORT, 
+						"You have been jailed "
 					+ " for " + arrestWarrant.getMinutes()
 					+ " minutes on " + String.format("%tF", timestamp)
 					+ ". Reason: " + arrestWarrant.getReason() + ".");
@@ -313,7 +317,8 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			public void handleEscapeMessages(final ArrestWarrant arrestWarrant) {
 				if (arrestWarrant.isStarted()) {
 					// Notify player that his sentences is starting again because he tried to escape by logging out
-					player.sendPrivateText("Although you already spent some "
+					player.sendPrivateText(NotificationType.SUPPORT,
+							"Although you already spent some "
 							+ "time in jail, your sentence has been restarted " 
 							+ "because of your failed escape attempt.");
 				} else {

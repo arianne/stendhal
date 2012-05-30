@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.script;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Task;
@@ -102,7 +103,7 @@ public class FishInspect extends ScriptImpl implements TurnListener {
 
 						new GameEvent("fish inspect", "jail", player.getName(), Integer.toString(-1), "possible macro use to get fish").raise();
 						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible macro use to get fish");
-						player.sendPrivateText("Please use /support to talk to an admin about your large amount of fish which may have been obtained illegally.");
+						player.sendPrivateText(NotificationType.SUPPORT, "Please use /support to talk to an admin about your large amount of fish which may have been obtained illegally.");
 						player.notifyWorldAboutChanges();
 
 						message = "auto jailed " + player.getName() + " because of a large number of fish";

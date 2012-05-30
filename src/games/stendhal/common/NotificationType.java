@@ -22,8 +22,6 @@ import java.awt.Color;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
-	
-	
 	CLIENT("client") {
 		@Override
 		public Color getColor() {
@@ -116,6 +114,12 @@ public enum NotificationType {
 		@Override
 		public Color getColor() {
 			return COLOR_SCENE_SETTING;
+		}
+	},
+	SERVER("server") {
+		@Override
+		public Color getColor() {
+			return COLOR_PRIVMSG;
 		}
 	},
 	SIGNIFICANT_NEGATIVE("significant_negative") {
@@ -231,7 +235,7 @@ public enum NotificationType {
 	 * @return The appropriate color.
 	 */
 	public Color getColor() {
-					return COLOR_NORMAL;
+		return COLOR_NORMAL;
 	}
 
 	/**
@@ -242,5 +246,19 @@ public enum NotificationType {
 	public String getStyleDescription() {
 		return NORMALSTYLE;
 	}
-
+	
+	/**
+	 * Get notification type for server messages that the client can show
+	 * without problems. Call this instead of using SERVER directly.
+	 * 
+	 * @param clientVersion
+	 * @return appropriate type
+	 */
+	public static NotificationType getServerNotificationType(String clientVersion) {
+		if ((clientVersion != null) && (Version.compare(clientVersion, "1.00") > 0)) {
+			return NotificationType.SERVER;
+		} else {
+			return NotificationType.PRIVMSG;
+		}
+	}
 }

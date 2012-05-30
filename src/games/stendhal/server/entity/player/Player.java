@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import static games.stendhal.common.NotificationType.getServerNotificationType;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.AWAY;
 import static games.stendhal.common.constants.Actions.GHOSTMODE;
@@ -877,14 +878,16 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * Sends a message that only this player can read.
+	 * Sends a message that only this player can read. Used for messages that
+	 * should not appear as sent by another player. For messages from other
+	 * players (or relevant NPC messages), use sendPrivateText(PRIVMSG, text)
 	 *
 	 * @param text
 	 *            the message.
 	 */
 	@Override
 	public void sendPrivateText(final String text) {
-		sendPrivateText(NotificationType.PRIVMSG, text);
+		sendPrivateText(getServerNotificationType(clientVersion), text);
 	}
 
 	/**

@@ -3,6 +3,7 @@
  */
 package games.stendhal.server.core.events;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.entity.player.Player;
@@ -31,11 +32,12 @@ public class GuaranteedDelayedPlayerTextSender extends DelayedPlayerTextSender {
 		this.source = source;
 	}
 	
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		final String playername = player.getName();
 		final Player playerNow = SingletonRepository.getRuleProcessor().getPlayer(playername);
 		if (playerNow != null) {
-			playerNow.sendPrivateText(source + " tells you:\n" + message);
+			playerNow.sendPrivateText(NotificationType.PRIVMSG, source + " tells you:\n" + message);
 		} else {
 			DBCommandQueue.get().enqueue(new StoreMessageCommand(source, playername, message, "N"));
 		}

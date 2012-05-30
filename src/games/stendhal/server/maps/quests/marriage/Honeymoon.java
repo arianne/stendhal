@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests.marriage;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.JokerExprMatcher;
 import games.stendhal.common.parser.Sentence;
@@ -120,8 +121,8 @@ class Honeymoon {
 								wife.teleport(zone, 5, 5, Direction.DOWN, player);
 								husband.teleport(zone, 6, 5, Direction.DOWN, player);
 								final String scrollmessage = "Linda tells you: Use the scroll in your bag to return to the hotel, our special honeymoon suites are so private that they don't use normal entrances and exits!";
-								wife.sendPrivateText(scrollmessage);
-                                husband.sendPrivateText(scrollmessage);
+								wife.sendPrivateText(NotificationType.PRIVMSG, scrollmessage);
+                                husband.sendPrivateText(NotificationType.PRIVMSG, scrollmessage);
 								wife.notifyWorldAboutChanges();
 								husband.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.IDLE);

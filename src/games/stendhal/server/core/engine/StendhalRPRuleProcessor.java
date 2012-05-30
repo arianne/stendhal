@@ -65,8 +65,6 @@ import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-
-
 /**
  * adds game rules for Stendhal to the marauroa environment.
  *

@@ -15,6 +15,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.common.constants.Actions.ADMINLEVEL;
 import static games.stendhal.common.constants.Actions.NEWLEVEL;
 import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.GameEvent;
@@ -76,9 +77,9 @@ class AdminLevelAction extends AdministrationAction {
 
 					response = "Changed adminlevel of " + target.getTitle()
 							+ " from " + oldlevel + " to " + newlevel + ".";
-					target.sendPrivateText(player.getTitle()
-							+ " changed your adminlevel from " + +oldlevel
-							+ " to " + newlevel + ".");
+					target.sendPrivateText(NotificationType.SUPPORT, 
+							player.getTitle() + " changed your adminlevel from " 
+							+ oldlevel + " to " + newlevel + ".");
 				}
 			}
 
