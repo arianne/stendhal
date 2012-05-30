@@ -17,6 +17,8 @@ import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
@@ -43,8 +45,13 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = -726066169323112688L;
-
+	
 	private static DragLayer instance;
+	/**
+	 * Icon to show when a dragged object is not in a place where it can be
+	 * dropped.
+	 */
+	private static final Sprite dropForbiddenIcon = SpriteStore.get().getSprite("data/gui/forbidden.png");
 
 	/** The dragged entity, or <code>null</code> if nothing is being dragged. */
 	private Entity2DView<?> dragged;
@@ -138,9 +145,8 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			
 			// Draw an indicator about invalid dropping area, if needed
 			if (getCurrentDropTarget() == null) {
-				g2d.setColor(Color.RED);
-				g2d.drawOval(dragged.getWidth() - 11, dragged.getHeight() - 11, 10, 10);
-				g2d.drawLine(dragged.getWidth() - 9, dragged.getHeight() - 9, dragged.getWidth() - 2, dragged.getHeight() - 2);
+				dropForbiddenIcon.draw(g2d, dragged.getWidth() - dropForbiddenIcon.getWidth(),
+						dragged.getHeight() - dropForbiddenIcon.getHeight());
 			}
 		}
 	}
