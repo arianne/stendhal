@@ -155,7 +155,11 @@ class DestinationObject extends MoveableObject {
 		final StendhalRPZone zone = player.getZone();
 
 		if (parent != null) {
-			final EntitySlot rpslot = (EntitySlot) parent.getSlot(slot);
+			final EntitySlot rpslot = parent.getEntitySlot(slot);
+			// Old clients may try to move items to magic slot
+			if (rpslot == null) {
+				return false;
+			}
 			rpslot.clearErrorMessage();
 			if (!rpslot.isReachableForThrowingThingsIntoBy(player)) {
 				player.sendPrivateText(rpslot.getErrorMessage());
@@ -292,10 +296,12 @@ class DestinationObject extends MoveableObject {
 	public String getContentSlotName() {
 		if (parent != null) {
 			final EntitySlot entitySlot = parent.getEntitySlot(slot);
-			return entitySlot.getContentSlotName();
-		} else {
-			return null;
+			// Old clients may try to move items to magic slot
+			if (entitySlot != null) {
+				return entitySlot.getContentSlotName();
+			}
 		}
+		return null;
 	}
 
 	/**
