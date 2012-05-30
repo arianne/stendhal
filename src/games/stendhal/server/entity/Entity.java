@@ -714,9 +714,6 @@ public abstract class Entity extends RPObject {
 	 * @return EntitySlot or <code>null</code>
 	 */
 	public EntitySlot getEntitySlot(String name) {
-		if (!super.hasSlot(name)) {
-			return null;
-		}
 		RPSlot slot = super.getSlot(name);
 		if (!(slot instanceof EntitySlot)) {
 			return null;
