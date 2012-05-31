@@ -18,6 +18,11 @@
 *website*
 - Navigation box shows number of unread messages after login
 
+*client*
+- private messages are shown in their own tab in addition to the main chat log
+- new images for cherub and golden trees
+- users can reorder items in bag and chests
+
 1.00
 
 * lots of testing
