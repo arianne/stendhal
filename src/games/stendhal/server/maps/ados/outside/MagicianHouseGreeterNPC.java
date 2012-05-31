@@ -39,11 +39,12 @@ public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 				addHelp("If you get tired, you'll have to log off to back to #Haizen.");
 				addReply("maze", "I'm afraid you will lose your way, but there are #scrolls for you to find.");
 				addReply("scrolls", "You only have ten minutes to pick up the scrolls in the #maze.");
-				addQuest("I am asking players to complete the #maze. Haizen will then make me his #assistant");
+				addQuest("I am asking players to complete the #maze. Haizen will then make me his #assistant.");
 				addReply("assistant", "On day, I may learn how to use magic.");
 				addReply("Haizen", "He is teaching me about magic.");
 				addOffer("I can offer you some #advice.");
-				addReply("advice", "It would be helpful to look upon the mini map often. ");
+				addReply("advice", "It would be helpful to look upon the mini map often.");
+				addJob("I am hopefully going to be Haizens #assistant soon.");
 				addGoodbye("Thank you and have a nice day.");
 			}
 
@@ -54,8 +55,7 @@ public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 		};
 
 		npc.setDescription("You see Venethiel. She wants to learn about magic.");
-		// TODO: have a unique image, perhaps something that looks like a wannabe magician.
-		npc.setEntityClass("kid5npc");
+		npc.setEntityClass("magicianhousegreeternpc");
 		npc.setPosition(70, 52);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

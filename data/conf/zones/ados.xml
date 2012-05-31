@@ -314,7 +314,7 @@
  </zone>
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
- <!-- needs a nice NPC sprite: <configurator class-name="games.stendhal.server.maps.ados.outside.MagicianHouseGreeterNPC" />  -->
+ <configurator class-name="games.stendhal.server.maps.ados.outside.MagicianHouseGreeterNPC" />
 
  	<attributes>
 		<parameter name="color_method">time</parameter>
