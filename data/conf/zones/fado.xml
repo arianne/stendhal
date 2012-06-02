@@ -195,7 +195,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
            
-           <portal x="12" y="19" ref="entrance">
+           <portal x="12" y="18" ref="entrance">
              <destination zone="0_fado_city" ref="bank_entrance"/>
            </portal>
            
