@@ -37,8 +37,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 
@@ -113,8 +113,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * Some model value changed.
 	 */
 	private boolean changed;
-	/** Additional sprites attached to the view. Can be <code>null</code>. */
-	private List<AttachedSprite> attachedSprites;
+	/** Additional sprites attached to the view. */
+	private final List<AttachedSprite> attachedSprites = new CopyOnWriteArrayList<AttachedSprite>();
 	
 	/**
 	 * Flag for detecting that the view has been released <code>true</code> if
@@ -262,9 +262,6 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 			break;
 		}
 		
-		if (attachedSprites == null) {
-			attachedSprites = new ArrayList<AttachedSprite>();
-		}
 		attachedSprites.add(new AttachedSprite(sprite, x, y));
 	}
 	
@@ -277,14 +274,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		if (attachedSprites == null) {
 			return;
 		}
-		Iterator<AttachedSprite> it = attachedSprites.iterator();
-		while (it.hasNext()) {
-			AttachedSprite as = it.next();
-			if (as.sprite == sprite) {
-				it.remove();
-				break;
-			}
-		}
+		attachedSprites.remove(sprite);
 	}
 
 	/**
