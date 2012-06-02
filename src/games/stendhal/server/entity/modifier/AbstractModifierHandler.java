@@ -16,7 +16,8 @@ import java.util.TreeSet;
  */
 public abstract class AbstractModifierHandler implements TurnListener {
 	
-	private final WeakReference<ModifiedAttributeUpdater> affectedEntity;
+	/** the affected entity as weak ref to enable garbage collection */
+ 	private final WeakReference<ModifiedAttributeUpdater> affectedEntity;
 	
 	private Collection<AttributeModifier> modifiers;
 
@@ -28,6 +29,11 @@ public abstract class AbstractModifierHandler implements TurnListener {
 		this.affectedEntity = new WeakReference<ModifiedAttributeUpdater>(affectedEntity);
 	}
 
+	/**
+	 * add a new modifier to this handler
+	 * 
+	 * @param am
+	 */
 	public void addModifier(AttributeModifier am) {
 		this.modifiers.add(am);
 		ModifiedAttributeUpdater temp = this.affectedEntity.get();
@@ -37,11 +43,18 @@ public abstract class AbstractModifierHandler implements TurnListener {
 		}
 	}
 
+	/**
+	 * Trigger next clean up run for removing expired attributes
+	 */
 	private void updateNextCleanUpRun() {
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		int seconds = Long.valueOf(this.getSecondsTillNextExpire()).intValue();
-		if (seconds != 0) {
+		if (seconds > 0) {
+			// next run is needed in the future, delay next clean up that long
 			SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, this);
+		} else if (seconds < 0) {
+			// next run should already have taken place, therefore trigger immediately next cleanup 
+			SingletonRepository.getTurnNotifier().notifyInSeconds(0, this);
 		}
 	}
 
