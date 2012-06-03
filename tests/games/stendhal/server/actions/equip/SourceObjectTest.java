@@ -72,6 +72,43 @@ public class SourceObjectTest {
 		final SourceObject so = SourceObject.createSourceObject(action, bob);
 		assertTrue(so.isValid());
 	}
+	
+	/**
+	 * Test a source under another player.
+	 */
+	@Test
+	public void testIsValidNonContainedBelowPlayer() {
+		MockStendlRPWorld.get();
+		final Player bob = PlayerTestHelper.createPlayer("bob");
+		final Player alice = PlayerTestHelper.createPlayer("alice");
+		alice.setPosition(0, 1);
+		final StendhalRPZone zone = new StendhalRPZone("dropzone");
+		final Item dropitem = ItemTestHelper.createItem();
+		zone.add(dropitem);
+		zone.add(bob);
+		zone.add(alice);
+		assertNotNull(dropitem.getID().getObjectID());
+		final RPAction action = new RPAction();
+		action.put(EquipActionConsts.BASE_ITEM, dropitem.getID().getObjectID());
+		MockStendlRPWorld.get().addRPZone(zone);
+		assertNotNull(bob.getZone());
+
+		SourceObject so = SourceObject.createSourceObject(action, alice);
+		assertFalse("Picking an item below another player", so.isValid());
+
+		// Bind it to alice. She should be able to pick it up
+		dropitem.setBoundTo("alice");
+		so = SourceObject.createSourceObject(action, alice);
+		assertTrue("Picking an item belonging to player herself", so.isValid());
+		
+		// Sanity check. Should be still valid to bob
+		so = SourceObject.createSourceObject(action, bob);
+		assertTrue("Accessing bound object below oneself", so.isValid());
+		// ... unless it's under alice
+		dropitem.setPosition(0, 1);
+		so = SourceObject.createSourceObject(action, bob);
+		assertFalse("Picking an item below another player", so.isValid());
+	}
 
 	/**
 	 * Tests for isValidContainedNoSlot.

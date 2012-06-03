@@ -455,9 +455,12 @@ class SourceObject extends MoveableObject {
 			if (player.equals(otherPlayer)) {
 				continue;
 			}
-			if (otherPlayer.getArea().intersects(sourceItem.getArea())) {
-				player.sendPrivateText("You cannot take items which are below other players");
-				return true;
+			// Allow players always pick up their own items
+			if (!player.getName().equals(sourceItem.getBoundTo())) {
+				if (otherPlayer.getArea().intersects(sourceItem.getArea())) {
+					player.sendPrivateText("You cannot take items which are below other players");
+					return true;
+				}
 			}
 		}
 		return false;
