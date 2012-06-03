@@ -142,6 +142,11 @@ public class PushAction implements ActionListener {
 			final Set<Item> items = pusher.getZone().getItemsOnGround();
 			for (final Item item : items) {
 				if (pushed.getArea().intersects(item.getArea())) {
+					String boundTo = item.getBoundTo();
+					// Move bound items only if they belong to the pushed player
+					if ((pushed instanceof Player) && (boundTo != null) && !pushed.getName().equals(boundTo)) {
+						continue;
+					}
 					item.setPosition(x, y);
 					item.notifyWorldAboutChanges();
 					// log the item ground-to-ground displacement
