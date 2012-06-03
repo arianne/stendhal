@@ -24,11 +24,11 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Is player emoting to npc?
  */
 public class EmoteCondition implements ChatCondition {
-	
+
 	private final String playerAction;
 
 	/**
-	 * Creates a new AdminCondition for high level admins. '
+	 * Creates a new AdminCondition for high level admins.
 	 */
 	public EmoteCondition(final String playerAction) {
 		this.playerAction = playerAction.trim();
@@ -36,7 +36,7 @@ public class EmoteCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final String text = sentence.getOriginalText();
-		return ((text.startsWith("!me")) && 
+		return ((text.startsWith("!me")) &&
 				(text.contains(playerAction)) &&
 				(text.toLowerCase().contains(entity.getTitle().toLowerCase())));
 	}

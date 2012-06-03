@@ -29,9 +29,9 @@ public class LevelLessThanCondition implements ChatCondition {
 
 	/**
 	 * Creates a new LevelGreaterThanCondition.
-	 * 
+	 *
 	 * @param level
-	 *            level '
+	 *            level
 	 */
 	public LevelLessThanCondition(final int level) {
 		this.level = level;

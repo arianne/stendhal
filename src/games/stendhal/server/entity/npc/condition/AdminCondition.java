@@ -28,7 +28,7 @@ public class AdminCondition implements ChatCondition {
 	private final int requiredAdminlevel;
 
 	/**
-	 * Creates a new AdminCondition for high level admins. '
+	 * Creates a new AdminCondition for high level admins.
 	 */
 	public AdminCondition() {
 		requiredAdminlevel = 5000;
@@ -36,9 +36,9 @@ public class AdminCondition implements ChatCondition {
 
 	/**
 	 * Creates a new AdminCondition.
-	 * 
+	 *
 	 * @param requiredAdminlevel
-	 *            minimum admin level '
+	 *            minimum admin level
 	 */
 	public AdminCondition(final int requiredAdminlevel) {
 		this.requiredAdminlevel = requiredAdminlevel;
