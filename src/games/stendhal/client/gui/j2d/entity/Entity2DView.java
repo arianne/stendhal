@@ -37,6 +37,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -114,7 +115,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	private boolean changed;
 	/** Additional sprites attached to the view. */
-	private final List<AttachedSprite> attachedSprites = new CopyOnWriteArrayList<AttachedSprite>();
+	private List<AttachedSprite> attachedSprites;
 	
 	/**
 	 * Flag for detecting that the view has been released <code>true</code> if
@@ -236,7 +237,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param yOffset y coordinate offset that is used <b>in addition</b> to
 	 * 	the alignment information
 	 */
-	void attachSprite(Sprite sprite, HorizontalAlignment xAlign,
+	synchronized void attachSprite(Sprite sprite, HorizontalAlignment xAlign,
 			VerticalAlignment yAlign, int xOffset, int yOffset) {
 		int x = xOffset;
 		switch (xAlign) {
@@ -261,7 +262,10 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 			y += getHeight() - sprite.getHeight();
 			break;
 		}
-		
+	
+		if (attachedSprites == null) {
+			attachedSprites = new CopyOnWriteArrayList<AttachedSprite>();
+		}
 		attachedSprites.add(new AttachedSprite(sprite, x, y));
 	}
 	
@@ -270,11 +274,27 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @param sprite sprite to be detached
 	 */
-	void detachSprite(Sprite sprite) {
-		if (attachedSprites == null) {
-			return;
+	synchronized void detachSprite(Sprite sprite) {
+		if (attachedSprites != null) { 
+			int i = 0;
+			// We can't use attachedSprites.remove() without implementing equals()
+			// in a way that breaks the general contract.
+			Iterator<AttachedSprite> it = attachedSprites.iterator();
+			while (it.hasNext()) {
+				AttachedSprite as = it.next();
+				if (as.sprite == sprite) {
+					/*
+					 * CopyOnWriteArrayList iterators do not support remove(),
+					 * so we need to use the index... that's why modifying
+					 * attachedSprites is synchronized despite being COW. Modifying
+					 * should happen rarely compared to drawing anyway.
+					 */ 
+					attachedSprites.remove(i);
+					break;
+				}
+				i++;
+			}
 		}
-		attachedSprites.remove(sprite);
 	}
 
 	/**
@@ -348,8 +368,9 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param y y position of the view
 	 */
 	private void drawAttachedSprites(Graphics2D g2d, int x, int y) {
-		if (attachedSprites != null) {
-			for (AttachedSprite sprite : attachedSprites) {
+		List<AttachedSprite> sprites = attachedSprites;
+		if (sprites != null) {
+			for (AttachedSprite sprite : sprites) {
 				sprite.draw(g2d, x, y);
 			}
 		}
