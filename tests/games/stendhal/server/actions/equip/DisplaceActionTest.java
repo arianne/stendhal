@@ -189,6 +189,7 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 
 	/**
 	 * Test for displacing to an occupied place.
+	 * @throws IOException 
 	 */
 	@Test
 	public void testDisplaceOccupied() throws IOException {
@@ -253,6 +254,46 @@ public class DisplaceActionTest extends ZoneAndPlayerTestImpl {
 		action.onAction(player, displace);
 		assertEquals(1, player.events().size());
 		assertEquals("You cannot take items which are below other players.", player.events().get(0).get("text"));
+	}
+	
+	/**
+	 * Test for displacing bound items below some other player.
+	 */
+	@Test
+	public void testDisplaceBoundOtherPlayer() {
+		final StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+
+		final Player player = createPlayer("bob");
+		player.setPosition(1, 1);
+		localzone.add(player);
+
+		final Player player2 = createPlayer("alice");
+		player2.setPosition(0, 0);
+		localzone.add(player2);
+
+		final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
+		item.setBoundTo("alice");
+		localzone.add(item);
+
+		final RPAction displace = new RPAction();
+		displace.put("type", "displace");
+		displace.put("baseitem", item.getID().getObjectID());
+		displace.put("quantity", "1");
+		displace.put("x", player.getX());
+		displace.put("y", player.getY() + 1);
+
+		final DisplaceAction action = new DisplaceAction();
+		action.onAction(player, displace);
+		assertEquals(item.getY(), 0);
+		assertEquals(1, player.events().size());
+		// bound to alice, under alice, bob trying to displace
+		assertEquals("You cannot take items which are below other players.", player.events().get(0).get("text"));
+		player.clearEvents();
+		// bound to bob, under alice, bob trying to displace; should succeed
+		item.setBoundTo("bob");
+		action.onAction(player, displace);
+		assertEquals(item.getY(), 2);
+		assertEquals(0, player.events().size());
 	}
 
 	/**

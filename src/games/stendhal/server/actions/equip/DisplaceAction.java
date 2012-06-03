@@ -137,6 +137,10 @@ public class DisplaceAction implements ActionListener {
 			if (player.equals(otherPlayer)) {
 				continue;
 			}
+			// Allow players always pick up their own items
+			if ((entity instanceof Item) && player.getName().equals(((Item) entity).getBoundTo())) {
+				return false;
+			}
 			if (otherPlayer.getArea().intersects(entity.getArea())) {
 				player.sendPrivateText("You cannot take items which are below other players.");
 				return true;
