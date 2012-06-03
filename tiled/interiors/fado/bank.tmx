@@ -39,6 +39,18 @@
  <tileset firstgid="155" name="potted_plants1" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
+ <tileset firstgid="161" name="book" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="165" name="books" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/books.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="169" name="note_board" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/note_board.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="173" name="notes2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/notes2.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9XSuwrCQBCF4TXaqCHYeE1aY6c+mm/gLWoh5pnzL2RAJEHZnMbig4GFgXNmY+dchCNOHecxBshwRYFFwOyl6OOBGQ4dnXHBU7TvhnudV7FvWudV7bO8fl+vRRKYN2oxCcj7D/dV9Pd+X0V/llfVn+VV9Wd5R6L+LG8s6s/yqvqzvOr+/H9ZYf6DNXJsGt6WH/d4ofwyb7HDvuHNG6ICkcNTdUAGAAA=
@@ -51,12 +63,12 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjgIHBl8rmBY6aN2reqHl0M2+gAADqszfIQAYAAA==
+   H4sIAAAAAAAAC2NgwA9WAvEqAmpIAauBeA0Z+hYC8SIy7VyCR24piWYtJtMNgx34Utm8wFHzRs0bNY9u5g0UAADDG6hVQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAXUAHMGSO8oGAWjYGDBhIF2wAACAKw+9blABgAA
+   H4sIAAAAAAAAC2NgoD9YPwB20hrMGSC9o2AUjIKBBRMG2gEDCABt3RMuQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -71,7 +83,7 @@
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC/NmYGDwHmKYGOCNRA9F80gF6HpIDUts+ulpHiEw0OYNpvAjJ72Mhh9+8wiBgTaPFP+Tq5ccDABW6MS+QAYAAA==
+   H4sIAAAAAAAAC/NmYGDwHmKYGOCNRA9V80gB3mhsUsMS3T5sfFqaRwgMtHmDKfzISSuj4YffPEKAnuaRkn+x2UuJflIxAH4KQi1ABgAA
   </data>
  </layer>
  <layer name="protection" width="20" height="20" visible="0" opacity="0.2">
