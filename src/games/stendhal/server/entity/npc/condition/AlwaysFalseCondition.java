@@ -11,17 +11,20 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * This condition returns always false.
  */
+@Dev(category=Category.LOGIC)
 public class AlwaysFalseCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return false;

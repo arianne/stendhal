@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player an admin?
  */
+@Dev(category=Category.OTHER)
 public class AdminCondition implements ChatCondition {
 
 	private final int requiredAdminlevel;
@@ -35,12 +38,12 @@ public class AdminCondition implements ChatCondition {
 	}
 
 	/**
-	 * Creates a new AdminCondition.
+	 * AdminCondition checks the adminlevel of the player
 	 *
 	 * @param requiredAdminlevel
 	 *            minimum admin level
 	 */
-	public AdminCondition(final int requiredAdminlevel) {
+	public AdminCondition(@Dev(defaultValue="5000") final int requiredAdminlevel) {
 		this.requiredAdminlevel = requiredAdminlevel;
 	}
 

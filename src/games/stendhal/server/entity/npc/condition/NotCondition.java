@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,13 +25,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * An inverse condition.
  */
+@Dev(category=Category.LOGIC)
 public class NotCondition implements ChatCondition {
 
 	private final ChatCondition condition;
 
 	/**
 	 * Creates a new "not"-condition.
-	 * 
+	 *
 	 * @param condition
 	 *            condition which result is to be inversed
 	 */

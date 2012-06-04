@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -24,6 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does this trigger contain a number?
  */
+@Dev(category=Category.CHAT)
 public class TextHasNumberCondition implements ChatCondition {
 	private final int min;
 	private final int max;
@@ -37,13 +40,24 @@ public class TextHasNumberCondition implements ChatCondition {
 	}
 
 	/**
-	 * Creates a new TextHasNumberCondition which checks if there is a number 
+	 * Creates a new TextHasNumberCondition which checks for a positive integer.
+	 *
+	 * @param min minimal accepted number
+	 */
+	public TextHasNumberCondition(final int min) {
+		this.min = min;
+		this.max = Integer.MAX_VALUE;
+	}
+
+	/**
+	 * Creates a new TextHasNumberCondition which checks if there is a number
 	 * and if it is in range.
 	 *
 	 * @param min minimal accepted number
 	 * @param max maximal accepted number
 	 */
-	public TextHasNumberCondition(final int min, final int max) {
+	@Dev
+	public TextHasNumberCondition(@Dev(defaultValue="0") final int min, @Dev(defaultValue="2147483647") final int max) {
 		this.min = min;
 		this.max = max;
 	}

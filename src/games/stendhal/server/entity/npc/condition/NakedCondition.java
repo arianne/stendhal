@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -24,6 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player naked? (e. g. not wearing anything on his/her body)
  */
+@Dev(category=Category.OUTFIT)
 public class NakedCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

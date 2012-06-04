@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,12 +25,15 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is player emoting to npc?
  */
+@Dev(category=Category.CHAT)
 public class EmoteCondition implements ChatCondition {
 
 	private final String playerAction;
 
 	/**
 	 * Creates a new AdminCondition for high level admins.
+	 *
+	 * @param playerAction an action the player must include in the emote, may be empty
 	 */
 	public EmoteCondition(final String playerAction) {
 		this.playerAction = playerAction.trim();

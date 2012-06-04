@@ -1,9 +1,8 @@
-/**
- * 
- */
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -16,15 +15,22 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Checks if a player has produced a given number of items
- * 
+ *
  * @author madmetzger
  */
+@Dev(category=Category.ITEMS_PRODUCER)
 public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
-	
+
 	private final List<String> itemProducedList;
-	
+
 	private final int quantity;
-	
+
+	/**
+	 * Checks if a player has produced a given number of items
+	 *
+	 * @param number required number of each item
+	 * @param items list of required items
+	 */
 	public PlayerProducedNumberOfItemsCondition(int number, String... items) {
 		itemProducedList = new ArrayList<String>();
 		if(items != null) {
@@ -43,7 +49,7 @@ public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
@@ -59,5 +65,5 @@ public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 	public String toString() {
 		return "player has produced <"+quantity+" of "+itemProducedList+">";
 	}
-	
+
 }

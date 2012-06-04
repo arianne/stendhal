@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest in this state?
  */
+@Dev(category=Category.QUEST_SLOT)
 public class QuestInStateCondition implements ChatCondition {
 
 	private final String questname;
@@ -31,7 +34,7 @@ public class QuestInStateCondition implements ChatCondition {
 
 	/**
 	 * Creates a new QuestInStateCondition.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot
 	 * @param state
@@ -46,7 +49,7 @@ public class QuestInStateCondition implements ChatCondition {
 
 	/**
 	 * Creates a new QuestInStateCondition.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot
 	 * @param index
@@ -54,7 +57,8 @@ public class QuestInStateCondition implements ChatCondition {
 	 * @param state
 	 *            state
 	 */
-	public QuestInStateCondition(final String questname, final int index, final String state) {
+	@Dev
+	public QuestInStateCondition(final String questname, @Dev(defaultValue="0") final int index, final String state) {
 		this.questname = questname;
 		this.index = index;
 		this.state = state;

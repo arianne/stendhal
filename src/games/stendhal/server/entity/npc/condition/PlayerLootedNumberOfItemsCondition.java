@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -10,21 +12,24 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * Checks if a player has looted a minimum number of item(s).
- *  
+ *
  * @author madmetzger
  */
+@Dev(category=Category.ITEMS_LOOTED)
 public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
-	
+
 	private final List<String> items;
-	
+
 	private final int number;
-	
+
 	/**
 	 * Create a new PlayerLootedNumberOfItemsCondition
-	 * 
-	 * @param item
+	 *
+	 * @param number required number of each item
+	 * @param item list of required items
 	 */
 	public PlayerLootedNumberOfItemsCondition(int number, String... item) {
 		this.number = number;

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -21,15 +23,16 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Was this quest started?
+ * Was this quest at least started? See QuestActiveCondition to check that it was started but not completed.
  */
+@Dev(category=Category.QUEST_SLOT)
 public class QuestStartedCondition implements ChatCondition {
 
-	protected String questname;
+	private final String questname;
 
 	/**
 	 * Creates a new QuestStartedCondition.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest slot
 	 */

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -26,16 +28,17 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Checks if player has visited a list of certain zones
- *  
+ *
  * @author madmetzger
  */
+@Dev(category=Category.LOCATION)
 public class PlayerVisitedZonesCondition implements ChatCondition {
 
 	private final List<String> zoneNames;
-	
+
 	/**
 	 * Creates a new PlayerVisitedZonesCondition
-	 * 
+	 *
 	 * @param zones the zone names
 	 */
 	public PlayerVisitedZonesCondition(String... zones) {
@@ -56,7 +59,7 @@ public class PlayerVisitedZonesCondition implements ChatCondition {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

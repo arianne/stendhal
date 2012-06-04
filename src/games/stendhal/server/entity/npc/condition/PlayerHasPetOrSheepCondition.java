@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the player have a pet or sheep?
  */
+@Dev(category=Category.OTHER)
 public class PlayerHasPetOrSheepCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

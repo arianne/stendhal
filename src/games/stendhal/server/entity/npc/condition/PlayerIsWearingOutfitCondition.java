@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -26,6 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author jackrabbit
  */
+@Dev(category=Category.OUTFIT)
 public class PlayerIsWearingOutfitCondition implements ChatCondition{
 
 	private final Outfit outfitToCheck;

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -22,19 +24,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 /**
  * Checks if a player has killed the specified creature at least the specified number of times
- * This can be with or without the help of other players
- * 
+ * This can be with or without the help of other players. Note: This condition deals with kills
+ * since the player was created. To check kills in the context of a quest, use KilledForQuestCondition.
+ *
  * @author madmetzger
  */
+@Dev(category=Category.KILLS)
 public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition {
-	
+
 	private final Map<String, Integer> creatures;
-	
+
 	/**
 	 * Constructor to use condition with only one creature
-	 * 
+	 *
 	 * @param creature
 	 * @param numberOfKills
 	 */
@@ -45,17 +50,18 @@ public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition 
 
 	/**
 	 * creates a condition to kill each creature with the name specified in the map and the number as value
-	 * 
+	 *
 	 * @param kills map of creature name to kill and number of that creature to kill
 	 */
+	@Dev
 	public PlayerHasKilledNumberOfCreaturesCondition (Map<String, Integer> kills) {
 		creatures = new HashMap<String, Integer>();
 		creatures.putAll(kills);
 	}
-	
+
 	/**
 	 * Constructor to use when you want to let kill the same number of each specified creature
-	 * 
+	 *
 	 * @param number the desired number
 	 * @param creatureNames the names of the creatures to kill
 	 */

@@ -12,19 +12,20 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * ChatCondition that makes sure a player has killed (at least) a set number of
- * creatures of any kind
- * 
+ * check whether a player has killed at least the specified number of creatures of any kind
+ *
  * @author filipe
  */
 public class MinTotalCreaturesKilledCondition implements ChatCondition {
@@ -42,13 +43,14 @@ public class MinTotalCreaturesKilledCondition implements ChatCondition {
      *
      * @param total The target number of kills required
      */
+    @Dev
     public MinTotalCreaturesKilledCondition(int total) {
         this.total = total;
     }
 
     /**
      * Does the checking for number of creatures killed
-     * 
+     *
      * @param player The player to check the kills for
      * @param sentence The sentence the player typed
      * @param npc The NPC the player is speaking to

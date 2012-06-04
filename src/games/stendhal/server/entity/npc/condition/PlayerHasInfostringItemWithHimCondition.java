@@ -12,22 +12,25 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import java.util.List;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item with the specified infostring?
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.DropInfostringItemAction
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class PlayerHasInfostringItemWithHimCondition implements ChatCondition {
 
 	private final String itemName;
@@ -35,7 +38,7 @@ public class PlayerHasInfostringItemWithHimCondition implements ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasInfostringItemWithHimCondition.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
      * @param infostring

@@ -30,23 +30,23 @@ import org.apache.log4j.Logger;
  * Where creature1, creature2 - names of creatures to kill;
  *       w,x and a,b - number of creatures to kill, solo and shared;
  *       y,z and c,d - number of creatures killed by player before starting this quest, both solo and shared.
- * 
- * @see games.stendhal.server.entity.npc.action.StartRecordingKillsAction 
+ *
+ * @see games.stendhal.server.entity.npc.action.StartRecordingKillsAction
  * @see games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition
- * 
+ *
  * @author yoriy
  */
 public class KilledForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledForQuestCondition.class);
 	private final String QUEST_SLOT;
 	private final int questIndex;
-	
+
 
 	/**
 	 * Creates a new KilledForQuestCondition.
-	 * 
+	 *
 	 * @param quest the quest slot
-	 * @param index
+	 * @param index index of sub state
 	 */
 	public KilledForQuestCondition(String quest, int index) {
 		this.QUEST_SLOT=quest;
@@ -69,7 +69,7 @@ public class KilledForQuestCondition implements ChatCondition {
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
 			return false;
 		}
-		
+
 		for(int i=0; i<tokens.size()/5; i++) {
 			final String creatureName=tokens.get(i*5);
 			int toKillSolo;
@@ -80,7 +80,7 @@ public class KilledForQuestCondition implements ChatCondition {
 				toKillSolo=Integer.parseInt(tokens.get(i*5+1));
 				toKillShared=Integer.parseInt(tokens.get(i*5+2));
 				killedSolo=Integer.parseInt(tokens.get(i*5+3));
-				killedShared=Integer.parseInt(tokens.get(i*5+4));				
+				killedShared=Integer.parseInt(tokens.get(i*5+4));
 			} catch (NumberFormatException npe) {
 				logger.error("NumberFormatException while parsing numbers in quest slot "+QUEST_SLOT+
 						" of player "+player.getName()

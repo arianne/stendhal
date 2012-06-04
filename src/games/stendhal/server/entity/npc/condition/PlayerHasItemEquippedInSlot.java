@@ -1,25 +1,34 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * Check if the Player has equipped an item in a specified slot
- * 
+ *
  * @author madmetzger
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class PlayerHasItemEquippedInSlot implements ChatCondition {
 
 	private final String item;
 
 	private final String slot;
 
+	/**
+	 * Check if the Player has equipped an item in a specified slot
+	 *
+	 * @param item name of item
+	 * @param slot name of slot
+	 */
 	public PlayerHasItemEquippedInSlot(final String item, final String slot) {
-		super();
 		this.item = item;
 		this.slot = slot;
 	}

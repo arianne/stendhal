@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.TriggerList;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -26,15 +28,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was a trigger phrase said, which is a produced item of this class? (Use with a ""-trigger in npc.add)
  */
+@Dev(category=Category.ITEMS_PRODUCER)
 public class TriggerIsProducedItemOfClassCondition implements ChatCondition {
-	
+
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 	private final String clazz;
 
 	/**
 	 * Creates a new TriggerIsProducedItemOfClassCondition.
-	 * 
+	 *
 	 * @param clazz
 	 *            produced item class to check for
 	 */

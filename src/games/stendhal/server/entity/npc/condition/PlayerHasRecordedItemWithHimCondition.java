@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -22,12 +24,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item?
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
  * @see games.stendhal.server.entity.npc.action.DropRecordedItemAction
  * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
- * 
+ *
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 
 	private final String questName;
@@ -35,7 +38,7 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasRecordedItemWithHimCondition.
-	 * 
+	 *
 	 * @param questName
 	 *            name of quest
 	 */
@@ -46,12 +49,13 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasRecordedItemWithHimCondition.
-	 * 
+	 *
 	 * @param questName
 	 *            name of quest
 	 * @param index
 	 *            index in the quest slot
 	 */
+	@Dev
 	public PlayerHasRecordedItemWithHimCondition(final String questName, final int index) {
 		this.questName = questName;
 		this.index = index;

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
@@ -23,15 +25,16 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Can the player equip the specified item?
+ * Can the player equip the specified item? (has enough space in his bag or other slots)
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class PlayerCanEquipItemCondition implements ChatCondition {
 
 	private final String itemName;
 
 	/**
 	 * Creates a new PlayerCanEquipItemCondition
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 */

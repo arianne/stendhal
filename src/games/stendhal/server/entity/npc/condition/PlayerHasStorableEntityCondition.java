@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.office.StorableEntityList;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -23,11 +25,12 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Is there a storable entity in the specified list that has name
- * of the current player as identifier? 
+ * of the current player as identifier?
  */
+@Dev(category=Category.IGNORE)
 public class PlayerHasStorableEntityCondition implements ChatCondition {
 	private final StorableEntityList< ? > storeableEntityList;
-	
+
 	public PlayerHasStorableEntityCondition(final StorableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}

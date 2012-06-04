@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.TriggerList;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -27,12 +29,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was one of theses trigger phrases said? (Use with a ""-trigger in npc.add)
  */
+@Dev(category=Category.CHAT)
 public class TriggerInListCondition implements ChatCondition {
 	private final TriggerList triggers;
 
 	/**
 	 * Creates a new TriggerInListCondition.
-	 * 
+	 *
 	 * @param trigger
 	 *            list of trigger
 	 */
@@ -42,10 +45,11 @@ public class TriggerInListCondition implements ChatCondition {
 
 	/**
 	 * Creates a new TriggerInListCondition.
-	 * 
+	 *
 	 * @param trigger
 	 *            list of trigger
 	 */
+	@Dev
 	public TriggerInListCondition(final List<String> trigger) {
 		triggers = new TriggerList(trigger);
 	}

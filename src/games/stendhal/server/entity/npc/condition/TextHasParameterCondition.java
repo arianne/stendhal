@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -20,6 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Did this trigger have additional parameters?
  */
+@Dev(category=Category.CHAT)
 public class TextHasParameterCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

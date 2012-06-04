@@ -14,26 +14,29 @@ package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 /**
- * Condition to check if the value in a quest slot is greater than an expected value
- * 
+ * Condition to check if the value in a quest slot is greater than an expected value. If the value is not a number, it is treated as 0.
+ *
  * @author madmetzger
  */
+@Dev(category=Category.QUEST_SLOT)
 public class QuestStateGreaterThanCondition implements ChatCondition {
-	
+
 	/**
 	 * expected value to compare against
 	 */
 	private final int expectedSmallerValue;
-	
+
 	/**
 	 * at which index is the number of finishings stored in the quest slot
 	 */
 	private final int index;
-	
+
 	/**
 	 * which quest should be checked
 	 */
@@ -45,8 +48,7 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 	 * @param index index where the number is stored in the quest slot
 	 * @param expectedSmallerValue expected smaller value to compare
 	 */
-	public QuestStateGreaterThanCondition(String quest, int index,
-			int expectedSmallerValue) {
+	public QuestStateGreaterThanCondition(String quest, int index, int expectedSmallerValue) {
 		this.questSlot = quest;
 		this.expectedSmallerValue = expectedSmallerValue;
 		this.index = index;
@@ -56,7 +58,7 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 		if(player.hasQuest(questSlot)) {
 			String questState = player.getQuest(questSlot);
 			String[] content = questState.split(";");
-			if(content.length - 1 < index) {
+			if (content.length - 1 < index) {
 				return false;
 			}
 			int actualNumber = MathHelper.parseIntDefault(content[index], 0);

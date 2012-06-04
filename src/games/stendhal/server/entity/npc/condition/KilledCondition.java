@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -26,26 +28,28 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Has the player killed at least one of this creature, with or without the help of any other player.
- * 
+ * Has the player killed at least one of each specified creature, with or without the help of any other player.
+ *
  * @author hendrik
  */
+@Dev(category=Category.KILLS)
 public class KilledCondition implements ChatCondition {
 	private final Set<String> toKill;
 
 	/**
 	 * creates a new KilledCondition.
-	 * 
+	 *
 	 * @param toKill
-	 *            list of creatures which should be killed by the player
+	 *            list of creatures for which the player need to have participated in killing at least one each
 	 */
+	@Dev
 	public KilledCondition(final List<String> toKill) {
 		this.toKill = new TreeSet<String>(toKill);
 	}
 
 	/**
 	 * creates a new KilledCondition.
-	 * 
+	 *
 	 * @param toKill
 	 *            creatures which should be killed by the player
 	 */

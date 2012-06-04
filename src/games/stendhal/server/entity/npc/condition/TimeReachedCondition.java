@@ -12,6 +12,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -22,20 +24,21 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Check if current system time reached a timestamp stored in a quest slot.
  * If the quest slot isn't in the expected format, returns true
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction
  * @see games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction
  *
  * @author omero
  */
+@Dev(category=Category.QUEST_SLOT)
 public class TimeReachedCondition implements ChatCondition {
 
 	private final String questname;
 	private final int index;
-	
+
 	/**
 	 * Creates a new TimeReachedCondition for checking wether or not a timestamp in quest slot has been reached
-	 * 
+	 *
 	 * @param questname name of the quest slot to check
 	 */
 	public TimeReachedCondition(final String questname) {
@@ -45,10 +48,11 @@ public class TimeReachedCondition implements ChatCondition {
 
 	/**
 	 * Creates a new TimeReachedCondition for checking wether or not a timestamp in quest slot has been reached
-	 * 
+	 *
 	 * @param questname name of quest slot to check
-	 * @param index position of a timestamp within the quest slot 'array'
+	 * @param index index of sub state
 	 */
+	@Dev
 	public TimeReachedCondition(final String questname, final int index) {
 		this.questname = questname;
 		this.index = index;

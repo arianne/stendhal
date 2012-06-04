@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -20,21 +22,43 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * has the player completed the specified number of the specified achievements?
+ *
+ * @author madmetzger
+ */
+@Dev(category=Category.STATS)
 public class PlayerHasCompletedAchievementsCondition implements ChatCondition {
-	
+
 	private final List<String> achievements;
-	
+
 	private final int minimumToComplete;
-	
-	public PlayerHasCompletedAchievementsCondition(int minimum, String... achievmentIdentifiers) {
-		achievements = Arrays.asList(achievmentIdentifiers);
-		minimumToComplete = minimum;
+
+	/**
+	 * PlayerHasCompletedAchievementsCondition
+	 *
+	 * @param minimum required number of achievements, -1 means all
+	 * @param achievementIdentifiers list of achievements to check
+	 */
+	@Dev
+	public PlayerHasCompletedAchievementsCondition(@Dev(defaultValue="-1") int minimum, String... achievementIdentifiers) {
+		achievements = Arrays.asList(achievementIdentifiers);
+		if (minimum > -1) {
+			minimumToComplete = minimum;
+		} else {
+			minimumToComplete = achievementIdentifiers.length;
+		}
 	}
 
+	/**
+	 * PlayerHasCompletedAchievementsCondition
+	 *
+	 * @param achievementIdentifiers list of achievements to check
+	 */
 	public PlayerHasCompletedAchievementsCondition(String... achievementIdentifiers) {
-		this(achievementIdentifiers.length, achievementIdentifiers);
+		this(-1, achievementIdentifiers);
 	}
-	
+
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		int reached = 0;
 		for (String achievementIdentifier : achievements) {

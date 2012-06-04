@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -22,9 +24,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Does the player carry the specified item?
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.DropItemAction
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	private final String itemName;
@@ -32,7 +35,7 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasItemWithHim.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 */
@@ -43,13 +46,14 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasItemWithHim.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
-	 *            for StackableItems
+	 *            required quantity of this item
 	 */
-	public PlayerHasItemWithHimCondition(final String itemName, final int amount) {
+	@Dev
+	public PlayerHasItemWithHimCondition(final String itemName, @Dev(defaultValue="1") final int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}

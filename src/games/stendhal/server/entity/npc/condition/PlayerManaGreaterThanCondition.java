@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -13,6 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
+@Dev(category=Category.STATS)
 public class PlayerManaGreaterThanCondition implements ChatCondition {
 
 	private final int mana;

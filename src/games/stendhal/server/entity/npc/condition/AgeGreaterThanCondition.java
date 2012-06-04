@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,15 +25,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player's age greater than the specified age?
  */
+@Dev(category=Category.STATS)
 public class AgeGreaterThanCondition implements ChatCondition {
 
 	private final int age;
 
 	/**
 	 * Creates a new AgeGreaterThanCondition.
-	 * 
+	 *
 	 * @param age
-	 *            age 
+	 *            age
 	 */
 	public AgeGreaterThanCondition(final int age) {
 		this.age = age;

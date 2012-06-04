@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -31,23 +33,24 @@ import org.apache.log4j.Logger;
  *       w,x and a,b - number of creatures to kill, solo and shared;
  *       y,z and c,d - number of creatures killed by player before starting this quest, both solo and shared.
  *
- * @see games.stendhal.server.entity.npc.action.StartRecordingKillsAction 
+ * @see games.stendhal.server.entity.npc.action.StartRecordingKillsAction
  * @see games.stendhal.server.entity.npc.condition.KilledForQuestCondition
- * 
+ *
  * @author yoriy
  */
+@Dev(category=Category.IGNORE)
 public class KilledInSumForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledInSumForQuestCondition.class);
 	private final String QUEST_SLOT;
 	private final int questIndex;
 	private final int killsSum;
-	
+
 
 	/**
 	 * Creates a new KilledInSumForQuestCondition.
-	 * 
+	 *
 	 * @param quest - the quest slot
-	 * @param index - quest slot index where information stored 
+	 * @param index - quest slot index where information stored
 	 * @param killsSum - required sum of creatures kills
 	 */
 	public KilledInSumForQuestCondition(String quest, int index, int killsSum) {
@@ -82,7 +85,7 @@ public class KilledInSumForQuestCondition implements ChatCondition {
 			int killedShared;
 			try {
 				killedSolo=Integer.parseInt(tokens.get(i*5+3));
-				killedShared=Integer.parseInt(tokens.get(i*5+4));				
+				killedShared=Integer.parseInt(tokens.get(i*5+4));
 			} catch (NumberFormatException npe) {
 				logger.error("NumberFormatException while parsing numbers in quest slot "+QUEST_SLOT+
 						" of player "+player.getName()

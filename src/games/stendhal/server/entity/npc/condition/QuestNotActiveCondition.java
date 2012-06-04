@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -23,13 +25,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest either unknown, completed or rejected?
  */
+@Dev(category=Category.IGNORE)
 public class QuestNotActiveCondition implements ChatCondition {
 
 	private final String questname;
 
 	/**
 	 * Creates a new QuestNotActiveCondition.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest slot
 	 */

@@ -12,20 +12,23 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Checks if an optional subject in the user input matches the NPC name.
+ * Checks if an optional subject in the user input matches the NPC name. Use with greeting messages in IDLE state at busy places.
  */
+@Dev(category=Category.CHAT)
 public class GreetingMatchesNameCondition implements ChatCondition {
 
 	private final String name;
@@ -33,7 +36,7 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 
 	/**
 	 * Creates a new GreetingMatchesNameCondition.
-	 * 
+	 *
 	 * @param name
 	 *            name to match against
 	 */
@@ -67,7 +70,7 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 	}
 
 	/**
-	 * Check if all of the given words are present in nameWords. 
+	 * Check if all of the given words are present in nameWords.
 	 * @param words list of words to search for
 	 * @return
 	 */

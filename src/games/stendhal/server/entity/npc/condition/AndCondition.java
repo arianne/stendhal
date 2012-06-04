@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -25,15 +27,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Is constructed from a group of conditions. <p>
- * It evaluates to <code>true</code>, iff each condition evaluates to true. 
+ * It evaluates to <code>true</code>, iff each condition evaluates to true.
  */
+@Dev(category=Category.LOGIC)
 public class AndCondition implements ChatCondition {
 
 	private final List<ChatCondition> conditions;
 
 	/**
 	 * Creates a new "and"-condition.
-	 * 
+	 *
 	 * @param condition
 	 *            condition which should be and-ed.
 	 */

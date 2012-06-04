@@ -17,6 +17,8 @@ import games.stendhal.common.parser.ConversationContext;
 import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.SimilarExprMatcher;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -31,31 +33,29 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was one of these trigger phrases said exactly ignoring case? (Use with a ""-trigger in npc.add)
  */
+@Dev(category=Category.CHAT)
 public class TriggerExactlyInListCondition implements ChatCondition {
 	private static final ConversationContext CONVERSION_CONTEXT = new ConvCtxForMatchingSource();
 
-	private List<Sentence> triggers = new LinkedList<Sentence>();
+	private final List<Sentence> triggers = new LinkedList<Sentence>();
 
 
 	/**
 	 * Creates a new TriggerExactlyInListCondition.
-	 * 
+	 *
 	 * @param trigger list of triggers
 	 */
 	public TriggerExactlyInListCondition(final String... trigger) {
-		addTriggers(Arrays.asList(trigger));
+		this(Arrays.asList(trigger));
 	}
 
 	/**
 	 * Creates a new TriggerExactlyInListCondition.
-	 * 
+	 *
 	 * @param triggers list of triggers
 	 */
+	@Dev()
 	public TriggerExactlyInListCondition(final List<String> triggers) {
-		addTriggers(triggers);
-	}
-
-	private void addTriggers(Iterable<String> triggers) {
 		SimilarExprMatcher matcher = new SimilarExprMatcher();
 		for (String trigger : triggers) {
 			final Sentence expected = ConversationParser.parse(trigger, matcher);

@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.rp.DaylightPhase;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -17,6 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
+@Dev(category=Category.ENVIRONMENT)
 public class DaylightCondition implements ChatCondition {
 
 	private final List<DaylightPhase> daylightPhases;

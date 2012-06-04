@@ -12,37 +12,41 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import java.util.Collection;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Collection;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Checks if player has visited certain zones in a region
- *  
+ *
  * @author madmetzger
  */
+// TODO: Replace Boolean with a 3 state enum
+@Dev(category=Category.IGNORE)
 public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 
 	private final String region;
-	
+
 	private final Boolean exterior;
-	
+
 	private final Boolean aboveGround;
-	
+
 	private final Boolean accessible;
-	
+
 	/**
 	 * Creates a new PlayerVisitedZonesCondition
-	 * 
+	 *
 	 * @param region the name of the region to consider
-	 * @param exterior 
+	 * @param exterior
 	 * @param aboveGround
 	 * @param accessible
 	 */
@@ -53,12 +57,12 @@ public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 		this.aboveGround = aboveGround;
 		this.accessible = accessible;
 	}
-	
+
 	/**
 	 * Creates a new PlayerVisitedZonesCondition
-	 * 
+	 *
 	 * @param region the name of the region to consider
-	 * @param exterior 
+	 * @param exterior
 	 * @param aboveGround
 	 */
 	public PlayerVisitedZonesInRegionCondition(String region, Boolean exterior,
@@ -75,7 +79,7 @@ public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
