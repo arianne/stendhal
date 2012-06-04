@@ -22,41 +22,41 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * 
- * @author jackrabbit
+ * Does the player wear (at least a part of) the specified outfit?
  *
- *	Does the player wear (at least a part of) the specified outfit?
+ * @author jackrabbit
  */
 public class PlayerIsWearingOutfitCondition implements ChatCondition{
-	
-	private final Outfit outfit_to_check;
-	
+
+	private final Outfit outfitToCheck;
+
 	/**
 	 * Creates a new PlayerIsWearingOutfitCondition
-	 * 
+	 *
 	 * @param outfit
 	 * 			an outfit to be checked if it is worn by the player
 	 */
-	
+
 	public PlayerIsWearingOutfitCondition(Outfit outfit) {
-		this.outfit_to_check = outfit;
+		this.outfitToCheck = outfit;
 	}
 
-	
-	
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		final Outfit players_outfit = player.getOutfit();
-		return this.outfit_to_check.isPartOf(players_outfit);
-	}
-	
-	public String toString() {
-		return "Player is wearing " + this.outfit_to_check.getCode() + " ?";
+		return this.outfitToCheck.isPartOf(players_outfit);
 	}
 
+	@Override
+	public String toString() {
+		return "Player is wearing " + this.outfitToCheck.getCode() + " ?";
+	}
+
+	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
+	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				PlayerIsWearingOutfitCondition.class);
