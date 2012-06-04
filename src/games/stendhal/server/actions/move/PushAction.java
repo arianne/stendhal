@@ -144,7 +144,7 @@ public class PushAction implements ActionListener {
 				if (pushed.getArea().intersects(item.getArea())) {
 					String boundTo = item.getBoundTo();
 					// Move bound items only if they belong to the pushed player
-					if ((pushed instanceof Player) && (boundTo != null) && !pushed.getName().equals(boundTo)) {
+					if ((boundTo != null) && !pushed.getName().equals(boundTo)) {
 						continue;
 					}
 					item.setPosition(x, y);
