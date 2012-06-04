@@ -468,6 +468,7 @@
 			<fileset dir="${sprites}">
 				<exclude name="**/*.bz2" />
 				<exclude name="**/*.gz" />
+				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
 			</fileset>
@@ -477,6 +478,7 @@
 			<fileset dir="${tiled}/tileset">
 				<exclude name="**/*.bz2" />
 				<exclude name="**/*.gz" />
+				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
 			</fileset>
@@ -492,6 +494,7 @@
 				<exclude name="panelwood003.jpg"/>
 				<exclude name="**/*.bz2" />
 				<exclude name="**/*.gz" />
+				<exclude name="**/*.psd" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.xcf.*" />
 			</fileset>
