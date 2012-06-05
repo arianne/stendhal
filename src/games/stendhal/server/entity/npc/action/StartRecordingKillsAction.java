@@ -18,6 +18,7 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.RequiredKillsInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,10 +50,27 @@ public class StartRecordingKillsAction implements ChatAction {
 	 * @param index index within quest slot
 	 * @param toKill creatures which should be killed by the player (name, required solo kills, required solo/shared kills)
 	 */
-	@Dev
 	public StartRecordingKillsAction(final String questSlot, @Dev(defaultValue="1") final int index,
 			final Map<String, Pair<Integer, Integer>> toKill) {
 		this.toKill = toKill;
+		this.QUEST_SLOT = questSlot;
+		this.KILLS_INDEX = index;
+	}
+
+	/**
+	 * Creates a new StartRecordingKillsAction.
+	 *
+	 * @param questSlot name of quest slot
+	 * @param index index within quest slot
+	 * @param requiredKills creatures which should be killed by the player (name, required solo kills, required solo/shared kills)
+	 */
+	@Dev
+	public StartRecordingKillsAction(final String questSlot, @Dev(defaultValue="1") final int index,
+			final RequiredKillsInfo... requiredKills) {
+		this.toKill = new HashMap<String, Pair<Integer, Integer>>();
+		for (RequiredKillsInfo info : requiredKills) {
+			toKill.put(info.getName(), new Pair<Integer, Integer>(info.getRequiredSolo(), info.getRequiredMaybeShared()));
+		}
 		this.QUEST_SLOT = questSlot;
 		this.KILLS_INDEX = index;
 	}
