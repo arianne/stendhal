@@ -43,6 +43,7 @@ public class AdminCondition implements ChatCondition {
 	 * @param requiredAdminlevel
 	 *            minimum admin level
 	 */
+	@Dev
 	public AdminCondition(@Dev(defaultValue="5000") final int requiredAdminlevel) {
 		this.requiredAdminlevel = requiredAdminlevel;
 	}
