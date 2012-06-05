@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author omero
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.TIME)
 public class TimeReachedCondition implements ChatCondition {
 
 	private final String questname;

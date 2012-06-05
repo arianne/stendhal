@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -36,6 +38,7 @@ import org.apache.log4j.Logger;
  *
  * @author yoriy
  */
+@Dev(category=Category.KILLS)
 public class KilledForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledForQuestCondition.class);
 	private final String QUEST_SLOT;
@@ -48,7 +51,8 @@ public class KilledForQuestCondition implements ChatCondition {
 	 * @param quest the quest slot
 	 * @param index index of sub state
 	 */
-	public KilledForQuestCondition(String quest, int index) {
+	@Dev
+	public KilledForQuestCondition(String quest, @Dev(defaultValue="1") int index) {
 		this.QUEST_SLOT=quest;
 		this.questIndex=index;
 	}

@@ -13,6 +13,7 @@ package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
@@ -28,6 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author filipe
  */
+@Dev(category=Category.KILLS)
 public class MinTotalCreaturesKilledCondition implements ChatCondition {
     final int total;
 
