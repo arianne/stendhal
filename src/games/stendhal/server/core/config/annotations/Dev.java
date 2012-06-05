@@ -60,6 +60,8 @@ public @interface Dev {
 		STATS,
 		/** kills of creatures */
 		KILLS,
+		/** time */
+		TIME,
 		/** none of the above */
 		OTHER;
 	}
