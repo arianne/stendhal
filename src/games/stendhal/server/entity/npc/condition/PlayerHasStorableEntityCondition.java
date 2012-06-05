@@ -31,6 +31,11 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class PlayerHasStorableEntityCondition implements ChatCondition {
 	private final StorableEntityList< ? > storeableEntityList;
 
+	/**
+	 * creates a PlayerHasStorableEntityCondition
+	 *
+	 * @param storeableEntityList list to analyze
+	 */
 	public PlayerHasStorableEntityCondition(final StorableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
