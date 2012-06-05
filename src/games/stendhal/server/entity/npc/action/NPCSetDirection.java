@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                     (C) Copyright 2012 - Stendhal                       *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Direction;
@@ -7,15 +18,47 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+/**
+ * sets the direction of an NPC
+ *
+ * @author hendrik
+ */
 public final class NPCSetDirection implements ChatAction {
+
+	private final Direction direction;
+
+	/**
+	 * sets the direction of an NPC
+	 *
+	 * @param direction Direction into which the NPC should look
+	 */
 	public NPCSetDirection(Direction direction) {
-		super();
 		this.direction = direction;
 	}
 
-	private Direction direction;
-
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
-		((ActiveEntity) npc.getEntity()).setDirection(direction);
+		if (npc.getEntity() instanceof ActiveEntity) {
+			((ActiveEntity) npc.getEntity()).setDirection(direction);
+		}
 	}
+
+	@Override
+	public String toString() {
+		return "NPC set direction<" + direction + ">";
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				NPCSetDirection.class);
+	}
+
 }
