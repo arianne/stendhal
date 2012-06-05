@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -24,6 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Tells the player that the NPC did not understand the sentence;
  * use it in combination with SentenceHasErrorCondition.
  */
+@Dev(category=Category.CHAT)
 public class ComplainAboutSentenceErrorAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {

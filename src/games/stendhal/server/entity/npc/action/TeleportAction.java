@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -26,6 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Teleports the player to the specified location.
  */
+@Dev(category=Category.LOCATION)
 public class TeleportAction implements ChatAction {
 
 	private final String zonename;
@@ -35,7 +38,7 @@ public class TeleportAction implements ChatAction {
 
 	/**
 	 * Creates a new TeleportAction.
-	 * 
+	 *
 	 * @param zonename
 	 *            name of destination zone
 	 * @param x

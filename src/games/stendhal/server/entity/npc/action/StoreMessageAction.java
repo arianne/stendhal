@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -24,10 +26,11 @@ import marauroa.server.db.command.DBCommandQueue;
  *
  * @author kymara
  */
+@Dev(category=Category.CHAT)
 public class StoreMessageAction implements ChatAction {
 
-	private String npcName;
-	private String message;
+	private final String npcName;
+	private final String message;
 
 	/**
 	 * creates a new StoreMessageAction
@@ -37,9 +40,8 @@ public class StoreMessageAction implements ChatAction {
 	 */
 	public StoreMessageAction(String npcName, String message) {
 		this.npcName = npcName;
-		this.message = message;		
+		this.message = message;
 	}
-
 
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		DBCommandQueue.get().enqueue(new StoreMessageCommand(npcName, player.getName(), message, "N"));

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -20,6 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Sets the current state of a quest and modifies the karma of the player.
  */
+@Dev(category=Category.IGNORE)
 public class SetQuestAndModifyKarmaAction implements ChatAction {
 
 	private final String questname;
@@ -28,7 +31,7 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param state

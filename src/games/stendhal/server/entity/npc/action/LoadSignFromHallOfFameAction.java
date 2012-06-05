@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.mapstuff.sign.SignFromHallOfFameLoader;
@@ -26,13 +28,14 @@ import games.stendhal.server.entity.player.Player;
  *
  * @author hendrik
  */
+@Dev(category=Category.IGNORE)
 public class LoadSignFromHallOfFameAction implements ChatAction {
 
 	private Sign sign;
-	private String introduction;
-	private String fametype;
-	private int max;
-	private boolean ascending;
+	private final String introduction;
+	private final String fametype;
+	private final int max;
+	private final boolean ascending;
 
 	/**
 	 * creates a new LoadSignFromHallOfFame

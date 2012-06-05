@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Enables a client side feature.
  */
+@Dev(category=Category.OTHER)
 public class EnableFeatureAction implements ChatAction {
 
 	private final String feature;
@@ -30,7 +33,7 @@ public class EnableFeatureAction implements ChatAction {
 
 	/**
 	 * Creates a new EnableFeatureAction.
-	 * 
+	 *
 	 * @param feature name of feature
 	 */
 	public EnableFeatureAction(final String feature) {
@@ -39,10 +42,11 @@ public class EnableFeatureAction implements ChatAction {
 
 	/**
 	 * Creates a new EnableFeatureAction.
-	 * 
+	 *
 	 * @param feature name of feature
 	 * @param value value of feature (<code>null</code> means disabled, "" means enabled without value)
 	 */
+	@Dev
 	public EnableFeatureAction(final String feature, final String value) {
 		this.feature = feature;
 		this.value = value;

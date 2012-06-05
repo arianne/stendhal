@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -27,26 +29,29 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Starts the recording of kills.
- * 
+ *
  * @see games.stendhal.server.entity.npc.condition.KilledForQuestCondition
  * @see games.stendhal.server.entity.npc.condition.KilledInSumForQuestCondition
- * 
+ *
  * @author hendrik
  */
+@Dev(category=Category.KILLS)
 public class StartRecordingKillsAction implements ChatAction {
-	//first number in pair is required solo kills, second is required shared kills
-    private final Map<String, Pair<Integer, Integer>> toKill;
-    private final String QUEST_SLOT;
-    private final int KILLS_INDEX;
+	// first number in pair is required solo kills, second is required shared kills
+	private final Map<String, Pair<Integer, Integer>> toKill;
+	private final String QUEST_SLOT;
+	private final int KILLS_INDEX;
 
 	/**
 	 * Creates a new StartRecordingKillsAction.
-	 * 
+	 *
 	 * @param questSlot name of quest slot
-	 * @param index index within questslot
-	 * @param toKill list of creatures which should be killed by the player
+	 * @param index index within quest slot
+	 * @param toKill creatures which should be killed by the player (name, required solo kills, required solo/shared kills)
 	 */
-	public StartRecordingKillsAction(final String questSlot, final int index, final Map<String, Pair<Integer, Integer>> toKill) {
+	@Dev
+	public StartRecordingKillsAction(final String questSlot, @Dev(defaultValue="1") final int index,
+			final Map<String, Pair<Integer, Integer>> toKill) {
 		this.toKill = toKill;
 		this.QUEST_SLOT = questSlot;
 		this.KILLS_INDEX = index;
@@ -54,30 +59,32 @@ public class StartRecordingKillsAction implements ChatAction {
 
 	/**
 	 * Creates a new StartRecordingKillsAction.
-	 * 
+	 *
 	 * @param questSlot name of quest slot
 	 * @param index index within questslot
 	 * @param creature Creature
 	 * @param requiredSolo number of creatures that have to be killed solo
 	 * @param requiredShared number of creatures that may be killed with help by other players
 	 */
-	public StartRecordingKillsAction(final String questSlot, final int index, String creature, int requiredSolo, int requiredShared) {
+	public StartRecordingKillsAction(final String questSlot, final int index, String creature,
+			int requiredSolo, int requiredShared) {
 		this.toKill = new HashMap<String, Pair<Integer, Integer>>();
 		toKill.put(creature, new Pair<Integer, Integer>(requiredSolo, requiredShared));
-		this.QUEST_SLOT=questSlot;
-		this.KILLS_INDEX=index;
+		this.QUEST_SLOT = questSlot;
+		this.KILLS_INDEX = index;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		final StringBuilder sb= new StringBuilder("");
+		final StringBuilder sb = new StringBuilder("");
 		for (final String creature : toKill.keySet()) {
-			final int requiredSolo=toKill.get(creature).first();
-			final int requiredShared=toKill.get(creature).second();			
-			final int soloKills=player.getSoloKill(creature);
-			final int sharedKills=player.getSharedKill(creature);
-			sb.append(creature+","+requiredSolo+","+requiredShared+","+soloKills+","+sharedKills+",");
+			final int requiredSolo = toKill.get(creature).first();
+			final int requiredShared = toKill.get(creature).second();
+			final int soloKills = player.getSoloKill(creature);
+			final int sharedKills = player.getSharedKill(creature);
+			sb.append(creature + "," + requiredSolo + "," + requiredShared + "," + soloKills + ","
+					+ sharedKills + ",");
 		}
-		final String result=sb.toString().substring(0, sb.toString().length()-1);
+		final String result = sb.toString().substring(0, sb.toString().length() - 1);
 		player.setQuest(QUEST_SLOT, KILLS_INDEX, result);
 	}
 
@@ -88,8 +95,7 @@ public class StartRecordingKillsAction implements ChatAction {
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				StartRecordingKillsAction.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false, StartRecordingKillsAction.class);
 	}
 
 	@Override

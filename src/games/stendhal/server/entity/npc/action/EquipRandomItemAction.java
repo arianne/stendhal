@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -26,6 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * Chooses and equips the specified item from a list
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class EquipRandomItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipRandomItemAction.class);
 
@@ -34,7 +37,7 @@ public class EquipRandomItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipRandomItemAction.
-	 * 
+	 *
 	 * @param items
 	 *           items and quantities
 	 */
@@ -44,20 +47,21 @@ public class EquipRandomItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipRandomItemAction.
-	 * 
+	 *
 	 * @param items
 	 *            items and quantities
 	 * @param bind
 	 *            bind to player
 	 */
+	@Dev
 	public EquipRandomItemAction(final Map<String, Integer> items, final boolean bind) {
 		this.items = items;
 		this.bind = bind;
 	}
-	
+
 	/**
 	 * Creates a new EquipRandomItemAction.
-	 * 
+	 *
 	 * @param itemlist
 	 *            items and quantities as a String item=q1;item2=q2
 	 */
@@ -67,7 +71,7 @@ public class EquipRandomItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipRandomItemAction.
-	 * 
+	 *
 	 * @param itemlist
 	 *            items and quantities as a String item=q1;item2=q2
 	 * @param bind
@@ -93,7 +97,7 @@ public class EquipRandomItemAction implements ChatAction {
 		}
 		this.bind = bind;
 	}
-	
+
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final String itemName = Rand.rand(items.keySet());
 		final Integer amount = items.get(itemName);
@@ -117,7 +121,7 @@ public class EquipRandomItemAction implements ChatAction {
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		result = PRIME * result + items.hashCode(); 
+		result = PRIME * result + items.hashCode();
 		if (bind) {
 			result = PRIME * result;
 		}

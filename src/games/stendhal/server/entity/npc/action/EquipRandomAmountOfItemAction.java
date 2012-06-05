@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -24,6 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * Chooses and equips the specified item from a list
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class EquipRandomAmountOfItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipRandomAmountOfItemAction.class);
 
@@ -31,13 +34,13 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	private final int min;
 	private final int max;
 	private final int increment;
-	
-	
+
+
 	/**
 	 * Creates a new EquipRandomAmountOfItemAction.<br/>
 	 * Since stackable, min and max must be > 0.<br/>
 	 * If min > max, min is treated like max and vice versa
-	 * 
+	 *
 	 * @param item
 	 *           stackable item
 	 * @param min
@@ -53,23 +56,24 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 * Creates a new EquipRandomItemAction.<br/>
 	 * Since stackable, min and max must be > 0.<br/>
 	 * If min > max, min is treated like max and vice versa
-	 * 
+	 *
 	 * @param item
 	 *           stackable item
 	 * @param min
 	 * 			 lower bound
 	 * @param max
 	 * 			 upper bound
-	 * @param increment
-	 * 			 multiplier (ie, only return numbers multiples of X)
+	 * @param multiplayer
+	 * 			 ie, only return numbers multiples of X
 	 */
-	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, final int increment) {
+	@Dev
+	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int multiplayer) {
 		this.item = item;
 		this.min = min;
 		this.max = max;
-		this.increment = increment;
+		this.increment = multiplayer;
 	}
-	
+
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		if ( (increment <= 0) || ((increment > max) && ((increment > min)) ) ){
 			logger.error("Increment value '" + increment + "' is invalid when max is '" + max + "'.", new Throwable());

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -26,19 +28,20 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * States the name of the player emitting a message
- * 
+ *
  * @author kymara
  */
+@Dev(category=Category.CHAT)
 public class SayTextWithPlayerNameAction implements ChatAction {
 
 	private final String message;
 
 	/**
 	 * Creates a new SayTextWithPlayerNameAction
-	 * 
+	 *
 	 * @param message
 	 *            message with substitution [name] for the player name
-	 *            
+	 *
 	 */
 	public SayTextWithPlayerNameAction(final String message) {
 		this.message = message;
@@ -47,10 +50,10 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("name", player.getTitle());
-			
-		raiser.say(StringUtils.substitute(message,substitutes));	
+
+		raiser.say(StringUtils.substitute(message,substitutes));
 	}
-	
+
 	@Override
 	public String toString() {
 		return "SayTextWithPlayerNameAction <" + message + ">";

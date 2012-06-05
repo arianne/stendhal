@@ -14,6 +14,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -23,10 +25,11 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
- *	Modify parts or all of a players outfit.
- 
+ * Modify parts or all of a players outfit.
+ *
  * @author jackrabbit
  */
+@Dev(category=Category.OUTFIT)
 public class ChangePlayerOutfitAction implements ChatAction {
 
 	private final Outfit outfitChange;
@@ -35,12 +38,12 @@ public class ChangePlayerOutfitAction implements ChatAction {
 
 	/**
 	 * Creates a new ChangePlayerOutfitAction
-	 * 
+	 *
 	 * @param outfit
-	 * 			the (part of) the outfit to be changed (i.e. removed or added)
+	 *               the (part of) the outfit to be changed (i.e. removed or added)
 	 * @param addOutfit
-	 * 			addOutfit = true: Add (part of) the outfit to the players current outfit
-	 * 			addOutfit = false: Remove (part of) the outfit the player currently wears
+	 *               addOutfit = true: Add (part of) the outfit to the players current outfit
+	 *               addOutfit = false: Remove (part of) the outfit the player currently wears
 	 * @param temporaryOutfit is this a temporary outfit or a permanent change?
 	 */
 	public ChangePlayerOutfitAction(Outfit outfit, boolean addOutfit, boolean temporaryOutfit) {
@@ -69,6 +72,7 @@ public class ChangePlayerOutfitAction implements ChatAction {
 		}
 	}
 
+	@Override
 	public String toString() {
 		return "Outfit used for changing: " + outfitChange.toString()
 		+ " If false it should be romved, if true it should be added from/to the current outfit: "
@@ -80,6 +84,7 @@ public class ChangePlayerOutfitAction implements ChatAction {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
+	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;

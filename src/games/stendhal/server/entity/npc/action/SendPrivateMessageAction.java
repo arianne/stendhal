@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -22,9 +24,10 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Sends the message as a private text 
+ * Sends the message as a private text
  * Optional notification type when used with NPCs
  */
+@Dev(category=Category.CHAT)
 public class SendPrivateMessageAction implements ChatAction {
 
 	private final String text;
@@ -32,22 +35,23 @@ public class SendPrivateMessageAction implements ChatAction {
 
 	/**
 	 * Creates a new SendPrivateMessageAction.
-	 * 
+	 *
 	 * @param text text to send
 	 */
 	public SendPrivateMessageAction(String text) {
 		this.text = text;
 		this.type = NotificationType.PRIVMSG;
 	}
-	
+
 	/**
 	 * Creates a new SendPrivateMessageAction - does NOT work with portals
-	 * 
+	 *
 	 * @param text text to send
-	 * 
+	 *
 	 * @param type type of message
 	 */
-	public SendPrivateMessageAction(final NotificationType type, final String text) {
+	@Dev
+	public SendPrivateMessageAction(@Dev(defaultValue="SERVER") final NotificationType type, final String text) {
 		this.text = text;
 		this.type = type;
 	}
@@ -59,9 +63,8 @@ public class SendPrivateMessageAction implements ChatAction {
 	@Override
 	public String toString() {
 		// would need to send the type toString also to include the type here
-		return "Send Private Message: " + text;
+		return "Send Private Message<" + type + ", " + text + ">";
 	}
-
 
 	@Override
 	public int hashCode() {

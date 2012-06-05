@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -21,9 +23,10 @@ import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item.
- * 
+ *
  * @see games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class DropItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private final String itemName;
@@ -31,7 +34,7 @@ public class DropItemAction implements ChatAction {
 
 	/**
 	 * Creates a new DropItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 */
@@ -42,13 +45,14 @@ public class DropItemAction implements ChatAction {
 
 	/**
 	 * Creates a new DropItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
 	 *            for StackableItems
 	 */
-	public DropItemAction(final String itemName, final int amount) {
+	@Dev
+	public DropItemAction(final String itemName, @Dev(defaultValue="1") final int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.mapstuff.office.StorableEntityList;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -25,6 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * removes all storable entities from the specified list that
  * has the players name as identifier.
  */
+@Dev(category=Category.IGNORE)
 public class RemoveStorableEntityAction implements ChatAction {
 
 	private final StorableEntityList< ? > storeableEntityList;
@@ -54,7 +57,7 @@ public class RemoveStorableEntityAction implements ChatAction {
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, 
+		return EqualsBuilder.reflectionEquals(this, obj, false,
 			RemoveStorableEntityAction.class);
 	}
 }

@@ -1,24 +1,28 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * Action to disable a feature
- * 
+ *
  * @author madmetzger
  */
+@Dev(category=Category.OTHER)
 public class DisableFeatureAction implements ChatAction {
 
 	private final String feature;
 
 	/**
 	 * Creates a new DisableFeatureAction.
-	 * 
+	 *
 	 * @param feature name of feature
 	 */
 	public DisableFeatureAction(final String feature) {

@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -29,9 +31,10 @@ import org.apache.log4j.Logger;
 
 /**
  * States the name of the items missing from a quest slot with items like item=amount;item2=amount2;item3=amount3
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.CollectRequestedItemsAction
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
 
@@ -40,12 +43,11 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 
 	/**
 	 * Creates a new SayRequiredItemssFromCollectionAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to check
 	 * @param message
 	 *            message with substitution [items] for the list of items
-	 *            
 	 */
 	public SayRequiredItemsFromCollectionAction(final String questname, final String message) {
 		this.questname = questname;
@@ -59,8 +61,8 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		} else {
 			Map<String, String> substitutes = new HashMap<String, String>();
 			substitutes.put("items", Grammar.enumerateCollection(getMissingItems(player).toStringListWithHash()));
-			
-			raiser.say(StringUtils.substitute(message,substitutes));	
+
+			raiser.say(StringUtils.substitute(message,substitutes));
 		}
 	}
 
@@ -77,12 +79,12 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 
 		return missingItems;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "SayRequiredItemsFromCollectionAction <" + questname +  "\"," + message + ">";
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -94,7 +96,5 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				SayRequiredItemsFromCollectionAction.class);
 	}
-
-	
 
 }

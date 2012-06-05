@@ -15,37 +15,38 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
- * 
  * Start recording random item collection request.
  * For a quest to use this it needs the list of items with their quantities as a Map<String, Integer>
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
  * @see games.stendhal.server.entity.npc.action.DropRecordedItemAction
  * @see games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition
- * 
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class StartRecordingRandomItemCollectionAction implements ChatAction {
 
 	private final String questname;
-	private Map<String, Integer> items;
+	private final Map<String, Integer> items;
 	private final int index;
 	private final String message;
 
 	/**
 	 * Creates a new StartRecordingRandomItemCollectionAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param items
@@ -63,17 +64,18 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 
 	/**
 	 * Creates a new StartRecordingRandomItemCollectionAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param index
 	 *            index of sub state
 	 * @param items
-	 *            List of items to select from, with quantity 
+	 *            List of items name and quantity to select
 	 * @param message
 	 *            Message which NPC asks for items with. We add the item name and quantity to end of message.
 	 */
-	public StartRecordingRandomItemCollectionAction(final String questname, final int index, final Map<String, Integer>
+	@Dev
+	public StartRecordingRandomItemCollectionAction(final String questname, @Dev(defaultValue="1") final int index, final Map<String, Integer>
     items, final String message) {
 		this.questname = questname;
 		this.index = index;
@@ -84,14 +86,14 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final String itemname = Rand.rand(items.keySet());
 		final int quantity = items.get(itemname);
-		
+
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("item", Grammar.quantityplnoun(quantity, itemname, "a"));
 		substitutes.put("#item", Grammar.quantityplnounWithHash(quantity, itemname));
 		substitutes.put("the item", "the " + Grammar.plnoun(quantity, itemname));
-		
-		
-		raiser.say(StringUtils.substitute(message,substitutes));		
+
+
+		raiser.say(StringUtils.substitute(message,substitutes));
 		if (index > -1) {
 			player.setQuest(questname, index, itemname + "=" + quantity);
 		} else {

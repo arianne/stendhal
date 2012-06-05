@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -27,6 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * plays the specified sound
  */
+@Dev(category=Category.ENVIRONMENT)
 public class PlaySoundAction implements ChatAction {
 
 	final String sound;
@@ -34,7 +37,7 @@ public class PlaySoundAction implements ChatAction {
 
 	/**
 	 * Creates a new PlaySoundAction.
-	 * 
+	 *
 	 * @param sound sound to play
 	 */
 	public PlaySoundAction(String sound) {
@@ -44,10 +47,11 @@ public class PlaySoundAction implements ChatAction {
 
 	/**
 	 * Creates a new PlaySoundAction.
-	 * 
+	 *
 	 * @param sound sound to play
-	 * @param delay delay the sound for one turn because of zone change?
+	 * @param delay delay the sound for one turn because of zone change
 	 */
+	@Dev
 	public PlaySoundAction(String sound, boolean delay) {
 		this.sound = sound;
 		this.delay = delay;
@@ -82,7 +86,7 @@ public class PlaySoundAction implements ChatAction {
 	 * Plays a sound in the specified turn.
 	 */
 	class SoundTurnListener implements TurnListener {
-		private Player player;
+		private final Player player;
 		SoundTurnListener(Player player) {
 			this.player = player;
 		}
@@ -93,6 +97,6 @@ public class PlaySoundAction implements ChatAction {
 		public void onTurnReached(int currentTurn) {
 			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
 		}
-		
+
 	}
 }

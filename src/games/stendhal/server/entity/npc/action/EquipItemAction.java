@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.item.Item;
@@ -26,6 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * Equips the specified item.
  */
+@Dev(category = Category.ITEMS_OWNED)
 public class EquipItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipItemAction.class);
 
@@ -35,7 +38,7 @@ public class EquipItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 */
@@ -45,7 +48,7 @@ public class EquipItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
@@ -57,7 +60,7 @@ public class EquipItemAction implements ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
@@ -65,6 +68,7 @@ public class EquipItemAction implements ChatAction {
 	 * @param bind
 	 *            bind to player
 	 */
+	@Dev
 	public EquipItemAction(final String itemName, final int amount, final boolean bind) {
 		this.itemName = itemName;
 		this.amount = amount;
@@ -74,16 +78,16 @@ public class EquipItemAction implements ChatAction {
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {
-    		if (item instanceof StackableItem) {
-    			final StackableItem stackableItem = (StackableItem) item;
-    			stackableItem.setQuantity(amount);
-    		}
-    		if (bind) {
-    			item.setBoundTo(player.getName());
-    		}
-    		player.equipOrPutOnGround(item);
-    		TutorialNotifier.equipped(player);
-    		player.notifyWorldAboutChanges();
+			if (item instanceof StackableItem) {
+				final StackableItem stackableItem = (StackableItem) item;
+				stackableItem.setQuantity(amount);
+			}
+			if (bind) {
+				item.setBoundTo(player.getName());
+			}
+			player.equipOrPutOnGround(item);
+			TutorialNotifier.equipped(player);
+			player.notifyWorldAboutChanges();
 		} else {
 			logger.error("Cannot find item '" + itemName + "' to equip", new Throwable());
 		}
@@ -112,11 +116,11 @@ public class EquipItemAction implements ChatAction {
 			result = PRIME * result;
 		} else {
 			result = PRIME * result + itemName.hashCode();
-		} 
+		}
 		if (bind) {
 			result = PRIME * result;
 		}
-		
+
 		return result;
 	}
 

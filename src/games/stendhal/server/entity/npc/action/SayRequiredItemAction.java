@@ -12,15 +12,17 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,12 +30,13 @@ import org.apache.log4j.Logger;
 
 /**
  * States the name of the item, with formatting/grammar rules, stored in the quest slot
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
  * @see games.stendhal.server.entity.npc.action.DropRecordedItemAction
  * @see games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition
- * 
+ *
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class SayRequiredItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
 
@@ -43,30 +46,28 @@ public class SayRequiredItemAction implements ChatAction {
 
 	/**
 	 * Creates a new SayRequiredItemAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to check
 	 * @param index
-	 *            position of the itemname,amount within the quest slot 'array'
+	 *            index of sub state
 	 * @param message
 	 *            message with substitution defined for item: [item], [#item], or [the item]
-	 *            
 	 */
-	public SayRequiredItemAction(final String questname, final int index, final String message) {
+	@Dev
+	public SayRequiredItemAction(final String questname, @Dev(defaultValue="1") final int index, final String message) {
 		this.questname = questname;
 		this.index = index;
 		this.message = message;
-	} 
+	}
 	/**
 	 * Creates a new SayRequiredItemAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to check
 	 * @param message
 	 * 		      message with substitution defined for item: [item], [#item], or [the item]
-	 *            
 	 */
-
 	public SayRequiredItemAction(final String questname, final String message) {
 		this.questname = questname;
 		this.message = message;
@@ -78,16 +79,15 @@ public class SayRequiredItemAction implements ChatAction {
 			logger.error(player.getName() + " does not have quest " + questname);
 			return;
 		} else {
-			String itemname = player.getRequiredItemName(questname,index);
-			int amount = player.getRequiredItemQuantity(questname,index);
+			String itemname = player.getRequiredItemName(questname, index);
+			int amount = player.getRequiredItemQuantity(questname, index);
 
 			Map<String, String> substitutes = new HashMap<String, String>();
 			substitutes.put("item", Grammar.quantityplnoun(amount, itemname, "a"));
 			substitutes.put("#item", Grammar.quantityplnounWithHash(amount, itemname));
 			substitutes.put("the item", "the " + Grammar.plnoun(amount, itemname));
-			
-			
-			raiser.say(StringUtils.substitute(message,substitutes));		
+
+			raiser.say(StringUtils.substitute(message,substitutes));
 		}
 	}
 
@@ -95,7 +95,7 @@ public class SayRequiredItemAction implements ChatAction {
 	public String toString() {
 		return "SayRequiredItemAction <" + questname +  "\"," + index + ",\"" + message + ">";
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -107,7 +107,5 @@ public class SayRequiredItemAction implements ChatAction {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
 				SayRequiredItemAction.class);
 	}
-
-	
 
 }

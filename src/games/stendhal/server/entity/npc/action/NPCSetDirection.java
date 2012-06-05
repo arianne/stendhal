@@ -13,6 +13,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -26,6 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
+@Dev(category=Category.LOCATION)
 public final class NPCSetDirection implements ChatAction {
 
 	private final Direction direction;

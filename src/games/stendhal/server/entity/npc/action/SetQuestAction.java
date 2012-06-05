@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the current state of a quest.
  */
+@Dev(category=Category.QUEST_SLOT)
 public class SetQuestAction implements ChatAction {
 
 	private final String questname;
@@ -31,7 +34,7 @@ public class SetQuestAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param state
@@ -45,7 +48,7 @@ public class SetQuestAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param index
@@ -53,6 +56,7 @@ public class SetQuestAction implements ChatAction {
 	 * @param state
 	 *            new value
 	 */
+	@Dev
 	public SetQuestAction(final String questname, final int index, final String state) {
 		this.questname = questname;
 		this.index = index;

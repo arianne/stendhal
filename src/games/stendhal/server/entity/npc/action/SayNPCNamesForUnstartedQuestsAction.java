@@ -11,16 +11,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,22 +30,23 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Says the list of the NPC names for unstarted quests in a specified region in the form npc1, npc2, and npc3 all need your help.
  */
+@Dev(category=Category.IGNORE)
 public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 
 	private final List<String> regions;
 
 	/**
 	 * Creates a new SayNPCNamesForUnstartedQuestsAction.
-	 * 
+	 *
 	 * @param region region of NPC
 	 */
 	public SayNPCNamesForUnstartedQuestsAction(String region) {
 		this.regions = Arrays.asList(region);
 	}
-	
+
 	/**
 	 * Creates a new SayNPCNamesForUnstartedQuestsAction.
-	 * 
+	 *
 	 * @param regions regions of NPC
 	 */
 	public SayNPCNamesForUnstartedQuestsAction(List<String> regions) {
@@ -52,7 +55,7 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		// to build up the message the npc will say
-		StringBuilder sb = new StringBuilder();	
+		StringBuilder sb = new StringBuilder();
 		// capture the regions with no quests remaining so that we can list them all at the end
 		List<String> finishedregions = new LinkedList<String>();
 
@@ -60,8 +63,8 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 			// to hold the list of npcs for each region
 			List<String> npcs = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
 			String verb = "need";
-	        if (npcs.size()==1) { 
-	        	verb = "needs";  
+	        if (npcs.size()==1) {
+	        	verb = "needs";
 	        }
 			if (npcs.size()>0) {
 	        	sb.append("In " + region + " ");
@@ -73,10 +76,10 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 		}
 		if (finishedregions.size() > 0) {
 			sb.append("There's noone in " + Grammar.enumerateCollection(finishedregions) + " who'd have a task you can handle, or that you haven't helped already.");
-		} 
+		}
 		raiser.say(sb.toString().trim());
-        
-        	
+
+
 	}
 
 	@Override

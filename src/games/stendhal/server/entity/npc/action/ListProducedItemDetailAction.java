@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -24,20 +26,21 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * List details about a produced item
- * 
+ *
  * @author kymara
  */
+@Dev(category=Category.ITEMS_PRODUCER)
 public class ListProducedItemDetailAction implements ChatAction {
-	
+
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String itemName = sentence.getOriginalText();
 		String message = producerRegister.getProducedItemDetails(itemName);
-		raiser.say(message);	
+		raiser.say(message);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ListProducedItemDetailAction";

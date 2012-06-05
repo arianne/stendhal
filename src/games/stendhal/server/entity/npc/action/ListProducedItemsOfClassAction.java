@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -29,24 +31,25 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Lists all items produced, which are of the given item class, as part of a message
- * 
+ *
  * @author kymara
  */
+@Dev(category=Category.ITEMS_PRODUCER)
 public class ListProducedItemsOfClassAction implements ChatAction {
-	
+
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 	private final String message;
 	private final String clazz;
-	
+
 	/**
 	 * Creates a new ListProducedItemsOfClassAction
-	 * 
+	 *
 	 * @param clazz
-	 * 			  Item class to check
+	 *            Item class to check
 	 * @param message
 	 *            message with substitution [items] or [#items] for the list of items
-	 *            
+	 *
 	 */
 	public ListProducedItemsOfClassAction(final String clazz, final String message) {
 		this.clazz = clazz;
@@ -57,9 +60,9 @@ public class ListProducedItemsOfClassAction implements ChatAction {
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("items", Grammar.enumerateCollection(producerRegister.getProducedItemNames(clazz)));
 		substitutes.put("#items", Grammar.enumerateCollectionWithHash(producerRegister.getProducedItemNames(clazz)));
-		raiser.say(StringUtils.substitute(message,substitutes));	
+		raiser.say(StringUtils.substitute(message, substitutes));
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ListProducedItemsOfClassAction <" + message + ">";

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -22,17 +24,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * executes a list of actions in the order they have been added. 
+ * executes a list of actions in the order they have been added.
  * It calls fire() of each action added, when its own
  * fire() is called.
  */
+@Dev(category=Category.IGNORE)
 public class MultipleActions implements ChatAction {
 
 	private final List<ChatAction> actions;
 
 	/**
 	 * Creates a new MultipleActions.
-	 * 
+	 *
 	 * @param action
 	 *            action to execute
 	 */
@@ -42,7 +45,7 @@ public class MultipleActions implements ChatAction {
 
 	/**
 	 * Creates a new MultipleActions.
-	 * 
+	 *
 	 * @param actions
 	 *            list of actions to execute
 	 */

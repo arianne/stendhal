@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -21,16 +23,17 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the xp of the current player.
  */
+@Dev(category=Category.STATS)
 public class IncreaseXPDependentOnLevelAction implements ChatAction {
-    // player will get 1/xpDiff part of difference between his and next levels xp amount. 
+    // player will get 1/xpDiff part of difference between his and next levels xp amount.
 	private final double xpDiff;
 	// player will get this bonus instead xp if have max level
 	private final double karmabonus;
 
 	/**
 	 * Creates a new IncreaseXPDependentOnLevelAction.
-	 * 
-	 * @param xpDiff - player will get 1/xpDiff of difference between his and next levels xp amount. 
+	 *
+	 * @param xpDiff - player will get 1/xpDiff of difference between his and next levels xp amount.
 	 * @param karmabonus - amount of karma to add instead xp if player have max level
 	 */
 	public IncreaseXPDependentOnLevelAction(final double xpDiff, final double karmabonus) {

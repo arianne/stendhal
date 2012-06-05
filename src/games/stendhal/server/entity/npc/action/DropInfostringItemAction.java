@@ -12,22 +12,25 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.List;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item with the specified infostring
- * 
+ *
  * @see games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class DropInfostringItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private final String itemName;
@@ -36,7 +39,7 @@ public class DropInfostringItemAction implements ChatAction {
 
 	/**
 	 * Creates a new DropInfostringItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param infostring
@@ -47,10 +50,10 @@ public class DropInfostringItemAction implements ChatAction {
 		this.amount = 1;
 		this.infostring = infostring;
 	}
-	
+
 	/**
 	 * Creates a new DropInfostringItemAction.
-	 * 
+	 *
 	 * @param itemName
 	 *            name of item
 	 * @param amount
@@ -58,7 +61,8 @@ public class DropInfostringItemAction implements ChatAction {
 	 * @param infostring
 	 *            infostring of the dropped item
 	 */
-	public DropInfostringItemAction(final String itemName, final int amount, final String infostring) {
+	@Dev
+	public DropInfostringItemAction(final String itemName, @Dev(defaultValue="1") final int amount, final String infostring) {
 		this.itemName = itemName;
 		this.amount = amount;
 		this.infostring = infostring;
@@ -73,7 +77,7 @@ public class DropInfostringItemAction implements ChatAction {
 				break;
 			}
 		}
-		
+
 		if (!res) {
 			logger.error("Cannot drop " + itemName, new Throwable());
 		}

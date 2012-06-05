@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
@@ -22,6 +24,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * AbstractBehaviourAction is the base of ChatActions handling Behaviour requests.
  */
+@Dev(category=Category.IGNORE)
 abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatAction {
 
 	protected final B behaviour;

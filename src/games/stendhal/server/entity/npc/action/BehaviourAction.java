@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.player.Player;
@@ -24,12 +26,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * BehaviourAction handles Behaviour requests.
  */
+@Dev(category=Category.IGNORE)
 public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour> {
 
 	public BehaviourAction(final Behaviour behaviour, String userAction, String npcAction) {
 		super(behaviour, userAction, npcAction);
 	}
 
+	@Override
 	public void fireRequestError(final ItemParserResult res, final Player player, final Sentence sentence, final EventRaiser npc) {
 		npc.say(behaviour.getErrormessage(res, userAction, npcAction));
 	}

@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -20,15 +22,16 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the xp of the current player.
  */
+@Dev(category=Category.STATS)
 public class IncreaseXPAction implements ChatAction {
 
 	private final int xpDiff;
 
 	/**
 	 * Creates a new IncreaseKarmaAction.
-	 * 
+	 *
 	 * @param xpDiff
-	 *            amount of karma to add
+	 *            amount of xp to add
 	 */
 	public IncreaseXPAction(final int xpDiff) {
 		this.xpDiff = xpDiff;

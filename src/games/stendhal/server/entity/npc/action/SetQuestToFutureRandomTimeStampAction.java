@@ -11,9 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import games.stendhal.common.Rand;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -23,13 +25,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Sets the state of a quest to a timestamp,
- * randomly picked between minimum and maximum delay from current system time in minutes 
- * 
- * @see games.stendhal.server.entity.npc.condition.TimeReachedCondition 
+ * randomly picked between minimum and maximum delay from current system time in minutes
+ *
+ * @see games.stendhal.server.entity.npc.condition.TimeReachedCondition
  * @see games.stendhal.server.entity.npc.action.SayTimeRemainingUntilTimeReachedAction
  *
  * @author omero
  */
+@Dev(category=Category.TIME)
 public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 
 	private final String questname;
@@ -39,7 +42,7 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestToFutureRandomTimeStampAction.
-	 * 
+	 *
 	 * @param questname name of quest-slot to change
 	 * @param min_delay in minutes
 	 * @param max_delay in minutes
@@ -53,17 +56,18 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestToFutureRandomTimeStampAction.
-	 * 
+	 *
 	 * @param questname name of quest-slot to change
 	 * @param index index of sub state
-	 * @param min_delay minimum delay in minutes
-	 * @param max_delay maximum delay in minutes
+	 * @param minDelay minimum delay in minutes
+	 * @param maxDelay maximum delay in minutes
 	 */
-	public SetQuestToFutureRandomTimeStampAction(final String questname, final int index, final int min_delay, final int max_delay) {
+	@Dev
+	public SetQuestToFutureRandomTimeStampAction(final String questname, @Dev(defaultValue="1") final int index, final int minDelay, final int maxDelay) {
 		this.questname = questname;
 		this.index = index;
-		this.min_delay = min_delay;
-		this.max_delay = max_delay;
+		this.min_delay = minDelay;
+		this.max_delay = maxDelay;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {

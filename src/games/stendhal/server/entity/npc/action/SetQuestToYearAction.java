@@ -12,12 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.Calendar;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Calendar;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -25,6 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the state of a quest to the current year.
  */
+@Dev(category=Category.TIME)
 public class SetQuestToYearAction implements ChatAction {
 
 	private final String questname;
@@ -32,7 +35,7 @@ public class SetQuestToYearAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestToYearAction.
-	 * 
+	 *
 	 * @param questname name of quest-slot to change
 	 */
 	public SetQuestToYearAction(final String questname) {
@@ -42,11 +45,12 @@ public class SetQuestToYearAction implements ChatAction {
 
 	/**
 	 * Creates a new SetQuestToYearAction.
-	 * 
+	 *
 	 * @param questname name of quest-slot to change
 	 * @param index index of sub state
 	 */
-	public SetQuestToYearAction(final String questname, final int index) {
+	@Dev
+	public SetQuestToYearAction(final String questname, @Dev(defaultValue="1") final int index) {
 		this.questname = questname;
 		this.index = index;
 	}

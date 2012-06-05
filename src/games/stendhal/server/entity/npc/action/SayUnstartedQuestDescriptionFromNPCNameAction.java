@@ -11,14 +11,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -26,28 +28,29 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Gives description for unstarted quest based on npc name
  */
+@Dev(category=Category.IGNORE)
 public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction {
-	
+
 	private final List<String> regions;
 
 	/**
 	 * Creates a new SayUnstartedQuestDescriptionFromNPCNameAction.
-	 * 
+	 *
 	 * @param region region of NPC
 	 */
 	public SayUnstartedQuestDescriptionFromNPCNameAction(String region) {
 		this.regions = Arrays.asList(region);
 	}
-	
+
 	/**
 	 * Creates a new SayUnstartedQuestDescriptionFromNPCNameAction.
-	 * 
+	 *
 	 * @param regions regions of NPC
 	 */
 	public SayUnstartedQuestDescriptionFromNPCNameAction(List<String> regions) {
 		this.regions = regions;
 	}
-	
+
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		for (String region: regions) {
 			List<String> npcnames = SingletonRepository.getStendhalQuestSystem().getNPCNamesForUnstartedQuestsInRegionForLevel(player, region);
@@ -59,7 +62,7 @@ public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction
 						answer.append(desc + " ");
 					}
 					raiser.say(answer.toString().trim());
-				}	
+				}
 			}
 		}
 	}

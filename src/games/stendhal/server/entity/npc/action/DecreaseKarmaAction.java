@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -20,13 +22,14 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Decreases the karma of the current player.
  */
+@Dev(category=Category.STATS)
 public class DecreaseKarmaAction implements ChatAction {
 
 	private final double karmaDiff;
 
 	/**
 	 * Creates a new DecreaseKarmaAction.
-	 * 
+	 *
 	 * @param karmaDiff
 	 *            amount of karma to subtract
 	 */

@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -24,6 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Increments by some value the current state or substate of a quest.
  */
+@Dev(category=Category.QUEST_SLOT)
 public class IncrementQuestAction implements ChatAction {
 
 	private final String questname;
@@ -32,7 +35,7 @@ public class IncrementQuestAction implements ChatAction {
 
 	/**
 	 * Creates a new IncrementQuestAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param increment
@@ -46,7 +49,7 @@ public class IncrementQuestAction implements ChatAction {
 
 	/**
 	 * Creates a new IncrementQuestAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest-slot to change
 	 * @param index
@@ -54,7 +57,8 @@ public class IncrementQuestAction implements ChatAction {
 	 * @param increment
 	 *            increment to the old value
 	 */
-	public IncrementQuestAction(final String questname, final int index, final int increment) {
+	@Dev
+	public IncrementQuestAction(final String questname, @Dev(defaultValue="1") final int index, final int increment) {
 		this.questname = questname;
 		this.index = index;
 		this.increment = increment;

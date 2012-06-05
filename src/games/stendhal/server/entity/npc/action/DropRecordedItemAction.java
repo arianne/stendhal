@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -22,21 +24,22 @@ import org.apache.log4j.Logger;
 
 /**
  * Drops the specified item.
- * 
+ *
  * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
  * @see games.stendhal.server.entity.npc.action.SayRequiredItemAction
  * @see games.stendhal.server.entity.npc.condition.PlayerHasRecordedItemWithHimCondition
- * 
+ *
  */
+@Dev(category=Category.ITEMS_OWNED)
 public class DropRecordedItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
-	
+
 	private final String questname;
 	private final int index;
-	
+
 	/**
 	 * Creates a new DropRecordedItemAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest to get the item and quantity from
 	 */
@@ -47,26 +50,29 @@ public class DropRecordedItemAction implements ChatAction {
 
 	/**
 	 * Creates a new DropRecordedItemAction.
-	 * 
+	 *
 	 * @param questname
 	 *            name of quest to get the item and quantity from
+	 * @param index
+	 *            index of sub state
 	 */
+	@Dev
 	public DropRecordedItemAction(final String questname, final int index) {
 		this.questname = questname;
 		this.index = index;
 	}
 
-	
+
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		if (!player.hasQuest(questname)) {
 			logger.error(player.getName() + " does not have quest " + questname);
 			return;
-		} 
+		}
 		final String questSubString = player.getQuest(questname, index);
 		final String[] elements = questSubString.split("=");
 		String itemname = elements[0];
 		int amount = 1;
-		
+
 		// some older quests may have stored an item name but not the amount
 		// so we use the initial value of 1 if the string can't be split
 	    if(elements.length > 1) {
@@ -85,7 +91,7 @@ public class DropRecordedItemAction implements ChatAction {
 		return "drop recorded item from questslot <" + questname + ">";
 	}
 
-	
+
 	@Override
 	public int hashCode() {
 		final int PRIME = 31;

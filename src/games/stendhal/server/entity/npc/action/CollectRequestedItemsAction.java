@@ -14,6 +14,8 @@ package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -27,13 +29,12 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * This {@link ChatAction} handles item lists a player has to bring for a quest
- * 
- * @see games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction
- *  
- * @author madmetzger
+ * handles item lists a player has to bring for a quest
  *
+ * @see games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction
+ * @author madmetzger
  */
+@Dev(category=Category.OTHER)
 public final class CollectRequestedItemsAction implements ChatAction {
 
 	private final String itemName;
@@ -42,9 +43,10 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	private final ChatAction toExecuteOnCompletion;
 	private final String questSlot;
 	private final ConversationStates stateAfterCompletion;
-	
+
 	/**
-	 * create a new {@link CollectRequestedItemsAction}
+	 * create a new CollectRequestedItemsAction
+	 *
 	 * @param itemName name of the item to process
 	 * @param quest the quest to deal with
 	 * @param questionForMore How shall the affected NPC ask for more brought items?
@@ -60,7 +62,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		this.toExecuteOnCompletion = completionAction;
 		this.stateAfterCompletion = stateAfterCompletion;
 	}
-	
+
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		ItemCollection missingItems = getMissingItems(player);
 		final Integer missingCount = missingItems.get(itemName);
@@ -138,7 +140,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 		return result;
 	}
-	
+
 	/**
 	 * Returns all items that the given player still has to bring to complete the quest.
 	 *
@@ -168,5 +170,5 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	public String toString() {
 		return "CollectRequestedItemsAction < state on completion: "+stateAfterCompletion.toString()+", execute on completion: "+toExecuteOnCompletion.toString()+">";
 	}
-	
+
 }

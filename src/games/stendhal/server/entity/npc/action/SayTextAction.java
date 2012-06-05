@@ -13,6 +13,8 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.config.annotations.Dev;
+import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
@@ -23,13 +25,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * says the specified text, it works just like the normal parameter of add
  */
+@Dev(category=Category.CHAT)
 public class SayTextAction implements ChatAction {
 
 	private final String text;
 
 	/**
 	 * Creates a new SayTextAction.
-	 * 
+	 *
 	 * @param text text to say
 	 */
 	public SayTextAction(String text) {
