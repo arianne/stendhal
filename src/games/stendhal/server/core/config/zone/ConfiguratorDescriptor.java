@@ -6,12 +6,9 @@
 
 package games.stendhal.server.core.config.zone;
 
-//
-//
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.config.annotations.ServerModeUtil;
-import games.stendhal.server.core.config.annotations.TestServerOnly;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 import org.apache.log4j.Logger;
