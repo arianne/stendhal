@@ -64,7 +64,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				addReply("flour",
 					"Ahh... I get all my flour at the mill just north of Semos city!");
 				addReply("egg",
-					"Find some hens and you'll easily find some eggs too!");
+					"Find some hens and you'll easily find some eggs, too!");
 				addReply("apple",
 					"Mmm... When once in a while I travel from Semos to Ados, I always stop at the orchard near a farm along the road...");
 
@@ -90,7 +90,7 @@ public class ConfectionerApplePieNPC implements ZoneConfigurator {
 				        requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hello! Did you come to taste one my delicious apple pies? I could #bake one for you right away!");
+				        "Hello! Did you come to taste one of my delicious apple pies? I could #bake one for you right away!");
 			}
 		};
 
