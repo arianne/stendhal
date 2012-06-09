@@ -195,8 +195,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("lifesteal", Type.FLOAT, Definition.HIDDEN);
 
 		// Some items are quest rewards that other players
-		// don't deserve.
-		entity.addAttribute("bound", Type.STRING, Definition.HIDDEN);
+		// don't deserve. Not hidden because the client uses it for an anti
+		// theft hack
+		entity.addAttribute("bound", Type.STRING);
 
 		// Some items should not be dropped on death
 		entity.addAttribute("undroppableondeath", Type.SHORT, Definition.HIDDEN);
