@@ -954,7 +954,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				if (view.isMovable()) {
 					if (entity.getArea().contains(x, y)) {
 						if (deepFind) {
-							if (foundEntity != null) {
+							if (foundEntity == null) {
 								// Store the first candidate in case we do not
 								// find bound items
 								foundEntity = view;
