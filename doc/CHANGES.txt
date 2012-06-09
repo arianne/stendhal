@@ -9,6 +9,8 @@
 - more creature descriptions added
 - moving Semos city wall into the city
 - Monogenes made his way next to the bird station in Semos city
+- Users can grab items bound to them even if they are under another player
+- Player bound items do not move under pushed player, unless they belong to the said player
 
 *other*
 - added /profile <name> action
@@ -22,6 +24,7 @@
 - private messages are shown in their own tab in addition to the main chat log
 - new images for cherub and golden trees
 - users can reorder items in bag and chests
+- prefer user owned items when trying dragging from under other players
 
 1.00
 
