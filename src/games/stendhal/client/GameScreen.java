@@ -15,6 +15,8 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Item;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.AchievementBoxFactory;
@@ -932,14 +934,48 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			 */
 			it = views.listIterator(views.size());
 
+			// A hack to grab bound items if they are under another player
+			boolean deepFind = false;
+			String playerName = "";
+			EntityView<?> foundEntity = null;
+			
 			while (it.hasPrevious()) {
 				final EntityView<?> view = it.previous();
-
+				IEntity entity = view.getEntity();
+				
+				if ((entity instanceof Player) && (!((Player) entity).isUser())
+						&& entity.getArea().contains(x, y)) {
+					// Under another player. Try to find an item belonging to
+					// the user
+					deepFind = true;
+					playerName = User.getCharacterName();
+				}
+				
 				if (view.isMovable()) {
-					if (view.getEntity().getArea().contains(x, y)) {
-						return view;
+					if (entity.getArea().contains(x, y)) {
+						if (deepFind) {
+							if (foundEntity != null) {
+								// Store the first candidate in case we do not
+								// find bound items
+								foundEntity = view;
+							}
+							if (entity instanceof Item) {
+								if (playerName.equals(entity.getRPObject().get("bound"))) {
+									// Found an item bound to the user. This is
+									// what we want to grab.
+									return view;
+								}
+							}
+						} else {
+							return view;
+						}
 					}
 				}
+			}
+			if (foundEntity != null) {
+				// No player bound items, but we found something. Return
+				// the stored entity.
+				return foundEntity;
 			}
 
 			/*
