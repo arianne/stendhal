@@ -13,18 +13,23 @@
 - Player bound items do not move under pushed player, unless they belong to the said player
 
 *other*
-- added /profile <name> action
+- added /profile <name> to open the webprofile of a character
 - reworked the in-game spam protection
 - admin command (*) inspect includes Java class name
 
 *website*
 - Navigation box shows number of unread messages after login
+- Statistics on number of active accounts and characters
 
 *client*
 - private messages are shown in their own tab in addition to the main chat log
 - new images for cherub and golden trees
 - users can reorder items in bag and chests
 - prefer user owned items when trying dragging from under other players
+
+*note to forks*
+- UpdateSigner now looks for a parameter keystore.update-alias instead of keystore.alias
+
 
 1.00
 

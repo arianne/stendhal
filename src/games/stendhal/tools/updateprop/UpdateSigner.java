@@ -39,7 +39,7 @@ public class UpdateSigner extends Task {
 
 	/** list of files to sign */
 	private final List<FileSet> filesets = new ArrayList<FileSet>();
-	private Signature signer;
+	private final Signature signer;
 
 	/**
 	 * creates a UpdateSigner
@@ -52,7 +52,7 @@ public class UpdateSigner extends Task {
 		}
 		antProp.load(is);
 		is.close();
-		if ((antProp.getProperty("keystore.password") == null) || (antProp.getProperty("keystore.alias") == null)) {
+		if ((antProp.getProperty("keystore.password") == null) || (antProp.getProperty("keystore.update-alias") == null)) {
 			throw new IllegalArgumentException("build.ant-private.properties is missing parameters keystore.alias or keystore.password");
 		}
 
@@ -69,13 +69,13 @@ public class UpdateSigner extends Task {
 
 		// get my private key
 		KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(password);
-		KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(antProp.getProperty("keystore.alias"), protection);
+		KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(antProp.getProperty("keystore.update-alias"), protection);
 		PrivateKey key = pkEntry.getPrivateKey();
 
 		signer = Signature.getInstance("SHA1withRSA");
 		signer.initSign(key);
 	}
-	
+
 
 	public String sign(String fullFilename) throws IOException, SignatureException {
 		InputStream is = new BufferedInputStream(new FileInputStream(fullFilename));
@@ -92,7 +92,7 @@ public class UpdateSigner extends Task {
 
 	/**
 	 * Adds a set of files to copy.
-	 * 
+	 *
 	 * @param set
 	 *            a set of files to copy
 	 */
