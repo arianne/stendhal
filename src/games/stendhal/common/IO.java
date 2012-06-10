@@ -47,11 +47,14 @@ public class IO {
 		// that read(...) returns the complete remaining stream at once
 		try {
 			InputStream is = new FileInputStream(file);
-			while ((offset < size) && numRead > -1) {
-				numRead = is.read(res, offset, size - offset);
-				offset += numRead;
+			try {
+				while ((offset < size) && numRead > -1) {
+					numRead = is.read(res, offset, size - offset);
+					offset += numRead;
+				}
+			} finally {
+				is.close();
 			}
-			is.close();
 		} catch (IOException e) {
 			logger.warn(e, e);
 			return null;
