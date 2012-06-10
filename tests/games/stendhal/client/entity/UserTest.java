@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -29,7 +28,6 @@ public class UserTest {
 		assertFalse(User.isAdmin()); 
 		assertFalse(user.hasSheep());
 		assertFalse(user.hasPet());
-		assertNull(user.getServerVersion());
 	}
 
 }

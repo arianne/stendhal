@@ -38,8 +38,6 @@ public class User extends Player {
 	private static Set<String> groupMembers;
 	private final HashSet<String> ignore = new HashSet<String>();
 
-	private final String serverVersion = null;
-
 	/**
 	 * is the user object not set, yet?
 	 *
@@ -253,15 +251,6 @@ public class User extends Player {
 	 */
 	public static void setNull() {
 		instance = null;
-	}
-
-	/**
-	 * Query the version of the server we are currently connected to.
-	 *
-	 * @return server version string
-	 */
-	public String getServerVersion() {
-		return serverVersion;
 	}
 
 	/**
