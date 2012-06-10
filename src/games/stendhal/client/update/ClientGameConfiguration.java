@@ -12,6 +12,7 @@
 package games.stendhal.client.update;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -21,13 +22,11 @@ import java.util.Properties;
  * @author hendrik
  */
 public class ClientGameConfiguration {
-
 	private static ClientGameConfiguration instance;
 
 	private Properties gameConfig = getGameProperties();
 
 	private ClientGameConfiguration() {
-		instance = this;
 	}
 
 	private Properties getGameProperties() {
@@ -43,16 +42,19 @@ public class ClientGameConfiguration {
 			}
 			
 			Properties config = new Properties();
-			config.load(is);
-			is.close();
+			try {
+				config.load(is);
+			} finally {
+				is.close();
+			}
 			return config;
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	private static void init() {
+	private static synchronized void init() {
 		if (instance == null) {
 			instance = new ClientGameConfiguration();
 		}
