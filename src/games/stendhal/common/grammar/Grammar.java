@@ -361,7 +361,7 @@ public class Grammar {
 		String result;
 
 		if (text == null) {
-			result = text;
+			result = null;
 		} else {
 			final PrefixExtractor extractor = new PrefixExtractor(text);
 			boolean changed;

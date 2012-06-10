@@ -458,8 +458,6 @@ public final class ZonesXMLLoader {
 	 */
 	protected static class ZoneDesc {
 		public static final int UNSET = Integer.MIN_VALUE;
-
-		protected String zoneClassName;
 		
 		protected String name;
 

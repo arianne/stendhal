@@ -583,7 +583,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 				}
 			}
-		} catch (final Exception e) {
+		} catch (final RuntimeException e) {
 			logger.error("error creating entity " + type + " at (" + x + ","
 					+ y + ")", e);
 		}
