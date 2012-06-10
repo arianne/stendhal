@@ -116,8 +116,11 @@ public class Cache {
 			}
 			String filename = stendhal.getGameFolder() + "cache/" + item.name;
 			OutputStream os = new FileOutputStream(filename);
-			os.write(data);
-			os.close();
+			try {
+				os.write(data);
+			} finally {
+				os.close();
+			}
 
 			logger.debug("Content " + item.name + " cached now.");
 		} catch (IOException e) {
