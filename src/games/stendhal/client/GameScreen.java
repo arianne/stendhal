@@ -15,8 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Item;
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.AchievementBoxFactory;
@@ -24,7 +22,6 @@ import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
-import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -41,13 +38,11 @@ import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -85,11 +80,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 
 	/**
-	 * Comparator used to sort entities to display.
-	 */
-	protected static final EntityViewComparator entityViewComparator = new EntityViewComparator();
-
-	/**
 	 * A scale factor for panning delta (to allow non-float precision).
 	 */
 	protected static final int PAN_SCALE = 8;
@@ -109,15 +99,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	protected StaticGameLayers gameLayers;
 	
-	/**
-	 * The entity views.
-	 */
-	protected List<EntityView<?>> views;
-
-	/**
-	 * The entity to view map.
-	 */
-	protected Map<IEntity, EntityView<IEntity>> entities;
+	/** Entity views container. */
+	private final EntityViewManager viewManager = new EntityViewManager();
 
 	/** Actual width of the world in world units. */
 	protected int ww;
@@ -253,11 +236,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		speed = 0;
 
 		// Drawing is done in EDT
-		views = Collections.synchronizedList(new LinkedList<EntityView<?>>());
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
-		entities = new HashMap<IEntity, EntityView<IEntity>>();
 
 		// create ground
 		ground = new GroundContainer(client, this, this);
@@ -331,11 +312,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void addEntity(final IEntity entity) {
-		final EntityView<IEntity> view = EntityViewFactory.create(entity);
-
+		EntityView<IEntity> view = viewManager.addEntity(entity);
 		if (view != null) {
-			entities.put(entity, view);
-			addEntityView(view);
+			if (view instanceof Entity2DView) {
+				final Entity2DView<?> inspectable = (Entity2DView<?>) view;
+				
+				inspectable.setInspector(ground);
+			}
 			if (entity.isUser()) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
@@ -346,44 +329,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		}
 	}
 
-	/**
-	 * Add an entity view.
-	 *
-	 * @param view
-	 *            A view.
-	 */
-	private void addEntityView(final EntityView<?> view) {
-		views.add(view);
-		if (view instanceof Entity2DView) {
-			final Entity2DView<?> inspectable = (Entity2DView<?>) view;
-			
-			inspectable.setInspector(ground);
-		}	
-	}
-	
-
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
 	public void removeEntity(final IEntity entity) {
-		final EntityView<?> view = entities.remove(entity);
-
-		if (view != null) {
-			removeEntityView(view);
-		}
-	}
-
-	/**
-	 * Remove an entity view.
-	 *
-	 * @param view
-	 *            A view.
-	 */
-	private void removeEntityView(final EntityView<?> view) {
-		view.release();
-		views.remove(view);
+		viewManager.removeEntity(entity);
 	}
 
 	/**
@@ -529,10 +481,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	@Override
 	public void paintComponent(final Graphics g) {
-		// sort uses iterators, so it must be wrapped in a synchronized block
-		synchronized (views) {
-			Collections.sort(views, entityViewComparator);
-		}
+		viewManager.sort();
 		Graphics2D g2d = (Graphics2D) g;
 
 		// Draw the GameLayers from bottom to top, relies on exact naming of the
@@ -622,15 +571,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param g destination graphics
 	 */
 	private void drawEntities(final Graphics2D g) {
-		// We are in EDT now. The main thread can add or remove new views at any
-		// time. Manual synchronization on iteration is mandated by the spec.
-		synchronized (views) {
-			for (final EntityView<?> view : views) {
-				try {
-					view.draw(g);
-				} catch (RuntimeException e) {
-					logger.error(e, e);
-				}
+		for (final EntityView<IEntity> view : viewManager) {
+			try {
+				view.draw(g);
+			} catch (RuntimeException e) {
+				logger.error(e, e);
 			}
 		}
 	}
@@ -641,12 +586,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param g destination graphics
 	 */
 	private void drawTopEntities(final Graphics2D g) {
-		// We are in EDT now. The main thread can add or remove new views at any
-		// time. Manual synchronization on iteration is mandated by the spec.
-		synchronized (views) {
-			for (final EntityView<?> view : views) {
-				view.drawTop(g);
-			}
+		for (final EntityView<IEntity> view : viewManager) {
+			view.drawTop(g);
 		}
 	}
 
@@ -850,7 +791,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private void removeAllObjects() {
 		logger.debug("CLEANING screen object list");
-		views.clear();
+		viewManager.clear();
 		texts.clear();
 		textsToRemove.clear();
 		// staticSprites contents are not zone specific, so don't clear those
@@ -880,43 +821,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
 	public EntityView<?> getEntityViewAt(final double x, final double y) {
-		ListIterator<EntityView<?>> it;
-
-		synchronized (views) {
-			/*
-			 * Try the physical entity areas first
-			 */
-			it = views.listIterator(views.size());
-
-			while (it.hasPrevious()) {
-				final EntityView<?> view = it.previous();
-
-				IEntity entity = view.getEntity();
-				if (entity != null) {
-					if (entity.getArea().contains(x, y)) {
-						return view;
-					}
-				}
-			}
-
-			/*
-			 * Now the visual entity areas
-			 */
-			final int sx = convertWorldToScreen(x);
-			final int sy = convertWorldToScreen(y);
-
-			it = views.listIterator(views.size());
-
-			while (it.hasPrevious()) {
-				final EntityView<?> view = it.previous();
-
-				if (view.getArea().contains(sx, sy)) {
-					return view;
-				}
-			}
-		}
-
-		return null;
+		final int sx = convertWorldToScreen(x);
+		final int sy = convertWorldToScreen(y);
+		return viewManager.getEntityViewAt(x, y, sx, sy);
 	}
 
 	/*
@@ -926,78 +833,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *      double)
 	 */
 	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
-		ListIterator<EntityView<?>> it;
-
-		synchronized (views) {
-			/*
-			 * Try the physical entity areas first
-			 */
-			it = views.listIterator(views.size());
-
-			// A hack to grab bound items if they are under another player
-			boolean deepFind = false;
-			String playerName = "";
-			EntityView<?> foundEntity = null;
-			
-			while (it.hasPrevious()) {
-				final EntityView<?> view = it.previous();
-				IEntity entity = view.getEntity();
-				
-				if ((entity instanceof Player) && (!((Player) entity).isUser())
-						&& entity.getArea().contains(x, y)) {
-					// Under another player. Try to find an item belonging to
-					// the user
-					deepFind = true;
-					playerName = User.getCharacterName();
-				}
-				
-				if (view.isMovable()) {
-					if (entity.getArea().contains(x, y)) {
-						if (deepFind) {
-							if (foundEntity == null) {
-								// Store the first candidate in case we do not
-								// find bound items
-								foundEntity = view;
-							}
-							if (entity instanceof Item) {
-								if (playerName.equals(entity.getRPObject().get("bound"))) {
-									// Found an item bound to the user. This is
-									// what we want to grab.
-									return view;
-								}
-							}
-						} else {
-							return view;
-						}
-					}
-				}
-			}
-			if (foundEntity != null) {
-				// No player bound items, but we found something. Return
-				// the stored entity.
-				return foundEntity;
-			}
-
-			/*
-			 * Now the visual entity areas
-			 */
-			final int sx = convertWorldToScreen(x);
-			final int sy = convertWorldToScreen(y);
-
-			it = views.listIterator(views.size());
-
-			while (it.hasPrevious()) {
-				final EntityView<?> view = it.previous();
-
-				if (view.isMovable()) {
-					if (view.getArea().contains(sx, sy)) {
-						return view;
-					}
-				}
-			}
-		}
-
-		return null;
+		final int sx = convertWorldToScreen(x);
+		final int sy = convertWorldToScreen(y);
+		return viewManager.getMovableEntityViewAt(x, y, sx, sy);
 	}
 
 	/*
@@ -1157,46 +995,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			calculateView(ix, iy);
 		}
 	}
-
-	//
-	//
-
-	private static class EntityViewComparator implements
-			Comparator<EntityView<?>> {
-		//
-		// Comparator
-		//
-
-		public int compare(final EntityView<?> view1, final EntityView<?> view2) {
-			int rv;
-
-			rv = view1.getZIndex() - view2.getZIndex();
-
-			if (rv == 0) {
-				final Rectangle area1 = view1.getArea();
-				final Rectangle area2 = view2.getArea();
-
-				rv = (area1.y + area1.height) - (area2.y + area2.height);
-
-				if (rv == 0) {
-					rv = area1.x - area2.x;
-					/*
-					 * Quick workaround to stack items in the same order they
-					 * were added.
-					 *
-					 * TODO: stack items in the same order they were added on server side. 
-					 */
-					if (rv == 0) {
-						rv = view1.getEntity().getID().getObjectID()
-								- view2.getEntity().getID().getObjectID();
-					}
-				}
-			}
-
-			return rv;
-		}
-	}
-
+	
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Just pass it to the ground container
 		ground.dropEntity(entity, amount, point);
@@ -1254,11 +1053,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	public void onZoneUpdate() {
-		// * Update the coloring of the entity views. *
-		for (Entry<IEntity, EntityView<IEntity>> entry : entities.entrySet()) {
-			// initialize() should trigger making a new image
-			entry.getValue().initialize(entry.getKey());
-		}
+		viewManager.resetViews();
 	}
 
 	public void onZoneChange() {
