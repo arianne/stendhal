@@ -57,7 +57,7 @@ public class SignatureVerifier {
 	 *
 	 * @return SignatureVerifier
 	 */
-	public static SignatureVerifier get() {
+	public static synchronized SignatureVerifier get() {
 		if (instance == null) {
 			instance = new SignatureVerifier();
 		}
@@ -86,11 +86,14 @@ public class SignatureVerifier {
 
 			byte[] temp = new byte[1024];
 			int length = 0;
-			while (buf.available() != 0) {
-				length = buf.read(temp);
-				sig.update(temp, 0, length);
+			try {
+				while (buf.available() != 0) {
+					length = buf.read(temp);
+					sig.update(temp, 0, length);
+				}
+			} finally {
+				buf.close();
 			}
-			buf.close();
 
 			boolean isVaild = sig.verify(hexStringToByteArray(signature));
 			System.out.println("Validated " + filename + ": " + isVaild);
