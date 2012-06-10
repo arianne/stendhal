@@ -55,8 +55,11 @@ public class Bootstrap {
 		if (!bootProp.equals(bootPropOrg)) {
 			final String propFile = jarFolder + "jar.properties";
 			final OutputStream os = new FileOutputStream(propFile);
-			bootProp.store(os, "Stendhal Boot Configuration");
-			os.close();
+			try {
+				bootProp.store(os, "Stendhal Boot Configuration");
+			} finally {
+				os.close();
+			}
 		}
 	}
 
@@ -106,9 +109,12 @@ public class Bootstrap {
 			bootProp = new Properties();
 			if (new File(propFile).canRead()) {
 				final InputStream is = new FileInputStream(propFile);
-				bootProp.load(is);
+				try {
+					bootProp.load(is);
+				} finally {
+					is.close();
+				}
 				bootPropOrg = (Properties) bootProp.clone();
-				is.close();
 
 				// get list of .jar-files
 				final String jarNameString = bootProp.getProperty("load-0.95", "");
