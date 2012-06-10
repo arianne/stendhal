@@ -57,17 +57,20 @@ public class Translate {
 
 			// we cannot use Properties.load because that does a) not support unicode and b) splits on the first space
 			Map<String, String> map = new HashMap<String, String>();
-			String line = reader.readLine();
-			while (line != null) {
-				String[] tokens = line.split("=", 2);
-				if (tokens.length != 2) {
-					System.err.println(line + "///" + Arrays.toString(tokens));
-				} else {
-					map.put(tokens[0], tokens[1]);
+			try {
+				String line = reader.readLine();
+				while (line != null) {
+					String[] tokens = line.split("=", 2);
+					if (tokens.length != 2) {
+						System.err.println(line + "///" + Arrays.toString(tokens));
+					} else {
+						map.put(tokens[0], tokens[1]);
+					}
+					line = reader.readLine();
 				}
-				line = reader.readLine();
+			} finally {
+				reader.close();
 			}
-			reader.close();
 			texts.put(language, map);
 		} catch (IOException e) {
 			logger.error(e, e);
