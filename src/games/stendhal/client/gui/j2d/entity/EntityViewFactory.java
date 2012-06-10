@@ -12,10 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.Triple;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.util.HashMap;
@@ -85,18 +83,15 @@ public class EntityViewFactory {
 	public static EntityView<IEntity> create(final IEntity entity) {
 
 		try {
-			final String type = entity.getType();
-
 			// use User2DView for the active player
-			if (type != null && type.equals("player")
-					&& StendhalClient.get().getCharacter() != null) {
-				if (StendhalClient.get().getCharacter().equalsIgnoreCase(entity.getName())) {
-					User2DView user2DView = new User2DView();
-					user2DView.initialize((User) entity);
-					return user2DView;
-				}
+			if (entity.isUser()) {
+				Entity2DView<IEntity> user2DView = new User2DView();
+				user2DView.initialize(entity);
+				return user2DView;
 			}
 
+			final String type = entity.getType();
+			
 			// lookup class
 			String eclass = entity.getEntityClass();
 			String subClass = entity.getEntitySubclass();
