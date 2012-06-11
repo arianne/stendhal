@@ -65,16 +65,12 @@ public abstract class TimedStackableItem extends StackableItem implements
 	}
 
 	public boolean onUsed(final RPEntity user) {
-		RPObject base = this;
 		boolean result = false;
 
 		if (user instanceof Player) {
 			final Player userplayer = (Player) user;
 
-			/* Find the top container */
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
+			RPObject base = getBaseContainer();
 
 			if (user.nextTo((Entity) base)) {
 				if (useItem(userplayer)) {

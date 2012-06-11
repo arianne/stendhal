@@ -1680,7 +1680,7 @@ public class Player extends RPEntity implements UseListener {
 			// do not restore details layer, unless the detail is still present
 			if (originalOutfit.getDetail() > 0) {
 				final Outfit currentOutfit = getOutfit();
-				if (currentOutfit.getDetail() != originalOutfit.getDetail()) {
+				if (!currentOutfit.getDetail().equals(originalOutfit.getDetail())) {
 					originalOutfit.removeDetail();
 				}
 			}

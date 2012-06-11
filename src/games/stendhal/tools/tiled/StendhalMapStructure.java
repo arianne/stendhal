@@ -22,9 +22,6 @@ import java.util.List;
  * 
  */
 public class StendhalMapStructure {
-	/** TMX Filename that contains this map. */
-	String filename; //TODO use filename
-
 	/** Width of the map. */
 	int width;
 
@@ -71,16 +68,6 @@ public class StendhalMapStructure {
 	public void addLayer(final LayerDefinition layer) {
 		layer.setMap(this);
 		layers.add(layer);
-	}
-
-	/**
-	 * Sets the map TMX filename.
-	 * 
-	 * @param filename
-	 *            the map TMX filename
-	 */
-	public void setFilename(final String filename) {
-		this.filename = filename;
 	}
 
 	/**

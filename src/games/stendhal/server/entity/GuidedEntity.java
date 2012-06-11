@@ -258,7 +258,7 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 		double size = getWidth() * getHeight();
 
 		Rectangle2D thisArea = getArea();
-		Rectangle2D otherArea = new Rectangle2D.Double();
+		Rectangle2D otherArea;
 		Rectangle2D intersect = new Rectangle2D.Double();
 		for (final RPObject obj : getZone()) {
 			final Entity entity = (Entity) obj;

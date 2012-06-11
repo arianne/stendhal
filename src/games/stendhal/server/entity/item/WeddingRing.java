@@ -74,11 +74,7 @@ public class WeddingRing extends Ring {
 
 	@Override
 	public boolean onUsed(final RPEntity user) {
-		RPObject base = this;
-		// Find the top container
-		while (base.isContained()) {
-			base = base.getContainer();
-		}
+		RPObject base = getBaseContainer();
 
 		if ((user instanceof Player) && user.nextTo((Entity) base)) {
 			return teleportToSpouse((Player) user);

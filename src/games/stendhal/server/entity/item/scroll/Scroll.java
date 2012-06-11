@@ -56,12 +56,7 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	public final boolean onUsed(final RPEntity user) {
-		RPObject base = this;
-
-		// Find the top container
-		while (base.isContained()) {
-			base = base.getContainer();
-		}
+		RPObject base = getBaseContainer();
 
 		if (user.nextTo((Entity) base)) {
 			// We need to remove the scroll before using it. Makes space in 

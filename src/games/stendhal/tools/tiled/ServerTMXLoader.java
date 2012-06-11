@@ -264,10 +264,7 @@ public class ServerTMXLoader {
 			is = new GZIPInputStream(is);
 		}
 
-		final StendhalMapStructure unmarshalledMap = unmarshal(is);
-		unmarshalledMap.setFilename(filename);
-
-		return unmarshalledMap;
+		return unmarshal(is);
 	}
 
 	public static void main(final String[] args) throws Exception {
