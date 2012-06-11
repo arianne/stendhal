@@ -46,10 +46,24 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	private final Sprite image;
 	
 	/**
+	 * Create the KarmaIndicator instance.
+	 * 
+	 * @return instance
+	 */
+	static synchronized KarmaIndicator create() {
+		if (instance == null) {
+			instance = new KarmaIndicator();
+		} else {
+			throw new IllegalStateException("Instance already created");
+		}
+		
+		return instance;
+	}
+	
+	/**
 	 * Create a new karma indicator.
 	 */
-	public KarmaIndicator() {
-		instance = this;
+	private KarmaIndicator() {
 		setVisible(false);
 		final SpriteStore store = SpriteStore.get();
 		image = store.getSprite(IMAGE_FILE_NAME);
@@ -59,11 +73,15 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	}
 
 	/**
-	 * gets the instance
+	 * Gets the instance. It is invalid to call this method before the indicator
+	 * instance has been initialized with create()
 	 *
 	 * @return KarmaIndicator
 	 */
 	public static KarmaIndicator get() {
+		if (instance == null) {
+			throw new IllegalStateException("KarmaIndicator not initialized");
+		}
 		return instance;
 	}
 
@@ -73,7 +91,7 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	 * 
 	 * @param karma
 	 */
-	public void setValue(double karma) {
+	void setValue(double karma) {
 		this.karma = scale(karma);
 		repaint();
 	}

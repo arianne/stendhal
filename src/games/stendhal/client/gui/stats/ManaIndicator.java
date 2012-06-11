@@ -41,10 +41,24 @@ public class ManaIndicator extends JComponent implements PropertyChangeListener 
 	private final Sprite image;
 	
 	/**
+	 * Create the ManaIndicator instance.
+	 * 
+	 * @return instance
+	 */
+	static synchronized ManaIndicator create() {
+		if (instance == null) {
+			instance = new ManaIndicator();
+		} else {
+			throw new IllegalStateException("Instance already created");
+		}
+		
+		return instance;
+	}
+	
+	/**
 	 * Create a new mana indicator.
 	 */
-	public ManaIndicator() {
-		instance = this;
+	private ManaIndicator() {
 		setVisible(false);
 		final SpriteStore store = SpriteStore.get();
 		image = store.getSprite(IMAGE_FILE_NAME);
@@ -59,6 +73,9 @@ public class ManaIndicator extends JComponent implements PropertyChangeListener 
 	 * @return ManaIndicator
 	 */
 	public static ManaIndicator get() {
+		if (instance == null) {
+			throw new IllegalStateException("ManaIndicator not initialized");
+		}
 		return instance;
 	}
 

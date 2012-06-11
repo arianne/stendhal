@@ -43,12 +43,12 @@ public class StatsPanel extends JPanel {
 		statusIcons = new StatusIconPanel(); 
 		add(statusIcons);
 		
-		karmaIndicator = new KarmaIndicator();
+		karmaIndicator = KarmaIndicator.create();
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		karmaIndicator.setToolTipText("Karma");
 		add(karmaIndicator);
 		
-		manaIndicator = new ManaIndicator();
+		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		manaIndicator.setToolTipText("Mana");
 		add(manaIndicator);
