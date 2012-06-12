@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,8 +17,15 @@ import games.stendhal.client.sprite.Sprite;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * Container sprite for texboxes etc. Keeps track of the time when the sprite
+ * should be removed. Also implements Comparable in a way that more important
+ * sprites can be placed above less important ones.
+ * 
+ * <br>
+ * Note: this class has a natural ordering that is inconsistent with equals.
+ */
 public class RemovableSprite implements Comparable<RemovableSprite> {
-	
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;
 	
 	private final int x;
@@ -26,9 +33,9 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 	private final int y;
 
 	protected final Sprite sprite;
-
+	/** Time after which the sprite should be removed. */
 	protected long removeTime;
-	/** importance of the message to keep it above others */
+	/** Importance of the message to keep it above others. */
 	private int priority;
 
 	/**
@@ -53,18 +60,38 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 		}
 	}
 
+	/**
+	 * Draw the contained sprite.
+	 * 
+	 * @param g graphics
+	 */
 	public void draw(final Graphics g) {
 		sprite.draw(g, x, y);
 	}
 	
+	/**
+	 * Get the area the sprite covers.
+	 * 
+	 * @return sprite area
+	 */
 	public Rectangle getArea() {
 		return new Rectangle(x, y, sprite.getWidth(), sprite.getHeight());
 	}
 
+	/**
+	 * Get the position of the left side of the sprite.
+	 * 
+	 * @return x coordinate
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * Get the position of the top of the sprite.
+	 * 
+	 * @return y coordinate
+	 */
 	public int getY() {
 		return y;
 	}
