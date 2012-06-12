@@ -15,6 +15,8 @@ import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -29,6 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
@@ -73,10 +76,13 @@ public class CreditsDialog extends JDialog {
 
 		this.setTitle("Stendhal Credits");
 		// required on Compiz
-		this.pack(); 
+		this.pack();
 		if (owner != null) {
-			this.setLocation(owner.getX() + 25, owner.getY() + 25);
-			this.setSize(owner.getSize());
+			Dimension size = owner.getSize();
+			size.width -= 50;
+			size.height -= 50;
+			setSize(size);
+			setLocationRelativeTo(owner);
 		} else {
 			this.setLocationByPlatform(true);
 			this.setSize(600, 420);
@@ -94,9 +100,12 @@ public class CreditsDialog extends JDialog {
 			}
 		});
 		owner.setEnabled(false);
-
-		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().setBackground(backgroundColor);
+		Container content = this.getContentPane();
+		if (content instanceof JComponent) {
+			((JComponent) content).setBorder(null);
+		}
+		content.setLayout(new BorderLayout());
+		content.setBackground(backgroundColor);
 
 		// read the credits from an external file because code format gets it
 		// unreadable if inlined
@@ -104,11 +113,10 @@ public class CreditsDialog extends JDialog {
 		sp = new ScrollerPanel(creditsList, textFont, 0, textColor,
 				backgroundColor, 20);
 
-		buttonPane.setOpaque(false);
 		buttonPane.add(closeButton);
 
-		this.getContentPane().add(sp, BorderLayout.CENTER);
-		this.getContentPane().add(buttonPane, BorderLayout.SOUTH);
+		content.add(sp, BorderLayout.CENTER);
+		content.add(buttonPane, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -121,7 +129,7 @@ public class CreditsDialog extends JDialog {
 		final List<String> res = new LinkedList<String>();
 		try {
 			final BufferedReader br = new BufferedReader(new InputStreamReader(
-					url.openStream()));
+					url.openStream(), "UTF-8"));
 			try {
 				String line = br.readLine();
 				while (line != null) {
