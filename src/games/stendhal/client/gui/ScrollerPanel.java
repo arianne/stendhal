@@ -30,7 +30,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
  * ScrollerPanel can be used for displaying a scrolling text (as in movie
  * credits).
  */
-public class ScrollerPanel extends JPanel {
+public class ScrollerPanel extends JComponent {
 
 	private static final long serialVersionUID = -9047582023793318785L;
 
@@ -64,6 +64,8 @@ public class ScrollerPanel extends JPanel {
 	private int lineHeight;
 
 	private boolean scrollingStarted;
+	
+	private GradientPaint gp;
 
 	/**
 	 * creates an ScrollerPane which scrolls the given text and using defaults
@@ -124,6 +126,7 @@ public class ScrollerPanel extends JPanel {
 
 			@Override
 			public void componentResized(final ComponentEvent e) {
+				gp = null;
 				if (!t.isRunning()) {
 					resetTextPos();
 					scrollingStarted = true;
@@ -135,25 +138,36 @@ public class ScrollerPanel extends JPanel {
 	}
 
 	@Override
-	public void paint(final Graphics g) {
-		int width;
+	public void paintComponent(final Graphics g) {
 		if (scrollingStarted) {
-			// super.paint( g );
 			final Graphics2D g2d = (Graphics2D) g;
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 					RenderingHints.VALUE_ANTIALIAS_ON);
 			g2d.setBackground(backgroundColor);
 			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-			final GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
+			if (gp == null) {
+				gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
 					this.getHeight() / 2.f, textColor, true);
+			}
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			final FontMetrics metrics = g2d.getFontMetrics();
 			int i = 0;
 			for (String s : text) {
-				width = metrics.stringWidth(s);
-				g2d.drawString(s, this.getWidth() / 2 - width / 2,
-						textPos + ((metrics.getHeight() + lineSpacing) * i));
+				int width = metrics.stringWidth(s);
+				int height = metrics.getHeight();
+				int startPos = textPos + ((height + lineSpacing) * i);
+				// Speed optimizations. Drawing is ridiculously slow even with
+				// them.
+				if (startPos - height > getHeight()) {
+					// This line, and lines after are not yet visible
+					break;
+				}
+				// Otherwise line already scrolled above the top
+				if (startPos >= 0) {
+					g2d.drawString(s, this.getWidth() / 2 - width / 2, startPos);
+				}
+				
 				++i;
 			}
 		}
