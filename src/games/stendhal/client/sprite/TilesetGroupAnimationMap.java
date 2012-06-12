@@ -273,7 +273,7 @@ public class TilesetGroupAnimationMap {
 	 * @see #clear()
 	 */
 	public void load(final InputStream in) throws IOException {
-		final BufferedReader r = new BufferedReader(new InputStreamReader(in));
+		final BufferedReader r = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 		String line;
 
 		while ((line = r.readLine()) != null) {
