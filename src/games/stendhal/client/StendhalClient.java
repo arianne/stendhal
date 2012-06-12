@@ -13,7 +13,6 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.DataLoader;
@@ -33,6 +32,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -102,6 +102,8 @@ public class StendhalClient extends ClientFramework {
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 	/** The zone currently under loading. */
 	private Zone currentZone;
+	
+	private JFrame splashScreen;
 
 	public static StendhalClient get() {
 		return client;
@@ -380,7 +382,7 @@ public class StendhalClient extends ClientFramework {
 				final CharacterResult result = createCharacter(character, template);
 				if (result.getResult().failed()) {
 					logger.error(result.getResult().getText());
-					JOptionPane.showMessageDialog(StendhalFirstScreen.get(), result.getResult().getText());
+					JOptionPane.showMessageDialog(splashScreen, result.getResult().getText());
 				}
 			} catch (final Exception e) {
 				logger.error(e, e);
@@ -393,8 +395,8 @@ public class StendhalClient extends ClientFramework {
 			try {
 				chooseCharacter(character);
 				stendhal.setDoLogin();
-				if (StendhalFirstScreen.get() != null) {
-					StendhalFirstScreen.get().dispose();
+				if (splashScreen != null) {
+					splashScreen.dispose();
 				}
 			} catch (final Exception e) {
 				logger.error("StendhalClient::onAvailableCharacters", e);
@@ -405,7 +407,7 @@ public class StendhalClient extends ClientFramework {
 		// show character dialog
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new CharacterDialog(characters, StendhalFirstScreen.get());
+				new CharacterDialog(characters, splashScreen);
 			}
 		});
 	}
@@ -563,6 +565,15 @@ public class StendhalClient extends ClientFramework {
 	public void setCharacter(String character) {
 		this.character = character;
 	}
+	
+	/**
+	 * Set the splash screen window. Used for transient windows.
+	 * 
+	 * @param splash first screen window
+	 */
+	public void setSplashScreen(JFrame splash) {
+		splashScreen = splash;
+	}
 
 	public String getAccountUsername() {
 		return userName;
@@ -710,8 +721,7 @@ public class StendhalClient extends ClientFramework {
 		HttpClient httpClient = new HttpClient(url);
 		String message = httpClient.fetchFirstLine();
 		if ((message != null) && (message.trim().length() > 0)) {
-			JOptionPane.showMessageDialog(
-				StendhalFirstScreen.get(),
+			JOptionPane.showMessageDialog(splashScreen,
 				new JLabel(message), "Version Check",
 				JOptionPane.WARNING_MESSAGE);
 		}

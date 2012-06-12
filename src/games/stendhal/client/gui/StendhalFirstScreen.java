@@ -64,8 +64,6 @@ public class StendhalFirstScreen extends JFrame {
 	/** Font used for the html areas */
 	private static final String FONT = "data/gui/" + FONT_NAME + ".ttf";
 
-	private static StendhalFirstScreen instance;
-
 	private final StendhalClient client;
 
 	private final Image background;
@@ -111,15 +109,6 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	/**
-	 * gets the instance of the first screen
-	 *
-	 * @return StendhalFirstScreen
-	 */
-	public static StendhalFirstScreen get() {
-		return instance;
-	}
-
-	/**
 	 * Creates the first screen.
 	 *
 	 * @param client
@@ -128,7 +117,7 @@ public class StendhalFirstScreen extends JFrame {
 	public StendhalFirstScreen(final StendhalClient client) {
 		super(detectScreen());
 		this.client = client;
-		StendhalFirstScreen.instance = this;
+		client.setSplashScreen(this);
 
 		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
 		final ImageIcon imageIcon = new ImageIcon(url);
