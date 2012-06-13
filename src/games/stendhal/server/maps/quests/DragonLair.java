@@ -81,7 +81,7 @@ public class DragonLair extends AbstractQuest {
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK))),
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK, "I think they've had enough excitement for a while.  Come back in"));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK, "I think they've had enough excitement for a while. Come back in"));
 		
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
@@ -138,7 +138,7 @@ public class DragonLair extends AbstractQuest {
 				return res;
 			} 
 			if (isRepeatable(player)) {
-				res.add("Those dragons might needs some fun again, I should visit soon.");
+				res.add("Those dragons might need some fun again, I should visit soon.");
 			} else {
 				res.add("The dragons have had plenty of excitement recently, Wishman won't let me back in yet.");
 			}
