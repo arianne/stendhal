@@ -264,7 +264,7 @@
 
   <creature name="chaos green dragonrider">
     <type class="huge_animal" subclass="chaos_green_dragonrider" tileid="huge_animal.png:3"/>
-    <description></description>
+    <description>You see a Chaos Green Dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back</description>
     <attributes>
       <atk value="867"/>
       <def value="98"/>
