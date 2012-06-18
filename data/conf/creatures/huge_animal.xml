@@ -264,7 +264,7 @@
 
   <creature name="chaos green dragonrider">
     <type class="huge_animal" subclass="chaos_green_dragonrider" tileid="huge_animal.png:3"/>
-    <description>You see a Chaos Green Dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back</description>
+    <description>You see a chaos green dragonrider. Don't misjudge him as to believe it's a normal green dragon, as it is controlled by a mysterious sorcerer seated on his back.</description>
     <attributes>
       <atk value="867"/>
       <def value="98"/>
@@ -331,7 +331,7 @@
   
   <creature name="chaos red dragonrider">
     <type class="huge_animal" subclass="chaos_red_dragonrider" tileid="huge_animal.png:11"/>
-    <description></description>
+    <description>You see a chaos red dragonrider. He might look like a red dragon, but the sorcerer seated on his back guides him to give even more strength out.</description>
     <attributes>
       <atk value="1044"/>
       <def value="107"/>
@@ -366,7 +366,7 @@
   
   <creature name="black death">
     <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
-    <description>You see black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day.</description>
+    <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
     <attributes>
       <atk value="1451"/>
       <def value="154"/>
