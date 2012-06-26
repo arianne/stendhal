@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,11 +56,11 @@ import java.util.Map;
 import java.util.Observer;
 
 import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -602,7 +602,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * returns the nearest enemy, which is reachable.
+	 * Returns the nearest enemy, which is reachable or otherwise attackable.
 	 *
 	 * @param range
 	 *            attack radius
@@ -632,7 +632,8 @@ public class Creature extends NPC {
 			}
 		}
 
-		// now choose the nearest enemy for which there is a path
+		// now choose the nearest enemy for which there is a path, or is
+		// attackable otherwise
 		RPEntity chosen = null;
 		while ((chosen == null) && (distances.size() > 0)) {
 			double shortestDistance = Double.MAX_VALUE;
@@ -646,7 +647,7 @@ public class Creature extends NPC {
 
 			if (shortestDistance >= 1) {
 				final List<Node> path = Path.searchPath(this, chosen, getMovementRange());
-				if ((path == null) || (path.size() == 0)) {
+				if ((path == null) || (path.size() == 0) && !strategy.canAttackNow(this, chosen)) {
 					distances.remove(chosen);
 					chosen = null;
 				} else {
@@ -883,9 +884,22 @@ public class Creature extends NPC {
 		isIdle = false;
 	}
 
+	/**
+	 * Set the fighting strategy used by the creature.
+	 * 
+	 * @param aiProfiles AI profiles to be used when deciding the strategy 
+	 */
 	public void setAttackStrategy(final Map<String, String> aiProfiles) {
 		strategy = AttackStrategyFactory.get(aiProfiles);
-
+	}
+	
+	/**
+	 * Get the fighting strategy used by the creature.
+	 * 
+	 * @return strategy
+	 */
+	public AttackStrategy getAttackStrategy() {
+		return strategy;
 	}
 
 	public void setHealer(final String aiprofile) {
