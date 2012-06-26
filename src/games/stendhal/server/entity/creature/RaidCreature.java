@@ -34,11 +34,24 @@ public class RaidCreature extends Creature {
 	 */
 	public RaidCreature(final Creature copy) {
 		super(copy);
-		
-		// Pity newbies taking part in raids
+		removeAttackWeakestProfile();
+	}
+	
+	/**
+	 * Pity newbies taking part in raids.
+	 */
+	private void removeAttackWeakestProfile() {
 		if (getAIProfiles().containsKey("attack weakest")) {
 			Map<String, String> profiles = new HashMap<String, String>(getAIProfiles());
 			profiles.remove("attack weakest");
+			setAIProfiles(profiles);
+		} else if (getAIProfiles().containsKey("strategy")) {
+			// Replace the attack weakest subprofile with the default profile
+			// (== HandToHand)
+			Map<String, String> profiles = new HashMap<String, String>(getAIProfiles());
+			String desc = profiles.get("strategy");
+			desc = desc.replace("attack weakest", "");
+			profiles.put("strategy", desc);
 			setAIProfiles(profiles);
 		}
 	}
