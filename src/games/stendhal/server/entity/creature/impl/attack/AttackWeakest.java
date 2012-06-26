@@ -24,7 +24,7 @@ import java.util.List;
 public class AttackWeakest extends HandToHand {
 	/**
 	 * Check if the target is something worth attacking.
-	 * (basically a Player of Pet, to be maximally annoying)
+	 * (basically a Player or Pet, to be maximally annoying)
 	 * 
 	 * @param target the target to be checked
 	 * @return <code>true</code> iff the target is a good candidate to be killed

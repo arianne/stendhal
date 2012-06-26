@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,36 +11,28 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.Creature;
+import java.util.HashMap;
+import java.util.Map;
 
-class Gandhi implements AttackStrategy {
-
-	public void attack(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean canAttackNow(final Creature creature) {
-		return false;
-	}
-
-	public void findNewTarget(final Creature creature) {
-		//do nothing
-	}
-
-	public void getBetterAttackPosition(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean hasValidTarget(final Creature creature) {
-		return false;
-	}
-
-	public int getRange() {
-		return 0;
-	}
-
-	public boolean canAttackNow(Creature attacker, RPEntity target) {
-		return false;
+public class PositioningStrategyFactory {
+	private static final PositioningStrategy dual = new DualAttackPositioningStrategy();
+	
+	/**
+	 * Get positioning strategy.
+	 * 
+	 * @param name name of the strategy
+	 * @param param parameters to the strategy, or empty string if none provided
+	 * 
+	 * @return positioning strategy
+	 */
+	static final PositioningStrategy get(final String name, final String param) {
+		if ("dual attack".equals(name)) {
+			return dual;
+		}
+		
+		// Fall back to complete strategy implementations
+		Map<String, String> aiProfiles = new HashMap<String, String>();
+		aiProfiles.put(name, param);
+		return AttackStrategyFactory.get(aiProfiles);
 	}
 }

@@ -18,7 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.Entity;
 
-public class RangeAttack implements AttackStrategy {
+class RangeAttack implements AttackStrategy {
 	/** Maximum range at which the archer will consider a target valid, squared. */
 	private static final int MAX_RANGE_SQUARED = 144;
 	/** Archer range, if not specified otherwise. */
@@ -36,12 +36,15 @@ public class RangeAttack implements AttackStrategy {
 			creature.tryToPoison();
 		}
 	}
-
+	
 	public boolean canAttackNow(final Creature creature) {
-		if (creature.getAttackTarget() != null) {
+		return canAttackNow(creature, creature.getAttackTarget());
+	}
 
-			return !((creature.squaredDistance(creature.getAttackTarget()) > range * range) || creature.getZone().collidesOnLine(creature.getX(),
-					creature.getY(), creature.getAttackTarget().getX(), creature.getAttackTarget().getY()));
+	public boolean canAttackNow(final Creature creature, RPEntity target) {
+		if (target != null) {
+			return !((creature.squaredDistance(target) > range * range) || creature.getZone().collidesOnLine(creature.getX(),
+					creature.getY(), target.getX(), target.getY()));
 		} else {
 			return false;
 		}

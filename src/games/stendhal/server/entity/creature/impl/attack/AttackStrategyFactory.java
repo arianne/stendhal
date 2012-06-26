@@ -34,6 +34,8 @@ public class AttackStrategyFactory {
 			return STUPID_COWARD;
 		} else if (aiProfiles.containsKey("attack weakest")) {
 			return ATTACK_WEAKEST;
+		} else if (aiProfiles.containsKey("strategy")) {
+			return CompoundAttackStrategy.create(aiProfiles.get("strategy"));
 		}
 
 		return HAND_TO_HAND;

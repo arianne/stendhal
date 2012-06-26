@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
 /**
@@ -19,32 +20,7 @@ import games.stendhal.server.entity.creature.Creature;
  *
  * @author durkham
  */
-public interface AttackStrategy {
-
-	/**
-	 * Does the creature have a valid target at the moment?
-	 *
-	 * @param creature Creature which is attacking
-	 * @return true, if it has a valid target; false otherwise
-	 */
-	public boolean hasValidTarget(Creature creature);
-
-	/**
-	 * find a new target.
-	 *
-	 * @param creature creature doing the attack
-	 */
-	public void findNewTarget(Creature creature);
-
-	/**
-	 * Find a better position to do the attack, for example melees 
-	 * should walk closelyto their target but archers should stay away.
-	 * 
-	 * @param creature creature doing the attack
-	 */
-	// TODO: rename void-method not to start with get
-	public void getBetterAttackPosition(Creature creature);
-
+public interface AttackStrategy extends PositioningStrategy, TargetSelectionStrategy {
 	/**
 	 * Can the specified creature do an attack now?
 	 *
@@ -52,6 +28,16 @@ public interface AttackStrategy {
 	 * @return true, if it can attack, false otherwise
 	 */
 	public boolean canAttackNow(Creature creature);
+	
+	/**
+	 * Can the specified creature do an attack against a specified target?
+	 *
+	 * @param attacker creature doing the attack
+	 * @param target potential target
+	 * 
+	 * @return true, if it can attack, false otherwise
+	 */
+	boolean canAttackNow(Creature attacker, RPEntity target);
 
 	/**
 	 * attacks the target.

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,36 +11,24 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
-class Gandhi implements AttackStrategy {
+/**
+ * Strategy for choosing from the available targets, or switching targets.
+ */
+interface TargetSelectionStrategy {
+	/**
+	 * Does the creature have a valid target at the moment?
+	 *
+	 * @param creature Creature which is attacking
+	 * @return true, if it has a valid target; false otherwise
+	 */
+	public boolean hasValidTarget(Creature creature);
 
-	public void attack(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean canAttackNow(final Creature creature) {
-		return false;
-	}
-
-	public void findNewTarget(final Creature creature) {
-		//do nothing
-	}
-
-	public void getBetterAttackPosition(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean hasValidTarget(final Creature creature) {
-		return false;
-	}
-
-	public int getRange() {
-		return 0;
-	}
-
-	public boolean canAttackNow(Creature attacker, RPEntity target) {
-		return false;
-	}
+	/**
+	 * find a new target.
+	 *
+	 * @param creature creature doing the attack
+	 */
+	public void findNewTarget(Creature creature);
 }

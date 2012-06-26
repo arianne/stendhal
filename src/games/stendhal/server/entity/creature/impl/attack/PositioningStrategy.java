@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,36 +11,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
-class Gandhi implements AttackStrategy {
-
-	public void attack(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean canAttackNow(final Creature creature) {
-		return false;
-	}
-
-	public void findNewTarget(final Creature creature) {
-		//do nothing
-	}
-
-	public void getBetterAttackPosition(final Creature creature) {
-		// do nothing
-	}
-
-	public boolean hasValidTarget(final Creature creature) {
-		return false;
-	}
-
-	public int getRange() {
-		return 0;
-	}
-
-	public boolean canAttackNow(Creature attacker, RPEntity target) {
-		return false;
-	}
+interface PositioningStrategy {
+	/**
+	 * Find a better position to do the attack, for example melees 
+	 * should walk closelyto their target but archers should stay away.
+	 * 
+	 * @param creature creature doing the attack
+	 */
+	// TODO: rename void-method not to start with get
+	void getBetterAttackPosition(Creature creature); 
 }

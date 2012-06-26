@@ -28,11 +28,14 @@ class HandToHand implements AttackStrategy {
 	}
 
 	public boolean canAttackNow(final Creature creature) {
-		if (creature.getAttackTarget() != null) {
-			return creature.squaredDistance(creature.getAttackTarget()) < 1;
-		} else {
-			return false;
+		return canAttackNow(creature, creature.getAttackTarget());
+	}
+	
+	public boolean canAttackNow(Creature attacker, RPEntity target) {
+		if (target != null) {
+			return attacker.squaredDistance(target) < 1;
 		}
+		return false;
 	}
 
 	public void findNewTarget(final Creature creature) {
