@@ -960,8 +960,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return true if there is a collision
 	 */
 	public boolean collidesOnLine(final int x1, final int y1, final int x2, final int y2) {
-
-		final Vector<Point> points = Line.renderLine(x1, y1, x2, y2);
+		Vector<Point> points;
+		// Always draw the line to the same direction, so that if A to B
+		// collides, then so does B to A
+		if ((x1 < x2) || ((x1 == x2) && (y1 < y2))) {
+			points = Line.renderLine(x1, y1, x2, y2);
+		} else {
+			points = Line.renderLine(x2, y2, x1, y1);
+		}
 		for (final Point point : points) {
 			if (collides((int) point.getX(), (int) point.getY())) {
 				return true;
