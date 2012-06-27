@@ -70,7 +70,8 @@ public class AttackWeakest extends HandToHand {
 				continue;
 			}
 
-			if (creature.nextTo(enemy) && !enemy.isInvisibleToCreatures()) {
+			if (creature.getAttackStrategy().canAttackNow(creature, enemy)
+					&& !enemy.isInvisibleToCreatures()) {
 				/*
 				 * Use level as an approximation of the strength. Prefer keeping
 				 * the current target if the enemies are equally strong.
