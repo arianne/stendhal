@@ -296,7 +296,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="strategy" params="archer(5),,dual attack"/>
+      <profile name="strategy" params="archer(9),,dual attack"/>
     </ai>
   </creature>
   
@@ -363,7 +363,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="10,50"/>
       <profile name="patrolling"/>
-      <profile name="strategy" params="archer,,dual attack"/>
+      <profile name="strategy" params="archer(9),,dual attack"/>
     </ai>
   </creature>
   
