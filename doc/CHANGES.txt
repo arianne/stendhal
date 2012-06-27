@@ -11,6 +11,7 @@
 - Monogenes made his way next to the bird station in Semos city
 - Users can grab items bound to them even if they are under another player
 - Player bound items do not move under pushed player, unless they belong to the said player
+- Mixed creature fighting profiles. Used mainly for dragons
 
 *other*
 - added /profile <name> to open the webprofile of a character
@@ -26,6 +27,7 @@
 - new images for cherub and golden trees
 - users can reorder items in bag and chests
 - prefer user owned items when trying dragging from under other players
+- added a new outfit
 
 *note to forks*
 - UpdateSigner now looks for a parameter keystore.update-alias instead of keystore.alias
