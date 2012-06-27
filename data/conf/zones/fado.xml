@@ -861,7 +861,6 @@ For example say:  11  if you want the room called Water of Love.
     <configurator class-name="games.stendhal.server.maps.fado.forest.OldWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.WitchNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.ItemsOnTable" />
-    <configurator class-name="games.stendhal.server.maps.fado.forest.MeatAndFishSmokerNPC" />
  
   	<portal x="53" y="26" ref="imorgens_house_entrance">
         <destination zone="int_imorgens_house" ref="entrance"/>
