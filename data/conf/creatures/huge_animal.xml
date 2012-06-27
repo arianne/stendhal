@@ -32,7 +32,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-   	  <profile name="strategy" params="archer(5),attack weakest,dual attack"/>
+   	  <profile name="attack weakest"/>
     </ai>
   </creature>
 
