@@ -36,15 +36,15 @@ public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, I am so excited about the magical #maze!");
-				addHelp("If you get tired, you'll have to log off to back to #Haizen.");
+				addHelp("If you get tired, you'll have to log off to get back to #Haizen.");
 				addReply("maze", "I'm afraid you will lose your way, but there are #scrolls for you to find.");
 				addReply("scrolls", "You only have ten minutes to pick up the scrolls in the #maze.");
 				addQuest("I am asking players to complete the #maze. Haizen will then make me his #assistant.");
-				addReply("assistant", "On day, I may learn how to use magic.");
+				addReply("assistant", "One day, I may learn how to use magic.");
 				addReply("Haizen", "He is teaching me about magic.");
 				addOffer("I can offer you some #advice.");
 				addReply("advice", "It would be helpful to look upon the mini map often.");
-				addJob("I am hopefully going to be Haizens #assistant soon.");
+				addJob("I am hoping to be Haizens #assistant soon.");
 				addGoodbye("Thank you and have a nice day.");
 			}
 
