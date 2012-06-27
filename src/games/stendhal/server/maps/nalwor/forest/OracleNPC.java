@@ -53,7 +53,7 @@ public class OracleNPC implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 						null,
 						new SayUnstartedQuestDescriptionFromNPCNameAction(regions));
-				addQuest("There are citizens nearby in " + Grammar.enumerateCollection(regions) + " who could need #help from you.");
+				addQuest("There are citizens nearby in " + Grammar.enumerateCollection(regions) + " who could need #help from adventurers.");
 				addJob("I'm just wandering around here. It feels somehow magical here.");
 				addOffer("Just like my #sisters, I can #help you #help others.");
 				addReply("sisters", "My sisters live far away. Find them to learn how to #help those nearest them. Like me they each have the #name of a flower.");
