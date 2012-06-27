@@ -144,7 +144,7 @@ public class TellAction implements ActionListener {
 		receiver.sendPrivateText(NotificationType.PRIVMSG, message);
 
 		if (!senderName.equals(receiverName)) {
-			player.sendPrivateText("You tell " + receiverName + ": " + text);
+			player.sendPrivateText(NotificationType.PRIVMSG, "You tell " + receiverName + ": " + text);
 		}
 
 		receiver.setLastPrivateChatter(senderName);
