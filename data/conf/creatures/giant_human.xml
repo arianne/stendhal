@@ -257,7 +257,7 @@
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="attack weakest"/>
+      <profile name="strategy" params="archer,attack weakest,dual attack"/>
     </ai>
   </creature>
 
