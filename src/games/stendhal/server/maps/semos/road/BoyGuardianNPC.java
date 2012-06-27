@@ -54,22 +54,22 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "Hey you! Take care, you are leaving the city now! ";
 						if (player.getLevel() < 15) {
-							reply += "Always watch out for animals who might attack you and other evil guys who walk around. Better take some food or drinks with you!";
+							reply += "Look out for animals who might attack you and other enemies who walk around. Take some food or drinks with you!";
 						} else {
-							reply += "Oh I see you are mighty and brave already! Have fun :)";
+							reply += "Oh, I see you are mighty and brave already! Have fun :)";
 						}
 						raiser.say(reply);
 					}
 				});
-				addJob("Ohh my job is it to watch out for baaad creatures! I got that special #duty by my parents!");
+				addJob("My job is to watch out for baaad creatures! My parents gave me that special #duty!");
 				addReply("duty", "Yes, a really special and important one!");
-				addHelp("My daddy always tells me to #sneak around through forests which aren't known to me... And he said that I should always take something to #eat #and #drink with me for being save!");
-				addReply("sneak", "Yes if you want to be a warrior like I want to be, you have to work quiet and undetected!");
-				addReply(Arrays.asList("eat","drink","eat and drink"), "Leander, the Semos baker, makes some really tasty sandwiches, mom always buys them there and his bread is yummi, too! Not sure about drinks, maybe you can ask #Carmen or #Margaret?");
-				addReply("Carmen", "She is a famous healer in Semos city. Maybe you saw her on your way from the village into the city :)");
-				addReply("Margaret", "She works in the tavern but I am not allowed to go there without my parents...");
-				addQuest("I'm on a mission :) Watching out for bad bad guys and warn people! But I have nothing to do for you...");
-				addGoodbye("Shhhhh don't talk too loud! Bye and take care!");
+				addHelp("My daddy always tells me to #sneak around in forests which aren't familiar to me... And he said that I should always take something to #eat #and #drink with me, to be on the safe side!");
+				addReply("sneak", "Yes, if you want to be a warrior like I want to be, you have to move quietly!");
+				addReply(Arrays.asList("eat","drink","eat and drink"), "Leander, the Semos baker, makes some really tasty sandwiches, mom always buys them there and his bread is yummi, too! I'm not sure about drinks, maybe you can ask #Carmen or #Margaret?");
+				addReply("Carmen", "Carmen is a famous healer in Semos city. Maybe you spotted her on your way from the village into the city :)");
+				addReply("Margaret", "Margaret works in the tavern but I am not allowed to go there without my parents...");
+				addQuest("I'm on a mission :) I watch out for bad bad guys and warn people, to #help them! But I don't need anything from you...");
+				addGoodbye("Shhhhh, don't talk too loud! Bye and take care!");
 			}
 			
 			protected void onGoodbye(RPEntity player) {
@@ -88,7 +88,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 		});
 
 		npc.setEntityClass("boyguardnpc");
-		npc.setDescription("You see Will. He wants to be a professional city guard in his future.");
+		npc.setDescription("You see Will. He wants to be a professional city guard when he grows up.");
 		npc.setPosition(6, 43);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
