@@ -3,15 +3,17 @@
 
 1.01
 *world*
-- added a greeter NPCs before Haizen's hut (inactive)
-- introducing Will to Semos road/exit of Semos city 
+- Venethiel teaches players about Haizen's maze
+- Will warns players leaving Semos city 
 - reworked Fado hotel restaurant 
 - more creature descriptions added
-- moving Semos city wall into the city
-- Monogenes made his way next to the bird station in Semos city
+- moved Semos city wall into the city
+- Monogenes is now next to the bird station in Semos city
 - Users can grab items bound to them even if they are under another player
 - Player bound items do not move under pushed player, unless they belong to the said player
-- Mixed creature fighting profiles. Used mainly for dragons
+- Mixed creature fighting profiles. Used mainly for dragons, who will attack at a distance if they can't get close to player
+- killer bees are a new creature in fado forest
+- Zinnia, Calla, Lobelia and Periwinkle hint which nearby quests you still need to start (that fit your level) 
 
 *other*
 - added /profile <name> to open the webprofile of a character
