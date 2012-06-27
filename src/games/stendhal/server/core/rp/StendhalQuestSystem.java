@@ -50,7 +50,7 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param player
 	 */
 	public static void updatePlayerQuests(Player player) {
@@ -124,7 +124,6 @@ public class StendhalQuestSystem {
 		loadQuest(new Marriage());
 		loadQuest(new Maze());
 		loadQuest(new McPeglegIOU());
-		loadQuest(new MealForGroongo());
 		loadQuest(new MeetBunny());
 		loadQuest(new MedicineForTad());
 		loadQuest(new MeetHackim());
@@ -459,7 +458,7 @@ public class StendhalQuestSystem {
 		}
 		return res;
 	}
-	
+
 
 
 	/**
