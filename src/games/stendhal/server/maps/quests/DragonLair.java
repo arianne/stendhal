@@ -87,7 +87,7 @@ public class DragonLair extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, 
 				new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new TimePassedCondition(QUEST_SLOT, 1, MathHelper.MINUTES_IN_ONE_WEEK)),
 				ConversationStates.QUEST_OFFERED, 
-				"Would you like to visit our dragons again?",
+				"Be warned, the dragons have started breathing fire! Anyway, would you like to visit our dragons again?",
 				null);
 		
 		// shouldn't happen

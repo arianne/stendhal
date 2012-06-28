@@ -113,7 +113,7 @@ public class DragonLairTest {
 		en.step(player, "hi");
 		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
-		assertEquals("Would you like to visit our dragons again?", getReply(npc));
+		assertEquals("Be warned, the dragons have started breathing fire! Anyway, would you like to visit our dragons again?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Ok, but our dragons will be sorry you didn't stop in for a visit.", getReply(npc));
 		en.step(player, "bye");
