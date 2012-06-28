@@ -93,6 +93,8 @@ import org.apache.log4j.Logger;
 public class j2DClient implements UserInterface {
 	/** Scrolling speed when using the mouse wheel. */
 	private static final int SCROLLING_SPEED = 8;
+	/** Background color of the private chat tab. Light blue. */
+	private static final String PRIVATE_TAB_COLOR = "0xdcdcff";
 
 	/**
 	 * A shared [singleton] copy.
@@ -1093,7 +1095,7 @@ public class j2DClient implements UserInterface {
 		 * Give it a different background color to make it different from the
 		 * main chat log.
 		 */
-		edit.setDefaultBackground(new Color(200, 200, 255));
+		edit.setDefaultBackground(Color.decode(PRIVATE_TAB_COLOR));
 		list.add(edit);
 		/*
 		 * Types shown by default in the private/group tab. Admin messages
