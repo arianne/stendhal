@@ -24,16 +24,20 @@ import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 /**
  * Casts a spell for a player at the given target
- * 
+ *
  * @author madmetzger
  */
 public class CastSpellAction implements ActionListener {
-	
+
 	public static void register() {
 		CommandCenter.register(CASTSPELL, new CastSpellAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
+		if (!Boolean.parseBoolean(System.getProperty("stendhal.testserver", "false"))) {
+			player.sendPrivateText("This experimental feature is not active.");
+			return;
+		}
 		//base object is always the player sending the action
 		action.put("baseobject", player.getID().getObjectID());
 		Entity target = EntityHelper.entityFromTargetName(action.get(TARGET), player);
