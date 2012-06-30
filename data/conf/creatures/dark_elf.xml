@@ -206,7 +206,7 @@
   
   <creature name="dark elf general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
-    <description></description>
+    <description>You see a Dark Elf General. It is commanding the evil troops of Nalwor Caves against intruders.</description>
     <attributes>
       <atk value="515"/>
       <def value="92"/>
