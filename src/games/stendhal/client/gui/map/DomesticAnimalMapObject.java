@@ -34,8 +34,8 @@ public class DomesticAnimalMapObject extends MovingMapObject {
 	public void draw(final Graphics g, final int scale) {
 		// we check this here rather than in the MapPanel so that any changes to the user are refreshed (e.g. disowning pet)
 		User user = User.get();
-		if ((user != null) && (user.hasPet() && user.getPetID() == domesticanimal.getObjectID())
-				|| (user.hasSheep() && user.getSheepID() == domesticanimal.getObjectID())) {
+		if ((user != null) && ((user.hasPet() && user.getPetID() == domesticanimal.getObjectID())
+				|| (user.hasSheep() && user.getSheepID() == domesticanimal.getObjectID()))) {
 			draw(g, scale, drawColor);
 		}
 	}
