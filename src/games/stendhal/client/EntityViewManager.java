@@ -75,12 +75,6 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 		}
 	};
 
-	private final Runnable viewCleaner = new Runnable() {
-		public void run() {
-			views.clear();
-		}
-	};
-
 	/**
 	 * Add an entity. Must be called only from the game loop thread.
 	 * 
@@ -107,14 +101,6 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 		if ((added.size() % QUEUE_PROCESS_FREQUENCY) == 0) {
 			SwingUtilities.invokeLater(queueCleaner);
 		}
-	}
-
-	/**
-	 * Clear entity view list.
-	 */
-	void clear() {
-		// This gets called from the game loop thread.
-		SwingUtilities.invokeLater(viewCleaner);
 	}
 
 	/**

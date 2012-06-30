@@ -791,7 +791,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private void removeAllObjects() {
 		logger.debug("CLEANING screen object list");
-		viewManager.clear();
 		texts.clear();
 		textsToRemove.clear();
 		// staticSprites contents are not zone specific, so don't clear those
