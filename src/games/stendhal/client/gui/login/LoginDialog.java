@@ -95,14 +95,11 @@ public class LoginDialog extends JDialog {
 	// End of variables declaration
 	private final StendhalClient client;
 
-	private final Frame owner;
-
 	private ProgressBar progressBar;
 
 	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
 		this.client = client;
-		this.owner = owner;
 		initializeComponent();
 		WindowUtils.closeOnEscape(this);
 	}
@@ -111,10 +108,10 @@ public class LoginDialog extends JDialog {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (owner == null) {
+				if (getOwner() == null) {
 					System.exit(0);
 				}
-				owner.setEnabled(true);
+				getOwner().setEnabled(true);
 				dispose();
 			}
 		});
@@ -294,9 +291,9 @@ public class LoginDialog extends JDialog {
 
 		this.pack();
 		usernameField.requestFocusInWindow();
-		if (owner != null) {
-			owner.setEnabled(false);
-			this.setLocationRelativeTo(owner);
+		if (getOwner() != null) {
+			getOwner().setEnabled(false);
+			this.setLocationRelativeTo(getOwner());
 		}
 	}
 
