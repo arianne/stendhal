@@ -23,6 +23,7 @@ import games.stendhal.client.update.ClientGameConfiguration;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -76,14 +77,12 @@ public class CreateAccountDialog extends JDialog {
 
 	// End of variables declaration
 	private StendhalClient client;
-	private Frame owner;
 	private String badEmailTitle, badEmailReason, badPasswordReason;
 
 	public CreateAccountDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
 		this.client = client;
-		this.owner = owner;
-		initializeComponent();
+		initializeComponent(owner);
 
 		WindowUtils.closeOnEscape(this);
 		this.setVisible(true);
@@ -91,10 +90,10 @@ public class CreateAccountDialog extends JDialog {
 
 	CreateAccountDialog() {
 		super();
-		initializeComponent();
+		initializeComponent(null);
 	}
 
-	private void initializeComponent() {
+	private void initializeComponent(final Frame owner) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -232,7 +231,7 @@ public class CreateAccountDialog extends JDialog {
 		try {
 			port = Integer.parseInt(serverPortField.getText());
 		} catch (final Exception ex) {
-			JOptionPane.showMessageDialog(owner,
+			JOptionPane.showMessageDialog(getOwner(),
 					"That is not a valid port number. Please try again.",
 					"Invalid Port", JOptionPane.WARNING_MESSAGE);
 			return;
@@ -260,7 +259,7 @@ public class CreateAccountDialog extends JDialog {
 					progressBar.cancel(); 
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
-							owner,
+							getOwner(),
 							"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, " +
 							"you may have entered its name and port number incorrectly.");
 
@@ -268,7 +267,7 @@ public class CreateAccountDialog extends JDialog {
 
 					return;
 				}
-
+				final Window owner = getOwner();
 				try {
 					final AccountResult result = client.createAccount(
 							accountUsername, password, email);
@@ -354,6 +353,7 @@ public class CreateAccountDialog extends JDialog {
 		final String password = new String(passwordField.getPassword());
 		final String passwordretype = new String(
 				passwordretypeField.getPassword());
+		final Window owner = getOwner();
 		if (!password.equals(passwordretype)) {
 			JOptionPane.showMessageDialog(owner,
 					"The passwords do not match. Please retype both.",
@@ -513,7 +513,7 @@ public class CreateAccountDialog extends JDialog {
 		} else {
 			final String text = "The password you provided is too short. It must be at least 6 characters long.";
 			if (isVisible()) {
-				JOptionPane.showMessageDialog(owner, text);
+				JOptionPane.showMessageDialog(getOwner(), text);
 			} else {
 				logger.warn(text);
 			}

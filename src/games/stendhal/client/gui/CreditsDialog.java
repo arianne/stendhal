@@ -46,8 +46,6 @@ public class CreditsDialog extends JDialog {
 
 	private static final Logger logger = Logger.getLogger(CreditsDialog.class);
 
-	private final Frame owner;
-
 	private ScrollerPanel sp;
 
 	private final JPanel buttonPane = new JPanel();
@@ -68,8 +66,7 @@ public class CreditsDialog extends JDialog {
 	 */
 	public CreditsDialog(final Frame owner) {
 		super(owner, true);
-		this.owner = owner;
-		initGUI();
+		initGUI(owner);
 		logger.debug("about dialog initialized");
 		eventHandling();
 		logger.debug("about dialog event handling ready");
@@ -91,7 +88,7 @@ public class CreditsDialog extends JDialog {
 		this.setVisible(true);
 	}
 
-	private void initGUI() {
+	private void initGUI(final Frame owner) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -170,7 +167,9 @@ public class CreditsDialog extends JDialog {
 	protected void exit() {
 		sp.stop();
 		this.setVisible(false);
-		owner.setEnabled(true);
+		if (getOwner() != null) {
+			getOwner().setEnabled(true);
+		}
 		this.dispose();
 		logger.debug("about dialog closed");
 	}

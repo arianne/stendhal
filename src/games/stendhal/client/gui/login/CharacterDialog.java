@@ -84,8 +84,6 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	/** Area containing buttons for each character */
 	private final JComponent characterPanel;
 	
-	private JFrame owner;
-	
 	/**
 	 * Create a new <code>CharacterDialog</code>.
 	 * 
@@ -95,7 +93,6 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 */
 	public CharacterDialog(final Map<String, RPObject> characters, JFrame owner) {
 		super(owner);
-		this.owner = owner;
 		setTitle("Choose character");
 		
 		this.addWindowListener(new WindowAdapter() {
@@ -267,10 +264,10 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 * Called when the window is closed or the exit button is pressed.
 	 */
 	private void onClose() {
-		if (owner == null) {
+		if (getOwner() == null) {
 			System.exit(0);
 		}
-		owner.setEnabled(true);
+		getOwner().setEnabled(true);
 		this.setVisible(false);
 		dispose();
 	}
@@ -284,8 +281,8 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		try {
 			StendhalClient.get().chooseCharacter(character);
 			setVisible(false);
-			if (owner != null) {
-				owner.dispose();
+			if (getOwner() != null) {
+				getOwner().dispose();
 			}
 			stendhal.setDoLogin();
 			dispose();
@@ -313,9 +310,9 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		JOptionPane.showMessageDialog(
 				this, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
 
-		if (owner != null) {
+		if (getOwner() != null) {
 			setVisible(false);
-			owner.setEnabled(true);
+			getOwner().setEnabled(true);
 			dispose();
 		} else {
 			// Hack for non interactive login
