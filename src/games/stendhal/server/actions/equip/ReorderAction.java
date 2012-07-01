@@ -91,6 +91,9 @@ public class ReorderAction implements ActionListener {
 	 * 	reordering, otherwise <code>false</code>
 	 */
 	private boolean mayAccess(Player player, Entity entity, RPAction action) {
+		if (entity == null) {
+			return false;
+		}
 		RPObject object = entity.getContainer();
 		if (object == null) {
 			return false;
