@@ -17,63 +17,45 @@ import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-import javax.swing.SwingUtilities;
+import org.apache.log4j.Logger;
 
 /**
  * Manager for EntityViews. Several methods specify from which threads they may
  * be called. The manager takes care of synchronizing the relevant data between
  * those.
  */
-class EntityViewManager implements Iterable<EntityView<IEntity>> {
-	/**
-	 * How long the added/removed queues may grow before requesting processing
-	 * them from the EntityViewMaganer. Normally they get processed when the
-	 * views are sorted, but that does not happen if the client is minimized.
-	 */
-	private static final int QUEUE_PROCESS_FREQUENCY = 100;
-
+class EntityViewManager{
+	private static final Logger logger = Logger.getLogger(EntityViewManager.class);
+	
 	/**
 	 * Comparator used to sort entities to display.
 	 */
 	private static final EntityViewComparator entityViewComparator = new EntityViewComparator();
 
 	/**
-	 * The entity views. Must be modified only in the even dispatch thread.
+	 * The entity views. Modified in the game loop and read in the EDT.
+	 * Remember to synchronize.
 	 */
 	private final List<EntityView<IEntity>> views = new ArrayList<EntityView<IEntity>>();
 
 	/**
-	 * The entity to view map. Must be modified only in the game loop thread.
+	 * The entity to view map. May be accessed only in the game loop thread.
 	 */
 	private final Map<IEntity, EntityView<IEntity>> entities = new HashMap<IEntity, EntityView<IEntity>>();
 
-	/** EntityViews waiting to be removed. */
-	private final Queue<EntityView<IEntity>> removed = new ConcurrentLinkedQueue<EntityView<IEntity>>();
-
-	/** EntityViews waiting to be added. */
-	private final Queue<EntityView<IEntity>> added = new ConcurrentLinkedQueue<EntityView<IEntity>>();
-
 	/** User name. Used for grabbing user owned items hack. */
 	private final String userName = StendhalClient.get().getCharacter();
-
-	private final Runnable queueCleaner = new Runnable() {
-		public void run() {
-			processQueues();
-		}
-	};
 
 	/**
 	 * Add an entity. Must be called only from the game loop thread.
@@ -97,9 +79,8 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 	 * @param view
 	 */
 	private void addEntityView(EntityView<IEntity> view) {
-		added.add(view);
-		if ((added.size() % QUEUE_PROCESS_FREQUENCY) == 0) {
-			SwingUtilities.invokeLater(queueCleaner);
+		synchronized(views) {
+			views.add(view);
 		}
 	}
 
@@ -160,43 +141,45 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 	private EntityView<IEntity> getOccupyingEntityViewAt(final double x,
 			final double y, boolean movable) {
 		ListIterator<EntityView<IEntity>> it;
-
-		it = views.listIterator(views.size());
-
-		// A hack to grab bound items if they are under another player
-		boolean deepFind = false;
 		EntityView<IEntity> foundEntity = null;
 
-		while (it.hasPrevious()) {
-			final EntityView<IEntity> view = it.previous();
-			IEntity entity = view.getEntity();
+		synchronized (views) {
+			it = views.listIterator(views.size());
 
-			if (movable && (entity instanceof Player)
-					&& (!((Player) entity).isUser())
-					&& entity.getArea().contains(x, y)) {
-				// Looking for a moveable entity under another player. Try to
-				// find an item belonging to the user
-				deepFind = true;
-			}
+			// A hack to grab bound items if they are under another player
+			boolean deepFind = false;
 
-			if (!movable || view.isMovable()) {
-				if (entity.getArea().contains(x, y)) {
-					if (deepFind) {
-						if (foundEntity == null) {
-							// Store the first candidate in case we do not
-							// find bound items
-							foundEntity = view;
-						}
-						if (entity instanceof Item) {
-							if (userName.equals(entity.getRPObject().get(
-									"bound"))) {
-								// Found an item bound to the user. This is
-								// what we want to grab.
-								return view;
+			while (it.hasPrevious()) {
+				final EntityView<IEntity> view = it.previous();
+				IEntity entity = view.getEntity();
+
+				if (movable && (entity instanceof Player)
+						&& (!((Player) entity).isUser())
+						&& entity.getArea().contains(x, y)) {
+					// Looking for a movable entity under another player. Try to
+					// find an item belonging to the user
+					deepFind = true;
+				}
+
+				if (!movable || view.isMovable()) {
+					if (entity.getArea().contains(x, y)) {
+						if (deepFind) {
+							if (foundEntity == null) {
+								// Store the first candidate in case we do not
+								// find bound items
+								foundEntity = view;
 							}
+							if (entity instanceof Item) {
+								if (userName.equals(entity.getRPObject().get(
+								"bound"))) {
+									// Found an item bound to the user. This is
+									// what we want to grab.
+									return view;
+								}
+							}
+						} else {
+							return view;
 						}
-					} else {
-						return view;
 					}
 				}
 			}
@@ -216,61 +199,21 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 	 */
 	private EntityView<IEntity> getVisibleEntityViewAt(final int sx,
 			final int sy, boolean movable) {
-		ListIterator<EntityView<IEntity>> it = views.listIterator(views.size());
+		synchronized (views) {
+			ListIterator<EntityView<IEntity>> it = views.listIterator(views.size());
 
-		while (it.hasPrevious()) {
-			final EntityView<IEntity> view = it.previous();
+			while (it.hasPrevious()) {
+				final EntityView<IEntity> view = it.previous();
 
-			if (view.getArea().contains(sx, sy)) {
-				if (!movable || view.isMovable()) {
-					return view;
+				if (view.getArea().contains(sx, sy)) {
+					if (!movable || view.isMovable()) {
+						return view;
+					}
 				}
 			}
 		}
 
 		return null;
-	}
-
-	/**
-	 * Get EntityView iterator. This must be called only from the event dispatch
-	 * thread. To have an up to date iterator, sort() must have been called at
-	 * an appropriate point before retrieving the iterator.
-	 */
-	public Iterator<EntityView<IEntity>> iterator() {
-		return views.iterator();
-	}
-
-	/**
-	 * Process removed and added view queues. Must be called only from the EDT.
-	 */
-	private void processQueues() {
-		/*
-		 * Grab a snapshot of removed entities before processing added, to avoid
-		 * a situation where an entity remove gets processed before the entity
-		 * is added, leaving it as a ghost.
-		 */
-		Object[] toRemove = null;
-		int removedSize = removed.size();
-		if (removedSize > 0) {
-			toRemove = new Object[removedSize];
-			for (int i = 0; i < removedSize; i++) {
-				EntityView<IEntity> view = removed.poll();
-				view.release();
-				toRemove[i] = view;
-			}
-			// There may be more now, but they get removed next time
-		}
-
-		EntityView<IEntity> toAdd = added.poll();
-		while (toAdd != null) {
-			views.add(toAdd);
-			toAdd = added.poll();
-		}
-		if (toRemove != null) {
-			for (Object view : toRemove) {
-				views.remove(view);
-			}
-		}
 	}
 
 	/**
@@ -292,9 +235,8 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 	 * @param view
 	 */
 	private void removeEntityView(EntityView<IEntity> view) {
-		removed.add(view);
-		if ((removed.size() % QUEUE_PROCESS_FREQUENCY) == 0) {
-			SwingUtilities.invokeLater(queueCleaner);
+		synchronized (views) {
+			views.remove(view);
 		}
 	}
 
@@ -315,8 +257,43 @@ class EntityViewManager implements Iterable<EntityView<IEntity>> {
 	 * thread.
 	 */
 	void sort() {
-		processQueues();
-		Collections.sort(views, entityViewComparator);
+		synchronized (views) {
+			Collections.sort(views, entityViewComparator);
+		}
+	}
+	
+	/**
+	 * Draw entities.
+	 * 
+	 * @param g graphics
+	 */
+	void draw(Graphics2D g) {
+		synchronized (views) {
+			for (final EntityView<IEntity> view : views) {
+				try {
+					view.draw(g);
+				} catch (RuntimeException e) {
+					logger.error(e, e);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Draw the top parts of the entities.
+	 * 
+	 * @param g graphics
+	 */
+	void drawTop(Graphics2D g) {
+		synchronized (views) {
+			for (final EntityView<IEntity> view : views) {
+				try {
+					view.drawTop(g);
+				} catch (RuntimeException e) {
+					logger.error(e, e);
+				}
+			}
+		}
 	}
 
 	/**

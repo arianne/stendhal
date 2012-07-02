@@ -541,13 +541,14 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",
 				"1_terrain", "2_object");
 		
-		drawEntities(graphics);
+		viewManager.draw(graphics);
 
 		gameLayers.drawLayers(graphics, set, "roof_bundle", startTileX,
 				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
 				"4_roof_add");
 		
-		drawTopEntities(graphics);
+		// Draw the top portion screen entities (such as HP/title bars).
+		viewManager.drawTop(graphics);
 		
 		drawText(g2d);
 
@@ -563,32 +564,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		}
 
 		graphics.dispose();
-	}
-
-	/**
-	 * Draw the screen entities.
-	 * 
-	 * @param g destination graphics
-	 */
-	private void drawEntities(final Graphics2D g) {
-		for (final EntityView<IEntity> view : viewManager) {
-			try {
-				view.draw(g);
-			} catch (RuntimeException e) {
-				logger.error(e, e);
-			}
-		}
-	}
-
-	/**
-	 * Draw the top portion screen entities (such as HP/title bars).
-	 * 
-	 * @param g destination graphics
-	 */
-	private void drawTopEntities(final Graphics2D g) {
-		for (final EntityView<IEntity> view : viewManager) {
-			view.drawTop(g);
-		}
 	}
 
 	/**
