@@ -11,12 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.ActionListener;
@@ -25,16 +19,23 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SlotOwner;
 
+import org.apache.log4j.Logger;
+
 public class ReorderAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(ReorderAction.class);
 	private static final List<String> reorderableSlots = Arrays.asList("bag",
 			"content", "keyring", "spells");
-	
+
 	/**
 	 * registers "equip" action processor.
 	 */
@@ -42,16 +43,17 @@ public class ReorderAction implements ActionListener {
 		CommandCenter.register("reorder", new ReorderAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	@Override
+    public void onAction(Player player, RPAction action) {
 		Entity entity = EquipUtil.getEntityFromPath(player, action.getList(EquipActionConsts.SOURCE_PATH));
 		if (mayAccess(player, entity, action)) {
 			reorder(entity, MathHelper.parseInt(action.get("new_position")));
 		}
 	}
-	
+
 	/**
 	 * Move an entity to new position.
-	 * 
+	 *
 	 * @param entity
 	 * @param newPosition desired new location in the slot
 	 */
@@ -80,10 +82,10 @@ public class ReorderAction implements ActionListener {
 			((Entity) parent).notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Check if a player may access an entity for reordering.
-	 * 
+	 *
 	 * @param player accessing player
 	 * @param entity entity to be reordered
 	 * @param action reordering action
@@ -91,6 +93,9 @@ public class ReorderAction implements ActionListener {
 	 * 	reordering, otherwise <code>false</code>
 	 */
 	private boolean mayAccess(Player player, Entity entity, RPAction action) {
+	    if (entity == null) {
+	        return false;
+	    }
 		RPObject object = entity.getContainer();
 		if (object == null) {
 			return false;
@@ -123,22 +128,22 @@ public class ReorderAction implements ActionListener {
 			if ((slot != null) && isReachableSlot(player, slot)) {
 				return false;
 			}
-			
+
 			if (object instanceof Corpse) {
 				// Disable reordering corpse contents. It causes problems for
 				// the automatically closing inspector windows in the client.
 				return false;
 			}
-			
+
 			object = object.getContainer();
 		} while (object != null);
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Check the reachability of a slot.
-	 * 
+	 *
 	 * @param player
 	 * @param baseSlot
 	 * @return <code>true</code> if the slot is reachable, <code>false</code>
