@@ -73,7 +73,7 @@ public class stendhal {
 	public static final String VERSION = Version.getVersion();
 
 	private static Dimension screenSize = new Dimension(640, 480);
-	
+
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
@@ -90,13 +90,13 @@ public class stendhal {
 	 */
 	private static void initGameFolder() {
 		String defaultFolder = System.getProperty("user.home") + STENDHAL_FOLDER;
-		/* 
+		/*
 		 * Add any previously unrecognized unix like systems here. These will
 		 * try to use ~/.config/stendhal if the user does not have saved data
 		 * in ~/stendhal.
-		 * 
+		 *
 		 * OS X is counted in here too, but should it?
-		 * 
+		 *
 		 * List taken from:
 		 * 	http://mindprod.com/jgloss/properties.html#OSNAME
 		 */
@@ -106,7 +106,7 @@ public class stendhal {
 			// Check first if the user has important data in the default folder.
 			File f = new File(defaultFolder + "user.dat");
 			if (!f.exists()) {
-				gameFolder = System.getProperty("user.home") + separator 
+				gameFolder = System.getProperty("user.home") + separator
 				+ ".config" + separator + STENDHAL_FOLDER;
 				return;
 			}
@@ -125,7 +125,7 @@ public class stendhal {
 
 	/**
 	 * Parses command line arguments.
-	 * 
+	 *
 	 * @param args
 	 *            command line arguments
 	 */
@@ -151,8 +151,13 @@ public class stendhal {
 	 */
 	private static void startLogSystem() {
 		prepareLoggingSystemEnviroment();
-		
+
+		logger.debug("XXXXXXX");
+
+		logger.info("-Setting base at :" + STENDHAL_FOLDER);
+
 		Log4J.init("data/conf/log4j.properties");
+		logger.debug("XXXXXXX");
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
@@ -189,7 +194,7 @@ public class stendhal {
 	public static String getLogFolder() {
 		return getGameFolder() + LOG_FOLDER;
 	}
-	
+
 	/**
 	 * @return the name of the log file
 	 */
@@ -210,10 +215,10 @@ public class stendhal {
 		}
 	}
 
-	
+
 	/**
 	 * Get the location of persistent game client data.
-	 * 
+	 *
 	 * @return game's home directory
 	 */
 	public static String getGameFolder() {
@@ -222,7 +227,7 @@ public class stendhal {
 
 	/**
 	 * Main Entry point.
-	 * 
+	 *
 	 * @param args
 	 *            command line arguments
 	 */
@@ -234,7 +239,7 @@ public class stendhal {
 		final UserContext userContext = new UserContext();
 		final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
-		
+
 		try {
 			UIManager.setLookAndFeel(new StyledLookAndFeel(WoodStyle.getInstance()));
 		} catch (UnsupportedLookAndFeelException e) {
@@ -246,7 +251,7 @@ public class stendhal {
 		}
 
 		UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
-		
+
 		final Profile profile = Profile.createFromCommandline(args);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -257,10 +262,10 @@ public class stendhal {
 				}
 			}
 		});
-		
+
 		waitForLogin();
 		CStatusSender.send();
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				j2DClient locclient = new j2DClient(client, userContext);
