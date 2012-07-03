@@ -91,13 +91,13 @@ public class SoundFile extends SignalProcessor implements Cloneable
             mRecorder = new Recorder();
             mRecorder.connectTo(decoder, false);
 
-            while(mRecorder.request()) {
-    			try {
+            while (mRecorder.request()) {
+    			// sleep(1) causes freezes, see #arianne log of 2012-07-03
+    			/* try {
     				Thread.sleep(1);
     			} catch (InterruptedException e) {
     				logger.error(e, e);
-    			}
-                /* pass */
+    			} */
             }
 
             mRecorder.disconnect();
