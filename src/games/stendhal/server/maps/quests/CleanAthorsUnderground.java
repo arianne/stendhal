@@ -194,8 +194,9 @@ public class CleanAthorsUnderground extends AbstractQuest {
 						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new NotCondition(new KilledForQuestCondition(QUEST_SLOT, 1))),
 				ConversationStates.ATTENDING, 
-				"Please free these lovely places on Athor from ugly #creatures!",
+				"Please free these lovely places on Athor from ugly creatures!",
 				null);
+		
 	}
 
 	@Override
