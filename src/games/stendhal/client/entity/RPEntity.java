@@ -92,13 +92,8 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The entities attacking this entity.
 	 */
-	protected List<Entity> attackers;
-/*
-	String[] attackSounds = { "punch-1", "punch-2", "punch-3",
-			"punch-4", "punch-5", "punch-6", "swingaxe-1",
-			"slap-1", "arrow-1" };
-	*/
-	
+	protected final List<Entity> attackers = new LinkedList<Entity>();
+
 	private Nature showBladeStrike;
 
 	public enum Resolution {
@@ -169,12 +164,14 @@ public abstract class RPEntity extends ActiveEntity {
 	private int atkItem = -1;
 
 	private int defItem = -1;
+	
+	/** A flag that gets set once the entity has been released */
+	private boolean released;
 
 	/** Creates a new game entity. */
 	RPEntity() {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
-		attackers = new LinkedList<Entity>();
 	}
 
 	//
@@ -411,7 +408,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public boolean isAttacking() {
-		if (attacking == null) {
+		if ((attacking == null) && !released) {
 			/*
 			 * Check for disagreement, and update if needs be.
 			 * Can happen when the target is added to the zone after the attacker.
@@ -855,6 +852,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	@Override
 	public void release() {
+		released = true;
 		onStopAttack();
 
 		if (attackTarget != null) {
