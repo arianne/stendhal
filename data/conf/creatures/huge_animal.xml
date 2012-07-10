@@ -92,6 +92,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -124,6 +127,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -188,6 +194,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -221,6 +230,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -253,6 +265,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -286,6 +301,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Wheee!!"/>
@@ -354,6 +372,9 @@
     </drops>
     <equips>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <says>
         <noise state="idle follow fight" value="Charrrrrrrrge!"/>

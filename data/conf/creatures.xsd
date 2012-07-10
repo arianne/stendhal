@@ -153,7 +153,8 @@
 		<xsd:sequence>
 			<xsd:element name="damage" minOccurs="0" maxOccurs="1">
 				<xsd:complexType>
-					<xsd:attribute name="type" type="xsd:string" />
+					<xsd:attribute name="type" type="xsd:string" default="cut"/>
+					<xsd:attribute name="rangedType" type="xsd:string"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="susceptibility" minOccurs="0" maxOccurs="unbounded">

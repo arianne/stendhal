@@ -26,6 +26,9 @@
     <equips>
       <slot name="rhand" item="golden mace"/>
     </equips>
+    <abilities>
+      <damage rangedType="fire"/>
+    </abilities>
     <ai>
       <profile name="brave"/>
       <profile name="animal"/>
