@@ -104,6 +104,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	
 	/** Type of the damage caused by the creature */
 	private Nature damageType;
+	/** Type of the damage caused by the creature when using ranged attacks. */
+	private Nature rangedDamageType;
 
 	CreaturesXMLLoader() {
 		// hide constructor, use the CreatureGroupsXMLLoader instead
@@ -288,7 +290,15 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 		} else if (qName.equals("abilities")) {
 			abilities = true;
 		} else if (abilities && qName.equals("damage")) {
-			damageType = Nature.parse(attrs.getValue("type"));
+			String value = attrs.getValue("type");
+			if (value == null) {
+				value = "cut";
+			}
+			damageType = Nature.parse(value);
+			value = attrs.getValue("rangedType");
+			if (value != null) {
+				rangedDamageType = Nature.parse(value);
+			}
 		} else if (abilities && qName.equals("susceptibility")) {
 			Nature type = Nature.parse(attrs.getValue("type"));
 			Double value = Double.valueOf(attrs.getValue("value"));
@@ -322,7 +332,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setRespawnTime(respawn);
 			creature.setDescription(description);
 			creature.setSusceptibilities(susceptibilities);
-			creature.setDamageType(damageType);
+			creature.setDamageTypes(damageType, rangedDamageType);
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;

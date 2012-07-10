@@ -515,7 +515,7 @@ public abstract class RPEntity extends GuidedEntity {
 			WordList.getInstance().registerSubjectName(newName);
 		}
 	}
-
+	
 	/**
 	 * Is called when this has hit the given defender. Determines how much
 	 * hitpoints the defender will lose, based on this's ATK experience and
@@ -526,10 +526,16 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            The defender.
 	 * @param attackingWeaponsValue
 	 * 			  ATK-value of all attacking weapons/spells
+	 * @param damageType nature of damage
+	 * @param isRanged <code>true</code> if this is a ranged attack, otherwise
+	 * 	<code>false</code>
+	 * @param maxRange maximum range of a ranged attack
+	 * 
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
-	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
+	private int damageDone(RPEntity defender, double attackingWeaponsValue, Nature damageType,
+			boolean isRanged, int maxRange) {
 		// Don't start from 0 to mitigate weird behaviour at very low levels
 		final int effectiveAttackerLevel = getLevel() + 5;
 		final int effectiveDefenderLevel = defender.getLevel() + 5;
@@ -601,8 +607,7 @@ public abstract class RPEntity extends GuidedEntity {
 		int damage = (int) (defender.getSusceptibility(damageType) 
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
 
-		final int maxRange = getMaxRangeForArcher();
-		if ((maxRange > 0) && canDoRangeAttack(defender, maxRange)) {
+		if (isRanged) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
@@ -611,6 +616,27 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 
 		return damage;
+	}
+
+	/**
+	 * Is called when this has hit the given defender. Determines how much
+	 * hitpoints the defender will lose, based on this's ATK experience and
+	 * weapon(s), the defender's DEF experience and defensive items, and a
+	 * random generator.
+	 * 
+	 * @param defender
+	 *            The defender.
+	 * @param attackingWeaponsValue
+	 * 			  ATK-value of all attacking weapons/spells
+	 * @param damageType nature of damage
+	 * @return The number of hitpoints that the target should lose. 0 if the
+	 *         attack was completely blocked by the defender.
+	 */
+	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
+		final int maxRange = getMaxRangeForArcher();
+		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange));
+		
+		return damageDone(defender, attackingWeaponsValue, damageType, isRanged, maxRange);
 	}
 
 	/**
@@ -1074,6 +1100,20 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected Nature getDamageType() {
 		return Nature.CUT;
+	}
+	
+	/**
+	 * Get the nature of the damage the entity inflicts in ranged attacks.
+	 * 
+	 * @return type of damage
+	 */
+	protected Nature getRangedDamageType() {
+		/*
+		 * Default to the same as the base damage type. Entities needing more
+		 * complicated behavior (ie. fire breathing dragons) should override the
+		 * method. 
+		 */
+		return getDamageType();
 	}
 
 	/***************************************************************************
@@ -2682,11 +2722,28 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
+		
+		final int maxRange = getMaxRangeForArcher();
+		/*
+		 * The second part (damage type check) ensures that normal archers need
+		 * distance attack modifiers for melee, but creatures with special
+		 * ranged attacks (dragons) pay the price only when using their ranged
+		 * powers (yes, it's a bit of a hack).
+		 */
+		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange))
+			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0));
+		
+		Nature nature;
+		if (isRanged) {
+			nature = getRangedDamageType();
+		} else {
+			nature = getDamageType();
+		}
 
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
-			int damage = this.damageDone(defender, this.getItemAtk(), this.getDamageType());
+			int damage = damageDone(defender, getItemAtk(), nature, isRanged, maxRange);
 
 			if (damage > 0) {
 
@@ -2704,12 +2761,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-			addEvent(new AttackEvent(true, damage, getDamageType()));
+			addEvent(new AttackEvent(true, damage, nature));
 		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
-			addEvent(new AttackEvent(false, 0, getDamageType()));
+			addEvent(new AttackEvent(false, 0, nature));
 		}
 
 		this.notifyWorldAboutChanges();

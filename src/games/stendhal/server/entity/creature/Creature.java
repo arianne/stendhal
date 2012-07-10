@@ -131,6 +131,8 @@ public class Creature extends NPC {
 
 	/** The type of the damage this creature does */
 	private Nature damageType = Nature.CUT;
+	/** The type of the damage this creature does in ranged attacks */
+	private Nature rangedDamageType = Nature.CUT;
 
 	/** Susceptibilities to various damage types this creature has */
 	private Map<Nature, Double> susceptibilities;
@@ -195,7 +197,7 @@ public class Creature extends NPC {
 
 		this.respawnTime = copy.respawnTime;
 		susceptibilities = copy.susceptibilities;
-		damageType = copy.damageType;
+		setDamageTypes(copy.damageType, copy.rangedDamageType);
 
 		setEntityClass(copy.get("class"));
 		setEntitySubclass(copy.get("subclass"));
@@ -939,9 +941,26 @@ public class Creature extends NPC {
 	protected Nature getDamageType() {
 		return damageType;
 	}
+	
+	@Override
+	protected Nature getRangedDamageType() {
+		return rangedDamageType;
+	}
 
-	public void setDamageType(Nature type) {
+	/**
+	 * Set the damage natures the creature inflicts.
+	 * 
+	 * @param type Damage nature.
+	 * @param rangedType Damage nature for ranged attacks, or <code>null</code>
+	 * 	if the creature uses the same type as for the melee.
+	 */
+	public void setDamageTypes(Nature type, Nature rangedType) {
 		damageType = type;
+		if (rangedType != null) {
+			rangedDamageType = rangedType;
+		} else {
+			rangedDamageType = type;
+		}
 	}
 
 	@Override

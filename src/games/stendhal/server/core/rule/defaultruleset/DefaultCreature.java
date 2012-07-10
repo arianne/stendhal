@@ -88,6 +88,9 @@ public class DefaultCreature {
 	
 	/** Type of damage caused by the creature */
 	private Nature damageType;
+	/** Type of damage caused by the creature when using ranged attacks. if
+	 * <code>null<code>, then the melee type is used for all attacks. */
+	private Nature rangedDamageType;
 
 	/** speed relative to player [0.0 ... 1.0] */
 	private double speed;
@@ -214,8 +217,16 @@ public class DefaultCreature {
 		this.susceptibilities = susceptibilities;
 	}
 	
-	public void setDamageType(Nature type) {
+	/**
+	 * Set the damage types.
+	 * 
+	 * @param type
+	 * @param rangedType if <code>null</code>, then melee type is used for both
+	 * 	attack modes
+	 */
+	public void setDamageTypes(Nature type, Nature rangedType) {
 		damageType = type;
+		rangedDamageType = rangedType;
 	}
 
 	/** @return a creature-instance. 
@@ -242,7 +253,7 @@ public class DefaultCreature {
 		
 		creature.setCorpse(corpseName, corpseWidth, corpseHeight);
 		creature.setSusceptibilities(susceptibilities);
-		creature.setDamageType(damageType);
+		creature.setDamageTypes(damageType, rangedDamageType);
 		
 		return creature;
 	}
