@@ -534,7 +534,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
-	private int damageDone(RPEntity defender, double attackingWeaponsValue, Nature damageType,
+	int damageDone(RPEntity defender, double attackingWeaponsValue, Nature damageType,
 			boolean isRanged, int maxRange) {
 		// Don't start from 0 to mitigate weird behaviour at very low levels
 		final int effectiveAttackerLevel = getLevel() + 5;
