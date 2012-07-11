@@ -75,6 +75,10 @@ public abstract class RPEntity extends ActiveEntity {
 	 * Poisoned property.
 	 */
 	public static final Property PROP_POISONED = new Property();
+	/**
+	 * Attacking property. (for attack events)
+	 */
+	public static final Property PROP_ATTACK = new Property();
 	
 	/**
 	 * The value of an outfit that isn't set.
@@ -94,7 +98,16 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	protected final List<Entity> attackers = new LinkedList<Entity>();
 
-	private Nature showBladeStrike;
+	/**
+	 * The nature of the current attack done by this entity, or
+	 * <code>null</code> if there's no ongoing attack.
+	 */
+	private Nature attackNature;
+	/**
+	 * <code>true</code> if the previously done attack event was ranged,
+	 * 	otherwise <code>false</code>. 
+	 */
+	private boolean isDoingRangedAttack;
 
 	public enum Resolution {
 		HIT,
@@ -444,11 +457,17 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @return type of damage, or <code>null</code> if the entity is not striking
 	 */
 	public Nature getShownDamageType() {
-		return showBladeStrike;
+		return attackNature;
 	}
-
-	public void doneStriking() {
-		showBladeStrike = null;
+	
+	/**
+	 * Check if the currently performed attack is ranged.
+	 * 
+	 * @return <code>true</code> if the attack is ranged, <code>false</code>
+	 * 	otherwise
+	 */
+	public boolean isDoingRangedAttack() {
+		return isDoingRangedAttack;
 	}
 
 	/**
@@ -495,19 +514,40 @@ public abstract class RPEntity extends ActiveEntity {
 		attacking = target.getID();
 	}
 
-	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(final Nature type) {
-		showBladeStrike = type;
+	/**
+	 * When this entity's attack is blocked by the adversary.
+	 * 
+	 * @param type attack nature
+	 * @param ranged
+	 */
+	public void onAttackBlocked(final Nature type, boolean ranged) {
+		attackNature = type;
+		isDoingRangedAttack = ranged;
+		fireChange(PROP_ATTACK);
 	}
 
-	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(final Nature type) {
-		showBladeStrike = type;
+	/**
+	 * When this entity causes damaged to adversary, with damage amount
+	 * 
+	 * @param type
+	 * @param ranged
+	 */
+	public void onAttackDamage(final Nature type, boolean ranged) {
+		attackNature = type;
+		isDoingRangedAttack = ranged;
+		fireChange(PROP_ATTACK);
 	}
 
-	// When this entity's attack is missing the adversary
-	public void onAttackMissed(final Nature type) {
-		showBladeStrike = type;
+	/**
+	 * When this entity's attack is missing the adversary
+	 * 
+	 * @param type
+	 * @param ranged
+	 */
+	public void onAttackMissed(final Nature type, boolean ranged) {
+		attackNature = type;
+		isDoingRangedAttack = ranged;
+		fireChange(PROP_ATTACK);
 	}
 
 	// When attacker attacks this entity.

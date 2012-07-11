@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
@@ -85,11 +86,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
 
 	/**
-	 * Blade strike frame.
-	 */
-	private int frameBladeStrike;
-
-	/**
 	 * Model attributes effecting the title changed.
 	 */
 	private boolean titleChanged;
@@ -110,6 +106,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected int width;
 	/** Status icon managers */
 	private final List<StatusIconManager> iconManagers = new ArrayList<StatusIconManager>();
+
+	/**
+	 * Flag for checking if the entity is attacking. Can be modified by both
+	 * the EDT and the game loop.
+	 */
+	volatile boolean isAttacking;
+	/** <code>true</code> if the current attack is ranged. */
+	boolean rangedAttack;
+	/** Attack sprites to be used for the current attack. */
+	Sprite[] attackSprite;
+	/** Blade strike frame. */
+	volatile int bladeStrikeFrame;
+	
+	private final AttackListener attackListener = new AttackListener();
 
 	static {
 		final SpriteStore st = SpriteStore.get();
@@ -174,9 +184,13 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 	@Override
 	public void initialize(final T entity) {
+		if (this.entity != null) {
+			entity.removeChangeListener(attackListener);
+		}
 		super.initialize(entity);
 		titleSprite = createTitleSprite();
 		titleChanged = false;
+		entity.addChangeListener(attackListener);
 	}
 	//
 	// RPEntity2DView
@@ -487,26 +501,19 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param height height of the attacker
 	 */
 	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		if (entity.isAttacking() && entity.getShownDamageType() != null) {
-			if (frameBladeStrike < NUM_ATTACK_FRAMES) {
+		if (isAttacking) {
+			if (bladeStrikeFrame < NUM_ATTACK_FRAMES) {
 				RPEntity target = entity.getAttackTarget();
-
-				// A hack to check if it's a distance attack for proof
-				// of concept arrow drawing. Should be specified in the
-				// attack event itself
-				final Rectangle2D area = entity.getArea();
-				area.setRect(entity.getX() - 0.25, entity.getY() - 0.25, entity.getWidth()
-						+ 2 * 0.25, entity.getHeight() + 2 * 0.25);
 				
-				if (area.intersects(target.getArea())) {
-					drawStrike(g2d, entity, x, y, width, height);
-				} else {
+				if (rangedAttack) {
 					drawDistanceAttack(g2d, entity, target, x, y, width, height);
+				} else {
+					drawStrike(g2d, x, y, width, height);
 				}
-				frameBladeStrike++;
+				bladeStrikeFrame++;
 			} else {
-				entity.doneStriking();
-				frameBladeStrike = 0;
+				bladeStrikeFrame = 0;
+				isAttacking = false;
 			}
 		}
 	}
@@ -515,61 +522,56 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Draw a blade strike.
 	 *  
 	 * @param g2d
-	 * @param entity
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
 	 */
-	private void drawStrike(final Graphics2D g2d, final RPEntity entity, 
-			final int x, final int y, final int width, final int height) {
-		Nature damageType = entity.getShownDamageType();
-		
-		if (damageType != null) {			
-			final Sprite sprite = bladeStrikeSprites.get(damageType).get(getState(entity))[frameBladeStrike];
+	private void drawStrike(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
+		final Sprite sprite = attackSprite[bladeStrikeFrame];
 
-			final int spriteWidth = sprite.getWidth();
-			final int spriteHeight = sprite.getHeight();
+		final int spriteWidth = sprite.getWidth();
+		final int spriteHeight = sprite.getHeight();
 
-			int sx;
-			int sy;
+		int sx;
+		int sy;
 
-			/*
-			 * Align swipe image to be 16 px past the facing edge, centering
-			 * in other axis.
-			 * 
-			 * Swipe image is 3x4 tiles, but really only uses partial areas.
-			 * Adjust positions to match (or fix images to be
-			 * uniform/centered).
-			 */
-			switch (entity.getDirection()) {
-			case UP:
-				sx = x + ((width - spriteWidth) / 2) + 16;
-				sy = y - 16 - 32;
-				break;
+		/*
+		 * Align swipe image to be 16 px past the facing edge, centering
+		 * in other axis.
+		 * 
+		 * Swipe image is 3x4 tiles, but really only uses partial areas.
+		 * Adjust positions to match (or fix images to be
+		 * uniform/centered).
+		 */
+		switch (entity.getDirection()) {
+		case UP:
+			sx = x + ((width - spriteWidth) / 2) + 16;
+			sy = y - 16 - 32;
+			break;
 
-			case DOWN:
-				sx = x + ((width - spriteWidth) / 2);
-				sy = y + height - spriteHeight + 16;
-				break;
+		case DOWN:
+			sx = x + ((width - spriteWidth) / 2);
+			sy = y + height - spriteHeight + 16;
+			break;
 
-			case LEFT:
-				sx = x - 16;
-				sy = y + ((height - spriteHeight) / 2) - 16;
-				break;
+		case LEFT:
+			sx = x - 16;
+			sy = y + ((height - spriteHeight) / 2) - 16;
+			break;
 
-			case RIGHT:
-				sx = x + width - spriteWidth + 16;
-				sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
-				break;
+		case RIGHT:
+			sx = x + width - spriteWidth + 16;
+			sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
+			break;
 
-			default:
-				sx = x + ((width - spriteWidth) / 2);
-				sy = y + ((height - spriteHeight) / 2);
-			}
-
-			sprite.draw(g2d, sx, sy);
+		default:
+			sx = x + ((width - spriteWidth) / 2);
+			sy = y + ((height - spriteHeight) / 2);
 		}
+
+		sprite.draw(g2d, sx, sy);
 	}
 	
 	/**
@@ -598,10 +600,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		int yLength = (endY - startY) / NUM_ATTACK_FRAMES;
 		int xLength = (endX - startX) / NUM_ATTACK_FRAMES;
 
-		startY += frameBladeStrike * yLength;
+		startY += bladeStrikeFrame * yLength;
 		endY = startY + yLength;
 
-		startX += frameBladeStrike * xLength;
+		startX += bladeStrikeFrame * xLength;
 		endX = startX + xLength;
 
 		g2d.setColor(arrowColor.get(nature));
@@ -998,6 +1000,27 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				attachSprite(sprite, xAlign, yAlign, xOffset, yOffset);
 			} else {
 				detachSprite(sprite);
+			}
+		}
+	}
+
+	/**
+	 * Listener for attack status changes.
+	 */
+	private class AttackListener implements EntityChangeListener<T> {
+		public void entityChanged(T entity, Object property) {
+			if (property == RPEntity.PROP_ATTACK) {
+				Nature nature = entity.getShownDamageType();
+				if (nature == null) {
+					isAttacking = false;
+				} else {
+					rangedAttack = entity.isDoingRangedAttack();
+					if (!rangedAttack) {
+						attackSprite = bladeStrikeSprites.get(nature).get(getState(entity));
+					}
+					isAttacking = true;
+					bladeStrikeFrame = 0;
+				}
 			}
 		}
 	}
