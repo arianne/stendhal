@@ -301,12 +301,12 @@ public class StendhalRPAction {
 			if(!defenseItems.isEmpty()) {
 				Rand.rand(defenseItems).deteriorate();
 			}
-			player.addEvent(new AttackEvent(true, damage, player.getDamageType()));
+			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), missileUsed));
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
-			player.addEvent(new AttackEvent(false, 0, player.getDamageType()));
+			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), missileUsed));
 		}
 
 		if (missileUsed) {

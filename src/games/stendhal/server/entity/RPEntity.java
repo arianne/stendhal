@@ -2761,12 +2761,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-			addEvent(new AttackEvent(true, damage, nature));
+			addEvent(new AttackEvent(true, damage, nature, isRanged));
 		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
-			addEvent(new AttackEvent(false, 0, nature));
+			addEvent(new AttackEvent(false, 0, nature, isRanged));
 		}
 
 		this.notifyWorldAboutChanges();
