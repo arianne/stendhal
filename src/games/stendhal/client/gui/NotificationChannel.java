@@ -60,6 +60,13 @@ class NotificationChannel {
 		WtWindowManager wm = WtWindowManager.getInstance();
 		String value = wm.getProperty("ui.channel." + name, defaultTypes);
 		for (String typeString : value.split(",")) {
+			/*
+			 * String.split is unfortunately unable to return empty arrays when
+			 * applied on empty string. Work around it.
+			 */
+			if ("".equals(typeString)) {
+				continue;
+			}
 			try {
 				NotificationType type = NotificationType.valueOf(typeString);
 				setTypeFiltering(type, !blackList);
