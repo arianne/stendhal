@@ -127,6 +127,9 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
 		}
+		if (this.entity != null) {
+			this.entity.removeChangeListener(this);
+		}
 		this.entity = entity;
 
 		x = 0;
