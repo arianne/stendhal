@@ -60,24 +60,42 @@
  <tileset name="bircked corners" firstgid="185" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_corners.png"/>
  </tileset>
+ <tileset name="floors 3" firstgid="221" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floors_3.png"/>
+ </tileset>
+ <tileset name="rug" firstgid="233" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/red_purple.png"/>
+ </tileset>
+ <tileset name="box of weapons" firstgid="242" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/weapon/box_of_weapons.png"/>
+ </tileset>
+ <tileset name="spears" firstgid="244" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/weapon/spears.png"/>
+ </tileset>
+ <tileset name="sofa blue" firstgid="247" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/sofa_chair_blue.png"/>
+ </tileset>
+ <tileset name="wood" firstgid="259" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/firewood.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNhYGBgGcWDAnMg4VH7R/EoHsWjeBSP4uGLAe8Gx2SACQAA
+   H4sIAAAAAAAAALvPwMBwfxRTFT8iAmPTx4GEaWn3qP0DG/fD2f5RPIpH8SgexcRhABimnrmACQAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USQrCQBBF+wJRN2rAlbM7cR6vEV0m4Hj/E/gDaWiaqh7StAux4C1SvMrfND8VQjQMdEFqcXw8/aYFZmBEMAVNi+PjcTcDQU/fwfHxbDcLsASrwPy82ufsBf3vNdiAbWD+DdzBwzN/B/bgEJj/BC/w9syv41BeUe0Lxo+d7zK++RMwVDiCEziDscHTXblTb2z5HZBoqFN+txmPchPlxpbfE3R3qWPrOc6V/cflzwXfXxm4gKvBMbku/Rdz6rzZf/5v5lOdERvZP1xnfIOyfz6PHoUjgAkAAA==
+   H4sIAAAAAAAAAO3UOQ7CMBAFUF8gQANEomKnQ+zrNYADsBYUXC8d12GHG/BTRLIGj40DSYEY6RWJ/uQ30bhCiIRGFlxDxiZHd1JQg5JCFZKGjE2O2ymI19lDnmQOcCROitwWdopvykN3/GlAE1pM5gwX4sp8ywvR34YOdL/QP4cFLC36e9CHwRf6V7CGjUW/PN6H/aZ5Z4dmbnAnHjH1V6AoGcIIxlDW5Gg2eCfvmPoz4BDy+M9pJqfKOtKOqT8n1LdLHtOd47LB/eP664K/XxOYwkyT0WVN9y/qCfPP/vt/s191M6IW3B/uZsTBvz9P17iYcIAJAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAVCDPhBMxC3EFADAouBeCmJeogB7UDcAWXPBeL5ONQtA+IVWPTgA3uAOBeKsYHJQDwFib8AiBcRYS6yXnQz0EEeEJcDcQEWualAPI1I+3DpJcaMfBz2TwfiGWTaD9NLyAxQ2BfhsB8ZJAHxSiCOI9M92MAuBkj451HRTEJAhIC8MBI7kZYOGYLAhUZqsQFs5aIvHjl0fb541JAKZtJILbFgDoVqq6nlECoAQvmPlkCYsBK6AXrGCTF29QJxH5nmw/Si04SAIBJ7IhBPwiGHTx+yXnQaGwAAj0EH9YAJAAA=
+   H4sIAAAAAAAAAGNgQAVCDPhBMxC3EFADAl/I0EMMaAfiDih7LhDPx6HuKxB/ItHsPUCcC8XYwGQgnoLEXwDEi7CoY2VkYPgGpD+jiX8H4h8E3JAHxOVAXIBFbioQTyOgHx/4BcS/iVCXj8P+6UA8gwL7iQGgsC/CYT8ySALilUAch0fNfxLt3sUACf88EvXhAkyMhNWIEJAXRmInUuIYJICeLocqcKGRWmwAW7noi0cOXZ8vHjWkgpk0UkssmEOh2mpqOYQKgFD+oyUQJqyEboCecUKMXb1A3Eem+TC96DQhIIjEngjEk3DI4dOHrBedxgYAtr53OoAJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMgqEFnIF4NRC7UlktscAHiNcBsR+V1Y6CUTAKRg4AAOyWiFKACQAA
+   H4sIAAAAAAAAAGNgGAWjYBTQE3waaAcMA+AMxKuB2JXKaokFPkC8Doj9qKx2FIyCUTByAADEYbd+gAkAAA==
   </data>
  </layer>
  <layer name="objects" width="32" height="19">
@@ -87,7 +105,7 @@
  </layer>
  <layer name="collision" width="32" height="19" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TUQoAIAhDd/8Leb0u4KzRKCIH/q09DQ0A0ZVq5nVksUwl38kHOJ9J/dcqu5o/y3DzVY/ie52fvVHuy3V/zT/DZ1L8mXeX71Dz7/WwurM/1AAX01YEgAkAAA==
+   H4sIAAAAAAAAAO2SXQoAIAiDvf+FvF7v4s+WQUEOfKm1b4QqIjrjqvJWeTbX3mWZCD/qgSh7U3VEsti/tecIP/Pt8lkP43uF391/ZEdZ7/Df40di/J63yz+h4d/rgO7sD7MA4qfhD4AJAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="19" visible="0" opacity="0.24">
