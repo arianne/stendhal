@@ -19,7 +19,7 @@ import games.stendhal.client.sprite.SpriteTileset;
 import games.stendhal.client.sprite.Tileset;
 import games.stendhal.client.sprite.TilesetAnimationMap;
 import games.stendhal.client.sprite.TilesetGroupAnimationMap;
-import games.stendhal.tools.tiled.TileSetDefinition;
+import games.stendhal.common.tiled.TileSetDefinition;
 
 import java.awt.Color;
 import java.awt.Composite;
@@ -49,19 +49,19 @@ public class TileStore implements Tileset {
 	private static final TilesetGroupAnimationMap animationMap = createAnimationMap();
 
 	/**
-	 * A cache of loaded tilesets. 
+	 * A cache of loaded tilesets.
 	 */
 	private static final MemoryCache<String, Tileset> tilesetsLoaded = new MemoryCache<String, Tileset>();
 
 	/**
 	 * The sprite store.
 	 */
-	private SpriteStore store;
+	private final SpriteStore store;
 
 	/**
 	 * The tile sprites.
 	 */
-	private ArrayList<Sprite> tiles;
+	private final ArrayList<Sprite> tiles;
 	/** Tilesets waiting to be added to the store. */
 	private final List<TileSetDefinition> tilesets = new ArrayList<TileSetDefinition>();
 	/**
@@ -79,7 +79,7 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Create a tile store with a specific sprite store.
-	 * 
+	 *
 	 * @param store
 	 *            A sprite store.
 	 */
@@ -96,7 +96,7 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Add a tileset.
-	 * 
+	 *
 	 * @param tsdef
 	 *            The tileset definition.
 	 * @param color Color for modifying the tileset image, or <code>null</code>
@@ -176,11 +176,11 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Add tilesets. The store will require validating afterwards.
-	 * 
+	 *
 	 * @param in
-	 *            The object stream. 
+	 *            The object stream.
 	 * 	<code>null</code>
-	 * 
+	 *
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -197,7 +197,7 @@ public class TileStore implements Tileset {
 	/**
 	 * Try finishing the tile store withan adjustment color and blend mode for
 	 * the tilesets.
-	 * 
+	 *
 	 * @param color Color for adjusting the tileset, or <code>null</code>
 	 * @param blend blend mode for applying the adjustment color, or
 	 * @return <code>true</code> if the store has been validated successfully,
@@ -220,7 +220,7 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Create the tileset animation map.
-	 * 
+	 *
 	 * @return A tileset animation map.
 	 */
 	protected static TilesetGroupAnimationMap createAnimationMap() {
@@ -247,7 +247,7 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Get the base directory for tileset resources.
-	 * 
+	 *
 	 * Hack: Read the tileset directly from tiled/tileset if started from an
 	 * IDE.
 	 * @return the / separated url to the resource
@@ -269,7 +269,7 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Get the number of tiles.
-	 * 
+	 *
 	 * @return The number of tiles.
 	 */
 	public int getSize() {
@@ -278,10 +278,10 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Get the sprite for an index tile of the tileset.
-	 * 
+	 *
 	 * @param index
 	 *            The index with-in the tileset.
-	 * 
+	 *
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {

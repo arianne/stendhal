@@ -13,6 +13,8 @@
 package games.stendhal.common;
 
 
+import games.stendhal.common.tiled.LayerDefinition;
+
 import java.awt.geom.Rectangle2D;
 
 /**

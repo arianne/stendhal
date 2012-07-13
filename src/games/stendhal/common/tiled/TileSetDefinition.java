@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.tiled;
+package games.stendhal.common.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

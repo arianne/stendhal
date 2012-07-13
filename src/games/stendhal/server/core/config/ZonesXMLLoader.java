@@ -9,7 +9,9 @@ package games.stendhal.server.core.config;
 //
 //
 
-import games.stendhal.common.LayerDefinition;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.ServerTMXLoader;
+import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.config.zone.AttributesXMLReader;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
 import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
@@ -20,8 +22,6 @@ import games.stendhal.server.core.config.zone.SetupXMLReader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.tools.tiled.ServerTMXLoader;
-import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -84,7 +84,7 @@ public final class ZonesXMLLoader {
 
 	/**
 	 * Load a group of zones into a world.
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException
@@ -108,16 +108,16 @@ public final class ZonesXMLLoader {
 
 	/**
 	 * Loads a group of zones into a world using a config file.
-	 * 
+	 *
 	 * @param in
 	 *            The config file stream.
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException
 	 *             If an I/O error occurred.
 	 */
-	protected void load(final InputStream in) throws SAXException, IOException {	
+	protected void load(final InputStream in) throws SAXException, IOException {
 		final Document doc = XMLUtil.parse(in);
 
 		// just to speed up starting of the server in while developing
@@ -184,18 +184,18 @@ public final class ZonesXMLLoader {
 	/**
 	 * Load zone data and create a new zone from it. Most of this should be moved
 	 * directly into ZoneXMLLoader.
-	 * @param desc the zone's descriptor 
+	 * @param desc the zone's descriptor
 	 * @param zonedata to be loaded
 	 * @return the created zone
 	 * @throws SAXException if any xml parsing error happened
 	 * @throws IOException if any IO error happened
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	protected StendhalRPZone load(final ZoneDesc desc, final StendhalMapStructure zonedata)
 			throws SAXException, IOException {
 		final String name = desc.getName();
-		
+
 		final StendhalRPZone zone;
 		if (desc.getImplementation() == null) {
 			zone = new StendhalRPZone(name);
@@ -207,14 +207,14 @@ public final class ZonesXMLLoader {
 		zone.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
 		zone.addLayer(name + ".1_terrain", zonedata.getLayer("1_terrain"));
 		zone.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
-		
+
 		// Roof layers are optional
 		loadOptionalLayer(zone, zonedata, "3_roof");
 		loadOptionalLayer(zone, zonedata, "4_roof_add");
 		// Effect layers are optional too
 		loadOptionalLayer(zone, zonedata, "blend_ground");
 		loadOptionalLayer(zone, zonedata, "blend_roof");
-	
+
 		zone.addCollisionLayer(name + ".collision",
 				zonedata.getLayer("collision"));
 		zone.addProtectionLayer(name + ".protection",
@@ -225,7 +225,7 @@ public final class ZonesXMLLoader {
 		} else {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
-		
+
 		zone.setPublicAccessible(desc.accessible);
 
 		SingletonRepository.getRPWorld().addRPZone(desc.getRegion(), zone);
@@ -235,21 +235,21 @@ public final class ZonesXMLLoader {
 		} catch (final Exception e) {
 			logger.error(e, e);
 		}
-		
+
 		zone.populate(zonedata.getLayer("objects"));
 
 		return zone;
 	}
-	
+
 	/**
 	 * Load an optional layer, if present, to a zone.
-	 * 
+	 *
 	 * @param zone
 	 * @param zonedata
 	 * @param layerName
 	 * @throws IOException
 	 */
-	private void loadOptionalLayer(StendhalRPZone zone, 
+	private void loadOptionalLayer(StendhalRPZone zone,
 			StendhalMapStructure zonedata, String layerName) throws IOException {
 		LayerDefinition layer = zonedata.getLayer(layerName);
 		if (layer != null) {
@@ -383,7 +383,7 @@ public final class ZonesXMLLoader {
 				setupDesc = configuratorReader.read(child);
 			} else if (tag.equals("implementation")) {
 				desc.setImplementation(child.getAttribute("class-name"));
-				
+
 			} else if (tag.equals("entity")) {
 				setupDesc = entitySetupReader.read(child);
 			} else if (tag.equals("portal")) {
@@ -419,7 +419,7 @@ public final class ZonesXMLLoader {
 	private String parseRegionFromZone(String name) {
 		String[] split = name.split("_");
 		if(split != null) {
-			// standard exterior and interior zones have more than 3 parts 
+			// standard exterior and interior zones have more than 3 parts
 			if (split.length > 1) {
 				return RegionNameSubstitutionHelper.get().replaceRegionName(split[1]);
 			}
@@ -458,13 +458,13 @@ public final class ZonesXMLLoader {
 	 */
 	protected static class ZoneDesc {
 		public static final int UNSET = Integer.MIN_VALUE;
-		
+
 		protected String name;
 
 		protected String file;
 
 		protected String title;
-		
+
 		protected String region;
 
 		protected int level;
@@ -505,8 +505,8 @@ public final class ZonesXMLLoader {
 
 		/**
 		 * Add a setup descriptor.
-		 * @param desc 
-		 * 
+		 * @param desc
+		 *
 		 */
 		public void addDescriptor(final SetupDescriptor desc) {
 			descriptors.add(desc);
@@ -515,7 +515,7 @@ public final class ZonesXMLLoader {
 		/**
 		 * Get the zone file.
 		 * @return the file name
-		 * 
+		 *
 		 */
 		public String getFile() {
 			return file;
@@ -524,7 +524,7 @@ public final class ZonesXMLLoader {
 		/**
 		 * Get the level.
 		 * @return the level of the zone
-		 * 
+		 *
 		 */
 		public int getLevel() {
 			return level;
@@ -533,7 +533,7 @@ public final class ZonesXMLLoader {
 		/**
 		 * Get the zone name.
 		 * @return the name of the zone
-		 * 
+		 *
 		 */
 		public String getName() {
 			return name;
@@ -542,7 +542,7 @@ public final class ZonesXMLLoader {
 		/**
 		 * Get an iterator of setup descriptors.
 		 * @return an iterator over the descriptors
-		 * 
+		 *
 		 */
 		public Iterator<SetupDescriptor> getDescriptors() {
 			return descriptors.iterator();
@@ -551,12 +551,12 @@ public final class ZonesXMLLoader {
 		/**
 		 * Gets the zone's title.
 		 * @return the zone's title
-		 * 
+		 *
 		 */
 		public String getTitle() {
 			return title;
 		}
-		
+
 		/**
 		 * @return the zone's region
 		 */
@@ -579,12 +579,12 @@ public final class ZonesXMLLoader {
 		/**
 		 * Sets the zone title.
 		 * @param title of the zone
-		 * 
+		 *
 		 */
 		public void setTitle(final String title) {
 			this.title = title;
 		}
-		
+
 		public boolean isAccessible() {
 			return accessible;
 		}

@@ -12,42 +12,42 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.maze;
 
-import games.stendhal.common.LayerDefinition;
-import games.stendhal.tools.tiled.StendhalMapStructure;
-import games.stendhal.tools.tiled.TileSetDefinition;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.StendhalMapStructure;
+import games.stendhal.common.tiled.TileSetDefinition;
 
 public class MazePainter {
-	private static class Style {		
+	private static class Style {
 		protected static final int GROUND_INDEX = 42;
 		public static final int PORTAL_INDEX = 59;
 		protected final int[] wall = { 2, 4, 20, 3, 5, 15, 19, 16, 36, 32, 35, 31, 1 };
-		
+
 		public Style(StendhalMapStructure map) {
 			TileSetDefinition set = new TileSetDefinition("filler", 1);
 			set.setSource("../../tileset/ground/gravel.png");
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("outercorners", 2);
 			set.setSource("../../tileset/building/wall/int_wall_dark_red_corners_2.png");
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("wall", 10);
 			set.setSource("../../tileset/building/wall/int_wall_dark_red.png");
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("innercorners", 26);
 			set.setSource("../../tileset/building/wall/int_wall_dark_red_corners.png");
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("paving", 42);
 			set.setSource("../../tileset/ground/brown_paving.png");
 			map.addTileset(set);
-			
+
 			set = new TileSetDefinition("portal", 44);
 			set.setSource("../../tileset/building/decoration/floor_sparkle.png");
 			map.addTileset(set);
 		}
-		
+
 		public int selectTile(LayerDefinition collision, int x, int y) {
 			if (collision.getTileAt(x, y) == 0) {
 				return GROUND_INDEX;
@@ -55,7 +55,7 @@ public class MazePainter {
 				return selectWall(collision, x, y);
 			}
 		}
-		
+
 		private int selectWall(LayerDefinition collision, int x, int y) {
 			if (!collides(collision, x - 1, y)) {
 				if (!collides(collision, x, y - 1)) {
@@ -101,7 +101,7 @@ public class MazePainter {
 			// Filler
 			return wall[wall.length - 1];
 		}
-		
+
 		private boolean collides(LayerDefinition collision, int x, int y) {
 			if (x < 0 || y < 0 || x >= collision.getWidth() || y >= collision.getWidth()) {
 				return true;
@@ -110,28 +110,28 @@ public class MazePainter {
 			}
 		}
 	}
-	
+
 	public void paint(StendhalMapStructure map) {
 		LayerDefinition collision = map.getLayer("collision");
 		LayerDefinition ground = map.getLayer("0_floor");
-		
-		// prepare the floor data arrays for for painting 
+
+		// prepare the floor data arrays for for painting
 		ground.build();
-		
+
 		Style style = new Style(map);
-		
+
 		drawFloor(style, ground, collision);
 	}
-	
+
 	public void paintPortal(StendhalMapStructure map, int x, int y) {
 		LayerDefinition ground = map.getLayer("0_floor");
 		ground.set(x, y, Style.PORTAL_INDEX);
 	}
-	
+
 	private void drawFloor(Style style, LayerDefinition floor, LayerDefinition collision) {
 		int width = floor.getWidth();
 		int height = floor.getHeight();
-		
+
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				floor.set(x, y, style.selectTile(collision, x, y));

@@ -17,6 +17,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.entity.Player;
+import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 

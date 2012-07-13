@@ -15,10 +15,11 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
-import games.stendhal.common.LayerDefinition;
 import games.stendhal.common.Line;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.TileSetDefinition;
 import games.stendhal.server.core.config.zone.TeleportationRules;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.ZoneEnterExitListener;
@@ -43,7 +44,6 @@ import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -351,10 +351,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		contents.add(content);
 	}
-	
+
 	/**
 	 * Set zone attributes that should be passed to the client.
-	 * 
+	 *
 	 * @param attr attributes
 	 */
 	public void setAttributes(ZoneAttributes attr) {
@@ -439,7 +439,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 	}
-	
+
 	/**
 	 * Calculate danger level for the zone, and store it in the data layer.
 	 */
@@ -468,9 +468,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Use as the level of the highest level creature as the base, and
 		 * adjust it upwards by creatures near the same level, inversely
-		 * proportionally to the average distance between the creatures. 
+		 * proportionally to the average distance between the creatures.
 		 */
-		double dangerLevel = maxLevel * (1 + DANGER_WEIGHT_CREATURE_DENSITY * (levelSum - maxLevel) / (double) maxLevel / Math.sqrt(area)) - 1;
+		double dangerLevel = maxLevel * (1 + DANGER_WEIGHT_CREATURE_DENSITY * (levelSum - maxLevel) / maxLevel / Math.sqrt(area)) - 1;
 		/*
 		 * Leave out if 0; the client does not need it, and it can save needing
 		 * to send a data layer for zones that do not have any other attributes.
@@ -482,7 +482,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			attributes.put("danger_level", Double.toString(dangerLevel));
 		}
 	}
-	
+
 	/**
 	 * Get the area of the zone, excluding static collisions.
 	 */
@@ -696,7 +696,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				contents.remove(0);
 			}
 			// Ensure the attributes comes first, so that the client has coloring
-			// information 
+			// information
 			contents.add(0, attr);
 		}
 		return contents;

@@ -10,10 +10,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.tiled;
+package games.stendhal.common.tiled;
 
 import games.stendhal.common.Base64;
-import games.stendhal.common.LayerDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

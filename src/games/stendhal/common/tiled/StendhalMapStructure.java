@@ -10,9 +10,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.tiled;
+package games.stendhal.common.tiled;
 
-import games.stendhal.common.LayerDefinition;
 
 import java.util.LinkedList;
 import java.util.List;

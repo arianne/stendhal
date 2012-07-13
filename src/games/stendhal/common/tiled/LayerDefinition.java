@@ -10,10 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common;
-
-import games.stendhal.tools.tiled.StendhalMapStructure;
-import games.stendhal.tools.tiled.TileSetDefinition;
+package games.stendhal.common.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

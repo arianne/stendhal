@@ -12,10 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.maze;
 
-import games.stendhal.common.LayerDefinition;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -31,7 +32,6 @@ import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
@@ -499,7 +499,7 @@ public class MazeGenerator {
 
 	/**
 	 * Access the portal from MazeTest.
-	 * 
+	 *
 	 * @return the exit portal
 	 */
 	public Portal getPortal() {
