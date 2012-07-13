@@ -556,7 +556,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 *
 	 * @param expire
 	 * 		Set true if the item should expire normally, false otherwise.
-	 * 		Persistent attribute can override this.
 	 */
 	public void onPutOnGround(final boolean expire) {
 		if (expire) {
