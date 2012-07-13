@@ -16,6 +16,8 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.ContainerOrderFocusTraversalPolicy;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -30,13 +32,23 @@ import javax.swing.JComponent;
 @SuppressWarnings("serial")
 public class QuitDialog {
 	private static final int PADDING = 12;
-	InternalManagedWindow quitDialog;
+	/** Quit dialog window. */
+	private InternalManagedWindow quitDialog;
+	private JButton yesButton;
 	
+	/**
+	 * Get the dialog component.
+	 * 
+	 * @return quit dialog component
+	 */
 	Component getQuitDialog() {
 		return quitDialog;
 	}
 	
-	public QuitDialog() {
+	/**
+	 * Create a new QuitDialog. 
+	 */
+	QuitDialog() {
 		quitDialog = buildQuitDialog();
 		quitDialog.setVisible(false);
 		quitDialog.addHierarchyBoundsListener(new ParentResizeListener());
@@ -52,9 +64,13 @@ public class QuitDialog {
 		JComponent content = new JComponent() {};
 		content.setLayout(new GridLayout(1, 2, PADDING, PADDING));
 		content.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
+		// Limit keyboard focus handling to the dialog until the user makes some
+		// decision
+		content.setFocusCycleRoot(true);
+		content.setFocusTraversalPolicy(new LimitingFocusTraversalPolicy());
 
 		// create "yes" button
-		JButton yesButton = new JButton();
+		yesButton = new JButton();
 		yesButton.setText("Yes");
 		yesButton.addActionListener(new QuitConfirmCB());
 		content.add(yesButton);
@@ -97,7 +113,7 @@ public class QuitDialog {
 	 */
 	private static class QuitConfirmCB implements ActionListener {
 		public void actionPerformed(final ActionEvent ev) {
-				j2DClient.get().shutdown();
+			j2DClient.get().shutdown();
 		}
 	}
 	
@@ -113,6 +129,7 @@ public class QuitDialog {
 		StendhalClient.get().stop();
 		quitDialog.center();
 		quitDialog.setVisible(true);
+		yesButton.requestFocusInWindow();
 	}
 	
 	/**
@@ -129,6 +146,37 @@ public class QuitDialog {
 					quitDialog.center();
 				}
 			}
+		}
+	}
+	
+	/**
+	 * A FocusTraversalPolicy that keeps the keyboard focus within the
+	 * container, instead of passing it to parent once the last component has
+	 * been reached.
+	 */
+	private static class LimitingFocusTraversalPolicy extends ContainerOrderFocusTraversalPolicy {
+		@Override
+		public Component getFirstComponent(Container container) {
+			// By default we'd get the container itself.
+			Component[] components = container.getComponents();
+			if (components.length > 0) {
+				return components[0];
+			}
+			return null;
+		}
+		
+		@Override
+		public Component getComponentBefore(Container container,
+                Component component) {
+			/*
+			 * Jump to the actual last component instead of returning the
+			 * container itself when cycling backwards from the first component.
+			 */
+			Component before = super.getComponentBefore(container, component);
+			if (before == container) {
+				before = super.getLastComponent(container);
+			}
+			return before;
 		}
 	}
 }
