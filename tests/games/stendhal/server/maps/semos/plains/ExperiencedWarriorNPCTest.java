@@ -102,21 +102,21 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		//test with not having enough cash
 		assertTrue(en.step(player, "angel"));
-		assertEquals("This information costs 490. Are you still interested?", getReply(npc));
+		assertEquals("This information costs 692. Are you still interested?", getReply(npc));
 
-		assertFalse(player.isEquipped("money", 490));
+		assertFalse(player.isEquipped("money", 692));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("You don't have enough money with you.", getReply(npc));
 
 		//test with having the cash
-		assertTrue(equipWithMoney(player, 490));
-		assertTrue(player.isEquipped("money", 490));
+		assertTrue(equipWithMoney(player, 692));
+		assertTrue(player.isEquipped("money", 692));
 
 		assertTrue(en.step(player, "creatures"));
 		assertEquals("Which creature you would like to hear more about?", getReply(npc));
 
 		assertTrue(en.step(player, "angel"));
-		assertEquals("This information costs 490. Are you still interested?", getReply(npc));
+		assertEquals("This information costs 692. Are you still interested?", getReply(npc));
 
 		//lazy assertion since the phrases differ each time.  assume that the npc repeats the creature
 		assertTrue(en.step(player, "yes"));

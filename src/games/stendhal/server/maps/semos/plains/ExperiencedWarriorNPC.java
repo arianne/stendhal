@@ -51,12 +51,12 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 	 * cost of the information for players. Final cost is: INFORMATION_BASE_COST +
 	 * creatureLevel * INFORMATION_COST_LEVEL_FACTOR
 	 */
-	static final int INFORMATION_BASE_COST = 30;
+	static final int INFORMATION_BASE_COST = 2;
 
 	/**
 	 * multiplier of the creature level for the information cost.
 	 */
-	static final double INFORMATION_COST_LEVEL_FACTOR = 2;
+	static final double INFORMATION_COST_LEVEL_FACTOR = 3;
 
 	/**
 	 * literals for probabilities. %s is replaced with item description (name
