@@ -92,8 +92,32 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	 * @param karma
 	 */
 	void setValue(double karma) {
+		setToolTipText(describeKarma(karma));
 		this.karma = scale(karma);
 		repaint();
+	}
+	
+	/**
+	 * Get textual description of karma value.
+	 * 
+	 * @param karma
+	 * @return karma description
+	 */
+	private String describeKarma(double karma) {
+		if (karma > 499) {
+			return "You have unusually good karma";
+		} else if (karma > 99) {
+			return "You have great karma";
+		} else if (karma > 5) {
+			return "You have good karma";
+		} else if (karma > -5) {
+			return "You have average karma";
+		} else if (karma > -99) {
+			return "You have bad karma";
+		} else if (karma > -499) {
+			return "You have terrible karma";
+		}
+		return "You have disastrously bad karma";
 	}
 	
 	@Override
