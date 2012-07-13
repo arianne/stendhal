@@ -595,15 +595,15 @@
     <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
     <description>You see a killer bee which will sting you to death!</description>
     <attributes>
-      <atk value="100"/>
-      <def value="75"/>
+      <atk value="170"/>
+      <def value="25"/>
       <hp value="100"/>
       <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="30"/>
-    <experience value="1500"/>
-    <respawn value="900"/>
+    <level value="15"/>
+    <experience value="200"/>
+    <respawn value="1000"/>
     <corpse name="small_boneless"/>
     <drops>
       <item value="honey" quantity="[1,2]" probability="15.0"/>
@@ -617,7 +617,7 @@
       <says>
         <noise state="idle follow fight" value="BbzzZZzzz!"/>
       </says>
-      <profile name="poisonous" params="50,greater poison"/>
+      <profile name="poisonous" params="10,poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="archer"/>
