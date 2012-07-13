@@ -13,10 +13,10 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.manager.AudibleCircleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.AudibleCircleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.common.Rand;
 import games.stendhal.common.math.Algebra;
 
@@ -30,8 +30,8 @@ import java.util.HashMap;
  */
 public abstract class AudibleEntity extends RPEntity {
 
-	private AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
-	private HashMap<String, ArrayList<String>> mCategorys = new HashMap<String, ArrayList<String>>();
+	private final AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
+	private final HashMap<String, ArrayList<String>> mCategorys = new HashMap<String, ArrayList<String>>();
 	private long mWaitTime = 0;
 
 	protected void addSounds(String groupName, String categoryName, String... soundNames) {
@@ -43,7 +43,7 @@ public abstract class AudibleEntity extends RPEntity {
 		}
 
 		for (String name : soundNames) {
-			if (group.loadSound(name, name + ".ogg", Type.OGG, false)) {
+			if (group.loadSound(name, name + ".ogg", SoundFileType.OGG, false)) {
 				soundNameList.add(name);
 			}
 		}

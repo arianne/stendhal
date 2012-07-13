@@ -10,10 +10,14 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.nosound;
+package games.stendhal.client.sound.facade;
 
-import games.stendhal.client.sound.facade.SoundHandle;
-
-public class NoSoundHandle implements SoundHandle {
-	// do nothing
+/**
+ *
+ * @author silvio
+ */
+public interface AudibleArea
+{
+    public float getHearingIntensity(float[] hearerPos);
+    public void  getClosestPoint    (float[] result, float[] hearerPos);
 }

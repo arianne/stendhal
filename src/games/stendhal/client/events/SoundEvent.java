@@ -14,9 +14,9 @@ package games.stendhal.client.events;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.manager.AudibleCircleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
+import games.stendhal.client.sound.facade.AudibleCircleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
@@ -50,7 +50,7 @@ public class SoundEvent extends Event<Entity> {
 		SoundGroup group = ClientSingletonRepository.getSound().getGroup(layer.groupName);
 		String soundName = event.get("sound");
 		AudibleCircleArea area = new AudibleCircleArea(Algebra.vecf((float)entity.getX(), (float)entity.getY()), radius/4.0f, radius);
-		group.loadSound(soundName, soundName + ".ogg", Type.OGG, false);
+		group.loadSound(soundName, soundName + ".ogg", SoundFileType.OGG, false);
 		group.play(soundName, volume, 0, area, null, false, true);
 	}
 

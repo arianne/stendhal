@@ -15,7 +15,7 @@ package games.stendhal.client.actions;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.Time;
 
 
 /**

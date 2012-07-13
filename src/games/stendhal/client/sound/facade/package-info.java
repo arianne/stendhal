@@ -1,6 +1,10 @@
-/* $Id$ */
+/**
+ * the sound and music system, API package
+ */
+package games.stendhal.client.sound.facade;
+
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2005-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,14 +14,3 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.manager;
-
-/**
- *
- * @author silvio
- */
-public interface AudibleArea
-{
-    public float getHearingIntensity(float[] hearerPos);
-    public void  getClosestPoint    (float[] result, float[] hearerPos);
-}

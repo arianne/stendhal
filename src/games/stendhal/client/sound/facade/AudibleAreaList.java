@@ -10,7 +10,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.manager;
+package games.stendhal.client.sound.facade;
+
 
 import java.util.Iterator;
 import java.util.LinkedList;

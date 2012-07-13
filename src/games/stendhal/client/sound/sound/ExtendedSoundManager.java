@@ -16,14 +16,13 @@ import games.stendhal.client.MemoryCache;
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.manager.AudibleArea;
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.manager.AudioResource;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
-import games.stendhal.client.sound.manager.SoundFile;
-import games.stendhal.client.sound.manager.SoundFile.Type;
 import games.stendhal.client.sound.manager.SoundManagerNG;
-import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 
@@ -39,7 +38,7 @@ import org.apache.log4j.Logger;
 /**
  * this class is the main interface between the game logic and the low level
  * sound system. It is a refinement of the manager.SoundManager class.
- * 
+ *
  * @author hendrik, silvio
  */
 public class ExtendedSoundManager extends SoundManagerNG implements WorldListener {
@@ -58,25 +57,27 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 
 	public class Group implements SoundGroup {
 
-		private boolean mEnabled = true;
+		private final boolean mEnabled = true;
 		private float mVolume = 1.0f;
 		private final MemoryCache<String, Sound> mGroupSounds = new MemoryCache<String, Sound>();
 		private boolean streaming = false;
 
-		public boolean loadSound(String name, String filename, SoundFile.Type fileType, boolean enableStreaming) {
+		public boolean loadSound(String name, String filename, SoundFileType fileType, boolean enableStreaming) {
 			try {
 				Sound sound = ExtendedSoundManager.this.mSounds.get(name);
-	
+
 				if (sound == null) {
 					sound = openSound(new AudioResource(filename), fileType, 256, enableStreaming);
-	
-					if (sound != null)
+
+					if (sound != null) {
 						ExtendedSoundManager.this.mSounds.put(name, sound);
+					}
 				}
-	
-				if (sound != null)
+
+				if (sound != null) {
 					mGroupSounds.put(name, sound);
-	
+				}
+
 				return sound != null;
 			} catch (RuntimeException e) {
 				logger.error(e, e);
@@ -116,22 +117,23 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 				return null;
 			}
 			try {
-				
+
 				if (mEnabled) {
 					Sound sound = mGroupSounds.get(soundName);
 					if (sound == null) {
-						loadSound(soundName, soundName + ".ogg", Type.OGG, this.streaming);
+						loadSound(soundName, soundName + ".ogg", SoundFileType.OGG, this.streaming);
 						sound = mGroupSounds.get(soundName);
 					}
 
 					if (sound != null) {
-						if (clone)
+						if (clone) {
 							sound = sound.clone();
-	
+						}
+
 						sound.setAttachment(new Multiplicator(volume, this));
 						ExtendedSoundManager.this.play(sound, (mMasterVolume * mVolume * volume), layerLevel, area, autoRepeat, fadeInDuration);
 					}
-	
+
 					return sound;
 				}
 			} catch (RuntimeException e) {

@@ -1,5 +1,5 @@
 /**
- * the sound and music system
+ * the sound and music system, see package facade
  */
 package games.stendhal.client.sound;
 

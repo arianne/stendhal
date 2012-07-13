@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
+import games.stendhal.client.sound.facade.SoundFileType;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.processors.OggVorbisDecoder;
 import games.stendhal.client.sound.system.processors.PCMStreamConverter;
@@ -36,16 +37,14 @@ public class SoundFile extends SignalProcessor implements Cloneable
 {
 	private static Logger logger = Logger.getLogger(SoundFile.class);
 
-    public static enum Type { OGG, WAV }
-
-	private int                   mNumChannels;
+    private int                   mNumChannels;
     private int                   mSampleRate;
 	private SignalProcessor       mGenerator = null;
 	private Recorder              mRecorder  = null;
 	private final AudioResource        mAudioResource;
 	private final boolean         mEnableStreaming;
     private final int             mOutputNumSamples;
-    private final Type            mFileType;
+    private final SoundFileType            mFileType;
 
 	private final SignalProcessor mPropagator = new SignalProcessor()
 	{
@@ -62,7 +61,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		}
 	};
 
-    public SoundFile(AudioResource audioResource, Type fileType, int outputNumSamplesPerChannel, boolean enableStreaming) throws IOException
+    public SoundFile(AudioResource audioResource, SoundFileType fileType, int outputNumSamplesPerChannel, boolean enableStreaming) throws IOException
     {
 
     	InputStream stream = audioResource.getInputStream();
@@ -110,7 +109,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
         }
     }
 
-	private SoundFile(Recorder recorder, AudioResource audioResource, Type fileType, int outputNumSamplesPerChannel)
+	private SoundFile(Recorder recorder, AudioResource audioResource, SoundFileType fileType, int outputNumSamplesPerChannel)
 	{
 		mAudioResource         = audioResource;
 		mFileType         = fileType;
@@ -200,7 +199,7 @@ public class SoundFile extends SignalProcessor implements Cloneable
 		}
     }
 
-	private SignalProcessor chooseDecoder(InputStream stream, Type fileType, int outputNumSamplesPerChannel)
+	private SignalProcessor chooseDecoder(InputStream stream, SoundFileType fileType, int outputNumSamplesPerChannel)
     {
         SignalProcessor decoder = null;
 

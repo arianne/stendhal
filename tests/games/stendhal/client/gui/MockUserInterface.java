@@ -13,12 +13,12 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundHandle;
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.common.NotificationType;
 
 import java.util.Collection;
@@ -33,14 +33,14 @@ public class MockUserInterface implements UserInterface {
 	private final SoundSystemFacade sound = new DummySoundSystem();
 	/** Stored last message */
 	private EventLine previousEventLine;
-	
+
 	public void addEventLine(EventLine line) {
 		previousEventLine = line;
 	}
-	
+
 	/**
 	 * Get the previous message. Wipes it from memory.
-	 * 
+	 *
 	 * @return last message
 	 */
 	public String getLastEventLine() {
@@ -60,13 +60,13 @@ public class MockUserInterface implements UserInterface {
 	public SoundSystemFacade getSoundSystemFacade() {
 		return sound;
 	}
-	
+
 	/**
 	 * A sound system that does nothing.
 	 */
 	private static class DummySoundSystem implements SoundSystemFacade {
 		private final SoundGroup group = new DummySoundGroup();
-		
+
 		public void changeVolume(float volume) {
 			// do nothing
 		}
@@ -116,9 +116,9 @@ public class MockUserInterface implements UserInterface {
 			return new LinkedList<String>();
 		}
 	}
-	
+
 	/**
-	 * A SoundGroup that does nothing, but can be passed where a valid 
+	 * A SoundGroup that does nothing, but can be passed where a valid
 	 * SoundGroup is expected.
 	 */
 	private static class DummySoundGroup implements SoundGroup {
@@ -130,7 +130,7 @@ public class MockUserInterface implements UserInterface {
 			return 0;
 		}
 
-		public boolean loadSound(String name, String fileURI, Type fileType,
+		public boolean loadSound(String name, String fileURI, SoundFileType fileType,
 				boolean enableStreaming) {
 			// do nothing
 			return false;

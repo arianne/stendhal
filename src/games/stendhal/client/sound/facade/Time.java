@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.system;
+package games.stendhal.client.sound.facade;
 
 /**
  * A time class that helps converting different time units

@@ -13,7 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.gui.UserInterface;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
 import marauroa.client.ClientFramework;
 
 /**

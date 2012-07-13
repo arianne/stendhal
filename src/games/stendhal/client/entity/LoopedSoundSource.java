@@ -13,11 +13,11 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundHandle;
-import games.stendhal.client.sound.manager.AudibleCircleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.AudibleCircleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
@@ -32,7 +32,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	private String soundName = null;
 	private SoundHandle sound = null;
 	private SoundGroup group = null;
-	private Time fadingDuration = new Time();
+	private final Time fadingDuration = new Time();
 	private int radius;
 	private float volume;
 
@@ -50,7 +50,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 
 	/**
 	 * updates the attributes based on the RPObject values sent from the server.
-	 * 
+	 *
 	 * @param object
 	 *            object to read from
 	 */
@@ -86,7 +86,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 		}
 		if (object.has("sound")) {
 			soundName = object.get("sound");
-			group.loadSound(soundName, soundName + ".ogg", Type.OGG, streaming);
+			group.loadSound(soundName, soundName + ".ogg", SoundFileType.OGG, streaming);
 		}
 	}
 
@@ -102,7 +102,7 @@ public class LoopedSoundSource extends InvisibleEntity {
 	/**
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
-	 * 
+	 *
 	 * @see #initialize(RPObject)
 	 */
 	@Override

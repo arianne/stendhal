@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.sound.nosound;
 
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundHandle;
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
+import games.stendhal.client.sound.facade.Time;
 
 import java.util.Collection;
 import java.util.LinkedList;

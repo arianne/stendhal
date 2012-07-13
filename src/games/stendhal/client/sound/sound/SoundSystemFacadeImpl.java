@@ -14,12 +14,12 @@ package games.stendhal.client.sound.sound;
 
 import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundHandle;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.manager.SoundManagerNG.Sound;
-import games.stendhal.client.sound.system.Time;
 import games.stendhal.common.math.Algebra;
 
 import java.util.Collection;

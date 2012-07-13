@@ -12,9 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.InfiniteAudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystem;
-import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.SoundLayers;
@@ -67,8 +70,9 @@ public final class SoundManager
 		@SuppressWarnings("unchecked")
 		public <T> T getAttachment(Class<T> clazz)
 		{
-			if(clazz.isInstance(object))
+			if(clazz.isInstance(object)) {
 				return (T)object;
+			}
 
 			return null;
 		}
@@ -77,7 +81,7 @@ public final class SoundManager
         public boolean isActive()                { return channel.get() != null && channel.get().isActive(); }
 		public void    setAttachment(Object obj) { object = obj;                                             }
     }
-	
+
     private final class SoundChannel extends SignalProcessor
     {
         final float[]                      mSoundPosition = new float[DIMENSION];
@@ -111,9 +115,10 @@ public final class SoundManager
 
 		void setAudibleArea(AudibleArea area)
 		{
-			if(area == null)
+			if(area == null) {
 				area = INFINITE_AUDIBLE_AREA;
-			
+			}
+
 			mAudibleArea.set(area);
 		}
 
@@ -129,9 +134,10 @@ public final class SoundManager
 
             if(newSound != null)
             {
-                if(time == null)
-                    time = ZERO_DURATION;
-                
+                if(time == null) {
+					time = ZERO_DURATION;
+				}
+
                 mInterruptor.play();
                 mGlobalVolume.setVolume(0.0f);
                 mGlobalVolume.startFading(volume, time);
@@ -145,14 +151,15 @@ public final class SoundManager
 
         void stopPlayback(Time time)
         {
-			if(time == null)
+			if(time == null) {
 				time = ZERO_DURATION;
+			}
 
             mAutoRepeat.set(false);
             mGlobalVolume.startFading(0.0f, time);
             mInterruptor.stop(time);
         }
-        
+
         void update()
         {
             float intensity = mAudibleArea.get().getHearingIntensity(mHearerPosition);
@@ -175,12 +182,12 @@ public final class SoundManager
             }
         }
     }
-    
+
     private final LinkedList<SoundChannel> mChannels       = new LinkedList<SoundChannel>();
     private final float[]                  mHearerPosition = new float[DIMENSION];
     private final SoundLayers              mSoundLayers    = new SoundLayers();
 	private boolean                        mMute           = false;
-	private SoundSystem                    mSoundSystem;
+	private final SoundSystem                    mSoundSystem;
 
     protected SoundManager()
     {
@@ -191,12 +198,12 @@ public final class SoundManager
 		mSoundSystem.start();
     }
 
-	public Sound openSound(AudioResource AudioResource, SoundFile.Type fileType)
+	public Sound openSound(AudioResource AudioResource, SoundFileType fileType)
     {
 		return openSound(AudioResource, fileType, OUTPUT_NUM_SAMPLES, true);
     }
 
-	public synchronized Sound openSound(AudioResource AudioResource, SoundFile.Type fileType, int numSamplesPerChunk, boolean enableStreaming)
+	public synchronized Sound openSound(AudioResource AudioResource, SoundFileType fileType, int numSamplesPerChunk, boolean enableStreaming)
     {
 		Sound sound = null;
 
@@ -224,15 +231,17 @@ public final class SoundManager
     {
         for(SoundChannel channel: mChannels)
         {
-            if(channel.isActive())
-                channel.update();
+            if(channel.isActive()) {
+				channel.update();
+			}
         }
     }
 
 	public synchronized void play(Sound sound, float volume, int layerLevel, AudibleArea area, boolean autoRepeat, Time fadeInDuration)
     {
-        if(sound == null)
-            return;
+        if(sound == null) {
+			return;
+		}
 
         if(sound.isActive())
         {
@@ -263,26 +272,30 @@ public final class SoundManager
 
     public synchronized void stop(Sound sound, Time fadeOutDuration)
     {
-        if(sound != null && sound.isActive())
-            sound.channel.get().stopPlayback(fadeOutDuration);
+        if(sound != null && sound.isActive()) {
+			sound.channel.get().stopPlayback(fadeOutDuration);
+		}
     }
 
     public synchronized void changeVolume(Sound sound, float volume)
     {
-        if(sound != null && sound.isActive())
-            sound.channel.get().setVolume(volume);
+        if(sound != null && sound.isActive()) {
+			sound.channel.get().setVolume(volume);
+		}
     }
 
     public synchronized void changeLayer(Sound sound, int layerLevel)
     {
-        if(sound != null && sound.isActive())
-            sound.channel.get().setLayer(layerLevel);
+        if(sound != null && sound.isActive()) {
+			sound.channel.get().setLayer(layerLevel);
+		}
     }
 
     public synchronized void changeAudibleArea(Sound sound, AudibleArea area)
     {
-        if(sound != null && sound.isActive())
-            sound.channel.get().setAudibleArea(area);
+        if(sound != null && sound.isActive()) {
+			sound.channel.get().setAudibleArea(area);
+		}
     }
 
 	public synchronized void mute(boolean turnOffSound, boolean useFading, Time delay)
@@ -294,9 +307,11 @@ public final class SoundManager
 
 			if(useFading)
 			{
-				for(SoundChannel channel: mChannels)
-					if(channel.isActive())
+				for(SoundChannel channel: mChannels) {
+					if(channel.isActive()) {
 						channel.startFading(0, delay);
+					}
+				}
 			}
 		}
 
@@ -307,9 +322,11 @@ public final class SoundManager
 
 			if(useFading)
 			{
-				for(SoundChannel channel: mChannels)
-					if(channel.isActive())
+				for(SoundChannel channel: mChannels) {
+					if(channel.isActive()) {
 						channel.startFading(delay);
+					}
+				}
 			}
 		}
 
@@ -324,14 +341,15 @@ public final class SoundManager
 		{
 			Sound sound = channel.getSoundObject();
 
-			if(sound != null && sound.isActive())
+			if(sound != null && sound.isActive()) {
 				sounds.add(sound);
+			}
 		}
 
 		sounds.trimToSize();
 		return sounds;
 	}
-	
+
     public synchronized void exit()
     {
 		mSoundSystem.exit(null);
@@ -353,9 +371,10 @@ public final class SoundManager
 
 		while(iChannel.hasNext())
 		{
-			if(mChannels.size() <= leaveNumChannelsOpen)
+			if(mChannels.size() <= leaveNumChannelsOpen) {
 				break;
-			
+			}
+
 			SoundChannel currChannel = iChannel.next();
 
 			if(!currChannel.isActive())
@@ -367,10 +386,11 @@ public final class SoundManager
 
 		numChannels -= mChannels.size();
 
-		if(numChannels > 0)
+		if(numChannels > 0) {
 			logger.debug("close " + numChannels + " inactive sound channels");
+		}
 	}
-	
+
     private SoundChannel getInactiveChannel()
     {
         SoundChannel foundChannel = null;

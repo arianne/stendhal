@@ -16,8 +16,8 @@ import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.math.Numeric;
 

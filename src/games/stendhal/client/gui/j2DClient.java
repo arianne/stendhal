@@ -42,9 +42,9 @@ import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundSystemFacade;
-import games.stendhal.client.sound.manager.SoundFile.Type;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.common.CollisionDetection;
@@ -218,7 +218,7 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * Create new j2DClient.
-	 * 
+	 *
 	 * @param client
 	 * @param userContext
 	 */
@@ -301,7 +301,7 @@ public class j2DClient implements UserInterface {
 				/*
 				 * Redispatch only if CTRL is pressed. Otherwise any arrow key
 				 * press will be interpreted as switching log tabs.
-				 * 
+				 *
 				 * What should be used for Macs?
 				 */
 				if (e.isControlDown()) {
@@ -755,12 +755,12 @@ public class j2DClient implements UserInterface {
 
 	private SoundGroup initSoundSystem() {
 		SoundGroup group = getSoundSystemFacade().getGroup(SoundLayer.USER_INTERFACE.groupName);
-		group.loadSound("harp-1", "harp-1.ogg", Type.OGG, false);
-		group.loadSound("click-4", "click-4.ogg", Type.OGG, false);
-		group.loadSound("click-5", "click-5.ogg", Type.OGG, false);
-		group.loadSound("click-6", "click-6.ogg", Type.OGG, false);
-		group.loadSound("click-8", "click-8.ogg", Type.OGG, false);
-		group.loadSound("click-10", "click-10.ogg", Type.OGG, false);
+		group.loadSound("harp-1", "harp-1.ogg", SoundFileType.OGG, false);
+		group.loadSound("click-4", "click-4.ogg", SoundFileType.OGG, false);
+		group.loadSound("click-5", "click-5.ogg", SoundFileType.OGG, false);
+		group.loadSound("click-6", "click-6.ogg", SoundFileType.OGG, false);
+		group.loadSound("click-8", "click-8.ogg", SoundFileType.OGG, false);
+		group.loadSound("click-10", "click-10.ogg", SoundFileType.OGG, false);
 		return group;
 	}
 
@@ -854,7 +854,7 @@ public class j2DClient implements UserInterface {
 	private void switchToSpellCastingState(KeyEvent e) {
 		this.screen.switchToSpellCasting(e);
 	}
-	
+
 	protected void onKeyReleased(final KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
@@ -1021,10 +1021,10 @@ public class j2DClient implements UserInterface {
 			outfitDialog.toFront();
 		}
 	}
-	
+
 	/**
 	 * Create the chat log tabs.
-	 * 
+	 *
 	 * @return chat log area
 	 */
 	private JComponent createLogArea() {
@@ -1041,7 +1041,7 @@ public class j2DClient implements UserInterface {
 				}
 			}});
 		List<JComponent> logs = createNotificationChannels();
-		
+
 		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
 		for (JComponent tab : logs) {
 			tabs.add(it.next().getName(), tab);
@@ -1056,13 +1056,13 @@ public class j2DClient implements UserInterface {
 				}
 			}
 		});
-		
+
 		return tabs;
 	}
-	
+
 	/**
 	 * Create chat channels.
-	 * 
+	 *
 	 * @return Chat log components of the notification channels
 	 */
 	private List<JComponent> createNotificationChannels() {
@@ -1070,7 +1070,7 @@ public class j2DClient implements UserInterface {
 		channelManager = new NotificationChannelManager();
 		KTextEdit edit = new KTextEdit();
 		list.add(edit);
-		
+
 		// ** Main channel **
 		// Compatibility hack. Sets the default string for main channel from
 		// the old configuration values.
@@ -1087,7 +1087,7 @@ public class j2DClient implements UserInterface {
 		}
 
 		channelManager.addChannel(new NotificationChannel("Main", edit, true, mainDefault));
-		
+
 		// ** Private channel **
 		edit = new KTextEdit();
 		edit.setChannelName("Personal");
@@ -1103,10 +1103,10 @@ public class j2DClient implements UserInterface {
 		 * disabled in preferences.
 		 */
 		String personalDefault = NotificationType.PRIVMSG.toString() + ","
-				+ NotificationType.CLIENT + "," + NotificationType.GROUP + "," 
+				+ NotificationType.CLIENT + "," + NotificationType.GROUP + ","
 				+ NotificationType.TUTORIAL + "," + NotificationType.SUPPORT;
 		channelManager.addChannel(new NotificationChannel("Personal", edit, false, personalDefault));
-		
+
 		return list;
 	}
 

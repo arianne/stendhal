@@ -10,10 +10,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound;
+package games.stendhal.client.sound.facade;
 
 import games.stendhal.client.WorldObjects.WorldListener;
-import games.stendhal.client.sound.system.Time;
 
 import java.util.Collection;
 import java.util.List;

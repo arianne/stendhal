@@ -13,7 +13,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.common.NotificationType;
 
 /**

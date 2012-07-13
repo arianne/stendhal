@@ -12,11 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.sound.manager;
 
-import games.stendhal.client.sound.SoundHandle;
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.InfiniteAudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.manager.DeviceEvaluator.Device;
 import games.stendhal.client.sound.system.SignalProcessor;
 import games.stendhal.client.sound.system.SoundSystemNG;
-import games.stendhal.client.sound.system.Time;
 import games.stendhal.client.sound.system.processors.DirectedSound;
 import games.stendhal.client.sound.system.processors.Interruptor;
 import games.stendhal.client.sound.system.processors.VolumeAdjustor;
@@ -37,7 +40,7 @@ import org.apache.log4j.Logger;
 
 /**
  * New implementation of the sound manager.
- * 
+ *
  * @author silvio
  */
 public class SoundManagerNG {
@@ -66,8 +69,9 @@ public class SoundManagerNG {
 
 		@SuppressWarnings("unchecked")
 		public <T> T getAttachment(Class<T> clazz) {
-			if (clazz.isInstance(object))
+			if (clazz.isInstance(object)) {
 				return (T) object;
+			}
 
 			return null;
 		}
@@ -138,8 +142,9 @@ public class SoundManagerNG {
 		}
 
 		void setAudibleArea(AudibleArea area) {
-			if (area == null)
+			if (area == null) {
 				area = INFINITE_AUDIBLE_AREA;
+			}
 
 			mAudibleArea.set(area);
 		}
@@ -153,8 +158,9 @@ public class SoundManagerNG {
 			}
 
 			if (newSound != null) {
-				if (time == null)
+				if (time == null) {
 					time = ZERO_DURATION;
+				}
 
 				mInterruptor.play();
 				mGlobalVolume.setVolume(0.0f);
@@ -168,8 +174,9 @@ public class SoundManagerNG {
 		}
 
 		void stopPlayback(Time time) {
-			if (time == null)
+			if (time == null) {
 				time = ZERO_DURATION;
+			}
 
 			mAutoRepeat.set(false);
 			mGlobalVolume.startFading(0.0f, time);
@@ -219,10 +226,11 @@ public class SoundManagerNG {
 		logger.info("initializing sound system");
 
 		if (devices != null) {
-			for (Device device : devices)
+			for (Device device : devices) {
 				logger.info("available device: " + device.getName() + " - "
 						+ device.getDescription() + " (" + device.getRating()
 						+ ")");
+			}
 		}
 
 		if (mute || devices == null || devices.size() == 0) {
@@ -246,7 +254,7 @@ public class SoundManagerNG {
 	}
 
 	public synchronized Sound openSound(AudioResource AudioResource,
-			SoundFile.Type fileType, int numSamplesPerChunk,
+			SoundFileType fileType, int numSamplesPerChunk,
 			boolean enableStreaming) {
 		Sound sound = null;
 
@@ -269,15 +277,17 @@ public class SoundManagerNG {
 
 	public synchronized void update() {
 		for (SoundChannel channel : mChannels) {
-			if (channel.isActive())
+			if (channel.isActive()) {
 				channel.update();
+			}
 		}
 	}
 
 	public synchronized void play(Sound sound, float volume, int layerLevel,
 			AudibleArea area, boolean autoRepeat, Time fadeInDuration) {
-		if (sound == null)
+		if (sound == null) {
 			return;
+		}
 
 		if (sound.isActive()) {
 			SoundChannel channel = sound.channel.get();
@@ -303,23 +313,27 @@ public class SoundManagerNG {
 	}
 
 	public synchronized void stop(Sound sound, Time fadeOutDuration) {
-		if (sound != null && sound.isActive())
+		if (sound != null && sound.isActive()) {
 			sound.channel.get().stopPlayback(fadeOutDuration);
+		}
 	}
 
 	public synchronized void changeVolume(Sound sound, float volume) {
-		if (sound != null && sound.isActive())
+		if (sound != null && sound.isActive()) {
 			sound.channel.get().setVolume(volume);
+		}
 	}
 
 	public synchronized void changeLayer(Sound sound, int layerLevel) {
-		if (sound != null && sound.isActive())
+		if (sound != null && sound.isActive()) {
 			sound.channel.get().setLayer(layerLevel);
+		}
 	}
 
 	public synchronized void changeAudibleArea(Sound sound, AudibleArea area) {
-		if (sound != null && sound.isActive())
+		if (sound != null && sound.isActive()) {
 			sound.channel.get().setAudibleArea(area);
+		}
 	}
 
 	public synchronized void mute(boolean turnOffSound, boolean useFading,
@@ -329,9 +343,11 @@ public class SoundManagerNG {
 			mSoundSystem.suspend(delay, true);
 
 			if (useFading) {
-				for (SoundChannel channel : mChannels)
-					if (channel.isActive())
+				for (SoundChannel channel : mChannels) {
+					if (channel.isActive()) {
 						channel.startFading(0, delay);
+					}
+				}
 			}
 		}
 
@@ -340,9 +356,11 @@ public class SoundManagerNG {
 			mSoundSystem.proceed(null, getOutputLine());
 
 			if (useFading) {
-				for (SoundChannel channel : mChannels)
-					if (channel.isActive())
+				for (SoundChannel channel : mChannels) {
+					if (channel.isActive()) {
 						channel.startFading(delay);
+					}
+				}
 			}
 		}
 
@@ -355,8 +373,9 @@ public class SoundManagerNG {
 		for (SoundChannel channel : mChannels) {
 			Sound sound = channel.getSoundObject();
 
-			if (sound != null && sound.isActive())
+			if (sound != null && sound.isActive()) {
 				sounds.add(sound);
+			}
 		}
 
 		sounds.trimToSize();
@@ -379,8 +398,9 @@ public class SoundManagerNG {
 		Iterator<SoundChannel> iChannel = mChannels.iterator();
 
 		while (iChannel.hasNext()) {
-			if (mChannels.size() <= leaveNumChannelsOpen)
+			if (mChannels.size() <= leaveNumChannelsOpen) {
 				break;
+			}
 
 			SoundChannel currChannel = iChannel.next();
 
@@ -392,8 +412,9 @@ public class SoundManagerNG {
 
 		numChannels -= mChannels.size();
 
-		if (numChannels > 0)
+		if (numChannels > 0) {
 			logger.debug("close " + numChannels + " inactive sound channels");
+		}
 	}
 
 	private SoundChannel getInactiveChannel() {
@@ -422,8 +443,9 @@ public class SoundManagerNG {
 			SourceDataLine line = device.getLine(SourceDataLine.class,
 					mAudioFormat);
 
-			if (line != null)
+			if (line != null) {
 				return line;
+			}
 		}
 
 		return null;

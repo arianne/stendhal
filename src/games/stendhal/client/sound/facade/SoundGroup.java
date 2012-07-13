@@ -10,11 +10,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound;
+package games.stendhal.client.sound.facade;
 
-import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.system.Time;
 
 /**
  * a group of sounds
@@ -32,7 +29,7 @@ public interface SoundGroup {
 	 * @param enableStreaming should streaming be enabled?
 	 * @return true, if the sound could be loaded; false otherwise.
 	 */
-	public boolean loadSound(String name, String fileURI, Type fileType, boolean enableStreaming);
+	public boolean loadSound(String name, String fileURI, SoundFileType fileType, boolean enableStreaming);
 
 	/**
 	 * plays a sound
@@ -70,7 +67,7 @@ public interface SoundGroup {
 
 	/**
 	 * changes the volumne
-	 * 
+	 *
 	 * @param volume volume
 	 */
 	public void changeVolume(float volume);

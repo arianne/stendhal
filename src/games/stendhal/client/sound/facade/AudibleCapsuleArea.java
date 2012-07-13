@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.manager;
+package games.stendhal.client.sound.facade;
 
 import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Geometry;

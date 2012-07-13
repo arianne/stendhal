@@ -10,16 +10,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.sound.manager;
+package games.stendhal.client.sound.facade;
 
-import games.stendhal.common.math.Algebra;
-
-/**
- *
- * @author silvio
- */
-public class InfiniteAudibleArea implements AudibleArea
-{
-    public float getHearingIntensity(float[] hearerPos)                 { return 1.0f;                         }
-    public void  getClosestPoint    (float[] result, float[] hearerPos) { Algebra.mov_Vecf(result, hearerPos); }
+public interface SoundHandle {
+	// empty interface
 }

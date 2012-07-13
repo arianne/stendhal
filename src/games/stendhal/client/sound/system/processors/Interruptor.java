@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system.processors;
 
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.system.SignalProcessor;
-import games.stendhal.client.sound.system.Time;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 

@@ -15,7 +15,7 @@ package games.stendhal.bot.textclient;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.sound.SoundSystemFacade;
+import games.stendhal.client.sound.facade.SoundSystemFacade;
 import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.common.NotificationType;
 

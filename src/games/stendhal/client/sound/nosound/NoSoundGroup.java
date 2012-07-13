@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.sound.nosound;
 
-import games.stendhal.client.sound.SoundGroup;
-import games.stendhal.client.sound.SoundHandle;
-import games.stendhal.client.sound.manager.AudibleArea;
-import games.stendhal.client.sound.manager.SoundFile.Type;
-import games.stendhal.client.sound.system.Time;
+import games.stendhal.client.sound.facade.AudibleArea;
+import games.stendhal.client.sound.facade.SoundFileType;
+import games.stendhal.client.sound.facade.SoundGroup;
+import games.stendhal.client.sound.facade.SoundHandle;
+import games.stendhal.client.sound.facade.Time;
 
 public class NoSoundGroup implements SoundGroup {
 
@@ -29,7 +29,7 @@ public class NoSoundGroup implements SoundGroup {
 		return 0;
 	}
 
-	public boolean loadSound(String name, String fileURI, Type fileType, boolean enableStreaming) {
+	public boolean loadSound(String name, String fileURI, SoundFileType fileType, boolean enableStreaming) {
 		// do nothing
 		return false;
 	}

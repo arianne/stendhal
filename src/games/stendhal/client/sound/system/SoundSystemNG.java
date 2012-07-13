@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound.system;
 
+import games.stendhal.client.sound.facade.Time;
 import games.stendhal.common.math.Dsp;
 import games.stendhal.common.math.Numeric;
 import games.stendhal.common.memory.Field;
