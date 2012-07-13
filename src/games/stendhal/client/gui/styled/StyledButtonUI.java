@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,14 +12,18 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractButton;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -28,6 +32,11 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * ButtonUI implementation for drawing {@link WoodStyle} style buttons. 
  */
 public class StyledButtonUI extends BasicButtonUI {
+	/**
+	 * Listener for button focus changes. Contains no state so it can be
+	 * shared for all buttons.
+	 */
+	private static final DefaultButtonFocusListener focusListener = new DefaultButtonFocusListener();
 	private final Style style;
 
 	/** <code>true</code> if the mouse is over the button */
@@ -144,6 +153,7 @@ public class StyledButtonUI extends BasicButtonUI {
 	@Override
 	public void installUI(JComponent button) {
 		super.installUI(button);
+		button.addFocusListener(focusListener);
 		button.setForeground(style.getForeground());
 		button.setBorder(style.getBorder());
 		button.addMouseListener(new MouseOverListener());
@@ -164,6 +174,28 @@ public class StyledButtonUI extends BasicButtonUI {
 		@Override
 		public void mouseExited(MouseEvent e) {
 			mouseOver = false;
+		}
+	}
+	
+	/**
+	 * Listener that follows when a button gets the focus, and makes it the
+	 * default when it does. This makes enter push the selected button, instead
+	 * of just space.
+	 */
+	private static class DefaultButtonFocusListener implements FocusListener {
+		public void focusGained(FocusEvent e) {
+			Component c = e.getComponent();
+			if (c instanceof JButton) {
+				JButton button = (JButton) c;
+				button.getRootPane().setDefaultButton(button);
+			}
+		}
+		
+		public void focusLost(FocusEvent e) {
+			Component c = e.getComponent();
+			if (c instanceof JComponent) {
+				((JComponent) c).getRootPane().setDefaultButton(null);
+			}
 		}
 	}
 }
