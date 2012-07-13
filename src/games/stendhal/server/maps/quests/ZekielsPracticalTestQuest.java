@@ -360,4 +360,9 @@ public class ZekielsPracticalTestQuest extends AbstractQuest {
 	public String getRegion() {
 		return Region.SEMOS_SURROUNDS;
 	}
+	
+	@Override
+	public int getMinLevel() {
+		return 30;
+	}
 }
