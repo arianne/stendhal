@@ -31,9 +31,13 @@ import java.util.Map;
 
 /**
  * An oracle who lets players know how they can help others.
+ * 
  */
 public class OracleNPC implements ZoneConfigurator {
 	
+	/** 
+	 * region that this NPC can give information about 
+	 */
 	private final List<String> regions = Arrays.asList(Region.SEMOS_CITY, Region.SEMOS_SURROUNDS);
 	
 	public void configureZone(final StendhalRPZone zone,
@@ -47,19 +51,26 @@ public class OracleNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Roses are red, violets are blue, Semos needs #help, what can you do?");
+				
+				// use a standard action to list the names of NPCs for quests which haven't been started in this region 
 				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(regions));
-			    add(ConversationStates.ATTENDING,
+			    
+				// if the player says an NPC name, describe the quest (same description as in the travel log)
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(regions),
 						ConversationStates.ATTENDING,
 						null,
 						new SayUnstartedQuestDescriptionFromNPCNameAction(regions));
+				
 				addQuest("Oh, there are so many others who may need #help in " + Grammar.enumerateCollection(regions) + ", I wouldn't ask you anything new.");
 				addJob("I have no real occupation, my skill is in guiding you in how to #help others, especially in " + Grammar.enumerateCollection(regions) + ".");
 				addOffer("*giggles* I don't sell anything. I can tell you about my #sisters or my #name, if you like.");
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
 						"My name, Periwinkle, is another name for the forget-me-not. Don't forget me...");
+				
+				// just to be nice :)
 				addEmotionReply("hugs", "hugs");
 				addGoodbye("Thank you for stopping by.");
 			}

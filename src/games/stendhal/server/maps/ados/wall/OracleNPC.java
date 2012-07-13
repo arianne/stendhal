@@ -34,6 +34,9 @@ import java.util.Map;
  */
 public class OracleNPC implements ZoneConfigurator {
 	
+	/** 
+	 * region that this NPC can give information about 
+	 */
 	private final List<String> regions = Arrays.asList(Region.ADOS_SURROUNDS, Region.ADOS_CITY);
 
 	public void configureZone(final StendhalRPZone zone,
@@ -47,8 +50,12 @@ public class OracleNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("What power the little flower! What power have you? Ados people are looking for #help...");
+				
+				// use a standard action to list the names of NPCs for quests which haven't been started in this region 
 				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(regions));
-			    add(ConversationStates.ATTENDING,
+				
+				// if the player says an NPC name, describe the quest (same description as in the travel log)
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(regions),
 						ConversationStates.ATTENDING,
@@ -60,6 +67,8 @@ public class OracleNPC implements ZoneConfigurator {
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
 						"My name, Calla, is a kind of lily which can have the same colour as my dress. It's so pretty.");
+				
+				// just to be nice :)
 				addEmotionReply("hugs", "hugs");
 				addGoodbye("Thank you, nice to see you.");
 			}

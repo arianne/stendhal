@@ -34,6 +34,9 @@ import java.util.Map;
  */
 public class OracleNPC implements ZoneConfigurator {
 	
+	/** 
+	 * region that this NPC can give information about 
+	 */
 	private final List<String> regions = Arrays.asList(Region.KALAVAN, Region.KIRDNEH, Region.FADO_CITY, Region.FADO_CAVES);
 
 	public void configureZone(final StendhalRPZone zone,
@@ -46,8 +49,12 @@ public class OracleNPC implements ZoneConfigurator {
 			@Override
 			public void createDialog() {
 				addGreeting("Hello. You caught me enjoying the flowers here.");
+				
+				// use a standard action to list the names of NPCs for quests which haven't been started in this region 
 				addReply(ConversationPhrases.HELP_MESSAGES, null, new SayNPCNamesForUnstartedQuestsAction(regions));
-			    add(ConversationStates.ATTENDING,
+				
+				// if the player says an NPC name, describe the quest (same description as in the travel log)
+				add(ConversationStates.ATTENDING,
 						"",
 						new TriggerIsNPCNameForUnstartedQuestCondition(regions),
 						ConversationStates.ATTENDING,
@@ -58,6 +65,8 @@ public class OracleNPC implements ZoneConfigurator {
 				addOffer("Like my #sisters in other areas, I'm here to guide you on how to #help others.");
 				addReply("sisters", "My sisters and I all have the #name of a flower. Find them to learn how to #help those nearest them.");
 				addReply("name", "Lobelia are tiny purple flowers. Perhaps you can see some in the flowerbeds. I just love it here, Sue is so clever.");
+				
+				// just to be nice :)
 				addEmotionReply("hugs", "hugs");
 				addGoodbye("Thank you, nice to see you.");
 			}
