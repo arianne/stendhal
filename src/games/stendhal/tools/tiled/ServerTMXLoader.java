@@ -13,6 +13,7 @@
 package games.stendhal.tools.tiled;
 
 import games.stendhal.common.Base64;
+import games.stendhal.common.LayerDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

@@ -14,8 +14,8 @@ package games.stendhal.client;
 import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.LayerDefinition;
 import games.stendhal.common.MathHelper;
-import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.Composite;
 import java.awt.Graphics;

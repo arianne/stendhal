@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.maze;
 
+import games.stendhal.common.LayerDefinition;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -30,7 +31,6 @@ import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.awt.Point;

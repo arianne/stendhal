@@ -9,6 +9,7 @@ package games.stendhal.server.core.config;
 //
 //
 
+import games.stendhal.common.LayerDefinition;
 import games.stendhal.server.core.config.zone.AttributesXMLReader;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
 import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
@@ -19,7 +20,6 @@ import games.stendhal.server.core.config.zone.SetupXMLReader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 

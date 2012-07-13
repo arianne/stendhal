@@ -19,7 +19,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.client.entity.Player;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.geom.Rectangle2D;
 import java.util.BitSet;

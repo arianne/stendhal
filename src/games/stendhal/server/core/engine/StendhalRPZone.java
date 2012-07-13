@@ -15,6 +15,7 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
+import games.stendhal.common.LayerDefinition;
 import games.stendhal.common.Line;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.common.grammar.Grammar;
@@ -42,7 +43,6 @@ import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.awt.Point;

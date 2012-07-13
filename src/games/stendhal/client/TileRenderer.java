@@ -14,7 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.Tileset;
-import games.stendhal.tools.tiled.LayerDefinition;
+import games.stendhal.common.LayerDefinition;
 
 import java.awt.Graphics;
 import java.io.IOException;

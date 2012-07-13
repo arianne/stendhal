@@ -10,12 +10,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.tiled;
+package games.stendhal.common;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import games.stendhal.common.LayerDefinition;
+import games.stendhal.tools.tiled.StendhalMapStructure;
+import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

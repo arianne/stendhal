@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.tools.tiled;
 
+import games.stendhal.common.LayerDefinition;
+
 import java.util.LinkedList;
 import java.util.List;
 

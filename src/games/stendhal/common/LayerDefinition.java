@@ -10,7 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.tools.tiled;
+package games.stendhal.common;
+
+import games.stendhal.tools.tiled.StendhalMapStructure;
+import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -31,9 +34,9 @@ import marauroa.common.net.Serializable;
  * <li>name <b>VERY IMPORTANT</b>
  * <li>data
  * </ul>
- * 
+ *
  * @author miguel
- * 
+ *
  */
 public class LayerDefinition implements Serializable {
 	/** To which map this layer belong. */
@@ -71,7 +74,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param layerWidth
 	 *            the width of the layer.
 	 * @param layerHeight
@@ -85,11 +88,11 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Sets the map to which this layer belong to.
-	 * 
+	 *
 	 * @param map
 	 *            the map
 	 */
-	void setMap(final StendhalMapStructure map) {
+	public void setMap(final StendhalMapStructure map) {
 		this.map = map;
 	}
 
@@ -131,7 +134,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Set a tile at the given x,y position.
-	 * 
+	 *
 	 * @param x
 	 *            the x position
 	 * @param y
@@ -152,7 +155,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the tile at the x,y position.
-	 * 
+	 *
 	 * @param x
 	 *            the x position
 	 * @param y
@@ -164,7 +167,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the encode byte array
 	 * @throws IOException
 	 */
@@ -181,7 +184,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Deserializes a layer definition.
-	 * 
+	 *
 	 * @param in
 	 *            input serializer
 	 * @return an instance of a layer definition
@@ -202,7 +205,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the width of the layer.
-	 * 
+	 *
 	 * @return the layer's width
 	 */
 	public int getWidth() {
@@ -211,7 +214,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the height of the layer.
-	 * 
+	 *
 	 * @return the layer's height
 	 */
 	public int getHeight() {
@@ -220,7 +223,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the name of the tileset a tile belongs to.
-	 * 
+	 *
 	 * @param value
 	 *            the tile id
 	 * @return the name of the tileset
@@ -254,7 +257,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the name of the layer.
-	 * 
+	 *
 	 * @return the layer's name
 	 */
 	public String getName() {

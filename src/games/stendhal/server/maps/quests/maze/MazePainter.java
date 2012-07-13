@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.maze;
 
-import games.stendhal.tools.tiled.LayerDefinition;
+import games.stendhal.common.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
