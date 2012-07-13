@@ -1,6 +1,10 @@
 ﻿Changelog
 ---------
 
+1.02
+- reduce Starkad's cost for lower level creatures and increase for higher level
+- make killer bees less dangerous(!)
+
 1.01
 *world*
 - Venethiel teaches players about Haizen's maze
