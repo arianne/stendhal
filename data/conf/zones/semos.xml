@@ -1502,7 +1502,7 @@ South: Nalwor forest and Or'ril castle
 		
 		<entity x="15" y="23">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-            <attribute name="text">Outside Semos Bank, you see a huge chest and wonder what treasure is inside.</attribute>
+            <attribute name="text">Outside Semos Bank, you see a huge, but fake, chest. It seems to be an advertisement.</attribute>
             <attribute name="class">transparent</attribute>
             <attribute name="width">2</attribute>
         </entity> 
