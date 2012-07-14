@@ -2061,7 +2061,7 @@ Holy mackerel! These chips are tasty.
 	<zone name="int_semos_storage_-1" file="interiors/semos/storage_-1.tmx">
 		<attributes>
 			<parameter name="color_method">multiply</parameter>
-			<parameter name="color">4272739</parameter>
+			<parameter name="color">#413263</parameter>
 			<parameter name="blend_method">bleach</parameter>
 		</attributes>
 	

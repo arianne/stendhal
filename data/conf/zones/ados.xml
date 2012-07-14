@@ -1190,7 +1190,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
    <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.tmx">
     <attributes>
       <parameter name="color_method">multiply</parameter>
-      <parameter name="color">8421504</parameter>
+      <parameter name="color">#808080</parameter>
       <parameter name="blend_method">bleach</parameter>
     </attributes>
     <configurator class-name="games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC" />
@@ -1209,7 +1209,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
    <zone name="int_ados_haunted_house_basement" file="interiors/ados/haunted_house_basement.tmx">
     <attributes>
       <parameter name="color_method">multiply</parameter>
-      <parameter name="color">8421504</parameter>
+      <parameter name="color">#808080</parameter>
       <parameter name="blend_method">bleach</parameter>
     </attributes>
     <portal x="14" y="14" ref="upstairs">
@@ -1565,7 +1565,7 @@ in roaches.
 		<attributes>
 			<parameter name="color_method">screen</parameter>
 			<!-- mid-grey -->
-			<parameter name="color">8421504</parameter>
+			<parameter name="color">#808080</parameter>
 		</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SeamstressNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.twilightzone.SlimeCreature" />
