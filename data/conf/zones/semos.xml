@@ -829,6 +829,10 @@
 				<parameter name="volume">120</parameter>
 			</implementation>
 		</entity>
+		
+		<entity x="22" y="34">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
 
        <portal x="21" y="6" ref="portal_from_spire_1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -2243,6 +2247,10 @@ Holy mackerel! These chips are tasty.
 				<parameter name="height">4</parameter>
 			</implementation>
 		</entity>
+		
+		<entity x="45" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
 
 	</zone>
 
@@ -2265,6 +2273,10 @@ Holy mackerel! These chips are tasty.
 			<parameter name="max">40</parameter>
 			<parameter name="radius">7</parameter>
 		</implementation>
+		</entity>
+		
+		<entity x="7" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
 
 
