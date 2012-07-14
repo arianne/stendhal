@@ -83,6 +83,19 @@ public class ZoneAttributes {
 		if ("color_method".equals(key) && "time".equals(value)) {
 			DaylightUpdater.get().manageAttributes(this);
 		} else {
+			if ("color".equals(key)) {
+				/*
+				 * Accept hex strings as well. Check the prefix manually to avoid
+				 * stupid compatibility problems with octal numbers.
+				 */
+				try {
+					if (value.startsWith("0x") || value.startsWith("0X") || value.startsWith("#")) {
+						value = Integer.decode(value).toString();
+					}
+				} catch (RuntimeException e) {
+					logger.error("Failed to decode color '" + value + "'", e);
+				}
+			}
 			attr.put(key, value);
 		}
 		invalidate();
