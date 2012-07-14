@@ -1188,6 +1188,11 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
    </zone>
 
    <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.tmx">
+    <attributes>
+      <parameter name="color_method">multiply</parameter>
+      <parameter name="color">8421504</parameter>
+      <parameter name="blend_method">bleach</parameter>
+    </attributes>
     <configurator class-name="games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC" />
     <portal x="15" y="30" ref="0">
      <destination zone="0_ados_city_n" ref="11"/>
@@ -1202,6 +1207,11 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
    </zone>
 
    <zone name="int_ados_haunted_house_basement" file="interiors/ados/haunted_house_basement.tmx">
+    <attributes>
+      <parameter name="color_method">multiply</parameter>
+      <parameter name="color">8421504</parameter>
+      <parameter name="blend_method">bleach</parameter>
+    </attributes>
     <portal x="14" y="14" ref="upstairs">
      <destination zone="int_ados_haunted_house" ref="downstairs"/>
     </portal>
