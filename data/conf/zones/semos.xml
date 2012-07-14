@@ -282,7 +282,7 @@
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
 		</entity>
-		<entity x="40" y="110">
+		<entity x="40" y="111">
 		 <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 		   <parameter name="shop">buy4gnomes</parameter>
 		   <parameter name="title">Garbiddle's shop</parameter>
