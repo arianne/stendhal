@@ -370,23 +370,6 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * Checks whether a certain point is near this entity.
-	 *
-	 * @param x
-	 *            The point's x coordinate
-	 * @param y
-	 *            The point's y coordinate
-	 * @param step
-	 *            The maximum distance
-	 * @return true iff the point is at most <i>step</i> steps away
-	 */
-	public boolean nextTo(final int x, final int y, final double step) {
-		final Rectangle2D thisArea = new Rectangle2D.Double(area.getX() - step, area.getY() - step,
-				area.getWidth() + 2 * step, area.getHeight() + 2 * step);
-		return thisArea.contains(x, y);
-	}
-
-	/**
 	 * Checks whether the given entity is directly next to this entity. This
 	 * method may be optimized over using nextTo(entity, 0.25).
 	 *

@@ -53,51 +53,46 @@ public class EntityTest {
 		assertEquals(1, pl.getX());
 		assertEquals(1, pl.getY());
 
-		// The function nextTo(Entity, double step) takes into account the width of both objects.
-		assertTrue(en.nextTo(pl, 0.25));
+		assertTrue(en.nextTo(pl));
 
-		// The second overload nextTo(int x, int y, double step) can only look at the width of one object.
-		assertFalse("Player at (1,1) is NOT next to (2,2)",
-				en.nextTo(pl.getX(), pl.getY(), 0.25));
-		assertFalse("Player at (1,1) is NOT next to (2,2) with distance 0.5",
-				en.nextTo(pl.getX(), pl.getY(), 0.5));
-		assertFalse("Player at (1,1) is NOT next to (2,2) with distance 0.75",
-				en.nextTo(pl.getX(), pl.getY(), 0.75));
-		assertTrue("Player at (1,1) is next to (2,2) with distance 1",
-				en.nextTo(pl.getX(), pl.getY(), 1));
-
+		pl.setPosition(0, 0);
+		assertFalse("Player at (0,0) is NOT next to (2,2)",
+				en.nextTo(pl, 0.25));
+		assertFalse("Player at (0,0) is NOT next to (2,2) with distance 0.5",
+				en.nextTo(pl, 0.5));
+		assertFalse("Player at (0,0) is NOT next to (2,2) with distance 0.75",
+				en.nextTo(pl, 0.75));
+		assertTrue("Player at (0,0) is next to (2,2) with distance 1.01",
+				en.nextTo(pl, 1.01));
+		
 		pl.setPosition(2, 1);
 		assertTrue(en.nextTo(pl, 0.25));
-		assertTrue(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(3, 1);
 		assertTrue(en.nextTo(pl, 0.25));
-		assertTrue(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(1, 0);
 		assertFalse(en.nextTo(pl, 0.25));
-		assertFalse(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(2, 0);
 		assertFalse(en.nextTo(pl, 0.25));
-		assertFalse(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(3, 0);
 		assertFalse(en.nextTo(pl, 0.25));
-		assertFalse(en.nextTo(pl.getX(), pl.getY(), 1));
+		assertTrue(en.nextTo(pl, 1.01));
 
 		pl.setPosition(1, 2);
 		assertTrue(en.nextTo(pl, 0.25));
-		assertTrue(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(2, 2);
 		assertTrue(en.nextTo(pl, 0.25));
-		assertTrue(en.nextTo(pl.getX(), pl.getY(), 1));
 
 		pl.setPosition(3, 2);
 		assertTrue(en.nextTo(pl, 0.25));
-		assertTrue(en.nextTo(pl.getX(), pl.getY(), 1));
-
+		
+		pl.setPosition(4, 2);
+		assertFalse(en.nextTo(pl));
+		assertTrue(en.nextTo(pl, 1.01));
 	}
 
 	/**
