@@ -25,6 +25,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JRootPane;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -194,7 +195,10 @@ public class StyledButtonUI extends BasicButtonUI {
 		public void focusLost(FocusEvent e) {
 			Component c = e.getComponent();
 			if (c instanceof JComponent) {
-				((JComponent) c).getRootPane().setDefaultButton(null);
+				JRootPane pane = ((JComponent) c).getRootPane();
+				if (pane != null) {
+					pane.setDefaultButton(null);
+				}
 			}
 		}
 	}
