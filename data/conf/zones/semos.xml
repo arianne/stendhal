@@ -1771,7 +1771,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 			</implementation>
 		</entity>
 
-		<entity x="11" y="4">
+		<entity x="12" y="3">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
 				<parameter name="shop">buyrare</parameter>
 				<parameter name="title">McPegleg's shop</parameter>
