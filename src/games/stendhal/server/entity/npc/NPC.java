@@ -133,7 +133,7 @@ public abstract class NPC extends RPEntity {
 	 */
 	public void setMovement(final Entity destEntity, final double min, final double max,
 			final double maxPathRadius) {
-		if (nextTo(destEntity.getX(), destEntity.getY(), min)) {
+		if (nextTo(destEntity, min)) {
 			stop();
 
 			if (hasPath()) {
