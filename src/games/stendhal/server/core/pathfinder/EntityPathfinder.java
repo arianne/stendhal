@@ -27,6 +27,11 @@ import marauroa.common.game.RPObject;
  */
 class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder {
 	/**
+	 * Distance at where another moving entity is considered to be close enough
+	 * that it's considered a collision.
+	 */
+	private static final double COLLISION_DISTANCE_SQUARED = 0.1;
+	/**
 	 * The entity searching a path.
 	 */
 	private final Entity entity;
@@ -72,8 +77,7 @@ class EntityPathfinder extends games.stendhal.server.core.pathfinder.Pathfinder 
 		for (final RPObject obj : zone) {
 			final Entity otherEntity = (Entity) obj;
 			if (!entity.getID().equals(otherEntity.getID())
-					&& (otherEntity.stopped() || otherEntity.nextTo(
-							startNode.getX(), startNode.getY(), 0.25))) {
+					&& (otherEntity.stopped()|| (otherEntity.squaredDistance(startNode.getX(), startNode.getY()) < COLLISION_DISTANCE_SQUARED))) {
 				final Rectangle2D area = otherEntity.getArea();
 				// Hack: Allow players to move onto portals as destination
 				if ((entity instanceof Player) && (otherEntity instanceof Portal) && area.contains(targetPoint)) {
