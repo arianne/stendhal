@@ -589,6 +589,13 @@
     </zone>
     
 	<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
+		<entity x="23" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
+		
+		<entity x="13" y="33">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
     
     	<portal x="49" y="44" ref="door1">
             <destination zone="int_constantines_villa_entrance" ref="livingroom1" />
@@ -787,6 +794,10 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
 		file="Level -2/orril/lich_palace.tmx">
 		<configurator
 			class-name="games.stendhal.server.maps.orril.castle.DemonSkeletonCreature" />
+			
+		<entity x="39" y="69">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
 
 		<portal x="70" y="38" ref="0">
 			<destination zone="-1_orril_castle_w" ref="0" />
