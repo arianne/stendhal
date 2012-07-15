@@ -522,6 +522,9 @@
     <parameter name="height">1</parameter>
  </configurator>
  
+	<entity x="2" y="19">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
      <!-- tables -->
 		<entity x="10" y="17">
 			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />

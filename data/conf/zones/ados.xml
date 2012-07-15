@@ -3934,15 +3934,21 @@ Southeast: Docks
    
    </zone>
 
- <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
-  <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
-  <!-- This must be after the NPC configurator -->
-  <entity x="17" y="23">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-      <parameter name="npc">Bario</parameter>
-    </implementation>
-  </entity>
- </zone>
+	<zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872"
+		file="Level -3/ados/outside_nw.tmx">
+		<configurator
+			class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
+		<!-- This must be after the NPC configurator -->
+		<entity x="17" y="23">
+			<implementation
+				class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+				<parameter name="npc">Bario</parameter>
+			</implementation>
+		</entity>
+		<entity x="25" y="48">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+	</zone>
 
 
  <!--  Level -4 -->
