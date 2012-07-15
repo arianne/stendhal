@@ -1220,6 +1220,10 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
    <zone name="int_ados_bakery" file="interiors/ados/bakery.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.bakery.ItemsOnTable" />
+    
+    <entity x="2" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+	</entity>
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city_n" ref="10"/>
@@ -1400,6 +1404,9 @@ in roaches.
     <parameter name="x">13</parameter>
     <parameter name="y">9</parameter>
   </configurator>
+  <entity x="2" y="8">
+	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+  </entity>
   <portal x="12" y="14" ref="in">
     <destination zone="0_ados_wall" ref="house_71"/>
   </portal>
@@ -1915,6 +1922,10 @@ in roaches.
                 <parameter name="volume">80</parameter>
             </implementation>
         </entity>
+        
+        <entity x="19" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
     
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
@@ -1963,7 +1974,10 @@ in roaches.
             <parameter name="radius">7</parameter>
         </implementation>
         </entity>
-
+        
+        <entity x="19" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
     
     <portal x="3" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_2" ref="upstairs"/>
@@ -2813,12 +2827,15 @@ My fee:
     <parameter name="x">19</parameter>
     <parameter name="y">2</parameter>
   </configurator>
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
     <parameter name="x">3</parameter>
     <parameter name="y">23</parameter>
     <parameter name="width">2</parameter>
     <parameter name="height">1</parameter>
- </configurator>
+  </configurator>
+  <entity x="2" y="10">
+	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+  </entity>
   <portal x="20" y="19" ref="in">
     <destination zone="0_ados_city" ref="house_66"/>
   </portal>
@@ -2885,15 +2902,19 @@ My fee:
    </portal>
   </zone>
 
-  <zone name="int_ados_farm_house" file="interiors/ados/farm_house.tmx">
-   <configurator class-name="games.stendhal.server.maps.ados.farmhouse.FarmersWifeNPC"/>
-   <portal x="22" y="23" ref="in">
-    <destination zone="0_ados_forest_w2" ref="farm"/>
-   </portal>
-   <portal x="22" y="14" ref="up">
-    <destination zone="int_ados_farm_house_1" ref="down"/>
-   </portal>
-  </zone>
+	<zone name="int_ados_farm_house" file="interiors/ados/farm_house.tmx">
+		<configurator
+			class-name="games.stendhal.server.maps.ados.farmhouse.FarmersWifeNPC" />
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="22" y="23" ref="in">
+			<destination zone="0_ados_forest_w2" ref="farm" />
+		</portal>
+		<portal x="22" y="14" ref="up">
+			<destination zone="int_ados_farm_house_1" ref="down" />
+		</portal>
+	</zone>
 
   <zone name="int_ados_farm_house_1" file="interiors/ados/farm_house_1.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.farmhouse.MotherNPC"/>
