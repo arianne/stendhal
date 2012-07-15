@@ -390,14 +390,16 @@ where panning for gold is possible. this spot is south of Or'ril castle.
       	<attribute name="class">book_blue</attribute>
     </entity>      
          </zone>
-	 
-	 <zone name="int_fado_hut" file="interiors/fado/hut.tmx">
-	 <configurator class-name="games.stendhal.server.maps.fado.hut.SellerNPC" />
 
-	   <portal x="3" y="10" ref="entrance">
-             <destination zone="0_fado_city" ref="hut_entrance"/>
-       </portal>
-      </zone>
+	<zone name="int_fado_hut" file="interiors/fado/hut.tmx">
+		<configurator class-name="games.stendhal.server.maps.fado.hut.SellerNPC" />
+		<entity x="8" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="3" y="10" ref="entrance">
+			<destination zone="0_fado_city" ref="hut_entrance" />
+		</portal>
+	</zone>
          
          <zone name="int_fado_church" file="interiors/fado/church.tmx">
           <configurator class-name="games.stendhal.server.maps.fado.church.VergerNPC"/>
@@ -617,10 +619,14 @@ For example say:  11  if you want the room called Water of Love.
            </portal>
          </zone> -->
 
-         <zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+	<zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx"
+		accessible="false">
+		<!-- to disallow making or using marked scrolls-->
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<entity x="19" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+	</zone>
 	 
 	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
@@ -641,11 +647,15 @@ For example say:  11  if you want the room called Water of Love.
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
-	 
-	 <zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+
+	<zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx"
+		accessible="false">
+		<!-- to disallow making or using marked scrolls-->
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<entity x="4" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+	</zone>
 
          <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
@@ -657,10 +667,14 @@ For example say:  11  if you want the room called Water of Love.
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+	<zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx"
+		accessible="false">
+		<!-- to disallow making or using marked scrolls-->
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<entity x="19" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+	</zone>
 	 
 	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
@@ -677,10 +691,14 @@ For example say:  11  if you want the room called Water of Love.
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
 
-         <zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+	<zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx"
+		accessible="false">
+		<!-- to disallow making or using marked scrolls-->
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<entity x="20" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+	</zone>
 	 
 	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
