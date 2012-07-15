@@ -21,6 +21,13 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasShieldEquippedCondition;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -41,7 +48,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 
 	private void buildMineArea(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		final SpeakerNPC npc = new SpeakerNPC("Will") {
+			final SpeakerNPC npc = new SpeakerNPC("Will") {
 
 			@Override
 			protected void createPath() {
@@ -50,17 +57,40 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new ChatAction() {
-					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-						String reply = "Hey you! Take care, you are leaving the city now! ";
-						if (player.getLevel() < 15) {
-							reply += "Look out for animals who might attack you and other enemies who walk around. Take some food or drinks with you!";
-						} else {
-							reply += "Oh, I see you are mighty and brave already! Have fun :)";
-						}
-						raiser.say(reply);
-					}
-				});
+				
+				String greetingBasis = "Hey you! Take care, you are leaving the city now! ";
+				
+				// When the players level is below 15 and he has a shield equipped
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new LevelLessThanCondition(15),
+								new PlayerHasShieldEquippedCondition()
+						),
+						ConversationStates.ATTENDING,
+						greetingBasis + "Look out for animals who might attack you and other enemies who walk around. Take some food or drinks with you! ",
+						null);
+				// When the players level is below 15 and he has no shield
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new AndCondition(
+								new LevelLessThanCondition(15),
+								new NotCondition(new PlayerHasShieldEquippedCondition())
+						),
+						ConversationStates.ATTENDING,
+						greetingBasis + "Eaak! You don't even have a shield. You better go right back and talk to Hayunn in the old guard house in Semos Village before you get into danger out here in the wild.",
+						null);
+				// When the player is above level 15
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new LevelGreaterThanCondition(15),
+						ConversationStates.ATTENDING,
+						greetingBasis + "Oh, I see you are mighty and brave already! Have fun :)",
+						null);
+				
 				addJob("My job is to watch out for baaad creatures! My parents gave me that special #duty!");
 				addReply("duty", "Yes, a really special and important one!");
 				addHelp("My daddy always tells me to #sneak around in forests which aren't familiar to me... And he said that I should always take something to #eat #and #drink with me, to be on the safe side!");
@@ -76,7 +106,6 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 				setDirection(Direction.DOWN);
 			}
 		};
-
 
 		npc.addInitChatMessage(null, new ChatAction() {
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
