@@ -1372,11 +1372,16 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 </zone>
 
 <zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC"/>
- <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC"/>
-  <portal x="18" y="23" ref="entrance">
-   <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance"/>
-  </portal> 
+	<configurator
+		class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" />
+	<configurator
+		class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" />
+	<entity x="18" y="0">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="18" y="23" ref="entrance">
+		<destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
+	</portal>
 </zone>
 
 <zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
@@ -1413,9 +1418,12 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   </portal>
 </zone>
 <zone name="int_magic_house3" file="interiors/magic/house3.tmx">
- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_e3" ref="house3_entrance"/>
-  </portal>
+	<entity x="6" y="10">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="10" y="18" ref="entrance">
+		<destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
+	</portal>
 </zone>
 <zone name="int_magic_house4" file="interiors/magic/house4.tmx">
  <portal x="15" y="18" ref="entrance">
@@ -1423,17 +1431,23 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   </portal>
 </zone>
 <zone name="int_magic_house5" file="interiors/magic/house5.tmx">
- <portal x="9" y="18" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_e2" ref="house5_entrance"/>
-  </portal>
- <portal x="10" y="18" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_e2" ref="house5_entrance"/>
-  </portal>
+	<entity x="12" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="9" y="18" ref="entrance_left">
+		<destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+	</portal>
+	<portal x="10" y="18" ref="entrance_right">
+		<destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+	</portal>
 </zone>
 <zone name="int_magic_house6" file="interiors/magic/house6.tmx">
- <portal x="12" y="23" ref="entrance">
-   <destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right"/>
-  </portal>
+	<entity x="5" y="0">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="12" y="23" ref="entrance">
+		<destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
+	</portal>
 </zone>
 
 <zone name="int_magic_school_0" file="interiors/magic/school_0.tmx">
@@ -1464,27 +1478,30 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
  </portal>
 </zone>
 <zone name="int_magic_bric_a_brac" file="interiors/magic/bric_a_brac.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.bricabrac.BuyerNPC" />
- <portal x="14" y="13" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left"/>
-  </portal>
- <portal x="15" y="13" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right"/>
-  </portal>
-  <entity x="6" y="5">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-    <attribute name="text">Suggested prices for certain desirable items are on the next page ...</attribute>
-    <attribute name="class">transparent</attribute>
-  </entity> 
-  <entity x="7" y="5">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-        <parameter name="shop">buymagic</parameter>
-        <parameter name="title">Vonda's shop</parameter>
-		<parameter name="seller">false</parameter>
-		<parameter name="caption">Vonda will pay the following market rates for your magic items:</parameter>
-     </implementation>
-     <attribute name="class">transparent</attribute>
-   </entity>  
+	<configurator class-name="games.stendhal.server.maps.magic.bricabrac.BuyerNPC" />
+	<portal x="14" y="13" ref="entrance_left">
+		<destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left" />
+	</portal>
+	<portal x="15" y="13" ref="entrance_right">
+		<destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right" />
+	</portal>
+	<entity x="6" y="5">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+		<attribute name="text">Suggested prices for certain desirable items are on the next page ...</attribute>
+		<attribute name="class">transparent</attribute>
+	</entity>
+	<entity x="7" y="5">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+			<parameter name="shop">buymagic</parameter>
+			<parameter name="title">Vonda's shop</parameter>
+			<parameter name="seller">false</parameter>
+			<parameter name="caption">Vonda will pay the following market rates for your magic items:</parameter>
+		</implementation>
+		<attribute name="class">transparent</attribute>
+	</entity>
+	<entity x="15" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
 </zone>
 
 <zone name="int_magic_bank" file="interiors/magic/bank.tmx">
