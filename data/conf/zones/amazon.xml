@@ -26,12 +26,15 @@
 
 
  <!--  Ground level -->
- <zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
- <configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC"/>
-  <portal x="10" y="18" ref="out">
-   <destination zone="0_amazon_island_ne" ref="in"/>
-  </portal>
- </zone>
+	<zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
+		<configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC" />
+		<entity x="16" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="10" y="18" ref="out">
+			<destination zone="0_amazon_island_ne" ref="in" />
+		</portal>
+	</zone>
 
  <zone name="int_amazon_prison_hut" file="interiors/amazon/prison_hut.tmx">
  <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC"/>
