@@ -454,27 +454,30 @@
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">2</parameter>
-	<parameter name="y">10</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">8</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="7" y="13" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="36"/>
-  </portal>
-  <portal x="2" y="2" ref="down">
-   <destination zone="int_kirdneh_house_36_basement" ref="up"/>
-  </portal>
- </zone>
+			<parameter name="x">2</parameter>
+			<parameter name="y">10</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">2</parameter>
+			<parameter name="y">8</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="7" y="13" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="36" />
+		</portal>
+		<portal x="2" y="2" ref="down">
+			<destination zone="int_kirdneh_house_36_basement" ref="up" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -482,27 +485,30 @@
    <destination zone="int_kirdneh_house_36" ref="down"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">2</parameter>
-	<parameter name="y">10</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">8</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="7" y="13" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="37"/>
-  </portal>
-  <portal x="2" y="2" ref="down">
-   <destination zone="int_kirdneh_house_37_basement" ref="up"/>
-  </portal>
- </zone>
+			<parameter name="x">2</parameter>
+			<parameter name="y">10</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">2</parameter>
+			<parameter name="y">8</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="7" y="13" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="37" />
+		</portal>
+		<portal x="2" y="2" ref="down">
+			<destination zone="int_kirdneh_house_37_basement" ref="up" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_37_basement"	file="interiors/kirdneh/house_37_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -582,27 +588,30 @@
    <destination zone="0_kirdneh_city" ref="41"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">2</parameter>
-	<parameter name="y">10</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">7</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="7" y="13" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="42"/>
-  </portal>
-  <portal x="2" y="2" ref="up">
-   <destination zone="int_kirdneh_house_42_1" ref="down"/>
-  </portal>
- </zone>
+			<parameter name="x">2</parameter>
+			<parameter name="y">10</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">2</parameter>
+			<parameter name="y">7</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="7" y="13" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="42" />
+		</portal>
+		<portal x="2" y="2" ref="up">
+			<destination zone="int_kirdneh_house_42_1" ref="down" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_42_1" file="interiors/kirdneh/house_42_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -610,24 +619,30 @@
    <destination zone="int_kirdneh_house_42" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">14</parameter>
-	<parameter name="y">3</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">18</parameter>
-	<parameter name="y">14</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="22" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="43"/>
-  </portal>
- </zone>
+			<parameter name="x">14</parameter>
+			<parameter name="y">3</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">18</parameter>
+			<parameter name="y">14</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="26" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<entity x="27" y="1">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="22" y="23" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="43" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_44" file="interiors/kirdneh/house_44.tmx">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -646,42 +661,48 @@
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">15</parameter>
-	<parameter name="y">18</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">21</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="45"/>
-  </portal>
- </zone>
- <zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+			<parameter name="x">15</parameter>
+			<parameter name="y">18</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">21</parameter>
+			<parameter name="y">21</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="6" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="19" y="23" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="45" />
+		</portal>
+	</zone>
+	<zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">15</parameter>
-	<parameter name="y">18</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">24</parameter>
-	<parameter name="y">5</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="46"/>
-  </portal>
- </zone>
+			<parameter name="x">15</parameter>
+			<parameter name="y">18</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">24</parameter>
+			<parameter name="y">5</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="19" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="19" y="23" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="46" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -700,27 +721,30 @@
    <destination zone="0_kirdneh_city" ref="47"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">10</parameter>
-	<parameter name="y">8</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">17</parameter>
-	<parameter name="y">16</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="9" y="18" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="48"/>
-  </portal>
-  <portal x="2" y="2" ref="up">
-   <destination zone="int_kirdneh_house_48_1" ref="down"/>
-  </portal>
- </zone>
+			<parameter name="x">10</parameter>
+			<parameter name="y">8</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">17</parameter>
+			<parameter name="y">16</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="2" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="9" y="18" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="48" />
+		</portal>
+		<portal x="2" y="2" ref="up">
+			<destination zone="int_kirdneh_house_48_1" ref="down" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_48_1" file="interiors/kirdneh/house_48_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -728,27 +752,30 @@
    <destination zone="int_kirdneh_house_48" ref="up"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
+	<zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx"
+		accessible="false">
+		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+		<configurator
 			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">10</parameter>
-	<parameter name="y">8</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">17</parameter>
-	<parameter name="y">16</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="9" y="18" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="49"/>
-  </portal>
-  <portal x="2" y="2" ref="up">
-   <destination zone="int_kirdneh_house_49_1" ref="down"/>
-  </portal>
- </zone>
+			<parameter name="x">10</parameter>
+			<parameter name="y">8</parameter>
+		</configurator>
+		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+			<parameter name="x">17</parameter>
+			<parameter name="y">16</parameter>
+			<parameter name="width">1</parameter>
+			<parameter name="height">1</parameter>
+		</configurator>
+		<entity x="2" y="0">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+		</entity>
+		<portal x="9" y="18" ref="entrance">
+			<destination zone="0_kirdneh_city" ref="49" />
+		</portal>
+		<portal x="2" y="2" ref="up">
+			<destination zone="int_kirdneh_house_49_1" ref="down" />
+		</portal>
+	</zone>
  <zone name="int_kirdneh_house_49_1" file="interiors/kirdneh/house_49_1.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -782,24 +809,33 @@
 </zone>
 
 <zone name="int_kirdneh_townhall1" file="interiors/kirdneh/townhall1.tmx">
- <portal x="18" y="4" ref="downstair_left">
-   <destination zone="int_kirdneh_townhall" ref="upstair_left"/>
- </portal>
- <portal x="19" y="4" ref="downstair_right">
-   <destination zone="int_kirdneh_townhall" ref="upstair_right"/>
- </portal>
+	<entity x="14" y="11">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="18" y="4" ref="downstair_left">
+		<destination zone="int_kirdneh_townhall" ref="upstair_left" />
+	</portal>
+	<portal x="19" y="4" ref="downstair_right">
+		<destination zone="int_kirdneh_townhall" ref="upstair_right" />
+	</portal>
 </zone>
 
 <zone name="int_kirdneh_museum" file="interiors/kirdneh/museum.tmx">
-  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.WizardNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable"/>
- <portal x="1" y="24" ref="entrance1">
-   <destination zone="0_kirdneh_city" ref="museum1"/>
- </portal>
- <portal x="1" y="25" ref="entrance2">
-   <destination zone="0_kirdneh_city" ref="museum2"/>
- </portal>
+	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC" />
+	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.WizardNPC" />
+	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable" />
+	<entity x="11" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<entity x="18" y="1">
+		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+	</entity>
+	<portal x="1" y="24" ref="entrance1">
+		<destination zone="0_kirdneh_city" ref="museum1" />
+	</portal>
+	<portal x="1" y="25" ref="entrance2">
+		<destination zone="0_kirdneh_city" ref="museum2" />
+	</portal>
 </zone>
 
 <zone name="int_kirdneh_bank" file="interiors/kirdneh/bank.tmx">
