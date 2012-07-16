@@ -210,6 +210,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Container slot
 		entity.addRPSlot("content", 8, Definition.PRIVATE);
+		
+		// True for items that should be bound automatically at loot (or login)
+		entity.addAttribute("autobind", Type.FLAG, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 	}
 
 
@@ -412,8 +415,26 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return get("bound");
 	}
 
+	/**
+	 * Check if the item is bound to a player
+	 * 
+	 * @return <code>true</code> if the item is bound, otherwise
+	 * 	<code>false</code> 
+	 */
 	public boolean isBound() {
 		return has("bound");
+	}
+	
+	/**
+	 * Bind the item to a player, if the item is one that should be
+	 * automatically bound, and the item is not already bound.
+	 * 
+	 * @param player player name
+	 */
+	public void autobind(String player) {
+		if (!isBound() && has("autobind")) {
+			setBoundTo(player);
+		}
 	}
 
 	/**

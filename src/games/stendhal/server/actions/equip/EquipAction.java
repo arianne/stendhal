@@ -96,6 +96,9 @@ public class EquipAction extends EquipmentAction {
 				player.incLootForItem(entity.getTitle(), amount);
 				SingletonRepository.getAchievementNotifier().onItemLoot(player);
 			}
+			if (entity instanceof Item) {
+				((Item) entity).autobind(player.getName());
+			}
 
 			new GameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount)).raise();
 
