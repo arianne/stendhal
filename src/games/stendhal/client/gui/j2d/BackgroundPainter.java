@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,33 +17,80 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics;
 
 /**
- * A painter for a background image that consists of 9 32x32 tiles, with the
+ * A painter for a background image that consists of 9 tiles, with the
  * center tile being repeated. The rest of the tiles are the corners and borders
  * in natural order. The sides will be painted with preference to adhering to
  * painted area borders rather than trying to preserve the pattern. Therefore
  * the image should be such that it can tolerate miss tiling at the borders, if
- * the painted area dimensions can not be guaranteed to be multiples of 32.  
+ * the painted area dimensions can not be guaranteed to be multiples of the tile
+ * dimensions.
  */
 public class BackgroundPainter {
-	private static final int TILE_SIZE = 32;
-	
 	final Sprite[] images;
+	/** Width of the tiles. */
+	private final int tileWidth;
+	/** Height of the tiles. */
+	private final int tileHeight;
 	
 	/**
 	 * Create a new BackgroundPainter.
 	 * 
-	 * @param image image name. The image should be of size 96x96.
+	 * @param image image name. The image dimensions should be multiples of 3.
+	 * 	The tiles used for painting will be the image divided uniformly to three
+	 *	in both vertical and horizontal directions
 	 */
 	public BackgroundPainter(String image) {
 		SpriteStore store = SpriteStore.get();
 		Sprite mother = store.getSprite(image);
+		this.tileWidth = mother.getWidth() / 3;
+		this.tileHeight = mother.getHeight() / 3;
 		images = new Sprite[9];
 		int i = 0;
-		for (int y = 0; y < 3 * TILE_SIZE; y += TILE_SIZE) {
-			for (int x = 0; x < 3 * TILE_SIZE; x += TILE_SIZE) {
-				images[i] = store.getTile(mother, x, y, TILE_SIZE, TILE_SIZE);
+		for (int y = 0; y < 3 * tileHeight; y += tileHeight) {
+			for (int x = 0; x < 3 * tileWidth; x += tileWidth) {
+				images[i] = store.getTile(mother, x, y, tileWidth, tileHeight);
 				i++;
 			}
+		}
+	}
+	
+	/**
+	 * Create a new BackgroundPainter. The tiles used for painting will be cut
+	 * non-uniformly, so that the grid will be placed according to the given
+	 * dimensions.
+	 * 
+	 * @param image image name
+	 * @param leftWidth width of the left tile row 
+	 * @param centerWidth width of the center tile row
+	 * @param topHeight height of the top tile row
+	 * @param centerHeight height of the center tile row
+	 */
+	public BackgroundPainter(String image, int leftWidth, int centerWidth,
+			int topHeight, int centerHeight) {
+		tileWidth = 0;
+		tileHeight = 0;
+		SpriteStore store = SpriteStore.get();
+		Sprite mother = store.getSprite(image);
+		images = new Sprite[9];
+		int[] widths = new int[3];
+		widths[0] = leftWidth;
+		widths[1] = centerWidth;
+		widths[2] = mother.getWidth() - leftWidth - centerWidth; 
+		int[] heights = new int[3];
+		heights[0] = topHeight;
+		heights[1] = centerHeight;
+		heights[2] = mother.getHeight() - topHeight - centerHeight;
+		int x = 0;
+		int y = 0;
+		int i = 0;
+		for (int yInd = 0; yInd < 3; yInd++) {
+			for (int xInd = 0; xInd < 3; xInd++) {
+				images[i] = store.getTile(mother, x, y, widths[xInd], heights[yInd]);
+				x += widths[xInd];
+				i++;
+			}
+			x = 0;
+			y += heights[yInd];
 		}
 	}
 
@@ -56,47 +103,56 @@ public class BackgroundPainter {
 	 */
 	public void paint(Graphics g, int width, int height) {
 		// Paint the center part. That covers the whole area
-		Sprite sprite = images[4];
-		for (int y = 0; y < height; y += TILE_SIZE) {
-			for (int x = 0; x < width; x += TILE_SIZE) {
-				sprite.draw(g, x, y);
+		Sprite centerSprite = images[4];
+		int centerWidth = centerSprite.getWidth();
+		int centerHeight = centerSprite.getHeight();
+		for (int y = 0; y < height; y += centerHeight) {
+			for (int x = 0; x < width; x += centerWidth) {
+				centerSprite.draw(g, x, y);
 			}
 		}
+		
 		// Sides
+		// Some needed dimensions (and sprites)
+		Sprite rightSprite = images[5];
+		int rightWidth = rightSprite.getWidth();
+		Sprite leftSprite = images[3];
+		int leftWidth = leftSprite.getHeight();
+		Sprite topSprite = images[1];
+		int topHeight = topSprite.getHeight();
+		Sprite bottomSprite = images[7];
+		int bottomHeight = bottomSprite.getHeight();
+		
 		// Top row.
-		sprite = images[1];
-		for (int x = TILE_SIZE; x < width - TILE_SIZE; x += TILE_SIZE) {
-			sprite.draw(g, x, 0);
+		for (int x = leftWidth; x < width - rightWidth; x += centerWidth) {
+			topSprite.draw(g, x, 0);
 		}
 		// left side
-		sprite = images[3];
-		for (int y = TILE_SIZE; y < height - TILE_SIZE; y += TILE_SIZE) {
-			sprite.draw(g, 0, y);
+		for (int y = topHeight; y < height - bottomHeight; y += centerHeight) {
+			leftSprite.draw(g, 0, y);
 		}
 		/*
 		 * The rest of the sides will not tile properly, but the background
 		 * pattern is subtle enough that it will not be immediately noticeable. 
 		 */
 		// right side
-		sprite = images[5];
-		// Do not draw over the left side, but let the scroll overflow from the
+		// Do not draw over the left side, but let the image overflow from the
 		// right if there's no space
-		int rightX = Math.max(width - TILE_SIZE, TILE_SIZE);
-		for (int y = TILE_SIZE; y < height - TILE_SIZE; y += TILE_SIZE) {
-			sprite.draw(g, rightX, y);
+		int rightX = Math.max(width - rightWidth, leftWidth);
+		for (int y = topHeight; y < height - bottomHeight; y += centerHeight) {
+			rightSprite.draw(g, rightX, y);
 		}
 		// bottom
-		sprite = images[7];
 		// Do not draw over the top border, but let the scroll overflow from the
 		// bottom if there's no space
-		int bottomY = Math.max(height - TILE_SIZE, TILE_SIZE);
-		for (int x = TILE_SIZE; x < width - TILE_SIZE; x += TILE_SIZE) {
-			sprite.draw(g, x, bottomY);
+		int bottomY = Math.max(height - bottomHeight, topHeight);
+		for (int x = centerWidth; x < width - centerWidth; x += centerWidth) {
+			bottomSprite.draw(g, x, bottomY);
 		}
 		
 		// Corners. Again, only the first one will tile properly
 		// Top left corner
-		sprite = images[0];
+		Sprite sprite = images[0];
 		sprite.draw(g, 0, 0);
 		// Top right corner
 		sprite = images[2];
