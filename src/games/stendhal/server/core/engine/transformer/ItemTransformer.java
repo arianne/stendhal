@@ -44,6 +44,7 @@ public class ItemTransformer {
 			
 			item.setID(rpobject.getID());
 
+			boolean autobind = item.has("autobind");
 			if (rpobject.has("persistent")
 					&& (rpobject.getInt("persistent") == 1)) {
 				/*
@@ -55,6 +56,10 @@ public class ItemTransformer {
 
 				// If we've updated the item name we don't want persistent reverting it
 				item.put("name", name);
+				// Also autobinding must work for persistent items
+				if (autobind) {
+					item.put("autobind", "");
+				}
 			}
 
 			if (item instanceof StackableItem) {
