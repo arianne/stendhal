@@ -299,8 +299,10 @@
   <item name="trophy helmet">
     <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
     <description>You see a Trophy Helmet. Those who were brave and finished the death match, win this helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
+      <autobind value=""/>
     </attributes>
     <weight value="10.0"/>
     <value value="7"/>

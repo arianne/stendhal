@@ -4,7 +4,9 @@
   <item name="dungeon silver key">
     <type class="key" subclass="silver" tileid="-1"/>
     <description>You see a silver dungeon key. Use it only if you are brave.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    	<autobind value=""/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -20,7 +22,9 @@
   <item name="lich gold key">
     <type class="key" subclass="gold" tileid="-1"/>
     <description>You see a golden lich key. It will open the door to terrible things.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    	<autobind value=""/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

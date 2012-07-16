@@ -8,6 +8,7 @@
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+      <autobind value=""/>
     </attributes>
     <weight value="1.0"/>
     <value value="100000"/>
