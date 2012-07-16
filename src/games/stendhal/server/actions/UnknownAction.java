@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import java.util.Collections;
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -25,6 +28,24 @@ import org.apache.log4j.Logger;
  */
 class UnknownAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(UnknownAction.class);
+	private final List<String> suggestions;
+	
+	/**
+	 * Create an UnknowAction with no suggestions for commands.
+	 */
+	UnknownAction() {
+		suggestions = null;
+	}
+	
+	/**
+	 * Create an UnknowAction with suggestions for possibly intended commands.
+	 * 
+	 * @param suggestions 
+	 */
+	UnknownAction(List<String> suggestions) {
+		Collections.sort(suggestions);
+		this.suggestions = suggestions;
+	}
 
 	public void onAction(final Player player, final RPAction action) {
 		String type = "null";
@@ -33,8 +54,34 @@ class UnknownAction implements ActionListener {
 		}
 		logger.warn(player + " tried to execute unknown action " + type);
 		if (player != null) {
-			player.sendPrivateText(NotificationType.ERROR,
-					"Unknown command " + type + ". Please type /help to get a list.");
+			StringBuilder msg = new StringBuilder("Unknown command '");
+			msg.append(type);
+			msg.append("'");
+			if (suggestions != null) {
+				int size = suggestions.size();
+				msg.append(". Did you mean");
+				if (size == 1) {
+					msg.append(" #'");
+					msg.append(suggestions.get(0));
+					msg.append("'");
+				}
+				if (size > 1) {
+					for (int i = 0; i < size - 2; i++) {
+						msg.append(" #'");
+						msg.append(suggestions.get(i));
+						msg.append("',");
+					}
+					msg.append(" #'");
+					msg.append(suggestions.get(size - 2));
+					msg.append("' or #'");
+					msg.append(suggestions.get(size - 1));
+					msg.append("'");
+				}
+				msg.append("? Or type #/help to get a list.");
+			} else {
+				msg.append(". Please type #/help to get a list.");
+			}
+			player.sendPrivateText(NotificationType.ERROR, msg.toString());
 		}
 	}
 }

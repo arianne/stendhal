@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.constants.Actions;
+import games.stendhal.common.parser.SimilarExprMatcher;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.BanAction;
 import games.stendhal.server.actions.attack.AttackAction;
@@ -44,6 +45,8 @@ import games.stendhal.server.actions.spell.CastSpellAction;
 import games.stendhal.server.core.engine.Translate;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import marauroa.common.game.RPAction;
@@ -174,12 +177,22 @@ public class CommandCenter {
 			return UNKNOWN_ACTION;
 		}
 
-		final ActionListener action = getActionsMap().get(type);
+		ActionListener action = getActionsMap().get(type);
 		if (action == null) {
+			// Look up for close matches that can be suggested to the user.
+			List<String> suggestions = new ArrayList<String>();
+			for (String s : getActionsMap().keySet()) {
+				if (SimilarExprMatcher.isSimilar(type, s, 0.1)) {
+					suggestions.add(s);
+				}
+			}
+			if (suggestions.size() != 0) {
+				return new UnknownAction(suggestions);
+			}
+
 			return UNKNOWN_ACTION;
 		} else {
 			return action;
 		}
 	}
-
 }
