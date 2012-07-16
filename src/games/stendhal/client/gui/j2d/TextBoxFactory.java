@@ -17,6 +17,7 @@ import games.stendhal.client.gui.FormatTextParser;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -48,7 +49,9 @@ public class TextBoxFactory {
 	/** space to be left at the beginning and end of line in pixels. */
 	private static final int MARGIN_WIDTH = 3;
 	/** height of text lines in pixels. */
-	private static final int LINE_HEIGHT = 16;
+	private static int LINE_HEIGHT = graphics.getFontMetrics().getHeight();
+	/** Font ascent. */
+	private static int LINE_ASCENT = graphics.getFontMetrics().getAscent();
 	/** space needed for the bubble "handle" in pixels. */
 	private static final int BUBBLE_OFFSET = 10;
 	/** the diameter of the arc of the rounded bubble corners. */
@@ -72,15 +75,10 @@ public class TextBoxFactory {
 	 */
 	public Sprite createTextBox(final String text, final int width, final Color textColor,
 			final Color fillColor, final boolean isTalking) {
-
-		// Format before splitting to get the coloring right
-		final AttributedString formattedString = formatLine(text.trim(), graphics.getFont(), textColor);
-		// split it to max width long pieces
-		final List<AttributedCharacterIterator> formattedLines = splitFormatted(formattedString, width);
-		
+		List<AttributedCharacterIterator> lines = createFormattedLines(text, textColor, width);
 		// Find the actual width of the text
-		final int lineLengthPixels = getMaxPixelWidth(formattedLines);
-		final int numLines = formattedLines.size();
+		final int lineLengthPixels = getMaxPixelWidth(lines);
+		final int numLines = lines.size();
 
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		final int imageWidth;
@@ -90,13 +88,13 @@ public class TextBoxFactory {
 			imageWidth = width + BUBBLE_OFFSET + ARC_DIAMETER;
 		}
 		
-		final int imageHeight = LINE_HEIGHT * numLines + MARGIN_WIDTH;
+		final int imageHeight = LINE_HEIGHT * numLines + 2 * MARGIN_WIDTH;
 
 		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
 
 		final Graphics2D g2d = image.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+		// Background image
 		if (fillColor != null) {
 			if (isTalking) {
 				drawBubble(g2d, fillColor, textColor, imageWidth - BUBBLE_OFFSET, imageHeight);
@@ -105,9 +103,73 @@ public class TextBoxFactory {
 			}
 		}
 
-		drawTextLines(g2d, formattedLines, textColor);
+		// Text
+		drawTextLines(g2d, lines, textColor, MARGIN_WIDTH + BUBBLE_OFFSET, MARGIN_WIDTH);
+		g2d.dispose();
 
 		return new ImageSprite(image);
+	}
+
+	/**
+	 * Create a text box with an image background.
+	 * 
+	 * @param text the text inside the box
+	 * @param textColor base color of the text
+	 * @param width maximum width of the text in the box in pixels
+	 * @param leftMargin margin from the left side of the background image to
+	 * 	the drawn text 
+	 * @param rightMargin margin from the right side of the background image to
+	 * 	the drawn text
+	 * @param topMargin margin from the top of the background image to the drawn
+	 * 	text
+	 * @param bottomMargin margin from the bottom of the background image to the
+	 * 	drawn text
+	 * @param background painter for the background
+	 * 
+	 * @return text box sprite
+	 */
+	public Sprite createFancyTextBox(final String text, final Color textColor, 
+			final int width, final int leftMargin, final int rightMargin,
+			final int topMargin, final int bottomMargin, 
+			final BackgroundPainter background) {
+		List<AttributedCharacterIterator> lines = createFormattedLines(text, textColor, width);
+		
+		int imageWidth = getMaxPixelWidth(lines) + leftMargin + rightMargin;
+		final int imageHeight = LINE_HEIGHT * lines.size() + topMargin + bottomMargin;
+
+		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
+
+		final Graphics2D g2d = image.createGraphics();
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		// Background image
+		g2d.setComposite(AlphaComposite.Src);
+		background.paint(g2d, imageWidth, imageHeight);
+		g2d.setComposite(AlphaComposite.SrcOver);
+
+		// Text
+		drawTextLines(g2d, lines, textColor, leftMargin, topMargin);
+		g2d.dispose();
+
+		return new ImageSprite(image);
+	}
+	
+	/**
+	 * Create formatted lines from a text.
+	 * 
+	 * @param text
+	 * @param textColor base text color
+	 * @param width maximum width of the text in pixels
+	 * 
+	 * @return formatted lines
+	 */
+	private List<AttributedCharacterIterator> createFormattedLines(String text,
+			Color textColor, int width) {
+		// Format before splitting to get the coloring right
+		AttributedString formattedString = formatLine(text.trim(), graphics.getFont(), textColor);
+		// split it to max width long pieces
+		return splitFormatted(formattedString, width);
 	}
 	
 	 /**
@@ -376,24 +438,28 @@ public class TextBoxFactory {
 	private int getPixelWidth(final AttributedCharacterIterator iter) {
 		return (int) graphics.getFontMetrics().getStringBounds(iter, iter.getBeginIndex(), iter.getEndIndex(), graphics).getWidth();
 	}
-
+	
 	/**
 	 * Draw a list of text lines.
 	 * 
 	 * @param g2d graphics where the text should be drawn
 	 * @param lines the text lines to be drawn
 	 * @param textColor the base color of the text
+	 * @param leftMargin left side margin
+	 * @param topMargin top margin
 	 */
-	private void drawTextLines(final Graphics2D g2d, final List<AttributedCharacterIterator> lines, final Color textColor) {
-		int i = 0;
+	private void drawTextLines(final Graphics2D g2d, 
+			final List<AttributedCharacterIterator> lines, final Color textColor, 
+			int leftMargin, int topMargin) {
+		int y = topMargin + LINE_ASCENT;
 		for (final AttributedCharacterIterator line : lines) {
 			if (textColor == null) {
 				g2d.setColor(Color.black);
 			}
 			g2d.setColor(textColor);
 
-			g2d.drawString(line, BUBBLE_OFFSET + MARGIN_WIDTH, MARGIN_WIDTH + i * LINE_HEIGHT + 10);
-			i++;
+			g2d.drawString(line, leftMargin, y);
+			y += LINE_HEIGHT;
 		}
 	}
 	
