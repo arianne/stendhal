@@ -103,13 +103,19 @@ public class TextSprite extends ImageSprite {
 			final int y) {
 		Graphics g = image.getGraphics();
 		g.setColor(outlineColor);
+		
+		// The same text will be drawn eight times to create a border
+		// note that this is not a good solution, but re-using the image
+		// to draw it again doesn't work on Mac OSX
 		g.drawString(text, x - 1, y - 1);
-		// Reuse the image itself for fewer calls to get full overlap
-		g.drawImage(image, 1, 0, null);
-		g.drawImage(image, 1, 0, null);
-		g.drawImage(image, 0, 1, null);
-		g.drawImage(image, 0, 1, null);
-
+		g.drawString(text, x + 1, y + 1);
+		g.drawString(text, x - 1, y + 1);
+		g.drawString(text, x, y - 1);
+		g.drawString(text, x + 1, y);
+		g.drawString(text, x - 1, y);
+		g.drawString(text, x, y + 1);
+		g.drawString(text, x + 1, y - 1);
+		
 		g.setColor(textColor);
 		g.drawString(text, x, y);
 	}
