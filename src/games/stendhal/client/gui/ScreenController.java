@@ -11,7 +11,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import java.awt.Color;
+
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.gui.j2d.BackgroundPainter;
+import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.listener.PositionChangeListener;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.common.NotificationType;
@@ -23,10 +27,22 @@ import javax.swing.SwingUtilities;
  * screen.
  */
 class ScreenController implements PositionChangeListener {
+	/** Image used for drawing tutorial box backgrounds. */
+	private static final String TUTORIAL_BACKGROUND = "data/gui/tutorial_background.png";
+	/** Depends on TUTORIAL_BACKGROUND. */
+	private static final int TUTORIAL_LEFT_TILE_WIDTH = 48;
+	/** Depends on TUTORIAL_BACKGROUND. */
+	private static final int TUTORIAL_CENTER_TILE_WIDTH = 8;
+	/** Depends on TUTORIAL_BACKGROUND. */
+	private static final int TUTORIAL_TOP_TILE_HEIGHT = 32;
+	/** Depends on TUTORIAL_BACKGROUND. */
+	private static final int TUTORIAL_CENTER_TILE_HEIGHT = 8;
+	
 	final GameScreen screen;
 	// nextFrame() gets called all the time. Avoid needlessly creating new
 	// objects for it.
-	final Runnable nextFrameRunner = new NextFrameRunner();
+	private final Runnable nextFrameRunner = new NextFrameRunner();
+	private TextBoxFactory textBoxFactory;
 	
 	/**
 	 * Create a new ScreenController.
@@ -51,7 +67,7 @@ class ScreenController implements PositionChangeListener {
 	void addText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		// createTextBox is thread safe, the rest is not
-		final Sprite sprite = screen.createTextBox(text, type, isTalking);
+		final Sprite sprite = createTextBox(text, type, isTalking);
 		final int textLength = text.length();
 		
 		if (!isTalking) {
@@ -135,5 +151,43 @@ class ScreenController implements PositionChangeListener {
 		public void run() {
 			screen.nextFrame();
 		}
+	}
+	
+
+	/**
+	 * Create a text box with the appropriate text color for a notification
+	 * type.
+	 * 
+	 * @param text
+	 * @param type
+	 * @param isTalking if <code>true</code> create a text box with a bubble
+	 * 	handle
+	 * @return text sprite
+	 */
+	private Sprite createTextBox(final String text, final NotificationType type,
+			final boolean isTalking) {
+		// Special handling for pretty tutorial events
+		if (type == NotificationType.TUTORIAL) {
+			BackgroundPainter painter = new BackgroundPainter(TUTORIAL_BACKGROUND,
+					TUTORIAL_LEFT_TILE_WIDTH, TUTORIAL_CENTER_TILE_WIDTH,
+					TUTORIAL_TOP_TILE_HEIGHT, TUTORIAL_CENTER_TILE_HEIGHT);
+			return getTextFactory().createFancyTextBox(text, type.getColor(),
+					240, 45, 6, 6, 6, painter);
+		}
+		return getTextFactory().createTextBox(text, 240, type.getColor(), Color.white, isTalking);
+	}
+	
+	
+	/**
+	 * Lazy initialize the text box factory.
+	 *  
+	 * @return factory
+	 */
+	private TextBoxFactory getTextFactory() {
+		if (textBoxFactory == null) {
+			textBoxFactory = new TextBoxFactory();
+		}
+		
+		return textBoxFactory;
 	}
 }

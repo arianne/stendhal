@@ -19,13 +19,11 @@ import games.stendhal.client.gui.DropTarget;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.AchievementBoxFactory;
 import games.stendhal.client.gui.j2d.RemovableSprite;
-import games.stendhal.client.gui.j2d.TextBoxFactory;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.spellcasting.SpellCastingGroundContainerMouseState;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -180,8 +178,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-	private TextBoxFactory textBoxFactory;
-
 	private AchievementBoxFactory achievementBoxFactory;
 	
 	/**
@@ -289,14 +285,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	public void nextFrame() {
 		adjustView();
-	}
-	
-	private TextBoxFactory getTextFactory() {
-		if (textBoxFactory == null) {
-			textBoxFactory = new TextBoxFactory();
-		}
-		
-		return textBoxFactory;
 	}
 	
 	private AchievementBoxFactory getAchievementFactory() {
@@ -644,21 +632,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	public void setOffline(final boolean offline) {
 		this.offline = offline;
-	}
-
-	/**
-	 * Create a text box with the appropriate text color for a notification
-	 * type.
-	 * 
-	 * @param text
-	 * @param type
-	 * @param isTalking if <code>true</code> create a text box with a bubble
-	 * 	handle
-	 * @return text sprite
-	 */
-	public Sprite createTextBox(final String text, final NotificationType type,
-			final boolean isTalking) {
-		return getTextFactory().createTextBox(text, 240, type.getColor(), Color.white, isTalking);
 	}
 	
 	/**
