@@ -27,7 +27,9 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasShieldEquippedCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -60,24 +62,28 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 				
 				String greetingBasis = "Hey you! Take care, you are leaving the city now! ";
 				
-				// When the players level is below 15 and he has a shield equipped
+				// When the players level is below 15 AND (he has a shield equipped OR he completed the "meet_hayunn" quest)
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(
 								new LevelLessThanCondition(15),
-								new PlayerHasShieldEquippedCondition()
+								new OrCondition(
+										new PlayerHasShieldEquippedCondition(),
+										new QuestCompletedCondition("meet_hayunn")
+								)
 						),
 						ConversationStates.ATTENDING,
 						greetingBasis + "Look out for animals who might attack you and other enemies who walk around. Take some food or drinks with you! ",
 						null);
-				// When the players level is below 15 and he has no shield
+				// When the players level is below 15 AND he has NO shield AND he has NOT completed the "meet_hayunn" quest
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new AndCondition(
 								new LevelLessThanCondition(15),
-								new NotCondition(new PlayerHasShieldEquippedCondition())
+								new NotCondition(new PlayerHasShieldEquippedCondition()),
+								new NotCondition(new QuestCompletedCondition("meet_hayunn"))
 						),
 						ConversationStates.ATTENDING,
 						greetingBasis + "Eaak! You don't even have a shield. You better go right back and talk to Hayunn in the old guard house in Semos Village before you get into danger out here in the wild.",
