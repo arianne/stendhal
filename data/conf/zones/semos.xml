@@ -3201,6 +3201,12 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_catacombs_ne" level="-1" x="500064" y="499872"
 		file="Level -1/semos/catacombs_ne.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#75698c</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
+		
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -3211,6 +3217,12 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_catacombs_nw" level="-1" x="500000" y="499872"
 		file="Level -1/semos/catacombs_nw.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#75698c</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
+		
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -3221,6 +3233,12 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_catacombs_se" level="-1" x="500064" y="499936"
 		file="Level -1/semos/catacombs_se.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#75698c</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
+		
 		<portal x="28" y="37" ref="entrance" replacing="true">
 			<destination zone="0_semos_plains_n" ref="catacombs_entrance" />
 		</portal>
@@ -3234,6 +3252,11 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_catacombs_sw" level="-1" x="500000" y="499936"
 		file="Level -1/semos/catacombs_sw.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#75698c</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
 
 		<entity x="1" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -3342,6 +3365,11 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-2_semos_catacombs" level="-2" x="500000" y="499872"
 		file="Level -2/semos/catacombs.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#806283</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
 		<portal x="9" y="6" ref="dragon_portal_1">
 
 			<destination zone="-2_semos_catacombs" ref="dragon_portal_2" />
@@ -3539,6 +3567,11 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-3_semos_catacombs" level="-3" x="500064" y="499872"
 		file="Level -3/semos/catacombs.tmx">
+		<attributes>
+            <parameter name="color_method">multiply</parameter>
+            <parameter name="color">#943348</parameter>
+            <parameter name="blend_method">bleach</parameter>
+        </attributes>
 		<configurator
 			class-name="games.stendhal.server.maps.semos.catacombs.VampireLordCreature" />
 		<portal x="30" y="57" ref="upstairs" replacing="true">
