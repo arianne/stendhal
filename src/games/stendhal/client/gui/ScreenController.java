@@ -27,6 +27,9 @@ import javax.swing.SwingUtilities;
  * screen.
  */
 class ScreenController implements PositionChangeListener {
+	/** The maximum width of text in text boxes, speech bubbles and similar. */
+	private static final int BUBBLE_TEXT_WIDTH = 240;
+	
 	/** Image used for drawing tutorial box backgrounds. */
 	private static final String TUTORIAL_BACKGROUND = "data/gui/tutorial_background.png";
 	/** Depends on TUTORIAL_BACKGROUND. */
@@ -172,9 +175,9 @@ class ScreenController implements PositionChangeListener {
 					TUTORIAL_LEFT_TILE_WIDTH, TUTORIAL_CENTER_TILE_WIDTH,
 					TUTORIAL_TOP_TILE_HEIGHT, TUTORIAL_CENTER_TILE_HEIGHT);
 			return getTextFactory().createFancyTextBox(text, type.getColor(),
-					240, 45, 6, 6, 6, painter);
+					BUBBLE_TEXT_WIDTH, 45, 6, 6, 6, painter);
 		}
-		return getTextFactory().createTextBox(text, 240, type.getColor(), Color.white, isTalking);
+		return getTextFactory().createTextBox(text, BUBBLE_TEXT_WIDTH, type.getColor(), Color.white, isTalking);
 	}
 	
 	
