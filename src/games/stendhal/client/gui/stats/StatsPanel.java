@@ -181,21 +181,21 @@ public class StatsPanel extends JPanel {
 	}
 	
 	/**
-	 * Show or hide away indicator.
+	 * Set the away message. null hides the indicator
 	 * 
-	 * @param away
+	 * @param message
 	 */
-	void setAway(final boolean away) {
-		statusIcons.setAway(away);
+	void setAway(final String message) {
+		statusIcons.setAway(message);
 	}
 	
 	/**
-	 * Show or hide grumpy indicator
+	 * Show or hide grumpy indicator. null hides the indicator
 	 * 
-	 * @param grumpy
+	 * @param message
 	 */
-	void setGrumpy(final boolean grumpy) {
-		statusIcons.setGrumpy(grumpy);
+	void setGrumpy(final String message) {
+		statusIcons.setGrumpy(message);
 	}
 
 	private static class StatLabel extends JLabel {

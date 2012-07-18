@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -40,9 +41,10 @@ public class StatusIconPanelTest {
 	public void testAway() {
 		StatusIconPanel iconPanel = new StatusIconPanel();
 		
-		iconPanel.setAway(true);
+		iconPanel.setAway("excuse to be away");
 		assertTrue(iconPanel.away.isVisible());
-		iconPanel.setAway(false);
+		assertEquals("<html>You are away with the message:<br><b>excuse to be away", iconPanel.away.getToolTipText());
+		iconPanel.setAway(null);
 		assertFalse(iconPanel.away.isVisible());
 	}
 	
@@ -53,9 +55,10 @@ public class StatusIconPanelTest {
 	public void testGrumpy() {
 		StatusIconPanel iconPanel = new StatusIconPanel();
 		
-		iconPanel.setGrumpy(true);
+		iconPanel.setGrumpy("reason to be grumpy");
 		assertTrue(iconPanel.grumpy.isVisible());
-		iconPanel.setGrumpy(false);
+		assertEquals("<html>You are grumpy with the message:<br><b>reason to be grumpy", iconPanel.grumpy.getToolTipText());
+		iconPanel.setGrumpy(null);
 		assertFalse(iconPanel.grumpy.isVisible());
 	}
 	

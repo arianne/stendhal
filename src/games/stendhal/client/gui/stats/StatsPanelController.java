@@ -458,14 +458,17 @@ public class StatsPanelController {
 	private class AwayChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
-			Object value = null;
+			String value = null;
 			if (event != null) {
-				value = event.getNewValue();
+				Object obj = event.getNewValue();
+				if (obj != null) {
+					value = obj.toString();
+				}
 			}
-			final boolean away = value != null;
+			final String message = value;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					panel.setAway(away);
+					panel.setAway(message);
 				}
 			});
 		}
@@ -518,14 +521,17 @@ public class StatsPanelController {
 	private class GrumpyChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
-			Object value = null;
+			String value = null;
 			if (event != null) {
-				value = event.getNewValue();
+				Object obj = event.getNewValue();
+				if (obj != null) {
+					value = obj.toString();
+				}
 			}
-			final boolean grumpy = value != null;
+			final String message = value;
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					panel.setGrumpy(grumpy);
+					panel.setGrumpy(message);
 				}
 			});
 		}

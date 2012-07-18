@@ -112,22 +112,30 @@ public class StatusIconPanel extends JComponent {
 	}
 	
 	/**
-	 * Display or hide the away icon
+	 * Set the away status message. null value will hide the icon.
 	 * 
-	 * @param isAway
+	 * @param message
 	 */
-	protected void setAway(boolean isAway) {
+	void setAway(String message) {
+		boolean isAway = message != null;
+		if (isAway) {
+			away.setToolTipText("<html>You are away with the message:<br><b>" + message);	
+		}
 		if (away.isVisible() != isAway) {
 			away.setVisible(isAway);
 		}
 	}
 	
 	/**
-	 * Display or hide the grumpy icon
+	 * Set the grumpy status message. null value will hide the icon.
 	 * 
-	 * @param isGrumpy
+	 * @param message
 	 */
-	protected void setGrumpy(boolean isGrumpy) {
+	void setGrumpy(String message) {
+		boolean isGrumpy = message != null;
+		if (isGrumpy) {
+			grumpy.setToolTipText("<html>You are grumpy with the message:<br><b>" + message);	
+		}
 		if (grumpy.isVisible() != isGrumpy) {
 			grumpy.setVisible(isGrumpy);
 		}
