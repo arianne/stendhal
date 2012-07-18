@@ -256,8 +256,15 @@ public class j2DClient implements UserInterface {
 		client.addZoneChangeListener(screen);
 		positionChangeListener.add(screenController);
 
-
-		final KeyListener tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList());
+		/*
+		 * Register the slash actions in the client side command line parser.
+		 * This needs to be at least before getting the actions to
+		 * ChatCompletionHelper.
+		 */
+		SlashActionRepository.register();
+		
+		final KeyListener tabcompletion = new ChatCompletionHelper(chatText, World.get().getPlayerList().getNamesList(),
+				SlashActionRepository.getCommandNames());
 		chatText.addKeyListener(tabcompletion);
 
 		/*
@@ -450,9 +457,6 @@ public class j2DClient implements UserInterface {
 				maxBounds.height  - 80));
 
 		directionRelease = null;
-
-		// register the slash actions in the client side command line parser
-		SlashActionRepository.register();
 
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());

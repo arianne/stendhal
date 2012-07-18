@@ -14,6 +14,7 @@ package games.stendhal.client.actions;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Manages Slash Action Objects.
@@ -124,5 +125,14 @@ public class SlashActionRepository {
 	public static SlashAction get(String name) {
 		String temp = name.toLowerCase(Locale.ENGLISH);
 		return actions.get(temp);
+	}
+	
+	/**
+	 * Get all known command names.
+	 * 
+	 * @return set of commands
+	 */
+	public static Set<String> getCommandNames() {
+		return actions.keySet();
 	}
 }

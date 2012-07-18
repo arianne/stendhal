@@ -18,6 +18,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -34,6 +35,7 @@ public final class ChatCompletionHelper extends KeyAdapter {
 	private final ChatTextController chatController;
 	
 	private final Set<String> playersonline;
+	private final Set<String> slashCommands;
 	
 	private int  lastkeypressed;
 	
@@ -46,12 +48,17 @@ public final class ChatCompletionHelper extends KeyAdapter {
 	/**
 	 * Create a new ChatCompletionHelper
 	 * @param chatTextController
-	 * @param list
+	 * @param nameList
+	 * @param commands slash commands 
 	 */
 	public ChatCompletionHelper(final ChatTextController chatTextController,
-			final Set<String> list) {
-		this.chatController = chatTextController;
-		this.playersonline = list;
+			final Set<String> nameList, final Set<String> commands) {
+		chatController = chatTextController;
+		playersonline = nameList;
+		slashCommands = new HashSet<String>(commands.size());
+		for (String s : commands) {
+			slashCommands.add("/" + s);
+		}
 	}
 
 	@Override
@@ -85,6 +92,12 @@ public final class ChatCompletionHelper extends KeyAdapter {
 				.split("\\s+");
 
 		final String prefix = strwords[strwords.length - 1];
+		Set<String> completionSet = playersonline;
+		// Special handling for slash commands. Complete those only in the
+		// beginning of line, and only if they start with a single /
+		if ((strwords.length == 1) && prefix.startsWith("/") && !prefix.startsWith("//")) {
+			completionSet = slashCommands;
+		}
 
 		final CollectionFilter<String> filter = new StringPrefixFilter(
 				prefix);
@@ -93,7 +106,7 @@ public final class ChatCompletionHelper extends KeyAdapter {
 			output = output + strwords[j] + " ";
 		}
 
-		resultset = filter.filterCopy(playersonline);
+		resultset = filter.filterCopy(completionSet);
 	}
 	
 }
