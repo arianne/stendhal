@@ -936,6 +936,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		private final HorizontalAlignment xAlign;
 		private final VerticalAlignment yAlign;
 		private final int xOffset, yOffset;
+		/**
+		 * For tracking changes that can have multiple "true" values (such
+		 * as away messages).
+		 */
+		private boolean wasVisible;
 		
 		/**
 		 * Create a new StatusIconManager.
@@ -997,8 +1002,13 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 */
 		private void setVisible(boolean visible) {
 			if (visible) {
-				attachSprite(sprite, xAlign, yAlign, xOffset, yOffset);
+				// Avoid attaching the sprite more than once
+				if (!wasVisible) {
+					attachSprite(sprite, xAlign, yAlign, xOffset, yOffset);
+					wasVisible = true;
+				}
 			} else {
+				wasVisible = false;
 				detachSprite(sprite);
 			}
 		}
