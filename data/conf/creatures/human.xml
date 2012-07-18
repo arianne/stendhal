@@ -1183,7 +1183,7 @@
     <type class="human" subclass="masked_ninja" tileid="human_evil.png:4"/>
     <description></description>
     <attributes>
-      <atk value="489"/>
+      <atk value="468"/>
       <def value="75"/>
       <hp value="520"/>
       <speed value="1.0"/>
@@ -1203,11 +1203,13 @@
       <item value="katana" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
+      <slot name="rhand" item="shuriken" quantity="10000"/>
     </equips>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
     </ai>
   </creature>
 
