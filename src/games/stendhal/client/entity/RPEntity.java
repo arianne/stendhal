@@ -588,15 +588,28 @@ public abstract class RPEntity extends ActiveEntity {
 					NotificationType.NEGATIVE));
 		}
 	}
-
+	
 	/**
-	 * Set the eating status.
+	 * Process eating and choking status changes. Avoids firing the PROP_EATING
+	 * property more often than needed and ensures both of the properties are
+	 * in the new state before firing.
 	 * 
-	 * @param eating
+	 * @param newStatus the status where to change eating or choking, if changes
+	 * 	are needed
+	 * @param setEat if <code>true</code> then eating status should be set
+	 * @param setChoke if <code>true</code> then choking status should be set
 	 */
-	private void setEating(boolean eating) {
-		if (this.eating != eating) {
-			this.eating = eating;
+	private void setEatAndChoke(boolean newStatus, boolean setEat, boolean setChoke) {
+		boolean changed = false;
+		if (setEat && (this.eating != newStatus)) {
+			this.eating = newStatus;
+			changed = true;
+		}
+		if (setChoke && (this.choking != newStatus)) {
+			this.choking = newStatus;
+			changed = true;
+		}
+		if (changed) {
 			fireChange(PROP_EATING);
 		}
 	}
@@ -604,18 +617,6 @@ public abstract class RPEntity extends ActiveEntity {
 	// When entity gets healed
 	public void onHealed(final int amount) {
 		// do nothing for normal rpentities
-	}
-
-	/**
-	 * Set the choking status.
-	 * 
-	 * @param choking
-	 */
-	private void setChoking(boolean choking) {
-		if (this.choking != choking) {
-			this.choking = choking;
-			fireChange(PROP_EATING);
-		}
 	}
 	
 	// When entity adjusts HP
@@ -825,18 +826,10 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		/*
-		 * Eating
+		 * eating and choking
 		 */
-		if (object.has("eating")) {
-			setEating(true);
-		}
+		setEatAndChoke(true, object.has("eating"), object.has("choking"));
 
-		/*
-		 * Choking
-		 */
-		if (object.has("choking")) {
-			setChoking(true);
-		}
 		/*
 		 * Poisoned
 		 */
@@ -965,18 +958,9 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 
 			/*
-			 * Eating
+			 * Eating and choking
 			 */
-			if (changes.has("eating")) {
-				setEating(true);
-			}
-
-			/*
-			 * Choking
-			 */
-			if (changes.has("choking")) {
-				setChoking(true);
-			}
+			setEatAndChoke(true, changes.has("eating"), changes.has("choking"));
 
 			/*
 			 * Poisoned
@@ -1228,18 +1212,9 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		/*
-		 * No longer eating?
+		 * No longer eating or choking?
 		 */
-		if (changes.has("eating")) {
-			setEating(false);
-		}
-
-		/*
-		 * No longer choking?
-		 */
-		if (changes.has("choking")) {
-			setChoking(false);
-		}
+		setEatAndChoke(false, changes.has("eating"), changes.has("choking"));
 
 		if (changes.has("ghostmode")) {
 			ghostmode = false;
