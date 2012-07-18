@@ -85,10 +85,15 @@ public class Player extends AudibleEntity {
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
 	protected void onAway(final String message) {
-		if (message != null) {
-			addTextIndicator("Away", NotificationType.INFORMATION);
-		} else {
-			addTextIndicator("Back", NotificationType.INFORMATION);
+		// Filter out events about changing to same message
+		if (messageChanged(away, message)) {
+			away = message;
+			fireChange(PROP_AWAY);
+			if (message != null) {
+				addTextIndicator("Away", NotificationType.INFORMATION);
+			} else {
+				addTextIndicator("Back", NotificationType.INFORMATION);
+			}
 		}
 	}
 	
@@ -117,13 +122,29 @@ public class Player extends AudibleEntity {
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
 	protected void onGrumpy(final String message) {
-		if (message != null) {
-			addTextIndicator("Grumpy", NotificationType.INFORMATION);
-		} else {
-			addTextIndicator("Receptive", NotificationType.INFORMATION);
+		// Filter out events about changing to same message
+		if (messageChanged(grumpy, message)) {
+			grumpy = message;
+			fireChange(PROP_GRUMPY);
+			if (message != null) {
+				addTextIndicator("Grumpy", NotificationType.INFORMATION);
+			} else {
+				addTextIndicator("Receptive", NotificationType.INFORMATION);
+			}
 		}
 	}
 
+	/**
+	 * Check if a message string has changed.
+	 * 
+	 * @param oldMessage
+	 * @param newMessage
+	 * @return <code>true</code> if the message has changed
+	 */
+	private boolean messageChanged(String oldMessage, String newMessage) {
+		return ((newMessage == null) && (oldMessage != null))
+		|| ((newMessage != null) && !newMessage.equals(oldMessage));
+	}
 
 	@Override
 	public void onTalk(String text) {
@@ -165,35 +186,17 @@ public class Player extends AudibleEntity {
 		super.onChangedAdded(object, changes);
 
 		if (changes.has("away")) {
-			/*
-			 * Filter out a player "changing" to the same message
-			 */
-			String newStatus = changes.get("away");
-			if (((newStatus == null) && (away != null)) 
-					|| ((newStatus != null) && !newStatus.equals(away))) {
-				away = newStatus;
-				fireChange(PROP_AWAY);
-				onAway(away);
-			}
+			onAway(changes.get("away"));
 		}
+		
 		if (changes.has("grumpy")) {
-			/*
-			 * Filter out a player "changing" to the same message
-			 */
-			String newStatus = changes.get("grumpy");
-			if (((newStatus == null) && (grumpy != null)) 
-					|| ((newStatus != null) && !newStatus.equals(grumpy))) {
-				grumpy = newStatus;
-				fireChange(PROP_GRUMPY);
-				onGrumpy(grumpy);
-			}
+			onGrumpy(changes.get("grumpy"));
 		}
 		
 		if (changes.has(LAST_PLAYER_KILL_TIME)) {
 			badboy = true;
 			fireChange(PROP_PLAYER_KILLER);
 		}
-		
 	}
 
 	/**
@@ -209,8 +212,6 @@ public class Player extends AudibleEntity {
 		super.onChangedRemoved(object, changes);
 
 		if (changes.has("away")) {
-			away = null;
-			fireChange(PROP_AWAY);
 			onAway(null);
 		}
 		if (changes.has("grumpy")) {
