@@ -3,7 +3,7 @@
     xsi:schemaLocation="stendhal ../creatures.xsd ">
  
   <creature name="vampire bride">
-    <type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:0"/>
+    <type class="vampire" subclass="vampire_lord_bride" tileid="vampire.png:0"/>
     <description>You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.</description>
     <attributes>
       <atk value="186"/>
@@ -29,11 +29,12 @@
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampire_lord_bride;vampire_lord_bride_evil),"/>
     </ai>
   </creature>
 
   <creature name="vampirette">
-    <type class="vampire" subclass="vampirette_evil" tileid="vampire.png:4"/>
+    <type class="vampire" subclass="vampirette" tileid="vampire.png:4"/>
     <description>You see a Vampirette. Beware of its sharp teeth! She wants to drink your blood and turn you into a vampire!</description>
     <attributes>
       <atk value="353"/>
@@ -60,11 +61,12 @@
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampirette;vampirette_evil),"/>
     </ai>
   </creature>
   
   <creature name="vampire lord">
-    <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
+    <type class="vampire" subclass="vampire_lord" tileid="vampire.png:2"/>
     <description>You see a vampire lord. Be careful, he is after your blood!</description>
     <attributes>
       <atk value="497"/>
@@ -90,7 +92,7 @@
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
-      <profile name="attack weakest"/>
+      <profile name="strategy" params=",outfit_changer(attack_weakest;vampire_lord;vampire_lord_evil),"/>
     </ai>
   </creature>
     
