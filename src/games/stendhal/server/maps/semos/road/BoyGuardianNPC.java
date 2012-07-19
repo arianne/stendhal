@@ -108,6 +108,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 				addGoodbye("Shhhhh, don't talk too loud! Bye and take care!");
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
@@ -127,6 +128,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 		npc.setPosition(6, 43);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
+		npc.setPerceptionRange(4);
 		zone.add(npc);
 	}
 }
