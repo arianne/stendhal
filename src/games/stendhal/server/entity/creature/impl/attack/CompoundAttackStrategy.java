@@ -46,10 +46,12 @@ class CompoundAttackStrategy implements AttackStrategy {
 			throw new IllegalArgumentException("Invalid compound description: '"
 					+ params + "'");
 		}
-		Pair<String, String> posDesc = parseStrategy(arg[2]);
-		PositioningStrategy positioner = PositioningStrategyFactory.get(posDesc.first(), posDesc.second());
+		Pair<String, String> desc = parseStrategy(arg[1]);
+		TargetSelectionStrategy targeter = TargetSelectionStrategyFactory.get(desc.first(), desc.second());
+		desc = parseStrategy(arg[2]);
+		PositioningStrategy positioner = PositioningStrategyFactory.get(desc.first(), desc.second());
 		return new CompoundAttackStrategy(getSubStrategy(arg[0]),
-				getSubStrategy(arg[1]), positioner);
+				targeter, positioner);
 	}
 	
 	/**
