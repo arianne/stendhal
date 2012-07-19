@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
@@ -96,8 +97,8 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The entities attacking this entity.
 	 */
-	protected final List<Entity> attackers = new LinkedList<Entity>();
-
+	protected final Collection<Entity> attackers = new ConcurrentLinkedQueue<Entity>();
+	
 	/**
 	 * The nature of the current attack done by this entity, or
 	 * <code>null</code> if there's no ongoing attack.
@@ -418,6 +419,13 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	public int getXP() {
 		return xp;
+	}
+	
+	/**
+	 * @return Returns the entities attacking this entity
+	 */
+	public Collection<Entity> getAttackers() {
+		return attackers;
 	}
 
 	public boolean isAttacking() {
@@ -1173,11 +1181,11 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	private void onDeath(final List<Entity> attackers) {
+	private void onDeath(final Collection<Entity> attackers) {
 		if (!attackers.isEmpty()) {
 			Collection<String> attackerNames = new LinkedList<String>();
-			for (Entity ent : attackers) {
-					attackerNames.add(ent.getTitle());
+			for(Entity attacker : attackers) {
+					attackerNames.add(attacker.getTitle());
 			}
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(
 					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames)));

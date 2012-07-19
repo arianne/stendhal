@@ -15,6 +15,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
@@ -38,6 +39,7 @@ import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -81,6 +83,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite hitSprite;
 	private static final Sprite blockedSprite;
 	private static final Sprite missedSprite;
+	
+	/** Colors of the ring/circle around the player while attacking or being attacked */
+	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
+	private static final Color RING_COLOR_DARK_RED = new Color(74, 0, 0);
+	private static final Color RING_COLOR_ORANGE = new Color(255, 200, 0);
 	
 	/** Temporary text sprites, like HP and XP changes. */
 	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
@@ -439,35 +446,64 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
 		Rectangle2D wrect = entity.getArea();
-		final Rectangle srect = new Rectangle((int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
+		final Rectangle srect = new Rectangle(
+				(int) (wrect.getX() * IGameScreen.SIZE_UNIT_PIXELS),
 				(int) (wrect.getY() * IGameScreen.SIZE_UNIT_PIXELS), 
 				(int) (wrect.getWidth() * IGameScreen.SIZE_UNIT_PIXELS),
-				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS));
+				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS)
+		);
 		
 		final double DIVISOR = 1.414213562; // sqrt(2)
 		
-		if (entity.isBeingAttacked()) {
-			// Draw red circle around
-			g2d.setColor(Color.red);
-			int circleHeight = (int) ((srect.height - 2) / DIVISOR);
-			// Avoid showing much smaller area than the creature covers
-			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
-			g2d.drawArc(srect.x, srect.y + srect.height - circleHeight, 
-					srect.width + 0, circleHeight, 0, 360);
-		}
-
+		// Calculating the circle's height
+		int circleHeight = (int) ((srect.height - 2) / DIVISOR);
+		circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
+		
+		// When the entity is attacking the user give him a orange ring
 		if (entity.isAttacking(User.get())) {
-			// Draw orange circle around
-			g2d.setColor(Color.orange);
-			int circleHeight = (int) ((srect.height - 4) / DIVISOR);
-			// Avoid showing much smaller area than the creature covers
-			circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2 - 2);
-			g2d.drawArc(srect.x + 1, srect.y + srect.height - circleHeight - 1, 
-					srect.width - 2, circleHeight, 0, 360);
+			g2d.setColor(RING_COLOR_ORANGE); 
+			g2d.drawOval(srect.x-1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+			g2d.drawOval(srect.x, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+			g2d.drawOval(srect.x+1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+			drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_ORANGE, true, false);
 		}
-
+		
+		// When the entity is attacked by another entity
+		if (entity.isBeingAttacked()) {
+			Color lineColor;
+			g2d.setColor(RING_COLOR_RED);
+			
+			// When it is also attacking the user give him only a red outline
+			if (entity.isAttacking(User.get()))
+			{
+				lineColor = RING_COLOR_RED;
+				drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_RED, false, true);
+			}
+			// Otherwise make his complete ring red
+			else
+			{
+				lineColor = RING_COLOR_DARK_RED;
+				g2d.drawOval(srect.x-1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+				g2d.drawOval(srect.x, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+				g2d.drawOval(srect.x+1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+				drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_RED, true, false);
+				drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_ORANGE, false, false);
+			}
+			
+			// Get the direction of his opponents and draw an arrow to those
+			EnumSet<Direction> directions = EnumSet.noneOf(Direction.class);
+			for(Entity attacker : entity.getAttackers()) {
+				directions.add(Direction.getAreaDirectionTowardsArea(entity.getArea(), attacker.getArea()));	
+			}
+			drawArrows(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, directions, lineColor);
+		
+		// When the entity is attacked by the user, but still is attacking the user, give him a dark orange outline
+		} else if (entity.isAttacking(User.get())) {
+			drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_ORANGE, false, false);
+		}
+		
 		drawAttack(g2d, x, y, width, height);
-
+		
 		if (entity.isDefending()) {
 			// Draw bottom right combat icon
 			final int sx = srect.x + srect.width - ICON_OFFSET;
@@ -489,6 +525,75 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				// cannot happen we are switching on enum
 			}
 		}
+	}
+	
+	/**
+	 * Function to draw the arrows on the attack/being attacked ring
+	 * @param g2d The graphic context
+	 * @param x The x-center of the arrows
+	 * @param y The y-center of the arrows
+	 * @param directions The directions an arrow should be drawn
+	 * @param lineColor The color of the outline of the arrow
+	 */
+	private void drawArrows(final Graphics2D g2d, final int x, final int y, final int width, final int height, final EnumSet<Direction> directions, final Color lineColor) {
+		if(directions.contains(Direction.LEFT)) {
+			g2d.setColor(Color.RED);
+			g2d.fillPolygon(new int[]{x+1, x-2, x+1}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+			g2d.setColor(lineColor);
+			g2d.drawPolyline(new int[]{x, x-2, x}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+		}
+		if(directions.contains(Direction.RIGHT)) {
+			g2d.setColor(Color.RED);
+			g2d.fillPolygon(new int[]{x+width, x+width+2, x+width}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+3}, 3);
+			g2d.setColor(lineColor);
+			g2d.drawPolyline(new int[]{x+width, x+width+2, x+width}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+		}
+		if(directions.contains(Direction.UP)) {
+			g2d.setColor(Color.RED);
+			g2d.fillPolygon(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+3}, new int[]{y+1, y-2, y+1}, 3);
+			g2d.setColor(lineColor);
+			g2d.drawPolyline(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+2}, new int[]{y, y-2, y}, 3);
+		}
+		if(directions.contains(Direction.DOWN)) {
+			g2d.setColor(Color.RED);
+			g2d.fillPolygon(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+3}, new int[]{y+height, y+height+2, y+height}, 3);
+			g2d.setColor(lineColor);
+			g2d.drawPolyline(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+2}, new int[]{y+height, y+height+2, y+height}, 3);
+		}
+	}
+	
+	/**
+	 * @param g2d The graphic context
+	 * @param x The x-position of the upperleft of the oval
+	 * @param y The y-position of the upperleft of the oval
+	 * @param width The widht of the oval
+	 * @param height The height of the oval
+	 * @param color The base color of the oval, shadow still needs to be applied
+	 * @param reversed Whether the bottom part, or the upper part should be dark (true is upper part)
+	 * @param light
+	 */
+	private void drawShadedOval(final Graphics2D g2d, final int x, final int y, final int width, final int height, final Color color, final boolean reversed, final boolean light) {
+		
+		// Calculate how much darker the ring must be made (depends on the boolean 'light')
+		float multi1;
+		float multi2;
+		if(light) {
+			multi1 = reversed ? 1f : 0.8f;
+			multi2 = reversed ? 0.8f : 1f;
+		} else {
+			multi1 = reversed ? 0.24f : 0.39f;
+			multi2 = reversed ? 0.39f : 0.24f;
+		}
+		
+		// Darken the colors by the given multiplier
+		Color color1 = new Color((int) (color.getRed() * multi1), (int) (color.getGreen() * multi1), (int) (color.getBlue() * multi1));
+		Color color2 = new Color((int) (color.getRed() * multi2), (int) (color.getGreen() * multi2), (int) (color.getBlue() * multi2));
+		
+		// Draw with two arcs a oval
+		g2d.setColor(color1);
+		g2d.drawArc(x, y, width, height, 0, 180);
+		g2d.setColor(color2);
+		g2d.drawArc(x, y, width, height, 180, 180);
 	}
 	
 	/**

@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import java.awt.geom.Rectangle2D;
+
 /**
  * a direction to face or walk to
  *
@@ -152,6 +154,31 @@ public enum Direction {
 	 */
 	public int get() {
 		return val;
+	}
+	
+	/**
+	 * Compares two area and return the direction of area2 towards area1. So if area2 is left of
+	 * area1, it will return Direction.LEFT
+	 * @param area1 The area to compare with
+	 * @param area2 The area to be compared
+	 * @return The Direction of area2 as seen from area1
+	 */
+	public static Direction getAreaDirectionTowardsArea(final Rectangle2D area1, final Rectangle2D area2) {
+		final double x = area2.getCenterX() - area1.getCenterX();
+		final double y = area2.getCenterY() - area1.getCenterY();
+		if (Math.abs(x) > Math.abs(y)) {
+			if (x > 0) {
+				return RIGHT;
+			} else {
+				return LEFT;
+			}
+		} else {
+			if (y > 0) {
+				return DOWN;
+			} else {
+				return UP;
+			}
+		}
 	}
 
 	/**

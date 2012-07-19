@@ -234,24 +234,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	final Direction getDirectionToward(final Rectangle2D area) {
-
-		final double rx = getArea().getCenterX();
-		final double ry = getArea().getCenterY();
-		final double x = area.getCenterX();
-		final double y = area.getCenterY();
-		if (Math.abs(x - rx) > Math.abs(y - ry)) {
-			if (x - rx > 0) {
-				return Direction.RIGHT;
-			} else {
-				return Direction.LEFT;
-			}
-		} else {
-			if (y - ry > 0) {
-				return Direction.DOWN;
-			} else {
-				return Direction.UP;
-			}
-		}
+		return Direction.getAreaDirectionTowardsArea(getArea(), area);
 	}
 
 	/**
