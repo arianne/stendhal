@@ -387,7 +387,7 @@ public class SpeakerNPC extends NPC {
 
 		// now look for nearest player only if there's an initChatAction
 		if (!isTalking() && (initChatAction != null)) {
-			final Player nearest = getNearestPlayer(7);
+			final Player nearest = getNearestPlayer(getPerceptionRange());
 
 			if (nearest != null) {
 				if ((initChatCondition == null)
