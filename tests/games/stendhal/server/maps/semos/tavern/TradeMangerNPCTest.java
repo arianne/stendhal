@@ -20,8 +20,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.trade.Market;
+import games.stendhal.server.maps.semos.tavern.market.MarketManagerNPC;
 import games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,6 +51,20 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+	}
+
+	/**
+	 * Wipe out the market so that the test player does not run in to offer
+	 * limits.
+	 */
+	@After
+	public void wipeMarket() {
+		Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
+		m.getSlot(Market.OFFERS_SLOT_NAME).clear();
+		final SpeakerNPC npc = getNPC("Harold");
+		if (npc instanceof MarketManagerNPC) {
+			((MarketManagerNPC) npc).getOfferMap().clear();
+		}
 	}
 
 	public TradeMangerNPCTest() {
@@ -139,6 +156,29 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
+	
+	/**
+	 * Tests for trying to put multiple non stackable items in one offer.
+	 */
+	@Test
+	public void testSellPluralNonStackable() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		QuestHelper.equipWithItem(player, "dagger");
+		QuestHelper.equipWithMoney(player, 100);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		assertTrue(en.step(player, "sell 2 daggers for 1000"));
+		assertEquals("Sorry, you can only put those for sale as individual items.", getReply(npc));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}
+
 
 	/**
 	 * Tests for successful placement of an offer of daisies.

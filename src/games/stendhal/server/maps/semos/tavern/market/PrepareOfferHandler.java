@@ -16,6 +16,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -117,7 +118,10 @@ public class PrepareOfferHandler {
 					// The item name might not be what was used for looking it up (plurals)
 					itemName = item.getName();
 					
-					if (item.isBound()) {
+					if ((number > 1) && !(item instanceof StackableItem)) {
+						npc.say("Sorry, you can only put those for sale as individual items.");
+						return;
+					} else if (item.isBound()) {
 						npc.say("That " + itemName + " can be used only by you. I can not sell it.");
 						return;
 					} else if (item.getDeterioration() > 0) {
