@@ -4,7 +4,7 @@
 
   <item name="wedding ring">
     <type class="ring" subclass="wedding" tileid="-1"/>
-    <description/>
+    <description>You see a golden wedding ring, a symbol of love.</description>
     <implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>    <attributes>
     </attributes>
     <weight value="0.1"/>
