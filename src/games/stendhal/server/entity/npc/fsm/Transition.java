@@ -127,7 +127,9 @@ public class Transition {
 	 * @param tr - source transition, must not be null
 	 * @throws 
 	 */
-	public Transition(Transition tr) {
+	public Transition(Transition trans) {
+		Transition tr = new Transition(null, null, null, false, null, null, null, null);
+		System.arraycopy(trans, 0, tr, 0, 1);
 		this.state = tr.state;
 		this.condition = tr.condition;
 		this.secondary = tr.secondary;
@@ -135,7 +137,7 @@ public class Transition {
 		this.triggers = tr.triggers;
 		this.reply = tr.reply;
 		this.action = tr.action;
-		this.label = tr.label;
+		this.label = tr.label;		
 	}
 
 	/**
