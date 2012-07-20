@@ -47,7 +47,7 @@ public class Engine {
 	 */
 	public Engine(final SpeakerNPC speakerNPC) {
 		if (speakerNPC == null) {
-			throw new IllegalArgumentException("speakerNpc must not be null");
+			throw new IllegalArgumentException("speakerNPC must not be null");
 		}
 
 		this.speakerNPC = speakerNPC;
@@ -68,6 +68,24 @@ public class Engine {
 			}
 		}
 
+		return null;
+	}
+	
+	/**
+	 * Looks for an already registered exactly matching transition.
+	 * 
+	 * @param label - label to search
+	 * @return - transition or null
+	 */
+	private Transition get(final String label) {
+		if (label.equals("")) {
+			return null;
+		}
+		for (final Transition transition : stateTransitionTable) {
+			if (transition.checkLabel(label)) {
+				return transition;
+			}
+		}
 		return null;
 	}
 
@@ -97,6 +115,34 @@ public class Engine {
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
 	}
 
+
+	/**
+	 * Adds a new transition to FSM.
+	 * 
+	 * @param state
+	 *            old state
+	 * @param triggerStrings
+	 *            input trigger
+	 * @param condition
+	 *            additional precondition
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            state after the transition
+	 * @param reply
+	 *            output
+	 * @param action
+	 *            additional action after the condition
+	 */
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action,
+			final String label) {
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, triggerStrings, null, condition, reply, action);
+
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action, label);
+	}
+	
 	/**
 	 * Adds a new set of transitions to the FSM.
 	 * 
@@ -199,10 +245,51 @@ public class Engine {
 	 *            a special action to be taken (may be null)
 	 */
 	public void add(Collection<Expression> triggerExpressions, final ConversationStates state, final ChatCondition condition,
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
+		if (triggerExpressions!=null && !triggerExpressions.isEmpty()) {
+			if(label.equals("") || (get(label)==null)) {
+				stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action, label));
+			}
+		}
+	}
+
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 * @param triggerExpressions
+	 *            a list of trigger expressions for this transition, must not be null
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple sentence reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(Collection<Expression> triggerExpressions, final ConversationStates state, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
 		if (triggerExpressions!=null && !triggerExpressions.isEmpty()) {
 			stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action));
 		}
+	}
+	
+	/**
+	 * remove matches transition
+	 * 
+	 * @param label
+	 * @return
+	 */
+	public boolean remove(final String label) {
+		final Transition tr = get(label);
+		if (tr==null) {
+			return false;
+		}
+		return(stateTransitionTable.remove(tr));
 	}
 
 	/**
@@ -488,5 +575,20 @@ public class Engine {
 		// structure
 		return new LinkedList<Transition>(stateTransitionTable);
 	}
+
+	/**
+	 * Returns a copy of transition that match label
+	 * @param label
+	 * @return
+	 */
+	public Transition getTransition(final String label) {
+		Transition tr = get(label); 
+		if(tr==null) {
+			return null;
+		}
+		return new Transition(tr);
+	}
+
+
 
 }

@@ -52,6 +52,43 @@ public class Transition {
 
 	/** The action that will take place when the transition is triggered. */
 	private final PostTransitionAction action;
+	
+	/** Label for search through installed transitions */
+	private final String label;
+
+
+	/**
+	 * Creates a new transition.
+	 * 
+	 * @param currentState
+	 *            old state
+	 * @param triggers
+	 *            input triggers
+	 * @param condition
+	 *            additional precondition
+	 * @param secondary
+	 *			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            state after the transition
+	 * @param reply
+	 *            output
+	 * @param action
+	 *            additional action after the condition
+	 * @param label
+	 *            string label to handle transitions in NPC's FSM table
+	 */
+	public Transition(final ConversationStates currentState, final Collection<Expression> triggers,
+			final PreTransitionCondition condition, final boolean secondary, final ConversationStates nextState,
+			final String reply, final PostTransitionAction action, final String label) {
+		this.state = currentState;
+		this.condition = condition;
+		this.secondary = secondary;
+		this.nextState = nextState;
+		this.triggers = triggers;
+		this.reply = reply;
+		this.action = action;
+		this.label = label;
+	}
 
 	/**
 	 * Creates a new transition.
@@ -81,6 +118,24 @@ public class Transition {
 		this.triggers = triggers;
 		this.reply = reply;
 		this.action = action;
+		this.label = "";
+	}
+
+	/**
+	 * Create transition and copy values from existing transition
+	 * 
+	 * @param tr - source transition, must not be null
+	 * @throws 
+	 */
+	public Transition(Transition tr) {
+		this.state = tr.state;
+		this.condition = tr.condition;
+		this.secondary = tr.secondary;
+		this.nextState = tr.nextState;
+		this.triggers = tr.triggers;
+		this.reply = tr.reply;
+		this.action = tr.action;
+		this.label = tr.label;
 	}
 
 	/**
@@ -289,7 +344,31 @@ public class Transition {
 		// no match
 		return false;
     }
+	
+	/**
+	 * Checks for labels equality
+	 * 
+	 * @param label - label to compare
+	 * @return - check result
+	 */
+	public boolean checkLabel(final String label) {
+		if (this.label.equals(label)) {
+			return true;
+		}
+		return false;
+	}
 
+	/**
+	 * check if label is empty string
+	 * @return - check result
+	 */
+	public boolean isEmptyLabel() {
+		if (this.label.equals("")) {
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Checks whether this transition's condition is fulfilled.
 	 * 

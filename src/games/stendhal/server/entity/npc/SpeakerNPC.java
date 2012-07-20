@@ -500,10 +500,32 @@ public class SpeakerNPC extends NPC {
 	 *            a special action to be taken (may be null)
 	 */
 	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
-			final ConversationStates nextState, final String reply, final ChatAction action) {
-		engine.add(state, triggerStrings, condition, false, nextState, reply, action);
+			final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
+		engine.add(state, triggerStrings, condition, false, nextState, reply, action, label);
 	}
 
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 *
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param triggerStrings
+	 *            a list of inputs for this transition
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple text reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action) {
+		engine.add(state, triggerStrings, condition, false, nextState, reply, action, "");
+	}
+	
 	/**
 	 * Adds a new set of transitions to the FSM.
 	 *
@@ -582,6 +604,24 @@ public class SpeakerNPC extends NPC {
 			final String reply, final ChatAction action) {
 		add(state, triggerStrings, null, nextState, reply, action);
 	}
+	
+
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ConversationStates nextState,
+			final String reply, final ChatAction action, final String label) {
+		add(state, triggerStrings, null, nextState, reply, action, label);
+	}
+	
+	/**
+	 * delete transition that match label
+	 * 
+	 * @param label
+	 * @return - deleting state
+	 */
+	public boolean del(final String label) {
+		return(engine.remove(label));
+	}
+	
+	
 
 	public void listenTo(final Player player, final String text) {
 		tell(player, text);
