@@ -731,8 +731,7 @@ public class RPEntityTest {
 		entity.initHP(100);
 		assertThat(entity.getBaseHP(), is(100));
 		long expireTimestampAsLong = System.currentTimeMillis() + 1000;
-		entity.addBaseHpModifier(new Date(expireTimestampAsLong), 0.5d);
-		assertThat(entity.getBaseHP(), is(150));
+		assertThat(entity.getBaseHP(), is(100));
 		while (expireTimestampAsLong >= System.currentTimeMillis()) {
 			// just to wait till modifier is expired
 			Thread.sleep(100);
@@ -757,8 +756,7 @@ public class RPEntityTest {
 		entity.setDef(100);
 		assertThat(entity.getDef(), is(100));
 		long expireTimestampAsLong = System.currentTimeMillis() + 1000;
-		entity.addDefModifier(new Date(expireTimestampAsLong), 0.5d);
-		assertThat(entity.getDef(), is(150));
+		assertThat(entity.getDef(), is(100));
 		while (expireTimestampAsLong >= System.currentTimeMillis()) {
 			// just to wait till modifier is expired
 			Thread.sleep(100);

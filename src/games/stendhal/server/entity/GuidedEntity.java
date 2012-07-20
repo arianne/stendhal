@@ -13,12 +13,8 @@ import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.entity.modifier.AttributeModifier;
-import games.stendhal.server.entity.modifier.GuidedEntityModifierHandler;
-import games.stendhal.server.entity.modifier.ModifiedAttributeUpdater;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Date;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -26,15 +22,13 @@ import marauroa.common.game.RPObject;
 /**
  * An entity that has speed/direction and is guided via a Path.
  */
-public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttributeUpdater{
+public abstract class GuidedEntity extends ActiveEntity {
 	
 	protected double baseSpeed;
 
 	private final EntityGuide guide = new EntityGuide();
 
 	public Registrator pathnotifier = new Registrator();
-	
-	private GuidedEntityModifierHandler modifierHandler;
 	
 	/**
 	 * Create a guided entity.
@@ -61,33 +55,13 @@ public abstract class GuidedEntity extends ActiveEntity  implements ModifiedAttr
 	// TEMP for Transition
 	//
 	
-	private void initModifierHandler() {
-		if(this.modifierHandler == null) {
-			this.modifierHandler = new GuidedEntityModifierHandler(this);
-		}
-	}
-
 	/**
 	 * Get the normal movement speed.
 	 *
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
-		if(this.modifierHandler != null) {
-			return modifierHandler.modifySpeed(this.baseSpeed);
-		}
 		return this.baseSpeed;
-	}
-	
-	/**
-	 * Add a temporary modifier for the base speed
-	 * @param expire
-	 * @param modifier
-	 */
-	public void addSpeedModifier(Date expire, double modifier) {
-		this.initModifierHandler();
-		AttributeModifier am = AttributeModifier.createSpeedModifier(expire, modifier);
-		modifierHandler.addModifier(am);
 	}
 	
 	//

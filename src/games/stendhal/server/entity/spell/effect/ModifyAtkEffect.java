@@ -23,8 +23,6 @@ public class ModifyAtkEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, RPEntity target) {
-		Date expire = new Date(System.currentTimeMillis() + getAmount()*1000);
-		target.addAtkModifier(expire, getModifier());
 	}
 
 }

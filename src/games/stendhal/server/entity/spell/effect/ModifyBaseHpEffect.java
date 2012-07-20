@@ -23,8 +23,6 @@ public class ModifyBaseHpEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, RPEntity target) {
-		Date expire = new Date(System.currentTimeMillis() + getAmount()*1000);
-		target.addBaseHpModifier(expire, getModifier());
 	}
 
 }

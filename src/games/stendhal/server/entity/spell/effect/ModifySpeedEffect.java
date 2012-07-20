@@ -4,8 +4,6 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.GuidedEntity;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Date;
 /**
  * Slow down an entity
  * @author madmetzger
@@ -22,8 +20,7 @@ public class ModifySpeedEffect extends AbstractEffect {
 	}
 
 	private void actInternal(Player caster, GuidedEntity target) {
-		Date expire = new Date(System.currentTimeMillis() + getAmount()*1000);
-		target.addSpeedModifier(expire, getModifier());
+		
 	}
 
 }
