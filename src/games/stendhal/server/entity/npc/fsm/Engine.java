@@ -121,7 +121,7 @@ public class Engine {
 	 * 
 	 * @param state
 	 *            old state
-	 * @param triggerStrings
+	 * @param triggerString
 	 *            input trigger
 	 * @param condition
 	 *            additional precondition
@@ -134,11 +134,11 @@ public class Engine {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
+	public void add(final ConversationStates state, final String triggerString, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action,
 			final String label) {
 		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
-				state, triggerStrings, null, condition, reply, action);
+				state, Arrays.asList(triggerString), null, condition, reply, action);
 
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action, label);
 	}
@@ -174,6 +174,38 @@ public class Engine {
 		add(triggerExpressions, state, condition, secondary, nextState, reply, action);
 	}
 
+	
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 * 
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param triggerStrings
+	 *            a list of inputs for this transition, must not be null
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple sentence reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
+	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
+			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
+		if (triggerStrings == null) {
+			throw new IllegalArgumentException("trigger list must not be null");
+		}
+
+		Collection<Expression> triggerExpressions = createUniqueTriggerExpressions(
+				state, triggerStrings, null, condition, reply, action);
+
+		add(triggerExpressions, state, condition, secondary, nextState, reply, action, label);
+	}
+	
 	/**
 	 * Adds a new transition with explicit ExpressionMatcher to FSM.
 	 *
