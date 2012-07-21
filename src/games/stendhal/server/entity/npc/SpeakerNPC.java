@@ -465,6 +465,30 @@ public class SpeakerNPC extends NPC {
 			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, condition, false, nextState, reply, action);
 	}
+	
+	/**
+	 * Adds a new transition to the FSM.
+	 *
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param trigger
+	 *            input for this transition
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple text reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 * @param label
+	 *            a label string to handle transitions
+	 */
+	public void add(final ConversationStates state, final String trigger, final ChatCondition condition,
+			final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
+		engine.add(state, trigger, condition, false, nextState, reply, action, label);
+	}
 
 	/**
 	 * Adds a new transition with explicit ExpressionMatcher to the FSM.
