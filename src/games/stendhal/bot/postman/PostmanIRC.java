@@ -250,7 +250,7 @@ public class PostmanIRC extends PircBot {
 		listCanedResponses(sender);
 		sendMessage(sender, " ");
 		sendMessage(sender, "Admin commands:");
-		sendMessage(sender, " /msg postman ban >target> <hours> <message>");
+		sendMessage(sender, " /msg postman ban <target> <hours> <message>");
 		sendMessage(sender, " /msg postman adminnote <target> <message>");
 		sendMessage(sender, " /msg postman ircban <ip>");
 		sendMessage(sender, " /msg postman npcshout <name> <message>");
