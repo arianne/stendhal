@@ -110,6 +110,9 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 				
 				// PASTE
 				remapKey(map, KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK, modifier);
+				
+				// SELECT ALL
+				remapKey(map, KeyEvent.VK_A, KeyEvent.CTRL_DOWN_MASK, modifier);
 			} else {
 				Logger.getLogger(StyledLookAndFeel.class).error("Can not modify resource: " + key);
 			}
