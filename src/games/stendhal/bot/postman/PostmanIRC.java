@@ -358,5 +358,6 @@ public class PostmanIRC extends PircBot {
 	 */
 	public void flashThing() {
 		kickedHostnames.clear();
+		super.sendAction(mainChannel, "looks into the red flash");
 	}
 }
