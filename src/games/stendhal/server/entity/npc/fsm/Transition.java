@@ -12,13 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.fsm;
 
-import java.util.Collection;
-
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * A transition brings a conversation from one state to another one (or to the
@@ -127,17 +128,15 @@ public class Transition {
 	 * @param tr - source transition, must not be null
 	 * @throws 
 	 */
-	public Transition(Transition trans) {
-		Transition tr = new Transition(null, null, null, false, null, null, null, null);
-		System.arraycopy(trans, 0, tr, 0, 1);
+	public Transition(Transition tr) {
 		this.state = tr.state;
 		this.condition = tr.condition;
 		this.secondary = tr.secondary;
 		this.nextState = tr.nextState;
-		this.triggers = tr.triggers;
+		this.triggers = new LinkedList<Expression>(tr.triggers);
 		this.reply = tr.reply;
 		this.action = tr.action;
-		this.label = tr.label;		
+		this.label = tr.label;
 	}
 
 	/**
