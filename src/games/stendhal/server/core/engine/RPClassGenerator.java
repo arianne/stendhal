@@ -60,6 +60,7 @@ import games.stendhal.server.events.ExamineEvent;
 import games.stendhal.server.events.GroupChangeEvent;
 import games.stendhal.server.events.GroupInviteEvent;
 import games.stendhal.server.events.HealedEvent;
+import games.stendhal.server.events.ImageEffectEvent;
 import games.stendhal.server.events.PlayerLoggedOnEvent;
 import games.stendhal.server.events.PlayerLoggedOutEvent;
 import games.stendhal.server.events.PrivateTextEvent;
@@ -227,7 +228,7 @@ public class RPClassGenerator {
 		}
 
 		// rpevents
-		if (!RPClass.hasRPClass("attack")) {
+		if (!RPClass.hasRPClass(Events.ATTACK)) {
 			AttackEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("buddy_login")) {
@@ -242,7 +243,10 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("healed")) {
 			HealedEvent.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("private_text")) {
+		if (!RPClass.hasRPClass(Events.IMAGE)) {
+			ImageEffectEvent.generateRPClass();
+		}
+		if (!RPClass.hasRPClass(Events.PRIVATE_TEXT)) {
 			PrivateTextEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass(Events.PROGRESS_STATUS_CHANGE)) {
@@ -254,7 +258,7 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass(Events.SOUND)) {
 			SoundEvent.generateRPClass();
 		}
-		if (!RPClass.hasRPClass("text")) {
+		if (!RPClass.hasRPClass(Events.PUBLIC_TEXT)) {
 			TextEvent.generateRPClass();
 		}
 		if (!RPClass.hasRPClass(Events.GROUP_CHANGE)) {

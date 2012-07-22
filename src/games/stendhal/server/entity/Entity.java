@@ -140,6 +140,8 @@ public abstract class Entity extends RPObject {
 
 		// sound events
 		entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
+		// graphical effects
+		entity.addRPEvent(Events.IMAGE, Definition.VOLATILE);
 	}
 
 

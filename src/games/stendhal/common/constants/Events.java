@@ -41,5 +41,6 @@ public final class Events {
 	public static final String PROGRESS_STATUS_CHANGE = "progress_status_event";
 
 	public static final String REACHED_ACHIEVEMENT = "reached_achievement";
-
+	/** Event for graphical effects. */
+	public static final String IMAGE = "image_event";
 }
