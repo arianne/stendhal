@@ -20,9 +20,11 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.ImageEventProperty;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2d.ImageEffect;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -241,7 +243,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param yOffset y coordinate offset that is used <b>in addition</b> to
 	 * 	the alignment information
 	 */
-	void attachSprite(Sprite sprite, HorizontalAlignment xAlign,
+	public void attachSprite(Sprite sprite, HorizontalAlignment xAlign,
 			VerticalAlignment yAlign, int xOffset, int yOffset) {
 		int x = xOffset;
 		switch (xAlign) {
@@ -280,7 +282,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @param sprite sprite to be detached
 	 */
-	void detachSprite(Sprite sprite) {
+	public void detachSprite(Sprite sprite) {
 		Collection<AttachedSprite> sprites = attachedSprites;
 		if (sprites != null) {
 			Iterator<AttachedSprite> it = sprites.iterator();
@@ -727,6 +729,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 			positionChanged = true;
 		} else if (property == IEntity.PROP_VISIBILITY) {
 			visibilityChanged = true;
+		} else if (property instanceof ImageEventProperty) {
+			new ImageEffect(this, ((ImageEventProperty) property).getImageName());
 		}
 	}
 
