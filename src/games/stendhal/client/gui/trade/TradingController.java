@@ -162,6 +162,12 @@ public class TradingController {
 			guiChange = new Runnable() {
 				public void run() {
 					window.disableAll();
+					/*
+					 * A hack to hide the partners' trading slot in case he
+					 * starts a new trade with someone else while our trading
+					 * window is still visible.
+					 */
+					window.setPartnerSlot(user, "trade");
 				}
 			};
 			break;
