@@ -424,10 +424,14 @@ public class AnimatedSprite implements Sprite {
 	 *            The time since last update (in ms).
 	 */
 	private void update(final int delta) {
-		cycleTime += delta;
-		cycleTime %= duration;
-
 		if (animating) {
+			cycleTime += delta;
+			if (loop) {
+				// let the non-looping sprites overflow, so that they get
+				// properly stopped
+				cycleTime %= duration;
+			}
+			
 			while (cycleTime >= delays[index]) {
 				cycleTime -= delays[index];
 
