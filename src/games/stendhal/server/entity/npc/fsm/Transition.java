@@ -21,6 +21,8 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.apache.log4j.Logger;
+
 /**
  * A transition brings a conversation from one state to another one (or to the
  * same one); while doing so, other actions can take place.
@@ -57,6 +59,7 @@ public class Transition {
 	/** Label for search through installed transitions */
 	private final String label;
 
+	Logger logger = Logger.getLogger(this.getClass());
 
 	/**
 	 * Creates a new transition.
@@ -353,9 +356,12 @@ public class Transition {
 	 * @return - check result
 	 */
 	public boolean checkLabel(final String label) {
+		logger.debug(this.toString()+", comparing with: \""+label+"\"");
 		if (this.label.equals(label)) {
+			logger.debug("found");
 			return true;
 		}
+		logger.debug("not found");
 		return false;
 	}
 
@@ -472,7 +478,7 @@ public class Transition {
 		}
 		sb.append(",");
 
-		return sb.append(nextState + "," + condition + "]").toString();
+		return sb.append(nextState + "," + condition + ",\"" + label + "\" ]").toString();
 	}
 
 }
