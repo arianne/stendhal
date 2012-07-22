@@ -19,6 +19,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ImageEffectEvent;
 import marauroa.common.game.RPClass;
 
 /**
@@ -173,5 +174,7 @@ public class FishSource extends PlayerActivityEntity {
 	protected void onStarted(final Player player) {
 		// some feedback is needed.
 		player.sendPrivateText("You have started fishing.");
+		addEvent(new ImageEffectEvent("water_splash", true));
+		notifyWorldAboutChanges();
 	}
 }
