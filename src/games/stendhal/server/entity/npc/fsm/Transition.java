@@ -478,7 +478,7 @@ public class Transition {
 		}
 		sb.append(",");
 
-		return sb.append(nextState + "," + condition + ",\"" + label + "\" ]").toString();
+		return sb.append(nextState + "," + condition + ",\"" + label + "\"]").toString();
 	}
 
 }

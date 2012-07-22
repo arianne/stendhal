@@ -226,8 +226,10 @@ public class TransitionTest {
 	 */
 	@Test
 	public final void testToString() {
-		final Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
-		assertEquals("[INFORMATION_9,trigger,IDLE,null]", t.toString());
+		Transition t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null);
+		assertEquals("[INFORMATION_9,trigger,IDLE,null,\"\"]", t.toString());
+		t = new Transition(someconst, Arrays.asList(ConversationParser.createTriggerExpression("trigger")), null, false, idle_0, null, null, "trigger");
+		assertEquals("[INFORMATION_9,trigger,IDLE,null,\"trigger\"]", t.toString());
 	}
 
 }
