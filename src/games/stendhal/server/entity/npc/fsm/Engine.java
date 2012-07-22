@@ -79,6 +79,7 @@ public class Engine {
 	 */
 	private Transition get(final String label) {
 		if (label.equals("")) {
+			logger.debug("will not search for empty label");
 			return null;
 		}
 		for (final Transition transition : stateTransitionTable) {
@@ -86,6 +87,7 @@ public class Engine {
 				return transition;
 			}
 		}
+		logger.debug("label not found");
 		return null;
 	}
 
@@ -319,6 +321,7 @@ public class Engine {
 	public boolean remove(final String label) {
 		final Transition tr = get(label);
 		if (tr==null) {
+			logger.debug("No such transition with label \""+label+"\" in fsm.");
 			return false;
 		}
 		return(stateTransitionTable.remove(tr));
