@@ -903,16 +903,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public synchronized RPObject remove(final RPObject object) {
 		if (object.isContained()) {
-			// We modify the base container if the object change.
-
-			// TODO: Remove? Isn't this the same as _in_ modify()?
-			RPObject base = object.getContainer();
-
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
-
-			modify(base);
+			modify(object);
 
 			if (object instanceof SpeakerNPC) {
 				SingletonRepository.getNPCList().remove(((SpeakerNPC) object).getName());
@@ -931,18 +922,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	@Override
 	public synchronized void modify(final RPObject object) {
-		if (object.isContained()) {
-			// We modify the base container if the object change.
-			RPObject base = object.getContainer();
-
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
-
-			super.modify(base);
-		} else {
-			super.modify(object);
-		}
+		// We modify the base container if the object changes.
+		super.modify(object.getBaseContainer());
 	}
 
 	/**
