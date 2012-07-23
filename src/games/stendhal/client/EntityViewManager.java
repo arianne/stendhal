@@ -237,6 +237,7 @@ class EntityViewManager{
 	private void removeEntityView(EntityView<IEntity> view) {
 		synchronized (views) {
 			views.remove(view);
+			view.release();
 		}
 	}
 
