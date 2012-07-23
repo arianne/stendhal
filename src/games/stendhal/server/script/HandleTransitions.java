@@ -21,6 +21,8 @@ import games.stendhal.server.entity.player.Player;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Handle transitions of the NPC
  * 
@@ -44,6 +46,9 @@ public class HandleTransitions extends ScriptImpl {
 	
 	@Override
 	public void execute(final Player admin, final List<String> args) {
+		
+		Logger.getLogger(this.getClass()).info(
+				"admin: "+admin.getName()+", arguments: "+args.toString());
 		
 		// help text
 		if (args.size() < 2) {
@@ -99,7 +104,8 @@ public class HandleTransitions extends ScriptImpl {
         	if(arguments.size()<1) {
         		usage(admin);
         		return;
-        	}        	final String label=arguments.get(0);
+        	}        	
+        	final String label=arguments.get(0);
         	if(label.equals("")) {
         		admin.sendPrivateText("label should not be empty for "+command);
         		return;
@@ -118,6 +124,7 @@ public class HandleTransitions extends ScriptImpl {
         	}
         	// first delete transition, then add
         	final String label=arguments.get(0);
+        	// TODO: split triggers
         	final String trigger=arguments.get(1);
         	final String text=arguments.get(2);
         	if(label.equals("")) {
