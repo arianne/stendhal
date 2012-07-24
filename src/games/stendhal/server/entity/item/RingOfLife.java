@@ -47,6 +47,7 @@ public class RingOfLife extends Ring {
 		put("amount", 0);
 	}
 	
+	@Override
 	public void repair() {
 		put("amount", 1);
 	}

@@ -45,6 +45,7 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 	}
 
 
+	@Override
 	protected void log(final DBTransaction transaction) throws SQLException {
 		itemLogAssignIDIfNotPresent(transaction, item);
 		itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);

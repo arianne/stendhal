@@ -36,6 +36,7 @@ public class RemoteViewAction extends AdministrationAction {
 	 * @param player the player invoking this action
 	 * @param action RPAction
 	 */
+	@Override
 	public void perform(Player player, RPAction action) {
 		String target = action.get("target");
 		String args = action.get("args");
