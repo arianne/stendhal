@@ -15,6 +15,7 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.EquipListener;
@@ -26,7 +27,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
 
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -63,15 +63,16 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		}
 	}
 
+	private static final String CONTENT_SLOT = "content";
 	/**
 	 * The killer's name attribute name.
 	 */
-	protected static final String ATTR_KILLER = "killer";
+	private static final String ATTR_KILLER = "killer";
 
 	/**
 	 * The name attribute name.
 	 */
-	protected static final String ATTR_NAME = "name";
+	private static final String ATTR_NAME = "name";
 	
 	/**
 	 * The image name
@@ -129,7 +130,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		entity.addAttribute(ATTR_IMAGE, Type.STRING);
 		entity.addAttribute(ATTR_CORPSE_OWNER, Type.STRING);
 
-		entity.addRPSlot("content", 4);
+		entity.addRPSlot(CONTENT_SLOT, 4);
 	}
 	
 	/**
@@ -330,7 +331,17 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	public void onTurnReached(final int currentTurn) {
 		degradateCorpse();
 		if (isCompletelyRotten()) {
-				this.getZone().remove(this);
+			for (RPObject obj : getSlot(CONTENT_SLOT)) {
+				/*
+				 * Log items that have a logid. They are put there by players.
+				 * Those that don't have it haven't had their creation logged
+				 * either yet.
+				 */
+				if (obj.has("logid") && (obj instanceof Item)) {
+					new ItemLogger().timeout((Item) obj);
+				}
+			}
+			getZone().remove(this);
 		} else {
 			SingletonRepository.getTurnNotifier().notifyInSeconds(getDegradationStepTimeout(), this.corpseDegradator);
 		}
@@ -356,7 +367,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @param entity PassiveEntity to add
 	 */
 	public void add(final PassiveEntity entity) {
-		final RPSlot content = getSlot("content");
+		final RPSlot content = getSlot(CONTENT_SLOT);
 		content.add(entity);
 	}
 
@@ -366,22 +377,12 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @return true if the corpse is full, false otherwise
 	 */
 	public boolean isFull() {
-		return getSlot("content").isFull();
+		return getSlot(CONTENT_SLOT).isFull();
 	}
 
 	@Override
 	public int size() {
-		return getSlot("content").size();
-	}
-
-	/**
-	 * gets an iterator over the content
-	 *
-	 * @return Iterator
-	 */
-	public Iterator<RPObject> getContent() {
-		final RPSlot content = getSlot("content");
-		return content.iterator();
+		return getSlot(CONTENT_SLOT).size();
 	}
 
 	@Override
