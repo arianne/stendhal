@@ -79,6 +79,7 @@ public class HandleTransitionsTest {
 	 */
 	@Test
 	public void testList() throws Exception {
+		player.clearEvents();
 		arguments.clear();
 		arguments.add("just_npc");
 		arguments.add("-list");
