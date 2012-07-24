@@ -43,7 +43,6 @@ import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -1113,13 +1112,15 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * drop specified item from entity's equipment
+	 * Drop specified item from entity's equipment
 	 * 
 	 * note: seems like this.drop(droppable) should work, but
 	 *       the item just disappears - does not end up on ground.
 	 *       
 	 * TODO: probably need to refactor this in to the general drop system
-	 *       (maybe fixing some of the other code paths) 
+	 *       (maybe fixing some of the other code paths)
+	 *        
+	 * @param droppable item to be dropped 
 	 */
 	public void dropDroppableItem(Item droppable) {
 		
