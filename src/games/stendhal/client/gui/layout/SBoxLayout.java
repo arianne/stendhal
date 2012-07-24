@@ -429,8 +429,8 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 				}
 			}
 		} while (numViolations != 0);
+		
 		// Done with the dimensions, now lay it out
-		int sum = 0;
 		for (int i = 0; i < numComponents; i++) {
 			Component c = parent.getComponents()[i];
 			// skip hidden components
@@ -448,7 +448,6 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 					yAlign = getYAlignment(c, realDim);
 				}
 				d.setPrimary(cPref, dim[i]);
-				sum += dim[i];
 				c.setBounds(startPosition.width + xAlign, startPosition.height + yAlign, cPref.width, cPref.height);
 				
 				// Move the coordinates of the next component by the size of the
