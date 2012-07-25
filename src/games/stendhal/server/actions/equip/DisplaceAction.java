@@ -77,6 +77,15 @@ public class DisplaceAction implements ActionListener {
 
 		final int x = action.getInt(X);
 		final int y = action.getInt(Y);
+		
+		if ((x == object.getX()) && (y == object.getY())) {
+			/*
+			 * Not actually moving anything. Don't check access rights an
+			 * possibly send confusing confusing messages to the player who
+			 * didn't really do anything. 
+			 */
+			return;
+		}
 
 		final PassiveEntity entity = (PassiveEntity) object;
 
