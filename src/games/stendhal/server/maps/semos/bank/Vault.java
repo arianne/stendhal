@@ -22,7 +22,6 @@ import games.stendhal.server.core.events.GuaranteedDelayedPlayerTextSender;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
@@ -95,25 +94,28 @@ public class Vault extends StendhalRPZone {
 				for (Item item : itemsOnGround) {
 					// ignore items which are in the wastebin
 					if (!(item.getX() == 2 && item.getY() == 5)) {
+						Player player = (Player) entity;
 						String message;
-						boolean equippedToBag = ((RPEntity) entity).equip(
-								"bag", item);
+						boolean equippedToBag = player.equip("bag", item);
 						if (equippedToBag) {
 
 							message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
 												+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been automatically "
 												+ "returned to your bag.";
 
-							new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bag", Integer.toString(item.getQuantity())).raise();
+							new GameEvent(player.getName(), "equip", item.getName(), "vault", "bag", Integer.toString(item.getQuantity())).raise();
+							// Make it look like a normal equip
+							new ItemLogger().equipAction(player, item, new String[] {"ground", zone.getName(), item.getX() + " " + item.getY()}, new String[] {"slot", player.getName(), "bag"});
 						} else {
-							boolean equippedToBank = ((RPEntity) entity).equip(
-									"bank", item);
+							boolean equippedToBank = player.equip("bank", item);
 							if (equippedToBank) {
 								message =  Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
 								+ " which you left on the floor in the vault "+ Grammar.hashave(item.getQuantity())+" been automatically "
 								+ "returned to your bank chest.";
 
-								new GameEvent(((RPEntity) entity).getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
+								new GameEvent(player.getName(), "equip", item.getName(), "vault", "bank", Integer.toString(item.getQuantity())).raise();
+								// Make it look like the player put it in the chest
+								new ItemLogger().equipAction(player, item, new String[] {"ground", zone.getName(), item.getX() + " " + item.getY()}, new String[] {"slot", "a bank chest", "content"});
 							} else {
 								// the player lost their items
 								message = Grammar.quantityplnoun(item.getQuantity(), item.getName(), "A")
@@ -127,7 +129,7 @@ public class Vault extends StendhalRPZone {
 						}
 
 						// tell the player the message
-						notifyPlayer(((RPEntity) entity).getName(), message);
+						notifyPlayer(player.getName(), message);
 					} else {
 						// the timeout method enters the zone and coords of item, this is useful, this is useful we will know it was in wastebin
 						new ItemLogger().timeout(item);
