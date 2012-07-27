@@ -4,6 +4,9 @@
 1.02
 - reduce Starkad's cost for lower level creatures and increase for higher level
 - make killer bees less dangerous(!)
+- turn ninjas to archers ( using shurikens ), reducing a bit their attack
+- added script for adding/removing/alter/list of NPC's transitions.
+
 
 1.01
 *world*
