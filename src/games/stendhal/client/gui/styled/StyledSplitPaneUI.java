@@ -83,6 +83,19 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 
 		return rightMax;
 	}
+	
+	// Another bug workaround. For whatever reason the left component is given
+	// a preferred size that is too high by the amount of the divider width.
+	@Override
+	public Dimension getPreferredSize(JComponent comp) {
+		Dimension rval = super.getPreferredSize(comp);
+		if (getSplitPane().getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+			rval.width -= getSplitPane().getDividerSize();
+		} else {
+			rval.height -= getSplitPane().getDividerSize();
+		}
+		return rval;
+	}
 
 	// part of the divider location bug workaround
 	@Override
