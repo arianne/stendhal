@@ -21,6 +21,9 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -32,8 +35,8 @@ import marauroa.common.Pair;
  * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame
  * 		calculates balanced atk and def values to all creatures up to HIGHEST_LEVEL
  * 		(defined in the code below)
- * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame creature
- * 		calculates the values only for the specified creature
+ * 	java -cp $CLASSPATH java -cp games/stendhal/tools/BalanceRPGame creature ...
+ * 		calculates the values only for the specified creatures
  * 
  * 	CLASSPATH should be (with appropriate changes for OS and versions), assuming
  * 		the compiled .class for this file is under "bin":
@@ -47,11 +50,23 @@ public class BalanceRPGame {
 	 */
 	private static class Optimizer {
 		Creature creature;
-		
+
+		/**
+		 * Create an optimizer for a creature.
+		 * 
+		 * @param creature
+		 */
 		public Optimizer(final Creature creature) {
 			this.creature = creature;
 		}
 		
+		/**
+		 * Adjust creature stats using results from the previous run.
+		 * 
+		 * @param leftHP the mean amount of HP the player had left when the
+		 * fights ended
+		 * @param rounds the amount of turns the fights took on average
+		 */
 		public void step(final int leftHP, final int rounds) {
 			float stepSize = leftHP / (float) player.getBaseHP();
 			stepSize = Math.signum(stepSize) * Math.min(Math.abs(stepSize), 0.5f);
@@ -102,7 +117,6 @@ public class BalanceRPGame {
 		final List<DefaultCreature> creatures = loader.load();
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
-
 			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
@@ -138,16 +152,25 @@ public class BalanceRPGame {
 		player.equipToInventoryOnly(legs);
 		player.equipToInventoryOnly(boots);
 
-		final boolean found = false;
+		// Setup the list of creatures to balance
+		Collection<DefaultCreature> creaturesToBalance;
+		if (args.length > 0) {
+			Collection<String> names = Arrays.asList(args);
+			creaturesToBalance = new ArrayList<DefaultCreature>();
 
-		for (final DefaultCreature creature : creatures) {
-			final int level = creature.getLevel();
-			
-			if (args.length > 0) {
-				if (!args[0].equals(creature.getCreatureName()) && !found) {
-					continue;
+			for (DefaultCreature creature : creatures) {
+				if (names.contains(creature.getCreatureName())) {
+					creaturesToBalance.add(creature);
 				}
 			}
+		} else {
+			// default to all of them
+			creaturesToBalance = creatures;
+		}
+
+		for (final DefaultCreature creature : creaturesToBalance) {
+			final int level = creature.getLevel();
+
 			if (creature.getLevel() > HIGHEST_LEVEL) {
 				continue;
 			}
