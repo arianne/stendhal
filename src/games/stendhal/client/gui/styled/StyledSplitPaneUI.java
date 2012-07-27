@@ -12,7 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -53,6 +56,82 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 	public void installUI(JComponent pane) {
 		super.installUI(pane);
 		pane.setBorder(style.getBorderDown());
+	}
+	
+	/*
+	 * BasicSplitPaneUI has a bug that the components' maximum sizes are
+	 * ignored. The following overrides are a workaround to it.
+	 */
+	
+	// part of the divider location bug workaround
+	@Override
+	public int getMaximumDividerLocation(JSplitPane pane) {
+		int rightMax = super.getMaximumDividerLocation(pane);
+		Component first = pane.getLeftComponent();
+		if ((first != null) && first.isVisible()) {
+			Dimension maxSize = first.getMaximumSize();
+			Insets insets = pane.getInsets();
+			if (pane.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+				rightMax = Math.min(rightMax, maxSize.width + insets.left);
+			} else {
+				rightMax = Math.min(rightMax, maxSize.height + insets.top);
+			}
+			// Sanity check. Must be in this method, not in
+			// getMinimumDividerLocation() (see below)
+			rightMax = Math.max(rightMax, getMinimumDividerLocation(pane));
+		}
+
+		return rightMax;
+	}
+
+	// part of the divider location bug workaround
+	@Override
+	public int getMinimumDividerLocation(JSplitPane pane) {
+		int leftMin = super.getMinimumDividerLocation(pane);
+		Component second = pane.getRightComponent();
+		if ((second != null) && second.isVisible()) {
+			Dimension paneSize = splitPane.getSize();
+			Dimension maxSize = second.getMaximumSize();
+			Insets insets = pane.getInsets();
+			if (pane.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+				leftMin = Math.max(leftMin, paneSize.width - insets.right - maxSize.width);
+			} else {
+				leftMin = Math.max(leftMin, paneSize.height - insets.bottom - maxSize.height);
+			}
+			/*
+			 * To avoid inconsistency with the maximum location, it would seem
+			 * reasonable to do:
+			 * 
+			 *	leftMin = Math.min(leftMin, getMaximumDividerLocation(pane));
+			 *
+			 * however, the parent already calls getMinimumDividerLocation()
+			 * in getMaximumDividerLocation(), so that would be a good way
+			 * to get a stack overflow.
+			 */
+		}
+		return leftMin;
+	}
+	
+	// part of the divider location bug workaround
+	@Override
+	public void setDividerLocation(JSplitPane pane, int location) {
+		// Override the stupidity
+		int newLocation = Math.min(location, getMaximumDividerLocation(pane));
+		newLocation = Math.max(newLocation, getMinimumDividerLocation(pane));
+		if (newLocation != location) {
+			pane.setDividerLocation(newLocation);
+		} else {
+			super.setDividerLocation(pane, location);
+		}
+	}
+	
+	// part of the divider location bug workaround
+	@Override
+	protected void dragDividerTo(int location) {
+		// Override the stupidity
+		location = Math.min(location, getMaximumDividerLocation(getSplitPane()));
+		location = Math.max(location, getMinimumDividerLocation(getSplitPane()));
+		super.dragDividerTo(location);
 	}
 	
 	/**
