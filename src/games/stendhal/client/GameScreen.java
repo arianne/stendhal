@@ -31,8 +31,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.Collections;
@@ -184,15 +184,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * The canvas can be resized using a split pane. This is 
 	 * for adjusting the internal parameters for the change. 
 	 */
-	private class CanvasResizeListener implements ComponentListener {
-		public void componentHidden(ComponentEvent e) {
-			// do nothing
-		}
-
-		public void componentMoved(ComponentEvent e) {
-			// do nothing
-		}
-
+	private class CanvasResizeListener extends ComponentAdapter {
+		@Override
 		public void componentResized(ComponentEvent e) {
 			Dimension screenSize = stendhal.getScreenSize();
 			sw = Math.min(getWidth(), screenSize.width);
@@ -200,10 +193,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			// Reset the view so that the player is in the center
 			calculateView(x, y);
 			center();
-		}
-
-		public void componentShown(ComponentEvent e) {
-			// do nothing
 		}
 	}
 
