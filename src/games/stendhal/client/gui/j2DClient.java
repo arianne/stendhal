@@ -408,7 +408,20 @@ public class j2DClient implements UserInterface {
 				 * smaller. Swing provides no default way to the old component
 				 * size, so we stash the interesting dimension in oldWidth. 
 				 */
-				position += horizSplit.getWidth() - oldWidth;
+				int width = horizSplit.getWidth();
+				int oldRightDiff = oldWidth - position;
+				int widthChange = width - oldWidth;
+				int underflow = widthChange + position;
+				if (underflow < 0) {
+					/*
+					 * Extreme size reduction. The divider location would have
+					 * changed as the result. Use the previous location instead
+					 * of the current.
+					 */
+					oldRightDiff = oldWidth - horizSplit.getLastDividerLocation();
+				}
+				position = width - oldRightDiff;
+
 				position = Math.min(position, horizSplit.getMaximumDividerLocation());
 				position = Math.max(position, horizSplit.getMinimumDividerLocation());
 

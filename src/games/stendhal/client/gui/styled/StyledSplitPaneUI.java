@@ -21,6 +21,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSplitPaneDivider;
@@ -136,6 +137,22 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		} else {
 			super.setDividerLocation(pane, location);
 		}
+		
+		/*
+		 * It seems that JSplitPane fails to set lastDividerLocation properly
+		 * at component resizes if the divider location is too high for the new
+		 * size. Set it here, so that after resizes getLastDividerLocation()
+		 * returns the location before resizing, rather than the one before
+		 * that. Needs to be pushed to the end of the event queue, because
+		 * JSplitPane sets the last location after calling
+		 * ui.setDividerLocation().
+		 */
+		final int lastLocation = newLocation;
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				getSplitPane().setLastDividerLocation(lastLocation);
+			}
+		});
 	}
 	
 	// part of the divider location bug workaround
