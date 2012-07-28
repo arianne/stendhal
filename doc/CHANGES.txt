@@ -6,7 +6,26 @@
 - make killer bees less dangerous(!)
 - turn ninjas to archers ( using shurikens ), reducing a bit their attack
 - added script for adding/removing/alter/list of NPC's transitions.
+- creatures can have different nature for ranged attacks than in melee
+- clocks around the world show the server time
+- server suggests close matches for misstyped commands
+- vampires change their sprites depending on their attack status
+- events can tricker animations
 
+*client*
+- the client gets ranged attack information from the server instead of trying to
+  guess which attacks are ranged
+- quit dialog gets keyboard focus so that it is possible to exit the game without a mouse
+- added textual description to the karma bar tooltip
+- away and grumpy indicators show the reason in their tooltips
+- fancy tutorial speech bubbles
+- slash commands have tab completion
+- a second splitted between the left panel and the game screen
+
+*fixes*
+- automatic walking behind a slow creature or npc will now properly try to find the way around it
+- lucky charms are bound to the player at loot time
+- fixed removing choking, away and grumpy sprites that failed to be removed under certain conditions
 
 1.01
 *world*
