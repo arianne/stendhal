@@ -61,10 +61,10 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -240,7 +240,6 @@ public class j2DClient implements UserInterface {
 		 *  won't try to resize it
 		 */
 		pane.setMaximumSize(screenSize);
-		pane.setMinimumSize(new Dimension(screenSize.width, 0));
 
 		/*
 		 * Create the main game screen
@@ -248,7 +247,6 @@ public class j2DClient implements UserInterface {
 		screen = new GameScreen(client);
 		screenController = new ScreenController(screen);
 		GameScreen.setDefaultScreen(screen);
-		screen.setMinimumSize(new Dimension(screenSize.width, 0));
 
 		// ... and put it on the ground layer of the pane
 		pane.add(screen, Component.LEFT_ALIGNMENT, JLayeredPane.DEFAULT_LAYER);
@@ -270,16 +268,12 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Always redirect focus to chat field
 		 */
-		screen.addFocusListener(new FocusListener() {
+		screen.addFocusListener(new FocusAdapter() {
+			@Override
 			public void focusGained(final FocusEvent e) {
 				chatText.getPlayerChatText().requestFocus();
 			}
-
-			public void focusLost(final FocusEvent e) {
-				// do nothing
-			}
 		});
-
 
 		// On Screen windows
 		/*
@@ -349,7 +343,7 @@ public class j2DClient implements UserInterface {
 
 		// *** Create the layout ***
 		// left side panel
-		JComponent leftColumn = createLeftPanel();
+		final JComponent leftColumn = createLeftPanel();
 
 		// Chat entry and chat log. The chatlogs are in tabs so they need a
 		// patterned background.
@@ -368,9 +362,12 @@ public class j2DClient implements UserInterface {
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		splitPane.setBorder(null);
+		splitPane.setMaximumSize(splitPane.getPreferredSize());
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
-		pane.addComponentListener(new SplitPaneResizeListener(screen, splitPane));
+		// Moving either divider will result in the screen resized. Pass it to
+		// the game screen so that it can recenter the player.
+		pane.addComponentListener(new SplitPaneResizeListener(screen));
 
 		containerPanel = createContainerPanel();
 		/*
@@ -386,18 +383,43 @@ public class j2DClient implements UserInterface {
 
 		// Finally add the left pane, and the games screen + chat combo
 		// Make the panel take any horizontal resize
-		windowContent.add(leftColumn, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 		leftColumn.setMinimumSize(new Dimension());
-
 		/*
-		 * Put the splitpane and the container panel to a subcontainer to make
-		 * squeezing the window affect the left pane first rather than the right
+		 * Fix the container panel size, so that it is always visible
 		 */
-		JComponent rightSide = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
-		rightSide.add(splitPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
-		rightSide.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
-		rightSide.setMinimumSize(rightSide.getPreferredSize());
-		windowContent.add(rightSide, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		containerPanel.setMinimumSize(containerPanel.getPreferredSize());
+		containerPanel.setMaximumSize(containerPanel.getPreferredSize());
+		
+		// Splitter between the left column and game screen
+		final JSplitPane horizSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftColumn, splitPane);
+
+		// Ensure that the limits are obeyed even when the component is resized
+		horizSplit.addComponentListener(new ComponentAdapter() {
+			// Start with a large value, so that the divider is placed as left
+			// as possible
+			int oldWidth = Integer.MAX_VALUE;
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
+				int position = horizSplit.getDividerLocation();
+				/*
+				 * The trouble: the size of the game screen is likely the one
+				 * that the player wants to preserve when making the window
+				 * smaller. Swing provides no default way to the old component
+				 * size, so we stash the interesting dimension in oldWidth. 
+				 */
+				position += horizSplit.getWidth() - oldWidth;
+				position = Math.min(position, horizSplit.getMaximumDividerLocation());
+				position = Math.max(position, horizSplit.getMinimumDividerLocation());
+
+				horizSplit.setDividerLocation(position);
+				oldWidth = horizSplit.getWidth();
+			}
+		});
+		horizSplit.setBorder(null);
+		
+		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
+		windowContent.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
 
 		/*
 		 * Handle focus assertion and window closing
@@ -455,6 +477,7 @@ public class j2DClient implements UserInterface {
 		 */
 		splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
 				maxBounds.height  - 80));
+		
 
 		directionRelease = null;
 
@@ -1309,40 +1332,16 @@ public class j2DClient implements UserInterface {
 	 * The layered pane where the game screen is does not automatically resize
 	 * the game screen. This handler is needed to do that work.
 	 */
-	private static class SplitPaneResizeListener implements ComponentListener {
+	private static class SplitPaneResizeListener extends ComponentAdapter {
 		private final Component child;
-		private final JSplitPane splitPane;
 
-		public SplitPaneResizeListener(Component child, JSplitPane splitPane) {
+		public SplitPaneResizeListener(Component child) {
 			this.child = child;
-			this.splitPane = splitPane;
 		}
 
-		public void componentHidden(ComponentEvent e) {
-			// do nothing
-		}
-
-		public void componentMoved(ComponentEvent e) {
-			// do nothing
-		}
-
+		@Override
 		public void componentResized(ComponentEvent e) {
-			Dimension newSize = e.getComponent().getSize();
-			if (newSize.height > stendhal.getScreenSize().height) {
-				/*
-				 *  There is no proper limit setting for JSplitPane,
-				 *  so return the divider to the maximum allowed height
-				 *  by force.
-				 */
-				splitPane.setDividerLocation(stendhal.getScreenSize().height
-						+ splitPane.getInsets().top);
-			} else {
-				child.setSize(newSize);
-			}
-		}
-
-		public void componentShown(ComponentEvent e) {
-			// do nothing
+			child.setSize(e.getComponent().getSize());
 		}
 	}
 
