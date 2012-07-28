@@ -12,28 +12,23 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests.piedpiper;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPZone;
+
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.RPZonePath;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Pair;
 
 public class PathesBuildHelper {
-	
-	public static StendhalRPZone getZone(final String name) {
-		return SingletonRepository.getRPWorld().getZone(name);
-	}
 
 	/**
 	 * route for pied piper incoming
 	 * @return - incoming path
 	 */
-	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePathIn() {
-		final List<Pair<StendhalRPZone, List<Node>>> fullPath = 
-			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+	public static List<RPZonePath> getAwaitingPhasePathIn() {
+		final List<RPZonePath> fullPath = 
+			new LinkedList<RPZonePath>();
 		
 		final List<Node> localroute = new LinkedList<Node>();
 		
@@ -57,8 +52,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(115,52));
 		localroute.add(new Node(115,43));
 		localroute.add(new Node(127,43));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("0_ados_wall_n2"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("0_ados_wall_n2",
+				new LinkedList<Node>(localroute)));
 		
 		// market
 		localroute.clear();
@@ -69,8 +65,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(41,107));
 		localroute.add(new Node(35,107));
 		localroute.add(new Node(35,127));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("0_ados_city_n2"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("0_ados_city_n2",
+				new LinkedList<Node>(localroute)));
 		
 		// city north part
 		localroute.clear();
@@ -111,8 +108,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(49,125));	
 		localroute.add(new Node(52,125));	
 		localroute.add(new Node(52,127));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("0_ados_city_n"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("0_ados_city_n",
+				new LinkedList<Node>(localroute)));
 
 		// city central
 		localroute.clear();
@@ -128,8 +126,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(55,97));	
 		localroute.add(new Node(42,97));	
 		localroute.add(new Node(42,94));	
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("0_ados_city"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("0_ados_city",
+				new LinkedList<Node>(localroute)));
 		
 		// town hall 
 		localroute.clear();
@@ -138,8 +137,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(9,8));
 		localroute.add(new Node(9,4));
 		localroute.add(new Node(5,4));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall",
+				new LinkedList<Node>(localroute)));
 		
 		// 1 floor
 		localroute.clear();
@@ -150,8 +150,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(6,15));
 		localroute.add(new Node(37,15));
 		localroute.add(new Node(37,3));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall_1"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall_1",
+				new LinkedList<Node>(localroute)));
 		
 		// 2 floor
 		localroute.clear();
@@ -160,8 +161,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(26,14));
 		//localroute.add(new Node(26,14)); // very left point
 		//localroute.add(new Node(32,14)); // very right point
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall_2"), new LinkedList<Node>(localroute)));	
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall_2", 
+				new LinkedList<Node>(localroute)));	
 		
 		return fullPath;		
 	}
@@ -171,9 +173,9 @@ public class PathesBuildHelper {
 	 * route for pied piper outgoing
 	 * @return - outgoing path
 	 */
-	public static List<Pair<StendhalRPZone, List<Node>>> getAwaitingPhasePathOut() {
-		final List<Pair<StendhalRPZone, List<Node>>> fullPath = 
-			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+	public static List<RPZonePath> getAwaitingPhasePathOut() {
+		final List<RPZonePath> fullPath = 
+			new LinkedList<RPZonePath>();
 		
 		final List<Node> localroute = new LinkedList<Node>();
 		
@@ -182,8 +184,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(26,14));
 		localroute.add(new Node(26,3));
 		localroute.add(new Node(35,3));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall_2"), new LinkedList<Node>(localroute)));			
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall_2",
+				new LinkedList<Node>(localroute)));			
 		
 		// 1 floor
 		localroute.clear();
@@ -194,8 +197,9 @@ public class PathesBuildHelper {
 		localroute.add(new Node(2,7));
 		localroute.add(new Node(2,4));		
 		localroute.add(new Node(3,4));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall_1"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall_1",
+				new LinkedList<Node>(localroute)));
 		
 		// town hall 
 		localroute.clear();
@@ -204,8 +208,16 @@ public class PathesBuildHelper {
 		localroute.add(new Node(9,8));
 		localroute.add(new Node(22,8));		
 		localroute.add(new Node(22,16));
-		fullPath.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall"), new LinkedList<Node>(localroute)));
+		fullPath.add(
+				new RPZonePath("int_ados_town_hall",
+				new LinkedList<Node>(localroute)));
+		
+		// city central
+		localroute.clear();
+		localroute.add(new Node(42,94));	
+		fullPath.add(
+				new RPZonePath("0_ados_city",
+				new LinkedList<Node>(localroute)));
 		
 		return fullPath;
 	}		
@@ -215,23 +227,261 @@ public class PathesBuildHelper {
 	 * route for pied piper outgoing event
 	 * @return - outgoing path
 	 */
-	public static List<List<Pair<StendhalRPZone, List<Node>>>> getOutgoingPhasePathes() {
-		final LinkedList<List<Pair<StendhalRPZone, List<Node>>>> fullPath = 
-			new LinkedList<List<Pair<StendhalRPZone, List<Node>>>>();
+	public static List<List<RPZonePath>> getOutgoingPhasePathes() {
+		final LinkedList<List<RPZonePath>> fullPath = 
+			new LinkedList<List<RPZonePath>>();
 		
 		final List<Node> localroute = new LinkedList<Node>();
-		final List<Pair<StendhalRPZone, List<Node>>> globalroute = new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+		final List<RPZonePath> globalroute = new LinkedList<RPZonePath>();
 		
+		/*
+		 * entrance
+		 */
 		localroute.clear();
+		localroute.add(new Node(42,94));
 		
 		globalroute.clear();
-		globalroute.add(new Pair<StendhalRPZone, List<Node>>(
-				getZone("int_ados_town_hall_2"), 
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(globalroute);
+		
+		/*
+		 * 1st creature
+		 */
+		localroute.clear();
+		localroute.add(new Node(42,97));
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(globalroute);
+		
+		/*
+		 * Susi's house
+		 */
+		localroute.clear();
+		localroute.add(new Node(42,116));
+		localroute.add(new Node(34,116));		
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(globalroute);
+		
+		/*
+		 * next house from Susi
+		 */
+		localroute.clear();
+		localroute.add(new Node(22,116));
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(globalroute);
+		
+		/*
+		 * left house in houses group at southleft part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(22,127));
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
 				new LinkedList<Node>(localroute)));
 		
-		fullPath.add(globalroute);
+		localroute.clear();
+		localroute.add(new Node(22,0));		
+		localroute.add(new Node(22,3));
+		localroute.add(new Node(9,3));	
+		localroute.add(new Node(9,12));
+		localroute.add(new Node(8,12));	
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);		
+		
+		/*
+		 * middle house in houses group at southleft part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(16,12));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * right house in houses group at southleft part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(28,12));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);						
+		
+		/*
+		 * upperleft house in houses group at south part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(28,41));
+		localroute.add(new Node(31,41));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * bottomleft house in houses group at south part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(31,52));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * bottomright house in houses group at south part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(31,55));
+		localroute.add(new Node(50,55));
+		localroute.add(new Node(50,46));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * separate house in houses group at south part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(58,46));
+		localroute.add(new Node(58,51));		
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);					
+		
+		/*
+		 * upperright house in houses group at south part of ados
+		 */
+		localroute.clear();
+		localroute.add(new Node(59,51));
+		localroute.add(new Node(59,52));
+		localroute.add(new Node(74,52));
+		localroute.add(new Node(74,40));
+		localroute.add(new Node(58,40));
+		localroute.add(new Node(58,46));
+		localroute.add(new Node(50,46));		
+		localroute.add(new Node(50,37));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * ados church
+		 */
+		localroute.clear();
+		localroute.add(new Node(50,32));
+		localroute.add(new Node(52,32));
+		localroute.add(new Node(52,28));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * long house
+		 */
+		localroute.clear();
+		localroute.add(new Node(31,28));
+		localroute.add(new Node(31,0));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city_s", 
+				new LinkedList<Node>(localroute)));	
+		
+		localroute.clear();
+		localroute.add(new Node(31,127));
+		localroute.add(new Node(31,118));
+		localroute.add(new Node(14,118));
+		localroute.add(new Node(14,97));
+		localroute.add(new Node(0,97));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));		
+		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * ados house 77
+		 */
+		localroute.clear();
+		localroute.add(new Node(127,97));
+		localroute.add(new Node(115,97));
+		localroute.add(new Node(115,95));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_wall", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * ados house 76
+		 */
+		localroute.clear();
+		localroute.add(new Node(106,95));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_wall", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		/*
+		 * ados house 75
+		 */
+		localroute.clear();
+		localroute.add(new Node(97,95));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_wall", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);			
+		
+		
+		/*
+		 * ados Farmers' family house
+		 */
+		localroute.clear();
+		localroute.add(new Node(92,81));
+		localroute.add(new Node(122,81));
+		localroute.add(new Node(122,78));
+		
+		globalroute.add(
+				new RPZonePath("0_ados_wall", 
+				new LinkedList<Node>(localroute)));		
+		fullPath.add(globalroute);	
+		
+		
 		return fullPath;		
 	}
-
 
 }

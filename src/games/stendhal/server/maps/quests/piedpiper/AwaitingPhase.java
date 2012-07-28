@@ -16,6 +16,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.RPZonePath;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -31,17 +32,16 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import marauroa.common.Pair;
 
 public class AwaitingPhase extends TPPQuest {
 	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
 	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();
 	private final int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
-	private List<Pair<StendhalRPZone, List<Node>>> fullpathin = 
-		new LinkedList<Pair<StendhalRPZone, List<Node>>>();
-	private List<Pair<StendhalRPZone, List<Node>>> fullpathout = 
-			new LinkedList<Pair<StendhalRPZone, List<Node>>>();
+	private List<RPZonePath> fullpathin = 
+		new LinkedList<RPZonePath>();
+	private List<RPZonePath> fullpathout = 
+			new LinkedList<RPZonePath>();
 	
 	private void addConversations() {
 		TPP_Phase myphase = AWAITING;
@@ -270,9 +270,9 @@ public class AwaitingPhase extends TPPQuest {
 	 * prepare NPC to walk through his multizone pathes and do some actions during that.
 	 */
 	private void leadNPC() {
-		final StendhalRPZone zone = fullpathin.get(0).first();
-		final int x=fullpathin.get(0).second().get(0).getX();
-		final int y=fullpathin.get(0).second().get(0).getY();
+		final StendhalRPZone zone = fullpathin.get(0).get().first();
+		final int x=fullpathin.get(0).get().second().get(0).getX();
+		final int y=fullpathin.get(0).get().second().get(0).getY();
 		piedpiper.setPosition(x, y);
 		zone.add(piedpiper);
 		Observer o = new MultiZonesFixedPath(piedpiper, fullpathin, 

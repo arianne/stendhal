@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import marauroa.common.Pair;
 
 /**
  * class for NPC's multi-zones traveling
@@ -28,7 +27,7 @@ import marauroa.common.Pair;
  */
 public class MultiZonesFixedPath implements Observer {
 		private final GuidedEntity ent;
-		private final List<Pair<StendhalRPZone, List<Node>>> route;
+		private final List<RPZonePath> route;
 		private Integer count;
 		private StendhalRPZone zone;
 		private final Registrator finishnotifier = new Registrator();
@@ -39,7 +38,7 @@ public class MultiZonesFixedPath implements Observer {
 	 */
 	public MultiZonesFixedPath(
 			final GuidedEntity entity, 
-			final List<Pair<StendhalRPZone, List<Node>>> rt, 
+			final List<RPZonePath> rt, 
 			final Observer o) {
 		ent=entity;
 		count=-1;
@@ -63,11 +62,11 @@ public class MultiZonesFixedPath implements Observer {
 			ent.pathnotifier.addObserver(this);
 			ent.pathnotifier.notifyObservers();
 		}
-		int x= route.get(count).second().get(0).getX();
-		int y= route.get(count).second().get(0).getY();
+		int x= route.get(count).get().second().get(0).getX();
+		int y= route.get(count).get().second().get(0).getY();
 		ent.setPosition(x, y);
-		zone = route.get(count).first();
-		ent.setPath(new FixedPath(route.get(count).second(), false));	
+		zone = route.get(count).get().first();
+		ent.setPath(new FixedPath(route.get(count).get().second(), false));	
 		zone.add(ent);
 	}
 	
