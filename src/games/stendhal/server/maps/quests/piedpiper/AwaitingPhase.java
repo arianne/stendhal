@@ -13,16 +13,14 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.RPZonePath;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
-import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.interaction.NPCChatting;
+import games.stendhal.server.entity.npc.interaction.NPCFollowing;
 import games.stendhal.server.maps.quests.ThePiedPiper;
 
 import java.util.Arrays;
@@ -42,6 +40,10 @@ public class AwaitingPhase extends TPPQuest {
 		new LinkedList<RPZonePath>();
 	private List<RPZonePath> fullpathout = 
 			new LinkedList<RPZonePath>();
+	private final List<String> conversations = new LinkedList<String>();
+	private final String explainations = 
+			"I see that our city's savoiur is here. I have to speak with him quickly. "+
+			"Please speak with me again after we finish talking.";
 	
 	private void addConversations() {
 		TPP_Phase myphase = AWAITING;
@@ -76,78 +78,50 @@ public class AwaitingPhase extends TPPQuest {
 				new RewardPlayerAction());
 	}
 	
+	private void fillConversations() {
+		//piper
+		conversations.add("Good day, Mayor Chalmers. What did you call me here for?");
+		//mayor
+		conversations.add("Hello, very glad to see our respectable hero here. Who hasn't heard about you, there is almost...");
+		//piper
+		conversations.add("Please talk about your business to me, my time is precious.");
+		//mayor
+		conversations.add("... ok, what was I saying? Ah yes, our city has a little problem with #rats.");
+		//piper
+		conversations.add("Again?");
+		//mayor
+		conversations.add("Yes, these animals are too stupid to remember a lesson they learnt only recently.");
+		//piper
+		conversations.add("I can help, if you are ready to pay.");
+		//mayor
+		conversations.add("Ados City has no other way to eliminate this nuisance. We will pay you.");
+		//piper
+		conversations.add("Do you know my usual price?");
+		//mayor
+		conversations.add("Yes, I have it written somewhere in my papers.");
+		//piper
+		conversations.add("Good. I will return for my reward soon, please prepare it.");
+		//mayor
+		conversations.add("Don't worry, how can I break your trust in me and my city?");
+	}
+	
 	/**
 	 * constructor
-	 * @param timings 
-	 * - a pair of time parameters for phase timeout
+	 * @param timings - a pair of time parameters for phase timeout
 	 */
 	public AwaitingPhase(final Map<String, Integer> timings) {
 		super(timings);
 		minPhaseChangeTime = timings.get(AWAITING_TIME_MIN);
 		maxPhaseChangeTime = timings.get(AWAITING_TIME_MAX);
 		addConversations();
+		fillConversations();
 	}
 
 	public void prepare() {
 		createPiedPiper();
 	}
 	
-	/**
-	 * class for make one npc follower of other.
-	 * @author yoriy
-	 */
-	private static final class NPCFollowing implements Observer {
-		final private SpeakerNPC follower;
-		final private SpeakerNPC leader;
-		final private Observer chatting;
-		
-		/**
-		 * constructor
-		 * @param leader - NPC for follow him.
-		 * @param follower - follower of leader.
-		 */
-		public NPCFollowing(final SpeakerNPC leader, final SpeakerNPC follower, final Observer chatting) {
-			this.leader=leader;
-			this.follower=follower;
-			this.chatting=chatting;
-		}
-		
-		public void update(Observable o, Object arg) {
-			follower.clearPath();
-			follower.pathnotifier.deleteObservers();
-			moveToProperDistance();
-		}
-		
-		/**
-		 * return 1/3 of follower's path
-		 * @param path
-		 * @return - a part of path
-		 */
-		public FixedPath getOneThirdOfPath(FixedPath path) {
-			final LinkedList<Node> templ = new LinkedList<Node>();
-			for(int i=0; i<path.getNodeList().size()/2; i++) {
-				templ.add(path.getNodeList().get(i));
-			}
-			return new FixedPath(templ, false);
-		}
 
-		/**
-		 * move follower close to leader.
-		 */
-		private void moveToProperDistance() {
-			final double dist = leader.squaredDistance(follower);
-			int range = leader.getPerceptionRange();
-			if (dist > range+1) {
-				follower.setMovement(leader, 0, range, dist*1.5);
-				follower.setPath(getOneThirdOfPath(follower.getPath()));
-				follower.pathnotifier.addObserver(this);
-			} else {
-				follower.stop();
-				follower.pathnotifier.deleteObservers();
-				chatting.update(null, null);
-			}
-		}		
-	}
 	
 	/**
 	 * helper class for switching phase to next phase, 
@@ -172,101 +146,6 @@ public class AwaitingPhase extends TPPQuest {
 	}
 
 	/**
-	 * chatting between 2 NPCs
-	 * @author yoriy
-	 */
-	private static final class NPCChatting implements Observer, TurnListener {
-		private final SpeakerNPC mayor;
-		private final SpeakerNPC piper;
-		private int count=0;
-		private final List<String> conversations = new LinkedList<String>(); 
-		final private Observer next;
-		
-		private void fillConversations() {
-			//piper
-			conversations.add("Good day, Mayor Chalmers. What did you call me here for?");
-			//mayor
-			conversations.add("Hello, very glad to see our respectable hero here. Who hasn't heard about you, there is almost...");
-			//piper
-			conversations.add("Please talk about your business to me, my time is precious.");
-			//mayor
-			conversations.add("... ok, what was I saying? Ah yes, our city has a little problem with #rats.");
-			//piper
-			conversations.add("Again?");
-			//mayor
-			conversations.add("Yes, these animals are too stupid to remember a lesson they learnt only recently.");
-			//piper
-			conversations.add("I can help, if you are ready to pay.");
-			//mayor
-			conversations.add("Ados City has no other way to eliminate this nuisance. We will pay you.");
-			//piper
-			conversations.add("Do you know my usual price?");
-			//mayor
-			conversations.add("Yes, I have it written somewhere in my papers.");
-			//piper
-			conversations.add("Good. I will return for my reward soon, please prepare it.");
-			//mayor
-			conversations.add("Don't worry, how can I break your trust in me and my city?");
-		}
-		
-		/**
-		 * constructor
-		 * @param mayor - first npc
-		 * @param piper - second npc
-		 * @param n - observer n
-		 */
-		public NPCChatting(SpeakerNPC mayor, SpeakerNPC piper, Observer n) {
-			this.mayor=mayor;
-			this.piper=piper;
-			this.next=n;
-			fillConversations();
-		}
-		
-		private void setupDialog() {
-			if(mayor.isTalking()) {
-				mayor.say("Sorry, "+mayor.getAttending().getName()+
-						" but I see that our city's savoiur is here. I have to speak with him quickly."+
-						" Please speak with me again after we finish talking.");
-				mayor.setCurrentState(ConversationStates.IDLE);
-			}
-			mayor.setCurrentState(ConversationStates.ATTENDING);
-			mayor.setAttending(piper);
-			mayor.stop();
-			//fp = new FixedPath(new LinkedList<Node>(mayor.getPath().getNodeList()),	mayor.getPath().isLoop());
-			//mayor.clearPath();
-			onTurnReached(0);
-		}
-		
-		public void update(Observable o, Object arg) {
-			piper.clearPath();
-			piper.pathnotifier.deleteObservers();
-			count=0;
-			setupDialog();
-		}
-
-		public void onTurnReached(int currentTurn) {
-			piper.faceToward(mayor);
-			mayor.faceToward(piper);
-			if((count%2)==0) {
-				piper.say(conversations.get(count));
-			} else {
-				mayor.say(conversations.get(count));
-			}
-			count++;
-			if(count==conversations.size()) {
-				TurnNotifier.get().dontNotify(this);
-				mayor.setCurrentState(ConversationStates.IDLE);
-				mayor.followPath();
-                // going ahead
-				next.update(null, null);
-				return;
-			}
-			TurnNotifier.get().dontNotify(this);
-			TurnNotifier.get().notifyInSeconds(8, this);
-		}
-	}	
-	
-	/**
 	 * prepare NPC to walk through his multizone pathes and do some actions during that.
 	 */
 	private void leadNPC() {
@@ -277,7 +156,7 @@ public class AwaitingPhase extends TPPQuest {
 		zone.add(piedpiper);
 		Observer o = new MultiZonesFixedPath(piedpiper, fullpathin, 
 						new NPCFollowing(mainNPC, piedpiper,
-							new NPCChatting(mainNPC, piedpiper,
+							new NPCChatting(piedpiper, mainNPC, conversations, explainations,
 								new MultiZonesFixedPath(piedpiper, fullpathout, 
 									new PhaseSwitcher(this)))));
 		o.update(null, null);
