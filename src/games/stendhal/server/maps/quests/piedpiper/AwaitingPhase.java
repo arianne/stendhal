@@ -135,7 +135,25 @@ public class AwaitingPhase extends TPPQuest {
 	public void prepare() {
 		createPiedPiper();
 	}
-
+	
+	
+	/**
+	 * function for creating pied piper npc
+	 */
+	private void createPiedPiper() {
+		TPPQuestHelperFunctions.setupPiper(piedpiper);
+		fullpathin = PathesBuildHelper.getAwaitingPhasePathIn();
+		fullpathout = PathesBuildHelper.getAwaitingPhasePathOut();
+		leadNPC();
+	}
+	
+	
+	/**
+	 * function will remove piped piper npc object
+	 */
+	private void destroyPiedPiper() {
+		piedpiper.getZone().remove(piedpiper);
+	}
 
 	/**
 	 * prepare NPC to walk through his multizone pathes and do some actions during that.
@@ -216,34 +234,6 @@ public class AwaitingPhase extends TPPQuest {
 	 */
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_AWAITING;
-	}
-	
-	/**
-	 * function for creating pied piper npc
-	 */
-	private void createPiedPiper() {
-		piedpiper.setEntityClass("holidaymakernpc");
-		piedpiper.initHP(1000);
-		piedpiper.setResistance(0);
-		piedpiper.setVisibility(100);
-		piedpiper.setAllowToActAlone(true);
-		piedpiper.add(ConversationStates.IDLE, 
-							ConversationPhrases.GREETING_MESSAGES, 
-							new GreetingMatchesNameCondition(piedpiper.getName()), true, 
-							ConversationStates.IDLE, 
-							"hello", 
-							null);
-		fullpathin = PathesBuildHelper.getAwaitingPhasePathIn();
-		fullpathout = PathesBuildHelper.getAwaitingPhasePathOut();
-		leadNPC();
-	}
-	
-	
-	/**
-	 * function will remove piped piper npc object
-	 */
-	private void destroyPiedPiper() {
-		piedpiper.getZone().remove(piedpiper);
 	}		
 	
 }

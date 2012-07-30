@@ -5,7 +5,10 @@ import java.util.LinkedList;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
 
 public class TPPQuestHelperFunctions implements ITPPQuestConstants {
@@ -59,6 +62,20 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 	 */
 	public static int getRatsCount() {
 		return(getRats().size());
+	}
+	
+	public static void setupPiper(SpeakerNPC piedpiper) {
+		piedpiper.setEntityClass("holidaymakernpc");
+		piedpiper.initHP(1000);
+		piedpiper.setResistance(0);
+		piedpiper.setVisibility(100);
+		piedpiper.setAllowToActAlone(true);
+		piedpiper.add(ConversationStates.IDLE, 
+							ConversationPhrases.GREETING_MESSAGES, 
+							new GreetingMatchesNameCondition(piedpiper.getName()), true, 
+							ConversationStates.IDLE, 
+							"hello", 
+							null);
 	}
 }
 
