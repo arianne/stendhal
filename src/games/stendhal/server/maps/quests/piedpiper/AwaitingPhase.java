@@ -15,10 +15,8 @@ package games.stendhal.server.maps.quests.piedpiper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.RPZonePath;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.interaction.NPCChatting;
 import games.stendhal.server.entity.npc.interaction.NPCFollowing;
 
