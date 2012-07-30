@@ -21,17 +21,19 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.interaction.NPCChatting;
 import games.stendhal.server.entity.npc.interaction.NPCFollowing;
-import games.stendhal.server.maps.quests.ThePiedPiper;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * Implementation of Pied Piper's initial actions (coming, chatting, going to work place)
+ * @author yoriy
+ */
 public class AwaitingPhase extends TPPQuest {
+	
 	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
 	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();
 	private final int minPhaseChangeTime;
@@ -45,6 +47,10 @@ public class AwaitingPhase extends TPPQuest {
 			"I see that our city's savoiur is here. I have to speak with him quickly. "+
 			"Please speak with me again after we finish talking.";
 	
+	
+	/**
+	 * adds quest's related conversations to mayor
+	 */
 	private void addConversations() {
 		TPP_Phase myphase = AWAITING;
 		
@@ -78,6 +84,10 @@ public class AwaitingPhase extends TPPQuest {
 				new RewardPlayerAction());
 	}
 	
+	
+	/**
+	 * fills conversations list between mayor and piper
+	 */
 	private void fillConversations() {
 		//piper
 		conversations.add("Good day, Mayor Chalmers. What did you call me here for?");
@@ -105,9 +115,10 @@ public class AwaitingPhase extends TPPQuest {
 		conversations.add("Don't worry, how can I break your trust in me and my city?");
 	}
 	
+	
 	/**
 	 * constructor
-	 * @param timings - a pair of time parameters for phase timeout
+	 * @param timings - a pair of time parameters for phase timeouts
 	 */
 	public AwaitingPhase(final Map<String, Integer> timings) {
 		super(timings);
@@ -117,33 +128,14 @@ public class AwaitingPhase extends TPPQuest {
 		fillConversations();
 	}
 
+	
+	/**
+	 * prepare actions
+	 */
 	public void prepare() {
 		createPiedPiper();
 	}
-	
 
-	
-	/**
-	 * helper class for switching phase to next phase, 
-	 * wrapper of observer around a function.
-	 * 
-	 * @author yoriy
-	 */
-	private final class PhaseSwitcher implements Observer {
-
-		private ITPPQuest myphase; 
-		
-		public void update(Observable arg0, Object arg1) {
-			myphase.phaseToNextPhase(
-					ThePiedPiper.getNextPhaseClass(ThePiedPiper.getPhase()), 
-					Arrays.asList("normal switching"));			
-		}
-		
-		public PhaseSwitcher(ITPPQuest phase) {
-			myphase = phase;
-		}
-		
-	}
 
 	/**
 	 * prepare NPC to walk through his multizone pathes and do some actions during that.
@@ -162,40 +154,66 @@ public class AwaitingPhase extends TPPQuest {
 		o.update(null, null);
 	}
 	
+	
+	/**
+	 * @return - min quest phase timeout
+	 */
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
 	
 
+	/**
+	 * @return - max quest phase timeout
+	 */
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
 
 
+	/**
+	 * @param comments - comments for switching event
+	 */
 	public void phaseToDefaultPhase(List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToDefaultPhase(comments);		
 	}
 
 
+	/**
+	 * @param nextPhase - next phase
+	 * @param comments - comments for switching event
+	 */
 	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToNextPhase(nextPhase, comments);
 	}
 	
 	
-	/*
-	 *  Pied Piper sent rats away:-)
+	/**
+	 *  Pied Piper will now start to collect rats :-)
+	 *  @return - npc shouts at switching quest phase.
 	 */
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = 
+			/*
+			"Pied Piper shouts: Ados citizens, now i will clean up your city from rats. I will play " +
+			"magical melody, and rats will attracts to me. Please do not try to block or kill them, " +
+			"because melody will also protect MY rats. " +
+			"Just enjoy the show.";
+			 */
 			"Mayor Chalmers shouts: Thankfully, all the #rats are gone now, " +
 			"the Pied Piper hypnotized them and led them away to the dungeons. "+
 			"Those of you who helped Ados City with the rats problem "+
-			"can get your #reward now.";		
+			"can get your #reward now.";
+
 		return text;
 	}
 
+	
+	/**
+	 * @return - current phase
+	 */
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_AWAITING;
 	}
@@ -219,6 +237,7 @@ public class AwaitingPhase extends TPPQuest {
 		fullpathout = PathesBuildHelper.getAwaitingPhasePathOut();
 		leadNPC();
 	}
+	
 	
 	/**
 	 * function will remove piped piper npc object
