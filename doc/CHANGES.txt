@@ -2,30 +2,44 @@
 ---------
 
 1.02
+*world*
 - reduce Starkad's cost for lower level creatures and increase for higher level
 - make killer bees less dangerous(!)
-- turn ninjas to archers ( using shurikens ), reducing a bit their attack
-- added script for adding/removing/alter/list of NPC's transitions.
-- creatures can have different nature for ranged attacks than in melee
+- turn ninjas to archers (using shurikens), reducing a bit their attack
+- more dragons breath fire
 - clocks around the world show the server time
-- server suggests close matches for misstyped commands
-- vampires change their sprites depending on their attack status
-- events can tricker animations
+- vampires change their appearance depending on their attack status
+- various NPC. quest and map fixes
+- added more lamps and lights effects
+- boy guardin in Semos Road East warns new player who miss a shield
 
 *client*
+- fancy tutorial speech bubbles
 - the client gets ranged attack information from the server instead of trying to
   guess which attacks are ranged
 - quit dialog gets keyboard focus so that it is possible to exit the game without a mouse
 - added textual description to the karma bar tooltip
 - away and grumpy indicators show the reason in their tooltips
-- fancy tutorial speech bubbles
-- slash commands have tab completion
+- slash commands have tab completion, suggestions of close matches for misstyped commands
 - a second splitted between the left panel and the game screen
+- nicer look of the attack circles
+- improved key handling and font sizes on Mac.
 
 *fixes*
 - automatic walking behind a slow creature or npc will now properly try to find the way around it
 - lucky charms are bound to the player at loot time
-- fixed removing choking, away and grumpy sprites that failed to be removed under certain conditions
+- fixed removal of choking, away and grumpy icons that failed to be removed under certain conditions
+
+*code*
+- added script for adding/removing/alter/list of NPC's transitions.
+- creatures can have different nature for ranged attacks than in melee
+- events can tricker animations
+- some dependency cleanup
+
+
+1.01.1
+*fixes*
+- fixed slow processing of sound data causing lag on zone change and on spawning of sound aware creatures
 
 1.01
 *world*
