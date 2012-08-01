@@ -24,7 +24,6 @@ import games.stendhal.client.World;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
-import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.buddies.BuddyPanelController;
@@ -33,7 +32,6 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
-import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
@@ -49,7 +47,6 @@ import games.stendhal.client.sound.nosound.NoSoundFacade;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
-import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.SoundLayer;
 
@@ -147,13 +144,11 @@ public class j2DClient implements UserInterface {
 
 
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
-	/**
-	 * Delayed direction release holder.
-	 */
-	protected DelayedDirectionRelease directionRelease;
 
 	private UserContext userContext;
 
+	/** Key handling */
+	private GameKeyHandler gameKeyHandler;
 
 
 	/**
@@ -203,7 +198,7 @@ public class j2DClient implements UserInterface {
 	/**
 	 * The stendhal client.
 	 */
-	protected StendhalClient client;
+	private StendhalClient client;
 
 	private SoundSystemFacade soundSystemFacade;
 
@@ -289,11 +284,11 @@ public class j2DClient implements UserInterface {
 		chatLogArea.setPreferredSize(new Dimension(getWidth(), 171));
 
 		// *** Key handling ***
-		final KeyListener keyListener = new GameKeyHandler();
+		gameKeyHandler = new GameKeyHandler(client, screen);
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
-		chatText.addKeyListener(keyListener);
-		screen.addKeyListener(keyListener);
+		chatText.addKeyListener(gameKeyHandler);
+		screen.addKeyListener(gameKeyHandler);
 		// Also redirect key presses to the chatlog tabs, so that the tabs
 		// can be switched with ctrl-PgUp/Down
 		chatText.addKeyListener(new KeyAdapter() {
@@ -490,9 +485,6 @@ public class j2DClient implements UserInterface {
 		 */
 		splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
 				maxBounds.height  - 80));
-		
-
-		directionRelease = null;
 
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());
@@ -768,15 +760,7 @@ public class j2DClient implements UserInterface {
 			lastMessageHandle = time;
 		}
 
-		/*
-		 * Process delayed direction release
-		 */
-		if ((directionRelease != null) && directionRelease.hasExpired()) {
-			client.removeDirection(directionRelease.getDirection(),
-					directionRelease.isFacing());
-
-			directionRelease = null;
-		}
+		gameKeyHandler.processDelayedDirectionRelease();
 	}
 
 	private int paintCounter;
@@ -802,169 +786,6 @@ public class j2DClient implements UserInterface {
 		group.loadSound("click-8", "click-8.ogg", SoundFileType.OGG, false);
 		group.loadSound("click-10", "click-10.ogg", SoundFileType.OGG, false);
 		return group;
-	}
-
-	/**
-	 * Convert a keycode to the corresponding direction.
-	 *
-	 * @param keyCode
-	 *            The keycode.
-	 *
-	 * @return The direction, or <code>null</code>.
-	 */
-	protected Direction keyCodeToDirection(final int keyCode) {
-		switch (keyCode) {
-		case KeyEvent.VK_LEFT:
-			return Direction.LEFT;
-
-		case KeyEvent.VK_RIGHT:
-			return Direction.RIGHT;
-
-		case KeyEvent.VK_UP:
-			return Direction.UP;
-
-		case KeyEvent.VK_DOWN:
-			return Direction.DOWN;
-
-		default:
-			return null;
-		}
-	}
-
-	protected void onKeyPressed(final KeyEvent e) {
-		if (e.isShiftDown()) {
-			/*
-			 * We are going to use shift to move to previous/next line of text
-			 * with arrows so we just ignore the keys if shift is pressed.
-			 */
-			return;
-		}
-
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_R:
-			if (e.isControlDown()) {
-				/*
-				 * Ctrl+R Remove text bubbles
-				 */
-				screen.clearTexts();
-			}
-
-			break;
-
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_DOWN:
-			/*
-			 * Ctrl means face, otherwise move
-			 */
-			final Direction direction = keyCodeToDirection(e.getKeyCode());
-
-			if (e.isAltGraphDown()) {
-				final User user = User.get();
-
-				final EntityView<?> view = screen.getEntityViewAt(user.getX()
-						+ direction.getdx(), user.getY() + direction.getdy());
-
-				if (view != null) {
-					final IEntity entity = view.getEntity();
-					if (!entity.equals(user)) {
-						view.onAction();
-					}
-				}
-			}
-
-			processDirectionPress(direction, e.isControlDown());
-			break;
-		case KeyEvent.VK_0:
-		case KeyEvent.VK_1:
-		case KeyEvent.VK_2:
-		case KeyEvent.VK_3:
-		case KeyEvent.VK_4:
-		case KeyEvent.VK_5:
-		case KeyEvent.VK_6:
-		case KeyEvent.VK_7:
-		case KeyEvent.VK_8:
-		case KeyEvent.VK_9:
-			switchToSpellCastingState(e);
-			break;
-		}
-	}
-
-	private void switchToSpellCastingState(KeyEvent e) {
-		this.screen.switchToSpellCasting(e);
-	}
-
-	protected void onKeyReleased(final KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_DOWN:
-			/*
-			 * Ctrl means face, otherwise move
-			 */
-			processDirectionRelease(keyCodeToDirection(e.getKeyCode()),
-					e.isControlDown());
-		}
-	}
-
-	/**
-	 * Handle direction press actions.
-	 *
-	 * @param direction
-	 *            The direction.
-	 * @param facing
-	 *            If facing only.
-	 */
-	protected void processDirectionPress(final Direction direction, final boolean facing) {
-		if (directionRelease != null) {
-			if (directionRelease.check(direction, facing)) {
-				/*
-				 * Cancel pending release
-				 */
-				logger.debug("Repeat suppressed");
-				directionRelease = null;
-				return;
-			} else {
-				/*
-				 * Flush pending release
-				 */
-				client.removeDirection(directionRelease.getDirection(),
-						directionRelease.isFacing());
-
-				directionRelease = null;
-			}
-		}
-
-		client.addDirection(direction, facing);
-	}
-
-	/**
-	 * Handle direction release actions.
-	 *
-	 * @param direction
-	 *            The direction.
-	 * @param facing
-	 *            If facing only.
-	 */
-	protected void processDirectionRelease(final Direction direction, final boolean facing) {
-		if (directionRelease != null) {
-			if (directionRelease.check(direction, facing)) {
-				/*
-				 * Ignore repeats
-				 */
-				return;
-			} else {
-				/*
-				 * Flush previous release
-				 */
-				client.removeDirection(directionRelease.getDirection(),
-						directionRelease.isFacing());
-			}
-		}
-
-		directionRelease = new DelayedDirectionRelease(direction, facing);
 	}
 
 	/**
@@ -1219,106 +1040,6 @@ public class j2DClient implements UserInterface {
 		screenController.setOffline(offline);
 		this.offline = offline;
 	}
-
-	//
-	//
-
-	protected class GameKeyHandler implements KeyListener {
-		public void keyPressed(final KeyEvent e) {
-			onKeyPressed(e);
-		}
-
-		public void keyReleased(final KeyEvent e) {
-			onKeyReleased(e);
-		}
-
-		public void keyTyped(final KeyEvent e) {
-		}
-	}
-
-
-	protected static class DelayedDirectionRelease {
-		/**
-		 * The maximum delay between auto-repeat release-press.
-		 */
-		protected static final long DELAY = 50L;
-
-		protected long expiration;
-
-		protected Direction dir;
-
-		protected boolean facing;
-
-		public DelayedDirectionRelease(final Direction dir, final boolean facing) {
-			this.dir = dir;
-			this.facing = facing;
-
-			expiration = System.currentTimeMillis() + DELAY;
-		}
-
-		//
-		// DelayedDirectionRelease
-		//
-
-		/**
-		 * Get the direction.
-		 *
-		 * @return The direction.
-		 */
-		public Direction getDirection() {
-			return dir;
-		}
-
-		/**
-		 * Determine if the delay point has been reached.
-		 *
-		 * @return <code>true</code> if the delay time has been reached.
-		 */
-		public boolean hasExpired() {
-			return System.currentTimeMillis() >= expiration;
-		}
-
-		/**
-		 * Determine if the facing only option was used.
-		 *
-		 * @return <code>true</code> if facing only.
-		 */
-		public boolean isFacing() {
-			return facing;
-		}
-
-		/**
-		 * Check if a new direction matches the existing one, and if so, reset
-		 * the expiration point.
-		 *
-		 * @param dir
-		 *            The direction.
-		 * @param facing
-		 *            The facing flag.
-		 *
-		 * @return <code>true</code> if this is a repeat.
-		 */
-		public boolean check(final Direction dir, final boolean facing) {
-			if (!this.dir.equals(dir)) {
-				return false;
-			}
-
-			if (this.facing != facing) {
-				return false;
-			}
-
-			final long now = System.currentTimeMillis();
-
-			if (now >= expiration) {
-				return false;
-			}
-
-			expiration = now + DELAY;
-
-			return true;
-		}
-	}
-
 
 	public void requestQuit() {
 		if (client.getConnectionState() || !offline) {
