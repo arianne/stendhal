@@ -15,7 +15,7 @@ package games.stendhal.server.maps.quests.piedpiper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
-import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.RPZonePath;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -35,8 +35,8 @@ public class OutgoingPhase extends TPPQuest {
 	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();	
 	private final int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
-	private List<List<Pair<StendhalRPZone, List<Node>>>> fullpath = 
-		new LinkedList<List<Pair<StendhalRPZone, List<Node>>>>();
+	private List<List<RPZonePath>> fullpath = 
+		new LinkedList<List<RPZonePath>>();
 	
 	private void addConversations() {
 		TPP_Phase myphase = OUTGOING;
@@ -130,14 +130,14 @@ public class OutgoingPhase extends TPPQuest {
 	 * prepare NPC to walk through his multizone path.
 	 */
 	private void leadNPC() {
-		final StendhalRPZone zone = fullpath.get(0).get(0).first();
-		final int x=fullpath.get(0).get(0).second().get(0).getX();
-		final int y=fullpath.get(0).get(0).second().get(0).getY();
+		final StendhalRPZone zone = fullpath.get(0).get(0).getZone();
+		final int x=fullpath.get(0).get(0).getPath().get(0).getX();
+		final int y=fullpath.get(0).get(0).getPath().get(0).getY();
 		piedpiper.setPosition(x, y);
 		piedpiper.pathnotifier.setObserver(
 				new MultiZonesFixedPath(piedpiper, fullpath.get(0), 
 						new AttractRat()));
-		piedpiper.setPath(new FixedPath(fullpath.get(0).get(0).second(), false));
+		piedpiper.setPath(new FixedPath(fullpath.get(0).get(0).getPath(), false));
 		zone.add(piedpiper);
 	}
 	
