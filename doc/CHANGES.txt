@@ -23,7 +23,8 @@
 - slash commands have tab completion, suggestions of close matches for misstyped commands
 - a second splitted between the left panel and the game screen
 - nicer look of the attack circles
-- improved key handling and font sizes on Mac.
+- improved key handling and font sizes on Mac
+- refined money and cheese sprites
 
 *fixes*
 - automatic walking behind a slow creature or npc will now properly try to find the way around it
