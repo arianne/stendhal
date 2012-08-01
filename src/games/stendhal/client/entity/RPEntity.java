@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.GameLoop;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
@@ -109,6 +110,11 @@ public abstract class RPEntity extends ActiveEntity {
 	 * 	otherwise <code>false</code>. 
 	 */
 	private boolean isDoingRangedAttack;
+	/**
+	 * Flag for checking attack targets that were added in the zone later than
+	 * this entity.
+	 */
+	private boolean targetUpdated = false;
 
 	public enum Resolution {
 		HIT,
@@ -428,27 +434,53 @@ public abstract class RPEntity extends ActiveEntity {
 		return attackers;
 	}
 
-	public boolean isAttacking() {
-		if ((attacking == null) && !released) {
+	/**
+	 * Get the ID of the current attack target. Try to resolve targets that
+	 * have been added to the zone after this. This is meant to be called from
+	 * the EDT.
+	 * 
+	 * @return attack target, or <code>null</code> if the entity is not
+	 * 	attacking
+	 */
+	private ID getTargetID() {
+		if (!targetUpdated && (attacking == null)) {
 			/*
 			 * Check for disagreement, and update if needs be.
 			 * Can happen when the target is added to the zone after the attacker.
+			 * 
+			 * Fire and forget. The update likely won't be ready for this screen
+			 * redraw, but it'll be ready for some redraw later.
 			 */
-			String id = rpObject.get("target");
-			if (id != null) {
-				setTarget(id);
-			}
+			GameLoop.get().runOnce(new Runnable() {
+				public void run() {
+					if ((attacking == null) && !released) {
+						String id = rpObject.get("target");
+						if (id != null) {
+							setTarget(id);
+						}
+					}
+				}
+			});
+			targetUpdated = true;
 		}
-		return (attacking != null);
+		return attacking;
 	}
 
+	/**
+	 * Check if the entity is attacking a specified entity. This is meant to be
+	 * called from the EDT when drawing entities.
+	 * 
+	 * @param defender the potential target
+	 * @return <code>true</code> if defender is attacked by this entity,
+	 * 	otherwise <code>false</code>
+	 */
 	public boolean isAttacking(final IEntity defender) {
 		if (defender == null) {
 			return false;
 		}
 		
 		final ID defenderID = defender.getID();
-		return (isAttacking() && attacking.equals(defenderID));
+		return defenderID.equals(getTargetID());
 	}
 
 	public boolean isBeingAttacked() {
