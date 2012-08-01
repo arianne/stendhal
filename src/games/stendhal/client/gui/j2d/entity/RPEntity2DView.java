@@ -536,29 +536,55 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param lineColor The color of the outline of the arrow
 	 */
 	private void drawArrows(final Graphics2D g2d, final int x, final int y, final int width, final int height, final EnumSet<Direction> directions, final Color lineColor) {
+		int arrowHeight = 6 + (2 * (Math.round(height / 23) - 1));
+		int arrowWidth = 3 + (1 * (Math.round(width / 34) - 1));
 		if(directions.contains(Direction.LEFT)) {
 			g2d.setColor(Color.RED);
-			g2d.fillPolygon(new int[]{x+1, x-2, x+1}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+			g2d.fillPolygon(
+					new int[]{x+1, x-arrowWidth, x+1},
+					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2),y+(height/2)+(arrowHeight/2)},
+					3);
 			g2d.setColor(lineColor);
-			g2d.drawPolyline(new int[]{x, x-2, x}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+			g2d.drawPolyline(
+					new int[]{x, x-arrowWidth, x},
+					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2), y+(height/2)+(arrowHeight/2)},
+					3);
 		}
 		if(directions.contains(Direction.RIGHT)) {
 			g2d.setColor(Color.RED);
-			g2d.fillPolygon(new int[]{x+width, x+width+2, x+width}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+3}, 3);
+			g2d.fillPolygon(
+					new int[]{x+width, x+width+arrowWidth, x+width},
+					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2), y+(height/2)+(arrowHeight/2)},
+					3);
 			g2d.setColor(lineColor);
-			g2d.drawPolyline(new int[]{x+width, x+width+2, x+width}, new int[]{y+(height/2)-2, y+(height/2), y+(height/2)+2}, 3);
+			g2d.drawPolyline(
+					new int[]{x+width, x+width+arrowWidth, x+width},
+					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2), y+(height/2)+(arrowHeight/2)},
+					3);
 		}
 		if(directions.contains(Direction.UP)) {
 			g2d.setColor(Color.RED);
-			g2d.fillPolygon(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+3}, new int[]{y+1, y-2, y+1}, 3);
+			g2d.fillPolygon(
+					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
+					new int[]{y+1, y-arrowWidth, y+1},
+					3);
 			g2d.setColor(lineColor);
-			g2d.drawPolyline(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+2}, new int[]{y, y-2, y}, 3);
+			g2d.drawPolyline(
+					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
+					new int[]{y, y-arrowWidth, y},
+					3);
 		}
 		if(directions.contains(Direction.DOWN)) {
 			g2d.setColor(Color.RED);
-			g2d.fillPolygon(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+3}, new int[]{y+height, y+height+2, y+height}, 3);
+			g2d.fillPolygon(
+					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
+					new int[]{y+height, y+height+arrowWidth, y+height},
+					3);
 			g2d.setColor(lineColor);
-			g2d.drawPolyline(new int[]{x+(width/2)-2, x+(width/2), x+(width/2)+2}, new int[]{y+height, y+height+2, y+height}, 3);
+			g2d.drawPolyline(
+					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
+					new int[]{y+height, y+height+arrowWidth, y+height},
+					3);
 		}
 	}
 	
