@@ -253,7 +253,7 @@ public class StendhalClient extends ClientFramework {
 		contentToLoad = 0;
 
 		for (final TransferContent item : items) {
-			if ("data_map".equals(item.name)) {
+			if ((item.name != null) && item.name.endsWith(".data_map")) {
 				// Tell the zone to be invalid until the data layer has been
 				// added
 				currentZone.requireDataLayer();
