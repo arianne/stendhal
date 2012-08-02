@@ -204,6 +204,8 @@ public class Zone {
 			return Blend.Screen;
 		} else if ("truecolor".equals(colorMode)) {
 			return Blend.TrueColor;
+		} else if ("softlight".equals(colorMode)) {
+			return Blend.SoftLight;
 		} else if ("bleach".equals(colorMode)) {
 			if (zoneInfo.getZoneColor() != null) {
 				return Blend.createBleach(zoneInfo.getZoneColor());

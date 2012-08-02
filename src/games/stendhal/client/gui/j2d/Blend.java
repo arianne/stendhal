@@ -32,6 +32,7 @@ public class Blend implements Composite {
 		BLEACH,
 		MULTIPLY,
 		SCREEN,
+		SOFT_LIGHT,
 		TRUE_COLOR,
 	}
 
@@ -66,6 +67,11 @@ public class Blend implements Composite {
 	public static final Blend Multiply = new Blend(Mode.MULTIPLY, null);
 	/** Screen blend mode. */
 	public static final Blend Screen = new Blend(Mode.SCREEN, null);
+	/**
+	 * Softlight blend mode. Note that this is similar to the GIMP layer mode
+	 * with the same name.
+	 */
+	public static final Blend SoftLight = new Blend(Mode.SOFT_LIGHT, null);
 
 	/** Blending mode */
 	private final Mode mode;
@@ -139,11 +145,13 @@ public class Blend implements Composite {
 		BlendContext(Mode mode, ColorModel srcColorModel, ColorModel dstColorModel,
 				Color color) {
 			switch (mode) {
-			case TRUE_COLOR: composer = new TrueColorComposer();
+			case BLEACH: composer = new BleachComposer(color);
+			break;
+			case SOFT_LIGHT: composer = new SoftightComposer();
 			break;
 			case SCREEN: composer = new ScreenComposer();
 			break;
-			case BLEACH: composer = new BleachComposer(color);
+			case TRUE_COLOR: composer = new TrueColorComposer();
 			break;
 			// Can not really happen, but the compiler is too dumb to know that
 			default: composer = null;
@@ -288,28 +296,47 @@ public class Blend implements Composite {
 	}
 	
 	/**
-	 * A composer that implements the screen blend mode.
+	 * Composer for simple blends that only need the individual source and
+	 * destination color components to calculate the new color component.
 	 */
-	private static class ScreenComposer implements Composer {
+	private static abstract class SimpleComposer implements Composer {
 		public int compose(int[] srcPixel, int[] dstPixel) {
-			dstPixel[RED] = screenComponent(srcPixel[RED], dstPixel[RED]);
-			dstPixel[GREEN] = screenComponent(srcPixel[GREEN], dstPixel[GREEN]);
-			dstPixel[BLUE] = screenComponent(srcPixel[BLUE], dstPixel[BLUE]);
+			for (int i = RED; i <= BLUE; i++) {
+				dstPixel[i] = composeComponent(srcPixel[i], dstPixel[i]);
+			}
 
 			return mergeRgb(dstPixel);
 		}
 		
 		/**
-		 * Apply screen composition to an individual color component of a pixel.
+		 * Apply composition to an individual color component of a pixel.
 		 * 
-		 * @param a
-		 * @param b
-		 * @return screened color value
+		 * @param a upper layer color value
+		 * @param b lower layer color value
+		 * @return composed color value
 		 */
-		private int screenComponent(int a, int b) {
+		abstract int composeComponent(int a, int b);
+	}
+	
+	/**
+	 * A composer that implements the gimp style soft light blend mode.
+	 */
+	private static class SoftightComposer extends SimpleComposer {
+		@Override
+		int composeComponent(int a, int b) {
+			return (b + 2 * a * (0xff - b) / 0xff) * b / 0xff;
+		}
+	}
+	
+	/**
+	 * A composer that implements the screen blend mode.
+	 */
+	private static class ScreenComposer extends SimpleComposer {
+		@Override
+		int composeComponent(int a, int b) {
 			return 0xff - (((0xff - a) * (0xff - b)) >> 8);
 		}
-	}		
+	}
 			
 	/**
 	 * Composer for the special Stendhal color blend.
