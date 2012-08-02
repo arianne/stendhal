@@ -78,7 +78,7 @@ public class ZoneAttributes {
 	 * @param key
 	 * @param value
 	 */
-	void put(String key, String value) {
+	public void put(String key, String value) {
 		// Interpret special values
 		if ("color_method".equals(key) && "time".equals(value)) {
 			DaylightUpdater.get().manageAttributes(this);

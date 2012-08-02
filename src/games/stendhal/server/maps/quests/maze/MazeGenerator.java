@@ -14,12 +14,15 @@ package games.stendhal.server.maps.quests.maze;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
+import games.stendhal.common.color.ARGB;
+import games.stendhal.common.color.HSL;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.tiled.LayerDefinition;
 import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.Spot;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
@@ -166,6 +169,13 @@ public class MazeGenerator {
 		timeStamp = System.currentTimeMillis();
 	}
 
+	/**
+	 * Generate the map.
+	 * 
+	 * @param width
+	 * @param height
+	 * @return map
+	 */
 	private StendhalMapStructure generateMapStructure(int width, int height) {
 		LayerDefinition floor = new LayerDefinition(width, height);
 		floor.setName("0_floor");
@@ -209,6 +219,11 @@ public class MazeGenerator {
 		return map;
 	}
 
+	/**
+	 * Generate random maze collisions.
+	 * 
+	 * @param layer collision layer
+	 */
 	private void generateCollisions(LayerDefinition layer) {
 		layer.build();
 
@@ -272,6 +287,13 @@ public class MazeGenerator {
 		} while (point != null);
 	}
 
+	/**
+	 * Get the unvisited neighbors of a node.
+	 * 
+	 * @param point point whose neighbors should be checked 
+	 * @param visited all visited locations
+	 * @return list of unvisited neighbors
+	 */
 	private List<Point> getUnvisitedNeighbours(Point point, HashSet<Point> visited) {
 		if (point == null) {
 			return null;
@@ -302,6 +324,12 @@ public class MazeGenerator {
 		return neighbours;
 	}
 
+	/**
+	 * Enlarge the corridors at the map corners. Creates the "rooms" for the
+	 * portal and the rewards.
+	 * 
+	 * @param layer collision layer
+	 */
 	private void widenCorners(LayerDefinition layer) {
 		// top left corner
 		setCollide(layer, WALL_THICKNESS - 1, WALL_THICKNESS - 1, false);
@@ -321,6 +349,11 @@ public class MazeGenerator {
 		setCollide(layer, width - width % (WALL_THICKNESS + 1), height - height % (WALL_THICKNESS + 1) - 1, false);
 	}
 
+	/**
+	 * Get the map corner locations.
+	 * 
+	 * @return map corners
+	 */
 	private List<Point> getCorners() {
 		if (corners == null) {
 			corners = new LinkedList<Point>();
@@ -335,6 +368,11 @@ public class MazeGenerator {
 		return corners;
 	}
 
+	/**
+	 * Get the exit portal location.
+	 * 
+	 * @return portal location
+	 */
 	private Point getPortalPosition() {
 		// opposite corner to start
 		Point start = getStartPosition();
@@ -346,10 +384,46 @@ public class MazeGenerator {
 		return pos;
 	}
 
+	/**
+	 * Change the collision at a location.
+	 * 
+	 * @param layer collision layer
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @param collide if <code>true</code> set the location to a collision,
+	 * 	else make it walkable
+	 */
 	private void setCollide(LayerDefinition layer, int x, int y, boolean collide) {
 		layer.set(x, y, collide ? 1 : 0);
 	}
+	
+	/**
+	 * Make the zone randomly colored using the soft light blend mode.
+	 *  
+	 * @param zone
+	 */
+	private void setRandomlyColored(StendhalRPZone zone) {
+		ZoneAttributes attr = new ZoneAttributes(zone);
+		
+		// Random hue, Bright color, Medium lightness
+		float[] hsl = new float[] {(float) Rand.rand(), (float) Rand.rand(), 0.5f};
+		hsl[0] = (float) Rand.rand();
+		int[] argb = new int[4];
+		HSL.hsl2rgb(hsl, argb);
+		int color = ARGB.mergeRgb(argb);
+		
+		attr.put("color_method", "softlight");
+		attr.put("color", Integer.toString(color));
+		
+		zone.setAttributes(attr);
+	}
 
+	/**
+	 * Generate a random map zone with an exit portal and prizes at the other
+	 * corners
+	 * 
+	 * @return zone
+	 */
 	private StendhalRPZone generateZone() {
 		mapStructure.build();
 
@@ -379,6 +453,9 @@ public class MazeGenerator {
 		// disable double click move and teleport in
 		zone.setMoveToAllowed(false);
 		zone.disallowIn();
+		
+		// set the blend mode
+		setRandomlyColored(zone);
 
 		// Add some scrolls
 		addPrizes(zone);
@@ -464,6 +541,11 @@ public class MazeGenerator {
 		}
 	}
 
+	/**
+	 * Give the player a reward, and notify him.
+	 * 
+	 * @param player
+	 */
 	protected void rewardPlayer(Player player) {
 		long timediff = System.currentTimeMillis() - timeStamp;
 		double normalized = timediff / (double) (DEFAULT_SOLVING_TIME * MathHelper.MILLISECONDS_IN_ONE_MINUTE);
@@ -481,6 +563,10 @@ public class MazeGenerator {
 		player.addXP(REWARD_XP);
 	}
 
+	/**
+	 * Portal for returning from the zone. Triggers rewarding the player and
+	 * updating the hall of fame sign.
+	 */
 	private class ReturnTeleporter extends Teleporter {
 		public ReturnTeleporter(Spot spot) {
 			super(spot);
