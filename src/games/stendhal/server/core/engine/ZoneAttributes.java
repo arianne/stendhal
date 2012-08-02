@@ -57,10 +57,24 @@ public class ZoneAttributes {
 	 */
 	public ZoneAttributes(StendhalRPZone zone) {
 		attr.setID(RPObject.INVALID_ID);
-		// old client ignore layers ending in _map, thus the odd choice of name
-		content.name = zone.getName() + ".data_map";
+		setBaseName(zone.getName());
 		content.cacheable = false;
 		this.zone = zone;
+	}
+	
+	/**
+	 * Set the base name of the layers in the zone. Normally you do not need
+	 * to call this, as the name is got from the zone. Setting it is necessary
+	 * if the zone name does not match the base name of the tile layers, as
+	 * is in the case of special zones like the bank vault. For those zones
+	 * the base name comes from the parent zone used to create the special zone,
+	 * and the name must be set to the same for the attributes layer.
+	 * 
+	 * @param name base zone name
+	 */
+	public void setBaseName(String name) {
+		// old client ignore layers ending in _map, thus the odd choice of name
+		content.name = name + ".data_map";
 	}
 
 	/**
