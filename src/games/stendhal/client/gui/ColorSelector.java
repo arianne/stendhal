@@ -11,13 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.color.ARGB;
+import games.stendhal.common.color.HSL;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -277,15 +278,15 @@ class ColorSelector extends JPanel {
 				hsl[1] = model.getSaturation();
 				// 0 would be black, and have no color
 				hsl[2] = 0.08f;
-				Blend.hsl2rgb(hsl, rgb);
-				Color startColor = new Color(Blend.mergeRgb(rgb));
+				HSL.hsl2rgb(hsl, rgb);
+				Color startColor = new Color(ARGB.mergeRgb(rgb));
 				hsl[2] = 0.5f;
-				Blend.hsl2rgb(hsl, rgb);
-				Color midColor = new Color(Blend.mergeRgb(rgb));
+				HSL.hsl2rgb(hsl, rgb);
+				Color midColor = new Color(ARGB.mergeRgb(rgb));
 				// 1 would be white, and have no color
 				hsl[2] = 0.92f;
-				Blend.hsl2rgb(hsl, rgb);
-				Color endColor = new Color(Blend.mergeRgb(rgb));
+				HSL.hsl2rgb(hsl, rgb);
+				Color endColor = new Color(ARGB.mergeRgb(rgb));
 			
 				Graphics2D g2d = (Graphics2D) g;
 				GradientPaint p = new GradientPaint(ins.left, ins.top, startColor, width / 2f, ins.top, midColor);
@@ -373,8 +374,8 @@ class ColorSelector extends JPanel {
 				this.color = Color.GRAY;
 			}
 			int[] rgb = new int[4];
-			Blend.splitRgb(this.color.getRGB(), rgb);
-			Blend.rgb2hsl(rgb, hsl);
+			ARGB.splitRgb(this.color.getRGB(), rgb);
+			HSL.rgb2hsl(rgb, hsl);
 			fireChanged();
 		}
 
@@ -432,9 +433,9 @@ class ColorSelector extends JPanel {
 		 */
 		private void updateColor() {
 			int[] rgb = new int[4];
-			Blend.hsl2rgb(hsl, rgb);
+			HSL.hsl2rgb(hsl, rgb);
 			rgb[0] = 0xff;
-			color = new Color(Blend.mergeRgb(rgb));
+			color = new Color(ARGB.mergeRgb(rgb));
 			fireChanged();
 		}
 

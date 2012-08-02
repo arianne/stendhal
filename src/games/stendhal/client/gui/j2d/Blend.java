@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.common.math.Algebra;
+import static games.stendhal.common.color.ARGB.ALPHA;
+import static games.stendhal.common.color.ARGB.BLUE;
+import static games.stendhal.common.color.ARGB.GREEN;
+import static games.stendhal.common.color.ARGB.RED;
+import static games.stendhal.common.color.ARGB.mergeRgb;
+import static games.stendhal.common.color.ARGB.splitRgb;
+import static games.stendhal.common.color.HSL.hsl2rgb;
+import static games.stendhal.common.color.HSL.rgb2hsl;
 
 import java.awt.Color;
 import java.awt.Composite;
@@ -35,25 +42,6 @@ public class Blend implements Composite {
 		SOFT_LIGHT,
 		TRUE_COLOR,
 	}
-
-	// ARGB format
-	/** Position of alpha component. */
-	private static final int ALPHA = 0;
-	/** Position of red component. */
-	private static final int RED = 1;
-	/** Position of green component. */
-	private static final int GREEN = 2;
-	/** Position of blue component. */
-	private static final int BLUE = 3;
-
-	/** Amount to need shifting to access alpha at an integer */
-	private static final int SHIFT_ALPHA = (24 - ALPHA * 8);
-	/** Amount to need shifting to access red at an integer */
-	private static final int SHIFT_RED = (24 - RED * 8);
-	/** Amount to need shifting to access green at an integer */
-	private static final int SHIFT_GREEN = (24 - GREEN * 8);
-	/** Amount to need shifting to access blue at an integer */
-	private static final int SHIFT_BLUE = (24 - BLUE * 8);
 
 	// This is a pretty non-standard blend mode, and as far as I know, it has no
 	// common name (if it is even implemented by anyone else)
@@ -224,9 +212,11 @@ public class Blend implements Composite {
 		 */
 		BleachComposer(Color c) {
 			int color = c.getRGB();
-			red = Math.max(1, (color >> SHIFT_RED) & 0xff);
-			green = Math.max(1, (color >> SHIFT_GREEN) & 0xff);
-			blue = Math.max(1, (color >> SHIFT_BLUE) & 0xff);
+			int[] components = new int[4];
+			splitRgb(color, components);
+			red = Math.max(1, components[RED]);
+			green = Math.max(1, components[GREEN]);
+			blue = Math.max(1, components[BLUE]);
 		}
 		
 		/**
@@ -372,176 +362,7 @@ public class Blend implements Composite {
 			return mergeRgb(result);
 		}
 	}
-	
-	/**
-	 * Split ARGB color to its components.
-	 * 
-	 * @param rgb
-	 * @param result
-	 */
-	public static void splitRgb(int rgb, int[] result) {
-		result[ALPHA] = (rgb >> SHIFT_ALPHA) & 0xff;
-		result[RED] = (rgb >> SHIFT_RED) & 0xff;
-		result[GREEN] = (rgb >> SHIFT_GREEN) & 0xff;
-		result[BLUE] = (rgb >> SHIFT_BLUE) & 0xff;
-	}
-
-	/**
-	 * Merge ARGB color components to one integer element.
-	 * 
-	 * @param rgbData data to be merged
-	 * @return ARGB as an integer
-	 */
-	public static int mergeRgb(int[] rgbData) {
-		int rgb = rgbData[ALPHA] << SHIFT_ALPHA;
-		rgb |= rgbData[RED] << SHIFT_RED;
-		rgb |= rgbData[GREEN] << SHIFT_GREEN;
-		rgb |= rgbData[BLUE] << SHIFT_BLUE;
-
-		return rgb;
-	}
-
-	/**
-	 * Transform ARGB color vector to HSL space. Transparency is dropped.
-	 * All returned components are in range [0, 1].
-	 *  
-	 * @param rgb
-	 * @param hsl
-	 */
-	public static void rgb2hsl(int[] rgb, float[] hsl) {
-		float h, s, l;
-		int maxVar;
-
-		float max, min;
-		float r = rgb[RED] / 255f;
-		float g = rgb[GREEN] / 255f;
-		float b = rgb[BLUE] / 255f;
-
-		// Find the max and minimum colors, and remember which one it was
-		if (r > g) {
-			max = r;
-			min = g;
-			maxVar = RED;
-		} else {
-			max = g;
-			min = r;
-			maxVar = GREEN;
-		}
-		if (b > max) {
-			max = b;
-			maxVar = BLUE;
-		} else if (b < min) {
-			min = b;
-		}
-
-		// lightness
-		l = (max + min) / 2;
-
-		// saturation
-		float diff = max - min;
-		if (diff < Algebra.EPSILON) {
-			s = 0;
-			// hue not really defined, but set it to something reasonable
-			h = 0;
-		} else {
-			if (l < 0.5f) {
-				s = diff / (max + min);
-			} else {
-				s = diff / (2 - max - min);
-			}
-
-			// hue
-			if (maxVar == RED) {
-				h = (g - b) / diff;
-			} else if (maxVar == GREEN) {
-				h = 2f + (b - r) / diff;
-			} else {
-				h = 4f + (r - g) / diff;
-			}
-			// Normalize to range [0, 1]. It's more useful than the usual 360
-			h /= 6f;
-		}
-		hsl[0] = h;
-		hsl[1] = s;
-		hsl[2] = l;
-	}
-
-	/**
-	 * Transform HSL color vector to ARGB space. Alpha is kept at 0 for
-	 * everything. All HSL should be scaled to range [0, 1].
-	 * 
-	 * @param hsl
-	 * @param rgb
-	 */
-	public static void hsl2rgb(float[] hsl, int[] rgb) {
-		int r, g, b;
-		float h = hsl[0];
-		float s = hsl[1];
-		float l = hsl[2];
-
-		if (s < Algebra.EPSILON) {
-			r = g = b = (int) (255 * l);
-		} else {
-			float tmp1, tmp2;
-			if (l < 0.5f) {
-				tmp1 = l * (1f + s);
-			} else {
-				tmp1 = l + s - l * s;
-			}
-			tmp2 = 2f * l - tmp1;
-
-			float rf = hue2rgb(limitHue(h + 1f/3f), tmp2, tmp1);
-			float gf = hue2rgb(limitHue(h), tmp2, tmp1);
-			float bf = hue2rgb(limitHue(h - 1f/3f), tmp2, tmp1);
-
-			r = ((int) (255 * rf)) & 0xff;
-			g = ((int) (255 * gf)) & 0xff;
-			b = ((int) (255 * bf)) & 0xff;
-		}
-
-		rgb[RED] = r;
-		rgb[GREEN] = g;
-		rgb[BLUE] = b;
-	}
-
-	/**
-	 * Keep hue value within [0, 1] circle.
-	 *  
-	 * @param hue
-	 * @return normalized hue
-	 */
-	private static float limitHue(float hue) {
-		if (hue < 0) {
-			hue += 1f;
-		} else if (hue > 1f) {
-			hue -= 1f;
-		}
-		return hue;
-	}
-
-	/**
-	 * Transform a hue to RGB.
-	 * 
-	 * @param hue
-	 * @param val1 color dependent value
-	 * @param val2 color dependent value
-	 * @return R, G, or B value
-	 */
-	private static float hue2rgb(float hue, float val1, float val2) {
-		if (6f * hue < 1f) {
-			hue = val1 + (val2 - val1) * 6f * hue;
-		} else if (2f * hue < 1f) {
-			hue = val2;
-		} else if (3f * hue < 2f) {
-			hue = val1 + (val2 - val1) * (2f/3f - hue) * 6f;
-		} else {
-			hue = val1;
-		}
-
-		return hue;
-	}
-
-	
+		
 	/**
 	 * A fast, approximate multiply mode blend context. The results differ from
 	 * correct multiply by factor of 1 - 255/256.
