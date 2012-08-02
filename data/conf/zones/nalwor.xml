@@ -1100,6 +1100,10 @@ below average.
 
 	<zone name="hell" level="-2" x="500160" y="500096"
 		file="Level -2/nalwor/hell.tmx">
+		<attributes>
+            <parameter name="color_method">softlight</parameter>
+            <parameter name="color">#882200</parameter>
+        </attributes>
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
 		<configurator class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs" />
 		<configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC" />
