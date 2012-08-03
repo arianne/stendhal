@@ -81,7 +81,7 @@ public class DisplaceAction implements ActionListener {
 		if ((x == object.getX()) && (y == object.getY())) {
 			/*
 			 * Not actually moving anything. Don't check access rights an
-			 * possibly send confusing confusing messages to the player who
+			 * possibly send confusing messages to the player who
 			 * didn't really do anything. 
 			 */
 			return;
