@@ -17,6 +17,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.ZoneAttributes;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
@@ -64,21 +65,35 @@ public class ChallengerNPC implements ZoneConfigurator  {
 
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			int cost = COST_FACTOR * player.getLevel();
+			// check the money but take it later
 			if (!player.isEquipped("money", cost)) {
 				npc.say("You don't have enough money with you, the fee at your level is " + cost + " money.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
 				return;
 			}
+			// now set up the new zone
 			final StendhalRPZone challengezone = (StendhalRPZone) SingletonRepository
 			.getRPWorld().getRPZone("int_adventure_island");
 			String zoneName = player.getName() + "_adventure_island";
 
 			final AdventureIsland zone = new AdventureIsland(zoneName, challengezone, player);
-
+			
+			// add a colour to the zone
+			ZoneAttributes attr = new ZoneAttributes(zone);
+			attr.setBaseName("int_adventure_island");
+			attr.put("color_method", "softlight");
+			attr.put("color", Integer.toString(0x550088));
+			zone.setAttributes(attr);
+			
 			SingletonRepository.getRPWorld().addRPZone(zone);
 
+			// timestamp the quest slot so that we know if it should be repeated
 			player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
+			
+			// move the player
 			player.teleport(zone, 4, 4, Direction.DOWN, player);
+			
+			// prepare the message to tell the player cost and what happened
 			String message;
 			int numCreatures = zone.getCreatures(); 
 			if (zone.getCreatures() < AdventureIsland.NUMBER_OF_CREATURES) {
@@ -89,7 +104,9 @@ public class ChallengerNPC implements ZoneConfigurator  {
 			} else { 
 				message = "Haastaja bellows from below: I took the fee of " + cost + " money. Good luck up there.";
 			}
+		    // take the money
 			player.drop("money", cost);
+			// talk to the player
 			player.sendPrivateText(message);
 
 			player.notifyWorldAboutChanges();
@@ -121,6 +138,8 @@ public class ChallengerNPC implements ZoneConfigurator  {
 				addReply("island", "I can summon a magical island for you personally. It is sustained by your life force, so if you leave it, you must return quickly or " 
 						+ "it will dissipate. You should not try to leave and return more than once. To enter, just pay the #fee.");
 				addGoodbye("Bye.");
+				// fee depends on the level
+				// but there is a min level to play
 				add(ConversationStates.ANY, 
 						"fee", 
 						new AndCondition(new LevelGreaterThanCondition(MIN_LEVEL - 1), 
