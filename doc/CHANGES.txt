@@ -3,26 +3,26 @@
 
 1.02
 *world*
-- reduce Starkad's cost for lower level creatures and increase for higher level
-- make killer bees less dangerous(!)
-- turn ninjas to archers (using shurikens), reducing a bit their attack
-- more dragons breath fire
 - clocks around the world show the server time
 - vampires change their appearance depending on their attack status
-- various NPC. quest and map fixes
-- added more lamps and lights effects
-- boy guardin in Semos Road East warns new player who miss a shield
+- boy guardian in Semos Road East warns new player who miss a shield
+- reduce Starkad's cost for lower level creatures and increase for higher level
+- ninjas use shurikens for ranged attack
+- more dragons breath fire
+- lamps and lights effects added to ados city n, ados market, by plink, gnome village, catacombs and haunted house
+- zone colouring added to hell, new dreamscape map, maze (randomised), adventure island, afterlife, catacombs, haunted house
+- semos temple and tavern upstairs maps reworked
 
 *client*
 - fancy tutorial speech bubbles
+- nicer look of the attack circles
+- slash commands have tab completion, suggestions of close matches for misstyped commands
+- a second splitter between the left panel and the game screen
+- added textual description to the karma bar tooltip
+- away and grumpy indicators show the reason in their tooltips
 - the client gets ranged attack information from the server instead of trying to
   guess which attacks are ranged
 - quit dialog gets keyboard focus so that it is possible to exit the game without a mouse
-- added textual description to the karma bar tooltip
-- away and grumpy indicators show the reason in their tooltips
-- slash commands have tab completion, suggestions of close matches for misstyped commands
-- a second splitted between the left panel and the game screen
-- nicer look of the attack circles
 - improved key handling and font sizes on Mac
 - refined money and cheese sprites
 
@@ -30,11 +30,13 @@
 - automatic walking behind a slow creature or npc will now properly try to find the way around it
 - lucky charms are bound to the player at loot time
 - fixed removal of choking, away and grumpy icons that failed to be removed under certain conditions
+- make killer bees less dangerous(!)
+- various NPC, quest and map fixes
 
 *code*
 - added script for adding/removing/alter/list of NPC's transitions.
 - creatures can have different nature for ranged attacks than in melee
-- events can tricker animations
+- events can trigger animations
 - some dependency cleanup
 
 
