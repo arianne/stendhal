@@ -71,7 +71,7 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 	private static Map<Integer, String> amountLiterals;
 
 	/**
-	 * literal for how dangerous a creature is based on the percentual
+	 * literal for how dangerous a creature is based on the percentage
 	 * difference to player level %s is replaced with singular creature name, %S
 	 * with plural.
 	 */
