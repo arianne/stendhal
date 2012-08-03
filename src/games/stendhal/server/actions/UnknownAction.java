@@ -31,14 +31,14 @@ class UnknownAction implements ActionListener {
 	private final List<String> suggestions;
 	
 	/**
-	 * Create an UnknowAction with no suggestions for commands.
+	 * Create an UnknownAction with no suggestions for commands.
 	 */
 	UnknownAction() {
 		suggestions = null;
 	}
 	
 	/**
-	 * Create an UnknowAction with suggestions for possibly intended commands.
+	 * Create an UnknownAction with suggestions for possibly intended commands.
 	 * 
 	 * @param suggestions 
 	 */
@@ -54,28 +54,25 @@ class UnknownAction implements ActionListener {
 		}
 		logger.warn(player + " tried to execute unknown action " + type);
 		if (player != null) {
-			StringBuilder msg = new StringBuilder("Unknown command '");
+			StringBuilder msg = new StringBuilder("Unknown command /");
 			msg.append(type);
-			msg.append("'");
 			if (suggestions != null) {
 				int size = suggestions.size();
 				msg.append(". Did you mean");
 				if (size == 1) {
-					msg.append(" #'");
+					msg.append(" #/");
 					msg.append(suggestions.get(0));
-					msg.append("'");
 				}
 				if (size > 1) {
 					for (int i = 0; i < size - 2; i++) {
-						msg.append(" #'");
+						msg.append(" #/");
 						msg.append(suggestions.get(i));
-						msg.append("',");
+						msg.append(",");
 					}
-					msg.append(" #'");
+					msg.append(" #/");
 					msg.append(suggestions.get(size - 2));
-					msg.append("' or #'");
+					msg.append(" or #/");
 					msg.append(suggestions.get(size - 1));
-					msg.append("'");
 				}
 				msg.append("? Or type #/help to get a list.");
 			} else {
