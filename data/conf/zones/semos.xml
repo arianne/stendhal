@@ -3268,6 +3268,10 @@ Mature sheep wanted: please speak to Sato
 
 	<zone name="-1_semos_yeti_cave" level="-1" x="499616" y="499872"
 		file="Level -1/semos/yeticave.tmx">
+        <attributes>
+         <parameter name="color_method">softlight</parameter>
+         <parameter name="color">#0099da</parameter>
+        </attributes>
 		<configurator class-name="games.stendhal.server.maps.semos.yeticave.MrYetiNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.yeticave.MrsYetiNPC" />
 	</zone>
