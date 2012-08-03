@@ -906,7 +906,11 @@
  <!-- Level -1 -->
 
      <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
-     <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
+      <attributes>
+         <parameter name="color_method">softlight</parameter>
+         <parameter name="color">#0c4774</parameter>
+      </attributes>
+      <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
 
    <entity x="24" y="35">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -1057,6 +1061,10 @@ You get your stake back when there is a draw. If you win, you get the double of 
  <!-- Level -2 -->
 
  <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="Level -2/athor/ship_w2.tmx">
+   <attributes>
+    <parameter name="color_method">softlight</parameter>
+    <parameter name="color">#052238</parameter>
+   </attributes>
   <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
 
     <!-- This must be after the NPC factory -->
