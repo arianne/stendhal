@@ -83,6 +83,9 @@ public class ItemLogger {
 	 * @param item
 	 */
 	public void timeout(final Item item) {
+		if (!item.has("logid")) {
+			return;
+		}
 		LogSimpleItemEventCommand command;
 		if (!item.isContained()) {
 			command = new LogSimpleItemEventCommand(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
