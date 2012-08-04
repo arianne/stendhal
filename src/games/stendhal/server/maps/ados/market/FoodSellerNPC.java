@@ -53,8 +53,8 @@ public class FoodSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("We just got fresh apples and carrots from #Semos #Farm");
-				addReply(Arrays.asList("Semos Farm", "Semos", "Farm"), "We get all our food from the Farm at Semos, but the route is #dangerous.");
-				addReply(Arrays.asList("dangerous", "expensive"), "With all the solidiers fighting in the great battle, the route to Semos is left unprotected. So I am afraid, the prieces are relatively high.");
+				addReply(Arrays.asList("Semos Farm", "Semos", "Farm"), "We get all our food from the farm at Semos, but the route is #dangerous.");
+				addReply(Arrays.asList("dangerous", "expensive"), "With all the soldiers fighting in the great battle, the route to Semos is left unprotected. So I am afraid, the prices are relatively high.");
 				addJob("I sell goods from the #farm at Semos as soon as we get them.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("adosfoodseller")));
 				addGoodbye();
@@ -62,7 +62,7 @@ public class FoodSellerNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("marketsellernpc");
-		npc.setDescription("Adena smiles friendly towards you although she is working very hard.");
+		npc.setDescription("Adena smiles towards you in a friendly way, although she is working very hard.");
 		npc.setPosition(31, 8);
 		npc.initHP(100);
 		npc.setDirection(Direction.DOWN);
