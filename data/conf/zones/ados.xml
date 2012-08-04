@@ -108,6 +108,7 @@
  	<attributes>
 		<parameter name="color_method">time</parameter>
 	</attributes>
+    <configurator class-name="games.stendhal.server.maps.ados.market.FoodSellerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.WeaponryTraderNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.BBQGrillmasterNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
