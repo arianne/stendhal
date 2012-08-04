@@ -15,11 +15,12 @@ package games.stendhal.server.entity.npc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Common phrases used by players to interact with a SpeakerNPC.
- * 
+ *
  * @author hendrik
  */
 public class ConversationPhrases {
@@ -41,12 +42,12 @@ public class ConversationPhrases {
 
 	public static final List<String> QUEST_MESSAGES = Arrays.asList("task",
 			"quest", "favor", "favour");
-	
+
 	public static final List<String> FINISH_MESSAGES = Arrays.asList("done",
 			"finish", "complete");
-	
+
 	public static final List<String> ABORT_MESSAGES = Arrays.asList("another", "abort");
-	
+
 	public static final List<String> OFFER_MESSAGES = Arrays.asList("offer", "deal", "trade");
 
 	public static final List<String> YES_MESSAGES = Arrays.asList("yes", "ok", "yep", "sure");
@@ -69,9 +70,12 @@ public class ConversationPhrases {
 	}
 
 	/** combine a string collection with another collection */
-	public static final List<String> combine(Collection<String> list1, Collection<String> list2) {
-		List<String> ret = new ArrayList<String>(list1);
-		ret.addAll(list2);
+	public static final List<String> combine(Collection<String> list1, Collection<String>... lists) {
+		List<String> ret = new LinkedList<String>(list1);
+		for (Collection<String> list : lists) {
+			ret.addAll(list);
+		}
 		return ret;
 	}
+
 }
