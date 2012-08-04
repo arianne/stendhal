@@ -340,6 +340,18 @@ public class Outfit {
 		LOGGER.debug("chose random outfit: "  + newHair + " " + newHead + " " + newDress + " " + newBase);
 		return new Outfit(0, newHair, newHead, newDress, newBase);
 	}
+	
+	/**
+	 * Can this outfit be worn with normal clothes
+	 *
+	 * @return true if the outfit is compatible with clothes, false otherwise
+	 */
+	public boolean isCompatibleWithClothes() {
+		if (base > 80 && base < 99) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public boolean equals(Object other) {
