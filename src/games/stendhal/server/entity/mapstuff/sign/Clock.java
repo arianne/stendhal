@@ -25,7 +25,7 @@ public class Clock extends Sign {
 	
 	/**
 	 * The amount of seconds this clock is wrong.
-	 * [ -MAX_IMPRECISION, MAX_IMPRECISION ]
+	 * [ -MAX_IMPRECISION, MAX_IMPRECISION - 1 ]
 	 */
 	private final int imprecisionSeconds;
 	
@@ -49,9 +49,15 @@ public class Clock extends Sign {
 		int min = cal.get(Calendar.MINUTE);
 		// Round down to nearest multiple of 5
 		min = (min / 5) * 5;
+		int hour = cal.get(Calendar.HOUR);
+		if (min > 30) {
+			// For getting the hour right for the "x to y" versions
+			hour = (hour + 1) % 12;
+		}
+		
 		StringBuilder msg = new StringBuilder("The time is ");
 		msg.append(describeMinute(min));
-		msg.append(describeHour(cal.get(Calendar.HOUR)));
+		msg.append(describeHour(hour));
 		
 		return msg.toString();
 	}
