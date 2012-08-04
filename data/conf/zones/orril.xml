@@ -929,6 +929,11 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
 
 	<zone name="-3_orril_dungeon" level="-3" x="499936" y="500224"
 		file="Level -3/orril/dungeon.tmx">
+		<attributes>
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#808080</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>
 		<configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC" />
         <portal x="146" y="98" ref="house1_entrance">
             <destination zone="int_rat_house1" ref="entrance" />
