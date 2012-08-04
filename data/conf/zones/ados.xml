@@ -3899,9 +3899,6 @@ Southeast: Docks
  
  </zone>
  <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
-    <attributes>
-         <parameter name="blend_method">multiply</parameter>
-    </attributes>
   <portal x="100" y="54" ref="up">
    <destination zone="int_ados_barracks_0" ref="down"/>
   </portal>
