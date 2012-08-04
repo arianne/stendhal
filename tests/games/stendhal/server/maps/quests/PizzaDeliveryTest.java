@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -220,11 +221,30 @@ public class PizzaDeliveryTest {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc1));
 		
+		// test trying to get a pizza order with a slime outfit
+		npc1 = SingletonRepository.getNPCList().get("Leander");
+		en = npc1.getEngine();
+		
+		final Outfit SLIME = new Outfit(null, Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(91));
+		player.setOutfit(SLIME);
+		
+		en.step(player, "hi");
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", getReply(npc1));
+		en.step(player, "pizza");
+		assertEquals("I need someone who helps me delivering pizza. Maybe you could do that #task.", getReply(npc1));
+		en.step(player, "task");
+		assertEquals("Sorry, you can't wear our pizza delivery uniform looking like that. If you get changed, you can ask about the #task again.", getReply(npc1));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc1));
+		
 		
 		// ok, we've already tested getting pizza orders but now we're trying different npcs
 		npc1 = SingletonRepository.getNPCList().get("Leander");
 		en = npc1.getEngine();
 		
+		final Outfit NOTSLIME = new Outfit(null, Integer.valueOf(01), Integer.valueOf(01), Integer.valueOf(01), Integer.valueOf(01));
+		player.setOutfit(NOTSLIME);
+
 		en.step(player, "hi");
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", getReply(npc1));
 		en.step(player, "pizza");

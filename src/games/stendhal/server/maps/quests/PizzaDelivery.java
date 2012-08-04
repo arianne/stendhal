@@ -24,6 +24,11 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OutfitCompatibleWithClothesCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -32,6 +37,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
 
@@ -412,6 +419,7 @@ public class PizzaDelivery extends AbstractQuest {
 	}
 
 	private void startDelivery(final Player player, final EventRaiser npc) {
+
 		final String name = Rand.rand(getAllowedCustomers(player));
 		final CustomerData data = customerDB.get(name);
 
@@ -419,7 +427,7 @@ public class PizzaDelivery extends AbstractQuest {
 		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
 		pizza.setBoundTo(name);
-
+        
 		if (player.equipToInventoryOnly(pizza)) {
     		npc.say("You must bring this "
     			+ data.flavor
@@ -539,12 +547,28 @@ public class PizzaDelivery extends AbstractQuest {
 	private void prepareBaker() {
 		final SpeakerNPC leander = npcs.get("Leander");
 
+		// haven't done the pizza quest before or already delivered the last one, ok to wear pizza outfit
 		leander.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new OutfitCompatibleWithClothesCondition(), new QuestNotActiveCondition(QUEST_SLOT)),
+				ConversationStates.QUEST_OFFERED, 
+				"I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?",
+				null);
+		
+		// haven't done the pizza quest before or already delivered the last one, outfit would be incompatible with pizza outfit
+		leander.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new OutfitCompatibleWithClothesCondition()), new QuestNotActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING, 
+				"Sorry, you can't wear our pizza delivery uniform looking like that. If you get changed, you can ask about the #task again.",
+				null);
+		
+		// pizza quest is active: check if the delivery is too late already or not
+		leander.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES, new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT)) {
 						final String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
 						final String customerName = questData[0];
@@ -566,9 +590,6 @@ public class PizzaDelivery extends AbstractQuest {
 									+ customerName + ", and hurry!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
-					} else {
-						npc.say("I need you to quickly deliver a hot pizza. If you're fast enough, you might get quite a nice tip. So, will you do it?");
-					}
 				}
 			});
 
