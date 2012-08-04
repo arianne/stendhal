@@ -229,37 +229,44 @@
   
     <entity x="43" y="38">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Do you want to sell some shields for a good price? Visit me on the market, I'm always on a run here! - Alexander -</attribute>
+			<attribute name="text">Do you want to sell some shields for a good price? Visit me on the market, I'm always around!
+- Alexander -</attribute>
 	</entity>
 	
 	<entity x="43" y="44">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands. - the market supervisor -</attribute>
+			<attribute name="text">Hello and welcome to #Ados #Market! You can find nice offers here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands.
+- Market Supervisor -</attribute>
 	</entity>
 	
 	<entity x="38" y="44">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands. - the market supervisor -</attribute>
+			<attribute name="text">Hello and welcome to #Ados #Market! You can find nice offers here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands.
+- Market Supervisor -</attribute>
 	</entity>
 	
 	<entity x="38" y="33">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Are you interested in an excellent beverage? Ask me for my offers! - Uncle Dag -</attribute>
+			<attribute name="text">Are you interested in an excellent beverage? Ask me for my offers!
+- Uncle Dag -</attribute>
 	</entity>
 	
 	<entity x="38" y="26">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Can you smell the BBQ already? Visit me in the west of the market and visit me for a talk! - Haunchy Meatoch -</attribute>
+			<attribute name="text">Can you smell the BBQ already? Visit me at the west side of the market!
+- Haunchy Meatoch -</attribute>
 	</entity>
 	
 	<entity x="38" y="11">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Fresh and nicely smelling vegetables available from Ados Farm! Come to the north and visit my market stand! -Adena -</attribute>
+			<attribute name="text">Fresh vegetables available from Ados Farm! Come to the north and visit my market stand! 
+- Adena -</attribute>
 	</entity>
 	
 	<entity x="43" y="17">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Are you hungry? I can cook a lovely fish soup for you. Visit me in the east! - Florence Boullabaisse -</attribute>
+			<attribute name="text">Are you hungry? I can cook a lovely fish soup for you. Visit me at the east side of the market!
+- Florence Boullabaisse -</attribute>
 	</entity>
     
 
@@ -3892,6 +3899,9 @@ Southeast: Docks
  
  </zone>
  <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
+    <attributes>
+         <parameter name="blend_method">multiply</parameter>
+    </attributes>
   <portal x="100" y="54" ref="up">
    <destination zone="int_ados_barracks_0" ref="down"/>
   </portal>
