@@ -234,12 +234,12 @@
 	
 	<entity x="43" y="44">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaise (in the north east) at their market stands. - the market supervisor -</attribute>
+			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands. - the market supervisor -</attribute>
 	</entity>
 	
 	<entity x="38" y="44">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaise (in the north east) at their market stands. - the market supervisor -</attribute>
+			<attribute name="text">Hello and welcome to #Ados #Market! You can find some nice offers on here! Visit #Alexander (walking salesman), #Haunchy #Meatoch (west), #Uncle #Dag (next to the path), #Adena (in the north west) and #Florence #Boullabaisse (in the north east) at their market stands. - the market supervisor -</attribute>
 	</entity>
 	
 	<entity x="38" y="33">
@@ -259,7 +259,7 @@
 	
 	<entity x="43" y="17">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Are you hungry? I can cook a lovely fish soup for you. Visit me in the east! - Florence Boullabaise -</attribute>
+			<attribute name="text">Are you hungry? I can cook a lovely fish soup for you. Visit me in the east! - Florence Boullabaisse -</attribute>
 	</entity>
     
 
