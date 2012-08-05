@@ -1057,6 +1057,12 @@ below average.
 
 	<zone name="-1_nalwor_drows_tunnel_nw" level="-1" x="500128" y="500256"
 		file="Level -1/nalwor/drows_tunnel_nw.tmx">
+		<attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#a6b393</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
 		<portal x="65" y="66" ref="downstairs">
 			<destination zone="-2_nalwor_drows_tunnel_nw" ref="upstairs" />
 		</portal>
@@ -1064,6 +1070,12 @@ below average.
 
 	<zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256"
 		file="Level -1/nalwor/drows_tunnel_n.tmx">
+        <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#a6b393</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>		
 		<configurator class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature" />
 		<configurator class-name="games.stendhal.server.maps.nalwor.tunnel.DrowCreatures" />
 		<portal x="40" y="68" ref="upstairs">
@@ -1077,6 +1089,12 @@ below average.
 
 	<zone name="-1_nalwor_drows_tunnel" level="-1" x="500256" y="500384"
 		file="Level -1/nalwor/drows_tunnel.tmx">
+		<attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#a6b393</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
 	 <entity x="10" y="38">
         	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
                 	<parameter name="width">32</parameter>
