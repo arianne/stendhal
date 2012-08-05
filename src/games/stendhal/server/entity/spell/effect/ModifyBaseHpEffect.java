@@ -4,8 +4,6 @@ import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
-import java.util.Date;
 /**
  * An Effect that temporarily modifies a player's base_hp
  * 

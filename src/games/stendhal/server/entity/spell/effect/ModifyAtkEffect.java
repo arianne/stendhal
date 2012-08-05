@@ -5,7 +5,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Date;
 /**
  * Boost an entity's def
  * 

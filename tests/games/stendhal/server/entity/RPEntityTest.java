@@ -37,7 +37,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import marauroa.common.Log4J;
