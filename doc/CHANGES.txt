@@ -9,9 +9,10 @@
 - reduce Starkad's cost for lower level creatures and increase for higher level
 - ninjas use shurikens for ranged attack
 - more dragons breath fire
-- lamps and lights effects added to ados city n, ados market, by plink, gnome village, catacombs and haunted house
-- zone colouring added to hell, new dreamscape map, maze (randomised), adventure island, afterlife, catacombs, haunted house
+- lamps and lights effects added to ados market, gnome village, catacombs, haunted house, amazon island and more
+- zone colouring added to hell, new dreamscape map, maze (randomised), adventure island, afterlife, drow tunnels, rat city
 - semos temple and tavern upstairs maps reworked
+- new npc food seller and signs for ados market
 
 *client*
 - fancy tutorial speech bubbles
