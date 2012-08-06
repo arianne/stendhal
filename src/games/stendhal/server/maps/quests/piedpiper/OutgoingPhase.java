@@ -28,8 +28,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import marauroa.common.Pair;
-
 public class OutgoingPhase extends TPPQuest {
 	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
 	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();	
