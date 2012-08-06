@@ -3879,7 +3879,12 @@ Southeast: Docks
   </portal>
  </zone>
  <zone name="-1_ados_wall_n" level="-1" x="500768" y="499872" file="Level -1/ados/wall_n.tmx">
- 
+        <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#afd4a9</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
         <entity x="1" y="1">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
                 <parameter name="sound">sewers</parameter>
@@ -3889,7 +3894,12 @@ Southeast: Docks
  
  </zone>
  <zone name="-1_ados_city_n" level="-1" x="500896" y="499872" file="Level -1/ados/city_n.tmx">
- 
+        <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#afd4a9</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
         <entity x="1" y="1">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
                 <parameter name="sound">sewers</parameter>
@@ -3899,6 +3909,12 @@ Southeast: Docks
  
  </zone>
  <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
+       <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#afd4a9</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
   <portal x="100" y="54" ref="up">
    <destination zone="int_ados_barracks_0" ref="down"/>
   </portal>
@@ -3912,6 +3928,12 @@ Southeast: Docks
 
  </zone> 
  <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
+        <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#afd4a9</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
  <portal x="20" y="25" ref="crawlyspaceup">
    <destination zone="int_ados_castle_dungeons" ref="crawlyspacedown"/>
   </portal>
@@ -3934,7 +3956,12 @@ Southeast: Docks
  </zone> -->
 
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
- 
+         <attributes>
+        <!-- dingy green -->
+          <parameter name="color_method">multiply</parameter>
+          <parameter name="color">#afd4a9</parameter>
+          <parameter name="blend_method">bleach</parameter>
+        </attributes>   
         <entity x="1" y="1">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
                 <parameter name="sound">sewers</parameter>
