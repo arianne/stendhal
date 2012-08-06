@@ -75,7 +75,7 @@ public class Clock extends Sign {
 		case 15: return "quarter past ";
 		case 20: return "twenty past ";
 		case 25: return "twenty five past ";
-		case 30: return "half ";
+		case 30: return "half past ";
 		case 35: return "twenty five to ";
 		case 40: return "twenty to ";
 		case 45: return "quarter to ";
