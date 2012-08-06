@@ -155,7 +155,7 @@ public class StendhalQuestSystem {
 		loadQuest(new SuntanCreamForZara());
 		loadQuest(new SuppliesForPhalk());
 		loadQuest(new TakeGoldforGrafindle());
-		loadQuest(new ThePiedPiper());
+//		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
 		loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
