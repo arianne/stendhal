@@ -49,8 +49,8 @@ public class OldFishermanNPC implements ZoneConfigurator {
                 nodes.add(new Node(58, 76)); 
                 nodes.add(new Node(58, 80)); 
                 nodes.add(new Node(61, 80));
-                nodes.add(new Node(61, 84));
-                nodes.add(new Node(71, 84));
+                nodes.add(new Node(61, 81));
+                nodes.add(new Node(71, 81));
                 nodes.add(new Node(71, 78));
                 nodes.add(new Node(72, 78));
                 nodes.add(new Node(72, 75));
