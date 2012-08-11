@@ -63,8 +63,8 @@ public class SoldierNPC implements ZoneConfigurator {
 				addReply("map", "Caption\n"
 					+ "1 Bank,   2 Goldsmith,   3 Bakery,   4 Haunted House,\n"
 					+ "5 Castle,   6 Felina's House,   7 Barracks \n"
-					+ "8 Library,   9 Sewing Rooms, ida \n"
-					+ "10 Meat and Fish Huts,   11 Town Hall,   12 Bar",
+					+ "8 Bar,   9 Sewing Rooms, ida \n"
+					+ "10 Meat and Fish Huts,   11 Town Hall,   12 Library",
 					new ExamineChatAction("map-ados-city.png", "Ados City", "Map of Ados City"));
 				addJob("I guard Ados against attacks, and #help visitors.");
 				addHelp("If you need a #map to guide you around Ados, just ask.");
