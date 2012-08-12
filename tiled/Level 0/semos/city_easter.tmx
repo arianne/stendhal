@@ -224,7 +224,7 @@
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aQQ6DIBCFYTXxBr2BO1feoYfoIXr/fRfVhBJBqAww8Dd5IbXWzDcIC9tpGIYpYZY9Ka+ZqqYcdeHHj7+8GT9+/Pjx48fvrmsRSuq6perK7V8v3rfirzU511otNePHn8sv0Qf832zWaMf1eSv+Wuf/acTnHx2R2DNie2m+Nms8O3Z8b92PmaNGv8R9+69fci1q8rvOD01t/th7NLd/Dox0r2r3zxfXwY+/db+vBy5PqvOP3oSc16o/JvjxS11b2v8KiKQ/Zt9vcf61+d9GWvH7fiOwc/YMSLv/bjTvfy34Y6PB/xh/x978vc8/fjk/IbmSYz3cXUel68CPH385v/Z9DH/anthjb37T3Jvf1Y/SdZT204PydeDHjz9dYv+HU7pe/Pr8H14iHLgAQAAA
+   H4sIAAAAAAAAC+3aQQ6CMBAFUCDhBt6AHSvu4CE8hPffuxCS2nRKRzrDdPpNfhoR6ryW1kSdhmGYKmbZU7PPWjVp1AU//PDfb4Yffvjhhx9++Om6FqHUrluqLm3/evLci99qNNealZrhh1/LLzEO8H+zRW0c6nUvfqvz/wyS849EJPYM7liGjy1qU8eO69b9WNi26Je4b//1S67FlvzU+aWx5ufeo9r+uTDSY2XdP5/0Az/83v25MaA8tc4/xqbkPK9+TuCHX6pvaf+rIJJ+zr7vcf5b87+DePHnfiOIk/oOqHX/1bS8/3nwc9OC/zH+tr35e59/L/6rtSKI93DWicS61dizcjWErfZ7ww9/737tfQd+G/6Senr0pz6Xe/FT49G7X6o+637pewB++OG/x8/9Hw788HPzAcvmlp0AQAAA
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
