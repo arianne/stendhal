@@ -628,7 +628,7 @@ public abstract class Entity extends RPObject {
 	 * @param height
 	 *            The height (in world units).
 	 */
-	public final void setSize(final int width, final int height) {
+	public void setSize(final int width, final int height) {
 		this.area.width = width;
 		put("width", width);
 
