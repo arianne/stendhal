@@ -351,11 +351,22 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
             <attribute name="text">Formal arrangement of bulbs and foxgloves surrounding a special golden tree. These rare trees are sometimes believed to have mystical significance due to their striking golden colour.</attribute>
      </entity>
-     <entity x="4" y="110">
+     <entity x="48" y="110">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
             <attribute name="text">A locust tree of unknown origin. Believed to be grown from a cutting collected on an exploratory survey of distant mountains, but the records for this have been lost.</attribute>
      </entity>
-              
+     <entity x="62" y="110">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This formal garden is a smaller version of the formal garden in Kalavan's famous city gardens. The city gardener, Sue, curated this piece for Ados Botanical Gardens.</attribute>
+     </entity> 
+     <entity x="56" y="112">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Greenhouses are used to provide a warmer environment for plants and allow a greater control of their growth. The greenhouse is currently closed to visitors.</attribute>
+     </entity> 
+     <entity x="51" y="114">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This area is designed to promote quiet meditation. The flowers used outside the gazebo have a calming smell, and standing inside the gazebo you can appreciate a moment of peace.</attribute>
+     </entity>                  
      <entity x="85" y="14">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
                 <parameter name="sound">water-2, wave-11</parameter>
