@@ -269,8 +269,94 @@
 - Florence Boullabaisse -</attribute>
 	</entity>
     
-
-        <entity x="85" y="14">
+    <!-- Botanical Garden Signs -->
+    
+     <entity x="47" y="82">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity>
+     <entity x="48" y="82">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity>        
+     <entity x="49" y="82">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity>
+     <entity x="47" y="83">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity>
+     <entity x="48" y="83">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity>        
+     <entity x="49" y="83">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Welcome to Ados Botanical Gardens</attribute>
+            <attribute name="class">transparent</attribute>
+            <attribute name="resistance">0</attribute>
+     </entity> 
+     
+     
+     <entity x="56" y="86">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This chestnut tree originally grew near Semos, and is over 100 years old.</attribute>
+     </entity>
+     
+     <entity x="66" y="84">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Sign about the flowers here (check what kind they might be)</attribute>
+     </entity> 
+            
+     <entity x="57" y="90">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This area showcases plants from around Faiumoni, some of which would not grow naturally near Ados, and need special care.</attribute>
+     </entity>
+      <entity x="60" y="94">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Palm trees and banana trees are native to Athor Island. The pineapple plants are a specimen collected from an unknown island on an exploratory boat trip.</attribute>
+     </entity>
+     <entity x="52" y="95">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Typical bushes and shrubs which grow commonly on the mainland, including some native to Ados and Semos.</attribute>
+     </entity>                  
+     <entity x="61" y="97">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This pink bush was grown from a seedling collected near Fado Forest many years ago. The original plant was believed to have magical powers, but is not found today. This could be the last specimen.</attribute>
+     </entity>
+     <entity x="64" y="92">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">This tree is thought to be a descendant from the tree which famously helped Nuetonn work out his theory of gravity.</attribute>
+     </entity>    
+     <entity x="68" y="94">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">An experiment to grow a garden with minimal watering. Water could become a scarce resource if not managed carefully. These plants can survive in dry conditions.</attribute>
+     </entity>   
+     <entity x="47" y="95">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Orchard trees such as those found near Semos. The pear tree is very rare, and this one does not bear fruit.</attribute>
+     </entity>
+     <entity x="52" y="100">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">Formal arrangement of bulbs and foxgloves surrounding a special golden tree. These rare trees are sometimes believed to have mystical significance due to their striking golden colour.</attribute>
+     </entity>
+     <entity x="4" y="110">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+            <attribute name="text">A locust tree of unknown origin. Believed to be grown from a cutting collected on an exploratory survey of distant mountains, but the records for this have been lost.</attribute>
+     </entity>
+              
+     <entity x="85" y="14">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
                 <parameter name="sound">water-2, wave-11</parameter>
                 <parameter name="min">1</parameter>
