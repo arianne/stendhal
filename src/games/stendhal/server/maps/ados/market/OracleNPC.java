@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.maps.ados.wall;
+package games.stendhal.server.maps.ados.market;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
@@ -76,20 +76,44 @@ public class OracleNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				// temporary path just copied from the semos oracle npc - should be updated when calla has a nice garden
-				nodes.add(new Node(2, 29));
-				nodes.add(new Node(2, 31));
-				nodes.add(new Node(9, 31));
-				nodes.add(new Node(9, 32));
-				nodes.add(new Node(5, 32));
-				nodes.add(new Node(5, 33));
-				nodes.add(new Node(3, 33));
-				nodes.add(new Node(3, 32));
-				nodes.add(new Node(2, 32));
+				nodes.add(new Node(62, 86));
+				nodes.add(new Node(62, 87));
+				nodes.add(new Node(64, 87));
+				nodes.add(new Node(64, 88));
+				nodes.add(new Node(66, 88));
+				nodes.add(new Node(66, 89));
+				nodes.add(new Node(67, 89));
+				nodes.add(new Node(67, 92));
+				nodes.add(new Node(66, 92));
+				nodes.add(new Node(66, 95));
+				nodes.add(new Node(64, 95));
+				nodes.add(new Node(64, 97));
+				nodes.add(new Node(63, 97));
+				nodes.add(new Node(63, 99));
+				nodes.add(new Node(56, 99));
+				nodes.add(new Node(56, 101));
+				nodes.add(new Node(52, 101));
+				nodes.add(new Node(52, 100));
+				nodes.add(new Node(51, 100));
+				nodes.add(new Node(51, 99));
+				nodes.add(new Node(50, 99));
+				nodes.add(new Node(50, 98));
+				nodes.add(new Node(49, 98));
+				nodes.add(new Node(49, 96));
+				nodes.add(new Node(50, 96));
+				nodes.add(new Node(50, 91));
+				nodes.add(new Node(54, 91));
+				nodes.add(new Node(54, 90));
+				nodes.add(new Node(56, 90));
+				nodes.add(new Node(56, 88));
+				nodes.add(new Node(58, 88));
+				nodes.add(new Node(58, 87));		
+				nodes.add(new Node(60, 87));
+				nodes.add(new Node(60, 86));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-		npc.setPosition(2, 29);
+		npc.setPosition(62, 86);
 		npc.setDescription("You see Calla. She smells faintly of lilies.");
 		npc.setEntityClass("oracle2npc");
 		zone.add(npc);

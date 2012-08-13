@@ -114,6 +114,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.OldFishermanNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.market.OracleNPC"/>
     
     <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -347,7 +348,7 @@
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
             <attribute name="text">Orchard trees such as those found near Semos. The pear tree is very rare, and this one does not bear fruit.</attribute>
      </entity>
-     <entity x="52" y="100">
+     <entity x="45" y="99">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
             <attribute name="text">Formal arrangement of bulbs and foxgloves surrounding a special golden tree. These rare trees are sometimes believed to have mystical significance due to their striking golden colour.</attribute>
      </entity>
@@ -3188,7 +3189,6 @@ Southeast: Docks
 		</attributes>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingManNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.wall.HolidayingBoyNPC"/>
-    <configurator class-name="games.stendhal.server.maps.ados.wall.OracleNPC"/>
     	<!-- table at Holiday House -->
     <entity x="109" y="74">
 			<implementation
