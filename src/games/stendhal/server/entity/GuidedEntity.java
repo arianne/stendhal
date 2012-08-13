@@ -64,6 +64,15 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return this.baseSpeed;
 	}
 	
+	/**
+	 * Set the normal movement speed.
+	 *
+	 * @param bs - New normal speed for moving.
+	 */
+	public final void setBaseSpeed(final double bs) {
+		this.baseSpeed = bs;
+	}
+	
 	//
 	// GuidedEntity
 	//
