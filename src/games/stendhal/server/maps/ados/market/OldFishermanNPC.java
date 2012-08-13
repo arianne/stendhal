@@ -46,16 +46,14 @@ public class OldFishermanNPC implements ZoneConfigurator {
                 nodes.add(new Node(62, 77));
                 nodes.add(new Node(61, 77));  
                 nodes.add(new Node(61, 76));
-                nodes.add(new Node(58, 76)); 
-                nodes.add(new Node(58, 80)); 
-                nodes.add(new Node(61, 80));
-                nodes.add(new Node(61, 81));
-                nodes.add(new Node(71, 81));
-                nodes.add(new Node(71, 78));
-                nodes.add(new Node(72, 78));
-                nodes.add(new Node(72, 75));
-                nodes.add(new Node(69, 75));
-                nodes.add(new Node(69, 79));
+                nodes.add(new Node(55, 76)); 
+                nodes.add(new Node(55, 74));
+                nodes.add(new Node(58, 74));
+                nodes.add(new Node(58, 73)); 
+                nodes.add(new Node(60, 73));
+                nodes.add(new Node(60, 77));
+                nodes.add(new Node(62, 77));
+				nodes.add(new Node(62, 79));
                	setPath(new FixedPath(nodes, true));
 
 			}
