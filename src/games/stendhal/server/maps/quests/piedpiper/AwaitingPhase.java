@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.GoToPosition;
 import games.stendhal.server.core.pathfinder.RPZonePath;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -165,8 +166,9 @@ public class AwaitingPhase extends TPPQuest {
 		Observer o = new MultiZonesFixedPath(piedpiper, fullpathin, 
 						new NPCFollowing(mainNPC, piedpiper,
 							new NPCChatting(piedpiper, mainNPC, conversations, explainations,
-								new MultiZonesFixedPath(piedpiper, fullpathout, 
-									new PhaseSwitcher(this)))));
+								new GoToPosition(piedpiper, PathesBuildHelper.getAwaitingPhaseMiddlePoint(),
+									new MultiZonesFixedPath(piedpiper, fullpathout, 
+										new PhaseSwitcher(this))))));
 		o.update(null, null);
 	}
 	

@@ -211,24 +211,31 @@ public class PathesBuildHelper {
 		fullPath.add(
 				new RPZonePath("int_ados_town_hall",
 				new LinkedList<Node>(localroute)));
-		
+		/*
 		// city central
 		localroute.clear();
 		localroute.add(new Node(42,94));	
 		fullPath.add(
 				new RPZonePath("0_ados_city",
 				new LinkedList<Node>(localroute)));
-		
+		 */
 		return fullPath;
-	}		
-
+	}
+	
+	/**
+	 * it is a point where piper should go after speaking with mayor.
+	 * @return - return point where pied piper can go through his multi zones path.
+	 */
+	public static Node getAwaitingPhaseMiddlePoint() {
+		return new Node(26,14);
+	}
 	
 	/**
 	 * route for pied piper outgoing event
 	 * @return - outgoing path
 	 */
 	public static List<List<RPZonePath>> getOutgoingPhasePathes() {
-		final LinkedList<List<RPZonePath>> fullPath = 
+		final List<List<RPZonePath>> fullPath = 
 			new LinkedList<List<RPZonePath>>();
 		
 		final List<Node> localroute = new LinkedList<Node>();
@@ -239,49 +246,53 @@ public class PathesBuildHelper {
 		 */
 		localroute.clear();
 		localroute.add(new Node(42,94));
-		
-		globalroute.clear();
-		globalroute.add(
-				new RPZonePath("0_ados_city", 
-				new LinkedList<Node>(localroute)));
-		fullPath.add(globalroute);
-		
-		/*
-		 * 1st creature
-		 */
-		localroute.clear();
 		localroute.add(new Node(42,97));
 		
 		globalroute.clear();
 		globalroute.add(
 				new RPZonePath("0_ados_city", 
 				new LinkedList<Node>(localroute)));
-		fullPath.add(globalroute);
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));
+		
+		/*
+		 * 1st creature
+		 */
+		localroute.clear();
+		localroute.add(new Node(42,97));
+		localroute.add(new Node(42,116));
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));
 		
 		/*
 		 * Susi's house
 		 */
 		localroute.clear();
 		localroute.add(new Node(42,116));
-		localroute.add(new Node(34,116));		
-		
-		globalroute.clear();
-		globalroute.add(
-				new RPZonePath("0_ados_city", 
-				new LinkedList<Node>(localroute)));
-		fullPath.add(globalroute);
-		
-		/*
-		 * next house from Susi
-		 */
-		localroute.clear();
+		localroute.add(new Node(34,116));
 		localroute.add(new Node(22,116));
 		
 		globalroute.clear();
 		globalroute.add(
 				new RPZonePath("0_ados_city", 
 				new LinkedList<Node>(localroute)));
-		fullPath.add(globalroute);
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));
+		
+		/*
+		 * next house from Susi
+		 */
+		localroute.clear();
+		localroute.add(new Node(22,116));
+		localroute.add(new Node(22,127));
+		
+		globalroute.clear();
+		globalroute.add(
+				new RPZonePath("0_ados_city", 
+				new LinkedList<Node>(localroute)));
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));
 		
 		/*
 		 * left house in houses group at southleft part of ados
@@ -304,7 +315,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);		
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));		
 		
 		/*
 		 * middle house in houses group at southleft part of ados
@@ -315,7 +326,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * right house in houses group at southleft part of ados
@@ -326,7 +337,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);						
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));						
 		
 		/*
 		 * upperleft house in houses group at south part of ados
@@ -338,7 +349,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * bottomleft house in houses group at south part of ados
@@ -349,7 +360,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * bottomright house in houses group at south part of ados
@@ -362,7 +373,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * separate house in houses group at south part of ados
@@ -374,7 +385,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);					
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));					
 		
 		/*
 		 * upperright house in houses group at south part of ados
@@ -392,7 +403,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * ados church
@@ -405,7 +416,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_city_s", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * long house
@@ -429,7 +440,7 @@ public class PathesBuildHelper {
 				new RPZonePath("0_ados_city", 
 				new LinkedList<Node>(localroute)));		
 		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * ados house 77
@@ -442,7 +453,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_wall", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * ados house 76
@@ -453,7 +464,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_wall", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		/*
 		 * ados house 75
@@ -464,7 +475,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_wall", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);			
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));			
 		
 		
 		/*
@@ -478,7 +489,7 @@ public class PathesBuildHelper {
 		globalroute.add(
 				new RPZonePath("0_ados_wall", 
 				new LinkedList<Node>(localroute)));		
-		fullPath.add(globalroute);	
+		fullPath.add(new LinkedList<RPZonePath>(globalroute));	
 		
 		
 		return fullPath;		
