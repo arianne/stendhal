@@ -141,8 +141,8 @@ public class AwaitingPhase extends TPPQuest {
 	 */
 	private void createPiedPiper() {
 		TPPQuestHelperFunctions.setupPiper(piedpiper);
-		fullpathin = PathesBuildHelper.getAwaitingPhasePathIn();
-		fullpathout = PathesBuildHelper.getAwaitingPhasePathOut();
+		fullpathin = PathsBuildHelper.getAwaitingPhasePathIn();
+		fullpathout = PathsBuildHelper.getAwaitingPhasePathOut();
 		leadNPC();
 	}
 	
@@ -166,7 +166,7 @@ public class AwaitingPhase extends TPPQuest {
 		Observer o = new MultiZonesFixedPath(piedpiper, fullpathin, 
 						new NPCFollowing(mainNPC, piedpiper,
 							new NPCChatting(piedpiper, mainNPC, conversations, explainations,
-								new GoToPosition(piedpiper, PathesBuildHelper.getAwaitingPhaseMiddlePoint(),
+								new GoToPosition(piedpiper, PathsBuildHelper.getAwaitingPhaseMiddlePoint(),
 									new MultiZonesFixedPath(piedpiper, fullpathout, 
 										new PhaseSwitcher(this))))));
 		o.update(null, null);

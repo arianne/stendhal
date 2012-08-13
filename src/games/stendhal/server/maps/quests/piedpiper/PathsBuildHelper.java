@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class PathesBuildHelper {
+public class PathsBuildHelper {
 
 	/**
 	 * route for pied piper incoming

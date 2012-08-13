@@ -191,7 +191,7 @@ public class OutgoingPhase extends TPPQuest {
 							ConversationStates.IDLE, 
 							"hello", 
 							null);
-		fullpath = PathesBuildHelper.getOutgoingPhasePathes();
+		fullpath = PathsBuildHelper.getOutgoingPhasePathes();
 		leadNPC();
 	}
 	
