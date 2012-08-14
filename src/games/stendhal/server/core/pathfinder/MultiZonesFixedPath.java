@@ -66,7 +66,10 @@ public class MultiZonesFixedPath implements Observer {
 		int y= route.get(count).get().second().get(0).getY();
 		ent.setPosition(x, y);
 		zone = route.get(count).get().first();
-		ent.setPath(new FixedPath(route.get(count).get().second(), false));	
+		ent.setPath(new FixedPath(route.get(count).get().second(), false));
+		if(ent.getZone()!=null) {
+			ent.getZone().remove(ent);
+		};
 		zone.add(ent);
 	}
 	
