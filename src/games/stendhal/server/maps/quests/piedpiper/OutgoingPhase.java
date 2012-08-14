@@ -13,13 +13,10 @@
 package games.stendhal.server.maps.quests.piedpiper;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.MultiZonesFixedPath;
+import games.stendhal.server.core.pathfinder.MultiZonesFixedPathsList;
 import games.stendhal.server.core.pathfinder.RPZonePath;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -36,6 +33,9 @@ public class OutgoingPhase extends TPPQuest {
 	private List<List<RPZonePath>> fullpath = 
 		new LinkedList<List<RPZonePath>>();
 	
+	/**
+	 * adding quest related npc's fsm states
+	 */
 	private void addConversations() {
 		TPP_Phase myphase = OUTGOING;
 				
@@ -59,18 +59,17 @@ public class OutgoingPhase extends TPPQuest {
 				null, 
 				new DetailsKillingsAction());
 		
-		// Player asked about reward
+		// Player asking about reward
 		mainNPC.add(
 				ConversationStates.ATTENDING, 
 				"reward", 
 				new TPPQuestInPhaseCondition(myphase),
 				ConversationStates.ATTENDING, 
 				null, 
-				new RewardPlayerAction());		
-		
-
+				new RewardPlayerAction());				
 	}
 
+	
 	/**
 	 * constructor
 	 * @param timings 
@@ -78,8 +77,8 @@ public class OutgoingPhase extends TPPQuest {
 	 */
 	public OutgoingPhase(final Map<String, Integer> timings) {
 		super(timings);
-		minPhaseChangeTime = timings.get(AWAITING_TIME_MIN);
-		maxPhaseChangeTime = timings.get(AWAITING_TIME_MAX);
+		minPhaseChangeTime = timings.get(OUTGOING_TIME_MIN);
+		maxPhaseChangeTime = timings.get(OUTGOING_TIME_MAX);
 		addConversations();
 	}
 
@@ -87,28 +86,8 @@ public class OutgoingPhase extends TPPQuest {
 		createPiedPiper();
 	}
 	
-	/**
-	 * class for creating complete route of npc
-	 * across his world's path
-	 */
-	class MultiZonesFixedPathList implements Observer {
-
-		/**
-		 * 
-		 */
-		public void update(Observable arg0, Object arg1) {
-			
-		}		
-		
-		/**
-		 * constructor
-		 * @param pathes - list of all routes of npc across the world
-		 * @param o - observer for notifying about each route's over.
-		 */
-		public MultiZonesFixedPathList(final List<MultiZonesFixedPath> pathes, Observer o) {
-			
-		}
-		
+	public void SummonRat() {
+		logger.debug("rat summoned");		
 	}
 	
 	/**
@@ -118,8 +97,26 @@ public class OutgoingPhase extends TPPQuest {
 	class AttractRat implements Observer {
 
 		public void update(Observable arg0, Object arg1) {
-          
+			SummonRat();
+		}
+		
+	}
+	
+	/**
+	 * class for processing rats' outgoing to catacombs
+	 */
+	class RoadsEnd implements Observer {
+
+		final Observer o;
+		
+		public void update(Observable arg0, Object arg1) {
+			logger.debug("road's end.");
+			o.update(null, null);
 			
+		}
+		
+		public RoadsEnd(Observer o) {
+			this.o = o;
 		}
 		
 	}
@@ -128,15 +125,18 @@ public class OutgoingPhase extends TPPQuest {
 	 * prepare NPC to walk through his multizone path.
 	 */
 	private void leadNPC() {
-		final StendhalRPZone zone = fullpath.get(0).get(0).getZone();
+		final StendhalRPZone zone = fullpath.get(0).get(0).get().first();
 		final int x=fullpath.get(0).get(0).getPath().get(0).getX();
 		final int y=fullpath.get(0).get(0).getPath().get(0).getY();
 		piedpiper.setPosition(x, y);
-		piedpiper.pathnotifier.setObserver(
-				new MultiZonesFixedPath(piedpiper, fullpath.get(0), 
-						new AttractRat()));
-		piedpiper.setPath(new FixedPath(fullpath.get(0).get(0).getPath(), false));
 		zone.add(piedpiper);
+		Observer o = new MultiZonesFixedPathsList(
+						piedpiper, 
+						fullpath,
+						new AttractRat(), 
+						new RoadsEnd(
+								new PhaseSwitcher(this)));
+		o.update(null, null);
 	}
 	
 	public int getMinTimeOut() {
