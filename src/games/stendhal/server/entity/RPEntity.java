@@ -216,6 +216,7 @@ public abstract class RPEntity extends GuidedEntity {
 			// TODO: check that the binary representation of old saved players is compatible when this is changed into a list.
 			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
+			entity.addAttribute("base_speed", Type.FLOAT, Definition.HIDDEN);
 
 			entity.addRPSlot("head", 1, Definition.PRIVATE);
 			entity.addRPSlot("rhand", 1, Definition.PRIVATE);
@@ -465,6 +466,9 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 		if (has("base_mana")) {
 			base_mana = getInt("base_mana");
+		}
+		if (has("base_speed")) {
+			setBaseSpeed(getDouble("base_speed"));
 		}
 	}
 
