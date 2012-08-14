@@ -181,17 +181,8 @@ public class OutgoingPhase extends TPPQuest {
 	 * function for creating pied piper npc
 	 */
 	private void createPiedPiper() {
-		piedpiper.setEntityClass("holidaymakernpc");
-		piedpiper.initHP(1000);
-		piedpiper.setResistance(0);
-		piedpiper.setVisibility(100);
-		piedpiper.add(ConversationStates.IDLE, 
-							ConversationPhrases.GREETING_MESSAGES, 
-							new GreetingMatchesNameCondition(piedpiper.getName()), true, 
-							ConversationStates.IDLE, 
-							"hello", 
-							null);
-		fullpath = PathsBuildHelper.getOutgoingPhasePathes();
+		TPPQuestHelperFunctions.setupPiper(piedpiper);
+		fullpath = PathsBuildHelper.getAdosCollectingRatsPaths();
 		leadNPC();
 	}
 	
