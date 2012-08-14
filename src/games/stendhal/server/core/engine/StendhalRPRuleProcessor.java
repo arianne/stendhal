@@ -540,6 +540,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public synchronized boolean onExit(final RPObject object) {
+		return onLogout(object, "logout");
+	}
+
+	private boolean onLogout(final RPObject object, String reason) {
 		if (object instanceof Player) {
 			try {
 				final Player player = (Player) object;
@@ -561,8 +565,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				DBCommand command = new SetOnlineStatusCommand(player.getName(), false);
 				DBCommandQueue.get().enqueue(command);
 
-				String[] params = {};
-				new GameEvent(player.getName(), "logout", params).raise();
+				new GameEvent(player.getName(), "logout", reason).raise();
 				logger.debug("removed player " + player);
 
 				return true;
@@ -577,7 +580,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public synchronized void onTimeout(final RPObject object) {
-		onExit(object);
+		onLogout(object, "timeout");
 	}
 
 	public AccountResult createAccount(final String username, final String password, final String email) {
