@@ -63,4 +63,15 @@ public class NoLoginAreaBehaviour implements LoginListener, AreaBehaviour {
 		}
 	}
 
+	/**
+	 * sets the target position to which players are moved
+	 *
+	 * @param x x-coordinate
+	 * @param y y-coordiante
+	 */
+	public void setTargetPosition(int x, int y) {
+		this.newX = x;
+		this.newY = y;
+	}
+
 }
