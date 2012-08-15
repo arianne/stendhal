@@ -9,18 +9,25 @@ package games.stendhal.server.entity.mapstuff.area;
 //
 //
 
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import marauroa.common.game.RPClass;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
 
 /**
  * A base area entity.
  */
-public abstract class AreaEntity extends Entity {
+public class AreaEntity extends Entity {
+
 	/**
 	 * The name attribute name.
 	 */
 	protected static final String ATTR_NAME = "name";
+	private List<AreaBehaviour> behaviours = new LinkedList<AreaBehaviour>();
 
 	/**
 	 * Creates a one by one area entity.
@@ -28,6 +35,7 @@ public abstract class AreaEntity extends Entity {
 	public AreaEntity() {
 		this(1, 1);
 	}
+
 	/**
 	 * Create an area entity.
 	 * 
@@ -135,4 +143,30 @@ public abstract class AreaEntity extends Entity {
 			return super.getTitle();
 		}
 	}
+
+	/**
+	 * adds a Behaviour to this area
+	 *
+	 * @param behaviour behaviour to add
+	 */
+	public void addBehaviour(AreaBehaviour behaviour) {
+		this.behaviours.add(behaviour);
+	}
+
+	@Override
+	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
+		for (AreaBehaviour behaviour : behaviours ) {
+			behaviour.addToWorld(this);
+		}
+	}
+
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		for (AreaBehaviour behaviour : behaviours) {
+			behaviour.removeFromWorld();
+		}
+		super.onRemoved(zone);
+	}
+
 }
