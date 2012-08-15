@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                (C) Copyright 2003-2012 - Faiumoni e. V.                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -102,8 +101,11 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
 	 */
-	public NoLoginArea create(final ConfigurableFactoryContext ctx) {
-		return new NoLoginArea(getWidth(ctx), getHeight(ctx), getNewX(ctx),
-				getNewY(ctx), getMessage(ctx));
+	public AreaEntity create(final ConfigurableFactoryContext ctx) {
+		AreaEntity area = new AreaEntity(getWidth(ctx), getHeight(ctx));
+		NoLoginAreaBehaviour noLoginAreaBehaviour = new NoLoginAreaBehaviour(getNewX(ctx), getNewY(ctx), getMessage(ctx));
+		area.addBehaviour(noLoginAreaBehaviour);
+		area.addBehaviour(new HideAreaBehaviour());
+		return area;
 	}
 }
