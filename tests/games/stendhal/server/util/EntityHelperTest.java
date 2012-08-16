@@ -120,7 +120,7 @@ public class EntityHelperTest {
 		player.getSlot("bag").add(rpo1);
 		action.put(BASESLOT, "bag");
 		action.put(BASEOBJECT, player.getID().getObjectID());
-		action.put(BASEITEM, 1);
+		action.put(BASEITEM, rpo1.getID().getObjectID());
 		assertThat(EntityHelper.entityFromSlot(player, action), is(rpo1));
 	}
 

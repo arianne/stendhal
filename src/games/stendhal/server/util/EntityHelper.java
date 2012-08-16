@@ -192,11 +192,6 @@ public class EntityHelper {
 				}
 			}
 
-			// no item found... we take the first one
-			if (object == null) {
-				object = slot.iterator().next();
-			}
-
 			// It is always an entity
 			return (Entity) object;
 		}
