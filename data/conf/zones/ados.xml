@@ -342,7 +342,7 @@
      </entity>    
      <entity x="68" y="94">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-            <attribute name="text">An experiment to grow a garden with minimal watering. Water could become a scarce resource if not managed carefully. These plants can survive in dry conditions.</attribute>
+            <attribute name="text">An experiment to grow a garden with minimal watering. Clean water could become a scarce resource if not managed carefully. These plants can survive in dry conditions.</attribute>
      </entity>   
      <entity x="47" y="95">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
