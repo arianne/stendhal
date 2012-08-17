@@ -20,7 +20,6 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.CircumstancesOfDeath;
 import games.stendhal.server.entity.creature.Creature;
@@ -118,7 +117,6 @@ public class InvasionPhase extends TPPQuest {
 	 */
 	private void summonRats() {
 
-		final EntityManager manager = SingletonRepository.getEntityManager();
 		final RatsObserver ratsObserver = new RatsObserver();
 
 		// generating rats in zones
@@ -132,13 +130,7 @@ public class InvasionPhase extends TPPQuest {
 			for(int i=0 ; i<ratsCount; i++) {
 				final int x=Rand.rand(zone.getWidth());
 				final int y=Rand.rand(zone.getHeight());
-				// Gaussian distribution
-				int tc=Rand.randGaussian(0,RAT_TYPES.size());
-				if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
-					tc=0;
-				}
-				// checking if EntityManager knows about this creature type.
-				final Creature tempCreature = new Creature((Creature) manager.getEntity(RAT_TYPES.get(tc)));
+				final Creature tempCreature = TPPQuestHelperFunctions.getRandomRat();
 				final Creature rat = new Creature(tempCreature.getNewInstance());
 
 				// chosen place is occupied
@@ -162,7 +154,7 @@ public class InvasionPhase extends TPPQuest {
 				rat.registerObjectsForNotification(ratsObserver);
 				/* -- commented because of these noises reflects on all archrats in game -- */
 				// add unique noises to humanoids
-				if (tc==RAT_TYPES.indexOf("archrat")) {
+				if (tempCreature.getName().equals("archrat")) {
 					final LinkedList<String> ll = new LinkedList<String>(
 							Arrays.asList("We will capture Ados!",
 							"Our revenge will awesome!"));

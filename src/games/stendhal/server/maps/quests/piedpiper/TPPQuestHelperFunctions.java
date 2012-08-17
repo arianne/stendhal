@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.piedpiper;
 
 import java.util.LinkedList;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -76,6 +77,22 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 							ConversationStates.IDLE, 
 							"hello", 
 							null);
+		piedpiper.addEmotionReply("hugs", "smile to");
+	}
+	
+	/**
+	 * return random rat from allowed list
+	 * @return
+	 */
+	public static Creature getRandomRat() {
+		// Gaussian distribution
+		int tc=Rand.randGaussian(0,RAT_TYPES.size());
+		if ((tc>(RAT_TYPES.size()-1)) || (tc<0)) {
+			tc=0;
+		}
+		final Creature tempCreature = 
+			new Creature((Creature) SingletonRepository.getEntityManager().getEntity(RAT_TYPES.get(tc)));
+		return tempCreature;		
 	}
 }
 

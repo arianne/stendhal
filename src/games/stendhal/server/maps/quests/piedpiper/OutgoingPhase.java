@@ -15,6 +15,8 @@ package games.stendhal.server.maps.quests.piedpiper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.MultiZonesFixedPathsList;
 import games.stendhal.server.core.pathfinder.RPZonePath;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.npc.ActorNPC;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -32,6 +34,7 @@ public class OutgoingPhase extends TPPQuest {
 	private int maxPhaseChangeTime;
 	private List<List<RPZonePath>> fullpath = 
 		new LinkedList<List<RPZonePath>>();
+	private LinkedList<Creature> rats;
 	
 	/**
 	 * adding quest related npc's fsm states
@@ -80,14 +83,33 @@ public class OutgoingPhase extends TPPQuest {
 		minPhaseChangeTime = timings.get(OUTGOING_TIME_MIN);
 		maxPhaseChangeTime = timings.get(OUTGOING_TIME_MAX);
 		addConversations();
+		rats=TPPQuestHelperFunctions.getRats();
 	}
 
 	public void prepare() {
+		rats.clear();
 		createPiedPiper();
 	}
 	
+	/**
+	 * summon new attracted by piper rat
+	 */
 	public void SummonRat() {
-		logger.debug("rat summoned");		
+		final Creature tempCreature = TPPQuestHelperFunctions.getRandomRat();
+		final ActorNPC newCreature = new ActorNPC(false);
+		newCreature.setRPClass("creature");
+		newCreature.setDescription(tempCreature.getDescription());		
+		newCreature.setEntityClass(tempCreature.get("class"));
+		newCreature.setEntitySubclass(tempCreature.get("subclass"));
+		newCreature.put("type", "creature");
+		newCreature.put("title_type", "enemy");
+		newCreature.setName("attracted "+tempCreature.getName());
+		newCreature.setResistance(0);
+
+		piedpiper.getZone().add(newCreature);
+		newCreature.setPosition(piedpiper.getX(), piedpiper.getY());
+		newCreature.setMovement(piedpiper, 1, 5, 5);
+		logger.debug("rat summoned");
 	}
 	
 	/**
