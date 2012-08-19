@@ -268,6 +268,14 @@ public class StatsPanelController {
 			updateMoney();
 		}
 	}
+	
+	/**
+	 * Remove all the money objects. Called at zone change.
+	 */
+	private void clearMoney() {
+		money.clear();
+		updateMoney();
+	}
 
 	/**
 	 * Called when items are removed from a potential money slot.
@@ -545,6 +553,12 @@ public class StatsPanelController {
 	private class MoneyChangeListener implements PropertyChangeListener {
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
+				/*
+				 * We get a null event when the player object is deleted. Clear
+				 * the money. For the situations where a zone change is
+				 * combined with a complete removal of a money stack.
+				 */
+				clearMoney();
 				return;
 			}
 			
