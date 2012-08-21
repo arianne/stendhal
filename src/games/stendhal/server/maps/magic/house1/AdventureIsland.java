@@ -32,25 +32,26 @@ import org.apache.log4j.Logger;
 
 public class AdventureIsland extends StendhalRPZone {
 
- private static final Logger logger = Logger.getLogger(AdventureIsland.class);
+	private static final Logger logger = Logger.getLogger(AdventureIsland.class);
 
 
-/** how many creatures will be spawned.*/
- protected static final int NUMBER_OF_CREATURES = 5;
-/** island coordinates for placing monsters. */
- private static final int MIN_X = 10;
- /** island coordinates for placing monsters. */
- private static final int MIN_Y = 10;
- /** island coordinates for placing monsters. */
- private static final int MAX_X = 25;
- /** island coordinates for placing monsters. */
- private static final int MAX_Y = 25;
- /** max numbers of fails to place a creature before we just make the island as it is. */
- private static final int ALLOWED_FAILS = 5;
- /** The creatures spawned are between player level * ratio and player level. */
- private static final double LEVEL_RATIO = 0.75;
+	/** how many creatures will be spawned.*/
+	protected static final int NUMBER_OF_CREATURES = 5;
+	/** island coordinates for placing monsters. */
+	private static final int MIN_X = 10;
+	/** island coordinates for placing monsters. */
+	private static final int MIN_Y = 10;
+	/** island coordinates for placing monsters. */
+	private static final int MAX_X = 25;
+	/** island coordinates for placing monsters. */
+	private static final int MAX_Y = 25;
+	/** max numbers of fails to place a creature before we just make the island as it is. */
+	private static final int ALLOWED_FAILS = 5;
+	/** The creatures spawned are between player level * ratio and player level. */
+	private static final double LEVEL_RATIO = 0.75;
 
- private int numCreatures;
+	private int numCreatures;
+
 
 	public AdventureIsland(final String name, final StendhalRPZone zone,
 			final Player player) {
@@ -79,7 +80,7 @@ public class AdventureIsland extends StendhalRPZone {
 				}
 		}
 		disallowIn();
-		this.addMovementListener(new ChallengeMovementListener());
+		this.addMovementListener(new ChallengeMovementListener(player.getX(), player.getY()));
 	}
 
 	/**
@@ -92,6 +93,18 @@ public class AdventureIsland extends StendhalRPZone {
 
 	private static final class ChallengeMovementListener implements MovementListener {
 		private static final Rectangle2D area = new Rectangle2D.Double(0, 0, 100, 100);
+		final int returnX, returnY;
+		
+		/**
+		 * Create a new ChallengeMovementListener.
+		 * 
+		 * @param x x coordinate of the player return position from the zone
+		 * @param y y coordinate of the player return position from the zone
+		 */
+		ChallengeMovementListener(int x, int y) {
+			returnX = x;
+			returnY = y;
+		}
 
 		public Rectangle2D getArea() {
 			return area;
@@ -100,7 +113,7 @@ public class AdventureIsland extends StendhalRPZone {
 		public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 								  final int newY) {
 				// ignore
-			}
+		}
 
 		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							 final int oldY) {
@@ -113,12 +126,14 @@ public class AdventureIsland extends StendhalRPZone {
 				// they can enter back to the bank (not the default zone of PlayerRPClass).
 				// If they are scrolling out or walking out the portal it works as before.
 			    entity.put("zoneid", "int_magic_house1");
-				entity.put("x", "12");
-				entity.put("y", "3");
+			    // Use the correct position from the portal, so that the client
+			    // client gets the right coordinates - otherwise they get
+			    // overwritten by these, and the client disagrees with the server.
+				entity.put("x", returnX);
+				entity.put("y", returnY);
 
 				// start a turn notifier counting down to shut down the zone in 15 minutes
 				TurnNotifier.get().notifyInSeconds(15*60, new AdventureIslandRemover(zone));
-
 			}
 		}
 
