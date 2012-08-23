@@ -64,7 +64,7 @@ public class PrincipalNPC implements ZoneConfigurator {
 				addOffer("Look at blackboard on wall to see my offer.");
 				addQuest("Other than selling me what I need, I don't require anything from you.");
 				addGoodbye();
- 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buy4assassins")), false);
+ 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buy4assassins")), false);
 			}
 		};
 

@@ -16,6 +16,7 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -27,6 +28,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
@@ -39,7 +41,9 @@ import org.apache.log4j.Logger;
 public class SellerAdder {
 	private static Logger logger = Logger.getLogger(SellerAdder.class);
 
-	/**
+    private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
+
+    /**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
 	 */
@@ -52,6 +56,8 @@ public class SellerAdder {
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour sellerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
 
+		merchantsRegister.add(npc.getName(), sellerBehaviour);
+		
 		if (offer) {
 			engine.add(
 					ConversationStates.ATTENDING,

@@ -54,7 +54,7 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			    addQuest("I'm too scared to leave here yet... I'm waiting for someone to #offer me some better equipment.");
 				addJob("I'm was the guard of this Prison. Until .. well you know the rest.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buychaos")), true);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buychaos")), true);
 
 				addGoodbye("Bye .. be careful ..");
 			}

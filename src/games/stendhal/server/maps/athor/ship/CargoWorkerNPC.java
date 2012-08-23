@@ -65,7 +65,7 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				addReply(Arrays.asList("rat", "rats"),
 				"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
 
-				new BuyerAdder().add(this, 
+				new BuyerAdder().addBuyer(this, 
 						new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
 
 				addGoodbye("Please kill some rats on your way up!");

@@ -65,7 +65,7 @@ public class KirdnehArmorGuyNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I buy quality armor at a fair price.");
 				addHelp("Look at the blackboard for what I buy and prices.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buykirdneharmor")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buykirdneharmor")), false);
 				addOffer("Look at the blackboard to see my prices and what I buy.");
 				addQuest("I have no task for you.");
 				addGoodbye("If you ever find a tooth from the mythical black dragon, please let me know.");

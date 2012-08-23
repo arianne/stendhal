@@ -66,7 +66,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #deal in rare weapons. Ognir there is the ring maker, he buys the odd gem too.");
 				addOffer("Please look at the blackboard on the wall to see what I buy.");
 				addQuest("Thanks, but no thanks. I don't need anything.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare2")), false); 
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare2")), false); 
 				addGoodbye("Bye - and see you soon.");
 			}
 		};

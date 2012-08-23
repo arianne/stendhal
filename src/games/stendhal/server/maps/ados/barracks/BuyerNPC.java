@@ -71,7 +71,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I buy armor for the barracks here, make me an #offer. If you'll keep it quiet, I'll even sell you ammunition.");
 				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay. I also sell a variety of arrows.");
 				addQuest("Oh, thanks but no thanks. I don't need anything.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare3")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare3")), false);
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellarrows")), false);
 				addGoodbye("Goodbye, comrade.");
 			}

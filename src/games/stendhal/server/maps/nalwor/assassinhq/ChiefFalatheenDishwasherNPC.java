@@ -51,7 +51,7 @@ public class ChiefFalatheenDishwasherNPC implements ZoneConfigurator  {
 				addQuest("You could try to help me #escape from these hoodlums. Well... maybe not.");
 				addGoodbye("Don't forget where I am now. Come back and see me some time. I do get lonely.");
 				addReply("escape", "Yes! I want to pursue my dream. Mother Helena offered me a most wonderful job.  She needs a dishwasher. Lots of complaining customers!!!");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);			    
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyveggiesandherbs")), false);			    
 			}};
 			npc.setPosition(20, 3);
 			npc.setDescription("You see a strong looking man. He ate lots of healthy vegetables to look like that!");

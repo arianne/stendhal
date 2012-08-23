@@ -95,7 +95,7 @@ public class ChefNPC implements ZoneConfigurator  {
 				addOffer("My #pizza needs cheese and we have no supplies. I'll buy cheese if you will #sell.");
 				final Map<String, Integer> offers = new TreeMap<String, Integer>();
 				offers.put("cheese", 5);
-				new BuyerAdder().add(this, new BuyerBehaviour(offers), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(offers), false);
 
 				addGoodbye();
 

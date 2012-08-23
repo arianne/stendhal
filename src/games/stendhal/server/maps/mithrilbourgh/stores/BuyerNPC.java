@@ -74,7 +74,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
 				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army, and I sell surplus stock of #ammunition.");
 				addQuest("The Mithrilbourgh Army is not in need your services at present.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("boots&helm")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("boots&helm")), false);
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellarrows")), false);
  				addGoodbye("Bye.");
 			}

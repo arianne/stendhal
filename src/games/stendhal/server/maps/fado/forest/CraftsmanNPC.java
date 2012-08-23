@@ -65,7 +65,7 @@ public class CraftsmanNPC implements ZoneConfigurator {
 			    //addGreeting("Welcome to this forest, south of Or'ril river.");
 			        addJob("I'm a craftsman. One day I hope to craft such items as the green elves can make.");
 				addHelp("My friend Orchiwald is a great story teller, he would speak with you about the albino elves and how we come to be here.");
-				new BuyerAdder().add(this, new QuestCompletedBuyerBehaviour("elvish_armor", "I'm not able to buy anything from you right now.", shops.get("buyelvish")), false);
+				new BuyerAdder().addBuyer(this, new QuestCompletedBuyerBehaviour("elvish_armor", "I'm not able to buy anything from you right now.", shops.get("buyelvish")), false);
  				addGoodbye("Bye.");
 			}
 		};

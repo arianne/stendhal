@@ -63,7 +63,7 @@ public class ScriptingNPC extends SpeakerNPC {
 	public void behave(final String method, final Map<String, Integer> items)
 			throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
-			new BuyerAdder().add(this, new BuyerBehaviour(items), true);
+			new BuyerAdder().addBuyer(this, new BuyerBehaviour(items), true);
 		} else if ("sell".equalsIgnoreCase(method)) {
 			new SellerAdder().addSeller(this, new SellerBehaviour(items));
 		} else {

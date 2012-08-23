@@ -71,7 +71,7 @@ public class WoodCutterNPC implements ZoneConfigurator {
 				addHelp("You can sometimes collect wood that's lying around the forest. Oh, and I take #offers of any good axe you might sell.");
 				addOffer("My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.");
 				addQuest("What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyaxe")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyaxe")), false);
  				addGoodbye("Bye.");
 			}
 		};

@@ -65,7 +65,7 @@ public class TraderNPC implements ZoneConfigurator {
 				addJob("Shhh! I sell stuff to adventurers.");
 				addHelp("I buy and sell several items, ask me for my #offer.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buystuff")), false);
 				addOffer("Have a look at the blackboards on the wall to see my offers.");
 				addQuest("Talk to Hackim Easso in the smithy, he might want you.");
 				addGoodbye();

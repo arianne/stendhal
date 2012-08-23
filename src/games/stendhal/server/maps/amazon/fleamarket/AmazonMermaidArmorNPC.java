@@ -81,7 +81,7 @@ public class AmazonMermaidArmorNPC implements ZoneConfigurator {
 				addGreeting("Howdy! You've come a very long way to be here. Welcome.");
 				addJob("I buy good, quality cloaks. Can't get these women to wear them yet, but I am trying.");
 				addHelp("Not much I can really help you with unless you have some of the cloaks I am looking for.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyamazoncloaks")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyamazoncloaks")), false);
 				addOffer("I hate to say it, but look at the blackboard over yonder to see my prices and what I buy.");
 				addQuest("There's not a thing you can do for me, thanks.");
 				addGoodbye("Bye. Don't you just HATE this place? ;) Say hey to the amazoness giant while you are here.");

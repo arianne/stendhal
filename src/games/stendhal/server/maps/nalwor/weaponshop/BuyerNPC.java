@@ -66,7 +66,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #trade rare weapons.");
 				addOffer("Look at the blackboard on the wall to see what I will buy.");
 				addQuest("You think I'd trust a human with anything important? You're wrong!");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("elfbuyrare")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("elfbuyrare")), false);
 				addGoodbye("Bye - be careful not to annoy the other elves as much.");
 			}
 		};

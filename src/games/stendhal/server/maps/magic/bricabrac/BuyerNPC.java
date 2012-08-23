@@ -100,7 +100,7 @@ public class BuyerNPC implements ZoneConfigurator {
 						"sewing machine",
 						"Oh you know that is my favourite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
 				addQuest("I have no favour to ask of you.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buymagic")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buymagic")), false);
 				addOffer("There is a list of prices for relics and magic items I would buy, over on that large book.");
 				addGoodbye("Bye.");
 			}

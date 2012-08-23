@@ -65,7 +65,7 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 				addJob("I'm so psyched! I'm just catchin some rays and sellin things that are, like, totally radical!");
 				addHelp("Gnarly! You think I got a clue?");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellhotdogs")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buy4hotdogs")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buy4hotdogs")), false);
 				addOffer("Check out the blackboards over there, like, for prices.");
 				addQuest("What-ever!");
 				addGoodbye("Later. You want fries with that?");

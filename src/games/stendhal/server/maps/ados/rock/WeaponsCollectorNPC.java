@@ -52,7 +52,7 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 				addJob("I'm much too old for hard work. I'm just living here as a hermit.");
 				addGoodbye("It was nice to meet you.");
 				// will buy black items once the Ultimate Collector quest is completed
-				new BuyerAdder().add(this, new QuestCompletedBuyerBehaviour("ultimate_collector", "I'll buy black items from you when you have completed each #challenge I set you.", shops.get("buyblack")), false);
+				new BuyerAdder().addBuyer(this, new QuestCompletedBuyerBehaviour("ultimate_collector", "I'll buy black items from you when you have completed each #challenge I set you.", shops.get("buyblack")), false);
 			}
 			/* remaining behaviour is defined in:
 			 * maps.quests.WeaponsCollector,

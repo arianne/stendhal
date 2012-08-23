@@ -63,7 +63,7 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 			    addReply("buy", "I don't sell anything but you can look at my blackboard for what I buy. Or ask about #specials.");
 			    addReply("YOU", "Yes, I am talking to YOU! Who else would I be talking to!");
 
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyoddsandends")), false);			    
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyoddsandends")), false);			    
 			}};
 			
 			npc.setPosition(25, 32);

@@ -64,7 +64,7 @@ public class TraderNPC implements ZoneConfigurator {
 				addHelp("I #deal in all sorts of items.");
 				addQuest("Try Alrak the mountain dwarf who lives here with the kobolds. He'd probably have more than one task to give you.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff2")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff2")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buystuff2")), false);
 				addOffer("Please look at the each blackboard on the wall to see what I buy and sell at the moment.");
 				addGoodbye("Bye, and please don't attack too many of my friends.");
 

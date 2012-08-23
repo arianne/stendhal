@@ -16,6 +16,7 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -24,6 +25,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.journal.MerchantsRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
@@ -35,6 +37,8 @@ import org.apache.log4j.Logger;
 
 public class BuyerAdder {
 	private static Logger logger = Logger.getLogger(BuyerAdder.class);
+	
+    private final MerchantsRegister merchantsRegister = SingletonRepository.getMerchantsRegister();
 
 	/**
 	 * Behaviour parse result in the current conversation.
@@ -42,8 +46,10 @@ public class BuyerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
-	public void add(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
+	public void addBuyer(final SpeakerNPC npc, final BuyerBehaviour buyerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
+		
+		merchantsRegister.add(npc.getName(), buyerBehaviour);
 
 		if (offer) {
 			engine.add(

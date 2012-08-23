@@ -73,7 +73,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
 				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
 				        "That's none of your business!", null);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare")), false);
+				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 		};
 

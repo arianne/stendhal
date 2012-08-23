@@ -73,7 +73,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addHelp("If you could #offer any meat, ham or cheese to restock our larders I'd be grateful.");
 				addQuest("Just #offers of food is enough, thank you.");
  				addGoodbye("Bye bye!");
- 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyfood")), true);
+ 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyfood")), true);
 			}
 		};
 		npc.setDescription("You see a pretty young bar maid.");

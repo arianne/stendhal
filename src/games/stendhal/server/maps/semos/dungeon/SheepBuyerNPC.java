@@ -66,7 +66,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		};
 		final Map<String, Integer> buyitems = new HashMap<String, Integer>();
 		buyitems.put("sheep", 1500);
-		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
+		new BuyerAdder().addBuyer(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.setPosition(67, 13);
 		npc.setEntityClass("orcbuyernpc");
 		zone.add(npc);

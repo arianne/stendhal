@@ -79,7 +79,7 @@ public class WeaponryTraderNPC implements ZoneConfigurator {
 					SingletonRepository.getShopList().get("buyadosarmors");
 				
 				final BuyerBehaviour behaviour = new BuyerBehaviour(pricelist);
-				new BuyerAdder().add(this, behaviour, true);
+				new BuyerAdder().addBuyer(this, behaviour, true);
 			}
 		};
 
