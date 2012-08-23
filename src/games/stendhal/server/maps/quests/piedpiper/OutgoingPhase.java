@@ -92,23 +92,26 @@ public class OutgoingPhase extends TPPQuest {
 	}
 	
 	/**
-	 * summon new attracted by piper rat
+	 * summon new rat, attracted by piper
 	 */
 	public void SummonRat() {
-		final Creature tempCreature = TPPQuestHelperFunctions.getRandomRat();
 		final ActorNPC newCreature = new ActorNPC(false);
+		
+		// playing role of creature
+		final Creature model = TPPQuestHelperFunctions.getRandomRat();
 		newCreature.setRPClass("creature");
-		newCreature.setDescription(tempCreature.getDescription());		
-		newCreature.setEntityClass(tempCreature.get("class"));
-		newCreature.setEntitySubclass(tempCreature.get("subclass"));
 		newCreature.put("type", "creature");
 		newCreature.put("title_type", "enemy");
-		newCreature.setName("attracted "+tempCreature.getName());
-		newCreature.setResistance(0);
-
-		piedpiper.getZone().add(newCreature);
+		newCreature.setEntityClass(model.get("class"));
+		newCreature.setEntitySubclass(model.get("subclass"));
+		newCreature.setName("attracted "+model.getName());
+		newCreature.setDescription(model.getDescription());
+		
+		// make actor follower of piper
+		newCreature.setResistance(0);		
 		newCreature.setPosition(piedpiper.getX(), piedpiper.getY());
-		newCreature.setMovement(piedpiper, 1, 5, 5);
+		piedpiper.getZone().add(newCreature);
+		
 		logger.debug("rat summoned");
 	}
 	
