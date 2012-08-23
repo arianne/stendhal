@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -11,6 +12,7 @@ import games.stendhal.server.entity.npc.action.ComplainAboutSentenceErrorAction;
 import games.stendhal.server.entity.npc.action.RepairingBehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.RepairerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.prices.RepairingPriceCalculationStrategy;
+import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.SentenceHasErrorCondition;
@@ -26,6 +28,8 @@ import java.util.HashSet;
  */
 public class RepairerAdder {
 	
+    private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
+    
 	/**
 	 * Add the model fragments to the given NPC
 	 * 
@@ -35,6 +39,9 @@ public class RepairerAdder {
 		final RepairerBehaviour repairerBehaviour = new RepairerBehaviour(
 						new RepairingPriceCalculationStrategy(new HashSet<String>()),
 						new HashSet<String>(Arrays.asList("buckler")));
+		
+		servicersRegister.add(npc.getName(), repairerBehaviour);
+		
 		final Engine engine = npc.getEngine();
 		
 		//sentence was not recognized			

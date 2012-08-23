@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -22,6 +23,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.BehaviourAction;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -30,7 +32,9 @@ import org.apache.log4j.Logger;
 
 public class OutfitChangerAdder {
 	private static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
-
+	
+    private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
+    
 	/**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
@@ -72,6 +76,8 @@ public class OutfitChangerAdder {
 	public void addOutfitChanger(final SpeakerNPC npc,
 			final OutfitChangerBehaviour outfitBehaviour, final String action,
 			final boolean offer, final boolean canReturn) {
+		
+		servicersRegister.add(npc.getName(), outfitBehaviour);
 
 		final Engine engine = npc.getEngine();
 		if (offer) {

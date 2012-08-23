@@ -15,17 +15,21 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.grammar.ItemParserResult;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.journal.ServicersRegister;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
 public class HealerAdder {
 
+    private final ServicersRegister servicersRegister = SingletonRepository.getServicersRegister();
+    
 	/**
 	 * Behaviour parse result in the current conversation.
 	 * Remark: There is only one conversation between a player and the NPC at any time.
@@ -51,6 +55,8 @@ public class HealerAdder {
 	 */
 	public void addHealer(final SpeakerNPC npc, final int cost) {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
+		servicersRegister.add(npc.getName(), healerBehaviour);
+		
 		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING,
