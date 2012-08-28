@@ -1209,10 +1209,10 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="archer"/>
+      <profile name="strategy" params="archer,,dual attack"/>
     </ai>
   </creature>
-
+  
   <creature name="imperial leader">
     <type class="human" subclass="imperial_leader" tileid="human_imperial.png:11"/>
     <description></description>
