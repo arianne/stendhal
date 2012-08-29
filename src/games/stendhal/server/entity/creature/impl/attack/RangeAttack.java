@@ -43,8 +43,7 @@ class RangeAttack implements AttackStrategy {
 
 	public boolean canAttackNow(final Creature creature, RPEntity target) {
 		if (target != null) {
-			return !((creature.squaredDistance(target) > range * range) || creature.getZone().collidesOnLine(creature.getX(),
-					creature.getY(), target.getX(), target.getY()));
+			return ((creature.squaredDistance(target) <= range * range) && creature.hasLineOfSight(target));
 		} else {
 			return false;
 		}

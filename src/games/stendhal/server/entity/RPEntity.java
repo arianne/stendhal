@@ -2366,6 +2366,21 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// the target's in range
 		return (squaredDistance(target) <= maxrange * maxrange);
 	}
+	
+	/**
+	 * Check if the entity has a line of sight to the the center of another
+	 * entity. Only static collisions are checked.
+	 * 
+	 * @param target target entity
+	 * @return <code>true</code> if there are no collisions blocking the line
+	 *	of sight, <code>false</code> otherwise 
+	 */
+	public boolean hasLineOfSight(final Entity target) {
+		return !getZone().collidesOnLine((int) (getX() + getWidth() / 2), 
+				(int) (getY() + getHeight() / 2),
+				(int) (target.getX() + target.getWidth() / 2),
+				(int) (target.getY() + target.getHeight() / 2));
+	}
 
 	/**
 	 * Get the maximum distance attack range.

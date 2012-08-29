@@ -244,8 +244,7 @@ public class StendhalRPAction {
 			if (player.canDoRangeAttack(defender, player.getMaxRangeForArcher())) {
 
 				// Check line of view to see if there is any obstacle.
-				if (zone.collidesOnLine(player.getX(), player.getY(),
-						defender.getX(), defender.getY())) {
+				if (!player.hasLineOfSight(defender)) {
 					return false;
 				}
 
