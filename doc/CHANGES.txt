@@ -1,7 +1,28 @@
 ﻿Changelog
 ---------
+1.03
+
+*world*
+- Ados Botanical Gardens
+- new lamps
+- journal for merchants
+- map layering and collisions fixes
+
+*fixes*
+- don't accidently pick the first item on click spam on an item which was used up
+- fixed return from adventure island into the wall
+
+*internal*
+- creates selenium test for the stendhal website
+
+*website*
+- email-address can now be changed
+
+
+
 
 1.02
+
 *world*
 - clocks around the world show the server time
 - vampires change their appearance depending on their attack status
@@ -39,6 +60,7 @@
 - creatures can have different nature for ranged attacks than in melee
 - events can trigger animations
 - some dependency cleanup
+
 
 
 1.01.1
