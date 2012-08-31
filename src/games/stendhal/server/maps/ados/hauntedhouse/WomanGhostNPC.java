@@ -57,8 +57,8 @@ public class WomanGhostNPC implements ZoneConfigurator {
 				nodes.add(new Node(23, 29));
 				nodes.add(new Node(29, 29));
 				nodes.add(new Node(29, 2));
-				nodes.add(new Node(21, 2));
-				nodes.add(new Node(21, 7));
+				nodes.add(new Node(22, 2));
+				nodes.add(new Node(22, 7));
 				nodes.add(new Node(3, 7));
 				setPath(new FixedPath(nodes, true));
 			}
