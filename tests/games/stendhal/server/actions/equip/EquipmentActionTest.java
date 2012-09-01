@@ -4,10 +4,6 @@ package games.stendhal.server.actions.equip;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -15,6 +11,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+
+import java.util.Arrays;
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 import marauroa.server.game.db.DatabaseFactory;
 
@@ -231,4 +231,193 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertTrue(player.isEquipped("cheese", 3));
 	}
 
+	/**
+	 * Test picking up an item from ground.
+	 */
+	@Test
+	public void testPicUp() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		item.setQuantity(5);
+		localzone.add(item);
+		localzone.add(player);
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
+		equip.put(EquipActionConsts.QUANTITY, "2");
+
+		
+		final EquipmentAction action = new EquipAction();
+		action.onAction(player, equip);
+		
+		Assert.assertEquals(0, player.events().size());
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese", 3));
+		assertTrue(player.isEquipped("cheese", 2));
+		
+		// Continue the same, but use item path this time
+		equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
+		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(EquipActionConsts.QUANTITY, "2");
+		
+		action.onAction(player, equip);
+		Assert.assertEquals(0, player.events().size());
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese", 5));
+		assertTrue(player.isEquipped("cheese", 4));
+	}
+	
+	/**
+	 * Test picking up an item from ground, when the item is too far away.
+	 */
+	@Test
+	public void testPicUpFromTooFar() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		item.setQuantity(5);
+		item.setPosition(0, 2);
+		localzone.add(item);
+		localzone.add(player);
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
+		equip.put(EquipActionConsts.QUANTITY, "2");
+
+		
+		final EquipmentAction action = new EquipAction();
+		action.onAction(player, equip);
+
+		assertEquals("You cannot reach that far.", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese"));
+		
+		// The same, but using paths
+		equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
+		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(EquipActionConsts.QUANTITY, "2");
+		
+		action.onAction(player, equip);
+		assertEquals("You cannot reach that far.", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese"));
+	}
+	
+	/**
+	 * Test picking up an item from ground, when the item is bound to a player
+	 */
+	@Test
+	public void testPicUpBoundItem() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		item.setQuantity(5);
+		item.setBoundTo("croesus");
+		localzone.add(item);
+		localzone.add(player);
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
+		equip.put(EquipActionConsts.QUANTITY, "2");
+
+		
+		final EquipmentAction action = new EquipAction();
+		action.onAction(player, equip);
+
+		assertEquals("This cheese is a special reward for croesus. You do not deserve to use it.", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese"));
+		// Should work if we bind it to bob instead
+		item.setBoundTo("bob");
+		action.onAction(player, equip);
+		assertEquals(0, player.events().size());
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese", 3));
+		assertTrue(player.isEquipped("cheese", 2));
+		
+		// The same, but using paths
+		equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
+		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(EquipActionConsts.QUANTITY, "2");
+		
+		action.onAction(player, equip);
+		assertEquals(0, player.events().size());
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese", 5));
+		assertTrue(player.isEquipped("cheese", 4));
+		
+		// Bind it again to croesus. Should fail again.
+		item.setBoundTo("croesus");
+		action.onAction(player, equip);
+		assertEquals("This cheese is a special reward for croesus. You do not deserve to use it.", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese", 5));
+		assertTrue(player.isEquipped("cheese", 4));
+		assertEquals(1, item.getQuantity());
+	}
+	
+	/**
+	 * Test picking up an item from ground, when the item is below another
+	 * player.
+	 */
+	@Test
+	public void testPicUpBelowAnotherPlayer() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player2 = PlayerTestHelper.createPlayer("blocker");
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		item.setQuantity(5);
+		player2.setPosition(0, 1);
+		item.setPosition(0, 1);
+		localzone.add(item);
+		localzone.add(player);
+		localzone.add(player2);
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
+		equip.put(EquipActionConsts.QUANTITY, "2");
+
+		
+		final EquipmentAction action = new EquipAction();
+		action.onAction(player, equip);
+
+		assertEquals("You cannot take items which are below other players", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese"));
+		
+		// The same, but using paths
+		equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
+		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(EquipActionConsts.QUANTITY, "2");
+		
+		action.onAction(player, equip);
+		assertEquals("You cannot take items which are below other players", PlayerTestHelper.getPrivateReply(player));
+		assertEquals(1, localzone.getItemsOnGround().size());
+		assertFalse(player.isEquipped("cheese"));
+	}
 }
