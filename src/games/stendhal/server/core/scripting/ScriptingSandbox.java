@@ -20,6 +20,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
@@ -170,11 +172,23 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
+	/**
+	 * Unloads this script.
+	 *
+	 * @param admin
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 */
 	public void unload(final Player player, final List<String> args) {
 		final Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 
 		for (final NPC npc : setNPC) {
 			remove(npc);
+		}
+		for (SpeakerNPC npc : NPCList.get()) {
+			npc.getEngine().remove(filename);
 		}
 
 		final Set<RPObject> setRPObject = new HashSet<RPObject>(
@@ -182,6 +196,33 @@ public abstract class ScriptingSandbox {
 		for (final RPObject object : setRPObject) {
 			remove(object);
 		}
+	}
+
+	/**
+	 * Prepares execution of the script.
+	 *
+	 * @param player
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 */
+	protected void preExecute(final Player player, final List<String> args) {
+		// do nothing
+	}
+
+	/**
+	 * Cleans up execution of the script.
+	 *
+	 * @param player
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 * @param result true, if the execution was successful; false otherwise
+	 */
+	protected void postExecute(final Player player, final List<String> args, boolean result) {
+		// do nothing
 	}
 
 	public boolean execute(final Player player, final List<String> args) {

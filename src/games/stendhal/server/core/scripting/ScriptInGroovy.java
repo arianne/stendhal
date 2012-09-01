@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,6 +22,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+/**
+ * manages a script written in groovy
+ */
 public class ScriptInGroovy extends ScriptingSandbox {
 
 	private final String groovyScript;
@@ -31,6 +33,11 @@ public class ScriptInGroovy extends ScriptingSandbox {
 
 	private static final Logger logger = Logger.getLogger(ScriptInGroovy.class);
 
+	/**
+	 * manages a script written in groovy
+	 *
+	 * @param filename filename
+	 */
 	public ScriptInGroovy(final String filename) {
 		super(filename);
 		groovyScript = filename;
@@ -43,8 +50,19 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding.setVariable("world", SingletonRepository.getRPWorld());
 	}
 
-	// ------------------------------------------------------------------------
 
+	/**
+	 * Initial load of this script.
+	 *
+	 * @param admin
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 * @param sandbox
+	 *            all modifications to the game must be done using this object
+	 *            in order for the script to be unloadable
+	 */
 	@Override
 	public boolean load(final Player player, final List<String> args) {
 		groovyBinding.setVariable("player", player);
@@ -56,6 +74,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		final GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
 
+		preExecute(player, args);
 		try {
 			final File f = new File(groovyScript);
 			interp.evaluate(f);
@@ -69,9 +88,19 @@ public class ScriptInGroovy extends ScriptingSandbox {
 			ret = false;
 		}
 
+		postExecute(player, args, ret);
 		return (ret);
 	}
 
+	/**
+	 * Executes this script.
+	 *
+	 * @param admin
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 */
 	@Override
 	public boolean execute(final Player player, final List<String> args) {
 		return load(player, args);

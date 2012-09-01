@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -71,6 +70,18 @@ public class ScriptInJava extends ScriptingSandbox {
 		script = (Script) aClass.newInstance();
 	}
 
+	/**
+	 * Initial load of this script.
+	 *
+	 * @param admin
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 * @param sandbox
+	 *            all modifications to the game must be done using this object
+	 *            in order for the script to be unloadable
+	 */
 	@Override
 	public boolean load(final Player admin, final List<String> args) {
 		final Class< ? >[] signature = new Class< ? >[] { Player.class, List.class, ScriptingSandbox.class };
@@ -102,16 +113,28 @@ public class ScriptInJava extends ScriptingSandbox {
 		}
 
 		try {
+			preExecute(admin, args);
 			final Method theMethod = script.getClass().getMethod("execute", signature);
 			theMethod.invoke(script, params);
 		} catch (final Exception e) {
 			logger.error(e, e);
 			setMessage(e.getMessage());
+			postExecute(admin, args, false);
 			return false;
 		}
+		postExecute(admin, args, true);
 		return true;
 	}
 
+	/**
+	 * Executes this script.
+	 *
+	 * @param admin
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 */
 	@Override
 	public void unload(final Player admin, final List<String> args) {
 		final Class< ? >[] signature = new Class< ? >[] { Player.class, List.class };
