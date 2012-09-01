@@ -115,6 +115,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.FishSoupMakerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.FierywaterDistillerNPC"/>
     <configurator class-name="games.stendhal.server.maps.ados.market.OracleNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.market.CafeSellerNPC"/>
     
     <entity x="78" y="99">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
@@ -367,7 +368,18 @@
      <entity x="51" y="114">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
             <attribute name="text">This area is designed to promote quiet meditation. The flowers used outside the gazebo have a calming smell, and standing inside the gazebo you can appreciate a moment of peace.</attribute>
-     </entity>                  
+     </entity> 
+     
+     <entity x="70" y="114">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+       <parameter name="shop">cafe</parameter>
+       <parameter name="title">Ados Botanical Garden Cafe</parameter>
+       <parameter name="seller">true</parameter>
+       <parameter name="caption">Buy premium imported drinks and snacks here!</parameter>
+      </implementation>  
+      <attribute name="class">book_red</attribute>  
+     </entity>
+                  
      <entity x="85" y="14">
             <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
                 <parameter name="sound">water-2, wave-11</parameter>
