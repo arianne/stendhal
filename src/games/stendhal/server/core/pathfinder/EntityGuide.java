@@ -18,9 +18,9 @@ import java.util.List;
 
 /**
  * the guide dog of an Entity. this class takes the goals where an Entity shall
- * move to via a path. and keeps controle over the steps.
+ * move to via a path. and keeps control over the steps.
  * 
- * The guided Entity can allways change the destination. Like a blind person can
+ * The guided Entity can always change the destination. Like a blind person can
  * tell its guide dog.
  * 
  * @author astrid
@@ -29,7 +29,7 @@ import java.util.List;
 public class EntityGuide {
 
 	public void guideMe(final GuidedEntity ge) {
-		// empty default implememntation
+		// empty default implementation
 	}
 
 	/**
