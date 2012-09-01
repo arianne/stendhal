@@ -75,7 +75,7 @@ class Portal2DView<T extends Portal> extends InvisibleEntity2DView<T> {
 		}
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(((Portal) entity).getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

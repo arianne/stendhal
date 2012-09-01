@@ -139,7 +139,7 @@ class Sign2DView<T extends Sign> extends Entity2DView<T> {
 		switch (at) {
 		case LOOK_CLOSELY:
 		case READ:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

@@ -129,7 +129,7 @@ class User2DView<T extends User> extends Player2DView<T> {
 		case WHERE:
 		case LEAVE_SHEEP:
 		case LEAVE_PET:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

@@ -821,7 +821,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		case LOOK:
 		case ADMIN_INSPECT:
 		case ADMIN_DESTROY:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		case ADMIN_ALTER:

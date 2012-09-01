@@ -179,7 +179,7 @@ class UseableEntity2DView<T extends UseableEntity> extends Entity2DView<T> {
 			return;
 		}
 		if (at.getActionCode().equals(this.action.getActionCode())) {
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 		} else {
 			super.onAction(at);
 		}

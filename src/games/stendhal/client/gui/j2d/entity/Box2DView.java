@@ -69,7 +69,7 @@ class Box2DView extends Item2DView<Item> {
 		
 		switch (at) {
 		case OPEN:
-				at.send(at.fillTargetInfo(entity.getRPObject()));
+				at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

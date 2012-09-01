@@ -1037,7 +1037,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		case ATTACK:
 		case PUSH:
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		case STOP_ATTACK:

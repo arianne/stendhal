@@ -233,12 +233,12 @@ class Chest2DView extends StateEntity2DView<Chest> {
 				requestOpen = true;
 			}
 
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		case CLOSE:
 			
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

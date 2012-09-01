@@ -39,7 +39,7 @@ public class TradeCenterSign2DView extends Sign2DView<Sign> {
 		}
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 		default:
 			super.onAction(at);

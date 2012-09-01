@@ -86,7 +86,7 @@ class Sheep2DView extends DomesticAnimal2DView<Sheep> {
 		}
 		switch (at) {
 		case LEAVE_SHEEP:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

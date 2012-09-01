@@ -62,7 +62,7 @@ class ShopSign2DView extends Sign2DView<Sign> {
 		}
 		switch (at) {
 		case LOOK_CLOSELY:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

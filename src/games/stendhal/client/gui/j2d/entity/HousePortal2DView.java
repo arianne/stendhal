@@ -75,7 +75,7 @@ class HousePortal2DView extends InvisibleEntity2DView<IEntity> {
 		switch (at) {
 		case USE:
 		case KNOCK:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

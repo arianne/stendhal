@@ -218,7 +218,7 @@ class Door2DView extends StateEntity2DView<Door> {
 		}
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

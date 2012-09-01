@@ -259,7 +259,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 		}
 		switch (at) {
 		case OWN:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

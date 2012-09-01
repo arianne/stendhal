@@ -235,7 +235,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 		}
 		switch (at) {
 		case HARVEST:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

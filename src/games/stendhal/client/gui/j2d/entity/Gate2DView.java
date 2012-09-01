@@ -100,7 +100,7 @@ public class Gate2DView extends Entity2DView<IEntity> {
 
 		switch (at) {
 		case USE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 		default:
 			super.onAction(at);

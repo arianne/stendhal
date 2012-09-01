@@ -250,7 +250,7 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		case INVITE:
 		case UNIGNORE:
 		case TRADE:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 		default:
 			super.onAction(at);

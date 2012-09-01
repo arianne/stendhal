@@ -216,7 +216,7 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 			 * or using a menu created previously for the item.
 			 */
 			if (!isReleased() || !entity.isOnGround()) {
-				at.send(at.fillTargetInfo(entity.getRPObject()));
+				at.send(at.fillTargetInfo(entity));
 			}
 			break;
 			

@@ -67,7 +67,7 @@ class CarrotGrower2DView extends GrainField2DView<GrainField> {
 			
 		switch (at) {
 		case PICK:
-			at.send(at.fillTargetInfo(entity.getRPObject()));
+			at.send(at.fillTargetInfo(entity));
 			break;
 
 		default:

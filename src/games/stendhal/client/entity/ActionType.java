@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.common.EquipActionConsts;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -40,48 +41,48 @@ public enum ActionType {
 	WISH("use", "Make a Wish"),
 	LEAVE_SHEEP("forsake", "Leave sheep") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject arg0) {
-			RPAction rpaction = super.fillTargetInfo(arg0);
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
 			rpaction.put("species", "sheep");
 			return rpaction;
 		}
 	},
 	LEAVE_PET("forsake", "Leave pet") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject arg0) {
-			RPAction rpaction = super.fillTargetInfo(arg0);
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
 			rpaction.put("species", "pet");
 			return rpaction;
 		}
 	},
 	ADD_BUDDY("addbuddy", "Add to Buddies") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject object) {
-			RPAction rpaction = super.fillTargetInfo(object);
-			rpaction.put("target", object.get("name"));
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
+			rpaction.put("target", entity.getName());
 			return rpaction;
 		}
 	},
 	IGNORE("ignore", "Ignore") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject object) {
-			RPAction rpaction = super.fillTargetInfo(object);
-			rpaction.put("target", object.get("name"));
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
+			rpaction.put("target", entity.getName());
 			return rpaction;
 		}
 	},
 	UNIGNORE("unignore", "Remove Ignore") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject object) {
-			RPAction rpaction = super.fillTargetInfo(object);
-			rpaction.put("target", object.get("name"));
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
+			rpaction.put("target", entity.getName());
 			return rpaction;
 		}
 	},
 	TRADE("trade", "Trade") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject object) {
-			RPAction rpaction = super.fillTargetInfo(object);
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
 			rpaction.put("action", "offer_trade");
 			return rpaction;
 		}
@@ -92,9 +93,9 @@ public enum ActionType {
 	SET_OUTFIT("outfit", "Set outfit"),
 	WHERE("where", "Where") {
 		@Override
-		public RPAction fillTargetInfo(final RPObject object) {
-			RPAction rpaction = super.fillTargetInfo(object);
-			rpaction.put("target", object.get("name"));
+		public RPAction fillTargetInfo(final IEntity entity) {
+			RPAction rpaction = super.fillTargetInfo(entity);
+			rpaction.put("target", entity.getName());
 			return rpaction;
 		}
 	},
@@ -103,11 +104,11 @@ public enum ActionType {
 	INVITE("group_management", "Invite") {
 
 		@Override
-		public RPAction fillTargetInfo(RPObject rpObject) {
+		public RPAction fillTargetInfo(IEntity entity) {
 			// invite action needs to add additional parameters to the RPAction
-			RPAction a = super.fillTargetInfo(rpObject);
+			RPAction a = super.fillTargetInfo(entity);
 			a.put("action", "invite");
-			a.put("params", rpObject.get("name"));
+			a.put("params", entity.getName());
 			return a;
 		}
 		
@@ -178,11 +179,20 @@ public enum ActionType {
 		StendhalClient.get().send(rpaction);
 	}
 
-	public RPAction fillTargetInfo(final RPObject rpObject) {
-
+	/**
+	 * Create an RPAction with target information pointing to an entity.
+	 * 
+	 * @param entity target entity
+	 * @return action with entity as the target
+	 */
+	public RPAction fillTargetInfo(final IEntity entity) {
 		RPAction rpaction = new RPAction();
 
 		rpaction.put("type", toString());
+		rpaction.put(EquipActionConsts.TARGET_PATH, entity.getPath());
+		
+		// Compatibility for old servers. Cann't handle nested objects
+		RPObject rpObject = entity.getRPObject(); 
 		final int id = rpObject.getID().getObjectID();
 
 		if (rpObject.isContained()) {
