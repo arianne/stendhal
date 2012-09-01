@@ -23,15 +23,19 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
+import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /**
  * Processes a look menu action.
  */
 public class LookAction implements ActionListener {
-
+	private static final String TARGET_ATTR = "target_path";
 
 	public static void register() {
 		CommandCenter.register(LOOK, new LookAction());
@@ -44,10 +48,15 @@ public class LookAction implements ActionListener {
 	 * @param action the action to be performed
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		Entity entity = EntityHelper.entityFromSlot(player, action);
+		Entity entity = null;
+		if (action.has(TARGET_ATTR)) {
+			entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_ATTR));
+		} else {
+			entity = EntityHelper.entityFromSlot(player, action);
 
-		if (entity == null) {
-			entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
+			if (entity == null) {
+				entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
+			}
 		}
 
 		if (entity != null) {
@@ -55,6 +64,18 @@ public class LookAction implements ActionListener {
 				if (((Player) entity).isGhost() 
 						&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode"))) {
 					return;
+				}
+			}
+			
+			if (entity instanceof Item) {
+				Item item = (Item) entity;
+				RPObject base = item.getBaseContainer();
+				if (base instanceof Player) {
+					Player owner = (Player) base;
+					// Check if looking is allowed
+					if ((player != owner) && isHiddenSlot(owner, item.getContainerSlot().getName())) {
+						return;
+					}
 				}
 			}
 
@@ -73,5 +94,18 @@ public class LookAction implements ActionListener {
 
 			player.notifyWorldAboutChanges();
 		}
+	}
+	
+	/**
+	 * Check if a slot is hidden to others than the player itself.
+	 * 
+	 * @param player
+	 * @param slotName
+	 * @return <code>true</code> if other players should not be able to view
+	 * 	the slot contents, <code>false</code> if it's allowed.
+	 */
+	private boolean isHiddenSlot(Player player, String slotName) {
+		byte flags = player.getRPClass().getDefinition(DefinitionClass.RPSLOT, slotName).getFlags();
+		return (((flags & Definition.PRIVATE) | (flags & Definition.HIDDEN)) != 0);
 	}
 }
