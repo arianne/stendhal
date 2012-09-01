@@ -23,17 +23,37 @@ import marauroa.common.game.RPObject;
  * @author astridemma
  */
 public enum ActionType {
-	LOOK("look", "Look"),
+	LOOK("look", "Look") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
 	READ("look", "Read"),
 	LOOK_CLOSELY("use", "Look closely"),
-	INSPECT("inspect", "Inspect"),
+	INSPECT("inspect", "Inspect") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
 	ATTACK("attack", "Attack"),
 	STOP_ATTACK("stop", "Stop attack"),
 	PUSH("push", "Push"),
 	CLOSE("use", "Close"),
-	OPEN("use", "Open"),
+	OPEN("use", "Open") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
 	OWN("own", "Own"),
-	USE("use", "Use"),
+	USE("use", "Use") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
 	HARVEST("use", "Harvest"),
 	PICK("use", "Pick"),
 	PROSPECT("use", "Prospect"),
@@ -87,9 +107,24 @@ public enum ActionType {
 			return rpaction;
 		}
 	},
-	ADMIN_INSPECT("inspect", "(*)Inspect"),
-	ADMIN_DESTROY("destroy", "(*)Destroy"),
-	ADMIN_ALTER("alter", "(*)Alter"),
+	ADMIN_INSPECT("inspect", "(*)Inspect") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
+	ADMIN_DESTROY("destroy", "(*)Destroy") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
+	ADMIN_ALTER("alter", "(*)Alter") {
+		@Override
+		public RPAction fillTargetInfo(final IEntity entity) {
+			return fillTargetPath(super.fillTargetInfo(entity), entity);
+		}
+	},
 	SET_OUTFIT("outfit", "Set outfit"),
 	WHERE("where", "Where") {
 		@Override
@@ -189,13 +224,16 @@ public enum ActionType {
 		RPAction rpaction = new RPAction();
 
 		rpaction.put("type", toString());
-		rpaction.put(EquipActionConsts.TARGET_PATH, entity.getPath());
 		
-		// Compatibility for old servers. Cann't handle nested objects
 		RPObject rpObject = entity.getRPObject(); 
 		final int id = rpObject.getID().getObjectID();
 
 		if (rpObject.isContained()) {
+			/*
+			 * Compatibility for old servers. Cannot handle nested objects.
+			 * The actions that need to cope with contained objects should call
+			 * fillTargetPath().
+			 */
 			rpaction.put("baseobject",
 					rpObject.getContainer().getID().getObjectID());
 			rpaction.put("baseslot", rpObject.getContainerSlot().getName());
@@ -208,6 +246,18 @@ public enum ActionType {
 		}
 
 		return rpaction;
+	}
+	
+	/**
+	 * Add target information for a contained target object.
+	 * 
+	 * @param action
+	 * @param entity target entity
+	 * @return the action
+	 */
+	RPAction fillTargetPath(RPAction action, IEntity entity) {
+		action.put(EquipActionConsts.TARGET_PATH, entity.getPath());
+		return action;
 	}
 
 	/**
