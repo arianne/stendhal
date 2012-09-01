@@ -4,6 +4,10 @@ package games.stendhal.server.actions.equip;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -75,7 +79,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	public void testDropInvalidSourceSlot() {
 		final Player player = createTestPlayer("george");
 
-		final RPAction drop = new RPAction();
+		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "nonExistingSlotXXXXXX");
@@ -84,6 +88,15 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
 		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.events().get(0).get("text"));
+		
+		// same with source path
+		player.clearEvents();
+		drop = new RPAction();
+		drop.put("type", "drop");
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "nonExistingSlotYYY");
+		drop.put(EquipActionConsts.SOURCE_PATH, path);
+		action.onAction(player, drop);
+		Assert.assertEquals("Source nonExistingSlotYYY does not exist", player.events().get(0).get("text"));
 	}
 
 	/**
@@ -93,7 +106,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	public void testDropNonExistingItem() {
 		final Player player = createTestPlayer("bob");
 
-		final RPAction drop = new RPAction();
+		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "bag");
@@ -105,6 +118,13 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		final EquipmentAction action = new DropAction();
 		action.onAction(player, drop);
 		// Assert.assertEquals("There is no such item in the bag of bob", player.events().get(0).get("text"));
+		
+		// same with source path
+		drop = new RPAction();
+		drop.put("type", "drop");
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag", "-1");
+		drop.put(EquipActionConsts.SOURCE_PATH, path);
+		action.onAction(player, drop);
 	}
 
 	/**
@@ -143,7 +163,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		player.equip("bag", item);
 		assertTrue(player.isEquipped("cheese"));
 		localzone.add(player);
-		final RPAction drop = new RPAction();
+		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "bag");
@@ -161,6 +181,22 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		assertEquals(1, localzone.getItemsOnGround().size());
 		assertFalse(player.isEquipped("cheese"));
 
+		// same with source path
+		localzone.remove(item);
+		player.equip("bag", item);
+		drop = new RPAction();
+		drop.put("type", "drop");
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag", Integer.toString(item.getID().getObjectID()));
+		drop.put(EquipActionConsts.SOURCE_PATH, path);
+		drop.put("x", player.getX());
+		drop.put("y", player.getY() + 1);
+		// sanity checks
+		assertEquals(0, localzone.getItemsOnGround().size());
+		assertTrue(player.isEquipped("cheese"));
+		action.onAction(player, drop);
+		Assert.assertEquals(0, player.events().size());
+		assertFalse(player.isEquipped("cheese"));
+		assertEquals(1, localzone.getItemsOnGround().size());
 	}
 
 	/**

@@ -13,7 +13,6 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -25,12 +24,12 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
-import java.util.Iterator;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SlotOwner;
 
 import org.apache.log4j.Logger;
 
@@ -65,16 +64,13 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source;
-		/* TODO: disabled because of 
-		 * if (action.has(EquipActionConsts.SOURCE_PATH)) {
+		if (action.has(EquipActionConsts.SOURCE_PATH)) {
 			source = createSource(action, player);
 			// Otherwise use compatibility mode
-		} else*/
-		if (action.has(EquipActionConsts.BASE_OBJECT)) {
+		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
 			source = createSourceForContainedItem(action, player);
 		} else {
 			source = createSourceForNonContainedItem(action, player);
-
 		}
 
 		if ((source.getEntity() != null) && source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
@@ -154,19 +150,15 @@ class SourceObject extends MoveableObject {
 	 */
 	private static SourceObject createSource(RPAction action, final Player player) {
 		List<String> path = action.getList(EquipActionConsts.SOURCE_PATH);
-		Iterator<String> it = path.iterator();
-		// The ultimate parent object
-		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
-		if (parent == null) {
+		Entity entity = EquipUtil.getEntityFromPath(player, path);
+		if (!(entity instanceof Item)) {
 			return invalidSource;
 		}
-		
-		/*
-		 * Corpses are always top level objects, so this check can be done
-		 * outside the path loop.
-		 */
-		if (parent instanceof Corpse) {
-			Corpse corpse = (Corpse) parent;
+		Item item = (Item) entity;
+		RPObject container = item.getBaseContainer();
+		// Corpses are always top level objects
+		if (container instanceof Corpse) {
+			Corpse corpse = (Corpse) container;
 			if (!corpse.mayUse(player)) {
 				logger.debug(player.getName() + " tried to access eCorpse owned by " + corpse.getCorpseOwner());
 				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
@@ -175,57 +167,25 @@ class SourceObject extends MoveableObject {
 		}
 		
 		/*
-		 * Top level items need to be checked for players standing on them. We
-		 * do not need to worry about access to containers below other players
-		 * as items do not have the content slot when they are on the ground.
+		 * Top level items need to be checked for players standing on them.
 		 */
-		if (parent instanceof Item) {
-			if (isItemBelowOtherPlayer(player, (Item) parent)) {
+		if (container instanceof Item) {
+			if (isItemBelowOtherPlayer(player, (Item) container)) {
 				return invalidSource;
 			}
 		}
 		
-		// Walk the slot path
-		Entity entity = parent;
 		String slotName = null;
-		while (it.hasNext()) {
-			slotName = it.next();
-			if (!entity.hasSlot(slotName)) {
-				player.sendPrivateText("Source " + slotName + " does not exist");
-				logger.error(player.getName() + " tried to use non existing slot " + slotName + " of " + entity
-						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+		RPObject parent = item.getContainer();
+		if (parent != null) {
+			if (!(parent instanceof Entity)) {
+				logger.error("Non entity container: " + parent);
 				return invalidSource;
 			}
-			
-			final RPSlot slot = entity.getSlot(slotName);
-			if (!isValidBaseSlot(player, slot)) {
-				return invalidSource;
-			}
-			
-			if (!it.hasNext()) {
-				logger.error("Missing item id");
-				return invalidSource;
-			}
-			final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
-			if (!slot.has(itemId)) {
-				logger.debug("Base item(" + entity + ") doesn't contain item(" + itemId + ") on given slot(" + slotName
-						+ ")");
-				return invalidSource;
-			}
-			
-			entity = (Entity) slot.get(itemId);
-			if (!(entity instanceof Item)) {
-				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true)
-						+ " is not an item and therefore cannot be equipped");
-				return invalidSource;
-			}
+			slotName = item.getContainerSlot().getName();
 		}
-		// wipe parent, if the item is not contained
-		if (parent == entity) {
-			parent = null;
-		}
-		
-		SourceObject source = new SourceObject(player, parent, slotName, (Item) entity);
+
+		SourceObject source = new SourceObject(player, (Entity) parent, slotName, item);
 		
 		// handle logging of looting items
 		if (parent instanceof Corpse) {
@@ -373,17 +333,17 @@ class SourceObject extends MoveableObject {
 	 */
 	@Override
 	public boolean checkDistance(final Entity other, final double distance) {
-		final Entity checker;
-		if (parent != null) {
-			checker = parent;
-		} else {
-			checker = item;
+		final SlotOwner parent = item.getContainerBaseOwner();
+		if (parent instanceof Entity) {
+			final Entity checker = (Entity) item.getContainerBaseOwner();
+			if (other.nextTo(checker, distance)) {
+				return true;
+			} else {
+				logger.debug("distance check failed " + other.squaredDistance(checker));
+				player.sendPrivateText("You cannot reach that far.");
+			}
 		}
-		if (other.nextTo(checker, distance)) {
-			return true;
-		}
-		logger.debug("distance check failed " + other.squaredDistance(checker));
-		player.sendPrivateText("You cannot reach that far.");
+		
 		return false;
 	}
 

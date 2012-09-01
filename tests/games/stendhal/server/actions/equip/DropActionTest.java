@@ -2,6 +2,10 @@
 package games.stendhal.server.actions.equip;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -56,7 +60,7 @@ public class DropActionTest extends ZoneAndPlayerTestImpl {
 
 		item = player.getFirstEquipped("dice");
 		RPObject parent = item.getContainer();
-		final RPAction action = new RPAction();
+		RPAction action = new RPAction();
 		action.put("type", "drop");
 		action.put("baseitem", item.getID().getObjectID());
 		action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
@@ -67,6 +71,22 @@ public class DropActionTest extends ZoneAndPlayerTestImpl {
 		new DropAction().onAction(player, action);
 		assertEquals(0, player.events().size());
 		Item[] items = localzone.getItemsOnGround().toArray(new Item[0]);
+		assertEquals(1, items.length);
+		assertEquals(0, items[0].getX());
+		assertEquals(1, items[0].getY());
+		
+		// Same using item paths
+		localzone.remove(item);
+		player.equip("bag", item);
+		action = new RPAction();
+		action.put("type", "drop");
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag", Integer.toString(item.getID().getObjectID()));
+		action.put(EquipActionConsts.SOURCE_PATH, path);
+		action.put("x", player.getX());
+		action.put("y", player.getY() + 1);
+		new DropAction().onAction(player, action);
+		assertEquals(0, player.events().size());
+		items = localzone.getItemsOnGround().toArray(new Item[0]);
 		assertEquals(1, items.length);
 		assertEquals(0, items[0].getX());
 		assertEquals(1, items[0].getY());
