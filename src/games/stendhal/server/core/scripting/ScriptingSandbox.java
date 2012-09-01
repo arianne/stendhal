@@ -22,6 +22,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.TransitionContext;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
@@ -207,8 +208,9 @@ public abstract class ScriptingSandbox {
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
 	 */
+	@SuppressWarnings("unused")
 	protected void preExecute(final Player player, final List<String> args) {
-		// do nothing
+		TransitionContext.set(filename);
 	}
 
 	/**
@@ -221,10 +223,21 @@ public abstract class ScriptingSandbox {
 	 *            server start.
 	 * @param result true, if the execution was successful; false otherwise
 	 */
+	@SuppressWarnings("unused")
 	protected void postExecute(final Player player, final List<String> args, boolean result) {
-		// do nothing
+		TransitionContext.set(null);
 	}
 
+
+	/**
+	 * Executes this script.
+	 *
+	 * @param player
+	 *            the admin who load it or <code>null</code> on server start.
+	 * @param args
+	 *            the arguments the admin specified or <code>null</code> on
+	 *            server start.
+	 */
 	public boolean execute(final Player player, final List<String> args) {
 		// do nothing
 		return true;
