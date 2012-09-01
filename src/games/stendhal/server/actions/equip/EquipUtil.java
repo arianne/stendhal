@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;
 
@@ -45,16 +45,7 @@ public class EquipUtil {
 	 *         available.
 	 */
 	public static Entity getEntityFromId(final Player player, final int objectId) {
-		final StendhalRPZone zone = player.getZone();
-		final RPObject.ID id = new RPObject.ID(objectId, zone.getID());
-
-		if (!zone.has(id)) {
-			logger.debug("Rejected because zone doesn't have object "
-					+ objectId);
-			return null;
-		}
-
-		return (Entity) zone.get(id);
+		return EntityHelper.entityFromZoneByID(objectId, player.getZone());
 	}
 	
 	/**

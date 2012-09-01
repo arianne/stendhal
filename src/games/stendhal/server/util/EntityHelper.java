@@ -13,10 +13,6 @@
 package games.stendhal.server.util;
 
 import static games.stendhal.common.constants.Actions.TARGET;
-
-import java.util.Iterator;
-import java.util.List;
-
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.equip.EquipUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -26,9 +22,12 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.GroundSlot;
+
+import java.util.Iterator;
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -271,7 +270,7 @@ public class EntityHelper {
 	public static Entity getEntityFromPath(final Player player, final List<String> path) {
 		Iterator<String> it = path.iterator();
 		// The ultimate parent object
-		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+		Entity parent = entityFromZoneByID(MathHelper.parseInt(it.next()), player.getZone());
 		if (parent == null) {
 			return null;
 		}
