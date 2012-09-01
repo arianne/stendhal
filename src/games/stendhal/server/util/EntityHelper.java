@@ -13,6 +13,12 @@
 package games.stendhal.server.util;
 
 import static games.stendhal.common.constants.Actions.TARGET;
+
+import java.util.Iterator;
+import java.util.List;
+
+import games.stendhal.common.MathHelper;
+import games.stendhal.server.actions.equip.EquipUtil;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -22,6 +28,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.GroundSlot;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -252,4 +259,51 @@ public class EntityHelper {
         }
         return null;
     }
+
+	/**
+	 * Get an entity from path. Does not do any access checks.
+	 * 
+	 * @param player
+	 * @param path entity path
+	 * @return entity corresponding to the path, or <code>null</code> if none
+	 * 	was found
+	 */
+	public static Entity getEntityFromPath(final Player player, final List<String> path) {
+		Iterator<String> it = path.iterator();
+		// The ultimate parent object
+		Entity parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
+		if (parent == null) {
+			return null;
+		}
+		
+		// Walk the slot path
+		Entity entity = parent;
+		String slotName = null;
+		while (it.hasNext()) {
+			slotName = it.next();
+			if (!entity.hasSlot(slotName)) {
+				player.sendPrivateText("Source " + slotName + " does not exist");
+				EquipUtil.logger.error(player.getName() + " tried to use non existing slot " + slotName + " of " + entity
+						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+				return null;
+			}
+			
+			final RPSlot slot = entity.getSlot(slotName);
+			
+			if (!it.hasNext()) {
+				EquipUtil.logger.error("Missing entity id");
+				return null;
+			}
+			final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
+			if (!slot.has(itemId)) {
+				EquipUtil.logger.debug("Base entity(" + entity + ") doesn't contain entity(" + itemId + ") on given slot(" + slotName
+						+ ")");
+				return null;
+			}
+			
+			entity = (Entity) slot.get(itemId);
+		}
+	
+		return entity;
+	}
 }

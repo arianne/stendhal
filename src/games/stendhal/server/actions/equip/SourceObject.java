@@ -23,6 +23,7 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;
 
@@ -150,7 +151,7 @@ class SourceObject extends MoveableObject {
 	 */
 	private static SourceObject createSource(RPAction action, final Player player) {
 		List<String> path = action.getList(EquipActionConsts.SOURCE_PATH);
-		Entity entity = EquipUtil.getEntityFromPath(player, path);
+		Entity entity = EntityHelper.getEntityFromPath(player, path);
 		if (!(entity instanceof Item)) {
 			return invalidSource;
 		}

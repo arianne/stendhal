@@ -25,6 +25,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -43,7 +44,7 @@ public class ReorderAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Entity entity = EquipUtil.getEntityFromPath(player, action.getList(EquipActionConsts.SOURCE_PATH));
+		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(EquipActionConsts.SOURCE_PATH));
 		if (mayAccess(player, entity, action)) {
 			reorder(entity, MathHelper.parseInt(action.get("new_position")));
 		}

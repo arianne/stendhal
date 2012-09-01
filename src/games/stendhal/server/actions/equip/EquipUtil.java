@@ -12,16 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Iterator;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -29,7 +26,7 @@ import org.apache.log4j.Logger;
  * Useful method to deal with equipable items.
  */
 public class EquipUtil {
-	private static Logger logger = Logger.getLogger(EquipUtil.class);
+	public static Logger logger = Logger.getLogger(EquipUtil.class);
 
 	/**
 	 * The maximum distance a player can throw an item away from himself.
@@ -60,53 +57,6 @@ public class EquipUtil {
 		return (Entity) zone.get(id);
 	}
 	
-	/**
-	 * Get an entity from path. Does not do any access checks.
-	 * 
-	 * @param player
-	 * @param path entity path
-	 * @return entity corresponding to the path, or <code>null</code> if none
-	 * 	was found
-	 */
-	static Entity getEntityFromPath(final Player player, final List<String> path) {
-		Iterator<String> it = path.iterator();
-		// The ultimate parent object
-		Entity parent = getEntityFromId(player, MathHelper.parseInt(it.next()));
-		if (parent == null) {
-			return null;
-		}
-		
-		// Walk the slot path
-		Entity entity = parent;
-		String slotName = null;
-		while (it.hasNext()) {
-			slotName = it.next();
-			if (!entity.hasSlot(slotName)) {
-				player.sendPrivateText("Source " + slotName + " does not exist");
-				logger.error(player.getName() + " tried to use non existing slot " + slotName + " of " + entity
-						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
-				return null;
-			}
-			
-			final RPSlot slot = entity.getSlot(slotName);
-			
-			if (!it.hasNext()) {
-				logger.error("Missing entity id");
-				return null;
-			}
-			final RPObject.ID itemId = new RPObject.ID(MathHelper.parseInt(it.next()), "");
-			if (!slot.has(itemId)) {
-				logger.debug("Base entity(" + entity + ") doesn't contain entity(" + itemId + ") on given slot(" + slotName
-						+ ")");
-				return null;
-			}
-			
-			entity = (Entity) slot.get(itemId);
-		}
-
-		return entity;
-	}
-
 	/**
 	 * Checks if the object is of one of the given class or one of its children.
 	 *
