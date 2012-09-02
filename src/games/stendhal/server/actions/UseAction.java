@@ -61,11 +61,12 @@ public class UseAction implements ActionListener {
 	 */
 	private void useEntityFromPath(Player player, RPAction action) {
 		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_PATH));
-		
-		if (entity.isContained() && !mayAccessContainedEntity(player, entity)) {
-			return;
+		if (entity != null) {
+			if (entity.isContained() && !mayAccessContainedEntity(player, entity)) {
+				return;
+			}
+			tryUse(player, entity);
 		}
-		tryUse(player, entity);
 	}
 
 	private boolean isItemInSlot(final RPAction action) {
