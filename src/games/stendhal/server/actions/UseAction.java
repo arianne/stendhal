@@ -74,6 +74,12 @@ public class UseAction implements ActionListener {
 				&& action.has(BASESLOT);
 	}
 
+	/**
+	 * Use a top level entity.
+	 * 
+	 * @param player
+	 * @param action
+	 */
 	private void useItemOnGround(final Player player, final RPAction action) {
 		// use is cast over something on the floor
 		// evaluate the target parameter
@@ -85,10 +91,15 @@ public class UseAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * Use an entity contained in a slot. Compatibility mode.
+	 * 
+	 * @param player
+	 * @param action
+	 */
 	private void useItemInSlot(final Player player, final RPAction action) {
-		final EntitySlot slot = EntityHelper.getSlot(player, action);
 		final Entity object = EntityHelper.entityFromSlot(player, action);
-		if ((object != null) && canAccessSlot(player, slot, object.getBaseContainer())) {
+		if ((object != null) && mayAccessContainedEntity(player, object)) { 
 			tryUse(player, object);
 		}
 	}
@@ -152,34 +163,6 @@ public class UseAction implements ActionListener {
 			return (EntitySlot) slot;
 		}
 		return null;
-	}
-
-	private boolean canAccessSlot(final Player player, final EntitySlot slot, final RPObject base) {
-		if (!((base instanceof Player) || (base instanceof Corpse) || (base instanceof Chest))) {
-			// Only allow to use objects from players, corpses or chests
-			return false;
-		}
-
-		if ((slot != null) && !slot.isReachableForTakingThingsOutOfBy(player)) {
-			return false;
-		}
-
-		if ((base instanceof Player)
-				&& !player.getID().equals(base.getID())) {
-			// Only allowed to use item of our own player.
-			return false;
-		}
-		
-		if (base instanceof Corpse) {
-			Corpse corpse = (Corpse) base;
-			if (!corpse.mayUse(player)) {
-				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
-				
-				return false;
-			}
-		}
-		
-		return true;
 	}
 
 	private void tryUse(final Player player, final RPObject object) {
@@ -249,6 +232,5 @@ public class UseAction implements ActionListener {
 		}
 
 		new GameEvent(player.getName(), USE, name, infostring).raise();
-		
 	}
 }
