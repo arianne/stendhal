@@ -298,6 +298,12 @@ public class Blend implements Composite {
 	 * A composer for the generic lighting blend.
 	 */
 	private static class GenericLightComposer implements Composer {
+		/**
+		 * Divider for the added light. Larger means dimmer effect. 0xff is
+		 * very bright.
+		 */
+		private static final int DIMMING_FACTOR = 0x200;
+		
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			int sum = 0;
 			for (int i = RED; i <= BLUE; i++) {
@@ -320,9 +326,7 @@ public class Blend implements Composite {
 		 * @return composed color value
 		 */
 		private int composeComponent(int a, int b) {
-			// It's a very bright light. Probably most zones should use the
-			// dim image variants.
-			return Math.min(b + b * a / 0xff, 0xff);
+			return Math.min(b + b * a / DIMMING_FACTOR, 0xff);
 		}
 	}
 	
