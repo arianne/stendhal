@@ -77,18 +77,30 @@
  <!-- Level 5 -->
 
  <zone name="5_kikareukin_cave" level="5" x="499616" y="499744" file="Level 5/kikareukin/cave.tmx">
+   <attributes>
+     <parameter name="color_method">softlight</parameter>
+     <parameter name="color">#501500</parameter>
+   </attributes>
  </zone>
 
 
  <!-- Level 4 -->
 
  <zone name="4_kikareukin_cave" level="4" x="499616" y="499744" file="Level 4/kikareukin/cave.tmx">
+   <attributes>
+     <parameter name="color_method">softlight</parameter>
+     <parameter name="color">#5a0572</parameter>
+   </attributes>
  </zone>
 
 
  <!-- Level 3 -->
 
  <zone name="3_kikareukin_cave" level="3" x="499616" y="499744" file="Level 3/kikareukin/cave.tmx">
+   <attributes>
+     <parameter name="color_method">softlight</parameter>
+     <parameter name="color">#5e960e</parameter>
+   </attributes>
  </zone>
 
 
