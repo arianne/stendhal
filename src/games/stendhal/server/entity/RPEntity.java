@@ -1316,6 +1316,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		};
 		
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+			@Override
 			public void onTurnReached(int turn) {
 				me.damage(amount, attacker);
 			}
@@ -1954,15 +1955,41 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
-				if (object instanceof Item) {
-					final Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						return item;
-					}
+				Item item = getFirstNestedEquipped(name, object);
+				if (item != null) {
+					return item;
 				}
 			}
 		}
 
+		return null;
+	}
+	
+	/**
+	 * Search recursively the first item of specified name inside an object.
+	 * 
+	 * @param name item name to find
+	 * @param obj object where to start the seach
+	 * 
+	 * @return First item matching the item name. The returned item can be the
+	 * 	starting object, if that matches the searching criterion. If no matching
+	 * 	item is found, <code>null</code> is returned
+	 */
+	private Item getFirstNestedEquipped(String name, RPObject obj) {
+		if (obj instanceof Item) {
+			Item item = (Item) obj;
+			if (item.getName().equals(name)) {
+				return item;
+			}
+			for (RPSlot slot : obj.slots()) {
+				for (RPObject subobj : slot) {
+					Item tmp = getFirstNestedEquipped(name, subobj);
+					if (tmp != null) {
+						return tmp;
+					}
+				}
+			}
+		}
 		return null;
 	}
 
