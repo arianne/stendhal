@@ -80,6 +80,7 @@
    <attributes>
      <parameter name="color_method">softlight</parameter>
      <parameter name="color">#501500</parameter>
+     <parameter name="blend_method">bleach</parameter>
    </attributes>
  </zone>
 
@@ -90,6 +91,7 @@
    <attributes>
      <parameter name="color_method">softlight</parameter>
      <parameter name="color">#5a0572</parameter>
+     <parameter name="blend_method">bleach</parameter>
    </attributes>
  </zone>
 
