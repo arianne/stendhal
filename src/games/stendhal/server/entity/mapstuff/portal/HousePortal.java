@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.Type;
-
 import games.stendhal.common.Constants;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -24,6 +19,10 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.HouseKey;
+import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * A portal that can be used with a matching <code>HouseKey</code>. 
@@ -157,27 +156,52 @@ public class HousePortal extends AccessCheckingPortal {
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
 		// check if the player is carrying a matching HouseKey
+		// HoukeKeys can not be found with getAllEquipped, because they override
+		// getName()
 		for (final String slotName : Constants.CARRYING_SLOTS) {
 			final RPSlot slot = user.getSlot(slotName);
 
 			for (final RPObject object : slot) {
-				if (!(object instanceof HouseKey)) {
-					continue;
-				}
-
-				final HouseKey key = (HouseKey) object;
-				if (key.matches(getDoorId(), getLockNumber())) {
-					// TODO: Remove the key naming support, and just return.  
-					// The renaming code does not need to be here forever, just some
-					// months, so that most of the player's keys get tagged with
-					// an owner. Comment added 2009-03-13 
-					key.setup(getDoorId(), getLockNumber(), getOwner());
-					
+				if (keyMatches(object)) {
 					return true;
 				}
 			}
 		}
-
+		
+		return false;
+	}
+	
+	/**
+	 * Check if an RPObject, or any of the objects it contains is a HouseKey
+	 * matching this portal.
+	 * 
+	 * @param obj checked object
+	 * @return <code>true</code> if a match was found, <code>false<code>
+	 * 	otherwise
+	 */
+	private boolean keyMatches(RPObject obj) {
+		if (obj instanceof HouseKey) {
+			final HouseKey key = (HouseKey) obj;
+			if (key.matches(getDoorId(), getLockNumber())) {
+				/*
+				 * Key renaming support. Before the stored portals the house
+				 * keys did not have owner names, so the names are added when
+				 * the correct portal is found. There likely aren't many such
+				 * keys left, but keeping the support does not cost much.
+				 */ 
+				key.setup(getDoorId(), getLockNumber(), getOwner());
+				return true;
+			} else {
+				return false;
+			}
+		}
+		for (RPSlot slot : obj.slots()) {
+			for (RPObject subobj : slot) {
+				if (keyMatches(subobj)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	
