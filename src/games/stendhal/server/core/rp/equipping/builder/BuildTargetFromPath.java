@@ -11,8 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.equipping.builder;
 
-import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.actions.equip.EquipUtil;
 import games.stendhal.server.core.rp.equipping.EquipmentActionData;
 import games.stendhal.server.entity.Entity;
@@ -28,7 +28,7 @@ import marauroa.common.game.RPObject;
 class BuildTargetFromPath implements PartialBuilder {
 
 	public void build(EquipmentActionData data, Player player, RPAction action) {
-		List<String> path = action.getList(EquipActionConsts.TARGET_PATH);
+		List<String> path = action.getList(Actions.TARGET_PATH);
 		Iterator<String> it = path.iterator();
 
 		// get parent

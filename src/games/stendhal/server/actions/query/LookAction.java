@@ -35,8 +35,6 @@ import marauroa.common.game.RPObject;
  * Processes a look menu action.
  */
 public class LookAction implements ActionListener {
-	private static final String TARGET_ATTR = "target_path";
-
 	public static void register() {
 		CommandCenter.register(LOOK, new LookAction());
 	}
@@ -49,8 +47,8 @@ public class LookAction implements ActionListener {
 	 */
 	public void onAction(final Player player, final RPAction action) {
 		Entity entity = null;
-		if (action.has(TARGET_ATTR)) {
-			entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_ATTR));
+		if (action.has(Actions.TARGET_PATH)) {
+			entity = EntityHelper.getEntityFromPath(player, action.getList(Actions.TARGET_PATH));
 		} else {
 			entity = EntityHelper.entityFromSlot(player, action);
 

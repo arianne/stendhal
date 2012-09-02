@@ -34,8 +34,6 @@ public abstract class AdministrationAction implements ActionListener {
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
 	
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
-	
-	private static final String TARGET_PATH = "target_path";
 
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
@@ -124,8 +122,8 @@ public abstract class AdministrationAction implements ActionListener {
 
 	protected final Entity getTargetAnyZone(final Player player, final RPAction action) {
 		Entity entity;
-		if (action.has(TARGET_PATH)) {
-			entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_PATH));
+		if (action.has(Actions.TARGET_PATH)) {
+			entity = EntityHelper.getEntityFromPath(player, action.getList(Actions.TARGET_PATH));
 		} else {
 			entity = EntityHelper.entityFromSlot(player, action);
 		}

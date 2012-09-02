@@ -14,6 +14,7 @@ package games.stendhal.server.core.rp.equipping.builder;
 import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.X;
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.rp.equipping.EquipmentActionData;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -80,7 +81,7 @@ public class EquipmentActionBuilder {
 	}
 
 	private PartialBuilder createTargetBuilder() {
-		if (action.has(EquipActionConsts.TARGET_PATH)) {
+		if (action.has(Actions.TARGET_PATH)) {
 			return new BuildTargetFromPath();
 		} else if (action.has(X)) {
 			return new BuildTargetFromGround();

@@ -14,6 +14,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -60,8 +61,8 @@ class DestinationObject extends MoveableObject {
 	public DestinationObject(final RPAction action, final Player player) {
 		super(player);
 		valid = false;
-		if (action.has(EquipActionConsts.TARGET_PATH)) {
-			List<String> path = action.getList(EquipActionConsts.TARGET_PATH);
+		if (action.has(Actions.TARGET_PATH)) {
+			List<String> path = action.getList(Actions.TARGET_PATH);
 			Iterator<String> it = path.iterator();
 			parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
 			

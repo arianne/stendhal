@@ -27,6 +27,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.constants.Actions;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -253,7 +254,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		action.put(EquipActionConsts.SOURCE_PATH, entity.getPath());
 		List<String> targetPath = parent.getPath();
 		targetPath.add(getName());
-		action.put(EquipActionConsts.TARGET_PATH, targetPath);
+		action.put(Actions.TARGET_PATH, targetPath);
 		
 		if (amount >= 1) {
 			action.put(EquipActionConsts.QUANTITY, amount);
@@ -407,7 +408,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			
 			action.put(EquipActionConsts.TYPE, "equip");
 			action.put(EquipActionConsts.SOURCE_PATH, entityView.getEntity().getPath());
-			action.put(EquipActionConsts.TARGET_PATH, 
+			action.put(Actions.TARGET_PATH, 
 					Arrays.asList(Integer.toString(User.get().getID().getObjectID()), "bag"));
 			
 			// Compatibility item identification data

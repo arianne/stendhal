@@ -13,7 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.constants.Actions;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -256,7 +256,7 @@ public enum ActionType {
 	 * @return the action
 	 */
 	RPAction fillTargetPath(RPAction action, IEntity entity) {
-		action.put(EquipActionConsts.TARGET_PATH, entity.getPath());
+		action.put(Actions.TARGET_PATH, entity.getPath());
 		return action;
 	}
 

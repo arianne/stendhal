@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.common.constants.Actions;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -264,7 +265,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
-		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
 		
 		action.onAction(player, equip);
@@ -307,7 +308,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
-		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
 		
 		action.onAction(player, equip);
@@ -356,7 +357,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
-		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
 		
 		action.onAction(player, equip);
@@ -412,7 +413,7 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put("type", "equip");
 		equip.put(EquipActionConsts.SOURCE_PATH, Arrays.asList(Integer.toString(item.getID().getObjectID())));
 		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
-		equip.put(EquipActionConsts.TARGET_PATH, path);
+		equip.put(Actions.TARGET_PATH, path);
 		equip.put(EquipActionConsts.QUANTITY, "2");
 		
 		action.onAction(player, equip);

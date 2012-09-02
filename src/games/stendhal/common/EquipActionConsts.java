@@ -17,7 +17,6 @@ package games.stendhal.common;
  * TODO everywhere use this constants instead of plain strings
  */
 public interface EquipActionConsts {
-	String TARGET_PATH = "target_path";
 	String SOURCE_PATH = "source_path";
 	
 	// Compatibility object addressing
