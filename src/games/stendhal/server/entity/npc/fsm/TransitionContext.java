@@ -46,7 +46,7 @@ public class TransitionContext {
 	 */
 	public static String getWithFallback(String label) {
 		String res = get();
-		if ((label != null) && (!label.isEmpty())) {
+		if ((label != null) && (!label.equals(""))) {
 			res = label;
 		}
 		if (res == null) {
