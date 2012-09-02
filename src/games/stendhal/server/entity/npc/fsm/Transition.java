@@ -352,17 +352,15 @@ public class Transition {
 	/**
 	 * Checks for labels equality
 	 * 
-	 * @param label - label to compare
-	 * @return - check result
+	 * @param aLabel label to compare
+	 * @return check result
 	 */
-	public boolean checkLabel(final String label) {
-		logger.debug(this.toString()+", comparing with: \""+label+"\"");
-		if (this.label.equals(label)) {
-			logger.debug("found");
-			return true;
+	public boolean checkLabel(final String aLabel) {
+		if (aLabel == null || aLabel.equals("")) {
+			logger.debug("Never match an empty label");
+			return false;
 		}
-		logger.debug("not found");
-		return false;
+		return aLabel.equals(this.label);
 	}
 
 	/**
@@ -379,10 +377,10 @@ public class Transition {
 	/**
 	 * Checks whether this transition's condition is fulfilled.
 	 * 
-	 * @param player
+	 * @param player Player
 	 * @param sentence
 	 *            the sentence the player said
-	 * @param npc
+	 * @param npc SpeakerNPC
 	 * @return true iff there is no condition or if there is one which is
 	 *         fulfilled
 	 */

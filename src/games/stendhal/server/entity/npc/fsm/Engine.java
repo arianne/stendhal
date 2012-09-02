@@ -70,26 +70,7 @@ public class Engine {
 
 		return null;
 	}
-	
-	/**
-	 * Looks for an already registered exactly matching transition.
-	 * 
-	 * @param label - label to search
-	 * @return - transition or null
-	 */
-	private Transition get(final String label) {
-		if (label.equals("")) {
-			logger.debug("will not search for empty label");
-			return null;
-		}
-		for (final Transition transition : stateTransitionTable) {
-			if (transition.checkLabel(label)) {
-				return transition;
-			}
-		}
-		logger.debug("label not found");
-		return null;
-	}
+
 
 	/**
 	 * Adds a new transition to FSM.
@@ -135,6 +116,8 @@ public class Engine {
 	 *            output
 	 * @param action
 	 *            additional action after the condition
+	 * @param label
+	 *            a label to find this transition at a later time
 	 */
 	public void add(final ConversationStates state, final String triggerString, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action,
@@ -195,6 +178,8 @@ public class Engine {
 	 *            a simple sentence reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
+	 * @param label
+	 *            a label to find this transition at a later time
 	 */
 	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
@@ -211,14 +196,22 @@ public class Engine {
 	/**
 	 * Adds a new transition with explicit ExpressionMatcher to FSM.
 	 *
-	 * @param state 
+	 * @param state
+	 *            the starting state of the FSM
 	 * @param triggerString
+	 *            input for this transition, must not be null
 	 * @param matcher
 	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
 	 * @param secondary
+	 * 			  flag to mark secondary transitions to be taken into account after preferred transitions
 	 * @param nextState
+	 *            the new state of the FSM
 	 * @param reply
+	 *            a simple sentence reply (may be null for no reply)
 	 * @param action
+	 *            a special action to be taken (may be null)
 	 */
 	public void addMatching(final ConversationStates state, final String triggerString, final ExpressionMatcher matcher, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action) {
@@ -277,13 +270,13 @@ public class Engine {
 	 *            a simple sentence reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
+	 * @param label
+	 *            a label to find this transition at a later time
 	 */
 	public void add(Collection<Expression> triggerExpressions, final ConversationStates state, final ChatCondition condition,
 			boolean secondary, final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
 		if (triggerExpressions!=null && !triggerExpressions.isEmpty()) {
-			if(label.equals("") || (get(label)==null)) {
-				stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action, label));
-			}
+			stateTransitionTable.add(new Transition(state, triggerExpressions, condition, secondary, nextState, reply, action, label));
 		}
 	}
 
@@ -315,16 +308,25 @@ public class Engine {
 	/**
 	 * remove matches transition
 	 * 
-	 * @param label
-	 * @return
+	 * @param label the label of transitions to remove
+	 * @return true, if at least one transition was removed
 	 */
 	public boolean remove(final String label) {
-		final Transition tr = get(label);
-		if (tr==null) {
-			logger.debug("No such transition with label \""+label+"\" in fsm.");
+		if ((label == null) || (label.equals(""))) {
+			logger.debug("will not remove transitions with empty label");
 			return false;
 		}
-		return(stateTransitionTable.remove(tr));
+
+		boolean res = false;
+		Iterator<Transition> itr = stateTransitionTable.iterator();
+		while (itr.hasNext()) {
+			Transition transition = itr.next();
+			if (transition.checkLabel(label)) {
+				itr.remove();
+				res = true;
+			}
+		}
+		return res;
 	}
 
 	/**
@@ -610,20 +612,6 @@ public class Engine {
 		// structure
 		return new LinkedList<Transition>(stateTransitionTable);
 	}
-
-	/**
-	 * Returns a copy of transition that match label
-	 * @param label
-	 * @return
-	 */
-	public Transition getTransition(final String label) {
-		Transition tr = get(label); 
-		if(tr==null) {
-			return null;
-		}
-		return new Transition(tr);
-	}
-
 
 
 }
