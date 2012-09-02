@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * Useful method to deal with equipable items.
  */
 public class EquipUtil {
-	public static Logger logger = Logger.getLogger(EquipUtil.class);
+	public static final Logger logger = Logger.getLogger(EquipUtil.class);
 
 	/**
 	 * The maximum distance a player can throw an item away from himself.
