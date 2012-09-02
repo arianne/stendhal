@@ -1998,17 +1998,33 @@ public class Player extends RPEntity implements UseListener {
 			final RPSlot slot = getSlot(slotName);
 
 			for (final RPObject object : slot) {
-				if (object instanceof RingOfLife) {
-					final RingOfLife ring =  (RingOfLife) object;
-					if (!ring.isBroken()) {
-						result.add(ring);
-					}
-
-				}
+				searchForWorkingRingsOfLife(object, result);
 			}
 		}
 
 		return result;
+	}
+	
+	/**
+	 * Search recursively for working rings of life inside objects and their
+	 * content slots.
+	 *   
+	 * @param obj
+	 * @param list
+	 */
+	private void searchForWorkingRingsOfLife(RPObject obj, List<RingOfLife> list) {
+		if (obj instanceof RingOfLife) {
+			RingOfLife ring = (RingOfLife) obj;
+			if (!ring.isBroken()) {
+				list.add(ring);
+			}
+		} else {
+			for (RPSlot slot : obj.slots()) {
+				for (RPObject subobj : slot) {
+					searchForWorkingRingsOfLife(subobj, list);
+				}
+			}
+		}
 	}
 
 	/**
@@ -2608,6 +2624,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @param user the RPEntity who uses the object
 	 * @return true if successful
 	 */
+	@Override
 	public boolean onUsed(RPEntity user) {
 		if ((useListener == null) || (!(user instanceof Player))) {
 			return false;
