@@ -42,7 +42,7 @@ public class UseAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET_PATH)) {
-			useItemFromPath(player, action);
+			useEntityFromPath(player, action);
 		} else if (isItemInSlot(action)) {
 			// When use is casted over something in a slot
 			// Compatibility code
@@ -54,20 +54,20 @@ public class UseAction implements ActionListener {
 	}
 	
 	/**
-	 * Use an item identified by TARGET_PATH.
+	 * Use an entity identified by TARGET_PATH.
 	 * 
 	 * @param player
 	 * @param action
 	 */
-	private void useItemFromPath(Player player, RPAction action) {
+	private void useEntityFromPath(Player player, RPAction action) {
 		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_PATH));
 		if (entity instanceof Item) {
 			Item item = (Item) entity;
 			if (item.isContained() && !mayAccessContainedItem(player, item)) {
 				return;
 			}
-			tryUse(player, item);
 		}
+		tryUse(player, entity);
 	}
 
 	private boolean isItemInSlot(final RPAction action) {
