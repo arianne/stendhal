@@ -61,11 +61,9 @@ public class UseAction implements ActionListener {
 	 */
 	private void useEntityFromPath(Player player, RPAction action) {
 		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_PATH));
-		if (entity instanceof Item) {
-			Item item = (Item) entity;
-			if (item.isContained() && !mayAccessContainedItem(player, item)) {
-				return;
-			}
+		
+		if (entity.isContained() && !mayAccessContainedEntity(player, entity)) {
+			return;
 		}
 		tryUse(player, entity);
 	}
@@ -100,23 +98,23 @@ public class UseAction implements ActionListener {
 	 * tryUse().
 	 * 
 	 * @param player
-	 * @param item
+	 * @param entity
 	 * @return <code>true</code> if the player may access items in the location
 	 * of item
 	 */
-	private boolean mayAccessContainedItem(Player player, Item item) {
-		RPObject parent = item.getContainer();
-		while ((parent != null) && (parent != item)) {
+	private boolean mayAccessContainedEntity(Player player, Entity entity) {
+		RPObject parent = entity.getContainer();
+		while ((parent != null) && (parent != entity)) {
 			if (parent instanceof Item) {
-				item = (Item) parent;
-				if (isItemBoundToOtherPlayer(player, item)) {
+				entity = (Item) parent;
+				if (isItemBoundToOtherPlayer(player, entity)) {
 					return false;
 				}
-				EntitySlot slot = getContainingSlot(item);
+				EntitySlot slot = getContainingSlot(entity);
 				if ((slot == null) || !slot.isReachableForTakingThingsOutOfBy(player)) {
 					return false;
 				}
-				parent = item.getContainer();
+				parent = entity.getContainer();
 			} else if (parent instanceof Corpse) {
 				Corpse corpse = (Corpse) parent;
 				if (!corpse.mayUse(player)) {
@@ -142,13 +140,13 @@ public class UseAction implements ActionListener {
 	}
 	
 	/**
-	 * Get the slot containing an item.
+	 * Get the slot containing an entity.
 	 * 
-	 * @param item
+	 * @param entity
 	 * @return containing slot
 	 */
-	private EntitySlot getContainingSlot(Item item) {
-		RPSlot slot = item.getContainerSlot();
+	private EntitySlot getContainingSlot(Entity entity) {
+		RPSlot slot = entity.getContainerSlot();
 		if (slot instanceof EntitySlot) {
 			return (EntitySlot) slot;
 		}
