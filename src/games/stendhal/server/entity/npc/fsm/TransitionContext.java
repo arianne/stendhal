@@ -37,4 +37,21 @@ public class TransitionContext {
 	public static String get() {
 		return currentLabel.get();
 	}
+
+	/**
+	 * gets the TransitionContext, prefering the specified one.
+	 *
+	 * @param label a label that will take precedence, if it is defined.
+	 * @return label
+	 */
+	public static String getWithFallback(String label) {
+		String res = get();
+		if ((label != null) && (!label.isEmpty())) {
+			res = label;
+		}
+		if (res == null) {
+			res = "";
+		}
+		return res;
+	}
 }

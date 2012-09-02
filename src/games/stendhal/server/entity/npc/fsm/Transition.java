@@ -59,7 +59,7 @@ public class Transition {
 	/** Label for search through installed transitions */
 	private final String label;
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private Logger logger = Logger.getLogger(this.getClass());
 
 	/**
 	 * Creates a new transition.
@@ -91,7 +91,7 @@ public class Transition {
 		this.triggers = triggers;
 		this.reply = reply;
 		this.action = action;
-		this.label = label;
+		this.label = TransitionContext.getWithFallback(label);
 	}
 
 	/**
@@ -122,14 +122,13 @@ public class Transition {
 		this.triggers = triggers;
 		this.reply = reply;
 		this.action = action;
-		this.label = "";
+		this.label = TransitionContext.getWithFallback("");
 	}
 
 	/**
 	 * Create transition and copy values from existing transition
 	 * 
 	 * @param tr - source transition, must not be null
-	 * @throws 
 	 */
 	public Transition(Transition tr) {
 		this.state = tr.state;
@@ -139,7 +138,7 @@ public class Transition {
 		this.triggers = new LinkedList<Expression>(tr.triggers);
 		this.reply = tr.reply;
 		this.action = tr.action;
-		this.label = tr.label;
+		this.label = TransitionContext.getWithFallback(tr.label);
 	}
 
 	/**
