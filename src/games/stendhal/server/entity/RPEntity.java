@@ -1847,15 +1847,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 					continue;
 				}
 
-				final Item item = (Item) object;
-				final String itemName = item.getName();
-
-				if (itemName.equals(name)) {
-					found += item.getQuantity();
-
-					if (found >= amount) {
-						return true;
-					}
+				found += getItemCount(name, (Item) object);
+				if (found >= amount) {
+					return true;
 				}
 			}
 		}
@@ -1891,10 +1885,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			for (final RPObject object : slot) {
 				if (object instanceof Item) {
-					final Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						result += item.getQuantity();
-					}
+					result += getItemCount(name, (Item) object);
 				}
 			}
 		}
@@ -1902,6 +1893,30 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return result;
 	}
 
+	/**
+	 * Get count of items of a given name, including items in the slots of
+	 * items. The count is started from topItem, and topItem is included in the
+	 * count, if applicable.
+	 *  
+	 * @param name name of items to be counted
+	 * @param topItem item where to start the recursive count
+	 * @return count of items of the given name
+	 */
+	private int getItemCount(String name, Item topItem) {
+		int count = 0;
+		if (topItem.getName().equals(name)) {
+			count += topItem.getQuantity();
+		}
+		for (RPSlot slot : topItem.slots()) {
+			for (RPObject obj : slot) {
+				if (obj instanceof Item) {
+					count += getItemCount(name, (Item) obj);
+				}
+			}
+		}
+		
+		return count;
+	}
 
 	/**
 	 * Gets the number of items of the given name including bank.
@@ -1917,10 +1932,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		for (final RPSlot slot : slots()) {
 			for (final RPObject object : slot) {
 				if (object instanceof Item) {
-					final Item item = (Item) object;
-					if (item.getName().equals(name)) {
-						result += item.getQuantity();
-					}
+					result += getItemCount(name, (Item) object);
 				}
 			}
 		}
