@@ -157,7 +157,11 @@ public class Zone {
 			}
 			
 			// * effect blend *
-			zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
+			if (isColoringEnabled()) {
+				zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
+			} else {
+				zoneInfo.setEffectBlend(null);
+			}
 			
 			// *** other attributes ***
 			String danger = obj.get("danger_level");
