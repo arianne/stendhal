@@ -298,16 +298,7 @@ public class PlayerDieer {
 				// a list that will contain the objects that could
 				// be dropped.
 				for (final RPObject objectInSlot : slot) {
-					// don't drop special quest rewards as there is no way to
-					// get them again
-					if (objectInSlot instanceof Item) {
-						final Item itemInSlot = (Item) objectInSlot;
-						if (itemInSlot.isBound() || itemInSlot.isUndroppableOnDeath()) {
-							continue;
-						} 
-					}
-						
-					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
+					addDroppableObjects(objectInSlot, objects);
 				}
 			} else {
 				logger.error("CARRYING_SLOTS contains a slot that player "
@@ -316,5 +307,33 @@ public class PlayerDieer {
 		}
 		return objects;
 	}
-
+	
+	/**
+	 * Add any droppable objects inside an object, including the object itself
+	 * if it's droppable and empty. The contents are scanned recursively.
+	 * 
+	 * @param obj
+	 * @param list
+	 */
+	private void addDroppableObjects(RPObject obj, List<Pair<RPObject, RPSlot>> list) {
+		boolean droppable = true;
+		for (RPSlot slot : obj.slots()) {
+			for (RPObject subobj : slot) {
+				addDroppableObjects(subobj, list);
+				// Don't drop containers, if they are not empty
+				droppable = false;
+			}
+		}
+		if (obj instanceof Item) {
+			Item item = (Item) obj;
+			// don't drop special quest rewards as there is no way to
+			// get them again
+			if (item.isBound() || item.isUndroppableOnDeath()) {
+				droppable = false;
+			}
+		}
+		if (droppable) {
+			list.add(new Pair<RPObject, RPSlot>(obj, obj.getContainerSlot()));
+		}
+	}
 }
