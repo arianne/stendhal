@@ -157,7 +157,7 @@ public class Zone {
 			}
 			
 			// * effect blend *
-			zoneInfo.setEffectBlend(getBlend(obj.get("blend_method")));
+			zoneInfo.setEffectBlend(getEffectBlend(obj.get("blend_method"), zoneInfo.getColorMethod()));
 			
 			// *** other attributes ***
 			String danger = obj.get("danger_level");
@@ -192,24 +192,45 @@ public class Zone {
 	}
 	
 	/**
+	 * Get blend mode for the effect layers.
+	 * 
+	 * @param colorMode mode description
+	 * @param globalMode global coloring blend mode
+	 * 
+	 * @return effect blend
+	 */
+	private Composite getEffectBlend(String colorMode, Composite globalMode) {
+		if ("bleach".equals(colorMode) && (globalMode != Blend.Multiply)) {
+			/*
+			 * Bleach is designed to work with multiply. Fall back to generic
+			 * light for zones that use something else, or have no global mode.
+			 */
+			colorMode = "generic_light";
+		}
+		return getBlend(colorMode);
+	}
+	
+	/**
 	 * Get composite mode from a string identifier.
 	 * 
 	 * @param colorMode blend mode as a string, or <code>null</code>
 	 * @return blend mode, or <null>
 	 */
 	private Composite getBlend(String colorMode) {
-		if ("multiply".equals(colorMode)) {
-			return Blend.Multiply;
-		} else if ("screen".equals(colorMode)) {
-			return Blend.Screen;
-		} else if ("truecolor".equals(colorMode)) {
-			return Blend.TrueColor;
-		} else if ("softlight".equals(colorMode)) {
-			return Blend.SoftLight;
-		} else if ("bleach".equals(colorMode)) {
+		if ("bleach".equals(colorMode)) {
 			if (zoneInfo.getZoneColor() != null) {
 				return Blend.createBleach(zoneInfo.getZoneColor());
 			}
+		} else if ("generic_light".equals(colorMode)) {
+			return Blend.GenericLight;
+		} else if ("multiply".equals(colorMode)) {
+			return Blend.Multiply;
+		} else if ("screen".equals(colorMode)) {
+			return Blend.Screen;
+		} else if ("softlight".equals(colorMode)) {
+			return Blend.SoftLight;
+		} else if ("truecolor".equals(colorMode)) {
+			return Blend.TrueColor;
 		}
 		return null;
 	}

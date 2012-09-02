@@ -37,6 +37,7 @@ public class Blend implements Composite {
 	 */
 	private enum Mode {
 		BLEACH,
+		GENERIC_LIGHT,
 		MULTIPLY,
 		SCREEN,
 		SOFT_LIGHT,
@@ -51,6 +52,12 @@ public class Blend implements Composite {
 	 * lightness of the source image.
 	 */
 	public static final Blend TrueColor = new Blend(Mode.TRUE_COLOR, null);
+	/**
+	 * A generic lighting blend. Supports only white light and is not as
+	 * accurate as Bleach for zones using multiply blend. Those should use
+	 * Bleach instead, but this can be used for others.
+	 */
+	public static final Blend GenericLight = new Blend(Mode.GENERIC_LIGHT, null);
 	/** A blending mode that multiplies the underlying image with the above one. */
 	public static final Blend Multiply = new Blend(Mode.MULTIPLY, null);
 	/** Screen blend mode. */
@@ -134,6 +141,8 @@ public class Blend implements Composite {
 				Color color) {
 			switch (mode) {
 			case BLEACH: composer = new BleachComposer(color);
+			break;
+			case GENERIC_LIGHT: composer = new GenericLightComposer();
 			break;
 			case SOFT_LIGHT: composer = new SoftightComposer();
 			break;
@@ -282,6 +291,38 @@ public class Blend implements Composite {
 			float mod = (light * color) / 255f + 1f - light;
 			float change = bg / mod - bg;
 			return (int) (bg + change * multColor);
+		}
+	}
+	
+	/**
+	 * A composer for the generic lighting blend.
+	 */
+	private static class GenericLightComposer implements Composer {
+		public int compose(int[] srcPixel, int[] dstPixel) {
+			int sum = 0;
+			for (int i = RED; i <= BLUE; i++) {
+				sum += srcPixel[i];
+			}
+			// average color
+			int avg = sum / 3;
+			for (int i = RED; i <= BLUE; i++) {
+				dstPixel[i] = composeComponent(avg, dstPixel[i]);
+			}
+			
+			return mergeRgb(dstPixel);
+		}
+		
+		/**
+		 * Apply composition to an individual color component of a pixel.
+		 * 
+		 * @param a
+		 * @param b
+		 * @return composed color value
+		 */
+		private int composeComponent(int a, int b) {
+			// It's a very bright light. Probably most zones should use the
+			// dim image variants.
+			return Math.min(b + b * a / 0xff, 0xff);
 		}
 	}
 	
