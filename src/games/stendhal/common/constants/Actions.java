@@ -178,6 +178,7 @@ public final class Actions {
 	public static final String LIST = "list";
 	
 	public static final String TARGET = "target";
+	public static final String TARGET_PATH = "target_path";
 	public static final String BASESLOT = "baseslot";
 	public static final String BASEOBJECT = "baseobject";
 	public static final String BASEITEM = "baseitem";

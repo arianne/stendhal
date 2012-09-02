@@ -16,6 +16,7 @@ import static games.stendhal.common.constants.Actions.BASEITEM;
 import static games.stendhal.common.constants.Actions.BASEOBJECT;
 import static games.stendhal.common.constants.Actions.BASESLOT;
 import static games.stendhal.common.constants.Actions.TARGET;
+import static games.stendhal.common.constants.Actions.TARGET_PATH;
 import static games.stendhal.common.constants.Actions.USE;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.events.UseListener;
@@ -28,6 +29,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * Uses an item or an other entity that implements Useable
@@ -39,12 +41,32 @@ public class UseAction implements ActionListener {
 	}
 
 	public void onAction(final Player player, final RPAction action) {
-
-		// When use is casted over something in a slot
-		if (isItemInSlot(action)) {
+		if (action.has(TARGET_PATH)) {
+			useItemFromPath(player, action);
+		} else if (isItemInSlot(action)) {
+			// When use is casted over something in a slot
+			// Compatibility code
 			useItemInSlot(player, action);
 		} else if (action.has(TARGET)) {
+			// Compatibility code
 			useItemOnGround(player, action);
+		}
+	}
+	
+	/**
+	 * Use an item identified by TARGET_PATH.
+	 * 
+	 * @param player
+	 * @param action
+	 */
+	private void useItemFromPath(Player player, RPAction action) {
+		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(TARGET_PATH));
+		if (entity instanceof Item) {
+			Item item = (Item) entity;
+			if (item.isContained() && !mayAccessContainedItem(player, item)) {
+				return;
+			}
+			tryUse(player, item);
 		}
 	}
 
@@ -70,6 +92,67 @@ public class UseAction implements ActionListener {
 		if ((object != null) && canAccessSlot(player, slot, object.getBaseContainer())) {
 			tryUse(player, object);
 		}
+	}
+	
+	/**
+	 * Check if a player may access the location of a contained  item. Note that
+	 * access rights to the item itself is <em>not</em> checked. That is done in
+	 * tryUse().
+	 * 
+	 * @param player
+	 * @param item
+	 * @return <code>true</code> if the player may access items in the location
+	 * of item
+	 */
+	private boolean mayAccessContainedItem(Player player, Item item) {
+		RPObject parent = item.getContainer();
+		while ((parent != null) && (parent != item)) {
+			if (parent instanceof Item) {
+				item = (Item) parent;
+				if (isItemBoundToOtherPlayer(player, item)) {
+					return false;
+				}
+				EntitySlot slot = getContainingSlot(item);
+				if ((slot == null) || !slot.isReachableForTakingThingsOutOfBy(player)) {
+					return false;
+				}
+				parent = item.getContainer();
+			} else if (parent instanceof Corpse) {
+				Corpse corpse = (Corpse) parent;
+				if (!corpse.mayUse(player)) {
+					player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
+					return false;
+				}
+				// Corpses are top level objects
+				return true;
+			} else if (parent instanceof Player) {
+				// Only allowed to use item of our own player.
+				return player == parent;
+			} else if (parent instanceof Chest) {
+				// No bound chests
+				return true;
+			} else {
+				// Only allow to use objects from players, corpses, chests or
+				// containing items
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Get the slot containing an item.
+	 * 
+	 * @param item
+	 * @return containing slot
+	 */
+	private EntitySlot getContainingSlot(Item item) {
+		RPSlot slot = item.getContainerSlot();
+		if (slot instanceof EntitySlot) {
+			return (EntitySlot) slot;
+		}
+		return null;
 	}
 
 	private boolean canAccessSlot(final Player player, final EntitySlot slot, final RPObject base) {
