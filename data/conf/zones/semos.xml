@@ -3718,10 +3718,10 @@ Mature sheep wanted: please speak to Sato
 
 	<!--  Level 1 -->
 
-	<zone name="1_dreamscape" file="interiors/abstract/dreamscape_rural.tmx">
+	<zone name="1_dreamscape" file="interiors/abstract/dreamscape.tmx">
 	    <attributes>
 	        <parameter name="color_method">softlight</parameter>
-            <parameter name="color">#ffdd00</parameter>
+            <parameter name="color">#22ffdd</parameter>
         </attributes>
 		<!--
 			Don't allow teleporting in as we don't want marked scrolls made or ring
