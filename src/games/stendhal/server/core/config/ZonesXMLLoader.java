@@ -122,7 +122,9 @@ public final class ZonesXMLLoader {
 
 		// just to speed up starting of the server in while developing
 		// add -Dstendhal.zone.regex=".*semos.*" (for example) to your server start script just after the "java "
-		// or for multiple regions: -Dstendhal.zone.regex="*semos.*|.*fado.*"
+		// or for multiple regions: -Dstendhal.zone.regex=".*semos.*|.*fado.*"
+		// it's a good idea to keep semos loaded as that's a default place to put the character 
+		// if there is a problem with the zone 
 		final String regex = System.getProperty("stendhal.zone.regex", ".*");
 
 		/*
