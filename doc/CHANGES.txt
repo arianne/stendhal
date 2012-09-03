@@ -7,6 +7,7 @@
 - new lamps
 - journal for merchants
 - map layering and collisions fixes
+- new blend mode for enabling lighting in any zone
 
 *fixes*
 - don't accidently pick the first item on click spam on an item which was used up
@@ -14,6 +15,7 @@
 
 *internal*
 - creates selenium test for the stendhal website
+- actions use item paths where applicable
 
 *website*
 - email-address can now be changed
