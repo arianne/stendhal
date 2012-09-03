@@ -536,8 +536,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param lineColor The color of the outline of the arrow
 	 */
 	private void drawArrows(final Graphics2D g2d, final int x, final int y, final int width, final int height, final EnumSet<Direction> directions, final Color lineColor) {
-		int arrowHeight = 6 + (2 * (Math.round(height / 23) - 1));
-		int arrowWidth = 3 + (1 * (Math.round(width / 34) - 1));
+		int arrowHeight = 6 + 2 * (height / 23 - 1);
+		int arrowWidth = 3 + (width / 34 - 1);
 		if(directions.contains(Direction.LEFT)) {
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(
@@ -1149,6 +1149,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Listener for attack status changes.
 	 */
 	private class AttackListener implements EntityChangeListener<T> {
+		@Override
 		public void entityChanged(T entity, Object property) {
 			if (property == RPEntity.PROP_ATTACK) {
 				Nature nature = entity.getShownDamageType();
