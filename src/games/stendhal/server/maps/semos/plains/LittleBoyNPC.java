@@ -49,13 +49,13 @@ public class LittleBoyNPC implements ZoneConfigurator {
 				nodes.add(new Node(37, 108));
 				nodes.add(new Node(37, 105));
 				nodes.add(new Node(42, 105));
-				nodes.add(new Node(42, 111));
-				nodes.add(new Node(48, 111));
+				nodes.add(new Node(42, 110));
+				nodes.add(new Node(48, 110));
 				nodes.add(new Node(47, 103));
 				nodes.add(new Node(47, 100));
 				nodes.add(new Node(53, 100));
-				nodes.add(new Node(53, 91));
-				nodes.add(new Node(49, 91));
+				nodes.add(new Node(53, 93));
+				nodes.add(new Node(49, 93));
 				nodes.add(new Node(49, 98));
 				nodes.add(new Node(46, 98));
 				nodes.add(new Node(46, 99));
