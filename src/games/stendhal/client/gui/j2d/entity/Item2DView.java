@@ -223,33 +223,33 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 		}
 		
 		boolean addListener = slotWindow == null; 
-		slotWindow = inspector.inspectMe(entity, slot,
+		SlotWindow window = inspector.inspectMe(entity, slot,
 				slotWindow, slotWindowWidth, slotWindowHeight);
-		SlotWindow window = slotWindow;
-		// Don't let the user remove the container windows to keep the UI as
-		// clean as possible.
-		window.setCloseable(false);
-		/*
-		 * Register a listener for window closing so that we can
-		 * drop the reference to the closed window and let the
-		 * garbage collector claim it.
-		 */
-		if (addListener && (window != null)) {
-			window.addCloseListener(new CloseListener() {
-				@Override
-				public void windowClosed(InternalWindow window) {
-					slotWindow = null;
-				}
-			});
-		}
-		/*
-		 * In case the view got released while the window was created and
-		 * added, and before the main thread was aware that there's a window
-		 * to be closed, close it now. (onAction is called from the event
-		 * dispatch thread).
-		 */
-		if (isReleased()) {
-			if (window != null) {
+		slotWindow = window;
+		if (window != null) {
+			// Don't let the user remove the container windows to keep the UI as
+			// clean as possible.
+			window.setCloseable(false);
+			/*
+			 * Register a listener for window closing so that we can
+			 * drop the reference to the closed window and let the
+			 * garbage collector claim it.
+			 */
+			if (addListener) {
+				window.addCloseListener(new CloseListener() {
+					@Override
+					public void windowClosed(InternalWindow window) {
+						slotWindow = null;
+					}
+				});
+			}
+			/*
+			 * In case the view got released while the window was created and
+			 * added, and before the main thread was aware that there's a window
+			 * to be closed, close it now. (onAction is called from the event
+			 * dispatch thread).
+			 */
+			if (isReleased()) {
 				window.close();
 			}
 		}
