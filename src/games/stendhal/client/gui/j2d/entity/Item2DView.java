@@ -26,8 +26,6 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.util.List;
-
 import javax.swing.SwingUtilities;
 
 import marauroa.common.game.RPSlot;
@@ -51,8 +49,6 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 	private int slotWindowWidth;
 	/** height of the slot window */
 	private int slotWindowHeight;
-	/** The slot content inspector. */
-	private Inspector inspector;
 
 	//
 	// Entity2DView
@@ -92,21 +88,6 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 		}
 
 		setSprite(sprite);
-	}
-	
-	/**
-	 * Build a list of entity specific actions. <strong>NOTE: The first entry
-	 * should be the default.</strong>
-	 * 
-	 * @param list
-	 *            The list to populate.
-	 */
-	@Override
-	protected void buildActions(final List<String> list) {
-		if (getContent() != null) {
-			list.add(ActionType.INSPECT.getRepresentation());
-		}
-		super.buildActions(list);
 	}
 
 	/**
@@ -181,10 +162,6 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 
 	@Override
 	public boolean onHarmlessAction() {
-		if (getContent() != null) {
-			onAction(ActionType.INSPECT);
-			return true;
-		}
 		return false;
 	}
 	
@@ -196,7 +173,16 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 	 */
 	@Override
 	public void setInspector(final Inspector inspector) {
-		this.inspector = inspector;
+		if ((getContent() != null) && (inspector != null)) {
+			// Autoinspect containers. They have client visible slots only when
+			// carried by the user.
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					inspect(inspector);
+				}
+			});
+		}
 	}
 
 	/**
@@ -219,10 +205,6 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 				at.send(at.fillTargetInfo(entity));
 			}
 			break;
-			
-		case INSPECT:
-			inspect();
-			break;
 
 		default:
 			super.onAction(at);
@@ -234,7 +216,7 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 	/**
 	 * Inspect the item. Show the slot contents.
 	 */
-	private void inspect() {
+	private void inspect(Inspector inspector) {
 		RPSlot slot = getContent();
 		if (slotWindowWidth == 0) {
 			calculateWindowProportions(slot.getCapacity());
@@ -244,6 +226,9 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 		slotWindow = inspector.inspectMe(entity, slot,
 				slotWindow, slotWindowWidth, slotWindowHeight);
 		SlotWindow window = slotWindow;
+		// Don't let the user remove the container windows to keep the UI as
+		// clean as possible.
+		window.setCloseable(false);
 		/*
 		 * Register a listener for window closing so that we can
 		 * drop the reference to the closed window and let the
@@ -251,6 +236,7 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 		 */
 		if (addListener && (window != null)) {
 			window.addCloseListener(new CloseListener() {
+				@Override
 				public void windowClosed(InternalWindow window) {
 					slotWindow = null;
 				}
@@ -304,6 +290,7 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 		final SlotWindow window = slotWindow;
 		if (window != null) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					window.close();
 				}

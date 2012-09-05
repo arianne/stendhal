@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.factory.EntityMap;
@@ -32,7 +31,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-public class ContainerPanel extends JScrollPane implements Inspector, StendhalClient.ZoneChangeListener {
+public class ContainerPanel extends JScrollPane implements Inspector {
 	/**
 	 * serial version uid
 	 */
@@ -131,13 +130,14 @@ public class ContainerPanel extends JScrollPane implements Inspector, StendhalCl
 	 * @param width number of slot columns
 	 * @param height number of slot rows
 	 */
+	@Override
 	public SlotWindow inspectMe(IEntity entity, RPSlot content,
 			SlotWindow container, int width, int height) {
 		if ((container != null) && container.isVisible()) {
 			// Nothing to do. 
 			return container;
 		} else {
-			SlotWindow window = new FreezableSlotWindow(entity.getName(), width, height);
+			SlotWindow window = new SlotWindow(entity.getName(), width, height);
 			window.setSlot(entity, content.getName());
 			window.setAcceptedTypes(EntityMap.getClass("item", null, null));
 			window.setInspector(this);
@@ -145,29 +145,6 @@ public class ContainerPanel extends JScrollPane implements Inspector, StendhalCl
 			window.setAlignmentX(LEFT_ALIGNMENT);
 			addRepaintable(window);
 			return window;
-		}
-	}
-
-	public void onZoneChange() {
-		for (JComponent component : repaintable) {
-			if (component instanceof FreezableSlotWindow) {
-				((FreezableSlotWindow) component).freeze();
-			}
-		}
-	}
-	
-	public void onZoneUpdate() {
-		// Ignore recoloring events
-	}
-	
-	/**
-	 * Call this when the user entity at the new zone has been constructed.
-	 */
-	void onZoneChangeCompleted() {
-		for (JComponent component : repaintable) {
-			if (component instanceof FreezableSlotWindow) {
-				((FreezableSlotWindow) component).thaw();
-			}
 		}
 	}
 }

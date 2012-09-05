@@ -103,6 +103,13 @@ public class SlotWindow extends InternalManagedWindow {
 		}
 	}
 	
+	@Override
+	public void close() {
+		// Releases any EntityViews on the slots
+		setSlot(parent, null);
+		super.close();
+	}
+	
 	/**
 	 * Check if the user is close enough the parent entity of the slot. If
 	 * the user is too far away the window should not be opened, and it should

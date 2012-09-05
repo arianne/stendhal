@@ -365,12 +365,6 @@ public class j2DClient implements UserInterface {
 		pane.addComponentListener(new SplitPaneResizeListener(screen));
 
 		containerPanel = createContainerPanel();
-		/*
-		 * ContainerPanel needs to be informed about zone changes so that it can
-		 * keep track containers that the user is carrying and change their
-		 * slots.
-		 */
-		client.addZoneChangeListener(containerPanel);
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
@@ -654,12 +648,14 @@ public class j2DClient implements UserInterface {
 		final StaticGameLayers gameLayers = client.getStaticGameLayers();
 
 		loop.runAllways(new GameLoop.PersistentTask() {
+			@Override
 			public void run(long time, int delta) {
 				gameLoop(time, delta, gameLayers, gameObjects);
 			}
 		});
 
 		loop.runAtQuit(new Runnable() {
+			@Override
 			public void run() {
 				cleanup();
 			}
@@ -748,7 +744,6 @@ public class j2DClient implements UserInterface {
 				spells.setSlot(user, "spells");
 				inventory.setSlot(user, "bag");
 				lastuser = user;
-				containerPanel.onZoneChangeCompleted();
 			}
 		}
 
@@ -828,6 +823,7 @@ public class j2DClient implements UserInterface {
 	 * Add an event line.
 	 *
 	 */
+	@Override
 	public void addEventLine(final EventLine line) {
 		channelManager.addEventLine(line);
 	}
@@ -841,6 +837,7 @@ public class j2DClient implements UserInterface {
 	 * @param type type of text
 	 * @param isTalking chat?
 	 */
+	@Override
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		screenController.addText(x, y, text, type, isTalking);
@@ -853,6 +850,7 @@ public class j2DClient implements UserInterface {
 	 * @param description the description of the achievement
 	 * @param category the category of the achievement
 	 */
+	@Override
 	public void addAchievementBox(String title, String description, String category) {
 		screen.addAchievementBox(title, description, category);
 	}
@@ -891,6 +889,7 @@ public class j2DClient implements UserInterface {
 	private JComponent createLogArea() {
 		final JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
 		tabs.addChangeListener(new ChangeListener() {
+			@Override
 			public void stateChanged(ChangeEvent e) {
 				int i = tabs.getSelectedIndex();
 				NotificationChannel channel = channelManager.getChannels().get(i);
@@ -908,6 +907,7 @@ public class j2DClient implements UserInterface {
 			tabs.add(it.next().getName(), tab);
 		}
 		channelManager.addHiddenChannelListener(new NotificationChannelManager.HiddenChannelListener() {
+			@Override
 			public void channelModified(int index) {
 				// Mark the tab as modified so that the user can see there's
 				// new text
@@ -1093,6 +1093,7 @@ public class j2DClient implements UserInterface {
 	 *
 	 * @return SoundSystemFacade
 	 */
+	@Override
 	public SoundSystemFacade getSoundSystemFacade() {
 		if (soundSystemFacade == null) {
 			try {

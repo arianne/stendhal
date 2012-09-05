@@ -88,6 +88,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 			// Game loop can modify slot contents at will, so it's not a good
 			// idea to try to read the contents in the EDT.
 			GameLoop.get().runOnce(new Runnable() {
+				@Override
 				public void run() {
 					setSlot(parent, slot);
 				}
@@ -138,19 +139,19 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	 * Scans the content of the slot.
 	 */
 	private void scanSlotContent() {
-		if ((parent == null) || (slotName == null)) {
-			return;
-		}
-
 		// Clear the panels, in case they are not already empty
 		for (ItemPanel panel : panels) {
 			panel.setEntity(null);
+		}
+		if ((parent == null) || (slotName == null)) {
+			return;
 		}
 		final RPSlot rpslot = parent.getSlot(slotName);
 		// Treat the entire slot contents as a content change
 		contentAdded(rpslot);
 	}
 
+	@Override
 	public void contentAdded(RPSlot added) {
 		// We are interested only in one slot
 		if (slotName.equals(added.getName())) {
@@ -193,6 +194,7 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 		logger.error("More objects than slots: " + slotName);
 	}
 
+	@Override
 	public void contentRemoved(RPSlot removed) {
 		// We are interested only in one slot
 		if (slotName.equals(removed.getName())) {
