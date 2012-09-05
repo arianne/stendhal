@@ -138,25 +138,28 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	/**
 	 * Clear the grid and detach it from the slot it shows.
 	 */
-	// Synchronized to avoid interfering with scanSlotContent().
-	synchronized void release() {
+	void release() {
 		if (parent != null) {
-			parent.removeContentChangeListener(this);
+			parent.removeContentChangeListener(SlotGrid.this);
 		}
-		for (final ItemPanel panel : panels) {
-			panel.setEntity(null);
-			panel.setName(null);
-			panel.setParent(null);
-		}
-		parent = null;
-		slotName = null;
+		// Ensure that parent & slotName do not change in the middle of
+		// scanSlotContent() 
+		GameLoop.get().runOnce(new Runnable() {
+			@Override
+			public void run() {
+				for (final ItemPanel panel : panels) {
+					panel.setEntity(null);
+				}
+				parent = null;
+				slotName = null;
+			}
+		});
 	}
 	
 	/**
 	 * Scans the content of the slot.
 	 */
-	// Synchronized to make detecting released grids reliable.
-	private synchronized void scanSlotContent() {
+	private void scanSlotContent() {
 		if ((parent == null) || (slotName == null)) {
 			return;
 		}
