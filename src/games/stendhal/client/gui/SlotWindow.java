@@ -105,8 +105,7 @@ public class SlotWindow extends InternalManagedWindow {
 	
 	@Override
 	public void close() {
-		// Releases any EntityViews on the slots
-		setSlot(parent, null);
+		content.release();
 		super.close();
 	}
 	

@@ -27,8 +27,8 @@ import java.util.List;
 import javax.swing.JComponent;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
+import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
@@ -136,15 +136,34 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	}
 	
 	/**
+	 * Clear the grid and detach it from the slot it shows.
+	 */
+	// Synchronized to avoid interfering with scanSlotContent().
+	synchronized void release() {
+		if (parent != null) {
+			parent.removeContentChangeListener(this);
+		}
+		for (final ItemPanel panel : panels) {
+			panel.setEntity(null);
+			panel.setName(null);
+			panel.setParent(null);
+		}
+		parent = null;
+		slotName = null;
+	}
+	
+	/**
 	 * Scans the content of the slot.
 	 */
-	private void scanSlotContent() {
+	// Synchronized to make detecting released grids reliable.
+	private synchronized void scanSlotContent() {
+		if ((parent == null) || (slotName == null)) {
+			return;
+		}
+
 		// Clear the panels, in case they are not already empty
 		for (ItemPanel panel : panels) {
 			panel.setEntity(null);
-		}
-		if ((parent == null) || (slotName == null)) {
-			return;
 		}
 		final RPSlot rpslot = parent.getSlot(slotName);
 		// Treat the entire slot contents as a content change
@@ -177,11 +196,6 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 		}
 		// Actually added. Get the corresponding entity
 		IEntity entity = GameObjects.getInstance().get(obj);
-		if (entity == null) {
-			logger.error("Unable to find entity for: " + obj,
-					new Throwable("here"));
-			return;
-		}
 		
 		// Tuck it in the first free slot
 		for (ItemPanel panel : panels) {
