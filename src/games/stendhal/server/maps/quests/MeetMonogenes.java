@@ -27,6 +27,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -119,17 +120,19 @@ public class MeetMonogenes extends AbstractQuest {
 		
 		npc.addReply(
 			"buildings",
-			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.");
+			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, the #public #chest or the old #village.");
 
 		npc.add(
 			ConversationStates.ATTENDING,
 			"map", null, ConversationStates.ATTENDING, "Caption\n"
 			+ "1 Townhall, Mayor lives here,   2 Library,   3 Bank,   4 Bakery,\n"
 			+ "5 Storage,   6 Blacksmith, Carmen,   7 Inn, Margaret \n"
-        	+ "8 Temple, ilisa,   9 Dangerous Dungeon \n"
+        	+ "8 Temple, ilisa,   9 Dangerous Dungeon,\n"
+        	+ "10 Public Chest, \n"
         	+ "A Semos Village,   B Northern Plains and Mine, \n"
         	+ "C Very long path to Ados, \n"
-        	+ "D Southern Plains and Nalwor Forest",
+        	+ "D Southern Plains and Nalwor Forest, \n" 
+        	+ "E Semos Village Open Field",
         	new ExamineChatAction("map-semos-city.png", "Semos City", "Map of Semos City"));
 
 		npc.addReply(
@@ -156,6 +159,9 @@ public class MeetMonogenes extends AbstractQuest {
 			"blacksmith",
 			"Head southwest to reach the smithy. There's a picture of an anvil hanging above the door, you should be able to spot it.");
 
+		npc.addReply(Arrays.asList("public", "public chest", "community chest", "chest"),
+			"Follow the orange path on the map to arrive at the public chest. Inhabitants of Faiumoni and brave warriors throw some useful stuff in there which you can take for free. Remember: It is always good to share and give what you don't need anymore.");
+		
 		npc.addReply(
 			"village",
 			"Just keep heading southwest, past the #blacksmith, and you will shortly come to the old Semos village. Nishiya still sells sheep there.");
