@@ -8,10 +8,14 @@
 - journal for merchants
 - map layering and collisions fixes
 - new blend mode for enabling lighting in any zone
+- Monogenes informs players about public chest
 
 *fixes*
 - don't accidently pick the first item on click spam on an item which was used up
 - fixed return from adventure island into the wall
+- Monogenes map is up to date now
+- Ados market signs more specific now
+- Adena got vegetables from farms near Semos
 
 *internal*
 - creates selenium test for the stendhal website
