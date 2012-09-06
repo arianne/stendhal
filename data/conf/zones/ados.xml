@@ -261,7 +261,7 @@
 	
 	<entity x="38" y="11">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Fresh vegetables available from Ados Farm! Come to the north and visit my market stand! 
+			<attribute name="text">Fresh vegetables available from farms near Semos! Come to the north and visit my market stand! 
 - Adena -</attribute>
 	</entity>
 	
