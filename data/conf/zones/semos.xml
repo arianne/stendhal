@@ -2092,6 +2092,126 @@ Holy mackerel! These chips are tasty.
 				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
 		</portal>
 
+    <entity x="20" y="18">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a proclamation from Mayor Sakhs stating that the citizens of Semos are doing a really great job in preventing monsters from taking over the streets.  Keep up the good work.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity> 
+
+       <entity x="21" y="18">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">This is Carmen's fan.  She dropped it last time she was in here.  Hopefully she will see it next time and remove it.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="22" y="18">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a scrap of paper with nonsense on it.  Perhaps someone's attempt at humor... You know those people who work at banks ;)</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="23" y="18">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see an announcement for next month's meeting of Rat Killers Anonymous.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="24" y="18">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a sock belonging to Starkad.  Diogenes is pranking him.  :D</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="20" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a wanted poster for a dragon which is pestering citizens of Semos.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity> 
+
+       <entity x="21" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a letter to Eonna from Ados Exterminators, Inc.  Wonder why she had to get help from another town?</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="22" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see an ad to sell armor to Xin Blanca.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="23" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see Ricardo's license for gambling.  Why would it be hanging here?</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="24" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a ticket to next year's SUPERSESSION</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="20" y="20">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a locket.  Wonder who it belongs to?</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="21" y="20">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You can't see what is behind the plant.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+   
+    <entity x="22" y="20">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Gordon, I miss you so.  Please come to see me sometime.  Sorry to have this put up on the bank bulletin board, but I don't have your address. Femme Fatale</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="23" y="20">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a map of far off Athor.  You long for a vacation.  You are thinking of visiting Athor.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
+        <entity x="24" y="20">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">You see a shopping list, dropped by Hayunn Naratha.  Funny, most of the items are different kinds of beer and ale.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">1</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+    
 		<entity x="2" y="2">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest" />
