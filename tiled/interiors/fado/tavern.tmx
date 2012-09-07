@@ -143,7 +143,7 @@
  </layer>
  <layer name="collision" width="50" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2VUQ7AIAhDuf+lvNq+liwGGbNViOMl/DgKdHPaRKRVpA8ZrGnro3zt2bOG1cMLqp/F413TeOrt9nL31+aQbr3XePfGLlbtq4i9pc2h5XhqIecAWsfy4WV2bjZIH+T9s2H7iOIUHyjlI9cc5YMLctdk+s/LR/no+zNA58n6Pb7oED0ba/9Y+ZY+glPvD2/+rH4V6JlTPrhk9YHOkcXHV/56Xr3pZ4NZK7JHlrgAvdM58QAZAAA=
+   H4sIAAAAAAAAC+2VQQ6AMAgE+f+n+jVPJoYgAotCKpNwUFlgq7aLiNZE66DAM6uGLteSxguqj2JdE66x1Pvay9lfmoPYfa65y+vqw1On+tuS5pByLLWQvQCto/mwEp07G6QPsv7ZZPuoYhcfKOOj1xzjIxfkrOn0n4+P8cH7Z4DO0/V9eHSIPhvt+9HyNX0Fu54f1vyo/i3QPWd85NLVBzpHFx9e/rpfPemjkVmrskeXOABCuanNABkAAA==
   </data>
  </layer>
  <layer name="protection" width="50" height="32" opacity="0.38">
