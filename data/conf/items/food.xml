@@ -136,6 +136,28 @@
 		</equipable>
 	</item>
 
+	<item name="olive">
+		<type class="food" subclass="olive" tileid="-1" />
+		<description>You see a small ripe olive.  It can be eaten or used to create olive oil.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food" />
+		<attributes>
+			<amount value="5" />
+			<frequency value="1" />
+			<quantity value="1" />
+			<regen value="3" />
+		</attributes>
+		<weight value=".01" />
+		<value value="1" />
+		<equipable>
+			<slot name="ground" />
+			<slot name="content" />
+			<slot name="lhand" />
+			<slot name="rhand" />
+			<slot name="bag" />
+			<slot name="trade" />
+		</equipable>
+	</item>
+
 	<item name="pear">
 		<type class="food" subclass="pear" tileid="-1" />
 		<description>You see a pear. Its lovely smell convinces you of taking it.</description>
