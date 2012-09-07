@@ -1532,7 +1532,7 @@ South: Nalwor forest and Or'ril castle
 
 
 
-		<entity x="6" y="40">
+		<entity x="6" y="42">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">
 TO OLD SEMOS VILLAGE WEST
