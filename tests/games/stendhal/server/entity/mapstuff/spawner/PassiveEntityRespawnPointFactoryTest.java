@@ -327,9 +327,9 @@ public class PassiveEntityRespawnPointFactoryTest {
 		assertEquals("It looks like there's a pineapple sprout growing here.",
 				value_2.getDescription());
 
-		PassiveEntityRespawnPoint value_8 = PassiveEntityRespawnPointFactory
-				.create(clazz, 8, null, 0, 0);
-		assertNull(value_8);
+		PassiveEntityRespawnPoint value_9 = PassiveEntityRespawnPointFactory
+				.create(clazz, 9, null, 0, 0);
+		assertNull(value_9);
 	}
 
 	/**
