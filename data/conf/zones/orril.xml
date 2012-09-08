@@ -935,6 +935,7 @@ You need some flour, some eggs, some butter, some sugar, some chocolate and some
           <parameter name="blend_method">bleach</parameter>
         </attributes>
 		<configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC" />
+		<!-- <configurator class-name="games.stendhal.server.maps.orril.dungeon.MithrilbourghTraitorNPC" /> -->
         <portal x="146" y="98" ref="house1_entrance">
             <destination zone="int_rat_house1" ref="entrance" />
         </portal>
