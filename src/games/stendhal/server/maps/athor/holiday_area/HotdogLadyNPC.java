@@ -50,12 +50,8 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(34, 67));
-				nodes.add(new Node(34, 68));
-				nodes.add(new Node(39, 68));
-				nodes.add(new Node(39, 67));
-				nodes.add(new Node(39, 68));
-				nodes.add(new Node(34, 68));
+				nodes.add(new Node(33, 69));
+				nodes.add(new Node(40, 69));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -73,7 +69,7 @@ public class HotdogLadyNPC implements ZoneConfigurator {
 		};
 
 		hotdoglady.setEntityClass("woman_013_npc");
-		hotdoglady.setPosition(34, 67);
+		hotdoglady.setPosition(33,69);
 		hotdoglady.initHP(100);
 		hotdoglady.setDescription("You see Sara Beth. Her hotdog market is the most popular one on Athor island.");
 		zone.add(hotdoglady);
