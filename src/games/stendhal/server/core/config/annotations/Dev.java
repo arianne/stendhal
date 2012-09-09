@@ -30,6 +30,9 @@ public @interface Dev {
 	/** an optional default value */
 	String defaultValue() default "";
 
+	/** a short label */
+	String label() default "";
+
 	/**
 	 * a category for building block
 	 *
