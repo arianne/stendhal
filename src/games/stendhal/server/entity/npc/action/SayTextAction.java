@@ -28,19 +28,19 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextAction implements ChatAction {
 
-	private final String message;
+	private final String text;
 
 	/**
 	 * Creates a new SayTextAction.
 	 *
-	 * @param message text to say
+	 * @param text text to say
 	 */
-	public SayTextAction(String message) {
-		this.message = message;
+	public SayTextAction(String text) {
+		this.text = text;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		raiser.say(message);
+		raiser.say(text);
 	}
 
 	@Override

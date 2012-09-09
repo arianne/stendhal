@@ -27,36 +27,36 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * States the name of the player emitting a message
+ * States the name of the player emitting a text
  *
  * @author kymara
  */
 @Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextWithPlayerNameAction implements ChatAction {
 
-	private final String message;
+	private final String text;
 
 	/**
 	 * Creates a new SayTextWithPlayerNameAction
 	 *
-	 * @param message
-	 *            message with substitution [name] for the player name
+	 * @param text
+	 *            text with substitution [name] for the player name
 	 *
 	 */
-	public SayTextWithPlayerNameAction(final String message) {
-		this.message = message;
+	public SayTextWithPlayerNameAction(final String text) {
+		this.text = text;
 	}
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("name", player.getTitle());
 
-		raiser.say(StringUtils.substitute(message,substitutes));
+		raiser.say(StringUtils.substitute(text, substitutes));
 	}
 
 	@Override
 	public String toString() {
-		return "SayTextWithPlayerNameAction <" + message + ">";
+		return "SayTextWithPlayerNameAction <" + text + ">";
 	}
 
 	@Override
