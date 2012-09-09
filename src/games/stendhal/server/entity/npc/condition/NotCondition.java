@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * An inverse condition.
  */
-@Dev(category=Category.LOGIC, label="Not?")
+@Dev(category=Category.LOGIC, label="Not")
 public class NotCondition implements ChatCondition {
 
 	private final ChatCondition condition;
