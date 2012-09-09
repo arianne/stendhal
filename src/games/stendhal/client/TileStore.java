@@ -121,7 +121,7 @@ public class TileStore implements Tileset {
 		final int mapsize = tiles.size();
 
 		if (mapsize > baseindex) {
-			logger.info("Tileset base index mismatch (" + mapsize + " > "
+			logger.debug("Tileset base index mismatch (" + mapsize + " > "
 					+ baseindex + "): " + ref);
 			for (int i = baseindex; i < mapsize; i++) {
 				tiles.remove(baseindex);
@@ -256,7 +256,7 @@ public class TileStore implements Tileset {
 		String path = "data/";
 
 		if (DataLoader.getResource("tiled/tileset/README") != null) {
-			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			logger.debug("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
 			path = "tiled/";
 		}
 
