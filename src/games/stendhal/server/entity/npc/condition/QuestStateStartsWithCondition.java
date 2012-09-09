@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the quest state start with the specified String?
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="State?")
 public class QuestStateStartsWithCondition implements ChatCondition {
 
 	private final String questname;

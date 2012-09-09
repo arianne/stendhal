@@ -32,7 +32,7 @@ import java.util.Map.Entry;
  *
  * @author madmetzger
  */
-@Dev(category=Category.KILLS)
+@Dev(category=Category.KILLS, label="Kills?")
 public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition {
 
 	private final Map<String, Integer> creatures;

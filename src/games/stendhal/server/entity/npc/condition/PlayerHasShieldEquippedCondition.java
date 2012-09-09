@@ -27,7 +27,7 @@ import games.stendhal.server.entity.player.Player;
  * @author Lumocra
  *
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerHasShieldEquippedCondition implements ChatCondition {
 
 	public boolean fire(Player player, Sentence sentence, Entity npc) {

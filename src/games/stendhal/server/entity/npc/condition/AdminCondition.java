@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player an admin?
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="Admin?")
 public class AdminCondition implements ChatCondition {
 
 	private final int requiredAdminlevel;

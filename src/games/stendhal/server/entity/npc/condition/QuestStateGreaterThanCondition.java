@@ -24,7 +24,7 @@ import games.stendhal.server.entity.player.Player;
  *
  * @author madmetzger
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="State?")
 public class QuestStateGreaterThanCondition implements ChatCondition {
 
 	/**

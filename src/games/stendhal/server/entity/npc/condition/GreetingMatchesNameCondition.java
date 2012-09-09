@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Checks if an optional subject in the user input matches the NPC name. Use with greeting messages in IDLE state at busy places.
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class GreetingMatchesNameCondition implements ChatCondition {
 
 	private final String name;

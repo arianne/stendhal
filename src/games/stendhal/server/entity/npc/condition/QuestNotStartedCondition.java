@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was this quest not started yet?
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="NotStarted?")
 public class QuestNotStartedCondition implements ChatCondition {
 
 	private final String questname;

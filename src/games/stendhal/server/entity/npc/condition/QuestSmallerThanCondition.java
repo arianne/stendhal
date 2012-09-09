@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest state smaller than the value in this condition?
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="State?")
 public class QuestSmallerThanCondition implements ChatCondition {
 
 	private final String questname;

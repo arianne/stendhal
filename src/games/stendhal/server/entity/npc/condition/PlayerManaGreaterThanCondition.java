@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="Mana?")
 public class PlayerManaGreaterThanCondition implements ChatCondition {
 
 	private final int mana;

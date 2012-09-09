@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author madmetzger
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="Achievement?")
 public class PlayerHasCompletedAchievementsCondition implements ChatCondition {
 
 	private final List<String> achievements;

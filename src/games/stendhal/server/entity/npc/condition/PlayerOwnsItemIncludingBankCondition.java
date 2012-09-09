@@ -31,7 +31,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the player owns a item (including the bank)?
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerOwnsItemIncludingBankCondition implements ChatCondition {
 
 	private final String itemName;

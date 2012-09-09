@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @see games.stendhal.server.entity.npc.action.DropItemAction
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerHasItemWithHimCondition implements ChatCondition {
 
 	private final String itemName;

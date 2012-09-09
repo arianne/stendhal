@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.ITEMS_LOOTED)
+@Dev(category=Category.ITEMS_LOOTED, label="Item?")
 public class PlayerMinedNumberOfItemsCondition implements ChatCondition {
 
 	private final List<String> itemMinedList;

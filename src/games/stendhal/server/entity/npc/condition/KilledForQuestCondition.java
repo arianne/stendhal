@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  *
  * @author yoriy
  */
-@Dev(category=Category.KILLS)
+@Dev(category=Category.KILLS, label="Kills?")
 public class KilledForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledForQuestCondition.class);
 	private final String QUEST_SLOT;

@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.ITEMS_PRODUCER)
+@Dev(category=Category.ITEMS_PRODUCER, label="Item?")
 public class PlayerProducedNumberOfItemsCondition implements ChatCondition {
 
 	private final List<String> itemProducedList;

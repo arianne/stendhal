@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author jackrabbit
  */
-@Dev(category=Category.OUTFIT)
+@Dev(category=Category.OUTFIT, label="Outfit?")
 public class PlayerIsWearingOutfitCondition implements ChatCondition{
 
 	private final Outfit outfitToCheck;

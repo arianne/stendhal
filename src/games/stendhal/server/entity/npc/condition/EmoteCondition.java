@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is player emoting to npc?
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class EmoteCondition implements ChatCondition {
 
 	private final String playerAction;

@@ -31,7 +31,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.LOCATION)
+@Dev(category=Category.LOCATION, label="Zone?")
 public class PlayerVisitedZonesCondition implements ChatCondition {
 
 	private final List<String> zoneNames;

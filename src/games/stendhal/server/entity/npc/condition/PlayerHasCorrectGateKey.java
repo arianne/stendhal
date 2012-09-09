@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author filipe
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="Key?")
 public class PlayerHasCorrectGateKey implements ChatCondition {
 
 	public boolean fire(Player player, Sentence sentence, Entity raiser) {

@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="GoodBoy?")
 public class PlayerIsAGoodBoyCondition implements ChatCondition {
 
 	public boolean fire(Player player, Sentence sentence, Entity npc) {

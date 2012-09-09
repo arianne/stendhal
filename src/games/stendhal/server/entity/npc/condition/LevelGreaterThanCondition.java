@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player's level greater than the specified one?
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="Level?")
 public class LevelGreaterThanCondition implements ChatCondition {
 
 	private final int level;

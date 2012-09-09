@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was a trigger phrase said, which is a produced item of this class? (Use with a ""-trigger in npc.add)
  */
-@Dev(category=Category.ITEMS_PRODUCER)
+@Dev(category=Category.ITEMS_PRODUCER, label="Item?")
 public class TriggerIsProducedItemOfClassCondition implements ChatCondition {
 
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();

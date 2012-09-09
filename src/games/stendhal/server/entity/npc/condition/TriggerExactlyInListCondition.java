@@ -33,7 +33,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was one of these trigger phrases said exactly ignoring case? (Use with a ""-trigger in npc.add)
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class TriggerExactlyInListCondition implements ChatCondition {
 	private static final ConversationContext CONVERSION_CONTEXT = new ConvCtxForMatchingSource();
 

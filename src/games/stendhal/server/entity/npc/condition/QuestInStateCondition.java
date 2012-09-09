@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest in this state?
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="State?")
 public class QuestInStateCondition implements ChatCondition {
 
 	private final String questname;

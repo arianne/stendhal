@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  *
  * @author yoriy
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="Kills?")
 public class KilledInSumForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledInSumForQuestCondition.class);
 	private final String QUEST_SLOT;

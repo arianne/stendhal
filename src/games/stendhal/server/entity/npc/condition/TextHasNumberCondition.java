@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does this trigger contain a number?
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class TextHasNumberCondition implements ChatCondition {
 	private final int min;
 	private final int max;

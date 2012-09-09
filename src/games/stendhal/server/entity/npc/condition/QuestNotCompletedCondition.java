@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest not completed?
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="NotCompleted?")
 public class QuestNotCompletedCondition implements ChatCondition {
 
 	private final String questname;

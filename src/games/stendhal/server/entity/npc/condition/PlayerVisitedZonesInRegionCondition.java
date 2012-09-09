@@ -31,7 +31,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author madmetzger
  */
 // TODO: Replace Boolean with a 3 state enum
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="Zone?")
 public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 
 	private final String region;

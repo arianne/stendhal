@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Did this trigger have additional parameters?
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class TextHasParameterCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

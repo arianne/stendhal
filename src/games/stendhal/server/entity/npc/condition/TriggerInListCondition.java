@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was one of theses trigger phrases said? (Use with a ""-trigger in npc.add)
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"\"?")
 public class TriggerInListCondition implements ChatCondition {
 	private final TriggerList triggers;
 

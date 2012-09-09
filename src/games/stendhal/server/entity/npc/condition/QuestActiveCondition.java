@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was this quest started but not completed?
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="Active?")
 public class QuestActiveCondition implements ChatCondition {
 
 	private final String questname;

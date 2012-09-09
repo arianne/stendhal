@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player naked? (e. g. not wearing anything on his/her body)
  */
-@Dev(category=Category.OUTFIT)
+@Dev(category=Category.OUTFIT, label="Outfit?")
 public class NakedCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

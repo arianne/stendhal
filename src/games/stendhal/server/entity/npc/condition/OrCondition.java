@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * An or condition.
  */
-@Dev(category=Category.LOGIC)
+@Dev(category=Category.LOGIC, label="Or?")
 public class OrCondition implements ChatCondition {
 
 	private final List<ChatCondition> conditions;

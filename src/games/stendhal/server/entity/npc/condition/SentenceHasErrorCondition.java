@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Checks whether the sentence has an error.
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="Error?")
 public class SentenceHasErrorCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

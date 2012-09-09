@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player in the specified area?
  */
-@Dev(category=Category.LOCATION)
+@Dev(category=Category.LOCATION, label="Zone?")
 public class PlayerInAreaCondition implements ChatCondition {
 
 	private final Area area;

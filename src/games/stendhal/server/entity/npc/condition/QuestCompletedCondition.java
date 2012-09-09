@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Was this quest completed?
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="Completed?")
 public class QuestCompletedCondition implements ChatCondition {
 
 	private final String questname;

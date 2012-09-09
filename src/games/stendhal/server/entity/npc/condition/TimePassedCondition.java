@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @see games.stendhal.server.entity.npc.action.SayTimeRemainingAction
  * @see games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction
  */
-@Dev(category=Category.TIME)
+@Dev(category=Category.TIME, label="Time?")
 public class TimePassedCondition implements ChatCondition {
 
 	private final String questname;

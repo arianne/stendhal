@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author filipe
  */
-@Dev(category=Category.KILLS)
+@Dev(category=Category.KILLS, label="Kills?")
 public class MinTotalCreaturesKilledCondition implements ChatCondition {
     final int total;
 

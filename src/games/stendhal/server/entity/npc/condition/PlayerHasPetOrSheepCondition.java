@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Does the player have a pet or sheep?
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="Pet?")
 public class PlayerHasPetOrSheepCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

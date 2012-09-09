@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Can the player equip the specified item? (has enough space in his bag or other slots)
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerCanEquipItemCondition implements ChatCondition {
 
 	private final String itemName;

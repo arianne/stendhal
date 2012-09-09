@@ -32,7 +32,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
-@Dev(category=Category.KILLS)
+@Dev(category=Category.KILLS, label="Kills?")
 public class KilledCondition implements ChatCondition {
 	private final Set<String> toKill;
 

@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Is constructed from a group of conditions. <p>
  * It evaluates to <code>true</code>, iff each condition evaluates to true.
  */
-@Dev(category=Category.LOGIC)
+@Dev(category=Category.LOGIC, label="And?")
 public class AndCondition implements ChatCondition {
 
 	private final List<ChatCondition> conditions;

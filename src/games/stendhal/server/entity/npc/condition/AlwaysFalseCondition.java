@@ -24,7 +24,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * This condition returns always false.
  */
-@Dev(category=Category.LOGIC)
+@Dev(category=Category.LOGIC, label="False!")
 public class AlwaysFalseCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return false;

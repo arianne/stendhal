@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerHasItemEquippedInSlot implements ChatCondition {
 
 	private final String item;

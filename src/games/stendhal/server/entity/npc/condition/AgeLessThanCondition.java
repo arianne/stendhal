@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player's age less than the specified age?
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="Age?")
 public class AgeLessThanCondition implements ChatCondition {
 
 	private final int age;

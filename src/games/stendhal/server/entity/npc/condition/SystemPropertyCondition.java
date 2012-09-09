@@ -13,7 +13,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the specified system property set?
  */
-@Dev(category=Category.ENVIRONMENT)
+@Dev(category=Category.ENVIRONMENT, label="System?")
 public class SystemPropertyCondition implements ChatCondition {
 
 	private final String key;

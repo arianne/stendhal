@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is the player's age greater than the specified age?
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="Age?")
 public class AgeGreaterThanCondition implements ChatCondition {
 
 	private final int age;

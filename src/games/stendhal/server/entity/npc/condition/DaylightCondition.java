@@ -19,7 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
-@Dev(category=Category.ENVIRONMENT)
+@Dev(category=Category.ENVIRONMENT, label="Time?")
 public class DaylightCondition implements ChatCondition {
 
 	private final List<DaylightPhase> daylightPhases;

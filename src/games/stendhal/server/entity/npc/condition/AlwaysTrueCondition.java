@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * This condition returns always true. Use it in a quest file to override
  * behaviour defined in the map file
  */
-@Dev(category=Category.LOGIC)
+@Dev(category=Category.LOGIC, label="True!")
 public class AlwaysTrueCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {

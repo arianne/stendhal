@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Is this quest not in this state?
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="State?")
 public class QuestNotInStateCondition implements ChatCondition {
 
 	private final String questname;

@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @see games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction
  *
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 
 	private final String questName;
