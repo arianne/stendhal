@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the karma of the current player.
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="Karma+")
 public class IncreaseKarmaAction implements ChatAction {
 
 	private final double karmaDiff;

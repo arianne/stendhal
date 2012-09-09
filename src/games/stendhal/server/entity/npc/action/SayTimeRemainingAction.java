@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  * @see games.stendhal.server.entity.npc.condition.TimePassedCondition
  * @see games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction *
  */
-@Dev(category=Category.TIME)
+@Dev(category=Category.TIME, label="\"...\"")
 public class SayTimeRemainingAction implements ChatAction {
 
 	private static final Logger logger = Logger.getLogger(SayTimeRemainingAction.class);

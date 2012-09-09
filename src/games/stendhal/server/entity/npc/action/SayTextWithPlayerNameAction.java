@@ -31,7 +31,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author kymara
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextWithPlayerNameAction implements ChatAction {
 
 	private final String message;

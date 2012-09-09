@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="Image")
 public class ExamineChatAction implements ChatAction {
 	private final String image;
 	private final String title;

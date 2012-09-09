@@ -32,7 +32,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author omero
  */
-@Dev(category=Category.TIME)
+@Dev(category=Category.TIME, label="State")
 public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 
 	private final String questname;

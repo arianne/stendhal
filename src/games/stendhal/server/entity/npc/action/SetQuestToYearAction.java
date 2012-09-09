@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the state of a quest to the current year.
  */
-@Dev(category=Category.TIME)
+@Dev(category=Category.TIME, label="State")
 public class SetQuestToYearAction implements ChatAction {
 
 	private final String questname;

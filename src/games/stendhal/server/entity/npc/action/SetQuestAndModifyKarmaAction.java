@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Sets the current state of a quest and modifies the karma of the player.
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="State, Karma")
 public class SetQuestAndModifyKarmaAction implements ChatAction {
 
 	private final String questname;

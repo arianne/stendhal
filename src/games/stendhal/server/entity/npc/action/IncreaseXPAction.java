@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the xp of the current player.
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="XP+")
 public class IncreaseXPAction implements ChatAction {
 
 	private final int xpDiff;

@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  *
  * @see games.stendhal.server.entity.npc.action.CollectRequestedItemsAction
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="\"...\"")
 public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropRecordedItemAction.class);
 

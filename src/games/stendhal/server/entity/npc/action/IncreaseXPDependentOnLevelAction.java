@@ -23,7 +23,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Increases the xp of the current player.
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="XP+")
 public class IncreaseXPDependentOnLevelAction implements ChatAction {
     // player will get 1/xpDiff part of difference between his and next levels xp amount.
 	private final double xpDiff;

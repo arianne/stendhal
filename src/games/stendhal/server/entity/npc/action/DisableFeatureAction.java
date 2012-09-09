@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author madmetzger
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="Feature-")
 public class DisableFeatureAction implements ChatAction {
 
 	private final String feature;

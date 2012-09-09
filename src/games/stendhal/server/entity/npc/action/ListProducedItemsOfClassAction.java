@@ -34,7 +34,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author kymara
  */
-@Dev(category=Category.ITEMS_PRODUCER)
+@Dev(category=Category.ITEMS_PRODUCER, label="List")
 public class ListProducedItemsOfClassAction implements ChatAction {
 
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();

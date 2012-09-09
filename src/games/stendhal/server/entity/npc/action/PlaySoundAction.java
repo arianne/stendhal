@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * plays the specified sound
  */
-@Dev(category=Category.ENVIRONMENT)
+@Dev(category=Category.ENVIRONMENT, label="Sound")
 public class PlaySoundAction implements ChatAction {
 
 	final String sound;

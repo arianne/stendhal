@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Write the difference between the players current age and the one stored in the quest slot
  * to the hall of fame database table.
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="State")
 public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	private final String questname;
 	private final int index;

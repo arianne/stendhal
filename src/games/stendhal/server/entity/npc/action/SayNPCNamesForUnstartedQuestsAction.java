@@ -30,7 +30,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Says the list of the NPC names for unstarted quests in a specified region in the form npc1, npc2, and npc3 all need your help.
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="\"...\"")
 public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 
 	private final List<String> regions;

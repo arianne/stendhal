@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Sends the message as a private text
  * Optional notification type when used with NPCs
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="Message")
 public class SendPrivateMessageAction implements ChatAction {
 
 	private final String text;

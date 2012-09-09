@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Tells the player that the NPC did not understand the sentence;
  * use it in combination with SentenceHasErrorCondition.
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="Error")
 public class ComplainAboutSentenceErrorAction implements ChatAction {
 
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {

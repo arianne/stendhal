@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @see games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction
  * @author omero
  */
-@Dev(category = Category.TIME)
+@Dev(category = Category.TIME, label="\"...\"")
 public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
 
 	private final String questname;

@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Enables a client side feature.
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="Feature+")
 public class EnableFeatureAction implements ChatAction {
 
 	private final String feature;

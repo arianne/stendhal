@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the current state of a quest.
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="State")
 public class SetQuestAction implements ChatAction {
 
 	private final String questname;

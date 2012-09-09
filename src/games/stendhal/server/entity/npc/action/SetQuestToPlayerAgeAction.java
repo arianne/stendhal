@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Sets the state of a quest to the current age of the player.
  */
-@Dev(category=Category.STATS)
+@Dev(category=Category.STATS, label="State")
 public class SetQuestToPlayerAgeAction implements ChatAction {
 
 	private final String questname;

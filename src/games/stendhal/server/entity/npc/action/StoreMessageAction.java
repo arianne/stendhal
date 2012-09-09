@@ -26,7 +26,7 @@ import marauroa.server.db.command.DBCommandQueue;
  *
  * @author kymara
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="Message")
 public class StoreMessageAction implements ChatAction {
 
 	private final String npcName;

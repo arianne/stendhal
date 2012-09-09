@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Gives description for unstarted quest based on npc name
  */
-@Dev(category=Category.IGNORE)
+@Dev(category=Category.IGNORE, label="\"...\"")
 public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction {
 
 	private final List<String> regions;

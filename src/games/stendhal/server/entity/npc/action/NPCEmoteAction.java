@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * npc emoting to player
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="NPC")
 public class NPCEmoteAction implements ChatAction {
 
 	private final String npcAction;

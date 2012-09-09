@@ -26,7 +26,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Increments by some value the current state or substate of a quest.
  */
-@Dev(category=Category.QUEST_SLOT)
+@Dev(category=Category.QUEST_SLOT, label="State")
 public class IncrementQuestAction implements ChatAction {
 
 	private final String questname;

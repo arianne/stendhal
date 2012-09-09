@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * Equips the specified item.
  */
-@Dev(category = Category.ITEMS_OWNED)
+@Dev(category = Category.ITEMS_OWNED, label="Item+")
 public class EquipItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipItemAction.class);
 

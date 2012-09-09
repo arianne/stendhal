@@ -36,7 +36,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
-@Dev(category=Category.KILLS)
+@Dev(category=Category.KILLS, label="State")
 public class StartRecordingKillsAction implements ChatAction {
 	// first number in pair is required solo kills, second is required shared kills
 	private final Map<String, Pair<Integer, Integer>> toKill;

@@ -34,7 +34,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @see games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction
  * @author madmetzger
  */
-@Dev(category=Category.OTHER)
+@Dev(category=Category.OTHER, label="Item-")
 public final class CollectRequestedItemsAction implements ChatAction {
 
 	private final String itemName;

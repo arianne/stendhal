@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  *
  * @see games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item-")
 public class DropItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private final String itemName;

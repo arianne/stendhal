@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Teleports the player to the specified location.
  */
-@Dev(category=Category.LOCATION)
+@Dev(category=Category.LOCATION, label="Teleport")
 public class TeleportAction implements ChatAction {
 
 	private final String zonename;

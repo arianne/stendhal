@@ -25,7 +25,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * says the specified text, it works just like the normal parameter of add
  */
-@Dev(category=Category.CHAT)
+@Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextAction implements ChatAction {
 
 	private final String text;

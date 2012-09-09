@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  * @author hendrik
  */
-@Dev(category=Category.LOCATION)
+@Dev(category=Category.LOCATION, label="NPC")
 public final class NPCSetDirection implements ChatAction {
 
 	private final Direction direction;

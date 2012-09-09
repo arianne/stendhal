@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * Chooses and equips the specified item from a list
  */
-@Dev(category=Category.ITEMS_OWNED)
+@Dev(category=Category.ITEMS_OWNED, label="Item+")
 public class EquipRandomAmountOfItemAction implements ChatAction {
 	private static Logger logger = Logger.getLogger(EquipRandomAmountOfItemAction.class);
 
