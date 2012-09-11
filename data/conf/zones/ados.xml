@@ -4112,6 +4112,7 @@ Southeast: Docks
     <parameter name="height">27</parameter>
   </configurator>
   <configurator class-name="games.stendhal.server.maps.ados.tunnel.WishmanNPC"/>
+  <!-- <configurator class-name="games.stendhal.server.maps.ados.tunnel.CrulaminNPC"/> -->
  <portal x="25" y="28" ref="dragonlairinside">
    <destination zone="-1_ados_outside_w" ref="dragonlairoutside"/>
   </portal>
