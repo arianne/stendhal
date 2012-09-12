@@ -19,6 +19,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -128,6 +129,9 @@ public class InspectAction extends AdministrationAction {
 						}
 					}
 				}
+			}
+			if (inspected instanceof SpeakerNPC) {
+				st.append("\nCurrent state: " + ((SpeakerNPC) inspected).getEngine().getCurrentState());
 			}
 		} else {
 			st.append("Inspected entity has id " + action.get("target")
