@@ -72,13 +72,13 @@ public class CommandCenter {
 	}
 
 	public static void register(final String action, final ActionListener actionClass) {
-		final ActionListener command = getActionsMap().putIfAbsent(action, actionClass);
+		final ActionListener command = getActionsMap().put(action, actionClass);
 
 		//TODO mf - register slash commands as verbs in WordList
 		//		WordList.getInstance().registerVerb(action);
 		if (command != null) {
-			logger.error("not registering " + command.getClass()
-					+ ". it has the same type " + action + " as  "
+			logger.error("ActionListener " + command.getClass()
+					+ " for action " + action + " was replaced with  "
 					+ CommandCenter.getAction(action).getClass());
 		}
 	}
