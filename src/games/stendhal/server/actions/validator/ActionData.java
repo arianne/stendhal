@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2012 Faiumoni                        *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,29 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
-
 /**
- * Uses the chat bucket
+ * data used by actions
  *
  * @author hendrik
  */
-public class ActionSenderUseChatBucket implements ActionValidator {
+public class ActionData {
 
-	/**
-	 * validates an RPAction.
-	 *
-	 * @param player Player
-	 * @param action RPAction to validate
-	 * @param data   data about this action
-	 * @return <code>null</code> if the action is valid; an error message otherwise
-	 */
-	public String validate(Player player, RPAction action, ActionData data) {
-		if (!player.getChatBucket().checkAndAdd(0)) {
-			return ""; // empty error message to give little feedback to the spammer
-		}
-		return null;
-	}
-
+	// TODO
 }

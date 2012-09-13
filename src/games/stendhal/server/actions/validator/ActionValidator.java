@@ -27,7 +27,8 @@ public interface ActionValidator {
 	 *
 	 * @param player Player
 	 * @param action RPAction to validate
+	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
-	public String validate(Player player, RPAction action);
+	public String validate(Player player, RPAction action, ActionData data);
 }

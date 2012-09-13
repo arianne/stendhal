@@ -41,11 +41,12 @@ public class ActionValidation implements ActionValidator {
 	 *
 	 * @param player Player
 	 * @param action RPAction to validate
+	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
-	public String validate(Player player, RPAction action) {
+	public String validate(Player player, RPAction action, ActionData data) {
 		for (ActionValidator validator : validators) {
-			String res = validator.validate(player, action);
+			String res = validator.validate(player, action, null);
 			if (res != null) {
 				return res;
 			}
