@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.common.EquipActionConsts;
+import games.stendhal.server.actions.ItemAccessPermissions;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
@@ -156,16 +157,10 @@ class SourceObject extends MoveableObject {
 			return invalidSource;
 		}
 		Item item = (Item) entity;
-		RPObject container = item.getBaseContainer();
-		// Corpses are always top level objects
-		if (container instanceof Corpse) {
-			Corpse corpse = (Corpse) container;
-			if (!corpse.mayUse(player)) {
-				logger.debug(player.getName() + " tried to access eCorpse owned by " + corpse.getCorpseOwner());
-				player.sendPrivateText("Only " + corpse.getCorpseOwner() + " may access the corpse for now.");
-				return invalidSource;
-			}
+		if (item.isContained() && !ItemAccessPermissions.mayAccessContainedEntity(player, item)) {
+			return invalidSource;
 		}
+		RPObject container = item.getBaseContainer();
 		
 		/*
 		 * Top level items need to be checked for players standing on them.
@@ -206,7 +201,10 @@ class SourceObject extends MoveableObject {
 		boolean res = slot.isReachableForTakingThingsOutOfBy(player);
 		if (!res) {
 			logger.debug("Unreachable slot");
-			player.sendPrivateText(slot.getErrorMessage());
+			String error = slot.getErrorMessage();
+			if (error != null) {
+				player.sendPrivateText(slot.getErrorMessage());
+			}
 		}
 		return res;
 	}
