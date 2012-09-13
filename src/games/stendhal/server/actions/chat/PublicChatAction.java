@@ -14,10 +14,7 @@ package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.validator.ActionAttributesExist;
-import games.stendhal.server.actions.validator.ActionSenderNotGagged;
-import games.stendhal.server.actions.validator.ActionSenderUseChatBucket;
-import games.stendhal.server.actions.validator.ActionValidation;
+import games.stendhal.server.actions.validator.StandardActionValidations;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
@@ -28,24 +25,12 @@ import marauroa.common.game.RPAction;
  */
 public class PublicChatAction implements ActionListener {
 
-	private ActionValidation validation = new ActionValidation();
-
-	/**
-	 * handles publicly said text
-	 */
-	public PublicChatAction() {
-		validation.add(new ActionAttributesExist(TEXT));
-		validation.add(new ActionSenderUseChatBucket(TEXT));
-		validation.add(new ActionSenderNotGagged());
-	}
-
 	public void onAction(final Player player, final RPAction action) {
-		final String text = action.get(TEXT);
-
-		if (!validation.validateAndInformPlayer(player, action)) {
+		if (!StandardActionValidations.CHAT.validateAndInformPlayer(player, action)) {
 			return;
 		}
 
+		final String text = action.get(TEXT);
 		player.put("text", text);
 		new GameEvent(player.getName(), "chat",  null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 

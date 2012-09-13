@@ -17,6 +17,9 @@ import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.actions.validator.ActionAttributesExist;
+import games.stendhal.server.actions.validator.ActionValidation;
+import games.stendhal.server.actions.validator.StandardActionValidations;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.dbcommand.StoreMessageCommand;
 import games.stendhal.server.core.events.TurnListener;
@@ -36,11 +39,21 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 	/** For identifying the results of this command */
 	private final ResultHandle handle = new ResultHandle();
 
+	private ActionValidation validation = new ActionValidation();
+
 	/**
 	 * registers "store message" action processor.
 	 */
 	public static void register() {
 		CommandCenter.register("storemessage", new StoreMessageAction());
+	}
+
+	/**
+	 * Stores a message to another player for postman to deliver
+	 */
+	public StoreMessageAction() {
+		validation.add(new ActionAttributesExist(TARGET));
+		validation.add(StandardActionValidations.CHAT);
 	}
 
 	/**
@@ -52,14 +65,11 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
-		if (!action.has(TARGET) || !action.has(TEXT)) {
+		if (!validation.validateAndInformPlayer(player, action)) {
 			return;
 		}
 
 		String message = action.get(TEXT);
-		if (!player.getChatBucket().checkAndAdd(message.length())) {
-			return;
-		}
 
 		DBCommand command = new StoreMessageCommand(player.getName(), action.get(TARGET), message, "P");
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);

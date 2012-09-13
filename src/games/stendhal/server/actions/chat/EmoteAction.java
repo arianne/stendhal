@@ -14,9 +14,9 @@ package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.validator.StandardActionValidations;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -29,15 +29,7 @@ public class EmoteAction implements ActionListener {
 
 	public void onAction(final Player player, final RPAction action) {
 
-		if (!action.has(TEXT)) {
-			return;
-		}
-
-		if (!player.getChatBucket().checkAndAdd(action.get(TEXT).length())) {
-			return;
-		}
-
-		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
+		if (!StandardActionValidations.CHAT.validateAndInformPlayer(player, action)) {
 			return;
 		}
 
