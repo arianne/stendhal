@@ -21,6 +21,16 @@ import marauroa.common.game.RPAction;
  * @author hendrik
  */
 public class ActionSenderUseChatBucket implements ActionValidator {
+	private String attribute;
+
+	/**
+	 * use chat bucket
+	 *
+	 * @param attribute name of attribute to use for amount estimation
+	 */
+	public ActionSenderUseChatBucket(String attribute) {
+		this.attribute = attribute;
+	}
 
 	/**
 	 * validates an RPAction.
@@ -31,7 +41,14 @@ public class ActionSenderUseChatBucket implements ActionValidator {
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
 	public String validate(Player player, RPAction action, ActionData data) {
-		if (!player.getChatBucket().checkAndAdd(0)) {
+		int amount = 1;
+		if (attribute != null) {
+			String temp = action.get(attribute);
+			if (temp != null) {
+				amount = temp.length();
+			}
+		}
+		if (!player.getChatBucket().checkAndAdd(amount)) {
 			return ""; // empty error message to give little feedback to the spammer
 		}
 		return null;
