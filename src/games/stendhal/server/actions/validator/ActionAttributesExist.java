@@ -20,12 +20,15 @@ import java.util.LinkedList;
 
 import marauroa.common.game.RPAction;
 
+import org.apache.log4j.Logger;
+
 /**
  * checks the the required attribute are part of the action.
  *
  * @author hendrik
  */
 public class ActionAttributesExist implements ActionValidator {
+	private static Logger logger = Logger.getLogger(ActionAttributesExist.class);
 	private Collection<String> attributes;
 
 	/**
@@ -48,7 +51,8 @@ public class ActionAttributesExist implements ActionValidator {
 	public String validate(Player player, RPAction action, ActionData data) {
 		for (String attribute : attributes) {
 			if (!action.has(attribute)) {
-				return "Internal Error: Action " + action.get("type") + " is missing required attribute " + attribute;
+				logger.warn("Internal Error: Action " + action.get("type") + " is missing required attribute " + attribute);
+				return "This action requires more information.";
 			}
 		}
 		return null;
