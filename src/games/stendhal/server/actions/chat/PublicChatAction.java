@@ -14,28 +14,35 @@ package games.stendhal.server.actions.chat;
 
 import static games.stendhal.common.constants.Actions.TEXT;
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.validator.ActionAttributesExist;
+import games.stendhal.server.actions.validator.ActionSenderNotGagged;
+import games.stendhal.server.actions.validator.ActionSenderUseChatBucket;
+import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * handles public said text .
+ * handles publicly said text .
  */
 public class PublicChatAction implements ActionListener {
 
+	private ActionValidation validation = new ActionValidation();
+
+	/**
+	 * handles publicly said text
+	 */
+	public PublicChatAction() {
+		validation.add(new ActionAttributesExist(TEXT));
+		validation.add(new ActionSenderUseChatBucket(TEXT));
+		validation.add(new ActionSenderNotGagged());
+	}
+
 	public void onAction(final Player player, final RPAction action) {
-		if (!action.has(TEXT)) {
-			return;
-		}
-
 		final String text = action.get(TEXT);
-		if (!player.getChatBucket().checkAndAdd(text.length())) {
-			return;
-		}
 
-		if (GagManager.checkIsGaggedAndInformPlayer(player)) {
+		if (!validation.validateAndInformPlayer(player, action)) {
 			return;
 		}
 
