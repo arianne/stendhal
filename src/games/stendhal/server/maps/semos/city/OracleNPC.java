@@ -68,7 +68,7 @@ public class OracleNPC implements ZoneConfigurator {
 				addOffer("*giggles* I don't sell anything. I can tell you about my #sisters or my #name, if you like.");
 				addReply("sisters", "My sisters live in other cities. Find them to learn how to #help those nearest them.");
 				addReply("name", "Me and my #sisters all have names of flowers. " +
-						"My name, Periwinkle, is another name for the forget-me-not. Don't forget me...");
+						"My mother loved the little blooms of the forget-me-not plants.  Well, she couldn't name me Forget-me-not, so she named me Periwinkle cause the blooms looked somewhat alike.   Please, don't forget me...");
 				
 				// just to be nice :)
 				addEmotionReply("hugs", "hugs");
