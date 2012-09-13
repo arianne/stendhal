@@ -65,10 +65,12 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source;
+		/* Disabled new item handling code because of missing validations
 		if (action.has(EquipActionConsts.SOURCE_PATH)) {
+		
 			source = createSource(action, player);
 			// Otherwise use compatibility mode
-		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
+		} else */ if (action.has(EquipActionConsts.BASE_OBJECT)) {
 			source = createSourceForContainedItem(action, player);
 		} else {
 			source = createSourceForNonContainedItem(action, player);
