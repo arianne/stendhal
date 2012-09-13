@@ -40,6 +40,7 @@ public class UseAction implements ActionListener {
 		CommandCenter.register(USE, new UseAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET_PATH)) {
 			useEntityFromPath(player, action);
@@ -117,13 +118,13 @@ public class UseAction implements ActionListener {
 	private boolean mayAccessContainedEntity(Player player, Entity entity) {
 		RPObject parent = entity.getContainer();
 		while ((parent != null) && (parent != entity)) {
+			EntitySlot slot = getContainingSlot(entity);
+			if ((slot == null) || !slot.isReachableForTakingThingsOutOfBy(player)) {
+				return false;
+			}
 			if (parent instanceof Item) {
 				entity = (Item) parent;
 				if (isItemBoundToOtherPlayer(player, entity)) {
-					return false;
-				}
-				EntitySlot slot = getContainingSlot(entity);
-				if ((slot == null) || !slot.isReachableForTakingThingsOutOfBy(player)) {
 					return false;
 				}
 				parent = entity.getContainer();
