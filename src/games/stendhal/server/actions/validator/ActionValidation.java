@@ -53,4 +53,31 @@ public class ActionValidation implements ActionValidator {
 		}
 		return null;
 	}
+
+	/**
+	 * validates an RPAction.
+	 *
+	 * @param player Player
+	 * @param action RPAction to validate
+	 * @return <code>null</code> if the action is valid; an error message otherwise
+	 */
+	public String validate(Player player, RPAction action) {
+		return validate(player, action, null);
+	}
+
+
+	/**
+	 * validates an RPAction and tells the player about validation issues.
+	 *
+	 * @param player Player
+	 * @param action RPAction to validate
+	 * @return true, if the action may continue; false on error
+	 */
+	public boolean validateAndInformPlayer(Player player, RPAction action) {
+		String error = validate(player, action, null);
+		if ((error != null) && !error.trim().equals("")) {
+			player.sendPrivateText(error);
+		}
+		return error == null;
+	}
 }
