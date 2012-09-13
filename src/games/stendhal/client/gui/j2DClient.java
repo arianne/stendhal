@@ -88,6 +88,12 @@ import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient implements UserInterface {
+	static {
+		// This is potentially the first loaded GUI component (happens when
+		// using web start)
+		Initializer.init();
+	}
+	
 	/** Scrolling speed when using the mouse wheel. */
 	private static final int SCROLLING_SPEED = 8;
 	/** Background color of the private chat tab. Light blue. */
