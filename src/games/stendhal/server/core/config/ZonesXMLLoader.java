@@ -420,11 +420,9 @@ public final class ZonesXMLLoader {
 	 */
 	private String parseRegionFromZone(String name) {
 		String[] split = name.split("_");
-		if(split != null) {
-			// standard exterior and interior zones have more than 3 parts
-			if (split.length > 1) {
-				return RegionNameSubstitutionHelper.get().replaceRegionName(split[1]);
-			}
+		// standard exterior and interior zones have more than 3 parts
+		if (split.length > 1) {
+			return RegionNameSubstitutionHelper.get().replaceRegionName(split[1]);
 		}
 		//each zone that shouldn't be accounted as a region would be considered as "no region"
 		return RegionNameSubstitutionHelper.get().getDefaultRegion();
