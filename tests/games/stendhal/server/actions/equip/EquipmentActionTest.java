@@ -511,6 +511,52 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 	}
 	
 	/**
+	 * Test moving an item to bank without using a bank chest.
+	 */
+	@Test
+	public void testPutToBankFarAwayFromBank() {
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		player.equip("bag", item);
+		localzone.add(player);
+		assertTrue(player.isEquipped("cheese"));
+		assertEquals(1, player.getTotalNumberOf("cheese"));
+		
+		final EquipmentAction action = new EquipAction();
+		
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.BASE_SLOT, "bag");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bank");
+		
+		action.onAction(player, equip);
+		
+		// Should fail - the player is not at a chest
+		assertTrue(player.isEquipped("cheese"));
+		assertEquals(1, player.getTotalNumberOf("cheese"));
+		
+		// The same using item paths
+		equip = new RPAction();
+		equip.put("type", "equip");
+		List<String> srcPath = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag", Integer.toString(item.getID().getObjectID()));
+		equip.put(EquipActionConsts.SOURCE_PATH, srcPath);
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bank");
+		equip.put(Actions.TARGET_PATH, path);
+
+		action.onAction(player, equip);
+		// Should fail again
+		assertTrue(player.isEquipped("cheese"));
+		assertEquals(1, player.getTotalNumberOf("cheese"));
+	}
+
+	
+	/**
 	 * Test grabbing items form the bag of another player
 	 */
 	@Test
@@ -552,6 +598,54 @@ public class EquipmentActionTest  extends ZoneAndPlayerTestImpl {
 		equip.put(Actions.TARGET_PATH, path);
 
 		action.onAction(player, equip);
+		
+		// Should fail again
+		assertFalse(player.isEquipped("cheese"));
+		assertTrue(player2.isEquipped("cheese"));
+	}
+	
+	/**
+	 * Test moving items to a slot belonging to another player.
+	 */
+	@Test
+	public void testCharity() {
+		StendhalRPZone localzone = new StendhalRPZone("testzone", 20, 20);
+		SingletonRepository.getRPWorld().addRPZone(localzone);
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		final Player player2 = PlayerTestHelper.createPlayer("croesus");
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem("cheese");
+		player2.equip("bag", item);
+		localzone.add(player);
+		localzone.add(player2);
+		assertFalse(player.isEquipped("cheese"));
+		assertTrue(player2.isEquipped("cheese"));
+		
+		final EquipmentAction action = new EquipAction();
+		
+		RPAction equip = new RPAction();
+		equip.put("type", "equip");
+		equip.put(EquipActionConsts.BASE_OBJECT, player2.getID().getObjectID());
+		equip.put(EquipActionConsts.BASE_SLOT, "bag");
+		equip.put(EquipActionConsts.BASE_ITEM, item.getID().getObjectID());
+		
+		equip.put(EquipActionConsts.TARGET_OBJECT, player.getID().getObjectID());
+		equip.put(EquipActionConsts.TARGET_SLOT, "bag");
+		
+		action.onAction(player2, equip);
+		
+		// No charity
+		assertFalse(player.isEquipped("cheese"));
+		assertTrue(player2.isEquipped("cheese"));
+		
+		// The same using item paths
+		equip = new RPAction();
+		equip.put("type", "equip");
+		List<String> srcPath = Arrays.asList(Integer.toString(player2.getID().getObjectID()), "bag", Integer.toString(item.getID().getObjectID()));
+		equip.put(EquipActionConsts.SOURCE_PATH, srcPath);
+		List<String> path = Arrays.asList(Integer.toString(player.getID().getObjectID()), "bag");
+		equip.put(Actions.TARGET_PATH, path);
+
+		action.onAction(player2, equip);
 		
 		// Should fail again
 		assertFalse(player.isEquipped("cheese"));
