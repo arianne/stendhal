@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -145,7 +146,10 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", getReply(tad));
-
+		
+		// don't be naked when talking to ketteh and trying to do this quest
+        player.setOutfit(Outfit.getRandomOutfit());
+        
 		// quest started but not complete - ketteh will remind player
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
