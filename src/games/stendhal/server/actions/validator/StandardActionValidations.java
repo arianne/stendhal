@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import static games.stendhal.common.constants.Actions.TARGET;
 import static games.stendhal.common.constants.Actions.TEXT;
 
 /**
@@ -23,11 +24,24 @@ public class StandardActionValidations {
 	/** validation for chat */
 	public static final ActionValidation CHAT;
 
+	/** validation for private chat message */
+	public static final ActionValidation PRIVATE_CHAT;
+
 	static {
 		ActionValidation validation = new ActionValidation();
 		validation.add(new ActionAttributesExist(TEXT));
 		validation.add(new ActionSenderUseChatBucket(TEXT));
 		validation.add(new ActionSenderNotGagged());
 		CHAT = validation;
+
+		validation = new ActionValidation();
+		validation.add(new ActionAttributesExist(TARGET));
+		validation.add(CHAT);
+		validation.add(new ActionSenderNotInJail());
+		validation.add(new ActionTargetOnline(TARGET, true));
+		validation.add(new ActionTargetNotAway(TARGET, true));
+		validation.add(new ActionTargetNotGrumpyTowardsSender(TARGET));
+		validation.add(new ActionTargetNotIgnoringSender(TARGET));
+		PRIVATE_CHAT = validation;
 	}
 }

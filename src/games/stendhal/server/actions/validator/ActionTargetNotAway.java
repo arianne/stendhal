@@ -23,14 +23,17 @@ import marauroa.common.game.RPAction;
  */
 public class ActionTargetNotAway implements ActionValidator {
 	private String targetAttribute;
+	private boolean tellAboutPostman;
 
 	/**
 	 * creates a new ActionTargetNotAway
 	 *
 	 * @param targetAttribute name of attribute containing the target player name
+	 * @param tellAboutPostman tell the player about postman
 	 */
-	public ActionTargetNotAway(String targetAttribute) {
+	public ActionTargetNotAway(String targetAttribute, boolean tellAboutPostman) {
 		this.targetAttribute = targetAttribute;
+		this.tellAboutPostman = tellAboutPostman;
 	}
 
 	/**
@@ -46,7 +49,11 @@ public class ActionTargetNotAway implements ActionValidator {
 		Player targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(playerName);
 		String awayMessage = targetPlayer.getAwayMessage();
 		if (awayMessage != null) {
-			return targetPlayer.getName() + " is away from keyboard: " + awayMessage;
+			String error = targetPlayer.getName() + " is away. " + awayMessage;
+			if (tellAboutPostman) {
+				error = error +  " Please use postman to send a message to " + playerName;
+			}
+			return error;
 		}
 		return null;
 	}
