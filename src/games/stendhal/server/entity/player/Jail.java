@@ -125,19 +125,19 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	 * @param criminalName
 	 *            The name of the player who should be jailed
 	 * @param policeman
-	 *            The name of the admin who wants to jail the criminal
+	 *            The object for the RPEntity or admin who wants to jail the criminal
 	 * @param minutes
 	 *            The duration of the sentence
 	 * @param reason why criminal was jailed
 	 */
-	public void imprison(final String criminalName, final Player policeman,
+	public void imprison(final String criminalName, final RPEntity policeman,
 			final int minutes, final String reason) {
 
 		final Player criminal = SingletonRepository.getRuleProcessor().getPlayer(
 						criminalName);
 
 		arrestWarrants.removeByName(criminalName);
-		final ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman, minutes, reason);
+		final ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman.getName(), minutes, reason);
 
 		policeman.sendPrivateText("You have jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason + ".");
@@ -160,7 +160,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		arrestWarrants.add(arrestWarrant);
 	}
 
-	protected void imprison(final Player criminal, final Player policeman, final int minutes) {
+	protected void imprison(final Player criminal, final RPEntity policeman, final int minutes) {
 
 		if (jailzone == null) {
 			final String text = "No zone has been configured to be Jailzone";
@@ -187,12 +187,13 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	}
 
 	private boolean teleportToAvailableCell(final Player criminal,
-			final Player policeman) {
+			final RPEntity policeman) {
 		Collections.shuffle(cells);
 		for (final Cell cell : cells) {
 			if (cell.isEmpty()) {
+				// could make the last parameter the policeman, if the policeman is a player
 				if (criminal.teleport(jailzone, cell.getEntry().x, cell
-						.getEntry().y, Direction.DOWN, policeman)) {
+						.getEntry().y, Direction.DOWN, null)) {
 					cell.add(criminal.getName());
 					return true;
 				}
@@ -265,7 +266,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	}
 
 	/**
-	 * Destroy the arrest warrent so that the player is not rejailed on next login.
+	 * Destroy the arrest warrant so that the player is not jailed again on next login.
 	 * @param player
 	 */
 	public void grantParoleIfPlayerWasAPrisoner(final Player player) {

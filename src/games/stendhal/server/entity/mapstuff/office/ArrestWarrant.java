@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.mapstuff.office;
 
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -52,12 +51,12 @@ public class ArrestWarrant extends Entity implements StorableEntity {
 	 * @param minutes time of sentence
 	 * @param reason reason
 	 */
-	public ArrestWarrant(final String criminalName, final Player policeOfficer, final int minutes, final String reason) {
+	public ArrestWarrant(final String criminalName, final String policeOfficer, final int minutes, final String reason) {
 		setRPClass(RPCLASS_NAME);
 		store();
 		hide();
 		put(CRIMINAL, criminalName);
-		put(POLICE_OFFICER, policeOfficer.getName());
+		put(POLICE_OFFICER, policeOfficer);
 		put(MINUTES, minutes);
 		put(REASON, reason);
 		put(TIMESTAMP, System.currentTimeMillis());
