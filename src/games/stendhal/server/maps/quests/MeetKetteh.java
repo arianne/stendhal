@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.JailAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextWithPlayerNameAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -58,11 +59,22 @@ public class MeetKetteh extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new NakedCondition()), 
+						new NakedCondition(),
+						new QuestNotInStateCondition(QUEST_SLOT, "seen_naked")), 
 				ConversationStates.ATTENDING,
 				"Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nIt's lucky you met me as I teach good #manners. My next lesson for you is that if anyone says a word in #blue it is polite to repeat it back to them. So, repeat after me: #manners.",
 				new SetQuestAction(QUEST_SLOT, "seen_naked"));
 
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new NakedCondition(),
+						new QuestInStateCondition(QUEST_SLOT, "seen_naked")), 
+				ConversationStates.ATTENDING,
+				// this message doesn't get seen by the player himself as he gets sent to jail
+				"Ugh, you STILL haven't put any clothes on. To jail for you!",
+				// it's just 1 minute for now, for testing
+				new JailAction(1,"Ketteh Wehoh jailed you for being naked in the town hall after warning"));
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
