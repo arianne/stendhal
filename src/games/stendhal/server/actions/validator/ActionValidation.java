@@ -76,8 +76,20 @@ public class ActionValidation implements ActionValidator {
 	public boolean validateAndInformPlayer(Player player, RPAction action) {
 		String error = validate(player, action, null);
 		if ((error != null) && !error.trim().equals("")) {
-			player.sendPrivateText(error);
+			tellIgnorePostman(player, error);
 		}
 		return error == null;
+	}
+
+	/**
+	 * send a message to a player, unless that is postman
+	 *
+	 * @param receiver receiver of the message
+	 * @param message message
+	 */
+	private void tellIgnorePostman(final Player receiver, final String message) {
+		if (!receiver.getName().equals("postman")) {
+			receiver.sendPrivateText(message);
+		}
 	}
 }
