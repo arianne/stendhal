@@ -1099,6 +1099,6 @@
 		<cobertura-report format="xml" destdir="${build_cobertura_report}" srcdir="${src}" datafile="${build_cobertura}/cobertura.ser" />
 	</target>
 	
-	<target name="run_tests_with_cobertura" depends="compile_tests,cobertura-instrument,cobertura-test,cobertura-report,report_test"/>
+	<target name="run_tests_with_cobertura" depends="compile_tests,cobertura-instrument,cobertura-test,cobertura-report,report_test" description="Run tests with cobertura coverage"/>
 	
 </project>
