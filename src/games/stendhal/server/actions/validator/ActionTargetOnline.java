@@ -24,14 +24,17 @@ import marauroa.common.game.RPAction;
  */
 public class ActionTargetOnline implements ActionValidator {
 	private String targetAttribute;
+	private boolean tellAboutPostman;
 
 	/**
 	 * creates a new ActionTargetOnline
 	 *
 	 * @param targetAttribute name of attribute containing the target player name
+	 * @param tellAboutPostman tell the player about postman
 	 */
-	public ActionTargetOnline(String targetAttribute) {
+	public ActionTargetOnline(String targetAttribute, boolean tellAboutPostman) {
 		this.targetAttribute = targetAttribute;
+		this.tellAboutPostman = tellAboutPostman;
 	}
 
 	/**
@@ -48,7 +51,11 @@ public class ActionTargetOnline implements ActionValidator {
 
 		if (targetPlayer == null || (targetPlayer.isGhost() 
 				&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")))) {
-			return "No player named " + playerName + " is currently active.";
+			String error = "No player named " + playerName + " is currently active.";
+			if (tellAboutPostman) {
+				error = error +  " Please use postman to send a message to " + playerName;
+			}
+			return error;
 		}
 		return null;
 	}
