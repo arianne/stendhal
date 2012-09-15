@@ -129,7 +129,7 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		// before quest starts, ketteh will ask if you've met TAd
 		engineKetteh.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		engineKetteh.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
-		assertEquals("Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishyia.", 
+		assertEquals("Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya.", 
 				     getReply(ketteh));
 
 		

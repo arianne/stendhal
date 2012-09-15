@@ -340,7 +340,7 @@ public class MedicineForTad extends AbstractQuest {
         		ConversationPhrases.GOODBYE_MESSAGES,
         		new QuestNotStartedCondition(QUEST_SLOT),
                 ConversationStates.IDLE,
-                "Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishyia.",
+                "Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya.",
                 null);
 
 	}
