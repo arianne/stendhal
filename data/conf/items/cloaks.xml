@@ -255,7 +255,7 @@
   
   <item name="mainio cloak">
     <type class="cloak" subclass="mainio_cloak" tileid="-1"/>
-    <description>You see a mainio cloak. It's flashing colours are absurd! But you wear it because it's very well made.</description>
+    <description>You see a mainio cloak. Its flashing colours are absurd! But you wear it because it's very well made.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="21"/>
       <min_level value="120"/>
