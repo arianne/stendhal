@@ -104,7 +104,7 @@
  </layer>
  <layer name="collision" width="32" height="19" opacity="0.36">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACzNmYGAwHsVwTA4g1Sxq2o3LTEJ2UaoeXS+pfqGm34eL/ZS4h9Q0TYp7aRGew81+UgG+/EdN84ay/aS4BVd+ItV+dDUDaT8x7sBX/lLDfmLdRknZQwqmRD+ldtMCAwDVSbiJgAkAAA==
+   H4sIAAAAAAAAC+2UQQoAIAgE/VP//1u3DoHWpBJJwt7SWSVtItK+hk6C1opkazVXLO/7OZf2Etl7Fb7HD/3TxG/GPKvxaVj7F1nvZT7xou0T5c9vbvJ3fFj3l/BPZ6Dxye0h8uR72Rnq1Isew4AJAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="19" opacity="0.18">
