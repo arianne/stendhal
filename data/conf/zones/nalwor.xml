@@ -837,14 +837,22 @@ below average.
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
-		<entity x="185" y="64">
+
+	</zone>
+
+
+	<zone name="0_nalwor_river_s_e2" level="0" x="500512" y="500384"
+		file="Level 0/nalwor/river_s_e2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
+		<entity x="57" y="64">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
 				<parameter name="species">perch</parameter>
 			</implementation>
 		</entity>
 	</zone>
-
 
 	<!--  Level -1 -->
 
