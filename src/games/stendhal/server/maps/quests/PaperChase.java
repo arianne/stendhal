@@ -57,7 +57,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
-	private List<String> points = Arrays.asList("Plink", "Adena", "Valo", "Balduin", "Gaston", "Lobelia", 
+	private List<String> points = Arrays.asList("Will", "Adena", "Valo", "Balduin", "Gaston", "Lobelia", 
 												"Ortiv Milquetoast", "Pam", "Old Mother Helena", 
 												"Imorgen", "Anastasia", "Vulcanus", "Wrvil", "Fidorea");
 
@@ -70,7 +70,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private void setupGreetings() {
 		// Each greeting is said by the previous NPC to point to the NPC in the key.
-		greetings.put("Adena", "My teddy and me were waiting for you already :) ");
+		greetings.put("Adena", "I was waiting for you already :) ");
 		greetings.put("Valo", "Ahh there you are! I guess the lovely fresh smell of my veggies brought you here. ");
 		greetings.put("Balduin", "Oh you found the way up in this beautiful old Ados church. ");
 		greetings.put("Gaston", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
@@ -208,7 +208,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who loves his teddy and wants it back."
+			"You must ask every person on the trail about the #paper #chase. First you must find a young boy warns players about Faiumonis dangerous streets on Semos road."
 			+ " You may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
