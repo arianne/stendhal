@@ -33,6 +33,13 @@
 		</attributes>
 	</zone>
 
+	<zone name="0_orril_mountain_n_w2" level="0" x="499616" y="500128"
+		file="Level 0/orril/mountain_n_w2.tmx">
+		<attributes>
+			<parameter name="color_method">time</parameter>
+		</attributes>
+	</zone>
+
 	<zone name="0_orril_mountain_nw" level="0" x="499744" y="500128"
 		file="Level 0/orril/mountain_nw.tmx">
 		<attributes>
