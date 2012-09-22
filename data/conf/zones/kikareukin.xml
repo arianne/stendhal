@@ -60,7 +60,7 @@
     </implementation>
   </entity>
   <portal x="66" y="63" ref="exit">
-   <destination zone="0_semos_mountain_n_w4" ref="kikareukin_exit"/>
+   <destination zone="0_semos_mountain_n2_w3" ref="kikareukin_exit"/>
   </portal>
   <portal x="25" y="8" ref="cloud_exit1">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
