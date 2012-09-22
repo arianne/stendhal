@@ -52,14 +52,14 @@ import java.util.Map;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest implements TeleportListener {
-	private static final String QUEST_SLOT = "paper_chase_2011";
+	private static final String QUEST_SLOT = "paper_chase_2012";
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
-	private List<String> points = Arrays.asList("Tad", "Haunchy Meatoch", "Balduin", "John", "Kroip", "Stefan", 
-												"Xin Blanca", "Elisabeth", "Andy", 
-												"Pdiddi", "Ketteh Wehoh", "Vulcanus", "Fidorea");
+	private List<String> points = Arrays.asList("Plink", "Adena", "Valo", "Balduin", "Gaston", "Lobelia", 
+												"Ortiv Milquetoast", "Pam", "Old Mother Helena", 
+												"Imorgen", "Anastasia", "Vulcanus", "Wrvil", "Fidorea");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -70,34 +70,36 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private void setupGreetings() {
 		// Each greeting is said by the previous NPC to point to the NPC in the key.
-		greetings.put("Haunchy Meatoch", "Yay, nice that you found me here in the hostel! ");
-		greetings.put("Balduin", "Howdy partner! See you found your way to me! ");
-		greetings.put("John", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
-		greetings.put("Kroip", "I hope you had a nice sail with the ferry. Thanks for meeting me at the lovely beach of Athor island! ");
-		greetings.put("Stefan", "You is here! Me has pizza in oven, is hot. You goes find else people! ");
-		greetings.put("Xin Blanca", "Hello in Fado Hotel and my kitchen! Good that you meet me! If you aren't on a run, you might help me cutting some carrots. Ok I see, you're busy ;) ");
-		greetings.put("Elisabeth", "Here you are, found me! Good old tavern includes some lucrative business. ");
-		greetings.put("Andy", "Yay you found me! :) ");
-		greetings.put("Pdiddi", "Nice that you found me here! ");
-		greetings.put("Ketteh Wehoh", "There you got me! Got a new delivery of beans some days ago... ");
-		greetings.put("Vulcanus", "Nice that you found me here in the townhall. Moved inside, it was a bit windy in the Village. ");
-		greetings.put("Fidorea", "Did you know my name is derived from Greek? ");
+		greetings.put("Adena", "My teddy and me were waiting for you already :) ");
+		greetings.put("Valo", "Ahh there you are! I guess the lovely fresh smell of my veggies brought you here. ");
+		greetings.put("Balduin", "Oh you found the way up in this beautiful old Ados church. ");
+		greetings.put("Gaston", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
+		greetings.put("Lobelia", "Bonjour! You have made your way through these streets in my hometown Rat city as I see. ");
+		greetings.put("Ortiv Milquetoast", "Aren't these flowers lovely around me, come and take a deeper look at them! ");
+		greetings.put("Pam", "Uh, ah! Phew, it's just you. You got me! ");
+		greetings.put("Old Mother Helena", "I knew someone would find me at the beach! ");
+		greetings.put("Imorgen", "Oh hello, so nice that you found me here. Come and join me again soon to let me cook some nice soup for you. ");
+		greetings.put("Anastasia", "*sing* some herbs into the pot, some more and some more *sing*... ");
+		greetings.put("Vulcanus", "Shhh Hughie tries to sleep... ");
+		greetings.put("Wrvil", "Did you know my name is derived from Greek? ");
+		greetings.put("Fidorea", "*Wroff!* You found me down here, nice!");
 	}
 	
 
 	private void setupTexts() {
-		texts.put("Haunchy Meatoch", "The next person you should find has his own business running. "
-				  + "He is especially succesful during hot summer days when people meet his stand. Unfortunately he 'runs out of coal' often.");
+		texts.put("Adena", "The next person you should find has her own business running. "
+				  + "She sells fresh vegetables and food from farms near Semos.");
+		texts.put("Valo", "The next person on your trail lives and works in a church. He can concot some useful drinks for you.");
 		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
-		texts.put("John", "Now look for a couple who are enjoying their holidays: at least they want to!");
-		texts.put("Kroip", "The next, well, person, is one of the ones you can hardly understand, but he is really famous for some tasty food.");
-		texts.put("Stefan", "He one is of youngest chef but pretty lonely in huge building he is, Hotel is called. You go find him!");
-		texts.put("Xin Blanca", "The next person sells and buys good weapons and armor but his work isn't really legal. He has a secret together with the blacksmiths assistant.");
-		texts.put("Elisabeth", "Now your quest takes you to a young lady. She loves playing and enjoys a tasty in summer melting meal and no, it's not icecream."); 
-		texts.put("Andy", "The next one is sad and wants people to take revenge for his huge lost in life.");
-		texts.put("Pdiddi", "Next you need to see the dodgy geezer who pretends to be running a tavern east of Semos.");
-		texts.put("Ketteh Wehoh", "She is a really polite lady who knows the rules of behaving nicely. Meet her in an important city building in Semos.");
+		texts.put("Gaston", "The next person is a really good baker and can prepare a lot out of butter and chocolate. His name and meal aren't english...");
+		texts.put("Lobelia", "The next mystical person is gazing intently at the flowerbeds around her and knows a lot about your further travels...");
+		texts.put("Ortiv Milquetoast", "The next person is really afraid of Assassins and Bandits.");
+		texts.put("Pam", "The next lady loves sunbathing on a special island and is a good friend of Zara."); 
+		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy.");
+		texts.put("Imorgen", "The hobbies of the next person you have to find, are singing and brewing special mystical mixtures. She lives surrounded by trees in a small hut, together with her grandma.");
+		texts.put("Anastasia", "Please go and see after the next lady who is currently taking care of her ill son. They live in a lovely countryside.");
 		texts.put("Vulcanus", "Next you must find the son of a god, who greets you in Greek.");
+		texts.put("Wrvil", "Now go and meet the husband of a barmaid which is famous for her strong torcibud drinks.");
 		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
 	
@@ -206,7 +208,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who is a bit ILL and waits for help in a hostel."
+			"You must ask every person on the trail about the #paper #chase. First you must find a young boy who loves his teddy and wants it back."
 			+ " You may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
