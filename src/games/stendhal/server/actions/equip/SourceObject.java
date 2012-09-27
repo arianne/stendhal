@@ -26,6 +26,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.EntityHelper;
 
+import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -66,14 +67,10 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source;
-		if (action.has(EquipActionConsts.SOURCE_PATH)) {
-			source = createSource(action, player);
-			// Otherwise use compatibility mode
-		} else if (action.has(EquipActionConsts.BASE_OBJECT)) {
-			source = createSourceForContainedItem(action, player);
-		} else {
-			source = createSourceForNonContainedItem(action, player);
+		if (!action.has(EquipActionConsts.SOURCE_PATH)) {
+			translateCompatibilityToPaths(action);
 		}
+		source = createSource(action, player);
 
 		if ((source.getEntity() != null) && source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
 			player.sendPrivateText("Please empty your " + source.getEntityName() + " before moving it around");
@@ -83,7 +80,22 @@ class SourceObject extends MoveableObject {
 		adjustAmountForStackables(action, source);
 		return source;
 	}
+	
+	/**
+	 * Translate old style object reference to entity path.
+	 */
+	private static void translateCompatibilityToPaths(RPAction action) {
+		if (action.has(EquipActionConsts.BASE_OBJECT)) {
+			List<String> path = Arrays.asList(action.get(EquipActionConsts.BASE_OBJECT),
+					action.get(EquipActionConsts.BASE_SLOT), action.get(EquipActionConsts.BASE_ITEM));
+			action.put(EquipActionConsts.SOURCE_PATH, path);
+		} else {
+			List<String> path = Arrays.asList(action.get(EquipActionConsts.BASE_ITEM));
+			action.put(EquipActionConsts.SOURCE_PATH, path);
+		}
+	}
 
+	@SuppressWarnings("unused")
 	private static SourceObject createSourceForContainedItem(final RPAction action, final Player player) {
 		SourceObject source;
 		final Entity parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.BASE_OBJECT));
@@ -209,6 +221,7 @@ class SourceObject extends MoveableObject {
 		return res;
 	}
 
+	@SuppressWarnings("unused")
 	private static SourceObject createSourceForNonContainedItem(final RPAction action, final Player player) {
 		final SourceObject source = new SourceObject(player);
 		final RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), player.getID().getZoneID());
