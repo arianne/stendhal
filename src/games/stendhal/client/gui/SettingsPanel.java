@@ -16,14 +16,19 @@ package games.stendhal.client.gui;
 import games.stendhal.client.actions.SlashAction;
 import games.stendhal.client.actions.SlashActionRepository;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -45,6 +50,7 @@ class SettingsPanel extends JButton {
 	 */
 	SettingsPanel() {
 		setText("Menu");
+		setIcon(createArrowIcon());
 		// Don't steal focus from the game screen
 		setFocusable(false);
 	
@@ -111,6 +117,21 @@ class SettingsPanel extends JButton {
 		// Reset to default
 		c.gridheight = 1;
 		c.insets = tmpInsets;
+	}
+	
+	/**
+	 * Create arrow icon for the menu button.
+	 * 
+	 * @return arrow icon
+	 */
+	private Icon createArrowIcon() {
+		BufferedImage image = new BufferedImage(14, 14, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = image.createGraphics();
+		g.setColor(Color.WHITE);
+		g.fillPolygon(new int[] { 0, 6, 13}, new int[] { 4, 11, 4}, 3);
+		g.dispose();
+		
+		return new ImageIcon(image);
 	}
 	
 	/**
@@ -275,6 +296,11 @@ class SettingsPanel extends JButton {
 			c.fill = GridBagConstraints.BOTH;
 		}
 		
+		/**
+		 * Add a component to the colum.
+		 * 
+		 * @param component
+		 */
 		void addComponent(JComponent component) {
 			container.add(component, c);
 			c.gridy++;
