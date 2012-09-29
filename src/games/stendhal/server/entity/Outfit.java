@@ -316,7 +316,12 @@ public class Outfit {
 	 * @return true if naked, false if dressed
 	 */
 	public boolean isNaked() {
-		return (dress == null) || dress.equals(0);
+		if (isCompatibleWithClothes()) {
+			return (dress == null) || dress.equals(0);
+		} else {
+			return false;
+		} 
+		
 	}
 
 	/**
