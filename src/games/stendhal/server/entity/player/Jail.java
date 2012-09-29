@@ -15,6 +15,7 @@ package games.stendhal.server.entity.player;
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -138,10 +139,10 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		final ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman.getName(), minutes, reason);
 
 		policeman.sendPrivateText("You have jailed " + criminalName
-			+ " for " + minutes + " minutes. Reason: " + reason + ".");
+			+ " for " + minutes + " " + Grammar.plnoun(minutes, "minute") + ". Reason: " + reason + ".");
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 			policeman.getName() + " jailed " + criminalName
-			+ " for " + minutes + " minutes. Reason: " + reason
+			+ " for " + minutes + " " + Grammar.plnoun(minutes, "minute") + ". Reason: " + reason
 			+ ".");
 
 		if (criminal == null) {
@@ -153,7 +154,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			imprison(criminal, policeman, minutes);
 			criminal.sendPrivateText(NotificationType.SUPPORT,
 					"You have been jailed for " + minutes
-					+ " minutes. Reason: " + reason + ".");
+					+ " " + Grammar.plnoun(minutes, "minute") + ". Reason: " + reason + ".");
 		}
 		arrestWarrants.add(arrestWarrant);
 	}
@@ -291,7 +292,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 				player.sendPrivateText(NotificationType.SUPPORT, 
 						"You have been jailed "
 					+ " for " + arrestWarrant.getMinutes()
-					+ " minutes on " + String.format("%tF", timestamp)
+					+ " " + Grammar.plnoun(arrestWarrant.getMinutes(), "minute") + " on " + String.format("%tF", timestamp)
 					+ ". Reason: " + arrestWarrant.getReason() + ".");
 
 				handleEscapeMessages(arrestWarrant);
