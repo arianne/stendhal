@@ -12,6 +12,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -67,11 +68,11 @@ public class MeetKettehTest {
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
-		assertEquals("Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nIt's lucky you met me as I teach good #manners. My next lesson for you is that if anyone says a word in #blue it is polite to repeat it back to them. So, repeat after me: #manners.", getReply(npc));
-		assertEquals("seen_naked", player.getQuest(quest.getSlotName()));
+		assertEquals("Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT! If you don't I'll call the guards!", getReply(npc));
+		assertTrue(player.getQuest(quest.getSlotName()).startsWith("seen_naked"));
 		
 		en.step(player, "no");
-		assertEquals("If you don't put on some clothes and leave, I shall scream!", getReply(npc));
+		assertEquals("If you don't put on some clothes and leave, I shall scream for the guards!", getReply(npc));
 		assertEquals("Ketteh won't talk to players who refuse put on clothes", ConversationStates.IDLE, en.getCurrentState());
 
 		// Try to talk again, still naked
@@ -84,7 +85,7 @@ public class MeetKettehTest {
 		// Put on some clothes, and go greet her
 		player.setOutfit(Outfit.getRandomOutfit());
 		en.step(player, "hi");
-		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now.", getReply(npc));
+		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
@@ -92,7 +93,7 @@ public class MeetKettehTest {
 		player.setQuest(quest.getSlotName(), "seen_naked");
 		// Put on some clothes, and go greet her
 		en.step(player, "hi");
-		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now.", getReply(npc));
+		assertEquals("Hi again, Jeeves. I'm so glad you have some clothes on now. Now we can continue with the lesson in #manners. Did you know that if someone says something in #blue it is polite to repeat it back to them? So, repeat after me: #manners.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
