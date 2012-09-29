@@ -616,8 +616,8 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(player, action);
-		assertEquals("You have jailed offlineplayer for 1 minutes. Reason: whynot.", player.events().get(0).get("text"));
-		assertEquals("JailKeeper asks for support to ADMIN: hugo jailed offlineplayer for 1 minutes. Reason: whynot.", player.events().get(1).get("text"));
+		assertEquals("You have jailed offlineplayer for 1 minute. Reason: whynot.", player.events().get(0).get("text"));
+		assertEquals("JailKeeper asks for support to ADMIN: hugo jailed offlineplayer for 1 minute. Reason: whynot.", player.events().get(1).get("text"));
 		assertEquals("Player offlineplayer is not online, but the arrest warrant has been recorded anyway.", player.events().get(2).get("text"));
 		player.clearEvents();
 
@@ -653,7 +653,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		assertTrue(CommandCenter.execute(player, action));
-		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed for 1 minutes. Reason: whynot."));
+		assertThat(player.events().get(0).get("text"), startsWith("You have been jailed for 1 minute. Reason: whynot."));
 	}
 
 	/**

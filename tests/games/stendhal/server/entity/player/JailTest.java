@@ -58,7 +58,7 @@ public class JailTest {
 		final Player policeman = PlayerTestHelper.createPlayer("police officer");
 		PlayerTestHelper.createPlayer("bob");
 		SingletonRepository.getJail().imprison("bob", policeman, 1, "test");
-		assertEquals("You have jailed bob for 1 minutes. Reason: test.", policeman.events().get(0).get("text"));
+		assertEquals("You have jailed bob for 1 minute. Reason: test.", policeman.events().get(0).get("text"));
 		
 		assertEquals("Player bob is not online, but the arrest warrant has been recorded anyway.", policeman.events().get(1).get("text"));
 		
@@ -76,7 +76,7 @@ public class JailTest {
 
 		SingletonRepository.getJail().imprison(bob.getName(), policeman, 1, "test");
 		assertTrue(Jail.isInJail(bob));
-		assertEquals("You have jailed bob for 1 minutes. Reason: test.",
+		assertEquals("You have jailed bob for 1 minute. Reason: test.",
 				policeman.events().get(0).get("text"));
 		SingletonRepository.getJail().release(bob);
 		assertFalse(Jail.isInJail(bob));
