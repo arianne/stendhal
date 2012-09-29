@@ -17,7 +17,6 @@ import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -34,7 +33,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
@@ -226,15 +224,11 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	void release(final Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
-		final StendhalRPWorld world = SingletonRepository.getRPWorld();
 		if (isInJail(inmate)) {
-			final IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
-			if (!world.hasRPZone(zoneid)) {
-				LOGGER.debug("Zone " + zoneid + " not found");
-			}
-			final StendhalRPZone exitZone = (StendhalRPZone) world.getRPZone(zoneid);
 
-			inmate.teleport(exitZone, 6, 3, Direction.RIGHT, null);
+			final StendhalRPZone exitZone = jailzone;
+
+			inmate.teleport(exitZone, 8, 7, Direction.LEFT, null);
 			inmate.sendPrivateText(NotificationType.SUPPORT,
 					"Your sentence is over. You can walk out now.");
 			LOGGER.debug("Player " + inmate.getName() + "released from jail.");
