@@ -25,7 +25,7 @@ You will meet NPCs and acquire tasks and quests for valuable experience and cold
 Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your
 armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters!
 
-Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment.
+Stendhal is totally platform independent, written using Java 6 and the Java2D environment.
 
 So what are you waiting for?! A whole new world awaits...
 
