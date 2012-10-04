@@ -33,7 +33,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.CaptureTheFlagFlag;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
@@ -1602,64 +1601,128 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return true if the item can be equipped, else false
 	 */
 	public final boolean equipToInventoryOnly(final Item item) {
-		final String slot = getSlotNameToEquip(item);
+		final RPSlot slot = getSlotToEquip(item);
 		if (slot != null) {
 			return equipIt(slot, item);
 		} else {
 			return false;
 		}
 	}
-
 	
 	/**
-	 * gets the name of the slot in which the entity can equip the item.
+	 * Check if an object is a stackable item that can be merged to an existing
+	 * item stack.
+	 * 
+	 * @param item stackable item
+	 * @param object merge candidate
+	 * @return <code>true</code> if the items can be merged, <code>false</code>
+	 * 	otherwise
+	 */
+	private boolean canMergeItems(StackableItem item, RPObject object) {
+		if (object instanceof StackableItem) {
+			final StackableItem other = (StackableItem) object;
+			if (other.isStackable(item)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Find slot where an item could be merged, looking recursively inside a
+	 * slot and the content slots of the items in that slot.
+	 * 
+	 * @param item item for which the merge location is sought for
+	 * @param slot starting location slot
+	 * @return slot where the item can be merged, or <code>null</code> if no
+	 * 	suitable location was found
+	 */
+	private RPSlot getSlotToMerge(StackableItem item, RPSlot slot) {
+		if (slot instanceof EntitySlot) {
+			if (!((EntitySlot) slot).isReachableForThrowingThingsIntoBy(this)) {
+				return null;
+			}
+		}
+		// Try first merging the item in the parent slot, so that the item
+		// appears as visibly as possible
+		if (item.getPossibleSlots().contains(slot.getName())) {
+			for (RPObject obj : slot) {
+				if (canMergeItems(item, obj)) {
+					return slot;
+				}
+			}
+		}
+		// Then check the slots of the contained items
+		for (RPObject obj : slot) {
+			for (RPSlot childSlot : obj.slots()) {
+				RPSlot tmp = getSlotToMerge(item, childSlot);
+				if (tmp != null) {
+					return tmp;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Find a target slot where an item can be equipped. The slots are sought
+	 * recursively starting from a specified initial slot, and then proceeding
+	 * to the content slots of the items in that slot. 
+	 * 
+	 * @param item item to be equipped
+	 * @param slot starting slot
+	 * @return slot where the item can be equipped, or <code>null</code> if no
+	 * 	suitable location was found
+	 */
+	private RPSlot getSlotToEquip(Item item, RPSlot slot) {
+		if (slot instanceof EntitySlot) {
+			if (!((EntitySlot) slot).isReachableForThrowingThingsIntoBy(this)) {
+				return null;
+			}
+		}
+		if (item.getPossibleSlots().contains(slot.getName())) {
+			if (!slot.isFull()) {
+				return slot;
+			}
+		}
+		for (RPObject obj : slot) {
+			for (RPSlot childSlot : obj.slots()) {
+				RPSlot tmp = getSlotToEquip(item, childSlot);
+				if (tmp != null) {
+					return tmp;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Gets the slot in which the entity can equip the item, preferring
+	 * locations where the item can be merged with existing item stacks.
 	 *
 	 * @param item 
-	 * @return the slot name for the item or null if there is no matching slot
+	 * @return the slot for the item or null if there is no matching slot
 	 *         in the entity
 	 */
-	@SuppressWarnings("unchecked")
-	public final String getSlotNameToEquip(final Item item) {
-		// get all possible slots for this item
-		final List<String> slotNames = item.getPossibleSlots();
-
-		if (item instanceof Stackable<?>) {
-			// first try to put the item on an existing stack
-			final Stackable<?> stackEntity = (Stackable<?>) item;
-			for (final String slotName : slotNames) {
-				if (hasSlot(slotName)) {
-					final RPSlot rpslot = getSlot(slotName);
-					for (final RPObject object : rpslot) {
-						if (object instanceof Stackable<?>) {
-							// found another stackable
-							@SuppressWarnings("rawtypes")
-							final Stackable other = (Stackable<?>) object;
-							if (other.isStackable(stackEntity)) {
-								return slotName;
-							}
-						}
-					}
+	public final RPSlot getSlotToEquip(final Item item) {
+		if (item instanceof StackableItem) {
+			// Try merging the item first
+			for (RPSlot slot : slots()) {
+				RPSlot tmp = getSlotToMerge((StackableItem) item, slot);
+				if (tmp != null) {
+					return tmp;
 				}
 			}
 		}
 
 		// We can't stack it on another item. Check if we can simply
 		// add it to an empty cell.
-		for (final String slot : slotNames) {
-			if (hasSlot(slot)) {
-				final RPSlot rpslot = getSlot(slot);
-
-				// check that this slot is reachable (e. g. fixed keyring)
-				if (rpslot instanceof EntitySlot) {
-					EntitySlot entitySlot = (EntitySlot) rpslot;
-					if (!entitySlot.isReachableForThrowingThingsIntoBy(this)) {
-						continue;
-					}
-				}
-
-				if (!rpslot.isFull()) {
-					return slot;
-				}
+		for (RPSlot slot : slots()) {
+			RPSlot tmp = getSlotToEquip(item, slot);
+			if (tmp != null) {
+				return tmp;
 			}
 		}
 		return null;
@@ -1695,8 +1758,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return true if the item can be equipped, else false
 	 */
 	public final boolean equip(final String slotName, final Item item) {
-		
-		if (equipIt(slotName, item)) {
+		RPSlot slot = getSlot(slotName);
+		if (equipIt(slot, item)) {
 			updateItemAtkDef();
 			return true;
 		}
@@ -2770,15 +2833,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Equips the item in the specified slot. 
 	 * 
-	 * @param slotName 
+	 * @param rpslot 
 	 * @param item 
 	 * @return true if successful*/
-	private boolean equipIt(final String slotName, final Item item) {
-		if (!hasSlot(slotName) || (item == null)) {
+	private boolean equipIt(final RPSlot rpslot, final Item item) {
+		if (rpslot  == null || (item == null)) {
 			return false;
 		}
-
-		final RPSlot rpslot = getSlot(slotName);
 
 		if (item instanceof StackableItem) {
 			final StackableItem stackEntity = (StackableItem) item;
@@ -2826,5 +2887,4 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String getLanguage() {
 		return null;
 	}
-
 }

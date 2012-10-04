@@ -45,7 +45,7 @@ public class PlayerCanEquipItemCondition implements ChatCondition {
 
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
-		return player.getSlotNameToEquip(item)!=null;
+		return player.getSlotToEquip(item)!=null;
 	}
 
 	@Override
