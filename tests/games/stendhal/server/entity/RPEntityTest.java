@@ -574,7 +574,6 @@ public class RPEntityTest {
 			}
 		};
 		expect(item.getPossibleSlots()).andReturn(slotnames);
-		expect(item.getPossibleSlots()).andReturn(slotnames);
 
 		replay(item);
 		assertEquals("bag", entityWithBag.getSlotToEquip(item).getName());
@@ -588,7 +587,6 @@ public class RPEntityTest {
 				slot.setCapacity(0);
 			}
 		};
-		expect(item.getPossibleSlots()).andReturn(slotnames);
 		expect(item.getPossibleSlots()).andReturn(slotnames);
 
 		replay(item);
