@@ -556,57 +556,43 @@ public class RPEntityTest {
 	}
 
 	/**
-	 * Tests for getSlotNameToEquip.
+	 * Tests for getSlotToEquip.
 	 */
 	@Test
-	public void testGetSlotNameToEquip() {
+	public void testSlotNameToEquip() {
 		final RPEntity baglessentity = new MockRPentity();
 		final Item item = createMock(Item.class);
 		final List<String> slotnames = Arrays.asList("bag");
-		expect(item.getPossibleSlots()).andReturn(slotnames);
 		replay(item);
-		assertEquals(null, baglessentity.getSlotNameToEquip(item));
+		assertEquals(null, baglessentity.getSlotToEquip(item));
 		verify(item);
 
 		reset(item);
 		final RPEntity entityWithBag = new MockRPentity() {
-			@Override
-			public boolean hasSlot(final String arg0) {
-				return true;
-			}
-
-			@Override
-			public RPSlot getSlot(final String arg0) {
-				return new RPSlot();
+			{
+				addSlot(new RPSlot("bag"));
 			}
 		};
 		expect(item.getPossibleSlots()).andReturn(slotnames);
+		expect(item.getPossibleSlots()).andReturn(slotnames);
 
 		replay(item);
-		assertEquals("bag", entityWithBag.getSlotNameToEquip(item));
+		assertEquals("bag", entityWithBag.getSlotToEquip(item).getName());
 		verify(item);
 
 		reset(item);
 		final RPEntity entityWithFullBag = new MockRPentity() {
-			@Override
-			public boolean hasSlot(final String arg0) {
-				return true;
-			}
-
-			@Override
-			public RPSlot getSlot(final String arg0) {
-				return new RPSlot() {
-					@Override
-					public boolean isFull() {
-						return true;
-					}
-				};
+			{
+				RPSlot slot = new RPSlot("bag");
+				addSlot(slot);
+				slot.setCapacity(0);
 			}
 		};
 		expect(item.getPossibleSlots()).andReturn(slotnames);
+		expect(item.getPossibleSlots()).andReturn(slotnames);
 
 		replay(item);
-		assertEquals(null, entityWithFullBag.getSlotNameToEquip(item));
+		assertEquals(null, entityWithFullBag.getSlotToEquip(item));
 		verify(item);
 	}
 

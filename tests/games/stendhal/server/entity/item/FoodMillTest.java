@@ -54,22 +54,19 @@ public class FoodMillTest {
 		fm.onUsed(user);
 		
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
-		PlayerTestHelper.equipWithItem(user, "cheese");
+		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
 		fm.onUsed(user);
 		assertEquals("You need to have at least a sugar cane in your other hand", PlayerTestHelper.getPrivateReply(user));
 		
 		user.drop("cheese");
 		
-		PlayerTestHelper.equipWithItem(user, "sugar cane");
+		PlayerTestHelper.equipWithItemToSlot(user, "sugar cane", "rhand");
 	
 		fm.onUsed(user);
 		assertEquals("You don't have an empty sack with you", PlayerTestHelper.getPrivateReply(user));
 		PlayerTestHelper.equipWithItem(user, "empty sack");
 		fm.onUsed(user);
 		assertTrue(user.isEquipped("sugar"));
-		System.out.println(user.getSlot("rhand").getFirst());
-		assertEquals("sugar",user.getSlot("rhand").getFirst().get("name"));
-		System.out.println(PlayerTestHelper.getPrivateReply(user));
 	}
 	@Test
 	public void testOnUsedScrollEraser() throws Exception {
@@ -89,14 +86,14 @@ public class FoodMillTest {
 		fm.onUsed(user);
 		
 		assertEquals("Your other hand looks empty.", PlayerTestHelper.getPrivateReply(user));
-		PlayerTestHelper.equipWithItem(user, "cheese");
+		PlayerTestHelper.equipWithItemToSlot(user, "cheese", "rhand");
 		
 		fm.onUsed(user);
 		assertEquals("You need to have at least a marked scroll in your other hand", PlayerTestHelper.getPrivateReply(user));
 		
 		user.drop("cheese");
 		
-	PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
+		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","bag");
 		
 		PlayerTestHelper.equipWithItemToSlot(user, "marked scroll","rhand");
 	
@@ -105,9 +102,6 @@ public class FoodMillTest {
 		PlayerTestHelper.equipWithItem(user, "money");
 		fm.onUsed(user);
 		assertTrue(user.isEquipped("empty scroll"));
-	
-
-		
 	}
 
 	@Test
