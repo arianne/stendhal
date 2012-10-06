@@ -109,7 +109,7 @@ public class FoundGirl implements LoadableContent {
 					"Mine Town Revival", "Mine Town Revival Weeks", "Mine Town", "Revival Weeks"),
 			ConversationStates.ATTENDING,
 			"During the Revival Weeks we #celebrate the old and now mostly dead Mine Town north of Semos City. "
-			+ "The party was cancelled last year because the people of Ados were searching for me after I got lost. "
+			+ "The party was cancelled a few years ago because the people of Ados were searching for me after I got lost. "
 			+ "Now that I am found we can party again!",
 			null);
 		npc.add(
