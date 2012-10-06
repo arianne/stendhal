@@ -65,12 +65,12 @@ public class MineTown extends ScriptImpl {
 	}
 
 }
-
+// TODO: these should not be done manually but added and removed as part of the script load and unload
 // Mine Town Weeks information
-// Loading mountain_n2_mine_town_weeks.tmx and Semos halloween.city.txm . Both contain several wallblockers for tables, Carolines shop and signs.
+// Loading mountain_n2_mine_town_weeks.tmx and Semos halloween.city.tmx . Both contain several walkblockers for tables, Carolines shop and signs.
 
 // Mine Town map:
-// Wallblockers for tables at:
+// Walkblockers for tables at:
 // x="55" y="110">, <entity x="61" y="110">, <entity x="67" y="110">
 //<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
 //<attribute name="width">4</attribute>
