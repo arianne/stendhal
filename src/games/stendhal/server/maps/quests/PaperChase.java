@@ -87,13 +87,13 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	
 
 	private void setupTexts() {
-		texts.put("Adena", "The next person you should find has her own business running. "
+		texts.put("Adena", "The next person you should find runs her own business. "
 				  + "She sells fresh vegetables and food from farms near Semos.");
-		texts.put("Valo", "The next person on your trail lives and works in a church. He can concot some useful drinks for you.");
+		texts.put("Valo", "The next person on your trail lives and works in a church. He can concoct some useful drinks for you.");
 		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
-		texts.put("Gaston", "The next person is a really good baker and can prepare a lot out of butter and chocolate. His name and meal aren't english...");
+		texts.put("Gaston", "The next person is a really good baker and can create lovely food from butter and chocolate. Both his name and the food he creates are in a language foreign to me.");
 		texts.put("Lobelia", "The next mystical person is gazing intently at the flowerbeds around her and knows a lot about your further travels...");
-		texts.put("Ortiv Milquetoast", "The next person is really afraid of Assassins and Bandits.");
+		texts.put("Ortiv Milquetoast", "You'll need some calm with you, as the next person is really afraid of Assassins and Bandits.");
 		texts.put("Pam", "The next lady loves sunbathing on a special island and is a good friend of Zara."); 
 		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy.");
 		texts.put("Imorgen", "The hobbies of the next person you have to find, are singing and brewing special mystical mixtures. She lives surrounded by trees in a small hut, together with her grandma.");
@@ -166,7 +166,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 
 	private void createHallOfFameSign() {
-		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behave of Fidorea:\n", "P", 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behalf of Fidorea:\n", "P", 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
@@ -208,8 +208,8 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must find a young boy warns players about Faiumonis dangerous streets on Semos road."
-			+ " You may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
+			"You must ask every person on the trail about the #paper #chase. First you must go to Semos Road to find a young boy who warns players about the dangers in Faiumoni."
+			+ "And just a warning: you may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
 
