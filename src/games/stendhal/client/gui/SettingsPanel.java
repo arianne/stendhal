@@ -15,6 +15,8 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.actions.SlashAction;
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -50,7 +52,8 @@ class SettingsPanel extends JButton {
 	 */
 	SettingsPanel() {
 		setText("Menu");
-		setIcon(createArrowIcon());
+		setIcon(createArrowIcon(true));
+		setSelectedIcon(createArrowIcon(false));
 		// Don't steal focus from the game screen
 		setFocusable(false);
 	
@@ -122,13 +125,35 @@ class SettingsPanel extends JButton {
 	/**
 	 * Create arrow icon for the menu button.
 	 * 
+	 * @param etched <code>true</code> if the arrow should be drawn as an etched
+	 * image. If <code>false</code> the arrow will be drawn as a raised image
+	 *  
 	 * @return arrow icon
 	 */
-	private Icon createArrowIcon() {
-		BufferedImage image = new BufferedImage(14, 14, BufferedImage.TYPE_INT_ARGB);
+	private Icon createArrowIcon(boolean etched) {
+		BufferedImage image = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = image.createGraphics();
-		g.setColor(Color.WHITE);
-		g.fillPolygon(new int[] { 0, 6, 13}, new int[] { 4, 11, 4}, 3);
+		Color highLight, shadow;
+		Style style = StyleUtil.getStyle();
+		if (style != null) {
+			highLight = style.getHighLightColor();
+			shadow = style.getShadowColor();
+		} else {
+			highLight = Color.WHITE;
+			shadow = Color.BLACK;
+		}
+		Color nwColor, seColor;
+		if (etched) {
+			nwColor = shadow;
+			seColor = highLight;
+		} else {
+			nwColor = highLight;
+			seColor = shadow;
+		}
+		g.setColor(nwColor);
+		g.drawPolyline(new int[] { 7, 0, 13}, new int[] { 11, 4, 4}, 3);
+		g.setColor(seColor);
+		g.drawLine(7, 11, 14, 4);
 		g.dispose();
 		
 		return new ImageIcon(image);
