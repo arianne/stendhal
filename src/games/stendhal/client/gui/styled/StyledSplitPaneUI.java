@@ -16,8 +16,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 import javax.swing.JSplitPane;
@@ -149,6 +149,7 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		 */
 		final int lastLocation = newLocation;
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				getSplitPane().setLastDividerLocation(lastLocation);
 			}
@@ -187,10 +188,38 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 			addMouseListener(new DividerMouseListener(this));
 		}
 		
+		// There's no paintComponent. This is an awt widget.
 		@Override
 		public void paint(Graphics g) {
-			// There's no paintComponent. This is an awt widget.
 			StyleUtil.fillBackground(style, g, 0, 0, getWidth(), getHeight());
+			
+			// Ribbing
+			Insets insets = style.getBorder().getBorderInsets(this);
+			if (splitPane.getOrientation() == JSplitPane.VERTICAL_SPLIT) {
+				int y = insets.top + 1;
+				int maxY = getHeight() - insets.bottom - 1;
+				while (y < maxY) {
+					g.setColor(style.getShadowColor());
+					g.drawLine(5, y, getWidth() - 6, y);
+					y++;
+					g.setColor(style.getHighLightColor());
+					g.drawLine(5, y, getWidth() - 6, y);
+					y++;
+				}
+			} else {
+				int x = insets.left + 1;
+				int maxX = getWidth() - insets.right - 1;
+				while (x < maxX) {
+					g.setColor(style.getShadowColor());
+					g.drawLine(x, 5, x, getHeight() - 6);
+					x++;
+					g.setColor(style.getHighLightColor());
+					g.drawLine(x, 5, x, getHeight() - 6);
+					x++;
+				}
+			}
+			
+			// highlighting
 			if (isMouseOver()) {
 				highLightBorder(g);
 			} else {
@@ -245,28 +274,21 @@ public class StyledSplitPaneUI extends BasicSplitPaneUI {
 		 * the divider does not get repainted at mouseover, unlike
 		 * most other components.
 		 */
-		private static class DividerMouseListener implements MouseListener {
+		private static class DividerMouseListener extends MouseAdapter {
 			private final StyledSplitPaneDivider divider;
 			
 			public DividerMouseListener(StyledSplitPaneDivider divider) {
 				this.divider = divider;
 			}
-			
-			public void mouseClicked(MouseEvent e) {
-			}
 
+			@Override
 			public void mouseEntered(MouseEvent e) {
 				divider.repaint();
 			}
 
+			@Override
 			public void mouseExited(MouseEvent e) {
 				divider.repaint();
-			}
-			
-			public void mousePressed(MouseEvent e) {
-			}
-			
-			public void mouseReleased(MouseEvent e) {
 			}
 		}
 	}
