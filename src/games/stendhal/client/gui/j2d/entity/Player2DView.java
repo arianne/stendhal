@@ -28,6 +28,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Version;
 
 import java.awt.AlphaComposite;
+import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.util.List;
 
@@ -121,7 +122,16 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		/*
 		 * Shift bar slightly to avoid overlap with smaller entities
 		 */
-		super.drawStatusBar(g2d, x, y + 6, width);
+		drawTitle(g2d, x, y + 6, width);
+		Composite comp = g2d.getComposite();
+		// Draw in full color for ignored players. Avoid making ghosts visible
+		if (ignored && !entity.isGhostMode()) {
+			g2d.setComposite(AlphaComposite.SrcAtop);
+			drawHPbar(g2d, x, y + 6, width);
+			g2d.setComposite(comp);
+		} else {
+			drawHPbar(g2d, x, y + 6, width);
+		}
 	}
 
 	/**
