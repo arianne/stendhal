@@ -203,11 +203,13 @@ class PlayerTrade {
 		}
 	}
 
+	/**
+	 * Move items from the trade slot to normal container slots.
+	 */
 	private void moveItemsBack() {
 		RPSlot tradeSlot = player.getSlot("trade");
 		List<Item> items = moveItemsFromSlotToList(tradeSlot);
-		RPSlot bagSlot = player.getSlot("bag");
-		boolean onGround = !moveItemsFromListToSlotOrGround(player, player.getName(), player.getName(), items, bagSlot);
+		boolean onGround = !moveItemsFromListToPlayerOrGround(items);
 		if (onGround) {
 			player.sendPrivateText("Some items did not fit in your bag and have been put on the ground.");
 		}
@@ -313,7 +315,6 @@ class PlayerTrade {
         boolean onGround = false;
         for (Item item : items) {
             if (!targetSlot.isFull()) {
-                // TODO: merge stackable items
                 targetSlot.add(item);
                 new ItemLogger().equipAction(source, item, new String[]{"slot", sourcePlayer, "trade"}, new String[]{"slot", targetPlayer, targetSlot.getName()});
             } else {
@@ -325,6 +326,31 @@ class PlayerTrade {
         }
         items.clear();
         return !onGround;
+    }
+
+	/**
+	 * Move items from a list to any suitable carrying slot of the player,
+	 * merging with existing item stacks, when possible.
+	 * 
+	 * @param items item list
+	 * @return <code>true</code> if all the items on the list could be equipped,
+	 * 	<code>false</code> otherwise
+	 */
+	private boolean moveItemsFromListToPlayerOrGround(List<Item> items) {
+		final StendhalRPZone zone = player.getZone();
+		String name = player.getName();
+		boolean onGround = false;
+		for (Item item : items) {
+			RPSlot targetSlot = player.getSlotToEquip(item);
+			if (player.equipOrPutOnGround(item)) {
+				new ItemLogger().equipAction(player, item, new String[]{"slot", name, "trade"}, new String[]{"slot", name, targetSlot.getName()});
+			} else {
+				onGround = true;
+				new ItemLogger().equipAction(player, item, new String[]{"slot", name, "trade"}, new String[]{"ground", zone.getName(), player.getX() + " " + player.getY()});
+			}
+		}
+		items.clear();
+		return !onGround;
     }
 
     /**
