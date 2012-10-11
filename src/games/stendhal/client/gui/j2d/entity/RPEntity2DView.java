@@ -636,10 +636,12 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			if (bladeStrikeFrame < NUM_ATTACK_FRAMES) {
 				RPEntity target = entity.getAttackTarget();
 				
-				if (rangedAttack) {
-					drawDistanceAttack(g2d, entity, target, x, y, width, height);
-				} else {
-					drawStrike(g2d, x, y, width, height);
+				if (target != null) {
+					if (rangedAttack) {
+						drawDistanceAttack(g2d, entity, target, x, y, width, height);
+					} else {
+						drawStrike(g2d, x, y, width, height);
+					}
 				}
 				bladeStrikeFrame++;
 			} else {
