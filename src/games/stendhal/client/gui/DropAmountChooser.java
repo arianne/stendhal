@@ -81,6 +81,7 @@ public class DropAmountChooser {
 				@Override
 				public void focusGained(FocusEvent e) {
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							((JTextComponent) field).selectAll();
 						}
@@ -98,8 +99,17 @@ public class DropAmountChooser {
 	 */
 	protected void show(Component parent, Point location) {
 		popup.show(parent, location.x, location.y);
-		// Needs to be after show()
-		getTextField().requestFocus();
+		/*
+		 * Needs to be after show(). Also, heavy weight popups need time to
+		 * appear, so the focus request needs to be pushed to the end of the
+		 * event queue. 
+		 */
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				getTextField().requestFocus();
+			}
+		});
 	}
 	
 	/**
@@ -126,6 +136,7 @@ public class DropAmountChooser {
 		});
 		JButton button = new JButton("Drop");
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				doDrop();
 			}
