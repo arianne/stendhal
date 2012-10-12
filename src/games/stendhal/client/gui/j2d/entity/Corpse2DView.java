@@ -238,6 +238,7 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			 */
 			if (addListener && (window != null)) {
 				window.addCloseListener(new CloseListener() {
+					@Override
 					public void windowClosed(InternalWindow window) {
 						slotWindow = null;
 					}
@@ -272,13 +273,16 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 	 */
 	private void prepareInspectAutoClose(final SlotWindow window, final IEntity entity, final RPSlot slot) {
 		entity.addContentChangeListener(new ContentChangeListener() {
+			@Override
 			public void contentAdded(RPSlot added) {
 				// Unused
 			}
 
+			@Override
 			public void contentRemoved(RPSlot removed) {
 				if (slot.size() == removed.size()) {
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							window.close();
 						}
@@ -297,6 +301,7 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 		final SlotWindow window = slotWindow;
 		if (window != null) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					window.close();
 				}
@@ -341,8 +346,8 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 	}
 
 	/** 
-	 * Immediately opens the corpse window if the player deserves the kill (is corpse owner) 
-	 * and has that setting specified
+	 * Immediately opens the corpse window if the player deserves the kill
+	 * (is corpse owner) and has that setting specified.
 	 */
 	private void autoRaiseWindowIfDesired() {
 		// inspector is null for entities in the drag layer. Those should not
@@ -352,7 +357,17 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			boolean autoRaiseCorpse = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.autoinspectcorpses", "true"));
 			if (autoRaiseCorpse) {
 				if ((entity.getCorpseOwner() != null) && entity.getCorpseOwner().equals(User.getCharacterName()) && !entity.isEmpty()) {
-					onAction(ActionType.INSPECT);
+					/*
+					 * We are in mid-draw of the screen. Defer auto inspect to
+					 * avoid messing with the component layout while drawing.
+					 * Fixes flicker in certain situations (bug #3302772).
+					 */
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							onAction(ActionType.INSPECT);
+						}
+					});
 				}
 			}
 		}
