@@ -1,5 +1,29 @@
 ﻿Changelog
 ---------
+1.04
+
+*world
+- Mine Town Revival Weeks!
+- Semos and the Mine Town are decorated for the celebrations
+- a new paper chase quest which leads you all over the world
+- Ketteh now gets help from the guards, if she is approached in an unsutable manner
+- many map improvements
+
+*client*
+- replaced the separate menu buttons with one large menu
+- HP bar of ignored players is drawn in full color to make them visible at night
+- chat spam filter takes the length of the messages into account
+
+*fixes*
+- webstart client now uses the nice font (e. g. for the quest log)
+- fixed players becoming invisible because of broken attack target reference
+- trading does now properly stack items
+- map fixes
+
+*website*
+- a litle pumpkin
+
+
 1.03
 
 *world*
