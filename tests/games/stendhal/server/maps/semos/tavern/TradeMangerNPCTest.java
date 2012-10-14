@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.semos.tavern;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -177,6 +178,50 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}
+	
+	/**
+	 * Test selling a container item.
+	 */
+	@Test
+	public void testSellContainer() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		Item item = SingletonRepository.getEntityManager().getItem("keyring");
+		StackableItem playersMoney = (StackableItem) SingletonRepository
+				.getEntityManager().getItem("money");
+		Integer price = Integer.valueOf(1500);
+		playersMoney.setQuantity(price);
+		player.equipToInventoryOnly(item);
+		player.equipToInventoryOnly(playersMoney);
+		
+		Item key = SingletonRepository.getEntityManager().getItem("dungeon silver key");
+		item.getSlot("content").add(key);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		// Try first selling it when it's not empty
+		assertTrue(en.step(player, "sell keyring 150000"));
+		assertEquals("Please empty your keyring first.", getReply(npc));
+		assertTrue(player.isEquipped("keyring"));
+		assertTrue(player.isEquipped("dungeon silver key"));
+		
+		// Then after emptying it
+		item.getSlot("content").clear();
+		assertTrue(en.step(player, "sell keyring 150000"));
+		assertEquals("Do you want to sell a keyring for 150000 money? It would cost you 1500 money.", getReply(npc));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("I added your offer to the trading center and took the fee of 1500.", getReply(npc));
+		assertFalse(player.isEquipped("keyring"));
+		assertFalse(player.isEquipped("dungeon silver key"));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals(
+				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
 
 

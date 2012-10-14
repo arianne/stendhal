@@ -83,6 +83,7 @@ public class PrepareOfferHandler {
 	}
 	
 	private class PrepareOfferChatAction implements ChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand that strange offer.");
@@ -133,6 +134,9 @@ public class PrepareOfferHandler {
 					} else if (price > 1000000) {
 						npc.say("That is a huge amount of money you want for your " + Grammar.plural(itemName) + ". I am sorry I cannot accept this offer.");
 						return;
+					} else if (item.hasSlot("content") && item.getSlot("content").size() > 0) {
+						npc.say("Please empty your " + itemName + " first.");
+						return;
 					}
 
 					// All looks ok so far. Ask confirmation from the player.
@@ -175,6 +179,7 @@ public class PrepareOfferHandler {
 	}
 	
 	private class ConfirmPrepareOfferChatAction implements ChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			int fee = TradingUtility.calculateFee(player, price).intValue();
 			if (TradingUtility.canPlayerAffordTradingFee(player, price)) {
