@@ -21,7 +21,7 @@
 - map fixes
 
 *website*
-- added a litle pumpkin
+- added a little pumpkin
 
 
 1.03
