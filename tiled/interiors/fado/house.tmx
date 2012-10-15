@@ -33,62 +33,62 @@
  <tileset firstgid="401" name="../../tileset/furniture/sink/jacuzzi_dark_side_on.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/sink/jacuzzi_dark_side_on.png" trans="ff00ff" width="96" height="384"/>
  </tileset>
- <tileset firstgid="437" name="../../tileset/furniture/bed/large_peach.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_peach.png" trans="ff00ff" width="64" height="96"/>
- </tileset>
- <tileset firstgid="443" name="../../tileset/plant/indoor/pot_plant.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="437" name="../../tileset/plant/indoor/pot_plant.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="446" name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="440" name="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/bright_bookshelf_and_cupboard.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="452" name="../../tileset/item/food/meals_1.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="446" name="../../tileset/item/food/meals_1.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_1.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="454" name="../../tileset/item/drink/red_wine.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="448" name="../../tileset/item/drink/red_wine.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="458" name="../../tileset/furniture/other/drawer_with_mirror.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="452" name="../../tileset/furniture/other/drawer_with_mirror.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_with_mirror.png" width="32" height="64"/>
  </tileset>
- <tileset firstgid="460" name="../../tileset/furniture/chair/stool.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="454" name="../../tileset/furniture/chair/stool.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="461" name="../../tileset/furniture/light/small_lamp.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="455" name="../../tileset/furniture/light/small_lamp.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="465" name="../../tileset/furniture/curtain/red_gold_gathered.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="459" name="../../tileset/furniture/curtain/red_gold_gathered.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/curtain/red_gold_gathered.png" width="64" height="96"/>
  </tileset>
- <tileset firstgid="471" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="465" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="472" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="466" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/carpets.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="474" name="double_peach" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/double_peach.png" width="64" height="128"/>
  </tileset>
  <layer name="0_floor" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGAQHMU0wcpAHIxEU2peMJqZw919IwnfYYRgUvUBAE6gi6fAAwAA
+   H4sIAAAAAAAAC2NkYGAQHMU0wcpAHIxEU2peMJqZw919IwlfY4RgUvUBAKgNFVvAAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGBgohJmAWJOIGYD4mJG0vFWIN4GZbMDzeCAmpcL5JcBMTFgApK67UD2Dig/ixHVPHLATqC+XSSY54rEdiRg9lAzrxKLmZSYVwvE9UBcQ0Lc7GVE0OjmNQBxEwlmTQGqnQrF09DM4wLidEZU3AbE7YyY4rgwNwPEPF4g5seCO4BqOhmxy+HCAkAMAMxJV+jAAwAA
+   H4sIAAAAAAAAC2NkYGBgohJmAWJOIGYD4mJG0vEtIL4NZbMDzeCAmpcL5JcBMTFgApK6O0D2XSg/ixHVPHLAPaC++ySY54rEdiRg9lAzrxKLmZSYVwvE9UBcQ0LcbGdE0OjmNQBxEwlmTQGqnQrF09DM4wLidEZU3AbE7YyY4rgwNwPEPF4g5seCO4BqOhmxy+HCAkAMAAEEoMXAAwAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGFhwipH6Zp6loplnaOA+YsBBoL2HgPjwANlPb3AE6M8TJPh1IlDtJCiejEVfA4nhtocRlaYU7GVEpWkFAF1ExrDAAwAA
+   H4sIAAAAAAAAC2NgGFhwhJH6Zh6nopnHaOA+YsBuoL17gHjvANlPb7AP6M9DJPh1IlDtJCiejEVfA4nhto0RlaYUbGdEpWkFAG+LTFnAAwAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGL5gOyMDww5G+ti1D2jPfiA+QCf76AF2M6LSlII9jKg0JWAx0IwlULx0GIR5B9APnWT4AwC3g9+7wAMAAA==
+   H4sIAAAAAAAAC2NgGL7gASMDw0NG+ti1A2jPTiDeRSf76AG2MqLSlIJtjKg0JWAx0IwlULx0GIR5B9APnWT4AwDrlH42wAMAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgIA9cZGRguMSIoCkFV4BmXGZE0JSCa0AzrjIi6FEwvMBuRlR6pAIAyj3uxcADAAA=
+   H4sIAAAAAAAAC2NgIA+cZmRgOMOIoCkF54BmnGVE0JSCC0AzzjMi6FEwvMBWRlR6pAIANQp2ssADAAA=
   </data>
  </layer>
  <layer name="objects" width="20" height="12">
@@ -96,9 +96,9 @@
    H4sIAAAAAAAAC2NgGAWjYBQMVQAAewDiOMADAAA=
   </data>
  </layer>
- <layer name="collision" width="20" height="12" opacity="0.37">
+ <layer name="collision" width="20" height="12" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC7vOyMBwfYhgYgAuteSYhc9sapiHz33Uciut3Edt80g1F19cUGIeqWlxoPMEANDvyAjAAwAA
+   H4sIAAAAAAAAC7vIyMBwcYhgYgAuteSYhc9sapiHz33Uciut3Edt80g1F19cUGIeqWlxoPMEAHoFoIHAAwAA
   </data>
  </layer>
  <layer name="protection" width="20" height="12">
