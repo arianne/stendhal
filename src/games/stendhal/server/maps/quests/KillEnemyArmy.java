@@ -65,7 +65,7 @@ import marauroa.common.Pair;
  *
  *
  * REWARD:<ul>
- * <li> 3/4 of XP difference between current player level and next level, or 300 karma.
+ * <li> 100k of XP, or 300 karma.
  * <li> random moneys - from 10k to 60k, step 10k.
  * <li> 5 karma for killing 100% creatures
  * <li> 5 karma for killing every 50% next creatures
