@@ -64,7 +64,7 @@ import marauroa.server.game.db.DAORegister;
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity {
-	
+
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
 
 	private static final float BOOTS_DEF_MULTIPLIER = 1.0f;
@@ -110,11 +110,11 @@ public abstract class RPEntity extends GuidedEntity {
 	private int mana;
 
 	private int base_mana;
-	
+
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
 	 * the last damage has occurred.
-	 * 
+	 *
 	 * You only get ATK and DEF experience by fighting against a creature that
 	 * is in this list.
 	 */
@@ -251,10 +251,10 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
-	
+
 	/**
 	 * Give the player some karma (good or bad).
-	 * 
+	 *
 	 * @param karma
 	 *            An amount of karma to add/subtract.
 	 */
@@ -264,9 +264,9 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the current amount of karma.
-	 * 
+	 *
 	 * @return The current amount of karma.
-	 * 
+	 *
 	 * @see #addKarma(double)
 	 */
 	public double getKarma() {
@@ -278,10 +278,10 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Get some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 * 
+	 *
 	 * @param scale
 	 *            A positive number.
-	 * 
+	 *
 	 * @return A number between -scale and scale.
 	 */
 	public double useKarma(final double scale) {
@@ -293,12 +293,12 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Get some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 * 
+	 *
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
-	 * 
+	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	public double useKarma(final double negLimit, final double posLimit) {
@@ -310,14 +310,14 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 * 
+	 *
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
 	 * @param granularity
 	 *            The amount that any extracted karma is a multiple of.
-	 * 
+	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	public double useKarma(final double negLimit, final double posLimit,
@@ -328,7 +328,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Heal this entity completely.
-	 * 
+	 *
 	 * @return The amount actually healed.
 	 */
 	public int heal() {
@@ -345,10 +345,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Heal this entity.
-	 * 
+	 *
 	 * @param amount
 	 *            The [maximum] amount to heal by.
-	 * 
+	 *
 	 * @return The amount actually healed.
 	 */
 	public int heal(final int amount) {
@@ -357,12 +357,12 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Heal this entity.
-	 * 
+	 *
 	 * @param amount
 	 *            The [maximum] amount to heal by.
 	 * @param tell
 	 *            Whether to tell the entity they've been healed.
-	 * 
+	 *
 	 * @return The amount actually healed.
 	 */
 	public int heal(final int amount, final boolean tell) {
@@ -386,36 +386,36 @@ public abstract class RPEntity extends GuidedEntity {
 
 		return given;
 	}
-	
+
 	/**
 	 * Give mana to the entity.
-	 * 
+	 *
 	 * @param mana
 	 * 			The amount of mana to add/substract.
 	 * @param tell
 	 * 			Whether to tell the entity that mana has been added.
-	 * 
+	 *
 	 * @return Amount of mana actually refilled.
 	 */
 	public int addMana(int mana, boolean tell) {
 		int old_mana = getMana();
 		int new_mana = old_mana + mana;
 		int given = 0;
-		
+
 		// no negative mana
 		new_mana = Math.max(new_mana, 0);
 
 		// maximum is base_mana
 		new_mana = Math.min(new_mana, getBaseMana());
-		
+
 		given = new_mana - old_mana;
-		
+
 		if(tell) {
 			//TODO: Add notification for increased mana
 		}
-		
+
 		setMana(new_mana);
-		
+
 		return given;
 	}
 
@@ -473,7 +473,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Register the new name in the conversation parser word list.
-	 * 
+	 *
 	 * @param newName
 	 * @param oldName
 	 */
@@ -486,13 +486,13 @@ public abstract class RPEntity extends GuidedEntity {
 			WordList.getInstance().registerSubjectName(newName);
 		}
 	}
-	
+
 	/**
 	 * Is called when this has hit the given defender. Determines how much
 	 * hitpoints the defender will lose, based on this's ATK experience and
 	 * weapon(s), the defender's DEF experience and defensive items, and a
 	 * random generator.
-	 * 
+	 *
 	 * @param defender
 	 *            The defender.
 	 * @param attackingWeaponsValue
@@ -501,7 +501,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param isRanged <code>true</code> if this is a ranged attack, otherwise
 	 * 	<code>false</code>
 	 * @param maxRange maximum range of a ranged attack
-	 * 
+	 *
 	 * @return The number of hitpoints that the target should lose. 0 if the
 	 *         attack was completely blocked by the defender.
 	 */
@@ -527,7 +527,7 @@ public abstract class RPEntity extends GuidedEntity {
 		 * help him defend if he's a much higher level than this attacker
 		 */
 		final int levelDifferenceToNotNeedKarmaDefending = (int) (IGNORE_KARMA_MULTIPLIER * defender.getLevel());
-		
+
 		if (!(effectiveDefenderLevel - levelDifferenceToNotNeedKarmaDefending  > effectiveAttackerLevel)) {
 			defence += defence * defender.useKarma(0.1);
 		}
@@ -575,7 +575,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 
 		// Apply defense and damage type effect
-		int damage = (int) (defender.getSusceptibility(damageType) 
+		int damage = (int) (defender.getSusceptibility(damageType)
 				* (WEIGHT_ATK * attack - defence) / maxDefence);
 
 		if (isRanged) {
@@ -594,7 +594,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * hitpoints the defender will lose, based on this's ATK experience and
 	 * weapon(s), the defender's DEF experience and defensive items, and a
 	 * random generator.
-	 * 
+	 *
 	 * @param defender
 	 *            The defender.
 	 * @param attackingWeaponsValue
@@ -606,14 +606,14 @@ public abstract class RPEntity extends GuidedEntity {
 	public int damageDone(final RPEntity defender, double attackingWeaponsValue, Nature damageType) {
 		final int maxRange = getMaxRangeForArcher();
 		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange));
-		
+
 		return damageDone(defender, attackingWeaponsValue, damageType, isRanged, maxRange);
 	}
 
 	/**
 	 * Calculates the damage that will be done in a distance attack (bow and
 	 * arrows, spear, etc.).
-	 * 
+	 *
 	 * @param damage
 	 *            The damage that would have been done if there would be no
 	 *            modifiers for distance attacks.
@@ -643,7 +643,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the entity's name.
-	 * 
+	 *
 	 * @param name
 	 *            The new name.
 	 */
@@ -656,7 +656,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the entity's name.
-	 * 
+	 *
 	 * @return The entity's name.
 	 */
 	public String getName() {
@@ -672,7 +672,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getLevel() {
 		return this.level;
 	}
-	
+
 	public void setAtk(final int atk) {
 		setAtkInternal(atk, true);
 	}
@@ -688,10 +688,10 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getAtk() {
 		return this.atk;
 	}
-	
+
 	/**
 	 * Set attack XP.
-	 * 
+	 *
 	 * @param atk the new value
 	 */
 	public void setAtkXP(final int atk) {
@@ -739,10 +739,10 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getDef() {
 		return this.def;
 	}
-	
+
 	/**
 	 * Set defense XP.
-	 * 
+	 *
 	 * @param defXp the new value
 	 */
 	public void setDefXP(final int defXp) {
@@ -752,7 +752,7 @@ public abstract class RPEntity extends GuidedEntity {
 	private void setDefXpInternal(final int defXp, boolean notify) {
 		this.def_xp = defXp;
 		put("def_xp", def_xp);
-		
+
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
 		final int levels = newLevel - (this.def - 10);
@@ -777,7 +777,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the base and current HP.
-	 * 
+	 *
 	 * @param hp
 	 *            The HP to set.
 	 */
@@ -788,7 +788,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the base HP.
-	 * 
+	 *
 	 * @param newhp
 	 *            The base HP to set.
 	 */
@@ -804,18 +804,18 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the base HP.
-	 * 
+	 *
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
 		return this.base_hp;
 	}
-	
+
 	/**
 	 * Set the HP. <br>
 	 * DO NOT USE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING. <br>
 	 * Use the appropriate damage(), and heal() methods instead.
-	 * 
+	 *
 	 * @param hp
 	 *            The HP to set.
 	 */
@@ -837,7 +837,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the current HP.
-	 * 
+	 *
 	 * @return The current HP.
 	 */
 	public int getHP() {
@@ -846,7 +846,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the mana (magic).
-	 * 
+	 *
 	 * @return mana
 	 */
 	public int getMana() {
@@ -855,7 +855,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the base mana (like base_hp).
-	 * 
+	 *
 	 * @return base mana
 	 */
 	public int getBaseMana() {
@@ -864,7 +864,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Sets the available mana.
-	 * 
+	 *
 	 * @param newMana
 	 *            new amount of mana
 	 */
@@ -882,7 +882,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Sets the base mana (like base_hp).
-	 * 
+	 *
 	 * @param newBaseMana
 	 *            new amount of base mana
 	 */
@@ -891,10 +891,10 @@ public abstract class RPEntity extends GuidedEntity {
 		put("base_mana", newBaseMana);
 		this.updateModifiedAttributes();
 	}
-	
+
 	/**
 	 * adds to base mana (like addXP).
-	 * 
+	 *
 	 * @param newBaseMana
 	 *            amount of base mana to be added
 	 */
@@ -930,10 +930,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 		new GameEvent(getName(), "added xp", params).raise();
 		new GameEvent(getName(), "xp", String.valueOf(xp)).raise();
-		
+
 		updateLevel();
 	}
-	
+
 	/**
 	 * Change the level to match the XP, if needed.
 	 */
@@ -954,37 +954,37 @@ public abstract class RPEntity extends GuidedEntity {
 	public int getXP() {
 		return xp;
 	}
-	
+
 	/**
 	 * Get a multiplier for a given damage type when this
 	 * entity is damaged.
-	 * 
+	 *
 	 * @param type Type of the damage
 	 * @return damage multiplier
 	 */
 	protected double getSusceptibility(Nature type) {
 		return 1.0;
 	}
-	
+
 	/**
 	 * Get the type of the damage this entity inflicts
-	 * 
+	 *
 	 * @return type of damage
 	 */
 	protected Nature getDamageType() {
 		return Nature.CUT;
 	}
-	
+
 	/**
 	 * Get the nature of the damage the entity inflicts in ranged attacks.
-	 * 
+	 *
 	 * @return type of damage
 	 */
 	protected Nature getRangedDamageType() {
 		/*
 		 * Default to the same as the base damage type. Entities needing more
 		 * complicated behavior (ie. fire breathing dragons) should override the
-		 * method. 
+		 * method.
 		 */
 		return getDamageType();
 	}
@@ -1002,7 +1002,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Modify the entity to order to attack the target entity.
-	 * 
+	 *
 	 * @param target
 	 */
 	public void setTarget(final RPEntity target) {
@@ -1078,24 +1078,24 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * return list of all droppable items in entity's hands.
-	 * 
+	 *
 	 * currently only considers items in hands.  no other part of body
-	 * 
+	 *
 	 * currently, there is only one type of droppable item - CaptureTheFlagFlag.
 	 *     need some more general solution
-	 *     
+	 *
 	 * @return list of droppable items.  returns null if no droppable items found
 	 */
 	public List<Item> getDroppables() {
 
 		ArrayList<Item> droppables = null;
-		
+
 		final String[] slots = { "lhand", "rhand" };
-		
+
 		for (String slot : slots) {
 
 			RPSlot rpslot = getSlot(slot);
-							
+
 			if (rpslot == null) {
 				continue;
 			}
@@ -1108,7 +1108,7 @@ public abstract class RPEntity extends GuidedEntity {
 						droppables = new ArrayList<Item>();
 					}
 					droppables.add((Item)object);
-				}		
+				}
 			}
 		}
 		return droppables;
@@ -1116,71 +1116,71 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Drop specified item from entity's equipment
-	 * 
+	 *
 	 * note: seems like this.drop(droppable) should work, but
 	 *       the item just disappears - does not end up on ground.
-	 *       
+	 *
 	 * TODO: probably need to refactor this in to the general drop system
 	 *       (maybe fixing some of the other code paths)
-	 *        
-	 * @param droppable item to be dropped 
+	 *
+	 * @param droppable item to be dropped
 	 */
 	public void dropDroppableItem(Item droppable) {
-		
-		// note: this.drop() does not do all necessary operations - 
+
+		// note: this.drop() does not do all necessary operations -
 		//       item disappears from hand, but disappears competely
-			
+
 		Player    player = (Player) this;
 		RPObject  parent = droppable.getContainer();
 		RPAction  action = new RPAction();
-			
+
 		action.put("type",                        "drop");
 		action.put("baseitem",                    droppable.getID().getObjectID());
 		action.put(EquipActionConsts.BASE_OBJECT, parent.getID().getObjectID());
 		action.put(EquipActionConsts.BASE_SLOT,   droppable.getContainerSlot().getName());
-			
+
 		// TODO: better to drop "behind" the player, if they have been running
 		action.put("x", this.getX());
 		action.put("y", this.getY() + 1);
-			
+
 		DropAction dropAction = new DropAction();
 		dropAction.onAction(player, action);
-			
+
 		// TODO: send message to player - you dropped ...
-			
+
 		this.notifyWorldAboutChanges();
 	}
-	
 
-		
+
+
 	/**
 	 * if defender (this entity) is carrying a droopable item,
 	 * then attacker and defender both roll d20, and if attacker
 	 * rolls higher, the defender drops the droppable.
-	 * 
-	 * note that separate rolls are performed for each droppable 
+	 *
+	 * note that separate rolls are performed for each droppable
 	 * that the entity is carrying.
-	 * 
+	 *
 	 * XXX this does not belong here - should be in some Effect framework
-	 * 
+	 *
 	 * returns string - what happened.  no effect returns null
-	 * 
+	 *
 	 * @param attacker
 	 */
 	public String maybeDropDroppables(RPEntity attacker) {
-		
+
 		List<Item> droppables = this.getDroppables();
 		if (droppables == null) {
 			return null;
 		}
-		
+
 		for (Item droppable : droppables) {
 
 			// roll two dice, tie goes to defender
 			//   TODO: integrate skills, ctf atk/def
 			int attackerRoll = Rand.roll1D20();
 			int defenderRoll = Rand.roll1D20();
-			
+
 System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			if (attackerRoll > defenderRoll) {
@@ -1192,12 +1192,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return null;
 	}
 
-	
-	
+
+
 	/**
 	 * This method is called when this entity has been attacked by Entity
 	 * attacker and it has been damaged with damage points.
-	 * 
+	 *
 	 * @param attacker
 	 * @param damage
 	 */
@@ -1231,7 +1231,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Manages a list of players to reward XP in case this creature is killed.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -1244,10 +1244,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Apply damage to this entity. This is normally called from one of the
 	 * other damage() methods to account for death.
-	 * 
+	 *
 	 * @param amount
 	 *            The HP to take.
-	 * 
+	 *
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	protected int damage(final int amount) {
@@ -1262,12 +1262,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Apply damage to this entity, and call onDead() if HP reaches 0.
-	 * 
+	 *
 	 * @param amount
 	 *            The HP to take.
 	 * @param attacker
 	 *            The attacking entity.
-	 * 
+	 *
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public int damage(final int amount, final Entity attacker) {
@@ -1281,11 +1281,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	}
 
 	/**
-	 * Apply damage to this entity, delaying the damage to happen in a turn 
+	 * Apply damage to this entity, delaying the damage to happen in a turn
 	 * notifier. To be used when dying could result in concurrent modification
-	 * in the zone's entity list, such as sheep starving. Call onDead() if HP 
+	 * in the zone's entity list, such as sheep starving. Call onDead() if HP
 	 * reaches 0.
-	 * 
+	 *
 	 * @param amount
 	 *            The HP to take.
 	 * @param attackerName
@@ -1294,8 +1294,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public void delayedDamage(final int amount, final String attackerName) {
 		final RPEntity me = this;
 		/*
-		 * Use a dummy damager rpentity, so that we can follow the 
-		 * normal code path. Important when dying. 
+		 * Use a dummy damager rpentity, so that we can follow the
+		 * normal code path. Important when dying.
 		 */
 		final Entity attacker = new RPEntity(this) {
 			@Override
@@ -1305,26 +1305,26 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
-				
+
 			}
 
 			@Override
 			public void logic() {
-				
+
 			}
 		};
-		
+
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
 			@Override
 			public void onTurnReached(int turn) {
 				me.damage(amount, attacker);
 			}
-		}); 
+		});
 	}
 
 	/**
 	 * Kills this RPEntity.
-	 * 
+	 *
 	 * @param killer
 	 *            The killer
 	 */
@@ -1335,7 +1335,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Gives XP to every player who has helped killing this RPEntity.
-	 * 
+	 *
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
 	 */
@@ -1383,7 +1383,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			}
 
 			killer.addXP(reward);
-			
+
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
@@ -1399,7 +1399,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 					killer.setSharedKill(killedName);
 				}
 			}
-			
+
 			SingletonRepository.getAchievementNotifier().onKill(killer);
 
 			killer.notifyWorldAboutChanges();
@@ -1408,7 +1408,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
-	 * 
+	 *
 	 * @param killer
 	 *            The entity who caused the death
 	 */
@@ -1418,7 +1418,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
-	 * 
+	 *
 	 * @param killer
 	 *            The entity who caused the death, i.e. who did the last hit.
 	 * @param remove
@@ -1436,7 +1436,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));
 
-		// Players are unique, so they should not get an article. 
+		// Players are unique, so they should not get an article.
 		if (!(killer instanceof Player)) {
 			killerName = Grammar.a_noun(killerName);
 		}
@@ -1445,7 +1445,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
-	 * 
+	 *
 	 * @param killerName
 	 *            The killer's name (a phrase suitable in the expression "
 	 *            <code>by</code> <em>killerName</em>".
@@ -1481,39 +1481,39 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final StendhalRPZone zone = getZone();
 		zone.add(corpse);
 
-		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does), 
-		// so defer stopping. 
+		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does),
+		// so defer stopping.
 		stopAttack();
 		if (remove) {
 			zone.remove(this);
 		}
 	}
-	
+
 	/**
 	 * Make a corpse belonging to this entity
-	 * 
+	 *
 	 * @param killer Name of the killer
 	 * @return The corpse of a dead RPEntity
 	 */
 	protected Corpse makeCorpse(String killer) {
 		return new Corpse(this, killer);
 	}
-	
+
 	/**
 	 * Get the corpse image name to be used for the entity.
 	 * Defaults to a player corpse.
-	 * 
-	 * @return Identification string for corpse. This is the corpse 
-	 * image shown by the client without the path or file extension.  
+	 *
+	 * @return Identification string for corpse. This is the corpse
+	 * image shown by the client without the path or file extension.
 	 */
 	public String getCorpseName() {
 		return "player";
 	}
-	
+
 	public int getCorpseWidth() {
 		return 1;
 	}
-	
+
 	public int getCorpseHeight() {
 		return 1;
 	}
@@ -1522,7 +1522,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Determine if the entity is invisible to creatures.
-	 * 
+	 *
 	 * @return <code>true</code> if invisible.
 	 */
 	public boolean isInvisibleToCreatures() {
@@ -1531,7 +1531,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Return true if this entity is attacked.
-	 * 
+	 *
 	 * @return true if no attack sources found
 	 */
 	public boolean isAttacked() {
@@ -1540,7 +1540,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Returns the Entities that are attacking this character.
-	 * 
+	 *
 	 * @return list of all attacking entities
 	 */
 	public List<Entity> getAttackSources() {
@@ -1549,7 +1549,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Returns the RPEntities that are attacking this character.
-	 * 
+	 *
 	 * @return list of all attacking RPEntities
 	 */
 	public List<RPEntity> getAttackingRPEntities() {
@@ -1566,7 +1566,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Checks whether the attacktarget is null. Sets attacktarget to null if hp
 	 * of attacktarget <=0;
-	 * 
+	 *
 	 * @return true if attacktarget != null and not dead
 	 */
 	public boolean isAttacking() {
@@ -1582,7 +1582,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Return the RPEntity that this entity is attacking.
-	 * 
+	 *
 	 * @return the attack target of this
 	 */
 	public RPEntity getAttackTarget() {
@@ -1595,7 +1595,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Tries to equip an item in the appropriate slot.
-	 * 
+	 *
 	 * @param item
 	 *            the item
 	 * @return true if the item can be equipped, else false
@@ -1608,11 +1608,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Check if an object is a stackable item that can be merged to an existing
 	 * item stack.
-	 * 
+	 *
 	 * @param item stackable item
 	 * @param object merge candidate
 	 * @return <code>true</code> if the items can be merged, <code>false</code>
@@ -1627,11 +1627,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Find slot where an item could be merged, looking recursively inside a
 	 * slot and the content slots of the items in that slot.
-	 * 
+	 *
 	 * @param item item for which the merge location is sought for
 	 * @param slot starting location slot
 	 * @return slot where the item can be merged, or <code>null</code> if no
@@ -1661,15 +1661,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Find a target slot where an item can be equipped. The slots are sought
 	 * recursively starting from a specified initial slot, and then proceeding
-	 * to the content slots of the items in that slot. 
-	 * 
+	 * to the content slots of the items in that slot.
+	 *
 	 * @param item item to be equipped
 	 * @param slot starting slot
 	 * @return slot where the item can be equipped, or <code>null</code> if no
@@ -1694,15 +1694,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Gets the slot in which the entity can equip the item, preferring
 	 * locations where the item can be merged with existing item stacks.
 	 *
-	 * @param item 
+	 * @param item
 	 * @return the slot for the item or null if there is no matching slot
 	 *         in the entity
 	 */
@@ -1730,7 +1730,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Tries to equip an item in the appropriate slot.
-	 * 
+	 *
 	 * @param item the item
 	 * @return true if the item can be equipped, else false
 	 */
@@ -1740,17 +1740,18 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		} else {
 			item.setPosition(getX(), getY());
 			getZone().add(item);
+			this.sendPrivateText("You dropped the new item onto the ground because your bag is full.");
 			return true;
 		}
 	}
 
-	
+
 
 	/**
 	 * Tries to equip one unit of an item in the given slot. Note: This doesn't
 	 * check if it is allowed to put the given item into the given slot, e.g. it
 	 * is possible to wear your helmet at your feet using this method.
-	 * 
+	 *
 	 * @param slotName
 	 *            the name of the slot
 	 * @param item
@@ -1771,7 +1772,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * either be stackable or non-stackable. The units can be distributed over
 	 * different slots. If the RPEntity doesn't have enough units of the item,
 	 * doesn't remove anything.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the item
 	 * @param amount
@@ -1848,7 +1849,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Removes one unit of an item from the RPEntity. The item can either be
 	 * stackable or non-stackable. If the RPEntity doesn't have enough the item,
 	 * doesn't remove anything.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the item
 	 * @return true iff dropping the item was successful.
@@ -1861,7 +1862,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Removes the given item from the RPEntity. The item can either be
 	 * stackable or non-stackable. If the RPEntity doesn't have the item,
 	 * doesn't remove anything.
-	 * 
+	 *
 	 * @param item
 	 *            the item that should be removed
 	 * @return true iff dropping the item was successful.
@@ -1887,12 +1888,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Determine if this entity is equipped with a minimum quantity of an item.
-	 * 
+	 *
 	 * @param name
 	 *            The item name.
 	 * @param amount
 	 *            The minimum amount.
-	 * 
+	 *
 	 * @return <code>true</code> if the item is equipped with the minimum
 	 *         number.
 	 */
@@ -1923,10 +1924,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Determine if this entity is equipped with an item.
-	 * 
+	 *
 	 * @param name
 	 *            The item name.
-	 * 
+	 *
 	 * @return <code>true</code> if the item is equipped.
 	 */
 	public boolean isEquipped(final String name) {
@@ -1936,7 +1937,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets the number of items of the given name that are carried by the
 	 * RPEntity. The item can either be stackable or non-stackable.
-	 * 
+	 *
 	 * @param name
 	 *            The item's name
 	 * @return The number of carried items
@@ -1961,7 +1962,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Get count of items of a given name, including items in the slots of
 	 * items. The count is started from topItem, and topItem is included in the
 	 * count, if applicable.
-	 *  
+	 *
 	 * @param name name of items to be counted
 	 * @param topItem item where to start the recursive count
 	 * @return count of items of the given name
@@ -1978,14 +1979,14 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				}
 			}
 		}
-		
+
 		return count;
 	}
 
 	/**
 	 * Gets the number of items of the given name including bank.
 	 * The item can either be stackable or non-stackable.
-	 * 
+	 *
 	 * @param name
 	 *            The item's name
 	 * @return The number of carried items
@@ -2007,7 +2008,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets an item that is carried by the RPEntity. If the item is stackable,
 	 * gets all that are on the first stack that is found.
-	 * 
+	 *
 	 * @param name
 	 *            The item's name
 	 * @return The item, or a stack of stackable items, or null if nothing was
@@ -2027,13 +2028,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		return null;
 	}
-	
+
 	/**
 	 * Search recursively the first item of specified name inside an object.
-	 * 
+	 *
 	 * @param name item name to find
 	 * @param obj object where to start the seach
-	 * 
+	 *
 	 * @return First item matching the item name. The returned item can be the
 	 * 	starting object, if that matches the searching criterion. If no matching
 	 * 	item is found, <code>null</code> is returned
@@ -2059,7 +2060,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets an item that is carried by the RPEntity. If the item is stackable,
 	 * gets all that are on the first stack that is found.
-	 * 
+	 *
 	 * @param name
 	 *            The item's name
 	 * @return The item, or a stack of stackable items, or an empty list if nothing was
@@ -2086,7 +2087,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
 	 * returns true if it is, else false.
-	 * 
+	 *
 	 * @param slot
 	 * @param clazz
 	 * @return true if so false otherwise
@@ -2109,7 +2110,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Finds the first item of class <i>clazz</i> from the slot.
-	 * 
+	 *
 	 * @param slot
 	 * @param clazz
 	 * @return the item or <code>null</code> if there is no item with the
@@ -2137,7 +2138,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Gets the weapon that this entity is holding in its hands.
-	 * 
+	 *
 	 * @return The weapon, or null if this entity is not holding a weapon. If
 	 *         the entity has a weapon in each hand, returns the weapon in its
 	 *         left hand.
@@ -2193,7 +2194,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets the range weapon (bow etc.) that this entity is holding in its
 	 * hands.
-	 * 
+	 *
 	 * @return The range weapon, or null if this entity is not holding a range
 	 *         weapon. If the entity has a range weapon in each hand, returns
 	 *         one in its left hand.
@@ -2211,7 +2212,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Gets the stack of ammunition (arrows or similar) that this entity is
 	 * holding in its hands.
-	 * 
+	 *
 	 * @return The ammunition, or null if this entity is not holding ammunition.
 	 *         If the entity has ammunition in each hand, returns the ammunition
 	 *         in its left hand.
@@ -2234,12 +2235,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Gets the stack of missiles (spears or similar) that this entity is
 	 * holding in its hands, but only if it is not holding another, non-missile
 	 * weapon in the other hand.
-	 * 
+	 *
 	 * You can only throw missiles while you're not holding another weapon. This
 	 * restriction is a workaround because of the way attack strength is
 	 * determined; otherwise, one could increase one's spear attack strength by
 	 * holding an ice sword in the other hand.
-	 * 
+	 *
 	 * @return The missiles, or null if this entity is not holding missiles. If
 	 *         the entity has missiles in each hand, returns the missiles in its
 	 *         left hand.
@@ -2332,7 +2333,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Sends a message that only this RPEntity can read. In this default
 	 * implementation, this method does nothing; it can be overridden in
 	 * subclasses.
-	 * 
+	 *
 	 * @param text
 	 *            The message.
 	 */
@@ -2375,7 +2376,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		int weapon = 0;
 
 		Item item;
-		
+
 		if (hasShield()) {
 			item = getShield();
 			shield = (int) (item.getDefense() / getItemLevelModifier(item));
@@ -2416,10 +2417,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				+ LEG_DEF_MULTIPLIER * legs + BOOTS_DEF_MULTIPLIER * boots
 				+ WEAPON_DEF_MULTIPLIER * weapon;
 	}
-	
+
 	/**
 	 * get all items that affect a player's defensive value except the weapon
-	 * 
+	 *
 	 * @return a list of all equipped defensive items
 	 */
 	public List<Item> getDefenseItems() {
@@ -2457,10 +2458,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Can this entity do a distance attack on the given target?
-	 * 
+	 *
 	 * @param target
 	 * @param maxrange maximum attack distance
-	 * 
+	 *
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
 	 */
@@ -2468,17 +2469,17 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// the target's in range
 		return (squaredDistance(target) <= maxrange * maxrange);
 	}
-	
+
 	/**
 	 * Check if the entity has a line of sight to the the center of another
 	 * entity. Only static collisions are checked.
-	 * 
+	 *
 	 * @param target target entity
 	 * @return <code>true</code> if there are no collisions blocking the line
-	 *	of sight, <code>false</code> otherwise 
+	 *	of sight, <code>false</code> otherwise
 	 */
 	public boolean hasLineOfSight(final Entity target) {
-		return !getZone().collidesOnLine((int) (getX() + getWidth() / 2), 
+		return !getZone().collidesOnLine((int) (getX() + getWidth() / 2),
 				(int) (getY() + getHeight() / 2),
 				(int) (target.getX() + target.getWidth() / 2),
 				(int) (target.getY() + target.getHeight() / 2));
@@ -2486,7 +2487,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Get the maximum distance attack range.
-	 * 
+	 *
 	 * @return maximum range, or 0 if the entity can't attack from distance
 	 */
 	public int getMaxRangeForArcher() {
@@ -2508,10 +2509,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Gets this RPEntity's outfit.
-	 * 
+	 *
 	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
 	 * the outfit system.
-	 * 
+	 *
 	 * @return The outfit, or null if this RPEntity is represented as a single
 	 *         sprite rather than an outfit combination.
 	 */
@@ -2533,10 +2534,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Sets this RPEntity's outfit.
-	 * 
+	 *
 	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
 	 * the outfit system.
-	 * 
+	 *
 	 * @param outfit
 	 *            The new outfit.
 	 */
@@ -2546,7 +2547,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Set the entity's formatted title.
-	 * 
+	 *
 	 * @param title
 	 *            The title, or <code>null</code>.
 	 */
@@ -2565,11 +2566,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	/**
 	 * Returns the name or something that can be used to identify the entity for
 	 * the player.
-	 * 
+	 *
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for "a/an"
 	 *            in case the entity has no name.
-	 * 
+	 *
 	 * @return The description name.
 	 */
 	@Override
@@ -2583,7 +2584,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 * 
+	 *
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override
@@ -2606,7 +2607,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * Chooses randomly if this has hit the defender, or if this missed him.
 	 * Note that, even if this method returns true, the damage done might be 0
 	 * (if the defender blocks the attack).
-	 * 
+	 *
 	 * @param defender
 	 *            The attacked RPEntity.
 	 * @return true if the attacker has hit the defender (the defender may still
@@ -2625,8 +2626,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		if (!(getLevel() - levelDifferenceToNotNeedKarmaAttacking > defender
 				.getLevel())) {
 			final double karma = this.useKarma(0.1);
-			// the karma effect must be cast to an integer to affect the roll 
-			// but in most cases this means the karma use was lost. so multiply by 2 to 
+			// the karma effect must be cast to an integer to affect the roll
+			// but in most cases this means the karma use was lost. so multiply by 2 to
 			// make the same amount of karma use be more useful
 			final double karmaEffect = roll * karma * 2.0;
 			roll -= (int) karmaEffect;
@@ -2656,7 +2657,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Returns the attack rate, the lower the better.
-	 * 
+	 *
 	 * @return the attack rate
 	 */
 	public int getAttackRate() {
@@ -2673,25 +2674,25 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				best = res;
 			}
 		}
-		
+
 		// Level effect
 		best = (int) Math.ceil(best * getItemLevelModifier(weapons.get(0)));
-		
+
 		return best;
 	}
-	
+
 	/**
 	 * Get a modifier to be used when an item has a higher min_level
 	 * than the entity's level. For any item where the entity's level
 	 * is high enough, the modifier is 1. For anything else, > 1 depending
 	 * on the ratio between the required, and the possessed level.
-	 * 
+	 *
 	 * @param item the item to be examined
 	 * @return modifier for item properties
 	 */
 	private double getItemLevelModifier(Item item) {
 		final String minLevelS = item.get("min_level");
-		
+
 		if (minLevelS != null) {
 			final int minLevel = Integer.parseInt(minLevelS);
 			final int level = getLevel();
@@ -2699,15 +2700,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				return 1 - Math.log(((double) level + 1) / (minLevel + 1));
 			}
 		}
-		
+
 		return 1.0;
 	}
 
 	/**
 	 * Lets the attacker attack its target.
-	 * 
+	 *
 	 * @return true iff the attacker has done damage to the defender.
-	 * 
+	 *
 	 */
 	public boolean attack() {
 		boolean result = false;
@@ -2715,7 +2716,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
-		
+
 		final int maxRange = getMaxRangeForArcher();
 		/*
 		 * The second part (damage type check) ensures that normal archers need
@@ -2725,7 +2726,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		 */
 		boolean isRanged = ((maxRange > 0) && canDoRangeAttack(defender, maxRange))
 			&& (((getDamageType() == getRangedDamageType()) || squaredDistance(defender) > 0));
-		
+
 		Nature nature;
 		if (isRanged) {
 			nature = getRangedDamageType();
@@ -2773,7 +2774,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Calculate lifesteal and update hp of source.
-	 * 
+	 *
 	 * @param attacker
 	 *            the RPEntity doing the hit
 	 * @param attackerWeapons
@@ -2829,12 +2830,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			attacker.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
-	 * Equips the item in the specified slot. 
-	 * 
-	 * @param rpslot 
-	 * @param item 
+	 * Equips the item in the specified slot.
+	 *
+	 * @param rpslot
+	 * @param item
 	 * @return true if successful*/
 	private boolean equipIt(final RPSlot rpslot, final Item item) {
 		if (rpslot  == null || (item == null)) {
