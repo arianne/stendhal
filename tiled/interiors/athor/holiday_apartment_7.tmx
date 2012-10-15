@@ -39,74 +39,71 @@
  <tileset firstgid="103" name="wine" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/drink/red_wine.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="107" name="bed" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_white2.png" width="64" height="96"/>
- </tileset>
- <tileset firstgid="113" name="sheet" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_white2_top_sheet.png" width="64" height="32"/>
- </tileset>
- <tileset firstgid="115" name="arch" tilewidth="32" tileheight="32">
+ <tileset firstgid="107" name="arch" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/flowered_arch.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="139" name="towels" tilewidth="32" tileheight="32">
+ <tileset firstgid="131" name="towels" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/textile/towels.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="145" name="sofa" tilewidth="32" tileheight="32">
+ <tileset firstgid="137" name="sofa" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/sofa_chair_pink.png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="157" name="endtables" tilewidth="32" tileheight="32">
+ <tileset firstgid="149" name="endtables" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_round_white.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="163" name="table" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="table" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/grey_fancy_horizontal.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="172" name="counter" tilewidth="32" tileheight="32">
+ <tileset firstgid="164" name="counter" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/table_with_hob.png" width="160" height="32"/>
  </tileset>
- <tileset firstgid="177" name="bread" tilewidth="32" tileheight="32">
+ <tileset firstgid="169" name="bread" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/bread.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="181" name="food1" tilewidth="32" tileheight="32">
+ <tileset firstgid="173" name="food1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="185" name="food2" tilewidth="32" tileheight="32">
+ <tileset firstgid="177" name="food2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/torte.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="186" name="food3" tilewidth="32" tileheight="32">
+ <tileset firstgid="178" name="food3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/fish_crates.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="194" name="kitchenstuff" tilewidth="32" tileheight="32">
+ <tileset firstgid="186" name="kitchenstuff" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household/food_preparation.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="210" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="202" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/mossy_brick_paving.png" trans="ff00ff" width="96" height="96"/>
  </tileset>
- <tileset firstgid="219" name="border" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/ornamental_border.png" width="128" height="416"/>
+ <tileset firstgid="211" name="border" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/ornamental_border.png" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="235" name="double_white_pink" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/double_white_pink.png" width="192" height="96"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+NjYGDgoxBfw4Ep1U+sObSyn176R/EoHigMAHeQ07MABAAA
+   H4sIAAAAAAAAC+NjYGDgoxCfw4Ep1U+sObSyn176R/EoHigMAP7jRqIABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC53SSwrCMBAG4LjSK+gNfOLKY3Tr1sso6M7nQu2iLnyjB9L6SqEewz8wgSE2bXTgI9MMQ5ImoRDiYnGDMKN+hxy0DWouhrewx4P6s6ILPfbdhwHr7yT0qDkJkcP6ZahAE1qUVx32p+s1qBsarO4l9HpUf8LV4sXq+hzSqKfdD6fvIRbf93eEs+GUcu4ilIT7/akY0ziEEeW6Pw9r2JAtFFivDzMaJzClnK+/gz05OO7pl/2rCGD1R7+fkPP96/8pqRaxOR1zWFC+ZOunvZ8s6v18AKkFehkABAAA
+   H4sIAAAAAAAAC53SSwrCMBAG4LjSK+gNfOLKY3Tr1oso6M7nQu1CF77RA2l9pdAexT8wgSG2aXTgo9MMQ56BEOKa4g5BRv0BOWgb1FgEsUiPJ/VnRRd67L8PA9bfSehRYxJCh/nLUIEmtCivOqxP12tQNzRY3Uvo9aj+gluKN6vrfUijbrsfLqb+SHzf3wkuhrNl30UoOZwPjzF9hzCiXPfnYQNbsoMC6/VhRt8JTCnn8+/hQI6Oa/pl/SpWsP6j30/I+fr1eUqqhWxMxxwWlC/Z/Lb3k0W9nw8MXZnOAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgYGBQBmIVNKzKgAmygTgHi7gaEKujYQ0s6nKBOA+LOLEgH4gLcMhNwMGmBwgDYiYgzgTiLCg7jM5uIAWA4hs5fo8A8SkgPg/Ee6BiO/HoB8U3cvyuBOJVaHg1Ge7aCsRbyNAHAmxoeCiCRCBOAuJkMvWnAHEqEKeRoAcAUtB1BAAEAAA=
+   H4sIAAAAAAAAC2NgYGBQBmIVNKzKgAneAvE7LOJqQKyOhjWwqPsMxF+wiBMLfgLxLxxyHTjY9ABhQMwExJlAnAVlh9HZDaQAUHwjx+8eID4ExMeBeAtUbCMe/aD4Ro7fhUC8CA0vJsNda4F4DRn6QIANDQ9FkAjESUCcTKb+FCBOBeI0EvQAAF4XgRkABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoB8oBOIiLOKxRIrRCgQAsQ0Qe0BpJ6gYDPhi0YNNbBQMbjAPiOfTwFxRIBYjIDYdiGdA2TNxmJMIpZOp5zSCAAC9z+OSAAQAAA==
+   H4sIAAAAAAAAC2NgoB/4CsTfsIjHEilGKxAAxDZA7AGlnaBiMOCLRQ82sVEwuME0IJ5OA3NFgViMgFg/EE+AsifiMCcRSidTz2kEAQBgCRmDAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgIA5UAXE1ENcAcS2RemCgHogbkPjNQNxCohmjYBSMAuoDAEwGJKEABAAA
+   H4sIAAAAAAAAC2NgIA4UAXExEJcAcSmRemCgHIgrkPjVQFxDohmjYBSMAuoDAL4WFTEABAAA
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
