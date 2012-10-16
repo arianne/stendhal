@@ -96,20 +96,20 @@
  <tileset firstgid="226" name="drawer2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer.png" width="64" height="96"/>
  </tileset>
- <tileset firstgid="232" name="bed2" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/bed/large_peach.png" width="64" height="96"/>
- </tileset>
- <tileset firstgid="238" name="fence" tilewidth="32" tileheight="32">
+ <tileset firstgid="232" name="fence" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png" width="96" height="224"/>
  </tileset>
- <tileset firstgid="259" name="pillow" tilewidth="32" tileheight="32">
+ <tileset firstgid="253" name="pillow" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_red.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="260" name="pillow" tilewidth="32" tileheight="32">
+ <tileset firstgid="254" name="pillow" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/pillow_yellow.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="261" name="food" tilewidth="32" tileheight="32">
+ <tileset firstgid="255" name="food" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_3.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="259" name="double_peach" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/bed/double_peach.png" width="64" height="128"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
@@ -118,17 +118,17 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC92WW07CQBSGz44ICAkXQxErty0AChiekIu4EJfiDnzlkj7DDgATjYZEn/knziR1MjOd2vaFk3xp2p45X8/MJB2HiOoJUgFNcAUuE6AKWtxRJHN8gqPEV8AYFhcGxw7sDWNfwE9Eh03E7fjmiHmK4ni1GGcTok7UubKJc3AMJccNSEtkeG5K8c6WGndcg4YClzt0721xDd8ZRx+iDpuzbIg+cr78DdgaemC5Rd+6jMBDAGO+fi36G2t+9aTnYj8JxwRMNRzAG5hpHAuwBKsIDoHOoYswjnfwkbDD3wfbA66iXpyOMPFfh0O//+g26IBuAg6xHrfgDvQUtdle9hSORzAP4Mnn6IMBuLfsI0/2Z5lCQP6zlMscJYr3vEPSfRmcAAdzKpvECQAA
+   H4sIAAAAAAAAC92WX07CQBCHh4DCbQgqCRQCilWBK/AfwhOogAfhKNyAV9TwjDeAQEj0CP427CZ1s91ubfvCJF+atrPzdXY36ZaJ6ClCbkEN3IFiBFRAnTss0sceHCUOHmNYXGscW7DTjF2An4AOkwjb8c0R8xTEsTQYZxKiTtC5MolzcAwlxwPISFzx3LTinSmP3HEPqgps7nB7b4qt+c4w+hB12Jzd+Ogj68jfgC9NDyzXcqzLCIw9eObrV6e/8cmva+m52E/C8QJeXYjHiBJg4uJYgXfwEcBxgfqXGodb+HEkUT8VsUPAHGwP2Ip6YTr8xH8dZTr9oxugCVoROMR6tEEHdBW12V5eKxxTMPPgzeHogT4YGPaRI/OzTN4jfy7lMkeBwj3vkHRfAr98MiERxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgwA0M8MiRogYZZJKoHhmUA3EFATWlOMTLgPgbHjkQKAHiSiCugrLJAbjsQAb1RKjZDsQ7gHgnmXZQCmB2fEHCH4jUa4bGrwHiy0B8lQx3+EAxIXCMDLNBwA+I/aE4gAJzqAFSBrl5gw1kUKg/nUh1+6AYBpSBWAmKVZDEz0JpDkZU/beA+DaSPAiYQ+ksKH0IiA8jyauiYRg4B8Q3gPgmlH8aSt8B4rtQeVzgOBCfxCNPCNwD4vt45B9SYDYxYB9hJSSBNCxi1M7/2OwAAVD5jq1sp9QOcyzyzIzY2egglUR70etaFjxmgwC+8ug8DvEyLPZgUwMDiUCcBMTJWNRRmv7xgT4oPQGPGlsSxdHBJCg9BU0cADvYEyfECQAA
+   H4sIAAAAAAAAC2NgwA0M8MiRogYZZJKoHhmUA3EFATWlOMTLgPgDHjkQKAHiSiCugrLJAbjsQAb1RKjZDsQ7gHgnmXZQCmB2vEPCr4jUa4bGrwHiy0B8lQx3+EAxIXCMDLNBwA+I/aE4gAJzqAFSBrl5gw1kUKg/nUh1+6AYBpSBWAmKVZDEz0JpJkZU/beA+DaSPAiYQ+ksKH0IiA8jyauiYRg4B8Q3gPgmlH8aSt8B4rtQeVzgOBCfxCNPCNwD4vt45B9SYDYxYB9hJSSBNCxi1M7/2OwAAVD5jq1sp9QOcyzyf3Gw0UEqifai17X/CKjHVx6dxyFehsUebGpgIBGIk4A4GYs6StM/PtAHpSfgUWNLojg6mASlp6CJAwA4VWOMxAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGBjwCIgf09iOJ0D8lAbmbgHirUC8jQZmDwS4AMSXBtoRWIA3Ett3wFwxCkbB0AcPBtDuV0D8egDtJxWAyvfhUraPguEFJmMRAwC0MCemxAkAAA==
+   H4sIAAAAAAAAC2NgGBjwCIgf09iOJ0D8lAbmbgHirUC8jQZmDwS4AMSXBtoRWIA3Ett3wFwxCkbB0AcPBtBuTkYGBi7GAXQAiQBUvg+Xsn0UDC8wGYsYAJUNmTLECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
