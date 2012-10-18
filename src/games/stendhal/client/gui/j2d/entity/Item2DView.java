@@ -25,9 +25,11 @@ import games.stendhal.client.gui.SlotWindow;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.MathHelper;
 
 import javax.swing.SwingUtilities;
 
+import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
@@ -42,12 +44,14 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 	 * Log4J.
 	 */
 	private static final Logger logger = Logger.getLogger(Item2DView.class);
+	/** Default size of the container slot. */
+	private static final int DEFAULT_SLOT_SIZE = 8;
 
-	/** Window for showing the slot contents, if any */
+	/** Window for showing the slot contents, if any. */
 	private volatile SlotWindow slotWindow;
-	/** Width of the slot window */
+	/** Width of the slot window. */
 	private int slotWindowWidth;
-	/** height of the slot window */
+	/** height of the slot window. */
 	private int slotWindowHeight;
 
 	//
@@ -215,11 +219,14 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 
 	/**
 	 * Inspect the item. Show the slot contents.
+	 * 
+	 * @param inspector inspector
 	 */
 	private void inspect(Inspector inspector) {
 		RPSlot slot = getContent();
 		if (slotWindowWidth == 0) {
-			calculateWindowProportions(slot.getCapacity());
+			int capacity = getSlotCapacity(slot);
+			calculateWindowProportions(capacity);
 		}
 		
 		boolean addListener = slotWindow == null; 
@@ -253,6 +260,22 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 				window.close();
 			}
 		}
+	}
+	
+	/**
+	 * Get the actual size of the container slot of a container item.
+	 * 
+	 * @param slot container slot
+	 * @return size of the container slot
+	 */
+	private int getSlotCapacity(RPSlot slot) {
+		RPObject obj = entity.getRPObject();
+		if (obj.has("slot_size")) {
+			return MathHelper.parseIntDefault(obj.get("slot_size"), DEFAULT_SLOT_SIZE);
+		}
+		// Fall back to default slot size (should not happen)
+		logger.warn("Container is missing slot size: " + obj);
+		return slot.getCapacity();
 	}
 	
 	/**
