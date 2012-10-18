@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.slot.ContainerItemSlot;
 
 import java.util.Map;
@@ -21,7 +22,10 @@ import marauroa.common.game.RPSlot;
  * Implementation of container items, such as bags and key rings.
  */
 public class Container extends Item {
+	/** Default name of the container slot. */
 	private static final String DEFAULT_SLOT_NAME = "content";
+	/** Default size of the container slot. */
+	private static final int DEFAULT_SLOT_SIZE = 8;
 	
 	/**
 	 * Creates a new Container.
@@ -38,7 +42,6 @@ public class Container extends Item {
 	public Container(final String name, final String clazz, final String subclass,
 			final Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
-
 		String slotName = get("slot_name");
 		if (slotName == null) {
 			slotName = DEFAULT_SLOT_NAME;
@@ -46,5 +49,29 @@ public class Container extends Item {
 		
 		RPSlot slot = new ContainerItemSlot(DEFAULT_SLOT_NAME, slotName);
 		addSlot(slot);
+		/*
+		 * Note! must be after addSlot(), because addSlot() overwrites the slot
+		 * capacity from the value in RPClass, which would result in infinitely
+		 * large containers.
+		 */
+		determineSlotCapacity(slot);
+	}
+	
+	/**
+	 * Determine the correct size of the container slot, instead of the infinite
+	 * that is defined in RPClass. Defaults to DEFAULT_SLOT_SIZE unless the
+	 * object has attribute slot_size.
+	 * 
+	 * @param slot
+	 */
+	private void determineSlotCapacity(RPSlot slot) {
+		String slotSize = get("slot_size");
+		int size = DEFAULT_SLOT_SIZE;
+		if (slotSize == null) {
+			put("slot_size", DEFAULT_SLOT_SIZE);
+		} else {
+			size = MathHelper.parseIntDefault(slotSize, DEFAULT_SLOT_SIZE);
+		}
+		slot.setCapacity(size);
 	}
 }

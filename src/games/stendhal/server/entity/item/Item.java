@@ -207,9 +207,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Name of the container slot, if the item has one
 		entity.addAttribute("slot_name", Type.STRING, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+		
+		// Size of the container slot, if the item has one, and the size is
+		// other than the default
+		entity.addAttribute("slot_size", Type.STRING, Definition.VOLATILE);
 
 		// Container slot
-		entity.addRPSlot("content", 8, Definition.PRIVATE);
+		entity.addRPSlot("content", -1, Definition.PRIVATE);
 		
 		// True for items that should be bound automatically at loot (or login)
 		entity.addAttribute("autobind", Type.FLAG, (byte) (Definition.HIDDEN | Definition.VOLATILE));
@@ -592,6 +596,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on
 		// the ground
@@ -674,6 +679,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		removeFromWorld();
 	}
 
+	@Override
 	public boolean canBeEquippedIn(final String slot) {
 		if (slot == null) {
 			// ground
