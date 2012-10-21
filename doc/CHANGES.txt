@@ -2,22 +2,22 @@
 ---------
 1.04
 
-*world
+*world*
 - Mine Town Revival Weeks!
 - Semos and the Mine Town are decorated for the celebrations
-- a new paper chase quest which leads you all over the world
-- Ketteh now gets help from the guards, if she is approached in an unsutable manner
-- many map improvements
+- new paper chase quest which leads players all over the world
+- Ketteh now gets help from the guards, if players without any clothes(!) ignore her warning
+- jail exit is straight to outside the cell
 
 *client*
-- replaced the separate menu buttons with one large menu
+- replaced the separate menu buttons with one large menu 
 - HP bar of ignored players is drawn in full color to make them visible at night
 - chat spam filter takes the length of the messages into account
 
 *fixes*
-- webstart client now uses the nice font (e. g. for the quest log)
+- webstart client now uses a styled font (e. g. for the quest log)
 - fixed players becoming invisible because of broken attack target reference
-- trading does now properly stack items
+- trading stack items properly
 - map fixes
 
 *website*
@@ -28,11 +28,11 @@
 
 *world*
 - Ados Botanical Gardens
-- new lamps
-- journal for merchants
+- new lamps 
 - map layering and collisions fixes
 - new blend mode for enabling lighting in any zone
 - Monogenes informs players about public chest
+- 3 achievements activated 
 
 *fixes*
 - don't accidently pick the first item on click spam on an item which was used up
@@ -44,6 +44,7 @@
 *internal*
 - creates selenium test for the stendhal website
 - actions use item paths where applicable
+- journal for merchants
 
 *website*
 - email-address can now be changed
