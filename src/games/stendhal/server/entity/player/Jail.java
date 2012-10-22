@@ -181,7 +181,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			// serving his sentence. Negative times are treated as "forever",
 			// thus no turn notifiers are needed. Zero is useful for freeing
 			// players, so we handle that normally.
-			LOGGER.error("Setting turn notifier for " + (minutes * 60) + " " + jailer);
+			LOGGER.info("Setting turn notifier for " + (minutes * 60) + " " + jailer);
 			if (minutes >= 0) {
 				SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
 			}
