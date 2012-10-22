@@ -54,9 +54,9 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			new Point(3, 3),
 			new Point(8, 3),
 			// elf cell(13, 3),
-			new Point(18, 3), 
-			new Point(23, 3), 
-			new Point(28, 3), 
+			new Point(18, 3),
+			new Point(23, 3),
+			new Point(28, 3),
 			new Point(8, 11),
 			new Point(13, 11),
 			new Point(18, 11),
@@ -64,23 +64,25 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			new Point(28, 11)
 		);
 
-		private static final Rectangle[] cellBlocks = { 
+		private static final Rectangle[] cellBlocks = {
 			new Rectangle(1, 1, 30, 3),
 			new Rectangle(7, 10, 30, 3)
 		};
 
 	private ArrestWarrantList arrestWarrants;
 
-	private List<Cell> cells = new LinkedList<Cell>();
-	
-	private ZoneEnterExitListener listener = new ZoneEnterExitListener() {
+	private final List<Cell> cells = new LinkedList<Cell>();
+
+	private final ZoneEnterExitListener listener = new ZoneEnterExitListener() {
+		@Override
 		public void onEntered(final RPObject object, final StendhalRPZone zone) {
 			if (object.getRPClass().subclassOf("player")) {
 				//TODO: could this be a bug ? (durkham)
-				
+
 			}
 		}
 
+		@Override
 		public void onExited(final RPObject object, final StendhalRPZone zone) {
 			if (object instanceof RPEntity && object.getRPClass().subclassOf("player")) {
 				String playerName = ((RPEntity)object).getName();
@@ -115,6 +117,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			return criminalName.hashCode();
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			release(criminalName);
 		}
@@ -148,12 +151,14 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		if (criminal == null) {
 			final String text = "Player " + criminalName + " is not online, but the arrest warrant has been recorded anyway.";
 			policeman.sendPrivateText(text);
-			LOGGER.debug(text);
+			LOGGER.info(text);
 		} else {
 			arrestWarrant.setStarted();
 			imprison(criminal, policeman, minutes);
 			criminal.sendPrivateText(NotificationType.SUPPORT,
 					"You have been jailed for " + minutes
+					+ " " + Grammar.plnoun(minutes, "minute") + ". Reason: " + reason + ".");
+			LOGGER.info(criminal.getName() + " has been jailed for " + minutes
 					+ " " + Grammar.plnoun(minutes, "minute") + ". Reason: " + reason + ".");
 		}
 		arrestWarrants.add(arrestWarrant);
@@ -164,9 +169,9 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		if (jailzone == null) {
 			final String text = "No zone has been configured to be Jailzone";
 			policeman.sendPrivateText(text);
-			LOGGER.debug(text);
+			LOGGER.error(text);
 			return;
-		} 
+		}
 		final boolean successful = teleportToAvailableCell(criminal, policeman);
 		if (successful) {
 			final Jailer jailer = new Jailer(criminal.getName());
@@ -176,12 +181,13 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			// serving his sentence. Negative times are treated as "forever",
 			// thus no turn notifiers are needed. Zero is useful for freeing
 			// players, so we handle that normally.
+			LOGGER.error("Setting turn notifier for " + (minutes * 60) + " " + jailer);
 			if (minutes >= 0) {
 				SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
 			}
 		} else {
-			policeman.sendPrivateText("Could not find a cell for "
-					+ criminal.getName());
+			policeman.sendPrivateText("Could not find a cell for " + criminal.getName());
+			LOGGER.error("Could not find a cell for " + criminal.getName());
 		}
 	}
 
@@ -197,7 +203,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 					return true;
 				}
 			}
-			
+
 		}
 
 		return false;
@@ -214,7 +220,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	public boolean release(final String inmateName) {
 		final Player inmate = SingletonRepository.getRuleProcessor().getPlayer(inmateName);
 		if (inmate == null) {
-			LOGGER.debug("Jailed player " + inmateName + "has logged out.");
+			LOGGER.info("Jailed player " + inmateName + " has logged out.");
 			return false;
 		}
 
@@ -232,7 +238,9 @@ public class Jail implements ZoneConfigurator, LoginListener {
 			inmate.teleport(exitZone, 8, 7, Direction.LEFT, null);
 			inmate.sendPrivateText(NotificationType.SUPPORT,
 					"Your sentence is over. You can walk out now.");
-			LOGGER.debug("Player " + inmate.getName() + "released from jail.");
+			LOGGER.info("Player " + inmate.getName() + " released from jail.");
+		} else {
+			LOGGER.info("Tried to release player " + inmate.getName() + ", but " + inmate.getName() + " is not in jail.");
 		}
 
 		// The player completed his sentence and did not logout
@@ -265,10 +273,11 @@ public class Jail implements ZoneConfigurator, LoginListener {
 	 * @param player
 	 */
 	public void grantParoleIfPlayerWasAPrisoner(final Player player) {
-		
+
 		arrestWarrants.removeByName(player.getName());
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		// we need to do this on the next turn because the
 		// client does not get any private messages otherwise
@@ -276,6 +285,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		// if it gets a cross zone teleport too early. so we wait
 		// 5 seconds.
 		SingletonRepository.getTurnNotifier().notifyInSeconds(5, new TurnListener() {
+			@Override
 			public void onTurnReached(final int currentTurn) {
 				final String name = player.getName();
 
@@ -285,15 +295,21 @@ public class Jail implements ZoneConfigurator, LoginListener {
 				}
 
 				if (removeVeryOldWarrants(arrestWarrant)) {
+					LOGGER.warn("Removed very old:" + arrestWarrant);
+					release(player);
 					return;
 				}
 
 				final long timestamp = arrestWarrant.getTimestamp();
-				player.sendPrivateText(NotificationType.SUPPORT, 
+				player.sendPrivateText(NotificationType.SUPPORT,
 						"You have been jailed "
 					+ " for " + arrestWarrant.getMinutes()
 					+ " " + Grammar.plnoun(arrestWarrant.getMinutes(), "minute") + " on " + String.format("%tF", timestamp)
 					+ ". Reason: " + arrestWarrant.getReason() + ".");
+				LOGGER.info(player.getName() + "logged in who has been jailed "
+						+ " for " + arrestWarrant.getMinutes()
+						+ " " + Grammar.plnoun(arrestWarrant.getMinutes(), "minute") + " on " + String.format("%tF", timestamp)
+						+ ". Reason: " + arrestWarrant.getReason() + ".");
 
 				handleEscapeMessages(arrestWarrant);
 				imprison(player, player, arrestWarrant.getMinutes());
@@ -308,14 +324,14 @@ public class Jail implements ZoneConfigurator, LoginListener {
 
 				return false;
 			}
-			
+
 
 			public void handleEscapeMessages(final ArrestWarrant arrestWarrant) {
 				if (arrestWarrant.isStarted()) {
 					// Notify player that his sentences is starting again because he tried to escape by logging out
 					player.sendPrivateText(NotificationType.SUPPORT,
 							"Although you already spent some "
-							+ "time in jail, your sentence has been restarted " 
+							+ "time in jail, your sentence has been restarted "
 							+ "because of your failed escape attempt.");
 				} else {
 					// Jail player who was offline at the time /jail was issued.
@@ -331,10 +347,10 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		}
 		return "jail not inited ?";
 	}
-	
+
 	/**
 	 * Get the ArrestWarrant of a jailed player.
-	 * 
+	 *
 	 * @param name the name of the player
 	 * @return the ArrestWarrant for the player, or null if there is none
 	 */
@@ -342,6 +358,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		return arrestWarrants.getByName(name);
 	}
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		SingletonRepository.getLoginNotifier().addListener(this);
 		SingletonRepository.setJail(this);
@@ -355,6 +372,6 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		for (final Point p : cellEntryPoints) {
 			cells.add(new Cell(p));
 		}
-		
+
 	}
 }
