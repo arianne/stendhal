@@ -65,8 +65,8 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		);
 
 		private static final Rectangle[] cellBlocks = {
-			new Rectangle(1, 1, 30, 3),
-			new Rectangle(7, 10, 30, 3)
+			new Rectangle(1, 1, 30, 4),
+			new Rectangle(7, 10, 30, 4)
 		};
 
 	private ArrestWarrantList arrestWarrants;
@@ -306,7 +306,7 @@ public class Jail implements ZoneConfigurator, LoginListener {
 					+ " for " + arrestWarrant.getMinutes()
 					+ " " + Grammar.plnoun(arrestWarrant.getMinutes(), "minute") + " on " + String.format("%tF", timestamp)
 					+ ". Reason: " + arrestWarrant.getReason() + ".");
-				LOGGER.info(player.getName() + "logged in who has been jailed "
+				LOGGER.info(player.getName() + " logged in who has been jailed "
 						+ " for " + arrestWarrant.getMinutes()
 						+ " " + Grammar.plnoun(arrestWarrant.getMinutes(), "minute") + " on " + String.format("%tF", timestamp)
 						+ ". Reason: " + arrestWarrant.getReason() + ".");
