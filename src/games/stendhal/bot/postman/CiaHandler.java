@@ -34,6 +34,7 @@ public class CiaHandler {
 
 			// read header
 			Element source = DomHelper.getChild(root, "source");
+			String project = DomHelper.getChildText(source, "project");
 			String module = DomHelper.getChildText(source, "module");
 			String branch = DomHelper.getChildText(source, "branch");
 
@@ -44,6 +45,7 @@ public class CiaHandler {
 				Node node = nodes.item(i);
 				if ((node instanceof Element) && node.getNodeName().equals("commit")) {
 					CiaMessage msg = new CiaMessage();
+					msg.setProject(project);
 					msg.setModule(module);
 					msg.setBranch(branch);
 					msg.setAuthor(DomHelper.getChildText(node, "author"));
@@ -66,6 +68,9 @@ public class CiaHandler {
 			br.close();
 		}
 	}
+//	20:33 < CIA-18> arianne_rpg: madmetzger * r464dd9c4d5bb marauroa/ (18 files in 13 dirs): Merge branch 'master' of ssh://madmetzger@arianne.git.sourceforge.net/gitroot/arianne/marauroa
+//	18:15 < CIA-27> arianne_rpg: kiheru * stendhal/src/games/stendhal/client/gui/ (6 files in 2 dirs): Autoinspect containers. Removed the old, more complicated, approach
+
 
 
 	/**

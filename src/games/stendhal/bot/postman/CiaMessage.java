@@ -11,6 +11,7 @@ import java.util.List;
 public class CiaMessage {
 	private String author;
 	private String branch;
+	private String project;
 	private String revision;
 	private String module;
 	private final List<String> files = new LinkedList<String>();
@@ -73,6 +74,21 @@ public class CiaMessage {
 	}
 
 	/**
+	 * @return the project
+	 */
+	protected String getProject() {
+		return project;
+	}
+
+	/**
+	 * @param project the project to set
+	 */
+	protected void setProject(String project) {
+		this.project = project;
+	}
+
+
+	/**
 	 * @return the files
 	 */
 	protected String getFiles() {
@@ -110,6 +126,7 @@ public class CiaMessage {
 		result = prime * result + ((files == null) ? 0 : files.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + ((module == null) ? 0 : module.hashCode());
+		result = prime * result + ((project == null) ? 0 : project.hashCode());
 		result = prime * result + ((revision == null) ? 0 : revision.hashCode());
 		return result;
 	}
@@ -161,6 +178,13 @@ public class CiaMessage {
 		} else if (!module.equals(other.module)) {
 			return false;
 		}
+		if (project == null) {
+			if (other.project != null) {
+				return false;
+			}
+		} else if (!project.equals(other.project)) {
+			return false;
+		}
 		if (revision == null) {
 			if (other.revision != null) {
 				return false;
@@ -174,7 +198,7 @@ public class CiaMessage {
 	@Override
 	public String toString() {
 		return "CiaMessage [author=" + author + ", branch=" + branch + ", revision=" + revision + ", module="
-				+ module + ", files=" + files + ", message=" + message + "]";
+				+ module + ", project=" + project + ", files=" + files + ", message=" + message + "]";
 	}
 
 }
