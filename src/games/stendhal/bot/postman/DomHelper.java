@@ -1,6 +1,7 @@
 package games.stendhal.bot.postman;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -82,4 +83,56 @@ public class DomHelper {
 		}
 	}
 
+	/**
+	 * a node list iterator
+	 */
+	static class NodeListIterator implements Iterator<Element> {
+		private final NodeList nodes;
+		private final String name;
+		private int nextNode = 0;
+
+		/**
+		 * NodeListIterator
+		 *
+		 * @param parent parent node
+		 * @param name name of interesting children
+		 */
+		public NodeListIterator(Node parent, String name) {
+			this.nodes = parent.getChildNodes();
+			this.name = name;
+			findNextNode();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return nextNode < nodes.getLength();
+		}
+
+		@Override
+		public Element next() {
+			Element temp = (Element) nodes.item(nextNode);
+			findNextNode();
+			return temp;
+		}
+
+		private void findNextNode() {
+			nextNode++;
+			while (hasNext()) {
+				Node node = nodes.item(nextNode);
+				if (node instanceof Element) {
+					if (name == null || name.equals(node.getNodeName())) {
+						return;
+					}
+				}
+				nextNode++;
+			}
+
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+	}
 }
