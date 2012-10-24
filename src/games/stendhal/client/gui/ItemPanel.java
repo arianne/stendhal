@@ -44,10 +44,11 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+/**
+ * A component representing space in a slot. 
+ */
 public class ItemPanel extends JComponent implements DropTarget {
-	/**
-	 * serial version uid
-	 */
+	/** serial version uid. */
 	private static final long serialVersionUID = 3409932623156446910L;
 
 	/** 
@@ -69,7 +70,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 * The entity view being held.
 	 */
 	private EntityView<?> view;
-	/** The entity to whom the displayed slot belongs to */
+	/** The entity to whom the displayed slot belongs to. */
 	private IEntity parent;
 	/**
 	 * Current associated popup menu. Using
@@ -81,11 +82,11 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 * Fix for bug #3069835.
 	 */
 	private JPopupMenu popupMenu;
-	/** The inspector the included entity should use */
+	/** The inspector the included entity should use. */
 	private Inspector inspector;
 	private int itemNumber;
 	
-	/** Object types the panel can accept */
+	/** Object types the panel can accept. */
 	private List<Class> acceptedTypes = new ArrayList<Class>();
 	
 	/**
@@ -113,7 +114,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 	/**
 	 * Set item number for purposes of reordering slot contents.
 	 * 
-	 * @param itemNumber
+	 * @param itemNumber the index, corresponding to this panel, of the space
+	 * in the slot
 	 */
 	void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
@@ -226,12 +228,13 @@ public class ItemPanel extends JComponent implements DropTarget {
 			vg.translate(x, y);
 			entityView.draw(vg);
 			vg.dispose();
-		} else if (placeholder != null){
+		} else if (placeholder != null) {
 			placeholder.draw(g, (getWidth() - placeholder.getWidth()) / 2, 
 					(getHeight() - placeholder.getHeight()) / 2);
 		}
 	}
 
+	@Override
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Don't drag an item into the same slot
 		if ((view != null) && (entity == view.getEntity())) {
@@ -291,6 +294,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		// GameLoop may modify slot contents, so we need to scan the contents in
 		// the same thread.
 		GameLoop.get().runOnce(new Runnable() {
+			@Override
 			public void run() {
 				RPObject rpobject = entity.getRPObject();
 				RPSlot slot = rpobject.getContainerSlot();
@@ -320,10 +324,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 		@Override
 		protected void onDragStart(Point point) {
 			if (view != null) {
-				if(view.isMovable()) {
+				if (view.isMovable()) {
 					DragLayer.get().startDrag(view.getEntity());
-				} else {
-					//send a nice message to the user
 				}
 			}
 		}
@@ -341,7 +343,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			}
 
 			// Click on entity. Decide on action
-			if (parent.isUser()) {
+			if (isUserSlot()) {
 				return view.onHarmlessAction();
 			} else {
 				moveItemToBag();
@@ -360,7 +362,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 			 * moveto events are not the default for items the player is
 			 * carrying along
 			 */
-			if (parent.isUser()) {
+			if (isUserSlot()) {
 				view.onAction();
 				return true;
 			}
@@ -368,6 +370,16 @@ public class ItemPanel extends JComponent implements DropTarget {
 			// otherwise try to grab the item
 			moveItemToBag();
 			return true;
+		}
+		
+		/**
+		 * Check if the slot is carried by the user.
+		 * 
+		 * @return <code>true</code> if the slot belongs to the user, or to an
+		 * 	item carried by the user, otherwise <code>false</code>
+		 */
+		private boolean isUserSlot() {
+			return parent.getRPObject().getContainerBaseOwner().equals(User.get().getRPObject());
 		}
 
 		@Override
@@ -443,6 +455,7 @@ public class ItemPanel extends JComponent implements DropTarget {
 		acceptedTypes = types;
 	}
 
+	@Override
 	public boolean canAccept(IEntity entity) {
 		for (Class<?> c : acceptedTypes) {
 			if (c.isAssignableFrom(entity.getClass())) {
