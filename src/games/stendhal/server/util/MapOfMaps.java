@@ -25,17 +25,20 @@ import java.util.Set;
  * @param <W> type of value
  */
 public class MapOfMaps<K, V, W> implements Map<K, Map<V, W>> {
-        private Map<K, Map<V, W>> maps = new HashMap<K, Map<V, W>>();
+        private final Map<K, Map<V, W>> maps = new HashMap<K, Map<V, W>>();
 
-        public void clear() {
+        @Override
+		public void clear() {
                 maps.clear();
         }
 
-        public boolean containsKey(Object key) {
+        @Override
+		public boolean containsKey(Object key) {
                 return maps.containsKey(key);
         }
 
-        public boolean containsValue(Object value) {
+        @Override
+		public boolean containsValue(Object value) {
                 for (Map<V, W> map : maps.values()) {
                         if (map.containsValue(value)) {
                                 return true;
@@ -44,14 +47,23 @@ public class MapOfMaps<K, V, W> implements Map<K, Map<V, W>> {
                 return false;
         }
 
-        public Set<java.util.Map.Entry<K, Map<V, W>>> entrySet() {
+        @Override
+		public Set<java.util.Map.Entry<K, Map<V, W>>> entrySet() {
                 return maps.entrySet();
         }
 
-        public Map<V, W> get(Object key) {
+        @Override
+		public Map<V, W> get(Object key) {
                 return maps.get(key);
         }
 
+        /**
+         * gets a value
+         *
+         * @param key key
+         * @param subKey sub key
+         * @return value
+         */
         public W get(Object key, Object subKey) {
                 Map<V, W> temp = maps.get(key);
                 if (temp == null) {
@@ -60,31 +72,38 @@ public class MapOfMaps<K, V, W> implements Map<K, Map<V, W>> {
                 return temp.get(subKey);
         }
 
-        public boolean isEmpty() {
+        @Override
+		public boolean isEmpty() {
                 return maps.isEmpty();
         }
 
-        public Set<K> keySet() {
+        @Override
+		public Set<K> keySet() {
                 return maps.keySet();
         }
 
-        public Map<V, W> put(K key, Map<V, W> value) {
+        @Override
+		public Map<V, W> put(K key, Map<V, W> value) {
                 return maps.put(key, value);
         }
 
-        public void putAll(Map<? extends K, ? extends Map<V, W>> m) {
+        @Override
+		public void putAll(Map<? extends K, ? extends Map<V, W>> m) {
                 maps.putAll(m);
         }
 
-        public Map<V, W> remove(Object key) {
+        @Override
+		public Map<V, W> remove(Object key) {
                 return maps.remove(key);
         }
 
-        public int size() {
+        @Override
+		public int size() {
                 return maps.size();
         }
 
-        public Collection<Map<V, W>> values() {
+        @Override
+		public Collection<Map<V, W>> values() {
                 return maps.values();
         }
 

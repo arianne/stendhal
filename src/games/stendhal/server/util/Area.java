@@ -27,7 +27,7 @@ import marauroa.common.game.IRPZone;
 /**
  * An area is a specified place on a specified zone like (88, 78) to (109, 98)
  * in 0_ados_wall_n.
- * 
+ *
  * @author hendrik
  */
 public class Area {
@@ -37,7 +37,7 @@ public class Area {
 
 	/**
 	 * Creates a new Area.
-	 * 
+	 *
 	 * @param zone
 	 *            name of the map
 	 * @param shape
@@ -50,7 +50,7 @@ public class Area {
 
 	/**
 	 * Creates a new Area.
-	 * 
+	 *
 	 * @param zone name of the map
 	 * @param x x
 	 * @param y y
@@ -59,14 +59,14 @@ public class Area {
 	 */
 	public Area(final StendhalRPZone zone, int x, int y, int width, int height) {
 		this.zone = zone;
-		final Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(x, y, width, height);
-		this.shape = shape;
+		final Rectangle2D myshape = new Rectangle2D.Double();
+		myshape.setRect(x, y, width, height);
+		this.shape = myshape;
 	}
 	/**
 	 * Checks whether an entity is in this area (e. g. on this zone and inside of
 	 * the shape)
-	 * 
+	 *
 	 * @param entity
 	 *            An entity to check
 	 * @return true, if and only if the entity is in this area.
@@ -82,10 +82,10 @@ public class Area {
 		return zone.equals(entityZone) && zone.has(entity.getID())
 				&& shape.contains(entity.getX(), entity.getY());
 	}
-	
+
 	/**
 	 * Checks whether a respawn point is within this area.
-	 * 
+	 *
 	 * @param point the point to examine
 	 * @return <code>true</code> if the point is within this area, <code>
 	 * false otherwise</code>
@@ -103,7 +103,7 @@ public class Area {
 
 	/**
 	 * Gets the shape.
-	 * 
+	 *
 	 * @return shape
 	 */
 	public Shape getShape() {
@@ -112,7 +112,7 @@ public class Area {
 
 	/**
 	 * Gets a list of players in the area.
-	 * 
+	 *
 	 * @return  A list of all players in the area.
 	 */
 	public List<Player> getPlayers() {
