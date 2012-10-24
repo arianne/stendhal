@@ -1351,6 +1351,7 @@ scientist	SUB
 sergeant	SUB
 sergej	SUB-NAM
 servant	SUB
+shadows SUB-NAM
 she	SUB-PRO	they
 sheepman	SUB
 siandra	SUB-NAM
@@ -1464,6 +1465,7 @@ zynn	SUB-NAM
 
 another	ADJ
 armed	ADJ
+armored ADJ
 available	ADJ
 awesome	ADJ
 bad	ADJ
