@@ -19,19 +19,16 @@ package games.stendhal.bot.postman;
  * @author hendrik
  */
 class FlashThing extends EventHandler {
-	private String command;
-	private String sender;
-	private PostmanIRC postmanIRC;
-	
+	private final String sender;
+	private final PostmanIRC postmanIRC;
+
 	/**
 	 * creates a flashthing handler
 	 *
-	 * @param command    supportanswer-command
 	 * @param sender     sender
 	 * @param postmanIRC PostmanIRC
 	 */
-	public FlashThing(String command, String sender, PostmanIRC postmanIRC) {
-		this.command = command;
+	public FlashThing(String sender, PostmanIRC postmanIRC) {
 		this.sender = sender;
 		this.postmanIRC = postmanIRC;
 	}
