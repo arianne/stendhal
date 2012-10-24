@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.PircBot;
 import org.jibble.pircbot.ReplyConstants;
+import org.jibble.pircbot.User;
 
 /**
  * IRC Bot for postman.
@@ -209,6 +210,11 @@ public class PostmanIRC extends PircBot {
 	}
 
 	private void handlePossibleFlood(String channel, String sender, String hostname, String message) {
+		User user = getUser(channel, sender);
+		if ((user != null) && (user.isOp() || user.hasVoice())) {
+			return;
+		}
+
 		if (floodDetection.isFlooding(sender, message)) {
 			floodDetection.clear(sender);
 
@@ -226,6 +232,26 @@ public class PostmanIRC extends PircBot {
 				}
 			}
 		}
+	}
+
+	/**
+	 * gets an user object
+	 *
+	 * @param channel channel
+	 * @param nick nick
+	 * @return User or null
+	 */
+	private User getUser(String channel, String nick) {
+		User[] users = super.getUsers(channel);
+		if (users == null) {
+			return null;
+		}
+		for (User user : users) {
+			if (user.getNick().equals(nick)) {
+				return user;
+			}
+		}
+		return null;
 	}
 
 	@Override
