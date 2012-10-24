@@ -1,0 +1,38 @@
+X-ACL-Warn: 
+Received: from sfp-cvsdas-4.v30.ch3.sourceforge.com ([172.29.30.180] helo=vz-cvs-4.sog)
+        by sog-mx-4.v43.ch3.sourceforge.com with smtp 
+        (Exim 4.76)
+        id 1TR8Vt-0004tU-0O
+Received: by vz-cvs-4.sog (sSMTP sendmail emulation); Wed, 24 Oct 2012 21:29:20 +0000
+Date: Wed, 24 Oct 2012 21:29:20 +0000
+Content-type: text/xml
+Subject: DeliverXML
+
+<message>
+   <generator>
+       <name>CIA Perl client for CVS</name>
+       <version>2.4</version>
+       <url>http://cia.vc/clients/cvs/ciabot_cvs.pl</url>
+   </generator>
+   <source>
+       <project>arianne_rpg</project>
+       <module>stendhal</module>
+   </source>
+   <timestamp>
+       1351114160
+   </timestamp>
+   <body>
+       <commit>
+           <author>kiheru</author>
+           <files>
+  <file>tiled/tileset/refactoring</file>
+  <file>tiled/tileset/building/decoration/fireplace.xcf.bz2</file>
+  <file>tiled/tileset/building/decoration/coal_fire.png</file>
+           </files>
+           <log>
+Redrawn coal_fire
+
+           </log>
+       </commit>
+   </body>
+</message>

@@ -1,0 +1,36 @@
+X-ACL-Warn: 
+Received: from sfp-scmshell-2.v30.ch3.sourceforge.com ([172.29.30.124] helo=vz-git-2.sog)
+        by sog-mx-1.v43.ch3.sourceforge.com with smtp 
+        (Exim 4.76)
+        id 1TR92L-0007ts-Fi
+Received: by vz-git-2.sog (sSMTP sendmail emulation); Wed, 24 Oct 2012 22:02:53 +0000
+Date: Wed, 24 Oct 2012 22:02:53 +0000
+Content-type: text/xml
+Subject: DeliverXML
+
+<message>
+   <generator>
+       <name>CIA Perl client for Git</name>
+       <version>1.0</version>
+   </generator>
+   <source>
+       <project>arianne_rpg</project>
+       <module>marauroa</module>
+       <branch>perception_json</branch>   </source>
+   <timestamp>
+       1351116173
+   </timestamp>
+   <body>
+       <commit>
+           <author>nhnb</author>
+           <revision>db478a18607f</revision>
+           <files>
+  <file>src/marauroa/server/net/INetworkServerManager.java</file>
+  <file>src/marauroa/server/net/validator/ConnectionValidator.java</file>
+           </files>
+           <log>
+cleaned up imports
+           </log>
+       </commit>
+   </body>
+</message>
