@@ -263,8 +263,8 @@ public class ExperiencedWarriorNPC implements ZoneConfigurator  {
 				});
 
 				add(ConversationStates.BUY_PRICE_OFFERED,
-						ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-						"Ok, come back if you're interested later.", null);
+						ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING,
+						"Ok, come back if you're interested later. What else can I do for you?", null);
 
 				addGoodbye("Farewell and godspeed!");
 			}
