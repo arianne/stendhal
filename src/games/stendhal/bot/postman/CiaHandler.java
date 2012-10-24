@@ -48,18 +48,18 @@ public class CiaHandler {
 			NodeList nodes = getChild(root, "body").getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
 				Node node = nodes.item(i);
-				if ((node instanceof Element) && node.getLocalName().equals("commit")) {
+				if ((node instanceof Element) && node.getNodeName().equals("commit")) {
 					CiaMessage msg = new CiaMessage();
 					msg.setModule(module);
 					msg.setBranch(branch);
 					msg.setAuthor(getChildText(node, "author"));
 					msg.setRevision(getChildText(node, "revision"));
 
-					NodeList fileNodes = node.getChildNodes();
-					for (int j = 0; i < fileNodes.getLength(); i++) {
-						Node fileNode = nodes.item(j);
-						if ((fileNode instanceof Element) && node.getLocalName().equals("file")) {
-							msg.addFile(fileNode.getNodeValue().trim());
+					NodeList fileNodes = getChild(node, "files").getChildNodes();
+					for (int j = 0; j < fileNodes.getLength(); j++) {
+						Node fileNode = fileNodes.item(j);
+						if ((fileNode instanceof Element) && fileNode.getNodeName().equals("file")) {
+							msg.addFile(fileNode.getTextContent().trim());
 						}
 					}
 					msg.setMessage(getChildText(node, "log"));
@@ -81,15 +81,15 @@ public class CiaHandler {
 	 * @return Element
 	 * @throws IOException if the child does not exist
 	 */
-	private static Element getChild(Element element, String name) throws IOException {
+	private static Element getChild(Node element, String name) throws IOException {
 		NodeList list = element.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node node = list.item(i);
-			if ((node instanceof Element) && node.getLocalName().equals(name)) {
+			if ((node instanceof Element) && node.getNodeName().equals(name)) {
 				return (Element) list.item(i);
 			}
 		}
-		throw new IOException("Element " + element.getLocalName() + " does not have expected child " + name);
+		throw new IOException("Element " + element.getNodeName() + " does not have expected child " + name);
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class CiaHandler {
 		NodeList list = element.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node node = list.item(i);
-			if ((node instanceof Element) && node.getLocalName().equals(name)) {
+			if ((node instanceof Element) && node.getNodeName().equals(name)) {
 				Element e = (Element) list.item(i);
-				String value = e.getNodeValue();
+				String value = e.getTextContent();
 				if (value != null) {
 					value = value.trim();
 				}
