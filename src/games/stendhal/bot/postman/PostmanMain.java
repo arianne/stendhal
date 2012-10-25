@@ -171,6 +171,7 @@ public class PostmanMain extends Thread {
 			clientManager.login(username, password);
 			final PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
+			new CiaHandler(postmanIRC).listen();
 			postman = new Postman(clientManager, postmanIRC);
 			postman.teleportPostman();
 		} catch (final SocketException e) {

@@ -4,9 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.jibble.pircbot.Colors;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -17,6 +21,77 @@ import org.xml.sax.InputSource;
  * @author hendrik
  */
 public class CiaHandler {
+	/** logger */
+	protected static Logger logger = Logger.getLogger(CiaHandler.class);
+	private PostmanIRC postmanIRC;
+
+	/**
+	 * Cia Handler
+	 *
+	 * @param postmanIRC postman irc bot
+	 */
+	public CiaHandler(PostmanIRC postmanIRC) {
+		this.postmanIRC = postmanIRC;
+	}
+
+	/**
+	 * listens for cia messages
+	 */
+	public void listen() {
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					ServerSocket server = new ServerSocket();
+					server.bind(new InetSocketAddress("localhost", 7838));
+					while (true) {
+						Socket client = server.accept();
+						Thread clientThread = new Thread(new CiaClientThread(client));
+						clientThread.setDaemon(true);
+						clientThread.start();
+					}
+				} catch (IOException e) {
+					logger.error(e, e);
+				}
+			}
+		});
+		t.setDaemon(true);
+		t.start();
+	}
+
+	/**
+	 * handles Cia client messages
+	 */
+	class CiaClientThread implements Runnable {
+		private Socket client = null;
+
+		/**
+		 * CiaClientThread
+		 *
+		 * @param client client
+		 */
+		public CiaClientThread(Socket client) {
+			this.client = client;
+		}
+
+		@Override
+		public void run() {
+			try {
+				InputStream is = client.getInputStream();
+				List<CiaMessage> msgs = read(is);
+				is.close();
+				client.close();
+				for (CiaMessage msg : msgs) {
+					String line = format(msg);
+					postmanIRC.sendMessageToDevChannels(line);
+				}
+			} catch (IOException e) {
+				logger.error(e, e);
+			}
+		}
+		
+	}
 
 	/**
 	 * processes an CIA email
