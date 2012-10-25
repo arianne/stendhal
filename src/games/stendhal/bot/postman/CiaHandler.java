@@ -144,7 +144,8 @@ public class CiaHandler {
 	 */
 	public String format(CiaMessage msg) {
 		StringBuilder res = new StringBuilder();
-		addFormattedToken(res, Colors.GREEN, msg.getAuthor());
+		addFormattedToken(res, Colors.BOLD, msg.getProject() + ": ");
+		addFormattedToken(res, Colors.DARK_GREEN, msg.getAuthor());
 		if ((msg.getBranch() != null) && (!msg.getBranch().trim().isEmpty())) {
 			res.append(" ");
 			addFormattedToken(res, Colors.BROWN, msg.getBranch());
@@ -155,7 +156,7 @@ public class CiaHandler {
 			addFormattedToken(res, Colors.BOLD, msg.getRevision());
 		}
 		res.append(" ");
-		addFormattedToken(res, Colors.CYAN, msg.getModule());
+		addFormattedToken(res, Colors.TEAL, msg.getModule());
 		res.append("/");
 		res.append(msg.getFiles());
 		addFormattedToken(res, Colors.BOLD, ":");
