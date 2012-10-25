@@ -49,21 +49,15 @@ public class PostmanIRC extends PircBot {
 
 
 	private static List<String> channels = new LinkedList<String>();
-
 	private static List<String> signChannels = new LinkedList<String>();
-
+	private static List<String> devChannels = new LinkedList<String>();
 	private static String supportChannel;
-
 	private static String mainChannel;
-
 	private static String chatChannel;
-
+	private static String devChannel;
 	private final Properties conf = new Properties();
-
 	private final String gameServer;
-
 	private final FloodDetection floodDetection = new FloodDetection();
-
 	private final CounterMap<String> kickedHostnames = new CounterMap<String>();
 
 	/**
@@ -78,6 +72,7 @@ public class PostmanIRC extends PircBot {
 			supportChannel = conf.getProperty("support");
 			mainChannel = conf.getProperty("main");
 			chatChannel = conf.getProperty("chat");
+			devChannel = conf.getProperty("dev");
 
 			channels.add(supportChannel);
 			channels.add(mainChannel);
@@ -86,6 +81,9 @@ public class PostmanIRC extends PircBot {
 
 			signChannels.add(supportChannel);
 			signChannels.add(chatChannel);
+
+			devChannels.add(mainChannel);
+			devChannels.add(devChannel);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
 		}
@@ -177,7 +175,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	/**
-	 * sends a message to all channels
+	 * sends a message to sign channels
 	 *
 	 * @param text message to send
 	 */
@@ -187,6 +185,16 @@ public class PostmanIRC extends PircBot {
 		}
 	}
 
+	/**
+	 * sends a message to dev channels
+	 *
+	 * @param text message to send
+	 */
+	public void sendMessageToDevChannels(String text) {
+		for (final String channelName : devChannels) {
+			sendMultilineMessage(channelName, text);
+		}
+	}
 
 	/**
 	 * gets the game account name associated to an irc account
@@ -386,4 +394,5 @@ public class PostmanIRC extends PircBot {
 		kickedHostnames.clear();
 		super.sendAction(mainChannel, "looks into the red flash");
 	}
+
 }
