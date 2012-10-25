@@ -222,6 +222,9 @@ public class PostmanIRC extends PircBot {
 		if ((user != null) && (user.isOp() || user.hasVoice())) {
 			return;
 		}
+		if (sender.equals("postman")) {
+			return;
+		}
 
 		if (floodDetection.isFlooding(sender, message)) {
 			floodDetection.clear(sender);
