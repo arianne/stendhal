@@ -30,12 +30,9 @@ public class DomHelper {
 	 * @throws IOException if the child does not exist
 	 */
 	public static Element getChild(Node element, String name) throws IOException {
-		NodeList list = element.getChildNodes();
-		for (int i = 0; i < list.getLength(); i++) {
-			Node node = list.item(i);
-			if ((node instanceof Element) && node.getNodeName().equals(name)) {
-				return (Element) list.item(i);
-			}
+		Iterator<Element> itr = getChildren(element, name).iterator();
+		if (itr.hasNext()) {
+			return itr.next();
 		}
 		throw new IOException("Element " + element.getNodeName() + " does not have expected child " + name);
 	}
@@ -48,16 +45,11 @@ public class DomHelper {
 	 * @return content
 	 */
 	public static String getChildText(Node element, String name) {
-		NodeList list = element.getChildNodes();
-		for (int i = 0; i < list.getLength(); i++) {
-			Node node = list.item(i);
-			if ((node instanceof Element) && node.getNodeName().equals(name)) {
-				Element e = (Element) list.item(i);
-				String value = e.getTextContent();
-				if (value != null) {
-					value = value.trim();
-				}
-				return value;
+		Iterator<Element> itr = getChildren(element, name).iterator();
+		if (itr.hasNext()) {
+			String res = itr.next().getTextContent();
+			if (res != null) {
+				return res.trim();
 			}
 		}
 		return null;
