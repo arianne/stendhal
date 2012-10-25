@@ -54,5 +54,15 @@ public class CiaMessageTest {
 		msg.addFile("tests/games/stendhal/bot/postman/cia.txt");
 		msg.addFile("tests/games/stendhal/bot/postman/cia2.txt");
 		assertThat(msg.getFiles(), equalTo("tests/games/stendhal/bot/postman/ (cia.txt, cia2.txt)"));
+
+		msg = new CiaMessage();
+		msg.addFile("src/games/stendhal/bot/postman/CiaMessage");
+		msg.addFile("tests/games/stendhal/bot/postman/CiaMessageTest");
+		assertThat(msg.getFiles(), equalTo(" (2 files in 2 dirs)"));
+
+		msg = new CiaMessage();
+		msg.addFile("src/games/CiaMessage");
+		msg.addFile("tests/games/CiaMessageTest");
+		assertThat(msg.getFiles(), equalTo(" (src/games/CiaMessage, tests/games/CiaMessageTest)"));
 	}
 }

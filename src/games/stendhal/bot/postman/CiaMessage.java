@@ -94,10 +94,10 @@ public class CiaMessage {
 	 * @return the files
 	 */
 	protected String getFiles() {
-		int prefixSize = calculateCommonPrefix(files);
-		if (prefixSize <= 0) {
+		if (files.isEmpty()) {
 			return "";
 		}
+		int prefixSize = calculateCommonPrefix(files);
 
 		if (files.size() > 1) {
 			prefixSize = files.get(0).lastIndexOf("/", prefixSize) + 1;
