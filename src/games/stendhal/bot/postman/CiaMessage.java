@@ -1,7 +1,9 @@
 package games.stendhal.bot.postman;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * a CIA message
@@ -92,8 +94,77 @@ public class CiaMessage {
 	 * @return the files
 	 */
 	protected String getFiles() {
-		// TODO: format nicely
-		return files.toString();
+		int prefixSize = calculateCommonPrefix(files);
+		if (prefixSize <= 0) {
+			return "";
+		}
+
+		String prefix = files.get(0).substring(0, prefixSize);
+
+		StringBuilder res = new StringBuilder();
+		res.append(prefix);
+
+		List<String> endings = new LinkedList<String>();
+		for (String file : files) {
+			String temp = file.substring(prefixSize);
+			if (!temp.isEmpty()) {
+				endings.add(temp);
+			}
+		}
+		if (!endings.isEmpty()) {
+			String endingsStr = endings.toString();
+			endingsStr = endingsStr.substring(1, endingsStr.length() - 2);
+			if (endingsStr.length() > 60) {
+				endingsStr = countDirsAndFiles(endings);
+			}
+			res.append(" (");
+			res.append(endingsStr);
+			res.append(")");
+		}
+		return res.toString();
+	}
+
+	/**
+	 * calculates the size of the common prefix
+	 *
+	 * @param list list
+	 * @return size of the common prefix
+	 */
+	int calculateCommonPrefix(List<String> list) {
+		if (list.isEmpty()) {
+			return 0;
+		}
+		String org = list.get(0);
+		int max = org.length();
+		for (String str : list) {
+			for (int i = 0; i < max; i++) {
+				if ((str.length() < i + 1) || (org.charAt(i) != str.charAt(i))) {
+					max = i;
+					break;
+				}
+			}
+		}
+		return max;
+	}
+
+	/**
+	 * counts the numbers of directories and files
+	 *
+	 * @param endings file list
+	 * @return summary
+	 */
+	private String countDirsAndFiles(List<String> endings) {
+		Set<String> dirs = new HashSet<String>();
+		for (String file : endings) {
+			if (file.lastIndexOf("/") > -1) {
+				dirs.add(file.substring(0, file.lastIndexOf("/")));
+			}
+		}
+		String res = endings.size() + " files";
+		if (dirs.size() > 1) {
+			res = res + " in " + dirs.size() + " dirs";
+		}
+		return res;
 	}
 
 	/**
