@@ -84,6 +84,42 @@ public class DomHelper {
 	}
 
 	/**
+	 * gets the children
+	 *
+	 * @param parent parent node
+	 * @param name optional name of children
+	 * @return iterable
+	 */
+	public static NodeListIterable getChildren(Node parent, String name) {
+		return new NodeListIterable(parent, name);
+	}
+
+	/**
+	 * a node list iterable
+	 */
+	static class NodeListIterable implements Iterable<Element> {
+		private final Node parent;
+		private final String name;
+
+		/**
+		 * NodeListIterable
+		 *
+		 * @param parent parent node
+		 * @param name name of interesting children
+		 */
+		public NodeListIterable(Node parent, String name) {
+			this.parent = parent;
+			this.name = name;
+		}
+
+		@Override
+		public Iterator<Element> iterator() {
+			return new NodeListIterator(parent, name);
+		}
+
+	}
+
+	/**
 	 * a node list iterator
 	 */
 	static class NodeListIterator implements Iterator<Element> {
