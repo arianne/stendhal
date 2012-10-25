@@ -104,7 +104,7 @@ public class PostmanIRC extends PircBot {
 
 			setName(nick);
 			setLogin(conf.getProperty("login"));
-			setVersion("0.5.1");
+			setVersion("0.6");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -119,6 +119,7 @@ public class PostmanIRC extends PircBot {
 			for (final String channelName : PostmanIRC.channels) {
 				joinChannel(channelName);
 			}
+			joinChannel(devChannel);
 		}
 	}
 
