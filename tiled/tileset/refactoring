@@ -26,7 +26,7 @@ building/column/pillar.png
 building/entrance/int_iron_bars.png
 building/entrance/int_broken_bars.png
 building/entrance/shadow.png
-d*/building/entrance/sandy_rocks_entrance.png
+*/building/entrance/sandy_rocks_entrance.png
 building/stairs/int_ns.png
 building/stairs/int_ew.png
 building/stairs/int_we.png
@@ -231,7 +231,7 @@ plant/stump/hollow_logs.png
 plant/stump/log_vertical.png
 plant/stump/rectangular.png
 plant/stump/small_stump.png
-plant/stump/stump_green.png
+d*/plant/stump/stump_green2.png
 plant/stump/stump_rectangular.png
 plant/stump/stump_snow.png
 plant/stump/stump_snow1.png
