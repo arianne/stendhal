@@ -75,6 +75,8 @@ public class TPPTestHelper implements ITPPQuestConstants {
 		player.setAtkXP(100000000);
 		player.setDefXP(100000000);
 		player.setXP(100000000);
+		// according to E+08 xp
+		player.setLevel(216);
 		player.setHP(10000);	
 		player.addKarma(10000);
 		player.setInvisible(true);
