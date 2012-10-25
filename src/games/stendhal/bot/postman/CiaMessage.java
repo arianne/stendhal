@@ -99,7 +99,11 @@ public class CiaMessage {
 			return "";
 		}
 
+		if (files.size() > 1) {
+			prefixSize = files.get(0).lastIndexOf("/", prefixSize) + 1;
+		}
 		String prefix = files.get(0).substring(0, prefixSize);
+		
 
 		StringBuilder res = new StringBuilder();
 		res.append(prefix);
@@ -113,7 +117,7 @@ public class CiaMessage {
 		}
 		if (!endings.isEmpty()) {
 			String endingsStr = endings.toString();
-			endingsStr = endingsStr.substring(1, endingsStr.length() - 2);
+			endingsStr = endingsStr.substring(1, endingsStr.length() - 1);
 			if (endingsStr.length() > 60) {
 				endingsStr = countDirsAndFiles(endings);
 			}

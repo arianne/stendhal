@@ -48,7 +48,11 @@ public class CiaMessageTest {
 		msg = new CiaMessage();
 		msg.addFile("tiled/tileset/refactoring");
 		msg.addFile("tiled/tileset/building/decoration/fireplace.xcf.bz2");
-		assertThat(msg.getFiles(), equalTo("tiled/tileset/ (refactoring, building/decoration/fireplace.xcf.bz)"));
+		assertThat(msg.getFiles(), equalTo("tiled/tileset/ (refactoring, building/decoration/fireplace.xcf.bz2)"));
 	
+		msg = new CiaMessage();
+		msg.addFile("tests/games/stendhal/bot/postman/cia.txt");
+		msg.addFile("tests/games/stendhal/bot/postman/cia2.txt");
+		assertThat(msg.getFiles(), equalTo("tests/games/stendhal/bot/postman/ (cia.txt, cia2.txt)"));
 	}
 }
