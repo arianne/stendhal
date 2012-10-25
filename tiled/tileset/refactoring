@@ -9,245 +9,245 @@
 # del means deleted as not used in maps
 # followed by * means done and committed
 
-kih*/building/gazebo.png 
-kih*/building/gazebo_overlay.png 
-building/thatched_roof_cottage1.png - credit reiners/check
-building/thatched_roof_cottage2.png - credit reiners/check
-kih*/building/decoration/coal_fire.png
-kih*/building/decoration/wood_fire.png
-building/decoration/swordfish.png
-kih*/building/decoration/platform.png
-del*/building/decoration/chimney_brick_wood.png
-del*/building/decoration/chimney_brick.png
-building/decoration/chimney_tan.png
-building/decoration/grey_chimney.png
-building/column/moss_pillars.png
-del*/building/column/pillar2.png
-building/column/pillar.png
-building/entrance/int_iron_bars.png
-building/entrance/int_broken_bars.png
-del*/building/entrance/sandy_rocks_entrance.png
-building/stairs/int_ns.png
-building/stairs/int_ew.png
-building/stairs/int_we.png
-del*/building/stairs/stone_steps_tan.png
-building/stairs/stairs_orange.png
-del*/building/stairs/rough_hewn_steps.png
-building/stairs/grey_stone_stairs.png
-building/stairs/grey_stone_stairs_down.png
-building/stairs/stairs_grey.png
-building/stairs/wooden_plain.png
-del*/building/window/small.png
-del*/building/window/small_arched.png
-building/window/classic_window.png
-building/window/broken_window.png
-del*/building/window/windows_white_stone.png
-del*/building/window/double_hung.png
-building/house_stone_thatched_roof.png
-building/museum.png
-building/stone_ruins.png
-building/tan_building.png
-building/fence/fence_wooden.png
-building/fence/wooden_brown_fence.png
-del*/building/window/bay_window.png
-del*/building/window/green_windows.png
-furniture/bed/double_pink_roses.png
-furniture/bed/double_purple_gold.png
-furniture/bed/double_white_pink.png
-furniture/bed/single_dingy_white.png
-furniture/bed/single_pink_roses.png
-furniture/bed/single_purple_gold.png
-furniture/bed/single_white_pink.png
-furniture/chair/bench_white.png
-furniture/chair/bench_wooden.png
-furniture/chair/sofa_chair_blue.png
-furniture/chair/sofa_chair_grey.png
-furniture/chair/sofa_chair_pink.png
-furniture/chair/throne.png
-furniture/clock/stone_clock.png
-furniture/clock/wooden_clock.png
-furniture/curtain/blue_green.png
-furniture/kitchen/cabinets.png
-furniture/kitchen/warmer_2.png
-furniture/light/iron_lamp.png
-furniture/light/lamp_blue.png
-furniture/light/lamp_bronze.png
-furniture/light/small_oil_lamp.png
-furniture/light/weird_lamp.png
-furniture/other/mannequins.png
-furniture/other/piano2.png
-furniture/picture/oil_paintings.png
-furniture/shelve/drawer_shelf.png
-furniture/shelve/green_bookshelf.png
-furniture/shelve/item_shelf.png
-furniture/shelve/shelf_3.png
-furniture/shelve/shelf_4.png
-furniture/shelve/small_shelf.png
-del*/furniture/sink/large_front_on.png
-furniture/table/bazaar_table_1.png
-furniture/table/bazaar_table_2.png
-furniture/table/bazaar_table_3.png
-furniture/table/bazaar_table_4.png
-furniture/table/bazaar_table_5.png
-furniture/table/concrete_table.png
-furniture/table/desk.png
-furniture/table/fancy_blue_red.png
-del*/furniture/table/fish_tables.png
-furniture/table/grey_pale.png
-furniture/table/grey_pale_base.png
-furniture/table/hotdog_stand.png
-furniture/table/orb_table.png
-furniture/table/table_round_white.png
-furniture/table/table_with_hob.png
-furniture/table/table_with_hob_pale.png
-furniture/table/table_wooden_brown.png
-furniture/table/vendors_table.png
-ground/grass_snow.png
-del*/ground/grey_paving.png
-ground/ground_snow.png
-ground/sand_1.png
-ground/sand_2.png
-ground/slate_tiles.png
-ground/indoor/floor_tan.png
-ground/indoor/floors_3.png
-del*/ground/ladder/ladder_1.png
-ground/ladder/wooden_ladder_down.png
-del*/ground/ridge/snowy.png
-ground/rock/blue_crystal.png
-ground/rock/gold_crystal.png
-ground/rock/green_crystal2.png
-ground/rock/green_crystal3.png
-ground/rock/hell.png
-ground/rock/icy_crystal.png
-del*/ground/rock/mithril.png
-ground/rock/purple_crystal.png
-ground/rock/red_crystal.png
-ground/rock/rock_snow.png
-ground/rock/rocks.png
-ground/rock/rocks_2.png
-ground/rock/rocks_3.png
-ground/rock/sandy_rocks.png
-ground/rock/square_crystal.png
-item/awning_1.png
-item/awnng_2.png
-item/bazaar_produce.png
-item/boxes.png
-item/campfire_snow.png
-item/campfires.png
-item/firewood.png
-item/fishing_nets.png
-del*/item/handle_posts.png
-item/logs_snow.png
-item/logs_snow1.png
-item/native_masks.png
-del*/item/nest.png
-item/ropes.png
-item/sacks.png
-kym*/item/snowman.png
-item/tools.png
-item/toys.png
-del*/item/weather_vane.png
-item/armor/chains.png
-item/armor/weapons_for_walls.png
-item/banners/banners.png
-item/chest/chest_2.png
-item/chest/chests_red.png
-item/corpse/skull_dark.png
-item/documents/books.png
-item/documents/notes.png
-item/documents/notes2.png
-item/drink/beers_and_flasks.png
-item/drink/bottles_and_cups.png
-item/food/bread.png
-item/food/fish_crates.png
-item/food/meals_1.png
-item/gothic/headstone_2.png
-item/gothic/headstone_3.png
-item/gothic/headstone_4.png
-item/gothic/headstone_5.png
-item/gothic/headstone_6.png
-item/gothic/large_gravestone.png
-item/gothic/skull_post.png
-item/gothic/urn_house.png
-item/gothic/wooden_crosses.png
-item/household/food_preparation.png
-item/household/food_preparation_2.png
-del*/item/pot/barrel_snow.png
-item/pot/barrel_snow1.png
-item/pot/barrels_1.png
-item/pot/barrels_2.png
-item/pot/huge_pot.png
-del*/item/pot/mine_barrels.png
-item/pot/pots_pink_blue.png
-item/pot/wooden_bins.png
-item/pot/wooden_crates.png
-item/statue/archway.png
-item/statue/crystal_statues.png
-item/statue/eaglehead.png
-item/statue/gazingball_statue.png
-item/statue/girl_with_bird.png
-item/statue/grey_stone.png
-item/statue/lion_statues.png
-item/statue/metal_and_stone.png
-item/statue/nymph_aqua.png
-item/statue/nymph_reddish.png
-item/statue/pool_and_face.png
-item/statue/stone_dragon.png
-item/statue/urn_with_flowers.png
-item/statue/water_fountain.png
-item/textile/blankets.png
-item/textile/laundry.png
-item/weapon/box_of_weapons.png
-item/weapon/wall_weapons.png
-del*/item/weapon/weapons_large.png
-object/boardwalk.png
-del*/object/lion_fountain.png
-del*/object/rope_ladder.png
-object/row_boat.png
-object/rowing_boats.png
-object/scarecrow.png
-object/ship.png
-object/suspension_bridge.png
-object/tan_tent.png
-object/trellis_large.png
-object/trellis_small.png
-plant/cactus_2.png
-plant/lily_pads.png
-plant/snowygrass.png
-plant/star_shaped_plants.png
-plant/flower/flower_bed_1.png
-plant/flower/flower_snow.png
-plant/flower/flowers_mixed.png
-plant/flower/hothouse_flowers.png
-plant/flower/planted_containers.png
-plant/flower/pointed_yellow.png
-plant/flower/polyanthus.png
-plant/flower/red_white.png
-plant/flower/small_flower_bed.png
-plant/flower/small_flower_bed_2.png
-plant/flower/vines_3.png
-plant/indoor/small_flowerpots.png
-plant/stump/hollow_logs.png
-plant/stump/log_vertical.png
-plant/stump/small_stump.png
-del*/plant/stump/stump_green2.png
-plant/stump/stump_snow.png
-plant/stump/stump_snow1.png
-plant/stump/stump_vertical.png
-plant/tree/chestnut_tree.png
-plant/tree/christmas_tree.png
-plant/tree/christmas_tree2.png
-plant/tree/dead_tree_1.png
-plant/tree/dead_tree_2.png
-plant/tree/dead_tree_3.png
-plant/tree/dead_tree_4.png
-plant/tree/deadtree_snow.png
-plant/tree/locust_tree.png
-plant/tree/maple_tree.png
-plant/tree/oak_tree.png
-plant/tree/palm_trees.png
-plant/tree/pine_tree_1.png
-plant/tree/pine_tree_2.png
-plant/tree/snow_on_pine.png
-del*/plant/tree/snow_on_tree.png
+kih*/building/gazebo.png 2 
+kih*/building/gazebo_overlay.png  
+building/thatched_roof_cottage1.png 1 -   credit   reiners/check  
+building/thatched_roof_cottage2.png 1 -   credit   reiners/check  
+kih*/building/decoration/coal_fire.png 11
+kih*/building/decoration/wood_fire.png 17
+building/decoration/swordfish.png 2
+kih*/building/decoration/platform.png 4
+del*/building/decoration/chimney_brick_wood.png 
+del*/building/decoration/chimney_brick.png 
+building/decoration/chimney_tan.png 1
+building/decoration/grey_chimney.png 1
+building/column/moss_pillars.png 4
+del*/building/column/pillar2.png 
+building/column/pillar.png 7
+building/entrance/int_iron_bars.png 15
+building/entrance/int_broken_bars.png 2
+del*/building/entrance/sandy_rocks_entrance.png 
+building/stairs/int_ns.png 18
+building/stairs/int_ew.png 8
+building/stairs/int_we.png 2
+del*/building/stairs/stone_steps_tan.png 
+building/stairs/stairs_orange.png 2
+del*/building/stairs/rough_hewn_steps.png 
+building/stairs/grey_stone_stairs.png 4
+building/stairs/grey_stone_stairs_down.png 2
+building/stairs/stairs_grey.png 5
+building/stairs/wooden_plain.png 1
+del*/building/window/small.png 
+del*/building/window/small_arched.png 
+building/window/classic_window.png 2
+building/window/broken_window.png 3
+del*/building/window/windows_white_stone.png 
+del*/building/window/double_hung.png 
+building/house_stone_thatched_roof.png 1
+building/museum.png 2
+building/stone_ruins.png 3
+building/tan_building.png 2
+building/fence/fence_wooden.png 30
+building/fence/wooden_brown_fence.png 5
+del*/building/window/bay_window.png 
+del*/building/window/green_windows.png 
+furniture/bed/double_pink_roses.png 17
+furniture/bed/double_purple_gold.png 20
+furniture/bed/double_white_pink.png 18
+furniture/bed/single_dingy_white.png 2
+furniture/bed/single_pink_roses.png 4
+furniture/bed/single_purple_gold.png 8
+furniture/bed/single_white_pink.png 5
+furniture/chair/bench_white.png 8
+furniture/chair/bench_wooden.png 14
+furniture/chair/sofa_chair_blue.png 23
+furniture/chair/sofa_chair_grey.png 16
+furniture/chair/sofa_chair_pink.png 14
+furniture/chair/throne.png 41
+furniture/clock/stone_clock.png 1
+furniture/clock/wooden_clock.png 42
+furniture/curtain/blue_green.png 4
+furniture/kitchen/cabinets.png 53
+furniture/kitchen/warmer_2.png 24
+furniture/light/iron_lamp.png 71
+furniture/light/lamp_blue.png 10
+furniture/light/lamp_bronze.png 2
+furniture/light/small_oil_lamp.png 8
+furniture/light/weird_lamp.png 12
+furniture/other/mannequins.png 9
+furniture/other/piano2.png 3
+furniture/picture/oil_paintings.png 54
+furniture/shelve/drawer_shelf.png 6
+furniture/shelve/green_bookshelf.png 14
+furniture/shelve/item_shelf.png 9
+furniture/shelve/shelf_3.png 11
+furniture/shelve/shelf_4.png 7
+furniture/shelve/small_shelf.png 12
+del*/furniture/sink/large_front_on.png 
+furniture/table/bazaar_table_1.png 2
+furniture/table/bazaar_table_2.png 2
+furniture/table/bazaar_table_3.png 2
+furniture/table/bazaar_table_4.png 2
+furniture/table/bazaar_table_5.png 2
+furniture/table/concrete_table.png 6
+furniture/table/desk.png 38
+furniture/table/fancy_blue_red.png 13
+del*/furniture/table/fish_tables.png 
+furniture/table/grey_pale.png 35
+furniture/table/grey_pale_base.png 1
+furniture/table/hotdog_stand.png 2
+furniture/table/orb_table.png 16
+furniture/table/table_round_white.png 20
+furniture/table/table_with_hob.png 19
+furniture/table/table_with_hob_pale.png 64
+furniture/table/table_wooden_brown.png 35
+furniture/table/vendors_table.png 23
+ground/grass_snow.png 3
+del*/ground/grey_paving.png 
+ground/ground_snow.png 1
+ground/sand_1.png 5
+ground/sand_2.png 6
+ground/slate_tiles.png 3
+ground/indoor/floor_tan.png 13
+ground/indoor/floors_3.png 36
+del*/ground/ladder/ladder_1.png 
+ground/ladder/wooden_ladder_down.png 1
+del*/ground/ridge/snowy.png 
+ground/rock/blue_crystal.png 4
+ground/rock/gold_crystal.png 3
+ground/rock/green_crystal2.png 4
+ground/rock/green_crystal3.png 1
+ground/rock/hell.png 8
+ground/rock/icy_crystal.png 1
+del*/ground/rock/mithril.png 
+ground/rock/purple_crystal.png 3
+ground/rock/red_crystal.png 1
+ground/rock/rock_snow.png 1
+ground/rock/rocks.png 22
+ground/rock/rocks_2.png 52
+ground/rock/rocks_3.png 21
+ground/rock/sandy_rocks.png 1
+ground/rock/square_crystal.png 3
+item/awning_1.png 2
+item/awnng_2.png 1
+item/bazaar_produce.png 5
+item/boxes.png 23
+item/campfire_snow.png 1
+item/campfires.png 3
+item/firewood.png 15
+item/fishing_nets.png 1
+del*/item/handle_posts.png 
+item/logs_snow.png 1
+item/logs_snow1.png 1
+item/native_masks.png 2
+del*/item/nest.png 
+item/ropes.png 5
+item/sacks.png 13
+kym*/item/snowman.png 3
+item/tools.png 11
+item/toys.png 4
+del*/item/weather_vane.png 
+item/armor/chains.png 5
+item/armor/weapons_for_walls.png 12
+item/banners/banners.png 11
+item/chest/chest_2.png 19
+item/chest/chests_red.png 13
+item/corpse/skull_dark.png 44
+item/documents/books.png 35
+item/documents/notes.png 6
+item/documents/notes2.png 11
+item/drink/beers_and_flasks.png 11
+item/drink/bottles_and_cups.png 57
+item/food/bread.png 39
+item/food/fish_crates.png 5
+item/food/meals_1.png 68
+item/gothic/headstone_2.png 6
+item/gothic/headstone_3.png 4
+item/gothic/headstone_4.png 2
+item/gothic/headstone_5.png 3
+item/gothic/headstone_6.png 1
+item/gothic/large_gravestone.png 12
+item/gothic/skull_post.png 4
+item/gothic/urn_house.png 2
+item/gothic/wooden_crosses.png 2
+item/household/food_preparation.png 52
+item/household/food_preparation_2.png 25
+del*/item/pot/barrel_snow.png 
+item/pot/barrel_snow1.png 1
+item/pot/barrels_1.png 9
+item/pot/barrels_2.png 8
+item/pot/huge_pot.png 7
+del*/item/pot/mine_barrels.png 
+item/pot/pots_pink_blue.png 2
+item/pot/wooden_bins.png 3
+item/pot/wooden_crates.png 6
+item/statue/archway.png 9
+item/statue/crystal_statues.png 5
+item/statue/eaglehead.png 8
+item/statue/gazingball_statue.png 3
+item/statue/girl_with_bird.png 5
+item/statue/grey_stone.png 37
+item/statue/lion_statues.png 3
+item/statue/metal_and_stone.png 47
+item/statue/nymph_aqua.png 5
+item/statue/nymph_reddish.png 2
+item/statue/pool_and_face.png 2
+item/statue/stone_dragon.png 5
+item/statue/urn_with_flowers.png 6
+item/statue/water_fountain.png 1
+item/textile/blankets.png 31
+item/textile/laundry.png 5
+item/weapon/box_of_weapons.png 4
+item/weapon/wall_weapons.png 1
+del*/item/weapon/weapons_large.png 
+object/boardwalk.png 3
+del*/object/lion_fountain.png 
+del*/object/rope_ladder.png 
+object/row_boat.png 1
+object/rowing_boats.png 2
+object/scarecrow.png 1
+object/ship.png 6
+object/suspension_bridge.png 12
+object/tan_tent.png 2
+object/trellis_large.png 1
+object/trellis_small.png 3
+plant/cactus_2.png 3
+plant/lily_pads.png 3
+plant/snowygrass.png 1
+plant/star_shaped_plants.png 6
+plant/flower/flower_bed_1.png 5
+plant/flower/flower_snow.png 2
+plant/flower/flowers_mixed.png 10
+plant/flower/hothouse_flowers.png 16
+plant/flower/planted_containers.png 30
+plant/flower/pointed_yellow.png 6
+plant/flower/polyanthus.png 2
+plant/flower/red_white.png 2
+plant/flower/small_flower_bed.png 6
+plant/flower/small_flower_bed_2.png 5
+plant/flower/vines_3.png 1
+plant/indoor/small_flowerpots.png 6
+plant/stump/hollow_logs.png 11
+plant/stump/log_vertical.png 3
+plant/stump/small_stump.png 27
+del*/plant/stump/stump_green2.png 
+plant/stump/stump_snow.png 3
+plant/stump/stump_snow1.png 2
+plant/stump/stump_vertical.png 3
+plant/tree/chestnut_tree.png 5
+plant/tree/christmas_tree.png 1
+plant/tree/christmas_tree2.png 1
+plant/tree/dead_tree_1.png 3
+plant/tree/dead_tree_2.png 4
+plant/tree/dead_tree_3.png 6
+plant/tree/dead_tree_4.png 2
+plant/tree/deadtree_snow.png 1
+plant/tree/locust_tree.png 4
+plant/tree/maple_tree.png 3
+plant/tree/oak_tree.png 3
+plant/tree/palm_trees.png 5
+plant/tree/pine_tree_1.png 5
+plant/tree/pine_tree_2.png 4
+plant/tree/snow_on_pine.png 3
+del*/plant/tree/snow_on_tree.png 
 ..all images except npcs and creatures from https://sourceforge.net/tracker/?func=detail&aid=3578763&group_id=1111&atid=973767
