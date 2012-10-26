@@ -40,7 +40,7 @@ public class UdpHandler {
 			        while(true) {
 			              DatagramPacket receivePacket = new DatagramPacket(data, data.length);
 			              serverSocket.receive(receivePacket);
-			              String line = new String(receivePacket.getData(), "UTF-8");
+			              String line = new String(receivePacket.getData(), receivePacket.getOffset(), receivePacket.getLength(), "UTF-8");
 			              int pos = line.indexOf('/');
 			              if (pos > -1) {
 			            	  String marker = line.substring(0, pos);
