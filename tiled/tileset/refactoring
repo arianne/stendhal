@@ -19,8 +19,8 @@ building/decoration/swordfish.png 2
 kih*/building/decoration/platform.png 4
 del*/building/decoration/chimney_brick_wood.png 
 del*/building/decoration/chimney_brick.png 
-building/decoration/chimney_tan.png 1
-building/decoration/grey_chimney.png 1
+del*/building/decoration/chimney_tan.png 1
+del*/building/decoration/grey_chimney.png 1
 building/column/moss_pillars.png 4
 del*/building/column/pillar2.png 
 building/column/pillar.png 7
@@ -64,7 +64,7 @@ furniture/chair/sofa_chair_blue.png 23
 furniture/chair/sofa_chair_grey.png 16
 furniture/chair/sofa_chair_pink.png 14
 furniture/chair/throne.png 41
-furniture/clock/stone_clock.png 1
+del*/furniture/clock/stone_clock.png 1
 furniture/clock/wooden_clock.png 42
 furniture/curtain/blue_green.png 4
 furniture/kitchen/cabinets.png 53
