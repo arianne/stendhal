@@ -194,7 +194,7 @@ item/statue/nymph_reddish.png 2
 item/statue/pool_and_face.png 2
 item/statue/stone_dragon.png 5
 item/statue/urn_with_flowers.png 6
-item/statue/water_fountain.png 1
+del*/item/statue/water_fountain.png 1
 item/textile/blankets.png 31
 item/textile/laundry.png 5
 item/weapon/box_of_weapons.png 4
