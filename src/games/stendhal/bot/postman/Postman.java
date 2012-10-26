@@ -191,7 +191,7 @@ public class Postman {
 											+ HELP_MESSAGE);
 						}
 					} else if (text.startsWith("Administrator SHOUTS: ")) {
-						postmanIRC.sendMessageToAllChannels(text);
+						postmanIRC.sendMessageToAllStendhalChannels(text);
 					} else if (text.matches("[^:]* shouts: .*")) {
 						if (!text.equals(lastShout)) {
 							postmanIRC.sendMessageToSignChannels(text);

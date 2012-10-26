@@ -51,6 +51,7 @@ public class PostmanIRC extends PircBot {
 	private static List<String> channels = new LinkedList<String>();
 	private static List<String> signChannels = new LinkedList<String>();
 	private static List<String> devChannels = new LinkedList<String>();
+	private static List<String> stendhalChannels = new LinkedList<String>();
 	private static String supportChannel;
 	private static String mainChannel;
 	private static String chatChannel;
@@ -77,6 +78,7 @@ public class PostmanIRC extends PircBot {
 			channels.add(supportChannel);
 			channels.add(mainChannel);
 			channels.add(chatChannel);
+			channels.add(devChannel);
 			channels.remove(null);
 
 			signChannels.add(supportChannel);
@@ -84,6 +86,10 @@ public class PostmanIRC extends PircBot {
 
 			devChannels.add(mainChannel);
 			devChannels.add(devChannel);
+
+			stendhalChannels.add(supportChannel);
+			stendhalChannels.add(mainChannel);
+			stendhalChannels.add(chatChannel);
 		} catch (final Exception e) {
 			LOGGER.error(e, e);
 		}
@@ -119,7 +125,6 @@ public class PostmanIRC extends PircBot {
 			for (final String channelName : PostmanIRC.channels) {
 				joinChannel(channelName);
 			}
-			joinChannel(devChannel);
 		}
 	}
 
@@ -169,8 +174,8 @@ public class PostmanIRC extends PircBot {
 	 *
 	 * @param text message to send
 	 */
-	void sendMessageToAllChannels(final String text) {
-		for (final String channelName : channels) {
+	void sendMessageToAllStendhalChannels(final String text) {
+		for (final String channelName : stendhalChannels) {
 			sendMultilineMessage(channelName, text);
 		}
 	}
