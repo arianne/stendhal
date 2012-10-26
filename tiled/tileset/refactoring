@@ -178,7 +178,7 @@ item/pot/barrels_1.png 9
 item/pot/barrels_2.png 8
 item/pot/huge_pot.png 7
 del*/item/pot/mine_barrels.png 
-item/pot/pots_pink_blue.png 2
+del*/item/pot/pots_pink_blue.png 2
 item/pot/wooden_bins.png 3
 item/pot/wooden_crates.png 6
 item/statue/archway.png 9
