@@ -43,7 +43,7 @@ building/window/classic_window.png 2
 building/window/broken_window.png 3
 del*/building/window/windows_white_stone.png 
 del*/building/window/double_hung.png 
-building/house_stone_thatched_roof.png 1
+del*/building/house_stone_thatched_roof.png 1
 building/museum.png 2
 building/stone_ruins.png 3
 building/tan_building.png 2
