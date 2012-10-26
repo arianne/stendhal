@@ -209,7 +209,7 @@ object/scarecrow.png 1
 object/ship.png 6
 object/suspension_bridge.png 12
 object/tan_tent.png 2
-object/trellis_large.png 1
+del*/object/trellis_large.png 1
 object/trellis_small.png 3
 plant/cactus_2.png 3
 plant/lily_pads.png 3
