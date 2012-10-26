@@ -112,7 +112,7 @@ ground/slate_tiles.png 3
 ground/indoor/floor_tan.png 13
 ground/indoor/floors_3.png 36
 del*/ground/ladder/ladder_1.png 
-ground/ladder/wooden_ladder_down.png 1
+del*/ground/ladder/wooden_ladder_down.png 1
 del*/ground/ridge/snowy.png 
 ground/rock/blue_crystal.png 4
 ground/rock/gold_crystal.png 3
