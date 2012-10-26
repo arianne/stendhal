@@ -88,7 +88,6 @@ public class PostmanIRC extends PircBot {
 					}
 				}
 			}
-			channels.remove(null);
 
 			signChannels.add(supportChannel);
 			signChannels.add(chatChannel);
