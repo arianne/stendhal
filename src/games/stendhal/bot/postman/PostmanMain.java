@@ -30,7 +30,7 @@ import marauroa.common.net.message.TransferContent;
 
 /**
  * Starts Postman and connect to server.
- * 
+ *
  * @author hendrik
  */
 public class PostmanMain extends Thread {
@@ -59,15 +59,15 @@ public class PostmanMain extends Thread {
 
 	private final String password;
 
-	
+
 
 	private final String port;
 
-	
+
 
 	/**
 	 * Creates a PostmanMain.
-	 * 
+	 *
 	 * @param h
 	 *            host
 	 * @param u
@@ -172,6 +172,7 @@ public class PostmanMain extends Thread {
 			final PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
 			new CiaHandler(postmanIRC).listen();
+			new UdpHandler(postmanIRC).listen();
 			postman = new Postman(clientManager, postmanIRC);
 			postman.teleportPostman();
 		} catch (final SocketException e) {
@@ -210,7 +211,7 @@ public class PostmanMain extends Thread {
 
 	/**
 	 * Main entry point.
-	 * 
+	 *
 	 * @param args
 	 *            see help
 	 */
