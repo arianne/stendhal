@@ -37,7 +37,7 @@ del*/building/stairs/rough_hewn_steps.png
 building/stairs/grey_stone_stairs.png 4
 building/stairs/grey_stone_stairs_down.png 2
 building/stairs/stairs_grey.png 5
-building/stairs/wooden_plain.png 1
+del*/building/stairs/wooden_plain.png 1
 del*/building/window/small.png 
 del*/building/window/small_arched.png 
 building/window/classic_window.png 2
