@@ -6,6 +6,7 @@
 # Key: who is doing or has done what:
 # kih means kiheru 
 # kym means kymara
+# lum means lumocra
 # del means deleted as not used in maps
 # followed by * means done and committed
 
@@ -47,7 +48,7 @@ del*/building/house_stone_thatched_roof.png 1
 building/museum.png 2
 building/stone_ruins.png 3
 building/tan_building.png 2
-building/fence/fence_wooden.png 30
+lum building/fence/fence_wooden.png 30
 building/fence/wooden_brown_fence.png 5
 del*/building/window/bay_window.png 
 del*/building/window/green_windows.png 
