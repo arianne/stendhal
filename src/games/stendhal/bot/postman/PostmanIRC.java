@@ -16,10 +16,11 @@ import games.stendhal.server.util.CounterMap;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,10 +49,10 @@ public class PostmanIRC extends PircBot {
 	private static final Pattern patternWhoisResponse = Pattern.compile("^[^ ]* ([^ ]*) ([^ :]*) ?:.*");
 
 
-	private static List<String> channels = new LinkedList<String>();
-	private static List<String> signChannels = new LinkedList<String>();
-	private static List<String> devChannels = new LinkedList<String>();
-	private static List<String> stendhalChannels = new LinkedList<String>();
+	private static Set<String> channels = new TreeSet<String>();
+	private static Set<String> signChannels = new TreeSet<String>();
+	private static Set<String> devChannels = new TreeSet<String>();
+	private static Set<String> stendhalChannels = new TreeSet<String>();
 	private static String supportChannel;
 	private static String mainChannel;
 	private static String chatChannel;
@@ -79,6 +80,14 @@ public class PostmanIRC extends PircBot {
 			channels.add(mainChannel);
 			channels.add(chatChannel);
 			channels.add(devChannel);
+			for (Map.Entry<Object, Object> entry : conf.entrySet()) {
+				if (entry.getKey().toString().startsWith("udp-")) {
+					String[] cs = entry.getValue().toString().split(",");
+					for (String c : cs) {
+						channels.add(c);
+					}
+				}
+			}
 			channels.remove(null);
 
 			signChannels.add(supportChannel);
@@ -199,6 +208,22 @@ public class PostmanIRC extends PircBot {
 	public void sendMessageToDevChannels(String text) {
 		for (final String channelName : devChannels) {
 			sendMultilineMessage(channelName, text);
+		}
+	}
+
+	/**
+	 * sends a message to udp channels
+	 *
+	 * @param marker channel marker
+	 * @param text message to send
+	 */
+	public void sendMessageToUdpChannels(String marker, String text) {
+		String cs = conf.getProperty("udp-" + marker);
+		if (cs == null) {
+			return;
+		}
+		for (String channel : cs.split(",")) {
+			sendMultilineMessage(channel, text);
 		}
 	}
 
