@@ -198,7 +198,7 @@ del*/item/statue/water_fountain.png 1
 item/textile/blankets.png 31
 item/textile/laundry.png 5
 item/weapon/box_of_weapons.png 4
-item/weapon/wall_weapons.png 1
+del*/item/weapon/wall_weapons.png 1
 del*/item/weapon/weapons_large.png 
 object/boardwalk.png 3
 del*/object/lion_fountain.png 
