@@ -118,7 +118,7 @@ public class PostmanIRC extends PircBot {
 
 			setName(nick);
 			setLogin(conf.getProperty("login"));
-			setVersion("0.6");
+			setVersion("7.0");
 			setVerbose(true);
 			setAutoNickChange(true);
 			setFinger("postman on " + gameServer);
@@ -312,7 +312,8 @@ public class PostmanIRC extends PircBot {
 
 	private void sendHelpReply(String sender) {
 		sendMessage(sender, "Hello, I am postman.");
-		sendMessage(sender, "In Stendhal I deliver messages to players and on IRC I help admins.");
+		sendMessage(sender, "In Stendhal I deliver messages to players and on IRC I help Stendhal admins.");
+		sendMessage(sender, "Oh, and in 2012 I got promoted to report source code commits and recent changes on wikis.");
 		sendMessage(sender, " ");
 		listCanedResponses(sender);
 		sendMessage(sender, " ");
