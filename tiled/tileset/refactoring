@@ -28,9 +28,9 @@ building/column/pillar.png 7
 building/entrance/int_iron_bars.png 15
 building/entrance/int_broken_bars.png 2
 del*/building/entrance/sandy_rocks_entrance.png 
-building/stairs/int_ns.png 18
-building/stairs/int_ew.png 8
-building/stairs/int_we.png 2
+kym*/building/stairs/int_ns.png 18
+kym*/building/stairs/int_ew.png 8
+kym*/building/stairs/int_we.png 2
 del*/building/stairs/stone_steps_tan.png 
 building/stairs/stairs_orange.png 2
 del*/building/stairs/rough_hewn_steps.png 
