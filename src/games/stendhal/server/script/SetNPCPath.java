@@ -27,8 +27,21 @@ public class SetNPCPath extends ScriptImpl {
 			admin.sendPrivateText(NotificationType.ERROR, "/script SetPathNPC npc \"x1 y1 x2 y2 x3 y3\"");
 			return;
 		}
+		SpeakerNPC npc = NPCList.get().get(args.get(0));
+		List<Node> nodes = parsePath(args.get(1));
+		FixedPath path = new FixedPath(nodes, true);
+		npc.setPath(path);
+	}
+
+	/**
+	 * parses the path
+	 *
+	 * @param pathString path as string
+	 * @return Path
+	 */
+	private List<Node> parsePath(String pathString) {
 		List<Node> nodes = new LinkedList<Node>();
-		StringTokenizer st = new StringTokenizer(args.get(1));
+		StringTokenizer st = new StringTokenizer(pathString);
 		while (st.hasMoreElements()) {
 			String x = st.nextToken();
 			if (!st.hasMoreElements()) {
@@ -37,9 +50,7 @@ public class SetNPCPath extends ScriptImpl {
 			String y = st.nextToken();
 			nodes.add(new Node(MathHelper.parseInt(x), MathHelper.parseInt(y)));
 		}
-		SpeakerNPC npc = NPCList.get().get(args.get(0));
-		FixedPath path = new FixedPath(nodes, true);
-		npc.setPath(path);
+		return nodes;
 	}
 
 }
