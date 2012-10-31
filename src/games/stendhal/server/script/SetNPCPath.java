@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
  *
  * @author hendrik
  */
-public class SetPathNPC extends ScriptImpl {
+public class SetNPCPath extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
