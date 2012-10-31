@@ -29,8 +29,12 @@ public class SetNPCPath extends ScriptImpl {
 		}
 		SpeakerNPC npc = NPCList.get().get(args.get(0));
 		List<Node> nodes = parsePath(args.get(1));
-		FixedPath path = new FixedPath(nodes, true);
-		npc.setPath(path);
+		if (!nodes.isEmpty()) {
+			npc.setPath(new FixedPath(nodes, true));
+		} else {
+			npc.clearPath();
+			npc.stop();
+		}
 	}
 
 	/**
