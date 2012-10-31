@@ -7,6 +7,7 @@
 # kih means kiheru 
 # kym means kymara
 # lum means lumocra
+# ble means bleutailfly
 # del means deleted as not used in maps
 # followed by * means done and committed
 
@@ -205,7 +206,7 @@ del*/object/lion_fountain.png
 del*/object/rope_ladder.png 
 object/row_boat.png 1
 object/rowing_boats.png 2
-object/scarecrow.png 1
+ble*/object/scarecrow.png 1
 object/ship.png 6
 object/suspension_bridge.png 12
 object/tan_tent.png 2
