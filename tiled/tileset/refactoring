@@ -8,6 +8,7 @@
 # kym means kymara
 # lum means lumocra
 # ble means bleutailfly
+# tig means tigertoes
 # del means deleted as not used in maps
 # followed by * means done and committed
 
@@ -97,7 +98,7 @@ furniture/table/fancy_blue_red.png 13
 del*/furniture/table/fish_tables.png 
 furniture/table/grey_pale.png 35
 del*/furniture/table/grey_pale_base.png 1
-furniture/table/hotdog_stand.png 2
+tig*/furniture/table/hotdog_stand.png 2
 furniture/table/orb_table.png 16
 furniture/table/table_round_white.png 20
 furniture/table/table_with_hob.png 19
@@ -130,7 +131,7 @@ ground/rock/rocks_2.png 52
 ground/rock/rocks_3.png 21
 ground/rock/sandy_rocks.png 1
 ground/rock/square_crystal.png 3
-tig*item/awning_1.png 2
+tig*/item/awning_1.png 2
 item/awnng_2.png 1
 item/bazaar_produce.png 5
 item/boxes.png 23
