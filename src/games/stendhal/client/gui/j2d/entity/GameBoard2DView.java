@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,8 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 
 	/**
 	 * Build the visual representation of this entity.
+	 * 
+	 * @param entity entity for which to build the representation
 	 */
 	@Override
 	protected void buildRepresentation(IEntity entity) {
@@ -49,6 +51,16 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 	public int getZIndex() {
 		return 1000;
 	}
+	
+	@Override
+	public int getWidth() {
+		return getSprite().getWidth();
+	}
+	
+	@Override
+	public int getHeight() {
+		return getSprite().getHeight();
+	}
 
 	/**
 	 * Translate a resource name into it's sprite image path.
@@ -63,7 +75,6 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 		return "data/sprites/gameboard/" + name + ".png";
 	}
 
-
 	@Override
 	public boolean isInteractive() {
 		return false;
@@ -73,5 +84,4 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 	public StendhalCursor getCursor() {
 		return StendhalCursor.WALK;
 	}
-
 }
