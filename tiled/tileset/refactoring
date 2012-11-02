@@ -63,9 +63,9 @@ furniture/bed/single_purple_gold.png 8
 furniture/bed/single_white_pink.png 5
 furniture/chair/bench_white.png 8
 furniture/chair/bench_wooden.png 14
-furniture/chair/sofa_chair_blue.png 23
-furniture/chair/sofa_chair_grey.png 16
-furniture/chair/sofa_chair_pink.png 14
+ble*/furniture/chair/sofa_chair_blue.png 23
+ble*/furniture/chair/sofa_chair_grey.png 16
+ble*/furniture/chair/sofa_chair_pink.png 14
 furniture/chair/throne.png 41
 del*/furniture/clock/stone_clock.png 1
 furniture/clock/wooden_clock.png 42
