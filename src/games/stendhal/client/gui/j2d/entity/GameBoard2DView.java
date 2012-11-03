@@ -54,12 +54,20 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 	
 	@Override
 	public int getWidth() {
-		return getSprite().getWidth();
+		Sprite sprite = getSprite();
+		if (sprite != null) {
+			return sprite.getWidth();
+		}
+		return 0;
 	}
 	
 	@Override
 	public int getHeight() {
-		return getSprite().getHeight();
+		Sprite sprite = getSprite();
+		if (sprite != null) {
+			return sprite.getHeight();
+		}
+		return 0;
 	}
 
 	/**
