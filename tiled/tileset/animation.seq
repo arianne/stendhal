@@ -592,6 +592,10 @@ tileset/object/zekiel.png	*	14@5000:14:14:14@800:14@3500:14:14:14:14:14:14:14:14
 tileset/furniture/light/floating_candle.png * 0:1:2:3:8:9:10:11
 tileset/furniture/light/floating_candle.png * 4:5:6:7:12:13:14:15
 
+# Pendulum clock
+tileset/furniture/clock/wooden_clock.png * 0@200:2@400:0@200:4@400
+tileset/furniture/clock/wooden_clock.png * 1@200:3@400:1@200:5@400
+
 # view from wizards tower
 tileset/sky/view_wizards_tower.png	*	13:30:47
 tileset/sky/view_wizards_tower.png	*	14:31:48
