@@ -1741,7 +1741,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			item.setPosition(getX(), getY());
 			getZone().add(item);
 			this.sendPrivateText("You dropped the new item onto the ground because your bag is full.");
-			return true;
+			return false;
 		}
 	}
 
