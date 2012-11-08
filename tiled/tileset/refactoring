@@ -253,145 +253,144 @@ plant/tree/pine_tree_2.png 4
 plant/tree/snow_on_pine.png 3
 del*/plant/tree/snow_on_tree.png
 2nd round of images follow
-/building/barnyard.png
-/building/farm.png
-/building/gazebo.png
-/building/gnome_homes.png
-/building/greenhouse.png
-/building/house_2.png
-/building/house_3.png
-/building/house_blue_white.png
-/building/house_chalet.png
-/building/house_greenish_stone.png
-/building/house_grey_orange.png
-/building/house_grey_red_brick.png
-/building/house_grey_rose.png
-/building/house_light_brick.png
-/building/house_light_grey.png
-/building/house_light_tan.png
-/building/house_olive_green.png
-/building/house_orange_red.png
-/building/house_pink_blue.png
-/building/house_redbrick_greenroof.png
-/building/house_stone.png
-/building/red_brick_green_roof.png
-/building/stone_tower.png
-/building/tower_chalet.png
-/building/decoration/balcony.png
-/building/decoration/blue_green.png
-/building/decoration/chimney_brown_stacks.png
-/building/decoration/wall_feature.png
-/building/door/arched_tan_door.png
-/building/door/brown_3_doors.png
-/building/door/stone_doorway.png
-/building/door/tall_wooden_entrance.png
-/building/entrance/dojo_entrances.png
-/building/fence/rustic_wooden_fence.png
-/building/fence/stone_fence_white.png
-/building/stairs/wooden_stairs.png
-/building/wall/dojo_walls.png
-/building/window/brown_with_cream_shutters.png
-/building/window/dojo_windows.png
-/building/window/greenish_grey.png
-/building/window/windows_with_flowerboxes.png
-/furniture/bed/single_grey.png
-/furniture/carpet/orange.png
-/furniture/carpet/royalblue.png
-/furniture/chair/bench_iron.png
-/furniture/chair/bench_iron_extensible.png
-/furniture/chair/bench_iron_reverse.png
-/furniture/chair/fancy_golden_sofa_front_on.png
-/furniture/chair/throne_small.png
-/furniture/chair/throne_small_gold.png
-/furniture/chair/wooden_rustic.png
-/furniture/curtain/dark_red.png
-/furniture/curtain/dark_red_central.png
-/furniture/curtain/lt_blue_drapes.png
-/furniture/curtain/peach_drapes.png
-/furniture/curtain/purple_drapes.png
-/furniture/curtain/red_drapes.png
-/furniture/curtain/red_gold_drawn.png
-/furniture/curtain/red_gold_gathered.png
-/furniture/curtain/royal_blue_drapes.png
-/furniture/light/dark_torch.png
-/furniture/light/floating_candle.png
-/furniture/light/sparkle.png
-/furniture/light/sparkle_middle.png
-/furniture/other/spinningwheel.png
-/furniture/picture/city_picture.png
-/furniture/picture/large_island.png
-/furniture/shelve/rack.png
-/furniture/table/alchemists_table.png
-/furniture/table/flowers_on_bench2.png
-/furniture/table/flowers_on_benches.png
-/furniture/table/grey_dark.png
-/furniture/table/grey_fancy.png
-/furniture/table/grey_fancy_horizontal.png
-/furniture/table/grey_long.png
-/furniture/table/grey_plain.png
-/furniture/table/rectangular_with_meals.png
-/furniture/table/stone_desk.png
-/furniture/table/table_copper.png
-/furniture/table/table_linen.png
-/furniture/table/wooden_with_candles.png
-/ground/dirt_mounds.png
-/ground/mossy_brick_paving.png
-/ground/sand2.png
-/ground/sandy_patches.png
-/ground/wooden_patio_planter.png
-/ground/yellow_lava.png
-/ground/fire/flames.png
-/ground/indoor/raised_platform.png
-/ground/indoor/raised_platform_blue.png
-/ground/indoor/raised_platform_purple.png
-/ground/ladder/gold_ladder.png
-/item/raised_square.png
-/item/armor/suit_of_armor2.png
-/item/banners/banner.png
-/item/banners/superhumans_banner_on_post.png
-/item/banners/superhumans_wall_hanging.png
-/item/banners/wall_hanging_brown.png
-/item/banners/wall_hanging_dkgreen.png
-/item/chest/chest_purple.png
-/item/corpse/hanging_skeleton.png
-/item/documents/note_board.png
-/item/drink/casks.png
-/item/gothic/grave_marker.png
-/item/gothic/grave_statue_girl.png
-/item/gothic/headstone_1.png
-/item/gothic/headstone_7.png
-/item/gothic/sarcophagus.png
-/item/gothic/slab.png
-/item/gothic/tiny_headstone.png
-/item/gothic/tombstone_2.png
-/item/pot/crate_small.png
-/item/pot/crates.png
-/item/statue/buddha.png
-/item/statue/dryad_marble.png
-/item/statue/flowered_arch.png
-/item/statue/goddess_icon.png
-/item/statue/plants_potted_stone.png
-/item/statue/romanic_art1.png
-/item/statue/romanic_art2.png
-/item/statue/swordsman.png
-/item/statue/warlock.png
-/item/statue/wolf_statue.png
-/item/weapon/spears.png
-/object/drawbridge.png
-/object/hay_cart.png
-/object/roofed_well.png
-/object/well_hoist.png
-/object/wooden_scaffold.png
-/object/zekiel.png
-/plant/mushroom3.png
-/plant/patio_planter.png
-/plant/flower/foxgloves.png
-/plant/flower/purple.png
-/plant/flower/small_purple_white.png
-/plant/flower/vines_2.png
-/plant/tree/crack_willow.png
-/plant/tree/fall_trees.png
-/plant/tree/pear_tree.png
-/plant/tree/umbrella_thorn.png
-/plant/tree/weeping_willow.png 
+/building/barnyard.png 1
+/building/farm.png 1
+/building/gnome_homes.png 1
+/building/greenhouse.png 2
+/building/house_2.png 0
+/building/house_3.png 1
+/building/house_blue_white.png 1
+/building/house_chalet.png 1
+/building/house_greenish_stone.png 1
+/building/house_grey_orange.png 0
+/building/house_grey_red_brick.png 0
+/building/house_grey_rose.png 0
+/building/house_light_brick.png 1
+/building/house_light_grey.png 0
+/building/house_light_tan.png 1
+/building/house_olive_green.png 0
+/building/house_orange_red.png 0
+/building/house_pink_blue.png 4
+/building/house_redbrick_greenroof.png 1
+/building/house_stone.png 2
+/building/red_brick_green_roof.png 0
+/building/stone_tower.png 1
+/building/tower_chalet.png 1
+/building/decoration/balcony.png 3
+/building/decoration/blue_green.png 3
+/building/decoration/chimney_brown_stacks.png 1
+/building/decoration/wall_feature.png 2
+/building/door/arched_tan_door.png 0
+/building/door/brown_3_doors.png 3
+/building/door/stone_doorway.png 1
+/building/door/tall_wooden_entrance.png 1
+/building/entrance/dojo_entrances.png 2
+/building/fence/rustic_wooden_fence.png 0
+/building/fence/stone_fence_white.png 12
+/building/stairs/wooden_stairs.png 5
+/building/wall/dojo_walls.png 3
+/building/window/brown_with_cream_shutters.png 2
+/building/window/dojo_windows.png 0
+/building/window/greenish_grey.png 0
+/building/window/windows_with_flowerboxes.png 2
+/furniture/bed/single_grey.png 9
+/furniture/carpet/orange.png 23
+/furniture/carpet/royalblue.png 12
+/furniture/chair/bench_iron.png 5
+/furniture/chair/bench_iron_extensible.png 2
+/furniture/chair/bench_iron_reverse.png 4
+/furniture/chair/fancy_golden_sofa_front_on.png 1
+/furniture/chair/throne_small.png 29
+/furniture/chair/throne_small_gold.png 1
+/furniture/chair/wooden_rustic.png 7
+/furniture/curtain/dark_red.png 7
+/furniture/curtain/dark_red_central.png 6
+/furniture/curtain/lt_blue_drapes.png 2
+/furniture/curtain/peach_drapes.png 5
+/furniture/curtain/purple_drapes.png 2
+/furniture/curtain/red_drapes.png 4
+/furniture/curtain/red_gold_drawn.png 9
+/furniture/curtain/red_gold_gathered.png 19
+/furniture/curtain/royal_blue_drapes.png 3
+/furniture/light/dark_torch.png 53
+/furniture/light/floating_candle.png 6
+/furniture/light/sparkle.png 5
+/furniture/light/sparkle_middle.png 3
+/furniture/other/spinningwheel.png 1
+/furniture/picture/city_picture.png 8
+/furniture/picture/large_island.png 27
+/furniture/shelve/rack.png 2
+/furniture/table/alchemists_table.png 1
+/furniture/table/flowers_on_bench2.png 7
+/furniture/table/flowers_on_benches.png 9
+/furniture/table/grey_dark.png 5
+/furniture/table/grey_fancy.png 25
+/furniture/table/grey_fancy_horizontal.png 5
+/furniture/table/grey_long.png 11
+/furniture/table/grey_plain.png 66
+/furniture/table/rectangular_with_meals.png 20
+/furniture/table/stone_desk.png 4
+/furniture/table/table_copper.png 6
+/furniture/table/table_linen.png 4
+/furniture/table/wooden_with_candles.png 3
+/ground/dirt_mounds.png 1
+/ground/mossy_brick_paving.png 3
+/ground/sand2.png 0
+/ground/sandy_patches.png 0
+/ground/wooden_patio_planter.png 0
+/ground/yellow_lava.png 2
+/ground/fire/flames.png 9
+/ground/indoor/raised_platform.png 1
+/ground/indoor/raised_platform_blue.png 1
+/ground/indoor/raised_platform_purple.png 2
+/ground/ladder/gold_ladder.png 0
+/item/raised_square.png 1
+/item/armor/suit_of_armor2.png 7
+/item/banners/banner.png 1
+/item/banners/superhumans_banner_on_post.png 2
+/item/banners/superhumans_wall_hanging.png 2
+/item/banners/wall_hanging_brown.png 3
+/item/banners/wall_hanging_dkgreen.png 5
+/item/chest/chest_purple.png 12
+/item/corpse/hanging_skeleton.png 4
+/item/documents/note_board.png 9
+/item/drink/casks.png 23
+/item/gothic/grave_marker.png 2
+/item/gothic/grave_statue_girl.png 1
+/item/gothic/headstone_1.png 3
+/item/gothic/headstone_7.png 1
+/item/gothic/sarcophagus.png 2
+/item/gothic/slab.png 7
+/item/gothic/tiny_headstone.png 1
+/item/gothic/tombstone_2.png 1
+/item/pot/crate_small.png 0
+/item/pot/crates.png 1
+/item/statue/buddha.png 1
+/item/statue/dryad_marble.png 1
+/item/statue/flowered_arch.png 9
+/item/statue/goddess_icon.png 6
+/item/statue/plants_potted_stone.png 18
+/item/statue/romanic_art1.png 2
+/item/statue/romanic_art2.png 2
+/item/statue/swordsman.png 6
+/item/statue/warlock.png 9
+/item/statue/wolf_statue.png 1
+/item/weapon/spears.png 2
+/object/drawbridge.png 0
+/object/hay_cart.png 1
+/object/roofed_well.png 1
+/object/well_hoist.png 1
+/object/wooden_scaffold.png 0
+/object/zekiel.png 2
+/plant/mushroom3.png 3
+/plant/patio_planter.png 1
+/plant/flower/foxgloves.png 9
+/plant/flower/purple.png 13
+/plant/flower/small_purple_white.png 1
+/plant/flower/vines_2.png 2
+/plant/tree/crack_willow.png 2
+/plant/tree/fall_trees.png 2
+/plant/tree/pear_tree.png 0
+/plant/tree/umbrella_thorn.png 8
+/plant/tree/weeping_willow.png 0 
 ..all images except npcs and creatures from https://sourceforge.net/tracker/?func=detail&aid=3578763&group_id=1111&atid=973767
