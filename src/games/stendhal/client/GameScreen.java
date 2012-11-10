@@ -31,6 +31,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
@@ -146,8 +147,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/** Actual size of the screen in pixels. */
 	private int sw;
 	private int sh;
-	
-
 
 	/**
 	 * The difference between current and target screen view X.
@@ -173,6 +172,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Current panning speed.
 	 */
 	private int speed;
+	
+	/**
+	 * Scaling factor of the screen.
+	 */
+	private double scale = 1.0;
+	private boolean useScaling = true;
 
 	static {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
@@ -188,8 +193,21 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		@Override
 		public void componentResized(ComponentEvent e) {
 			Dimension screenSize = stendhal.getScreenSize();
-			sw = Math.min(getWidth(), screenSize.width);
-			sh = Math.min(getHeight(), screenSize.height);
+			sw = getWidth();
+			sh = getHeight();
+			if (useScaling) {
+				double xScale = sw / ((double) screenSize.getWidth());
+				double yScale = sh / ((double) screenSize.getHeight());
+				// Scale by the dimension that needs more scaling
+				if (Math.abs(xScale) > Math.abs(yScale)) {
+					scale = xScale;
+				} else {
+					scale = yScale;
+				}
+			} else {
+				sw = Math.min(sw, screenSize.width);
+				sh = Math.min(sh, screenSize.height);
+			}
 			// Reset the view so that the player is in the center
 			calculateView(x, y);
 			center();
@@ -240,6 +258,23 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		setIgnoreRepaint(true);
 		client.getGameObjects().addGameObjectListener(this);
 	}
+	
+	/**
+	 * Set whether the screen should be drawn scaled, or in native resolution.
+	 *  
+	 * @param useScaling if <code>true</code> the screen will scale the view
+	 * 	will be scaled to fit the screen size, otherwise it will be drawn using
+	 * 	the native resolution.
+	 */
+	void setUseScaling(boolean useScaling) {
+		this.useScaling = useScaling;
+		if (!useScaling) {
+			scale = 1.0;
+		} else {
+			// Trigger resize listener
+			setSize(getSize());
+		}
+	}
 
 	/**
 	 * Set the default [singleton] screen.
@@ -247,7 +282,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param screen
 	 *            The screen.
 	 */
-	
 	public static void setDefaultScreen(final GameScreen screen) {
 		GameScreen.screen = screen;
 	}
@@ -259,12 +293,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/** @return screen width in world units. */
 	private int getViewWidth() {
-		return sw / SIZE_UNIT_PIXELS;
+		return (int) Math.ceil((sw / SIZE_UNIT_PIXELS / scale));
 	}
 
 	/** @return screen height in world units .*/
 	private int getViewHeight() {
-		return sh / SIZE_UNIT_PIXELS;
+		return (int) Math.ceil((sh / SIZE_UNIT_PIXELS / scale));
 	}
 	
 	/*
@@ -272,10 +306,16 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#nextFrame()
 	 */
+	@Override
 	public void nextFrame() {
 		adjustView();
 	}
 	
+	/**
+	 * Get the achievement box factory
+	 * 
+	 * @return factory
+	 */
 	private AchievementBoxFactory getAchievementFactory() {
 		if (achievementBoxFactory == null) {
 			achievementBoxFactory = new AchievementBoxFactory();
@@ -288,6 +328,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#addEntity(games.stendhal.client.entity.Entity)
 	 */
+	@Override
 	public void addEntity(final IEntity entity) {
 		EntityView<IEntity> view = viewManager.addEntity(entity);
 		if (view != null) {
@@ -298,6 +339,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			}
 			if (entity.isUser()) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						center();
 					}
@@ -311,6 +353,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeEntity(games.stendhal.client.entity.Entity)
 	 */
+	@Override
 	public void removeEntity(final IEntity entity) {
 		viewManager.removeEntity(entity);
 	}
@@ -326,8 +369,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			return;
 		}
 
-		final int sx = convertWorldXToScreenView(x) + (SIZE_UNIT_PIXELS / 2);
-		final int sy = convertWorldYToScreenView(y) + (SIZE_UNIT_PIXELS / 2);
+		final int sx = convertWorldXToScaledScreen(x) - getScreenViewX() + SIZE_UNIT_PIXELS / 2;
+		final int sy = convertWorldYToScaledScreen(y) - getScreenViewY() + (SIZE_UNIT_PIXELS / 2);
 
 		if ((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
@@ -404,17 +447,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private void calculateView(int x, int y) {
 		// Coordinates for a screen centered on player
-		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
-		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
+		int cvx = (int) ((x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2) / scale);
+		int cvy = (int) ((y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2) / scale);
 
 		/*
 		 * Keep the world within the screen view
 		 */
-		final int maxX = ww * SIZE_UNIT_PIXELS - sw;
+		final int maxX = (int) (ww * SIZE_UNIT_PIXELS - sw / scale);
 		cvx = Math.min(cvx, maxX);
 		cvx = Math.max(cvx, 0);
 		
-		final int maxY = wh * SIZE_UNIT_PIXELS - sh;
+		final int maxY = (int) (wh * SIZE_UNIT_PIXELS - sh / scale);
 		cvy = Math.min(cvy, maxY);
 		cvy = Math.max(cvy, 0);
 		
@@ -428,6 +471,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#center()
 	 */
+	@Override
 	public void center() {
 		svx += dvx;
 		svy += dvy;
@@ -469,9 +513,11 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// know about converting the position to screen
 		Graphics2D graphics = (Graphics2D) g2d.create();
 		if (graphics.getClipBounds() == null) {
-			Dimension screenSize = stendhal.getScreenSize();
-			graphics.setClip(0, 0, Math.min(getWidth(), screenSize.width),
-					Math.min(getHeight(), screenSize.height));
+			graphics.setClip(0, 0, getWidth(), getHeight());
+		}
+		if (useScaling) {
+			graphics.scale(scale, scale);
+			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		}
 
 		int xAdjust = -getScreenViewX();
@@ -488,13 +534,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			g2d.fillRect(0, 0, sw, yAdjust);
 		}
 		
-		int tmpY = yAdjust + convertWorldToScreen(wh);
+		int tmpY = yAdjust + convertWorldToPixelUnits(wh);
 		if (tmpY < sh) {
 			g2d.setColor(Color.BLACK);
 			g2d.fillRect(0, tmpY, sw, sh);
 		}
 		
-		int tmpX = yAdjust + convertWorldToScreen(ww);
+		int tmpX = yAdjust + convertWorldToPixelUnits(ww);
 		if (tmpX < sw) {
 			g2d.setColor(Color.BLACK);
 			g2d.fillRect(tmpX, 0, sw, sh);
@@ -527,6 +573,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// Draw the top portion screen entities (such as HP/title bars).
 		viewManager.drawTop(graphics);
 		
+		// Don't scale text to keep it readable
 		drawText(g2d);
 
 		// Offline
@@ -607,6 +654,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#setMaxWorldSize(double, double)
 	 */
+	@Override
 	public void setMaxWorldSize(final double width, final double height) {
 		ww = (int) width;
 		wh = (int) height;
@@ -619,6 +667,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#setOffline(boolean)
 	 */
+	@Override
 	public void setOffline(final boolean offline) {
 		this.offline = offline;
 	}
@@ -632,8 +681,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param textLength 
 	 */
 	public void addTextBox(Sprite sprite, double x, double y, int textLength) {
-		int sx = convertWorldToScreen(x);
-		int sy = convertWorldToScreen(y);
+		int sx = convertWorldXToScaledScreen(x);
+		int sy = convertWorldYToScaledScreen(y);
 		// Point alignment: left, bottom
 		sy -= sprite.getHeight();
 
@@ -654,7 +703,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				for (final RemovableSprite item : texts) {
 					if ((item.getX() == sx) && (item.getY() == sy)) {
 						found = true;
-						sy += (SIZE_UNIT_PIXELS / 2);
+						sy += (SIZE_UNIT_PIXELS / scale / 2);
 						sy = keepSpriteOnMapY(sprite, sy);
 						break;
 					}
@@ -689,7 +738,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 */
 		if (wh != 0) {
 			sy = Math.min(sy, Math.max(getHeight() + svy,
-					convertWorldToScreen(wh)) - sprite.getHeight());
+					convertWorldYToScaledScreen(wh)) - sprite.getHeight());
 		}
 		return sy;
 	}
@@ -709,7 +758,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		 * yet (as in immediately after a zone change)
 		 */
 		if (ww != 0) {
-			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldToScreen(ww)) - sprite.getWidth());
+			sx = Math.min(sx, Math.max(getWidth() + svx, convertWorldXToScaledScreen(ww)) - sprite.getWidth());
 		}
 		return sx;
 	}
@@ -719,6 +768,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#removeText(games.stendhal.client.gui.j2d.Text)
 	 */
+	@Override
 	public void removeText(final RemovableSprite entity) {
 		textsToRemove.add(entity);
 	}
@@ -738,6 +788,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#clearTexts()
 	 */
+	@Override
 	public void clearTexts() {
 		synchronized (texts) {
 			for (final RemovableSprite text : texts) {
@@ -756,9 +807,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#getEntityViewAt(double, double)
 	 */
+	@Override
 	public EntityView<?> getEntityViewAt(final double x, final double y) {
-		final int sx = convertWorldToScreen(x);
-		final int sy = convertWorldToScreen(y);
+		final int sx = convertWorldToPixelUnits(x);
+		final int sy = convertWorldToPixelUnits(y);
 		return viewManager.getEntityViewAt(x, y, sx, sy);
 	}
 
@@ -768,9 +820,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#getMovableEntityViewAt(double,
 	 *      double)
 	 */
+	@Override
 	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
-		final int sx = convertWorldToScreen(x);
-		final int sy = convertWorldToScreen(y);
+		final int sx = convertWorldToPixelUnits(x);
+		final int sy = convertWorldToPixelUnits(y);
 		return viewManager.getMovableEntityViewAt(x, y, sx, sy);
 	}
 
@@ -778,6 +831,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * (non-Javadoc)
 	 * @see games.stendhal.client.IGameScreen#getTextAt(int, int)
 	 */
+	@Override
 	public RemovableSprite getTextAt(final int x, final int y) {
 		// staticTexts are drawn on top of the others; those in the end of the
 		// lists are above preceding texts
@@ -819,7 +873,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @return Screen X coordinate (in integer value).
 	 */
 	private int convertWorldXToScreenView(final double wx) {
-		return convertWorldToScreen(wx) - svx;
+		return convertWorldToPixelUnits(wx) - svx;
 	}
 
 	/**
@@ -831,7 +885,29 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @return Screen Y coordinate (in integer value).
 	 */
 	private int convertWorldYToScreenView(final double wy) {
-		return convertWorldToScreen(wy) - svy;
+		return convertWorldToPixelUnits(wy) - svy;
+	}
+	
+	/**
+	 * Convert a world x coordinate to <emph>raw</raw> (native resolution)
+	 * screen x coordinate.
+	 * 
+	 * @param x world x coordinate
+	 * @return pixel x coordinate on the screen
+	 */
+	private int convertWorldXToScaledScreen(double x) {
+		return (int) (convertWorldToPixelUnits(x - svx / (double) SIZE_UNIT_PIXELS) * scale) + svx;
+	}
+	
+	/**
+	 * Convert a world y coordinate to <emph>raw</raw> (native resolution)
+	 * screen y coordinate.
+	 * 
+	 * @param y world y coordinate
+	 * @return pixel y coordinate on the screen
+	 */
+	private int convertWorldYToScaledScreen(double y) {
+		return (int) (convertWorldToPixelUnits(y - svy / (double) SIZE_UNIT_PIXELS) * scale) + svy;
 	}
 
 	/*
@@ -840,36 +916,21 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(double,
 	 *      double)
 	 */
+	@Override
 	public Point convertWorldToScreenView(final double wx, final double wy) {
 		return new Point(convertWorldXToScreenView(wx),
 				convertWorldYToScreenView(wy));
 	}
 
 	/**
-	 * Convert a world unit value to a screen unit value.
+	 * Convert a world unit value to pixel units.
 	 *
 	 * @param w World value.
 	 *
 	 * @return A screen value (in pixels).
 	 */
-	private int convertWorldToScreen(final double w) {
+	private int convertWorldToPixelUnits(final double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
-	}
-
-	/**
-	 * Convert screen coordinates to world coordinates.
-	 *
-	 * @param x
-	 *            The virtual screen X coordinate.
-	 * @param y
-	 *            The virtual screen Y coordinate.
-	 *
-	 * @return World coordinates.
-	 */
-	private Point2D convertScreenToWorld(final int x, final int y) {
-		return new Point.Double((double) x / SIZE_UNIT_PIXELS, (double) y
-				/ SIZE_UNIT_PIXELS);
-
 	}
 
 	/*
@@ -877,6 +938,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertScreenViewToWorld(java.awt.Point)
 	 */
+	@Override
 	public Point2D convertScreenViewToWorld(final Point p) {
 		return convertScreenViewToWorld(p.x, p.y);
 	}
@@ -886,8 +948,10 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#convertScreenViewToWorld(int, int)
 	 */
+	@Override
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
-		return convertScreenToWorld(x + getScreenViewX(), y + getScreenViewY());
+		return new Point.Double(((x / scale) + getScreenViewX()) / SIZE_UNIT_PIXELS,
+				((y / scale) + getScreenViewY()) / SIZE_UNIT_PIXELS);
 	}
 
 	/**
@@ -917,6 +981,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 *
 	 * @see games.stendhal.client.IGameScreen#positionChanged(double, double)
 	 */
+	@Override
 	public void positionChanged(final double x, final double y) {
 		final int ix = (int) x;
 		final int iy = (int) y;
@@ -932,6 +997,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		}
 	}
 	
+	@Override
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		// Just pass it to the ground container
 		ground.dropEntity(entity, amount, point);
@@ -988,10 +1054,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		Collections.sort(staticSprites);
 	}
 	
+	@Override
 	public void onZoneUpdate() {
 		viewManager.resetViews();
 	}
 
+	@Override
 	public void onZoneChange() {
 		removeAllObjects();
 	}
@@ -1034,6 +1102,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		return null;
 	}
 
+	@Override
 	public boolean canAccept(IEntity entity) {
 		if ((entity instanceof Item) || (entity instanceof Corpse)) {
 			return true;
