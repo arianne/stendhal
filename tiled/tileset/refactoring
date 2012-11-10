@@ -79,7 +79,7 @@ furniture/light/small_oil_lamp.png 8
 furniture/light/weird_lamp.png 12
 furniture/other/mannequins.png 9
 furniture/other/piano2.png 3
-tig furniture/picture/oil_paintings.png 54
+tig*furniture/picture/oil_paintings.png 54
 furniture/shelve/drawer_shelf.png 6
 furniture/shelve/green_bookshelf.png 14
 furniture/shelve/item_shelf.png 9
@@ -340,9 +340,9 @@ del*/ground/sandy_patches.png 0
 del*/ground/wooden_patio_planter.png 0
 /ground/yellow_lava.png 2
 /ground/fire/flames.png 9
-tig /ground/indoor/raised_platform.png 1
-tig /ground/indoor/raised_platform_blue.png 1
-tig /ground/indoor/raised_platform_purple.png 2
+tig*/ground/indoor/raised_platform.png 1
+tig*/ground/indoor/raised_platform_blue.png 1
+tig*/ground/indoor/raised_platform_purple.png 2
 del*/ground/ladder/gold_ladder.png 0
 /item/raised_square.png 1
 /item/armor/suit_of_armor2.png 7
