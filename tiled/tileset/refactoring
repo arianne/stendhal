@@ -50,13 +50,13 @@ del*/building/house_stone_thatched_roof.png 1
 building/museum.png 2
 building/stone_ruins.png 3
 building/tan_building.png 2
-lum building/fence/fence_wooden.png 30
+lum* building/fence/fence_wooden.png 30
 building/fence/wooden_brown_fence.png 5
 del*/building/window/bay_window.png 
 del*/building/window/green_windows.png 
-furniture/bed/double_pink_roses.png 17
-furniture/bed/double_purple_gold.png 20
-furniture/bed/double_white_pink.png 18
+lum furniture/bed/double_pink_roses.png 17
+lum furniture/bed/double_purple_gold.png 20
+lum furniture/bed/double_white_pink.png 18
 furniture/bed/single_dingy_white.png 2
 furniture/bed/single_pink_roses.png 4
 furniture/bed/single_purple_gold.png 8
