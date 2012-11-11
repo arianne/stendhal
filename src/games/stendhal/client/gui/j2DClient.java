@@ -38,6 +38,7 @@ import games.stendhal.client.gui.map.MapPanelController;
 import games.stendhal.client.gui.spells.Spells;
 import games.stendhal.client.gui.stats.StatsPanelController;
 import games.stendhal.client.gui.styled.StyledTabbedPaneUI;
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.listener.PositionChangeMulticaster;
 import games.stendhal.client.sound.facade.SoundFileType;
@@ -77,6 +78,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
@@ -228,7 +230,7 @@ public class j2DClient implements UserInterface {
 		this.userContext = userContext;
 		setDefault(this);
 
-		Dimension screenSize = stendhal.getScreenSize();
+		final Dimension screenSize = stendhal.getScreenSize();
 
 		/*
 		 * Add a layered pane for the game area, so that we can have
@@ -236,11 +238,6 @@ public class j2DClient implements UserInterface {
 		 */
 		pane = new JLayeredPane();
 		pane.setPreferredSize(screenSize);
-		/*
-		 *  Set the sizes strictly so that the layout manager
-		 *  won't try to resize it
-		 */
-		pane.setMaximumSize(screenSize);
 
 		/*
 		 * Create the main game screen
@@ -357,13 +354,10 @@ public class j2DClient implements UserInterface {
 		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
 
 		chatBox.add(chatLogArea, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
-		chatBox.setMinimumSize(chatText.getPlayerChatText().getMinimumSize());
-		chatBox.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
 
 		// Give the user the ability to make the the game area less tall
 		final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, chatBox);
 		splitPane.setBorder(null);
-		splitPane.setMaximumSize(splitPane.getPreferredSize());
 		// Works for showing the resize, but is extremely flickery
 		//splitPane.setContinuousLayout(true);
 		// Moving either divider will result in the screen resized. Pass it to
@@ -396,39 +390,85 @@ public class j2DClient implements UserInterface {
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
-				int position = horizSplit.getDividerLocation();
-				/*
-				 * The trouble: the size of the game screen is likely the one
-				 * that the player wants to preserve when making the window
-				 * smaller. Swing provides no default way to the old component
-				 * size, so we stash the interesting dimension in oldWidth. 
-				 */
-				int width = horizSplit.getWidth();
-				int oldRightDiff = oldWidth - position;
-				int widthChange = width - oldWidth;
-				int underflow = widthChange + position;
-				if (underflow < 0) {
+				if (screen.isScaled()) {
 					/*
-					 * Extreme size reduction. The divider location would have
-					 * changed as the result. Use the previous location instead
-					 * of the current.
+					 * Default behavior is otherwise reasonable, except the
+					 * user will likely want to use the vertical space for the
+					 * game screen.
+					 * 
+					 * Try to keep the aspect ratio near the optimum; the sizes
+					 * have not changed when this gets called, so push it to the
+					 * EDT.
 					 */
-					oldRightDiff = oldWidth - horizSplit.getLastDividerLocation();
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							double hScale = screen.getWidth() / (double) screenSize.width;
+							int preferredLocation = (int) (hScale * screenSize.height);
+							splitPane.setDividerLocation(preferredLocation);
+						}
+					});
+				} else {
+					int position = horizSplit.getDividerLocation();
+					/*
+					 * The trouble: the size of the game screen is likely the one
+					 * that the player wants to preserve when making the window
+					 * smaller. Swing provides no default way to the old component
+					 * size, so we stash the interesting dimension in oldWidth. 
+					 */
+					int width = horizSplit.getWidth();
+					int oldRightDiff = oldWidth - position;
+					int widthChange = width - oldWidth;
+					int underflow = widthChange + position;
+					if (underflow < 0) {
+						/*
+						 * Extreme size reduction. The divider location would have
+						 * changed as the result. Use the previous location instead
+						 * of the current.
+						 */
+						oldRightDiff = oldWidth - horizSplit.getLastDividerLocation();
+					}
+					position = width - oldRightDiff;
+
+					position = Math.min(position, horizSplit.getMaximumDividerLocation());
+					position = Math.max(position, horizSplit.getMinimumDividerLocation());
+
+					horizSplit.setDividerLocation(position);
+					oldWidth = horizSplit.getWidth();
 				}
-				position = width - oldRightDiff;
-
-				position = Math.min(position, horizSplit.getMaximumDividerLocation());
-				position = Math.max(position, horizSplit.getMinimumDividerLocation());
-
-				horizSplit.setDividerLocation(position);
-				oldWidth = horizSplit.getWidth();
 			}
 		});
 		horizSplit.setBorder(null);
 		
 		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		windowContent.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
-
+		WtWindowManager.getInstance().registerSettingChangeListener("ui.scale_screen",
+				new SettingChangeAdapter("ui.scale_screen", "true") {
+			@Override
+			public void changed(String newValue) {
+				boolean scale = Boolean.parseBoolean(newValue);
+				screen.setUseScaling(scale);
+				if (scale) {
+					// Clear the resize limits
+					splitPane.setMaximumSize(null);
+					pane.setMaximumSize(null);
+				} else {
+					// Set the limits
+					splitPane.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
+					pane.setMaximumSize(screenSize);
+					// The user may have resized the screen outside allowed
+					// parameters
+					int overflow = horizSplit.getWidth() - horizSplit.getDividerLocation() - screenSize.width;
+					if (overflow > 0) {
+						horizSplit.setDividerLocation(horizSplit.getDividerLocation() + overflow);
+					}
+					if (splitPane.getDividerLocation() > screenSize.height) {
+						splitPane.setDividerLocation(screenSize.height);
+					}
+				}
+			}
+		});
+		
 		/*
 		 * Handle focus assertion and window closing
 		 */
@@ -455,6 +495,7 @@ public class j2DClient implements UserInterface {
 		});
 
 		mainFrame.getMainFrame().pack();
+		horizSplit.setDividerLocation(leftColumn.getPreferredSize().width);
 		setInitialWindowStates();
 
 		/*
@@ -483,7 +524,7 @@ public class j2DClient implements UserInterface {
 		 * incorrectly unless we explicitly set it. Try to fit it on the
 		 * screen and show a bit of the chat.
 		 */
-		splitPane.setDividerLocation(Math.min(stendhal.getScreenSize().height,
+		splitPane.setDividerLocation(Math.min(screenSize.height,
 				maxBounds.height  - 80));
 
 		checkAndComplainAboutJavaImplementation();
