@@ -100,6 +100,8 @@ public class j2DClient implements UserInterface {
 	private static final int SCROLLING_SPEED = 8;
 	/** Background color of the private chat tab. Light blue. */
 	private static final String PRIVATE_TAB_COLOR = "0xdcdcff";
+	/** Property name used to determine if scaling is wanted. */
+	private static final String SCALE_PREFERENCE_PROPERTY = "ui.scale_screen";
 
 	/**
 	 * A shared [singleton] copy.
@@ -237,7 +239,6 @@ public class j2DClient implements UserInterface {
 		 * windows on top of it
 		 */
 		pane = new JLayeredPane();
-		pane.setPreferredSize(screenSize);
 
 		/*
 		 * Create the main game screen
@@ -438,12 +439,17 @@ public class j2DClient implements UserInterface {
 				}
 			}
 		});
+		/** Used as a workaround for BasicSplitPaneUI bugs */
+		final int divWidth = splitPane.getDividerSize();
+		
+		pane.setPreferredSize(new Dimension(screenSize.width + divWidth, screenSize.height));
 		horizSplit.setBorder(null);
 		
 		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		windowContent.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
-		WtWindowManager.getInstance().registerSettingChangeListener("ui.scale_screen",
-				new SettingChangeAdapter("ui.scale_screen", "true") {
+		
+		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
+				new SettingChangeAdapter(SCALE_PREFERENCE_PROPERTY, "true") {
 			@Override
 			public void changed(String newValue) {
 				boolean scale = Boolean.parseBoolean(newValue);
@@ -454,11 +460,11 @@ public class j2DClient implements UserInterface {
 					pane.setMaximumSize(null);
 				} else {
 					// Set the limits
-					splitPane.setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
+					splitPane.setMaximumSize(new Dimension(screenSize.width + divWidth, Integer.MAX_VALUE));
 					pane.setMaximumSize(screenSize);
 					// The user may have resized the screen outside allowed
 					// parameters
-					int overflow = horizSplit.getWidth() - horizSplit.getDividerLocation() - screenSize.width;
+					int overflow = horizSplit.getWidth() - horizSplit.getDividerLocation() - screenSize.width - divWidth;
 					if (overflow > 0) {
 						horizSplit.setDividerLocation(horizSplit.getDividerLocation() + overflow);
 					}
