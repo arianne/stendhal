@@ -96,13 +96,13 @@ furniture/table/concrete_table.png 6
 furniture/table/desk.png 38
 furniture/table/fancy_blue_red.png 13
 del*/furniture/table/fish_tables.png 
-furniture/table/grey_pale.png 35
+tig furniture/table/grey_pale.png 35
 del*/furniture/table/grey_pale_base.png 1
 tig*/furniture/table/hotdog_stand.png 2
 furniture/table/orb_table.png 16
 furniture/table/table_round_white.png 20
-furniture/table/table_with_hob.png 19
-furniture/table/table_with_hob_pale.png 64
+tig furniture/table/table_with_hob.png 19
+tig furniture/table/table_with_hob_pale.png 64
 furniture/table/table_wooden_brown.png 35
 furniture/table/vendors_table.png 23
 ground/grass_snow.png 3
@@ -294,7 +294,7 @@ del*/building/window/dojo_windows.png 0
 del*/building/window/greenish_grey.png 0
 /building/window/windows_with_flowerboxes.png 2
 /furniture/bed/single_grey.png 9
-/furniture/carpet/orange.png 23
+tig /furniture/carpet/orange.png 23
 /furniture/carpet/royalblue.png 12
 /furniture/chair/bench_iron.png 5
 /furniture/chair/bench_iron_extensible.png 2
@@ -317,8 +317,8 @@ kih*/furniture/light/dark_torch.png 53
 /furniture/light/sparkle.png 5
 /furniture/light/sparkle_middle.png 3
 /furniture/other/spinningwheel.png 1
-/furniture/picture/city_picture.png 8
-/furniture/picture/large_island.png 27
+tig /furniture/picture/city_picture.png 8
+tig /furniture/picture/large_island.png 27
 /furniture/shelve/rack.png 2
 /furniture/table/alchemists_table.png 1
 /furniture/table/flowers_on_bench2.png 7
@@ -347,9 +347,9 @@ del*/ground/ladder/gold_ladder.png 0
 /item/raised_square.png 1
 /item/armor/suit_of_armor2.png 7
 /item/banners/banner.png 1
-tig /item/banners/superhumans_banner_on_post.png 2
-tig /item/banners/superhumans_wall_hanging.png 2
-/item/banners/wall_hanging_brown.png 3
+tig*/item/banners/superhumans_banner_on_post.png 2
+tig*/item/banners/superhumans_wall_hanging.png 2
+tig*/item/banners/wall_hanging_brown.png 3
 /item/banners/wall_hanging_dkgreen.png 5
 /item/chest/chest_purple.png 12
 /item/corpse/hanging_skeleton.png 4
