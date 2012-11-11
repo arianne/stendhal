@@ -51,6 +51,9 @@ public class WtWindowManager {
 
 	/** maps the window names to their configs. */
 	private final Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
+	
+	/** Change listeners. */
+	private final Map<String, SettingChangeListener> listeners = new HashMap<String, SettingChangeListener>(); 
 
 	/** no public constructor. */
 	private WtWindowManager() {
@@ -176,6 +179,15 @@ public class WtWindowManager {
 		return MathHelper.parseIntDefault(value, defaultValue);
 	}
 
+	/**
+	 * Register a change listener for a specific configuration change.
+	 * 
+	 * @param key configuration key to be watched
+	 * @param listener listener for the changes
+	 */
+	public void registerSettingChangeListener(String key, SettingChangeListener listener) {
+		listeners.put("config." + key, listener);
+	}
 
 	/**
 	 * Sets a property.
@@ -184,7 +196,12 @@ public class WtWindowManager {
 	 * @param value value
 	 */
 	public void setProperty(final String key, final String value) {
-		properties.setProperty("config." + key, value);
+		String realKey = "config." + key;
+		properties.setProperty(realKey, value);
+		SettingChangeListener listener = listeners.get(realKey);
+		if (listener != null) {
+			listener.changed(value);
+		}
 	}
 
 	/**
