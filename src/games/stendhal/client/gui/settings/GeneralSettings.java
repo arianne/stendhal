@@ -50,6 +50,7 @@ class GeneralSettings {
 	
 	/** Property used for toggling map coloring on. */
 	private static final String MAP_COLOR_PROPERTY = "ui.colormaps";
+	private static final String SCALE_SCREEN_PROPERTY = "ui.scale_screen";
 	
 	/** Container for the setting components */
 	private final JComponent page;
@@ -77,7 +78,7 @@ class GeneralSettings {
 		
 		// show healing messages
 		JCheckBox showHealingToggle = SettingsComponentFactory.createSettingsToggle(HEALING_MESSAGE_PROPERTY, "false",
-				"Show healing messages", "Show healing messages in the chat log");new JCheckBox();
+				"Show healing messages", "Show healing messages in the chat log");
 		page.add(showHealingToggle);
 		
 		// show poison messages
@@ -92,6 +93,7 @@ class GeneralSettings {
 		// Coloring setting needs a map change to take an effect, so we need to
 		// inform the player about the delayed effect.
 		mapColoring.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
 				String tmp = enabled ? "enabled" : "disabled";
@@ -100,6 +102,10 @@ class GeneralSettings {
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
+		
+		JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
+				"true", "Scale view to fit window", "If selected the, game view will scale to fit the available space,\nothwewise the default sized graphics are used.");
+		page.add(scaleScreenToggle);
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
@@ -149,6 +155,7 @@ class GeneralSettings {
 		
 		// Bind the toggle button to enabling and disabling the selector
 		fontToggle.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
 				if (enabled) {
@@ -165,6 +172,7 @@ class GeneralSettings {
 		// Bind changing the selection to changing the font. The selector is
 		// enabled only when font changing is enabled, so this should be safe
 		fontList.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selected = fontList.getSelectedItem().toString();
 				WtWindowManager.getInstance().setProperty(FONT_PROPERTY, selected);
