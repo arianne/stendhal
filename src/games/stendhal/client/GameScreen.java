@@ -184,35 +184,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 
 	private AchievementBoxFactory achievementBoxFactory;
-	
-	/**
-	 * The canvas can be resized using a split pane. This is 
-	 * for adjusting the internal parameters for the change. 
-	 */
-	private class CanvasResizeListener extends ComponentAdapter {
-		@Override
-		public void componentResized(ComponentEvent e) {
-			Dimension screenSize = stendhal.getScreenSize();
-			sw = getWidth();
-			sh = getHeight();
-			if (useScaling) {
-				double xScale = sw / ((double) screenSize.getWidth());
-				double yScale = sh / ((double) screenSize.getHeight());
-				// Scale by the dimension that needs more scaling
-				if (Math.abs(xScale) > Math.abs(yScale)) {
-					scale = xScale;
-				} else {
-					scale = yScale;
-				}
-			} else {
-				sw = Math.min(sw, screenSize.width);
-				sh = Math.min(sh, screenSize.height);
-			}
-			// Reset the view so that the player is in the center
-			calculateView(x, y);
-			center();
-		}
-	}
 
 	/**
 	 * Create a game screen.
@@ -222,7 +193,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	public GameScreen(final StendhalClient client) {
 		setSize(stendhal.getScreenSize());
-		addComponentListener(new CanvasResizeListener());
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				onResized();
+			}
+		});
 		
 		gameLayers = client.getStaticGameLayers();
 
@@ -260,20 +236,58 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	/**
+	 * The canvas can be resized using a split pane, or with window size changes
+	 * if screen scaling is used. This is for adjusting the internal parameters
+	 * for the change. 
+	 */
+	private void onResized() {
+		Dimension screenSize = stendhal.getScreenSize();
+		sw = getWidth();
+		sh = getHeight();
+		if (useScaling) {
+			double xScale = sw / ((double) screenSize.getWidth());
+			double yScale = sh / ((double) screenSize.getHeight());
+			// Scale by the dimension that needs more scaling
+			if (Math.abs(xScale) > Math.abs(yScale)) {
+				scale = xScale;
+			} else {
+				scale = yScale;
+			}
+		} else {
+			sw = Math.min(sw, screenSize.width);
+			sh = Math.min(sh, screenSize.height);
+		}
+		// Reset the view so that the player is in the center
+		calculateView(x, y);
+		center();
+	}
+	
+	/**
 	 * Set whether the screen should be drawn scaled, or in native resolution.
 	 *  
 	 * @param useScaling if <code>true</code> the screen will scale the view
 	 * 	will be scaled to fit the screen size, otherwise it will be drawn using
 	 * 	the native resolution.
 	 */
-	void setUseScaling(boolean useScaling) {
+	public void setUseScaling(boolean useScaling) {
 		this.useScaling = useScaling;
 		if (!useScaling) {
 			scale = 1.0;
 		} else {
-			// Trigger resize listener
-			setSize(getSize());
+			onResized();
 		}
+	}
+	
+	/**
+	 * Check if the screen uses scaling. Note that if the native resolution
+	 * is in use, the screen size <b>must not</b> be allowed to grow larger than
+	 * <code>standhal.getScreenSize()</code>.
+	 * 
+	 * @return <code>true</code> if the graphics are scaled to the screen size,
+	 * 	<code>false</code> if the native resolution is used
+	 */
+	public boolean isScaled() {
+		return useScaling;
 	}
 
 	/**
