@@ -32,6 +32,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
+import games.stendhal.client.gui.layout.FreePlacementLayoutManager;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
@@ -239,6 +240,7 @@ public class j2DClient implements UserInterface {
 		 * windows on top of it
 		 */
 		pane = new JLayeredPane();
+		pane.setLayout(new FreePlacementLayoutManager());
 
 		/*
 		 * Create the main game screen
@@ -1113,8 +1115,7 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * The layered pane where the game screen is does not automatically resize
-	 * the game screen. This handler is needed to do that work. Also keeps the
-	 * internal windows on the screen.
+	 * the game screen. This handler is needed to do that work.
 	 */
 	private static class SplitPaneResizeListener extends ComponentAdapter {
 		private final Component child;
@@ -1127,18 +1128,6 @@ public class j2DClient implements UserInterface {
 		public void componentResized(ComponentEvent e) {
 			// Pass on resize event
 			child.setSize(e.getComponent().getSize());
-			
-			// Keep subcomponents inside. The game screen stays at (0, 0)
-			Component source = e.getComponent();
-			int maxX = source.getWidth();
-			int maxY = source.getHeight();
-			if (source instanceof Container) {
-				for (final Component c : ((Container) source).getComponents()) {
-					final int x = Math.max(0, Math.min(c.getX(), maxX - c.getWidth()));
-					final int y = Math.max(0, Math.min(c.getY(), maxY - c.getHeight()));
-					c.setLocation(x, y);
-				}
-			}
 		}
 	}
 
