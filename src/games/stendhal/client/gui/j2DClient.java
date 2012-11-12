@@ -1113,7 +1113,8 @@ public class j2DClient implements UserInterface {
 
 	/**
 	 * The layered pane where the game screen is does not automatically resize
-	 * the game screen. This handler is needed to do that work.
+	 * the game screen. This handler is needed to do that work. Also keeps the
+	 * internal windows on the screen.
 	 */
 	private static class SplitPaneResizeListener extends ComponentAdapter {
 		private final Component child;
@@ -1124,7 +1125,20 @@ public class j2DClient implements UserInterface {
 
 		@Override
 		public void componentResized(ComponentEvent e) {
+			// Pass on resize event
 			child.setSize(e.getComponent().getSize());
+			
+			// Keep subcomponents inside. The game screen stays at (0, 0)
+			Component source = e.getComponent();
+			int maxX = source.getWidth();
+			int maxY = source.getHeight();
+			if (source instanceof Container) {
+				for (final Component c : ((Container) source).getComponents()) {
+					final int x = Math.max(0, Math.min(c.getX(), maxX - c.getWidth()));
+					final int y = Math.max(0, Math.min(c.getY(), maxY - c.getHeight()));
+					c.setLocation(x, y);
+				}
+			}
 		}
 	}
 
