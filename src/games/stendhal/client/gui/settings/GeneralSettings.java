@@ -104,7 +104,7 @@ class GeneralSettings {
 		});
 		
 		JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
-				"true", "Scale view to fit window", "If selected the, game view will scale to fit the available space,\nothwewise the default sized graphics are used.");
+				"true", "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
 		page.add(scaleScreenToggle);
 		
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
