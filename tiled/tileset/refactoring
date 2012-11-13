@@ -323,7 +323,7 @@ tig /furniture/picture/large_island.png 27
 /furniture/table/alchemists_table.png 1
 /furniture/table/flowers_on_bench2.png 7
 /furniture/table/flowers_on_benches.png 9
-/furniture/table/grey_dark.png 5
+del*/furniture/table/grey_dark.png 5
 kih*/furniture/table/grey_fancy.png 25
 kih*/furniture/table/grey_fancy_horizontal.png 5
 kih*/furniture/table/grey_long.png 11
