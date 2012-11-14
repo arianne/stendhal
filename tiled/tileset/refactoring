@@ -300,8 +300,8 @@ tig /furniture/carpet/orange.png 23
 /furniture/chair/bench_iron_extensible.png 2
 /furniture/chair/bench_iron_reverse.png 4
 /furniture/chair/fancy_golden_sofa_front_on.png 1
-/furniture/chair/throne_small.png 29
-/furniture/chair/throne_small_gold.png 1
+kih /furniture/chair/throne_small.png 29
+kih /furniture/chair/throne_small_gold.png 1
 /furniture/chair/wooden_rustic.png 7
 /furniture/curtain/dark_red.png 7
 /furniture/curtain/dark_red_central.png 6
