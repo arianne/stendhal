@@ -344,7 +344,7 @@ tig*/ground/indoor/raised_platform.png 1
 tig*/ground/indoor/raised_platform_blue.png 1
 tig*/ground/indoor/raised_platform_purple.png 2
 del*/ground/ladder/gold_ladder.png 0
-/item/raised_square.png 1
+del*/item/raised_square.png 1
 /item/armor/suit_of_armor2.png 7
 /item/banners/banner.png 1
 tig*/item/banners/superhumans_banner_on_post.png 2
