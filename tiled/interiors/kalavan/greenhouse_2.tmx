@@ -30,14 +30,11 @@
  <tileset firstgid="166" name="barrel" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_with_flower.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="167" name="patio planter" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/patio_planter.png" width="32" height="32"/>
- </tileset>
- <tileset firstgid="168" name="vegetable" tilewidth="32" tileheight="32">
+ <tileset firstgid="167" name="vegetable" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png" width="416" height="32"/>
  </tileset>
- <tileset firstgid="181" name="fruits" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/fruits.png" width="256" height="32"/>
+ <tileset firstgid="180" name="fruits" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/fruits.png" width="288" height="32"/>
  </tileset>
  <tileset firstgid="189" name="pot plant sprout" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_sprout.png" width="32" height="64"/>
@@ -90,7 +87,7 @@
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgYGC4zYAJrqLxryOxr2FRjw/cQmLfRGLfBeIoIN5HpDkxJNipD8RGJKgnFtwD4vtAHI0mrg3Eemhi34D4Ow5zjJDUY3PrDyD+icQXZUSEEz6/nQfi5WhiIH3vcaiHgYVAfBmLugdAfJGAXgaonVeg6mFgHhBfIkJvIZR+hyY+D+ouXKAViNuAWJARU45Q/E8F4mlA/IkI91EDIKePJQyIdERILQjA/HKegD5ktbjAXTT+dQJmgtzxFIe5oHyNL+/qMSD88ZSAu0BgNhDPBOK5eNQAAEBxSCewBAAA
+   H4sIAAAAAAAAC2NgYGC4zYAJrqLxryOxr2FRjw/cQmLfRGLfBeIoIN5HpDkxJNipD8RGJKgnFtwD4vtAHI0mrg3Eemhi34D4Ow5zjJDUY3PrDyD+icQXZUSEEz6/nQfiT2hiIH3vcaiHgYVAfBmLugdAfJGAXgaonVeg6mFgHhBfIkJvIZR+hyY+D+ouXKAViNuAWJARU45Q/E8F4mkMmGFFK4CcPpYwINIRIbUgAPPLeQL6kNXiAnfR+NcJmAlyx1Mc5oLyNb68q8eA8MdTAu4CgdlAPBOI5+JRAwCAFqnKsAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
@@ -105,10 +102,10 @@
  </layer>
  <layer name="objects" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoA7YRCVzRsEoIBZsGyC9o2DgAACX5rP3sAQAAA==
+   H4sIAAAAAAAAC2NgoA7YSCVzRsEoIBZsHSC9o2DgAAC/6r03sAQAAA==
   </data>
  </layer>
- <layer name="collision" width="15" height="20" opacity="0.37">
+ <layer name="collision" width="15" height="20" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC1NiYGBQohKGASUcNLI8Nr3o6nCpxWcnuj50dxBrL7o4Prtx6SPG3YQAqfYSG16DXS8DA2X2EgLkupcYsyixm1i9pNqLK2xJSc+4zCGkj5C9xLgNhgF9X+LgsAQAAA==
   </data>
