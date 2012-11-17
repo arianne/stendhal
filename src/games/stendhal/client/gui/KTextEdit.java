@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,6 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -46,26 +47,26 @@ import org.apache.log4j.Logger;
  * Appendable text component to be used as the chat log.
  */
 public class KTextEdit extends JComponent {
-	/** Point size of the text */
+	/** Point size of the text. */
 	protected static final int TEXT_SIZE = 11;
-	/** Color of the time stamp written before the lines */ 
+	/** Color of the time stamp written before the lines. */
 	protected static final Color HEADER_COLOR = Color.gray;
 
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 	
-	/** The actual text component for showing the chat log */
-	protected JTextPane textPane;
-	/** Scroll pane containing the text component */ 
+	/** The actual text component for showing the chat log. */
+	JTextPane textPane;
+	/** Scroll pane containing the text component. */
 	private JScrollPane scrollPane;
 	/**
 	 * <code>true</code> if the chat log should automatically scroll to the
 	 * last line when more lines are added, <code>false</code> otherwise.
 	 */
 	private boolean autoScrollEnabled;
-	/** Name of the log */
+	/** Name of the log. */
 	private String name = "";
-	/** Background color when not highlighting unread messages */
+	/** Background color when not highlighting unread messages. */
 	private Color defaultBackground = Color.white;
 	
 	
@@ -77,6 +78,7 @@ public class KTextEdit extends JComponent {
 
 			JMenuItem menuItem = new JMenuItem("Save");
 			menuItem.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(final ActionEvent e) {
 					save();
 				}
@@ -85,6 +87,7 @@ public class KTextEdit extends JComponent {
 
 			menuItem = new JMenuItem("Clear");
 			menuItem.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(final ActionEvent e) {
 					clear();
 				}
@@ -102,7 +105,7 @@ public class KTextEdit extends JComponent {
 	KTextEdit() {
 		buildGUI();
 	}
-
+	
 	/**
 	 * This method builds the Gui.
 	 */
@@ -116,19 +119,29 @@ public class KTextEdit extends JComponent {
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
 		
-		scrollPane = new JScrollPane(textPane);
+		scrollPane = new JScrollPane(textPane) {
+			@Override
+			public JScrollBar createVerticalScrollBar() {
+				JScrollBar bar = super.createVerticalScrollBar();
+				bar.setModel(new VerticalScollbarModel());
+				return bar;
+			}
+		};
+		
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			@Override
 			public void adjustmentValueChanged(final AdjustmentEvent ev) {
 				JScrollBar bar = (JScrollBar) ev.getAdjustable();
 				// Try to avoid turning the new message indicator off
 				// while the player keeps adjusting the scroll bar to 
 				// avoid missleading results
-				if (!bar.getValueIsAdjusting() && (bar.getValue() + bar.getVisibleAmount() == bar.getMaximum())) {
+				if (!bar.getValueIsAdjusting() && isAtMaximum(bar)) {
 						setUnreadLinesWarning(false);
 						setAutoScrollEnabled(true);
 				}
 			}
 		});
+
 		add(scrollPane, BorderLayout.CENTER);
 	}
 
@@ -232,7 +245,7 @@ public class KTextEdit extends JComponent {
 				final FormatTextParser parser =	new FormatTextParser() {
 					@Override
 					public void normalText(final String txt) throws BadLocationException {
-						doc.insertString(doc.getLength(), txt, getStyle(color,styleDescription));
+						doc.insertString(doc.getLength(), txt, getStyle(color, styleDescription));
 					}
 
 					@Override
@@ -287,6 +300,7 @@ public class KTextEdit extends JComponent {
 				handleAddLine(header, line, type);
 			} else {
 				SwingUtilities.invokeAndWait(new Runnable() {
+					@Override
 					public void run() {
 						handleAddLine(header, line, type);
 					}
@@ -313,7 +327,7 @@ public class KTextEdit extends JComponent {
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 		final int currentLocation = vbar.getValue();
 		
-		setAutoScrollEnabled((vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum()));
+		setAutoScrollEnabled(isAtMaximum(vbar));
 		insertNewline();
 
 		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
@@ -325,6 +339,7 @@ public class KTextEdit extends JComponent {
 
 		// wait a bit so that the scroll bar knows where it should scroll 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				if (isAutoScrollEnabled()) {
 					scrollToBottom();
@@ -356,6 +371,17 @@ public class KTextEdit extends JComponent {
 	 */
 	private boolean isAutoScrollEnabled() {
 		return autoScrollEnabled;
+	}
+	
+	/**
+	 * Check if a scroll bar is at its maximum value.
+	 * 
+	 * @param bar scroll bar
+	 * @return <code>true</code> if the scrollbar is at its maximum value
+	 * 	location, <code>false</code>otherwise
+	 */
+	private boolean isAtMaximum(JScrollBar bar) {
+		return (bar.getValue() + bar.getVisibleAmount() >= bar.getMaximum());
 	}
 
 	/**
@@ -435,6 +461,29 @@ public class KTextEdit extends JComponent {
 			addLine("", "Chat log has been saved to " + fname, NotificationType.CLIENT);
 		} catch (final IOException ex) {
 			logger.error(ex, ex);
+		}
+	}
+	
+	/**
+	 * A custom range model to help implement the automatically scrolling pane.
+	 */
+	private static class VerticalScollbarModel extends DefaultBoundedRangeModel {
+		@Override
+		public void setRangeProperties(int value, int extent, int min, int max,
+				boolean adjusting) {
+			/*
+			 * If nothing else changes, but the extent changes to smaller, it is
+			 * a resize event where the widget has been made shorter.
+			 */
+			if ((extent < getExtent()) && (value == getValue()) 
+					&& (min == getMinimum()) && (max == getMaximum()) && !adjusting) {
+				if (value + getExtent() >= max) {
+					// We are at bottom, use adjusted values to ensure we stay
+					// at bottom
+					value = max - extent;
+				}
+			}
+			super.setRangeProperties(value, extent, min, max, adjusting);
 		}
 	}
 }
