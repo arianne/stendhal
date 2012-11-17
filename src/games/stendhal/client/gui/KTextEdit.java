@@ -36,6 +36,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -59,16 +61,10 @@ public class KTextEdit extends JComponent {
 	JTextPane textPane;
 	/** Scroll pane containing the text component. */
 	private JScrollPane scrollPane;
-	/**
-	 * <code>true</code> if the chat log should automatically scroll to the
-	 * last line when more lines are added, <code>false</code> otherwise.
-	 */
-	private boolean autoScrollEnabled;
 	/** Name of the log. */
 	private String name = "";
 	/** Background color when not highlighting unread messages. */
 	private Color defaultBackground = Color.white;
-	
 	
 	/** Listener for opening the popup menu when it's requested. */
 	private final class TextPaneMouseListener extends MousePopupAdapter {
@@ -113,6 +109,14 @@ public class KTextEdit extends JComponent {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
+		// Turn off caret following. VerticalScrollBarModel takes care of
+		// automatic scrolling
+		Caret caret = textPane.getCaret();
+		if (caret instanceof DefaultCaret) {
+			((DefaultCaret) caret).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		} else {
+			logger.warn("Failed to turn off caret following");
+		}
 		
 		textPane.addMouseListener(new TextPaneMouseListener());
 		
@@ -127,7 +131,7 @@ public class KTextEdit extends JComponent {
 				return bar;
 			}
 		};
-		
+	
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(final AdjustmentEvent ev) {
@@ -136,8 +140,7 @@ public class KTextEdit extends JComponent {
 				// while the player keeps adjusting the scroll bar to 
 				// avoid missleading results
 				if (!bar.getValueIsAdjusting() && isAtMaximum(bar)) {
-						setUnreadLinesWarning(false);
-						setAutoScrollEnabled(true);
+					setUnreadLinesWarning(false);
 				}
 			}
 		});
@@ -273,14 +276,6 @@ public class KTextEdit extends JComponent {
 	}
 
 	/**
-	 * Scroll to the last line.
-	 */
-	private void scrollToBottom() {	
-		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-		vbar.setValue(vbar.getMaximum());
-	}
-
-	/**
 	 * Add a new line with a specified header and content. The style will be
 	 * chosen according to the type of the message.
 	 *
@@ -291,7 +286,7 @@ public class KTextEdit extends JComponent {
 	 * @param type
 	 *            The logical format type.
 	 */
-	private synchronized void addLine(final String header, final String line,
+	private void addLine(final String header, final String line,
 			final NotificationType type) {
 		// do the whole thing in the event dispatch thread to ensure the generated 
 		// events get handled in the correct order
@@ -299,14 +294,14 @@ public class KTextEdit extends JComponent {
 			if (SwingUtilities.isEventDispatchThread()) {
 				handleAddLine(header, line, type);
 			} else {
-				SwingUtilities.invokeAndWait(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
 						handleAddLine(header, line, type);
 					}
 				});
 			}
-		} catch (final Exception e) {
+		} catch (final RuntimeException e) {
 			logger.error(e, e);
 		}
 	}
@@ -324,10 +319,6 @@ public class KTextEdit extends JComponent {
 	 *            The logical format type.
 	 */
 	private void handleAddLine(final String header, final String line, final NotificationType type) {
-		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-		final int currentLocation = vbar.getValue();
-		
-		setAutoScrollEnabled(isAtMaximum(vbar));
 		insertNewline();
 
 		final java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
@@ -336,41 +327,6 @@ public class KTextEdit extends JComponent {
 
 		insertHeader(header);
 		insertText(line, type);
-
-		// wait a bit so that the scroll bar knows where it should scroll 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				if (isAutoScrollEnabled()) {
-					scrollToBottom();
-				} else {
-					// the scroll bar insists changing its value, so jump back.
-					// in a sane toolkit it would be possible to defer drawing
-					// until this
-					vbar.setValue(currentLocation);
-					setUnreadLinesWarning(true);
-				}
-			}
-		});
-	}
-
-	/**
-	 * Set the auto scroll flag.
-	 * 
-	 * @param autoScrollEnabled <code>true</code> if the chat log view keeps
-	 * 	at the last line, <code>false</code> otherwise 
-	 */
-	private void setAutoScrollEnabled(final boolean autoScrollEnabled) {
-		this.autoScrollEnabled = autoScrollEnabled;
-	}
-
-	/**
-	 * Check if the view should keep following the last line.
-	 * 
-	 * @return <code>true</code> if the view should be kept at bottom
-	 */
-	private boolean isAutoScrollEnabled() {
-		return autoScrollEnabled;
 	}
 	
 	/**
@@ -465,23 +421,22 @@ public class KTextEdit extends JComponent {
 	}
 	
 	/**
-	 * A custom range model to help implement the automatically scrolling pane.
+	 * A custom range model that implements the automatically scrolling pane.
+	 * Keeps the scrollbar at bottom, if it it was there before.
 	 */
-	private static class VerticalScollbarModel extends DefaultBoundedRangeModel {
+	private class VerticalScollbarModel extends DefaultBoundedRangeModel {
 		@Override
 		public void setRangeProperties(int value, int extent, int min, int max,
 				boolean adjusting) {
-			/*
-			 * If nothing else changes, but the extent changes to smaller, it is
-			 * a resize event where the widget has been made shorter.
-			 */
-			if ((extent < getExtent()) && (value == getValue()) 
-					&& (min == getMinimum()) && (max == getMaximum()) && !adjusting) {
-				if (value + getExtent() >= max) {
-					// We are at bottom, use adjusted values to ensure we stay
-					// at bottom
-					value = max - extent;
-				}
+			boolean atBottom = getValue() + getExtent() >= getMaximum(); 
+			if (atBottom && (value == getValue())) {
+				// We are at bottom, use adjusted values to ensure we stay
+				// at bottom
+				value = Math.min(Math.max(max - extent, min), max);
+			} else if (max > getMaximum()) {
+				// Not at bottom. Keep the old location.
+				value = Math.min(Math.max(getValue(), min), max);
+				setUnreadLinesWarning(true);
 			}
 			super.setRangeProperties(value, extent, min, max, adjusting);
 		}
