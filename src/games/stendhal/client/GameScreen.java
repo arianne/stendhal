@@ -245,8 +245,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		sw = getWidth();
 		sh = getHeight();
 		if (useScaling) {
-			double xScale = sw / ((double) screenSize.getWidth());
-			double yScale = sh / ((double) screenSize.getHeight());
+			double xScale = sw / screenSize.getWidth();
+			double yScale = sh / screenSize.getHeight();
 			// Scale by the dimension that needs more scaling
 			if (Math.abs(xScale) > Math.abs(yScale)) {
 				scale = xScale;
