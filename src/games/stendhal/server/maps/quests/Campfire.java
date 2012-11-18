@@ -191,7 +191,7 @@ public class Campfire extends AbstractQuest {
 				new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, "start"), new QuestStartedCondition(QUEST_SLOT), new NotCondition(new TimePassedCondition(QUEST_SLOT,REQUIRED_MINUTES))),
 				ConversationStates.ATTENDING, 
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,"Thanks, but I think the wood you brought me already will last me another"));
+				new SayTimeRemainingAction(QUEST_SLOT,REQUIRED_MINUTES,"Thanks, but I think the wood you brought already will last me"));
 		
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
