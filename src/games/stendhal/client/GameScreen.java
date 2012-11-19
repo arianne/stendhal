@@ -57,7 +57,7 @@ import org.apache.log4j.Logger;
 public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	GameObjects.GameObjectListener, StendhalClient.ZoneChangeListener {
 	/**
-	 * serial version uid
+	 * serial version uid.
 	 */
 	private static final long serialVersionUID = -4070406295913030925L;
 
@@ -81,12 +81,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * A scale factor for panning delta (to allow non-float precision).
 	 */
-	protected static final int PAN_SCALE = 8;
+	private static final int PAN_SCALE = 8;
 	/**
 	 * Speed factor for centering the screen. Smaller is faster,
 	 * and keeps the player closer to the center of the screen when walking.
 	 */
 	private static final int PAN_INERTIA = 15;
+	/**
+	 * Space at the right and bottom of the screen next to the off line
+	 * indicator icon.
+	 */
+	private static final int OFFLINE_MARGIN = 10;
 
 	private static final Sprite offlineIcon;
 
@@ -96,15 +101,15 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Static game layers.
 	 */
-	protected StaticGameLayers gameLayers;
+	private StaticGameLayers gameLayers;
 	
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
 
 	/** Actual width of the world in world units. */
-	protected int ww;
+	private int ww;
 	/** Actual height of the world in world units. */
-	protected int wh;
+	private int wh;
 
 	/**
 	 * The ground layer.
@@ -132,6 +137,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	private boolean offline;
 
+	/**
+	 * Off line indicator counter. 
+	 */
 	private int blinkOffline;
 
 	/**
@@ -207,8 +215,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		x = 0;
 		y = 0;
-		svx = sw / -2;
-		svy = sh / -2;
+		svx = -sw / 2;
+		svy = -sh / 2;
 		dvx = 0;
 		dvy = 0;
 
@@ -248,11 +256,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			double xScale = sw / screenSize.getWidth();
 			double yScale = sh / screenSize.getHeight();
 			// Scale by the dimension that needs more scaling
-			if (Math.abs(xScale) > Math.abs(yScale)) {
-				scale = xScale;
-			} else {
-				scale = yScale;
-			}
+			scale = Math.max(xScale, yScale);
 		} else {
 			sw = Math.min(sw, screenSize.width);
 			sh = Math.min(sh, screenSize.height);
@@ -307,12 +311,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 	/** @return screen width in world units. */
 	private int getViewWidth() {
-		return (int) Math.ceil((sw / SIZE_UNIT_PIXELS / scale));
+		return (int) Math.ceil(sw / (SIZE_UNIT_PIXELS * scale));
 	}
 
 	/** @return screen height in world units .*/
 	private int getViewHeight() {
-		return (int) Math.ceil((sh / SIZE_UNIT_PIXELS / scale));
+		return (int) Math.ceil(sh / (SIZE_UNIT_PIXELS * scale));
 	}
 	
 	/*
@@ -326,7 +330,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	/**
-	 * Get the achievement box factory
+	 * Get the achievement box factory.
 	 * 
 	 * @return factory
 	 */
@@ -384,7 +388,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		}
 
 		final int sx = convertWorldXToScaledScreen(x) - getScreenViewX() + SIZE_UNIT_PIXELS / 2;
-		final int sy = convertWorldYToScaledScreen(y) - getScreenViewY() + (SIZE_UNIT_PIXELS / 2);
+		final int sy = convertWorldYToScaledScreen(y) - getScreenViewY() + SIZE_UNIT_PIXELS / 2;
 
 		if ((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
@@ -392,26 +396,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			 */
 			center();
 		} else {
-			/*
-			 * Calculate the target speed. The farther away, the faster.
-			 */
-			final int dux = dvx / PAN_INERTIA;
-			final int duy = dvy / PAN_INERTIA;
-
-			final int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
-
-			if (speed > tspeed) {
-				speed = (speed + speed + tspeed) / 3;
-
-				/*
-				 * Don't stall
-				 */
-				if ((dvx != 0) || (dvy != 0)) {
-					speed = Math.max(speed, 1);
-				}
-			} else if (speed < tspeed) {
-				speed += 2;
-			}
+			calculatePanningSpeed();
 
 			/*
 			 * Moving?
@@ -449,6 +434,30 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				svy += dy;
 				dvy -= dy;
 			}
+		}
+	}
+	
+	/**
+	 * Calculate the target speed for moving the view position. The farther
+	 * away, the faster.
+	 */
+	private void calculatePanningSpeed() {
+		final int dux = dvx / PAN_INERTIA;
+		final int duy = dvy / PAN_INERTIA;
+
+		final int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
+
+		if (speed > tspeed) {
+			speed = (2 * speed + tspeed) / 3;
+
+			/*
+			 * Don't stall
+			 */
+			if ((dvx != 0) || (dvy != 0)) {
+				speed = Math.max(speed, 1);
+			}
+		} else if (speed < tspeed) {
+			speed += 2;
 		}
 	}
 
@@ -590,18 +599,31 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// Don't scale text to keep it readable
 		drawText(g2d);
 
-		// Offline
-		if (offline && (blinkOffline > 0)) {
-			offlineIcon.draw(g2d, 560, 420);
-		}
-
-		if (blinkOffline < -10) {
-			blinkOffline = 20;
-		} else {
-			blinkOffline--;
-		}
+		paintOffLineIfNeeded(g2d);
 
 		graphics.dispose();
+	}
+	
+	/**
+	 * Draw the offline indicator, blinking, if the client is offline.
+	 * 
+	 * @param g graphics
+	 */
+	private void paintOffLineIfNeeded(Graphics g) {
+		// Offline
+		if (offline) {
+			if (blinkOffline > 0) {
+				offlineIcon.draw(g, getWidth() - offlineIcon.getWidth() - OFFLINE_MARGIN,
+						getHeight() - offlineIcon.getHeight() - OFFLINE_MARGIN);
+			}
+
+			// Show for 20 screen draws, hide for 12
+			if (blinkOffline < -10) {
+				blinkOffline = 20;
+			} else {
+				blinkOffline--;
+			}
+		}
 	}
 
 	/**
@@ -690,9 +712,9 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Adds a text bubble at a give position.
 	 * 
 	 * @param sprite 
-	 * @param x 
-	 * @param y
-	 * @param textLength 
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @param textLength length of the text in characters
 	 */
 	public void addTextBox(Sprite sprite, double x, double y, int textLength) {
 		int sx = convertWorldXToScaledScreen(x);
@@ -717,7 +739,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 				for (final RemovableSprite item : texts) {
 					if ((item.getX() == sx) && (item.getY() == sy)) {
 						found = true;
-						sy += (SIZE_UNIT_PIXELS / scale / 2);
+						sy += SIZE_UNIT_PIXELS / 2;
 						sy = keepSpriteOnMapY(sprite, sy);
 						break;
 					}
@@ -739,7 +761,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Try to keep a sprite on the map. Adjust the Y coordinate.
 	 * 
-	 * @param sprite
+	 * @param sprite sprite to keep on the map
 	 * @param sy suggested Y coordinate on screen
 	 * @return new Y coordinate
 	 */
@@ -760,7 +782,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Try to keep a sprite on the map. Adjust the X coordinate.
 	 * 
-	 * @param sprite
+	 * @param sprite sprite to keep on the map
 	 * @param sx suggested X coordinate on screen
 	 * @return new X coordinate
 	 */
@@ -903,7 +925,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	/**
-	 * Convert a world x coordinate to <emph>raw</raw> (native resolution)
+	 * Convert a world x coordinate to <em>raw</em> (native resolution)
 	 * screen x coordinate.
 	 * 
 	 * @param x world x coordinate
@@ -914,7 +936,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 	
 	/**
-	 * Convert a world y coordinate to <emph>raw</raw> (native resolution)
+	 * Convert a world y coordinate to <em>raw</em> (native resolution)
 	 * screen y coordinate.
 	 * 
 	 * @param y world y coordinate
@@ -1018,11 +1040,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 
 	/**
-	 * Draw a box for a reached achievement with given title, description and category
+	 * Draw a box for a reached achievement with given title, description and
+	 * category.
 	 * 
-	 * @param title
-	 * @param description
-	 * @param category
+	 * @param title title of the achievement
+	 * @param description achievement description
+	 * @param category achievement category
 	 */
 	public void addAchievementBox(String title, String description,
 			String category) {
@@ -1040,8 +1063,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Add a text box bound to the bottom of the screen, with a timeout
 	 * dependent on the text length.
 	 * 
-	 * @param sprite
-	 * @param textLength
+	 * @param sprite text box sprite
+	 * @param textLength text length in characters
 	 * @param priority importance of the message to keep it above others
 	 */
 	public void addStaticText(Sprite sprite, int textLength, int priority) {
@@ -1079,20 +1102,21 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	}
 
 	/**
-	 * Switch to spell casting triggered by a key event
+	 * Switch to spell casting triggered by a key event.
+	 * 
 	 * @param e triggering key event
 	 */
 	public void switchToSpellCasting(KeyEvent e) {
 		RPObject spell = findSpell(e);
 		// only if a spell was found switch to spell casting
 		// i.e. Ctrl + 9 was issued, but player only has 8 spell would return null
-		if(spell != null) {
+		if (spell != null) {
 			switchToSpellCastingState(spell);
 		}
 	}
 
 	/**
-	 * Switch to spell casting with an already chosen spell
+	 * Switch to spell casting with an already chosen spell.
 	 * 
 	 * @param spell the chosen spell
 	 */
@@ -1102,13 +1126,19 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		newState.setSpell(spell);
 	}
 	
+	/**
+	 * Find spell corresponding to a key.
+	 * 
+	 * @param e key
+	 * @return spell, or <code>null</code> if the key does not match any spell
+	 */
 	private RPObject findSpell(KeyEvent e) {
 		RPObject player = StendhalClient.get().getPlayer();
 		Integer position = keyEventMapping.get(e.getKeyCode());
 		RPSlot slot = player.getSlot("spells");
 		Integer counter = Integer.valueOf(1);
 		for (RPObject spell : slot) {
-			if(counter.equals(position)) {
+			if (counter.equals(position)) {
 				return spell;
 			}
 			counter = Integer.valueOf(counter.intValue() + 1);
