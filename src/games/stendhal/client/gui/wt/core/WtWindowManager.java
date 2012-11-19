@@ -103,7 +103,8 @@ public class WtWindowManager {
 			final OutputStream os = Persistence.get().getOutputStream(false,
 					stendhal.getGameFolder(), FILE_NAME);
 			try {
-				final OutputStreamWriter writer = new OutputStreamWriter(os);
+				// ISO-8859-1 is the charset that Properties.load() wants.
+				final OutputStreamWriter writer = new OutputStreamWriter(os, "ISO-8859-1");
 				try {
 					writer.append(buf.toString());
 				} finally {
