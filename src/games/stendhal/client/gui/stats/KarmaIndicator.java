@@ -12,38 +12,31 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.gui.ScalingModel;
+import games.stendhal.client.gui.StatusDisplayBar;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
+import java.awt.Graphics2D;
+import java.awt.LinearGradientPaint;
+import java.awt.Paint;
+import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * A bar indicator component for karma.
  */
-public class KarmaIndicator extends JComponent implements PropertyChangeListener {
+public final class KarmaIndicator extends StatusDisplayBar implements PropertyChangeListener {
 	private static final long serialVersionUID = 3462088641737184898L;
 
 	private static KarmaIndicator instance;
-
-	/** 
-	 * Scaling factor for interpreting karma to bar length. Smaller means
-	 * smaller change in karma bar for a karma change. 
-	 */
-	private static final double SCALING = 0.02;
-	private static final String IMAGE_FILE_NAME = "data/gui/karma_scale.png";
-	
-	/** Karma scaled to pixels */
-	private int karma;
-	private final Sprite image;
 	
 	/**
 	 * Create the KarmaIndicator instance.
@@ -64,12 +57,9 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	 * Create a new karma indicator.
 	 */
 	private KarmaIndicator() {
+		super(new KarmaScalingModel());
+		setPainter(new KarmaBarPainter());
 		setVisible(false);
-		final SpriteStore store = SpriteStore.get();
-		image = store.getSprite(IMAGE_FILE_NAME);
-		
-		// We don't draw the background
-		setOpaque(false);
 	}
 
 	/**
@@ -89,12 +79,11 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 	 * Set the karma value. This method may be called outside the event dispatch
 	 * thread.
 	 * 
-	 * @param karma
+	 * @param karma new karma
 	 */
 	void setValue(double karma) {
 		setToolTipText(describeKarma(karma));
-		this.karma = scale(karma);
-		repaint();
+		getModel().setValue(karma);
 	}
 	
 	/**
@@ -119,51 +108,8 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 		}
 		return "You have disastrously bad karma";
 	}
-	
-	@Override
-	public Dimension getPreferredSize() {
-		Dimension pref = new Dimension(image.getWidth(), image.getHeight());
-		
-		Insets insets = getInsets();
-		pref.width += insets.left + insets.right;
-		pref.height += insets.top + insets.bottom;
-		
-		return pref;
-	}
-	
-	@Override
-	public Dimension getMinimumSize() {
-		// Preferred is also the minimum size where the bar can be drawn properly
-		return getPreferredSize();
-	}
-	
-	/**
-	 * Scale a karma value to bar length.
-	 * 
-	 * @param karma player karma
-	 * @return length of the drawn bar in pixels
-	 */
-	private int scale(double karma) {
-		// Scale to ]0, 1[
-		double normalized = 0.5 + Math.atan(SCALING * karma) / Math.PI;
-	
-		// ...and then to ]0, image.getWidth()[
-		return (int) (image.getWidth() * normalized);
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Insets insets = getInsets();
-		// Paint black what is not covered by the colored bar
-		g.setColor(Color.BLACK);
-		g.fillRect(insets.left, insets.top, image.getWidth(), image.getHeight());
-		// Draw appropriate length of the image
-		g.clipRect(insets.left, insets.top, karma, getHeight());
-		image.draw(g, insets.left, insets.top);
-	}
 
-
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt == null) {
 			return;
@@ -174,6 +120,7 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 		if ((oldMap != null) && oldMap.containsKey("karma_indicator")) {
 			// Feature changes are triggered from outside the EDT.
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					setVisible(false);
 				}
@@ -185,10 +132,92 @@ public class KarmaIndicator extends JComponent implements PropertyChangeListener
 		if ((newMap != null) && newMap.containsKey("karma_indicator")) {
 			// Feature changes are triggered from outside the EDT.
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					setVisible(true);
 				}
 			});
+		}
+	}
+	
+	/**
+	 * Painter for the karma bar gradient.
+	 */
+	private static class KarmaBarPainter implements BarPainter {
+		@Override
+		public void paint(Graphics2D g, int width, int height) {
+			Point2D start = new Point2D.Float(0f, 0f);
+			Point2D end = new Point2D.Float(width, 0f);
+			Paint paint = new LinearGradientPaint(start, end,
+					new float[] {0.0f, 0.5f, 1.0f},
+					new Color[] {Color.RED, Color.WHITE, Color.BLUE});
+			g.setPaint(paint);
+			g.fillRect(0, 0, width, height);
+		}
+	}
+	
+	/**
+	 * Scaling model for karma.
+	 */
+	private static class KarmaScalingModel implements ScalingModel {
+		/** 
+		 * Scaling factor for interpreting karma to bar length. Smaller means
+		 * smaller change in karma bar for a karma change. 
+		 */
+		private static final double SCALING = 0.02;
+		private int maxRepresentation = 1;
+		private double value;
+		private int representation;
+		
+		private final List<ChangeListener> listeners = new CopyOnWriteArrayList<ChangeListener>();
+		
+		@Override
+		public void addChangeListener(ChangeListener listener) {
+			listeners.add(listener);
+		}
+
+		@Override
+		public void setValue(double value) {
+			this.value = value;
+			int oldRepr = representation;
+			calculateRepresentation();
+			// Avoid needles notifications
+			if (representation != oldRepr) {
+				fireChanged();
+			}
+		}
+
+		/**
+		 * Calculate the representation value.
+		 */
+		private void calculateRepresentation() {
+			// Scale to ]0, 1[
+			double normalized = 0.5 + Math.atan(SCALING * value) / Math.PI;
+			// ...and then to ]0, maxRepresentation[
+			representation = (int) Math.round(normalized * maxRepresentation);
+		}
+
+		@Override
+		public int getRepresentation() {
+			return representation;
+		}
+
+		@Override
+		public void setMaxRepresentation(int max) {
+			if (maxRepresentation != max) {
+				maxRepresentation = max;
+				setValue(value);
+			}
+		}
+		
+		/**
+		 * Notify change listeners.
+		 */
+		private void fireChanged() {
+			ChangeEvent e = new ChangeEvent(this);
+			for (ChangeListener listener : listeners) {
+				listener.stateChanged(e);
+			}
 		}
 	}
 }

@@ -46,7 +46,7 @@ public class StatsPanel extends JPanel {
 		
 		karmaIndicator = KarmaIndicator.create();
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		add(karmaIndicator);
+		add(karmaIndicator, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
