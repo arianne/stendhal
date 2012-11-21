@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.stats;
 
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 
 import java.awt.Font;
 
@@ -45,13 +46,12 @@ public class StatsPanel extends JPanel {
 		
 		karmaIndicator = KarmaIndicator.create();
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		karmaIndicator.setToolTipText("Karma");
 		add(karmaIndicator);
 		
 		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		manaIndicator.setToolTipText("Mana");
-		add(manaIndicator);
+		add(manaIndicator, SBoxLayout.constraint(SLayout.EXPAND_X));
 		
 		hpLabel = new StatLabel();
 		add(hpLabel);
