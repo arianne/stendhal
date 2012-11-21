@@ -14,9 +14,11 @@ package games.stendhal.client.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 import javax.swing.event.ChangeEvent;
@@ -27,11 +29,18 @@ import javax.swing.event.ChangeListener;
  */
 public class StatusDisplayBar extends JComponent {
 	/** Preferred height of the bar. */
-	private final int PREFERRED_HEIGHT = 10;
+	private static final int PREFERRED_HEIGHT = 10;
 	/** Value model. */
 	private final ScalingModel model;
 	/** Default bar color. */
 	private Color color = Color.WHITE;
+	/** Painter, or <code>null</code> if a plain color bar is used. */
+	private BarPainter painter;
+	/**
+	 * Image of a full color bar, or <code>null</code> if a plain color bar
+	 * is used.
+	 */
+	private BufferedImage barImage;
 	
 	/**
 	 * Create a StatusDisplayBar.
@@ -53,10 +62,26 @@ public class StatusDisplayBar extends JComponent {
 			public void componentResized(ComponentEvent e) {
 				Insets insets = getInsets();
 				int barWidth = getWidth() - insets.left - insets.right - 2;
+				if (painter != null) {
+					int barHeight = getHeight() - insets.top - insets.bottom;
+					barImage = getGraphicsConfiguration().createCompatibleImage(barWidth, barHeight);
+					Graphics2D g = barImage.createGraphics();
+					painter.paint(g, barWidth, barHeight);
+					g.dispose();
+				}
 				model.setMaxRepresentation(barWidth);
 			}
 		});
 		this.setPreferredSize(new Dimension(2, PREFERRED_HEIGHT));
+	}
+	
+	/**
+	 * Return the value scaling model in use.
+	 * 
+	 * @return model
+	 */
+	public ScalingModel getModel() {
+		return model;
 	}
 	
 	/**
@@ -68,6 +93,15 @@ public class StatusDisplayBar extends JComponent {
 		this.color = color;
 	}
 	
+	/**
+	 * Set painter for fancy colored bars.
+	 * 
+	 * @param painter painter for coloring the template image
+	 */
+	protected void setPainter(BarPainter painter) {
+		this.painter = painter;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		Insets insets = getInsets();
@@ -76,9 +110,29 @@ public class StatusDisplayBar extends JComponent {
 		g.fillRect(insets.left, insets.top, getWidth() - insets.left - insets.right,
 				getHeight() - insets.top - insets.bottom);
 		
-		if (color != null) {
+		int barHeight = getHeight() - insets.top - insets.bottom - 2;
+		if (barImage != null) {
+			Graphics clipped = g.create(insets.left + 1, insets.top + 1, model.getRepresentation(), barHeight);
+			clipped.drawImage(barImage, 0, 0, null);
+			clipped.dispose();
+		} else {
 			g.setColor(color);
-			g.fillRect(insets.left + 1, insets.top + 1, model.getRepresentation(), getHeight() - insets.top - insets.bottom - 2);
+			g.fillRect(insets.left + 1, insets.top + 1, model.getRepresentation(), barHeight);
 		}
+	}
+	
+	/**
+	 * Interface for bars that need more complicated drawing than a simple color
+	 * bar. 
+	 */
+	public interface BarPainter {
+		/**
+		 * Fill an area corresponding to a <em>full</em> bar.
+		 * 
+		 * @param g graphics
+		 * @param width width of the area
+		 * @param height height of the area
+		 */
+		void paint(Graphics2D g, int width, int height);
 	}
 }
