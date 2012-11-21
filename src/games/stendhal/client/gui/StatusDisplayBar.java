@@ -72,7 +72,8 @@ public class StatusDisplayBar extends JComponent {
 				model.setMaxRepresentation(barWidth);
 			}
 		});
-		this.setPreferredSize(new Dimension(2, PREFERRED_HEIGHT));
+		setPreferredSize(new Dimension(2, PREFERRED_HEIGHT));
+		setMinimumSize(getPreferredSize());
 	}
 	
 	/**
