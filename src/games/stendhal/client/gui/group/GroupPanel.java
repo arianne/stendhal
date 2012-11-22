@@ -135,6 +135,15 @@ class GroupPanel {
 		memberListComponent.setCellRenderer(new MemberCellRenderer());
 		memberListComponent.setOpaque(false);
 		memberListComponent.addMouseListener(new MemberListMouseListener());
+		memberListComponent.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				for (Member member : memberList){
+					// A fuzzy number that is hopefully good enough
+					member.setMaxHPRepresentation(memberListComponent.getWidth() - 4);
+				}
+			}
+		});
 		/*
 		 * JList is too dumb to set its preferred width correctly. Using expand
 		 * + borders as a workaround. Unfortunately that prevents the unused
@@ -157,6 +166,7 @@ class GroupPanel {
 		messageButton = new JButton(MESSAGE_ICON);
 		messageButton.setEnabled(false);
 		messageButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				j2DClient.get().setChatLine("/p ");
 			}
@@ -272,6 +282,7 @@ class GroupPanel {
 		JButton joinButton = new JButton("Join " + name);
 		joinButton.setToolTipText("Join the group led by " + name);
 		joinButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] args = { "join" };
 				SlashActionRepository.get("group").execute(args, name);
@@ -309,9 +320,14 @@ class GroupPanel {
 		Member member = memberList.getMember(player.getName());
 		
 		if (member != null) {
-			player.addChangeListener(new MemberHealthListener(member, memberList));
 			member.setHpRatio(player.getHpRatio());
 			member.setPresent(true);
+			/*
+			 * Add last to avoid a spurious change event when setting the HP
+			 * ratio. We must always trigger one manually at the end anyway to
+			 * account for the presence change. 
+			 */
+			player.addChangeListener(new MemberHealthListener(member));
 			memberList.memberChanged(member);
 			return true;
 		}
@@ -350,6 +366,7 @@ class GroupPanel {
 	 * Listener for clicking the leave group button.
 	 */
 	private static class LeaveActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String[] args = { "part" };
 			SlashActionRepository.get("group").execute(args, "");
@@ -360,6 +377,7 @@ class GroupPanel {
 	 * Listener for clicking the invite button
 	 */
 	private static class InviteActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			j2DClient.get().setChatLine("/group invite ");
 			j2DClient.get().addEventLine(new HeaderLessEventLine("Fill in the name of the player you want to invite", NotificationType.CLIENT));
@@ -381,6 +399,7 @@ class GroupPanel {
 			this.mode = mode;
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			String[] args = { "lootmode" };
 			SlashActionRepository.get("group").execute(args, mode);

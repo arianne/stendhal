@@ -11,6 +11,11 @@
  ***************************************************************************/
 package games.stendhal.client.gui.group;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import games.stendhal.client.gui.LinearScalingModel;
+
 /**
  * Represents a group member. Present members are those that the client has
  * direct information about, ie. the players on the same zone.
@@ -20,6 +25,10 @@ class Member implements Comparable<Member> {
 	private boolean leader;
 	private float hpRatio;
 	private boolean present;
+	/** Model for detecting which HP changes are significant */
+	final LinearScalingModel hpModel = new LinearScalingModel();
+	/** Listener that needs to be notified about significant HP changes. */
+	ChangeListener listener;
 	
 	/**
 	 * Create a new member.
@@ -28,6 +37,15 @@ class Member implements Comparable<Member> {
 	 */
 	Member(String name) {
 		this.name = name;
+		hpModel.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				if (listener != null) {
+					// redispatch as a change coming from this member
+					listener.stateChanged(new ChangeEvent(Member.this));
+				}
+			}
+		});
 	}
 	
 	/**
@@ -95,15 +113,29 @@ class Member implements Comparable<Member> {
 	 * Set the ratio of the member's current HP vs her maximum HP.
 	 * 
 	 * @param ratio new HP ratio 
-	 * @return <code>true</code> if the ratio changed significantly from the old
-	 * 	stored value, <code>false</code> otherwise
 	 */
-	boolean setHpRatio(float ratio) {
-		if (Math.abs(ratio - hpRatio) < 0.01) {
-			return false;
-		}
+	void setHpRatio(float ratio) {
 		this.hpRatio = ratio;
-		return true;
+		hpModel.setValue(ratio);
+	}
+	
+	/**
+	 * Set the listener that should be notified about changes in the member.
+	 * 
+	 * @param listener
+	 */
+	void setChangeListener(ChangeListener listener) {
+		this.listener = listener;
+	}
+	
+	/**
+	 * Set the maximum HP representation. Used to detect which HP ratio changes
+	 * are significant.
+	 *
+	 * @param maxRepresentation
+	 */
+	void setMaxHPRepresentation(int maxRepresentation) {
+		hpModel.setMaxRepresentation(maxRepresentation);
 	}
 	
 	@Override
@@ -119,6 +151,7 @@ class Member implements Comparable<Member> {
 		return name.hashCode();
 	}
 
+	@Override
 	public int compareTo(Member member) {
 		// There really should be only one leader, but check for consistent
 		// ordering

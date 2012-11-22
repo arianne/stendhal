@@ -14,26 +14,33 @@ package games.stendhal.client.gui.group;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.AbstractListModel;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * A <code>ListModel</code> for group members. The group leader is always kept
  * first.
  */
-public class MemberListModel extends AbstractListModel {
+public class MemberListModel extends AbstractListModel implements Iterable<Member> {
 	// Keep FindBugs happy
 	private static final long serialVersionUID = -5983645746012160833L;
 	
 	private List<Member> memberList = new ArrayList<Member>();
 	private Map<String, Member> memberMap = new HashMap<String, Member>();
+	private final MemberListHealthListener healthListener = new MemberListHealthListener();
 
+	@Override
 	public Object getElementAt(int index) {
 		return memberList.get(index);
 	}
 
+	@Override
 	public int getSize() {
 		return memberList.size();
 	}
@@ -102,6 +109,7 @@ public class MemberListModel extends AbstractListModel {
 		int endIndex = -1;
 		for (String name : newMembers) {
 			Member member = new Member(name);
+			member.setChangeListener(healthListener);
 			memberMap.put(name, member);
 			memberList.add(member);
 			int index = memberList.indexOf(member);
@@ -164,5 +172,36 @@ public class MemberListModel extends AbstractListModel {
 	 */
 	Member getMember(String name) {
 		return memberMap.get(name);
+	}
+
+	@Override
+	public Iterator<Member> iterator() {
+		return memberList.iterator();
+	}
+	
+	/**
+	 * Listener significant HP ratio changes that happen in any of the members.
+	 */
+	private class MemberListHealthListener implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			final Object source = e.getSource();
+			if (source instanceof Member) {
+				/*
+				 * HP changes can come from the game loop. Resizes also result
+				 * in ratio changes, and they come from EDT, but we can ignore
+				 * those as they result in redraws anyway.
+				 */
+				if (!SwingUtilities.isEventDispatchThread()) {
+					memberChanged((Member) source);
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							memberChanged((Member) source);						
+						}
+					});
+				}
+			}
+		}
 	}
 }
