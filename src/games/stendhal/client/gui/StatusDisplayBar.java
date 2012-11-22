@@ -51,6 +51,8 @@ public class StatusDisplayBar extends JComponent {
 	 */
 	public StatusDisplayBar(final ScalingModel model) {
 		this.model = model;
+		setForeground(Color.BLACK);
+		setBackground(Color.BLACK);
 		model.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -106,12 +108,16 @@ public class StatusDisplayBar extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		Insets insets = getInsets();
-		// Paint black what is not covered by the colored bar
-		g.setColor(Color.BLACK);
-		g.fillRect(insets.left, insets.top, getWidth() - insets.left - insets.right,
-				getHeight() - insets.top - insets.bottom);
-		
 		int barHeight = getHeight() - insets.top - insets.bottom - 2;
+		// Paint frame
+		g.setColor(getForeground());
+		g.drawRect(insets.left, insets.top, getWidth() - insets.left - insets.right - 1,
+				getHeight() - insets.top - insets.bottom - 1);
+		// Paint what is not covered by the colored bar
+		g.setColor(getBackground());
+		g.fillRect(insets.left + 1, insets.top + 1, getWidth() - insets.left - insets.right - 2,
+				barHeight);
+		
 		if (barImage != null) {
 			Graphics clipped = g.create(insets.left + 1, insets.top + 1, model.getRepresentation(), barHeight);
 			clipped.drawImage(barImage, 0, 0, null);
