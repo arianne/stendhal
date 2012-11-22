@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
-import games.stendhal.client.gui.ScalingModel;
+import games.stendhal.client.gui.AbstractScalingModel;
 import games.stendhal.client.gui.StatusDisplayBar;
 
 import java.awt.Color;
@@ -22,13 +22,9 @@ import java.awt.Paint;
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * A bar indicator component for karma.
@@ -159,7 +155,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	/**
 	 * Scaling model for karma.
 	 */
-	private static class KarmaScalingModel implements ScalingModel {
+	private static class KarmaScalingModel extends AbstractScalingModel {
 		/** 
 		 * Scaling factor for interpreting karma to bar length. Smaller means
 		 * smaller change in karma bar for a karma change. 
@@ -168,13 +164,6 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 		private int maxRepresentation = 1;
 		private double value;
 		private int representation;
-		
-		private final List<ChangeListener> listeners = new CopyOnWriteArrayList<ChangeListener>();
-		
-		@Override
-		public void addChangeListener(ChangeListener listener) {
-			listeners.add(listener);
-		}
 
 		@Override
 		public void setValue(double value) {
@@ -207,16 +196,6 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			if (maxRepresentation != max) {
 				maxRepresentation = max;
 				setValue(value);
-			}
-		}
-		
-		/**
-		 * Notify change listeners.
-		 */
-		private void fireChanged() {
-			ChangeEvent e = new ChangeEvent(this);
-			for (ChangeListener listener : listeners) {
-				listener.stateChanged(e);
 			}
 		}
 	}

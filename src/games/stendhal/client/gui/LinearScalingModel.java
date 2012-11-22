@@ -11,19 +11,12 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 /**
  * A {@link ScalingModel} that implements a linearly displayed value with a
  * known maximum. The representation will have value 0 at value 0, and the
  * maximum representation when the value is the specified maximum.
  */
-public class LinearScalingModel implements ScalingModel {
-	private final List<ChangeListener> listeners = new CopyOnWriteArrayList<ChangeListener>();
+public class LinearScalingModel extends AbstractScalingModel {
 	private double maxValue;
 	private int maxRepresentation;
 	private double scale;
@@ -48,11 +41,6 @@ public class LinearScalingModel implements ScalingModel {
 		this.maxValue = maxValue;
 		this.maxRepresentation = maxRepresentation;
 		calculateScale();
-	}
-
-	@Override
-	public void addChangeListener(ChangeListener listener) {
-		listeners.add(listener);
 	}
 	
 	/**
@@ -115,15 +103,5 @@ public class LinearScalingModel implements ScalingModel {
 	 */
 	private void calculateScale() {
 		scale = maxRepresentation / maxValue;
-	}
-
-	/**
-	 * Notify change listeners.
-	 */
-	private void fireChanged() {
-		ChangeEvent e = new ChangeEvent(this);
-		for (ChangeListener listener : listeners) {
-			listener.stateChanged(e);
-		}
 	}
 }
