@@ -23,7 +23,6 @@ import games.stendhal.client.gui.LinearScalingModel;
 class Member implements Comparable<Member> {
 	private final String name;
 	private boolean leader;
-	private float hpRatio;
 	private boolean present;
 	/** Model for detecting which HP changes are significant */
 	final LinearScalingModel hpModel = new LinearScalingModel();
@@ -106,7 +105,7 @@ class Member implements Comparable<Member> {
 	 * @return HP ratio
 	 */
 	float getHpRatio() {
-		return hpRatio;
+		return (float) hpModel.getValue();
 	}
 	
 	/**
@@ -115,7 +114,6 @@ class Member implements Comparable<Member> {
 	 * @param ratio new HP ratio 
 	 */
 	void setHpRatio(float ratio) {
-		this.hpRatio = ratio;
 		hpModel.setValue(ratio);
 	}
 	
