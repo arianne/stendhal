@@ -73,6 +73,15 @@ public class LinearScalingModel extends AbstractScalingModel {
 	public int getRepresentation() {
 		return representation;
 	}
+	
+	/**
+	 * Get the internal value.
+	 * 
+	 * @return value
+	 */
+	public double getValue() {
+		return value;
+	}
 
 	@Override
 	public void setMaxRepresentation(int max) {
