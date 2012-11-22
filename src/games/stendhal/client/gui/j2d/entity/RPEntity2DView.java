@@ -16,7 +16,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
@@ -55,8 +54,9 @@ import marauroa.common.game.RPAction;
  */
 abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> {
 	private static final int ICON_OFFSET = 8;
+	private static final int HEALTH_BAR_HEIGHT = 4;
 	
-	/** Number of frames in attack sprites */
+	/** Number of frames in attack sprites. */
 	private static final int NUM_ATTACK_FRAMES = 3;
 	private static final Stroke ARROW_STROKE = new BasicStroke(2);
 	private static final Map<Nature, Color> arrowColor;
@@ -84,7 +84,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite blockedSprite;
 	private static final Sprite missedSprite;
 	
-	/** Colors of the ring/circle around the player while attacking or being attacked */
+	/** Colors of the ring/circle around the player while attacking or being attacked. */
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
 	private static final Color RING_COLOR_DARK_RED = new Color(74, 0, 0);
 	private static final Color RING_COLOR_ORANGE = new Color(255, 200, 0);
@@ -111,23 +111,22 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * The drawn width.
 	 */
 	protected int width;
-	/** Status icon managers */
+	/** Status icon managers. */
 	private final List<StatusIconManager> iconManagers = new ArrayList<StatusIconManager>();
+	private HealthBar healthBar; 
 
 	/**
 	 * Flag for checking if the entity is attacking. Can be modified by both
 	 * the EDT and the game loop.
 	 */
-	volatile boolean isAttacking;
+	private volatile boolean isAttacking;
 	/** <code>true</code> if the current attack is ranged. */
-	boolean rangedAttack;
+	private boolean rangedAttack;
 	/** Attack sprites to be used for the current attack. */
-	Sprite[] attackSprite;
+	private Sprite[] attackSprite;
 	/** Blade strike frame. */
-	volatile int bladeStrikeFrame;
+	private volatile int bladeStrikeFrame;
 	
-	private final AttackListener attackListener = new AttackListener();
-
 	static {
 		final SpriteStore st = SpriteStore.get();
 		
@@ -166,7 +165,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 
 	/**
-	 * Create a new RPEntity2DView
+	 * Create a new RPEntity2DView.
 	 */
 	public RPEntity2DView() {
 		addIconManager(new StatusIconManager(Player.PROP_EATING, eatingSprite,
@@ -174,30 +173,29 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isEating() && !rpentity.isChoking();
-					}} );
+					}
+				});
 		addIconManager(new StatusIconManager(Player.PROP_EATING, chokingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isChoking();
-					}} );
+					}
+				});
 		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, -poisonedSprite.getWidth(), 0) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isPoisoned();
-					}} );
+					}
+				});
 	}
 
 	@Override
 	public void initialize(final T entity) {
-		if (this.entity != null) {
-			entity.removeChangeListener(attackListener);
-		}
 		super.initialize(entity);
 		titleSprite = createTitleSprite();
 		titleChanged = false;
-		entity.addChangeListener(attackListener);
 	}
 	//
 	// RPEntity2DView
@@ -370,24 +368,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
 			final int width) {
-		final int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
-
-		final int bx = x + ((width - barWidth) / 2);
-		final int by = y - 3;
-		
-		final float hpRatio = entity.getHpRatio();
-
-		final float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
-		final float g = Math.min(hpRatio * 2.0f, 1.0f);
-
-		g2d.setColor(Color.gray);
-		g2d.fillRect(bx, by, barWidth, 3);
-
-		g2d.setColor(new Color(r, g, 0.0f));
-		g2d.fillRect(bx, by, (int) (hpRatio * barWidth), 3);
-
-		g2d.setColor(Color.black);
-		g2d.drawRect(bx, by, barWidth, 3);
+		int dx = (width - healthBar.getWidth()) / 2;
+		healthBar.draw(g2d, x + dx, y - healthBar.getHeight());
 	}
 
 	/**
@@ -528,7 +510,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 	
 	/**
-	 * Function to draw the arrows on the attack/being attacked ring
+	 * Function to draw the arrows on the attack/being attacked ring.
+	 * 
 	 * @param g2d The graphic context
 	 * @param x The x-center of the arrows
 	 * @param y The y-center of the arrows
@@ -538,10 +521,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private void drawArrows(final Graphics2D g2d, final int x, final int y, final int width, final int height, final EnumSet<Direction> directions, final Color lineColor) {
 		int arrowHeight = 6 + 2 * (height / 23 - 1);
 		int arrowWidth = 3 + (width / 34 - 1);
-		if(directions.contains(Direction.LEFT)) {
+		if (directions.contains(Direction.LEFT)) {
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(
-					new int[]{x+1, x-arrowWidth, x+1},
+					new int[] {x+1, x-arrowWidth, x+1},
 					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2),y+(height/2)+(arrowHeight/2)},
 					3);
 			g2d.setColor(lineColor);
@@ -550,7 +533,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2), y+(height/2)+(arrowHeight/2)},
 					3);
 		}
-		if(directions.contains(Direction.RIGHT)) {
+		if (directions.contains(Direction.RIGHT)) {
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(
 					new int[]{x+width, x+width+arrowWidth, x+width},
@@ -562,7 +545,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					new int[]{y+(height/2)-(arrowHeight/2), y+(height/2), y+(height/2)+(arrowHeight/2)},
 					3);
 		}
-		if(directions.contains(Direction.UP)) {
+		if (directions.contains(Direction.UP)) {
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(
 					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
@@ -574,7 +557,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					new int[]{y, y-arrowWidth, y},
 					3);
 		}
-		if(directions.contains(Direction.DOWN)) {
+		if (directions.contains(Direction.DOWN)) {
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(
 					new int[]{x+(width/2)-(arrowHeight/2), x+(width/2), x+(width/2)+(arrowHeight/2)},
@@ -810,6 +793,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		for (StatusIconManager handler : iconManagers) {
 			handler.check(entity);
 		}
+		
+		// Prepare the health bar
+		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
+		healthBar = new HealthBar(barWidth, HEALTH_BAR_HEIGHT);
+		healthBar.setHPRatio(entity.getHpRatio());
 	}
 
 	//
@@ -982,6 +970,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			titleChanged = true;
 		} else if (property == RPEntity.PROP_TEXT_INDICATORS) {
 			onFloatersChanged();
+		} else if (property == RPEntity.PROP_HP_RATIO) {
+			healthBar.setHPRatio(entity.getHpRatio());
+		} else if (property == RPEntity.PROP_ATTACK) {
+			Nature nature = entity.getShownDamageType();
+			if (nature == null) {
+				isAttacking = false;
+			} else {
+				rangedAttack = entity.isDoingRangedAttack();
+				if (!rangedAttack) {
+					attackSprite = bladeStrikeSprites.get(nature).get(getState(entity));
+				}
+				isAttacking = true;
+				bladeStrikeFrame = 0;
+			}
 		}
 		
 		for (StatusIconManager handler : iconManagers) {
@@ -1143,28 +1145,6 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			} else {
 				wasVisible = false;
 				detachSprite(sprite);
-			}
-		}
-	}
-
-	/**
-	 * Listener for attack status changes.
-	 */
-	private class AttackListener implements EntityChangeListener<T> {
-		@Override
-		public void entityChanged(T entity, Object property) {
-			if (property == RPEntity.PROP_ATTACK) {
-				Nature nature = entity.getShownDamageType();
-				if (nature == null) {
-					isAttacking = false;
-				} else {
-					rangedAttack = entity.isDoingRangedAttack();
-					if (!rangedAttack) {
-						attackSprite = bladeStrikeSprites.get(nature).get(getState(entity));
-					}
-					isAttacking = true;
-					bladeStrikeFrame = 0;
-				}
 			}
 		}
 	}
