@@ -26,7 +26,8 @@ import javax.swing.event.ChangeListener;
 class HealthBar implements ChangeListener {
 	private final int width, height;
 	private BufferedImage image;
-	private final LinearScalingModel model = new LinearScalingModel();
+	private final LinearScalingModel model;
+	/** A flag for signaling that the image needs updating. */
 	private volatile boolean needsRedraw = true;
 	
 	/**
@@ -38,7 +39,7 @@ class HealthBar implements ChangeListener {
 	HealthBar(int width, int height) {
 		this.width = width;
 		this.height = height;
-		model.setMaxRepresentation(width - 2);
+		model = new LinearScalingModel(1.0, width - 2);
 		model.addChangeListener(this);
 	}
 	
@@ -80,15 +81,20 @@ class HealthBar implements ChangeListener {
 		if (image == null) {
 			image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		}
+
 		if (needsRedraw) {
-			synchronized (this) {
-				if (needsRedraw) {
-					Graphics gr = image.createGraphics();
-					drawImage(gr);
-					gr.dispose();
-					needsRedraw = false;
-				}
-			}
+			/*
+			 * Toggle the flag first, so that if the game loop changes it to
+			 * true while we are updating the image, it will result in a new
+			 * update at the next screen redraw. The unlikely case that
+			 * game loop sets it to true *again* between the check above and our
+			 * reset of the flag is not a problem - we already have the correct
+			 * data for the second draw request.
+			 */
+			needsRedraw = false;
+			Graphics gr = image.createGraphics();
+			drawImage(gr);
+			gr.dispose();
 		}
 		g.drawImage(image, x, y, null);
 	}
@@ -124,6 +130,10 @@ class HealthBar implements ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
+		/*
+		 * State changes are originated by the game loop thread. needsRedraw is
+		 * volatile so the model will have correct data for the EDT.
+		 */
 		needsRedraw = true;
 	}
 }
