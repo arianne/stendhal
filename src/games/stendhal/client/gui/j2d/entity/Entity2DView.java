@@ -66,22 +66,22 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Model values affecting animation.
 	 */
-	protected boolean animatedChanged;
+	protected volatile boolean animatedChanged;
 
 	/**
 	 * The position value changed.
 	 */
-	protected boolean positionChanged;
+	private volatile boolean positionChanged;
 
 	/**
 	 * Model values affecting visual representation changed.
 	 */
-	protected boolean representationChanged;
+	protected volatile boolean representationChanged;
 
 	/**
 	 * The visibility value changed.
 	 */
-	protected boolean visibilityChanged;
+	protected volatile boolean visibilityChanged;
 	
 	/**
 	 * The screen X coordinate.
@@ -126,6 +126,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	private volatile boolean released = false;
 
+	@Override
 	public void initialize(final T entity) {
 		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
@@ -302,6 +303,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */	
+	@Override
 	public void draw(final Graphics2D g2d) {
 		applyChanges();
 
@@ -401,6 +403,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
+	@Override
 	public void drawTop(final Graphics2D g2d) {
 		final Rectangle r = getArea();
 
@@ -446,6 +449,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return The area this draws in.
 	 */
+	@Override
 	public Rectangle getArea() {
 		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(),
 				getWidth(), getHeight());
@@ -580,6 +584,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 10000;
 	}
@@ -639,6 +644,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param contained
 	 *            <code>true</code> if contained.
 	 */
+	@Override
 	public void setContained(final boolean contained) {
 		this.contained = contained;
 	}
@@ -649,6 +655,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param inspector
 	 *            The inspector.
 	 */
+	@Override
 	public void setInspector(final Inspector inspector) {
 	}
 
@@ -685,25 +692,31 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		if (entity == null) {
 			return;
 		}
+		/*
+		 * The flags are reseted *before* reading the relevant data to ensure
+		 * that we get up to date data from the game loop thread. (So that if
+		 * the data changes during we are reading it, the flags will force
+		 * reread at the next draw).
+		 */
 		if (representationChanged) {
-			buildRepresentation(entity);
 			representationChanged = false;
+			buildRepresentation(entity);
 		}
 
 		if (positionChanged) {
+			positionChanged = false;
 			x = (int) (IGameScreen.SIZE_UNIT_PIXELS * entity.getX());
 			y = (int) (IGameScreen.SIZE_UNIT_PIXELS * entity.getY());
-			positionChanged = false;
 		}
 
 		if (visibilityChanged) {
-			entityComposite = getComposite();
 			visibilityChanged = false;
+			entityComposite = getComposite();
 		}
 
 		if (animatedChanged) {
-			setAnimation(getSprite());
 			animatedChanged = false;
+			setAnimation(getSprite());
 		}
 	}
 
@@ -720,6 +733,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param property
 	 *            The property identifier.
 	 */
+	@Override
 	public void entityChanged(final T entity, final Object property) {
 		changed = true;
 
@@ -743,6 +757,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return The list of actions.
 	 */
+	@Override
 	public final String[] getActions() {
 		final List<String> list = new ArrayList<String>();
 
@@ -769,6 +784,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return The view's entity.
 	 */
+	@Override
 	public T getEntity() {
 		return entity;
 	}
@@ -778,6 +794,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return <code>true</code> if the entity is movable.
 	 */
+	@Override
 	public boolean isMovable() {
 		return false;
 	}
@@ -785,6 +802,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Perform the default action.
 	 */
+	@Override
 	public void onAction() {
 		onAction(ActionType.LOOK);
 	}
@@ -795,6 +813,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 *
 	 * @return <code>true</code> if the action was performed, <code>false</code> if nothing was done
 	 */
+	@Override
 	public boolean onHarmlessAction() {
 		onAction();
 		return true;
@@ -806,6 +825,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param at
 	 *            The action.
 	 */
+	@Override
 	public void onAction(final ActionType at) {
 		IEntity entity = this.entity;
 		// return prematurely if view has already been released
@@ -840,6 +860,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * 
 	 * @return true if the player can interact with it, false otherwise.
 	 */
+	@Override
 	public boolean isInteractive() {
 		return true;
 	}
@@ -848,6 +869,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * Release any view resources. This view should not be used after this is
 	 * called.
 	 */
+	@Override
 	public void release() {
 		entity.removeChangeListener(this);
 		released = true;
@@ -873,6 +895,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 *
 	 * @return StendhalCursor
 	 */
+	@Override
 	public StendhalCursor getCursor() {
 		String cursorName = entity.getCursor();
 		return StendhalCursor.valueOf(cursorName, StendhalCursor.UNKNOWN);
