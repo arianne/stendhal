@@ -103,16 +103,7 @@ public class Player extends AudibleEntity {
 	 * @return <code>true</code> if the player is grumpy.
 	 */
 	public boolean isGrumpy() {
-		return (getGrumpy() != null);
-	}
-
-	/**
-	 * Get the grumpy message.
-	 * 
-	 * @return The grumpy text, or <code>null</code> if not grumpy.
-	 */
-	public String getGrumpy() {
-		return grumpy;
+		return (grumpy != null);
 	}
 
 	/**
@@ -121,7 +112,7 @@ public class Player extends AudibleEntity {
 	 * @param message
 	 *            The away message, or <code>null</code> if no-longer away.
 	 */
-	protected void onGrumpy(final String message) {
+	private void onGrumpy(final String message) {
 		// Filter out events about changing to same message
 		if (messageChanged(grumpy, message)) {
 			grumpy = message;
@@ -215,8 +206,6 @@ public class Player extends AudibleEntity {
 			onAway(null);
 		}
 		if (changes.has("grumpy")) {
-			grumpy = null;
-			fireChange(PROP_GRUMPY);
 			onGrumpy(null);
 		}
 		if (changes.has(LAST_PLAYER_KILL_TIME)) {
