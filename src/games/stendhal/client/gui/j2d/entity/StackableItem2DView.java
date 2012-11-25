@@ -33,7 +33,7 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 	/**
 	 * The quantity value changed.
 	 */
-	protected boolean quantityChanged;
+	private volatile boolean quantityChanged;
 
 	/**
 	 * The image of the quantity.
@@ -43,7 +43,7 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 	/**
 	 * Whether to show the quantity.
 	 */
-	protected boolean showQuantity;
+	private boolean showQuantity;
 
 	@Override
 	public void initialize(final T entity) {
@@ -97,12 +97,6 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 	// Entity2DView
 	//
 
-	/**
-	 * Draw the entity.
-	 * 
-	 * @param g2d
-	 *            The graphics to drawn on.
-	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y,
 			final int width, final int height) {
@@ -113,6 +107,15 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 		}
 	}
 
+	/**
+	 * Draw quantity sprite. Exact position depends on containment status.
+	 * 
+	 * @param g2d graphics
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @param width width of the drawing area
+	 * @param height height of the drawing area
+	 */
 	private void drawQuantity(final Graphics2D g2d, final int x, final int y,
 			final int width, int height) {
 		if (isContained()) {
@@ -148,8 +151,8 @@ public class StackableItem2DView<T extends StackableItem> extends Item2DView<T> 
 
 		T entity  = this.entity;
 		if (quantityChanged && (entity != null)) {
-			quantitySprite = getQuantitySprite(entity);
 			quantityChanged = false;
+			quantitySprite = getQuantitySprite(entity);
 		}
 	}
 

@@ -58,7 +58,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	/**
 	 * The idea property changed.
 	 */
-	protected boolean ideaChanged;
+	private volatile boolean ideaChanged;
 	
 	/**
 	 * The current idea sprite.
@@ -210,12 +210,12 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 		super.update();
 
 		if (ideaChanged) {
+			ideaChanged = false;
 			detachSprite(ideaSprite);
 			ideaSprite = getIdeaSprite();
 			if (ideaSprite != null) {
 				attachSprite(ideaSprite, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 8, -8);
 			}
-			ideaChanged = false;
 		}
 	}
 

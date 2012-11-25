@@ -38,7 +38,7 @@ class Ring2DView extends Item2DView<Ring> {
 	/**
 	 * The state changed.
 	 */
-	private boolean stateChanged;
+	private volatile boolean stateChanged;
 
 	/**
 	 * Create a 2D view of a chest.
@@ -125,8 +125,8 @@ class Ring2DView extends Item2DView<Ring> {
 		super.update();
 
 		if (stateChanged) {
-			setSprite(getStateSprite());
 			stateChanged = false;
+			setSprite(getStateSprite());
 		}
 	}
 

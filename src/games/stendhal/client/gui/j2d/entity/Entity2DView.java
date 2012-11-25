@@ -86,7 +86,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * The screen X coordinate.
 	 */
-	protected int x;
+	private int x;
 
 	/**
 	 * The X alignment offset.
@@ -96,7 +96,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * The screen Y coordinate.
 	 */
-	protected int y;
+	private int y;
 
 	/**
 	 * The Y alignment offset.
@@ -116,7 +116,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Some model value changed.
 	 */
-	private boolean changed;
+	private volatile boolean changed;
 	/** Additional sprites attached to the view. */
 	private Collection<AttachedSprite> attachedSprites;
 	
@@ -125,6 +125,11 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * the view has been released, <code>false</code> otherwise.
 	 */
 	private volatile boolean released = false;
+	/**
+	 * A Hack to toggle the changed flag <em>after</em> entityChanged() has been
+	 * run (including any overrides in subclasses).
+	 */
+	private final UpdateFlagChanger updateFlagChanger = new UpdateFlagChanger(); 
 
 	@Override
 	public void initialize(final T entity) {
@@ -133,6 +138,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		}
 		if (this.entity != null) {
 			this.entity.removeChangeListener(this);
+			this.entity.removeChangeListener(updateFlagChanger);
 		}
 		this.entity = entity;
 
@@ -149,7 +155,10 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		visibilityChanged = true;
 		representationChanged = true;
 
+		// In this order, to ensure the changed flag is toggled only after all
+		// the changes have been made.
 		entity.addChangeListener(this);
+		entity.addChangeListener(updateFlagChanger);
 	}
 
 	//
@@ -157,12 +166,12 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	//
 
 	/**
-	 * Handle entity changes
+	 * Handle entity changes.
 	 */
 	protected void applyChanges() {
 		if (changed) {
-			update();
 			changed = false;
+			update();
 		}
 	}
 
@@ -364,7 +373,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Draw all attached sprites.
 	 * 
-	 * @param g2d
+	 * @param g2d graphics
 	 * @param x x position of the view
 	 * @param y y position of the view
 	 */
@@ -735,8 +744,6 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	@Override
 	public void entityChanged(final T entity, final Object property) {
-		changed = true;
-
 		if (property == IEntity.PROP_ANIMATED) {
 			animatedChanged = true;
 		} else if (property == IEntity.PROP_POSITION) {
@@ -883,7 +890,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * has changed, but the new view represents the same item stack as the old
 	 * one.
 	 * 
-	 * @return <code>true<code> if the view has been released, 
+	 * @return <code>true</code> if the view has been released, 
 	 * 	<code>false</code> otherwise 
 	 */
 	protected boolean isReleased() {
@@ -891,7 +898,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	}
 
 	/**
-	 * gets the mouse cursor image to use for this entity
+	 * gets the mouse cursor image to use for this entity.
 	 *
 	 * @return StendhalCursor
 	 */
@@ -905,11 +912,11 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * Container for sprites attached to the view.
 	 */
 	private static class AttachedSprite {
-		/** Attached sprite */
+		/** Attached sprite. */
 		final Sprite sprite;
-		/** x offset compared to the EntityView's location */
+		/** x offset compared to the EntityView's location. */
 		int xOffset;
-		/** y offset compared to the EntityView's location */
+		/** y offset compared to the EntityView's location. */
 		int yOffset;
 		
 		/**
@@ -934,6 +941,16 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		 */
 		void draw(Graphics2D g, int x, int y) {
 			sprite.draw(g, x + xOffset, y + yOffset);
+		}
+	}
+	
+	/**
+	 * Helper for monitoring entity changes.
+	 */
+	private class UpdateFlagChanger implements EntityChangeListener<IEntity> {
+		@Override
+		public void entityChanged(IEntity entity, Object property) {
+			markChanged();
 		}
 	}
 }
