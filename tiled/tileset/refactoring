@@ -386,7 +386,7 @@ del*/object/wooden_scaffold.png 0
 del*/plant/patio_planter.png 1
 /plant/flower/foxgloves.png 9
 /plant/flower/purple.png 13
-/plant/flower/small_purple_white.png 1
+del*/plant/flower/small_purple_white.png 1
 /plant/flower/vines_2.png 2
 /plant/tree/crack_willow.png 2
 /plant/tree/fall_trees.png 2
