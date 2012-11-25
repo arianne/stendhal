@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,7 +47,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	/**
 	 * The chest model open value changed.
 	 */
-	protected boolean openChanged;
+	private volatile boolean openChanged;
 
 	/**
 	 * The slot content inspector.
@@ -169,6 +169,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 		super.update();
 
 		if (openChanged) {
+			openChanged = false;
 			if (entity.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
@@ -181,7 +182,6 @@ class Chest2DView extends StateEntity2DView<Chest> {
 			}
 
 			requestOpen = false;
-			openChanged = false;
 		}
 	}
 
@@ -256,6 +256,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 		final SlotWindow window = slotWindow;
 		if (window != null) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					window.close();
 				}
@@ -287,6 +288,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 		 */
 		if (addListener && (slotWindow != null)) {
 			slotWindow.addCloseListener(new CloseListener() {
+				@Override
 				public void windowClosed(InternalWindow window) {
 					slotWindow = null;
 				}
