@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,7 +13,6 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
@@ -22,9 +21,6 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,69 +28,6 @@ import java.util.Map;
  * The 2D view of a creature.
  */
 class Creature2DView extends RPEntity2DView<Creature> {
-
-	/** the patrolpath. */
-	private List<Node> patrolPath;
-
-	/** new path to the target. */
-	private List<Node> targetMovedPath;
-
-	/** the path we got. */
-	private List<Node> moveToTargetPath;
-
-	//
-	// Creature2DView
-	//
-
-	public List<Node> decodePath(final String token) {
-		final String[] values = token.replace(',', ' ').replace('(', ' ').replace(
-				')', ' ').replace('[', ' ').replace(']', ' ').split("\\s+");
-		final List<Node> list = new ArrayList<Node>();
-
-		int x = 0;
-		int pass = 1;
-
-		for (final String value : values) {
-			if (value.length() > 0) {
-				final int val = Integer.parseInt(value);
-				if (pass % 2 == 0) {
-					list.add(new Node(x, val));
-				} else {
-					x = val;
-				}
-				pass++;
-			}
-		}
-
-		return list;
-	}
-
-	protected void drawPath(final Graphics2D g2d, final List<Node> path,
-			final int delta, final IGameScreen gameScreen) {
-		Point p1 = gameScreen.convertWorldToScreenView(getX(), getY());
-
-		for (final Node node : path) {
-			final Point p2 = gameScreen.convertWorldToScreenView(node.x, node.y);
-
-			g2d
-					.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y
-							+ delta);
-			p1 = p2;
-		}
-	}
-
-	public List<Node> getPatrolPath() {
-		return patrolPath;
-	}
-
-	public List<Node> getTargetMovedPath() {
-		return targetMovedPath;
-	}
-
-	public List<Node> getMoveToTargetPath() {
-		return moveToTargetPath;
-	}
-
 	/**
 	 * Populate named state sprites.
 	 *
@@ -199,19 +132,6 @@ class Creature2DView extends RPEntity2DView<Creature> {
 	@Override
 	public void onAction() {
 		onAction(ActionType.ATTACK);
-	}
-
-	//
-	//
-
-	private static class Node {
-		private final int x;
-		private final int y;
-
-		public Node(final int x, final int y) {
-			this.x = x;
-			this.y = y;
-		}
 	}
 
 	@Override
