@@ -971,7 +971,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		} else if (property == RPEntity.PROP_TEXT_INDICATORS) {
 			onFloatersChanged();
 		} else if (property == RPEntity.PROP_HP_RATIO) {
-			healthBar.setHPRatio(entity.getHpRatio());
+			if (healthBar != null) {
+				healthBar.setHPRatio(entity.getHpRatio());
+			}
 		} else if (property == RPEntity.PROP_ATTACK) {
 			Nature nature = entity.getShownDamageType();
 			if (nature == null) {
