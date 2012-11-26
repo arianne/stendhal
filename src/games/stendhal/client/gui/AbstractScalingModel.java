@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
  */
 public abstract class AbstractScalingModel implements ScalingModel {
 	private final List<ChangeListener> listeners = new CopyOnWriteArrayList<ChangeListener>();
+	private int representation;
 
 	@Override
 	public void addChangeListener(ChangeListener listener) {
@@ -30,9 +31,27 @@ public abstract class AbstractScalingModel implements ScalingModel {
 	}
 	
 	/**
+	 * Set the representation, and notify listeners if it changed.
+	 * 
+	 * @param representation new representation
+	 */
+	protected void setRepresentation(int representation) {
+		int oldRepresentation = this.representation;
+		this.representation = representation;
+		if (oldRepresentation != representation) {
+			fireChanged();
+		}
+	}
+
+	@Override
+	public int getRepresentation() {
+		return representation;
+	}
+	
+	/**
 	 * Notify change listeners.
 	 */
-	protected void fireChanged() {
+	private void fireChanged() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener listener : listeners) {
 			listener.stateChanged(e);

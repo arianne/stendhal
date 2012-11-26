@@ -85,7 +85,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	/**
 	 * Get textual description of karma value.
 	 * 
-	 * @param karma
+	 * @param karma karma value
 	 * @return karma description
 	 */
 	private String describeKarma(double karma) {
@@ -163,17 +163,11 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 		private static final double SCALING = 0.02;
 		private int maxRepresentation = 1;
 		private double value;
-		private int representation;
 
 		@Override
 		public void setValue(double value) {
 			this.value = value;
-			int oldRepr = representation;
 			calculateRepresentation();
-			// Avoid needles notifications
-			if (representation != oldRepr) {
-				fireChanged();
-			}
 		}
 
 		/**
@@ -183,12 +177,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			// Scale to ]0, 1[
 			double normalized = 0.5 + Math.atan(SCALING * value) / Math.PI;
 			// ...and then to ]0, maxRepresentation[
-			representation = (int) Math.round(normalized * maxRepresentation);
-		}
-
-		@Override
-		public int getRepresentation() {
-			return representation;
+			setRepresentation((int) Math.round(normalized * maxRepresentation));
 		}
 
 		@Override

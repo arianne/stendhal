@@ -21,7 +21,6 @@ public class LinearScalingModel extends AbstractScalingModel {
 	private int maxRepresentation;
 	private double scale;
 	private double value;
-	private int representation;
 	
 	/**
 	 * Create a LinearScalingModel with maximum value of 1.0, and maximum
@@ -42,36 +41,11 @@ public class LinearScalingModel extends AbstractScalingModel {
 		this.maxRepresentation = maxRepresentation;
 		calculateScale();
 	}
-	
-	/**
-	 * Set the value without calling change listeners.
-	 *   
-	 * @param value new value
-	 */
-	private void setValueNoNotify(double value) {
-		/*
-		 * Let the internal value overflow, but keep the representation
-		 * reasonable. Users of the model may need to modify the values coming
-		 * from RPObject property changes, and the order of their arrival does
-		 * not necessarily follow the constraints.
-		 */
-		this.value = value;
-		representation = Math.min((int) Math.round(this.value * scale), maxRepresentation);
-	}
 
 	@Override
 	public void setValue(double value) {
-		int oldRepr = representation;
-		setValueNoNotify(value);
-		// Avoid needles notifications
-		if (representation != oldRepr) {
-			fireChanged();
-		}
-	}
-
-	@Override
-	public int getRepresentation() {
-		return representation;
+		this.value = value;
+		setRepresentation(Math.min((int) Math.round(this.value * scale), maxRepresentation));
 	}
 	
 	/**
@@ -88,9 +62,7 @@ public class LinearScalingModel extends AbstractScalingModel {
 		if (max != maxRepresentation) {
 			maxRepresentation = max;
 			calculateScale();
-			// Avoid multiple change events
-			setValueNoNotify(value);
-			fireChanged();
+			setValue(value);
 		}
 	}
 	
