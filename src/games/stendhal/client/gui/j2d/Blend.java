@@ -20,6 +20,8 @@ import static games.stendhal.common.color.ARGB.splitRgb;
 import static games.stendhal.common.color.HSL.hsl2rgb;
 import static games.stendhal.common.color.HSL.rgb2hsl;
 
+import games.stendhal.client.MemoryCache;
+
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.CompositeContext;
@@ -32,6 +34,9 @@ import java.awt.image.WritableRaster;
  * Blending composite modes.
  */
 public class Blend implements Composite {
+	/** Cached composers. */
+	private static final MemoryCache<Object, CompositeContext> cache = new MemoryCache<Object, CompositeContext>();
+	
 	/**
 	 * Possible blending modes.
 	 */
@@ -93,6 +98,14 @@ public class Blend implements Composite {
 		switch (mode) {
 		case MULTIPLY:
 			return new MultiplyContext();
+		// Modes with significant creation overhead (lookup tables). Cache those
+		case SOFT_LIGHT:
+			CompositeContext ctx = cache.get(Mode.SOFT_LIGHT);
+			if (ctx == null) {
+				ctx = new BlendContext(mode, srcColorModel, dstColorModel, color);
+				cache.put(Mode.SOFT_LIGHT, ctx);
+			}
+			return ctx;
 		default:
 			return new BlendContext(mode, srcColorModel, dstColorModel, color);
 		}
