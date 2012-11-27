@@ -86,6 +86,7 @@ public class Blend implements Composite {
 		this.color = color;
 	}
 
+	@Override
 	public CompositeContext createContext(ColorModel srcColorModel,
 			ColorModel dstColorModel,
 			RenderingHints arg2) {
@@ -144,7 +145,7 @@ public class Blend implements Composite {
 			break;
 			case GENERIC_LIGHT: composer = new GenericLightComposer();
 			break;
-			case SOFT_LIGHT: composer = new SoftightComposer();
+			case SOFT_LIGHT: composer = new SoftLightComposer();
 			break;
 			case SCREEN: composer = new ScreenComposer();
 			break;
@@ -155,6 +156,7 @@ public class Blend implements Composite {
 			}
 		}
 
+		@Override
 		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
 			int width = Math.min(src.getWidth(), dstIn.getWidth());
 			int height = Math.min(src.getHeight(), dstIn.getHeight());
@@ -186,6 +188,7 @@ public class Blend implements Composite {
 
 		// I presume this is meant to release native resources. The
 		// documentation says nothing useful.
+		@Override
 		public void dispose() {
 		}
 	}
@@ -242,6 +245,7 @@ public class Blend implements Composite {
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
 		 */
+		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			// Original values of the overlay pixel. [0, 1]
 			float srcRed = srcPixel[RED] / red;
@@ -304,6 +308,7 @@ public class Blend implements Composite {
 		 */
 		private static final int DIMMING_FACTOR = 0x200;
 		
+		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			int sum = 0;
 			for (int i = RED; i <= BLUE; i++) {
@@ -335,6 +340,7 @@ public class Blend implements Composite {
 	 * destination color components to calculate the new color component.
 	 */
 	private static abstract class SimpleComposer implements Composer {
+		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			for (int i = RED; i <= BLUE; i++) {
 				dstPixel[i] = composeComponent(srcPixel[i], dstPixel[i]);
@@ -356,10 +362,32 @@ public class Blend implements Composite {
 	/**
 	 * A composer that implements the gimp style soft light blend mode.
 	 */
-	private static class SoftightComposer extends SimpleComposer {
+	private static class SoftLightComposer implements Composer {
+		/** Lookup table. */
+		private final byte[] table;
+		
+		/**
+		 * Create a SoftLightComposer. Initializes the lookup table.
+		 */
+		public SoftLightComposer() {
+			table = new byte[256 * 256];
+			for (int a = 0; a < 256; a++) {
+				for (int b = 0; b < 256; b++) {
+					table[(a * 256) + b] = (byte) ((b + 2 * a * (0xff - b) / 0xff) * b / 0xff); 
+				}
+			}
+		}
+
 		@Override
-		int composeComponent(int a, int b) {
-			return (b + 2 * a * (0xff - b) / 0xff) * b / 0xff;
+		public int compose(int[] srcPixel, int[] dstPixel) {
+			int rval = 0xff000000;
+			for (int i = RED; i <= BLUE; i++) {
+				// Stupid signed bytes. "& 0xff" is to prevent sign changes in
+				// the result
+				rval |= ((table[(256 * srcPixel[i]) + dstPixel[i]]) & 0xff) << (8 * (3 - i));
+			}
+
+			return rval;
 		}
 	}
 	
@@ -390,6 +418,7 @@ public class Blend implements Composite {
 		 * @param dstPixel lower pixel color data
 		 * @return blended pixel
 		 */
+		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
 			rgb2hsl(srcPixel, srcHsl);
 			rgb2hsl(dstPixel, dstHsl);
@@ -413,6 +442,7 @@ public class Blend implements Composite {
 	 * correct multiply by factor of 1 - 255/256.
 	 */
 	private static class MultiplyContext implements CompositeContext {
+		@Override
 		public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
 			int width = Math.min(src.getWidth(), dstIn.getWidth());
 			int height = Math.min(src.getHeight(), dstIn.getHeight());
@@ -452,6 +482,7 @@ public class Blend implements Composite {
 			}
 		}
 
+		@Override
 		public void dispose() {
 		}
 	}
