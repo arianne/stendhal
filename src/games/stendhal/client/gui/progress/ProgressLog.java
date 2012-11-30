@@ -16,6 +16,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.BackgroundPainter;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Component;
@@ -23,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,7 +33,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
@@ -39,26 +40,32 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import javax.swing.text.Caret;
+import javax.swing.text.DefaultCaret;
 
 /**
  * Progress status window. For displaying quest information.
  */
 public class ProgressLog {
-	/** Width of the window content */
+	/** Width of the window content. */
 	private static final int PAGE_WIDTH = 450;
-	/** Height of the window content */
+	/** Height of the window content. */
 	private static final int PAGE_HEIGHT = 300;
-	/** Width of the index area of a page */
+	/** Width of the index area of a page. */
 	private static final int INDEX_WIDTH = 180;
-	/** Image used for the log background */
+	/** Image used for the log background. */
 	private static final String BACKGROUND_IMAGE = "data/gui/scroll_background.png";
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
 
-	/** The enclosing window */
-	JDialog window;
-	/** Category tabs */
+	/** The enclosing window. */
+	private JDialog window;
+	/** Category tabs. */
 	private final JTabbedPane tabs;
+	/** Content pages. */
+	private final List<Page> pages = new ArrayList<Page>();
+	/** Name of the font used. Defaults to {@link #FONT_NAME}. */
+	private String fontName;
 
 	/**
 	 * Create a new ProgressLog.
@@ -75,6 +82,17 @@ public class ProgressLog {
 		WindowUtils.closeOnEscape(window);
 		window.add(tabs);
 		window.pack();
+		
+		WtWindowManager.getInstance().registerSettingChangeListener("ui.logfont",
+				new SettingChangeAdapter("ui.logfont", FONT_NAME) {
+			@Override
+			public void changed(String newValue) {
+				fontName = newValue;
+				for (Page page : pages) {
+					page.setFontName(newValue);
+				}
+			};
+		});
 	}
 
 	/**
@@ -86,10 +104,13 @@ public class ProgressLog {
 	 */
 	void setPages(List<String> pages, ProgressStatusQuery query) {
 		tabs.removeAll();
+		this.pages.clear();
 		for (String page : pages) {
 			Page content = new Page();
+			content.setFontName(fontName);
 			content.setIndexQuery(query, page);
 			tabs.add(page, content);
+			this.pages.add(content);
 		}
 	}
 
@@ -145,6 +166,7 @@ public class ProgressLog {
 	 * selected.
 	 */
 	private class TabChangeListener implements ChangeListener {
+		@Override
 		public void stateChanged(ChangeEvent event) {
 			Component selected = tabs.getSelectedComponent();
 			if (selected instanceof Page) {
@@ -158,29 +180,31 @@ public class ProgressLog {
 	 */
 	@SuppressWarnings("serial")
 	private static class Page extends JComponent implements HyperlinkListener {
-		/** Html area for the subjects */
+		/** Html area for the subjects. */
 		private final JEditorPane indexArea;
-		/** The html area */
+		/** The html area. */
 		private final JEditorPane contentArea;
-		/** Scrolling component of the index area */
+		/** Scrolling component of the index area. */
 		private final JScrollPane indexScrollPane;
-		/** Scrolling component of the content html area */
+		/** Scrolling component of the content html area. */
 		private final JScrollPane contentScrollPane;
 
-		/** Query that is used to update the index area */
+		/** Query that is used to update the index area. */
 		private ProgressStatusQuery indexQuery;
-		/** Additional data for the index updating query */
+		/** Additional data for the index updating query. */
 		private String indexQueryData;
 
-		/** Query that is used to update the content area */
+		/** Query that is used to update the content area. */
 		private ProgressStatusQuery contentQuery;
-		/** Additional data for the content updating query */
+		/** Additional data for the content updating query. */
 		private String contentQueryData;
+		/** Name of the font. */
+		private String fontName;
 
 		/**
 		 * Create a new page.
 		 */
-		public Page() {
+		Page() {
 			this.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 			JComponent panels = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 			add(panels, SBoxLayout.constraint(SLayout.EXPAND_X,
@@ -193,6 +217,12 @@ public class ProgressLog {
 			// Fixed width
 			indexScrollPane.setMaximumSize(new Dimension(INDEX_WIDTH, Integer.MAX_VALUE));
 			indexScrollPane.setMinimumSize(new Dimension(INDEX_WIDTH, 0));
+			// Turn off caret following
+			Caret caret = indexArea.getCaret();
+			if (caret instanceof DefaultCaret) {
+				((DefaultCaret) caret).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+			}
+
 			panels.add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
 
 			contentArea = new PrettyEditorPane();
@@ -209,17 +239,19 @@ public class ProgressLog {
 					SBoxLayout.COMMON_PADDING, SBoxLayout.COMMON_PADDING,
 					SBoxLayout.COMMON_PADDING), refresh.getBorder()));
 			refresh.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent event) {
 					update();
 				}
 			});
+			
 			add(refresh);
 		}
 
 		/**
 		 * Update the page from the latest data from the server.
 		 */
-		public void update() {
+		void update() {
 			if (indexQuery != null) {
 				indexQuery.fire(indexQueryData);
 			}
@@ -231,12 +263,22 @@ public class ProgressLog {
 		/**
 		 * Set the query information for updating the the index.
 		 *
-		 * @param query
+		 * @param query query object
 		 * @param queryData additional data for the query
 		 */
-		public void setIndexQuery(ProgressStatusQuery query, String queryData) {
+		void setIndexQuery(ProgressStatusQuery query, String queryData) {
 			this.indexQuery = query;
 			this.indexQueryData = queryData;
+		}
+		
+		/**
+		 * Set the font.
+		 * 
+		 * @param font font name
+		 */
+		void setFontName(String font) {
+			fontName = font;
+			update();
 		}
 
 		/**
@@ -246,7 +288,7 @@ public class ProgressLog {
 		 * @param onClick query to be used for requesting data for a subject.
 		 *	Subject name will be used as the query parameter
 		 */
-		public void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
+		void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
 			/*
 			 * Order the quests alphabetically. The server provides them ordered
 			 * by internal name (and does not really guarantee even that), not
@@ -272,20 +314,7 @@ public class ProgressLog {
 			text.append("</html>");
 			contentQuery = onClick;
 
-			/*
-			 * Try to keep in the same position as before updating. This needs
-			 * to be pushed to the even queue, because otherwise the scroll
-			 * event triggered by changing the text would run after this.
-			 */
-			final JScrollBar bar = indexScrollPane.getVerticalScrollBar();
-			final int position = bar.getValue();
 			indexArea.setText(text.toString());
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					int newValue = Math.min(position, bar.getMaximum());
-					indexScrollPane.getVerticalScrollBar().setValue(newValue);
-				}
-			});
 		}
 
 		/**
@@ -295,10 +324,8 @@ public class ProgressLog {
 		 * @return style sheet
 		 */
 		private String createStyleDefinition() {
-			return "<style type=\"text/css\">body {font-family:"
-				+  WtWindowManager.getInstance().getProperty("ui.logfont", FONT_NAME) +
-				"; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
-
+			return "<style type=\"text/css\">body {font-family:" + fontName
+					+ "; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
 		}
 
 		/**
@@ -354,12 +381,14 @@ public class ProgressLog {
 			 * after this.
 			 */
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					contentScrollPane.getVerticalScrollBar().setValue(0);
 				}
 			});
 		}
 
+		@Override
 		public void hyperlinkUpdate(HyperlinkEvent event) {
 			if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 				/*
