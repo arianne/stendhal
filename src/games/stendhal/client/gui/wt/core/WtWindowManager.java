@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -34,7 +36,7 @@ import org.apache.log4j.Logger;
  * 
  * @author mtotz
  */
-public class WtWindowManager {
+public final class WtWindowManager {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger
@@ -53,7 +55,7 @@ public class WtWindowManager {
 	private final Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
 	
 	/** Change listeners. */
-	private final Map<String, SettingChangeListener> listeners = new HashMap<String, SettingChangeListener>(); 
+	private final Map<String, List<SettingChangeListener>> listeners = new HashMap<String, List<SettingChangeListener>>(); 
 
 	/** no public constructor. */
 	private WtWindowManager() {
@@ -73,10 +75,10 @@ public class WtWindowManager {
 	 * Sets default window properties. These are used only when there are no
 	 * properties known for this panel.
 	 * 
-	 * @param name
-	 * @param minimized
-	 * @param x
-	 * @param y
+	 * @param name window identifier
+	 * @param minimized <code>true</code> if the window is minimized
+	 * @param x window x coordinate
+	 * @param y window y coordinate
 	 */
 	public void setDefaultProperties(final String name, final boolean minimized, final int x,
 			final int y) {
@@ -133,15 +135,17 @@ public class WtWindowManager {
 	}
 
 	/**
-	 * @param panel
-	 * @return the config. If it does not exist yet, a new one is created.
+	 * Get the configuration of a window.
+	 * 
+	 * @param window the window whose configuration is wanted
+	 * @return the configuration. If it does not exist yet, a new one is created.
 	 */
-	private WindowConfiguration getConfig(final ManagedWindow panel) {
-		final String name = panel.getName();
+	private WindowConfiguration getConfig(final ManagedWindow window) {
+		final String name = window.getName();
 		WindowConfiguration winC = configs.get(name);
 		if (winC == null) {
 			winC = new WindowConfiguration(name);
-			winC.readFromProperties(properties, panel);
+			winC.readFromProperties(properties, window);
 			configs.put(name, winC);
 		}
 		return winC;
@@ -187,7 +191,26 @@ public class WtWindowManager {
 	 * @param listener listener for the changes
 	 */
 	public void registerSettingChangeListener(String key, SettingChangeListener listener) {
-		listeners.put("config." + key, listener);
+		String realKey = "config." + key;
+		List<SettingChangeListener> list = listeners.get(realKey);
+		if (list == null) {
+			list = new ArrayList<SettingChangeListener>();
+			listeners.put(realKey, list);
+		}
+		list.add(listener);
+	}
+	
+	/**
+	 * Deregister a change listener.
+	 * 
+	 * @param key the key the listener was registered for
+	 * @param listener listener to be removed
+	 */
+	public void deregisterSettingChangeListener(String key, SettingChangeListener listener) {
+		List<SettingChangeListener> list = listeners.get("config. " + key);
+		if (list != null) {
+			list.remove(listener);
+		}
 	}
 
 	/**
@@ -199,75 +222,85 @@ public class WtWindowManager {
 	public void setProperty(final String key, final String value) {
 		String realKey = "config." + key;
 		properties.setProperty(realKey, value);
-		SettingChangeListener listener = listeners.get(realKey);
-		if (listener != null) {
-			listener.changed(value);
+		List<SettingChangeListener> list = listeners.get(realKey);
+		if (list != null) {
+			for (SettingChangeListener listener : list) {
+				listener.changed(value);
+			}
 		}
 	}
 
 	/**
-	 * Formats the window with the saved config. Nothing happens when this
-	 * windows config is not known.
+	 * Apply a saved configuration to a window. Nothing happens when this
+	 * windows configuration is not known.
 	 * 
-	 * @param panel
+	 * @param window the window
 	 */
-	public void formatWindow(final ManagedWindow panel) {
-		final WindowConfiguration config = getConfig(panel);
+	public void formatWindow(final ManagedWindow window) {
+		final WindowConfiguration config = getConfig(window);
 		
-		panel.moveTo(config.x, config.y);
-		panel.setMinimized(config.minimized);
-		panel.setVisible(config.visible);
+		window.moveTo(config.x, config.y);
+		window.setMinimized(config.minimized);
+		window.setVisible(config.visible);
 	}
 
 	/**
-	 * the panel was moved, so update the internal representation.
+	 * Notify that a window has moved.
 	 * 
-	 * @param panel
-	 * @param x
-	 * @param y
+	 * @param window the window that moved
+	 * @param x new x coordinate
+	 * @param y new y coordinate
 	 */
-	public void moveTo(final ManagedWindow panel, final int x, final int y) {
-		final WindowConfiguration config = getConfig(panel);
+	public void moveTo(final ManagedWindow window, final int x, final int y) {
+		final WindowConfiguration config = getConfig(window);
 		config.x = x;
 		config.y = y;
 	}
 
 	/**
-	 * the panels minimized state changed, update the internal representation.
+	 * Notify a window's minimized state has changed.
 	 * 
-	 * @param panel
-	 * @param state
+	 * @param window changed window
+	 * @param state new minimization state. <code>true</code> if minimized,
+	 * 	<code>false</code> otherwise
 	 */
-	public void setMinimized(final ManagedWindow panel, final boolean state) {
-		final WindowConfiguration config = getConfig(panel);
+	public void setMinimized(final ManagedWindow window, final boolean state) {
+		final WindowConfiguration config = getConfig(window);
 
 		config.minimized = state;
 	}
 
-	public void setVisible(final ManagedWindow panel, final boolean state) {
-		final WindowConfiguration config = getConfig(panel);
+	/**
+	 * Notify that a window's visibility has changed.
+	 * 
+	 * @param window changed window
+	 * @param state the new visibility state. <code>true</code> if visible,
+	 * 	<code>false</code> otherwise
+	 */
+	public void setVisible(final ManagedWindow window, final boolean state) {
+		final WindowConfiguration config = getConfig(window);
 
 		config.visible = state;
 	}
 
 	/** encapsulates the configuration of a window. */
-	private static class WindowConfiguration {
-
+	private static final class WindowConfiguration {
 		/** name of the window. */
 		private String name;
-
 		/** minimized state of the window. */
 		private boolean minimized;
-
 		/** is the window visible? */
 		private boolean visible;
-
 		/** x-pos. */
 		private int x;
-
 		/** y-pos. */
 		private int y;
 
+		/**
+		 * Create configuration for a window.
+		 * 
+		 * @param name window identifier
+		 */
 		private WindowConfiguration(final String name) {
 			this.name = name;
 		}
@@ -282,20 +315,21 @@ public class WtWindowManager {
 					+ ".y=" + y + "\n";
 		}
 
-		/** returns to config as a property string. */
 		@Override
 		public String toString() {
 			return writeToPropertyString();
 		}
 
 		/**
-		 * reads the config from the properties.
+		 * Read window configuration from properties.
 		 * 
-		 * @param props
-		 * @param defaultMinimized
-		 * @param defaultX
-		 * @param defaultY
-		 * @param defaultVisible
+		 * @param props properties
+		 * @param defaultMinimized default minimization state <code>true</code>
+		 * 	for minimized windows, <code>false</code> for others
+		 * @param defaultX default x coordinate
+		 * @param defaultY default y coordinate
+		 * @param defaultVisible default visibility state <code>true</code> for
+		 * 	visible windows, <code>false</code> for others
 		 */
 		private void readFromProperties(final Properties props,
 				final boolean defaultMinimized, final int defaultX, final int defaultY,
@@ -311,16 +345,14 @@ public class WtWindowManager {
 		}
 
 		/**
-		 * reads the config from the properties.
+		 * Read window configuration from properties.
 		 * 
-		 * @param props
-		 * @param defaults
+		 * @param props properties
+		 * @param defaults default properties
 		 */
 		private void readFromProperties(final Properties props, final ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY(), defaults.isVisible());
 		}
-
 	}
-
 }
