@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,8 +13,11 @@
 package games.stendhal.client.gui.styled;
 
 
+import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.MathHelper;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -25,6 +28,8 @@ import javax.swing.border.Border;
  * The wood style.
  */
 public class WoodStyle implements Style {
+	private static final int DEFAULT_FONT_SIZE = 12;
+	
 	private static final Color highLightColor = new Color(163, 120, 97);
 	private static final Color shadowColor = new Color(50, 25, 12);
 	private static final Color plainColor = new Color(107, 72, 50);
@@ -37,22 +42,25 @@ public class WoodStyle implements Style {
 	/**
 	 * The background texture.
 	 */
-	protected Sprite background;
+	private Sprite background;
 
 	/**
 	 * The border.
 	 */
-	protected Border border;
+	private Border border;
 	/**
-	 * Downwards border (for buttons etc)
+	 * Downwards border (for buttons etc).
 	 */
-	protected Border borderDown;
+	private Border borderDown;
 
 	/**
 	 * The default font.
 	 */
-	protected Font font;
+	private Font font;
 
+	/**
+	 * Create new WoodStyle.
+	 */
 	public WoodStyle() {
 		/*
 		 * Load the texture
@@ -63,7 +71,14 @@ public class WoodStyle implements Style {
 		border = new PixmapBorder(background, true);
 		borderDown = new PixmapBorder(background, false);
 
-		font = new Font("Dialog", Font.PLAIN, 12);
+		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size", 
+				new SettingChangeAdapter("ui.font_size", Integer.toString(DEFAULT_FONT_SIZE)) {
+			@Override
+			public void changed(String newValue) {
+				int size = MathHelper.parseIntDefault(newValue, DEFAULT_FONT_SIZE);
+				font = new Font("Dialog", Font.PLAIN, size);
+			}
+		});
 	}
 
 	//
@@ -92,6 +107,7 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return A texture sprite.
 	 */
+	@Override
 	public Sprite getBackground() {
 		return background;
 	}
@@ -101,6 +117,7 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return A border, or <code>null</code> to use default.
 	 */
+	@Override
 	public Border getBorder() {
 		return border;
 	}
@@ -110,6 +127,7 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return A border, or <code>null</code> to use default.
 	 */
+	@Override
 	public Border getBorderDown() {
 		return borderDown;
 	}
@@ -119,6 +137,7 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return A font.
 	 */
+	@Override
 	public Font getFont() {
 		return font;
 	}
@@ -128,14 +147,17 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return A color.
 	 */
+	@Override
 	public Color getForeground() {
 		return Color.white;
 	}
 
+	@Override
 	public Color getHighLightColor() {
 		return highLightColor;
 	}
 
+	@Override
 	public Color getShadowColor() {
 		return shadowColor;
 	}
@@ -145,6 +167,7 @@ public class WoodStyle implements Style {
 	 * 
 	 * @return plain color
 	 */
+	@Override
 	public Color getPlainColor() {
 		return plainColor;
 	}
