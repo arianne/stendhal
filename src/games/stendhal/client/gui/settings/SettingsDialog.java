@@ -50,12 +50,14 @@ public class SettingsDialog extends JDialog {
 		closeButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad),
 				closeButton.getBorder()));
 		closeButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
 		add(closeButton);
 		WindowUtils.closeOnEscape(this);
+		WindowUtils.watchFontSize(this);
 		pack();
 	}
 }

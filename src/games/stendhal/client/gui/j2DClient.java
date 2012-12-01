@@ -537,6 +537,7 @@ public class j2DClient implements UserInterface {
 
 		checkAndComplainAboutJavaImplementation();
 		WorldObjects.addWorldListener(getSoundSystemFacade());
+		WindowUtils.watchFontSize(mainFrame.getMainFrame());
 	} // constructor
 
 	/**

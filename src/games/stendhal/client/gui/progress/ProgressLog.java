@@ -82,6 +82,7 @@ public class ProgressLog {
 		WindowUtils.closeOnEscape(window);
 		window.add(tabs);
 		window.pack();
+		WindowUtils.watchFontSize(window);
 		
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.logfont",
 				new SettingChangeAdapter("ui.logfont", FONT_NAME) {
