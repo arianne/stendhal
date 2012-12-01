@@ -17,7 +17,9 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyleUtil;
+import games.stendhal.client.gui.styled.StyledLookAndFeel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
 import java.awt.GraphicsEnvironment;
@@ -31,17 +33,25 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
 
+/**
+ * Page for general settings.
+ */
 class GeneralSettings {
-	
 	private static final String GAMESCREEN_BLOOD = "gamescreen.blood";
 	
 	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoraisecorpse";
-	/** Default decorative font */
+	/** Default decorative font. */
 	private static final String DEFAULT_FONT = "BlackChancery";
-	/** Property used for the decorative font */
+	/** Default font size. */
+	private static final int DEFAULT_FONT_SIZE = 12;
+	/** Property used for the decorative font. */
 	private static final String FONT_PROPERTY = "ui.logfont";
-	/** Property used for the double click setting */
+	/** Property used for the decorative font. */
+	private static final String FONT_SIZE_PROPERTY = "ui.font_size";
+	/** Property used for the double click setting. */
 	private static final String DOUBLE_CLICK_PROPERTY = "ui.doubleclick";
 	
 	private static final String HEALING_MESSAGE_PROPERTY = "ui.healingmessage";
@@ -52,9 +62,12 @@ class GeneralSettings {
 	private static final String MAP_COLOR_PROPERTY = "ui.colormaps";
 	private static final String SCALE_SCREEN_PROPERTY = "ui.scale_screen";
 	
-	/** Container for the setting components */
+	/** Container for the setting components. */
 	private final JComponent page;
 	
+	/**
+	 * Create new GeneralSettings.
+	 */
 	GeneralSettings() {
 		int pad = SBoxLayout.COMMON_PADDING;
 		page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
@@ -97,17 +110,60 @@ class GeneralSettings {
 			public void itemStateChanged(ItemEvent e) {
 				boolean enabled = (e.getStateChange() == ItemEvent.SELECTED);
 				String tmp = enabled ? "enabled" : "disabled";
-				String msg = "Lighting effects are now " + tmp +
-					". You may need to change map or relogin for it to take effect.";
+				String msg = "Lighting effects are now " + tmp
+						+ ". You may need to change map or relogin for it to take effect.";
 				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 			}
 		});
 		
-		JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
+		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
 				"true", "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
 		page.add(scaleScreenToggle);
-		
+		page.add(createFontSizeSelector());
 		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
+	}
+	
+	/**
+	 * Create selector for the default font size.
+	 * 
+	 * @return component containing the selector
+	 */
+	private JComponent createFontSizeSelector() {
+		JComponent container = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		container.add(new JLabel("Text size"));
+		
+		final JComboBox selector = new JComboBox();
+		
+		// Fill the selector, and set current size as the selection
+		int current = WtWindowManager.getInstance().getPropertyInt(FONT_SIZE_PROPERTY, DEFAULT_FONT_SIZE);
+		selector.addItem("default (12)");
+		for (int size = 8; size <= 20; size += 2) {
+			Integer obj = size;
+			selector.addItem(obj);
+			if ((size == current) && (size != DEFAULT_FONT_SIZE)) {
+				selector.setSelectedItem(obj);
+			}
+		}
+		
+		selector.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object selected = selector.getSelectedItem();
+				if ("default (12)".equals(selected)) {
+					selected = "12";
+				}
+				WtWindowManager.getInstance().setProperty(FONT_SIZE_PROPERTY, selected.toString());
+				
+				LookAndFeel look = UIManager.getLookAndFeel();
+				if (look instanceof StyledLookAndFeel) {
+					int size = MathHelper.parseIntDefault(selected.toString(), DEFAULT_FONT_SIZE);
+					((StyledLookAndFeel) look).setDefaultFontSize(size);
+				}
+			}
+		});
+		container.add(selector);
+		container.setToolTipText("Common text size");
+		return container;
 	}
 	
 	/**
