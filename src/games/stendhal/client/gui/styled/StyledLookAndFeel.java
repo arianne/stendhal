@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 import javax.swing.UIDefaults;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.InputMapUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
@@ -69,6 +70,21 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 		table.putDefaults(uiDefaults);
 	}
 	
+	/**
+	 * Set the default font size used in components.
+	 * 
+	 * @param size new font size
+	 */
+	public void setDefaultFontSize(int size) {
+		UIDefaults defaults = getDefaults();
+		for (Object key : defaults.keySet()) {
+			if ((key instanceof String) && (((String) key).endsWith(".font"))) {
+				FontUIResource font = (FontUIResource) defaults.get(key);
+				defaults.put(key, new FontUIResource(font.getName(), font.getStyle(), size));
+			}
+		}
+	}
+	 
 	@Override
 	protected void initComponentDefaults(UIDefaults table) {
 		super.initComponentDefaults(table);

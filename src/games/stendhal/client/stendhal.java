@@ -19,6 +19,7 @@ import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
 import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
@@ -241,7 +242,10 @@ public class stendhal {
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
 		try {
-			UIManager.setLookAndFeel(new StyledLookAndFeel(WoodStyle.getInstance()));
+			StyledLookAndFeel look = new StyledLookAndFeel(WoodStyle.getInstance());
+			UIManager.setLookAndFeel(look);
+			int fontSize = WtWindowManager.getInstance().getPropertyInt("ui.font_size", 12);
+			look.setDefaultFontSize(fontSize);
 		} catch (UnsupportedLookAndFeelException e) {
 			/*
 			 * Should not happen as StyledLookAndFeel always returns true for
@@ -254,6 +258,7 @@ public class stendhal {
 
 		final Profile profile = Profile.createFromCommandline(args);
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				if (profile.isValid()) {
 					new LoginDialog(null, client).connect(profile);
@@ -267,6 +272,7 @@ public class stendhal {
 		CStatusSender.send();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				j2DClient locclient = new j2DClient(client, userContext);
 				perceptionDispatch.register(locclient.getPerceptionListener());
