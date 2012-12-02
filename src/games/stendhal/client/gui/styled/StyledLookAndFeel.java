@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.InputMapUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -75,12 +76,15 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 	 * 
 	 * @param size new font size
 	 */
-	public void setDefaultFontSize(int size) {
+	public void setDefaultFontSize(final int size) {
 		UIDefaults defaults = getDefaults();
+		
 		for (Object key : defaults.keySet()) {
 			if ((key instanceof String) && (((String) key).endsWith(".font"))) {
 				FontUIResource font = (FontUIResource) defaults.get(key);
-				defaults.put(key, new FontUIResource(font.getName(), font.getStyle(), size));
+				// For some reason changing it in defaults does not work
+				// reliably. Going through UIManager fixes it.
+				UIManager.put(key, new FontUIResource(font.getName(), font.getStyle(), size));
 			}
 		}
 	}
