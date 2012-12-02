@@ -14,10 +14,13 @@ package games.stendhal.client.gui.buddies;
 
 import games.stendhal.client.gui.MousePopupAdapter;
 
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
 import javax.swing.JPopupMenu;
+import javax.swing.ListCellRenderer;
 
 /**
  * JList that can show popup menues for buddies. Use <code>BuddyListModel</code>
@@ -25,7 +28,7 @@ import javax.swing.JPopupMenu;
  */
 class BuddyPanel extends JList {
 	/**
-	 * serial version uid
+	 * serial version uid.
 	 */
 	private static final long serialVersionUID = -1728697267036233233L;
 
@@ -46,6 +49,27 @@ class BuddyPanel extends JList {
 		setOpaque(false);
 		this.setFocusable(false);
 		this.addMouseListener(new BuddyPanelMouseListener());
+	}
+	
+	@Override
+	public Font getFont() {
+		// The only real for is that of the cell renderer
+		ListCellRenderer renderer = getCellRenderer();
+		if (renderer instanceof Component) {
+			return ((Component) renderer).getFont();
+		}
+		
+		return super.getFont();
+	}
+
+	@Override
+	public void setFont(Font font) {
+		// Pass the font change to the cell renderer
+		ListCellRenderer renderer = getCellRenderer();
+		if (renderer instanceof Component) {
+			Component comp = (Component) renderer;
+			comp.setFont(font);
+		}
 	}
 	
 	/**
