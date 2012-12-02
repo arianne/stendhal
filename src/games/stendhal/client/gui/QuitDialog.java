@@ -18,7 +18,6 @@ import games.stendhal.client.StendhalClient;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.ContainerOrderFocusTraversalPolicy;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +30,7 @@ import javax.swing.JComponent;
 
 @SuppressWarnings("serial")
 public class QuitDialog {
-	private static final int PADDING = 12;
+	private static final int PADDING = 10;
 	/** Quit dialog window. */
 	private InternalManagedWindow quitDialog;
 	private JButton yesButton;
@@ -61,7 +60,7 @@ public class QuitDialog {
 	 */
 	private InternalManagedWindow buildQuitDialog() {
 		// dialog contents
-		JComponent content = new JComponent() {};
+		JComponent content = new JComponent() { };
 		content.setLayout(new GridLayout(1, 2, PADDING, PADDING));
 		content.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
 		// Limit keyboard focus handling to the dialog until the user makes some
@@ -80,14 +79,6 @@ public class QuitDialog {
 		noButton.setText("No");
 		noButton.addActionListener(new QuitCancelCB());
 		content.add(noButton);
-		
-		// Beautify button sizes; ensure that they are equal
-		Dimension yPref = yesButton.getPreferredSize();
-		Dimension nPref = noButton.getPreferredSize();
-		Dimension pref = new Dimension(Math.max(yPref.width, nPref.width),
-				Math.max(yPref.height, nPref.height));
-		yesButton.setPreferredSize(pref);
-		noButton.setPreferredSize(pref);
 
 		// Pack the whole thing in a managed window
 		InternalManagedWindow window = new InternalManagedWindow("quit", "Quit");
@@ -103,6 +94,7 @@ public class QuitDialog {
 	 * Call back at "No" answer to quit.
 	 */
 	protected class QuitCancelCB implements ActionListener {
+		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			quitDialog.setVisible(false);
 		}
@@ -112,6 +104,7 @@ public class QuitDialog {
 	 * Call back at quit confirmed.
 	 */
 	private static class QuitConfirmCB implements ActionListener {
+		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			j2DClient.get().shutdown();
 		}
@@ -136,10 +129,12 @@ public class QuitDialog {
 	 * For keeping the dialog centered on game screen resizes.
 	 */
 	private class ParentResizeListener implements HierarchyBoundsListener {
+		@Override
 		public void ancestorMoved(HierarchyEvent e) {
 			// ignore
 		}
 
+		@Override
 		public void ancestorResized(HierarchyEvent e) {
 			if (quitDialog.isVisible()) {
 				if (e.getChanged().equals(quitDialog.getParent())) {
