@@ -12,19 +12,24 @@
  ***************************************************************************/
 package games.stendhal.client.gui.buddies;
 
+import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
+
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class BuddyPanelController implements PropertyChangeListener {
+/**
+ * Controller object for the buddy list.
+ */
+public final class BuddyPanelController implements PropertyChangeListener {
 	/**
 	 * Controller instance. The first class referring (j2dClient) this class
 	 * will need the panel anyway, so it's OK to instantiate it right away.
@@ -40,13 +45,11 @@ public class BuddyPanelController implements PropertyChangeListener {
 	private BuddyPanelController() {
 		// The panel is actually just the background
 		buddyPanel = new JPanel();
-		// the default layout manager is too dumb to understand alignment
-		buddyPanel.setLayout(new BoxLayout(buddyPanel, BoxLayout.Y_AXIS));
+		buddyPanel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		// now the actual sorted list
 		model = new BuddyListModel();
 		JList list = new BuddyPanel(model);
-		list.setAlignmentX(Component.LEFT_ALIGNMENT);
-		buddyPanel.add(list);
+		buddyPanel.add(list, SBoxLayout.constraint(SLayout.EXPAND_X));
 	}
 
 	/**
@@ -58,6 +61,7 @@ public class BuddyPanelController implements PropertyChangeListener {
 		return buddyPanel;
 	}
 	
+	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
 		if (evt == null) {
 			return;
@@ -68,6 +72,7 @@ public class BuddyPanelController implements PropertyChangeListener {
 		if (oldBuddies != null) {
 			for (final Entry<String, String> entry : oldBuddies.entrySet()) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						model.removeBuddy(entry.getKey());		
 					}
@@ -81,6 +86,7 @@ public class BuddyPanelController implements PropertyChangeListener {
 			for (final Entry<String, String> entry : newBuddies.entrySet()) {
 				final boolean online = Boolean.parseBoolean(entry.getValue());
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						model.setOnline(entry.getKey(), online);
 					}
