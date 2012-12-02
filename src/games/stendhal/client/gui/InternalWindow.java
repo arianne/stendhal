@@ -51,11 +51,11 @@ import javax.swing.border.Border;
  */
 public class InternalWindow extends JPanel implements ComponentPaintCache.Cacheable {
 	/**
-	 * serial version uid
+	 * serial version uid.
 	 */
 	private static final long serialVersionUID = 7086677981083580331L;
 	private static final int TITLEBAR_HEIGHT = 13;
-	/** Space between titlebar components and before the title */
+	/** Space between titlebar components and before the title. */
 	private static final int TITLEBAR_PADDING = 2;
 	
 	private static Icon closeIcon, minimizeIcon;
@@ -66,10 +66,10 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		createIcons();
 	}
 	
-	final TitleBar titleBar;
+	private final TitleBar titleBar;
 	final JButton minimizeButton;
 	final JButton closeButton;
-	/** Title text label */
+	/** Title text label. */
 	final JLabel titleLabel;
 	
 	private JComponent content;
@@ -81,7 +81,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	
 	private final List<CloseListener> closeListeners = new LinkedList<CloseListener>();
 	
-	final ComponentPaintCache cache;
+	private final ComponentPaintCache cache;
 	
 	/**
 	 * Create a new InternalWindow.
@@ -123,7 +123,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Add a close listener to the window. All the listeners will be notified
 	 * when this window is closed.
 	 * 
-	 * @param listener
+	 * @param listener new listener
 	 */
 	public void addCloseListener(CloseListener listener) {
 		closeListeners.add(listener);
@@ -135,7 +135,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * the window contents until the content component has been fully 
 	 * constructed.
 	 * 
-	 * @param content
+	 * @param content window content
 	 */
 	public void setContent(JComponent content) {
 		if (this.content != null) {
@@ -146,17 +146,15 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		/*
 		 * Keep the preferred width even if the content is minimized
 		 */
-		int width = content.getPreferredSize().width;
-		Dimension preferred = titleBar.getPreferredSize();
-		preferred.width = width;
-		titleBar.setPreferredSize(preferred);
+		titleBar.setPreferredWidth(content.getPreferredSize().width);
 	}
 	
 	/**
 	 * Make the window closeable by the user by showing or hiding the close
 	 * button.
 	 * 
-	 * @param closeable
+	 * @param closeable <code>true</code> if the window should have a close
+	 * 	button, otherwise <code>false</code>
 	 */
 	public void setCloseable(boolean closeable) {
 		closeButton.setVisible(closeable);
@@ -177,7 +175,8 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Make the window minimizable by the user by showing or hiding the
 	 * minimize button.
 	 * 
-	 * @param minimizable
+	 * @param minimizable <code>true</code> if the window should have a minimize
+	 * 	button, otherwise <code>false</code>
 	 */
 	public void setMinimizable(boolean minimizable) {
 		minimizeButton.setVisible(minimizable);
@@ -196,7 +195,8 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	/**
 	 * Set the minimization status of the window.
 	 * 
-	 * @param minimized
+	 * @param minimized <code>true</code> to minimize the window,
+	 * 	<code>false</code> to restore it
 	 */
 	public void setMinimized(boolean minimized) {
 		// Cosmetics. Hide the borders of the title bar while the window is
@@ -220,7 +220,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	/**
 	 * Set the window title.
 	 * 
-	 * @param title
+	 * @param title title text
 	 */
 	public void setTitle(String title) {
 		/*
@@ -261,6 +261,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Handle close button.
 	 */
 	private class CloseActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			close();
 			playSound(closeSound);
@@ -271,6 +272,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Handle minimization button.
 	 */
 	private class MinimizeListener implements ActionListener {
+		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			setMinimized(!isMinimized());
 			if (isMinimized()) {
@@ -291,7 +293,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	}
 	
 	/**
-	 * Create the close and minimize icons
+	 * Create the close and minimize icons.
 	 */
 	private static void createIcons() {
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
@@ -311,7 +313,8 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Create image background for the title bar buttons. Tries using the
 	 * style of the theme if available.
 	 * 
-	 * @param gc
+	 * @param gc graphics configuration for creating the image
+	 * 
 	 * @return image background image
 	 */
 	private static Image createIconBackground(GraphicsConfiguration gc) {
@@ -376,19 +379,27 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	}
 	
 	/**
-	 * A JPanel that draws only the lower part of the border
+	 * A JPanel that draws only the lower part of the border.
 	 */
 	private static class TitleBar extends JPanel implements ComponentPaintCache.Cacheable {
 		/**
-		 * serial version uid
+		 * serial version uid.
 		 */
 		private static final long serialVersionUID = -6859560118307192124L;
-		/** Original, unmodified insets */
+		/** Original, unmodified insets. */
 		private Insets insets;
 		private final Border border;
-		private final ComponentPaintCache cache; 
+		private final ComponentPaintCache cache;
+		/**
+		 * Width of the window content. The title bar should not request a
+		 * larger width.
+		 */
+		private int preferredWidth = -1;
 		
-		public TitleBar() {
+		/**
+		 * Create a TitleBar.
+		 */
+		TitleBar() {
 			/*
 			 * Compensate with negative empty border the borders that are not
 			 * drawn anyway. Left and right borders are useful as padding so 
@@ -404,7 +415,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		/**
 		 * Hide the special border of the title bar.
 		 */
-		public void hideBorder() {
+		void hideBorder() {
 			/*
 			 * Create an empty border that corresponds exactly to the normal
 			 * borders.
@@ -416,14 +427,33 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		/**
 		 * Restore the special border of the title bar.
 		 */
-		public void restoreBorder() {
+		void restoreBorder() {
 			setBorder(border);
+		}
+		
+		/**
+		 * Set what the title should report as its preferred width.
+		 * 
+		 * @param width preferred width
+		 */
+		void setPreferredWidth(int width) {
+			preferredWidth = width;
+		}
+		
+		@Override
+		public Dimension getPreferredSize() {
+			Dimension tmp = super.getPreferredSize();
+			if (preferredWidth != -1) {
+				tmp.width = preferredWidth;
+			}
+			
+			return tmp;
 		}
 		
 		@Override
 		public void paintBorder(Graphics g) {
 			Graphics graphics = g.create();
-			graphics.clipRect(0, getHeight() - insets.bottom, getWidth(), 100);
+			graphics.clipRect(0, getHeight() - insets.bottom, getWidth(), getHeight());
 			/*
 			 * Adjust the width, so that the drawn border does not get corners
 			 * that may look ugly
@@ -456,6 +486,11 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * Listener interface for window close events.
 	 */
 	public interface CloseListener {
+		/**
+		 * Called when the window is closed.
+		 * 
+		 * @param window the closed window
+		 */
 		void windowClosed(InternalWindow window);
 	}
 	
