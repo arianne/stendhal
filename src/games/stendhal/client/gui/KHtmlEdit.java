@@ -380,14 +380,8 @@ public class KHtmlEdit extends KTextEdit {
 		textPane.addHyperlinkListener(new ActivateLinkCB());
 	}
 
-	/**
-	 * Initialize style information for a text pane.
-	 *
-	 * @param textPane
-	 *            The text pane.
-	 */
 	@Override
-	protected void initStylesForTextPane(final JTextPane textPane) {
+	protected void initStylesForTextPane(final JTextPane textPane, int mainTextSize) {
 		textPane.setContentType("text/html");
 
 		final HTMLDocument doc = (HTMLDocument) textPane.getDocument();
@@ -396,12 +390,12 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Configure standard styles
 		 */
-		css.addRule("body { font-family: Dialog; font-size: " + (TEXT_SIZE + 1)
+		css.addRule("body { font-family: Dialog; font-size: " + (mainTextSize + 1)
 				+ "pt }");
 		css.addRule("a { color: blue; font-style: italic }");
 
 		css.addRule("._timestamp { color: " + colorToRGB(HEADER_COLOR)
-				+ "; font-size: " + (TEXT_SIZE - 1)
+				+ "; font-size: " + (mainTextSize - 1)
 				+ "pt; font-style: italic }");
 		css.addRule("._header { color: " + colorToRGB(HEADER_COLOR) + " }");
 
@@ -478,6 +472,7 @@ public class KHtmlEdit extends KTextEdit {
 	 * A hyperlink listener for link activation.
 	 */
 	protected class ActivateLinkCB implements HyperlinkListener {
+		@Override
 		public void hyperlinkUpdate(final HyperlinkEvent ev) {
 			if (ev.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 				activateLink(ev);

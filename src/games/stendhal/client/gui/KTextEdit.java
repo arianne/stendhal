@@ -18,6 +18,7 @@ import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -49,8 +50,6 @@ import org.apache.log4j.Logger;
  * Appendable text component to be used as the chat log.
  */
 public class KTextEdit extends JComponent {
-	/** Point size of the text. */
-	protected static final int TEXT_SIZE = 11;
 	/** Color of the time stamp written before the lines. */
 	protected static final Color HEADER_COLOR = Color.gray;
 
@@ -94,6 +93,16 @@ public class KTextEdit extends JComponent {
 		}
 	}
 	
+	@Override
+	public void setFont(Font font) {
+		/*
+		 * Dynamic font size changing tries to set the default font for
+		 * KTextEdit. We don't use it, but we can signal the change of font
+		 * sizes to textPane. Traditionally the chat log has used one point
+		 * smaller font than the rest of the UI, so we keep that practice.
+		 */
+		initStylesForTextPane(textPane, font.getSize() - 1);
+	}
 
 	/**
 	 * Basic Constructor.
@@ -120,7 +129,7 @@ public class KTextEdit extends JComponent {
 		
 		textPane.addMouseListener(new TextPaneMouseListener());
 		
-		initStylesForTextPane(textPane);
+		initStylesForTextPane(textPane, textPane.getFont().getSize());
 		setLayout(new BorderLayout());
 		
 		scrollPane = new JScrollPane(textPane) {
@@ -150,37 +159,52 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Initializes the basic styles.
+	 * 
 	 * @param textPane
 	 *            the active text component
+	 * @param mainTextSize size of regular text 
 	 */
-	protected void initStylesForTextPane(final JTextPane textPane) {
+	protected void initStylesForTextPane(final JTextPane textPane, int mainTextSize) {
+		Style regular = textPane.getStyle("regular");
+		if (regular == null) {
+			final Style def = StyleContext.getDefaultStyleContext().getStyle(
+					StyleContext.DEFAULT_STYLE);
+			regular = textPane.addStyle("regular", def);
+			StyleConstants.setFontFamily(def, "Dialog");
+		}
+		StyleConstants.setFontSize(regular, mainTextSize);
 
-		final Style def = StyleContext.getDefaultStyleContext().getStyle(
-				StyleContext.DEFAULT_STYLE);
+		Style s = textPane.getStyle("normal");
+		if (s == null) {
+			s = textPane.addStyle("normal", regular);
+			StyleConstants.setBold(s, true);
+			StyleConstants.setForeground(s, HEADER_COLOR);
+		}
 
-		final Style regular = textPane.addStyle("regular", def);
-		StyleConstants.setFontFamily(def, "Dialog");
-		StyleConstants.setFontSize(regular, TEXT_SIZE);
+		s = textPane.getStyle("bold");
+		if (s == null) {
+			s = textPane.addStyle("bold", regular);
+			StyleConstants.setItalic(s, true);
+			StyleConstants.setBold(s, true);
+			StyleConstants.setForeground(s, Color.blue);
+		}
+		StyleConstants.setFontSize(regular, mainTextSize + 1);
 
-		Style s = textPane.addStyle("normal", regular);
-		StyleConstants.setBold(s, true);
-		StyleConstants.setForeground(s, HEADER_COLOR);
+		s = textPane.getStyle("header");
+		if (s == null) {
+			s = textPane.addStyle("header", regular);
+			StyleConstants.setItalic(s, true);
+			StyleConstants.setForeground(s, HEADER_COLOR);
+		}
+		StyleConstants.setFontSize(s, mainTextSize);
 
-		s = textPane.addStyle("bold", regular);
-		StyleConstants.setFontSize(regular, TEXT_SIZE + 1);
-		StyleConstants.setItalic(s, true);
-		StyleConstants.setBold(s, true);
-		StyleConstants.setForeground(s, Color.blue);
-
-		s = textPane.addStyle("header", regular);
-		StyleConstants.setItalic(s, true);
-		StyleConstants.setFontSize(s, TEXT_SIZE);
-		StyleConstants.setForeground(s, HEADER_COLOR);
-
-		s = textPane.addStyle("timestamp", regular);
-		StyleConstants.setItalic(s, true);
-		StyleConstants.setFontSize(s, TEXT_SIZE - 1);
-		StyleConstants.setForeground(s, HEADER_COLOR);
+		s = textPane.getStyle("timestamp");
+		if (s == null) {
+			s = textPane.addStyle("timestamp", regular);
+			StyleConstants.setItalic(s, true);
+			StyleConstants.setForeground(s, HEADER_COLOR);
+		}
+		StyleConstants.setFontSize(s, mainTextSize - 1);
 	}
 
 	/**
