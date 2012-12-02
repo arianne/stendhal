@@ -45,7 +45,7 @@ public class FreePlacementLayoutManager implements LayoutManager {
 		Insets insets = parent.getInsets();
 		int maxX = parent.getWidth() - insets.right;
 		int maxY = parent.getHeight() - insets.bottom;
-		for (final Component c : ((Container) parent).getComponents()) {
+		for (final Component c : parent.getComponents()) {
 			final int x = Math.max(insets.top, Math.min(c.getX(), maxX - c.getWidth()));
 			final int y = Math.max(insets.left, Math.min(c.getY(), maxY - c.getHeight()));
 			c.setLocation(x, y);
