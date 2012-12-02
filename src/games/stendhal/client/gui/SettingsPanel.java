@@ -100,6 +100,11 @@ class SettingsPanel extends JButton {
 				menu.show(SettingsPanel.this, getWidth() - menu.getPreferredSize().width, getHeight());
 			}
 		});
+		/*
+		 * Menu is its own component root, so it needs to be registered to
+		 * listening font size changes.
+		 */
+		WindowUtils.watchFontSize(menu);
 	}
 	
 	/**
