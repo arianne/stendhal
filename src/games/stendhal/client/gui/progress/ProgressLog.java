@@ -21,6 +21,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -281,6 +282,13 @@ public class ProgressLog {
 			fontName = font;
 			update();
 		}
+		
+		@Override
+		public void setFont(Font font) {
+			super.setFont(font);
+			// The font itself is not used, but the size is
+			update();
+		}
 
 		/**
 		 * Set the subject index.
@@ -325,7 +333,9 @@ public class ProgressLog {
 		 * @return style sheet
 		 */
 		private String createStyleDefinition() {
+			int fontSize = getFont().getSize() + 2;
 			return "<style type=\"text/css\">body {font-family:" + fontName
+					+ "; font-size:" + fontSize
 					+ "; margin:12px} p {margin:4px 0px} a {color:#a00000} li, ul {margin-left:10px}</style>";
 		}
 
