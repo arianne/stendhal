@@ -57,7 +57,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	// quest slot changed ready for 2011
 	private static final String QUEST_SLOT = "meet_santa_12";
 	// date changed ready for 2011
-    private static final GregorianCalendar notXmas = new GregorianCalendar(2012, Calendar.JANUARY, 6);
+    private static final GregorianCalendar notXmas = new GregorianCalendar(2013, Calendar.JANUARY, 6);
 
 	public static final String QUEST_NAME = "MeetSanta";
 
