@@ -2,7 +2,18 @@
 ---------
 1.05
 
+*client*
+- A lot of redrawn images
+- The game screen can be scaled. The scaling can be turned off in settings to get the old behaviour
+- Karma bar fits to the width of the left panel
+- Travel log updates to font preference change immediately
+- Font size used in the client can be changed
 
+*fixes*
+- fixed tic-tac-toe board not being drawn when the top left corner is not on screen
+- fixed a bug that could cause items being lost in trade
+- fixed the automatic scrolling of the chat log sometimes turning off by itself
+- several small fixes to entity views sometimes missing changes
 
 1.04
 
