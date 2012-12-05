@@ -23,6 +23,9 @@
 - new paper chase quest which leads players all over the world
 - Ketteh now gets help from the guards, if players without any clothes(!) ignore her warning
 - jail exit is straight to outside the cell
+- bulletin board added to bank for future announcements and general fun
+- olive added as food item to allow for addition of olive oil - several trees added to maps for this
+- jail added to rat city 
 
 *client*
 - replaced the separate menu buttons with one large menu 
