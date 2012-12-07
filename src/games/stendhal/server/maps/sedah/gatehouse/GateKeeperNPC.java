@@ -79,7 +79,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				});
 				addReply("nothing", "Good.");
 				addReply("key", "I'm open to bribery...");
-				addJob("I am the gatekeeper for the imperial city of Sedah. I am not supposed to let anyone, but perhaps you can make me an #offer.");
+				addJob("I am the gatekeeper for the imperial city of Sedah. I am not supposed to let anyone pass, but perhaps you can make me an #offer.");
 				addHelp("You can't get into the imperial city of Sedah without a key.");
 				addQuest("The only favour I need is cold hard cash.");
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
