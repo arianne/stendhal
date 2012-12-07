@@ -2,8 +2,8 @@
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../creatures.xsd ">
   <creature name="deer">
-    <type class="animal" subclass="deer" tileid="animal.png:9"/>
-    <description>You see a defenseless deer, do not have fear of it.</description>
+    <type class="animal" subclass="reindeer" tileid="animal.png:9"/>
+    <description>You see a reindeer running freely, and wonder if he is one of Santa's special helpers.</description>
     <attributes>
       <atk value="8"/>
       <def value="3"/>
