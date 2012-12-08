@@ -96,13 +96,13 @@ furniture/table/concrete_table.png 6
 furniture/table/desk.png 38
 furniture/table/fancy_blue_red.png 13
 del*/furniture/table/fish_tables.png 
-tig furniture/table/grey_pale.png 35
+furniture/table/grey_pale.png 35
 del*/furniture/table/grey_pale_base.png 1
 tig*/furniture/table/hotdog_stand.png 2
 furniture/table/orb_table.png 16
 furniture/table/table_round_white.png 20
-tig furniture/table/table_with_hob.png 19
-tig furniture/table/table_with_hob_pale.png 64
+furniture/table/table_with_hob.png 19
+furniture/table/table_with_hob_pale.png 64
 kih*/furniture/table/table_wooden_brown.png 35
 furniture/table/vendors_table.png 23
 ground/grass_snow.png 3
