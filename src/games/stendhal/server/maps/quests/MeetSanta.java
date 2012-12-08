@@ -29,6 +29,8 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerIsAGoodBoyCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -86,7 +88,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-							new QuestCompletedCondition(QUEST_SLOT)),
+							new QuestCompletedCondition(QUEST_SLOT),
+                                                        new PlayerIsAGoodBoyCondition()),
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
@@ -108,10 +111,19 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
-							new QuestNotCompletedCondition(QUEST_SLOT)),
+							new QuestNotCompletedCondition(QUEST_SLOT),
+                                                        new PlayerIsAGoodBoyCondition()),
 					ConversationStates.IDLE,
 					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",
 					new MultipleActions(reward));
+
+				add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
+                                                        new NotCondition(new PlayerIsAGoodBoyCondition())),
+					ConversationStates.IDLE,
+					"Ho ho ho! Looks like you haven't been a good this year! Only well behaved children get presents! Seasons greetings!",
+					null);
 			}
 		};
 		santa.setEntityClass("santaclausnpc");
