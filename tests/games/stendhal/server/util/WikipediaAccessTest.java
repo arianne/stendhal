@@ -35,7 +35,7 @@ public class WikipediaAccessTest {
 			if (access.isFinished()) {
 				if ((access.getText() != null) && (access.getText().length() > 0)) {
 					response = access.getProcessedText();
-	
+
 					System.out.println("Wikipedia response to " + keyword + ": " + response);
 				} else {
 					fail("Sorry, could not find information on this topic in Wikipedia.");
@@ -73,7 +73,7 @@ public class WikipediaAccessTest {
 		final String response = getWikiText("GPL");
 
 		if (response != null) {
-			final Matcher<String> match = allOf(containsString("free software license"), containsString("GNU"));
+			final Matcher<String> match = allOf(containsString("software license"), containsString("GNU"));
 			assertThat("There should be explained the GNU GPL.", response, match);
 		}
 	}
