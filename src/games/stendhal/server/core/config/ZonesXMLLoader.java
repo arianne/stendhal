@@ -123,8 +123,8 @@ public final class ZonesXMLLoader {
 		// just to speed up starting of the server in while developing
 		// add -Dstendhal.zone.regex=".*semos.*" (for example) to your server start script just after the "java "
 		// or for multiple regions: -Dstendhal.zone.regex=".*semos.*|.*fado.*"
-		// it's a good idea to keep semos loaded as that's a default place to put the character 
-		// if there is a problem with the zone 
+		// it's a good idea to keep semos loaded as that's a default place to put the character
+		// if there is a problem with the zone
 		final String regex = System.getProperty("stendhal.zone.regex", ".*");
 
 		/*
@@ -377,6 +377,10 @@ public final class ZonesXMLLoader {
 		for (final Element child : XMLUtil.getElements(element)) {
 			final String tag = child.getTagName();
 
+			if (!checkCondition(child)) {
+				continue;
+			}
+
 			SetupDescriptor setupDesc = null;
 
 			if (tag.equals("attributes")) {
@@ -404,6 +408,21 @@ public final class ZonesXMLLoader {
 		}
 
 		return desc;
+	}
+
+	/**
+	 * checks if a condition is true
+	 *
+	 * @param element element to check the condition on
+	 * @return result of the evaluation of the condition
+	 */
+	private boolean checkCondition(Element element) {
+		String condition = element.getAttribute("condition");
+		if ((condition == null) || condition.trim().equals("")) {
+			return true;
+		}
+
+		return System.getProperty(condition) != null;
 	}
 
 	//
