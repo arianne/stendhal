@@ -64,8 +64,10 @@ public class PassiveEntityRespawnPointFactoryTest {
 
 		PassiveEntityRespawnPoint herb_4 = PassiveEntityRespawnPointFactory
 				.create(clazz, 4, null, 0, 0);
-		assertNull(herb_4);
-
+		assertNotNull(herb_4);
+		assertEquals("You see a place where reindeer moss grows.",
+				herb_4.getDescription());		
+	
 	}
 
 	/**
