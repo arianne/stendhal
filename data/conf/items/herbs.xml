@@ -101,7 +101,7 @@
     </equipable>
   </item>
 
-  <item name="reindeer_moss">
+  <item name="reindeer moss">
     <type class="herb" subclass="reindeer_moss" tileid="-1"/>
     <description>You see reindeer moss, something that grows only around Semos. It is quite a delicacy to reindeer, but extremely bitter to humans.</description>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem" />
