@@ -2,6 +2,10 @@
 ---------
 1.05
 
+*world*
+- added Rudolph and a quest for goodies
+- added reindeer_moss as a seasonal goody
+
 *client*
 - A lot of redrawn images
 - The game screen can be scaled. The scaling can be turned off in settings to get the old behaviour
