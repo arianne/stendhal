@@ -1319,13 +1319,12 @@ Mature sheep wanted: please speak to Sato.
 			<attribute name="resistance">0</attribute>
 		</entity>
 
-		<!-- writing on the wooden arch -->
-		<entity x="57" y="46">
+		<!-- writing on sign east -->
+		<entity x="61" y="43">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
 			<attribute name="text">Welcome to Semos</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
 		</entity>
+
 
 		<!-- writing on the wooden arch South -->
 		
