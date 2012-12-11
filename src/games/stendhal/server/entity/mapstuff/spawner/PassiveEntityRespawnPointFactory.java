@@ -335,7 +335,7 @@ public class PassiveEntityRespawnPointFactory {
 			passiveEntityrespawnPoint = new VegetableGrower("mandragora");
 			break;
 		case 4:
-			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("reindeer_moss", 300);
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("reindeer moss", 300);
 			passiveEntityrespawnPoint
 					.setDescription("You see a place where reindeer moss grows.");
 			break;
