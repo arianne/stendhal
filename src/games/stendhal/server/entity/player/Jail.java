@@ -121,6 +121,11 @@ public class Jail implements ZoneConfigurator, LoginListener {
 		public void onTurnReached(final int currentTurn) {
 			release(criminalName);
 		}
+
+		@Override
+		public String toString() {
+			return "Jailer [criminalName=" + criminalName + "]";
+		}
 	}
 
 	/**
