@@ -48,8 +48,8 @@ public class RudolphNPC implements ZoneConfigurator {
 				final List<Node> path = new LinkedList<Node>();
 				path.add(new Node(2, 3));
 				path.add(new Node(2, 14));
-				path.add(new Node(35, 14));
-				path.add(new Node(35, 46));
+				path.add(new Node(36, 14));
+				path.add(new Node(36, 46));
 				path.add(new Node(51, 46));
 				path.add(new Node(51, 48));
 				path.add(new Node(62, 48));
