@@ -97,8 +97,7 @@ public class StendhalQuestSystem {
 		loadQuest(new FishSoup());
 		loadQuest(new FishSoupForHughie());
 		loadQuest(new FruitsForCoralia());
-		loadQuest(new GoodiesForRudolph());
-        loadQuest(new GuessKills());
+		loadQuest(new GuessKills());
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
 		loadQuest(new HelpMrsYeti());
@@ -145,7 +144,6 @@ public class StendhalQuestSystem {
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());
-		loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 		loadQuest(new SheepGrowing());
 		loadQuest(new SolveRiddles());
 		loadQuest(new SevenCherubs());
@@ -168,7 +166,11 @@ public class StendhalQuestSystem {
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
 
+		if (System.getProperty("stendhal.christmas") != null) {
+			loadQuest(new GoodiesForRudolph());
+		}
 		if (System.getProperty("stendhal.minetown") != null) {
+			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 			loadQuest(new MineTownRevivalWeeks());
 		}
 
