@@ -422,6 +422,11 @@ public final class ZonesXMLLoader {
 			return true;
 		}
 
+		condition = condition.trim();
+		if (condition.charAt(0) == '!') {
+			return System.getProperty(condition.substring(1)) == null;
+		}
+
 		return System.getProperty(condition) != null;
 	}
 
