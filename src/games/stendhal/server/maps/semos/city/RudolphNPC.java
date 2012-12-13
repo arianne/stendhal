@@ -63,8 +63,6 @@ public class RudolphNPC implements ZoneConfigurator {
 			public void createDialog() {
 				addGreeting("Hi, my jolly friend.  Isn't this such a wonderful time of year?");
 				addHelp("Oh, my, I can't help you, sorry.  It's not like i can influence Santa at all.");
-				addReply("safety", "When you are standing at a chest to organise your items, any other people or animals will not be able to come near you. A magical aura stops others from using scrolls to arrive near you. You will need to walk out. Lastly let me tell you about safe #trading.");
-				addReply("trading", "To start a trade with another player, right-click on them and select 'Trade'. If they also want to trade with you, you'll see a window pop up where you can drag items to offer, and see what is being offered to you. Both click Offer, and then you both need to Accept the offer to complete the trade.");
 				addJob("I pull Santa's sleigh on Christmas night. It gives me such pleasure to flash my nose so that Santa can see where he is going.");
 				addGoodbye("It was such a pleasure to meet you.");
 			
