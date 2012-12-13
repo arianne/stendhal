@@ -167,8 +167,8 @@ public class GoodiesForRudolph extends AbstractQuest {
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new EquipItemAction("money", 500));
-		reward.add(new IncreaseXPAction(6000));
+		reward.add(new EquipItemAction("money", 50));
+		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(60));
 
