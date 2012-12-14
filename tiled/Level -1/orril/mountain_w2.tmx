@@ -25,19 +25,19 @@
  <tileset firstgid="53" name="../../tileset/logic/creature/animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="80" name="../../tileset/logic/creature/small_animal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="81" name="../../tileset/logic/creature/small_animal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset firstgid="85" name="../../tileset/logic/creature/dwarf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="../../tileset/logic/creature/dwarf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf.png"/>
  </tileset>
- <tileset firstgid="93" name="../../tileset/logic/item/resources.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="94" name="../../tileset/logic/item/resources.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset firstgid="99" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="100" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset firstgid="100" name="wall/int_rock" tilewidth="32" tileheight="32">
+ <tileset firstgid="101" name="wall/int_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
@@ -47,7 +47,7 @@
  </layer>
  <layer name="1_terrain" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2cTW/DIAyGc5q0v9xtt1W9TdptH392zQEpQiRxOmzewGPplXqoVB4wBozpdZqmK0IIIYSq6HLXa4DeBFhLep9i7DOQCX4N/ufF5xH5lwZ/e9aSvu76ceROpsqf+8Dtrm8H/QpwWviVxwl++OGHH37493TkXPvRIf+j+1r427cdfvjhhx9++KP5X6Y+cv9ReT2LtfCpOa/nkceyKM8n9jKnHvU9+Nu3qYasZ8rlebInftZU+OHX5M9jk8eeS5k/te3J8TfPwO/5m/DDr86fam5G48/Pex71BtYz5fL8d3Nqi7J6vE+DH3744Ydfmz+qnl+1nkIp7z+bCr9XXata3esa/yhxCH744Ycf/n3+0l5J9Z2iB3/pu2f3kzX+Ul1Lfk/bM7/VPOp/IufWkbqXiHdvS5v7Vim+tDgrKfXBmq94+4VSH7TyC+U+iJoXqn0QGRcU19vR+aPehM+myB/pA6r8UWujKn/U3Dgbf+25AX97HouWuZLSubkn/lJeqCazOv/o+x/446xFbfTR9xteFlEbdwnkOWLe7GnMR2HPfbzE3aoGwLsmwOrjirG2hqzxGv72bW3F33Md9h5/z+wW/l79Hv7z8HvWWmzxK8z9tf1JrfufLf7WY7+3N6vRB1s1r63H3rI2/3eMlGu+4N+2Gj6a39Wk+wnPWh5r/N66L/Gan2p3d6X2eMamM/B7zs3R+b3/+ynN50f5FdblGv5lja/L/c/Z2df82WI9sP+HX2E/UkN78SXFhzzf3MPYH+mfUXgRQgghhBBCCKFa+gO1gWHmAIAAAA==
+   H4sIAAAAAAAAAO2cTW/DIAyGc5q039xtt1W9TdptHz92zQEpQiRxOmzewGPplXqoVB4wBozpdZqmK0IIIYSq6HLXa4DeBFhLep9i7DOQCX4N/ufF5xH5lwZ/e9aSvu76ceROpsqf+8Dtrm8H/QpwWviVxwl++OGHH37493TkXPvRIf+j+1r427cdfvjhhx9++KP5X6Y+cv9ReT2LtfCpOa/nkceyKM8n9jKnHvU9+Nu3qYasZ8rlebInftZU+OHX5M9jk8eeS5k/te3J8TfPwO/5m/DDr86fam5G48/Pex71BtYz5fL8d3Nqi7J6vE+DH3744Ydfmz+qnl+1nkIp7z+bCr9XXata3esa/yhxCH744Ycf/n3+0l5J9Z2iB3/pu2f3kzX+Ul1Lfk/bM7/VPOp/IufWkbqXiHdvS5v7Vim+tDgrKfXBmq94+4VSH7TyC+U+iJoXqn0QGRcU19vR+aPehM+myB/pA6r8UWujKn/U3Dgbf+25AX97HouWuZLSubkn/lJeqCazOv/o+x/446xFbfTR9xteFlEbdwnkOWLe7GnMR2HPfbzE3aoGwLsmwOrjirG2hqzxGv72bW3F33Md9h5/z+wW/l79Hv7z8HvWWmzxK8z9tf1JrfufLf7WY7+3N6vRB1s1r63H3rI2/3eMlGu+4N+2Gj6a39Wk+wnPWh5r/N66L/Gan2p3d6X2eMamM/B7zs3R+b3/+ynN50f5FdblGv5lja/L/c/Z2df82WI9sP+HX2E/UkN78SXFhzzf3MPYH+mfUXgRQgghhBBCCKFa+gOLI1RUAIAAAA==
   </data>
  </layer>
  <layer name="2_object" width="64" height="128">
@@ -55,24 +55,14 @@
    H4sIAAAAAAAAAO3b3WqEMBCGYY+7B4KnHve/vf/bawJdmA4J2tZoMt/7QOhWYXFM1MlknSYAAIA+PFx9AA3M303RYj7bc3Bz21XPjxdx/Fs2vpvb5//PlsI2AAAAAOcgHy9Tnb/Ok+b8XTHmzNcn1kuOAj2xdZt1ij8m7s/A6LU6AABasvmD4jM15xOKcwnLx79OGrmkVZpTrmafMoX41cb7FoU+r1GqL1FTBgAAJeTFY6P/gHFx/epifo6s9H6Omq374OJaBIprcvg7cgXssXd9I9p4mguf1db+tvq+lmtEWhMrxVJb96vFPWKOYcf5XNnu96ny54d7BBDXiPfzsyjd+0oixr/nd04+buoRMRzxfB+xJvnb8R6Z77+osbfIZckVgHa4vn6Kem8uKeUVSvFn/r1+aBkxt8ZxRrjm1cfoY2pPqT03+O7e6++5DvSS2mtqbw2+v+f47zWw99Q+Uvu88Fiu1nM/tab0nqh3duyr+fufGvRR67g99ruNq/Ucqsf4cY5ofV+rNSn95kMlTgAAAAAAgDN8AWid0o8AgAAA
   </data>
  </layer>
- <layer name="3_roof" width="64" height="128">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
-  </data>
- </layer>
- <layer name="4_roof_add" width="64" height="128">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABim/B8BAIAAAA==
-  </data>
- </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cSw6CMBQF0C5JB+7DTwSduP9luAJDJcVb7DkjEhq4hL6k8AilAADQ0ryw/1lxjEeLIH/kmA7AakvzvaYeAPZiaQ0AAOzLlA5A1+7pAAFqAgCAlkZcU494zfTjEDpvL8+Sp3QAora+/6/KcVPJ1EQP39zMH7YBAMi6Nhh7axEEAIAI784ZjTnP1s7pAADApr55pw4A/2yEHvElHQAAoOg70C99V0anBuD3ano0+jgArJH6DwsAAACwX2+4m01iAIAAAA==
+   H4sIAAAAAAAAAO3cSw6CMBQF0C5JBy7ETwSduP9duAJDJcVb7DkjEhq4hL6k8AilAADQ0ryw/1lxjEeLIH/kmA7AakvzvaYeAPZiaQ0AAOzLlA5A1+7pAAFqAgCAlkZcU494zfTjEDpvL8+Sp3QAora+/6/KcVPJ1EQP39zMH7YBAMi6Nhh7axEEAIAI784ZjTnP1s7pAADApr55pw4A/2yEHvElHQAAoOg70C99V0anBuD3ano0+jgArJH6DwsAAACwX29Mlz/xAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TwRGDMBRDQfea/ntIB5mQGD8Dqxmd0X7gNcZ4qaqqqk7qitRGfn5+/uoGte9bf72Dn5+fn5+fn3+G6Ujqzfz8/Pz8/Pz8q/1npL5Dfft6Cz8//3zXt6k38/Pz39+/4pn8/Pz8O/p36pPt/Pz8/Pz9Dv7n+XfKLv76e+Dn5+fn5+ffx3/HO/H/nnr7lW51NLW19o8Je+9wl9pW+8cGvto/AtNu/rHAwb/3DWojf3uX2lLfoHbw8/OvNV/Bvyq1k5+/8t/NcyTs6931P1W/53pfaefvN5b+el/pr7fx8/M3/nrXp41P8p+974r2mTv5r+k/85m1u3w/K/LPnvKbmxX+ff0r7vurv95e+uvdM/1HU2/mX3ufeoOqqqqqqqqqXqtvNBG8bQCAAAA=
+   H4sIAAAAAAAAAO3TwRGDMBRDQReb/mtIB5mQGD8Dqxmd0X7gNcZ4qaqqqk7qitRGfn5+/uoGte9bf72Dn5+fn5+fn3+G6Ujqzfz8/Pz8/Pz8q/1npL5Dfft6Cz8//3zXt6k38/Pz39+/4pn8/Pz8O/p36pPt/Pz8/Pz9Dv7n+XfKLv76e+Dn5+fn5+ffx3/HO/H/nnr7lW51NLW19o8Je+9wl9pW+8cGvto/AtNu/rHAwb/3DWojf3uX2lLfoHbw8/OvNV/Bvyq1k5+/8t/NcyTs6931P1W/53pfaefvN5b+el/pr7fx8/M3/nrXp41P8p+974r2mTv5r+k/85m1u3w/K/LPnvKbmxX+ff0r7vurv95e+uvdM/1HU2/mX3ufeoOqqqqqqqqqXqtvy83bBwCAAAA=
   </data>
  </layer>
  <layer name="protection" width="64" height="128">

@@ -63,11 +63,6 @@
    H4sIAAAAAAAAAGNgGFhggUfOgAK9xJhBjP5RMApGwSgYBbQBhMpgSspoUszWp8AeUgE97aI2wBemo/Xp0AXI7SRaxCOymYTadaNgZANap79RgAmIzZP46i5i67XR/E858ANifygOoMAcAKkBltQAEAAA
   </data>
  </layer>
- <layer name="4_roof_add" width="32" height="32">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
-  </data>
- </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UUREAIAhEQaoZR/oHsAB8KI4ncFvgCTqKENIAt3/sK7j/SqR/Y0eZ57dMcN/inUmd/u4MEdXu/6RPRDmh/4/uuH/qrML7X6OM8EsAEAAA

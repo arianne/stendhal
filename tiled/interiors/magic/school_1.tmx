@@ -121,16 +121,16 @@
  <tileset firstgid="192" name="lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="193" name="bed2" tilewidth="32" tileheight="32">
+ <tileset firstgid="196" name="bed2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/side_on.png"/>
  </tileset>
- <tileset firstgid="195" name="part1" tilewidth="32" tileheight="32">
+ <tileset firstgid="198" name="part1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/spear.png"/>
  </tileset>
- <tileset firstgid="197" name="armor" tilewidth="32" tileheight="32">
+ <tileset firstgid="200" name="armor" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/armor.png"/>
  </tileset>
- <tileset firstgid="201" name="book bottle shelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="204" name="book bottle shelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/pale_book_bottle_shelf.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="30">
@@ -140,22 +140,22 @@
  </layer>
  <layer name="1_terrain" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWWO04DMRCGXQUEVSA8wyMSSCAh3o/ABRJBkOi4A5CkIR1QADfIfVKAKIECOBC/xVoZBo/X680uv/RJxPZ4ftvYO0Wl1HgKSqAY/T0mYMZI/a64CTAJhgKYAtNgxjGHzxgpbi7yVwCv4A28q74uwCW4Im0f4BN8gVGSu6Dsso3pgWPL2BtwC+6iOOqPax1sEDY9c2uteYyJk8vfNdgC24SdqN3lr8P6OwH+HsF9jL+mEMvbQ8/XR5K/Q9ASYnT7UUp/0tqNHtTPHqb1Vw/0x9coyXW+bSGGt/PcNdbfFfz5iPurk74zsAv2CPtRu82f9AbY1iCtnapp8WdTleDKncQf32ObWp7+4hTiz0dZ+RvE+6fVHoA/8z+Sxf6ZuDT+zBkk9fcS6I/e37o14ne7OYNB7Z9+i57As+q/S8bfLBgJoMz8dVnOGvOXJI+eexjMg8UUVDz3T+dZSIieO6Su5azG+FsJnLekkte1EsuCv6XA+Uz97HPvTx19JzGxVOcxv2k+cz+oP/6+JpXtfQ6dw+YvDx0IUNH6IE9/urbkdZGpjWhNSL+/ee9fVYDqP/35nC+tD/K8Hz7n63s/4t6Nhp/lP/I53wbzF/r9zZJy5C/t9zdLKuAbuyDDBcASAAA=
+   H4sIAAAAAAAAAMWWO04DMRCGXQUEVSA8wyMSSCAh3o/ABRJBkOi4A5CkIR1QADfIfdKBKIECuA6/xVoZBo/X680uv/RJxPZ4ftvYO0Wl1HgKSqAY/T0mYMZI/a64CTAJhgKYAtNgxjGHzxgpbi7yVwCv4A28q74uwCW4Im0f4BN8gVGSu6Dsso3pgWPL2BtwC+6iOOqPax1sEDY9c2uteYyJk8vfNdgC24SdqN3lr8P6OwH+HsF9jL+mEMvbQ8/XR5K/Q9ASYnT7UUp/0tqNHtTPHqb1Vw/0x9coyXW+bSGGt/PcNdbfFfz5iPurk74zsAv2CPtRu82f9AbY1iCtnapp8WdTleDKncQf32ObWp7+4hTiz0dZ+RvE+6fVHoA/8z+Sxf6ZuDT+zBkk9fcS6I/e37o14ne7OYNB7Z9+i57As+q/S8bfLBgJoMz8dVnOGvOXJI+eexjMg8UUVDz3T+dZSIieO6Su5azG+FsJnLekkte1EsuCv6XA+Uz97HPvTx19JzGxVOcxv2k+cz+oP/6+JpXtfQ6dw+YvDx0IUNH6IE9/urbkdZGpjWhNSL+/ee9fVYDqP/35nC+tD/K8Hz7n63s/4t6Nhp/lP/I53wbzF/r9zZJy5C/t9zdLKuAbOMajJMASAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSwrCMBCGey7fD9yJ9BTqBXweQBcFca31radQ1K26UG/kv+giiIO2TJJR+8EHzaTM/IsQ4jhm2cMtsdeATdh6sXeCZ3gJ1glYhTVYh6mgfoU3eI+Y7wB3yjqpfLdhB3Yj9pZEEXqwB4eWs3wbA6JeMJqCxiPqaYbeR4YeeaLOcQ4zDD0qIethyDL00Enpg3/K2lP8Nn3bAQwg5S6koO7If2UEx9AXOmcCp3DGnohnzhwu4JI7ENOcFVzDDXcgBfdpjqtxVoxcqPedFHK2A7xB+hsxJkYKD9uYJBTAEgAA
+   H4sIAAAAAAAAAO2WSwrCMBCGey7fD9yJ9BTqBXweQBcFca31radQ1AOoC/VA/osugjhoyyQZtR980EzKzL8IIY5jlj3cEnsN2IStF3sneIaXYJ2AVViDdZgK6ld4g/eI+Q5wp6yTyncbdmA3Ym9JFKEHe3BoOcu3MSDqBaMpaDyinmbofWTokSfqHOcww9CjErIehixDD52UPvinrD3Fb9O3HcAAUu5CCuqO/FdGcAx9oXMmcApn7Il45szhAi65AzHNWcE13HAHUnCf5rgaZ8XIhXrfSSFnO8AbpL8RY2Kk8ADwaWPAwBIAAA==
   </data>
  </layer>
  <layer name="3_roof" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UjQmAIBAFYIerfWqBagWX6HeMFutAghKszJM76n3wQAX1EDxj4G+qyPVdfTN/oqM0L/aB0xr3hjkUmc7lUnpzK1JFGu1vDGEc/Q+urdIFHMT8VRsYc/LP9fvhl/WUgTIqvWeizJSFvSKZeySk9lOO/oyeDlrhfwCcbWIZbqPAEgAA
+   H4sIAAAAAAAAAO3UjQmAIBAFYIerfWqBagWX6HeP5upAghKszJM76n3wQAX1EDxj4G+qyPVdfTN/oqM0L/aB0xr3hjkUmc7lUnpzK1JFGu1vDGEc/Q+urdIFHMT8VRsYc/LP9fvhl/WUgTIqvWeizJSFvSKZeySk9lOO/oyeDlrhfwCcbU22tNTAEgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQEAAAwCIPsHW67F0AMSkAAAdF07AADAtAdTTxRswBIAAA==
+   H4sIAAAAAAAAAO3OMQEAAAwCIPs3W6vF0AMSkAAAdF07AADAtAcivnv0wBIAAA==
   </data>
  </layer>
  <layer name="objects" width="40" height="30">

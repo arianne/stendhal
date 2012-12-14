@@ -58,7 +58,7 @@
  <tileset firstgid="101" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_wide.png"/>
  </tileset>
- <tileset firstgid="133" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="165" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_ns_centered.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="50">
@@ -73,17 +73,12 @@
  </layer>
  <layer name="2_object" width="40" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YiU4CMRCG+0Bo8MJb8cSDVUETn8H7fAXFGx7Zv8kSy9Fty7Y7Y+iXfJksO2knmzJtKkQvM2I4ut8j/5PDvsiJBbiouFTg3OcWOctwRXEVHoUsyoFE8K5PsgbXFauk1QxykCqpUxZCQAXOW8TIcI7hicGGxTih+nPdMmZB2Z9NcO9/3OuTcO/PKuPWn4vgAl7CK3jtMdcXN/AW3sF7j7kuPTcr9wE+wif4bBjHJbe7t5j2D8r+bPo/6vofFyj7s+36C9mfmxnvbNefiu/+fCr+zuZFzOfKGeHcL/AVtghryOINvsMPgrlnNXEujfJ+6xN+wW/Ne/W5+z4vUw65P7ANOwHG1jHtYQyKsTlT1sQSnICThrxxRO7LG3Azp1si3F6+LXrPDaO4G6i2xGN9VN9vJ5Xr97OtL64/nuuvBvdyuh+oNkn/uX8UqwHrk9jcK+a5e4xEOPELDY6bOUAfAAA=
+   H4sIAAAAAAAAAO2YiU4CMRCG+0Bo8MJb8cSDVUETn8H7fCXFGx7Rv8kSy9Fty7Y7Y+iXfJksO2knmzJtKkQvM2I4ut8j/5PDvsiJBbiouFTg3OcWOctwRXEVHoUsyoFE8K5PsgbXFauk1QxykCqpUxZCQAXOW8TIcI7hicGGxTih+nPdMmZB2Z9NcO9/3OuTcO/PKuPWn4vgAl7CK3jtMdcXN/AW3sF7j7kuPTcr9wE+wif4bBjHJbe7t5j2D8r+bPo/6vofFyj7s+36C9mfmxnvbNefiu/+fCr+zuZFzOfKGeHcL/AVtghryOINvsMPgrlnNXEujfJ+6xN+wW/Ne/W5+z4vUw65P7ANOwHG1jHtYQyKsTlT1sQSnICThrxxRO7LG3Azp1si3F6+LXrPDaO4G6i2xGN9VN9vJ5Xr97OtL64/nuuvBvdyuh+oNkn/uX8UqwHrk9jcK+a5e4xEOPELkE/rRUAfAAA=
   </data>
  </layer>
  <layer name="3_roof" width="40" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OOQqAQBBE0bmOGngqlzMoaCSO252twLQxcJpB+A8+nVTQIQAAAADw1KhWdapPuE1pUKPDNpVJzQ5bAPij5blr1i9sUW1qz/2I4VCnunI/gk9q4xaqVNXLDgAAALDcF+Z+f0AfAAA=
-  </data>
- </layer>
- <layer name="4_roof_add" width="40" height="50">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAABhk6EtKQB8AAA==
+   H4sIAAAAAAAAAO3OuwmAQBBF0W1HDazKTw0KWo24/nr0BaaDgTsswj1wmeQFEwIAAAAAT41qVaf6hNuUBjU6bFOZ1OywBYA/Wp67Zv3CFtWm9tyPGA51qiv3I/ikNm6hSlW97AAAAADLDS8q3B9AHwAA
   </data>
  </layer>
  <layer name="objects" width="40" height="50">

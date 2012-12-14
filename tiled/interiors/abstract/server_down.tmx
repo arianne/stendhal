@@ -58,16 +58,6 @@
    H4sIAAAAAAAAANVXUQ7CMAjlY55J/5cYD2G8wbzDTDxLY+IhXaNERKCwdjO+hA/pwiu0DyxADJfJ9oKNwThzcFL814X4MNexwE2/awXky/HPkx3Yej/ZwL6rAT3X+8uX2G9Q/Anq7oFW2yi8NZByrYW3Blqumq400zikGmBsLVfc03HzNgtanbEGdG+ls+XcJZTOmK5Hub15a3qn67nWWaNctyXubQew63RurnfkSPDZpxLEztvKHblyH7rBs+9wjiv4dIwxvDbIYb7216qHRPGP3JFeY/UZ5LbuOUdkv1TLlIPOROuet+JGDpy50Vg13JLvl9yoX+95R/ROtd4LPsTSerNmDM3HW4MSMFdvv8tY+z8ThVSDHuSacP+cXDXQWYgzl4LPxJbvBDoLrbcBn5mtsfabiELT9pxcHxoDc9+IDgAA
   </data>
  </layer>
- <layer name="3_roof" width="31" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAAOBnXCKT7IgOAAA=
-  </data>
- </layer>
- <layer name="4_roof_add" width="31" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQsvoAAAAOBnXCKT7IgOAAA=
-  </data>
- </layer>
  <layer name="objects" width="31" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OQQ0AAAgEoDOa/UtZwZ+bgwQkAAA/dF0PANgYyAijr4gOAAA=

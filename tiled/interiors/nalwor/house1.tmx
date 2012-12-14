@@ -52,19 +52,19 @@
  <tileset firstgid="130" name="../../tileset/furniture/light/small_lamp.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="131" name="../../tileset/furniture/table/orb_table.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="134" name="../../tileset/furniture/table/orb_table.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/orb_table.png"/>
  </tileset>
- <tileset firstgid="132" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="135" name="../../tileset/plant/bush/bushes.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset firstgid="142" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="../../tileset/logic/creature/elf.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset firstgid="152" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="155" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="159" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
@@ -79,7 +79,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC/Ig2JCoBoHXQjF6CANi1gDCe5KB+IMItW2YxHLJMEubPpJsZ9eoAaHeAEWsXwsehuBuIlIu0pIsJ9Y/aSAMiLMbwbiUhzyFWjmpKLRINCGhAcLAAAj1hV4AAQAAA==
+   H4sIAAAAAAAAAGNgoC/Ig2JCoBoHXQjF6CANi1gDCe5KB+IMItV2YRHLJMEubPpJsZ9eoAaHeAEWsXwsehuBuIlIu0pIsJ9Y/aSAMiLMbwPiUhzyFWjmpKLRINCJhAcLAABaN60CAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -87,19 +87,14 @@
    H4sIAAAAAAAAAGNgwA4qcdDEgioc9CgYeJCLRSyH7q4YBYMBAACrdF9gAAQAAA==
   </data>
  </layer>
- <layer name="4_roof_add" width="16" height="16">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
-  </data>
- </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL5gzkA7gALQD6WnD6grRsFAAnqkXwAgjXSlAAQAAA==
+   H4sIAAAAAAAAAGNgGL5g/kA7gAIwCUrPGlBXjIKBBPRIvwBMjIiCAAQAAA==
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJvPwMAwfxBgdDAfD02sGfgAJWZQaj81/DBQfifFfmLkyLGbFvqJMWM+Ghubflw0Lj2E0gKt8x0A/82DWwAEAAA=
+   H4sIAAAAAAAAAFvEwMCwaBBgdLAID02sGfgAJWZQaj81/DBQfifFfmLkyLGbFvqJMWMRGhubflw0Lj2E0gKt8x0A7NSJwQAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

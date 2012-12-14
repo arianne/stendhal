@@ -57,11 +57,6 @@
    H4sIAAAAAAAAAGNgGJkgBohjB9oRJAJcbk4A4nQgTgbiVCDOoKObCAF8bk4E4hQGiNsHk5upBTyB2AuIvQmoAwDRosALhAMAAA==
   </data>
  </layer>
- <layer name="4_roof_add" width="15" height="15">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMJAAA7Ly31YQDAAA=
-  </data>
- </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBTgA5E0Nh8AuiKqwIQDAAA=

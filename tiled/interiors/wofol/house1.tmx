@@ -28,16 +28,16 @@
  <tileset firstgid="50" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png"/>
  </tileset>
- <tileset firstgid="51" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="54" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset firstgid="54" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset firstgid="59" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="62" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset firstgid="66" name="Unbenannt" tilewidth="32" tileheight="32">
+ <tileset firstgid="69" name="Unbenannt" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="10" height="10">
@@ -52,27 +52,17 @@
  </layer>
  <layer name="2_object" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA3QAmJtKNuIRL2mFNhrCMQ6RKjTBWI9ItTpA7EBBe4hFQAAGbEyoJABAAA=
-  </data>
- </layer>
- <layer name="3_roof" width="10" height="10">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDCQAADA0iRpABAAA=
-  </data>
- </layer>
- <layer name="4_roof_add" width="10" height="10">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDCQAADA0iRpABAAA=
+   H4sIAAAAAAAAAGNgoA3QAmJtKNuIRL0WFNhrCMQ6RKjTBWI9ItTpA7EBBe4hFQAA7mvjs5ABAAA=
   </data>
  </layer>
  <layer name="objects" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL7AaoDstadALwAfbxvmkAEAAA==
+   H4sIAAAAAAAAAGNgGL7AdoDsdaJALwAsACNkkAEAAA==
   </data>
  </layer>
  <layer name="collision" width="10" height="10" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNiYGBwoiFmQKIZcMijA1zmEKsWm3py1ZFqrxMR8vgwAD6dELKQAQAA
+   H4sIAAAAAAAAAHNlYGBwpSFmQKIZcMijA1zmEKsWm3py1ZFqrysR8vgwADpd/d+QAQAA
   </data>
  </layer>
  <layer name="protection" width="10" height="10">

@@ -46,7 +46,7 @@
  <tileset firstgid="78" name="animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset firstgid="105" name="huge animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="106" name="huge animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -69,14 +69,9 @@
    H4sIAAAAAAAAAGNgoD7wAmJvKprnA8S+VDSPFsBxoB0wCkbBMAXOA+2AUYATAAC1xAwEQAYAAA==
   </data>
  </layer>
- <layer name="4_roof_add" width="20" height="20">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
-  </data>
- </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWkAF4qmBFPBTNGAfkgb6AdMAqGBUgYaAcMAgAAsVnpaUAGAAA=
+   H4sIAAAAAAAAAGNgGAWkAF4qmBFPBTNGAfkgf6AdMAqGBUgYaAcMAgAAwpzZokAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">

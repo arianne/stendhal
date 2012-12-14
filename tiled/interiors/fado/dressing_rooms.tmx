@@ -58,15 +58,15 @@
  <tileset firstgid="118" name="doorway" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_wide.png"/>
  </tileset>
- <tileset firstgid="150" name="Untitled" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="Untitled" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>
  </tileset>
- <tileset firstgid="154" name="ground" tilewidth="32" tileheight="32">
+ <tileset firstgid="186" name="ground" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEecj0Y4laJhcO4dLPp8JxaTqAwB9LL6S3AUAAA==
+   H4sIAAAAAAAAAHNgYGBwGGHYBYqHix2iQMwBxJxALDFqBxxz0NgOdLNoEecj0Y4jaJhcO4dLPt8JxaTqAwA89bPi3AUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="15">
@@ -82,11 +82,6 @@
  <layer name="3_roof" width="25" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGFyglApmRFOgN54EtVFA7A7EHhTYRwzwBGIvPPJtQNwOxB1A3EmCuZEkuqMbiHtI1EMq6AfiCTQ0fxIQTwbiKUA8lUKzyA13ECAl7EfDfWQDdSDWIEMfAD6jgw/cBQAA
-  </data>
- </layer>
- <layer name="4_roof_add" width="25" height="15">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEw3AAAv2wkb9wFAAA=
   </data>
  </layer>
  <layer name="objects" width="25" height="15">
