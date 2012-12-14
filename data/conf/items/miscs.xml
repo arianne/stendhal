@@ -212,7 +212,7 @@
   
    <item name="snowglobe">
     <type class="misc" subclass="snowglobe" tileid="-1"/>
-    <description>You see a snowglobe. You are SUCH a tourist!</description>
+    <description>You see a snowglobe. It's so festive, it reminds you of Christmas!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
