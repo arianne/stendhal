@@ -4,7 +4,8 @@
 
 *world*
 - added Rudolph and a quest for goodies
-- added reindeer_moss as a seasonal goody
+- added reindeer moss as a seasonal goody
+- Santa is out for Christmas
 
 *client*
 - A lot of redrawn images
