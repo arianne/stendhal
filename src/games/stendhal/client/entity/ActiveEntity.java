@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -66,18 +66,12 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	/**
-	 * The entity has stopped motion.
-	 */
-	protected void onStop() {
-	}
-
-	/**
 	 * Set the direction.
 	 * 
 	 * @param direction
 	 *            The direction.
 	 */
-	protected void setDirection(final Direction direction) {
+	private void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
 
@@ -119,15 +113,22 @@ public abstract class ActiveEntity extends Entity {
 	 *            the movement based on direction
 	 * @return the new delta to correct the movement error
 	 */
-	public static double calcDeltaMovement(final double clientPos,
+	private static double calcDeltaMovement(final double clientPos,
 			final double serverPos, final double delta) {
 		final double moveErr = clientPos - serverPos;
 		final double moveCorrection = (delta - moveErr) / delta;
 		return (delta + delta * moveCorrection) / 2;
 	}
 
-	// When rpentity moves, it will be called with the data.
-	protected void onMove(final int x, final int y, final Direction direction,
+	/**
+	 * When entity moves, it will be called with the data.
+	 * 
+	 * @param x new x coordinate
+	 * @param y new y coordinate
+	 * @param direction new direction
+	 * @param speed new speed
+	 */
+	private void onMove(final int x, final int y, final Direction direction,
 			final double speed) {
 
 		double oldx = this.x;
@@ -265,17 +266,17 @@ public abstract class ActiveEntity extends Entity {
 			newY = diff.getInt("y");
 		}
 
-		Direction temp_direction;
+		Direction tempDirection;
 
 		if (diff.has("dir")) {
-			temp_direction = Direction.build(diff.getInt("dir"));
-			setDirection(temp_direction);
+			tempDirection = Direction.build(diff.getInt("dir"));
+			setDirection(tempDirection);
 			fireChange(PROP_DIRECTION);
 		} else if (base.has("dir")) {
-			temp_direction = Direction.build(base.getInt("dir"));
-			setDirection(temp_direction);
+			tempDirection = Direction.build(base.getInt("dir"));
+			setDirection(tempDirection);
 		} else {
-			temp_direction = Direction.STOP;
+			tempDirection = Direction.STOP;
 		}
 
 		double speed;
@@ -288,23 +289,30 @@ public abstract class ActiveEntity extends Entity {
 		} else {
 			speed = 0;
 		}
+		
+		onMove(newX, newY, tempDirection, speed);
 
-		onMove(newX, newY, temp_direction, speed);
-
-		if ((Direction.STOP.equals(temp_direction)) || (speed == 0)) {
+		boolean changed = false;
+		if ((Direction.STOP.equals(tempDirection)) || (speed == 0)) {
 			dx = 0.0;
 			dy = 0.0;
+			
+			/*
+			 * Try to ensure relocation in the case the client and server were
+			 * in disagreement about the position at tme moment of stopping.
+			 */
+			if (!(compareDouble(y, newY, EPSILON) && compareDouble(x, newX, EPSILON))) {
+				changed = true;
+			}
 
 			x = newX;
 			y = newY;
-
-			onStop();
 		}
 
 		/*
 		 * Change in position?
 		 */
-		if ((oldx != newX) && (oldy != newY)) {
+		if (changed || ((oldx != newX) && (oldy != newY))) {
 			onPosition(newX, newY);
 		}
 	}
