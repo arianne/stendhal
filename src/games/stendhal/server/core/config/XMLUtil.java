@@ -182,4 +182,25 @@ public class XMLUtil {
 					"DOM parser configuration error: " + ex.getMessage());
 		}
 	}
+
+
+	/**
+	 * checks if a condition is true
+	 *
+	 * @param element element to check the condition on
+	 * @return result of the evaluation of the condition
+	 */
+	public static boolean checkCondition(Element element) {
+		String condition = element.getAttribute("condition");
+		if ((condition == null) || condition.trim().equals("")) {
+			return true;
+		}
+
+		condition = condition.trim();
+		if (condition.charAt(0) == '!') {
+			return System.getProperty(condition.substring(1)) == null;
+		}
+
+		return System.getProperty(condition) != null;
+	}
 }

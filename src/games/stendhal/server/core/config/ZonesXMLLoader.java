@@ -296,7 +296,7 @@ public final class ZonesXMLLoader {
 			return null;
 		}
 
-		final String file = element.getAttribute("file");
+		String file = element.getAttribute("file");
 
 		int level;
 		int x;
@@ -377,7 +377,7 @@ public final class ZonesXMLLoader {
 		for (final Element child : XMLUtil.getElements(element)) {
 			final String tag = child.getTagName();
 
-			if (!checkCondition(child)) {
+			if (!XMLUtil.checkCondition(child)) {
 				continue;
 			}
 
@@ -410,25 +410,6 @@ public final class ZonesXMLLoader {
 		return desc;
 	}
 
-	/**
-	 * checks if a condition is true
-	 *
-	 * @param element element to check the condition on
-	 * @return result of the evaluation of the condition
-	 */
-	private boolean checkCondition(Element element) {
-		String condition = element.getAttribute("condition");
-		if ((condition == null) || condition.trim().equals("")) {
-			return true;
-		}
-
-		condition = condition.trim();
-		if (condition.charAt(0) == '!') {
-			return System.getProperty(condition.substring(1)) == null;
-		}
-
-		return System.getProperty(condition) != null;
-	}
 
 	//
 	//
