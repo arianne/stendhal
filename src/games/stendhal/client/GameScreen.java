@@ -525,7 +525,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	@Override
 	public void paintComponent(final Graphics g) {
-		viewManager.sort();
 		Graphics2D g2d = (Graphics2D) g;
 
 		// Draw the GameLayers from bottom to top, relies on exact naming of the
@@ -582,6 +581,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// +2 is needed to ensure the drawn area is covered by the tiles
 		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
 		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
+		
+		viewManager.prepareViews(graphics.getClipBounds());
 		
 		gameLayers.drawLayers(graphics, set, "floor_bundle", startTileX, 
 				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",

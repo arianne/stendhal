@@ -106,5 +106,9 @@ public interface EntityView<T extends IEntity> {
 	 * 
 	 * @param inspector
 	 */
-	public void setInspector(Inspector inspector);
+	void setInspector(Inspector inspector);
+	/**
+	 * Update the view with the changes in entity.
+	 */
+	void applyChanges();
 }

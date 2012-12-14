@@ -168,7 +168,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Handle entity changes.
 	 */
-	protected void applyChanges() {
+	@Override
+	public void applyChanges() {
 		if (changed) {
 			changed = false;
 			update();
