@@ -517,7 +517,7 @@
 
 		<copy todir="${build_client_music_data}/data/music">
 			<fileset dir="data/music">
-				<include name="**.*"/>
+				<include name="**.ogg"/>
 				<exclude name="demiurgo_a_new_homeland.ogg" />
 			</fileset>
 		</copy>
