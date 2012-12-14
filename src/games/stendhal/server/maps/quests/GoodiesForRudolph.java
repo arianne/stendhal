@@ -55,9 +55,10 @@ import java.util.List;
  *
  * REWARD:
  * <ul>
- * <li>6000 XP</li>
- * <li>500 gold</li>
+ * <li>100 XP</li>
+ * <li>50 gold</li>
  * <li>Karma: 60</li>
+ * <li>snowglobe</li>
  * </ul>
  *
  * REPETITIONS:
@@ -168,6 +169,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new EquipItemAction("money", 50));
+		reward.add(new EquipItemAction("snowglobe"));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(60));
@@ -192,7 +194,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("apple", 10),
 					new PlayerHasItemWithHimCondition("carrot", 10)),
 
-			ConversationStates.ATTENDING, "Oh, I am so excited! I have wanted to eat these things for so long.",
+			ConversationStates.ATTENDING, "Oh, I am so excited! I have wanted to eat these things for so long. Thanks so much.  And to borrow a phrase, Ho Ho Ho, Merry Christmas.",
 			new MultipleActions(reward1));
 
 
