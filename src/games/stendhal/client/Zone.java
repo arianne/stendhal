@@ -362,6 +362,11 @@ public class Zone {
 				}
 			}
 			
+			// e.g. if 3_roof is not present for the roof bundle
+			if (subLayers.isEmpty()) {
+				return null;
+			}
+			
 			TileRenderer adjLayer = null;
 			LayerRenderer subLayer = layers.get(adjustName);
 			if (subLayer instanceof TileRenderer) {
