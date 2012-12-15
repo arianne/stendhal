@@ -13,6 +13,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.Tileset;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.tiled.LayerDefinition;
@@ -364,7 +365,7 @@ public class Zone {
 			
 			// e.g. if 3_roof is not present for the roof bundle
 			if (subLayers.isEmpty()) {
-				return null;
+				return new EmptyGroupRenderer();
 			}
 			
 			TileRenderer adjLayer = null;
@@ -432,5 +433,18 @@ public class Zone {
 
 		isValid = true;
 		return true;
+	}
+	
+	/**
+	 * A dummy renderer for empty layer groups.
+	 */
+	private static class EmptyGroupRenderer extends LayerRenderer {
+		@Override
+		public void draw(Graphics g, int x, int y, int w, int h) {
+		}
+
+		@Override
+		public void setTileset(Tileset tileset) {
+		}
 	}
 }
