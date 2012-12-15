@@ -47,11 +47,15 @@ public abstract class SetupXMLReader {
 	 * @param element
 	 *            The XML element.
 	 */
-	protected void readParameters(final SetupDescriptor desc,
-			final Element element) {
+	protected void readParameters(final SetupDescriptor desc, final Element element) {
 		final List<Element> list = XMLUtil.getElements(element, "parameter");
 
 		for (final Element param : list) {
+
+			if (!XMLUtil.checkCondition(param)) {
+				continue;
+			}
+
 			if (param.hasAttribute("name")) {
 				desc.setParameter(param.getAttribute("name"), XMLUtil.getText(
 						param).trim());

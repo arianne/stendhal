@@ -385,6 +385,9 @@ public final class ZonesXMLLoader {
 
 			if (tag.equals("attributes")) {
 				setupDesc = attributesReader.read(child);
+				if (setupDesc.getParameters().get("file") != null) {
+					desc.file = setupDesc.getParameters().get("file");
+				}
 			} else if (tag.equals("configurator")) {
 				setupDesc = configuratorReader.read(child);
 			} else if (tag.equals("implementation")) {
