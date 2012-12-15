@@ -98,8 +98,7 @@
 		<simpleContent>
 			<extension base="string">
 				<attribute name="name" type="string"></attribute>
-
-
+				<attribute name="condition" type="string" use="optional"></attribute>
 			</extension>
 		</simpleContent>
 	</complexType>
