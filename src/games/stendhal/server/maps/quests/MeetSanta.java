@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.impl.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NakedCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerIsAGoodBoyCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -89,7 +90,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestCompletedCondition(QUEST_SLOT),
-                                                        new PlayerIsAGoodBoyCondition()),
+                                                        new PlayerIsAGoodBoyCondition(),
+                                                        new NotCondition(new NakedCondition())),
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
@@ -112,7 +114,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationPhrases.GREETING_MESSAGES,
 					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
 							new QuestNotCompletedCondition(QUEST_SLOT),
-                                                        new PlayerIsAGoodBoyCondition()),
+                                                        new PlayerIsAGoodBoyCondition(),
+                                                        new NotCondition(new NakedCondition())),
 					ConversationStates.IDLE,
 					"Merry Christmas! I have a present and a hat for you. Good bye, and remember to behave if you want a present next year!",
 					new MultipleActions(reward));
@@ -123,6 +126,14 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
                                                         new NotCondition(new PlayerIsAGoodBoyCondition())),
 					ConversationStates.IDLE,
 					"Ho ho ho! Looks like you haven't been a good this year! Only well behaved children get presents! Seasons greetings!",
+					null);
+
+				add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(new GreetingMatchesNameCondition(super.getName()),
+							new NakedCondition()),
+					ConversationStates.IDLE,
+					"Goodness child, you'll get chilly without any covering! Dress up warm and I'll give you a hat to match! Ho ho ho!",
 					null);
 			}
 		};
