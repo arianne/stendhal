@@ -120,7 +120,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"I heard about the wonderful #goodies you have here in Semos.  If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.",
+			"I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
@@ -164,7 +164,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("apple", 10),
 					new PlayerHasItemWithHimCondition("carrot", 10)))),
 			ConversationStates.ATTENDING, 
-			"Oh my. I am so in anticipation of those goodies which I have asked you for. Hopefully it will not be much longer before you can bring them to me. Anyway, how can I #help you?",
+			"Oh my. I am so in anticipation of those goodies which I have asked you for. Hopefully it will not be much longer before you can bring them to me.",
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -194,7 +194,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("apple", 10),
 					new PlayerHasItemWithHimCondition("carrot", 10)),
 
-			ConversationStates.ATTENDING, "Oh, I am so excited! I have wanted to eat these things for so long. Thanks so much.  And to borrow a phrase, Ho Ho Ho, Merry Christmas.",
+			ConversationStates.ATTENDING, "Oh, I am so excited! I have wanted to eat these things for so long. Thanks so much. And to borrow a phrase, Ho Ho Ho, Merry Christmas.",
 			new MultipleActions(reward1));
 
 
@@ -212,7 +212,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Goodies for Rudolph",
-				"Rudolph, Santa's favorite reindeer, desperately needs some goodies.",
+				"Rudolph, Santa's favorite reindeer, desperately wants some goodies.",
 				false);
 		prepareRequestingStep();
 		prepareBringingStep();
