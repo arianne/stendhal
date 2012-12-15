@@ -61,8 +61,8 @@ public class RudolphNPC implements ZoneConfigurator {
 			
 			@Override
 			public void createDialog() {
-				addGreeting("Hi, my jolly friend.  Isn't this such a wonderful time of year?");
-				addHelp("Oh, my, I can't help you, sorry.  It's not like i can influence Santa at all.");
+				addGreeting("Hi, my jolly friend. What a wonderful time of year this is!");
+				addHelp("Oh, my, I can't help you, sorry. It's not like I can influence Santa at all.");
 				addJob("I pull Santa's sleigh on Christmas night. It gives me such pleasure to flash my nose so that Santa can see where he is going.");
 				addGoodbye("It was such a pleasure to meet you.");
 			
