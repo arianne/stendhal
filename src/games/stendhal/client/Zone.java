@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
 /**
  * Layer data of a zone.
  */
-public class Zone {
+class Zone {
 	/** Name of the zone. */
 	private final String name;
 	/** Renderers for normal layers. */
@@ -65,7 +65,7 @@ public class Zone {
 	 * changed colors) to the current zone. 
 	 */
 	private boolean update;
-	/** Danger level of the zone */
+	/** Danger level of the zone. */
 	private double dangerLevel;
 	
 	/**
@@ -287,7 +287,7 @@ public class Zone {
 	/**
 	 * Check if a shape collides within the zone.
 	 * 
-	 * @param shape
+	 * @param shape checked area
 	 * @return <code>true</code>, if the shape overlaps the static zone
 	 *	collision, <code>false</code> otherwise
 	 */
@@ -296,28 +296,6 @@ public class Zone {
 			return collision.collides(shape);
 		}
 		return false;
-	}
-	
-	/**
-	 * Draw a layer.
-	 * 
-	 * @param g graphics
-	 * @param layer layer name
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	void draw(Graphics g, final String layer, final int x, final int y,
-			final int width, final int height) {
-		if (!isValid) {
-			return;
-		}
-
-		final LayerRenderer lr = layers.get(layer);
-		if (lr != null) {
-			lr.draw(g, x, y, width, height);
-		}
 	}
 
 	/**
