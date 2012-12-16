@@ -29,6 +29,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
@@ -36,6 +37,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.awt.image.VolatileImage;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -185,7 +187,20 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Scaling factor of the screen.
 	 */
 	private double scale = 1.0;
+	/**
+	 * Flag for telling if the screen should be scaled if it's not of the
+	 * default size.
+	 */
 	private boolean useScaling = true;
+	/**
+	 * A flag for telling if the screen is being actually scaled. Used for
+	 * detecting if the ground layers will need triple buffering.
+	 */
+	private boolean useTripleBuffer = false;
+	/**
+	 * Buffer for drawing the ground layers when the screen is scaled.
+	 */
+	private VolatileImage buffer;
 
 	static {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
@@ -257,9 +272,17 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 			double yScale = sh / screenSize.getHeight();
 			// Scale by the dimension that needs more scaling
 			scale = Math.max(xScale, yScale);
+			if (Math.abs(scale - 1.0) > 0.0001) {
+				useTripleBuffer = true;
+			} else {
+				useTripleBuffer = false;
+				buffer = null;
+			}
 		} else {
 			sw = Math.min(sw, screenSize.width);
 			sh = Math.min(sh, screenSize.height);
+			useTripleBuffer = false;
+			buffer = null;
 		}
 		// Reset the view so that the player is in the center
 		calculateView(x, y);
@@ -277,6 +300,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		this.useScaling = useScaling;
 		if (!useScaling) {
 			scale = 1.0;
+			useTripleBuffer = false;
+			buffer = null;
 		} else {
 			onResized();
 		}
@@ -526,10 +551,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	@Override
 	public void paintComponent(final Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-
-		// Draw the GameLayers from bottom to top, relies on exact naming of the
-		// layers
-		final String set = gameLayers.getAreaName();
 		
 		// An adjusted graphics object so that the drawn objects do not need to
 		// know about converting the position to screen
@@ -537,36 +558,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		if (graphics.getClipBounds() == null) {
 			graphics.setClip(0, 0, getWidth(), getHeight());
 		}
-		if (useScaling) {
-			graphics.scale(scale, scale);
-			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		}
-
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
-		graphics.translate(xAdjust, yAdjust);
-		// End of the world (map falls short of the view)?
-		if (xAdjust > 0) {
-			g2d.setColor(Color.BLACK);
-			g2d.fillRect(0, 0, xAdjust, sh);
-		}
-		
-		if (yAdjust > 0) {
-			g2d.setColor(Color.BLACK);
-			g2d.fillRect(0, 0, sw, yAdjust);
-		}
-		
-		int tmpY = yAdjust + convertWorldToPixelUnits(wh);
-		if (tmpY < sh) {
-			g2d.setColor(Color.BLACK);
-			g2d.fillRect(0, tmpY, sw, sh);
-		}
-		
-		int tmpX = yAdjust + convertWorldToPixelUnits(ww);
-		if (tmpX < sw) {
-			g2d.setColor(Color.BLACK);
-			g2d.fillRect(tmpX, 0, sw, sh);
-		}
 		
 		int startTileX = Math.max(0, (int) getViewX());
 		int startTileY = Math.max(0, (int) getViewY());
@@ -576,33 +569,110 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		Rectangle clip = graphics.getClipBounds();
 		startTileX = Math.max(startTileX, clip.x / IGameScreen.SIZE_UNIT_PIXELS);
 		startTileY = Math.max(startTileY, clip.y / IGameScreen.SIZE_UNIT_PIXELS);
-		int layerWidth = getViewWidth();
-		int layerHeight = getViewHeight();
-		// +2 is needed to ensure the drawn area is covered by the tiles
-		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
-		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
-		
-		viewManager.prepareViews(graphics.getClipBounds());
-		
-		gameLayers.drawLayers(graphics, set, "floor_bundle", startTileX, 
-				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",
-				"1_terrain", "2_object");
-		
-		viewManager.draw(graphics);
 
-		gameLayers.drawLayers(graphics, set, "roof_bundle", startTileX,
-				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
-				"4_roof_add");
-		
-		// Draw the top portion screen entities (such as HP/title bars).
-		viewManager.drawTop(graphics);
+		if (useTripleBuffer) {
+			/*
+			 * Do the scaling in one pass to avoid artifacts at tile borders.
+			 */
+			graphics.scale(scale, scale);
+			graphics.translate(xAdjust, yAdjust);
+			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			int width = stendhal.getScreenSize().width;
+			int height = stendhal.getScreenSize().height;
+			do {
+				GraphicsConfiguration gc = getGraphicsConfiguration();
+				if ((buffer == null) || (buffer.validate(gc) == VolatileImage.IMAGE_INCOMPATIBLE)) {
+					buffer = createVolatileImage(width, height);
+				}
+				Graphics2D gr = buffer.createGraphics();
+				gr.setClip(0, 0, width, height);
+				renderScene(gr, xAdjust, yAdjust);
+				graphics.drawImage(buffer, -xAdjust, -yAdjust, null);
+				gr.dispose();
+			} while (buffer.contentsLost());
+		} else {
+			renderScene(graphics, xAdjust, yAdjust);
+		}
 		
 		// Don't scale text to keep it readable
 		drawText(g2d);
 
 		paintOffLineIfNeeded(g2d);
-
 		graphics.dispose();
+	}
+	
+	/**
+	 * Render the scalable parts of the screen.
+	 * 
+	 * @param g graphics
+	 * @param xAdjust x coordinate offset
+	 * @param yAdjust y coordinate offset
+	 */
+	private void renderScene(Graphics2D g, int xAdjust, int yAdjust) {
+		g.translate(xAdjust, yAdjust);
+		
+		// Restrict the drawn area by the clip bounds. Smaller than gamescreen
+		// draw requests can come for example from dragging items
+		int startTileX = Math.max(0, (int) getViewX());
+		int startTileY = Math.max(0, (int) getViewY());
+		
+		Rectangle clip = g.getClipBounds();
+		startTileX = Math.max(startTileX, clip.x / IGameScreen.SIZE_UNIT_PIXELS);
+		startTileY = Math.max(startTileY, clip.y / IGameScreen.SIZE_UNIT_PIXELS);
+		int layerWidth = getViewWidth();
+		int layerHeight = getViewHeight();
+		// +2 is needed to ensure the drawn area is covered by the tiles
+		layerWidth = Math.min(layerWidth, clip.width / IGameScreen.SIZE_UNIT_PIXELS) + 2;
+		layerHeight = Math.min(layerHeight, clip.height / IGameScreen.SIZE_UNIT_PIXELS) + 2;
+
+		drawEndOfTheWorld(g, xAdjust, yAdjust);
+		viewManager.prepareViews(clip);
+		
+		final String set = gameLayers.getAreaName();
+		gameLayers.drawLayers(g, set, "floor_bundle", startTileX,
+				startTileY, layerWidth, layerHeight, "blend_ground", "0_floor",
+				"1_terrain", "2_object");
+		
+		viewManager.draw(g);
+
+		gameLayers.drawLayers(g, set, "roof_bundle", startTileX,
+				startTileY, layerWidth, layerHeight, "blend_roof", "3_roof",
+				"4_roof_add");
+		
+		// Draw the top portion screen entities (such as HP/title bars).
+		viewManager.drawTop(g);
+	}
+	
+	/**
+	 * Fill with black the areas outside the map.
+	 * 
+	 * @param g graphics
+	 * @param xAdjust x position of the screen
+	 * @param yAdjust y position of the screen
+	 */
+	private void drawEndOfTheWorld(Graphics g, int xAdjust, int yAdjust) {
+		// End of the world (map falls short of the view)?
+		if (xAdjust > 0) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, xAdjust, sh);
+		}
+
+		if (yAdjust > 0) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, sw, yAdjust);
+		}
+
+		int tmpY = yAdjust + convertWorldToPixelUnits(wh);
+		if (tmpY < sh) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, tmpY, sw, sh);
+		}
+
+		int tmpX = yAdjust + convertWorldToPixelUnits(ww);
+		if (tmpX < sw) {
+			g.setColor(Color.BLACK);
+			g.fillRect(tmpX, 0, sw, sh);
+		}
 	}
 	
 	/**
