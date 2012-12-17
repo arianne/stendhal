@@ -552,23 +552,12 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	public void paintComponent(final Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		
-		// An adjusted graphics object so that the drawn objects do not need to
-		// know about converting the position to screen
 		Graphics2D graphics = (Graphics2D) g2d.create();
 		if (graphics.getClipBounds() == null) {
 			graphics.setClip(0, 0, getWidth(), getHeight());
 		}
 		int xAdjust = -getScreenViewX();
 		int yAdjust = -getScreenViewY();
-		
-		int startTileX = Math.max(0, (int) getViewX());
-		int startTileY = Math.max(0, (int) getViewY());
-		
-		// Restrict the drawn area by the clip bounds. Smaller than gamescreen
-		// draw requests can come for example from dragging items
-		Rectangle clip = graphics.getClipBounds();
-		startTileX = Math.max(startTileX, clip.x / IGameScreen.SIZE_UNIT_PIXELS);
-		startTileY = Math.max(startTileY, clip.y / IGameScreen.SIZE_UNIT_PIXELS);
 
 		if (useTripleBuffer) {
 			/*
@@ -609,6 +598,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param yAdjust y coordinate offset
 	 */
 	private void renderScene(Graphics2D g, int xAdjust, int yAdjust) {
+		// Adjust the graphics object so that the drawn objects do not need to
+		// know about converting the position to screen
 		g.translate(xAdjust, yAdjust);
 		
 		// Restrict the drawn area by the clip bounds. Smaller than gamescreen
