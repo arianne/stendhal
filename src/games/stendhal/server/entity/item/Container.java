@@ -58,6 +58,17 @@ public class Container extends Item {
 	}
 	
 	/**
+	 * Copy constructor. Needed by the bank chests.
+	 * 
+	 * @param item copied container
+	 */
+	public Container(Container item) {
+		super(item);
+		RPSlot slot = getSlot(DEFAULT_SLOT_NAME);
+		determineSlotCapacity(slot);
+	}
+	
+	/**
 	 * Determine the correct size of the container slot, instead of the infinite
 	 * that is defined in RPClass. Defaults to DEFAULT_SLOT_SIZE unless the
 	 * object has attribute slot_size.
