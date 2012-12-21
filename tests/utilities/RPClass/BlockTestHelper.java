@@ -5,8 +5,10 @@ package utilities.RPClass;
 
 import marauroa.common.game.RPClass;
 import games.stendhal.server.entity.mapstuff.block.Block;
+import games.stendhal.server.entity.mapstuff.block.BlockTest;
 
 /**
+ * Test helper for the {@link BlockTest} to generate the necessary RPClasses
  * 
  * @author madmetzger
  */
