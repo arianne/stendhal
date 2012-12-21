@@ -1,12 +1,14 @@
 package games.stendhal.server.entity.mapstuff.block;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import games.stendhal.common.Direction;
-import games.stendhal.server.entity.Entity;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.RPClass.BlockTestHelper;
+import utilities.RPClass.EntityTestHelper;
 
 /**
  * Tests for the pushable block
@@ -17,8 +19,7 @@ public class BlockTest {
 	
 	@BeforeClass
 	public static void beforeClass() {
-		Entity.generateRPClass();
-		Block.generateRPClass();
+		BlockTestHelper.generateRPClasses();
 	}
 
 	@Test
