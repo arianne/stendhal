@@ -119,4 +119,10 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 			}
 		}
 	}
+
+	@Override
+	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
+			int oldY, int newX, int newY) {
+		// nothing to do before a movement
+	}
 }

@@ -155,6 +155,12 @@ public class Vault extends StendhalRPZone {
 				final int newX, final int newY) {
 			// ignore
 		}
+
+		@Override
+		public void beforeMove(ActiveEntity entity, StendhalRPZone zone,
+				int oldX, int oldY, int newX, int newY) {
+			// does nothing, but is specified in the implemented interface
+		}
 	}
 
 	/**

@@ -374,4 +374,10 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 			SingletonRepository.getTurnNotifier().notifyInTurns(interval, this);
 		}
 	}
+
+	@Override
+	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
+			int oldY, int newX, int newY) {
+		// nothing to do before a move
+	}
 }

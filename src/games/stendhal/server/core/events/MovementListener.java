@@ -60,6 +60,26 @@ public interface MovementListener {
 	 *
 	 */
 	void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
+	
+	
+	/**
+	 * Invoked before an entity moves while over the object area.
+	 *
+	 * @param entity
+	 *            The entity that left.
+	 * @param zone
+	 *            The zone.
+	 * @param oldX
+	 *            The old X coordinate.
+	 * @param oldY
+	 *            The old Y coordinate.
+	 * @param newX
+	 *            The new X coordinate.
+	 * @param newY
+	 *            The new Y coordinate.
+	 */
+	void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY,
+			int newX, int newY);
 
 	/**
 	 * Invoked when an entity moves while over the object area.

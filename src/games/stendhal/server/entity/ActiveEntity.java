@@ -86,13 +86,17 @@ public abstract class ActiveEntity extends Entity {
 		if (direction == Direction.STOP) {
 			return;
 		}
+		
 
 		final int x = getX();
 		final int y = getY();
 		final int nx = x + direction.getdx();
 		final int ny = y + direction.getdy();
-
+		
 		final StendhalRPZone zone = getZone();
+		
+		zone.notifyBeforeMovement(this, x, y, nx, ny);
+		
 		if (zone.simpleCollides(this, nx, ny, this.getWidth(), this.getHeight())) {
 			handleSimpleCollision(nx, ny);
 			return;

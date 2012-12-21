@@ -13,6 +13,7 @@
 package games.stendhal.client.entity.factory;
 
 import games.stendhal.client.Triple;
+import games.stendhal.client.entity.Block;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.entity.Box;
@@ -104,6 +105,7 @@ public final class EntityMap {
 		// deprecated end
 
 		register("area", null, null, InvisibleEntity.class);
+		register("block", null, null, Block.class);
 
 		register("food", null, null, SheepFood.class);
 		register("chest", null, null, Chest.class);

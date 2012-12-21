@@ -280,4 +280,10 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			final int oldY, final int newX, final int newY) {
 		// does nothing, but is specified in the implemented interface
 	}
+
+	@Override
+	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
+			int oldY, int newX, int newY) {
+		// does nothing, but is specified in the implemented interface
+	}
 }

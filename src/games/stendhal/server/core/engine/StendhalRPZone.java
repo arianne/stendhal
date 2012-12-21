@@ -1172,6 +1172,25 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 	}
+	
+	public void notifyBeforeMovement(final ActiveEntity entity, final int oldX, final int oldY,
+			final int newX, final int newY) {
+		Rectangle2D neArea;
+		boolean newIn;
+
+		neArea = entity.getArea(newX, newY);
+
+		for (final MovementListener l : movementListeners) {
+			Rectangle2D area = l.getArea();
+
+			newIn = area.intersects(neArea);
+
+			if (newIn) {
+				l.beforeMove(entity, this, oldX, oldY, newX, newY);
+			}
+
+		}
+	}
 
 	public void addZoneEnterExitListener(final ZoneEnterExitListener listener) {
 		zoneListeners.add(listener);
