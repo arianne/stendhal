@@ -210,7 +210,7 @@ public class MithrilCloakTest {
 		en.step(player, "make");
 		assertEquals("Do you really want so few? I'm not wasting my time with that! Any decent sized pieces of fabric needs at least 40 spools of thread! You should at least #make #40.", getReply(npc));
 		en.step(player, "make 40");
-		assertEquals("I need you to fetch me 40 #'silk glands' for this job, which will take about 6 and a half minutes. Do you have what I need?", getReply(npc));
+		assertEquals("I need you to fetch me 40 #'silk glands' for this job, which will take about 6 and a half hours. Do you have what I need?", getReply(npc));
 		assertEquals(en.getCurrentState(), ConversationStates.PRODUCTION_OFFERED);
 		en.step(player, "yes");
 		assertEquals("It's unorthodox, but I will make 40 silk thread for you. Please be discreet and come back in about 6 and a half hours.", getReply(npc));

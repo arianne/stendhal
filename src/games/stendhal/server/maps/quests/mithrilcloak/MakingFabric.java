@@ -125,7 +125,7 @@ class MakingFabric {
 							+ " "
 							+ getProductName()
 							+ " for you. Please be discreet and come back in "
-							+ TimeUtil.approxTimeUntil((int) ((long)REQUIRED_MINUTES_THREAD * amount * MathHelper.MILLISECONDS_IN_ONE_MINUTE / 1000L)) + ".");
+							+ TimeUtil.approxTimeUntil(REQUIRED_MINUTES_THREAD * amount * MathHelper.SECONDS_IN_ONE_MINUTE) + ".");
 					return true;
 				}
 			}
@@ -164,7 +164,7 @@ class MakingFabric {
 		}
 		
 		final ProducerBehaviour behaviour = new SpecialProducerBehaviour("make", "silk thread",
-																		 requiredResources, REQUIRED_MINUTES_THREAD);
+																		 requiredResources, REQUIRED_MINUTES_THREAD * MathHelper.SECONDS_IN_ONE_MINUTE);
 
 		npc.add(ConversationStates.ATTENDING,
 				"make",
@@ -203,6 +203,7 @@ class MakingFabric {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
 
@@ -219,6 +220,7 @@ class MakingFabric {
 				new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;"), 
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						npc.say("I still haven't finished your last order!");
@@ -231,6 +233,7 @@ class MakingFabric {
 					new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")),
 			ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
@@ -270,6 +273,7 @@ class MakingFabric {
 					new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "makingthread;")),
 			ConversationStates.IDLE, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 									 final EventRaiser npc) {
 						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
@@ -327,6 +331,7 @@ class MakingFabric {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("silk thread", 40)
 						&& player.isEquipped("mithril nugget", 7)
@@ -352,6 +357,7 @@ class MakingFabric {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "fusingthread;")),
 				ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String orderString = player.getQuest(mithrilcloak.getQuestSlot());
 						final String[] order = orderString.split(";");
@@ -478,6 +484,7 @@ class MakingFabric {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("mithril thread", 40)) {
 						
@@ -506,6 +513,7 @@ class MakingFabric {
 			Arrays.asList("weave", "fabric", "magical", "mithril fabric", "ida", "mithril", "cloak", "mithril cloak", "task", "quest"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "weavingfabric;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					final long delay = REQUIRED_HOURS_FABRIC * MathHelper.MILLISECONDS_IN_ONE_HOUR;
