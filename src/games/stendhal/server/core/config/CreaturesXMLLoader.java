@@ -80,11 +80,11 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private Map<String, String> aiProfiles;
 
 	private List<DefaultCreature> list;
-	
+
 	private String corpseName;
-	
+
 	private int corpseWidth;
-	
+
 	private int corpseHeight;
 
 	private boolean drops;
@@ -96,16 +96,18 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private boolean says;
 
 	private boolean attributes;
-	
+
 	private boolean abilities;
 
 	/** Susceptibilities of a creature */
 	private EnumMap<Nature, Double> susceptibilities;
-	
+
 	/** Type of the damage caused by the creature */
 	private Nature damageType;
 	/** Type of the damage caused by the creature when using ranged attacks. */
 	private Nature rangedDamageType;
+
+	private String condition;
 
 	CreaturesXMLLoader() {
 		// hide constructor, use the CreatureGroupsXMLLoader instead
@@ -156,6 +158,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 		text = "";
 		if (qName.equals("creature")) {
 			name = attrs.getValue("name");
+			condition = attrs.getValue("condition");
 			drops = false;
 			ai = false;
 			dropsItems = new LinkedList<DropItem>();
@@ -199,8 +202,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 		} else if (qName.equals("corpse")) {
 			corpseName = attrs.getValue("name");
 			String value = attrs.getValue("width");
-			
-			// Default to 1 for width and height to save the fingers 
+
+			// Default to 1 for width and height to save the fingers
 			// of the people writing the creatures
 			if (value != null) {
 				corpseWidth = Integer.parseInt(value);
@@ -309,23 +312,26 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	@Override
 	public void endElement(final String namespaceURI, final String sName, final String qName) {
 		if (qName.equals("creature")) {
-			if (!tileid.contains(":")) {
-				logger.error("Corrupt XML file: Bad tileid for creature("
-						+ name + ")");
+
+			if (!XMLUtil.checkCondition(condition)) {
 				return;
 			}
 
-			final DefaultCreature creature = new DefaultCreature(clazz, subclass,
-					name, tileid);
+			if (!tileid.contains(":")) {
+				logger.error("Corrupt XML file: Bad tileid for creature(" + name + ")");
+				return;
+			}
+
+			final DefaultCreature creature = new DefaultCreature(clazz, subclass, name, tileid);
 			creature.setRPStats(hp, atk, def, speed);
 			creature.setLevel(level, xp);
 			creature.setSize(sizeWidth, sizeHeight);
 			creature.setEquipedItems(equipsItems);
-			
+
 			creature.setCorpse(corpseName, corpseWidth, corpseHeight);
 			corpseName = null;
 			corpseWidth = corpseHeight = 1;
-			
+
 			creature.setDropItems(dropsItems);
 			creature.setAIProfiles(aiProfiles);
 			creature.setNoiseLines(creatureSays);

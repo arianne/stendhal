@@ -377,7 +377,7 @@ public final class ZonesXMLLoader {
 		for (final Element child : XMLUtil.getElements(element)) {
 			final String tag = child.getTagName();
 
-			if (!XMLUtil.checkCondition(child)) {
+			if (!XMLUtil.checkCondition(child.getAttribute("condition"))) {
 				continue;
 			}
 

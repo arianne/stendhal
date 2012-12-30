@@ -34,10 +34,10 @@ public class XMLUtil {
 
 	/**
 	 * Get all the direct children elements of an element.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent element.
-	 * 
+	 *
 	 * @return A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent) {
@@ -59,12 +59,12 @@ public class XMLUtil {
 	/**
 	 * Get all the direct children elements of an element that have a specific
 	 * tag name.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent element.
 	 * @param name
 	 *            The tag name to match.
-	 * 
+	 *
 	 * @return A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent,
@@ -90,10 +90,10 @@ public class XMLUtil {
 
 	/**
 	 * Get the direct text content of an element.
-	 * 
+	 *
 	 * @param element
 	 *            The element.
-	 * 
+	 *
 	 * @return The contained text.
 	 */
 	public static String getText(final Element element) {
@@ -106,7 +106,7 @@ public class XMLUtil {
 
 	/**
 	 * Get the text content of an element.
-	 * 
+	 *
 	 * @param element
 	 *            The element.
 	 * @param sbuf
@@ -138,12 +138,12 @@ public class XMLUtil {
 
 	/**
 	 * Parse an XML document.
-	 * 
+	 *
 	 * @param in
 	 *            The input stream.
-	 * 
+	 *
 	 * @return A Document.
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If there is a parsing error.
 	 * @throws IOException
@@ -158,12 +158,12 @@ public class XMLUtil {
 
 	/**
 	 * Parse an XML document.
-	 * 
+	 *
 	 * @param is
 	 *            The input source.
-	 * 
+	 *
 	 * @return A Document.
-	 * 
+	 *
 	 * @throws SAXException
 	 *             If there is a parsing error.
 	 * @throws IOException
@@ -187,20 +187,19 @@ public class XMLUtil {
 	/**
 	 * checks if a condition is true
 	 *
-	 * @param element element to check the condition on
+	 * @param condition value of the condition attribute
 	 * @return result of the evaluation of the condition
 	 */
-	public static boolean checkCondition(Element element) {
-		String condition = element.getAttribute("condition");
+	public static boolean checkCondition(String condition) {
 		if ((condition == null) || condition.trim().equals("")) {
 			return true;
 		}
 
-		condition = condition.trim();
-		if (condition.charAt(0) == '!') {
-			return System.getProperty(condition.substring(1)) == null;
+		String value  = condition.trim();
+		if (value.charAt(0) == '!') {
+			return System.getProperty(value.substring(1)) == null;
 		}
 
-		return System.getProperty(condition) != null;
+		return System.getProperty(value) != null;
 	}
 }
