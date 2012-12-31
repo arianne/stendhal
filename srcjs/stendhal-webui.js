@@ -303,7 +303,7 @@ stendhal.ui = {
 				if (name != "protection" && name != "collision" && name != "objects") {
 					this.paintLayer(drawingLayer);
 				}
-				if (name = "2_object") {
+				if (name == "2_object") {
 					this.drawEntities();
 				}
 			}
@@ -313,8 +313,7 @@ stendhal.ui = {
 
 			setTimeout(function() {
 				stendhal.ui.gamewindow.draw.apply(stendhal.ui.gamewindow, arguments);
-			}, Math.max(/*48*/1000 - (new Date().getTime()-startTime), 1));
-			// TODO: use 20 FPS later, but 1 FPS is okay for testing
+			}, Math.max((1000/20) - (new Date().getTime()-startTime), 1));
 		},
 
 		paintLayer: function(drawingLayer) {

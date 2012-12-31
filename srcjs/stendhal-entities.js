@@ -40,6 +40,7 @@ marauroa.rpobjectFactory.portal.minimapStyle = "rgb(0,0,0)";
 marauroa.rpobjectFactory.rpentity = marauroa.util.fromProto(marauroa.rpobjectFactory.entity);
 marauroa.rpobjectFactory.rpentity.drawY = 0;
 marauroa.rpobjectFactory.rpentity.spritePath = "";
+marauroa.rpobjectFactory.rpentity.titleStyle = "#FFFFFF";
 marauroa.rpobjectFactory.rpentity.set = function(key, value) {
 	marauroa.rpobjectFactory.rpentity.proto.set.apply(this, arguments);
 	if (key == "text") {
@@ -60,13 +61,14 @@ marauroa.rpobjectFactory.rpentity.say = function (text) {
 
 /** draw RPEntities */
 marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
-	var localX = this.x * 32 - offsetX;
-	var localY = this.y * 32 - offsetY;
+	var localX = (this.x - offsetX) * 32;
+	var localY = (this.y - offsetY) * 32;
 
 	var filename;
 	if (typeof(this.outfit) != "undefined") {
 		// TODO: draw complete outfit into an outfit cache
 		filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
+		filename = "/data/sprites/outfit/head_" + (Math.floor(this.outfit/10000) % 100) + ".png";
 	} else {
 		filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
 		if (typeof(this.subclass) != "undefined") {
@@ -83,6 +85,18 @@ marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
 		var drawX = ((this.width * 32) - drawWidth) / 2;
 		var drawY = (this.height * 32) - drawHeight;
 		ctx.drawImage(image, 0, (this.dir - 1) * drawHeight, drawWidth, drawHeight, localX + drawX, localY + drawY, drawWidth, drawHeight);
+	}
+}
+marauroa.rpobjectFactory.rpentity.drawTop = function(ctx, offsetX, offsetY) {
+	var localX = (this.x - offsetX) * 32;
+	var localY = (this.y - offsetY) * 32;
+	if (typeof(this.title) != "undefined") {
+		var textMetrics = ctx.measureText(this.title);
+		ctx.font = "14px Arial";
+		ctx.fillStyle = "#A0A0A0";
+		ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2+2, localY - 32);
+		ctx.fillStyle = this.titleStyle;
+		ctx.fillText(this.title, localX + (this.width * 32 - textMetrics.width) / 2, localY - 32);
 	}
 }
 
@@ -114,7 +128,8 @@ marauroa.rpobjectFactory.player.isInHearingRange = function(entity) {
  */
 marauroa.rpobjectFactory.creature = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.creature.minimapStyle = "rgb(255,255,0)";
-marauroa.rpobjectFactory.rpentity.spritePath = "monsters";
+marauroa.rpobjectFactory.creature.spritePath = "monsters";
+marauroa.rpobjectFactory.creature.titleStyle = "#A00000";
 
 /**
  * NPC
@@ -122,7 +137,7 @@ marauroa.rpobjectFactory.rpentity.spritePath = "monsters";
 marauroa.rpobjectFactory.npc = marauroa.util.fromProto(marauroa.rpobjectFactory.rpentity);
 marauroa.rpobjectFactory.npc.minimapStyle = "rgb(0,0,255)";
 marauroa.rpobjectFactory.npc.spritePath = "npc";
-
+marauroa.rpobjectFactory.npc.titleStyle = "#0000A0";
 
 
 
