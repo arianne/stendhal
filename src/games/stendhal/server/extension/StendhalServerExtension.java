@@ -12,6 +12,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+/**
+ * base class for stendhal extensions
+ *
+ * @author hendrik
+ */
 public abstract class StendhalServerExtension {
 
 	/** the logger instance. */
@@ -20,6 +25,9 @@ public abstract class StendhalServerExtension {
 	/** Lists the instances of the loaded extensions. */
 	private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();
 
+	/**
+	 * init the extension
+	 */
 	public abstract void init();
 
 	public synchronized boolean perform(final String name) {
@@ -30,6 +38,12 @@ public abstract class StendhalServerExtension {
 		return (null);
 	}
 
+	/**
+	 * gets an stendhal extension instance
+	 *
+	 * @param name name of the extension class
+	 * @return StendhalServerExtension
+	 */
 	public static StendhalServerExtension getInstance(final String name) {
 		try {
 			final Class< ? > extensionClass = Class.forName(name);
@@ -49,8 +63,7 @@ public abstract class StendhalServerExtension {
 			loadedInstances.put(name, instance);
 			return instance;
 		} catch (final Exception e) {
-			logger.warn("StendhalServerExtension " + name + " loading failed.",
-					e);
+			logger.warn("StendhalServerExtension " + name + " loading failed.",	e);
 			return null;
 		}
 	}
