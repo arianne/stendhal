@@ -17,17 +17,18 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public abstract class StendhalServerExtension {
+public abstract class StendhalServerExtension implements StendhalServerExtensionIface {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalServerExtension.class);
 
 	/** Lists the instances of the loaded extensions. */
-	private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();
+	private static Map<String, StendhalServerExtensionIface> loadedInstances = new HashMap<String, StendhalServerExtensionIface>();
 
 	/**
 	 * init the extension
 	 */
+	@Override
 	public abstract void init();
 
 	public synchronized boolean perform(final String name) {
@@ -44,21 +45,21 @@ public abstract class StendhalServerExtension {
 	 * @param name name of the extension class
 	 * @return StendhalServerExtension
 	 */
-	public static StendhalServerExtension getInstance(final String name) {
+	public static StendhalServerExtensionIface getInstance(final String name) {
 		try {
-			final Class< ? > extensionClass = Class.forName(name);
+			final Class<? extends StendhalServerExtensionIface> extensionClass = Class.forName(name).asSubclass(StendhalServerExtensionIface.class);
 
-			if (!StendhalServerExtension.class.isAssignableFrom(extensionClass)) {
+			if (!StendhalServerExtensionIface.class.isAssignableFrom(extensionClass)) {
 				logger.debug("Class is no instance of StendhalServerExtension.");
 				return null;
 			}
 
 			logger.info("Loading ServerExtension: " + name);
-			final java.lang.reflect.Constructor< ? > constr = extensionClass.getConstructor();
+			final java.lang.reflect.Constructor<? extends StendhalServerExtensionIface> constr = extensionClass.getConstructor();
 
 			// simply create a new instance. The constructor creates all
 			// additionally objects
-			final StendhalServerExtension instance = (StendhalServerExtension) constr.newInstance();
+			final StendhalServerExtensionIface instance = constr.newInstance();
 			// store it in the hashmap for later reference
 			loadedInstances.put(name, instance);
 			return instance;
