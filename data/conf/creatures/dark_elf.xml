@@ -437,7 +437,7 @@
   
   <creature name="dark elf master">
     <type class="dark_elf" subclass="dark_elf_master" tileid="dark_elf.png:12"/>
-    <description></description>
+    <description>You see a dark elf master. Beware of his high skills on magic and swordsmanship!</description>
     <attributes>
       <atk value="838"/>
       <def value="174"/>
