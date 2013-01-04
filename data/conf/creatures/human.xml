@@ -1181,7 +1181,7 @@
 
   <creature name="ninja">
     <type class="human" subclass="masked_ninja" tileid="human_evil.png:4"/>
-    <description></description>
+    <description>Your keen eyes made you able to see this fast ninja. Prepare for a fight!</description>
     <attributes>
       <atk value="468"/>
       <def value="75"/>
