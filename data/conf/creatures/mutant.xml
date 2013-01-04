@@ -67,6 +67,7 @@
   
   <creature name="cat woman">
     <type class="mutant" subclass="cat_woman" tileid="mutant.png:5"/>
+     <description>You see a cat woman. She's agile, stealthy, fast and sharp, so stay focused and don't get cut!</description>
     <attributes>
       <atk value="329"/>
       <def value="84"/>
