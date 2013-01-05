@@ -1,10 +1,14 @@
-//* $Id$ */
-
-/** StendhalServer Extension is copyright of Jo Seiler, 2006
- *  @author intensifly
- * The StendhalServerExtension is a base class for plugins that add
- * functions to the server.
- */
+/***************************************************************************
+ *                   (C) Copyright 2006-2012 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.extension;
 
 import java.util.HashMap;
@@ -13,9 +17,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * base class for stendhal extensions
- *
- * @author hendrik
+ * The StendhalServerExtension is a base class for plugins that add
+ * functions to the server.
  */
 public abstract class StendhalServerExtension implements StendhalServerExtensionIface {
 
