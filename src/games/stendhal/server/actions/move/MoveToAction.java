@@ -92,7 +92,7 @@ public class MoveToAction implements ActionListener {
 			} else {
 				// Walk
 				final List<Node> path = Path.searchPath(player, x, y);
-				extendPathForZoneChangeIfRequested(player, action, path);
+				extendPathForZoneChangeIfRequested(action, path);
 				player.setPath(new FixedPath(path, false));
 			}
 		}
@@ -107,7 +107,7 @@ public class MoveToAction implements ActionListener {
 	 * @param action move-to action
 	 * @param path the path to extend if requested
 	 */
-	private void extendPathForZoneChangeIfRequested(Player player, RPAction action, List<Node> path) {
+	private void extendPathForZoneChangeIfRequested(RPAction action, List<Node> path) {
 		if ((path == null) || path.isEmpty()) {
 			return;
 		}
