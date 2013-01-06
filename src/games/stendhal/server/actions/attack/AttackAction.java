@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,9 +22,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
+/**
+ * attacks a creature or player
+ */
 public class AttackAction implements ActionListener {
-
-
 
 	/**
 	 * registers the AttackAction with its trigger word "attack".
@@ -36,8 +36,8 @@ public class AttackAction implements ActionListener {
 
 	/**
 	 * performs an attack action, if the TARGET is an RPEntity.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param player
 	 *            the attacker
 	 * @param action

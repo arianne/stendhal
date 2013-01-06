@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,10 +25,17 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
+/**
+ * release a pet into the wilderness
+ */
 public class ForsakeAction implements ActionListener {
 
 	private static final String DB_ID = "#db_id";
 	private static final Logger logger = Logger.getLogger(ForsakeAction.class);
+
+	/**
+	 * registers an action
+	 */
 	public static void register() {
 		CommandCenter.register(FORSAKE, new ForsakeAction());
 	}
@@ -71,6 +77,4 @@ public class ForsakeAction implements ActionListener {
 			}
 		}
 	}
-
-
 }

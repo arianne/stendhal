@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,10 +20,14 @@ import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * moves into the specified direction
+ */
 public class MoveAction implements ActionListener {
 
-
-
+	/**
+	 * registers the action
+	 */
 	public static void register() {
 		final MoveAction move = new MoveAction();
 		CommandCenter.register(MOVE, move);

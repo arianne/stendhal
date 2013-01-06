@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,10 +17,14 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * stops attacking another creature or player
+ */
 public class StopAction implements ActionListener {
 
-
-
+	/**
+	 * register action
+	 */
 	public static void register() {
 		CommandCenter.register("stop", new StopAction());
 	}

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -20,10 +19,14 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * looks into the specified direction without moving
+ */
 public class FaceAction implements ActionListener {
 
-
-
+	/**
+	 * register the action
+	 */
 	public static void register() {
 		CommandCenter.register(FACE, new FaceAction());
 	}

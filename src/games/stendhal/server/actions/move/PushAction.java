@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,6 +37,9 @@ import marauroa.common.game.RPAction;
  */
 public class PushAction implements ActionListener {
 
+	/**
+	 * registers the action
+	 */
 	public static void register() {
 		final PushAction push = new PushAction();
 		CommandCenter.register(PUSH, push);
