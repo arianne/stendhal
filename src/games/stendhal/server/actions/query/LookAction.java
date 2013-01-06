@@ -45,6 +45,7 @@ public class LookAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		Entity entity = null;
 		if (action.has(Actions.TARGET_PATH)) {
@@ -59,12 +60,12 @@ public class LookAction implements ActionListener {
 
 		if (entity != null) {
 			if (entity instanceof Player) {
-				if (((Player) entity).isGhost() 
+				if (((Player) entity).isGhost()
 						&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode"))) {
 					return;
 				}
 			}
-			
+
 			if (entity instanceof Item) {
 				Item item = (Item) entity;
 				RPObject base = item.getBaseContainer();
@@ -93,7 +94,7 @@ public class LookAction implements ActionListener {
 			player.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Check if a slot is hidden to others than the player itself.
 	 * 

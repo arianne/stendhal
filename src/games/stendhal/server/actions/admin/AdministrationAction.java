@@ -29,10 +29,10 @@ import org.apache.log4j.Logger;
  * Most /commands for admins are handled here.
  */
 public abstract class AdministrationAction implements ActionListener {
-	
+
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPER = 5000;
-	
+
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
 
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
@@ -114,6 +114,7 @@ public abstract class AdministrationAction implements ActionListener {
 		return true;
 	}
 
+	@Override
 	public final void onAction(final Player player, final RPAction action) {
 		perform(player, action);
 	}
@@ -148,7 +149,7 @@ public abstract class AdministrationAction implements ActionListener {
 		if (entity == null) {
 			entity = EntityHelper.entityFromTargetName(action.get(Actions.TARGET), player);
 		}
-		
+
 		return entity;
 	}
 }

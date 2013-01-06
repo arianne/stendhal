@@ -11,12 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.actions.ActionListener;
@@ -26,16 +20,23 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.util.EntityHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SlotOwner;
 
+import org.apache.log4j.Logger;
+
 public class ReorderAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(ReorderAction.class);
 	private static final List<String> reorderableSlots = Arrays.asList("bag",
 			"content", "keyring", "spells");
-	
+
 	/**
 	 * registers "equip" action processor.
 	 */
@@ -43,13 +44,14 @@ public class ReorderAction implements ActionListener {
 		CommandCenter.register("reorder", new ReorderAction());
 	}
 
+	@Override
 	public void onAction(Player player, RPAction action) {
 		Entity entity = EntityHelper.getEntityFromPath(player, action.getList(EquipActionConsts.SOURCE_PATH));
 		if (mayAccess(player, entity, action)) {
 			reorder(entity, MathHelper.parseInt(action.get("new_position")));
 		}
 	}
-	
+
 	/**
 	 * Move an entity to new position.
 	 * 
@@ -81,7 +83,7 @@ public class ReorderAction implements ActionListener {
 			((Entity) parent).notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Check if a player may access an entity for reordering.
 	 * 
@@ -114,7 +116,7 @@ public class ReorderAction implements ActionListener {
 			 * prevents messing slots that must not be accessed directly by the
 			 * player.
 			 */
-			 return false;
+			return false;
 		}
 		do {
 			if (object instanceof Player) {
@@ -127,19 +129,19 @@ public class ReorderAction implements ActionListener {
 			if ((slot != null) && isReachableSlot(player, slot)) {
 				return false;
 			}
-			
+
 			if (object instanceof Corpse) {
 				// Disable reordering corpse contents. It causes problems for
 				// the automatically closing inspector windows in the client.
 				return false;
 			}
-			
+
 			object = object.getContainer();
 		} while (object != null);
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Check the reachability of a slot.
 	 * 

@@ -30,6 +30,7 @@ public class InfoAction implements ActionListener {
 
 	private static final String DATE_FORMAT_NOW = "dd-MMMM-yyyy HH:mm:ss";
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		player.sendPrivateText("The server time is " + getGametime());
 		if (Debug.PRE_RELEASE_VERSION != null) {

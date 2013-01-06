@@ -66,16 +66,16 @@ public class ItemAccessPermissions {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Make sure nobody uses items bound to someone else. This also notifies
 	 * the player trying to use the item, if it is not allowed.
 	 * 
-	 * @param player 
-	 * @param object 
+	 * @param player
+	 * @param object
 	 * @return true if item is bound false otherwise
 	 */
 	static boolean isItemBoundToOtherPlayer(final Player player, final RPObject object) {

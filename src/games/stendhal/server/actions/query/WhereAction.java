@@ -40,7 +40,8 @@ public class WhereAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
-	
+
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			final String whoName = action.get(TARGET);
@@ -73,7 +74,7 @@ public class WhereAction implements ActionListener {
 
 			if (animal != null) {
 				player.sendPrivateText("Your " + ItemTools.itemNameToDisplayName(animal.get("type"))
-							+ " is at (" + animal.getX() + "," + animal.getY() + ")");
+						+ " is at (" + animal.getX() + "," + animal.getY() + ")");
 			}
 
 			if ((who == null) && (animal == null)) {

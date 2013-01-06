@@ -33,6 +33,7 @@ public class CastSpellAction implements ActionListener {
 		CommandCenter.register(CASTSPELL, new CastSpellAction());
 	}
 
+	@Override
 	public void onAction(Player player, RPAction action) {
 		if (!Boolean.parseBoolean(System.getProperty("stendhal.testserver", "false"))) {
 			player.sendPrivateText("This experimental feature is not active.");

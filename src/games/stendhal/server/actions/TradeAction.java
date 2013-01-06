@@ -40,6 +40,7 @@ public class TradeAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		rewriteCommandLine(action);
 		String actionStr = action.get("action");

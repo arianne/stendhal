@@ -33,7 +33,7 @@ public class AdminNoteAction extends AdministrationAction {
 			String adminnote = action.get("note");
 
 			Logger.getLogger(AdminNoteAction.class).info(sender + " has added an adminnote to " + target + " saying: " + adminnote);
-			new GameEvent(sender, "adminnote",  target, adminnote).raise();				
+			new GameEvent(sender, "adminnote",  target, adminnote).raise();
 			SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 					sender + " has added an adminnote to " + target
 					+ " saying: " + adminnote);

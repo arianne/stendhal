@@ -19,6 +19,7 @@ import marauroa.common.game.RPAction;
 
 class UnignoreAction implements ActionListener {
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);

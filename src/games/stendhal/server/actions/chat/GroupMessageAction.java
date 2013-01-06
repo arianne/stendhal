@@ -35,6 +35,7 @@ public class GroupMessageAction implements ActionListener {
 	 * @param player Player
 	 * @param action RPAction
 	 */
+	@Override
 	public void onAction(Player player, RPAction action) {
 
 		// check that the player is not gagged and not jailed

@@ -77,21 +77,21 @@ class AdminLevelAction extends AdministrationAction {
 
 					response = "Changed adminlevel of " + target.getTitle()
 							+ " from " + oldlevel + " to " + newlevel + ".";
-					target.sendPrivateText(NotificationType.SUPPORT, 
-							player.getTitle() + " changed your adminlevel from " 
-							+ oldlevel + " to " + newlevel + ".");
+					target.sendPrivateText(NotificationType.SUPPORT,
+							player.getTitle() + " changed your adminlevel from "
+									+ oldlevel + " to " + newlevel + ".");
 				}
 			}
 
 			player.sendPrivateText(response);
 		}
 	}
-	
+
 	/**
 	 * Drop persistent administrator attributes if the player is no longer
 	 * allowed to have them.
-	 *  
-	 * @param player the player whose privileges should be re-examined 
+	 * 
+	 * @param player the player whose privileges should be re-examined
 	 */
 	private void dropPrivileges(Player player) {
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, Actions.TELECLICKMODE, false)) {

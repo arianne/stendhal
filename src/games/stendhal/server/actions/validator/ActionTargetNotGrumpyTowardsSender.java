@@ -41,6 +41,7 @@ public class ActionTargetNotGrumpyTowardsSender implements ActionValidator {
 	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
+	@Override
 	public String validate(Player player, RPAction action, ActionData data) {
 		String playerName = action.get(targetAttribute);
 		Player targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(playerName);

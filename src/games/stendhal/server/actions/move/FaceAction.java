@@ -28,6 +28,7 @@ public class FaceAction implements ActionListener {
 		CommandCenter.register(FACE, new FaceAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		if (action.has(DIR)) {

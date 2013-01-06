@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,11 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.NotificationType;
+import games.stendhal.server.entity.player.Player;
+
 import java.util.Collections;
 import java.util.List;
 
-import games.stendhal.common.NotificationType;
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
@@ -29,24 +29,25 @@ import org.apache.log4j.Logger;
 class UnknownAction implements ActionListener {
 	private static Logger logger = Logger.getLogger(UnknownAction.class);
 	private final List<String> suggestions;
-	
+
 	/**
 	 * Create an UnknownAction with no suggestions for commands.
 	 */
 	UnknownAction() {
 		suggestions = null;
 	}
-	
+
 	/**
 	 * Create an UnknownAction with suggestions for possibly intended commands.
-	 * 
-	 * @param suggestions 
+	 *
+	 * @param suggestions
 	 */
 	UnknownAction(List<String> suggestions) {
 		Collections.sort(suggestions);
 		this.suggestions = suggestions;
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		String type = "null";
 		if (action != null) {
@@ -64,7 +65,7 @@ class UnknownAction implements ActionListener {
 					msg.append(suggestions.get(0));
 				}
 				if (size > 1) {
-					for (int i = 0; i < size - 2; i++) {
+					for (int i = 0; i < (size - 2); i++) {
 						msg.append(" #/");
 						msg.append(suggestions.get(i));
 						msg.append(",");

@@ -46,6 +46,7 @@ public class ProgressStatusQueryAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has("progress_type")) {
 			sendProgressTypes(player);
@@ -77,10 +78,10 @@ public class ProgressStatusQueryAction implements ActionListener {
 	private void sendItemList(Player player, String progressType) {
 		if (progressType.equals("Open Quests")) {
 			player.addEvent(new ProgressStatusEvent(progressType,
-				SingletonRepository.getStendhalQuestSystem().getOpenQuests(player)));
+					SingletonRepository.getStendhalQuestSystem().getOpenQuests(player)));
 		} else if (progressType.equals("Completed Quests")) {
 			player.addEvent(new ProgressStatusEvent(progressType,
-				SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player)));
+					SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player)));
 		} else if (progressType.equals("Production")) {
 			player.addEvent(new ProgressStatusEvent(progressType,
 					SingletonRepository.getProducerRegister().getWorkingProducerNames(player)));
@@ -98,9 +99,9 @@ public class ProgressStatusQueryAction implements ActionListener {
 		StendhalQuestSystem questSystem = SingletonRepository.getStendhalQuestSystem();
 		if (progressType.equals("Open Quests") || progressType.equals("Completed Quests")) {
 			player.addEvent(new ProgressStatusEvent(progressType, item,
-				questSystem.getQuestDescription(player, item),
-				questSystem.getQuestLevelWarning(player, item),
-				questSystem.getQuestProgressDetails(player, item)));
+					questSystem.getQuestDescription(player, item),
+					questSystem.getQuestLevelWarning(player, item),
+					questSystem.getQuestProgressDetails(player, item)));
 		} else if (progressType.equals("Production")) {
 			player.addEvent(new ProgressStatusEvent(progressType, item,
 					SingletonRepository.getProducerRegister().getProductionDescription(player, item),

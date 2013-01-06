@@ -9,6 +9,7 @@ import marauroa.common.game.RPAction;
 
 public class MarkScrollAction implements ActionListener {
 
+	@Override
 	public void onAction(Player player, RPAction action) {
 
 		// can't try to drop the scroll straight away as teleport may not be allowed
@@ -19,14 +20,14 @@ public class MarkScrollAction implements ActionListener {
 			final int y = player.getY();
 
 			if (zone.isTeleportInAllowed(x, y)) {
-				
+
 				player.drop("empty scroll", 1);
 
 				String infostring = zone.getName() + " " + x + " " + y;
 
-				Item scroll = SingletonRepository.getEntityManager().getItem("marked scroll");				
+				Item scroll = SingletonRepository.getEntityManager().getItem("marked scroll");
 				scroll.setInfoString(infostring);
-				
+
 				// add a description if the player wanted one
 				if (action.has(TARGET)) {
 					String description = action.get(TARGET) + " " + action.get("args");
@@ -40,8 +41,8 @@ public class MarkScrollAction implements ActionListener {
 			}
 		} else {
 			player.sendPrivateText("You don't have any empty scrolls to mark.");
-		}			
-	} 
+		}
+	}
 
 }
 

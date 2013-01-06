@@ -55,7 +55,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /**
- * Handles actions sent by the client. They are dispatched to the 
+ * Handles actions sent by the client. They are dispatched to the
  * specialized action classes in which they are processed.
  */
 public class CommandCenter {
@@ -150,7 +150,7 @@ public class CommandCenter {
 				return true;
 			} else {
 				logger.error("caster is no Player; cannot execute action " + action +
-					" send by " + caster, new Throwable());
+						" send by " + caster, new Throwable());
 				return false;
 			}
 		} catch (final Exception e) {

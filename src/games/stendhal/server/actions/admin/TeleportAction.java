@@ -52,16 +52,16 @@ public class TeleportAction extends AdministrationAction {
 				logger.debug(text);
 				return;
 			}
-			
+
 			// validate the zone-name.
 			final IRPZone.ID zoneid = new IRPZone.ID(action.get(ZONE));
 			if (!SingletonRepository.getRPWorld().hasRPZone(zoneid)) {
 				final String text = "Zone \"" + zoneid + "\" not found.";
 				logger.debug(text);
 				final String[] zoneparts = action.get(ZONE).split("_");
-			    List<String> zonematches = new ArrayList<String>();
+				List<String> zonematches = new ArrayList<String>();
 				for (String zonepart : zoneparts) {
-					if(zonepart.length()>2 && !zonepart.equals("int")) {
+					if((zonepart.length()>2) && !zonepart.equals("int")) {
 						if(zonepart.endsWith("s")) {
 							zonematches.add(zonepart.substring(0,zonepart.length() -1));
 						} else {
@@ -74,7 +74,7 @@ public class TeleportAction extends AdministrationAction {
 				for (final IRPZone irpZone : SingletonRepository.getRPWorld()) {
 					final StendhalRPZone zone = (StendhalRPZone) irpZone;
 					for (String zonematch : zonematches) {
-						 if (zone.getName().indexOf(zonematch) != -1) { 
+						if (zone.getName().indexOf(zonematch) != -1) {
 							zoneNames.add(zone.getName());
 							// just one match is enough
 							break;
@@ -91,7 +91,7 @@ public class TeleportAction extends AdministrationAction {
 			final int y = action.getInt(Y);
 			new GameEvent(player.getName(), TELEPORT, action.get(TARGET), zone.getName(), Integer.toString(x), Integer.toString(y)).raise();
 			teleported.teleport(zone, x, y, null, player);
-			
+
 			SingletonRepository.getJail().grantParoleIfPlayerWasAPrisoner(teleported);
 		}
 	}

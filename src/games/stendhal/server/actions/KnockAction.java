@@ -34,11 +34,12 @@ public class KnockAction implements ActionListener {
 		CommandCenter.register(KNOCK, knock);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		// evaluate the target parameter
 		final Entity entity = EntityHelper.entityFromTargetName(
-			action.get(TARGET), player);
+				action.get(TARGET), player);
 
 		if ((entity == null) || !(entity instanceof HousePortal)) {
 			// unlikely to happen since players can only see Knock on HousePortal right click menus, but you never know ...
@@ -64,7 +65,7 @@ public class KnockAction implements ActionListener {
 
 		// get the destination zone of the portal - that is where to shout to
 		final StendhalRPZone zone =  SingletonRepository.getRPWorld().getZone(houseportal.getDestinationZone());
-		if (zone != null) { 
+		if (zone != null) {
 			for (Player houseplayer : zone.getPlayers()) {
 				houseplayer.sendPrivateText(message);
 			}

@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -49,10 +48,10 @@ public class UseAction implements ActionListener {
 			useItemOnGround(player, action);
 		}
 	}
-	
+
 	/**
 	 * Use an entity identified by TARGET_PATH.
-	 * 
+	 *
 	 * @param player
 	 * @param action
 	 */
@@ -74,7 +73,7 @@ public class UseAction implements ActionListener {
 
 	/**
 	 * Use a top level entity.
-	 * 
+	 *
 	 * @param player
 	 * @param action
 	 */
@@ -91,13 +90,13 @@ public class UseAction implements ActionListener {
 
 	/**
 	 * Use an entity contained in a slot. Compatibility mode.
-	 * 
+	 *
 	 * @param player
 	 * @param action
 	 */
 	private void useItemInSlot(final Player player, final RPAction action) {
 		final Entity object = EntityHelper.entityFromSlot(player, action);
-		if ((object != null) && ItemAccessPermissions.mayAccessContainedEntity(player, object)) { 
+		if ((object != null) && ItemAccessPermissions.mayAccessContainedEntity(player, object)) {
 			tryUse(player, object);
 		}
 	}
@@ -115,8 +114,8 @@ public class UseAction implements ActionListener {
 	}
 
 	private boolean canUse(final Player player, final RPObject object) {
-		return !isInJailZone(player, object) 
-			&& !isItemBoundToOtherPlayer(player, object);
+		return !isInJailZone(player, object)
+				&& !isItemBoundToOtherPlayer(player, object);
 	}
 
 	private boolean isInJailZone(final Player player, final RPObject object) {
@@ -134,8 +133,8 @@ public class UseAction implements ActionListener {
 
 	/**
 	 * Make sure nobody uses items bound to someone else.
-	 * @param player 
-	 * @param object 
+	 * @param player
+	 * @param object
 	 * @return true if item is bound false otherwise
 	 */
 	protected boolean isItemBoundToOtherPlayer(final Player player, final RPObject object) {

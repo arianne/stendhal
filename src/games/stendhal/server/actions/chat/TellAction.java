@@ -43,6 +43,7 @@ public class TellAction implements ActionListener {
 		}
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		if (!StandardActionValidations.PRIVATE_CHAT.validateAndInformPlayer(player, action)) {

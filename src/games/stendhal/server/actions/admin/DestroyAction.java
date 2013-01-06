@@ -56,7 +56,7 @@ class DestroyAction extends AdministrationAction {
 
 		if (inspected.has(NAME)) {
 			name = inspected.get(NAME);
-		} 
+		}
 
 		if (inspected.isContained()) {
 			RPObject slot = inspected.getContainer();
@@ -64,14 +64,14 @@ class DestroyAction extends AdministrationAction {
 			new GameEvent(player.getName(), "removed", name + " " + clazz, slot.getID().toString(), Integer.toString(inspected.getX()), Integer.toString(inspected.getY())).raise();
 			// items should be added to itemlog as well, to help tracing problems
 			if (inspected instanceof Item) {
-//				String slotName = null;
-//				if (inspected.getContainerSlot() != null) {
-//					slotName = inspected.getContainerSlot().getName();
-//				}
-//				String quantity = inspected.get("quantity");
-//				if (quantity == null) {
-//					quantity = "1";
-//				}
+				//				String slotName = null;
+				//				if (inspected.getContainerSlot() != null) {
+				//					slotName = inspected.getContainerSlot().getName();
+				//				}
+				//				String quantity = inspected.get("quantity");
+				//				if (quantity == null) {
+				//					quantity = "1";
+				//				}
 				new ItemLogger().destroy(player, inspected.getContainerSlot(), inspected, "admin");
 			}
 
@@ -110,7 +110,7 @@ class DestroyAction extends AdministrationAction {
 				if (inspected instanceof Creature) {
 					// *destroyed creatures should not drop items
 					((Creature) inspected).clearDropItemList();
-				} 
+				}
 				((RPEntity) inspected).onDead(player);
 			} else if ((inspected instanceof Item) || (inspected instanceof FlowerGrower) || (inspected instanceof Blood) || (inspected instanceof Corpse)) {
 				// items should be added to itemlog as well, to help tracing problems

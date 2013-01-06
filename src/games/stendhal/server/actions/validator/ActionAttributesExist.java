@@ -48,6 +48,7 @@ public class ActionAttributesExist implements ActionValidator {
 	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
+	@Override
 	public String validate(Player player, RPAction action, ActionData data) {
 		for (String attribute : attributes) {
 			if (!action.has(attribute)) {

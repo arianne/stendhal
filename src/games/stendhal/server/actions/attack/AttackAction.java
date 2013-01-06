@@ -43,6 +43,7 @@ public class AttackAction implements ActionListener {
 	 * @param action
 	 *            the attack Action containing the TARGET's name
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			// evaluate the target parameter

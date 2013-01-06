@@ -40,6 +40,7 @@ public class CStatusAction implements ActionListener {
 		CommandCenter.register(CSTATUS, new CStatusAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		final String pName = player.getName();
 		if (action.has(CID) || action.has(ID)) {
@@ -70,14 +71,14 @@ public class CStatusAction implements ActionListener {
 			if (!Version.checkCompatibility(serverVersion, clientVersion)) {
 				if (serverVersion.compareTo(clientVersion) < 0) {
 					player.sendPrivateText(NotificationType.ERROR,
-						"There may be some compatibility problems because the server is outdated.");
+							"There may be some compatibility problems because the server is outdated.");
 				} else {
 					player.sendPrivateText(NotificationType.ERROR,
-						"Your client may not function properly.\nThe version of this server is "
-						+ serverVersion
-						+ " but your client is version "
-						+ clientVersion
-						+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
+							"Your client may not function properly.\nThe version of this server is "
+									+ serverVersion
+									+ " but your client is version "
+									+ clientVersion
+									+ ".\nYou can download the most recent version from http://arianne.sourceforge.net ");
 				}
 			}
 		}

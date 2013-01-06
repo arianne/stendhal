@@ -27,6 +27,7 @@ import marauroa.common.game.RPAction;
  */
 public class EmoteAction implements ActionListener {
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		if (!StandardActionValidations.CHAT.validateAndInformPlayer(player, action)) {

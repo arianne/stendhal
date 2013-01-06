@@ -37,9 +37,10 @@ public class NameAction implements ActionListener {
 
 	/**
 	 * Handle the /name action.
-	 * @param player 
-	 * @param action 
+	 * @param player
+	 * @param action
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		String curName = action.get("target");
 		String newName = action.get("args");
@@ -95,21 +96,21 @@ public class NameAction implements ActionListener {
 					// right to search for a pet name
 					final int idxSpace = newName.indexOf(' ');
 
-    				if (idxSpace != -1) {
-    					final int idxLastSpace = newName.lastIndexOf(' ', idxSpace);
-    					curName += " " + newName.substring(0, idxSpace);
-    					newName = newName.substring(idxLastSpace + 1);
-    				} else {
-    					// There is no more other command interpretation.
-    					break;
-    				}
-    			}
+					if (idxSpace != -1) {
+						final int idxLastSpace = newName.lastIndexOf(' ', idxSpace);
+						curName += " " + newName.substring(0, idxSpace);
+						newName = newName.substring(idxLastSpace + 1);
+					} else {
+						// There is no more other command interpretation.
+						break;
+					}
+				}
 			} while (animal == null);
 
 			if (animal == null) {
 				player.sendPrivateText("You don't own a pet called '" + curName + "'");
-		    }
-        }
+			}
+		}
 	}
 
 }

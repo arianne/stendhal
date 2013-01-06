@@ -65,7 +65,7 @@ class DestinationObject extends MoveableObject {
 			List<String> path = action.getList(Actions.TARGET_PATH);
 			Iterator<String> it = path.iterator();
 			parent = EquipUtil.getEntityFromId(player, MathHelper.parseInt(it.next()));
-			
+
 			// check slot
 			if (parent == null) {
 				logger.warn("cannot find target entity for action " + action);
@@ -102,7 +102,7 @@ class DestinationObject extends MoveableObject {
 		} else if (action.has(EquipActionConsts.TARGET_OBJECT)
 				&& action.has(EquipActionConsts.TARGET_SLOT)) {
 			// ** Compatibility mode **
-			
+
 			// get base item and slot
 			parent = EquipUtil.getEntityFromId(player,
 					action.getInt(EquipActionConsts.TARGET_OBJECT));
@@ -212,14 +212,14 @@ class DestinationObject extends MoveableObject {
 					player.sendPrivateText("You cannot put this special quest reward there because it can only be used by you.");
 					return false;
 				}
-				
+
 				// check if an item that is sent to a trade slot is not damaged
-				if (item.getDeterioration() > 0 && rpslot.getName().equals("trade")) {
+				if ((item.getDeterioration() > 0) && rpslot.getName().equals("trade")) {
 					player.sendPrivateText("You must not trade a damaged item with other players.");
 					return false;
 				}
 			}
-			
+
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
@@ -286,7 +286,7 @@ class DestinationObject extends MoveableObject {
 		}
 
 		// Should be dropped to the ground. Do a proper distance calculation
-		return (other.squaredDistance(x, y) < distance * distance);
+		return (other.squaredDistance(x, y) < (distance * distance));
 	}
 
 	/**
@@ -348,9 +348,9 @@ class DestinationObject extends MoveableObject {
 
 				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
-				
-				/* XXX sjtsp - experiment.  
-				 *   - maybe should call this on player, instead of item? 
+
+				/* XXX sjtsp - experiment.
+				 *   - maybe should call this on player, instead of item?
 				 */
 				((Item) entity).onEquipped(player, rpslot.getName());
 			}
@@ -375,21 +375,21 @@ class DestinationObject extends MoveableObject {
 	}
 
 	@Override
-    public String[] getLogInfo() {
-	    final String[] res = new String[3];
-	    if (parent != null) {
-	    	res[0] = "slot";
-	    	if (parent.has("name")) {
-	    		res[1] = parent.get("name");
-	    	} else {
-	    		res[1] = parent.getDescriptionName(false);
-	    	}
-	    	res[2] = slot;
-	    } else {
-	    	res[0] = "ground";
-	    	res[1] = player.getZone().getName();
-	    	res[2] = x + " " + y;
-	    }
-	    return res;
-    }
+	public String[] getLogInfo() {
+		final String[] res = new String[3];
+		if (parent != null) {
+			res[0] = "slot";
+			if (parent.has("name")) {
+				res[1] = parent.get("name");
+			} else {
+				res[1] = parent.getDescriptionName(false);
+			}
+			res[2] = slot;
+		} else {
+			res[0] = "ground";
+			res[1] = player.getZone().getName();
+			res[2] = x + " " + y;
+		}
+		return res;
+	}
 }

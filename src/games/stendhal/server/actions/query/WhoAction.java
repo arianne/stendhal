@@ -39,12 +39,14 @@ public class WhoAction implements ActionListener {
 		CommandCenter.register(WHO, query);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final Set<String> players = new TreeSet<String>();
 
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+				@Override
 				public void execute(final Player p) {
 					final StringBuilder text = new StringBuilder(p.getTitle());
 
@@ -61,6 +63,7 @@ public class WhoAction implements ActionListener {
 			});
 		} else {
 			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task<Player>() {
+				@Override
 				public void execute(final Player p) {
 					final StringBuilder text = new StringBuilder(p.getTitle());
 					text.append("(");
@@ -69,6 +72,7 @@ public class WhoAction implements ActionListener {
 					players.add(text.toString());
 				}
 			}, new FilterCriteria<Player>() {
+				@Override
 				public boolean passes(final Player o) {
 					return !o.isGhost();
 				}

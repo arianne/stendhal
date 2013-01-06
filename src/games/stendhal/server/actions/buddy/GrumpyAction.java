@@ -27,6 +27,7 @@ public class GrumpyAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(REASON)) {
 			player.setGrumpyMessage(action.get(REASON));

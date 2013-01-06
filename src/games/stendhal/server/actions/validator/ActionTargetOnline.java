@@ -45,11 +45,12 @@ public class ActionTargetOnline implements ActionValidator {
 	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
+	@Override
 	public String validate(Player player, RPAction action, ActionData data) {
 		String playerName = action.get(targetAttribute);
 		Player targetPlayer = SingletonRepository.getRuleProcessor().getPlayer(playerName);
 
-		if (targetPlayer == null || (targetPlayer.isGhost() 
+		if ((targetPlayer == null) || (targetPlayer.isGhost()
 				&& (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")))) {
 			String error = "No player named " + playerName + " is currently active.";
 			if (tellAboutPostman) {

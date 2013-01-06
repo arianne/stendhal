@@ -38,6 +38,7 @@ public class AwayAction implements ActionListener {
 	 * @param action
 	 *            The action.
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (AWAY.equals(action.get(TYPE))) {
 			if (action.has(MESSAGE)) {

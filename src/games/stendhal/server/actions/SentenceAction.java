@@ -33,12 +33,13 @@ public class SentenceAction implements ActionListener {
 		CommandCenter.register(SENTENCE, new SentenceAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has(VALUE)) {
 			player.sendPrivateText(NotificationType.ERROR, "Please use /sentence <sentence>");
 			return;
 		}
-		
+
 		String sentence = action.get(VALUE);
 		try {
 			if (sentence.getBytes("UTF-8").length > 250) {

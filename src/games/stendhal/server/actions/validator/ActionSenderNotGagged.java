@@ -33,11 +33,12 @@ public class ActionSenderNotGagged implements ActionValidator {
 	 * @param data   data about this action
 	 * @return <code>null</code> if the action is valid; an error message otherwise
 	 */
+	@Override
 	public String validate(Player player, RPAction action, ActionData data) {
 		if (GagManager.isGagged(player)) {
 			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
 			return "You are gagged, it will expire in "
-					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L));
+			+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L));
 		}
 		return null;
 	}

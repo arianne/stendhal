@@ -47,7 +47,7 @@ public class EquipUtil {
 	public static Entity getEntityFromId(final Player player, final int objectId) {
 		return EntityHelper.entityFromZoneByID(objectId, player.getZone());
 	}
-	
+
 	/**
 	 * Checks if the object is of one of the given class or one of its children.
 	 *

@@ -45,6 +45,7 @@ public class GroupManagementAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		// vaidate parameters
@@ -108,7 +109,7 @@ public class GroupManagementAction implements ActionListener {
 			player.sendPrivateText(NotificationType.ERROR, "You cannot invite yourself into a group.");
 			return;
 		}
-		if (targetPlayer.isGhost() && player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode").intValue()) {
+		if (targetPlayer.isGhost() && (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode").intValue())) {
 			player.sendPrivateText(NotificationType.ERROR, "Player " + targetPlayer.getName() + " is not online");
 			return;
 		}

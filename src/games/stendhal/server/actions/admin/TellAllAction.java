@@ -40,7 +40,7 @@ public class TellAllAction extends AdministrationAction {
 
 		if (action.has(TEXT)) {
 			final String message = "Administrator SHOUTS: " + action.get(TEXT);
-			
+
 			new GameEvent(sender, TELLALL, action.get(TEXT)).raise();
 
 			SingletonRepository.getRuleProcessor().tellAllPlayers(NotificationType.SUPPORT, message);

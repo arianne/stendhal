@@ -32,12 +32,12 @@ public class JailReportAction extends AdministrationAction {
 	protected void perform(final Player player, final RPAction action) {
 		final Jail jail = SingletonRepository.getJail();
 		final String playerName = action.get(TARGET);
-		
+
 		if (playerName != null) {
 			final ArrestWarrant warrant = jail.getWarrant(playerName);
-			
+
 			if (warrant != null) {
-				player.sendPrivateText(warrant.getCriminal() + ": " 
+				player.sendPrivateText(warrant.getCriminal() + ": "
 						+ warrant.getMinutes() + " Minutes because: "
 						+ warrant.getReason());
 			} else {
@@ -46,7 +46,7 @@ public class JailReportAction extends AdministrationAction {
 		} else {
 			player.sendPrivateText(jail.listJailed());
 		}
-		
+
 		player.notifyWorldAboutChanges();
 	}
 

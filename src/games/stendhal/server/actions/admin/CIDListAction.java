@@ -32,7 +32,7 @@ class CIDListAction extends AdministrationAction {
 
 	@Override
 	public void perform(final Player player, final RPAction action) {
-		
+
 		if (action.has(TARGET)) {
 
 			final String inputName = action.get(TARGET);
@@ -45,10 +45,10 @@ class CIDListAction extends AdministrationAction {
 
 			final Map<String, String> nameList = CStatusAction.nameList;
 			final Map<String, String> idList = CStatusAction.idList;
-			
+
 			//Lets use a clean name instead of what ever the admin inputed
 			String playerName = target.getName();
-			
+
 			if (nameList.containsKey(playerName)) {
 				String tid = nameList.get(playerName);
 				if (idList.containsKey(tid)) {
@@ -57,11 +57,11 @@ class CIDListAction extends AdministrationAction {
 					new GameEvent(player.getName(), "cidlist", playerName, group).raise();
 				}
 			}
-			
+
 		} else {
 			player.sendPrivateText("Player name required");
 		}
-		
+
 	}
 
 }

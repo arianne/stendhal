@@ -51,13 +51,14 @@ public abstract class EquipmentAction implements ActionListener {
 
 	/** the list of valid container classes. */
 	private static final Class< ? >[] validContainerClasses = new Class< ? >[] {
-			Player.class, Chest.class, Corpse.class, Container.class };
+		Player.class, Chest.class, Corpse.class, Container.class };
 
 	/** List of the valid container classes for easy access. */
 	protected final List<Class< ? >> validContainerClassesList = Arrays.asList(validContainerClasses);
 
 
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		if (!isValidAction(action)) {
@@ -72,10 +73,10 @@ public abstract class EquipmentAction implements ActionListener {
 		}
 
 
-//		isValidSource();
-//		isValidItem();
-//		isValidDestination();
-//
+		//		isValidSource();
+		//		isValidItem();
+		//		isValidDestination();
+		//
 
 
 

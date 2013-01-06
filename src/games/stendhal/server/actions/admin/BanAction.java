@@ -52,7 +52,7 @@ public class BanAction extends AdministrationAction {
 				hours = Integer.parseInt(action.get("hours"));
 			} catch (final NumberFormatException e) {
 				player.sendPrivateText(NotificationType.ERROR, "Please ban for a whole number of hours, or -1 hours for a permanent ban. Shorter times than 1 hour can use /jail.");
-				return; 
+				return;
 			}
 
 			String sender = player.getName();
@@ -86,7 +86,7 @@ public class BanAction extends AdministrationAction {
 				// logging
 				logger.info(sender + " has banned  account " + username + " (character: " + bannedName + ") until " + expireStr + " for: " + reason);
 				new GameEvent(sender, "ban",  bannedName, expireStr, reason).raise();
-				
+
 				SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper",
 						sender + " banned account " + username + " (character: " + bannedName + ") until " + expireStr
 						+ ". Reason: " + reason	+ ".");
@@ -105,7 +105,7 @@ public class BanAction extends AdministrationAction {
 				characters.add(entry.character);
 			}
 		}
-	
+
 		for (String character : characters) {
 			final Player player = SingletonRepository.getRuleProcessor().getPlayer(character);
 			if (player != null) {

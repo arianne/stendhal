@@ -64,6 +64,7 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 	 * @param action
 	 *            The action.
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!validation.validateAndInformPlayer(player, action)) {
 			return;
@@ -82,6 +83,7 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 	 *
 	 * @param currentTurn ignored
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		StoreMessageCommand checkcommand = DBCommandQueue.get().getOneResult(StoreMessageCommand.class, handle);
 

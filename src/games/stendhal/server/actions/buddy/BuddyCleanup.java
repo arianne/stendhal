@@ -70,6 +70,7 @@ public class BuddyCleanup implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		QueryCanonicalCharacterNamesCommand checkCommand = DBCommandQueue.get().getOneResult(QueryCanonicalCharacterNamesCommand.class, handle);
 
@@ -105,7 +106,7 @@ public class BuddyCleanup implements TurnListener {
 		for(String newName : newNames) {
 			final Player buddy = SingletonRepository.getRuleProcessor().getPlayer(newName);
 
-			if (player.addBuddy(newName, buddy!=null && !buddy.isGhost())) {
+			if (player.addBuddy(newName, (buddy!=null) && !buddy.isGhost())) {
 				new GameEvent(player.getName(), "buddy", "add", newName).raise();
 			}
 		}

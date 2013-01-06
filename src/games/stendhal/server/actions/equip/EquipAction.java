@@ -85,8 +85,8 @@ public class EquipAction extends EquipmentAction {
 			// which aren't just a movement from one corpse to another.
 			// we could of course specifically preclude dropping into corpses, but that is undesirable.
 			if (dest.isContainerCorpse() && !source.isContainerCorpse()) {
-					player.sendPrivateText("For your information, you just dropped "
-							+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse next to you.");
+				player.sendPrivateText("For your information, you just dropped "
+						+ Grammar.quantityplnounWithHash(amount,entity.getTitle()) + " into a corpse next to you.");
 			}
 
 			if(source.isLootingRewardable()) {

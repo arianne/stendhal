@@ -30,13 +30,13 @@ import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 
 public class AlterAction extends AdministrationAction {
-	
+
 	public static void register() {
 		CommandCenter.register(ALTER, new AlterAction(), 900);
 	}
@@ -83,7 +83,7 @@ public class AlterAction extends AdministrationAction {
 				final String value = action.get(VALUE);
 				final String mode = action.get(MODE);
 
-				if ((mode.length() > 0) && !mode.equalsIgnoreCase(ADD) 
+				if ((mode.length() > 0) && !mode.equalsIgnoreCase(ADD)
 						&& !mode.equalsIgnoreCase(SUB) && !mode.equalsIgnoreCase(SET) && !mode.equalsIgnoreCase(UNSET)) {
 					player.sendPrivateText("Please issue one of the modes 'add', 'sub', 'set' or 'unset'.");
 					return;
@@ -121,30 +121,30 @@ public class AlterAction extends AdministrationAction {
 					}
 
 					switch (type.getType()) {
-					case BYTE:
-						if ((numberValue > Byte.MAX_VALUE)
-								|| (numberValue < Byte.MIN_VALUE)) {
-							return;
-						}
-						break;
-					case SHORT:
-						if ((numberValue > Short.MAX_VALUE)
-								|| (numberValue < Short.MIN_VALUE)) {
-							return;
-						}
-						break;
-					case INT:
-						/*
-						 * as numberValue is currently of type integer, this is
-						 * pointless: if ((numberValue > Integer.MAX_VALUE) ||
-						 * (numberValue < Integer.MIN_VALUE)) { return; }
-						 */
-						break;
-					default:
+						case BYTE:
+							if ((numberValue > Byte.MAX_VALUE)
+									|| (numberValue < Byte.MIN_VALUE)) {
+								return;
+							}
+							break;
+						case SHORT:
+							if ((numberValue > Short.MAX_VALUE)
+									|| (numberValue < Short.MIN_VALUE)) {
+								return;
+							}
+							break;
+						case INT:
+							/*
+							 * as numberValue is currently of type integer, this is
+							 * pointless: if ((numberValue > Integer.MAX_VALUE) ||
+							 * (numberValue < Integer.MIN_VALUE)) { return; }
+							 */
+							break;
+						default:
 							// we switch over an enum
 							break;
 					}
-					
+
 					new GameEvent(player.getName(), ALTER, action.get(TARGET), stat, Integer.toString(numberValue)).raise();
 					changed.put(stat, numberValue);
 				} else {

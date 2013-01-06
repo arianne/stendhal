@@ -24,6 +24,7 @@ import marauroa.common.game.RPAction;
  */
 class AnswerAction implements ActionListener {
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TEXT)) {
 			if (player.getLastPrivateChatter() != null) {

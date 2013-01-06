@@ -27,15 +27,16 @@ import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 public class ForsakeAction implements ActionListener {
-	
+
 	private static final String DB_ID = "#db_id";
 	private static final Logger logger = Logger.getLogger(ForsakeAction.class);
 	public static void register() {
 		CommandCenter.register(FORSAKE, new ForsakeAction());
 	}
-	
+
+	@Override
 	public void onAction(final Player player, final RPAction action) {
-		
+
 		if (action.has(SPECIES)) {
 			final String species = action.get(SPECIES);
 
@@ -70,6 +71,6 @@ public class ForsakeAction implements ActionListener {
 			}
 		}
 	}
-	
+
 
 }

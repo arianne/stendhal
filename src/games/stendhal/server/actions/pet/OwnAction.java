@@ -48,6 +48,7 @@ public class OwnAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has(TARGET)) {
 			return;
@@ -69,7 +70,7 @@ public class OwnAction implements ActionListener {
 			}
 
 			// all checks have been okay, so lets own it
-			own(player, animal); 
+			own(player, animal);
 		}
 
 		player.notifyWorldAboutChanges();
@@ -108,7 +109,7 @@ public class OwnAction implements ActionListener {
 	}
 
 	/**
-	 * checks whether this entity is reachable (whether a path exists) 
+	 * checks whether this entity is reachable (whether a path exists)
 	 *
 	 * @param player player to complain to
 	 * @param entity entity to check

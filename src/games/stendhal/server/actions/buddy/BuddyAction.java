@@ -20,7 +20,7 @@ import static games.stendhal.common.constants.Actions.UNIGNORE;
 import games.stendhal.server.actions.CommandCenter;
 public class BuddyAction {
 
-	
+
 	public static void register() {
 		CommandCenter.register(ADDBUDDY, new AddBuddyAction());
 		CommandCenter.register(IGNORE, new IgnoreAction());

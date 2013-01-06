@@ -52,7 +52,7 @@ public class GhostModeAction extends AdministrationAction {
 
 		/* Notify players about admin going into ghost mode. */
 		StendhalRPRuleProcessor.get().notifyOnlineStatus(!player.isGhost(), player);
-		
+
 		player.notifyWorldAboutChanges();
 	}
 

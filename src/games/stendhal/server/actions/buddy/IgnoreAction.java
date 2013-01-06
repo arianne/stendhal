@@ -31,11 +31,12 @@ class IgnoreAction implements ActionListener {
 
 
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(LIST)) {
 			// if we don't test this then getSlot and it was empty does something bad to client.
 			if (player.getSlot("!ignore").size() > 0) {
-				// clone the !ignore slot to avoid a ConcurrentModificationException 
+				// clone the !ignore slot to avoid a ConcurrentModificationException
 				// as the check in getIgnore modifies !ignore
 				final RPSlot ignoreSlot = (RPSlot) player.getSlot("!ignore").clone();
 				final RPObject ignorelist = ignoreSlot.iterator().next();
@@ -54,7 +55,7 @@ class IgnoreAction implements ActionListener {
 						// reason could be null if time expired
 						if (checkIgnore != null) {
 							String reason;
-							if (checkIgnore.length() == 0) { 
+							if (checkIgnore.length() == 0) {
 								reason = "";
 							} else {
 								reason = ", for " + checkIgnore;
@@ -70,7 +71,7 @@ class IgnoreAction implements ActionListener {
 					player.sendPrivateText("Your ignore list contains " + Grammar.enumerateCollection(namesAndReasons) + ".");
 				} else {
 					// list could be unfeasibly long to print out to player so give a sublist but also the total number out of interest
-					player.sendPrivateText("You are ignoring " + namesAndReasons.size() + " players. The first 50 entries in your ignore list are " 
+					player.sendPrivateText("You are ignoring " + namesAndReasons.size() + " players. The first 50 entries in your ignore list are "
 							+ Grammar.enumerateCollection(namesAndReasons.subList(0, 50)) + ".");
 				}
 			}

@@ -126,6 +126,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 	 *
 	 * @param currentTurn ignored
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		StoreMessageCommand checkcommand = DBCommandQueue.get().getOneResult(StoreMessageCommand.class, handle);
 
@@ -141,15 +142,15 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		final Player admin = SingletonRepository.getRuleProcessor().getPlayer(sender);
 
 		if(!characterExists) {
-				if (admin != null) {
-					// incase admin logged out while waiting we want to avoid NPE
-					admin.sendPrivateText(NotificationType.ERROR, "Sorry, " + target + " could not be found.");
-				}
-				return;
+			if (admin != null) {
+				// incase admin logged out while waiting we want to avoid NPE
+				admin.sendPrivateText(NotificationType.ERROR, "Sorry, " + target + " could not be found.");
+			}
+			return;
 		}
 
 		final String message = sender + " answers " + Grammar.suffix_s(target)
-		+ " support question using postman: " + supportmessage;
+				+ " support question using postman: " + supportmessage;
 
 		SingletonRepository.getRuleProcessor().sendMessageToSupporters(message);
 	}
@@ -165,7 +166,7 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 		if(adminNames.containsKey(adminName)) {
 			Long lastTime = adminNames.get(adminName).second();
 			// time has passed, use a new name in place of the last anonymised name
-			if (System.currentTimeMillis() - lastTime > DELAY * 1000L) {
+			if ((System.currentTimeMillis() - lastTime) > (DELAY * 1000L)) {
 				nameCounter++;
 				anonymisedAdminName = "admin"+nameCounter;
 			} else {

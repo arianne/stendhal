@@ -30,7 +30,7 @@ public class InvisibleAction extends AdministrationAction {
 		String state;
 		if (player.isInvisibleToCreatures()) {
 			player.setInvisible(false);
-			
+
 			state = "off";
 		} else {
 			player.setInvisible(true);

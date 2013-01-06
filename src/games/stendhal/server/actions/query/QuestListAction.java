@@ -25,12 +25,13 @@ import marauroa.common.game.RPAction;
  * list the known quest or gives details on them.
  */
 public class QuestListAction implements ActionListener {
-	
+
 
 	public static void register() {
 		CommandCenter.register(LISTQUESTS, new QuestListAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		final StringBuilder st = new StringBuilder();

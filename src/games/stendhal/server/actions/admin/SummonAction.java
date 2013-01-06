@@ -36,7 +36,7 @@ import marauroa.common.game.RPAction;
 
 public class SummonAction extends AdministrationAction {
 	private static final String USAGE = "Usage: /summon <whatToSummon> [<x> <y>]";
-	
+
 
 	public static void register() {
 		CommandCenter.register(SUMMON, new SummonAction(), 800);
@@ -55,9 +55,9 @@ public class SummonAction extends AdministrationAction {
 			this.player = player;
 		}
 
-        boolean isSearching() {
-	        return searching;
-        }
+		boolean isSearching() {
+			return searching;
+		}
 
 		abstract void found(String type, Entity entity);
 		abstract void error(String message);
@@ -68,9 +68,9 @@ public class SummonAction extends AdministrationAction {
 		 * @param type
 		 */
 		private void createEntity(final String type) {
-		    final Entity entity = manager.getEntity(type);
+			final Entity entity = manager.getEntity(type);
 
-		    if (entity != null) {
+			if (entity != null) {
 				found(type, entity);
 			} else if ("cat".equals(type)) {
 				if (player.hasPet()) {
@@ -93,8 +93,8 @@ public class SummonAction extends AdministrationAction {
 					final Sheep sheep = new Sheep(player);
 					found(type, sheep);
 				}
-			} 
-	    }
+			}
+		}
 	}
 
 	@Override
@@ -111,20 +111,20 @@ public class SummonAction extends AdministrationAction {
 				final StendhalRPZone zone = player.getZone();
 				final int x = action.getInt(X);
 				final int y = action.getInt(Y);
-				
+
 				if (!zone.collides(player, x, y)) {
 					final EntityFactory factory = new EntityFactory(player) {
 						@Override
 						void found(final String type, final Entity entity) {
-							 final Entity entityToBePlaced;
-							if (manager.isCreature(type)) {	
+							final Entity entityToBePlaced;
+							if (manager.isCreature(type)) {
 								entityToBePlaced = new RaidCreature((Creature) entity);
 								if (((Creature) entity).isRare() && !ServerModeUtil.isTestServer()) {
 									// Rare creatures should not be summoned even in raids
 									// Require parameter -Dstendhal.testserver=junk
 									error("Rare creatures may not be summoned.");
 									return;
-								} 
+								}
 							} else {
 								entityToBePlaced = entity;
 							}
@@ -149,19 +149,19 @@ public class SummonAction extends AdministrationAction {
 					factory.createEntity(type);
 
 					if (factory.isSearching()) {
-    					// see it the name was in plural
+						// see it the name was in plural
 						type = Grammar.singular(typeName);
 						factory.createEntity(type);
 
 						if (factory.isSearching()) {
-	    					// see it the name was in singular but the registered type is in plural
+							// see it the name was in singular but the registered type is in plural
 							type = Grammar.plural(typeName);
 							factory.createEntity(type);
 
 							// Did we still not find any matching class?
 							if (factory.isSearching()) {
-	    						logger.info("onSummon: Entity \"" + typeName + "\" not found.");
-	    						factory.error("onSummon: Entity \"" + typeName + "\" not found.");
+								logger.info("onSummon: Entity \"" + typeName + "\" not found.");
+								factory.error("onSummon: Entity \"" + typeName + "\" not found.");
 							}
 						}
 					}

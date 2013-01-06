@@ -16,7 +16,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.player.Player;
 
-
 import java.util.List;
 
 /**
@@ -80,7 +79,7 @@ public abstract class MoveableObject {
 
 	/**
 	 * Checks if RPobject is one the valid classes.
-	 * @param validClasses 
+	 * @param validClasses
 	 * @return true if the rpobject is one of the classes in <i>validClasses</i>.
 	 */
 	public boolean checkClass(final List<Class< ? >> validClasses) {
@@ -91,7 +90,7 @@ public abstract class MoveableObject {
 	}
 
 	/**
-	 * Checks if container is a corpse. 
+	 * Checks if container is a corpse.
 	 * @return true if container is a corpse.
 	 */
 	public boolean isContainerCorpse() {
@@ -101,7 +100,7 @@ public abstract class MoveableObject {
 		}
 		return false;
 	}
-	
+
 	boolean isInvalidMoveable(final Player player, final double maxDistance, final List<Class< ? >> containerClassesList) {
 		return !isValid() || !checkDistance(player, maxDistance) || (!checkClass(containerClassesList));
 	}

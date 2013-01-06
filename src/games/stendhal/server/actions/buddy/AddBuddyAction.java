@@ -36,7 +36,7 @@ import marauroa.server.db.command.ResultHandle;
  * Adds someone to your buddy list.
  */
 class AddBuddyAction implements ActionListener, TurnListener {
-	
+
 	private ResultHandle handle = new ResultHandle();
 
 	/**
@@ -47,6 +47,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	 * @param action
 	 *            The action.
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (countBuddies(player) > 500) {
 			player.sendPrivateText(NotificationType.ERROR, "Sorry, you have already too many buddies");
@@ -65,6 +66,7 @@ class AddBuddyAction implements ActionListener, TurnListener {
 	 * 
 	 * @param currentTurn ignored
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		QueryCanonicalCharacterNamesCommand checkcommand = DBCommandQueue.get().getOneResult(QueryCanonicalCharacterNamesCommand.class, handle);
 

@@ -23,12 +23,13 @@ import marauroa.common.game.RPAction;
  * Lists the producers with have open tasks for the asking player.
  */
 public class ListProducersAction implements ActionListener {
-	
+
 
 	public static void register() {
 		CommandCenter.register(LISTPRODUCERS, new ListProducersAction());
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		final StringBuilder st = new StringBuilder();

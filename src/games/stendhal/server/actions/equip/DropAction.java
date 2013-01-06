@@ -26,12 +26,12 @@ public class DropAction extends EquipmentAction {
 
 	@Override
 	protected void execute(final Player player, final RPAction action, final SourceObject source) {
-	
+
 		// get destination and check it
 		final DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.checkDistance(player, EquipUtil.MAX_THROWING_DISTANCE)) {
-		    player.sendPrivateText("You cannot throw that far.");
-		    return;
+			player.sendPrivateText("You cannot throw that far.");
+			return;
 		}
 
 		if (!dest.isValid() || !dest.checkClass(validContainerClassesList)) {

@@ -23,13 +23,14 @@ import marauroa.common.game.RPAction;
 
 public class MoveAction implements ActionListener {
 
-	
+
 
 	public static void register() {
 		final MoveAction move = new MoveAction();
 		CommandCenter.register(MOVE, move);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(DIR)) {
 			final int dirval = action.getInt(DIR);

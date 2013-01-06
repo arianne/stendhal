@@ -35,6 +35,7 @@ public class LanguageAction implements ActionListener {
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		player.setLanguage(action.get("target"));
 	}

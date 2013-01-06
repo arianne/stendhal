@@ -20,6 +20,7 @@ import marauroa.common.game.RPAction;
 
 class RemoveBuddyAction implements ActionListener {
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
@@ -31,7 +32,7 @@ class RemoveBuddyAction implements ActionListener {
 					if (player.removeBuddy(name)) {
 						new GameEvent(player.getName(), "buddy", "remove", name).raise();
 						player.sendPrivateText(name + " was removed from your buddy list.");
-	
+
 						++removed;
 					}
 				}

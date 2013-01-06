@@ -39,9 +39,10 @@ public class WrapAction implements ActionListener {
 		CommandCenter.register("wrap", wrap, 800);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.get("type").equals("wrap")) {
-    		onWrap(player, action);
+			onWrap(player, action);
 		}
 	}
 
@@ -59,18 +60,18 @@ public class WrapAction implements ActionListener {
 		final Item item = player.getFirstEquipped(itemName);
 
 		if (item != null) {
-    	  
-    	    final Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
-    	    present.setContent(itemName);
-    	    player.drop(itemName);
-    	    player.equipToInventoryOnly(present);
 
-    	    new GameEvent(player.getName(), "wrap", itemName).raise();
+			final Present present = (Present) SingletonRepository.getEntityManager().getItem("present");
+			present.setContent(itemName);
+			player.drop(itemName);
+			player.equipToInventoryOnly(present);
 
-    	    player.updateItemAtkDef();
-	    } else {
+			new GameEvent(player.getName(), "wrap", itemName).raise();
+
+			player.updateItemAtkDef();
+		} else {
 			player.sendPrivateText("You don't have any " + itemName);
-	    }
-    }
+		}
+	}
 
 }

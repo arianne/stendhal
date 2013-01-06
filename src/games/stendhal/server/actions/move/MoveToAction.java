@@ -51,17 +51,18 @@ public class MoveToAction implements ActionListener {
 	 * @param player player requesting the action
 	 * @param action move-to action
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
 			return;
 		}
-		
+
 		if (player.isPoisoned()) {
 			player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			return;
 		}
-		
+
 		if (player.hasPath()) {
 			player.clearPath();
 		}
@@ -98,7 +99,7 @@ public class MoveToAction implements ActionListener {
 	}
 
 	/**
-	 * On request of the client add a node at the end of the path that goes 
+	 * On request of the client add a node at the end of the path that goes
 	 * one step further into the requested direction. This allows the client
 	 * to trigger a zone change with the mouse.
 	 *

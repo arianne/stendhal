@@ -43,11 +43,12 @@ public class PushAction implements ActionListener {
 		CommandCenter.register(PUSH, push);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		// evaluate the target parameter
 		final Entity entity = EntityHelper.entityFromTargetName(
-			action.get(TARGET), player);
+				action.get(TARGET), player);
 
 		if ((entity == null) || !(entity instanceof RPEntity)) {
 			return;
@@ -76,7 +77,7 @@ public class PushAction implements ActionListener {
 				// Stop players running toward to make trapping harder. Don't
 				// stop anyone just following a path (again to make annoying
 				// others harder).
-				if (dir.oppositeDirection() == pushed.getDirection()
+				if ((dir.oppositeDirection() == pushed.getDirection())
 						&& !pushed.hasPath()) {
 					pushed.stop();
 				}
@@ -110,20 +111,20 @@ public class PushAction implements ActionListener {
 		if (pushed instanceof SpeakerNPC) {
 			return false;
 		}
-		
+
 		// players cannot push rp entities with area larger than 4
-		if (pushed.getArea().getWidth() * pushed.getArea().getHeight() > 4) {
+		if ((pushed.getArea().getWidth() * pushed.getArea().getHeight()) > 4) {
 			pusher.sendPrivateText("You're strong, but not that strong!");
 			return false;
 		}
 
-		// the number of pushes is limited per time 
+		// the number of pushes is limited per time
 		if (!pusher.canPush(pushed)) {
 			pusher.sendPrivateText("Give yourself a breather before you start pushing again.");
 			return false;
 		}
 
-		// the player must be in range. 
+		// the player must be in range.
 		return (pusher.nextTo(pushed));
 	}
 
@@ -136,7 +137,7 @@ public class PushAction implements ActionListener {
 	 * @param y new y-position
 	 */
 	private void move(final Player pusher, final RPEntity pushed, final int x, final int y) {
-		
+
 		// move items under players, with the players, when pushed
 		if (pushed instanceof Player) {
 			final Set<Item> items = pusher.getZone().getItemsOnGround();
@@ -156,7 +157,7 @@ public class PushAction implements ActionListener {
 				}
 			}
 		}
-		
+
 		new GameEvent(pusher.getName(), "push", pushed.getName(), pushed.getZone().getName(), pushed.getX() + " " + pushed.getY() + " --> " + x + " " + y).raise();
 		pushed.setPosition(x, y);
 		pushed.notifyWorldAboutChanges();

@@ -30,10 +30,11 @@ public class OutfitAction implements ActionListener {
 	}
 
 	/**
-	 * Changes Player's outfit to the value provided in action. 
+	 * Changes Player's outfit to the value provided in action.
 	 * @param player whose outfit is to be changed. Must not be <code>null</code>.
 	 * @param action the action containing the outfit info in the attribute 'value'. Must not be <code>null</code>.
 	 */
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(VALUE)) {
 			final Outfit outfit = new Outfit(action.getInt(VALUE));

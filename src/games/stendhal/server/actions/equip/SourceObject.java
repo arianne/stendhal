@@ -54,7 +54,7 @@ class SourceObject extends MoveableObject {
 		if ((action == null) || (player == null)) {
 			return invalidSource;
 		}
- 
+
 		// source item must be there
 		if (!action.has(EquipActionConsts.SOURCE_PATH) && !action.has(EquipActionConsts.BASE_ITEM)) {
 			logger.warn("action does not have a base item. action: " + action);
@@ -72,7 +72,7 @@ class SourceObject extends MoveableObject {
 		}
 		source = createSource(action, player);
 
-		if ((source.getEntity() != null) && source.getEntity().hasSlot("content") && source.getEntity().getSlot("content").size() > 0) {
+		if ((source.getEntity() != null) && source.getEntity().hasSlot("content") && (source.getEntity().getSlot("content").size() > 0)) {
 			player.sendPrivateText("Please empty your " + source.getEntityName() + " before moving it around");
 			return invalidSource;
 		}
@@ -80,7 +80,7 @@ class SourceObject extends MoveableObject {
 		adjustAmountForStackables(action, source);
 		return source;
 	}
-	
+
 	/**
 	 * Translate old style object reference to entity path.
 	 */
@@ -124,7 +124,7 @@ class SourceObject extends MoveableObject {
 					+ ")");
 			// Remove message as discussed on #arianne 2010-04-25
 			// player.sendPrivateText("There is no such item in the " + slotName + " of "
-				//	+ parent.getDescriptionName(true));
+			//	+ parent.getDescriptionName(true));
 			return invalidSource;
 		}
 
@@ -154,7 +154,7 @@ class SourceObject extends MoveableObject {
 
 		return source;
 	}
-	
+
 	/**
 	 * Create a SourceObject for an item path.
 	 * 
@@ -173,7 +173,7 @@ class SourceObject extends MoveableObject {
 			return invalidSource;
 		}
 		RPObject container = item.getBaseContainer();
-		
+
 		/*
 		 * Top level items need to be checked for players standing on them.
 		 */
@@ -182,7 +182,7 @@ class SourceObject extends MoveableObject {
 				return invalidSource;
 			}
 		}
-		
+
 		String slotName = null;
 		RPObject parent = item.getContainer();
 		if (parent != null) {
@@ -194,13 +194,13 @@ class SourceObject extends MoveableObject {
 		}
 
 		SourceObject source = new SourceObject(player, (Entity) parent, slotName, item);
-		
+
 		// handle logging of looting items
 		if (parent instanceof Corpse) {
 			Corpse corpse = (Corpse) parent;
 			checkIfLootingIsRewardable(player, corpse, source, (Item) entity);
 		}
-		
+
 		return source;
 	}
 
@@ -355,7 +355,7 @@ class SourceObject extends MoveableObject {
 				player.sendPrivateText("You cannot reach that far.");
 			}
 		}
-		
+
 		return false;
 	}
 

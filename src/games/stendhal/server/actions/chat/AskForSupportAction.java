@@ -33,6 +33,7 @@ import marauroa.server.game.container.PlayerEntryContainer;
 public class AskForSupportAction  implements ActionListener {
 	private final Map<String, Long> lastMsg = new HashMap<String, Long>();
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (!action.has(TEXT)) {
 			return;
