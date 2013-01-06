@@ -8,7 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.RPClass.BlockTestHelper;
-import utilities.RPClass.EntityTestHelper;
 
 /**
  * Tests for the pushable block
@@ -23,32 +22,32 @@ public class BlockTest {
 	}
 
 	@Test
-		public final void testReset() {
-			Block b = new Block(0, 0, true);
-			assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
-			assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
-			
-			b.reset();
-			assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
-			assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
-			
-			b.put("x", 2);
-			b.reset();
-			assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
-			assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
-			
-			b.put("y", 2);
-			b.reset();
-			assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
-			assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
-			
-			b.put("x", 2);
-			b.put("y", 2);
-			b.reset();
-			assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
-			assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
-		}
-	
+	public final void testReset() {
+		Block b = new Block(0, 0, true);
+		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
+
+		b.reset();
+		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
+
+		b.put("x", 2);
+		b.reset();
+		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
+
+		b.put("y", 2);
+		b.reset();
+		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
+
+		b.put("x", 2);
+		b.put("y", 2);
+		b.reset();
+		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
+	}
+
 	@Test
 	public void testPush() {
 		Block b = new Block(0, 0, true);
