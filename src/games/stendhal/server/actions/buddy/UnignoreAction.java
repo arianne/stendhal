@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,6 +16,9 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * removes a player from the ignore list
+ */
 class UnignoreAction implements ActionListener {
 
 	@Override
@@ -24,11 +26,9 @@ class UnignoreAction implements ActionListener {
 		if (action.has(TARGET)) {
 			final String who = action.get(TARGET);
 			if (player.getIgnore(who) == null) {
-				player.sendPrivateText(who
-						+ " was not being ignored by you.");
+				player.sendPrivateText(who + " was not being ignored by you.");
 			} else if (player.removeIgnore(who)) {
-				player.sendPrivateText(who
-						+ " was removed from your ignore list.");
+				player.sendPrivateText(who + " was removed from your ignore list.");
 			}
 		}
 

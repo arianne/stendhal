@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,9 +17,17 @@ import static games.stendhal.common.constants.Actions.IGNORE;
 import static games.stendhal.common.constants.Actions.REMOVEBUDDY;
 import static games.stendhal.common.constants.Actions.UNIGNORE;
 import games.stendhal.server.actions.CommandCenter;
+
+/**
+ * register actions related to friends and ignored players
+ *
+ * @author hendrik
+ */
 public class BuddyAction {
 
-
+	/**
+	 * register actions
+	 */
 	public static void register() {
 		CommandCenter.register(ADDBUDDY, new AddBuddyAction());
 		CommandCenter.register(IGNORE, new IgnoreAction());

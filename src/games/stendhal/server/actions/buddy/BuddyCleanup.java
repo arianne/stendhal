@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2010-2011 - Stendhal                    *
+ *                   (C) Copyright 2010-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -36,13 +35,21 @@ import marauroa.server.db.command.ResultHandle;
  */
 public class BuddyCleanup implements TurnListener {
 
-	private Player player;
-	private ResultHandle handle = new ResultHandle();
+	private final Player player;
+	private final ResultHandle handle = new ResultHandle();
 
+	/**
+	 * creates a BuddyCleanup
+	 *
+	 * @param player player object
+	 */
 	public BuddyCleanup(Player player) {
 		this.player = player;
 	}
 
+	/**
+	 * cleans up the budy list of a player
+	 */
 	public void cleanup() {
 		Map<String, String> buddies = player.getMap("buddies");
 

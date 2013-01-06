@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -17,11 +16,16 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+/**
+ * enables a player to mark himself/herself as grumpy to prevent messages from non-friends.
+ *
+ * @author hendrik
+ */
 public class GrumpyAction implements ActionListener {
 
 	/**
 	 * Handle a Grumpy action.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param action
