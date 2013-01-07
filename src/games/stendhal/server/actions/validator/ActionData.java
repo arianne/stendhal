@@ -1,5 +1,5 @@
 /***************************************************************************
- *                      (C) Copyright 2012 Faiumoni                        *
+ *                   (C) Copyright 2012-2013 Faiumoni                      *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions.validator;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.slot.Slot;
+
 /**
  * data used by actions
  *
@@ -18,5 +21,86 @@ package games.stendhal.server.actions.validator;
  */
 public class ActionData {
 
-	// TODO
+	private Entity entity = null;
+	private Slot slot = null;
+
+
+	/**
+	 * gets entity
+	 *
+	 * @return the entity
+	 */
+	protected Entity getEntity() {
+		return entity;
+	}
+
+	/**
+	 * gets slot
+	 *
+	 * @return the slot
+	 */
+	protected Slot getSlot() {
+		return slot;
+	}
+
+	/**
+	 * sets entity
+	 *
+	 * @param entity the entity to set
+	 */
+	protected void setEntity(Entity entity) {
+		this.entity = entity;
+	}
+
+	/**
+	 * sets slot
+	 *
+	 * @param slot the slot to set
+	 */
+	protected void setSlot(Slot slot) {
+		this.slot = slot;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((entity == null) ? 0 : entity.hashCode());
+		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		ActionData other = (ActionData) obj;
+		if (entity == null) {
+			if (other.entity != null) {
+				return false;
+			}
+		} else if (!entity.equals(other.entity)) {
+			return false;
+		}
+		if (slot == null) {
+			if (other.slot != null) {
+				return false;
+			}
+		} else if (!slot.equals(other.slot)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ActionData [entity=" + entity + ", slot=" + slot + "]";
+	}
+
 }
