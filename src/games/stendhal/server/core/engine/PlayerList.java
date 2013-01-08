@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,7 +37,7 @@ public class PlayerList {
 
 	/**
 	 * Retrieve from this list a player specified by its name.
-	 * 
+	 *
 	 * @param name
 	 *            the unique name of a player
 	 * @return the Player specified by the name or <code> null </code> if not
@@ -53,12 +52,14 @@ public class PlayerList {
 
 	/**
 	 * Sends a privateText to all players in the list.
-	 * 
+	 *
 	 * @param notificationType type of the notification
 	 * @param message message to tell all online players
 	 */
 	void tellAllOnlinePlayers(final NotificationType notificationType, final String message) {
 		forAllPlayersExecute(new Task<Player>() {
+
+			@Override
 			public void execute(final Player player) {
 				player.sendPrivateText(notificationType, message);
 				player.notifyWorldAboutChanges();
@@ -68,7 +69,7 @@ public class PlayerList {
 
 	/**
 	 * Calls the execute method of task for each player in this List.
-	 * 
+	 *
 	 * @param task
 	 *            the task to execute
 	 */
@@ -81,7 +82,7 @@ public class PlayerList {
 	/**
 	 * Calls the execute method of task for all player in this list that return
 	 * true in filter.
-	 * 
+	 *
 	 * @param task
 	 *            the task to execute.
 	 * @param filter
@@ -97,13 +98,18 @@ public class PlayerList {
 
 	/**
 	 * The amount of currently logged in players.
-	 * 
+	 *
 	 * @return the amount Player items in this list.
 	 */
 	public int size() {
 		return players.size();
 	}
 
+	/**
+	 * adds a player
+	 *
+	 * @param player player
+	 */
 	public void add(final Player player) {
 		final String playerName = player.getName();
 
@@ -114,6 +120,12 @@ public class PlayerList {
 		}
 	}
 
+	/**
+	 * removes a player
+	 *
+	 * @param player player
+	 * @return true, if the player was in the list
+	 */
 	public boolean remove(final Player player) {
 		final String playerName = player.getName();
 
@@ -123,7 +135,12 @@ public class PlayerList {
 			throw new IllegalArgumentException("can't remove player without name");
 		}
 	}
-	
+
+	/**
+	 * gets a mutable list of all players
+	 *
+	 * @return list of all players
+	 */
 	public Collection<Player> getAllPlayers() {
 		return players.values();
 	}

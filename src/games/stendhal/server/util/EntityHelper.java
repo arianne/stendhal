@@ -32,7 +32,7 @@ import marauroa.common.game.RPSlot;
 
 /**
  * Utilities to handle entities in the server.
- * 
+ *
  * @author Martin Fuchs
  */
 public class EntityHelper {
@@ -62,7 +62,7 @@ public class EntityHelper {
 	 * Translate the "target" parameter of actions like "look" into an entity
 	 * reference. Numeric parameters are treated as object IDs, alphanumeric
 	 * names are searched in the list of players and NPCs.
-	 * 
+	 *
 	 * @param target
 	 *			  representation of the target
 	 * @param player
@@ -104,12 +104,12 @@ public class EntityHelper {
 
 		return entity;
 	}
-	
+
 	/**
 	 * Translate the "target" parameter of actions like "look" into an entity
 	 * reference. Numeric parameters are treated as object IDs, alphanumeric
 	 * names are searched in the list of players and NPCs.
-	 * 
+	 *
 	 * @param target
 	 *			  representation of the target
 	 * @param player
@@ -136,7 +136,7 @@ public class EntityHelper {
 		if (entity == null) {
 			entity = SingletonRepository.getRuleProcessor().getPlayer(target);
 
-			
+
 		}
 
 		if (entity == null) {
@@ -151,14 +151,14 @@ public class EntityHelper {
 	 * 	- baseslot name of the slot to search in
 	 *  - baseobject the id of the object where to search for the specified slot
 	 *  - baseitem the id of the object to search for
-	 *  
+	 *
 	 * @param player the player where to search for the item
 	 * @param action the action specifying for what to search
 	 * @return the found Entity or null
 	 */
 	public static Entity entityFromSlot(final Player player, final RPAction action) {
 		// entity in a slot?
-		if (!action.has(ATTR_BASEITEM) 
+		if (!action.has(ATTR_BASEITEM)
 				|| !action.has(ATTR_BASEOBJECT)
 				|| !action.has(ATTR_BASESLOT)) {
 			return null;
@@ -201,7 +201,7 @@ public class EntityHelper {
 			// It is always an entity
 			return (Entity) object;
 		}
-		
+
 		return null;
 	}
 
@@ -241,7 +241,7 @@ public class EntityHelper {
             }
 
         } else if (action.has(TARGET)) {
-            
+
             String target = action.get(TARGET);
 
             if ((target.length() > 1) && (target.charAt(0) == '#')
@@ -250,7 +250,7 @@ public class EntityHelper {
 
                 Entity entity = entityFromZoneByID(objectId, zone);
                 if ((entity != null) && (entity instanceof Item)) {
-                    return new GroundSlot(zone, (Item) entity);
+                    return new GroundSlot(zone, entity);
                 } else {
                     return null;
                 }
@@ -261,7 +261,7 @@ public class EntityHelper {
 
 	/**
 	 * Get an entity from path. Does not do any access checks.
-	 * 
+	 *
 	 * @param player
 	 * @param path entity path
 	 * @return entity corresponding to the path, or <code>null</code> if none
@@ -274,7 +274,7 @@ public class EntityHelper {
 		if (parent == null) {
 			return null;
 		}
-		
+
 		// Walk the slot path
 		Entity entity = parent;
 		String slotName = null;
@@ -286,9 +286,9 @@ public class EntityHelper {
 						+ " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
 				return null;
 			}
-			
+
 			final RPSlot slot = entity.getSlot(slotName);
-			
+
 			if (!it.hasNext()) {
 				EquipUtil.logger.error("Missing entity id");
 				return null;
@@ -299,10 +299,10 @@ public class EntityHelper {
 						+ ")");
 				return null;
 			}
-			
+
 			entity = (Entity) slot.get(itemId);
 		}
-	
+
 		return entity;
 	}
 }

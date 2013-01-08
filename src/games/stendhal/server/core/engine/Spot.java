@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -13,6 +12,11 @@
 package games.stendhal.server.core.engine;
 
 
+/**
+ * a location within a zone
+ *
+ * @author hendrik
+ */
 public class Spot {
 	private final StendhalRPZone zone;
 	private final int x;
@@ -24,24 +28,40 @@ public class Spot {
 	 * Spots are read only
 	 *
 	 * @param zone must not be null
-	 * @param x
-	 * @param y
+	 * @param x x
+	 * @param y y
 	 */
 	public Spot(final StendhalRPZone zone, final int x, final int y) {
-		super();
 		this.zone = zone;
 		this.x = x;
 		this.y = y;
 	}
+
+	/**
+	 * gets x
+	 *
+	 * @return x
+	 */
 	public int getX() {
 		return x;
 	}
+
+	/**
+	 * gets y
+	 *
+	 * @return y
+	 */
 	public int getY() {
 		return y;
 	}
+
+	/**
+	 * gets the zone
+	 *
+	 * @return zone
+	 */
 	public StendhalRPZone getZone() {
 		return zone;
 	}
-	
-	
+
 }

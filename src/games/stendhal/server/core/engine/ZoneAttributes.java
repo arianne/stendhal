@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -56,7 +56,7 @@ public class ZoneAttributes {
 		content.cacheable = false;
 		this.zone = zone;
 	}
-	
+
 	/**
 	 * Set the base name of the layers in the zone. Normally you do not need
 	 * to call this, as the name is got from the zone. Setting it is necessary
@@ -64,7 +64,7 @@ public class ZoneAttributes {
 	 * is in the case of special zones like the bank vault. For those zones
 	 * the base name comes from the parent zone used to create the special zone,
 	 * and the name must be set to the same for the attributes layer.
-	 * 
+	 *
 	 * @param name base zone name
 	 */
 	public void setBaseName(String name) {
