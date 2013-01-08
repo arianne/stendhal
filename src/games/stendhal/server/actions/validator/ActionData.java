@@ -30,7 +30,7 @@ public class ActionData {
 	 *
 	 * @return the entity
 	 */
-	protected Entity getEntity() {
+	public Entity getEntity() {
 		return entity;
 	}
 
@@ -39,7 +39,7 @@ public class ActionData {
 	 *
 	 * @return the slot
 	 */
-	protected Slot getSlot() {
+	public Slot getSlot() {
 		return slot;
 	}
 
