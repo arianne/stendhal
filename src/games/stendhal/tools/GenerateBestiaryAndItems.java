@@ -31,18 +31,9 @@ public class GenerateBestiaryAndItems {
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
 
+			@Override
 			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
-			}
-
-			@Override
-			public boolean equals(final Object obj) {
-				return true;
-			}
-			
-			@Override
-			public int hashCode() {
-				return 1;
 			}
 		});
 
@@ -130,9 +121,9 @@ public class GenerateBestiaryAndItems {
 	 * |location = All around. They are a plague. You can find lots of them at
 	 * forest. |strategy = Just hit first. Rats are not strong opponents. |loot =
 	 * 0-7 GP }}
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 * {{Item| |name = Club |class = Weapon |image = club |description= This
 	 * common club, a bit more sofisticated than a wood stick. |attributes =
 	 * Attack 10<br>
