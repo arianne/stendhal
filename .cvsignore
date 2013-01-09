@@ -42,3 +42,4 @@ bin
 *.umlproject
 build_server_xmlconf
 keystore_bak.ks
+.sonar
