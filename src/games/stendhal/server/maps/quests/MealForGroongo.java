@@ -660,7 +660,8 @@ public class MealForGroongo extends AbstractQuest {
     // - after the player has gathered all of required ingredients for the dessert
     class advanceQuestInProgressAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             if ("fetch_maindish".equals(player.getQuest(QUEST_SLOT, 0))) {
                 player.setQuest(QUEST_SLOT, 0, "check_dessert");
@@ -724,7 +725,8 @@ public class MealForGroongo extends AbstractQuest {
     // the quest is initiated
     class chooseMainDishAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             String requiredMainDish = getRequiredMainDish();
             String requiredIngredientsForMainDish = getRequiredIngredientsForMainDish(requiredMainDish);
@@ -736,7 +738,7 @@ public class MealForGroongo extends AbstractQuest {
             } catch (final NullPointerException e) {
                 requiredOldMainDish = "none";
             }
-            while (requiredMainDish.equals(requiredOldMainDish) & attempts <= 5 ) {
+            while (requiredMainDish.equals(requiredOldMainDish) && attempts <= 5 ) {
                 requiredMainDish = getRequiredMainDish();
                 requiredIngredientsForMainDish = getRequiredIngredientsForMainDish(requiredMainDish);
                 attempts++;
@@ -764,7 +766,8 @@ public class MealForGroongo extends AbstractQuest {
     // the quest is advanced further
     class chooseDessertAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             final String requiredMainDish = player.getQuest(QUEST_SLOT, 2);
             String requiredDessert = getRequiredDessert();
@@ -777,7 +780,7 @@ public class MealForGroongo extends AbstractQuest {
             } catch (final NullPointerException e) {
                 requiredOldDessert = "none";
             }
-            while (requiredDessert.equals(requiredOldDessert) & attempts <= 5 ) {
+            while (requiredDessert.equals(requiredOldDessert) && attempts <= 5 ) {
                 requiredDessert = getRequiredDessert();
                 requiredIngredientsForDessert = getRequiredIngredientsForDessert(requiredDessert);
                 attempts++;
@@ -807,7 +810,8 @@ public class MealForGroongo extends AbstractQuest {
     // depending on which stage the quest currently is
     class checkQuestInProgressAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             final String questState = player.getQuest(QUEST_SLOT, 0);
             String meal = "";
@@ -848,7 +852,8 @@ public class MealForGroongo extends AbstractQuest {
     // for preparing the main dish
     class checkIngredientsForMainDishAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             final ItemCollection missingIngredients = new ItemCollection();
             missingIngredients.addFromQuestStateString(player.getQuest(QUEST_SLOT, 3).replace(",", ";"));
@@ -870,7 +875,8 @@ public class MealForGroongo extends AbstractQuest {
     // for preparing the dessert
     class checkIngredientsForDessertAction implements ChatAction {
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser SpeakerNPC) {
 
             final ItemCollection missingIngredients = new ItemCollection();
             missingIngredients.addFromQuestStateString(player.getQuest(QUEST_SLOT, 5).replace(",", ";"));
@@ -905,7 +911,8 @@ public class MealForGroongo extends AbstractQuest {
 
         }
 
-        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+        @Override
+		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
             final String questState = player.getQuest(QUEST_SLOT, 0);
             ItemCollection missingIngredients = getMissingIngredients(player, questState);
             ItemCollection missingIngredientsToFetch = getMissingIngredients(player, questState);
@@ -1543,7 +1550,8 @@ public class MealForGroongo extends AbstractQuest {
         betterEndQuestActions.add(new IncreaseKarmaAction(10.0));
         betterEndQuestActions.add(
             new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                @Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                     final int amountOfMoneys = Rand.randUniform(2000, 4000);
                     final int amountOfSandwiches = Rand.randUniform(6, 12);
                     final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
@@ -1656,7 +1664,8 @@ public class MealForGroongo extends AbstractQuest {
         normalEndQuestActions.add(new IncreaseKarmaAction(50.0));
         normalEndQuestActions.add(
             new ChatAction() {
-                public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                @Override
+				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                     final int amountOfMoneys = Rand.randUniform(1000, 1500);
                     final int amountOfPies = Rand.randUniform(10, 15);
                     final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
