@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                   (C) Copyright 2003-2013 - Marauroa                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,26 +29,27 @@ import marauroa.common.game.RPAction;
  */
 public class WhereAction implements ActionListener {
 
+	/**
+	 * registers where actions
+	 */
 	public static void register() {
 		CommandCenter.register(WHERE, new WhereAction());
 	}
 
 	/**
 	 * processes the requested action.
-	 * 
+	 *
 	 * @param player the caller of the action
 	 * @param action the action to be performed
 	 */
-
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 		if (action.has(TARGET)) {
 			final String whoName = action.get(TARGET);
 
 			final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
-			String[] params = { whoName };
 
-			new GameEvent(player.getName(), WHERE, params).raise();
+			new GameEvent(player.getName(), WHERE, whoName).raise();
 
 			final Player who = rules.getPlayer(whoName);
 			final DomesticAnimal animal = player.searchAnimal(whoName, false);
