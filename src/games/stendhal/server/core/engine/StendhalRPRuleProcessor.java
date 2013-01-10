@@ -139,6 +139,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers;
 	}
 
+	@Override
 	public void setContext(final RPServerManager rpman) {
 		try {
 			/*
@@ -185,6 +186,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
+	@Override
 	public boolean checkGameVersion(final String game, final String version) {
 		try {
 			if (!game.equals(Configuration.getConfiguration().get("server_typeGame", "stendhal"))) {
@@ -248,10 +250,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers.getOnlinePlayer(name);
 	}
 
+	@Override
 	public boolean onActionAdd(final RPObject caster, final RPAction action, final List<RPAction> actionList) {
 		return true;
 	}
 
+	@Override
 	public void execute(final RPObject caster, final RPAction action) {
 		if (caster instanceof Player) {
 			((Player) caster).setLastClientActionTimestamp(System.currentTimeMillis());
@@ -264,6 +268,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/** Notify it when a new turn happens. */
+	@Override
 	public synchronized void beginTurn() {
 		final long start = System.nanoTime();
 
@@ -341,6 +346,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void executePlayerLogic() {
 		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+			@Override
 			public void execute(final Player player) {
 				try {
 					player.logic();
@@ -369,6 +375,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 
+	@Override
 	public synchronized void endTurn() {
 		final int currentTurn = getTurn();
 		try {
@@ -439,6 +446,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
+	@Override
 	public synchronized boolean onInit(final RPObject object) {
 		try {
 			if (object == null) {
@@ -517,7 +525,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     try {
                         final BufferedReader br = new BufferedReader(
-							new InputStreamReader(connection.getInputStream()));
+							new InputStreamReader(connection.getInputStream(), "UTF-8"));
                         try {
                             msg = br.readLine();
                         } finally {
@@ -539,6 +547,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
+	@Override
 	public synchronized boolean onExit(final RPObject object) {
 		return onLogout(object, "logout");
 	}
@@ -579,15 +588,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
+	@Override
 	public synchronized void onTimeout(final RPObject object) {
 		onLogout(object, "timeout");
 	}
 
+	@Override
 	public AccountResult createAccount(final String username, final String password, final String email) {
 		final AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
 
+	@Override
 	public CharacterResult createCharacter(final String username, final String character, final RPObject template) {
 		final CharacterCreator creator = new CharacterCreator(username, character, template);
 		return creator.create();
@@ -618,6 +630,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new Task<Player>() {
 
+			@Override
 			public void execute(final Player player) {
 				player.sendPrivateText(NotificationType.SUPPORT, message);
 				player.notifyWorldAboutChanges();
@@ -627,6 +640,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		new FilterCriteria<Player>() {
 
+			@Override
 			public boolean passes(final Player p) {
 				return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
 			}
@@ -663,6 +677,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (instance != null) {
 			if (isOnline) {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+					@Override
 					public void execute(final Player player) {
 						player.notifyOnline(playerToNotifyAbout.getName());
 					}
@@ -670,6 +685,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			} else {
 				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+					@Override
 					public void execute(final Player player) {
 						player.notifyOffline(playerToNotifyAbout.getName());
 					}
@@ -685,6 +701,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogin(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+			@Override
 			public void execute(final Player player) {
 				if(playerToNotifyAbout.isGhost()) {
 					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
@@ -708,6 +725,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private void updatePlayerNameListForPlayersOnLogout(final Player playerToNotifyAbout) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+			@Override
 			public void execute(final Player player) {
 				player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
 			}
@@ -738,6 +756,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param resource name of resource
 	 * @return mime content/type or <code>null</code>
 	 */
+	@Override
 	public String getMimeTypeForResource(String resource) {
 		if (resource.endsWith(".tmx")) {
 			return "text/xml";
@@ -755,6 +774,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param resource name of resource
 	 * @return InputStream or <code>null</code>
 	 */
+	@Override
 	public InputStream getResource(String resource) {
 		if (resource.startsWith("/tiled") || resource.startsWith("/data")) {
 			return StendhalRPRuleProcessor.class.getClassLoader().getResourceAsStream(resource.substring(1));
