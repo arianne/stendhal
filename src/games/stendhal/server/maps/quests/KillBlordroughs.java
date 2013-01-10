@@ -47,7 +47,7 @@ import org.apache.log4j.Logger;
  * <li> Despot asking you to kill 100 blordrough warriors.
  * <li> Kill them and go back to Despot for your reward.
  * </ul>
- * 
+ *
  *
  * REWARD:<ul>
  * <li> 500k XP
@@ -60,19 +60,19 @@ import org.apache.log4j.Logger;
  */
 
  public class KillBlordroughs extends AbstractQuest {
-	 
+
 	private static final String QUEST_NPC = "Despot Halb Errvl";
 	private static final String QUEST_SLOT = "kill_blordroughs";
-	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;	
+	private final long questdelay = MathHelper.MILLISECONDS_IN_ONE_WEEK;
 	protected final int killsnumber = 100;
-	private SpeakerNPC npc;	
+	private SpeakerNPC npc;
 	private static Logger logger = Logger.getLogger(KillBlordroughs.class);
-	
-	protected static List<String> Blordroughs = Arrays.asList(
+
+	protected static List<String> BLORDROUGHS = Arrays.asList(
 			"blordrough quartermaster",
 			"blordrough corporal",
 			"blordrough storm trooper");
-	
+
 	/**
 	 * function returns list of blordrough creatures.
 	 * @return - list of blordrough creatures
@@ -80,15 +80,15 @@ import org.apache.log4j.Logger;
 	protected LinkedList<Creature> getBlordroughs() {
 		LinkedList<Creature> blordroughs = new LinkedList<Creature>();
 		final EntityManager manager = SingletonRepository.getEntityManager();
-		for (int i=0; i<Blordroughs.size(); i++) {
-			Creature creature = manager.getCreature(Blordroughs.get(i));
+		for (int i=0; i<BLORDROUGHS.size(); i++) {
+			Creature creature = manager.getCreature(BLORDROUGHS.get(i));
 			if (!creature.isRare()) {
 				blordroughs.add(creature);
 			}
 		}
 		return(blordroughs);
 	}
-	
+
 	/**
 	 * function checking if quest is active for player or no.
 	 * @param player - player for who we will check quest state.
@@ -96,11 +96,11 @@ import org.apache.log4j.Logger;
 	 */
 	private boolean questInProgress(final Player player) {
 		if(player.getQuest(QUEST_SLOT)!=null) {
-			return(!player.getQuest(QUEST_SLOT,0).equals("done"));			
+			return(!player.getQuest(QUEST_SLOT,0).equals("done"));
 		}
 		return(false);
 	}
-	
+
 	/**
 	 * function decides, if quest can be given to player
 	 * @param player - player for which we will check quest slot
@@ -112,7 +112,7 @@ import org.apache.log4j.Logger;
 		}
 		if (player.getQuest(QUEST_SLOT, 0).equals("done")) {
 			final String questLast = player.getQuest(QUEST_SLOT, 1);
-			final Long time = currenttime - 
+			final Long time = currenttime -
 				Long.parseLong(questLast);
 			if (time > questdelay) {
 				return true;
@@ -120,7 +120,7 @@ import org.apache.log4j.Logger;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * function will return NPC answer how much time remains.
 	 * @param player - chatting player.
@@ -130,7 +130,7 @@ import org.apache.log4j.Logger;
 		String reply = "";
 		String questLast = player.getQuest(QUEST_SLOT, 1);
 		if (questLast != null) {
-			final long timeRemaining = (Long.parseLong(questLast) + 
+			final long timeRemaining = (Long.parseLong(questLast) +
 					questdelay - currenttime);
 
 			if (timeRemaining > 0) {
@@ -142,24 +142,24 @@ import org.apache.log4j.Logger;
 				reply = "I dont want to decide about you now.";
 				logger.error("wrong time count	for player "+player.getName()+": "+
 						"current time is "+currenttime+
-						", last quest time is "+questLast, 
+						", last quest time is "+questLast,
 						new Throwable());
 			}
 		}
 		return(reply);
 	}
-	
+
 	/**
 	 * function returns difference between recorded number of blordrough creatures
 	 *     and currently killed creatures numbers.
-	 * @param player - player for who we counting this 
+	 * @param player - player for who we counting this
 	 * @return - number of killed blordrough creatures
 	 */
 	private int getKilledCreaturesNumber(final Player player) {
 		int count = 0;
 		String temp;
-		int solo; 
-		int shared; 
+		int solo;
+		int shared;
 		int recsolo;
 		int recshared;
 		final LinkedList<Creature> blordroughs = getBlordroughs();
@@ -184,7 +184,7 @@ import org.apache.log4j.Logger;
 			} else {
 				solo = Integer.parseInt(temp);
 			}
-			
+
 			temp = player.getKeyedSlot("!kills", "shared."+tempName);
 			if (temp==null) {
 				shared = 0;
@@ -196,14 +196,14 @@ import org.apache.log4j.Logger;
 		}
 		return(count);
 	}
-	
+
 	/**
 	 * function will update player quest slot.
 	 * @param player - player for which we will record quest.
 	 */
 	private void writeQuestRecord(final Player player) {
 		StringBuilder sb = new StringBuilder();
-		LinkedList<Creature> sortedcreatures = getBlordroughs();		
+		LinkedList<Creature> sortedcreatures = getBlordroughs();
 		sb.append("given");
 		for (int i=0; i<sortedcreatures.size(); i++) {
 			String temp;
@@ -215,21 +215,21 @@ import org.apache.log4j.Logger;
 			} else {
 				solo = Integer.parseInt(temp);
 			}
-			
+
 			temp = player.getKeyedSlot("!kills", "shared."+sortedcreatures.get(i).getName());
 			if (temp==null) {
 				shared = 0;
 			} else {
 				shared = Integer.parseInt(temp);
 			}
-				
+
 			sb.append(";"+solo);
-			sb.append(";"+shared);			
+			sb.append(";"+shared);
 		}
 		//player.sendPrivateText(sb.toString());
 		player.setQuest(QUEST_SLOT, sb.toString());
 	}
-	
+
 	/**
 	 * function will complete quest and reward player.
 	 * @param player - player to be rewarded.
@@ -245,12 +245,13 @@ import org.apache.log4j.Logger;
 		player.addKarma(karmabonus);
 		player.addXP(500000);
 	}
-	 
+
 	/**
 	 * class for quest talking.
 	 */
 	class QuestAction implements ChatAction {
 
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if(questInProgress(player)) {
 				int killed = getKilledCreaturesNumber(player);
@@ -272,39 +273,39 @@ import org.apache.log4j.Logger;
 					// player killed more then needed soldiers
 					npc.say("Pretty good! You killed "+(killed-killsnumber)+" extra "+
 							Grammar.plnoun(killed-killsnumber, "soldier")+"! Take this moneys, and remember, i may wish you to do this job again in one week!");
-				}				
+				}
 				rewardPlayer(player, killed);
 			} else {
 				final Long currtime = System.currentTimeMillis();
 				if (questCanBeGiven(player, currtime)) {
 					// will give quest to player.
 					npc.say("I need help in battles with #Blordrough warriors. They really annoying me. Kill at least 100 of any blordrough soldiers and i will reward you.");
-					writeQuestRecord(player);					
+					writeQuestRecord(player);
 				} else {
 					npc.say(getNPCTextReply(player, currtime));
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * add quest state to npc's fsm.
 	 */
-	private void step_1() {	
-		npc.add(ConversationStates.ATTENDING, 
+	private void step_1() {
+		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("Blordrough","blordrough","blordroughs"),
-				null, 
-				ConversationStates.ATTENDING, 
+				null,
+				ConversationStates.ATTENDING,
 				"My Mithrilbourgh army have great losses in battles with Blordrough soldiers. They coming from side of Ados tunnels.",
 				null);
-		npc.add(ConversationStates.ATTENDING, 
+		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				null, 
-				ConversationStates.ATTENDING, 
+				null,
+				ConversationStates.ATTENDING,
 				null,
 				new QuestAction());
-	}	 
-	 
+	}
+
 	/**
 	 * add quest to the Stendhal world.
 	 */
@@ -318,23 +319,25 @@ import org.apache.log4j.Logger;
 				true);
 		step_1();
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		// not currently an active quest
 		return new ArrayList<String>();
 	}
-	
+
 	/**
 	 * return name of quest slot.
 	 */
+	@Override
 	public String getSlotName() {
 		return(QUEST_SLOT);
 	}
-	 
+
 	/**
 	 * return name of quest.
 	 */
+	@Override
 	public String getName() {
 		return("KillBlordroughs");
 	}
@@ -344,4 +347,4 @@ import org.apache.log4j.Logger;
 		return "Despot Halb Errvl";
 	}
 }
- 
+

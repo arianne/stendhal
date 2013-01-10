@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,80 +24,82 @@ import java.util.List;
  * ExpressionType objects are immutable. To alter expression types,
  * there is always created a new ExpressionType object (similar
  * to the immutable Java String class).
- * 
+ *
  * @author Martin Fuchs
  */
-public final class ExpressionType {
+public final class ExpressionType implements Serializable {
+
+	private static final long serialVersionUID = -8694964043717271498L;
 
     // Expression type string constants
-    
-    /** String constant representing verb form. */
-    public static final String VERB = "VER"; 
-    
+
+	/** String constant representing verb form. */
+    public static final String VERB = "VER";
+
     /** String constant representing gerund form. */
-    public static final String GERUND = "GER"; 
-    
+    public static final String GERUND = "GER";
+
     /** String constant representing conditional form. */
-    public static final String CONDITIONAL = "CON"; 
+    public static final String CONDITIONAL = "CON";
     /** String constant representing negated form. */
-    public static final String NEGATED = "NEG"; 
+    public static final String NEGATED = "NEG";
     /** String constant representing pronoun. */
-    public static final String PRONOUN = "PRO"; 
+    public static final String PRONOUN = "PRO";
 
     /** String constant representing an object (syntax).*/
-    public static final String OBJECT = "OBJ"; 
-    
-    /** String constant representing a fluid. */
-    public static final String FLUID = "FLU"; 
-    
-    /** String constant representing food. */
-    public static final String FOOD = "FOO"; 
-    
-    /** String constant representing an obsessional word. */
-    public static final String OBSESSIONAL = "OBS"; 
+    public static final String OBJECT = "OBJ";
 
-    
+    /** String constant representing a fluid. */
+    public static final String FLUID = "FLU";
+
+    /** String constant representing food. */
+    public static final String FOOD = "FOO";
+
+    /** String constant representing an obsessional word. */
+    public static final String OBSESSIONAL = "OBS";
+
+
     /** String constant representing a subject. */
-    public static final String SUBJECT = "SUB"; 
-    
+    public static final String SUBJECT = "SUB";
+
     /** String constant representing an animal. */
-    public static final String ANIMAL = "ANI"; 
-    
+    public static final String ANIMAL = "ANI";
+
     /** String constant representing a person's name. */
-    public static final String NAME = "NAM"; 
+    public static final String NAME = "NAM";
 
     /** String constant representing an adjective or adverb. */
-    public static final String ADJECTIVE = "ADJ"; 
-    
+    public static final String ADJECTIVE = "ADJ";
+
     /** String constant representing a color. */
-    public static final String COLOR = "COL"; 
+    public static final String COLOR = "COL";
 
     /** String constant representing a numeral. */
-    public static final String NUMERAL = "NUM"; 
-    
+    public static final String NUMERAL = "NUM";
+
     /** String constant representing a preposition. */
-    public static final String PREPOSITION = "PRE"; 
+    public static final String PREPOSITION = "PRE";
 
     /** String constant representing  a question word. */
-    public static final String QUESTION = "QUE"; 
+    public static final String QUESTION = "QUE";
 
     /** String constant representing an expression which is to be ignored. */
-    public static final String IGNORE = "IGN"; 
+    public static final String IGNORE = "IGN";
 
     /** String constant representing a suffix. */
     public static final String SUFFIX = "-";
 
     /** String constant representing plural form. */
-    public static final String PLURAL = "PLU"; 
+    public static final String PLURAL = "PLU";
 
     /** String constant representing a n expression dynamically defined at runtime. */
-    public static final String DYNAMIC = "DYN"; 
+    public static final String DYNAMIC = "DYN";
 
     /** String constant representing a type less expression. */
-    public static final String UNKNOWN = ""; 
+    public static final String UNKNOWN = "";
 
     // derived string type constants
-    
+
     public static final String SUFFIX_GERUND = SUFFIX + GERUND;
     public static final String SUFFIX_COLOR = SUFFIX + COLOR;
     public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
@@ -151,7 +154,7 @@ public final class ExpressionType {
 
     /**
 	 * Returns true if, and only if, length() is 0.
-	 * 
+	 *
 	 * @return true if length() is 0, otherwise false
 	 */
     public boolean isEmpty() {
@@ -335,8 +338,8 @@ public final class ExpressionType {
      * Check if the given String contains a type string specifier.
      *
      * @param str
-     * 
-     * @return true if first letter is upper case and contains any of the predefined TYPESTRINGs 
+     *
+     * @return true if first letter is upper case and contains any of the predefined TYPESTRINGs
      * */
     public static boolean isTypeString(final String str) {
         if (str.length() > 0) {
@@ -413,10 +416,11 @@ public final class ExpressionType {
      */
     public ExpressionType negate()
     {
-    	if (isNegated())
-    		return new ExpressionType(typeString.replace(SUFFIX_NEGATED, ""));
-    	else
-    		return new ExpressionType(typeString + SUFFIX_NEGATED);
+    	if (isNegated()) {
+			return new ExpressionType(typeString.replace(SUFFIX_NEGATED, ""));
+		} else {
+			return new ExpressionType(typeString + SUFFIX_NEGATED);
+		}
     }
 
     @Override
