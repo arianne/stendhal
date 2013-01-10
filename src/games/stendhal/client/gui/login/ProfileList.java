@@ -18,7 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -42,7 +43,7 @@ public class ProfileList {
 
 	/**
 	 * Add a profile. This will remove duplicates.
-	 * 
+	 *
 	 * @param profile
 	 *            A user login profile.
 	 */
@@ -63,7 +64,7 @@ public class ProfileList {
 
 	/**
 	 * Get an iterator of profiles.
-	 * 
+	 *
 	 * @return An iterator of profiles.
 	 */
 	public Iterator<Profile> iterator() {
@@ -80,7 +81,7 @@ public class ProfileList {
 		final Encoder codec = new Encoder();
 		String s;
 
-		final BufferedReader r = new BufferedReader(new InputStreamReader(in));
+		final BufferedReader r = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 
 		clear();
 
@@ -91,7 +92,7 @@ public class ProfileList {
 
 	/**
 	 * Remove a profile.
-	 * 
+	 *
 	 * @param profile
 	 *            A user login profile.
 	 */
@@ -101,7 +102,7 @@ public class ProfileList {
 
 	/**
 	 * Save a list of profiles to an output stream.
-	 * 
+	 *
 	 * @param out
 	 *            The stream to write.
 	 * @throws IOException if any IO operation fails
@@ -109,16 +110,17 @@ public class ProfileList {
 	public void save(final OutputStream out) throws IOException {
 		final Encoder codec = new Encoder();
 
-		final PrintStream ps = new PrintStream(out);
+		final Writer writer = new OutputStreamWriter(out, "UTF-8");
 
 		try {
 			final Iterator<Profile> iter = iterator();
 
 			while (iter.hasNext()) {
-				ps.println(codec.encode(iter.next().encode()));
+				writer.write(codec.encode(iter.next().encode()));
+				writer.write(System.getProperty("line.separator"));
 			}
 		} finally {
-			ps.flush();
+			writer.flush();
 		}
 	}
 

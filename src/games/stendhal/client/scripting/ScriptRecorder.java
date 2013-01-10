@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,16 +11,16 @@
  ***************************************************************************/
 package games.stendhal.client.scripting;
 
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.chatlog.StandardEventLine;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
  * Record chat/commands.
- * 
+ *
  * @author hendrik
  */
 public class ScriptRecorder {
@@ -36,19 +35,19 @@ public class ScriptRecorder {
 
 	/**
 	 * Creates a new ScriptRecorder.
-	 * 
+	 *
 	 * @param classname
 	 *            Name of Class to record
-	 * @throws FileNotFoundException
-	 *             if the file cannot be created
+	 * @throws IOException
+	 *             in case of an input/output error
 	 */
-	public ScriptRecorder(final String classname) throws FileNotFoundException {
+	public ScriptRecorder(final String classname) throws IOException {
 		this.classname = classname;
 		filename = System.getProperty("java.io.tmpdir") + "/" + classname
 				+ ".java";
 		j2DClient.get().addEventLine(new StandardEventLine("Starting recoding to " + filename));
 		lastTimestamp = 0;
-		ps = new PrintStream(filename);
+		ps = new PrintStream(filename, "UTF-8");
 	}
 
 	/**
@@ -72,7 +71,7 @@ public class ScriptRecorder {
 
 	/**
 	 * Records a chat/command.
-	 * 
+	 *
 	 * @param text
 	 *            command to record
 	 */

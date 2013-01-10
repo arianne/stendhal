@@ -52,7 +52,7 @@ public class ChatCache {
 
 			if (chatfile.exists()) {
 				final FileInputStream fis = new FileInputStream(chatfile);
-				final BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+				final BufferedReader br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
 				try {
 					String line = null;
@@ -77,8 +77,7 @@ public class ChatCache {
 		FileOutputStream fo;
 		try {
 			new File(chatCacheFile).getParentFile().mkdirs();
-			fo = new FileOutputStream(chatCacheFile);
-			final PrintStream ps = new PrintStream(fo);
+			final PrintStream ps = new PrintStream(chatCacheFile, "UTF-8");
 
 			/*
 			 * Keep size of chat.log in a reasonable size.
@@ -92,7 +91,6 @@ public class ChatCache {
 				ps.println(iterator.next());
 			}
 			ps.close();
-			fo.close();
 		} catch (final IOException ex) {
 			logger.error(ex, ex);
 		}

@@ -13,9 +13,10 @@
 package games.stendhal.tools.test;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 /**
@@ -80,7 +81,7 @@ public class ChatTestCreator {
 			System.exit(1);
 		}
 
-		final BufferedReader br = new BufferedReader(new FileReader(args[0]));
+		final BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(args[0]), "UTF-8"));
 		PrintStream out = System.out;
 		if (args.length > 1) {
 			out = new PrintStream(new FileOutputStream(args[1]));

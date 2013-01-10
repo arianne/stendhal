@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -22,7 +21,6 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import javax.swing.ImageIcon;
@@ -34,7 +32,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Displays the state-transition chart of an NPC.
- * 
+ *
  * @author timothyb89
  */
 public class TransitionDiagram {
@@ -51,12 +49,12 @@ public class TransitionDiagram {
 			final File image = File.createTempFile("stendhal-graph", ".png");
 
 			// print the data
-			final PrintStream ps = new PrintStream(new FileOutputStream(dat));
+			final PrintStream ps = new PrintStream(dat, "UTF-8");
 			ps.print(data);
 			ps.close();
 
 			// execute
-			
+
 			String dotPath = WtWindowManager.getInstance().getProperty("dot", "dot");
 			if (dotPath == null) {
 				dotPath = "dot";
@@ -96,7 +94,7 @@ public class TransitionDiagram {
 
 	/**
 	 * Testcode.
-	 * 
+	 *
 	 * @param args
 	 *            ignored
 	 */
@@ -123,7 +121,7 @@ public class TransitionDiagram {
 		final int ow = img.getWidth(null);
 		final int oh = img.getHeight(null);
 		// screens are usually wide..
-		final int w = ssize.width - 20; 
+		final int w = ssize.width - 20;
 		final int h = ssize.height - 100;
 
 		if ((ow >= w) || (oh >= h)) {

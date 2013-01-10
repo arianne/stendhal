@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,15 +22,15 @@ import marauroa.common.game.RPAction;
 
 /**
  * Connects to the server and asks for support.
- * 
+ *
  * @author hendrik
  */
 public class Answer extends StandardClientFramework {
-	private String targetPlayer;
+	private final String targetPlayer;
 
 	/**
 	 * Creates a ShouterMain.
-	 * 
+	 *
 	 * @param h
 	 *            host
 	 * @param u
@@ -76,7 +75,7 @@ public class Answer extends StandardClientFramework {
 
 	/**
 	 * Main entry point.
-	 * 
+	 *
 	 * @param args
 	 *            see help
 	 */

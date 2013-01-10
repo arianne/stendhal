@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,8 +23,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseEvent;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Date;
 
 import javax.swing.DefaultBoundedRangeModel;
@@ -55,7 +56,7 @@ public class KTextEdit extends JComponent {
 
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Logger.getLogger(KTextEdit.class);
-	
+
 	/** The actual text component for showing the chat log. */
 	JTextPane textPane;
 	/** Scroll pane containing the text component. */
@@ -64,7 +65,7 @@ public class KTextEdit extends JComponent {
 	private String name = "";
 	/** Background color when not highlighting unread messages. */
 	private Color defaultBackground = Color.white;
-	
+
 	/** Listener for opening the popup menu when it's requested. */
 	private final class TextPaneMouseListener extends MousePopupAdapter {
 		@Override
@@ -92,7 +93,7 @@ public class KTextEdit extends JComponent {
 			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
 	}
-	
+
 	@Override
 	public void setFont(Font font) {
 		/*
@@ -110,7 +111,7 @@ public class KTextEdit extends JComponent {
 	KTextEdit() {
 		buildGUI();
 	}
-	
+
 	/**
 	 * This method builds the Gui.
 	 */
@@ -126,12 +127,12 @@ public class KTextEdit extends JComponent {
 		} else {
 			logger.warn("Failed to turn off caret following");
 		}
-		
+
 		textPane.addMouseListener(new TextPaneMouseListener());
-		
+
 		initStylesForTextPane(textPane, textPane.getFont().getSize());
 		setLayout(new BorderLayout());
-		
+
 		scrollPane = new JScrollPane(textPane) {
 			@Override
 			public JScrollBar createVerticalScrollBar() {
@@ -140,13 +141,13 @@ public class KTextEdit extends JComponent {
 				return bar;
 			}
 		};
-	
+
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(final AdjustmentEvent ev) {
 				JScrollBar bar = (JScrollBar) ev.getAdjustable();
 				// Try to avoid turning the new message indicator off
-				// while the player keeps adjusting the scroll bar to 
+				// while the player keeps adjusting the scroll bar to
 				// avoid missleading results
 				if (!bar.getValueIsAdjusting() && isAtMaximum(bar)) {
 					setUnreadLinesWarning(false);
@@ -159,10 +160,10 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Initializes the basic styles.
-	 * 
+	 *
 	 * @param textPane
 	 *            the active text component
-	 * @param mainTextSize size of regular text 
+	 * @param mainTextSize size of regular text
 	 */
 	protected void initStylesForTextPane(final JTextPane textPane, int mainTextSize) {
 		Style regular = textPane.getStyle("regular");
@@ -209,7 +210,7 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Get the style corresponding to a description and color.
-	 * 
+	 *
 	 * @param desiredColor
 	 *            the color with which the text must be colored
 	 * @param styleDescription
@@ -224,8 +225,8 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Insert a header.
-	 * 
-	 * @param header 
+	 *
+	 * @param header
 	 */
 	protected void insertHeader(final String header) {
 		final Document doc = textPane.getDocument();
@@ -241,7 +242,7 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Insert time stamp.
-	 * 
+	 *
 	 * @param header time stamp
 	 */
 	protected void insertTimestamp(final String header) {
@@ -258,12 +259,12 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Add text using a style defined for a notification type.
-	 * 
+	 *
 	 * @param text
 	 * @param type
 	 */
 	protected void insertText(final String text, final NotificationType type) {
-		
+
 			final Color color = type.getColor();
 			final String styleDescription = type.getStyleDescription();
 			final Document doc = textPane.getDocument();
@@ -281,7 +282,7 @@ public class KTextEdit extends JComponent {
 					}
 				};
 				parser.format(text);
-			} catch (final Exception e) { 
+			} catch (final Exception e) {
 				// BadLocationException
 				logger.error("Couldn't insert initial text.", e);
 			}
@@ -312,7 +313,7 @@ public class KTextEdit extends JComponent {
 	 */
 	private void addLine(final String header, final String line,
 			final NotificationType type) {
-		// do the whole thing in the event dispatch thread to ensure the generated 
+		// do the whole thing in the event dispatch thread to ensure the generated
 		// events get handled in the correct order
 		try {
 			if (SwingUtilities.isEventDispatchThread()) {
@@ -329,7 +330,7 @@ public class KTextEdit extends JComponent {
 			logger.error(e, e);
 		}
 	}
-	
+
 	/**
 	 * Add a new line with a specified header and content. The style will be
 	 * chosen according to the type of the message. Keep the view at the last
@@ -352,10 +353,10 @@ public class KTextEdit extends JComponent {
 		insertHeader(header);
 		insertText(line, type);
 	}
-	
+
 	/**
 	 * Check if a scroll bar is at its maximum value.
-	 * 
+	 *
 	 * @param bar scroll bar
 	 * @return <code>true</code> if the scrollbar is at its maximum value
 	 * 	location, <code>false</code>otherwise
@@ -366,39 +367,39 @@ public class KTextEdit extends JComponent {
 
 	/**
 	 * Append an event line.
-	 * 
-	 * @param line 
+	 *
+	 * @param line
 	 */
 	public void addLine(final EventLine line) {
 		this.addLine(line.getHeader(), line.getText(), line.getType());
 	}
-	
+
 	/**
 	 * Clear the context.
 	 */
 	public void clear() {
 		textPane.setText("");
 	}
-	
+
 	/**
 	 * Set the background color to be used normally, when not highlighting
 	 * unread messages.
-	 * 
+	 *
 	 * @param color background color
 	 */
 	void setDefaultBackground(Color color) {
 		defaultBackground = color;
 	}
-	
+
 	/**
 	 * Set the name of the logged channel.
-	 * 
+	 *
 	 * @param name channel name
 	 */
 	void setChannelName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Set a clear warning for the user that there are new, unread lines.
 	 * @param warn true if the warning indicator should be shown, false otherwise
@@ -410,10 +411,10 @@ public class KTextEdit extends JComponent {
 			textPane.setBackground(defaultBackground);
 		}
 	}
-	
+
 	/**
 	 * Get name of the file where logs should be saved on request.
-	 * 
+	 *
 	 * @return file name
 	 */
 	private String getSaveFileName() {
@@ -423,15 +424,15 @@ public class KTextEdit extends JComponent {
 			return stendhal.getGameFolder() + "gamechat-" + name + ".log";
 		}
 	}
-	
+
 	/**
 	 * Save the contents into the log file and inform the user about it.
 	 */
 	public void save() {
 		String fname = getSaveFileName();
-		FileWriter fo;
+		Writer fo;
 		try {
-			fo = new FileWriter(fname);
+			fo = new OutputStreamWriter(new FileOutputStream(fname), "UTF-8");
 			try {
 				textPane.write(fo);
 			} finally {
@@ -443,7 +444,7 @@ public class KTextEdit extends JComponent {
 			logger.error(ex, ex);
 		}
 	}
-	
+
 	/**
 	 * A custom range model that implements the automatically scrolling pane.
 	 * Keeps the scrollbar at bottom, if it it was there before.
@@ -452,7 +453,7 @@ public class KTextEdit extends JComponent {
 		@Override
 		public void setRangeProperties(int value, int extent, int min, int max,
 				boolean adjusting) {
-			boolean atBottom = getValue() + getExtent() >= getMaximum(); 
+			boolean atBottom = getValue() + getExtent() >= getMaximum();
 			if (atBottom && (value == getValue())) {
 				// We are at bottom, use adjusted values to ensure we stay
 				// at bottom

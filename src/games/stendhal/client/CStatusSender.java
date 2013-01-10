@@ -126,7 +126,7 @@ public final class CStatusSender {
 
 	/**
 	 * generates a random string
-	 * 
+	 *
 	 * @return random string
 	 */
 	private static String generateRandomString() {
@@ -159,7 +159,7 @@ public final class CStatusSender {
 					buf.write(b);
 					result = bis.read();
 				}
-				clientid = buf.toString().trim();
+				clientid = buf.toString("UTF-8").trim();
 			} finally {
 				bis.close();
 				is.close();
@@ -172,7 +172,7 @@ public final class CStatusSender {
 	private static void saveID() {
 		try {
 			final OutputStream os = Persistence.get().getOutputStream(false, stendhal.getGameFolder(), FILE_NAME);
-			final OutputStreamWriter writer = new OutputStreamWriter(os);
+			final OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
 			try {
 				writer.write(clientid);
 			} finally {
