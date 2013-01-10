@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Dialog of the NPC Conversation Parser Test Environment.
- * 
+ *
  * @author M. Fuchs
  */
 @SuppressWarnings("serial")
@@ -179,7 +179,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
         btLoadEntities.setText("load entities");
         btLoadEntities.setToolTipText("Load entities into word list.");
         btLoadEntities.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoadEntitiesActionPerformed(evt);
             }
         });
@@ -190,7 +191,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
         btLoadWorld.setText("load world");
         btLoadWorld.setToolTipText("Load zone configurations and quests to complete the word list like in the Stendhal server.");
         btLoadWorld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoadWorldActionPerformed(evt);
             }
         });
@@ -201,7 +203,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
         btWriteWordlist.setText("write WL");
         btWriteWordlist.setToolTipText("Update word list in database and source code.");
         btWriteWordlist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btWriteWordlistActionPerformed(evt);
             }
         });
@@ -221,14 +224,16 @@ public class TestEnvDlg extends javax.swing.JDialog {
         cbSentence.setEditable(true);
         cbSentence.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy 3 cookies", "give a bottle of wine", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbSentence.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSentenceActionPerformed(evt);
             }
         });
 
         btParse.setText("parse");
         btParse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btParseActionPerformed(evt);
             }
         });
@@ -394,7 +399,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         cbMatchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "joker matching", "exact matching", "case insensitive", "similarity matching", "controlled matching", "merged expressions" }));
         cbMatchType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMatchTypeActionPerformed(evt);
             }
         });
@@ -402,7 +408,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
         cbMatchExpr.setEditable(true);
         cbMatchExpr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "buy seven bananas", "buy bananas", "buy * bananas", "buy * *", "|EXACT|buy seven bananas", "buy 3 cookies", "|JOKER|buy * bananas", "give a bottle of wine", "give *", "give * * * *", "|JOKER|ICASE|give *", "buy enhanced lion shield", "Would you like to have an ice cream?", "Mary has a little lamb.", "I and you, he and they", "What is the an answer to life, the universe and everything?", "to be or not to be", "Take these three grilled steaks and have fun!", "99 red balloons", "Hi, how are you?", "_Hi, how are you?" }));
         cbMatchExpr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMatchExprActionPerformed(evt);
             }
         });
@@ -417,7 +424,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 
         btMatch.setText("test match");
         btMatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMatchActionPerformed(evt);
             }
         });
@@ -563,8 +571,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		try {
-			Object selected = cbSentence.getSelectedItem().toString();
-			text = selected != null ? selected.toString() : "";
+			text = cbSentence.getSelectedItem().toString();
 			processSentence(text);
 		} catch(Exception e) {
 			String msg = "Exception: " + e.getMessage();
@@ -616,8 +623,8 @@ public class TestEnvDlg extends javax.swing.JDialog {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
 		try {
-			Object matchSel = cbMatchExpr.getSelectedItem().toString();
-			processMatching(text, matchSel != null ? matchSel.toString() : "", selectedMatcher, mergeExpressions);
+			String matchSel = cbMatchExpr.getSelectedItem().toString();
+			processMatching(text, matchSel, selectedMatcher, mergeExpressions);
 		} finally {
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -629,6 +636,7 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	 */
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				new TestEnvDlg().setVisible(true);
 			}
@@ -664,9 +672,9 @@ public class TestEnvDlg extends javax.swing.JDialog {
 	private String decodeExprType(ExpressionType t) {
 		StringBuilder type = new StringBuilder();
 
-		if (t.isEmpty())
+		if (t.isEmpty()) {
 			type.append(" - UNKNOWN");
-		else {
+		} else {
 			if (t.isSubject()) {
 				type.append(" - subject");
 			}
