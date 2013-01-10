@@ -61,6 +61,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
@@ -684,7 +685,7 @@ public class Player extends RPEntity implements UseListener {
 	public String getSkill(final String key) {
 		return getKeyedSlot("skills", key);
 	}
-	
+
 	/**
 	 * Get the current value for the skill of a magic nature
 	 * @param nature the nature to get the skill for
@@ -703,7 +704,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 		return skillValue;
 	}
-	
+
 	/**
 	 * Increase the skill points for a magic nature by a given amount
 	 * @param nature
@@ -725,10 +726,10 @@ public class Player extends RPEntity implements UseListener {
 			// log event
 			new GameEvent(getName(), "nature-"+nature.toString(), oneup.toString()).raise();
 		}
-		setSkill(nature.toString()+"_xp", 
+		setSkill(nature.toString()+"_xp",
 				Integer.valueOf(newValue).toString());
 	}
-	
+
 	public int getMagicSkill(final Nature nature) {
 		int skillLevel = 0;
 		String skillString = getSkill(nature.toString());
@@ -1916,7 +1917,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 		if (obj instanceof Player) {
 			final Player other = (Player) obj;
-			return this.getName().toLowerCase().equals(other.getName().toLowerCase());
+			return this.getName().toLowerCase(Locale.ENGLISH).equals(other.getName().toLowerCase(Locale.ENGLISH));
 		}
 		return false;
 	}
@@ -2004,11 +2005,11 @@ public class Player extends RPEntity implements UseListener {
 
 		return result;
 	}
-	
+
 	/**
 	 * Search recursively for working rings of life inside objects and their
 	 * content slots.
-	 *   
+	 *
 	 * @param obj
 	 * @param list
 	 */
