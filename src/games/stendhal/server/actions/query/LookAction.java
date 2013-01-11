@@ -21,14 +21,11 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.validator.ActionData;
 import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.actions.validator.ExtractEntityValidator;
+import games.stendhal.server.actions.validator.SlotVisibleIfEntityContained;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * Processes a look menu action.
@@ -38,6 +35,7 @@ public class LookAction implements ActionListener {
 	private static final ActionValidation VALIDATION = new ActionValidation();;
 	static {
 		VALIDATION.add(new ExtractEntityValidator());
+		VALIDATION.add(new SlotVisibleIfEntityContained());
 	}
 
 	/**
@@ -64,18 +62,6 @@ public class LookAction implements ActionListener {
 
 		if (entity != null) {
 
-			if (entity instanceof Item) {
-				Item item = (Item) entity;
-				RPObject base = item.getBaseContainer();
-				if (base instanceof Player) {
-					Player owner = (Player) base;
-					// Check if looking is allowed
-					if ((player != owner) && isHiddenSlot(owner, item.getContainerSlot().getName())) {
-						return;
-					}
-				}
-			}
-
 			String name = entity.get(TYPE);
 			if (entity.has(NAME)) {
 				name = entity.get(NAME);
@@ -93,16 +79,4 @@ public class LookAction implements ActionListener {
 		}
 	}
 
-	/**
-	 * Check if a slot is hidden to others than the player itself.
-	 *
-	 * @param player
-	 * @param slotName
-	 * @return <code>true</code> if other players should not be able to view
-	 * 	the slot contents, <code>false</code> if it's allowed.
-	 */
-	private boolean isHiddenSlot(Player player, String slotName) {
-		byte flags = player.getRPClass().getDefinition(DefinitionClass.RPSLOT, slotName).getFlags();
-		return (((flags & Definition.PRIVATE) | (flags & Definition.HIDDEN)) != 0);
-	}
 }
