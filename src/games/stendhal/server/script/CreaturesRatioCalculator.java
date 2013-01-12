@@ -129,7 +129,7 @@ public class CreaturesRatioCalculator extends ScriptImpl {
 				range = 10;
 				r.append("list range value omitted, used 10.\n");
 			} else {
-				range = new Integer(args.get(0));
+				range = Integer.valueOf(args.get(0));
 				if((range < 1) || (range > creatures.size()-1)) {
 					r.append("too big or too small list range value, used 10.\n");
 					range = 10;

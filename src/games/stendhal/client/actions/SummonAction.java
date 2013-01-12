@@ -25,19 +25,20 @@ class SummonAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 * 
+	 *
 	 * We accept the following command syntaxes, coordinates are recognized from numeric parameters:
 	 * /summon &lt;creature name&gt;
 	 * /summon &lt;creature name&gt; x y
 	 * /summon x y &lt;creature name&gt;
-	 * 
+	 *
 	 * @param params
 	 *            The formal parameters.
 	 * @param remainder
 	 *            Line content after parameters.
-	 * 
+	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction summon = new RPAction();
 
@@ -51,7 +52,7 @@ class SummonAction implements SlashAction {
 			if (str != null) {
 				if (str.matches("[0-9].*")) {
         			try {
-        				final Integer num = new Integer(str);
+        				final Integer num = Integer.valueOf(str);
 
         				if (x == null) {
         					x = num;
@@ -92,18 +93,20 @@ class SummonAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 9;
 	}
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 * 
+	 *
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 1;
 	}
