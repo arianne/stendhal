@@ -28,6 +28,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.Graphics2D;
 import java.util.List;
@@ -109,8 +110,14 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/"  + imageName),
 					info.getZoneColor(), info.getColorMethod());
 		} else {
-			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless"),
-					info.getZoneColor(), info.getColorMethod());
+			if (DataLoader.getResource(translate("corpse/harmless_" + imageName)) != null) {
+				sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless_" + imageName),
+						info.getZoneColor(), info.getColorMethod());
+			}
+			else {
+				sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless"),
+						info.getZoneColor(), info.getColorMethod());
+			}
 		}
 
 		width = sprite.getWidth();
