@@ -69,9 +69,17 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	 * 			the direction, this block is pushed into
 	 */
 	public void push(Direction d) {
-		if(this.mayBePushed()) {
-			this.setPosition(this.getX() + d.getdx(), this.getY() + d.getdy());
+		if(this.mayBePushed(d)) {
+			this.setPosition(getXAfterPush(d), getYAfterPush(d));
 		}
+	}
+
+	protected int getYAfterPush(Direction d) {
+		return this.getY() + d.getdy();
+	}
+
+	protected int getXAfterPush(Direction d) {
+		return this.getX() + d.getdx();
 	}
 
 	private boolean wasPushed() {
@@ -80,7 +88,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		return xChanged || yChanged;
 	}
 
-	private boolean mayBePushed() {
+	private boolean mayBePushed(Direction d) {
 		boolean pushed = wasPushed();
 		boolean multiPush = this.getBool("multi");
 

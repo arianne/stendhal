@@ -96,5 +96,21 @@ public class BlockTest {
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(-1)));
 	}
+	
+	@Test
+	public void testCoordinatesAfterPush() {
+		Block b = new Block(0, 0, true);
+		assertThat(Integer.valueOf(b.getXAfterPush(Direction.UP)), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getYAfterPush(Direction.UP)), is(Integer.valueOf(-1)));
+		
+		assertThat(Integer.valueOf(b.getXAfterPush(Direction.DOWN)), is(Integer.valueOf(0)));
+		assertThat(Integer.valueOf(b.getYAfterPush(Direction.DOWN)), is(Integer.valueOf(1)));
+		
+		assertThat(Integer.valueOf(b.getXAfterPush(Direction.LEFT)), is(Integer.valueOf(-1)));
+		assertThat(Integer.valueOf(b.getYAfterPush(Direction.LEFT)), is(Integer.valueOf(0)));
+		
+		assertThat(Integer.valueOf(b.getXAfterPush(Direction.RIGHT)), is(Integer.valueOf(1)));
+		assertThat(Integer.valueOf(b.getYAfterPush(Direction.RIGHT)), is(Integer.valueOf(0)));
+	}
 
 }
