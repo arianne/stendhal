@@ -281,9 +281,15 @@ public abstract class ActiveEntity extends Entity {
 
 		double speed;
 
+		/*
+		 * Speed change must be fired only after the new speed has been stored
+		 * (done in onMove())
+		 */
+		boolean speedChanged = false;
+		
 		if (diff.has("speed")) {
 			speed = diff.getDouble("speed");
-			fireChange(PROP_SPEED);
+			speedChanged = true;
 		} else if (base.has("speed")) {
 			speed = base.getDouble("speed");
 		} else {
@@ -291,20 +297,25 @@ public abstract class ActiveEntity extends Entity {
 		}
 		
 		onMove(newX, newY, tempDirection, speed);
+		
+		if (speedChanged) {
+			fireChange(PROP_SPEED);
+		}
 
-		boolean changed = false;
+		boolean positionChanged = false;
 		if ((Direction.STOP.equals(tempDirection)) || (speed == 0)) {
 			dx = 0.0;
 			dy = 0.0;
 			
 			/*
 			 * Try to ensure relocation in the case the client and server were
-			 * in disagreement about the position at tme moment of stopping.
+			 * in disagreement about the position at the moment of stopping.
 			 */
 			if (!(compareDouble(y, newY, EPSILON) && compareDouble(x, newX, EPSILON))) {
-				changed = true;
+				positionChanged = true;
 			}
 
+			// Store the new position before signaling it with onPosition().
 			x = newX;
 			y = newY;
 		}
@@ -312,7 +323,7 @@ public abstract class ActiveEntity extends Entity {
 		/*
 		 * Change in position?
 		 */
-		if (changed || ((oldx != newX) && (oldy != newY))) {
+		if (positionChanged || ((oldx != newX) && (oldy != newY))) {
 			onPosition(newX, newY);
 		}
 	}
