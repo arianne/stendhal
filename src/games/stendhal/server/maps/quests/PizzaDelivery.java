@@ -435,7 +435,7 @@ public class PizzaDelivery extends AbstractQuest {
     			+ Grammar.quantityplnoun(data.expectedMinutes, "minute", "one")
     			+ ". Say \"pizza\" so that "
     			+ name
-    			+ " knows that I sent you. Oh, and please wear this uniform on your way.");
+    			+ " knows that I sent you. Oh, and please wear this uniform on your way and don't drop this " + data.flavor + " on the ground! Our customers want it fresh.");
     		player.setOutfit(UNIFORM, true);
     		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
 		} else {
