@@ -98,7 +98,7 @@
   
   <creature name="naga">
     <type class="mutant" subclass="naga" tileid="naga.png:2"/>
-    <description></description>
+    <description> You see a naga. She awaits unwary victims to whom she may give her deadly kiss.</description>
     <attributes>
       <atk value="536"/>
       <def value="81"/>
