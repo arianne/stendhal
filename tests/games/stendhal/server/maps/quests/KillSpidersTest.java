@@ -83,6 +83,7 @@ public class KillSpidersTest extends SpidersCreatures {
 		creature.setHP(1);
 		creature.setAtkXP(1);
 		creature.setDefXP(1);
+		creature.setSounds(new LinkedList<String>());
 		final Creature spider = new Creature(creature);
 		spider.registerObjectsForNotification(observer);
 		player.teleport(basement, 5, 5, null, player);
