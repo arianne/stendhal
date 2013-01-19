@@ -75,6 +75,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 
 	private List<EquipItem> equipsItems;
 
+	/** List of possible sound events. */
+	private List<String> sounds;
+
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 
 	private Map<String, String> aiProfiles;
@@ -163,6 +166,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			ai = false;
 			dropsItems = new LinkedList<DropItem>();
 			equipsItems = new LinkedList<EquipItem>();
+			sounds = new LinkedList<String>();
 			creatureSays = new LinkedHashMap<String, LinkedList<String>>();
 			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
@@ -270,25 +274,29 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			aiProfiles.put(attrs.getValue("name"), attrs.getValue("params"));
 		} else if (ai && qName.equals("says")) {
 			says = true;
-		} else if (says && qName.equals("noise")) {
-			final String states = attrs.getValue("state");
-			final String value = attrs.getValue("value");
-			final List<String> keys=Arrays.asList(states.split(" "));
-			// no such state in noises, will add it
-			for (int i=0; i<keys.size(); i++) {
-				final String key=keys.get(i);
-				if(creatureSays.get(key)==null) {
-					final LinkedList<String> ll=new LinkedList<String>();
-					ll.add(value);
-					creatureSays.put(key, ll);
-					// no such value in existing state, will add it
-				} else if (creatureSays.get(key).indexOf(value)==-1) {
-					creatureSays.get(key).add(value);
-					// both state and value already exists
-				} else {
-					logger.warn("CreatureXMLLoader: creature ("+name+
-								"): double definition for noise \""+key+"\" ("+value+")");
+		} else if (says) {
+			if (qName.equals("noise")) {
+				final String states = attrs.getValue("state");
+				final String value = attrs.getValue("value");
+				final List<String> keys=Arrays.asList(states.split(" "));
+				// no such state in noises, will add it
+				for (int i=0; i<keys.size(); i++) {
+					final String key=keys.get(i);
+					if(creatureSays.get(key)==null) {
+						final LinkedList<String> ll=new LinkedList<String>();
+						ll.add(value);
+						creatureSays.put(key, ll);
+						// no such value in existing state, will add it
+					} else if (creatureSays.get(key).indexOf(value)==-1) {
+						creatureSays.get(key).add(value);
+						// both state and value already exists
+					} else {
+						logger.warn("CreatureXMLLoader: creature ("+name+
+									"): double definition for noise \""+key+"\" ("+value+")");
+					}
 				}
+			} else if (qName.equals("sound")) {
+				sounds.add(attrs.getValue("value"));
 			}
 		} else if (qName.equals("abilities")) {
 			abilities = true;
@@ -339,6 +347,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setDescription(description);
 			creature.setSusceptibilities(susceptibilities);
 			creature.setDamageTypes(damageType, rangedDamageType);
+			creature.setCreatureSounds(sounds);
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;

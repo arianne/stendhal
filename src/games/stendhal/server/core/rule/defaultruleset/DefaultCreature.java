@@ -78,6 +78,9 @@ public class DefaultCreature {
 	private List<DropItem> dropsItems;
 
 	private List<EquipItem> equipsItems;
+	
+	/** List of possible sound events. */
+	private List<String> sounds;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 	
@@ -233,7 +236,7 @@ public class DefaultCreature {
 	 */
 	public Creature getCreature() {
 		Collections.sort(dropsItems, new Comparator<DropItem>() {
-
+			@Override
 			public int compare(final DropItem o1, final DropItem o2) {
 				if (o1.probability < o2.probability) {
 					return -1;
@@ -243,7 +246,6 @@ public class DefaultCreature {
 					return 0;
 				}
 			}
-
 		});
 
 		final Creature creature = new Creature(clazz, subclass, name, hp, atk, def,
@@ -254,6 +256,7 @@ public class DefaultCreature {
 		creature.setCorpse(corpseName, corpseWidth, corpseHeight);
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
+		creature.setSounds(sounds);
 		
 		return creature;
 	}
@@ -290,6 +293,15 @@ public class DefaultCreature {
 
 	public void setCreatureName(final String val) {
 		name = val;
+	}
+	
+	/**
+	 * Set the possible sound names.
+	 * 
+	 * @param sounds list of sounds
+	 */
+	public void setCreatureSounds(List<String> sounds) {
+		this.sounds = sounds;
 	}
 
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
