@@ -28,7 +28,7 @@ import java.util.HashMap;
  *
  * @author silvio
  */
-public abstract class AudibleEntity extends RPEntity {
+abstract class AudibleEntity extends RPEntity {
 
 	private final AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
 	private final HashMap<String, ArrayList<String>> mCategorys = new HashMap<String, ArrayList<String>>();
@@ -53,11 +53,18 @@ public abstract class AudibleEntity extends RPEntity {
 		}
 	}
 
-	protected String getRandomSoundFromCategory(String groupName) {
+	/**
+	 * Get a random sound name from named group.
+	 * 
+	 * @param groupName sound group name
+	 * @return sound name, or <code>null</code> if the group does not exist or
+	 * 	has no sounds
+	 */
+	private String getRandomSoundFromCategory(String groupName) {
 		ArrayList<String> soundNameList = mCategorys.get(groupName);
 
 		if ((soundNameList != null) && !soundNameList.isEmpty()) {
-			return soundNameList.get(Rand.rand(soundNameList.size()));
+			return Rand.rand(soundNameList);
 		}
 
 		return null;
