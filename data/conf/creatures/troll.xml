@@ -26,6 +26,13 @@
     <equips>
     </equips>
     <ai>
+      <says>
+      	<sound value="gorilla-1"/>
+      	<sound value="gorilla-2"/>
+      	<sound value="gorilla-3"/>
+      	<sound value="gorilla-4"/>
+      	<sound value="gorilla-5"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>

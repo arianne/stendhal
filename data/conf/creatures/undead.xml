@@ -30,6 +30,11 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not pass!"/>
+        <sound value="bones-1"/>
+        <sound value="evillaugh-3"/>
+        <sound value="evillaugh-5"/>
+        <sound value="ghost-1"/>
+        <sound value="ghost-2"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

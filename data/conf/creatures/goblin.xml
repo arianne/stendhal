@@ -32,6 +32,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Umm! Tasty meat."/>
+        <sound value="saur-3"/>
+        <sound value="saur-4"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>

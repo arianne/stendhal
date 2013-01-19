@@ -22,6 +22,11 @@
     <equips>
     </equips>
     <ai>
+      <says>
+      	<sound value="hyena-1"/>
+      	<sound value="hyena-2"/>
+      	<sound value="hyena-3"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>

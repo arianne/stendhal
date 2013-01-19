@@ -26,6 +26,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+      	<sound value="lion-11"/>
+      	<sound value="lion-22"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>

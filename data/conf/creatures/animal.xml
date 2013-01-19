@@ -255,6 +255,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Oink!!"/>
+        <sound value="pig-1"/>
+        <sound value="pig-2"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -285,6 +287,10 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="bark-1"/>
+        <sound value="howl-5"/>
+        <sound value="howl-2"/>
+        <sound value="howl-11"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -316,6 +322,10 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="bark-1"/>
+        <sound value="howl-5"/>
+        <sound value="howl-2"/>
+        <sound value="howl-11"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -463,6 +473,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="SsSssSsssssss!"/>
+        <sound value="snake-1"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
@@ -494,6 +505,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Roar!"/>
+        <sound value="bear-1"/>
+        <sound value="bear-2"/>
+        <sound value="bear-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -703,6 +717,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="ROOOOAAAAR!"/>
+        <sound value="bear-1"/>
+        <sound value="bear-2"/>
+        <sound value="bear-3"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
