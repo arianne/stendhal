@@ -117,6 +117,7 @@
       <item value="perch" quantity="[1,3]" probability="25.0"/>
       <item value="mackerel" quantity="[1,4]" probability="25.0"/>
       <item value="liberty helmet" quantity="[1,1]" probability="0.01"/>
+       <item value="blue helmet" quantity="[1,1]" probability="0.2"/>
     </drops>
     <equips>
     </equips>

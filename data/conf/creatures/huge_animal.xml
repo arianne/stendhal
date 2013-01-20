@@ -124,6 +124,9 @@
       <item value="money" quantity="[20,100]" probability="100.0"/>
       <item value="sapphire" quantity="[1,4]" probability="10.0"/>
       <item value="blue dragon cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="blue armor" quantity ="[1,1]" probability="15.0"/>
+      <item value="blue shield" quantity ="[1,1]" probability ="5.0"/>
+       <item value="blue helmet" quantity="[1,1]" probability="8.0"/>
     </drops>
     <equips>
     </equips>
