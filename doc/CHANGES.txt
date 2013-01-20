@@ -1,5 +1,20 @@
 ﻿Changelog
 ---------
+1.06
+
+*world*
+- more light in Ados city
+- some creatures drop blue items now
+- more creature descriptions added
+- new sprite shown when blood and corpses setting is turned off
+
+*client*
+
+*fixes*
+- Alice Farmer understands players better
+- Vincento Price can count correctly
+
+
 1.05
 
 *world*
