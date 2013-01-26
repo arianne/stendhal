@@ -197,7 +197,8 @@
       <item value="potion" quantity="[1,2]" probability="10.0"/>
       <item value="mainio boots" quantity="[1,1]" probability="0.2"/>
       <item value="claymore" quantity="[1,1]" probability="2.0"/>
-       <item value="blue helmet" quantity="[1,1]" probability="1.5"/>
+       <item value="blue helmet" quantity="[1,1]" probability="2.5"/>
+       <item value="blue armor" quantity="[1,1]" probability="4.0"/>
     </drops>
     <equips>
     </equips>
