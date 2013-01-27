@@ -44,7 +44,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "red armor", "red helmet", "red cloak", "red legs", "red boots", "red shield")));
 		itemAchievements.add(createAchievement("item.set.blue", "Feeling Blue", "Loot a complete blue equipment set",
-				Achievement.MEDIUM_BASE_SCORE, true,
+				Achievement.MEDIUM_BASE_SCORE, false,
 				new PlayerLootedNumberOfItemsCondition(1, "blue armor", "blue helmet", "blue striped cloak", "blue legs", "blue boots", "blue shield")));
 		itemAchievements.add(createAchievement("item.set.shadow", "Shadow Dweller", "Loot a complete shadow equipment set",
 				Achievement.MEDIUM_BASE_SCORE, true,
