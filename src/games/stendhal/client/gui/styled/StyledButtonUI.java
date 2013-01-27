@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -40,16 +40,21 @@ public class StyledButtonUI extends BasicButtonUI {
 	private static final DefaultButtonFocusListener focusListener = new DefaultButtonFocusListener();
 	private final Style style;
 
-	/** <code>true</code> if the mouse is over the button */
+	/** <code>true</code> if the mouse is over the button. */
 	private boolean mouseOver;
 
-	// Required by UIManager
+	/**
+	 * Required by UIManager.
+	 * 
+	 * @param button component to create UI for
+	 * @return UI delegate
+	 */
 	public static ComponentUI createUI(JComponent button) {
 		return new StyledButtonUI(StyleUtil.getStyle());
 	}
 
 	/**
-	 * Create a new StyledButtonUI
+	 * Create a new StyledButtonUI.
 	 * 
 	 * @param style used pixmap style
 	 */
@@ -63,7 +68,7 @@ public class StyledButtonUI extends BasicButtonUI {
 		
 		// Restore normal look after pressing ends, if needed
 		if (button instanceof AbstractButton) {
-			if (!((AbstractButton)button).getModel().isPressed()) {
+			if (!((AbstractButton) button).getModel().isPressed()) {
 				// Try to avoid switching borders if the button has none or custom 
 				// borders
 				if (button.getBorder().equals(style.getBorderDown())) {
@@ -128,19 +133,20 @@ public class StyledButtonUI extends BasicButtonUI {
 	}
 	
 	/**
-	 * Draw the background image
-	 * @param graphics
-	 * @param button
+	 * Draw the background image.
+	 * 
+	 * @param graphics graphics
+	 * @param button component whose background gets drawn
 	 */
 	private void paintBackground(Graphics graphics, JComponent button) {
 		StyleUtil.fillBackground(style, graphics, 0, 0, button.getWidth(), button.getHeight());
 	}
 	
 	/**
-	 * Draws the mouse focus highlighting
+	 * Draws the mouse focus highlighting.
 	 * 
-	 * @param graphics
-	 * @param button
+	 * @param graphics graphics
+	 * @param button button to be highlighted
 	 */
 	private void hilite(Graphics graphics, JComponent button) {
 		graphics.setColor(style.getHighLightColor());
@@ -184,6 +190,7 @@ public class StyledButtonUI extends BasicButtonUI {
 	 * of just space.
 	 */
 	private static class DefaultButtonFocusListener implements FocusListener {
+		@Override
 		public void focusGained(FocusEvent e) {
 			Component c = e.getComponent();
 			if (c instanceof JButton) {
@@ -192,6 +199,7 @@ public class StyledButtonUI extends BasicButtonUI {
 			}
 		}
 		
+		@Override
 		public void focusLost(FocusEvent e) {
 			Component c = e.getComponent();
 			if (c instanceof JComponent) {
