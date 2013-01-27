@@ -148,6 +148,7 @@ Authors of Stendhal are:
 - Filipe aka filinep
 - Arco Mul aka Lumocra
   . Coder
+- AntumDeluge
   
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
