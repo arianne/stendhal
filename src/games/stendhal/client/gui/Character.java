@@ -80,7 +80,6 @@ Inspectable {
 		// Compatibility. Show additional slots only if the user has those.
 		// This can be removed after a couple of releases (and specialSlots
 		// field moved to createLayout()).
-		System.err.println(player.getRPObject());
 		if (userEntity.getRPObject().hasSlot("belt")) {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
