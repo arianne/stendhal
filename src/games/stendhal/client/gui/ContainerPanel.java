@@ -95,6 +95,10 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 		if (child instanceof InternalManagedWindow) {
 			((InternalManagedWindow) child).setMovable(false);
 		}
+		
+		if (child instanceof Inspectable) {
+			((Inspectable) child).setInspector(this);
+		}
 	}
 	
 	/**
@@ -140,7 +144,6 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 			SlotWindow window = new SlotWindow(entity.getName(), width, height);
 			window.setSlot(entity, content.getName());
 			window.setAcceptedTypes(EntityMap.getClass("item", null, null));
-			window.setInspector(this);
 			window.setVisible(true);
 			window.setAlignmentX(LEFT_ALIGNMENT);
 			addRepaintable(window);

@@ -606,7 +606,6 @@ public class j2DClient implements UserInterface {
 		inventory = new SlotWindow("bag", 3, 4);
 		inventory.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		inventory.setCloseable(false);
-		inventory.setInspector(containerPanel);
 		containerPanel.addRepaintable(inventory);
 
 		keyring = new KeyRing();
