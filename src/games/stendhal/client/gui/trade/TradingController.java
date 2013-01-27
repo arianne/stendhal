@@ -172,7 +172,9 @@ public final class TradingController {
 					 * starts a new trade with someone else while our trading
 					 * window is still visible.
 					 */
-					window.setPartnerSlot(user, "trade");
+					if (window.isShowing()) {
+						window.setPartnerSlot(user, "trade");
+					}
 				}
 			};
 			break;
