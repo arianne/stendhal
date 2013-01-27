@@ -192,20 +192,42 @@ public class StyledButtonUI extends BasicButtonUI {
 	private static class DefaultButtonFocusListener implements FocusListener {
 		@Override
 		public void focusGained(FocusEvent e) {
-			Component c = e.getComponent();
-			if (c instanceof JButton) {
-				JButton button = (JButton) c;
-				button.getRootPane().setDefaultButton(button);
-			}
+			changeDefault(e.getComponent(), true);
 		}
 		
 		@Override
 		public void focusLost(FocusEvent e) {
-			Component c = e.getComponent();
-			if (c instanceof JComponent) {
-				JRootPane pane = ((JComponent) c).getRootPane();
-				if (pane != null) {
-					pane.setDefaultButton(null);
+			changeDefault(e.getComponent(), false);
+		}
+		
+		/**
+		 * Change the default button of the root pane of the specified
+		 * component.
+		 * 
+		 * @param component the component whose root pane's default button
+		 *	should be changed. It must be a JButton.
+		 * @param setDefault if <code>true</code>, set the JButton specified by
+		 * 	<code>component</code> as the default. Otherwise the default button
+		 * 	is set to none
+		 */
+		private void changeDefault(Component component, boolean setDefault) {
+			if (component instanceof JButton) {
+				JButton button = (JButton) component;
+				JRootPane parent = button.getRootPane();
+				/*
+				 * In some conditions, when pushing the button results
+				 * in it being removed from the root container, a focus
+				 * event can be processed after the button (or its parents)
+				 * has been removed, so we need to check for a non-null
+				 * root for a focused button, even though that seems
+				 * nonsensical.
+				 */
+				if (parent != null) {
+					if (setDefault) {
+						parent.setDefaultButton(button);
+					} else {
+						parent.setDefaultButton(null);
+					}
 				}
 			}
 		}
