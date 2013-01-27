@@ -25,10 +25,10 @@ import marauroa.common.game.RPAction;
 /**
  * Object for processing trade state changes and sending trading commands.
  */
-public class TradingController {
-	/** The controller instance */
+public final class TradingController {
+	/** The controller instance. */
 	private static TradingController instance;
-	/** Trading window component */
+	/** Trading window component. */
 	private final TradingWindow window;
 	
 	private IEntity tradingPartner;
@@ -69,6 +69,7 @@ public class TradingController {
 		if (myState != TradeState.NO_ACTIVE_TRADE) {
 			if (myState == TradeState.TRADE_COMPLETED) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						/*
 						 * Completed a trade. Close the window.
@@ -78,6 +79,7 @@ public class TradingController {
 				});
 			} else if (window.getParent() == null) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						// Starting a trade, and there was no window visible.
 						j2DClient.get().addWindow(window);
@@ -91,7 +93,7 @@ public class TradingController {
 	/**
 	 * Set the current trading partner.
 	 * 
-	 * @param partner
+	 * @param partner new trading partner
 	 */
 	private void setPartner(final IEntity partner) {
 		if (partner != tradingPartner) {
@@ -102,6 +104,7 @@ public class TradingController {
 			 */  
 			if (partner != null) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						window.setPartnerSlot(partner, "trade");
 						window.setPartnerName(partner.getName());
@@ -114,12 +117,13 @@ public class TradingController {
 	/**
 	 * Set the current user, if it has changed.
 	 * 
-	 * @param user
+	 * @param user current user
 	 */
 	private void setUser(final IEntity user) {
 		if (this.user != user) {
 			this.user = user;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					window.setUserSlot(user, "trade");
 				}
@@ -130,7 +134,7 @@ public class TradingController {
 	/**
 	 * Set the trading state of the user.
 	 * 
-	 * @param state
+	 * @param state user trade state
 	 */
 	private void setMyState(TradeState state) {
 		if (myState != state) {
@@ -142,7 +146,7 @@ public class TradingController {
 	/**
 	 * Set the trading status of the partner.
 	 * 
-	 * @param state
+	 * @param state partner trade state
 	 */
 	private void setPartnerState(TradeState state) {
 		if (partnerState != state) {
@@ -160,6 +164,7 @@ public class TradingController {
 		switch (myState) {
 		case NO_ACTIVE_TRADE:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.disableAll();
 					/*
@@ -173,6 +178,7 @@ public class TradingController {
 			break;
 		case MAKING_OFFERS:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(false);
 					window.allowOffer(true);
@@ -183,6 +189,7 @@ public class TradingController {
 			break;
 		case LOCKED:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(partnerState == TradeState.LOCKED);
 					window.allowOffer(false);
@@ -193,6 +200,7 @@ public class TradingController {
 			break;
 		case DEAL_WAITING_FOR_OTHER_DEAL:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(false);
 					window.allowOffer(false);
@@ -221,6 +229,7 @@ public class TradingController {
 		switch (partnerState) {
 		case MAKING_OFFERS:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(false);
 					window.allowCancel(true);
@@ -231,6 +240,7 @@ public class TradingController {
 			break;
 		case LOCKED:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(myState == TradeState.LOCKED);
 					window.allowOffer(myState != TradeState.LOCKED);
@@ -241,6 +251,7 @@ public class TradingController {
 			break;
 		case DEAL_WAITING_FOR_OTHER_DEAL:
 			guiChange = new Runnable() {
+				@Override
 				public void run() {
 					window.allowAccept(true);
 					window.allowOffer(false);
