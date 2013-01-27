@@ -47,7 +47,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A component representing space in a slot. 
  */
-public class ItemPanel extends JComponent implements DropTarget {
+public class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/** serial version uid. */
 	private static final long serialVersionUID = 3409932623156446910L;
 
@@ -126,7 +126,8 @@ public class ItemPanel extends JComponent implements DropTarget {
 	 * 
 	 * @param inspector
 	 */
-	void setInspector(Inspector inspector) {
+	@Override
+	public void setInspector(Inspector inspector) {
 		this.inspector = inspector;
 	}
 	

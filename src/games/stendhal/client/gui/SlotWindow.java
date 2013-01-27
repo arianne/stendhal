@@ -25,7 +25,7 @@ import marauroa.common.game.RPObject;
 /**
  * A window for showing contents of an entity's slot in a grid of ItemPanels
  */
-public class SlotWindow extends InternalManagedWindow {
+public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	/**
 	 * serial version uid
 	 */
@@ -78,6 +78,7 @@ public class SlotWindow extends InternalManagedWindow {
 	 * 
 	 * @param inspector
 	 */
+	@Override
 	public void setInspector(Inspector inspector) {
 		content.setInspector(inspector);
 	}

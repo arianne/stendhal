@@ -14,7 +14,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.Inspectable;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.awt.Graphics2D;
@@ -28,7 +28,7 @@ import java.awt.Rectangle;
  * 
  * @param <T> type of the entity
  */
-public interface EntityView<T extends IEntity> {
+public interface EntityView<T extends IEntity> extends Inspectable {
 	/**
 	 * Get the list of actions.
 	 * 
@@ -93,20 +93,14 @@ public interface EntityView<T extends IEntity> {
 	 * 
 	 * @return true if the player can interact with it, false otherwise.
 	 */
-	public boolean isInteractive();
+	boolean isInteractive();
 
 	/**
-	 * gets the mouse cursor image to use for this entity
+	 * gets the mouse cursor image to use for this entity.
 	 *
 	 * @return StendhalCursor
 	 */
-	public StendhalCursor getCursor();
-	/**
-	 * Set the inspector the entity view should use.
-	 * 
-	 * @param inspector
-	 */
-	void setInspector(Inspector inspector);
+	StendhalCursor getCursor();
 	/**
 	 * Update the view with the changes in entity.
 	 */

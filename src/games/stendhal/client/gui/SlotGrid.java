@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 /**
  * A view of an RPSlot in a grid of ItemPanels.
  */
-public class SlotGrid extends JComponent implements ContentChangeListener {
+public class SlotGrid extends JComponent implements ContentChangeListener, Inspectable {
 	/**
 	 * serial version uid
 	 */
@@ -129,7 +129,8 @@ public class SlotGrid extends JComponent implements ContentChangeListener {
 	 * 
 	 * @param inspector
 	 */
-	void setInspector(Inspector inspector) {
+	@Override
+	public void setInspector(Inspector inspector) {
 		for (ItemPanel panel : panels) {
 			panel.setInspector(inspector);
 		}
