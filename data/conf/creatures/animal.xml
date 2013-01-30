@@ -136,6 +136,7 @@
       <says>
         <noise state="idle follow fight" value="cluck cluck cluck"/>
         <noise state="idle follow fight" value="cluck cluck"/>
+        <sound value="chicken-2"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -538,6 +539,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Grooooaaaarrrr!"/>
+        <sound value="lion-1"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -658,6 +660,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="BbzzZZzzz!"/>
+        <sound value="bee-1"/>
       </says>
       <profile name="poisonous" params="10,poison"/>
       <profile name="brave"/>
