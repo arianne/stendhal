@@ -116,6 +116,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="scream-fem-2"/>
+        <sound value="snake-2"/>
+      </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
