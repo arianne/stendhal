@@ -425,6 +425,7 @@
       <says>
         <noise state="idle follow fight" value="Your time to die has come!"/>
         <noise state="idle follow fight" value="Say goodbye to this world!"/>
+        <sound value="evil-laugh-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -468,6 +469,7 @@
       <says>
         <noise state="idle follow fight" value="You will dream of me tonight..."/>
         <noise state="idle follow fight" value="You will pay for your greed!"/>
+        <sound value="evil-laugh-1"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
