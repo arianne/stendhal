@@ -1,6 +1,7 @@
 These files are in the public domain:
     bee-1.ogg:          http://soundbible.com/971-Bee.html
     chicken-2.ogg:      http://www.freewebs.com/jordansroom/sounds.html
+    cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
     lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
 
