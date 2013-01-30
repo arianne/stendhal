@@ -27,6 +27,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+	<sound value="mutant-frog-1"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -58,6 +61,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+	<sound value="mutant-frog-1"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -89,6 +95,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+	<sound value="mutant-frog-1"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
