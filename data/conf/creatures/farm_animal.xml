@@ -172,6 +172,7 @@
       <says>
         <noise state="idle follow fight" value="Moooo       moooo           mooooooo"/>
         <noise state="idle follow fight" value="mooooo"/>
+        <sound value="cow-1"/>
       </says>
       <profile name="animal"/>
     </ai>
