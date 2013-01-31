@@ -7,12 +7,14 @@
 - some creatures drop blue items now
 - more creature descriptions added
 - new sprite shown when blood and corpses setting is turned off
+- new sound effects for multiple creatures
 
 *client*
 
 *fixes*
 - Alice Farmer understands players better
 - Vincento Price can count correctly
+- Collision touchups around trees on many maps
 
 
 1.05
