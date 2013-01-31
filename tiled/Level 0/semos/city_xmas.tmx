@@ -255,9 +255,9 @@
    eJzt2TEOwjAMheGqXAIGGDgMN+Z+DKhiidKG2JX9/H9S15bnWA11lgWRvS9az/lH5N/m6Uju2/q9znxmVDN1yJ7bug9Qt570EpBX5r2sgsf6uwAAsMCeAgutPur1Fn0HxKEwv9nL8BLI2KOwhjP28qvXp5ePGe25LGZq2z2qzueq5gaAGSPf117f4hbv7zv/WUq6Cq678sxLcb0AYATvQQDQozSP3M4Cjp4JtLJ71iPLWYVHDVpnNU+jeljdJ4osfeKhcnbU4rnXKO3roypnx7gPj7MSbg==
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.38">
+ <layer name="collision" width="64" height="64" opacity="0.38">
   <data encoding="base64" compression="zlib">
-   eJztV+2OwzAIm+5h7v0fcb9OmiJCbDCUXWtpWpsvbCAkfb00+P2x267+IVwr1pwMSz87H/XLRGT1ozYqctezwXDz3tE+hptCP7JvGU3rvxId8bfsoHO8dwW69Ee5Wf8W99MaXv9/1o/YUOlX+wLN/4wPquofExtPFzIug079LP/P+evzbjzTbnGdtv8t/RU2puqvBqrr6vjfEWvtuJM/rNo5bX+yiJwhyNwp+k8covqn1ucu/ae5U3zj6UXed/qrtJ9sX5VHq36PU0X8dz7pBKrf6mPG72yvHK7Sr7BvafXWY/RX5SIbMyWY/FfwQfSrbDF8orUiauvU3r0HEShy8nQOre+T/ODVCJQvml+TdP/hpI+pobs+75nxb4X/GP2RMUj8d2cFw2Fdh6l/Fecfo18FtA51IFv/rVrEzmH6Jsbf2w8RjV5fp/7d/lbamqCfiRui74SJ+hEOnu8Y31g5dVf9bN/n2ozeHa9dG8qtS/+njqx9bz7CIWsfrUMZZPTvuKj0d4DVj6xx0m+9X4VK/eo8VXC1xkZ4dOdwlZ2r8+/BgwfxO+qpDqHjFXbvWksqde9i2oGqM7QL3X5C7E31VRTqe0m3f7L2vj2emTss8t0TWUexppLDbnw1t46zNRMz1gdqDcx35pW2K+yubeoazNwzv/0b2LIRyW1FDUV4VSG7/ik/VN83p/Mi+p2kQKV+ZE2Gp8c5A/ZeEInXAwxV/nsDEoatSQ==
+   eJztV9FuxDAIm/Yx+/9P3NOkU0TAJoZwu1qadm2T2AZC2q8vDX6+7Xu3/xCtFWtOhuWfnY/GZSJO/aMcFbXrcTDavGv0GaNN4R/Zt4yn9b8SHfm3eNA53rUCXf6z2qz/lvZoDe/5f/aPcKj8q2OB1v9JDKr6H5Mbzxcy7gSd/ln9r/PX37vxzH1L67T9b/mv4Jjqvxqor9v5/0SsveOT4mH1zmn7k0XmDEHmTvEfacj6n9qfu/xHc6fExvOLXO/8V3mPuG/V0erf01SR/11MOoH6t54x43fcq4Zb/hX8lldvPcZ/VS2yOVOCqX+FHsS/iovRk+0VWa7ofvceRKCoyegcWq8nxcHrEahetL4m+f5D5I/pobtn3m8mvhXxY/xnxiD5350VjIZ1Hab/VZx/jH8V0D7UgdP+b/Uidg7zbGL+vf2Q8eg96/S/299Krgn+mbwh/iJYMY24d/wq/961d5/N/eNfU/8RtzfWWhPRcNP/q49Tfm8+ouGUH+1DJzjxv9Oi8t8B1j+yRuTfur6FSv/qOlVotcZmdHTXcBXP7fp78OBB/h016kPoeAXvp/aSSt+7nHag6gztQnecEL6pscpC/V7SHZ9TvnfP58k7LPLdk1lHsaZSw258tbaOs/UkZ2wM1B6Y78yb3BW86z11D2beM9/9G9jiyNS2oociuqpwun5UH6rvm+i8yH4nKVDpH1mT0elpPgH7XpDJ1wMMVfH7Bf9arZk=
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0" opacity="0.24">
