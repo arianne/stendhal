@@ -110,6 +110,26 @@
     </equipable>
   </item>
 
+  <item name="rodent trap">
+    <type class="misc" subclass="rodent_trap" tileid="-1"/>
+    <description>You see a rodent trap.</description> 
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.05"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="vampirette entrails">
     <type class="misc" subclass="vampirette_entrails" tileid="-1"/>
     <description>You see some vampirette entrails. These guts proves that a vampirette was slain.</description> 
@@ -240,6 +260,26 @@
       <max_quantity value="2147483647"/>
     </attributes>
     <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="venom gland">
+    <type class="misc" subclass="venom_gland" tileid="-1"/>
+    <description>You see a venom gland. It is filled with deadly toxin.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="0.03"/>
     <value value="1"/>
     <equipable>
       <slot name="ground"/>
