@@ -128,6 +128,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="I want to grow to be mighty!"/>
+	<sound value="sneeze-baby-1"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>

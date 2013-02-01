@@ -4,6 +4,7 @@ These files are in the public domain:
     cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
     lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
+    sneeze-baby-1.ogg:  http://soundbible.com/23-Baby-Sneeze.html
 
 These files are released under the following BSD license:
     evil-laugh-1.ogg
