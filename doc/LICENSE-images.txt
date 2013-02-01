@@ -1,6 +1,8 @@
 These files are released under the following BSD license:
     huge_leafy.png
     harmless_huge_leafy.png
+    rock.png
+    harmless_rock.png
 
 Copyright (c) 2013, Jordan Irwin
 All rights reserved.
