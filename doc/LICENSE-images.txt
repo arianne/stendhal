@@ -1,8 +1,10 @@
 These files are released under the following BSD license:
-    huge_leafy.png
+    antivenom_ring.png
     harmless_huge_leafy.png
-    rock.png
     harmless_rock.png
+    huge_leafy.png
+    rock.png
+    venom_gland.png
 
 Copyright (c) 2013, Jordan Irwin
 All rights reserved.
