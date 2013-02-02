@@ -501,6 +501,7 @@
       <item value="halberd" quantity="[1,1]" probability="1.5"/>
       <item value="golden twoside axe" quantity="[1,1]" probability="0.05"/>
       <item value="black boots" quantity="[1,1]" probability="0.0050"/>
+      <item value="dwarvish legs" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -536,6 +537,7 @@
       <item value="black boots" quantity="[1,1]" probability="0.035"/>
       <item value="greater potion" quantity="[2,4]" probability="3.0"/>
       <item value="magic plate shield" quantity="[1,1]" probability="0.5"/>
+      <item value="dwarvish legs" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>

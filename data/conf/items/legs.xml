@@ -75,6 +75,24 @@
     </equipable>
   </item>
   
+  <item name="dwarvish legs">
+    <type class="legs" subclass="dwarvish_legs" tileid="-1"/>
+    <description>You see a pair of dwarvish legs, designed by master crafstmen.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="14"/>
+      <min_level value="65"/>
+    </attributes>
+    <weight value="32.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="legs"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
   <item name="elvish legs">
     <type class="legs" subclass="elvish_legs" tileid="-1"/>
     <description>You see a pair of elvish legs.</description>
@@ -221,6 +239,26 @@
     </equipable>
   </item>
 
+  <item name="stone legs">
+    <type class="legs" subclass="stone_legs" tileid="-1"/>
+    <description>You see a pair of stone legs, heavy and durable.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="14"/>
+      <min_level value="70"/>
+    </attributes>
+    <weight value="28.0"/>
+    <value value="1512"/>
+    <susceptibility type="fire" value="0.98"/>
+    <susceptibility type="light" value="0.98"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="legs"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
   <item name="studded legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
     <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.</description>
