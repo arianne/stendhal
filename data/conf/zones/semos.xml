@@ -2832,6 +2832,18 @@ Mature sheep wanted: please speak to Sato
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
 		</entity>
+		
+		<!-- sign south -->
+		<entity x="55" y="122">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">
+North: Semos City
+South: Kirdneh City
+East: Nalwor City
+Southwest: Or'ril Castle and Fado City
+                         </attribute>
+		</entity>
+
 
 	</zone>
 
