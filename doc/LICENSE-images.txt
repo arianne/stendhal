@@ -1,8 +1,16 @@
 These files are released under the following BSD license:
     antivenom_ring.png
     harmless_huge_leafy.png
+    harmless_puddle_black.png
+    harmless_puddle_brown.png
+    harmless_puddle_green.png
+    harmless_puddle_light_blue.png
     harmless_rock.png
     huge_leafy.png
+    puddle_black.png
+    puddle_brown.png
+    puddle_green.png
+    puddle_light_blue.png
     rock.png
     venom_gland.png
 
