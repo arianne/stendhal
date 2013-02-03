@@ -15,6 +15,7 @@ These files are released under the following BSD license:
     undead-2.ogg
     undead-3.ogg
     undead-4.ogg
+    witch-cackle-1.ogg
 
 Copyright (c) 2013, Jordan Irwin
 All rights reserved.
