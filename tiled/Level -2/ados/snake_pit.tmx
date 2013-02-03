@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="128" height="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Brown Ground 2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brownground2.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="Portal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+ </tileset>
+ <tileset firstgid="10" name="Stairs" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/stairs.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="14" name="Naga" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/naga.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="17" name="Animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
+ </tileset>
+ <tileset firstgid="45" name="Earth Pale" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ridge/earth_pale.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="141" name="Earth Dark" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ridge/earth_dark.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="237" name="Rocks" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/rock/rocks.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="241" name="Pebbles" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
+ </tileset>
+ <tileset firstgid="244" name="Brown Corners" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown_corners.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="252" name="Huge Animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/huge_animal.png" width="416" height="32"/>
+ </tileset>
+ <layer name="0_floor" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztmu2OwjAMBNv3f+kTOp2ETiVtSWxvvTMSP0B82DtOUhDbBl3YqwuAUvDvy77h3xnce4N/b/DvDf7jUc5YubYuKGesXFsXVDPmu18Oijkr1tQZtazV6umOUt6s/XyU8laqRZ19cLv7HlXM1O7MKKurOUbnPZpPfM9xltso3wwXuI3jm/39iuMVc8C6jic6229nBu85ZGfM+a0FmXvCevODvdYTnHuCc29w7wtr3xPOel/w7g3ufWHtn9M5n869raJzRp17W0XXjNj7r9E1p449RYB/bzJyqvj9Bf/nRDq5+t/UqNnA/xg196vnAP9jIvKZ9Y7/PCL225W3FfXAMav3fkX3+P8l61pLaQZwH+f67LOq/buv/UzvR59Z5f7/ax1noGr21dx/eqwzlf1W+T97ncsMVPeZff7fmZeK8zALlb4i/B/Nw4zLFeeMEmp9RK7/1d7UsruD8gxXXAPM1vrp/t33ie5X1fk7Uetfvd6VNYyeo87T/L/XrcBR/09x/+Kp/tV4chb4B/wD/r1hDwDcwwvcwx+4BwAAeCY/sFQCvw==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2DEOwjAQRcH03P8Q0EMd+hyDNpGAC8TUKSxQ4g9hRtrOlp/kbrsOAAAAAAAAAAAAAAAAAAAAAAAAAPh2z3QAsIljOoCo1/8f0hHEnNMBRNzK9GWuH96/r5dCQF9mqJwZG3SQUft79uvU6J1Ho3d4zyUdAADAT7ML+j92Q7BfdjdAzZQOAABgYQaoaQ+x
+  </data>
+ </layer>
+ <layer name="2_object" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+  </data>
+ </layer>
+ <layer name="objects" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt1bENAEAIAzHGYP9JfwQkGl5gt6lPiQAAAAAAAAAAAAAAAAAAAAAAAAAAAABgSjY3APbwBXBH1bTm4QatAwAAAADA3x75zACp
+  </data>
+ </layer>
+ <layer name="collision" width="128" height="64" visible="0" opacity="0.41">
+  <data encoding="base64" compression="zlib">
+   eJzt0YEJAAAIw7Dh/0d7xgSTCwpNAAAAAAAAAAAAAAAAAAAAAAAAAACAhmkHUOX/b/4DAAAAAAAAAADATQt7ZwAH
+  </data>
+ </layer>
+ <layer name="protection" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+  </data>
+ </layer>
+</map>
