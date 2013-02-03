@@ -3,7 +3,41 @@
  <tileset firstgid="1" name="Huge Animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png" width="416" height="32"/>
  </tileset>
- <layer name="Tile Layer 1" width="128" height="128">
+ <tileset firstgid="14" name="Floor Dirt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/floor_dirt_1.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="18" name="Edges Dirt" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/edges_dirt.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="54" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <layer name="0_floor" width="128" height="128">
+  <data encoding="base64" compression="zlib">
+   eJzt0sEJgDAABMF0YP/div98BJMNMgNXwd4YAADrXZPxT7PWX40zrWzuA42dTbU/S93ZBzp1X/07dVv9W3Vb/Vt1W/1bdVv9e3Vf/Vt1Xx/o1F31b9Vdte/VffXv1Y31b9WN9W/VjbVv1Z21b9Wt9e/VvbXv1d3179Xt9T+H7rylLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACPG06ZMrA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="128" height="128">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
+  </data>
+ </layer>
+ <layer name="0_object" width="128" height="128">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
+  </data>
+ </layer>
+ <layer name="objects" width="128" height="128">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
+  </data>
+ </layer>
+ <layer name="collision" width="128" height="128" opacity="0.38">
+  <data encoding="base64" compression="zlib">
+   eJzt0jESwyAQBEHFfpD+/zQljlwOBXvc9VR1Dgv3dV03AMBi/0qfiX1v/Vbpu7H/zX9L33WKiqU3maJy6W26q156n85OKL1RZyeU3qizE0pv1NkJpTfqrnrpfbo7ofRGXZ1Seqeu3urztaL0Rt1VL73PBJVLbzNB5dLbTFC19C5TVCy9ySQVS28yTaXSW0xVpfQOk1UovQGZv5C+L+v+TPpcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOz1ABdpylM=
+  </data>
+ </layer>
+ <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
   </data>
