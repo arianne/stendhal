@@ -36,9 +36,6 @@
  <tileset firstgid="264" name="Floor Dirt 1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/dirt_1.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="268" name="Edges Dirt" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/edges_dirt.png" width="192" height="192"/>
- </tileset>
  <tileset firstgid="304" name="Interior Blue Rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
  </tileset>
