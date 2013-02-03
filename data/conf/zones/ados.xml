@@ -4128,12 +4128,6 @@ Southeast: Docks
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
- <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499872" file="Level -2/ados/snake_pit.tmx">
-   <portal x="14" y="7" ref="exit">
-     <destination zone="-1_ados_caves_e" ref="pit_entrance" />
-   </portal>
- </zone>
-
  <!-- commented out till ready <zone name="-2_ados_vaults" level="-2" x="500768" y="500128" file="Level -2/ados/vaults.tmx">
     </zone> -->
 
@@ -4168,9 +4162,9 @@ Southeast: Docks
 		</entity>
 	</zone>
 
- <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499872" file="Level -3/ados/snake_pit.tmx">
-   <portal x="14" y="7" ref="exit">
-     <destination zone="-2_ados_snake_pit" ref="pit_entrance" />
+ <zone name="-3_ados_snake_pit" level="-2" x="500512" y="499936" file="Level -3/ados/snake_pit.tmx">
+   <portal x="8" y="107" ref="exit">
+     <destination zone="int_ados_barracks_0" ref="down" />
    </portal>
  </zone>
 
