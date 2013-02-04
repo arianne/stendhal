@@ -41,16 +41,14 @@ public final class CStatusSender {
 	/** filename for the settings persistence. */
 	private static final String FILE_NAME = "cid";
 
-	private static String clientid = null;
-
 	/**
 	 * sends id, version and distribution
 	 */
 	public static void send() {
-		readID();
-		if (!haveID()) {
-			generateID();
-			saveID();
+		String clientid = readID();
+		if (clientid == null) {
+			clientid = generateRandomString();
+			saveID(clientid);
 		}
 
 		final RPAction action = new RPAction();
@@ -118,10 +116,6 @@ public final class CStatusSender {
 		ClientSingletonRepository.getClientFramework().send(action);
 	}
 
-	private static void generateID() {
-		clientid = generateRandomString();
-	}
-
 	private final static String CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$/()@";
 
 	/**
@@ -140,14 +134,9 @@ public final class CStatusSender {
 		return res.toString();
 	}
 
-	private static boolean haveID() {
-		if (clientid == null) {
-			return false;
-		}
-		return true;
-	}
 
-	private static void readID() {
+	private static String readID() {
+		String clientid = null;
 		try {
 			final InputStream is = Persistence.get().getInputStream(false, stendhal.getGameFolder(), FILE_NAME);
 			final BufferedInputStream bis = new BufferedInputStream(is);
@@ -167,9 +156,10 @@ public final class CStatusSender {
 		} catch (final IOException e) {
 			// ignore exception
 		}
+		return clientid;
 	}
 
-	private static void saveID() {
+	private static void saveID(String clientid) {
 		try {
 			final OutputStream os = Persistence.get().getOutputStream(false, stendhal.getGameFolder(), FILE_NAME);
 			final OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
@@ -181,6 +171,5 @@ public final class CStatusSender {
 		} catch (final IOException e) {
 			logger.error("Can't write " + stendhal.getGameFolder() + FILE_NAME, e);
 		}
-
 	}
 }
