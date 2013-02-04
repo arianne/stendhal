@@ -5,6 +5,7 @@ These files are in the public domain:
     lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     horse-1.ogg:        http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
     horse-2.ogg:        http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
+    pig-3.ogg:          http://www.mediacollege.com/downloads/sound-effects/animals/pig/
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
     snake-cobra-1.ogg, snake-cobra-2.ogg:
                         https://archive.org/details/unknowncobracobrabitewmv
