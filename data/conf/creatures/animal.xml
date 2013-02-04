@@ -601,6 +601,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Miiiiaaauuu!"/>
+        <sound value="tiger-1" />
+        <sound value="tiger-2" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
