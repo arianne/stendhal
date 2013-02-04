@@ -1,3 +1,6 @@
+The following file is in the public domain:
+    ground_3.png        http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+
 These files are released under the following BSD license:
     antivenom_ring.png
     giant_cobra.png
