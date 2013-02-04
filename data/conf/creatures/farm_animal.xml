@@ -57,7 +57,7 @@
         <noise state="idle follow fight" value="oink"/>
         <noise state="idle follow fight" value="oink oink"/>
         <noise state="idle follow fight" value="shnuffle"/>
-        <sound value="pig-3.ogg" />
+        <sound value="pig-3" />
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
