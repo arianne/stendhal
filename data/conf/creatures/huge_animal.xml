@@ -501,6 +501,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="snake-cobra-1" />
+        <sound value="snake-cobra-2" />
+      </says>
       <profile name="poisonous" params="5,disease poison"/>
       <profile name="brave"/>
       <profile name="animal"/>
