@@ -99,6 +99,9 @@
       <says>
         <noise state="idle follow fight" value="WooOouuuUuh!"/>
         <noise state="fight" value="Ghhrr!"/>
+        <sound value="dog-snarl-1" />
+        <sound value="dog-snarl-2" />
+        <sound value="dog-angry-low-1" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
