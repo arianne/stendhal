@@ -1,5 +1,6 @@
 These files are released under the following BSD license:
     antivenom_ring.png
+    giant_cobra.png
     harmless_huge_leafy.png
     harmless_puddle_black.png
     harmless_puddle_brown.png
