@@ -3,6 +3,8 @@ These files are in the public domain:
     bee-1.ogg:          http://soundbible.com/971-Bee.html
     chicken-2.ogg:      http://www.freewebs.com/jordansroom/sounds.html
     cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
+    dog-angry-low-1.ogg, dog-snarl-1.ogg, dog-snarl-2.ogg:
+                        http://soundbible.com/2034-Growling-Snarling-Dogs.html
     elephant-1.ogg:     http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
     elephant-2.ogg:     http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
     lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
