@@ -226,6 +226,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="neigghhh neigghhh"/>
+        <sound value="horse-1" />
+        <sound value="horse-2" />
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
@@ -255,6 +257,8 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="naayyy"/>
+        <sound value="horse-1" />
+        <sound value="horse-2" />
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
