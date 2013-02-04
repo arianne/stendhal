@@ -3,6 +3,8 @@ These files are in the public domain:
     chicken-2.ogg:      http://www.freewebs.com/jordansroom/sounds.html
     cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
     lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
+    horse-1.ogg:        http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
+    horse-2.ogg:        http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
     snake-cobra-1.ogg, snake-cobra-2.ogg:
                         https://archive.org/details/unknowncobracobrabitewmv
