@@ -13,6 +13,7 @@ These files are in the public domain:
     lion-2.ogg:         https://sourceforge.net/projects/myabcs
     horse-1.ogg:        http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
     horse-2.ogg:        http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
+    mouse-2.ogg:        http://www.freewebs.com/jordansroom/sounds.html
     pig-3.ogg:          http://www.mediacollege.com/downloads/sound-effects/animals/pig/
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
     snake-cobra-1.ogg, snake-cobra-2.ogg:
