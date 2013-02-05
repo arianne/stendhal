@@ -58,6 +58,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="squeak ... squeak!"/>
+        <sound value="mouse-2"/>
       </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
