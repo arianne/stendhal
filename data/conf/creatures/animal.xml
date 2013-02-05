@@ -540,6 +540,7 @@
       <says>
         <noise state="idle follow fight" value="Grooooaaaarrrr!"/>
         <sound value="lion-1"/>
+        <sound value="lion-2"/>
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -572,6 +573,7 @@
         <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
         <sound value="elephant-1" />
         <sound value="elephant-2" />
+        <sound value="elephant-3" />
       </says>
       <profile name="non offensive"/>
       <profile name="animal"/>
