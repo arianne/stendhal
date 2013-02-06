@@ -97,7 +97,7 @@
  </layer>
  <layer name="4_roof_add" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2jkOgDAMBEDnqxz//wLUUNDkNDNSCneOZG/lCAAAAEbZSsR+v6O867OM7Q3+xv7RwnOuvmoA1pYl97P8A2C0rHm6at/A3GQLAAAAAAAAQH9Z7lkAapKN0F7WG1vWZP6gP3tHbWYKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2roA3w4utw==
+   eJzt2j0OwCAIBlC8an/uf4W6d+iiWMl7CYMbJvBNRAAAALDK0SLOXlevu73fQB77xwxfOW/uAGqpkvtV/gGwWtU83bVv4N9kCwAAAAAAAEC+KvcsACPJRpiv6o0tezJ/kM/eMZqZAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgLkedvwvHQ==
   </data>
  </layer>
  <layer name="objects" width="128" height="128">
