@@ -45,7 +45,7 @@ public class ElementalsNPCs implements ZoneConfigurator {
 	private void buildNPCs(final StendhalRPZone zone) {
 		final String[] names = {"Savanka", "Xeoilia", "Azira"};
 		final String[] descriptions = {"You see Savanka, flying around with her fiery aura.", "You see Xeoilia, calmly walking around.", "You see Azira, flapping around softly."};
-		final Node[] start = new Node[] { new Node(115, 6), new Node(124, 10), new Node(116, 18) };
+		final Node[] start = new Node[] { new Node(115, 6), new Node(122, 12), new Node(117, 10) };
 		for (int i = 0; i < 3; i++) {
 			final SpeakerNPC npc = new SpeakerNPC(names[i]) {
 
