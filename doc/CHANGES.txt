@@ -8,6 +8,9 @@
 - more creature descriptions added
 - new sprite shown when blood and corpses setting is turned off
 - new sound effects for multiple creatures
+- Leander explains his task better 
+- new corpses for slimes, ents and stone golems
+- dwarvish legs now available
 
 *client*
 
@@ -15,6 +18,8 @@
 - Alice Farmer understands players better
 - Vincento Price can count correctly
 - Collision touchups around trees on many maps
+- Elementals in hell can't collide any longer
+- "Far South" achievement reachable now
 
 
 1.05
