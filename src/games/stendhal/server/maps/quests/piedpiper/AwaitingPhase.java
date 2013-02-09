@@ -33,7 +33,7 @@ import java.util.Observer;
  */
 public class AwaitingPhase extends TPPQuest {
 	
-	private final SpeakerNPC piedpiper = new SpeakerNPC("Pied Piper");	
+	private SpeakerNPC piedpiper;	
 	private final SpeakerNPC mainNPC = TPPQuestHelperFunctions.getMainNPC();
 	private final int minPhaseChangeTime;
 	private int maxPhaseChangeTime;
@@ -140,6 +140,7 @@ public class AwaitingPhase extends TPPQuest {
 	 * function for creating pied piper npc
 	 */
 	private void createPiedPiper() {
+		piedpiper = new SpeakerNPC("Pied Piper");
 		TPPQuestHelperFunctions.setupPiper(piedpiper);
 		fullpathin = PathsBuildHelper.getAdosIncomingPath();
 		fullpathout = PathsBuildHelper.getAdosTownHallBackwardPath();
@@ -152,6 +153,7 @@ public class AwaitingPhase extends TPPQuest {
 	 */
 	private void destroyPiedPiper() {
 		piedpiper.getZone().remove(piedpiper);
+		piedpiper = null;
 	}
 
 	/**
