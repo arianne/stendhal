@@ -519,6 +519,7 @@
 			<fileset dir="data/music">
 				<include name="**.ogg"/>
 				<exclude name="demiurgo_a_new_homeland.ogg" />
+				<exclude name="demon_haunting.ogg" />
 			</fileset>
 		</copy>
 
