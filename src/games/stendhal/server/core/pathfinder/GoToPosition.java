@@ -27,8 +27,9 @@ public class GoToPosition implements Observer {
 		private final Registrator finishnotifier = new Registrator();
 		private FixedPath path;
 		private final Node position;
+		// flag for checking started state
 		private boolean s = false;
-	
+
 	/**
 	 * constructor
 	 * @param entity - pathnotifier owner
@@ -39,23 +40,52 @@ public class GoToPosition implements Observer {
 			final Observer o) {
 
 		ent=entity;
-		finishnotifier.setObserver(o);		
+		finishnotifier.setObserver(o);
 		this.position = position;
 	}
 
-	
-	public void update(Observable o, Object arg) {
-		if(!s) {
-			ent.pathnotifier.setObserver(this);
-			path = new FixedPath(Path.searchPath(ent, position.getX(), position.getY()),false);
-			ent.setPath(path);
-			s=true;
+	/**
+	 * final part of travel
+	 */
+	public void finish()
+	{
+		// removing ourselves from npc's path end notifications
+		ent.pathnotifier.removeObserver(this);
+		finishnotifier.setChanges();
+		finishnotifier.notifyObservers();
+	}
+
+	/**
+	 * update function
+	 * @param o - not used
+	 * @param arg - arguments, not used
+	 */
+	@Override
+    public void update(Observable o, Object arg) {
+	    // are we at our destination?
+		Node current = new Node(ent.getX(), ent.getY());
+		if(current.equals(position)) {
+			finish();
 		} else {
-			ent.pathnotifier.removeObserver(this);
-			finishnotifier.setChanges();
-			finishnotifier.notifyObservers();
-			s=false;
+			// do we need to walk?
+		    path = new FixedPath(Path.searchPath(ent, position.getX(), position.getY()),false);
+			if(path.getNodeList().size()==0) {
+				finish();
+			} else {
+				// do we started already?
+				if(s) {
+					// yes, finishing
+					s=false;
+					finish();
+				} else {
+					// no, adding ourselves to npc's path end notifications
+					ent.pathnotifier.setObserver(this);
+					ent.setPath(path);
+					s=true;
+				}
+			}
 		}
-	}	
+	}
 }
+
 
