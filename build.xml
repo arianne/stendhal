@@ -681,8 +681,9 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
-				<!-- There is a 4MB OGG there! -->
-				<exclude name="music/**/*"/>
+				<exclude name="music/demiurgo_a_new_homeland.ogg" />
+				<exclude name="music/demon_haunting.ogg" />
+				<exclude name="music/*.wav" />				
 			</fileset>
 		</copy>
 
