@@ -48,7 +48,9 @@ public class HolidayingWomanNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(47, 90));
-				nodes.add(new Node(3, 90));
+				nodes.add(new Node(38, 90));
+				nodes.add(new Node(38, 91));
+				nodes.add(new Node(3, 91));
 				nodes.add(new Node(3, 64));
 				nodes.add(new Node(40, 64));
 				nodes.add(new Node(40, 75));
