@@ -198,6 +198,34 @@
     </entity> 
     
     <!-- writing on the wooden arch -->
+    
+    <entity x="39" y="67">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Entrance of Ados Market</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="40" y="67">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Entrance of Ados Market</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="42" y="67">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Entrance of Ados Market</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
+		
+		<entity x="41" y="67">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+			<attribute name="text">Entrance of Ados Market</attribute>
+			<attribute name="class">transparent</attribute>
+			<attribute name="resistance">0</attribute>
+		</entity>
 		
 		<entity x="39" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
