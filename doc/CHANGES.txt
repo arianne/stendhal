@@ -1,5 +1,19 @@
 ﻿Changelog
 ---------
+
+1.07
+
+*world*
+- more light on Ados market
+- more creature descriptions added
+- new achievement "feeling blue"
+
+*client*
+
+*fixes*
+- Alice Farmer test implemented
+
+
 1.06
 
 *world*
