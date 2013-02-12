@@ -103,7 +103,7 @@
 
   <creature name="imperial demon servant">
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
-    <description></description>
+    <description>You see an imperial demon servant who carries out whims of his demon lords. </description>
     <attributes>
       <atk value="587"/>
       <def value="74"/>
@@ -132,7 +132,7 @@
 
   <creature name="imperial demon lord">
     <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
-    <description></description>
+    <description>You see an imperial demon lord. He holds the rank of General among demons, and very few out rank it in hell.</description>
     <attributes>
       <atk value="676"/>
       <def value="89"/>
