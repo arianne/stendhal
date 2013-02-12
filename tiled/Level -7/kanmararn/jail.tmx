@@ -1,84 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="64" height="32" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="../../tileset/ground/indoor/grey_skull.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/indoor/grey_skull.png" trans="ff00ff"/>
+  <image source="../../tileset/ground/indoor/grey_skull.png" trans="ff00ff" width="128" height="64"/>
  </tileset>
  <tileset firstgid="9" name="../../tileset/ground/ground_2.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/ground_2.png" trans="ffffff"/>
+  <image source="../../tileset/ground/ground_2.png" trans="ffffff" width="128" height="32"/>
  </tileset>
  <tileset firstgid="13" name="../../tileset/building/stairs/stairs.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/stairs/stairs.png" trans="ff00ff"/>
+  <image source="../../tileset/building/stairs/stairs.png" trans="ff00ff" width="64" height="64"/>
  </tileset>
  <tileset firstgid="17" name="../../tileset/furniture/table/rectangular_with_meals.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
+  <image source="../../tileset/furniture/table/rectangular_with_meals.png" trans="ff00ff" width="96" height="96"/>
  </tileset>
  <tileset firstgid="26" name="../../tileset/building/wall/int_wall_pale.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
+  <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff" width="64" height="256"/>
  </tileset>
  <tileset firstgid="42" name="../../tileset/building/wall/int_wall_purple.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
+  <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff" width="64" height="320"/>
  </tileset>
  <tileset firstgid="62" name="../../tileset/item/food/rustic_meals.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/food/rustic_meals.png" trans="ff00ff"/>
+  <image source="../../tileset/item/food/rustic_meals.png" trans="ff00ff" width="64" height="32"/>
  </tileset>
  <tileset firstgid="64" name="../../tileset/building/entrance/pale_red_ns.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
+  <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff" width="288" height="128"/>
  </tileset>
  <tileset firstgid="100" name="../../tileset/item/chest/wooden_pale.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/chest/wooden_pale.png" trans="ff00ff"/>
+  <image source="../../tileset/item/chest/wooden_pale.png" trans="ff00ff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="101" name="../../tileset/building/entrance/detail_ns.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff"/>
+  <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff" width="96" height="64"/>
  </tileset>
  <tileset firstgid="107" name="../../tileset/logic/portal.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/portal.png"/>
+  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
  </tileset>
  <tileset firstgid="114" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="115" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/creature/dwarf_duergar.png"/>
+  <image source="../../tileset/logic/creature/dwarf_duergar.png" width="256" height="32"/>
  </tileset>
  <tileset firstgid="123" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/entrance/pale_red_ns_closed.png"/>
+  <image source="../../tileset/building/entrance/pale_red_ns_closed.png" width="96" height="128"/>
  </tileset>
  <tileset firstgid="135" name="chests" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/chest/chest_2.png"/>
+  <image source="../../tileset/item/chest/chest_2.png" width="96" height="64"/>
  </tileset>
  <layer name="0_floor" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PMQ0AAAgDsB078a8XGSSkRwW0SQoAAAAAAADwwBzz97+0EY+JeAAgAAA=
+   H4sIAAAAAAAAC+3PMQ0AAAgDsB078a8XGSSkRwW0SQoAAAAAAADwwBzz97+0EY+JeAAgAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YQREAMAgDQRQgqf5l1QKvAp1dBfdNIgCA6U53APC97A4AAIDFXux23wAAUHEBlF3jwgAgAAA=
+   H4sIAAAAAAAAC+3YQREAMAgDQRQgqf5l1QKvAp1dBfdNIgCA6U53APC97A4AAIDFXux23wAAUHEBlF3jwgAgAAA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSUtDMRSF7y9wXeqEc91obXXj1EVVXDjgwjosHNCfIQgFEdQf7Xk0gbzbvLzXTMojgW/RniYnJ01fbtMgokYikUhoWAHTGpY96bE8bJkFO2BLYRvMeNJjebjk36R822DeLrpvj2/wo/GIlb/3x/mLPFzzHwac23/P3wUn4Aicgg7zlvqbQe+L/sdMj+Vh+3xfAk1wCc7BlXi9qNHfDfqZ6H/B9Fgets/3ulP225H74xYMwD3p90um3xn0a9H/horP/yoeQ0uPIhaU/FNK/haYB+s02h/P4BG8UH6vSDL9w6A/iP5PNNpfLWXeoTyq7GHd97/Pxj0ArzTedO/JJs9hXePjSw9fLZtX1ee/Ln8dWspvn38XtBX2PM+Njx/Co2p+9fmXtU/RdxXMgTUarz343NuUr13K9I4YvykI5WHz/X+xtSuqPTi8dinTi+qfUB6m/F22jlXXrg7ItefItVNrE7W+4XcPmT6w0PlnhoE8bJH1sVp76O4e1NplEj2Wh0v+2Pcfk94hxPj/HzN/CI/Q+Xs1zm86H1z1WB62lJ0Prnosj0QikeD8AlUTwt4AIAAA
+   H4sIAAAAAAAAC+2YS0sDMRSF7y9wXeoL33WjtdWNry6q4sIHLnwufKA/QxAKIqg/2jM0gcxtJpNJJqmUBD5Ke5qcnEyauZ0GETUSiURCwwqY1rBckx7Lw5VZsAO2FLbBTE16LA+f/JuUbxvM20ev2+MH/Go8YuXvjTl/kYdv/sOAc/vv+bvgBByBU9Bh3lJ/N+h90f+Y6bE8XM/3JdAEl+AcXIn3ixr9w6Cfif4XTI/l4Xq+S4i9VsWmfwyPqueb3B934AY8kH6/ZPq9Qb8W/W+p+P5v4zFw9ChiQck/peRvgXmwTsP98QKewCvl94ok0z8N+qPo/0zD/dVS5h3Kw+b3r7v++2zcA/BGo033mWzyPqxrfHzpUVfL5mV7/uvyT0JL+d3z74K2wl7Nc+Pjh/Cwza+ef1n7En1XwRxYo9Hag8+9TfnapUzviPGbglAeLtf/m61dUe3B4bVLmV5U/4TyMOXvsnW0XbsqtUeZPi4PufYcuXZqbaLWN/zZA69dbHX+nUEgD1dkfazWHrpnD2rtUkWP5eGTP/bzj6rPEGL8/4+ZP4RH6Py9Cc5vuj/46rE8XCm7P/jqsTwSiUSC8wcEkW/yACAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WQQqAMAxE0R7DEwqeQnBlb61LN00Kk0YI/0FXzZDuOq0BACq439P/fgSAcnbn/hTzszMr8yPb51gzat6bsah5z+HcX2J+dmZlPgr/MADUofabiG6SsWNE6S4R3SRjh0XtNxHdJGMHAAAA6noAqMPP7AAgAAA=
+   H4sIAAAAAAAAC+3WQQqAMAxE0R7DEwqeQnBlb61LN00Kk0YI/0FXzZDuOq0BACq439P/fgSAcnbn/hTzszMr8yPb51gzat6bsah5z+HcX2J+dmZlPgr/MADUofabiG6SsWNE6S4R3SRjh0XtNxHdJGMHAAAA6noAqMPP7AAgAAA=
   </data>
  </layer>
  <layer name="objects" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YSwrAIAwFQC/cVX/Y0/cEWqEGsZ3ZCZI8s5KkBABlx8s7V6ccW6c6X9RrxgB/s4wOMKn94TyjPLB37Y+zBvWMfG9L7Rn+dVGzBwDqztEBClpztezR7HEAiHYDfa9LIAAgAAA=
+   H4sIAAAAAAAAC+3YSwrAIAwFQC/cVX/Y0/cEWqEGsZ3ZCZI8s5KkBABlx8s7V6ccW6c6X9RrxgB/s4wOMKn94TyjPLB37Y+zBvWMfG9L7Rn+dVGzBwDqztEBClpztezR7HEAiHYDfa9LIAAgAAA=
   </data>
  </layer>
  <layer name="collision" width="64" height="32" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UQQqFMAwFc+bef+FKEDFUm+S11AnMqtbJfD42M2sAAAAO16k4z3L8vb/noD/2G1SeqxxV/Rn3FQ76n+9Z5z79MXdGf4Yj0n9/zhvvzpf3j060f4ehP/f/r9hN4ei5Z3+bFI7R/urdV3GsvBv98/qj7je7KRyj7edUnKsc9NMPAABwAD7fMu8AIAAA
+   H4sIAAAAAAAAC+2UQQqFMAwFc+bef+FKEDFUm+S11AnMqtbJfD42M2sAAAAO16k4z3L8vb/noD/2G1SeqxxV/Rn3FQ76n+9Z5z79MXdGf4Yj0n9/zhvvzpf3j060f4ehP/f/r9hN4ei5Z3+bFI7R/urdV3GsvBv98/qj7je7KRyj7edUnKsc9NMPAABwAD7fMu8AIAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
   </data>
  </layer>
 </map>
