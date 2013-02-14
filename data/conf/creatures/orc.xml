@@ -164,7 +164,7 @@
   </creature>
  
    <creature name="mountain orc">
-    <type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:6"/>
+    <type class="orc" subclass="mountain_orc" tileid="mountain_orc.png:2"/>
     <description></description>
     <attributes>
       <atk value="352"/>
