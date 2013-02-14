@@ -9,6 +9,7 @@
 # lum means lumocra
 # ble means bleutailfly
 # tig means tigertoes
+# ant means antumdeluge
 # del means deleted as not used in maps
 # followed by * means done and committed
 
@@ -18,7 +19,7 @@ building/thatched_roof_cottage1.png 1 -   credit   reiners/check
 building/thatched_roof_cottage2.png 1 -   credit   reiners/check  
 kih*/building/decoration/coal_fire.png 11
 kih*/building/decoration/wood_fire.png 17
-building/decoration/swordfish.png 2
+ant building/decoration/swordfish.png 2
 kih*/building/decoration/platform.png 4
 del*/building/decoration/chimney_brick_wood.png 
 del*/building/decoration/chimney_brick.png 
