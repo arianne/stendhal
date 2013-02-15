@@ -9,8 +9,10 @@
 - new achievement "feeling blue"
 - New look for mountain orc 
 - Dwarves rebuilt rails in Semos Mine
+- more creature descriptions added
 
 *client*
+- A lot of redrawn images
 
 *fixes*
 - Alice Farmer test implemented
