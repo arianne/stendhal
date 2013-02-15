@@ -67,7 +67,7 @@
   
   <creature name="amazoness coastguard">
     <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
-    <description>You see an amazoness coastguard. She protects the coasts of Amazon Island from the intruders. She is not too happy to see you running in her island.</description>
+    <description>You see an amazoness coastguard. She protects the coasts of Amazon Island from intruders. She is not too happy to see you running in her island.</description>
     <attributes>
       <atk value="509"/>
       <def value="67"/>
@@ -95,7 +95,7 @@
   
   <creature name="amazoness archer commander">
     <type class="amazon" subclass="amazoness_archer_commander" tileid="amazon.png:0"/>
-    <description>You see an amazoness archer commander. She is the leader of the Amazoness archers. Her bow skills are incredible and her arrows pierce everything.</description>
+    <description>You see an amazoness archer commander. She is the leader of amazoness archers. Her bow skills are incredible and her arrows pierce everything.</description>
     <attributes>
       <atk value="518"/>
       <def value="71"/>
@@ -157,7 +157,7 @@
   
   <creature name="amazoness bodyguard">
     <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
-    <description>You see an amazoness bodyguard who will guarantee the safety to the people of the Amazon island.</description>
+    <description>You see an amazoness bodyguard who will guarantee the safety to the people of Amazon island.</description>
     <attributes>
       <atk value="548"/>
       <def value="95"/>
@@ -215,7 +215,7 @@
   
   <creature name="amazoness commander">
     <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
-    <description>You see an amazoness commander who is specialised in eliminating any strangers, who dare to take a step to her island.</description>
+    <description>You see an amazoness commander who is specialised in eliminating any strangers who dare to take a step to her island.</description>
     <attributes>
       <atk value="566"/>
       <def value="105"/>
@@ -272,7 +272,7 @@
   
   <creature name="amazoness imperator">
     <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
-    <description>You see an amazoness imperator. She is the emperor of the Amazon island and has ruled it for decades and won't let you get past her very easily.</description>
+    <description>You see an amazoness imperator. She is the emperor of Amazon island and has ruled it for decades and won't let you get past her very easily.</description>
     <attributes>
       <atk value="687"/>
       <def value="108"/>
