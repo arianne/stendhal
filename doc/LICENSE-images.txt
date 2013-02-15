@@ -1,6 +1,7 @@
 The following file is in the public domain:
     ground_3.png        http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
     umbrella_thorn.png  http://opengameart.org/content/trees-1
+    toys.png            http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
 
 These files are released under the following BSD license:
     antivenom_ring.png                  lt_blue_drapes.png
