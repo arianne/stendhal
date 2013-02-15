@@ -149,7 +149,7 @@ item/ropes.png 5
 item/sacks.png 13
 kym*/item/snowman.png 3
 item/tools.png 11
-item/toys.png 4
+ant item/toys.png 4
 del*/item/weather_vane.png 
 kym*/item/armor/chains.png 5
 item/armor/weapons_for_walls.png 12
@@ -248,7 +248,7 @@ plant/tree/deadtree_snow.png 1
 plant/tree/locust_tree.png 4
 plant/tree/maple_tree.png 3
 plant/tree/oak_tree.png 3
-plant/tree/palm_trees.png 5
+ant plant/tree/palm_trees.png 5
 plant/tree/pine_tree_1.png 5
 plant/tree/pine_tree_2.png 4
 plant/tree/snow_on_pine.png 3
