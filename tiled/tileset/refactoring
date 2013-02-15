@@ -392,6 +392,6 @@ del*/plant/flower/small_purple_white.png 1
 /plant/tree/crack_willow.png 2
 /plant/tree/fall_trees.png 2
 del*/plant/tree/pear_tree.png 0
-/plant/tree/umbrella_thorn.png 8
+ant*/plant/tree/umbrella_thorn.png 8
 del*/plant/tree/weeping_willow.png 0 
 ..all images except npcs and creatures from https://sourceforge.net/tracker/?func=detail&aid=3578763&group_id=1111&atid=973767
