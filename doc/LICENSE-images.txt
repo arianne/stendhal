@@ -2,11 +2,11 @@ The following file is in the public domain:
     ground_3.png        http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
 
 These files are released under the following BSD license:
-    antivenom_ring.png
-    giant_cobra.png
-    harmless_huge_leafy.png
-    harmless_puddle_black.png
-    harmless_puddle_brown.png
+    antivenom_ring.png                  lt_blue_drapes.png
+    giant_cobra.png                     peach_drapes.png
+    harmless_huge_leafy.png             purple_drapes.png
+    harmless_puddle_black.png           red_drapes.png
+    harmless_puddle_brown.png           royal_blue_drapes.png
     harmless_puddle_green.png
     harmless_puddle_light_blue.png
     harmless_rock.png
