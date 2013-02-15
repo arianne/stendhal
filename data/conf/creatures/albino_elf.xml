@@ -35,7 +35,7 @@
 
   <creature name="albino elf archer">
     <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
-    <description>You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a 100 meter distance.</description>
+    <description>You see an albino elf archer. He is so sharp-eyed that he could hit a bee from a distance of 100 meters.</description>
     <attributes>
       <atk value="345"/>
       <def value="94"/>
