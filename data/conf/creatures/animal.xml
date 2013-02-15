@@ -115,7 +115,7 @@
 
   <creature name="chicken">
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
-    <description>You see a chicken, isn't it nice?.</description>
+    <description>You see a chicken, isn't it nice?</description>
     <attributes>
       <atk value="32"/>
       <def value="7"/>
