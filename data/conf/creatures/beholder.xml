@@ -33,7 +33,7 @@
   
   <creature name="beholder">
     <type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
-    <description>You see a beholder which can see you very well with its huge eye...</description>
+    <description>You see a beholder which can see you very well with his huge eye...</description>
     <attributes>
       <atk value="126"/>
       <def value="20"/>
