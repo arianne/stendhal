@@ -7,6 +7,8 @@
 - more light on Ados market
 - more creature descriptions added
 - new achievement "feeling blue"
+- New look for mountain orc 
+- Dwarves rebuilt rails in Semos Mine
 
 *client*
 
