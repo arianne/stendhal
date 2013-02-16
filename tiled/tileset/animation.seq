@@ -621,3 +621,15 @@ tileset/item/statue/gazingball_statue.png	*	29:32:35:38:15:18:21:24:28:31:34:37:
 tileset/ground/water/swamp_water.png	*	18@800:21@1200:24@1800:27:30@2000
 tileset/ground/water/swamp_water.png	*	19@800:22@1200:25@1800:28:31@2000
 tileset/ground/water/swamp_water.png	*	20@800:23@1200:26@1800:29:32@2000
+
+# chimney smoke
+tileset/building/chimney_smoke.png      *       0:1:2:3
+tileset/building/chimney_smoke.png      *       4:5:6:7
+tileset/building/chimney_smoke.png      *       8:9:10:11
+tileset/building/chimney_smoke.png      *       12:13:14:15
+tileset/building/chimney_smoke.png      *       16:17:18:19
+tileset/building/chimney_smoke.png      *       20:21:22:23
+tileset/building/chimney_smoke.png      *       24:25:26:27
+tileset/building/chimney_smoke.png      *       28:29:30:31
+tileset/building/chimney_smoke.png      *       32:33:34:35
+tileset/building/chimney_smoke.png      *       36:37:38:39
