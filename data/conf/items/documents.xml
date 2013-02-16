@@ -170,7 +170,7 @@
     </equipable>
   </item>
   
-    <item name="recipe">
+ <!--<item name="recipe">
     <type class="documents" subclass="recipe" tileid="-1"/>
     <description>You see a recipe, ready for being delivered to Imorgen. It names ingredients for a powerful potion against werewolves. </description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -185,5 +185,6 @@
       <slot name="lhand"/>
       <slot name="rhand"/>
     </equipable>
-  </item>
+  </item>-->
+
 </items>
