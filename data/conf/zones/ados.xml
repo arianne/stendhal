@@ -4191,6 +4191,7 @@ Southeast: Docks
 	</zone>
 
  <zone name="-3_ados_snake_pit" level="-2" x="500512" y="499936" file="Level -3/ados/snake_pit.tmx" accessible="false">
+   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
    <portal x="8" y="107" ref="exit">
      <destination zone="int_ados_barracks_0" ref="down" />
    </portal>

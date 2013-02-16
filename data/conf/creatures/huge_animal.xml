@@ -489,14 +489,14 @@
       <def value="90"/>
       <hp value="1499"/>
       <speed value="1.0"/>
-      <size value="3,1"/>
+      <size value="3,2"/>
     </attributes>
     <level value="112"/>
     <experience value="14850"/>
     <respawn value="5400"/>
     <corpse name="huge_animal" width="2" height="2"/>
     <drops>
-      <item value="disease poison" quantity="[1,1]" probability="25.0"/>
+      <item value="disease poison" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
