@@ -485,14 +485,14 @@
     <type class="huge_animal" subclass="giant_cobra" tileid="huge_animal.png:9"/>
     <description>You see a giant cobra. It is extremely venomous.</description>
     <attributes>
-      <atk value="709"/>
-      <def value="94"/>
-      <hp value="1200"/>
+      <atk value="723"/>
+      <def value="90"/>
+      <hp value="1499"/>
       <speed value="1.0"/>
       <size value="3,1"/>
     </attributes>
-    <level value="110"/>
-    <experience value="14400"/>
+    <level value="112"/>
+    <experience value="14850"/>
     <respawn value="5400"/>
     <corpse name="huge_animal" width="2" height="2"/>
     <drops>
