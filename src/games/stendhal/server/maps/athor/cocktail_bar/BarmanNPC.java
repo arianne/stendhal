@@ -12,16 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.cocktail_bar;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -47,10 +44,8 @@ public class BarmanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-			        final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 5));
-				nodes.add(new Node(11, 5));
-				setPath(new FixedPath(nodes, true));
+				// doesn't move
+				setPath(null);
 			}
 
 			@Override
@@ -75,7 +70,8 @@ public class BarmanNPC implements ZoneConfigurator {
 		};
 
 		barman.setEntityClass("barmannpc");
-		barman.setPosition(8, 5);
+		barman.setPosition(9, 5);
+		barman.setDirection(Direction.DOWN);
 		barman.initHP(100);
 		barman.setDescription("You see Pedro, the bartender. He can mix the finest cocktails for you.");
 		zone.add(barman);
