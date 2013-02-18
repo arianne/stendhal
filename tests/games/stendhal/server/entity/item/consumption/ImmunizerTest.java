@@ -93,7 +93,7 @@ public class ImmunizerTest {
 		assertFalse(player.isImmune());
 		assertEquals(-1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		assertThat(player.events().size(), is(1));
-		assertThat(player.events().get(0).get("text"), is("You are not immune from poison anymore."));
+		assertThat(player.events().get(0).get("text"), is("You are not immune to poison anymore."));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
 		assertFalse(player.isImmune());

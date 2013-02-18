@@ -1428,7 +1428,7 @@ public class Player extends RPEntity implements UseListener {
 
 	public void removeImmunity() {
 		isImmune = false;
-		sendPrivateText("You are not immune from poison anymore.");
+		sendPrivateText("You are not immune to poison anymore.");
 	}
 
 	public void consume(final int turn) {
