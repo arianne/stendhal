@@ -85,6 +85,7 @@ final class PrefixManager
 		register("bottle of ", "bottles of ", "water");
 		register("bottle of ", "bottles of ", "fierywater");
 		register("bottle of ", "bottles of ", "milk");
+		register("bottle of ", "bottles of ", "holy water");
 
 		registerEnd("bottle of ", "bottles of ", "potion");
 		registerEnd("bottle of ", "bottles of ", "poison");
