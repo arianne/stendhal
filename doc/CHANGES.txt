@@ -12,7 +12,8 @@
 - more creature descriptions added
 
 *client*
-- A lot of redrawn images
+- A lot of redrawn tilesets
+- Redrawn Pina Colada
 
 *fixes*
 - Alice Farmer test implemented
