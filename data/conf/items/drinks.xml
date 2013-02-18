@@ -172,7 +172,7 @@
   </item>
 
   <item name="pina colada">
-    <type class="drink" subclass="pina_colada" tileid="-1"/>
+    <type class="drink" subclass="pina_colada2" tileid="-1"/>
     <description>You see a pina colada. It looks delicious but tastes dangerously strong!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="28"/>
