@@ -151,10 +151,11 @@ Authors of Stendhal are:
 - AntumDeluge
   . Maps (snake pit)
   . Art (giant cobra)
-  . Added Sound Effects
-      Recorded: laugh-evil-1, mutant-frog-1, robot-1, snake-2, undead-(1-4)
+  . Sound Effects
+      Voiced: laugh-evil-1, mutant-frog-1, robot-1, snake-2, undead-(1-4)
   . Bugs
   . Maps Touchup
+  . Wiki
   
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
