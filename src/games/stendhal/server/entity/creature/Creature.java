@@ -746,7 +746,7 @@ public class Creature extends NPC {
 		final RPEntity entity = getAttackTarget();
 		if (poisoner.attack(entity)) {
 			new GameEvent(getName(), "poison", entity.getName()).raise();
-			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()));
+			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
 		}
 	}
 
