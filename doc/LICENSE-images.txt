@@ -3,6 +3,9 @@ The following file is in the public domain:
     umbrella_thorn.png  http://opengameart.org/content/trees-1
     toys.png            http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
 
+The following files are released under the terms and conditions of the GPL (see license.txt).
+    mimic.png - Copyright 2013 Diligent Dodo
+
 These files are released under the following BSD license:
     antivenom_ring.png                  lt_blue_drapes.png
     giant_cobra.png                     peach_drapes.png
