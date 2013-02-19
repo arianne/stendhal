@@ -442,5 +442,33 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-      
+  
+  <creature name="mimic">
+    <type class="hybrid" subclass="mimic" tileid="hybrid.png:14"/>
+    <description></description>
+    <attributes>
+      <atk value="260"/>
+      <def value="39"/>
+      <hp value="200"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1200"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="money" quantity="[50,85]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
 </creatures>  
