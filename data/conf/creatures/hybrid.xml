@@ -444,7 +444,7 @@
   </creature>
   
   <creature name="mimic">
-    <type class="hybrid" subclass="mimic" tileid="hybrid.png:14"/>
+    <type class="hybrid" subclass="mimic_still" tileid="hybrid.png:14"/>
     <description></description>
     <attributes>
       <atk value="260"/>
@@ -467,7 +467,7 @@
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_still;mimic),"/>
     </ai>
   </creature>
   
