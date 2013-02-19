@@ -185,4 +185,5 @@ Notable contributors:
 - Omero
   · Coder (trivial patch to the client GUI for deleting local profiles, some NPCs)
   · Artist (some new pies, so far)
-
+- Diligent Dodo
+  · Artist (mimic sprite)
