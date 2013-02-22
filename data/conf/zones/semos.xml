@@ -2534,7 +2534,7 @@ Holy mackerel! These chips are tasty.
 		</implementation>
 		</entity>
 		
-		<entity x="7" y="0">
+		<entity x="7" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
 
