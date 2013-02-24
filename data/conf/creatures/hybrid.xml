@@ -470,7 +470,7 @@
       <says>
       </says>
       <profile name="brave"/>
-      <profile name="offensive"/>
+      <profile name="non-offensive" />
       <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
     </ai>
   </creature>
