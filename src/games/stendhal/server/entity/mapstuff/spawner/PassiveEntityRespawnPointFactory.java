@@ -182,6 +182,11 @@ public class PassiveEntityRespawnPointFactory {
 			passiveEntityrespawnPoint
 					.setDescription("You see a place where an olive is likely to fall.");
 			break;
+		case 9:
+			passiveEntityrespawnPoint = new PassiveEntityRespawnPoint("cherry", 1000);
+			passiveEntityrespawnPoint
+					.setDescription("You see a place where a cherry looks likely to fall.");
+			break;
 		default:
 			passiveEntityrespawnPoint = null;
 			break;
