@@ -462,6 +462,7 @@
       <item value="broadsword" quantity="[1,1]" probability="4.0" />
       <item value="dagger" quantity="[1,1]" probability="3.5" />
       <item value="golden legs" quantity="[1,1]" probability="0.5" />
+      <item value="golden chainmail" quantity="[1,1]" probability="7.0" />
     </drops>
     <equips>
     </equips>
