@@ -684,7 +684,7 @@
  
   <creature name="imperial priest">
     <type class="human" subclass="imperial_priest" tileid="human_imperial.png:12"/>
-    <description></description>
+    <description>You see an imperial priest. The church has fallen out of favor with the citizens as of late, but this imperial priest still clings to the faith.</description>
     <attributes>
       <atk value="368"/>
       <def value="57"/>
@@ -953,7 +953,7 @@
 
   <creature name="imperial high priest">
     <type class="human" subclass="imperial_high_priest" tileid="human_imperial.png:9"/>
-    <description></description>
+    <description>You see an imperial high priest who's troubled by the actions of the imperial science department. Be careful, he might take those frustrations out on you!</description>
     <attributes>
       <atk value="437"/>
       <def value="52"/>
