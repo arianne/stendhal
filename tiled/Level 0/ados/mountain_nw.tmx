@@ -45,7 +45,7 @@
  <tileset firstgid="276" name="../../tileset/logic/item/sign.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sign.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="277" name="../../tileset/logic/collision.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="277" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="278" name="Sin nombre" tilewidth="32" tileheight="32">
@@ -66,6 +66,9 @@
  <tileset firstgid="332" name="protection" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="333" name="chimney_smoke" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/chimney_smoke.png" width="128" height="320"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt3U1uwkAQBWHnhwWXyv2PlU2QEMiJiaenuntqUXsz35MFkexctm27mJmZmZmZmZmZmZmZmZlZ2T5/oq/D5no/Rl+Xcfb69+43d/17dsRc/1pGkdFn0TnaVn/N9ddbf73111v/db0/dqLPW2vGvaM/fdYZ+su7qz997hl61b6yP33WmfqPexV/+mwzdca5ij99xnQRxpn96fPu6rrX+0P6rWH/6H7Gnz7PKtG2R9J8PfP76PPKGn2/jnbXn7ec4at/fnPCfTV/2pc0Xs2fdq7gXtlfx3X99a7vT9+PVzef4U87as/50456x/rTbppz/rSf9rH+tJH2nD9tpPf8aKdKdluCa+jgT39mY/zpz2pz/enPZvrbPH/6s1isP32tZmZmZmZmZmZmZmZmZma239db/egzNH679LVYrtyF3e/APZgbsFtuwW47oK/B3IDlyC2Y3w1slR34vM/aO/CZr9d2QF/DbH838LyBTjvwue+1NxD5/H/3LXTYQbR/xAayba3yDmb4j7TJfL+puIOZ7/mctVU3cN4/+n2QUfYZNnC/BfoazvhHb2Okd+YNZN5B5/e802dbYQed3/VPn22FDXT+vw/02VbYwEj/bBugz7bCDkb7Z9oAfbYVNhDhn2UDtG+FDRD/213/Z39qAxdoAzO2QNtW2MBlpw4boF3/s4Es/tQeVt1Adv/K3xNo28wbeMW/6gZo18wbeNWf2MVK/rcNVPPPvAHa88wOordwvavrBmjHzDu4buM3ELmNFf0jt/Do33EDtFnkFiL8u22AdorewJn3pO35H43cghs4v5Oz/iPvFfrPb4Q/+dvBDeTwpzbgd8E8/qP24W/Cnv5HN+DfBfr6u4FcEf5RG9C/jn+WDdDnT0f6R2xA/1r+Izfg/b+m/9EtuIH+/m5A/982EPlbYMU90M5R/m5Afzegvxvo5U/cAzpv4BvARvMz
@@ -84,6 +87,11 @@
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJztzskJAlEQRdE2G/OP4OM8LRo1BQWNwgfuBLe/Gj0HLlTt3jAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPSzSMu0Suu0qZ1DZ9u0S/t0SMfaOXR2+vjHkhVUOqdLulYPAQAAAAAAAAAAAAAm6Zbu1SMo80jP6hEAAAAAAAAAAAAAAAAAAAAAAAAAAADAX2pfbuD3tTSfvWvFWwAAAACm5gWlFRLH
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="128" height="128">
+  <data encoding="base64" compression="zlib">
+   eJzt0TENAAAIwDAQy4F/A7gAjlbBkkUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwL7K6wIutf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALw0jWADR
   </data>
  </layer>
  <layer name="objects" width="128" height="128">
