@@ -656,13 +656,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		int tmpY = yAdjust + convertWorldToPixelUnits(wh);
 		if (tmpY < sh) {
 			g.setColor(Color.BLACK);
-			g.fillRect(0, tmpY, sw, sh);
+			g.fillRect(svx, tmpY, sw, sh);
 		}
 
 		int tmpX = yAdjust + convertWorldToPixelUnits(ww);
 		if (tmpX < sw) {
 			g.setColor(Color.BLACK);
-			g.fillRect(tmpX, 0, sw, sh);
+			g.fillRect(tmpX, svy, sw, sh);
 		}
 	}
 	
