@@ -46,6 +46,9 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.set.blue", "Feeling Blue", "Loot a complete blue equipment set",
 				Achievement.MEDIUM_BASE_SCORE, false,
 				new PlayerLootedNumberOfItemsCondition(1, "blue armor", "blue helmet", "blue striped cloak", "blue legs", "blue boots", "blue shield")));
+		itemAchievements.add(createAchievement("item.set.elvish", "Nalwor's Bane", "Loot a complete elvish equipment set",
+				Achievement.MEDIUM_BASE_SCORE, false,
+				new PlayerLootedNumberOfItemsCondition(1, "elvish armor", "elvish hat", "elvish cloak", "elvish legs", "elvish boots", "elvish shield")));
 		itemAchievements.add(createAchievement("item.set.shadow", "Shadow Dweller", "Loot a complete shadow equipment set",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "shadow armor", "shadow helmet", "shadow cloak", "shadow legs", "shadow boots", "shadow shield")));
