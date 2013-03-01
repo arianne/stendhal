@@ -4,7 +4,7 @@ The following file is in the public domain:
     toys.png            http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
-    mimic.png - Copyright 2013 Diligent Dodo
+    mimic.png & mimic_idle.png - Copyright 2013 Diligent Dodo
 
 These files are released under the following BSD license:
     antivenom_ring.png                  lt_blue_drapes.png
@@ -14,7 +14,7 @@ These files are released under the following BSD license:
     harmless_puddle_brown.png           royal_blue_drapes.png
     harmless_puddle_green.png           gnome_homes.png
     harmless_puddle_light_blue.png      panel_tile_aqua_001.png
-    harmless_rock.png
+    harmless_rock.png                   elvish_hat.png
     huge_leafy.png
     puddle_black.png
     puddle_brown.png
