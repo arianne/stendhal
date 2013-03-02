@@ -6,7 +6,7 @@
  <tileset firstgid="10" name="../../tileset/building/fence/fence_wooden.png" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_wooden.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="19" name="../../tileset/ground/indoor/brown_hole.png" tilewidth="32" tileheight="32">
+ <tileset firstgid="19" name="brown_hole" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/brown_hole.png" trans="ff00ff" width="224" height="256"/>
  </tileset>
  <tileset firstgid="75" name="../../tileset/ground/square_patch.png" tilewidth="32" tileheight="32">
@@ -73,7 +73,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3ZTUoDMQAG0Knu/EHpVhcu1XN5DxUpioh6HQt6AM/kwoQ6EIsdO+10yiTvwQeFkhL4msyEVBUAAAAAAAAAAAAAAACQo4eQpxVzt4X50q37kL2Q/ZY5CJlsYb50K/Z/2HLMVci40n8OVuk/0n8e9F82/Zdt3f6dBYYt9v+58/d3byHThrGTBZ8Zjqb1/x7y0TA2dv41mkX/w5T2fxJy2mKs9T98df/nIRchl0uOq5//tyHXIS8bmR2btu7733PIa6czok/Of2X7r/+z0XK/s9vFZOid9V829z9li/0fV7/vdRdJ74mPKv3n4LGaneFqTXvBOPnszJePeIar/wPL9B+7d+bLS70PpM+C+cQ937rPV7oPRPP3P9Z9/tL3gfT+x7ovx/w+YN2XJ+4DNz+x7gEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL58A8AA6gUAAAEA
+   H4sIAAAAAAAAA+3ZTUoDMRgG4Knu/EHpUl24VM/lPVSkKCLqdRT0AJ7JhV+oA2OxY3+mLZM8D7xQKCmBt8lMSFUBAAAAAAAAAAAAAAAAObqPPC6Y2w3Ml27dRXYiu3NmLzLawHzpVup/f84xl5Fhpf8cLNJ/ov886L9s+i/bsv07C/Rb6v9z6+/vXiNvLWNHUz7TH23r/z3y0TI2df41GEf//VT3fxQ5jpzMMdb677+6/7PIeeRixnH18/8mchV5XsnsWLVl3/+eIi+dzoh1cv4r23/9nw5m+53tLibD2ln/ZXP/U7bU/2H1+153muY98UGl/xw8VOMzXK1tLxg2Pjvz5SOd4er/wCz9p+6d+fJS7wPNZ8Fk0p5v3eeruQ8kk/c/1n3+mu8Dzfsf674ck/uAdV+etA9c/8S6BwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1uUbnto85wAAAQA=
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
