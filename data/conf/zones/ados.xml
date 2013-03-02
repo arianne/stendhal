@@ -4177,6 +4177,15 @@ Right: Uncharted</attribute>
    </entity>
  </zone>
 
+ <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499872" file="Level -2/ados/snake_pit_s.tmx" accessible="false">
+   <entity x="0" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+       <parameter name="sound">sewers</parameter>
+       <parameter name="volume">120</parameter>
+     </implementation>
+   </entity>
+ </zone>
+
  <!-- commented out till ready <zone name="-2_ados_vaults" level="-2" x="500768" y="500128" file="Level -2/ados/vaults.tmx">
     </zone> -->
 
