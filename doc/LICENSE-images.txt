@@ -9,22 +9,22 @@ The following files are released under the terms and conditions of the GPL (see 
 Permission has been granted to use the image dog_small (originally called brown_puppy). See permission_dog_small_sprite.pdf.
     dog_small.xcf.bz2:  http://rpgmaker.net/media/content/users/17733/locker/brown_puppy.png
 
-These files are released under the following BSD license:
-    antivenom_ring.png                  lt_blue_drapes.png
-    giant_cobra.png                     peach_drapes.png
-    harmless_huge_leafy.png             purple_drapes.png
-    harmless_puddle_black.png           red_drapes.png
-    harmless_puddle_brown.png           royal_blue_drapes.png
-    harmless_puddle_green.png           gnome_homes.png
-    harmless_puddle_light_blue.png      panel_tile_aqua_001.png
-    harmless_rock.png                   elvish_hat.png
-    huge_leafy.png
-    puddle_black.png
-    puddle_brown.png
-    puddle_green.png
-    puddle_light_blue.png
-    rock.png
-    venom_gland.png
+These images are released under the following BSD license:
+    antivenom_ring                  lt_blue_drapes
+    giant_cobra                     peach_drapes
+    harmless_huge_leafy             purple_drapes
+    harmless_puddle_black           red_drapes
+    harmless_puddle_brown           royal_blue_drapes
+    harmless_puddle_green           gnome_homes
+    harmless_puddle_light_blue      panel_tile_aqua_001
+    harmless_rock                   elvish_hat
+    huge_leafy                      crab_meat
+    puddle_black
+    puddle_brown
+    puddle_green
+    puddle_light_blue
+    rock
+    venom_gland
 
 Copyright (c) 2013, Jordan Irwin
 All rights reserved.
