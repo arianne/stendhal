@@ -633,3 +633,8 @@ tileset/building/chimney_smoke.png      *       24:25:26:27
 tileset/building/chimney_smoke.png      *       28:29:30:31
 tileset/building/chimney_smoke.png      *       32:33:34:35
 tileset/building/chimney_smoke.png      *       36:37:38:39
+
+# torch
+tileset/object/torch.png    *    0:1:2
+tileset/object/torch.png    *    3:4:5
+tileset/object/torch.png    *    6:7:8
