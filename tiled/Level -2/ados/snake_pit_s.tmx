@@ -36,13 +36,10 @@
  <tileset firstgid="165" name="large_pebble" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_pebble.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="166" name="torch" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/torch.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="175" name="yellow_light_5x5" tilewidth="32" tileheight="32">
+ <tileset firstgid="166" name="yellow_light_5x5" tilewidth="32" tileheight="32">
   <image source="../../tileset/light/yellow_light_5x5.png" width="160" height="160"/>
  </tileset>
- <tileset firstgid="200" name="creature/hybrid" tilewidth="32" tileheight="32">
+ <tileset firstgid="191" name="creature/hybrid" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png" width="480" height="32"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
