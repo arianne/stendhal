@@ -4169,6 +4169,12 @@ Right: Uncharted</attribute>
    <portal x="14" y="6" ref="pit_exit">
      <destination zone="-1_ados_caves_e" ref="pit_entrance"/>
    </portal>
+   <entity x="0" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+       <parameter name="sound">sewers</parameter>
+       <parameter name="volume">120</parameter>
+     </implementation>
+   </entity>
  </zone>
 
  <!-- commented out till ready <zone name="-2_ados_vaults" level="-2" x="500768" y="500128" file="Level -2/ados/vaults.tmx">
@@ -4210,6 +4216,12 @@ Right: Uncharted</attribute>
    <portal x="8" y="107" ref="exit">
      <destination zone="int_ados_barracks_0" ref="down" />
    </portal>
+   <entity x="0" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+       <parameter name="sound">sewers</parameter>
+       <parameter name="volume">120</parameter>
+     </implementation>
+   </entity>
  </zone>
 
  <!--  Level -4 -->
