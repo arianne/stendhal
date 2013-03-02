@@ -3999,6 +3999,9 @@ Southeast: Docks
  </zone>
 
  <zone name="-1_ados_caves_e" level="-1" x="500512" y="499872" file="Level -1/ados/caves_e.tmx">
+   <portal x="71" y="62" ref="pit_entrance">
+     <destination zone="-2_ados_snake_pit" ref="pit_exit"/>
+   </portal>
  </zone>
 
 <zone name="-1_ados_caves_s" level="-1" x="500384" y="500000" file="Level -1/ados/caves_s.tmx">
@@ -4156,6 +4159,17 @@ Southeast: Docks
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
+ <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499872" file="Level -2/ados/snake_pit.tmx">
+   <!-- writing on sign east -->
+   <entity x="50" y="28">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+     <attribute name="text">Entrance prohibited by order of Mayor Chalmers.</attribute>
+   </entity>
+   <portal x="14" y="6" ref="pit_exit">
+     <destination zone="-1_ados_caves_e" ref="pit_entrance"/>
+   </portal>
+ </zone>
+
  <!-- commented out till ready <zone name="-2_ados_vaults" level="-2" x="500768" y="500128" file="Level -2/ados/vaults.tmx">
     </zone> -->
 
@@ -4190,7 +4204,7 @@ Southeast: Docks
 		</entity>
 	</zone>
 
- <zone name="-3_ados_snake_pit" level="-2" x="500512" y="499936" file="Level -3/ados/snake_pit.tmx" accessible="false">
+ <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx" accessible="false">
    <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
    <portal x="8" y="107" ref="exit">
      <destination zone="int_ados_barracks_0" ref="down" />
