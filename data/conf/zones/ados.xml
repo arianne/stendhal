@@ -4160,11 +4160,11 @@ Southeast: Docks
  </zone>
 
  <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499872" file="Level -2/ados/snake_pit.tmx">
-   <!-- writing on sign east -->
-   <entity x="24" y="107">
+   <!-- writing on sign south -->
+   <entity x="24" y="106">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-     <attribute name="text">Left: CAUTION - Venemous Serpents. Entry prohibited by Mayor Chalmers.
-Right: Uncharted</attribute>
+     <attribute name="text">West Tunnel: CAUTION - Venemous Serpents. Entry prohibited by Mayor Chalmers.
+East Tunnel: Uncharted</attribute>
    </entity>
    <portal x="14" y="6" ref="pit_exit">
      <destination zone="-1_ados_caves_e" ref="pit_entrance"/>
