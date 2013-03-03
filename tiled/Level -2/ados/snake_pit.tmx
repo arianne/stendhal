@@ -83,11 +83,6 @@
    eJzt0kFygzAUBFF8/0tnlZ1thAH1oOlfpWUq8xq/tm17+Xw+n883+LaADaT9/+gttL+twbejtyU0aGlx9Oi9KR1W7HL10R472MEOmR1oS1IT2pDSg96e0oLendCB3pzQg96Z0IHemNCB3kc3oLfR/oYG+vXr7/SPHL2RMK9m/+XozYQ5zT3raKfueW7aqPt+O226wk5vo+z0LtJPb/Lb++399nP99B7629Ob/Pb6Cbt+fpN+/fr1Uw3oPTbg/Y0NPnVoarF39D4b8A3obXbIadDSYeTojTbIaEFvs0FGg5YONtD/rQG9i+5A76H9bQ3069ff20C/fv369etvs+vX3mpv9zfb2/3vjt6kX7v+uXZ6j9+dcTfY947eR/rpbX57zr6yf/TonaRd/3oNzhy9nfY/vcFR22oNjtjP/E3q+9WxQoOz+5/c4Krde0c77/aPdkhqcce+dv9oh5XtT+gwc8/IrWpPbED9/5QG5P8e6bC6n/4tJPjJ30KSf69Bg3/2rlT/p21N/nf79I+9PzG2G4I=
   </data>
  </layer>
- <layer name="protection" width="64" height="128" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
-  </data>
- </layer>
  <layer name="blend_roof" width="64" height="128" visible="0" opacity="0.26">
   <data encoding="base64" compression="zlib">
    eJzt1TEKwCAQBEC/n1jG/FebA5sQG2PAGdhe5PYuJQBGHC1nl7z2OZ+7WkqXe+1z+JHoxm6dCNGN6IT/sCNGmBNzAryzK+1KAJ65k+4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPNUf/YWWQ==

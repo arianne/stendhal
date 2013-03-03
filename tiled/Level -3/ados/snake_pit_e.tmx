@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="dirt_1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/dirt_1.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="int_rock_blue" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
+ </tileset>
+ <tileset firstgid="105" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <layer name="0_floor" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACEQA8ETIf0XTAnoHwkLmGByr3tVdQAAAAAAAAAAAAAAjtUm0vt2997a/7X7tg/0v92/8kN6s/7sH+mNyQ/S2wAA+GcAq32cqQ==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENgDAMBECvgCijMAT7D5ekSAmiIRC4kyw3LvzSRwAAAAAAAAAAAAAAMLNUJx/M9uBfd+qZ215O7vYx77zWGt/twFV/74D8AAAAcylbiwJF
+  </data>
+ </layer>
+ <layer name="2_object" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAACAtwFAAAAB
+  </data>
+ </layer>
+ <layer name="3_roof" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEOgCAQBEBq1Fdoa+3/fyYFJMZgfRFmkq1o9i4XUgIAAAAAAAAAAAAAgP/I0QWC5Jq95AjuEqHNf0YXCdLmv0qW4C6R2h62mtl2kTv52sGaxv8v3/fwTHsbXe8mZpkdAGBUN/eAAjg=
+  </data>
+ </layer>
+ <layer name="collision" width="64" height="64" visible="0" opacity="0.35">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMBLGsy/4LMAENzQnkSO4vv2ZmAQAAAAAAAAAAAADAw05XdxU///r/7dXd9RZ1a71B3VlvUbeVG9RNAABwawNdMHbt
+  </data>
+ </layer>
+</map>
