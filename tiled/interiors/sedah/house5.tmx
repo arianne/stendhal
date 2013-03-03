@@ -12,40 +12,40 @@
  <tileset firstgid="73" name="entrance details" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ns.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="79" name="ground" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/brownground.png" width="32" height="32"/>
+ <tileset firstgid="79" name="ground_4" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="80" name="barrell" tilewidth="32" tileheight="32">
+ <tileset firstgid="83" name="barrell" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png" width="32" height="64"/>
  </tileset>
- <tileset firstgid="82" name="stool" tilewidth="32" tileheight="32">
+ <tileset firstgid="85" name="stool" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/chair/stool.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="83" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="86" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="84" name="portal" tilewidth="32" tileheight="32">
+ <tileset firstgid="87" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="91" name="table2" tilewidth="32" tileheight="32">
+ <tileset firstgid="94" name="table2" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/table/long_front_on_pale.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="94" name="bookshelf" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="bookshelf" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/shelve/dark_bookshelf_2.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="100" name="chem1" tilewidth="32" tileheight="32">
+ <tileset firstgid="103" name="chem1" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chemistry/bottle.png" width="32" height="160"/>
  </tileset>
- <tileset firstgid="105" name="chem2" tilewidth="32" tileheight="32">
+ <tileset firstgid="108" name="chem2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chemistry/empty_bottles.png" width="128" height="96"/>
  </tileset>
- <tileset firstgid="117" name="steel lamp" tilewidth="32" tileheight="32">
+ <tileset firstgid="120" name="steel lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/iron_lamp.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="120" name="flames" tilewidth="32" tileheight="32">
+ <tileset firstgid="123" name="flames" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/flames.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="126" name="imperial" tilewidth="32" tileheight="32">
+ <tileset firstgid="129" name="imperial" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png" width="448" height="32"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -55,27 +55,27 @@
  </layer>
  <layer name="1_terrain" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+NhYGBgIgNzAzELEMsAsQQJWBqImaF6xYC4nAE3SATiJCBOhvJF0fSSAtD1RlOgN4ZCvUEDYG8sBXqJBYGDSC++dAXTA8PIeqWAWBwJqwKxGhCro4nDsCRULxcQM6JhPSDWB2IDLHIwzAnEAJNnhL+EAwAA
+   H4sIAAAAAAAAC+NhYGBgIgNzAzELEMsAsQQJWBqImaF6xYC4igE3SAHiVCBOg/JF0fSSAtD1xlGgN55CvaEDYG8CBXqJBSGDSC++dAXTA8PIeqWAWBwJqwKxGhCro4nDsCRULxcQM6JhPSDWB2IDLHIwzAnEALqQQQaEAwAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoByU4ZGLA+J4IE6ggj2DBaQNkL2ZA2QvsSBgCOodDAAAz5pJiYQDAAA=
+   H4sIAAAAAAAAC2NgoBxU4pFLBOIkIE6mgj2DBWQOkL05A2QvsSB4COodDAAA8GGa/oQDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NggIBKhlEwChgYAqhsHiXpqoyAfAAD9d1LTeAJxF5A7E1AHQC8Z4MNhAMAAA==
+   H4sIAAAAAAAAC2NggIAahlEwChgYgqlsHiXpqpKAfDAD9d1LTeAJxF5A7E1AHQAC2es5hAMAAA==
   </data>
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDGXQPtANGAIigsfkARAjlw4QDAAA=
+   H4sIAAAAAAAAC2NgGAVDGfQNtANGAIimsfkAqCQM8IQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACwtmYGAIHmCMC6CrIVYfIbNI1T/S9Q6EnZTqJaSf1PRJy/QPAEh4N1uEAwAA
+   H4sIAAAAAAAACwtjYGAIG2CMC6CrIVYfIbNI1T/S9Q6EnZTqJaSf1PRJy/QPAFoFkIGEAwAA
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

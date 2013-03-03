@@ -18,8 +18,8 @@
  <tileset firstgid="44" name="pebbles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="47" name="dirt_1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/dirt_1.png" width="128" height="32"/>
+ <tileset firstgid="47" name="ground_4" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="51" name="interior_blue_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>

@@ -24,8 +24,8 @@
  <tileset firstgid="51" name="creature/huge_animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png" width="416" height="32"/>
  </tileset>
- <tileset firstgid="64" name="floor_dirt_1" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/dirt_1.png" width="128" height="32"/>
+ <tileset firstgid="64" name="ground_4" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="68" name="int_rock_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
