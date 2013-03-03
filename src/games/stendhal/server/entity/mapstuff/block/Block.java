@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
  *
  * @author madmetzger
  */
-public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener{
+public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener {
 	
 	private static final Logger logger = Logger.getLogger(Block.class);
 
