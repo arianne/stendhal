@@ -121,9 +121,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	@Override
 	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY) {
-		logger.debug("Block [" + this.getID().toString()
-				+ "] notified about entity [" + entity + "] exiting ["
-				+ zone.getName() + "].");
+        logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
 		resetInPlayerlessZone(zone, entity);
 	}
 
@@ -140,9 +138,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 
 	@Override
 	public void onExited(RPObject object, StendhalRPZone zone) {
-		logger.debug("Block [" + this.getID().toString()
-				+ "] notified about object [" + object + "] exiting ["
-				+ zone.getName() + "].");
+        logger.debug("Block [" + this.getID().toString() + "] notified about object [" + object + "] exiting [" + zone.getName() + "].");
 		resetInPlayerlessZone(zone, object);
 	}
 
@@ -150,11 +146,9 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		// reset to initial position if zone gets empty of players
 		final List<Player> playersInZone = zone.getPlayers();
 		int numberOfPlayersInZone = playersInZone.size();
-		if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1
-				&& playersInZone.contains(object)) {
+        if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1 && playersInZone.contains(object)) {
 			this.reset();
-			logger.debug("Block [" + this.getID().toString() + "] reset to ("
-					+ this.getX() + "," + this.getY() + ").");
+            logger.debug("Block [" + this.getID().toString() + "] reset to (" + this.getX() + "," + this.getY() + ").");
 		}
 	}
 
