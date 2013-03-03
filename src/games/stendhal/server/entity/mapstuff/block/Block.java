@@ -58,6 +58,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		put("type", "block");
 		// Count as collision for the client and pathfinder
 		setResistance(100);
+        // a nice description
+        setDescription("You see a solid block of rock. Are you strong enough to push it away?");
 		this.reset();
 	}
 
