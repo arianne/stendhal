@@ -6,73 +6,73 @@
  <tileset firstgid="2" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="9" name="stairs" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/stairs/stairs.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="13" name="naga" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="creature/naga" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/naga.png" width="96" height="32"/>
  </tileset>
- <tileset firstgid="16" name="animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="12" name="creature/animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png" width="896" height="32"/>
  </tileset>
- <tileset firstgid="44" name="rocks" tilewidth="32" tileheight="32">
+ <tileset firstgid="40" name="rocks" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="48" name="pebbles" tilewidth="32" tileheight="32">
+ <tileset firstgid="44" name="pebbles" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" width="32" height="96"/>
  </tileset>
- <tileset firstgid="51" name="dirt_1" tilewidth="32" tileheight="32">
+ <tileset firstgid="47" name="dirt_1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/dirt_1.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="55" name="interior_blue_rock" tilewidth="32" tileheight="32">
+ <tileset firstgid="51" name="interior_blue_rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
  </tileset>
- <tileset firstgid="155" name="sign" tilewidth="32" tileheight="32">
+ <tileset firstgid="151" name="sign" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sign.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="156" name="large_boulder" tilewidth="32" tileheight="32">
+ <tileset firstgid="152" name="large_boulder" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_boulder.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="165" name="large_pebble" tilewidth="32" tileheight="32">
+ <tileset firstgid="161" name="large_pebble" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_pebble.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="166" name="yellow_light_5x5" tilewidth="32" tileheight="32">
+ <tileset firstgid="162" name="yellow_light_5x5" tilewidth="32" tileheight="32">
   <image source="../../tileset/light/yellow_light_5x5.png" width="160" height="160"/>
  </tileset>
- <tileset firstgid="191" name="creature/hybrid" tilewidth="32" tileheight="32">
+ <tileset firstgid="187" name="creature/hybrid" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png" width="480" height="32"/>
  </tileset>
- <tileset firstgid="206" name="huge_boulder" tilewidth="32" tileheight="32">
+ <tileset firstgid="202" name="huge_boulder" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/huge_boulder.png" width="160" height="128"/>
+ </tileset>
+ <tileset firstgid="222" name="haze" tilewidth="32" tileheight="32">
+  <image source="../../tileset/sky/haze.png" width="96" height="160"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwwENAAAMw6CKmn9tF3JIWDVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVff4A4iuAWw==
+   eJzt2DtCw0AQBFEdidA5978TERHYmtXObM2ng02lfoWMBa/rul4358tw7q4RfSL3ZPdHb6rq99o12W+xyx/n8NiY2e9x/ap+67V3/fTPx8P/6T4V/U/sRIMI/459t0HU1gx+770eeyLsd/fLdp0Iv9d2r52E36NBdf9ugw7+nQan/dkadPI/aeC1c8Uf3eDdnkz+Ew3+25XJT/1eiPB7dTr9Wcj+fEbfh/afOlk+i0/O5bCpqv/Xvrutov3T7il+y35Pe1a/xdHdb3Ht2iv5d4yd/N4daAfdgd5Pd6B30x3ovXQDeivZgd5HN6C3yc82oHfJLz9ln+D/Hu6f/P2vd7+5/snv/pPt0/3T/+6d6l9xy9+vgfxz/U/tXRpM9u/a5ecN8ssvP+ev3GCy38te0e9pr+b3tlfyR9ir+KPs2f2R7sz+E+6s/pP2bP7T9gx+wpzFT9spP22m/LSVbkA7yQa0j2pAm7xa0Hvk5+zTGsgv/0qDbp2s/q7PicXf9XvfYuv83iO//PLLL/9fz3T/SgPaEOW3NKD3R/itDejtp/ydj/zyyy+//PLLP8s/2S7/bLv8avDOP6mB/GsNujVa+f9W1+fkrsFKo4pnun+3Ab1dfq4BvZluQO8lW9D7dHR0/p4flkqFng==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztzskNgDAABLH03x73DZ2wVSQI2dL8pxQAAAAAAAAAAAAAAIB/61KfhjSmqe1OdXNa0pq2tLfdqe5IZ7rSnZ6mNwAAAAAAAAAAAAAAAAAAAAAAAMCXvUQHDMc=
+   eJzt3Etu2zAQBmAfJ0gv0F2RZdJ2064D/OteNun7kXTVTY5RDmACsmSTlEjOiDPzAYMsZMvzk1QkGYYOh7yPiW3vQ70r2MfIUvkJOJoQ5PnTwNGEkNtQbzKvAUMfUnJzT9C7CUGePw+9mxDk+fPQuwlBnj8PvZsQUnLuJ+jcRw/Xx0opmXuCulbYvZrUJaVzT1DbEJOrY11P/l5SOvcEFT1JiGs/Nf9a80/XQGr+X6/YJ2oaYkZzXjL/WvOTkuOfaP3/T9njOkjRmj+u/6vM67Tmj+f+VvN/F+ptQe3pe+Lc/z+y5hxYgr4rz43Hv0n11PL6d6v5eLwcTvP3HoMUuv79IPC5exmD3nOfMh0DCWvufXp5EfxsybmfiucV7vPGXvJHNwfeMdhbfkJjwHUtscf8c3E8eozDCPmjeA3RchxGyh+1XA8j5o9arIeR80c146Ahf7Tl90ma8pM1a0HqvodDyVrQNvdzyGzXnj+3BrTnJ0hss5D/U2Kbhfwpnl8vFLxGc/4Snt+2tfkfQj2G+hzqS6ivzTvis+V772+hvof6EepnqF+tm6qEFa/dsvZ/h/oT6inUc6i/G/axF9aP/TW/edHIen6i4RhAxXs1rAFUvFdD/loajoEao+ZHo/14/jGh0X6s5x/1HIBG+7Gen4x6DLTi+W3z/LZ5fts8v22e3zbPb9uo94DOOR6QbkAYpBtgNv99iIVnf06duyYAdxOCPP+SpWPg0jUxOJsQ5Plt8/y2eX7b5vkh0YQgz38KEk0I8vynLF37E7//WwJ3E4I8/xK4mxDk+ZfA3YQgz78E7iYEWc6/h2dCSvJ7/1OQaELQuXsf6yDdgDC//7W1Bs7lTz2bls6Ze3vue41L58BzxwFlv09s12b+LPf5MwQtjEEOpBsQBukGhEG6Aeecc+7oP1DidWU=
   </data>
  </layer>
  <layer name="2_object" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+   eJzt1ckNgEAMA8AtjiK5j04JVRjYGcl/W4qU1gAAAP7rShcgaqxMlTldJOC5/aWyVrZwlxT77e95/145Kme4R4Lfz5sN6QJBPW8HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Ftub2YNZA==
   </data>
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztzskNACAMBLH0XxxXRWwXQciW5j9VAAAAAAAAAAAAAADA70aaaaWdTu8OAAAAAAAAAAAAAAAAAAAAAAAAADzpAm5UBBE=
+   eJzt21tugzAQhWEvK6V97QqyAa+3tzWVebDkIkjDZTDj83+SH6pI6ZzBhgSclAAArd1mRu/mMqv04dns5O+vD1uy99KDPdl76IFy/iOykz9uD47MH7EHR+eP1gOP/F49eHF63yg9uDu8p/HKH2ktePYgSh+8exClDwU9IH/xnujBkT2Iqq5fLf+Q5mtXyf+oboX8z1LOXlPPb5SzAwAAAPhraF1AQ8rZTW5dAJpRnvue2T/G8TmOr3F8j+PH8X9toXzcTW5dAJpg3m/jtefnTHuOvdeenzPl1gUE18Ma2CPqGuCcDwD7cQ1EJEt75RSQXZNqdsv9mvSyW+63pLm3r8x1tdxGcZ2XNV7mu5J6ritl57yul93kdM3cZ3wHvvI9SzsmXj2IstatPlubVuu0F0P12tyYvlb/HWmtl5qn90Ry0vo9nuG+GAD8r5dz/lq9XfPW6PW6v2T6XV0tf07kV82/du73lj8n7fxGPb9Rz2/U8xvl7IVydgAAgJ6V57eqcuJzLbTw7BuAMs6BUJ8D9rmXHizvC51z5X2+W9X395f2wNb7XXvGsx8gnl8evp+g
   </data>
  </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+   eJztzjENAAAIA7Dd+BeMjJHQKmgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHdNOwAAAAAAAAAAALyx7u8ACw==
   </data>
  </layer>
- <layer name="collision" width="64" height="128" visible="0" opacity="0.41">
+ <layer name="collision" width="64" height="128" opacity="0.41">
   <data encoding="base64" compression="zlib">
-   eJzt29EJwCAMQMG4/9KdoCBUCvLuQT4NuQFcM7M25q2dt3/Ml7uq8fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn5+/Gz8/fjZ+f/8yOG/8T8N917+n4+fm78fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn52/PA5r/AX0=
+   eJzt1kuOwzAMA9D0/pceZGFgUDTxTxIlkwS8m8Z8nLbo57quz8B5yshrI453r7dks3v0qui37CY/r78XT0eGfp7PH82J/pnsPqe6/+2u1dch/TuJ3sD6uRbZee6pfq8NIp9l0T+6L8LfuzeyL8rfu3u3r0UHb3/v/oiuaH+vw2pfi7szboD8/Hv6e11W+u7eidjgqdNK39W7Mmyw0y3Cn+F7IZPfa4MsfSpu4JkKn4EMsehS3b7bq6Lfsls1+x2rrhX/9/+z27m6/85q78rf+29ZdZ3ib2H3t7D7W9j9Lez+Fnb/HXZ/C7O9RX5u/x35ef3M73/273/5ef3Mv/08f/tm38/7t/9p/tPC6l9538t/xgY7dvnrZ9dffQNWv4Vbfvnlrxn5uTeQn9dvba/k97BX8XvZK/g97Zn93u6s/ih3Rn+0PZMfYUf7UeYMfrQb5Ud7UX60U37cBmgfagO0yWILdBf5sRuge8iPs7NuIP+4/8StfmXkb1j8vaD7e/hngu4vv/zy2/hX9kD3t/bPboDu7+Gf2QDd38s/sgG6u7f/bQN07yj/6ec76D7yyy+//PLLL7/88sfY0V3klx/p1wb4Lmg/4wbyz21w2kZP6f0tunfEBr2ge8uP3QDdGb0Bui9yC3Q/HR0dne/zB/PjEkU=
   </data>
  </layer>
  <layer name="protection" width="64" height="128" visible="0">
