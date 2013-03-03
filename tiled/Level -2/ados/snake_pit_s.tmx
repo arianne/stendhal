@@ -42,6 +42,9 @@
  <tileset firstgid="191" name="creature/hybrid" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png" width="480" height="32"/>
  </tileset>
+ <tileset firstgid="206" name="huge_boulder" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/rock/huge_boulder.png" width="160" height="128"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6CKmn9tF3JIWDVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVff4A4iuAWw==
@@ -49,7 +52,7 @@
  </layer>
  <layer name="1_terrain" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+   eJztzskNgDAABLH03x73DZ2wVSQI2dL8pxQAAAAAAAAAAAAAAIB/61KfhjSmqe1OdXNa0pq2tLfdqe5IZ7rSnZ6mNwAAAAAAAAAAAAAAAAAAAAAAAMCXvUQHDMc=
   </data>
  </layer>
  <layer name="2_object" width="64" height="128">
@@ -59,7 +62,7 @@
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+   eJztzskNACAMBLH0XxxXRWwXQciW5j9VAAAAAAAAAAAAAADA70aaaaWdTu8OAAAAAAAAAAAAAAAAAAAAAAAAADzpAm5UBBE=
   </data>
  </layer>
  <layer name="objects" width="64" height="128">
@@ -67,9 +70,9 @@
    eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
   </data>
  </layer>
- <layer name="collision" width="64" height="128" opacity="0.41">
+ <layer name="collision" width="64" height="128" visible="0" opacity="0.41">
   <data encoding="base64" compression="zlib">
-   eJztzrEJAEAMAzFn/6XDD/AQUqSS4EqDK0kN+plsL9r+AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICnAWZ5ADc=
+   eJzt29EJwCAMQMG4/9KdoCBUCvLuQT4NuQFcM7M25q2dt3/Ml7uq8fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn5+/Gz8/fjZ+f/8yOG/8T8N917+n4+fm78fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn5+/Gz8/fjZ+fvxs/P383fn7+bvz8/N34+fm78fPzd+Pn52/PA5r/AX0=
   </data>
  </layer>
  <layer name="protection" width="64" height="128" visible="0">

@@ -4159,7 +4159,7 @@ Southeast: Docks
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
- <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499872" file="Level -2/ados/snake_pit.tmx">
+ <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499808" file="Level -2/ados/snake_pit.tmx">
    <!-- writing on sign south -->
    <entity x="24" y="106">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -4177,7 +4177,7 @@ East Tunnel: Uncharted</attribute>
    </entity>
  </zone>
 
- <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499900" file="Level -2/ados/snake_pit_s.tmx" accessible="false">
+ <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499936" file="Level -2/ados/snake_pit_s.tmx">
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
