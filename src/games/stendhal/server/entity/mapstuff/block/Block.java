@@ -34,7 +34,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	}
 
 	/**
-	 * Create a new Block a (startX, startY)
+	 * Create a new Block at (startX, startY)
 	 *
 	 * @param startX
  * 				initial x-coordinate
@@ -91,16 +91,17 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	private boolean mayBePushed(Direction d) {
 		boolean pushed = wasPushed();
 		boolean multiPush = this.getBool("multi");
-
-		if(multiPush) {
-			// multi push always allows pushing
-			// additional checks: new position must be free
-			return true;
-		} else {
-			// if multiple pushing is not allowed and block was pushed once, return false
-			return !pushed;
+		int newX = this.getXAfterPush(d);
+		int newY = this.getYAfterPush(d);
+		
+		if(!multiPush && pushed) {
+			return false;
 		}
 
+		// additional checks: new position must be free
+		boolean collision = this.getZone().collides(this, newX, newY);
+		
+		return !collision;
 	}
 
 	@Override
