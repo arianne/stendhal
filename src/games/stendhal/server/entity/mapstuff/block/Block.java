@@ -170,10 +170,12 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	@Override
 	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY, int newX, int newY) {
-		Rectangle2D oldA = new Rectangle2D.Double(oldX, oldY, entity.getWidth(), entity.getHeight());
-		Rectangle2D newA  = new Rectangle2D.Double(newX, newY, entity.getWidth(), entity.getHeight());
-		Direction d = Direction.getAreaDirectionTowardsArea(oldA, newA);
-		this.push(d);
+        if (entity instanceof Player) {
+            Rectangle2D oldA = new Rectangle2D.Double(oldX, oldY, entity.getWidth(), entity.getHeight());
+            Rectangle2D newA = new Rectangle2D.Double(newX, newY, entity.getWidth(), entity.getHeight());
+            Direction d = Direction.getAreaDirectionTowardsArea(oldA, newA);
+            this.push(d);
+        }
 	}
 
 }
