@@ -88,4 +88,9 @@
    eJzt1TEKwCAQBEC/n1jG/FebA5sQG2PAGdhe5PYuJQBGHC1nl7z2OZ+7WkqXe+1z+JHoxm6dCNGN6IT/sCNGmBNzAryzK+1KAJ65k+4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPNUf/YWWQ==
   </data>
  </layer>
+ <layer name="protection" width="64" height="128">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+  </data>
+ </layer>
 </map>
