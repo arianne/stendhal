@@ -334,8 +334,8 @@
  
   <item name="elvish hat">
     <type class="helmet" subclass="elvish_hat" tileid="-1"/>
-    <description>You see an elvish hat. Not great for defense but stylish in the elf world.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <description>You see an elvish hat. The elf craftmanship has made the leafy material stronger than one would think.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"></implementation>
     <attributes>
       <def value="3"/>
     </attributes>

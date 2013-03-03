@@ -21,7 +21,7 @@ These images are released under the following BSD license:
     huge_leafy                      crab_meat
     puddle_black                    torch
     puddle_brown                    giant_boulder
-    puddle_green
+    puddle_green                    elvish_hat
     puddle_light_blue
     rock
     venom_gland
