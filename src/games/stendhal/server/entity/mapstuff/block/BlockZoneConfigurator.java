@@ -9,7 +9,11 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import java.util.Map;
 
 /**
- * Factory for Blocks
+ * Factory for pushable Blocks
+ * 
+ * Necessary parameters:
+ * start-x = initial x coordinate, where the block also will be resetted to
+ * start-y = initial y coordinate, where the block also will be resetted to
  * 
  * @author madmetzger
  */
