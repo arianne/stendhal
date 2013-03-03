@@ -1345,6 +1345,13 @@ Mature sheep wanted: please speak to Sato.
 			<parameter name="x">45</parameter>
 			<parameter name="y">53</parameter>
 		</configurator>
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"
+			condition="stendhal.testserver"> 
+			<parameter name="start-x">44</parameter>
+			<parameter name="start-y">53</parameter>
+			<parameter name="multi">true</parameter>
+		</configurator>
 		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />
