@@ -4223,7 +4223,7 @@ East Tunnel: Uncharted</attribute>
 		</entity>
 	</zone>
 
- <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx" accessible="false">
+ <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
    <portal x="18" y="123" ref="pit3_start">
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -4244,7 +4244,7 @@ East Tunnel: Uncharted</attribute>
    </entity>
  </zone>
 
- <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx" accessible="false">
+ <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx">
  </zone>
 
  <!--  Level -4 -->
