@@ -27,14 +27,23 @@ import org.apache.log4j.Logger;
  */
 public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener {
 	
-	private static final Logger logger = Logger.getLogger(Block.class);
+	/**
+     * 
+     */
+    private static final String START_Y = "start-y";
+    /**
+     * 
+     */
+    private static final String START_X = "start-x";
+
+    private static final Logger logger = Logger.getLogger(Block.class);
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
 		clazz.isA("area");
 		//start_* denotes the initial place of a block to be able resetting it to that position
-		clazz.addAttribute("start_x", Type.INT, Definition.HIDDEN);
-		clazz.addAttribute("start_y", Type.INT, Definition.HIDDEN);
+		clazz.addAttribute(START_X, Type.INT, Definition.HIDDEN);
+		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
 		//flag denoting if this block is multiple times pushable
 		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
 	}
@@ -51,8 +60,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	 */
 	public Block(int startX, int startY, boolean multiPush) {
 		super(1,1);
-		this.put("start_x", startX);
-		this.put("start_y", startY);
+		this.put(START_X, startX);
+		this.put(START_Y, startY);
 		this.put("multi", Boolean.valueOf(multiPush).toString());
 		setRPClass("block");
 		put("type", "block");
@@ -67,7 +76,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	 * Resets the block position to its initial state
 	 */
 	public void reset() {
-		this.setPosition(this.getInt("start_x"), this.getInt("start_y"));
+		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
 		this.notifyWorldAboutChanges();
 	}
 
@@ -80,6 +89,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		if(this.mayBePushed(d)) {
 			this.setPosition(getXAfterPush(d), getYAfterPush(d));
             this.notifyWorldAboutChanges();
+            //this.addEvent(new SoundEvent("bell-1", SoundLayer.AMBIENT_SOUND));
 			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
 		}
 	}
@@ -93,8 +103,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	}
 
 	private boolean wasPushed() {
-		boolean xChanged = this.getInt("x") != this.getInt("start_x");
-		boolean yChanged = this.getInt("y") != this.getInt("start_y");
+		boolean xChanged = this.getInt("x") != this.getInt(START_X);
+		boolean yChanged = this.getInt("y") != this.getInt(START_Y);
 		return xChanged || yChanged;
 	}
 
