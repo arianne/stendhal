@@ -8,13 +8,17 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * A solid, movable block on a map
@@ -22,6 +26,8 @@ import marauroa.common.game.RPObject;
  * @author madmetzger
  */
 public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener{
+	
+	private static final Logger logger = Logger.getLogger(Block.class);
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
@@ -71,6 +77,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	public void push(Direction d) {
 		if(this.mayBePushed(d)) {
 			this.setPosition(getXAfterPush(d), getYAfterPush(d));
+			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
 		}
 	}
 
@@ -107,13 +114,16 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	@Override
 	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX,
 			int newY) {
-		// do nothing on enter
+		// do nothing
 	}
 
 	@Override
 	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY) {
-		resetInPlayerlessZone(zone);
+		logger.debug("Block [" + this.getID().toString()
+				+ "] notified about entity [" + entity + "] exiting ["
+				+ zone.getName() + "].");
+		resetInPlayerlessZone(zone, entity);
 	}
 
 	@Override
@@ -124,19 +134,26 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 
 	@Override
 	public void onEntered(RPObject object, StendhalRPZone zone) {
-		// do nothing on enter
+		// do nothing
 	}
 
 	@Override
 	public void onExited(RPObject object, StendhalRPZone zone) {
-		resetInPlayerlessZone(zone);
+		logger.debug("Block [" + this.getID().toString()
+				+ "] notified about object [" + object + "] exiting ["
+				+ zone.getName() + "].");
+		resetInPlayerlessZone(zone, object);
 	}
 
-	private void resetInPlayerlessZone(StendhalRPZone zone) {
+	private void resetInPlayerlessZone(StendhalRPZone zone, RPObject object) {
 		// reset to initial position if zone gets empty of players
-		final boolean zoneContainsPlayer = zone.containsPlayer();
-		if(!zoneContainsPlayer) {
+		final List<Player> playersInZone = zone.getPlayers();
+		int numberOfPlayersInZone = playersInZone.size();
+		if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1
+				&& playersInZone.contains(object)) {
 			this.reset();
+			logger.debug("Block [" + this.getID().toString() + "] reset to ("
+					+ this.getX() + "," + this.getY() + ").");
 		}
 	}
 
