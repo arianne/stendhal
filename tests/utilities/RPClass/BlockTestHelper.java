@@ -17,7 +17,9 @@ public class BlockTestHelper {
 	
 	public static void generateRPClasses() {
 		EntityTestHelper.generateRPClasses();
-		AreaEntity.generateRPClass();
+		if(!RPClass.hasRPClass("area")) {
+			AreaEntity.generateRPClass();
+		}
 		if(!RPClass.hasRPClass("block")) {
 			Block.generateRPClass();
 		}
