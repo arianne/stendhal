@@ -39,6 +39,9 @@
  <tileset firstgid="268" name="Interior Blue Rock" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
  </tileset>
+ <tileset firstgid="368" name="sign" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sign.png" width="32" height="32"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJztmTFyAzEMA50yZf7/2XzATuw7igDILbaVCCxP40l+vh6PHwAAAAAAAAAAAAAAAAAAAAAAAIA3+b6Iem7Q+mcHsrnjnT3IptL9ph2Ykh///V2pc5x075bRvauJmdS5knpS9jUxU2JPqr6m5UntSdXZpCzJPeHfl073+Pei231XZ5OyTOipo7NJWab6T58f/x59qb3jv7+zO/e5ZXEhwX/VHeocjrj7rzwX/x47UD2XKqva22T/p7rHv34f7szglE/tKXUP7tzrlE3tJ3UP1O4rcqmdpO7A1Xtcsqk9qFH4V2eGPle4f79r9TuFf61j9Q7g39e96ncT/vXO8e9Nh/eODjv8T9qBbu+nO8R/hnv89zp19H+ixy7/Tjugdjjd/8lzN7tP96/cAbW3bf5Pn13tNmVH8F/vKuktSff/6vy0LvFfswPJHSbO3O1/Sk9Tczn6V87q6L87g6orpUvXHVDMr+40iWnu8e/hXzm7utM0Et3/Nbu6z1TwD/iHu7ugnk/d2yQcvePfo2d1506zTMaxX9zv9Y97/ON/p3+33yAbcOoZ9/rOHXzjvq6//zo81fenf1fCf0+//52B+wyqOq520nnXVlTunznBt4d/l/3Ard6/2y6o+5pAZ79498ClZ5c5tsA3thPe2N3gfS843wne94L33eB/L7jfDd6v9aSe56R/9UyOTOyIbx//E3Ph/5r7Cbnwj/9U/50+cO/R1Sf/a6mcAf/3/Kjd350F/zr/Vd7xn+e/2v3VefA/xz3+z7l2fvfx3+d9kv8T2dLo+s7c/J/KlkS3dxf/XTmd6fTd5b/6XrUjpXv1/ZU70PGmJOCS9aT/q36n74JTNrXvZ5mnvgeOmdTOX+WtPu909jTvDjvgPFtVLnf3J3tOmFGN2nuS/0k7oPad6v/kDnTNoHad7t+NKV3gH9gBwP9u8A+4hzt7oJ4bdLugnhMAAJ7zC7ucCpU=
@@ -61,7 +64,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt3cEJwDAIBdAUem177P6bZoP00qDiexN8AioEwTEAAAAAAAAAAAAAAABg7Y4OAAAJnUd0AohzRQcoQp8AAKAi/8EA+bzRAQAAAAAAAGAju8kAedhR+J83BXbTZwAAAAAAAAAAAAAAAAAAAAAAAIAqnugAAAAAAABAKavbLO62APRgFkAfXzWt5qEHtQ4AAAAAALlNRW0BTQ==
+   eJzt3cEJwDAIBdAEem177Jrd/9QNkkuDEd+b4BNQIQi2BgAAAAAAAAAAAAAAAGNXdAAA2NDRoxNAnDM6QBL6BAAAGfkPBtjPEx0AAAAAAAAAFrKbDLAPOwr/86bAavoMAAAAAAAAAAAAAAAAAAAAAAAAkMUdHQAAAAAAAEhldJvF3RaAGswCqGNW02oealDrAAAAtb09OgEAADMfjhwBvg==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.41">

@@ -4178,6 +4178,9 @@ East Tunnel: Uncharted</attribute>
  </zone>
 
  <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499936" file="Level -2/ados/snake_pit_s.tmx">
+   <portal x="25" y="121" ref="pit3_entrance">
+     <destination zone="-3_ados_snake_pit" ref="pit3_start"/>
+   </portal>
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
@@ -4222,9 +4225,17 @@ East Tunnel: Uncharted</attribute>
 
  <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx" accessible="false">
    <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
-   <portal x="8" y="107" ref="exit">
-     <destination zone="int_ados_barracks_0" ref="down" />
+   <portal x="18" y="123" ref="pit3_start">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
    </portal>
+   <!-- Temporary exit -->
+   <portal x="8" y="107" ref="temp_exit">
+     <destination zone="-1_ados_caves_e" ref="pit_entrance" />
+   </portal>
+   <entity x="19" y="123">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+     <attribute name="text">Go up the stairs to exit the snake pit</attribute>
+   </entity>
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
