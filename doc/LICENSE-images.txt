@@ -20,7 +20,7 @@ These images are released under the following BSD license:
     harmless_rock                   elvish_hat
     huge_leafy                      crab_meat
     puddle_black                    torch
-    puddle_brown
+    puddle_brown                    giant_boulder
     puddle_green
     puddle_light_blue
     rock
