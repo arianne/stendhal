@@ -4166,7 +4166,7 @@ Southeast: Docks
      <attribute name="text">West Tunnel: CAUTION - Venemous Serpents.
 East Tunnel: Uncharted</attribute>
    </entity>
-   <portal x="14" y="6" ref="pit_exit">
+   <portal x="14" y="4" ref="pit_exit">
      <destination zone="-1_ados_caves_e" ref="pit_entrance"/>
    </portal>
    <entity x="0" y="0">
