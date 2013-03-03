@@ -77,6 +77,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	public void push(Direction d) {
 		if(this.mayBePushed(d)) {
 			this.setPosition(getXAfterPush(d), getYAfterPush(d));
+            this.notifyWorldAboutChanges();
 			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
 		}
 	}
