@@ -761,5 +761,35 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-                
-</creatures>  
+  
+  <creature name="myling">
+    <type class="undead" subclass="myling" tileid="undead.png:14"/>
+    <description>You see a myling which roams in search of someone to give it a proper burial.</description>
+    <attributes>
+      <atk value="1153"/>
+      <def value="96"/>
+      <hp value="3801"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="201"/>
+    <experience value="35001"/>
+    <respawn value="3050"/>
+    <corpse name="humanoid"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Take me to the grave!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.05"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+</creatures>
