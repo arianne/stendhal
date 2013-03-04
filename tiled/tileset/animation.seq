@@ -637,3 +637,6 @@ tileset/building/chimney_smoke.png      *       36:37:38:39
 # torch
 tileset/furniture/light/torch_2.png    *    0:1:2
 tileset/furniture/light/torch_2.png    *    6:7:8
+
+# bubbles
+tileset/ground/water/foaming.png    *    0:1:2:3:4:5:6:7
