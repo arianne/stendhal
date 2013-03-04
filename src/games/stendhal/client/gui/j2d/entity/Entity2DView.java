@@ -112,6 +112,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * Whether this view is contained.
 	 */
 	private boolean contained;
+	private HorizontalAlignment xAlign = HorizontalAlignment.CENTER;
+	private VerticalAlignment yAlign = VerticalAlignment.MIDDLE;
 	
 	/**
 	 * Some model value changed.
@@ -194,6 +196,18 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	protected void buildRepresentation(T entity) {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
+		calculateOffset(entity, getWidth(), getHeight());
+	}
+	
+	/**
+	 * Set the alignment of the sprite.
+	 * 
+	 * @param xAlign horizontal position
+	 * @param yAlign vertical position
+	 */
+	void setSpriteAlignment(HorizontalAlignment xAlign, VerticalAlignment yAlign) {
+		this.xAlign = xAlign;
+		this.yAlign = yAlign;
 	}
 
 	/**
@@ -213,8 +227,10 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	}
 
 	/**
-	 * Calculate sprite image offset (default centered). Sub-classes may
-	 * override this to change alignment.
+	 * Calculate sprite image offset The result depends on the alignment
+	 * specified with 
+	 * {@link #setSpriteAlignment(HorizontalAlignment, VerticalAlignment)}. The
+	 * default if centered in both directions.
 	 * 
 	 * @param swidth
 	 *            The sprite width (in pixels).
@@ -227,11 +243,26 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	protected void calculateOffset(final int swidth, final int sheight,
 			final int ewidth, final int eheight) {
-		/*
-		 * X alignment centered, Y alignment centered
-		 */
-		xoffset = (ewidth - swidth) / 2;
-		yoffset = (eheight - sheight) / 2;
+		switch (xAlign) {
+		case LEFT:
+			xoffset = 0;
+			break;
+		case RIGHT:
+			xoffset = ewidth - swidth;
+			break;
+		default:
+			xoffset = (ewidth - swidth) / 2;
+		}
+		switch (yAlign) {
+		case TOP:
+			yoffset = 0;
+			break;
+		case BOTTOM:
+			yoffset = eheight - sheight;
+			break;
+		default:
+			yoffset = (eheight - sheight) / 2;
+		}
 	}
 
 	/**
@@ -519,6 +550,9 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @return The height (in pixels).
 	 */
 	public int getHeight() {
+		if (sprite != null) {
+			return sprite.getHeight();
+		}
 		return IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
@@ -546,6 +580,9 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @return The width (in pixels).
 	 */
 	public int getWidth() {
+		if (sprite != null) {
+			return sprite.getWidth();
+		}
 		return IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
