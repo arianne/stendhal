@@ -18,6 +18,8 @@ import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -38,7 +40,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	/**
 	 * The number of states.
 	 */
-	protected int states;
+	private int states;
 	
 	/**
 	 * Log4J.
@@ -51,6 +53,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 	public GrainField2DView() {
 		super();
 		states = 0;
+		setSpriteAlignment(HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM);
 	}
 
 	//
@@ -97,20 +100,11 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 		
 		calculateOffset(entity, width, imageHeight);
 	}
-	
-	
-	@Override
-	protected void calculateOffset(final int swidth, final int sheight,
-			final int ewidth, final int eheight) {
-		xoffset = 0;
-		// Start drawing from the top of the sprite
-		yoffset = eheight - sheight;
-	}
 
 	/**
 	 * Get the current entity state.
 	 * 
-	 * @param entity
+	 * @param entity checked entity
 	 * @return The current state.
 	 */
 	@Override

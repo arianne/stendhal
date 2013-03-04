@@ -189,6 +189,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.isPoisoned();
 					}
 				});
+		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
 	@Override
@@ -229,35 +230,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 
 	/**
-	 * Calculate sprite image offset. Sub-classes may override this to change
-	 * alignment.
-	 * 
-	 * @param spriteWidth
-	 *            The sprite width (in pixels).
-	 * @param spriteHeight
-	 *            The sprite height (in pixels).
-	 * @param entityWidth
-	 *            The entity width (in pixels).
-	 * @param entityHeight
-	 *            The entity height (in pixels).
-	 */
-	@Override
-	protected void calculateOffset(final int spriteWidth,
-			final int spriteHeight, final int entityWidth,
-			final int entityHeight) {
-		/*
-		 * X alignment centered, Y alignment bottom
-		 */
-		xoffset = (entityWidth - spriteWidth) / 2;
-		yoffset = entityHeight - spriteHeight;
-	}
-
-	/**
 	 * Create the title sprite.
 	 * 
 	 * @return The title sprite.
 	 */
-	protected Sprite createTitleSprite() {
+	private Sprite createTitleSprite() {
 		final String titleType = entity.getTitleType();
 		final int adminlevel = entity.getAdminLevel();
 		Color nameColor = null;
@@ -341,7 +318,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param width
 	 *            The drawn width.
 	 */
-	protected void drawFloaters(final Graphics2D g2d, final int x, final int y,
+	private void drawFloaters(final Graphics2D g2d, final int x, final int y,
 			final int width) {
 		for (Map.Entry<RPEntity.TextIndicator, Sprite> floater : floaters.entrySet()) {
 			final RPEntity.TextIndicator indicator = floater.getKey();
@@ -425,7 +402,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param height
 	 *            The drawn entity height.
 	 */
-	protected void drawCombat(final Graphics2D g2d, final int x,
+	private void drawCombat(final Graphics2D g2d, final int x,
 							  final int y, final int width, final int height) {
 		Rectangle2D wrect = entity.getArea();
 		final Rectangle srect = new Rectangle(
@@ -1116,7 +1093,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * @param changedProperty
 		 * @param entity
 		 */
-		void check(Object changedProperty, T entity) {
+		private void check(Object changedProperty, T entity) {
 			if (property == changedProperty) {
 				check(entity);
 			}
@@ -1128,7 +1105,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * 
 		 * @param entity
 		 */
-		void check(T entity) {
+		private void check(T entity) {
 			setVisible(show(entity));
 		}
 		
