@@ -19,8 +19,8 @@ public class LookableEntity2DView<T extends Entity> extends Entity2DView<T> {
     public int getZIndex() {
         // blocks should be at the same z index as players
         final RPObject obj = this.getEntity().getRPObject();
-        if (obj.has("z-order")) {
-            return obj.getInt("z-order");
+        if (obj.has("z")) {
+            return obj.getInt("z");
         }
         return super.getZIndex();
     }
