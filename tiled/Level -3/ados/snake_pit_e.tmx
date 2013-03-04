@@ -4,19 +4,19 @@
   <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="5" name="int_rock_blue" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="320"/>
+  <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="448"/>
  </tileset>
- <tileset firstgid="105" name="collision" tilewidth="32" tileheight="32">
+ <tileset firstgid="145" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2TEOgDAMBEGLMv9/MG0aBAgpJ+Ippr9161FVAwAAAAAAAAAAAACA3zpupPet7t21/233bjfQ37v/yx3Sm/Vn75HemLxBehsAAAAAAADXOv91uv+19OvX37N97k/vAAAAAAAAAAAAAOCZE72AO/g=
+   eJzt2bENwCAQBMEXIf0X7BIAWfLJ/AST334Is6omAAAAAAAAAAAAAAC/NRbS+77uvbX/tPu2G+jv3f/mDunN+rP3SG9M3iC9DQAAAAAA2Nfxrb/zX0/3vz79+ru2r/rT2xL96T2J/vQGAAAAAAAAAAAAAPY9H9w6sA==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2jEKgDAMBdBcQRxFD+H9D6cOhS6Ki9qa9yB06ZBAtvwIAAAAAAAAAAAAAAB6Nu01n9TyYV9PKjMf73Dxb32nnWaN8d8duCv7DpgfAAAAAAAAoD0l95Dxpl9nPTLedOucS8b5AQAAAAAAAAAAAAB6sQELDAM8
+   eJzt2kEKgCAQBVCvEC2jDtH9D1cughBKN5XpezC4cTEf3H1DAAAAAAAAAAAAAADgz6Z95otZPtzrSUfmeA4399Z31qnWGNp9A6V6fwPyAwAAAAAAQP3S3r+HnvecOe39W++6c38dopa7zlx2AAAAAAAAAAAAAACowQZPYAPb
   </data>
  </layer>
  <layer name="2_object" width="64" height="128">
@@ -26,7 +26,7 @@
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2TEKhDAQBdDU0T2Ftlvv/W+mCw6IaD3EeQ9+lWb+ENKkNQAAAAAAAAAAAAAAGEfPHiBJP7LsWZNnyRD9v9mDJIn+vz1T8iyZYg+fI9V20W/ytIO5vf+9vN6Hc+Ls7e7uRJXuAAAAAAAAwLgq/Gk/ie4V+1fu/le5OwAAAAAAAAAAAMCINgR/AqI=
+   eJzt2TEKwzAQBEDVivOKpHWd///MFlhghFIf1s3AVm5uT8KNSgEAAAAAAAAAAAAAgOeo0QMEqVc+Z77Bs0To/ffoQYL0/r8zr+BZIvU9vK9k20Wd5N8OtrL+/3K8D/f0b6ub3Yks3QEAAAAAAFhThrfOmdY701tn0zvfe2foPp51lt5NtrMeZewMAAAAAAAAAAAA8GQHDVUDNQ==
   </data>
  </layer>
  <layer name="objects" width="64" height="128">
@@ -34,9 +34,9 @@
    eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
   </data>
  </layer>
- <layer name="collision" width="64" height="128" visible="0" opacity="0.35">
+ <layer name="collision" width="64" height="128" opacity="0.35">
   <data encoding="base64" compression="zlib">
-   eJzt0bsNgDAQBcFr1/03QEoCQiTLZyxNvu+8ZmYBAAAAAAAAAAAAAMCLHb26q9j81f13X91d36JurW9Qd9a3qNvKG9RNAAAAAAAAwLl5QEO5/a/7969u8ffN/roBAAAAAAAAAAAAAK7aALLEA6U=
+   eJzt0DEKgEAQBMH7f3Y/NhVBUZPGsxYq79k5xpgAAAAAAAAAAAAAAPBhZ1d3FZtX3f/26u76F3Vr/YO6s/5F3Vb+oG4CAAAAAADgmf3VLcXm49Vt5fbV9/95+9X+uqvYX7dU++sGAAAAAAAAAAAAALhrAzsv6X4=
   </data>
  </layer>
  <layer name="protection" width="64" height="128">
