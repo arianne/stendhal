@@ -30,6 +30,7 @@ import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.mapstuff.portal.Gate;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -104,6 +105,13 @@ public class SummonAction extends AdministrationAction {
 			gate.setPosition(action.getInt(X), action.getInt(Y));
 			player.getZone().add(gate);
 			return;
+		}
+		
+        if ("block".equals(action.get(CREATURE))) {
+		    final Block block = new Block(action.getInt(X), action.getInt(Y), true);
+		    player.getZone().add(block);
+		    player.getZone().addMovementListener(block);
+		    player.getZone().addZoneEnterExitListener(block);
 		}
 
 		try {
