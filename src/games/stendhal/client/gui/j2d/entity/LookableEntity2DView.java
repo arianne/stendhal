@@ -4,21 +4,22 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Block;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
 /**
- * View of a pushable block
+ * View of a lookable entity
+ * 
  * @author madmetzger
  */
-public class Block2DView extends Entity2DView<Block> {
+public class LookableEntity2DView<T extends Entity> extends Entity2DView<T> {
 
     @Override
     public int getZIndex() {
         // blocks should be at the same z index as players
-        return 8000;
+        return this.getEntity().getRPObject().getInt("z-order");
     }
 
     @Override

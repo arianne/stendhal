@@ -232,7 +232,7 @@ public class EntityViewFactory {
 
 		register("walkblocker", null, null, WalkBlocker2DView.class);
 		
-		register("block", null, null, Block2DView.class);
+		register("block", null, null, LookableEntity2DView.class);
 		
 		register("well_source", null, null, WellSource2DView.class);
 	}
