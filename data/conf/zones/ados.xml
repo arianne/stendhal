@@ -4256,7 +4256,7 @@ East Tunnel: Uncharted</attribute>
 		</entity>
 	</zone>
 
- <zone name="-3_ados_snake_pit" level="-2" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
+ <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
  </zone>
  
  <zone name="-3_ados_snake_pit_s" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit_s.tmx">
