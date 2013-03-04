@@ -9,6 +9,9 @@
  <tileset firstgid="145" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="146" name="undead" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
    eJzt2bENwCAQBMEXIf0X7BIAWfLJ/AST334Is6omAAAAAAAAAAAAAAC/NRbS+77uvbX/tPu2G+jv3f/mDunN+rP3SG9M3iC9DQAAAAAA2Nfxrb/zX0/3vz79+ru2r/rT2xL96T2J/vQGAAAAAAAAAAAAAPY9H9w6sA==
@@ -31,10 +34,10 @@
  </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
+   eJztzgENAAAIA6D3T2FUY3w6SEACAAAAAAAAAAAAAAB8MO0AAAAAAAAAAAAAAAAAAAAAAAAAABy3bG4AoQ==
   </data>
  </layer>
- <layer name="collision" width="64" height="128" opacity="0.35">
+ <layer name="collision" width="64" height="128" visible="0" opacity="0.35">
   <data encoding="base64" compression="zlib">
    eJzt0DEKgEAQBMH7f3Y/NhVBUZPGsxYq79k5xpgAAAAAAAAAAAAAAPBhZ1d3FZtX3f/26u76F3Vr/YO6s/5F3Vb+oG4CAAAAAADgmf3VLcXm49Vt5fbV9/95+9X+uqvYX7dU++sGAAAAAAAAAAAAALhrAzsv6X4=
   </data>
