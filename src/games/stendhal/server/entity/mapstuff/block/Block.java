@@ -27,18 +27,10 @@ import org.apache.log4j.Logger;
  */
 public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener {
 	
-	/**
-     * 
-     */
     private static final String Z_ORDER = "z-order";
 
-    /**
-     * 
-     */
     private static final String START_Y = "start-y";
-    /**
-     * 
-     */
+
     private static final String START_X = "start-x";
 
     private static final Logger logger = Logger.getLogger(Block.class);
