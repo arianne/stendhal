@@ -43,8 +43,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
 		//flag denoting if this block is multiple times pushable
 		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
-        //
-        clazz.addAttribute(Z_ORDER, Type.INT, Definition.STANDARD);
+        // z order to control client side drawing
+        clazz.addAttribute(Z_ORDER, Type.INT);
 	}
 
 	/**
