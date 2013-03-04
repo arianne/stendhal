@@ -51,24 +51,6 @@ class GameBoard2DView extends Entity2DView<IEntity> {
 	public int getZIndex() {
 		return 1000;
 	}
-	
-	@Override
-	public int getWidth() {
-		Sprite sprite = getSprite();
-		if (sprite != null) {
-			return sprite.getWidth();
-		}
-		return 0;
-	}
-	
-	@Override
-	public int getHeight() {
-		Sprite sprite = getSprite();
-		if (sprite != null) {
-			return sprite.getHeight();
-		}
-		return 0;
-	}
 
 	/**
 	 * Translate a resource name into it's sprite image path.
