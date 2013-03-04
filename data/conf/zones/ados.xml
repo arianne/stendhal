@@ -4002,6 +4002,21 @@ Southeast: Docks
    <portal x="71" y="62" ref="pit_entrance">
      <destination zone="-2_ados_snake_pit" ref="pit_exit"/>
    </portal>
+   <portal x="92" y="90" ref="pit_escape_down">
+     <destination zone="-2_ados_snake_pit" ref="pit_escape_up"/>
+   </portal>
+   <portal x="53" y="59" ref="jump_down_l">
+     <destination zone="-1_ados_caves_e" ref="land_l"/>
+   </portal>
+   <portal x="54" y="59" ref="jump_down_r">
+     <destination zone="-1_ados_caves_e" ref="land_r"/>
+   </portal>
+   <portal x="53" y="61" ref="land_l">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+   </portal>
+   <portal x="54" y="61" ref="land_r">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+   </portal>
  </zone>
 
 <zone name="-1_ados_caves_s" level="-1" x="500384" y="500000" file="Level -1/ados/caves_s.tmx">
@@ -4169,6 +4184,9 @@ East Tunnel: Uncharted</attribute>
    <portal x="14" y="4" ref="pit_exit">
      <destination zone="-1_ados_caves_e" ref="pit_entrance"/>
    </portal>
+   <portal x="59" y="3" ref="pit_escape_up">
+     <destination zone="-1_ados_caves_e" ref="pit_escape_down"/>
+   </portal>
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
@@ -4179,7 +4197,7 @@ East Tunnel: Uncharted</attribute>
 
  <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499936" file="Level -2/ados/snake_pit_s.tmx">
    <portal x="25" y="121" ref="pit3_entrance">
-     <destination zone="-3_ados_snake_pit" ref="pit3_start"/>
+     <destination zone="-3_ados_snake_pit_s" ref="pit3_start"/>
    </portal>
    <entity x="25" y="121">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -4238,7 +4256,10 @@ East Tunnel: Uncharted</attribute>
 		</entity>
 	</zone>
 
- <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit.tmx">
+ <zone name="-3_ados_snake_pit" level="-2" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
+ </zone>
+ 
+ <zone name="-3_ados_snake_pit_s" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit_s.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
    <portal x="18" y="123" ref="pit3_start">
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -4261,7 +4282,7 @@ East Tunnel: Uncharted</attribute>
    </entity>
  </zone>
 
- <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499936" file="Level -3/ados/snake_pit_e.tmx">
+ <zone name="-3_ados_snake_pit_se" level="-3" x="500640" y="499936" file="Level -3/ados/snake_pit_se.tmx">
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
