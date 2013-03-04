@@ -30,6 +30,11 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	/**
      * 
      */
+    private static final String Z_ORDER = "z-order";
+
+    /**
+     * 
+     */
     private static final String START_Y = "start-y";
     /**
      * 
@@ -46,6 +51,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
 		//flag denoting if this block is multiple times pushable
 		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
+        //
+        clazz.addAttribute(Z_ORDER, Type.INT, Definition.STANDARD);
 	}
 
 	/**
@@ -62,6 +69,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		super(1,1);
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
+        this.put(Z_ORDER, 8000);
 		this.put("multi", Boolean.valueOf(multiPush).toString());
 		setRPClass("block");
 		put("type", "block");
