@@ -13,17 +13,15 @@ Permission has been granted to use the image dog_small (originally called brown_
 These images are released under the following BSD license:
     antivenom_ring                  lt_blue_drapes
     giant_cobra                     peach_drapes
-    harmless_huge_leafy             purple_drapes
-    harmless_puddle_black           red_drapes
-    harmless_puddle_brown           royal_blue_drapes
-    harmless_puddle_green           gnome_homes
-    harmless_puddle_light_blue      panel_tile_aqua_001
-    harmless_rock                   elvish_hat
-    huge_leafy                      crab_meat
-    puddle_black                    torch
-    puddle_brown                    giant_boulder
-    puddle_green                    elvish_hat
-    puddle_light_blue
+    corpse/*huge_leafy              purple_drapes
+    corpse/*puddle*                 red_drapes
+    gnome_homes                     royal_blue_drapes
+    panel_tile_aqua_001             elvish_hat
+    corpse/*rock                    crab_meat
+    torch_2
+    giant_boulder
+    elvish_hat
+    corpse/*cloaked
     rock
     venom_gland
 
