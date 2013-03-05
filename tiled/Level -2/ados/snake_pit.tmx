@@ -74,7 +74,7 @@
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt3EEKgzAQBVDdFQoubAP1/hc1OzE1LaIyou/BRwgGRjGQycKmAY6Wcj5FhoWxWtbc+2t+2uFZ+pxXznvFnLSQoTJ+dLZ6tvMrAAAw97j5XrnWK3gv0RVwdtZIdAUAAABE0RNHV8AWvt/oCgAAAAC+dc4sAAAA/tI7AQAAwESfDABcnf0OAAAAAJyfczzYh7UElPwzMroCAK5iBEdCB1I=
+   eJzt3EEKgzAQBdB0Jwhd1Ab0/hdtdkWriKhMSN+DjyAExmAgk0VSAu6WS8YKki/4llfJUPI+MCavZNp4f3fO6h/zJwAAMNf9+V55q1cwL9EVUDtrJLoCAAAAouiJoyvgDP9vdAUAAAAAv57OLAAAAHbpnQAAAOBLnwwAtM5+BwAAAADq5xwPrmEtAUvujIyuAIBWfADSMAdP
   </data>
  </layer>
  <layer name="4_roof_add" width="64" height="128">

@@ -40,7 +40,7 @@ public class GiantCobraCreature implements ZoneConfigurator {
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("giant cobra"), "venom gland");
 
-		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 106, 28, creature, 1);
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 34, 51, creature, 1);
 
 		zone.add(point);
 	}

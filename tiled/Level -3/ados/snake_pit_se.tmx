@@ -9,7 +9,7 @@
  <tileset firstgid="145" name="collision" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="146" name="undead" tilewidth="32" tileheight="32">
+ <tileset firstgid="146" name="creature/undead" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png" width="480" height="32"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
@@ -34,7 +34,7 @@
  </layer>
  <layer name="objects" width="64" height="128" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6D3T2FUY3w6SEACAAAAAAAAAAAAAAB8MO0AAAAAAAAAAAAAAAAAAAAAAAAAABy3bG4AoQ==
+   eJztzgENAAAIA6D3T2FUY9xNSEACAAAAAAAAAAAAAAAAAAAAAAAAwAfTDgAAAAAAAAAAAAAAABy3cdEAoQ==
   </data>
  </layer>
  <layer name="collision" width="64" height="128" visible="0" opacity="0.35">
