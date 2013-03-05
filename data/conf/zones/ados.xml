@@ -4259,19 +4259,16 @@ East Tunnel: Uncharted</attribute>
  <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
  </zone>
  
- <zone name="-3_ados_snake_pit_s" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit_s.tmx">
-   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
-   <portal x="18" y="123" ref="pit3_start">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-   </portal>
-   <!--
-   <entity x="8" y="108">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-     <attribute name="text">I have cast a teleport spell here to escape from the snake pit, but I do not know how long it will last.
-- Zephiros
-     </attribute>
+ <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx" accessible="false">
+   <entity x="0" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+       <parameter name="sound">sewers</parameter>
+       <parameter name="volume">120</parameter>
+     </implementation>
    </entity>
-   -->
+ </zone>
+
+ <zone name="-3_ados_snake_pit_e2" level="-3" x="500704" y="499808" file="Level -3/ados/snake_pit_e2.tmx" accessible="false">
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
@@ -4289,7 +4286,19 @@ East Tunnel: Uncharted</attribute>
    </entity>
  </zone>
 
- <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx" accessible="false">
+ <zone name="-3_ados_snake_pit_s" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit_s.tmx">
+   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
+   <portal x="18" y="123" ref="pit3_start">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+   </portal>
+   <!--
+   <entity x="8" y="108">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+     <attribute name="text">I have cast a teleport spell here to escape from the snake pit, but I do not know how long it will last.
+- Zephiros
+     </attribute>
+   </entity>
+   -->
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
