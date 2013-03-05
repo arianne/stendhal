@@ -36,7 +36,7 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.39">
   <data encoding="base64" compression="zlib">
-   eJztz6ENADAMA0Fn/6XLq+Ia5Cwd90+SAYCF7rX/NNv19z/p169fv379+vX/7G//AQAAAAAAAAAAAADg7QDUHA/H
+   eJzt1jEOg0AMRNHl/peOXKyEIkQB3h2b+V9yG3jThGOMcXAcxzW9N3V57wzr3e/u2LpiXzQRERGtbPe32tNnvnmfCt+qqm9Q9XfvSvfduyieWcWv2ly5we7D7+t/kvqd8WvcX9kgI7VBYe7oX5XapXJfpbYq7efUbqX9nKv7P3d/5GyfOdtn7v7I3R/h97XP3P0Rfm9/hN/bH+H39kf48bv63f8D8ON33sDZn2HvvEGmv9sG2fZOG6yyd9hgtb3yDjvtlXZQudVbqK2KTdQWjut8PweRB2w=
   </data>
  </layer>
  <layer name="protection" width="64" height="64">
