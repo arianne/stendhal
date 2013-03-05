@@ -600,6 +600,9 @@
  <tileset firstgid="3262" name="sub_3_ados_snake_pit_s" tilewidth="64" tileheight="64">
   <image source="sub_3_ados_snake_pit_s.png" width="256" height="256"/>
  </tileset>
+ <tileset firstgid="3278" name="sub_3_ados_snake_pit_e" tilewidth="64" tileheight="64">
+  <image source="sub_3_ados_snake_pit_e.png" width="128" height="128"/>
+ </tileset>
  <layer name="Sub 7" width="52" height="32" opacity="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OsQ0AIAwEsYfsPw0LUjAEKPgk95ecKnqxCQAADaxx/wEAAOAnG6xsR5wAGgAA
@@ -622,7 +625,7 @@
  </layer>
  <layer name="Sub 3" width="52" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WV04CURiG4QOBmBBu3IBlbfbee28wM0hVt2B3C/ZeliIg9pb4Xk+McUYz5ww5F8/NJJDvDX8mBIUQQU3TNEniESGMiPwd/8WkxSqjnliU3wgGzKj8PX9l0ZDAIpIK9VSFhagOO/9cioY0MsjiNiREPiS/p4aWWhc9ORqWsIwVFGgpKtDj1i4Ne9jHAVaxptDdOXXI9iMc4wTr2PCwJ89NFVDEnYv7sjtl+xnOcYFNbHnYU6LhHg94tPUkArynAs6+75LtV7jGDbax42HPEw3PeMGrrSdJS8phj2xvNLzjA5+2njQtGZ/1/CRLS66MejTvlSq+f17HXdWjAY1oQjNa0OrDm2tjczs60IkudKMHvT7s6WNzPwYwiCEMYwSjPuwZY/M4JjCJKUxjBrOK9VT+4n/MHJvnsYAY4jBgwlKsR9M0TVPbFxXI/OIAGgAA
+   H4sIAAAAAAAAC+3W107CYByG8Q8CMSGceAOOa3PvvfeCtshUbsHtLbj39kIExL0Sn+PGGNuY9iv5Dn4nTSDvE/5p8Ash/IqiKC6JhoTQQu7v+C86LUYJ9UTC/EbQoOMK12H3d9llsD2GecRxg1sJeiqCQlQGrX8uwfYkUkjjLiBELuB+TxUt1TZ6MjQsYBFZ5GkpSNBj1xYN29jBLpawLMG92bXH9n0c4BArWHWwJ8dN5VHAvY37Mjti+zFOcIo1rDvYU6ThAY94MvXEfLynfNa+74zt57jAJTaw6WDPMw0veMWbqSdOS8Jij9veafjAJ75MPUlaUh7r+U2alkwJ9SjOK5b9/LyGu6pFHerRgEY0odmDN9fC5la0oR0d6EQXuj3Y08PmXvShHwMYxBCGPdgzwuZRjGEcE5jEFKYl6yn/w/+YGTbPYg4RRKFBhyFZj6IoiiK3b/s05jsAGgAA
   </data>
  </layer>
  <layer name="Sub 2" width="56" height="38" visible="0">
