@@ -452,7 +452,7 @@
   </creature>
   
     <creature name="snake">
-    <type class="animal" subclass="cobra" tileid="animal.png:7"/>
+    <type class="animal" subclass="snake" tileid="animal.png:7"/>
     <description>You see a snake, it came from the forest to poison you!</description>
     <attributes>
       <atk value="67"/>
@@ -873,4 +873,34 @@
     </ai>
   </creature>
   
+    <creature name="cobra">
+    <type class="animal" subclass="cobra" tileid="animal.png:28"/>
+    <description></description>
+    <attributes>
+      <atk value="631"/>
+      <def value="83"/>
+      <hp value="1000"/>
+      <speed value="0.8"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="96"/>
+    <experience value="9630"/>
+    <respawn value="3900"/>
+    <corpse name="small_boneless"/>
+    <drops>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="snake-cobra-1"/>
+        <sound value="snake-cobra-2"/>
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
