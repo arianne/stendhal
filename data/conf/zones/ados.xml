@@ -4199,11 +4199,11 @@ East Tunnel: Uncharted</attribute>
    <portal x="25" y="121" ref="pit3_entrance">
      <destination zone="-3_ados_snake_pit_s" ref="pit3_start"/>
    </portal>
-   <entity x="25" y="121">
+   <entity x="14" y="116">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-       <parameter name="width">4</parameter>
-       <parameter name="height">4</parameter>
-       <parameter name="enterMessage">You see a hole in the floor but there does not appear to be a way back up.</parameter>
+       <parameter name="width">19</parameter>
+       <parameter name="height">11</parameter>
+       <parameter name="enterMessage">You see a hole leading downward but there does not appear to be a way back up.</parameter>
      </implementation>
    </entity>
    <entity x="0" y="0">
@@ -4264,16 +4264,14 @@ East Tunnel: Uncharted</attribute>
    <portal x="18" y="123" ref="pit3_start">
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
    </portal>
-   <!-- Temporary exit -->
-   <portal x="8" y="107" ref="temp_exit">
-     <destination zone="-1_ados_caves_e" ref="pit_entrance" />
-   </portal>
+   <!--
    <entity x="8" y="108">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
      <attribute name="text">I have cast a teleport spell here to escape from the snake pit, but I do not know how long it will last.
 - Zephiros
      </attribute>
    </entity>
+   -->
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>
