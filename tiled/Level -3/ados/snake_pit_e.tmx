@@ -11,12 +11,12 @@
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztz6ERADAMAzHfFWb/fTtBaA0qIP4/SQaA75xFu8u/f//+/fv379+/f/9v/ttNzf92DwAAAAAAAAAAAADA5gILAK15
+   eJzt1zEOgDAQxMBIlPz/vzyCS7wLLra/sYQU7rXW7Zyr3PVyrXdPrfFm55xzzjnHjXg/nn6HJ7z5qf+QhP8e4j+M6p3gJ3pT/pNL/P71Z7vbG0zZm/yT5ib/Lne6f7c7uQVhT+lA26kOtJXuQBvJBrSNbECb6Aa0h25AW+gGtIP00wa6AX0/3YC+XT/bgL5bP9uAvlk/24C+V79+/foJ+9ca6Nf/5wZ/9r+xf6HBhL+1wZS9scG0vanBLntDhxP2xA6n3SktaDPRhDa53j0AomGR
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztz7EJACAMRUEHEa2cwP1301qso5A7SJPqv1IAyKjua8f1p4tijctvhq/4i/7c9OemPzf9AAAAAAAAAAAAAAAA/1jvaQKk
+   eJzt2dsKwjAMBuA8g3jpITd6Lfj+7+aCFBS3YZoekvb/oHeK+7N0rJEIAKI6LetiWL1or/u68Z2b42veWw/lbx+XdTAn+KXJVOP3e2vZPwAAAAAwn7vis2d6n3tGoskvnlWuop+Z88tZU3uGlHPvKDXQ3vskev40Y8idHzDFrUFOz6+JlP9zplRqvhIhv7XP93jOXzN3cqTvWbAXpfa3BpOPOkj2nvPT1BOt65D63cvsmKltHXLfY2qTfqhdgx77XaNmDXrv938x1amB175fw1S+BpHyC6ayNYiWX5R6b/T+3NtS6nkY8d4nTPYaRM4vrPsgen4mWw9Ezy8sPTBCfsuzcIT8IrcHRsmf2wOj5Bc5PYD8APHN/g7g+X+EFmbPDwAAAAAA83oBUV0Vqw==
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
@@ -26,15 +26,15 @@
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztz8EJACAMBEH/QfsvV30IYgMRMgP7v2sNAAAAqKavIntEkvO90v9xVe37Fk8AAAAAAAAAAAAAAL+aZAoAqA==
+   eJzt2k0OAiEMhuHZ+3MML+D976YumjREhhRaofg+CTu1tgOz4TsOAAAAAEDL7b3uhnWdULO1RupdjOvh0LO1Zmu16o58v/T5vGUPSN8jNXuUdb1Y98Az4D+0lM98d7Uz/S9GzzQAAAAAAAAAAACAeeR+18p6d78quVO3GslvYA+7nIFe2c9A77tPy7wHet99mmREss3A49mLbDPQmS4vWWYQ0buQ3/XKtnqL7F3o3Ngqc4jKb54p5zBjFt/ysr9WZgkjMuBaLRu9glpm2jO/ni276Z1fz9Az1vUCkWMMcA==
   </data>
  </layer>
- <layer name="objects" width="64" height="64">
+ <layer name="objects" width="64" height="64" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAACAtwFAAAAB
   </data>
  </layer>
- <layer name="collision" width="64" height="64" opacity="0.39">
+ <layer name="collision" width="64" height="64" visible="0" opacity="0.39">
   <data encoding="base64" compression="zlib">
    eJzt1jEOg0AMRNHl/peOXKyEIkQB3h2b+V9yG3jThGOMcXAcxzW9N3V57wzr3e/u2LpiXzQRERGtbPe32tNnvnmfCt+qqm9Q9XfvSvfduyieWcWv2ly5we7D7+t/kvqd8WvcX9kgI7VBYe7oX5XapXJfpbYq7efUbqX9nKv7P3d/5GyfOdtn7v7I3R/h97XP3P0Rfm9/hN/bH+H39kf48bv63f8D8ON33sDZn2HvvEGmv9sG2fZOG6yyd9hgtb3yDjvtlXZQudVbqK2KTdQWjut8PweRB2w=
   </data>
