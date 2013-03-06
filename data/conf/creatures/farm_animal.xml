@@ -320,6 +320,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="sssSSSsssss..."/>
+        <sound value="snake-1"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
       <profile name="animal"/>
