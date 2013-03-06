@@ -782,8 +782,8 @@
       <size value="1,1"/>
     </attributes>
     <level value="201"/>
-    <experience value="35001"/>
-    <respawn value="3050"/>
+    <experience value="83700"/>
+    <respawn value="24500"/>
     <corpse name="humanoid"/>
     <drops>
     </drops>
