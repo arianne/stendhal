@@ -155,15 +155,23 @@ public class ZooFood extends AbstractQuest {
 				null);
 
 	    final Map<String,Integer> items = new HashMap<String, Integer>();		
-		items.put("ham",10); 
-		items.put("meat",15);
+	    items.put("apple",5);
+	    items.put("bread",3);
+	    items.put("button mushroom",5);
+	    items.put("carrot",5);
+	    items.put("cheese",10);
+	    items.put("cherry",5);
+	    items.put("egg",5);
 		items.put("grain",20);
-		items.put("salad",10);
-		items.put("button mushroom",5);
-		items.put("carrot",5);
-		items.put("spinach",5);
-		items.put("apple",5);
+	    items.put("ham",10); 
+	    items.put("honey",5);
+		items.put("meat",15);
+		items.put("porcini",5);
 		items.put("roach",3);
+		items.put("salad",10);
+		items.put("spinach",5);
+		
+		
 		
         // Player has done quest before and agrees to help again
 		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,
@@ -267,7 +275,7 @@ public class ZooFood extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Zoo Food",
-				"The animals at the zoo are hungry! They need some food!",
+				"The animals at the zoo are hungry and need some food!",
 				true);
 		step_1();
 		step_2();
