@@ -79,126 +79,201 @@ public class DailyItemQuest extends AbstractQuest {
 	/**
 	 * All items which are possible/easy enough to find. If you want to do
 	 * it better, go ahead. *
-	 * not to use yet, just getting it ready.
 	 */
 	private static Map<String,Integer> items;
 
 	private static void buildItemsMap() {
 		items = new HashMap<String, Integer>();
-		items.put("knife",1);
-		items.put("dagger",1);
-		items.put("short sword",1);
-		items.put("sword",1);
-		items.put("scimitar",1);
-		items.put("katana",1);
-		items.put("claymore",1);
-		items.put("broadsword",1);
-		items.put("biting sword",1);
-		items.put("old scythe",1);
-		items.put("small axe",1);
-		items.put("hand axe",1);
-		items.put("axe",1);
-		items.put("battle axe",1);
-		items.put("bardiche",1);
-		items.put("scythe",1);
-		items.put("twoside axe",1);
-		items.put("halberd",1);
-		items.put("club",1);
-		items.put("staff",1);
-		items.put("mace",1);
-		items.put("flail",1);
-		items.put("morning star",1);
-		items.put("hammer",1);
-		items.put("war hammer",1);
-		items.put("wooden bow",1);
-		items.put("longbow",1);
+
+		// ammunition
 		items.put("wooden arrow",1);
 		items.put("steel arrow",1);
-		items.put("buckler",1);
-		items.put("wooden shield",1);
-		items.put("studded shield",1);
-		items.put("plate shield",1);
-		items.put("lion shield",1);
-		items.put("unicorn shield",1);
-		items.put("skull shield",1);
-		items.put("crown shield",1);
+		
+		// armor
+		items.put("chain armor",1);
 		items.put("dress",1);
+		items.put("enhanced chainmail",1);
+		items.put("golden chainmail",1);
+		items.put("iron scale armor",1);
 		items.put("leather armor",1);
 		items.put("leather cuirass",1);
-		items.put("studded armor",1);
-		items.put("chain armor",1);
-		items.put("scale armor",1);
+		items.put("leather scale armor",1);
+		items.put("pauldroned iron cuirass",1);
+		items.put("pauldroned leather cuirass",1);
 		items.put("plate armor",1);
-		items.put("leather helmet",1);
-		items.put("studded helmet",1);
-		items.put("chain helmet",1);
-		items.put("leather legs",1);
-		items.put("studded legs",1);
-		items.put("chain legs",1);
+		items.put("scale armor",1);
+		items.put("studded armor",1);
+
+		// axe
+		items.put("axe",1);
+		items.put("bardiche",1);
+		items.put("battle axe",1);
+		items.put("halberd",1);
+		items.put("hand axe",1);
+		items.put("old scythe",1);
+		items.put("scythe",1);
+		items.put("sickle",1);
+		items.put("small axe",1);
+		items.put("twoside axe",1);
+		
+		// boots
+		items.put("chain boots",1);
 		items.put("leather boots",1);
 		items.put("studded boots",1);
+		
+		// cloaks
+		items.put("blue elf cloak",1);
 		items.put("cloak",1);
-		items.put("elf cloak",1);
 		items.put("dwarf cloak",1);
+		items.put("elf cloak",1);
 		items.put("green dragon cloak",1);
-		items.put("cheese",10);
-		items.put("carrot",10);
-		items.put("salad",10);
-		items.put("apple",5);
-		items.put("bread",5);
-		items.put("meat",10);
-		items.put("ham",10);
-		items.put("sandwich",5);
-		items.put("pie",5);
-		items.put("egg",1);
-		items.put("button mushroom",10);
-		items.put("porcini",10);
-		items.put("toadstool",15);
-		items.put("beer",10);
-		items.put("wine",10);
-		items.put("minor potion",5);
-		items.put("antidote",5);
-		items.put("greater antidote",5);
-		items.put("potion",5);
-		items.put("greater potion",5);
-		items.put("poison",5);
+	
+		
+		// club
+		items.put("club",1);
+		items.put("enhanced mace",1);
+		items.put("flail",1);
+		items.put("golden hammer",1);
+		items.put("golden mace",1);
+		items.put("hammer",1);
+		items.put("mace",1);
+		items.put("morning star",1);
+		items.put("staff",1);
+		items.put("war hammer",1);
+		
+		// container
+		items.put("eared bottle",3);
 		items.put("flask",5);
-		items.put("money",100);
+		items.put("slim bottle",5);
+		
+		// drinks
+		items.put("antidote",5);
+		items.put("beer",10);
+		items.put("greater antidote",5);
+		items.put("greater potion",5);
+		items.put("milk",5);
+		items.put("minor potion",5);
+		items.put("poison",5);
+		items.put("potion",5);
+		items.put("tea",3);
+		items.put("water",5);
+		items.put("wine",10);
+		
+		// flower
+		items.put("daisies",5);
+		items.put("lilia",5);
+		items.put("rose",10);
+		
+		// food
+		items.put("apple",5);
+		items.put("apple pie",2);
+		items.put("artichoke",10);
+		items.put("bread",5);
+		items.put("broccoli",5);
+		items.put("button mushroom",10);
+		items.put("carrot",10);
+		items.put("cauliflower",5);
+		items.put("char",5);
+		items.put("cheese",10);
+		items.put("cherry",10);
+		items.put("cherry pie",2);
+		items.put("chicken",10);
+		items.put("chocolate bar",5);
+		items.put("clownfish",5);
+		items.put("collard",5);
+		items.put("courgette",5);
+		items.put("egg",1);
+		items.put("fish pie",1);
+		items.put("garlic",5);
+		items.put("grapes",5);
+		items.put("grilled steak",1);
+		items.put("ham",10);
+		items.put("honey",2);
+		items.put("leek",5);
+		items.put("meat",10);
+		items.put("onion",5);
+		items.put("pear",5);
+		items.put("perch",5);
+		items.put("pie",5);
+		items.put("pomegranate",5);
+		items.put("porcini",10);
+		items.put("red lionfish",5);
+		items.put("roach",5);
+		items.put("salad",10);
+		items.put("sandwich",5);
+		items.put("spinach",5);
+		items.put("surgeonfish",5);
+		items.put("toadstool",15);
+		items.put("tomato",5);
+		items.put("trout",5);
+		
+		// helmet
+		items.put("aventail",1);
+		items.put("chain helmet",1);
+		items.put("leather helmet",1);
+		items.put("robins hat",1);
+		items.put("studded helmet",1);
+		items.put("viking helmet",1);
+	
+		// herb
 		items.put("arandula",5);
-		items.put("wood",10);
-		items.put("grain",20);
-		items.put("flour",5);
-		items.put("iron ore",10);
-		items.put("iron",5);
+		items.put("sclaria",5);
+		items.put("mandragora",3);
+		items.put("kekik",5);
+		
+		// legs
+		items.put("chain legs",1);
+		items.put("leather legs",1);
+		items.put("studded legs",1);
+		
+		// misc
 		items.put("dice",1);
 		items.put("teddy",1);
-		items.put("perch",5);
-		items.put("roach",5);
-		items.put("char",5);
-		items.put("trout",5);
-		items.put("surgeonfish",5);
-		items.put("onion",5);
-		items.put("leek",5);
-		items.put("clownfish",5);
-		items.put("leather scale armor",1);
-		items.put("pauldroned leather cuirass",1);
-		items.put("enhanced chainmail",1);
-		items.put("iron scale armor",1);
-		items.put("golden chainmail",1);
-		items.put("pauldroned iron cuirass",1);
-		items.put("blue elf cloak",1);
-		items.put("enhanced mace",1);
-		items.put("golden mace",1);
-		items.put("golden hammer",1);
-		items.put("aventail",1);
+		
+		// money
+		items.put("money",100);
+		
+		// ranged
 		items.put("composite bow",1);
-		items.put("enhanced lion shield",1);
-		items.put("spinach",5);
-		items.put("courgette",5);
-		items.put("collard",5);
+		items.put("longbow",1);
+		items.put("wooden bow",1);
+		
+		// resource
 		items.put("coal",10);
+		items.put("flour",5);
+		items.put("grain",20);
+		items.put("gold bar",5);
+		items.put("gold nugget",10);
+		items.put("iron",5);
+		items.put("iron ore",10);
+		items.put("wood",10);
+		
+		// shield
+		items.put("buckler",1);
+		items.put("crown shield",1);
+		items.put("enhanced lion shield",1);
+		items.put("lion shield",1);
+		items.put("plate shield",1);
+		items.put("skull shield",1);
+		items.put("studded shield",1);
+		items.put("unicorn shield",1);
+		items.put("wooden shield",1);
+		
+		// sword
+		items.put("biting sword",1);	
+		items.put("broadsword",1);
+		items.put("claymore",1);
+		items.put("dagger",1);
+		items.put("elvish sword",1);
+		items.put("katana",1);
+		items.put("knife",1);
+		items.put("scimitar",1);
+		items.put("short sword",1);
+		items.put("sword",1);
+
+		// tool
 		items.put("pick",1);
-		items.put("grilled steak",1);
+		items.put("gold pan",1);
 	}
 	
 	private ChatAction startQuestAction() {
