@@ -11,6 +11,8 @@
 - Dwarves rebuilt rails in Semos Mine
 - more creature descriptions added
 - introducing Mimics to the world
+- Mayor Chalmers and Hazel heard of new items they could need
+- Katinka wants just the best for her animals with more food
 
 *client*
 - A lot of redrawn tilesets
