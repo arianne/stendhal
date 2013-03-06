@@ -90,7 +90,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 			}
 		};
 		
-		npc.setPosition(22, 38);
+		npc.setPosition(23, 38);
 		npc.setEntityClass("piratenpc");
 		npc.setDescription ("You see the Captain of Athor Ferry. He will bring you from the mainland to the island.");
 		npc.setDirection(Direction.DOWN);
