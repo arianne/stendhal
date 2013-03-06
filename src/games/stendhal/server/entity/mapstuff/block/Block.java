@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.mapstuff.block;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.ZoneEnterExitListener;
@@ -9,8 +11,10 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.game.Definition;
@@ -32,6 +36,8 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
     private static final String START_Y = "start-y";
 
     private static final String START_X = "start-x";
+    
+    private static final List<String> sounds = Arrays.asList("scrape-1", "scrape-2");
 
     private static final Logger logger = Logger.getLogger(Block.class);
 
@@ -89,9 +95,15 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		if(this.mayBePushed(d)) {
 			this.setPosition(getXAfterPush(d), getYAfterPush(d));
             this.notifyWorldAboutChanges();
-            //this.addEvent(new SoundEvent("bell-1", SoundLayer.AMBIENT_SOUND));
+            this.sendSound();
 			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
 		}
+	}
+	
+	
+	private void sendSound() {
+		SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
+		this.addEvent(e);
 	}
 
 	protected int getYAfterPush(Direction d) {
