@@ -21,6 +21,7 @@ These files are in the public domain:
     sneeze-baby-1.ogg:  http://soundbible.com/23-Baby-Sneeze.html
     tiger-1.ogg:        http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
     tiger-2.ogg:        http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
+    robot-2.ogg:        http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
 
 These files are released under the following BSD license:
     evil-laugh-1.ogg
