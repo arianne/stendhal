@@ -14,13 +14,17 @@
 - Mayor Chalmers and Hazel heard of new items they could need
 - Katinka wants just the best for her animals with more food
 - Adventurers have discovered a pit full of snakes beneath Ados caves
+- Pdiddi warns first customers better
 
 *client*
 - A lot of redrawn tilesets
 - Redrawn Pina Colada
+- more sounds for creatures 
 
 *fixes*
 - Alice Farmer test implemented
+- Fixed imperial defender sprite
+- Athor cocktail bar sides fixed
 
 
 1.06
