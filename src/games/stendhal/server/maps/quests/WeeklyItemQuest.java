@@ -92,62 +92,113 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	private static void buildItemsMap() {
 		items = new HashMap<String, Integer>();
-		items.put("mega potion",5);
-		items.put("lucky charm",1);
-		items.put("ice sword",1);
-		items.put("fire sword",1);
-		items.put("great sword",1);
-		items.put("immortal sword",1);
-		items.put("dark dagger",1);
-		items.put("assassin dagger",1);
-		items.put("night dagger",1);
-		items.put("hell dagger",1);
-		items.put("golden cloak",1);
-		items.put("shadow cloak",1);
-		items.put("chaos cloak",1);
-		items.put("mainio cloak",1);
-		items.put("obsidian",1);
-		items.put("diamond",1);
-		items.put("golden legs",1);
-		items.put("shadow legs",1);
-		items.put("golden armor",1);
-		items.put("shadow armor",1);
-		items.put("golden shield",1);
-		items.put("shadow shield",1);
-		items.put("skull staff",1);
-		items.put("steel boots",1);
-		items.put("golden boots",1);
-		items.put("shadow boots",1);
-		items.put("stone boots",1);
-		items.put("chaos boots",1);
-		items.put("golden helmet",1);
-		items.put("shadow helmet",1);
-		items.put("horned golden helmet",1);
-		items.put("chaos helmet",1);
-		items.put("golden twoside axe",1);
-		items.put("drow sword",1);
-		items.put("chaos legs",1);
-		items.put("chaos sword",1);
-		items.put("chaos shield",1);
-		items.put("chaos armor",1);
-		items.put("green dragon shield",1);
+		
+		// ammunition
 		items.put("golden arrow",5);
 		items.put("power arrow",5);
-		items.put("mainio legs",1);
+		
+		// armor
+		items.put("barbarian armor",1);
+		items.put("blue armor",1);
+		items.put("chaos armor",1);
+		items.put("dwarvish armor",1);
+		items.put("golden armor",1);
+		items.put("ice armor",1);
+		items.put("magic plate armor",1);
+		items.put("mainio armor",1);
+		items.put("shadow armor",1);
+		items.put("stone armor",1);
+		items.put("xeno armor",1);
+		
+		// axe
+		items.put("golden twoside axe",1);
+		items.put("magic twoside axe",1);
+		
+		// boots
+		items.put("blue boots",1);
+		items.put("chaos boots",1);
+		items.put("golden boots",1);
 		items.put("mainio boots",1);
-		items.put("mainio shield",1);
+		items.put("shadow boots",1);
+		items.put("steel boots",1);
+		items.put("stone boots",1);
+		items.put("xeno boots",1);
+	
+				
+		// cloak
+		items.put("blue dragon cloak",1);
+		items.put("blue striped cloak",1);
+		items.put("chaos cloak",1);
+		items.put("golden cloak",1);		
+		items.put("mainio cloak",1);
+		items.put("red dragon cloak",1);
+		items.put("shadow cloak",1);
+		items.put("xeno cloak",1);
+		
+		// club
+		items.put("skull staff",1);
+		
+		// drinks
+		items.put("mega potion",5);
+		items.put("fish soup",3);
+		
+		// helmet
+		items.put("blue helmet",1);
+		items.put("chaos helmet",1);
+		items.put("golden helmet",1);
+		items.put("horned golden helmet",1);
+		items.put("mainio helmet",1);
+		items.put("shadow helmet",1);
+		
+		// jewellery
+		items.put("diamond",1);
+		items.put("obsidian",1);
+	
+		// legs
+		items.put("blue legs",1);
+		items.put("chaos legs",1);
+		items.put("dwarvish legs",1);
+		items.put("golden legs",1);
+		items.put("mainio legs",1);
+		items.put("shadow legs",1);
+		items.put("xeno legs",1);
+		
+		// misc
+		items.put("giant heart",5);
+		
+		// resource
 		items.put("mithril bar",1);
 		items.put("mithril nugget",1);
-		items.put("mainio armor",1);
-		items.put("xeno boots",1);
-		items.put("xeno legs",1);
-		items.put("xeno armor",1);
-		items.put("xeno shield",1);
+		items.put("silk gland",7);
+		
+		// special
+		items.put("lucky charm",1);
 		items.put("mythical egg",1);
-		items.put("stone armor",1);
+		
+		// shield
+		items.put("blue shield",1);
+		items.put("chaos shield",1);
+		items.put("golden shield",1);
+		items.put("green dragon shield",1);
+		items.put("magic plate shield",1);
+		items.put("mainio shield",1);
+		items.put("shadow shield",1);
+		items.put("xeno shield",1);
+		
+		// sword
+		items.put("assassin dagger",1);
+		items.put("chaos sword",1);
+		items.put("dark dagger",1);
 		items.put("demon sword",1);
-		items.put("mainio helmet",1);
-		items.put("red dragon cloak",1);
+		items.put("drow sword",1);
+		items.put("fire sword",1);
+		items.put("great sword",1);
+		items.put("hell dagger",1);
+		items.put("ice sword",1);
+		items.put("immortal sword",1);
+		items.put("night dagger",1);	
+		items.put("xeno sword",1);
+		
 	}
 	
 	private ChatAction startQuestAction() {
