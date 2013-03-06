@@ -13,6 +13,7 @@
 - introducing Mimics to the world
 - Mayor Chalmers and Hazel heard of new items they could need
 - Katinka wants just the best for her animals with more food
+- Adventurers have discovered a pit full of snakes beneath Ados caves
 
 *client*
 - A lot of redrawn tilesets
