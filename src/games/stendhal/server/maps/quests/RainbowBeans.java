@@ -132,7 +132,7 @@ public class RainbowBeans extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, 
 			"Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
 			+ REQUIRED_MONEY
-			+ " money. You want to buy some?",
+			+ " money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?",
 			null);
 		
 		// player responds to word 'deal' - low level
@@ -232,7 +232,7 @@ public class RainbowBeans extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Rainbow Beans",
-				"Strange beans could be a way to strange places.",
+				"Strange beans could be a way to strange places and sometimes dangerous!",
 				false);
 		step_1();
 

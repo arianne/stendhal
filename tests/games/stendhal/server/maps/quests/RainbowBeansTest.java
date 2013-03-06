@@ -89,7 +89,7 @@ public class RainbowBeansTest {
 		en.step(player, "hi");
 		assertEquals("SHHH! Don't want all n' sundry knowin' wot I #deal in.", getReply(npc));
 		en.step(player, "deal");
-		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. You want to buy some?", getReply(npc));
+		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?", getReply(npc));
 		en.step(player, "no");
 		assertEquals("Aight, ain't for everyone. Anythin else you want, you say so.", getReply(npc));
 		en.step(player, "help");
@@ -110,7 +110,7 @@ public class RainbowBeansTest {
 		en.step(player, "hi");
 		assertEquals("SHHH! Don't want all n' sundry knowin' wot I #deal in.", getReply(npc));
 		en.step(player, "deal");
-		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. You want to buy some?", getReply(npc));
+		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Scammer! You don't have the cash.", getReply(npc));
 		en.step(player, "bye");
@@ -121,7 +121,7 @@ public class RainbowBeansTest {
 		en.step(player, "hi");
 		assertEquals("SHHH! Don't want all n' sundry knowin' wot I #deal in.", getReply(npc));
 		en.step(player, "deal");
-		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. You want to buy some?", getReply(npc));
+		assertEquals("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you 2000 money. And remember pal, it can end up faster than ya wanted! Risky business ya know! So, want to buy some?", getReply(npc));
 		en.step(player, "yes");
 		assertEquals("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.", getReply(npc));
 		en.step(player, "bye");
