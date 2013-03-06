@@ -2,7 +2,6 @@ package games.stendhal.server.entity.mapstuff.block;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertThat;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
