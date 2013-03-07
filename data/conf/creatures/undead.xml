@@ -54,7 +54,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
-    <corpse name="cloaked_white"/>
+    <corpse name="cloaked_white" harmless="cloaked_white" />
     <drops>
       <item value="money" quantity="[4,23]" probability="100.0"/>
     </drops>
@@ -225,7 +225,7 @@
     <level value="23"/>
     <experience value="350"/>
     <respawn value="1280"/>
-    <corpse name="bone"/>
+    <corpse name="bone" harmless="bone" />
     <drops>
       <item value="money" quantity="[5,29]" probability="100.0"/>
       <item value="golden chainmail" quantity="[1,1]" probability="4.0"/>
@@ -262,7 +262,7 @@
     <level value="26"/>
     <experience value="430"/>
     <respawn value="1310"/>
-    <corpse name="bone"/>
+    <corpse name="bone" harmless="bone" />
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="mace" quantity="[1,1]" probability="5.0"/>
@@ -336,7 +336,7 @@
     <level value="30"/>
     <experience value="570"/>
     <respawn value="1350"/>
-    <corpse name="cloaked_blue"/>
+    <corpse name="cloaked_blue" harmless="cloaked_blue" />
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
       <item value="plate armor" quantity="[1,1]" probability="2.5"/>
@@ -368,7 +368,7 @@
     <level value="42"/>
     <experience value="1160"/>
     <respawn value="1660"/>
-    <corpse name="bone"/>
+    <corpse name="bone" harmless="bone" />
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="demon sword" quantity="[1,1]" probability="1.0"/>
