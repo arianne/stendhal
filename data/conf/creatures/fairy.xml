@@ -109,7 +109,7 @@
     <level value="90"/>
     <experience value="8190"/>
     <respawn value="3530"/>
-    <corpse name="humanoid"/>
+    <corpse name="humanoid" harmless="halo" />
     <drops>
       <item value="money" quantity="[30,60]" probability="100.0"/>
       <item value="fairy cake" quantity="[1,5]" probability="10.0"/>
