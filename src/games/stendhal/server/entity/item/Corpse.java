@@ -78,6 +78,11 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * The image name
 	 */
 	private static final String ATTR_IMAGE = "image";
+	
+	/**
+	 * The harmless image name
+	 */
+	private static final String ATTR_HARMLESS_IMAGE = "harmless_image";
 
 	
 	/**
@@ -128,6 +133,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		entity.addAttribute(ATTR_NAME, Type.STRING);
 		entity.addAttribute(ATTR_KILLER, Type.STRING);
 		entity.addAttribute(ATTR_IMAGE, Type.STRING);
+		entity.addAttribute(ATTR_HARMLESS_IMAGE, Type.STRING);
 		entity.addAttribute(ATTR_CORPSE_OWNER, Type.STRING);
 
 		entity.addRPSlot(CONTENT_SLOT, 4);
@@ -151,6 +157,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		put("stage", stage);
 		// default to player corpse image
 		put(ATTR_IMAGE, "player");
+		put(ATTR_HARMLESS_IMAGE, "player");
 		setResistance(calculateResistance());
 		
 		final RPSlot slot = new LootableSlot(this);
@@ -178,6 +185,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		}
 		
 		put(ATTR_IMAGE, victim.getCorpseName());
+		put(ATTR_HARMLESS_IMAGE, victim.getHarmlessCorpseName());
 		setSize(victim.getCorpseWidth(), victim.getCorpseHeight());
 
 		if ((killerName != null)) {

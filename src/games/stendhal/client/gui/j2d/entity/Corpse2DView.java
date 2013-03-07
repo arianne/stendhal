@@ -103,6 +103,7 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 	@Override
 	protected void buildRepresentation(T entity) {
 		final String imageName = entity.getRPObject().get("image");
+		final String harmlessImageName = entity.getRPObject().get("harmless_image");
 		Sprite sprite = null;
 		ZoneInfo info = ZoneInfo.get();
 		boolean showBlood = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.blood", "true"));
@@ -110,14 +111,8 @@ class Corpse2DView<T extends Corpse> extends Entity2DView<T> {
 			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/"  + imageName),
 					info.getZoneColor(), info.getColorMethod());
 		} else {
-			if (DataLoader.getResource(translate("corpse/harmless_" + imageName)) != null) {
-				sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless_" + imageName),
+			sprite = SpriteStore.get().getModifiedSprite(translate("corpse/" + harmlessImageName),
 						info.getZoneColor(), info.getColorMethod());
-			}
-			else {
-				sprite = SpriteStore.get().getModifiedSprite(translate("corpse/harmless"),
-						info.getZoneColor(), info.getColorMethod());
-			}
 		}
 
 		width = sprite.getWidth();

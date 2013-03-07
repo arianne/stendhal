@@ -128,6 +128,7 @@ public class Creature extends NPC {
 	boolean isRespawned;
 
 	private String corpseName;
+	private String harmlessCorpseName;
 	private int corpseWidth = 1;
 	private int corpseHeight = 1;
 
@@ -201,7 +202,7 @@ public class Creature extends NPC {
 		this.baseSpeed = copy.baseSpeed;
 		setSize((int) copy.getWidth(), (int) copy.getHeight());
 
-		setCorpse(copy.getCorpseName(), copy.getCorpseWidth(), copy.getCorpseHeight());
+		setCorpse(copy.getCorpseName(), copy.getHarmlessCorpseName(), copy.getCorpseWidth(), copy.getCorpseHeight());
 
 		/**
 		 * Creatures created with this function will share their dropsItems with
@@ -498,8 +499,9 @@ public class Creature extends NPC {
 		return respawnTime;
 	}
 
-	public void setCorpse(final String name, final int width, final int height) {
+	public void setCorpse(final String name, final String harmless, final int width, final int height) {
 		corpseName = name;
+		harmlessCorpseName = harmless;
 		if (corpseName == null) {
 			LOGGER.error(getName() + " has null corpse name.");
 			/*
@@ -508,6 +510,9 @@ public class Creature extends NPC {
 			 * workable.
 			 */
 			corpseName = "animal";
+		}
+		if (harmlessCorpseName == null) {
+			harmlessCorpseName = "harmless";
 		}
 		corpseWidth = width;
 		corpseHeight = height;
@@ -519,6 +524,13 @@ public class Creature extends NPC {
 			return "animal";
 		}
 		return corpseName;
+	}
+	
+	public String getHarmlessCorpseName() {
+		if (harmlessCorpseName == null) {
+			return "harmless";
+		}
+		return harmlessCorpseName;
 	}
 
 	@Override

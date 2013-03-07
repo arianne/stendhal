@@ -71,6 +71,7 @@ public class DefaultCreature {
 	private int height;
 	
 	private String corpseName;
+	private String harmlessCorpseName;
 	private int corpseWidth;
 	private int corpseHeight;
 
@@ -193,8 +194,9 @@ public class DefaultCreature {
 		return equipsItems;
 	}
 	
-	public void setCorpse(final String name, final int width, final int height) {
+	public void setCorpse(final String name, final String harmless, final int width, final int height) {
 		corpseName = name;
+		harmlessCorpseName = harmless;
 		corpseWidth = width;
 		corpseHeight = height;
 	}
@@ -253,7 +255,7 @@ public class DefaultCreature {
 				creatureSays, respawn, description);
 		creature.equip(equipsItems);
 		
-		creature.setCorpse(corpseName, corpseWidth, corpseHeight);
+		creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
 		creature.setSounds(sounds);

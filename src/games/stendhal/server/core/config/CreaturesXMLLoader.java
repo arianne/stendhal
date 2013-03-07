@@ -85,6 +85,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private List<DefaultCreature> list;
 
 	private String corpseName;
+	
+	private String harmlessCorpseName;
 
 	private int corpseWidth;
 
@@ -205,6 +207,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			respawn = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("corpse")) {
 			corpseName = attrs.getValue("name");
+			harmlessCorpseName = attrs.getValue("harmless");
 			String value = attrs.getValue("width");
 
 			// Default to 1 for width and height to save the fingers
@@ -336,8 +339,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setSize(sizeWidth, sizeHeight);
 			creature.setEquipedItems(equipsItems);
 
-			creature.setCorpse(corpseName, corpseWidth, corpseHeight);
+			creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
 			corpseName = null;
+			harmlessCorpseName = null;
 			corpseWidth = corpseHeight = 1;
 
 			creature.setDropItems(dropsItems);

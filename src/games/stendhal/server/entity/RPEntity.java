@@ -1510,6 +1510,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return "player";
 	}
 
+	public String getHarmlessCorpseName() {
+		return "harmless_player";
+	}
+
 	public int getCorpseWidth() {
 		return 1;
 	}
