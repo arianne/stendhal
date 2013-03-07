@@ -100,7 +100,7 @@
     <level value="1"/>
     <experience value="10"/>
     <respawn value="900"/>
-   	<corpse name="small_winged"/>
+   	<corpse name="small_winged" harmless="winged_bat" />
     <drops>
       <item value="meat" quantity="[1,2]" probability="50.0"/>
     </drops>
@@ -627,7 +627,7 @@
     <level value="7"/>
     <experience value="70"/>
     <respawn value="1200"/>
-    <corpse name="small_winged"/>
+    <corpse name="small_winged" harmless="winged_bat" />
     <drops>
       <item value="meat" quantity="[1,2]" probability="80.0"/>
       <item value="bat entrails" quantity="[1,1]" probability="60.0"/>
