@@ -28,7 +28,6 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.Graphics2D;
 import java.util.List;
