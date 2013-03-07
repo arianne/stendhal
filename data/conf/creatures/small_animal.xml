@@ -49,7 +49,7 @@
     <level value="0"/>
     <experience value="5"/>
     <respawn value="900"/>
-    <corpse name="small_animal"/>
+    <corpse name="small_animal" harmless="tail_rodent" />
     <drops>
       <item value="cheese" quantity="[1,2]" probability="100.0"/>
      </drops>
