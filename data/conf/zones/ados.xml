@@ -4324,7 +4324,7 @@ East Tunnel: Uncharted</attribute>
    </portal>
    <entity x="19" y="119">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">The journal of Zephiros the adventurer.
+     <attribute name="text">The journal of Zephiros the explorer.
 
 It has been three days since I decided to explore the lower levels of the caves and I have yet to find an exit. How I wish I could reach the water source on the upper level. I can hear the nagas in the darkness. I can hardly stand their screaming any longer. May the gods have mercy on me and any who may dare to follow my footsteps.
      </attribute>
