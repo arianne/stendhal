@@ -4266,7 +4266,7 @@ East Tunnel: Uncharted</attribute>
  </zone>
  
  <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx">
-   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.GiantCobraCreature"/>
+   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.KingCobraCreature"/>
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>

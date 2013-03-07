@@ -22,7 +22,7 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
 import java.util.Map;
 
-public class GiantCobraCreature implements ZoneConfigurator {
+public class KingCobraCreature implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
@@ -38,7 +38,7 @@ public class GiantCobraCreature implements ZoneConfigurator {
 	private void buildSnakePit(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
-		final Creature creature = new ItemGuardCreature(manager.getCreature("giant cobra"), "venom gland");
+		final Creature creature = new ItemGuardCreature(manager.getCreature("king cobra"), "venom gland");
 
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 34, 51, creature, 1);
 

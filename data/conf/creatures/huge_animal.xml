@@ -481,9 +481,9 @@
     </ai>
   </creature>
   
-   <creature name="giant cobra">
-    <type class="huge_animal" subclass="giant_cobra" tileid="huge_animal.png:9"/>
-    <description>You see a giant cobra. It is extremely venomous.</description>
+   <creature name="king cobra">
+    <type class="huge_animal" subclass="king_cobra" tileid="huge_animal.png:9"/>
+    <description>You see a king cobra. It is extremely venomous.</description>
     <attributes>
       <atk value="750"/>
       <def value="102"/>
