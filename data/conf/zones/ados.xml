@@ -4186,6 +4186,10 @@ East Tunnel: Uncharted</attribute>
    </portal>
    <portal x="59" y="3" ref="pit_escape_up">
      <destination zone="-1_ados_caves_e" ref="pit_escape_down"/>
+     <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	   <parameter name="minimum-level">80</parameter>
+	   <parameter name="rejected">A protective aura prevents you from going any lower.</parameter>
+	 </implementation>
    </portal>
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
@@ -4198,6 +4202,10 @@ East Tunnel: Uncharted</attribute>
  <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499936" file="Level -2/ados/snake_pit_s.tmx">
    <portal x="25" y="121" ref="pit3_entrance">
      <destination zone="-3_ados_snake_pit_s" ref="pit3_start"/>
+     <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+	   <parameter name="minimum-level">80</parameter>
+	   <parameter name="rejected">A protective aura prevents you from going any lower.</parameter>
+	 </implementation>
    </portal>
    <entity x="14" y="116">
      <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
