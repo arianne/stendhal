@@ -689,7 +689,7 @@
     <level value="8"/>
     <experience value="80"/>
     <respawn value="1200"/>
-    <corpse name="puddle_green"/>
+    <corpse name="puddle_green" harmless="puddle_green" />
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -749,7 +749,7 @@
     <level value="16"/>
     <experience value="200"/>
     <respawn value="1230"/>
-    <corpse name="puddle_brown"/>
+    <corpse name="puddle_brown" harmless="puddle_brown" />
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
     </drops>
@@ -801,7 +801,7 @@
     <level value="24"/>
     <experience value="370"/>
     <respawn value="1290"/>
-    <corpse name="puddle_black"/>
+    <corpse name="puddle_black" harmless="puddle_black" />
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
     </drops>
@@ -858,7 +858,7 @@
     <level value="111"/>
     <experience value="14580"/>
     <respawn value="1200"/>
-    <corpse name="puddle_light_blue"/>
+    <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
     <drops>
       <item value="greater antidote" quantity="[1,1]" probability="100.0"/>
     </drops>
