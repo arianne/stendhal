@@ -8,6 +8,8 @@ The following images are in the public domain:
                     http://www.clker.com/clipart-185713.html
     feathered       http://openclipart.org/detail/23073/black-feather-by-beakman
     winged_bat      http://openclipart.org/detail/2699/bat-by-machovka-2699
+    halo, halo_large, halo_large_red:
+                    http://www.clker.com/clipart-horizontal-halo.html
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
     mimic.png & mimic_idle.png - Copyright 2013 Diligent Dodo
