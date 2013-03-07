@@ -4000,7 +4000,7 @@ Southeast: Docks
 
  <zone name="-1_ados_caves_e" level="-1" x="500512" y="499872" file="Level -1/ados/caves_e.tmx">
    <portal x="71" y="62" ref="pit_entrance">
-     <destination zone="-2_ados_snake_pit" ref="pit_exit"/>
+     <destination zone="-2_ados_snake_pit" ref="pit_exit" />
    </portal>
    <portal x="92" y="90" ref="pit_escape_down">
      <destination zone="-2_ados_snake_pit" ref="pit_escape_up"/>
@@ -4181,6 +4181,9 @@ Southeast: Docks
      <attribute name="text">West Tunnel: CAUTION - Venemous Serpents.
 East Tunnel: Uncharted</attribute>
    </entity>
+   <portal x="14" y="4" ref="pit_exit">
+     <destination zone="-1_ados_caves_e" ref="pit_entrance" />
+   </portal>
    <portal x="27" y="3" ref="pit2_escape_down">
      <destination zone="-3_ados_snake_pit" ref="pit3_escape_up" />
      <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
