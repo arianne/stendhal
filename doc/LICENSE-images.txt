@@ -4,6 +4,9 @@ The following images are in the public domain:
     toys            http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
     snake_skeleton  http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
     myling          http://opengameart.org/content/zombie-and-skeleton-32x48
+    tail_rodent, tail_rodent_large
+                    http://www.clker.com/clipart-185713.html
+    feathered       http://openclipart.org/detail/23073/black-feather-by-beakman
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
     mimic.png & mimic_idle.png - Copyright 2013 Diligent Dodo
