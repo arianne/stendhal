@@ -15,7 +15,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
-    <corpse name="small_winged"/>
+    <corpse name="small_winged" harmless="feathered" />
     <drops>
       <item value="chicken" quantity="[1,1]" probability="70.0"/>
     </drops>
@@ -78,7 +78,7 @@
     <level value="1"/>
     <experience value="5"/>
     <respawn value="900"/>
-    <corpse name="small_winged"/>
+    <corpse name="small_winged" harmless="feathered" />
     <drops>
       <item value="chicken" quantity="[1,2]" probability="70.0"/>
     </drops>
