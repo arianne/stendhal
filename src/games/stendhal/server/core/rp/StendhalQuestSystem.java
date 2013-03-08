@@ -66,6 +66,7 @@ public class StendhalQuestSystem {
 
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
+		loadQuest(new AntivenomRing());
 		loadQuest(new ArmorForDagobert());
 		loadQuest(new BalloonForBobby());
 		loadQuest(new BeerForHayunn());

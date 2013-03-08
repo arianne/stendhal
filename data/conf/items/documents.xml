@@ -187,4 +187,19 @@
     </equipable>
   </item>-->
 
+  <item name="Klaas's note">
+    <type class="documents" subclass="paper" tileid="-1"/>
+    <description>It is a recommendation from Klaas. He mentioned something about an apothecary.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
 </items>
