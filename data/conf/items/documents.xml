@@ -199,6 +199,8 @@
       <slot name="ground"/>
       <slot name="content"/>
       <slot name="bag"/>
+      <slot name="lhand" />
+      <slot name="rhand" />
     </equipable>
   </item>
 

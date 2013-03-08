@@ -19,6 +19,7 @@
     <drops>
       <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
+      <item value="rodent trap" quantity="[1,1]" probability="15.0" />
     </drops>
     <equips>
     </equips>

@@ -47,7 +47,7 @@ import java.util.List;
  * 
  * STEPS:
  * <ul>
- * <li>Klaas asks you to bring him 20 rodent traps.</li>
+ * <li>Klaas asks you to bring him rodent traps.</li>
  * </ul>
  * 
  * REWARD:
@@ -64,8 +64,9 @@ import java.util.List;
  */
 public class AntivenomRing extends AbstractQuest {
 
-	public static final String QUEST_SLOT = "antivenom_ring";
-
+	public final int REQUIRED_TRAPS = 20;
+	
+	private static final String QUEST_SLOT = "antivenom_ring";
 	
 
 	@Override
@@ -80,7 +81,7 @@ public class AntivenomRing extends AbstractQuest {
 			res.add("I do not care to deal with rodents.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I promised to gather 20 rodent traps and bring them to Klaas.");
+			res.add("I promised to gather " + REQUIRED_TRAPS + " rodent traps and bring them to Klaas.");
 		}
 		if ("done".equals(questState)) {
 			res.add("I gave the rodent traps to Klaas. I got some experience and can now sell rodent traps to him.");
@@ -95,7 +96,7 @@ public class AntivenomRing extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"The rats down here have been getting into the food storage. Would you bring me 20 #rodent #traps to help me rid us of the varmints?",
+			"The rats down here have been getting into the food storage. Would you bring me " + REQUIRED_TRAPS + " #rodent #traps to help me rid us of the varmints?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
@@ -151,13 +152,13 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new QuestActiveCondition(QUEST_SLOT),
-					new NotCondition(new PlayerHasItemWithHimCondition("rodent trap"))),
+					new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
 			ConversationStates.ATTENDING, 
 			"I could really use those traps. How can I help you?",
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("rodent trap"));
+		reward.add(new DropItemAction("rodent trap", 20));
 		reward.add(new EquipItemAction("Klaas's note", 1, true));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
