@@ -398,8 +398,7 @@ below average.
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
 				<parameter name="key">assassins id</parameter>
-				<parameter name="rejected">You must have an assassins ID before
-					you can enter.</parameter>
+				<parameter name="rejected">You must have an assassins ID before you can enter.</parameter>
 			</implementation>
 		</portal>
 	</zone>
