@@ -11,6 +11,7 @@
 - Dwarves rebuilt rails in Semos Mine
 - more creature descriptions added
 - introducing Mimics to the world
+- Some creatures went up to the mountains
 - Mayor Chalmers and Hazel heard of new items they could need
 - Katinka wants just the best for her animals with more food
 - Adventurers have discovered a pit full of snakes beneath Ados caves
@@ -25,6 +26,7 @@
 - Alice Farmer test implemented
 - Fixed imperial defender sprite
 - Athor cocktail bar sides fixed
+- statue fixes (collisions and layer)
 
 
 1.06
