@@ -148,6 +148,9 @@
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC" />
+       
+       <!-- portals --> 
+       
        <portal x="57" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_apartment_101" ref="out"/>
 		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
@@ -248,12 +251,6 @@
          <destination zone="-1_athor_island" ref="quicksand_out"/>
          <attribute name="hidden"/>
        </portal>
-       <point-of-interest x="118" y="96">
-       	<name>Athor Tunnels</name>
-       	<type>dungeon</type>
-       	<description>Did you fall down to the Athor tunnel? Below the ground live stronger, and more evil creatures than on the surface. Take care of the monks, dragons, and the evil minotaur king! Kill the minotaur king! He is waiting for you!</description>
-       	<url>http://stendhalgame.org/wiki/Athor_Tunnels</url>
-       </point-of-interest>
        
        <portal x="60" y="66" ref="pool">
          <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -275,7 +272,8 @@
 		<attribute name="height">2</attribute>
 	</entity>
 
-
+		<!-- Signs -->
+		
        <entity x="83" y="42">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">Changing Room for Women</attribute>
@@ -286,6 +284,11 @@
          <attribute name="text">Changing Room for Men</attribute>
        </entity>
 
+       <entity x="14" y="51">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+         <attribute name="text">Welcome to Athor bar!</attribute>
+       </entity>
+       
        <entity x="112" y="96">
          <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
@@ -304,6 +307,7 @@
          <attribute name="class">danger_sign</attribute>
        </entity>
 
+		<!-- Source -->
        <entity x="12" y="88">
     		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
      		<parameter name="species">surgeonfish</parameter>
@@ -335,7 +339,8 @@
 				<parameter name="y">65</parameter>
 			</implementation>
 		</entity>
-<!--  -->  
+		
+	<!-- Shop  -->  
    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
       <entity x="34" y="65">
 	  	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
@@ -358,9 +363,15 @@
 
 		<attribute name="class">blackboard</attribute>
     </entity>
-  
     
-     </zone>
+        <point-of-interest x="118" y="96">
+       	<name>Athor Tunnels</name>
+       	<type>dungeon</type>
+       	<description>Did you fall down to the Athor tunnel? Below the ground live stronger, and more evil creatures than on the surface. Take care of the monks, dragons, and the evil minotaur king! Kill the minotaur king! He is waiting for you!</description>
+       	<url>http://stendhalgame.org/wiki/Athor_Tunnels</url>
+       </point-of-interest>
+       
+      </zone>
      
      <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx" accessible="false">
        <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
