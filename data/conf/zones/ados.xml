@@ -4175,6 +4175,11 @@ Southeast: Docks
  </zone>
 
  <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499808" file="Level -2/ados/snake_pit.tmx">
+   <attributes>
+     <parameter name="color_method">multiply</parameter>
+     <parameter name="color">#413263</parameter>
+     <parameter name="blend_method">bleach</parameter>
+   </attributes>   
    <!-- writing on sign south -->
    <entity x="24" y="106">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
