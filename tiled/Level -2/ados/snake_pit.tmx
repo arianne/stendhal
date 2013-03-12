@@ -54,8 +54,8 @@
  <tileset firstgid="387" name="portal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png" width="224" height="32"/>
  </tileset>
- <tileset firstgid="394" name="torchlight_5x5" tilewidth="32" tileheight="32">
-  <image source="../../tileset/light/torchlight_5x5.png" width="384" height="256"/>
+ <tileset firstgid="394" name="torchlight_5x4" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/torchlight_5x4.png" width="384" height="256"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
