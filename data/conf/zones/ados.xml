@@ -4177,7 +4177,7 @@ Southeast: Docks
  <zone name="-2_ados_snake_pit" level="-2" x="500512" y="499808" file="Level -2/ados/snake_pit.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <!-- writing on sign south -->
@@ -4210,7 +4210,7 @@ East Tunnel: Uncharted</attribute>
  <zone name="-2_ados_snake_pit_s" level="-2" x="500512" y="499936" file="Level -2/ados/snake_pit_s.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">

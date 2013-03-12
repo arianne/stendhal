@@ -113,7 +113,7 @@
  </layer>
  <layer name="blend_ground" width="64" height="128" opacity="0.45">
   <data encoding="base64" compression="zlib">
-   eJzt3SkOAzEQRUHPcbPBbDAbzHbj/HBHssLsqZIea9KgcZcCAMDXYiplmVZpnTbTfzO92maXXdqnQzpWdmuZ6dUpu5zTJV3TrbJby0yv7tnlkZ7pld6V3VpmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDfRv6F1WLkX1gtRv6F1WLuv7Dcv/t3//O9f6A/H/5OJ2E=
+   eJzt3SkOAzEQRUHPcbPBbDAbzHbj/HBHssLsqZIea9KkaZcCAMDXYiplmVZpnTbTfzO92maXXdqnQzpWdmuZ6dUpu5zTJV3TrbJby0yv7tnlkZ7pld6V3VpmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDfRv6F1WLkX1gtRv6F1cIvrHlz/9y/Od8/oD8fxk8kkQ==
   </data>
  </layer>
  <layer name="blend_roof" width="64" height="128" opacity="0.45">
