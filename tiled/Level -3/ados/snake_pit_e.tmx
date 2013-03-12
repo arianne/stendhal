@@ -4,22 +4,31 @@
   <image source="../../tileset/logic/collision.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="ground_4" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/ground_4.png" width="128" height="32"/>
+  <image source="../../tileset/ground/ground_4.png" width="128" height="320"/>
  </tileset>
- <tileset firstgid="6" name="int_rock_blue" tilewidth="32" tileheight="32">
+ <tileset firstgid="42" name="int_rock_blue" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_rock_blue.png" width="320" height="448"/>
  </tileset>
- <tileset firstgid="146" name="creature/huge_animal" tilewidth="32" tileheight="32">
+ <tileset firstgid="182" name="creature/huge_animal" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png" width="416" height="32"/>
+ </tileset>
+ <tileset firstgid="195" name="skull_pale" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/corpse/skull_pale.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="196" name="snake_skeleton" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/corpse/snake_skeleton.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="212" name="rocks_3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/rock/rocks_3.png" width="128" height="128"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt1zEOgDAQxMBIlPz/vzyCS7wLLra/sYQU7rXW7Zyr3PVyrXdPrfFm55xzzjnHjXg/nn6HJ7z5qf+QhP8e4j+M6p3gJ3pT/pNL/P71Z7vbG0zZm/yT5ib/Lne6f7c7uQVhT+lA26kOtJXuQBvJBrSNbECb6Aa0h25AW+gGtIP00wa6AX0/3YC+XT/bgL5bP9uAvlk/24C+V79+/foJ+9ca6Nf/5wZ/9r+xf6HBhL+1wZS9scG0vanBLntDhxP2xA6n3SktaDPRhDa53j0AomGR
+   eJzt18ENgDAQA8FIFET/3VEEl6wN+/D/ZiWkcK+1budc5a6Xa717ao03O+ecc845bsT78fQ7POHNT/2HJPz3EP9hVO8EP9Gb8p9c4vevP9vd3mDK3uSfNDf5d7nT/bvdyS0Ie0oH2k51oK10B9pINqBtZAPaRDegPXQD2kI3oB2knzbQDej76Qb07frZBvTd+tkG9M362Qb0vfr169dP2L/WQL/+Pzf4s/+N/QsNJvytDabsjQ2m7U0NdtkbOpywJ3Y47U5pQZuJJrTJ9e4BnjBAqA==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2dsKwjAMBuA8g3jpITd6Lfj+7+aCFBS3YZoekvb/oHfK9mfpaDsiAIjqtIyLYfSive/rxn9uju95bzyU1z4u42BO8EuTqcb1e2vZPwAAAAAwn7vit2d673tGoskvnlXuop+Z88teU7uHlH3vKHNA++yT6D2Qzhhyzw+Y4vZATs+vidQDn2dKpc5XIuS39vkez/lr5k6O9H0W7EWp+a3B5KMOkr3n+WnqidZ1SP3u5eyYqW0dctcxtbVYK/aY7xo1a9B7vv+LqU4NvPb9GqbyNYiUXzCVrUG0/KLUutH7e29LqfdhxGefMNlrEDm/sM6D6PmZbD0QPb+w9MAI+S3vwhHyi9weGCV/bg+Mkl/k9ADyA8Q3+xrA83eEFmbPDwAAAAAA83oBsuQVgw==
+   eJztmc9OBCEMxvtUZo9V96JnEx/Yi7oX/0QTb+ObCDGbaIKzQktpme+X9LQzQz/4YKEQAQCiwikuBDEKXsmpFJd/vHPlOOe1uKlse5fiTCqgANP/c+7R/mgs/TMzy+gEAACYhwAA4JTrimfP6fvcMxM1+jO3XbIYx5b1M9WfIfO5d5Y5UDv2R6J7gElWP9hTXA8w6dRNInmASb8+F0E/U786mWf9TPW67yrb2NHvWrAXmOzronk99NAPTGPrp0dPWPcDU3lte+vU3n2KhxSPKQ6F36390LqPaeUpxXOKlxSvK89Z7BWZfN+D9OwDphj3Jb32i9a+P8XaetOjD7zpP4V2H0TTn9HaNzLVr3u9/g9r0FoPLcZ+6fRdjXkQ0fs/kc6Dkv5F+E1LpB6IPv4ZiQdm0C9ZC2fQn2n1wCz6Wz2gpf9D6TsSWjwwy/hnpPrftRIBaniYVxHY+h7A8z2CBVvXH43P0QkAAAAAAAAwEV9UVD5u
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
@@ -29,17 +38,17 @@
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2k0OAiEMhuHZ+3MML+D976YumjREhhRaofg+CTu1tgOz4TsOAAAAAEDL7b3uhnWdULO1RupdjOvh0LO1Zmu16o58v/T5vGUPSN8jNXuUdb1Y98Az4D+0lM98d7Uz/S9GzzQAAAAAAAAAAACAeeR+18p6d78quVO3GslvYA+7nIFe2c9A77tPy7wHet99mmREss3A49mLbDPQmS4vWWYQ0buQ3/XKtnqL7F3o3Ngqc4jKb54p5zBjFt/ysr9WZgkjMuBaLRu9glpm2jO/ni276Z1fz9Az1vUCkWMMcA==
+   eJzt2k0OAiEMhuG5kT/H8ALe/ybqoklDZEihFYrvk7BTazswG77jAAAAAAC03N7rbljXCTVba6TexbgeDj1ba7ZWq+7I90ufz1v2gPQ9UrNHWdeLdQ88A/5DS/nMd1c70/9i9EwDAAAAAAAAAAAAmEfud62sd/erkjt1q5H8Bvawyxnolf0M9L77tMx7oPfdp0lGJNsMPJ69yDYDnenykmUGEb0L+V2vbKu3yN6Fzo2tMoeo/OaZcg4zZvEtL/trZZYwIgOu1bLRK6hlpj3z69mym9759Qw9Y10viCwuwA==
   </data>
  </layer>
  <layer name="objects" width="64" height="64" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzwEJAAAIBDH7V7CsJR4U2RLcVQEAAAAAAAAAAACQ1NsBQZ9eAAAAAACuG95CATc=
+   eJztzwEJAAAIBDH7l7KaJR4U2RLcVQEAAAAAAAAAAACQ1NsBQZ9eAAAAAACuGwz7AX8=
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.39">
+ <layer name="collision" width="64" height="64" opacity="0.39">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOg0AMRNHl/peOXKyEIkQB3h2b+V9yG3jThGOMcXAcxzW9N3V57wzr3e/u2LpiXzQRERGtbPe32tNnvnmfCt+qqm9Q9XfvSvfduyieWcWv2ly5we7D7+t/kvqd8WvcX9kgI7VBYe7oX5XapXJfpbYq7efUbqX9nKv7P3d/5GyfOdtn7v7I3R/h97XP3P0Rfm9/hN/bH+H39kf48bv63f8D8ON33sDZn2HvvEGmv9sG2fZOG6yyd9hgtb3yDjvtlXZQudVbqK2KTdQWjut8PweRB2w=
+   eJzt1jsOxCAQBFF8/0tbEyA5sJBsPs3QVdKkC28cLFcp5WIYhkk6PWW59whr63dX7HrHTjQRERHNbPVb7e+ZPffZ4a2qeoOq370z3a27KM7cxa/auXIHqwe/r/9P6jvj17hP2cGI1AaFOaN/VmqXyv2W2qq0P1O7V9pbZ57sLh/OO9X/JWd7zdlec/dH7v4Iv6+95u6P8Hv7I/ze/gi/tz/C3+fPvgvn7+/+H4Afv/MOnP0j7Jl3MNKfbQej7Zl2MMueYQez7TvvYaV9pz2o3OpdqK2KnagtDJN5bqG1B3E=
   </data>
  </layer>
  <layer name="protection" width="64" height="64">
