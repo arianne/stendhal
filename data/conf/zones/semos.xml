@@ -2858,7 +2858,7 @@ Southwest: Or'ril Castle and Fado City
 
 	<zone name="-1_semos_mine_n2_w2" level="-1" x="499744" y="499744"
 		file="Level -1/semos/mine_n2_w2.tmx">
-				
+		
 		<entity x="81" y="5">
 			<implementation
 				class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
@@ -2995,6 +2995,31 @@ Southwest: Or'ril Castle and Fado City
 
 	<zone name="-1_semos_mine_n2" level="-1" x="500000" y="499744"
 		file="Level -1/semos/mine_n2.tmx">
+		
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"> 
+			<parameter name="start-x">121</parameter>
+			<parameter name="start-y">23</parameter>
+		</configurator>
+		
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"> 
+			<parameter name="start-x">122</parameter>
+			<parameter name="start-y">25</parameter>
+		</configurator>
+		
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"> 
+			<parameter name="start-x">123</parameter>
+			<parameter name="start-y">26</parameter>
+		</configurator>
+		
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"> 
+			<parameter name="start-x">126</parameter>
+			<parameter name="start-y">28</parameter>
+		</configurator>
+		
 		<configurator class-name="games.stendhal.server.maps.semos.mines.DwarfGuardianNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.mines.MinerNPC" />
 		
