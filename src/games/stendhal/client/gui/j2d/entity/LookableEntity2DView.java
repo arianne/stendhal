@@ -4,7 +4,7 @@
 package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.StatefulEntity;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import marauroa.common.game.RPObject;
 
@@ -13,7 +13,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author madmetzger
  */
-public class LookableEntity2DView<T extends Entity> extends Entity2DView<T> {
+public class LookableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
 
     @Override
     public int getZIndex() {

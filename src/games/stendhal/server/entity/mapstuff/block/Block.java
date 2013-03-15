@@ -51,19 +51,36 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
         // z order to control client side drawing
         clazz.addAttribute(Z_ORDER, Type.INT);
+        clazz.addAttribute("class", Type.STRING);
 	}
 
 	/**
-	 * Create a new Block at (startX, startY)
+	 * Create a new Block with default style at (startX, startY)
 	 *
 	 * @param startX
- * 				initial x-coordinate
+	 *			initial x-coordinate
 	 * @param startY
 	 * 			initial y-coordinate
 	 * @param multiPush
 	 * 			is pushing multiple times allowed
 	 */
 	public Block(int startX, int startY, boolean multiPush) {
+		this(startX, startY, multiPush, "block");
+	}
+
+	/**
+	 * Create a new block at startX, startY with a different style at client side
+	 * 
+	 * @param startX
+	 *			initial x-coordinate
+	 * @param startY
+	 * 			initial y-coordinate
+	 * @param multiPush
+	 * 			is pushing multiple times allowed
+	 * @param style
+	 * 			what style should the client use?
+	 */
+	public Block(int startX, int startY, boolean multiPush, String style) {
 		super(1,1);
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
@@ -71,11 +88,13 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		this.put("multi", Boolean.valueOf(multiPush).toString());
 		setRPClass("block");
 		put("type", "block");
+		put("class", "block");
 		// Count as collision for the client and pathfinder
 		setResistance(100);
         // a nice description
         setDescription("You see a solid block of rock. Are you strong enough to push it away?");
 		this.reset();
+		put("name", style);
 	}
 
 	/**

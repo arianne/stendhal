@@ -12,13 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d.entity;
 
-import games.stendhal.client.IGameScreen;
-import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.IEntity;
-import games.stendhal.client.entity.UseableEntity;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.entity.StatefulEntity;
 
 import java.util.List;
 
@@ -27,7 +23,7 @@ import java.util.List;
  * 
  * @param <T> type of useable entity 
  */
-class UseableEntity2DView<T extends UseableEntity> extends Entity2DView<T> {
+class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
 
 	private ActionType action;
 
@@ -52,51 +48,6 @@ class UseableEntity2DView<T extends UseableEntity> extends Entity2DView<T> {
 	// Entity2DView
 	//
 
-	@Override
-	protected void buildRepresentation(T entity) {
-		final SpriteStore store = SpriteStore.get();
-		Sprite sprite;
-		ZoneInfo info = ZoneInfo.get();
-		if (entity.getType().equals("useable_entity")) {
-			if (entity.getName() == null) {
-				sprite = store.getSprite(translate("signs/transparent"));
-			} else {
-				sprite = store.getModifiedSprite(translate("useable/" + getClassResourcePath() + "/" + entity.getName()),
-						info.getZoneColor(), info.getColorMethod());
-			}
-		} else {
-			// compatiblity with 0.86 server
-			sprite = store.getModifiedSprite(translate("useable/source/" + entity.getType()),
-					info.getZoneColor(), info.getColorMethod());
-		}
-
-		/*
-		 * Entities are [currently] always 1x1. Extra columns are animation.
-		 * Extra rows are ignored.
-		 */
-		final int imageWidth = sprite.getWidth();
-		final int width = Math.max((int) entity.getWidth(), 1);
-		final int height = Math.max((int) entity.getHeight(), 1);
-		int frames = imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width;
-		
-		// Just use the normal sprite if there are no animation frames
-		int state = entity.getState();
-		if (frames > 1) {
-			sprite = store.getAnimatedSprite(sprite,
-					0, state * IGameScreen.SIZE_UNIT_PIXELS * height,
-					imageWidth / IGameScreen.SIZE_UNIT_PIXELS / width,
-					IGameScreen.SIZE_UNIT_PIXELS * width,
-					IGameScreen.SIZE_UNIT_PIXELS * height,
-					100);
-		} else {
-			sprite = store.getTile(sprite, 
-					0, state * IGameScreen.SIZE_UNIT_PIXELS * height, 
-					IGameScreen.SIZE_UNIT_PIXELS * width,
-					IGameScreen.SIZE_UNIT_PIXELS * height);
-		}
-
-		setSprite(sprite);
-	}
 
 	/**
 	 * An entity was changed.

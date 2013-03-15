@@ -17,7 +17,7 @@ package games.stendhal.client.entity;
  *
  * @author hendrik
  */
-public class UseableEntity extends Entity {
+public class StatefulEntity extends Entity {
 
 	/**
 	 * gets the internal state used to pick the correct row in the

@@ -4,7 +4,7 @@ package games.stendhal.client.entity;
  * 
  * @author madmetzger
  */
-public class Block extends Entity {
+public class Block extends StatefulEntity {
 
 	@Override
 	public boolean isObstacle(IEntity entity) {

@@ -17,6 +17,7 @@ import java.util.Map;
  * 
  * optional parameters:
  * multi = boolean flag to allow the block being pushed more than once from its initial position, defaults to false
+ * class = defines the client side representation differing from the default boulder, defaults to block
  * 
  * @author madmetzger
  */
@@ -29,10 +30,20 @@ public class BlockZoneConfigurator implements ZoneConfigurator {
 		int y = Integer.parseInt(attributes.get("start-y"));
 		boolean multiPush = false;
 		final String multiString = attributes.get("multi");
+		
 		if(multiString != null) {
 			multiPush = Boolean.parseBoolean(multiString);
 		}
-		Block b = new Block(x, y, multiPush);
+		
+		String style = attributes.get("class");
+		Block b;
+		
+		if(style == null) {
+			b = new Block(x, y, multiPush);
+		} else {
+			b = new Block(x, y, multiPush, style);
+		}
+		
 		zone.add(b, false);
 		zone.addMovementListener(b);
 		zone.addZoneEnterExitListener(b);

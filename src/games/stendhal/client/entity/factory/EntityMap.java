@@ -43,7 +43,7 @@ import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
-import games.stendhal.client.entity.UseableEntity;
+import games.stendhal.client.entity.StatefulEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
@@ -97,11 +97,11 @@ public final class EntityMap {
 				CarrotGrower.class);
 		register("growing_entity_spawner", null, null, GrainField.class);
 
-		register("useable_entity", null, null, UseableEntity.class);
+		register("useable_entity", null, null, StatefulEntity.class);
 		// deprecated start
-		register("gold_source", null, null, UseableEntity.class);
-		register("fish_source", null, null, UseableEntity.class);
-		register("well_source", null, null, UseableEntity.class);
+		register("gold_source", null, null, StatefulEntity.class);
+		register("fish_source", null, null, StatefulEntity.class);
+		register("well_source", null, null, StatefulEntity.class);
 		// deprecated end
 
 		register("area", null, null, InvisibleEntity.class);
