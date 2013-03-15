@@ -264,12 +264,12 @@
  </layer>
  <layer name="blend_ground" width="64" height="64" opacity="0.61">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Y207CQBCGm/DiIAIeLjwBns+o4AH1Tk3URH0w/yY16cXOLlNYytj/S76b3V50MtPZ6SYJIYQQQgghhMShXkuSRs6lWtlvNF+aiHc5Z6ti8bcRbyfnSsXiX0W8aznXKxY/IUWpB86M0L51moEzI7RvnXbgzAjtT4qrjny1pam7FzzzmvmmfM+/s0M6M0L7k+KqI19taeruHc98ZH4uaJ266shXW5q6sxC/q458taWpuy888535s6DxE0LItGygv23CLbgNd2BXWOv9w17YR0y7cA/uwwN4KKwdGY1fynGaz2N4Ak/hGTyHF8LapdH4pRyn+RzAK3gNb+AQjoS1W6PxSzlO83kH7+EDHMNH+CSsPRuNX8qx1XxqkXJsNZ9lIvVSzf+15TsgqZdq/q8t3wFJvVTzfz2rO6AykHqp5v/a9axvRilKjO9M6qXT4ptRimLpO/PNKEWx9J3FmFFmddc6DzijEEIsEWNmsUSMmcUSMWYWS/BehTNLCPZI9kj2SPZI9khCCCFafgGhLIZrAEAAAA==
+   H4sIAAAAAAAAC+2Yx24CQQyGV+LFSQiQckglvYdUSDul9+S98q+0kfYwnrIwLM7+n/RdZjhg2euxnCSEEEIIIYQQEod6LUkmck7Wyv5Ho6WBeKdyNisWfwvxtnNOVyz+GcQ7m3OuYvETUpS6481w3Wun4XgzXPfaaTneDNe9L6Y6stWWb93d4f4ePmQ+wqeA//r3dkhvhuveF1Md2WrLt+6ecf8CXzPf4PsY1qqpjmy15Vt3WuI31ZGttnzr7gP3n/Ar8xv+jGH8hBAyKPPobQtwES7BZbginHX+YR9cRUxrcB1uwE24JZxtK41fynGazx24C/fgPjyAh8LZkdL4pRyn+ezCY3gCT+EZPBfOLpTGL+U4zWcP9uElvILX8EY4u1Uav5RjrfkMRcqx1nyWidRLQ/Y6mndAUi8N2eto3gFJvTRkrzOsHVAZSL00ZK9j+q1tRilKjO9M6qWDYptRiqLpO7PNKEXR9J3FmFGGtWsdBZxRCCGaiDGzaCLGzKKJGDOLJrhX4czigj2SPZI9kj2SPZIQQkgov7PG4N8AQAAA
   </data>
  </layer>
  <layer name="blend_roof" width="64" height="64" opacity="0.26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YywrCMBCF4cC8ePWVVLzfFfWtnEKhXcS0EUOd5P9gFqYuDElOxjoHAAAAAGlU4tykU1MZ+xcBAP5d1XNn9D0HhvDto9Deitl3K/3OuqlNgft0r3M+NHVk/sW56JyvTd0KnD/KM9N9PtdaSHgsR0tp77z6vtuKf8y6T+u5kzbz67w/iX/MstB6nqXN/Drv7+Ifs6xvPR/6+an1kvCYVbmt5zdyWs+xlXI3+uR4N8bwZWnM/2vr74BSZqmVc5UiSzlXv+05rZ0zehR6FAC2WOlZUqBnyes9WSx6FnqWIchIMpKMJCPJSAAAMMQbvsNGRQBAAAA=
+   H4sIAAAAAAAAC+3YSw4CIRBFURI23rolNf7/GnVX1gASBkjTRtIW3JO8gfREAhQVjAEAAACAMjprzCTI1I79jwAA/67ruTP6vgM5Yvsotbdy991Svq8ka5eNZNvQXt3JXPeSg8tRcmL+zTjLXC+Sq8tNcm9o/mjTTPb4XLKw6bEahXeev+9iY9p9Ws+w5vt6HxvTLLWeYc339T42plnfej7k91PysukxrWpbz2/UtJ5ja+VujKnxbhwiVkuHvOtofwMqWUu1nKsStZRz9dueU9s5o0ehRwGgi5aepQR6lrreyYaiZ6FnyUGNpEZSI6mR1EgAAJDjDawpIPEAQAAA
   </data>
  </layer>
 </map>
