@@ -1351,6 +1351,7 @@ Mature sheep wanted: please speak to Sato.
 			<parameter name="start-x">44</parameter>
 			<parameter name="start-y">53</parameter>
 			<parameter name="multi">true</parameter>
+			<parameter name="class">mine_cart_empty</parameter>
 		</configurator>
 		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
@@ -3006,7 +3007,6 @@ Southwest: Or'ril Castle and Fado City
 			class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"> 
 			<parameter name="start-x">122</parameter>
 			<parameter name="start-y">25</parameter>
-			<parameter name="class">failure</parameter>
 		</configurator>
 		
 		<configurator
