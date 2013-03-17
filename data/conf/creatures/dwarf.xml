@@ -570,6 +570,7 @@
       <item value="stone armor" quantity="[1,1]" probability="0.1"/>
       <item value="black armor" quantity="[1,1]" probability="0.0001"/>
       <item value="horned golden helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="dwarvish legs" quantity="[1,1]" probability="1.0" />
     </drops>
     <equips>
     </equips>

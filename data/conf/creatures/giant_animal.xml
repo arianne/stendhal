@@ -91,6 +91,7 @@
       <item value="stone armor" quantity="[1,1]" probability="2.0"/>
       <item value="durin axe" quantity="[1,1]" probability="0.25"/>
       <item value="magic twoside axe" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarvish legs" quantity="[1,1]" probability="1.5" />
     </drops>
     <equips>
     </equips>
