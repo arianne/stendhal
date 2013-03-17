@@ -86,7 +86,7 @@
   
   <item name="flail">
     <type class="club" subclass="flail" tileid="-1"/>
-    <description>You see a military flail. Swinging it in circles will tire you but it will be an effective weapon.</description>
+    <description>You see a flail. Swinging it in circles will tire you but it will be an effective weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="19"/>
       <rate value="7"/>
