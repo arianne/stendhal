@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -38,7 +37,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,10 +55,8 @@ import java.util.List;
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
 
-	// quest slot changed ready for 2011
-	private static final String QUEST_SLOT = "meet_santa_12";
-	// date changed ready for 2011
-    private static final GregorianCalendar notXmas = new GregorianCalendar(2013, Calendar.JANUARY, 6);
+	// quest slot changed ready for 2013
+	private static final String QUEST_SLOT = "meet_santa_13";
 
 	public static final String QUEST_NAME = "MeetSanta";
 
@@ -168,14 +164,37 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		final Outfit outfit = player.getOutfit();
 		final int hairnumber = outfit.getHair();
 		if ((hairnumber >= 50) && (hairnumber < 94)) {
-			final Date now = new Date();
-			final Date dateNotXmas = notXmas.getTime();
-			if (now.after(dateNotXmas)) {
+			if (!isChristmasTime(new GregorianCalendar())) {
 				final int newhair = hairnumber - 50;
 				final Outfit newOutfit = new Outfit(null, newhair, null, null, null);
 				player.setOutfit(newOutfit.putOver(outfit), false);
 			}
 		}
+	}
+
+	/**
+	 * checks whether now is christmas time
+	 *
+	 * @param cal current date
+	 * @return true, if we are in season, false otherwise
+	 */
+	static boolean isChristmasTime(Calendar cal) {
+		int month = cal.get(Calendar.MONTH);
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		if (month >= 1 && month < 10) {
+			return false;
+		}
+
+		// January
+		if (month == 0) {
+			return day <= 6;
+		}
+
+		// November
+		if (month == 10) {
+			return day >= 23;
+		}
+		return false;
 	}
 
 	/**
