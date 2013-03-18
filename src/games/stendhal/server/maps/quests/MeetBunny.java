@@ -110,8 +110,6 @@ public class MeetBunny extends AbstractQuest {
 		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		bunny.setPosition(17, 13);
 		zone.add(bunny);
-		// Do not add bunny to NPC list until all is known to be OK
-		npcs.add(bunny);
 
 		return bunny;
 	}
