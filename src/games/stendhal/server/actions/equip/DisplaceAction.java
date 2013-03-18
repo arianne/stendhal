@@ -229,20 +229,15 @@ public class DisplaceAction implements ActionListener {
 	/* returns true if entity is a corpse, it's not owner by that player, and the distance is far */
 	private boolean isNotOwnCorpseAndTooFar(final Entity entity, final Player player, final int x, final int y) {
 		if(entity instanceof Corpse) {
-			Corpse corpse;
-			try {
-				corpse = (Corpse) entity;
-				String owner = corpse.getCorpseOwner();
-				if ((owner!= null) && !player.getTitle().equals(owner)) {
-					int centerX = (int) (x + (entity.getArea().getWidth() / 2));
-					int centerY = (int) (y + (entity.getArea().getHeight() / 2));
-					if (!(player.squaredDistance(centerX, centerY) < (entity.getArea().getWidth() * entity.getArea().getHeight()))) {
-						player.sendPrivateText("You cannot throw that corpse so far while the protection of " + owner + " is heavy upon it.");
-						return true;
-					}
+			Corpse corpse = (Corpse) entity;
+			String owner = corpse.getCorpseOwner();
+			if ((owner!= null) && !player.getTitle().equals(owner)) {
+				int centerX = (int) (x + (entity.getArea().getWidth() / 2));
+				int centerY = (int) (y + (entity.getArea().getHeight() / 2));
+				if (!(player.squaredDistance(centerX, centerY) < (entity.getArea().getWidth() * entity.getArea().getHeight()))) {
+					player.sendPrivateText("You cannot throw that corpse so far while the protection of " + owner + " is heavy upon it.");
+					return true;
 				}
-			} catch (ClassCastException ex) {
-				logger.warn("Some entity " + entity.getTitle() + " claiming to be a corpse, wasn't a corpse! " + entity.toString());
 			}
 		}
 		return false;
