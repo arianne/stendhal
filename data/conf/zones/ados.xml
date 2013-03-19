@@ -4287,7 +4287,7 @@ East Tunnel: Uncharted</attribute>
  <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">
@@ -4320,7 +4320,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
  <zone name="-3_ados_snake_pit_e" level="-3" x="500640" y="499808" file="Level -3/ados/snake_pit_e.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">
@@ -4335,7 +4335,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
  <zone name="-3_ados_snake_pit_e2" level="-3" x="500704" y="499808" file="Level -3/ados/snake_pit_e2.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">
@@ -4349,7 +4349,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
  <zone name="-3_ados_snake_pit_s" level="-3" x="500512" y="499936" file="Level -3/ados/snake_pit_s.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">
@@ -4375,7 +4375,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
  <zone name="-3_ados_snake_pit_se" level="-3" x="500640" y="499936" file="Level -3/ados/snake_pit_se.tmx">
    <attributes>
      <parameter name="color_method">multiply</parameter>
-     <parameter name="color">#413263</parameter>
+     <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
    </attributes>   
    <entity x="0" y="0">
@@ -4386,7 +4386,7 @@ I have found some water but fear I am trapped. I have yet to find any food and t
    </entity>
    <entity x="37" y="30">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">The journal of Zephiros the explorer.
+     <attribute name="text">The journal of Zephiros the explorer:
 
 It has been three days since I decided to explore the lower levels of the caves and I have yet to find an exit. How I wish I could reach the water source on the upper level. I can hear the nagas in the darkness. I can hardly stand their screaming any longer. May the gods have mercy on me and any who may dare to follow my footsteps.
      </attribute>
