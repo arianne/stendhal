@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,6 +14,8 @@ package games.stendhal.client.gui.styled;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
@@ -26,7 +28,12 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 	private final Style style;
 	
-	// Required by UIManager
+	/**
+	 * Required by UIManager.
+	 * 
+	 * @param pane the component to create the UI for
+	 * @return UI delegate
+	 */
 	public static ComponentUI createUI(JComponent pane) {
 		// BasicTabbedPaneUI can not be shared
 		return new StyledTabbedPaneUI(StyleUtil.getStyle());
@@ -117,5 +124,25 @@ public class StyledTabbedPaneUI extends BasicTabbedPaneUI {
 		component.setFont(style.getFont());
 		component.setForeground(style.getForeground());
 		focus = style.getShadowColor();
+	}
+	
+	@Override
+	protected void installListeners() {
+		super.installListeners();
+		tabPane.addMouseWheelListener(new MouseWheelHandler());
+	}
+	
+	/**
+	 * Implements changing tabs using the mouse wheel.
+	 */
+	private class MouseWheelHandler implements MouseWheelListener {
+		@Override
+		public void mouseWheelMoved(MouseWheelEvent e) {
+			int tabIndex = tabPane.getSelectedIndex();
+			int newIndex = Math.max(0, Math.min(tabPane.getTabCount() - 1, tabIndex + e.getWheelRotation()));
+			if (newIndex != tabIndex) {
+				tabPane.setSelectedIndex(newIndex);
+			}
+		}
 	}
 }
