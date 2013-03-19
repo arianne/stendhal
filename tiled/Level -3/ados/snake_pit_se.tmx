@@ -21,6 +21,9 @@
  <tileset firstgid="215" name="book" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/book.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="219" name="creature/animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png" width="928" height="32"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
    eJzt1MuRgzAURUHKATn/8JyA7QKk95HoRS9n0LnIvI/jeAMAAAAAAMAFry+qz5TdO6q6qap7hf7I7u4bZLV33SC7/9cGVdtV9He6R9UdlTuMPKu6e7R/1jOe3l+9R/a977ZDl/detUPn9oyNdugf2WGn/jsb7NQeddbIO1W9wY7t+sfPG/0t7db/uvh3q/ePvOfV22f3V/feffcz+qtbR9pHd6hu1T+n/e4e1b1Xztzh/+3QX92oP6d/pXuvX79+/fr169evX39Uf+cNZp73X3/XDTL7u20Qcc4zG3TYIep8Z/srd4g809X+7B2iz3K3P2OPrGfP2iDzuxyxfeQO3TbeZYNZjavtEPFeV7oPld/RVbqj+rO3yPqmVX43Rxsjfvu7eGr3r/7q81T0V58BAAAAAAAAAAAAgPM+4PLKSQ==
@@ -43,7 +46,7 @@
  </layer>
  <layer name="objects" width="64" height="128" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6D3z2UwY9xNSEACAAAAAAAAAAAAAAAAAAAAAAAAwAfTDgAAAAAAAAAAAAAAABy3aDoAxQ==
+   eJzt1iEVACAQBcHrn4scaGLgUPh/D2YSrNwqAAAAAAAAAIC7lQ4A4JjpAHiEvwEAAAAAAAAAAH430gEAAAAAAAAAAAAAAADNbelPA3M=
   </data>
  </layer>
  <layer name="collision" width="64" height="128" visible="0" opacity="0.35">
