@@ -4303,6 +4303,15 @@ East Tunnel: Uncharted</attribute>
        <parameter name="volume">80</parameter>
      </implementation>
    </entity>
+   <entity x="120" y="19">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">You see a piece of paper with writing on it:
+
+I have found some water but fear I am trapped. I have yet to find any food and the creature that chased me here is waiting if I go back the way I came. I have lost my journal and this is my only parchment left. I can feel a weak wind on my face. Perhaps an exit is in this area.
+     </attribute>
+     <attribute name="class">transparent</attribute>
+     <attribute name="resistance">0</attribute>
+   </entity>
    <portal x="27" y="3" ref="pit3_escape_up">
      <destination zone="-2_ados_snake_pit" ref="pit2_escape_down" />
    </portal>
@@ -4354,9 +4363,9 @@ East Tunnel: Uncharted</attribute>
    </portal>
    <entity x="19" y="119">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     <attribute name="text">The journal of Zephiros the explorer.
+     <attribute name="text">You see a torn page from what looks to be a journal:
 
-It has been three days since I decided to explore the lower levels of the caves and I have yet to find an exit. How I wish I could reach the water source on the upper level. I can hear the nagas in the darkness. I can hardly stand their screaming any longer. May the gods have mercy on me and any who may dare to follow my footsteps.
+...ve attempted to cast a barrier on the hole that led me down to this lower level. But my magic abilities are weak. Hopefully it will prevent adventurers who are too weak from entering.
      </attribute>
      <attribute name="class">transparent</attribute>
      <attribute name="resistance">0</attribute>
@@ -4374,6 +4383,15 @@ It has been three days since I decided to explore the lower levels of the caves 
        <parameter name="sound">sewers</parameter>
        <parameter name="volume">120</parameter>
      </implementation>
+   </entity>
+   <entity x="37" y="30">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">The journal of Zephiros the explorer.
+
+It has been three days since I decided to explore the lower levels of the caves and I have yet to find an exit. How I wish I could reach the water source on the upper level. I can hear the nagas in the darkness. I can hardly stand their screaming any longer. May the gods have mercy on me and any who may dare to follow my footsteps.
+     </attribute>
+     <attribute name="class">transparent</attribute>
+     <attribute name="resistance">0</attribute>
    </entity>
  </zone>
 

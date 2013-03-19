@@ -18,6 +18,9 @@
  <tileset firstgid="199" name="rocks_3" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_3.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="215" name="book" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/book.png" width="64" height="64"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="zlib">
    eJzt1MuRgzAURUHKATn/8JyA7QKk95HoRS9n0LnIvI/jeAMAAAAAAMAFry+qz5TdO6q6qap7hf7I7u4bZLV33SC7/9cGVdtV9He6R9UdlTuMPKu6e7R/1jOe3l+9R/a977ZDl/detUPn9oyNdugf2WGn/jsb7NQeddbIO1W9wY7t+sfPG/0t7db/uvh3q/ePvOfV22f3V/feffcz+qtbR9pHd6hu1T+n/e4e1b1Xztzh/+3QX92oP6d/pXuvX79+/fr169evX39Uf+cNZp73X3/XDTL7u20Qcc4zG3TYIep8Z/srd4g809X+7B2iz3K3P2OPrGfP2iDzuxyxfeQO3TbeZYNZjavtEPFeV7oPld/RVbqj+rO3yPqmVX43Rxsjfvu7eGr3r/7q81T0V58BAAAAAAAAAAAAgPM+4PLKSQ==
@@ -25,7 +28,7 @@
  </layer>
  <layer name="1_terrain" width="64" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt28FOxCAQxnFOe/B9Nh5d14u+gM/swfhMyoGEYNm2MAMz4f9LerHZbj86QLfFEAAAAAAAAAAAAIBzXv6212y7zz0ddWXea7H/rdi/t3lpr5S7zNvrU/h40rRyJ8/Bbg3E7Fq5c1bb4GPgdz1qg3LMGTWGlPl/lL4nqY2d7yc+J9kWI6+/lFhHqS16jOr7FsXsezUXWZ+7Wnmseymr1/3K2enz6/Ke/6vjs6v3e2/ZpWr16JhnjVR+r32+97y1n2loa81/Cb5zJy35Y/Yn6ROZoHW8vlT+rv1MQ1pP7Xs3ar6yeo/vdb6S4PE+TVLt2rfWqrda0s5vtc8n5N/Wct5bY8lK+beORX7byL+N/DLHsp6/hvznecxf++23Sv7V+7/k7xXy/xfX0Fhcg5WMuGa3YLcNRtWsxbV4Gs9+HvWntIbKQjtoPfc6Mp6kdXWz2iHP/l3sGzlez6iHves+Y766hTHrTo/UvIX5urZetbVd0ntZj+/kc/ka1DOb99zWaf6vjtX3qHnmckyxeK8jycs4qmXl94UAAAAAAAAAAAAAAAAAAAAAAD9+AVFJRBw=
+   eJzt201OwzAQhmGvuuA+iCUFNnABzswCdc9twAtLlombxJ6xZ+T3kbJp1DSfM3b+3BAAAAAAAAAAAACAc57/lpdseZ27O+rKvI/F+rdi/d7ipb1S7jJvr0/h7UnTyp08Bbs1ELNL5/7Z+MxqG3wM/K17bVCOOaPGkDL/Tel3ktrY+X7ie5JtMfL4S4l1lNqih0bf9yJm36u5yPq5q5XHupeyet2vnJ0+vy7v+b86vrt6v/eWXapWj4551kjl99rne/db+5mGttb8l+A7d9KSP2Z/kN6RCVrH60vlc+1nGtJ6at+7Uecrq9f4Xs9XEjxep0mqHfvWWvVWS9r5rfb5hPzbWvZ7ayxZKf/WtshvG/m3kV9mW9bz15D/PI/5a/d+q+Rfvf9L3q+Q/784h8biHKxkxDG7BrttMKpmLc7F03j2c68/pTlUFtpB67nXkfEkzaub1Q559u9i3cjxekY97B33Geeraxgz7/RIzVs4X9fmq7a2S3ov6/GdfC6fg3pm8Z7bOs3/6lh9j5pnLscUi9c6kryMo1pWfl8IAAAAAAAAAAAAAAAAAAAAAPDjF+qjRPU=
   </data>
  </layer>
  <layer name="2_object" width="64" height="128">

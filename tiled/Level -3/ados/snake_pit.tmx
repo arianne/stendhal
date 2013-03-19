@@ -39,6 +39,12 @@
  <tileset firstgid="402" name="skull_pale" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="403" name="notes2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/notes2.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="407" name="skeleton" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/corpse/skeleton.png" width="64" height="64"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt2kFOIzEUBNBIORD3vx1bhEigadv17f8WpdkwYNcrOgHx8Xg8PkRERCbl+SXps0jO3gb6hX/v8O8d/rWy2uEnfxvIuq82sIF69vx75FX3q/tPf/1OeWfO/+z81Z7/eblin+i/whlODv++uWrP/6zw7x3+vcO/T171x79H3vVX2d8G5vdX2Z7/nP6ubCB9fhuY4/+9x8odV95m9Vx5rlftt/rzqXKeX/7dub+q708qp/p7u9F3SZ+xUq78XLdTd6fco5L9Tr2ddJcq9rt1duKdkva7dnXy3Wb08e5j0me3gzl3/unup3bTYQOdnu92cN99x7vaAPfuO+Dedwfss73O+vwz3dmP38JKf977b+DK5/J9XiMj+r773LaB+ht41X/C3g7GOe6edOe880k7sJ7r2nEb6e7T5qM6STuyH+90qn/aYAf7q12lTdmvs2G/V/jnDU7y3zFpA/7s+fPnz58/f/78+fPnz589f/78+fNnz5+/DfDnz98G2PPnz54/f/78+fPnz5+9DbDnz98G2NtAutPdkvbiz58/f/a1/HfcSrrLHXOnyxFe7Ov5p8/0n32lz7prdNk7/HuHf994Le0d/r3Dv3f49w7/3uHfO/x7h3/v+H167/DvHf69w7932PcOf6n09zX+3qee+8y+r57BBmr0ftdk9deTdf6/+aQ2Jxn/1M6kl78d7O8/8tzpjndIwuWulefB+g2kz5jawE6dzOo1faaRO/A6c25GbWH265fU3cKK9y9y3g7S95TsDtL3k/lb+O3/pu8lc7bw149P30XGbuHqZtLnl8xO+PcL/97xDOgd/sK/b3z/947fA/QO/97h3zv8ZYX/J/fOI5g=
@@ -46,7 +52,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
