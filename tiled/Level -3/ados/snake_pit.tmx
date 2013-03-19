@@ -45,6 +45,9 @@
  <tileset firstgid="407" name="skeleton" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skeleton.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="411" name="creature/animal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png" width="928" height="32"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt2kFOIzEUBNBIORD3vx1bhEigadv17f8WpdkwYNcrOgHx8Xg8PkRERCbl+SXps0jO3gb6hX/v8O8d/rWy2uEnfxvIuq82sIF69vx75FX3q/tPf/1OeWfO/+z81Z7/eblin+i/whlODv++uWrP/6zw7x3+vcO/T171x79H3vVX2d8G5vdX2Z7/nP6ubCB9fhuY4/+9x8odV95m9Vx5rlftt/rzqXKeX/7dub+q708qp/p7u9F3SZ+xUq78XLdTd6fco5L9Tr2ddJcq9rt1duKdkva7dnXy3Wb08e5j0me3gzl3/unup3bTYQOdnu92cN99x7vaAPfuO+Dedwfss73O+vwz3dmP38JKf977b+DK5/J9XiMj+r773LaB+ht41X/C3g7GOe6edOe880k7sJ7r2nEb6e7T5qM6STuyH+90qn/aYAf7q12lTdmvs2G/V/jnDU7y3zFpA/7s+fPnz58/f/78+fPnz589f/78+fNnz5+/DfDnz98G2PPnz54/f/78+fPnz5+9DbDnz98G2NtAutPdkvbiz58/f/a1/HfcSrrLHXOnyxFe7Ov5p8/0n32lz7prdNk7/HuHf994Le0d/r3Dv3f49w7/3uHfO/x7h3/v+H167/DvHf69w7932PcOf6n09zX+3qee+8y+r57BBmr0ftdk9deTdf6/+aQ2Jxn/1M6kl78d7O8/8tzpjndIwuWulefB+g2kz5jawE6dzOo1faaRO/A6c25GbWH265fU3cKK9y9y3g7S95TsDtL3k/lb+O3/pu8lc7bw149P30XGbuHqZtLnl8xO+PcL/97xDOgd/sK/b3z/947fA/QO/97h3zv8ZYX/J/fOI5g=
@@ -70,9 +73,9 @@
    eJztxaENAAAIA7D9/zMJfp4E0ZomAHBnagAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgrwVregH7
   </data>
  </layer>
- <layer name="objects" width="128" height="128" visible="0">
+ <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2bENACAMA7DyEP3/Oy5go2qF7AuyZEkiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6uTqTgC8sHUZAAAAAMbp2uDthQB/8OUCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADcHpwYA7w==
+   eJzt27ENACAIAEFcSCd3R1ewQDHmbgIamidEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnDNa9QRAhm6XAQAAAOA5VQ1eLwT4g1suAAAAQK2pzwAAAAAAAAAAAAAAAAAAXOfHEwAAAAAAAAAAAAAAAGDfAtu8Aks=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.35">
