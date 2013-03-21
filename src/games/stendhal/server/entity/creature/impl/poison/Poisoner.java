@@ -19,7 +19,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Poisoner implements Attacker {
 	ConsumableItem poison;
-	private int probability;
+	private double probability;
 
 	public Poisoner(final int probability, final ConsumableItem poison) {
 		this.probability = probability;
@@ -41,5 +41,13 @@ class Poisoner implements Attacker {
 			}
 		}
 		return false;
+	}
+	
+	public void applyAntipoison(double antipoison) {
+		this.probability *= antipoison;
+	}
+	
+	public double getProbability() {
+		return this.probability;
 	}
 }
