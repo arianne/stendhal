@@ -2834,6 +2834,23 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			attacker.notifyWorldAboutChanges();
 		}
 	}
+	
+	/**
+	 * Handles protection against poisoning depending on the value 0.0-1.0
+	 */
+	public void handleAntipoison(final List<Item> attackerItems) {
+		
+		double sumAll = 0.0;
+		
+		for (final Item equipmentItem : attackerItems) {
+			if (equipmentItem.has("antipoison")) {
+				sumAll += equipmentItem.getDouble("antipoison");
+			}
+		}
+		
+		if (sumAll > 1) { sumAll = 1; }
+		else if (sumAll < 0) { sumAll = 0; }
+	}
 
 	/**
 	 * Equips the item in the specified slot.
