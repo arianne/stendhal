@@ -55,6 +55,7 @@
 			<element name="slot_name" type="Q1:attribute" minOccurs="0"></element>
 			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"></element>
 			<element name="autobind" type="Q1:attribute" minOccurs="0"></element>
+			<element name="antipoison" type="Q1:attribute" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 
