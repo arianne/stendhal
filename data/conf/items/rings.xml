@@ -73,7 +73,6 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-</items>
 
   <item name="medicinal ring">
     <type class="ring" subclass="medicinal_ring" tileid="-1"/>
@@ -93,3 +92,5 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+  
+</items>
