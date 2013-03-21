@@ -756,7 +756,36 @@ public class Creature extends NPC {
 	public void tryToPoison() {
 
 		final RPEntity entity = getAttackTarget();
+		
+		/*
+		 * Antipoison attributes
+		 */
+		double sumAll = 0.0;
+		List<Item> defenderEquipment = entity.getDefenseItems();
+		if (entity.hasRing()) {
+			System.out.println("Has Ring");
+			defenderEquipment.add(entity.getRing());
+		}
+		
+		for (final Item equipmentItem : defenderEquipment) {
+			if (equipmentItem.has("antipoison")) {
+				sumAll += equipmentItem.getDouble("antipoison");
+			}
+		}
+		
+		/*
+		 * Prevent antipoison attribute from surpassing 100%
+		 */
+		if (sumAll > 1) { sumAll = 1; }
+		
+		System.out.println("Antipoison value = " + sumAll);
+		
 		if (poisoner.attack(entity)) {
+			System.out.println("Probability before: " + poisoner.getProbability());
+			if (sumAll > 0) {
+				poisoner.applyAntipoison(sumAll);
+			}
+			System.out.println("Probability after: " + poisoner.getProbability());
 			new GameEvent(getName(), "poison", entity.getName()).raise();
 			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
 		}

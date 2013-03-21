@@ -24,4 +24,10 @@ class NonPoisoner implements Attacker {
 		return false;
 	}
 
+	public void applyAntipoison(double antipoison) {
+	}
+	
+	public double getProbability() {
+		return 1;
+	}
 }

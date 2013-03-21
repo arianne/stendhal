@@ -44,6 +44,10 @@ class Poisoner implements Attacker {
 	}
 	
 	public void applyAntipoison(double antipoison) {
+		/*
+		 * invert the value for multiplying
+		 */
+		antipoison = (1 - antipoison);
 		this.probability *= antipoison;
 	}
 	

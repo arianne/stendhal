@@ -16,5 +16,9 @@ import games.stendhal.server.entity.RPEntity;
 
 public interface Attacker {
 	boolean attack(RPEntity victim);
+	
+	void applyAntipoison(double antipoison);
+	
+	double getProbability();
 
 }
