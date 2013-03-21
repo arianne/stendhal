@@ -2837,19 +2837,35 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	
 	/**
 	 * Handles protection against poisoning depending on the value 0.0-1.0
+	 * 
+	 * @param creature
+	 * 			creature with potential poison attribute
+	 * @param defenderEquipment
+	 * 			items equipped by the defender
 	 */
-	public void handleAntipoison(final List<Item> attackerItems) {
+	//public void handleAntipoison(final Creature creature, final List<Item> defenderItems) {
+	public void handleAntipoison(final Creature attacker, final List<Item> defenderEquipment) {
 		
 		double sumAll = 0.0;
 		
-		for (final Item equipmentItem : attackerItems) {
+		for (final Item equipmentItem : defenderEquipment) {
 			if (equipmentItem.has("antipoison")) {
 				sumAll += equipmentItem.getDouble("antipoison");
 			}
 		}
 		
+		/**
+		 * Don't allow a value greater than 100% nor less than 0%
+		 */
 		if (sumAll > 1) { sumAll = 1; }
 		else if (sumAll < 0) { sumAll = 0; }
+		
+		/**
+		 * Check if creature is poisonous
+		 */
+		if (attacker.getAIProfiles().keySet().contains("poisonous")) {
+			System.out.println("Creature is poisonous");
+		}
 	}
 
 	/**
