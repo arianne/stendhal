@@ -4,7 +4,7 @@
 
   <item name="antivenom ring">
     <type class="ring" subclass="antivenom_ring" tileid="-1"/>
-    <description>You see an antivenom ring. It could protect you from poisoning.</description>
+    <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>
     <attributes>
       <antipoison value="0.5" />
@@ -74,3 +74,22 @@
     </equipable>
   </item>
 </items>
+
+  <item name="medicinal ring">
+    <type class="ring" subclass="medicinal_ring" tileid="-1"/>
+    <description>You see a #medicinal #ring. It could protect you from poisoning.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Ring"/>
+    <attributes>
+      <antipoison value="0.25" />
+    </attributes>
+    <weight value="0.1"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="finger"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
