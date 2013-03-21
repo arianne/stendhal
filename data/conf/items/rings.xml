@@ -7,7 +7,7 @@
     <description>You see an antivenom ring. It could protect you from poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>
     <attributes>
-        <antipoison value="0.5" />
+      <antipoison value="0.5" />
     </attributes>
     <weight value="0.1"/>
     <value value="1"/>
