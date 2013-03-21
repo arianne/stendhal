@@ -129,6 +129,7 @@ public class ItemTest {
 		item.put("amount", 5);
 		item.put("range", 6);
 		item.put("lifesteal", 7);
+		item.put("antipoison", 0.5);
 
 		assertThat(item.describe(), equalTo("Description. It is a special quest reward for hero, and cannot be used by others. Stats are (ATK: 2 DEF: 3 RATE: 4 HP: 5 RANGE: 6 LIFESTEAL: 7 MIN-LEVEL: 1)."));
 
