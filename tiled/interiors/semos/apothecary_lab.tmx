@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="45" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="lamp" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/small_lamp.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="collision" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="6" name="portal" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png" width="224" height="32"/>
+ </tileset>
+ <tileset firstgid="13" name="large_chest" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/chest/large.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="21" name="floors_3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floors_3.png" width="192" height="64"/>
+ </tileset>
+ <tileset firstgid="33" name="table/long_front_on_pale" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/long_front_on_pale.png" width="32" height="96"/>
+ </tileset>
+ <tileset firstgid="36" name="chair/wooden_pale" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/wooden_pale.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="40" name="stool" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/chair/stool.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="41" name="carpet/black_red" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/carpet/black_red.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="50" name="wall/stone_grey" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/stone_grey.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="62" name="wall/int_grey" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey.png" width="352" height="352"/>
+ </tileset>
+ <tileset firstgid="183" name="stairs" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/stairs.png" width="64" height="192"/>
+ </tileset>
+ <layer name="0_floor" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OuxFAQBiF0b8SvRgj86iGkGZY4S4a9AWKcMcNTn7qiGiEtOjQYxAwYsWEGZWAxWefffbZ50/y2Wefff7TecOOJOB4zxkFp4ALNx76RrkXEA4AAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGLqAF4j5BtoRJAJBIBYioIaZHg4ZBaNgFOAFigPtABKBGhArDbQjyADKA+2AUTAKBjnYPtAOGAWjYBQMewAAObIjbhAOAAA=
+  </data>
+ </layer>
+ <layer name="2_object" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAgDsCX498w/AfC0CpoA0OY7AABwYAEc3ADyEA4AAA==
+  </data>
+ </layer>
+ <layer name="3_roof" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+ </layer>
+ <layer name="objects" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAgDsN34F4yMEdIqaAIAwEXTDgDvLRF5S7EQDgAA
+  </data>
+ </layer>
+ <layer name="collision" width="45" height="20" opacity="0.46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WoQ0AMBDDwJDsv/KjruB+VZ8UbpgmqcO32Uuth80Mmxk2M2xm2MywmWEz4/ZP/20D2tyadxAOAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="45" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+  </data>
+ </layer>
+</map>

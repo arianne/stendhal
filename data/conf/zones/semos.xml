@@ -111,6 +111,31 @@
 				<parameter name="volume">65</parameter>
 			</implementation>
 		</entity>
+		<portal x="8" y="22" ref="apothecary_entrance">
+		  <destination zone="int_apothecary_cabin" ref="exit" />
+		</portal>
+	</zone>
+	
+	<!-- Interiors in 0_semos_mountain_n2_w -->
+	
+	<zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx">
+	  <portal x="7" y="19" ref="exit">
+	    <destination zone="0_semos_mountain_n2_w" ref="apothecary_entrance" />
+	  </portal>
+	  <portal x="3" y="13" ref="lab_entrance">
+	    <destination zone="int_apothecary_lab" ref="lab_exit" />
+        <attribute name="resistance">0</attribute>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+          <parameter name="quest">antivenom_ring</parameter>
+          <parameter name="rejected">You feel a cool breeze coming in from somewhere.</parameter>
+        </implementation>
+	  </portal>
+	</zone>
+	
+	<zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
+	  <portal x="33" y="13" ref="lab_exit">
+	    <destination zone="int_apothecary_cabin" ref="lab_entrance" />
+	  </portal>
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
