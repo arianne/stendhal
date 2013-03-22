@@ -10,6 +10,8 @@ The following images are in the public domain:
     winged_bat      http://openclipart.org/detail/2699/bat-by-machovka-2699
     halo, halo_large, halo_large_red:
                     http://www.clker.com/clipart-horizontal-halo.html
+    crystals:       http://www.clker.com/clipart-purple-amethyst.html
+                    http://openclipart.org/detail/173471/minerals-by-qubodup-173471
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
     mimic.png & mimic_idle.png - Copyright 2013 Diligent Dodo
