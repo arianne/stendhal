@@ -45,6 +45,15 @@
  <tileset firstgid="97" name="carpet/black_red" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/carpet/black_red.png" width="96" height="96"/>
  </tileset>
+ <tileset firstgid="106" name="warmer_2" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/kitchen/warmer_2.png" width="64" height="96"/>
+ </tileset>
+ <tileset firstgid="112" name="clothes_rack" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/clothes_rack.png" width="32" height="64"/>
+ </tileset>
+ <tileset firstgid="114" name="drawer_without_runner" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/other/drawer_without_runner.png" width="64" height="96"/>
+ </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9NjYGDQJwMbArEREBsDsQoJ2ASITaF6lYHYkQSsMap3VO+o3kGj1xyI1UnAFlC9VkBsTQa2BWIA5IeoybAEAAA=
@@ -52,7 +61,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoByIAbE4EPPgkGeF0rFY5KSAWBqIeXHo5QBiZiCOo8B98RToHYogjEx90UAcToG9ERToJRUkEJBPBOIkIE4mw+wUIE4F4jQy9KYDcQYQZ5KhdzgALyD2BmIfMvT6ArEfEPvjUQMAgfQ5Q7AEAAA=
+   H4sIAAAAAAAAC2NgwA2KgLgYjzwMiAGxOJpYCRCXQtmsUDoWi14pIJZGEysD4nIomwOImYE4jgh34ALxFOgdKFBIgd4wMvVFA3E4BfZGYBHLAeJcIOYmw7w8IM7HIZdAQG8iECcBcTIZ9qYAcSoQp5GhNx2IM4A4kwy9wwF4AbE3EPuQodcXiP2A2B+PGgB3qzHzsAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
@@ -62,7 +71,7 @@
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+   H4sIAAAAAAAAC2NgGAW0AgUD7QAqgSwgzh5oR4yCUQAEAN01geOwBAAA
   </data>
  </layer>
  <layer name="objects" width="15" height="20">
@@ -72,7 +81,7 @@
  </layer>
  <layer name="collision" width="15" height="20" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+NjYGDgGwQYHyBHDyEzhrNeSsJqoPRi0z+qd/DrxRXnlJQD+OQBbUGgHbAEAAA=
+   H4sIAAAAAAAAC+NjYGDgGwQYGaCLEaOHEBhqeinx72DSS4o5lMTzUIvf4aIXV3xRUg7gkwcAL2yqr7AEAAA=
   </data>
  </layer>
  <layer name="protection" width="15" height="20">
