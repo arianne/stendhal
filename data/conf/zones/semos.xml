@@ -126,7 +126,7 @@
 	    <destination zone="int_apothecary_lab" ref="lab_exit" />
         <attribute name="resistance">0</attribute>
         <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
-          <parameter name="quest">antivenom_ring</parameter>
+          <parameter name="quest">traps_for_klaas</parameter>
           <parameter name="rejected">You feel a cool breeze coming in from somewhere.</parameter>
         </implementation>
 	  </portal>

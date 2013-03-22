@@ -32,7 +32,7 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	}
 	
 	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
-	    final SpeakerNPC npc = new SpeakerNPC("Irwin") {
+	    final SpeakerNPC npc = new SpeakerNPC("Jameson") {
 	        
 	        protected void createPath() {
 	            List<Node> nodes=new LinkedList<Node>();
@@ -64,7 +64,7 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	    // The NPC sprite from data/sprites/npc/
 	    npc.setEntityClass("investigatornpc");
 	    // set a description for when a player does 'Look'
-	    npc.setDescription("You see Irwin, he steadily works away.");
+	    npc.setDescription("You see Jameson, he steadily works away.");
 	    // Set the initial position to be the first node on the Path you defined above.
 	    npc.setPosition(7, 9);
 	    npc.initHP(100);
