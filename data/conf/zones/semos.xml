@@ -137,6 +137,9 @@
 	  <portal x="33" y="13" ref="lab_exit">
 	    <destination zone="int_apothecary_cabin" ref="lab_entrance" />
 	  </portal>
+      <entity x="13" y="1">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      </entity>
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
