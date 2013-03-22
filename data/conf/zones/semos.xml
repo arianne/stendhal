@@ -133,6 +133,7 @@
 	</zone>
 	
 	<zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
+      <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
 	  <portal x="33" y="13" ref="lab_exit">
 	    <destination zone="int_apothecary_cabin" ref="lab_entrance" />
 	  </portal>
