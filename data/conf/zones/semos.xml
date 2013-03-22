@@ -140,6 +140,13 @@
       <entity x="13" y="1">
         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
       </entity>
+      <entity x="15" y="10">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />
+        <attribute name="text">Kokuda stew recipe:
+1 kokuda
+3 eggs
+2 flasks of water</attribute>
+      </entity>
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
