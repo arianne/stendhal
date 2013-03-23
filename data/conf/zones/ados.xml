@@ -1437,6 +1437,14 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <entity x="2" y="1">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="2" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city_n" ref="10"/>
@@ -1619,6 +1627,14 @@ in roaches.
   </configurator>
   <entity x="2" y="8">
 	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+  </entity>
+  <!-- ticking clock sound effect -->
+  <entity x="2" y="8">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <parameter name="sound">clock-1</parameter>
+      <parameter name="radius">15</parameter>
+      <parameter name="volume">100</parameter>
+    </implementation>
   </entity>
   <portal x="12" y="14" ref="in">
     <destination zone="0_ados_wall" ref="house_71"/>
@@ -2139,6 +2155,14 @@ in roaches.
         <entity x="19" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="19" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
     
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
@@ -2191,6 +2215,14 @@ in roaches.
         <entity x="19" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="19" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
     
     <portal x="3" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_2" ref="upstairs"/>
@@ -3032,6 +3064,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_65"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -3048,6 +3081,14 @@ My fee:
   </configurator>
   <entity x="2" y="10">
 	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+  </entity>
+  <!-- ticking clock sound effect -->
+  <entity x="2" y="10">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <parameter name="sound">clock-1</parameter>
+      <parameter name="radius">15</parameter>
+      <parameter name="volume">100</parameter>
+    </implementation>
   </entity>
   <portal x="20" y="19" ref="in">
     <destination zone="0_ados_city" ref="house_66"/>
@@ -3121,6 +3162,14 @@ My fee:
 		<entity x="6" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="6" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="22" y="23" ref="in">
 			<destination zone="0_ados_forest_w2" ref="farm" />
 		</portal>
@@ -4282,6 +4331,14 @@ East Tunnel: Uncharted</attribute>
 		<entity x="25" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="25" y="48">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 
  <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
