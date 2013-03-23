@@ -249,6 +249,7 @@ public class stendhal {
 		styles.add(TileAquaStyle.getInstance());
 		styles.add(BrickBrownStyle.getInstance());
 		styles.add(AubergineStyle.getInstance());
+		styles.add(HoneycombStyle.getInstance());
 		
 		try {
 			return new StyledLookAndFeel(styles.get(id));
