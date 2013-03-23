@@ -7,6 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
@@ -73,9 +74,9 @@ public class BlockTarget extends AreaEntity implements MovementListener {
 	/**
 	 * Trigger this BlockTarget
 	 * 
-	 * @param b The Block pushed on this BlockTarget
+	 * @param p The Player who has pushed the triggering Block on this target
 	 */
-	public void trigger(Block b) {
+	public void trigger(Player p) {
 		
 	}
 	

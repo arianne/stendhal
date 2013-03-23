@@ -4,10 +4,12 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
 import utilities.RPClass.BlockTestHelper;
 
 /**
@@ -20,6 +22,7 @@ public class BlockTest {
 	@BeforeClass
 	public static void beforeClass() {
 		BlockTestHelper.generateRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 	}
 
 	@Test
@@ -55,23 +58,24 @@ public class BlockTest {
 	public void testPush() {
 		Block b = new Block(0, 0, true);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
+		Player p = PlayerTestHelper.createPlayer("pusher");
 		z.add(b);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
-		b.push(Direction.RIGHT);
+		b.push(p, Direction.RIGHT);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(1)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
-		b.push(Direction.LEFT);
+		b.push(p, Direction.LEFT);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
-		b.push(Direction.DOWN);
+		b.push(p, Direction.DOWN);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(1)));
 		
-		b.push(Direction.UP);
+		b.push(p, Direction.UP);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 	}
@@ -80,27 +84,29 @@ public class BlockTest {
 	public void testMultiPush() {
 		Block b = new Block(0, 0, false);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
+		Player p = PlayerTestHelper.createPlayer("pusher");
+		
 		z.add(b);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
-		b.push(Direction.RIGHT);
+		b.push(p, Direction.RIGHT);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(1)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
-		b.push(Direction.LEFT);
+		b.push(p, Direction.LEFT);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(1)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(0)));
 		
 		b.reset();
 		//after a reset the block does not count as pushed
 		
-		b.push(Direction.DOWN);
+		b.push(p, Direction.DOWN);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(1)));
 		
 		// but a second push should be prevented
-		b.push(Direction.UP);
+		b.push(p, Direction.UP);
 		assertThat(Integer.valueOf(b.getX()), is(Integer.valueOf(0)));
 		assertThat(Integer.valueOf(b.getY()), is(Integer.valueOf(1)));
 	}
@@ -126,10 +132,11 @@ public class BlockTest {
 	public void testCollisionOnPush() throws Exception {
 		Block b1 = new Block(0, 0, true);
 		StendhalRPZone z = new StendhalRPZone("test", 10, 10);
+		Player p = PlayerTestHelper.createPlayer("pusher");
 		z.add(b1, false);
 		
 		// one successful push
-		b1.push(Direction.RIGHT);
+		b1.push(p, Direction.RIGHT);
 		assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
 		
 		// now we add an obstacle right of b1
@@ -137,7 +144,7 @@ public class BlockTest {
 		z.add(b2, false);
 		
 		// push should not be executed now and stay at the former place
-		b1.push(Direction.RIGHT);
+		b1.push(p, Direction.RIGHT);
 		assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
 	}
 

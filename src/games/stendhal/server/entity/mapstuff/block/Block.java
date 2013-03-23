@@ -119,7 +119,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * @param d
 	 * 			the direction, this block is pushed into
 	 */
-	public void push(Direction d) {
+	public void push(Player p, Direction d) {
 		if(this.mayBePushed(d)) {
 			this.setPosition(getXAfterPush(d), getYAfterPush(d));
             this.notifyWorldAboutChanges();
@@ -232,7 +232,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
             Rectangle2D oldA = new Rectangle2D.Double(oldX, oldY, entity.getWidth(), entity.getHeight());
             Rectangle2D newA = new Rectangle2D.Double(newX, newY, entity.getWidth(), entity.getHeight());
             Direction d = Direction.getAreaDirectionTowardsArea(oldA, newA);
-            this.push(d);
+            this.push((Player) entity, d);
         }
 	}
 
