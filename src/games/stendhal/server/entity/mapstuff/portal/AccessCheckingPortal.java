@@ -55,8 +55,13 @@ abstract class AccessCheckingPortal extends Portal {
 	protected void rejected(final RPEntity user) {
 		if (rejectMessage != null) {
 			sendMessage(user, rejectMessage);
-			user.stop();
-			user.clearPath();
+			/*
+			 * Supesses sprite bounce-back in the case of non-resistant portals
+			 */
+			if (getResistance() != 0) {
+				user.stop();
+				user.clearPath();
+			}
 		}
 	}
 
@@ -94,7 +99,12 @@ abstract class AccessCheckingPortal extends Portal {
 		if (isAllowed(user)) {
 			return super.onUsed(user);
 		} else {
-			user.stop();
+			/*
+			 * Supresses sprite bounce-back in the case of non-resistant portals
+			 */
+			if (getResistance() != 0) {
+				user.stop();
+			}
 			rejected(user);
 			return false;
 		}
