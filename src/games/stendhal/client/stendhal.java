@@ -248,6 +248,7 @@ public class stendhal {
 		styles.add(WoodStyle.getInstance());
 		styles.add(TileAquaStyle.getInstance());
 		styles.add(BrickBrownStyle.getInstance());
+		styles.add(AubergineStyle.getInstance());
 		
 		try {
 			return new StyledLookAndFeel(styles.get(id));
