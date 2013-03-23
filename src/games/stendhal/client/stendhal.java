@@ -18,7 +18,7 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
-import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.*;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
@@ -27,6 +27,8 @@ import games.stendhal.common.Version;
 import java.awt.Dimension;
 import java.io.File;
 import java.security.AccessControlException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.SwingUtilities;
@@ -74,6 +76,8 @@ public class stendhal {
 	public static final String VERSION = Version.getVersion();
 
 	private static Dimension screenSize = new Dimension(640, 480);
+	
+	private static int styleId = 0;
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -137,6 +141,18 @@ public class stendhal {
 		while (i != args.length) {
 			if (args[i].equals("-s")) {
 				size = args[i + 1];
+			}
+			if (args[i].equals("--style")) {
+				try {
+					styleId = Integer.parseInt(args[i + 1]);
+				} catch (NumberFormatException e) {
+					/*
+					 * User has entered a non-integer value for style
+					 */
+					logger.warn("Style ID not an integer. Defaulting to 0.");
+					System.err.println("Style ID not an integer. Defaulting to 0.");
+					styleId = 0;
+				}
 			}
 			i++;
 		}
@@ -225,7 +241,23 @@ public class stendhal {
 	public static String getGameFolder() {
 		return gameFolder;
 	}
-
+	
+	public static StyledLookAndFeel setStyle(int id) {
+		
+		List<Style> styles = new ArrayList<Style>();
+		styles.add(WoodStyle.getInstance());
+		styles.add(TileAquaStyle.getInstance());
+		
+		try {
+			return new StyledLookAndFeel(styles.get(id));
+		}
+		catch (IndexOutOfBoundsException e) {
+			logger.warn("Style ID not found. Defaulting to 0.", e);
+			System.err.println("Warning: Style ID not found. Defaulting to 0.");
+			return new StyledLookAndFeel(styles.get(0));
+		}
+	}
+	
 	/**
 	 * Main Entry point.
 	 *
@@ -242,7 +274,7 @@ public class stendhal {
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
 		try {
-			StyledLookAndFeel look = new StyledLookAndFeel(WoodStyle.getInstance());
+			StyledLookAndFeel look = setStyle(styleId);
 			UIManager.setLookAndFeel(look);
 			int fontSize = WtWindowManager.getInstance().getPropertyInt("ui.font_size", 12);
 			look.setDefaultFontSize(fontSize);
