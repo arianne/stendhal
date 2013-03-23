@@ -251,6 +251,7 @@ public class stendhal {
 		styles.add(BrickBrown.getInstance());
 		styles.add(Aubergine.getInstance());
 		styles.add(Honeycomb.getInstance());
+		styles.add(ParquetBrown.getInstance());
 		
 		try {
 			return new StyledLookAndFeel(styles.get(id));
