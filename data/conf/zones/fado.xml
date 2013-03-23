@@ -396,6 +396,14 @@ where panning for gold is possible. this spot is south of Or'ril castle.
 		<entity x="8" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="8" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="3" y="10" ref="entrance">
 			<destination zone="0_fado_city" ref="hut_entrance" />
 		</portal>
@@ -626,6 +634,14 @@ For example say:  11  if you want the room called Water of Love.
 		<entity x="19" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="19" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 	 
 	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx" accessible="false">
@@ -655,6 +671,14 @@ For example say:  11  if you want the room called Water of Love.
 		<entity x="4" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="4" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 
          <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx" accessible="false">
@@ -674,6 +698,14 @@ For example say:  11  if you want the room called Water of Love.
 		<entity x="19" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="19" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 	 
 	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx" accessible="false">
@@ -698,6 +730,14 @@ For example say:  11  if you want the room called Water of Love.
 		<entity x="20" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="20" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 	 
 	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx" accessible="false">
@@ -1386,6 +1426,14 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 	<entity x="18" y="0">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="18" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="18" y="23" ref="entrance">
 		<destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
 	</portal>
@@ -1428,6 +1476,14 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 	<entity x="6" y="10">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="6" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="10" y="18" ref="entrance">
 		<destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
 	</portal>
@@ -1441,6 +1497,14 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 	<entity x="12" y="1">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="12" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="9" y="18" ref="entrance_left">
 		<destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
 	</portal>
@@ -1452,6 +1516,14 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 	<entity x="5" y="0">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="5" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="12" y="23" ref="entrance">
 		<destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
 	</portal>
@@ -1484,6 +1556,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
   <destination zone="int_magic_school_0" ref="upstairs"/>
  </portal>
 </zone>
+
 <zone name="int_magic_bric_a_brac" file="interiors/magic/bric_a_brac.tmx">
 	<configurator class-name="games.stendhal.server.maps.magic.bricabrac.BuyerNPC" />
 	<portal x="14" y="13" ref="entrance_left">
@@ -1509,6 +1582,14 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 	<entity x="15" y="1">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="15" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 </zone>
 
 <zone name="int_magic_bank" file="interiors/magic/bank.tmx">
