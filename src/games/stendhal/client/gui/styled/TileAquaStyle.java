@@ -29,9 +29,9 @@ import javax.swing.border.Border;
 public class TileAquaStyle implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
-	private static final Color highLightColor = new Color(163, 120, 97);
-	private static final Color shadowColor = new Color(50, 25, 12);
-	private static final Color plainColor = new Color(107, 72, 50);
+	private static final Color highLightColor = new Color(137,157,157);
+	private static final Color shadowColor = new Color(0, 0, 0);
+	private static final Color plainColor = new Color(255, 255, 255);
 
 	/**
 	 * A shared instance.
@@ -46,6 +46,7 @@ public class TileAquaStyle implements Style {
 	/**
 	 * The border.
 	 */
+	private Sprite borderSprite;
 	private Border border;
 	/**
 	 * Downwards border (for buttons etc).
@@ -66,8 +67,9 @@ public class TileAquaStyle implements Style {
 		 */
 		final SpriteStore st = SpriteStore.get();
 		background = st.getSprite("data/gui/panel_tile_aqua_001.png");
-
-		border = new PixmapBorder(background, true);
+		
+		borderSprite = st.getSprite("data/gui/border_aqua_001.png");
+		border = new PixmapBorder(borderSprite, true);
 		borderDown = new PixmapBorder(background, false);
 
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size", 
