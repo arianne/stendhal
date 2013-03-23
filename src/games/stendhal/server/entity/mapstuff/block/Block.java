@@ -9,7 +9,6 @@ import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
@@ -29,7 +28,7 @@ import org.apache.log4j.Logger;
  *
  * @author madmetzger
  */
-public class Block extends AreaEntity implements ZoneEnterExitListener, MovementListener {
+public class Block extends ActiveEntity implements ZoneEnterExitListener, MovementListener {
 	
     private static final String Z_ORDER = "z";
 
@@ -52,6 +51,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
         // z order to control client side drawing
         clazz.addAttribute(Z_ORDER, Type.INT);
         clazz.addAttribute("class", Type.STRING);
+        clazz.addAttribute("shape", Type.STRING);
 	}
 
 	/**
@@ -67,6 +67,11 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	public Block(int startX, int startY, boolean multiPush) {
 		this(startX, startY, multiPush, "block");
 	}
+	
+	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
+		this(startX, startY, multiPush, style);
+		this.put("shape", shape);
+	}
 
 	/**
 	 * Create a new block at startX, startY with a different style at client side
@@ -81,7 +86,7 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 	 * 			what style should the client use?
 	 */
 	public Block(int startX, int startY, boolean multiPush, String style) {
-		super(1,1);
+		super();
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
         this.put(Z_ORDER, 8000);
@@ -91,10 +96,14 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		put("class", "block");
 		// Count as collision for the client and pathfinder
 		setResistance(100);
-        // a nice description
+        // a nice description TODO make it dynamically computed
         setDescription("You see a solid block of rock. Are you strong enough to push it away?");
+		if(style != null) {
+			put("name", style);
+		} else {
+			put("name", "block");
+		}
 		this.reset();
-		put("name", style);
 	}
 
 	/**
@@ -153,6 +162,18 @@ public class Block extends AreaEntity implements ZoneEnterExitListener, Movement
 		boolean collision = this.getZone().collides(this, newX, newY);
 		
 		return !collision;
+	}
+	
+	/**
+	 * Get the shape of this Block
+	 * 
+	 * @return the shape or null if this Block has no shape
+	 */
+	public String getShape() {
+		if(this.has("shape")) {
+			return this.get("shape");
+		}
+		return null;
 	}
 
 	@Override
