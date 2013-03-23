@@ -1044,6 +1044,17 @@
             <parameter name="volume">100</parameter>
           </implementation>
         </entity>
+        
+        <!-- Piano -->
+        <entity x="15" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">piano-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+          <attribute name="width">2</attribute>
+          <attribute name="height">2</attribute>
+          <attribute name="description">You see a rope leading to the top of the pole. What do you think will happen, when you pull it?</attribute>
+        </entity>
   
  </zone>
  
