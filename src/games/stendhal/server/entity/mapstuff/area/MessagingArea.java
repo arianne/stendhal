@@ -12,12 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.area;
 
+import static games.stendhal.common.NotificationType.getServerNotificationType;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.PrivateTextEvent;
 
 /**
  * Area that sends a private message to any player entering and/or leaving it.
@@ -59,14 +61,14 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 			 * could mean some inadvertently lost messages under certain unusual
 			 * conditions.
 			 */
-			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
+			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.AREA, 1);
 		}
 	}
 	
 	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((leaveMessage != null) && (entity instanceof Player)) {
 			// needs to be delayed since normal messages get lost in case the player leaves zone
-			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.SCENE_SETTING, 1);
+			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.AREA, 1);
 		}
 	}
 	

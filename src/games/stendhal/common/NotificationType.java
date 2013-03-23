@@ -151,6 +151,12 @@ public enum NotificationType {
 		public String getStyleDescription() {
 			return REGULAR;
 		}
+	},
+	AREA("area") {
+		@Override
+		public Color getColor() {
+			return COLOR_SCENE_SETTING;
+		}
 	};
 	public static final Color COLOR_CLIENT = Color.gray;
 
