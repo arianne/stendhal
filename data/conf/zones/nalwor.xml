@@ -267,6 +267,14 @@ below average.
 		<entity x="13" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="13" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="7" y="29" ref="entrance">
 			<destination zone="0_nalwor_city" ref="royal_entrance" />
 		</portal>
@@ -302,6 +310,14 @@ below average.
 		<entity x="38" y="16">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="38" y="16">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="43" y="2" ref="downstairs">
 			<destination zone="int_nalwor_royal_hall" ref="upstairs" />
 		</portal>
@@ -454,6 +470,14 @@ below average.
 		<entity x="26" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="26" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 	</zone>
 	<!--
 		These levels have been commented out until such time that new maps can
@@ -477,6 +501,14 @@ below average.
 		<entity x="17" y="27">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="17" y="27">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="6" y="38" ref="entrance_left">
 			<destination zone="0_nalwor_city" ref="bank_entrance_left" />
 		</portal>
