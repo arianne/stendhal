@@ -147,6 +147,13 @@
 3 eggs
 2 flasks of water</attribute>
       </entity>
+      <entity x="13" y="1">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+          <parameter name="sound">clock-1</parameter>
+          <parameter name="radius">15</parameter>
+          <parameter name="volume">100</parameter>
+        </implementation>
+      </entity>
 	</zone>
 
 	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
@@ -951,6 +958,14 @@
 		<entity x="22" y="34">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="22" y="34">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 
        <portal x="21" y="6" ref="portal_from_spire_1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
@@ -2555,7 +2570,15 @@ Holy mackerel! These chips are tasty.
 		<entity x="45" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
-
+        <!-- ticking clock sound effect -->
+        <entity x="45" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
+		
 	</zone>
 
 	<zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
@@ -2582,6 +2605,14 @@ Holy mackerel! These chips are tasty.
 		<entity x="7" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="7" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 
 
 		<portal x="14" y="46" ref="entrance_left">
