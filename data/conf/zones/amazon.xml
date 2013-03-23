@@ -31,6 +31,14 @@
 		<entity x="16" y="1">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="16" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="10" y="18" ref="out">
 			<destination zone="0_amazon_island_ne" ref="in" />
 		</portal>
