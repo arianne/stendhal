@@ -140,7 +140,7 @@
           <parameter name="radius">40</parameter>
         </implementation>
         <attribute name="height">1</attribute>
-        <attribute name="description">You see a beautiful guitar. Play a few chords.</attribute>
+        <attribute name="description">You see a guitar. Play a few chords.</attribute>
       </entity>
     
     </zone>
