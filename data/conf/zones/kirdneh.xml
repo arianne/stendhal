@@ -471,6 +471,14 @@
 		<entity x="6" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="6" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="7" y="13" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="36" />
 		</portal>
@@ -502,6 +510,14 @@
 		<entity x="6" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="6" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="7" y="13" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="37" />
 		</portal>
@@ -605,6 +621,14 @@
 		<entity x="6" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="6" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="7" y="13" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="42" />
 		</portal>
@@ -619,6 +643,7 @@
    <destination zone="int_kirdneh_house_42" ref="up"/>
   </portal>
  </zone>
+ 
 	<zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx"
 		accessible="false">
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -633,12 +658,17 @@
 			<parameter name="width">1</parameter>
 			<parameter name="height">1</parameter>
 		</configurator>
-		<entity x="26" y="1">
+		<entity x="27" y="2">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
-		<entity x="27" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="27" y="2">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="22" y="23" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="43" />
 		</portal>
@@ -678,6 +708,14 @@
 		<entity x="6" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="6" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="19" y="23" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="45" />
 		</portal>
@@ -699,6 +737,14 @@
 		<entity x="19" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="19" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="19" y="23" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="46" />
 		</portal>
@@ -738,6 +784,14 @@
 		<entity x="2" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="2" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="9" y="18" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="48" />
 		</portal>
@@ -769,6 +823,14 @@
 		<entity x="2" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="2" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
 		<portal x="9" y="18" ref="entrance">
 			<destination zone="0_kirdneh_city" ref="49" />
 		</portal>
@@ -812,6 +874,14 @@
 	<entity x="14" y="11">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="14" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="18" y="4" ref="downstair_left">
 		<destination zone="int_kirdneh_townhall" ref="upstair_left" />
 	</portal>
@@ -830,6 +900,14 @@
 	<entity x="18" y="1">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 	</entity>
+    <!-- ticking clock sound effect -->
+    <entity x="14" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 	<portal x="1" y="24" ref="entrance1">
 		<destination zone="0_kirdneh_city" ref="museum1" />
 	</portal>
