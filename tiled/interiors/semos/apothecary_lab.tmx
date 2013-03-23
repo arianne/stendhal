@@ -124,12 +124,12 @@
   <image source="../../tileset/plant/mushroom.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="446" name="potted_plants_2" tilewidth="32" tileheight="32">
-  <image source="../../tileset/plant/indoor/potted_plants_2.png" width="160" height="96"/>
+  <image source="../../tileset/plant/indoor/potted_plants_2.png" width="160" height="128"/>
  </tileset>
- <tileset firstgid="461" name="plant_pots" tilewidth="32" tileheight="32">
+ <tileset firstgid="466" name="plant_pots" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/plant_pots.png" width="160" height="96"/>
  </tileset>
- <tileset firstgid="476" name="books3" tilewidth="32" tileheight="32">
+ <tileset firstgid="481" name="books3" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/documents/books3.png" width="32" height="64"/>
  </tileset>
  <layer name="0_floor" width="45" height="20">
@@ -139,7 +139,7 @@
  </layer>
  <layer name="1_terrain" width="45" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoAxcB+IbRKjjZmRgEGDEFP8OxD8odAMMXIbSu4B4N5S9HUqfxaL+LxD/w4EZgG7lweJeEPgJxL+wiPviUI8PXIHSe4B4L5S9A4hdgGadw6KeESjOhAOzADEvFjecA4r9BtJ/oGxkEECGm0cBbcCWgXYAHoCebmBgK32dMSLBaxLUcgDjiROIuQY4X7+ngZl3gPguEN8jQy+s/DMEhosRhWFzHAsmFjwH4heUWc/wBon9Fo86CaA/hYG0CBCfAuIzSPg0EKti0QPK54+A9GMgfgIVewnEryh08wck9kcS9GFz41AD5KQTdLACi5gHjfI4KMzR3Sw4BNoJ1AhnYoAulrDAJkYIoIczLdO6ARb3YRMjBsDKktOUOIgIcI3G5o8CTAAA+sRrnxAOAAA=
+   H4sIAAAAAAAAC2NgoAxcB+IbRKjjZmRgEGDEFP8OxD8odAMMXIbSu4B4N5S9HUqfxaL+LxD/w4EZgG7lweJeEPgJxL+wiPviUI8PXIHSe4B4L5S9A4hdgGadw6KeESjOhAOzADEvFjdcBor9BtJ/oGxkEECGm0cBbcCWgXYAHoCebmBgK32dMSLBaxLUcgDjiROIuQY4X7+ngZl3gPguEN8jQy+s/DMEhosRhWFzHAsmFjwH4heUWc/wBon9Fo86CaA/hYG0CBCfAuIzSPg0EKti0QPK54+A9GMgfgIVewnEryh08wck9kcS9GFz41AD5KQTdLACi5gHjfI4KMzR3Sw4BNoJ1AhnYoAulrDAJkYIoIczLdO6ARb3YRMjBsDKktOUOIgIcI3G5o8CTAAAUTcC+xAOAAA=
   </data>
  </layer>
  <layer name="2_object" width="45" height="20">
@@ -154,7 +154,7 @@
  </layer>
  <layer name="4_roof_add" width="45" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NQQ0AMAgAMWZkEnGMlylYwofwaQXcRQDwk2euXYPtjrv8BwD2PaL/1gIQDgAA
+   H4sIAAAAAAAAC+3NQQ0AMAgAMWZkEhGNkilYwofwaQXcRQDwk2euXYPtjrv8BwD2PQjOm0sQDgAA
   </data>
  </layer>
  <layer name="objects" width="45" height="20">
