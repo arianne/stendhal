@@ -247,6 +247,7 @@ public class stendhal {
 		List<Style> styles = new ArrayList<Style>();
 		styles.add(WoodStyle.getInstance());
 		styles.add(TileAquaStyle.getInstance());
+		styles.add(BrickBrownStyle.getInstance());
 		
 		try {
 			return new StyledLookAndFeel(styles.get(id));
