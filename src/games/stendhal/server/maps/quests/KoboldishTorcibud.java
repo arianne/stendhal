@@ -50,12 +50,13 @@ import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.IRPZone;
+
 import org.apache.log4j.Logger;
 
 /**
