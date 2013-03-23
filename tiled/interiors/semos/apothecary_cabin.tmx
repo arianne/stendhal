@@ -54,6 +54,9 @@
  <tileset firstgid="114" name="drawer_without_runner" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/other/drawer_without_runner.png" width="64" height="96"/>
  </tileset>
+ <tileset firstgid="120" name="ukulele" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/instrument/ukulele.png" width="128" height="96"/>
+ </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9NjYGDQJwMbArEREBsDsQoJ2ASITaF6lYHYkQSsMap3VO+o3kGj1xyI1UnAFlC9VkBsTQa2BWIA5IeoybAEAAA=
@@ -61,7 +64,7 @@
  </layer>
  <layer name="1_terrain" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgwA2KgLgYjzwMiAGxOJpYCRCXQtmsUDoWi14pIJZGEysD4nIomwOImYE4jgh34ALxFOgdKFBIgd4wMvVFA3E4BfZGYBHLAeJcIOYmw7w8IM7HIZdAQG8iECcBcTIZ9qYAcSoQp5GhNx2IM4A4kwy9wwF4AbE3EPuQodcXiP2A2B+PGgB3qzHzsAQAAA==
+   H4sIAAAAAAAAC2NgwA2KgLgYjzwMiAGxOBK/EohLgLgUymeF0rFY9EoBsTQSvxaIy4C4HMrnAGJmII4jwh24QDwFegcKFFKgN4xMfdFAHE6BvRFYxHKAOBeIuckwLw+I83HIJRDQmwjESUCcTIa9KUCcCsRpZOhNB+IMIM4kQ+9wAF5A7A3EPmTo9QViPyD2x6MGAL0kIkGwBAAA
   </data>
  </layer>
  <layer name="2_object" width="15" height="20">
@@ -79,7 +82,7 @@
    H4sIAAAAAAAAC2NgGAWjYBSgA+GBdsAIBYTCHQB6+iwBsAQAAA==
   </data>
  </layer>
- <layer name="collision" width="15" height="20" opacity="0.46">
+ <layer name="collision" width="15" height="20" visible="0" opacity="0.46">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+NjYGDgGwQYGaCLEaOHEBhqeinx72DSS4o5lMTzUIvf4aIXV3xRUg7gkwcAL2yqr7AEAAA=
   </data>
