@@ -3170,6 +3170,15 @@ My fee:
             <parameter name="volume">100</parameter>
           </implementation>
         </entity>
+        <!-- Piano -->
+        <entity x="13" y="4">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">piano-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+          <attribute name="width">2</attribute>
+          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+        </entity>
 		<portal x="22" y="23" ref="in">
 			<destination zone="0_ados_forest_w2" ref="farm" />
 		</portal>
