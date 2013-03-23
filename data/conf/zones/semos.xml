@@ -119,6 +119,8 @@
 	<!-- Interiors in 0_semos_mountain_n2_w -->
 	
 	<zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx">
+	  
+	  <!-- Portals -->
 	  <portal x="7" y="19" ref="exit">
 	    <destination zone="0_semos_mountain_n2_w" ref="apothecary_entrance" />
 	  </portal>
@@ -130,8 +132,19 @@
         </implementation>
         <attribute name="resistance">0</attribute>
 	  </portal>
-	</zone>
-	
+	  
+      <!-- Guitar -->
+      <entity x="6" y="1">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+          <parameter name="sound">guitar-1</parameter>
+          <parameter name="radius">40</parameter>
+        </implementation>
+        <attribute name="height">1</attribute>
+        <attribute name="description">You see a beautiful guitar. Play a few chords.</attribute>
+      </entity>
+    
+    </zone>
+    
 	<zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
       <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
 	  <portal x="33" y="13" ref="lab_exit">
