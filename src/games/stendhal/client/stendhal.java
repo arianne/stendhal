@@ -17,8 +17,9 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.login.Profile;
+import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
-import games.stendhal.client.gui.styled.*;
+import games.stendhal.client.gui.styled.styles.*;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
@@ -246,10 +247,10 @@ public class stendhal {
 		
 		List<Style> styles = new ArrayList<Style>();
 		styles.add(WoodStyle.getInstance());
-		styles.add(TileAquaStyle.getInstance());
-		styles.add(BrickBrownStyle.getInstance());
-		styles.add(AubergineStyle.getInstance());
-		styles.add(HoneycombStyle.getInstance());
+		styles.add(TileAqua.getInstance());
+		styles.add(BrickBrown.getInstance());
+		styles.add(Aubergine.getInstance());
+		styles.add(Honeycomb.getInstance());
 		
 		try {
 			return new StyledLookAndFeel(styles.get(id));

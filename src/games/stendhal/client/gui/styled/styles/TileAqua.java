@@ -9,9 +9,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.styled;
+package games.stendhal.client.gui.styled.styles;
 
 
+import games.stendhal.client.gui.styled.PixmapBorder;
+import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
@@ -26,7 +28,7 @@ import javax.swing.border.Border;
 /**
  * The tile style.
  */
-public class TileAquaStyle implements Style {
+public class TileAqua implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
 	private static final Color highLightColor = new Color(137,157,157);
@@ -61,7 +63,7 @@ public class TileAquaStyle implements Style {
 	/**
 	 * Create new TileAquaStyle.
 	 */
-	public TileAquaStyle() {
+	public TileAqua() {
 		/*
 		 * Load the texture
 		 */
@@ -93,7 +95,7 @@ public class TileAquaStyle implements Style {
 	 */
 	public static synchronized Style getInstance() {
 		if (sharedInstance == null) {
-			sharedInstance = new TileAquaStyle();
+			sharedInstance = new TileAqua();
 		}
 
 		return sharedInstance;

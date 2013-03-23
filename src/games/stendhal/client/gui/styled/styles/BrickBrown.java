@@ -9,9 +9,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.styled;
+package games.stendhal.client.gui.styled.styles;
 
 
+import games.stendhal.client.gui.styled.PixmapBorder;
+import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
@@ -24,13 +26,13 @@ import java.awt.Font;
 import javax.swing.border.Border;
 
 /**
- * The style.
+ * The brick style.
  */
-public class HoneycombStyle implements Style {
+public class BrickBrown implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
-	private static final Color highLightColor = new Color(142, 90, 0); // Brown
-	private static final Color shadowColor = new Color(248, 240, 42); // Yellow
+	private static final Color highLightColor = new Color(219, 191, 130); // Tan
+	private static final Color shadowColor = new Color(134, 106, 45); // Brown
 	private static final Color plainColor = new Color(255, 255, 255); // White
 
 	/**
@@ -59,16 +61,16 @@ public class HoneycombStyle implements Style {
 	private Font font;
 
 	/**
-	 * Create new style.
+	 * Create new BrickBrownStyle.
 	 */
-	public HoneycombStyle() {
+	public BrickBrown() {
 		/*
 		 * Load the texture
 		 */
 		final SpriteStore st = SpriteStore.get();
-		background = st.getSprite("data/gui/panel_honeycomb_001.png");
+		background = st.getSprite("data/gui/panel_brick_brown_001.png");
 		
-		borderSprite = st.getSprite("data/gui/border_yellow_001.png");
+		borderSprite = st.getSprite("data/gui/border_brown_001.png");
 		border = new PixmapBorder(borderSprite, true);
 		borderDown = new PixmapBorder(background, false);
 
@@ -83,7 +85,7 @@ public class HoneycombStyle implements Style {
 	}
 
 	//
-	// Style
+	// BrickBrownStyle
 	//
 
 	/**
@@ -93,7 +95,7 @@ public class HoneycombStyle implements Style {
 	 */
 	public static synchronized Style getInstance() {
 		if (sharedInstance == null) {
-			sharedInstance = new HoneycombStyle();
+			sharedInstance = new BrickBrown();
 		}
 
 		return sharedInstance;
@@ -150,7 +152,7 @@ public class HoneycombStyle implements Style {
 	 */
 	@Override
 	public Color getForeground() {
-		return Color.black;
+		return Color.white;
 	}
 
 	@Override

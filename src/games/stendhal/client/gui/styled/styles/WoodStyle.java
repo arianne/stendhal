@@ -1,3 +1,4 @@
+/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2012 - Stendhal                    *
  ***************************************************************************
@@ -9,9 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.styled;
+package games.stendhal.client.gui.styled.styles;
 
 
+import games.stendhal.client.gui.styled.PixmapBorder;
+import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.Sprite;
@@ -24,14 +27,14 @@ import java.awt.Font;
 import javax.swing.border.Border;
 
 /**
- * The style.
+ * The wood style.
  */
-public class AubergineStyle implements Style {
+public class WoodStyle implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
-	private static final Color highLightColor = new Color(184, 149, 193); // Violet
-	private static final Color shadowColor = new Color(42, 7, 51); // Dark violet
-	private static final Color plainColor = new Color(255, 255, 255); // White
+	private static final Color highLightColor = new Color(163, 120, 97);
+	private static final Color shadowColor = new Color(50, 25, 12);
+	private static final Color plainColor = new Color(107, 72, 50);
 
 	/**
 	 * A shared instance.
@@ -46,7 +49,6 @@ public class AubergineStyle implements Style {
 	/**
 	 * The border.
 	 */
-	private Sprite borderSprite;
 	private Border border;
 	/**
 	 * Downwards border (for buttons etc).
@@ -59,17 +61,16 @@ public class AubergineStyle implements Style {
 	private Font font;
 
 	/**
-	 * Create new style.
+	 * Create new WoodStyle.
 	 */
-	public AubergineStyle() {
+	public WoodStyle() {
 		/*
 		 * Load the texture
 		 */
 		final SpriteStore st = SpriteStore.get();
-		background = st.getSprite("data/gui/panel_aubergine_001.png");
-		
-		borderSprite = st.getSprite("data/gui/border_violet_001.png");
-		border = new PixmapBorder(borderSprite, true);
+		background = st.getSprite("data/gui/panelwood119.jpg");
+
+		border = new PixmapBorder(background, true);
 		borderDown = new PixmapBorder(background, false);
 
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size", 
@@ -83,7 +84,7 @@ public class AubergineStyle implements Style {
 	}
 
 	//
-	// Style
+	// WoodStyle
 	//
 
 	/**
@@ -93,7 +94,7 @@ public class AubergineStyle implements Style {
 	 */
 	public static synchronized Style getInstance() {
 		if (sharedInstance == null) {
-			sharedInstance = new AubergineStyle();
+			sharedInstance = new WoodStyle();
 		}
 
 		return sharedInstance;
