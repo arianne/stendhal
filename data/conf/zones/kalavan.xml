@@ -1032,6 +1032,19 @@
   <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_17_entrance"/>
   </portal>
+  
+		<entity x="14" y="9">
+			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+		</entity>
+        <!-- ticking clock sound effect -->
+        <entity x="14" y="9">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+            <parameter name="sound">clock-1</parameter>
+            <parameter name="radius">15</parameter>
+            <parameter name="volume">100</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
  
  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx" accessible="false">
