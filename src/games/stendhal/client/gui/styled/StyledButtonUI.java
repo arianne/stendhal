@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.styled;
 
-import games.stendhal.client.gui.styled.styles.WoodStyle;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -32,7 +30,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
- * ButtonUI implementation for drawing {@link WoodStyle} style buttons. 
+ * ButtonUI implementation for drawing PixmapStyle buttons. 
  */
 public class StyledButtonUI extends BasicButtonUI {
 	/**

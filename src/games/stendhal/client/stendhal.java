@@ -17,9 +17,8 @@ import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.gui.login.Profile;
-import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.StyledLookAndFeel;
-import games.stendhal.client.gui.styled.styles.*;
+import games.stendhal.client.gui.styled.styles.StyleFactory;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
@@ -28,8 +27,6 @@ import games.stendhal.common.Version;
 import java.awt.Dimension;
 import java.io.File;
 import java.security.AccessControlException;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.SwingUtilities;
@@ -243,26 +240,6 @@ public class stendhal {
 		return gameFolder;
 	}
 	
-	public static StyledLookAndFeel setStyle(int id) {
-		
-		List<Style> styles = new ArrayList<Style>();
-		styles.add(WoodStyle.getInstance());
-		styles.add(TileAqua.getInstance());
-		styles.add(BrickBrown.getInstance());
-		styles.add(Aubergine.getInstance());
-		styles.add(Honeycomb.getInstance());
-		styles.add(ParquetBrown.getInstance());
-		
-		try {
-			return new StyledLookAndFeel(styles.get(id));
-		}
-		catch (IndexOutOfBoundsException e) {
-			logger.warn("Style ID not found. Defaulting to 0.", e);
-			System.err.println("Warning: Style ID not found. Defaulting to 0.");
-			return new StyledLookAndFeel(styles.get(0));
-		}
-	}
-	
 	/**
 	 * Main Entry point.
 	 *
@@ -279,7 +256,7 @@ public class stendhal {
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
 		try {
-			StyledLookAndFeel look = setStyle(styleId);
+			StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(styleId));
 			UIManager.setLookAndFeel(look);
 			int fontSize = WtWindowManager.getInstance().getPropertyInt("ui.font_size", 12);
 			look.setDefaultFontSize(fontSize);

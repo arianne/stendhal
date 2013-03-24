@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2012 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -10,7 +10,6 @@
  *                                                                         *
  ***************************************************************************/
 package games.stendhal.client.gui.styled.styles;
-
 
 import games.stendhal.client.gui.styled.PixmapBorder;
 import games.stendhal.client.gui.styled.Style;
@@ -26,20 +25,16 @@ import java.awt.Font;
 import javax.swing.border.Border;
 
 /**
- * The style.
+ * Base class for the pixmap styles.
  */
-public class Aubergine implements Style {
+class PixmapStyle implements Style {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
-	private static final Color highLightColor = new Color(184, 149, 193); // Violet
-	private static final Color shadowColor = new Color(42, 7, 51); // Dark violet
-	private static final Color plainColor = new Color(255, 255, 255); // White
-
-	/**
-	 * A shared instance.
-	 */
-	private static Style sharedInstance;
-
+	private final Color highLightColor;
+	private final Color shadowColor;
+	private final Color plainColor;
+	private final Color foreground;
+	
 	/**
 	 * The background texture.
 	 */
@@ -48,12 +43,11 @@ public class Aubergine implements Style {
 	/**
 	 * The border.
 	 */
-	private Sprite borderSprite;
-	private Border border;
+	private final Border border;
 	/**
 	 * Downwards border (for buttons etc).
 	 */
-	private Border borderDown;
+	private final Border borderDown;
 
 	/**
 	 * The default font.
@@ -61,18 +55,38 @@ public class Aubergine implements Style {
 	private Font font;
 
 	/**
-	 * Create new style.
+	 * Create a new AbstractPixmapStyle.
+	 * 
+	 * @param baseSprite background image location
+	 * @param borderSprite image location for the sprite to be used as the base
+	 * 	for drawing the borders, or <code>null</code> if the border sprites
+	 * 	should be derived from the baseSprite
+	 * @param highLightColor color for drawing highlights
+	 * @param shadowColor color for drawing shadows
+	 * @param plainColor color that roughly represents the background.
+	 * @param foreground color used for text and anything else to be drawn in
+	 * 	the component foreground color
 	 */
-	public Aubergine() {
+	PixmapStyle(String baseSprite, String borderSprite,
+			Color highLightColor, Color shadowColor, Color plainColor,
+			Color foreground) {
 		/*
 		 * Load the texture
 		 */
 		final SpriteStore st = SpriteStore.get();
-		background = st.getSprite("data/gui/panel_aubergine_001.png");
+		background = st.getSprite(baseSprite);
+
+		Sprite borderBase = background;
+		if (borderSprite != null) {
+			borderBase = st.getSprite(borderSprite);
+		}
+		border = new PixmapBorder(borderBase, true);
+		borderDown = new PixmapBorder(borderBase, false);
 		
-		borderSprite = st.getSprite("data/gui/border_violet_001.png");
-		border = new PixmapBorder(borderSprite, true);
-		borderDown = new PixmapBorder(background, false);
+		this.highLightColor = highLightColor;
+		this.shadowColor = shadowColor;
+		this.plainColor = plainColor;
+		this.foreground = foreground;
 
 		WtWindowManager.getInstance().registerSettingChangeListener("ui.font_size", 
 				new SettingChangeAdapter("ui.font_size", Integer.toString(DEFAULT_FONT_SIZE)) {
@@ -84,27 +98,16 @@ public class Aubergine implements Style {
 		});
 	}
 
-	//
-	// Style
-	//
-
 	/**
-	 * Get a shared instance.
+	 * Get the normal font.
 	 * 
-	 * @return A shared instance.
+	 * @return A font.
 	 */
-	public static synchronized Style getInstance() {
-		if (sharedInstance == null) {
-			sharedInstance = new Aubergine();
-		}
-
-		return sharedInstance;
+	@Override
+	public Font getFont() {
+		return font;
 	}
-
-	//
-	// Style
-	//
-
+	
 	/**
 	 * Get the background texture.
 	 * 
@@ -114,7 +117,7 @@ public class Aubergine implements Style {
 	public Sprite getBackground() {
 		return background;
 	}
-
+	
 	/**
 	 * Get component border.
 	 * 
@@ -134,27 +137,7 @@ public class Aubergine implements Style {
 	public Border getBorderDown() {
 		return borderDown;
 	}
-
-	/**
-	 * Get the normal font.
-	 * 
-	 * @return A font.
-	 */
-	@Override
-	public Font getFont() {
-		return font;
-	}
-
-	/**
-	 * Get the foreground color appropriate for the background texture.
-	 * 
-	 * @return A color.
-	 */
-	@Override
-	public Color getForeground() {
-		return Color.white;
-	}
-
+	
 	@Override
 	public Color getHighLightColor() {
 		return highLightColor;
@@ -165,13 +148,13 @@ public class Aubergine implements Style {
 		return shadowColor;
 	}
 	
-	/**
-	 * Get a color that roughly represents the background.
-	 * 
-	 * @return plain color
-	 */
 	@Override
 	public Color getPlainColor() {
 		return plainColor;
+	}
+
+	@Override
+	public Color getForeground() {
+		return foreground;
 	}
 }
