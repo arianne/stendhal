@@ -1064,6 +1064,14 @@
           </implementation>
         </entity>
   
+        <!-- faucet running water -->
+        <entity x="5" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">faucet-water-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
  
  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx" accessible="false">
