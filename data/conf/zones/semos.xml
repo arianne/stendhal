@@ -1418,6 +1418,14 @@ Mature sheep wanted: please speak to Sato.
 			<parameter name="multi">true</parameter>
 			<parameter name="class">mine_cart_empty</parameter>
 		</configurator>
+		<configurator
+			class-name="games.stendhal.server.entity.mapstuff.block.BlockTargetZoneConfigurator"
+			condition="stendhal.testserver">
+			<parameter name="x">40</parameter>
+			<parameter name="y">53</parameter>
+			<parameter name="action">new IncreaseXPAction(5)</parameter>
+		</configurator>
+		
 		<configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
 		<configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />

@@ -121,7 +121,18 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 */
 	public void push(Player p, Direction d) {
 		if(this.mayBePushed(d)) {
-			this.setPosition(getXAfterPush(d), getYAfterPush(d));
+			int x = getXAfterPush(d);
+			int y = getYAfterPush(d);
+			this.setPosition(x, y);
+            List<Entity> entitiesAt = this.getZone().getEntitiesAt(x, y);
+            for (Entity entity : entitiesAt) {
+				if(entity instanceof BlockTarget) {
+					BlockTarget t = (BlockTarget) entity;
+					if(t.doesTrigger(this, p)) {
+						t.trigger(this, p);
+					}
+				}
+			}
             this.notifyWorldAboutChanges();
             this.sendSound();
 			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");

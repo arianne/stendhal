@@ -82,15 +82,16 @@ public class BlockTargetTest {
 	 */
 	@Test
 	public void testTrigger() {
+		Block unshapedBlock = new Block(1, 1, true);
 		BlockTarget unshapedTarget = new BlockTarget(1, 1);
 		Player player = PlayerTestHelper.createPlayer("pusher");
 		assertThat(Integer.valueOf(player.getXP()), is(Integer.valueOf(0)));
-		unshapedTarget.trigger(player);
+		unshapedTarget.trigger(unshapedBlock, player);
 		
 		unshapedTarget.setAction(new IncreaseXPAction(5));
 		
 		assertThat(Integer.valueOf(player.getXP()), is(Integer.valueOf(0)));
-		unshapedTarget.trigger(player);
+		unshapedTarget.trigger(unshapedBlock, player);
 		assertThat(Integer.valueOf(player.getXP()), is(Integer.valueOf(5)));
 	}
 

@@ -3,14 +3,10 @@
  */
 package games.stendhal.server.entity.mapstuff.block;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.MovementListener;
-import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
@@ -21,7 +17,7 @@ import org.apache.log4j.Logger;
  * 
  * @author madmetzger
  */
-public class BlockTarget extends AreaEntity implements MovementListener {
+public class BlockTarget extends AreaEntity {
 	
 	private static final Logger logger = Logger.getLogger(BlockTarget.class);
 	
@@ -88,9 +84,10 @@ public class BlockTarget extends AreaEntity implements MovementListener {
 	/**
 	 * Trigger this BlockTarget
 	 * 
+	 * @param b The Block that was pushed on this target 
 	 * @param p The Player who has pushed the triggering Block on this target
 	 */
-	public void trigger(Player p) {
+	public void trigger(Block b, Player p) {
 		if(this.action != null) {
 			this.action.fire(p, null, null);
 		}
@@ -107,29 +104,6 @@ public class BlockTarget extends AreaEntity implements MovementListener {
 		}
 		return null;
 	}
-
-    @Override
-    public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
-            //TODO implement condition checking and action execution here
-    	if(entity instanceof Block) {
-    		logger.info("Block entered target: " + entity);
-    	}
-    }
-
-    @Override
-    public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
-        // nothing to do        
-    }
-
-    @Override
-    public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
-        // nothing to do
-    }
-
-    @Override
-    public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
-        // nothing to do
-    }
 
 	/**
 	 * @param action the action to set
