@@ -7,6 +7,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.game.Definition.Type;
@@ -22,6 +24,10 @@ import org.apache.log4j.Logger;
 public class BlockTarget extends AreaEntity implements MovementListener {
 	
 	private static final Logger logger = Logger.getLogger(BlockTarget.class);
+	
+	private ChatAction action;
+	
+	private ChatCondition condition;
 	
 	/**
 	 * Generate the RPClass
@@ -62,13 +68,21 @@ public class BlockTarget extends AreaEntity implements MovementListener {
 	 * @param b the Block to check
 	 * @return true iff the given Block would trigger this target
 	 */
-	public boolean doesTrigger(Block b) {
+	public boolean doesTrigger(Block b, Player p) {
 		String blockShape = b.getShape();
 		String targetShape = this.getShape();
+		boolean shapeFits = true;
+		boolean conditionMet = true;
+		
 		if(targetShape != null) {
-			return targetShape.equals(blockShape);
+			shapeFits = targetShape.equals(blockShape);
 		}
-		return true;
+		
+		if(this.condition != null) {
+			conditionMet = this.condition.fire(p, null, null);
+		}
+		
+		return conditionMet && shapeFits;
 	}
 	
 	/**
@@ -77,7 +91,9 @@ public class BlockTarget extends AreaEntity implements MovementListener {
 	 * @param p The Player who has pushed the triggering Block on this target
 	 */
 	public void trigger(Player p) {
-		
+		if(this.action != null) {
+			this.action.fire(p, null, null);
+		}
 	}
 	
 	/**
@@ -115,6 +131,21 @@ public class BlockTarget extends AreaEntity implements MovementListener {
         // nothing to do
     }
 
+	/**
+	 * @param action the action to set
+	 */
+	public void setAction(ChatAction action) {
+		this.action = action;
+	}
+
+	/**
+	 * Set the ChatCondition to check
+	 * 
+	 * @param condition the condition to set
+	 */
+	public void setCondition(ChatCondition condition) {
+		this.condition = condition;
+	}
 
 
 }
