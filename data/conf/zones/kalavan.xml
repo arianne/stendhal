@@ -1056,6 +1056,14 @@
           <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
         </entity>
   
+        <!-- flushing toiling -->
+        <entity x="7" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
  
  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx" accessible="false">
