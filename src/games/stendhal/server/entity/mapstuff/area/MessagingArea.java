@@ -12,14 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.area;
 
-import static games.stendhal.common.NotificationType.getServerNotificationType;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.DelayedPlayerTextSender;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.PrivateTextEvent;
 
 /**
  * Area that sends a private message to any player entering and/or leaving it.

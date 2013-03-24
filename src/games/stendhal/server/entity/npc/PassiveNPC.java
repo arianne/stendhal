@@ -12,10 +12,9 @@
 
 package games.stendhal.server.entity.npc;
 
-import org.apache.log4j.Logger;
-
-import games.stendhal.common.Rand;
 import games.stendhal.server.entity.PassiveEntity;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author AntumDeluge
