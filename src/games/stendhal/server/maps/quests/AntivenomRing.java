@@ -90,21 +90,21 @@ public class AntivenomRing extends AbstractQuest {
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have met the hermit apothecary.");
+		res.add("I have found the hermit apothecary's lab in Semos Mountain.");
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("Poison is too dangerous. I do not want to get hurt.");
 		}
-		if (player.getQuest(QUEST_SLOT).startsWith("enhancing;")) {
+		else if (player.getQuest(QUEST_SLOT).startsWith("enhancing;")) {
 			res.add("Jameson is enhancing my ring.");
 		}
-		else if (!"done".equals(questState)) {
+		else if ("done".equals(questState)) {
+			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
+		}
+		else {
 			final ItemCollection missingItems = new ItemCollection();
 			missingItems.addFromQuestStateString(questState);
 			res.add("I still need to bring Jameson " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
-		}
-		else {
-			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
 		}
 		return res;
 	}
@@ -238,7 +238,7 @@ public class AntivenomRing extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 				new QuestCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
-				"The quest is done!!!!",
+				"Are you enjoying your new ring?",
 				null);
 		
 		// player offers item that isn't in the list.
@@ -281,7 +281,7 @@ public class AntivenomRing extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
 						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
 			ConversationStates.IDLE, 
 			"I have finished enhancing your ring. Now I'll finish the rest of my fairy cakes.", 
