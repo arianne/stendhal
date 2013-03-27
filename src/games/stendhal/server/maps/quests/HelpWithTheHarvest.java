@@ -13,6 +13,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.OutputQuestSlotAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -31,9 +33,9 @@ import java.util.List;
  * 
  * @author madmetzger
  */
-public class BringTheHarvestHome extends AbstractQuest {
+public class HelpWithTheHarvest extends AbstractQuest {
 	
-	private static final String QUEST_SLOT = "bringtheharvesthome";
+	private static final String QUEST_SLOT = "helpwiththeharvest";
 
 	@Override
 	public String getSlotName() {
@@ -48,7 +50,7 @@ public class BringTheHarvestHome extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Bring the harvest home";
+		return "Help with the harvest";
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class BringTheHarvestHome extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"This is really nice. I was getting tired of bringing the two carts with stray to Karl.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "carts;2", 2.0));
+				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "carts;2", 2.0), new OutputQuestSlotAction(QUEST_SLOT)));
 
 		/*
 		 * Player refused to help - end the conversation.
@@ -90,23 +92,41 @@ public class BringTheHarvestHome extends AbstractQuest {
 				"Oh, I was hoping to get a bit of help, but ok. Bye.",
 				null);
 		
+		/*
+		 * Player has put the carts to the right spots 
+		 */
 	}
 
 	protected void placeCartsAndTargets() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_ados_forest_w2");
-		ChatAction a = new IncrementQuestAction(QUEST_SLOT, 2, -1);
+		
+		ChatAction a = new MultipleActions(
+				new IncrementQuestAction(QUEST_SLOT, 1, -1),
+				new OutputQuestSlotAction(QUEST_SLOT));
 		ChatCondition c = new AndCondition(
 				new QuestStartedCondition(QUEST_SLOT), 
-				new QuestInStateCondition(QUEST_SLOT, 1, "carts"), 
-				new QuestStateGreaterThanCondition(QUEST_SLOT, 2, 0));
+				new QuestInStateCondition(QUEST_SLOT, 0, "carts"), 
+				new QuestStateGreaterThanCondition(QUEST_SLOT, 1, 0));
+		
 		Block cartOne = new Block(87, 100, true, "hay_cart");
 		Block cartTwo = new Block(79, 106, true, "hay_cart");
+		zone.add(cartOne);
+		zone.add(cartTwo);
+		zone.addMovementListener(cartOne);
+		zone.addMovementListener(cartTwo);
+		zone.addZoneEnterExitListener(cartOne);
+		zone.addZoneEnterExitListener(cartTwo);
+		
 		BlockTarget targetOne = new BlockTarget(64, 75);
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
+		
 		BlockTarget targetTwo = new BlockTarget(63, 75);
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);
+		
+		zone.add(targetOne);
+		zone.add(targetTwo);
 	}
 
 }
