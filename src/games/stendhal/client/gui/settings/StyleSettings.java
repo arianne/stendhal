@@ -11,31 +11,15 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
-import games.stendhal.client.ClientSingletonRepository;
-import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
-import games.stendhal.client.gui.layout.SLayout;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.styles.StyleFactory;
-import games.stendhal.client.gui.styled.StyleUtil;
-import games.stendhal.client.gui.styled.StyledLookAndFeel;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.MathHelper;
-import games.stendhal.common.NotificationType;
 
-import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
 
 /**
  * Page for general settings.
@@ -81,7 +65,7 @@ class StyleSettings {
 	 * @return combo box with style options
 	 */
 	private JComponent createStyleSelector() {
-		final JComboBox<String> selector = new JComboBox<String>();
+		final JComboBox selector = new JComboBox();
 		
 		// Fill with available styles
 		selector.addItem("Wood");
