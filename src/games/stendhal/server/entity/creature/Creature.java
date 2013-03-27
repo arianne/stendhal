@@ -512,7 +512,8 @@ public class Creature extends NPC {
 			corpseName = "animal";
 		}
 		if (harmlessCorpseName == null) {
-			harmlessCorpseName = "harmless";
+			// Set default harmless corpse to "bag.png"
+			harmlessCorpseName = "bag";
 		}
 		corpseWidth = width;
 		corpseHeight = height;
@@ -528,7 +529,7 @@ public class Creature extends NPC {
 	
 	public String getHarmlessCorpseName() {
 		if (harmlessCorpseName == null) {
-			return "harmless";
+			return "bag";
 		}
 		return harmlessCorpseName;
 	}
