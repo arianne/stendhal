@@ -19,6 +19,8 @@ public interface Attacker {
 	
 	void applyAntipoison(double antipoison);
 	
-	double getProbability();
+	int getProbability();
+	
+	void setProbability(int p);
 
 }

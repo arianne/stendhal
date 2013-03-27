@@ -763,7 +763,6 @@ public class Creature extends NPC {
 		double sumAll = 0.0;
 		List<Item> defenderEquipment = entity.getDefenseItems();
 		if (entity.hasRing()) {
-			System.out.println("Has Ring");
 			defenderEquipment.add(entity.getRing());
 		}
 		
@@ -773,24 +772,33 @@ public class Creature extends NPC {
 			}
 		}
 		
+		// Store the creatures poisoner probability because we will be modifying it if antipoison equipment is used
+		int probability = poisoner.getProbability();
+		
 		/*
 		 * Prevent antipoison attribute from surpassing 100%
 		 */
 		if (sumAll > 1) { sumAll = 1; }
 		
+		// Checking creatures poison value
+		System.out.println("Poison probability before: " + poisoner.getProbability());
+		// Checking player's antipoison value
 		System.out.println("Antipoison value = " + sumAll);
+		if (sumAll > 0) {
+			poisoner.applyAntipoison(sumAll);
+		}
+		// Checking creatures poison value after antipoison is applied
+		System.out.println("Poison probability after: " + poisoner.getProbability());
 		
 		if (poisoner.attack(entity)) {
-			System.out.println("Probability before: " + poisoner.getProbability());
-			if (sumAll > 0) {
-				poisoner.applyAntipoison(sumAll);
-			}
-			System.out.println("Probability after: " + poisoner.getProbability());
 			new GameEvent(getName(), "poison", entity.getName()).raise();
 			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
 		}
+		
+		// Return the poisoner's probability
+		poisoner.setProbability(probability);
 	}
-
+	
 	public void equip(final List<EquipItem> items) {
 		for (final EquipItem equippedItem : items) {
 			if (!hasSlot(equippedItem.slot)) {

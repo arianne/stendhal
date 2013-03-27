@@ -51,7 +51,11 @@ class Poisoner implements Attacker {
 		this.probability *= antipoison;
 	}
 	
-	public double getProbability() {
+	public int getProbability() {
 		return this.probability;
+	}
+	
+	public void setProbability(int p) {
+		this.probability = p;
 	}
 }
