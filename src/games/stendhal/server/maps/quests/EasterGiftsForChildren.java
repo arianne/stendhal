@@ -49,7 +49,7 @@ import java.util.List;
  * STEPS:
  * <ul>
  * <li>Caroline wants to make children around Faiumoni happy with gifting easter baskets for them.</li>
- * <li>Players have to bring Caroline sweets like chocolate bars and chocolate eggs.</li>
+ * <li>Players have to bring Caroline sweets like chocolate bars and chocolate eggs, as well as some fruit.</li>
  * <li>Children around Faiumoni will be happy with Carolines baskets.</li>
  * </ul>
  *
@@ -57,6 +57,7 @@ import java.util.List;
  * <ul>
  * <li>100 XP</li>
  * <li>5 Ados city scrolls</li>
+ * <li>2 home scrolls</li>
  * <li>Karma: 50</li>
  * </ul>
  *
@@ -89,7 +90,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			res.add("I got all the sweets and will take them to Caroline.");
 		}
 		if ("done".equals(questState)) {
-			res.add("I took the sweets to Caroline. She gave me some nice Easter gifts for real heroes. :)");
+			res.add("I took the sweets to Caroline. She gave me some nice Easter gifts for my travels as a real hero. :)");
 		}
 		return res;
 	}
@@ -102,7 +103,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"I could need some help with packing Easter baskets for children around Faiumoni. I know that the bunny will of course meet them as well, but they are so lovely that I want to make them happy, too. Do you think you can help me?",
+			"I could need some help with packing Easter baskets for children around Faiumoni. I know that the bunny will meet them, but they are so lovely that I want to make them happy, too. Do you think you can help me?",
 			null);
 
 		npc.add(
@@ -110,7 +111,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
-			"Thank you very much for the sweets, these children I gave them to are really happy now. :) Unfortunately I don't have any other task for you at the moment. Have wonderful Easter holidays!",
+			"Thank you very much for the sweets! I already gave all Easter baskets away to children around Faiumoni and they were really happy! :) Unfortunately I don't have any other task for you at the moment. Have wonderful Easter holidays!",
 			null);
 
 		// player is willing to help
@@ -119,7 +120,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"I need some #sweets for my Easter baskets. If you get 5 chocolate bar, a small easter egg, 5 apples and 5 cherries, I'll give you a reward.",
+			"I need some #sweets for my Easter baskets. If you get 5 chocolate bars, a small easter egg, 5 apples and 5 cherries, I'll give you a nice Easter reward.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
@@ -127,7 +128,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"Oh what a pity! Poor children will not receive wonderful baskets then. Maybe I find someone else and ask him or her for help.",
+			"Oh what a pity! Poor children will not receive wonderful baskets then. Maybe I'll find someone else and ask him or her for help.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// player wants to know what sweets she is referring to
@@ -136,7 +137,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			Arrays.asList("sweets"),
 			null,
 			ConversationStates.ATTENDING,
-			"Chocolate bars are sold in taverns and I've heard that some evil children wear them, too. Apples are found at the farm to the east of the city, and cherries are sold often at several places. Small easter eggs are a speciality of our Easter bunny friend. :)", null);
+			"Chocolate bars are sold in taverns and I've heard that some evil children wear them, too. Apples are found at the farm to the east of the city. Cherries are sold often at several places and small easter eggs are a speciality of our Easter bunny friend. :)", null);
 	}
 
 	private void prepareBringingStep() {
@@ -164,7 +165,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("apple", 5),
 					new PlayerHasItemWithHimCondition("cherry", 5)))),
 			ConversationStates.ATTENDING, 
-			"Oh no. There are still some sweets missing which I need for these baskets I'm preparing. Hope you can find some, soon...",
+			"Oh no. There are still some sweets missing which I need for my Easter baskets. Hope you can find them, soon...",
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -196,7 +197,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("apple", 5),
 					new PlayerHasItemWithHimCondition("cherry", 5)),
 
-			ConversationStates.ATTENDING, "How great! Now I can fill these baskets for the children! They will be so happy! Thank you very much for your help and Happy Easter!",
+			ConversationStates.ATTENDING, "How great! Now I can fill these baskets for the children! They will be so happy! Thank you very much for your help and Happy Easter! Please take these scrolls for your effort. :)",
 			new MultipleActions(reward1));
 
 
