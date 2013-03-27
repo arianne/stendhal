@@ -28,7 +28,8 @@ class NonPoisoner implements Attacker {
 	}
 	
 	public int getProbability() {
-		return 1;
+		// Non-poisoner has 0% chance of poisoning
+		return 0;
 	}
 	
 	public void setProbability(int p) {
