@@ -43,11 +43,11 @@ class PixmapStyle implements Style {
 	/**
 	 * The border.
 	 */
-	private final Border border;
+	private Border border;
 	/**
 	 * Downwards border (for buttons etc).
 	 */
-	private final Border borderDown;
+	private Border borderDown;
 
 	/**
 	 * The default font.
@@ -58,16 +58,17 @@ class PixmapStyle implements Style {
 	 * Create a new AbstractPixmapStyle.
 	 * 
 	 * @param baseSprite background image location
-	 * @param borderSprite image location for the sprite to be used as the base
-	 * 	for drawing the borders, or <code>null</code> if the border sprites
-	 * 	should be derived from the baseSprite
+	 * @param createDefaultBorder if <code>true</code> create PixmapBorders
+	 * 	from the background sprite, otherwise the caller <em>must</em> set the
+	 * 	borders using {@link #setBorder(Border)} and
+	 * 	{@link #setBorderDown(Border)} before using the style
 	 * @param highLightColor color for drawing highlights
 	 * @param shadowColor color for drawing shadows
 	 * @param plainColor color that roughly represents the background.
 	 * @param foreground color used for text and anything else to be drawn in
 	 * 	the component foreground color
 	 */
-	PixmapStyle(String baseSprite, String borderSprite,
+	PixmapStyle(String baseSprite, boolean createDefaultBorder,
 			Color highLightColor, Color shadowColor, Color plainColor,
 			Color foreground) {
 		/*
@@ -76,12 +77,10 @@ class PixmapStyle implements Style {
 		final SpriteStore st = SpriteStore.get();
 		background = st.getSprite(baseSprite);
 
-		Sprite borderBase = background;
-		if (borderSprite != null) {
-			borderBase = st.getSprite(borderSprite);
+		if (createDefaultBorder) {
+			border = new PixmapBorder(background, true);
+			borderDown = new PixmapBorder(background, false);
 		}
-		border = new PixmapBorder(borderBase, true);
-		borderDown = new PixmapBorder(borderBase, false);
 		
 		this.highLightColor = highLightColor;
 		this.shadowColor = shadowColor;
@@ -156,5 +155,23 @@ class PixmapStyle implements Style {
 	@Override
 	public Color getForeground() {
 		return foreground;
+	}
+	
+	/**
+	 * Set the border to be used, instead the default PixmapBorder.
+	 * 
+	 * @param border new border
+	 */
+	void setBorder(Border border) {
+		this.border = border;
+	}
+
+	/**
+	 * Set the downward border to be used, instead the default PixmapBorder.
+	 * 
+	 * @param border new border
+	 */
+	void setBorderDown(Border border) {
+		this.borderDown = border;
 	}
 }
