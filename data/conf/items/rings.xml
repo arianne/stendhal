@@ -4,7 +4,7 @@
 
   <item name="antivenom ring">
     <type class="ring" subclass="antivenom_ring" tileid="-1"/>
-    <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
+    <description>You see an #antivenom #ring. It has a good chance to protect you from poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>
     <attributes>
       <antipoison value="0.5" />
@@ -23,7 +23,7 @@
 
   <item name="gm antitoxin ring">
     <type class="ring" subclass="antitoxin_ring" tileid="-1"/>
-    <description>You see a gm antitoxin ring. You will be immune poisoning.</description>
+    <description>You see a #gm #antitoxin #ring. You will be immune to poisoning.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>
     <attributes>
       <antipoison value="1.0" />
@@ -42,7 +42,7 @@
 
   <item name="wedding ring">
     <type class="ring" subclass="wedding" tileid="-1"/>
-    <description>You see a golden wedding ring, a symbol of love.</description>
+    <description>You see a golden #wedding #ring, a symbol of love.</description>
     <implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>    <attributes>
     </attributes>
     <weight value="0.1"/>
@@ -59,7 +59,7 @@
 
   <item name="engagement ring">
     <type class="ring" subclass="engagement_ring" tileid="-1"/>
-    <description>You see a diamond engagement ring, a symbol of love (or a symbol of wealth?)</description>
+    <description>You see a diamond #engagement #ring, a symbol of love (or a symbol of wealth?)</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
     </attributes>
     <weight value="0.1"/>
@@ -76,7 +76,7 @@
 
   <item name="emerald ring">
     <type class="ring" subclass="emerald-ring" tileid="-1"/>
-    <description>You see an emerald ring, known as ring of life. Wear it, and you risk less from death.</description>
+    <description>You see an #emerald #ring, known as ring of life. Wear it, and you risk less from death.</description>
     <implementation class-name="games.stendhal.server.entity.item.RingOfLife"/>    <attributes>
       <amount value="1"/>
       <persistent value="1"/>
