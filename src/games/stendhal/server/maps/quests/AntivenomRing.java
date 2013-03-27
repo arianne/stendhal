@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -36,12 +37,14 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,9 +58,9 @@ import java.util.Map;
  * 
  * STEPS:
  * <ul>
- * <li>Bring Klass's note and a medicinal ring to Jameson.</li>
- * <li>As a favor to Klaas, Iriwn will help you to strengthen your medicinal ring.</li>
- * <li>Bring Jameson a venom gland, 1 disease poisoin, 2 mandragora and 5 fairycakes.</li>
+ * <li>Bring Klass's note and to Jameson.</li>
+ * <li>As a favor to Klaas, Jameson will help you to strengthen your medicinal ring.</li>
+ * <li>Bring Jameson a medicinal ring, venom gland, 2 mandragora and 5 fairycakes.</li>
  * <li>Jameson concocts a mixture that doubles your rings' resistance against poison.</li>
  * </ul>
  * 
@@ -77,7 +80,7 @@ public class AntivenomRing extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "antivenom_ring";
 	
-	public static final String NEEDED_ITEMS = "venom gland=1;mandragora=2;fairy cake=5";
+	public static final String NEEDED_ITEMS = "medicinal ring=1;venom gland=1;mandragora=2;fairy cake=5";
 	
 	private static final int REQUIRED_MINUTES = 30;
 	
@@ -91,6 +94,9 @@ public class AntivenomRing extends AbstractQuest {
 		final String questState = player.getQuest(QUEST_SLOT);
 		if ("rejected".equals(questState)) {
 			res.add("Poison is too dangerous. I do not want to get hurt.");
+		}
+		if (player.getQuest(QUEST_SLOT).startsWith("enhancing;")) {
+			res.add("Jameson is enhancing my ring.");
 		}
 		else if (!"done".equals(questState)) {
 			final ItemCollection missingItems = new ItemCollection();
@@ -107,7 +113,7 @@ public class AntivenomRing extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Jameson");
         
 		/**
-		 * If player has Klaas's note the quest is automatically started
+		 * If player has Klaas's note then quest is offered
 		 */
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -127,7 +133,7 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0),
+						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay, I need you to bring me [items]."),
 						new DropItemAction("Klaas's note")
 						));
@@ -206,40 +212,12 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+				new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.IDLE,
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I have not finished with the ring. Please check back in" + "."));
 		
-		ChatAction completeAction = new  MultipleActions(
-				new SetQuestAction(QUEST_SLOT, "done"),
-				new SayTextAction("Thank you so much! Now I can start mixing the mixture which will hopefully keep me safe inside of my own house without the assassins and bandits comming up from downstairs. Here is an assassin dagger for you. I had to take it away from one of my students in the class once and now you can maybe fight and win against them."),
-				new IncreaseXPAction(20000),
-				new IncreaseKarmaAction(25),
-				new EquipItemAction("antivenom ring", 1 ,true)
-				);
-		
-		/* add triggers for the item names */
-		final ItemCollection items = new ItemCollection();
-		items.addFromQuestStateString(NEEDED_ITEMS);
-		for (final Map.Entry<String, Integer> item : items.entrySet()) {
-			npc.add(ConversationStates.QUESTION_2,
-					item.getKey(),
-					null,
-					ConversationStates.QUESTION_2,
-					null,
-					new CollectRequestedItemsAction(
-							item.getKey(),
-							QUEST_SLOT,
-							"Excellent! Do you have anything else with you?",
-							"You brought me that already.",
-							completeAction,
-							ConversationStates.ATTENDING
-							)
-			);
-		}
-
 		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
@@ -262,6 +240,53 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				"The quest is done!!!!",
 				null);
+		
+		// player offers item that isn't in the list.
+		npc.add(ConversationStates.QUESTION_2, "",
+			new NotCondition(new TriggerInListCondition(NEEDED_ITEMS)),
+			ConversationStates.QUESTION_2,
+			"I don't believe I asked for that.", null);
+
+		ChatAction enhanceAction = new MultipleActions (
+		new SetQuestAction(QUEST_SLOT, "enhancing"),
+		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
+		new SayTextAction("Thank you. I'll get to work on your new ring right after I enjoy a few of these fairy cakes. Please come back in " + REQUIRED_MINUTES + " minutes.")
+		);
+		
+		/* add triggers for the item names */
+		final ItemCollection items = new ItemCollection();
+		items.addFromQuestStateString(NEEDED_ITEMS);
+		for (final Map.Entry<String, Integer> item : items.entrySet()) {
+			npc.add(ConversationStates.QUESTION_2,
+					item.getKey(),
+					null,
+					ConversationStates.QUESTION_2,
+					null,
+					new CollectRequestedItemsAction(
+							item.getKey(),
+							QUEST_SLOT,
+							"Excellent! Do you have anything else with you?",
+							"You brought me that already.",
+							enhanceAction,
+							ConversationStates.ATTENDING
+							)
+			);
+		}
+
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new IncreaseXPAction(20000));
+		reward.add(new IncreaseKarmaAction(25.0));
+		reward.add(new EquipItemAction("antivenom ring", 1, true));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+			ConversationStates.IDLE, 
+			"I have finished enhancing your ring. Now I'll finish the rest of my fairy cakes.", 
+			new MultipleActions(reward));
+		
 	}
 
 	@Override
