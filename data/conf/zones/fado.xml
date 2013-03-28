@@ -475,6 +475,17 @@ If the bride is called Helen, you should say 'marry Helen'
 <!-- requires food items that have been reverted from miscs.xml because food needs to be eatable 
            <configurator class-name="games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC"/> -->
            
+          <!-- Piano -->
+          <entity x="72" y="20">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+              <parameter name="sound">piano-1</parameter>
+              <parameter name="radius">40</parameter>
+            </implementation>
+            <attribute name="width">2</attribute>
+            <attribute name="height">2</attribute>
+            <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+          </entity>
+  
            <portal x="8" y="63" ref="entrance">
              <destination zone="0_fado_city" ref="hotel_entrance"/>
            </portal>
@@ -634,6 +645,7 @@ For example say:  11  if you want the room called Water of Love.
 		<entity x="19" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+        
         <!-- ticking clock sound effect -->
         <entity x="19" y="0">
           <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -642,6 +654,17 @@ For example say:  11  if you want the room called Water of Love.
             <parameter name="volume">100</parameter>
           </implementation>
         </entity>
+        
+        <!-- Piano -->
+        <entity x="2" y="21">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">piano-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+          <attribute name="width">2</attribute>
+          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+        </entity>
+  
 	</zone>
 	 
 	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx" accessible="false">
@@ -656,8 +679,19 @@ For example say:  11  if you want the room called Water of Love.
 	 
 	 <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+	     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+	     
+        <!-- Piano -->
+        <entity x="20" y="14">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">piano-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+          <attribute name="width">2</attribute>
+          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+        </entity>
+  
+     </zone>
 
          <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
@@ -927,11 +961,22 @@ For example say:  11  if you want the room called Water of Love.
 </zone>
 
 <zone name="int_imorgens_house" file="interiors/fado/imorgens_house.tmx">
- <configurator class-name="games.stendhal.server.maps.fado.forest.OldWitchNPC" />
-
- <portal x="4" y="14" ref="entrance">
-  <destination zone="0_fado_forest_s" ref="imorgens_house_entrance"/>
- </portal>
+  <configurator class-name="games.stendhal.server.maps.fado.forest.OldWitchNPC" />
+  
+  <!-- Piano -->
+  <entity x="7" y="9">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
+  <portal x="4" y="14" ref="entrance">
+    <destination zone="0_fado_forest_s" ref="imorgens_house_entrance"/>
+  </portal>
 </zone>
 
 <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
