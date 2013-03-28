@@ -71,14 +71,14 @@ import java.util.List;
  *
  * REWARD:
  * <ul>
- * <li> 5000 XP</li>
+ * <li> 800 XP</li>
  * <li> Red lionfish which Jef got by someone who made holidays on Amazon island earlier (between 1-6)</li>
  * <li> Karma: 15</li>
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li> Once every 7200 minutes. (5 days)</li>
+ * <li> Once every 4320 minutes. (3 days)</li>
  * </ul>
  *
  * @author Vanessa Julius
@@ -87,7 +87,7 @@ import java.util.List;
 public class FindJefsMom extends AbstractQuest {
 
 	// 7200 minutes (5 days)
-	private static final int REQUIRED_MINUTES = 7200;
+	private static final int REQUIRED_MINUTES = 4320;
 
 	private static final String QUEST_SLOT = "find_jefs_mom";
 
