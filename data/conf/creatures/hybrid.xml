@@ -431,6 +431,7 @@
       <item value="money" quantity="[2000,10000]" probability="80.0"/>
       <item value="silk gland" quantity="[1,3]" probability="20.0"/>
       <item value="mega poison" quantity="[1,2]" probability="10.0"/>
+      <item value="medicinal ring" quantity="[1,1]" probability="1.0" />
     </drops>
     <equips>      
       <slot name="rhand" item="dark dagger"/>
