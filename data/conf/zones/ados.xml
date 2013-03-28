@@ -1730,6 +1730,17 @@ in roaches.
      <attribute name="class">blackboard</attribute>
     </entity>
     
+    <!-- Piano -->
+    <entity x="39" y="16">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+    
     <portal x="24" y="58" ref="entrance_left">
      <destination zone="0_ados_wall" ref="barracks_entrance_left"/>
     </portal>
@@ -2825,9 +2836,21 @@ My fee:
     <destination zone="int_ados_house_56_1" ref="down"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_56_1" file="interiors/ados/house_56_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  
+  <!-- Piano -->
+  <entity x="3" y="11">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+    
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_56" ref="up"/>
   </portal>
@@ -2854,9 +2877,21 @@ My fee:
     <destination zone="int_ados_house_57_1" ref="down"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_57_1" file="interiors/ados/house_57_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  
+  <!-- Piano -->
+  <entity x="11" y="6">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+    
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_57" ref="up"/>
   </portal>
@@ -3005,6 +3040,17 @@ My fee:
  <zone name="int_ados_house_62_1" file="interiors/ados/house_62_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  
+  <!-- Piano -->
+  <entity x="3" y="11">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+    
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_62" ref="up"/>
   </portal>
@@ -4091,6 +4137,7 @@ Southeast: Docks
    <destination zone="0_ados_outside_nw" ref="0"/>
   </portal>
  </zone>
+ 
  <zone name="-1_ados_wall_n" level="-1" x="500768" y="499872" file="Level -1/ados/wall_n.tmx">
         <attributes>
         <!-- dingy green -->
@@ -4340,6 +4387,7 @@ East Tunnel: Uncharted</attribute>
 		<entity x="25" y="48">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
 		</entity>
+		
         <!-- ticking clock sound effect -->
         <entity x="25" y="48">
           <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -4348,6 +4396,18 @@ East Tunnel: Uncharted</attribute>
             <parameter name="volume">100</parameter>
           </implementation>
         </entity>
+        
+        <!-- Piano -->
+        <entity x="19" y="22">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">piano-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+          <attribute name="width">2</attribute>
+          <attribute name="height">2</attribute>
+          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+        </entity>
+    
 	</zone>
 
  <zone name="-3_ados_snake_pit" level="-3" x="500512" y="499808" file="Level -3/ados/snake_pit.tmx">
