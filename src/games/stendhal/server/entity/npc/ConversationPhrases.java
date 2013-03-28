@@ -35,7 +35,7 @@ public class ConversationPhrases {
 	public static final List<String> GREETING_MESSAGES = Arrays.asList("hi",
 			"hello", "hallo", "greetings", "hola");
 
-	public static final List<String> JOB_MESSAGES = Arrays.asList("job", "work");
+	public static final List<String> JOB_MESSAGES = Arrays.asList("job", "work", "occupation");
 
 	public static final List<String> HELP_MESSAGES = Arrays.asList("help",
 			"ayuda");
