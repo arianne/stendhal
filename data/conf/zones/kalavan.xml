@@ -575,6 +575,17 @@
 			<attribute name="height">4</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="5" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="18" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_5_entrance"/>
   </portal>
@@ -612,6 +623,17 @@
 			<attribute name="height">1</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="4" y="14">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_6_entrance"/>
   </portal>
@@ -750,6 +772,17 @@
 			<attribute name="height">4</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="10" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="3" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_10_entrance"/>
   </portal>
@@ -794,6 +827,17 @@
 			<attribute name="height">1</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="11" y="2">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_11_entrance"/>
   </portal>
@@ -842,6 +886,17 @@
 			<attribute name="height">1</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="4" y="14">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="6" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_12_entrance"/>
   </portal>
@@ -883,6 +938,17 @@
 			<attribute name="height">1</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="18" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_13_entrance"/>
   </portal>
@@ -994,6 +1060,17 @@
 			<attribute name="height">3</attribute>
 		</entity>
 		
+  <!-- Piano -->
+  <entity x="3" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="16" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_16_entrance"/>
   </portal>
@@ -1029,6 +1106,17 @@
 			<attribute name="height">3</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="15" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_17_entrance"/>
   </portal>
@@ -1103,6 +1191,17 @@
 			<attribute name="height">1</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="15" y="1">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="16" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_18_entrance"/>
   </portal>
@@ -1181,6 +1280,17 @@
 			<attribute name="height">1</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="3" y="13">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_20_entrance"/>
   </portal>
@@ -1223,6 +1333,17 @@
 			<attribute name="height">1</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="3" y="13">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_21_entrance"/>
   </portal>
@@ -1265,6 +1386,17 @@
 			<attribute name="height">1</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="3" y="13">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_22_entrance"/>
   </portal>
@@ -1307,6 +1439,17 @@
 			<attribute name="height">3</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="3" y="13">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="9" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_23_entrance"/>
   </portal>
@@ -1343,6 +1486,17 @@
 			<attribute name="height">4</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="24" y="24">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="18" y="30" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_24_entrance"/>
   </portal>
@@ -1384,6 +1538,17 @@
 			<attribute name="height">3</attribute>
 		</entity>	
 		
+  <!-- Piano -->
+  <entity x="24" y="24">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="18" y="30" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_25_entrance"/>
   </portal>
