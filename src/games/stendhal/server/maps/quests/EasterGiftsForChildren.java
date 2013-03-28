@@ -103,7 +103,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"I could need some help with packing Easter baskets for children around Faiumoni. I know that the bunny will meet them, but they are so lovely that I want to make them happy, too. Do you think you can help me?",
+			"I need some help with packing Easter baskets for children around Faiumoni. I know that the bunny will meet them, but they are so lovely that I want to make them happy, too. Do you think you can help me?",
 			null);
 
 		npc.add(
@@ -198,19 +198,15 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("chocolate bar", 5));
+		reward.add(new DropItemAction("small easter egg", 1));
+		reward.add(new DropItemAction("apple", 5));
+		reward.add(new DropItemAction("cherry",5));
 		reward.add(new EquipItemAction("ados city scroll", 5));
 		reward.add(new EquipItemAction("home scroll", 2));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(50));
-
-		final List<ChatAction> reward1 = new LinkedList<ChatAction>(reward);
-		reward1.add(new DropItemAction("chocolate bar", 5));
-		reward1.add(new DropItemAction("small easter egg", 1));
-		reward1.add(new DropItemAction("apple", 5));
-		reward1.add(new DropItemAction("cherry",5));
-
-		
 		
 		
 		
@@ -227,7 +223,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("cherry", 5)),
 
 			ConversationStates.ATTENDING, "How great! Now I can fill these baskets for the children! They will be so happy! Thank you very much for your help and Happy Easter! Please take these scrolls for your effort. :)",
-			new MultipleActions(reward1));
+			new MultipleActions(reward));
 
 
 		npc.add(
