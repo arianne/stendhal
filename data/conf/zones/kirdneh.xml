@@ -288,10 +288,22 @@
 	<parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="3" y="16">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -328,6 +340,7 @@
    <destination zone="0_kirdneh_city" ref="28"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -342,10 +355,23 @@
 	<parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="20" y="12">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="29"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -360,10 +386,22 @@
 	<parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="10" y="16">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="30"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -382,6 +420,7 @@
    <destination zone="0_kirdneh_city" ref="31"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -400,6 +439,7 @@
    <destination zone="0_kirdneh_city" ref="32"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_33" file="interiors/kirdneh/house_33.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -414,10 +454,22 @@
 	<parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="14" y="5">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="14" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="33"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -436,6 +488,7 @@
    <destination zone="0_kirdneh_city" ref="34"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -454,6 +507,7 @@
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
  </zone>
+ 
 	<zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx"
 		accessible="false">
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -486,6 +540,7 @@
 			<destination zone="int_kirdneh_house_36_basement" ref="up" />
 		</portal>
 	</zone>
+	
  <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -525,6 +580,7 @@
 			<destination zone="int_kirdneh_house_37_basement" ref="up" />
 		</portal>
 	</zone>
+	
  <zone name="int_kirdneh_house_37_basement"	file="interiors/kirdneh/house_37_basement.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -532,6 +588,7 @@
    <destination zone="int_kirdneh_house_37" ref="down"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -546,10 +603,23 @@
 	<parameter name="width">3</parameter>
     <parameter name="height">2</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="35" y="12">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="height">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="38"/>
   </portal>
  </zone>
+ 
  <zone name="int_kirdneh_house_39" file="interiors/kirdneh/house_39.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -749,6 +819,7 @@
 			<destination zone="0_kirdneh_city" ref="46" />
 		</portal>
 	</zone>
+	
  <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx" accessible="false">
   <configurator
    	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -763,10 +834,22 @@
 	<parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+  <!-- Piano -->
+  <entity x="14" y="5">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <parameter name="sound">piano-1</parameter>
+      <parameter name="radius">40</parameter>
+    </implementation>
+    <attribute name="width">2</attribute>
+    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+  </entity>
+  
   <portal x="21" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="47"/>
   </portal>
  </zone>
+ 
 	<zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx"
 		accessible="false">
 		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
