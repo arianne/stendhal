@@ -120,7 +120,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"I need some #sweets for my Easter baskets. If you get 5 chocolate bars, a small easter egg, 5 apples and 5 cherries, I'll give you a nice Easter reward.",
+			"I need some #sweets for my Easter baskets. If you get 5 #chocolate #bars, a #small #easter #egg, 5 #apples and 5 #cherries, I'll give you a nice Easter reward.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
@@ -137,7 +137,36 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			Arrays.asList("sweets"),
 			null,
 			ConversationStates.ATTENDING,
-			"Chocolate bars are sold in taverns and I've heard that some evil children wear them, too. Apples are found at the farm to the east of the city. Cherries are sold often at several places and small easter eggs are a speciality of our Easter bunny friend. :)", null);
+			"There are lots of chocolate sweets around but I would also like to fill my basket with fruits as well.", null);
+		
+		// player wants to know where he can get this sweets from
+		npc.add(
+				ConversationStates.ATTENDING,
+				Arrays.asList("chocolate bar", "chocolate bars", "chocolate"),
+				null,
+				ConversationStates.ATTENDING,
+				"Chocolate bars are sold in taverns and I've heard that some evil children wear them, too. If you find some, remember that Elizabeth in Kirdneh loves chocolate, too. :)", null);
+		
+		npc.add(
+				ConversationStates.ATTENDING,
+				Arrays.asList("apple", "apples"),
+				null,
+				ConversationStates.ATTENDING,
+				"Apples are found at the farm to the east of the city. They are really healthy and you can bake an awesome apple pie from these. You can also get one by Martha in Kalavan City gardens.", null);
+		
+		npc.add(
+				ConversationStates.ATTENDING,
+				Arrays.asList("cherry", "cherries"),
+				null,
+				ConversationStates.ATTENDING,
+				"Cherries are often sold at several places like taverns, too. They are really tasty! I hope you tasted the lovely cherry pie already, made by Gertha in Kalavan City gardens.", null);
+		
+		npc.add(
+				ConversationStates.ATTENDING,
+				Arrays.asList("small easter egg", "chocolate egg"),
+				null,
+				ConversationStates.ATTENDING,
+				"Small easter eggs are a speciality of our Easter bunny friend which hopps around during the Easter days. Maybe you will meet him on his way. :)", null);
 	}
 
 	private void prepareBringingStep() {
