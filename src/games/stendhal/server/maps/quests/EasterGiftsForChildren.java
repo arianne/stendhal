@@ -159,7 +159,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 				Arrays.asList("cherry", "cherries"),
 				null,
 				ConversationStates.ATTENDING,
-				"Cherries are often sold at several places like taverns, too. They are really tasty! I hope you tasted the lovely cherry pie already, made by Gertha in Kalavan City gardens.", null);
+				"Old Mother Helena in Fado sells the most beautifully red cherries. They are really tasty! I hope you tasted the lovely cherry pie already, made by Gertha in Kalavan City gardens.", null);
 		
 		npc.add(
 				ConversationStates.ATTENDING,
