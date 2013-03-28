@@ -124,7 +124,7 @@ public class TrapsForKlaas extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("rodent trap", "trap"),
+			Arrays.asList("rodent trap", "trap", "rodent traps", "traps"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
