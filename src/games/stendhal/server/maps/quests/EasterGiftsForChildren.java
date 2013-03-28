@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -112,6 +113,15 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
 			"Thank you very much for the sweets! I already gave all Easter baskets away to children around Faiumoni and they were really happy! :) Unfortunately I don't have any other task for you at the moment. Have wonderful Easter holidays!",
+			null);
+		
+		// Player asks for quests after it is already started
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Did you forget? I already asked you to fetch me some #sweets",
 			null);
 
 		// player is willing to help
