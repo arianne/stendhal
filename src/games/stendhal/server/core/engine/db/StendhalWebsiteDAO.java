@@ -84,7 +84,7 @@ public class StendhalWebsiteDAO {
 			+ " married='[married]', atk='[atk]', def='[def]', hp='[hp]', karma='[karma]',"
 			+ " head='[head]', armor='[armor]', lhand='[lhand]', rhand='[rhand]',"
 			+ " legs='[legs]', feet='[feet]', cloak='[cloak]', lastseen='[lastseen]',"
-			+ " finger='[finger]'"
+			+ " finger='[finger]', zone='[zone]'"
 			+ " WHERE name='[name]'";
 
 		Map<String, Object> params = getParamsFromPlayer(instance);
@@ -117,6 +117,7 @@ public class StendhalWebsiteDAO {
 		params.put("cloak", extractName(instance.getCloak()));
 		params.put("finger", extractHandName(instance, "finger"));
 		params.put("name", instance.getName());
+		params.put("zone", instance.getZone().getName());
 		params.put("lastseen", new Timestamp(new Date().getTime()));
 		return params;
 	}
@@ -126,23 +127,24 @@ public class StendhalWebsiteDAO {
 			+ " (name, admin, sentence, age, level,"
 			+ " outfit, outfit_colors, xp, money, married, atk, def, hp,"
 			+ " karma, head, armor, lhand, rhand,"
-			+ " legs, feet, cloak, finger, lastseen)"
+			+ " legs, feet, cloak, finger, zone, lastseen)"
 			+ " VALUES ('[name]', '[admin]', '[sentence]', '[age]', '[level]',"
 			+ " '[outfit]', '[outfit_colors]', '[xp]', '[money]', '[married]',"
 			+ " '[atk]', '[atk]', '[hp]', '[karma]', '[head]', '[armor]',"
-			+ " '[lhand]', '[rhand]', '[legs]', '[feet]', '[cloak]', '[finger]', '[lastseen]')";
+			+ " '[lhand]', '[rhand]', '[legs]', '[feet]', '[cloak]', '[finger]',"
+			+ " '[zone]', '[lastseen]')";
 		Map<String, Object> params = getParamsFromPlayer(instance);
 		logger.debug("storeCharacter is running: " + query);
 		transaction.execute(query, params);
 	}
-	
+
 	/**
 	 * Used to get the items in the hands container, as they can be different to weapons or shields...
 	 * Could also be done using getEquippedItemClass and using all posibble classes for
 	 * the objects that can be used in hands.
 	 */
-	private String extractHandName(final Player instance, final String handSlot) {		
-		if (instance != null && handSlot != null) {		
+	private String extractHandName(final Player instance, final String handSlot) {
+		if (instance != null && handSlot != null) {
 			if (instance.hasSlot(handSlot)) {
 				final RPSlot rpslot = instance.getSlot(handSlot);
 					// traverse all slot items
@@ -154,7 +156,7 @@ public class StendhalWebsiteDAO {
 						}
 					}
 					return null;
-			}	
+			}
 			return null;
 		}
 		return null;

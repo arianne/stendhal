@@ -159,7 +159,7 @@ public class StendhalPlayerDatabase {
 					+ " SELECT itemid, param1, timedate FROM itemlog WHERE event='register' AND timedate>='2011-10-01' ORDER BY timedate";
 			transaction.execute(sql, null);
 
-			// If there have been no recent log entries, (e. g. the server was offline for some time) 
+			// If there have been no recent log entries, (e. g. the server was offline for some time)
 			// fake one to get the correct id
 			int count = transaction.querySingleCellInt("SELECT count(id) FROM item", null);
 			if (count == 0) {
@@ -173,6 +173,11 @@ public class StendhalPlayerDatabase {
 				}
 			}
 			transaction.execute("DROP TABLE itemid", null);
+		}
+
+		// 1.07: add zone column to character_stats
+		if (!transaction.doesColumnExist("character_stats", "zone")) {
+			transaction.execute("ALTER TABLE character_stats ADD COLUMN (zone VARCHAR(50));", null);
 		}
 	}
 

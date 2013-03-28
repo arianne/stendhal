@@ -29,6 +29,8 @@ create table if not exists character_stats
   feet varchar(32),
   cloak varchar(32),
 
+  zone varchar(50),
+
   timedate timestamp default CURRENT_TIMESTAMP,
   lastseen timestamp,
   primary key(name)
