@@ -145,7 +145,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 				Arrays.asList("chocolate bar", "chocolate bars", "chocolate"),
 				null,
 				ConversationStates.ATTENDING,
-				"Chocolate bars are sold in taverns and I've heard that some evil children wear them, too. If you find some, remember that Elizabeth in Kirdneh loves chocolate, too. :)", null);
+				"Chocolate bars are sold in taverns and I've heard that some evil children carry them, too. If you find some, remember that Elizabeth in Kirdneh loves chocolate, too. :)", null);
 		
 		npc.add(
 				ConversationStates.ATTENDING,
@@ -166,7 +166,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 				Arrays.asList("small easter egg", "chocolate egg"),
 				null,
 				ConversationStates.ATTENDING,
-				"Small easter eggs are a speciality of our Easter bunny friend which hopps around during the Easter days. Maybe you will meet him on his way. :)", null);
+				"Small easter eggs are a speciality of our Easter bunny friend who hops around during the Easter days. Maybe you will meet him on his way. :)", null);
 	}
 
 	private void prepareBringingStep() {
