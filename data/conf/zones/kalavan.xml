@@ -983,6 +983,22 @@
 			<attribute name="height">1</attribute>
 		</entity>
 		
+        <!-- flushing toiling -->
+        <entity x="21" y="13">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="19" y="13">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">faucet-water-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
   <portal x="8" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_14_entrance"/>
   </portal>
@@ -1106,17 +1122,6 @@
 			<attribute name="height">3</attribute>
 		</entity>	
 		
-  <!-- Piano -->
-  <entity x="15" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
   <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_17_entrance"/>
   </portal>
