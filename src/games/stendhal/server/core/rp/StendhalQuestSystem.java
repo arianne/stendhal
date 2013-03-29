@@ -173,6 +173,9 @@ public class StendhalQuestSystem {
 			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
 			loadQuest(new MineTownRevivalWeeks());
 		}
+		if (System.getProperty("stendhal.easter") != null) {
+			loadQuest(new EasterGiftsForChildren());
+		}
 
 		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
 	}

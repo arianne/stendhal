@@ -1326,7 +1326,7 @@ Mature sheep wanted: please speak to Sato.
 	</zone>
 
 	<zone name="0_semos_city" level="0" x="500064" y="500000"
-		file="Level 0/semos/city.tmx">
+		file="Level 0/semos/city_easter.tmx">
 		<title>The City of Semos</title>
 		<attributes>
 			<parameter name="color_method">time</parameter>
