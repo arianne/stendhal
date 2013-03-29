@@ -73,7 +73,7 @@
     <respawn value="900"/>
     <corpse name="small_animal"/>
     <drops>
-      <item value="crab meat" quantity="[1,1]" probability="60.0"/>
+      <item value="meat" quantity="[1,1]" probability="60.0"/>
     </drops>
     <equips>
     </equips>

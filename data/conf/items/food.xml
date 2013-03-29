@@ -113,7 +113,8 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
-
+	
+	<!-- Removing crab meat
 	<item name="crab meat">
 		<type class="food" subclass="crab_meat" tileid="-1" />
 		<description>You see a piece of crab meat. It's bite-sized but delicious.</description>
@@ -135,6 +136,7 @@
 			<slot name="trade" />
 		</equipable>
 	</item>
+	Removing crab meat -->
 
 	<item name="grapes">
 		<type class="food" subclass="grapes" tileid="-1" />
