@@ -74,8 +74,6 @@ public class stendhal {
 	public static final String VERSION = Version.getVersion();
 
 	private static Dimension screenSize = new Dimension(640, 480);
-	
-	private static int styleId = 0;
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -139,18 +137,6 @@ public class stendhal {
 		while (i != args.length) {
 			if (args[i].equals("-s")) {
 				size = args[i + 1];
-			}
-			if (args[i].equals("--style")) {
-				try {
-					styleId = Integer.parseInt(args[i + 1]);
-				} catch (NumberFormatException e) {
-					/*
-					 * User has entered a non-integer value for style
-					 */
-					logger.warn("Style ID not an integer. Defaulting to 0.");
-					System.err.println("Style ID not an integer. Defaulting to 0.");
-					styleId = 0;
-				}
 			}
 			i++;
 		}
@@ -256,9 +242,11 @@ public class stendhal {
 		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
 		try {
-			StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(styleId));
+			WtWindowManager wm = WtWindowManager.getInstance();
+			String style = wm.getProperty("ui.style", "Wood (default)");
+			StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(style));
 			UIManager.setLookAndFeel(look);
-			int fontSize = WtWindowManager.getInstance().getPropertyInt("ui.font_size", 12);
+			int fontSize = wm.getPropertyInt("ui.font_size", 12);
 			look.setDefaultFontSize(fontSize);
 		} catch (UnsupportedLookAndFeelException e) {
 			/*
