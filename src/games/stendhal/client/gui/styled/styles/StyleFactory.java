@@ -14,6 +14,8 @@ package games.stendhal.client.gui.styled.styles;
 import games.stendhal.client.gui.styled.Style;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
@@ -35,6 +37,20 @@ public class StyleFactory {
 	public static Style createStyle(String styleId) {
 		StyleDefinition creator = StyleDefinition.parse(styleId);
 		return creator.create();
+	}
+	
+	/**
+	 * Get names of all available styles.
+	 * 
+	 * @return style names
+	 */
+	public static Collection<String> getAvailableStyles() {
+		Collection<String> rval = new ArrayList<String>();
+		for (StyleDefinition s : StyleDefinition.values()) {
+			rval.add(s.toString());
+		}
+		
+		return rval;
 	}
 	
 	/**
