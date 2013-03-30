@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,7 +11,12 @@
  ***************************************************************************/
 package games.stendhal.client.gui.settings;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.gui.chatlog.EventLine;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.styled.styles.StyleFactory;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.NotificationType;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,14 +27,17 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
- * Page for general settings.
+ * Page for style settings.
  */
 class StyleSettings {
+	private static final String STYLE_PROPERTY = "ui.style";
+	private static final String DEFAULT_STYLE = "Wood (default)";
+	
 	/** Container for the setting components. */
 	private final JComponent page;
 	
 	/**
-	 * Create new GeneralSettings.
+	 * Create new StyleSettings.
 	 */
 	StyleSettings() {
 		int pad = SBoxLayout.COMMON_PADDING;
@@ -43,9 +51,8 @@ class StyleSettings {
 		hbox.add(selectorLabel);
 		JComponent selector = createStyleSelector();
 		hbox.add(selector);
-		selector.setToolTipText("<html>Sound output device. <b>auto</b> should"
-				+ " work for most people,<br>but try others if you can not get"
-				+ " sound to work otherwise</html>");
+		selector.setToolTipText("<html>The style used to draw the controls in the game client."
+				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
 		page.add(hbox);
 
 	}
@@ -68,22 +75,25 @@ class StyleSettings {
 		final JComboBox selector = new JComboBox();
 		
 		// Fill with available styles
-		selector.addItem("Wood");
-		selector.addItem("TileAqua");
-		selector.addItem("BrickBrown");
-		selector.addItem("Aubergine");
-		selector.addItem("Honeycomb");
-		selector.addItem("ParquetBrown");
+		for (String s : StyleFactory.getAvailableStyles()) {
+			selector.addItem(s);
+		}
 		
-		selector.setSelectedItem(0);
+		final WtWindowManager wm = WtWindowManager.getInstance();
+		String currentStyle = wm.getProperty(STYLE_PROPERTY, DEFAULT_STYLE);
+		selector.setSelectedItem(currentStyle);
 		 
 		selector.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = selector.getSelectedItem();
+				wm.setProperty(STYLE_PROPERTY, selected.toString());
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
+						"The new style will be used the next time you start the game client.",
+						NotificationType.CLIENT));
 			}
 		});
 		
 		return selector;
 	}
-	
 }
