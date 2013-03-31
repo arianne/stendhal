@@ -22,6 +22,9 @@ These files are in the public domain:
     tiger-1.ogg:        http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
     tiger-2.ogg:        http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
     robot-2.ogg:        http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
+    goat-1.ogg:         http://soundbible.com/1632-On-The-Farm.html
+    goat-2.ogg:         http://soundbible.com/1662-Farm.html
+    toilet-flush-1.ogg: http://soundbible.com/1657-Toilet-Flushing.html
 
 These files are released under the following BSD license:
     evil-laugh-1.ogg
