@@ -24,6 +24,7 @@ These files are in the public domain:
     goat-1.ogg:         http://soundbible.com/1632-On-The-Farm.html
     goat-2.ogg:         http://soundbible.com/1662-Farm.html
     toilet-flush-1.ogg: http://soundbible.com/1657-Toilet-Flushing.html
+    water-faucet-1		http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
     From http://www.freewebs.com/jordansroom/sounds.html:
         chicken-2, fire-1, mouse-2
 
