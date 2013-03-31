@@ -200,6 +200,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="goat-1" />
+        <sound value="goat-2" />
+      </says>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
