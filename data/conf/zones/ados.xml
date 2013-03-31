@@ -1597,7 +1597,7 @@ in roaches.
           </implementation>
         </entity>
         
-   </zone>   
+   </zone>
    
    
    <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
@@ -1673,7 +1673,7 @@ in roaches.
     </implementation>
   </entity>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="17" y="9">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1704,7 +1704,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_72"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="5" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1732,7 +1732,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_73"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="6" y="9">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1752,7 +1752,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_74"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="20" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1780,7 +1780,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_75"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="13" y="18">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1808,7 +1808,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_76"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="9" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1836,7 +1836,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_77"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="3" y="18">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -2819,7 +2819,7 @@ My fee:
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="4" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -2865,7 +2865,7 @@ My fee:
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="2" y="10">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3002,7 +3002,7 @@ My fee:
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="2" y="6">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3114,7 +3114,7 @@ My fee:
     <parameter name="y">13</parameter>
   </configurator>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="2" y="9">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3167,7 +3167,7 @@ My fee:
     <parameter name="height">1</parameter>
  </configurator>
  
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="6" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3221,7 +3221,7 @@ My fee:
     <destination zone="int_ados_house_60_1" ref="down"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="13" y="7">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3262,7 +3262,7 @@ My fee:
     <destination zone="int_ados_house_61_1" ref="down"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="12" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3417,7 +3417,7 @@ My fee:
     </implementation>
   </entity>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="12" y="10">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3478,7 +3478,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_69"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="4" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3506,7 +3506,7 @@ My fee:
     <destination zone="0_ados_city" ref="house_70"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="3" y="8">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -3580,7 +3580,7 @@ My fee:
        <attribute name="height">2</attribute>
     </entity>
     
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="33" y="16">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -4334,7 +4334,6 @@ Southeast: Docks
     <destination zone="0_ados_city_s" ref="house_79"/>
   </portal>
   
-        <!-- flushing toiling --\>
         <entity x="4" y="6">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -4342,7 +4341,6 @@ Southeast: Docks
           </implementation>
         </entity>
         
-        <!-- faucet running water --\>
         <entity x="2" y="6">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
