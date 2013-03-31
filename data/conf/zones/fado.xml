@@ -974,6 +974,22 @@ For example say:  11  if you want the room called Water of Love.
     <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
   </entity>
   
+        <!-- flushing toiling -->
+        <entity x="5" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="3" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
   <portal x="4" y="14" ref="entrance">
     <destination zone="0_fado_forest_s" ref="imorgens_house_entrance"/>
   </portal>
