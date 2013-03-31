@@ -1,29 +1,30 @@
 These files are in the public domain:
-    alligator-1.ogg:    http://www.fws.gov/video/sound.htm
-    bee-1.ogg:          http://soundbible.com/971-Bee.html
-    cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
-    demon_haunting.ogg: http://soundbible.com/1883-Scary-Demon-Haunting.html
-    dog-angry-low-1.ogg, dog-snarl-1.ogg, dog-snarl-2.ogg:
+    alligator-1:        http://www.fws.gov/video/sound.htm
+    bee-1:              http://soundbible.com/971-Bee.html
+    cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
+    creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
+    demon_haunting:     http://soundbible.com/1883-Scary-Demon-Haunting.html
+    dog-angry-low-1, dog-snarl-1, dog-snarl-2:
                         http://soundbible.com/2034-Growling-Snarling-Dogs.html
-    elephant-1.ogg:     http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
-    elephant-2.ogg:     http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
-    elephant-3.ogg:     https://sourceforge.net/projects/myabcs
-    lion-1.ogg:         http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
-    lion-2.ogg:         https://sourceforge.net/projects/myabcs
-    horse-1.ogg:        http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
-    horse-2.ogg:        http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
-    pig-3.ogg:          http://www.mediacollege.com/downloads/sound-effects/animals/pig/
-    scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
-    snake-cobra-1.ogg, snake-cobra-2.ogg:
+    elephant-1:         http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
+    elephant-2:         http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
+    elephant-3:         https://sourceforge.net/projects/myabcs
+    goat-1:             http://soundbible.com/1632-On-The-Farm.html
+    goat-2:             http://soundbible.com/1662-Farm.html
+    horse-1:            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
+    horse-2:            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
+    lion-1:             http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
+    lion-2:             https://sourceforge.net/projects/myabcs
+    pig-3:              http://www.mediacollege.com/downloads/sound-effects/animals/pig/
+    robot-2:            http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
+    robot-3:            http://soundbible.com/1758-Door-Entry-Notification.html
+    scream-fem-2:       http://soundbible.com/1627-Female-Scream-Horror.html
+    snake-cobra-1, snake-cobra-2:
                         https://archive.org/details/unknowncobracobrabitewmv
-    sneeze-baby-1.ogg:  http://soundbible.com/23-Baby-Sneeze.html
-    tiger-1.ogg:        http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
-    tiger-2.ogg:        http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
-    robot-2.ogg:        http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
-    robot-3.ogg:        http://soundbible.com/1758-Door-Entry-Notification.html
-    goat-1.ogg:         http://soundbible.com/1632-On-The-Farm.html
-    goat-2.ogg:         http://soundbible.com/1662-Farm.html
-    toilet-flush-1.ogg: http://soundbible.com/1657-Toilet-Flushing.html
+    sneeze-baby-1:      http://soundbible.com/23-Baby-Sneeze.html
+    tiger-1:            http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
+    tiger-2:            http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
+    toilet-flush-1:     http://soundbible.com/1657-Toilet-Flushing.html
     water-faucet-1		http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
     From http://www.freewebs.com/jordansroom/sounds.html:
         chicken-2, fire-1, mouse-2
