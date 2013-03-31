@@ -1667,6 +1667,7 @@ in roaches.
     <destination zone="0_ados_wall" ref="house_71"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_72" file="interiors/ados/house_72.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1676,7 +1677,25 @@ in roaches.
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_72"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="5" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="4" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
+ 
  <zone name="int_ados_house_73" file="interiors/ados/house_73.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1686,7 +1705,17 @@ in roaches.
   <portal x="1" y="7" ref="in">
     <destination zone="0_ados_wall" ref="house_73"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="6" y="9">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
+ 
  <zone name="int_ados_house_74" file="interiors/ados/house_74.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1696,7 +1725,25 @@ in roaches.
   <portal x="17" y="20" ref="in">
     <destination zone="0_ados_wall" ref="house_74"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="20" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="1" y="19">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
+ 
  <zone name="int_ados_house_75" file="interiors/ados/house_75.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1706,7 +1753,25 @@ in roaches.
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_75"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="13" y="18">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="12" y="18">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
+ 
  <zone name="int_ados_house_76" file="interiors/ados/house_76.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1716,7 +1781,25 @@ in roaches.
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_76"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="9" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="13" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
+ 
  <zone name="int_ados_house_77" file="interiors/ados/house_77.tmx" accessible="false">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -1726,6 +1809,23 @@ in roaches.
   <portal x="1" y="15" ref="in">
     <destination zone="0_ados_wall" ref="house_77"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="3" y="18">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="4" y="18">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
 
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
@@ -4197,6 +4297,7 @@ Southeast: Docks
     <destination zone="0_ados_city_s" ref="house_78"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_79" file="interiors/ados/house_79.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
@@ -4206,7 +4307,25 @@ Southeast: Docks
   <portal x="" y="" ref="in">
     <destination zone="0_ados_city_s" ref="house_79"/>
   </portal>
+  
+        <!-- flushing toiling --\>
+        <entity x="4" y="6">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water --\>
+        <entity x="2" y="6">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
+ 
  <zone name="int_ados_house_80" file="interiors/ados/house_80.tmx">
   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
