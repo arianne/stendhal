@@ -115,8 +115,9 @@
     </equips>
     <ai>
       <says>
-        <sound value="robot-1"/>
-        <sound value="robot-2"/>
+        <sound value="robot-1" />
+        <sound value="robot-2" />
+        <sound value="robot-3" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
