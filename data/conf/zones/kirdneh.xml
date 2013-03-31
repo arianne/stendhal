@@ -465,7 +465,7 @@
     <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
   </entity>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="7" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -510,7 +510,7 @@
    <destination zone="0_kirdneh_city" ref="34"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="37" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -546,7 +546,7 @@
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="37" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -604,7 +604,7 @@
    <destination zone="int_kirdneh_house_36" ref="down"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="10" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -662,7 +662,7 @@
    <destination zone="int_kirdneh_house_37" ref="down"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="10" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -766,7 +766,7 @@
    <destination zone="0_kirdneh_city" ref="41"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="21" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -824,7 +824,7 @@
    <destination zone="int_kirdneh_house_42" ref="up"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="10" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -890,7 +890,7 @@
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="21" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -935,7 +935,7 @@
           </implementation>
         </entity>
         
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="7" y="17">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -983,7 +983,7 @@
           </implementation>
         </entity>
         
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="2" y="17">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1029,7 +1029,7 @@
     <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
   </entity>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="7" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1096,7 +1096,7 @@
    <destination zone="int_kirdneh_house_48" ref="up"/>
   </portal>
   
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="11" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1160,7 +1160,7 @@
    <destination zone="int_kirdneh_house_49" ref="up"/>
   </portal>
 
-        <!-- flushing toiling -->
+        <!-- flushing toilet -->
         <entity x="11" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
@@ -1175,7 +1175,6 @@
             <parameter name="radius">40</parameter>
           </implementation>
         </entity>
-        <!-- faucet running water -->
         <entity x="14" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
