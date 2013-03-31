@@ -20,6 +20,8 @@
 - New quest items: Klaas's note, antivenom ring
 - Nuw summonable only items: gm antitoxin ring
 - An apothecary has moved into a hut on Semos Mountain
+- Someone fixed the pianos in Faimouni
+- Home owners now have running water
 
 *client*
 - A lot of redrawn tilesets
