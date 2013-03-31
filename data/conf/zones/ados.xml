@@ -2969,6 +2969,23 @@ My fee:
     <parameter name="x">11</parameter>
     <parameter name="y">13</parameter>
   </configurator>
+  
+        <!-- flushing toiling -->
+        <entity x="2" y="9">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="5" y="9">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_58"/>
   </portal>
@@ -2976,6 +2993,7 @@ My fee:
     <destination zone="int_ados_house_58_1" ref="down"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -3004,6 +3022,23 @@ My fee:
     <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
+        <!-- flushing toiling -->
+        <entity x="6" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="7" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_59"/>
   </portal>
@@ -3011,6 +3046,7 @@ My fee:
     <destination zone="int_ados_house_59_1" ref="down"/>
   </portal>
  </zone>
+ 
  <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -3033,12 +3069,30 @@ My fee:
     <parameter name="width">1</parameter>
     <parameter name="height">1</parameter>
  </configurator>
+ 
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_60"/>
   </portal>
   <portal x="3" y="3" ref="up">
     <destination zone="int_ados_house_60_1" ref="down"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="13" y="7">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="12" y="7">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
 
  <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx" accessible="false">
@@ -3063,6 +3117,23 @@ My fee:
   <portal x="3" y="3" ref="up">
     <destination zone="int_ados_house_61_1" ref="down"/>
   </portal>
+  
+        <!-- flushing toiling -->
+        <entity x="12" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
+        <!-- faucet running water -->
+        <entity x="11" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+  
  </zone>
 
  <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx" accessible="false">
