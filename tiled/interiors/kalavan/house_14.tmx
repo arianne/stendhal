@@ -124,7 +124,7 @@
   <image source="../../tileset/furniture/bed/double_red.png" width="64" height="128"/>
  </tileset>
  <tileset firstgid="338" name="bathtub" tilewidth="32" tileheight="32">
-  <image source="../../../../stendhal-testing/tiled/tileset/furniture/bathroom/bathtub.png" width="224" height="192"/>
+  <image source="../../tileset/furniture/bathroom/bathtub.png" width="224" height="192"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
