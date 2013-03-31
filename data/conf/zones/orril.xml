@@ -603,6 +603,41 @@
         <portal x="17" y="29" ref="door5">
             <destination zone="int_constantines_villa_entrance" ref="barracks5" />
         </portal>
+
+        <!-- flushing toilets -->
+        <entity x="4" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        <entity x="6" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        <entity x="8" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucets running water -->
+        <entity x="1" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        <entity x="2" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
     </zone>
     
 	<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
