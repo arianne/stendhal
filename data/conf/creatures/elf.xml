@@ -24,7 +24,7 @@
       <item value="cloak" quantity="[1,1]" probability="0.5"/>
       <item value="plate shield" quantity="[1,1]" probability="1.0"/>
       <item value="elvish legs" quantity="[1,1]" probability="0.05"/>
-      <item value="elvish hat" quantity="[1,1]" probability="0.7" />
+      <item value="elvish hat" quantity="[1,1]" probability="1.0" />
     </drops>
     <equips>
     </equips>
@@ -161,7 +161,7 @@
       <item value="katana" quantity="[1,1]" probability="5.0"/>
       <item value="broadsword" quantity="[1,1]" probability="2.0"/>
       <item value="potion" quantity="[2,4]" probability="20.0"/>
-      <item value="elvish hat" quantity="[1,1]" probability="1.5" />
+      <item value="elvish hat" quantity="[1,1]" probability="2.0" />
     </drops>
     <equips>
     </equips>
