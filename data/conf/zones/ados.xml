@@ -679,6 +679,15 @@ areas.
                 <parameter name="volume">80</parameter>
             </implementation>
         </entity>
+        
+        <!-- Crackling fire -->
+        <entity x="19" y="124">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+            <parameter name="sound">fire-1</parameter>
+            <parameter name="radius">12</parameter>
+            <parameter name="volume">120</parameter>
+          </implementation>
+        </entity>
 
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
