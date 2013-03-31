@@ -611,6 +611,23 @@ areas.
     </attribute>
     <attribute name="class">book_red</attribute>
   </entity>
+  
+        <!-- flushing toilet -->
+        <entity x="18" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">toilet-flush-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
+        <!-- faucet running water -->
+        <entity x="20" y="1">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
  </zone>
 
 	<zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="Level 0/ados/outside_nw.tmx">
@@ -1571,6 +1588,15 @@ in roaches.
       <parameter name="slot">zaras_chest_ados</parameter>
      </implementation>
     </entity>
+    
+        <!-- faucet running water -->
+        <entity x="9" y="8">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+            <parameter name="sound">water-faucet-1</parameter>
+            <parameter name="radius">40</parameter>
+          </implementation>
+        </entity>
+        
    </zone>   
    
    
