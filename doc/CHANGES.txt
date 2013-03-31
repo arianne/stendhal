@@ -19,6 +19,7 @@
 - New dropped items: elvish hat, medicinal ring, rodent trap
 - New quest items: Klaas's note, antivenom ring
 - Nuw summonable only items: gm antitoxin ring
+- An apothecary has moved into a hut on Semos Mountain
 
 *client*
 - A lot of redrawn tilesets
