@@ -113,10 +113,11 @@ public class StyleFactory {
 		HONEYCOMB("Honeycomb") {
 			@Override
 			Style create() {
-				Color highlight = new Color(142, 90, 0);
-				Color shadow = new Color(42, 7, 51);
+				Color highlight = new Color(142, 90, 0); // Light brown (also text shadow)
+				Color shadow = new Color(255, 255, 255); // White (also inactive text color)
+				Color foreground = new Color(107, 47, 0); // Brown
 				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
-						false, highlight, shadow, Color.white, Color.black);
+						false, highlight, shadow, Color.white, foreground);
 				Color bhigh = new Color(255, 255, 180);
 				Color bshadow = new Color(100, 80, 20);
 				
