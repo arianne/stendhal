@@ -1,7 +1,6 @@
 These files are in the public domain:
     alligator-1.ogg:    http://www.fws.gov/video/sound.htm
     bee-1.ogg:          http://soundbible.com/971-Bee.html
-    chicken-2.ogg:      http://www.freewebs.com/jordansroom/sounds.html
     cow-1.ogg           http://soundbible.com/1143-Cow-And-Bell.html
     demon_haunting.ogg: http://soundbible.com/1883-Scary-Demon-Haunting.html
     dog-angry-low-1.ogg, dog-snarl-1.ogg, dog-snarl-2.ogg:
@@ -13,7 +12,6 @@ These files are in the public domain:
     lion-2.ogg:         https://sourceforge.net/projects/myabcs
     horse-1.ogg:        http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
     horse-2.ogg:        http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
-    mouse-2.ogg:        http://www.freewebs.com/jordansroom/sounds.html
     pig-3.ogg:          http://www.mediacollege.com/downloads/sound-effects/animals/pig/
     scream-fem-2.ogg:   http://soundbible.com/1627-Female-Scream-Horror.html
     snake-cobra-1.ogg, snake-cobra-2.ogg:
@@ -26,6 +24,8 @@ These files are in the public domain:
     goat-1.ogg:         http://soundbible.com/1632-On-The-Farm.html
     goat-2.ogg:         http://soundbible.com/1662-Farm.html
     toilet-flush-1.ogg: http://soundbible.com/1657-Toilet-Flushing.html
+    From http://www.freewebs.com/jordansroom/sounds.html:
+        chicken-2, fire-1, mouse-2
 
 These files are released under the following BSD license:
     evil-laugh-1.ogg
