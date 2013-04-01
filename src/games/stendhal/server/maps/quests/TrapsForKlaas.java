@@ -29,6 +29,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -53,6 +54,7 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li>1000 XP</li>
+ * <li>Klaas's note
  * <li>Can sell rodent traps to Klaas</li>
  * <li>Karma: 10</li>
  * </ul>
@@ -91,45 +93,60 @@ public class TrapsForKlaas extends AbstractQuest {
 
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Klaas");
-
+		
+		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"The rats down here have been getting into the food storage. Would you bring me " + REQUIRED_TRAPS + " #rodent #traps to help me rid us of the varmints?",
+			"The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
 			null);
-
+		
+		// Player asks for quest after completed
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
 			"Thanks for the traps. Now the food will be safe.",
 			null);
-
+		
+		// Player asks for quest after already started
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I believe I already asked you to do something for me",
+				null);
+		
+		// Player accepts quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Please hurry! We can't afford to lose anymore food.",
+			"Thanks, I need you to bring me bring me " + REQUIRED_TRAPS + " #rodent #traps. Please hurry! We can't afford to lose anymore food.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
-
+		
+		// Player rejects quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
 			null,
-			ConversationStates.ATTENDING,
+			// Klaas walks away
+			ConversationStates.IDLE,
 			"Don't waste my time. I've got to protect the cargo.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
-
+		
+		// Player asks about rodent traps
 		npc.add(
-			ConversationStates.QUEST_OFFERED,
+			ConversationStates.ATTENDING,
 			Arrays.asList("rodent trap", "trap", "rodent traps", "traps"),
-			null,
-			ConversationStates.QUEST_OFFERED,
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
 			"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
 			null);
 		
+		// Player asks about the apothecary
 		npc.add(
 			ConversationStates.ATTENDING,
 			"apothecary",
@@ -141,35 +158,42 @@ public class TrapsForKlaas extends AbstractQuest {
 
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Klaas");
-
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestActiveCondition(QUEST_SLOT),
-					new PlayerHasItemWithHimCondition("rodent trap")),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
-			"Did you bring any traps?", null);
-
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-					new QuestActiveCondition(QUEST_SLOT),
-					new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
-			ConversationStates.ATTENDING, 
-			"I could really use those traps. How can I help you?",
-			null);
-
+		
+		// Reward
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("rodent trap", 20));
 		reward.add(new EquipItemAction("Klaas's note", 1, true));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
+		
+		// Player has all 20 traps
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT),
+						new PlayerHasItemWithHimCondition("rodent trap")),
+				ConversationStates.QUEST_ITEM_BROUGHT, 
+				"Did you bring any #traps?",
+				null);
+		
+		// Player is not carrying 20 traps
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new QuestActiveCondition(QUEST_SLOT),
+						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
+			ConversationStates.ATTENDING, 
+			"I could really use those #traps. How can I help you?",
+			null);
+
 		npc.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("rodent trap"),
-			ConversationStates.ATTENDING,
-			"Thanks! I've got to get these set up as quickly as possible. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
-			new MultipleActions(reward));
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES,
+				new PlayerHasItemWithHimCondition("rodent trap"),
+				ConversationStates.ATTENDING,
+				"Thanks! I've got to get these set up as quickly as possible. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
+				new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
@@ -178,6 +202,18 @@ public class TrapsForKlaas extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Please hurry! I just found another box of food that's been chewed through.",
 			null);
+		
+		// Player has lost note
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
+						new QuestCompletedCondition(QUEST_SLOT),
+						new QuestNotStartedCondition("antivenom_ring")),
+				ConversationStates.ATTENDING,
+				"You lost the note? Well, I guess I can write you up another, but be careful this time.",
+				new EquipItemAction("Klaas's note", 1, true));
+
 	}
 
 	@Override
