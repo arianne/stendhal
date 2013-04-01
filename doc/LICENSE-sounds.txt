@@ -33,17 +33,8 @@ These files are in the public domain:
     
 
 These files are released under the following BSD license:
-    evil-laugh-1
-    mutant-frog-1
-    robot-1
-    slimy-1
-    slimy-2
-    snake-2
-    undead-1
-    undead-2
-    undead-3
-    undead-4
-    witch-cackle-1
+    evil-laugh-1, mutant-frog-1, mutant-frog-2, robot-1, slimy-1, slimy-2, snake-2,
+    undead-1, undead-2, undead-3, undead-4, witch-cackle-1
 
 Copyright (c) 2013, Jordan Irwin
 All rights reserved.
