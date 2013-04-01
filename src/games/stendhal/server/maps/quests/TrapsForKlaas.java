@@ -214,8 +214,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Player has lost note
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
+				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),
 				ConversationStates.ATTENDING,
