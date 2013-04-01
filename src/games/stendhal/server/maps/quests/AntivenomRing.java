@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
@@ -66,7 +67,7 @@ import java.util.Map;
  * 
  * REWARD:
  * <ul>
- * <li>20000 XP</li>
+ * <li>2000 XP</li>
  * <li>antivenom ring</li>
  * <li>Karma: 25</li>
  * </ul>
@@ -92,14 +93,14 @@ public class AntivenomRing extends AbstractQuest {
 		}
 		res.add("I have found the hermit apothecary's lab in Semos Mountain.");
 		final String questState = player.getQuest(QUEST_SLOT);
-		if ("rejected".equals(questState)) {
+		if ("done".equals(questState)) {
+			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
+		}
+		else if ("rejected".equals(questState)) {
 			res.add("Poison is too dangerous. I do not want to get hurt.");
 		}
 		else if (player.getQuest(QUEST_SLOT).startsWith("enhancing;")) {
 			res.add("Jameson is enhancing my ring.");
-		}
-		else if ("done".equals(questState)) {
-			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
 		}
 		else {
 			final ItemCollection missingItems = new ItemCollection();
@@ -112,9 +113,7 @@ public class AntivenomRing extends AbstractQuest {
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Jameson");
         
-		/**
-		 * If player has Klaas's note then quest is offered
-		 */
+		// If player has Klaas's note then quest is offered
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
@@ -124,62 +123,100 @@ public class AntivenomRing extends AbstractQuest {
 				"Oh, a message from #Klaas. He has asked me to enhance a ring for you. I owe him a big favor. Will you gather the items I need?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
         
-		/**
-		 * Player accepts quest
-		 */
+		// Player accepts quest
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING,
+				ConversationStates.QUESTION_1,
 				null,
 				new MultipleActions(
 						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay, I need you to bring me [items]."),
-						new DropItemAction("Klaas's note")
-						));
+						new DropItemAction("Klaas's note")));
 		
+		// Player rejects quest
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
-				ConversationStates.ATTENDING,
+				// NPC walks away
+				ConversationStates.IDLE,
 				"Well, this work isn't for everyone.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
-		/**
-		 * Quest has previously been completed.
-		 */
+		// Quest has previously been completed.
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
-				"Thank you so much. It had been so long since I was able to enjoy a fairy cake.",
+				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
 				null);
 		
-        /**
-         * Player asks about ingredients
-         */
-		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				Arrays.asList("gland", "venom gland"),
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"#Snakes have a gland in which their venom is stored.",
-				null);
-		
-		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				"mandragora",
-				null,
+		// Player asks for quest without having Klass's note
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
+				"I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.",
+				null);
+		
+        // Player asks about required items
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
+				null,
+				ConversationStates.QUESTION_1,
+				"Some #snakes have a gland in which their venom is stored.",
+				null);
+		
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("mandragora", "mandragoras", "root of mandragora", "roots of mandragora", "root of mandragoras", "roots of mandragoras"),
+				null,
+				ConversationStates.QUESTION_1,
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
 				null);
 		
-		npc.add(
-				ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.QUESTION_1,
 				Arrays.asList("cake", "fairy cake"),
 				null,
-				ConversationStates.ATTENDING,
+				ConversationStates.QUESTION_1,
 				"Oh, they are the best treat I have ever tasted. Only the most heavenly creatures could make such angelic food.",
+				null);
+		
+		// Player asks about rings
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("ring", "rings"),
+				null,
+				ConversationStates.QUESTION_1,
+				"There are many types of rings.",
+				null);
+		
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("medicinal ring", "medicinal rings"),
+				null,
+				ConversationStates.QUESTION_1,
+				"Some poisonous creatures carry them",
+				null);
+		
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("antivenom ring", "antivenom rings"),
+				null,
+				ConversationStates.QUESTION_1,
+				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
+				null);
+		
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
+				null,
+				ConversationStates.QUESTION_1,
+				"Heh! This is the ultimate protection against poisoning. Good luck getting one!",
+				null);
+		
+		// Player asks about snakes
+		npc.add(ConversationStates.QUESTION_1,
+				Arrays.asList("snake", "snakes", "cobra", "cobras"),
+				null,
+				ConversationStates.QUESTION_1,
+				"I've heard rumor newly discovered put full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
 				null);
 	}
 
@@ -188,26 +225,36 @@ public class AntivenomRing extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestActiveCondition(QUEST_SLOT)),
-				ConversationStates.QUESTION_2,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), 
+						new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
 				"Hello again! Did you bring me the #items I requested?",
 				null);
 		
-		/* player asks what exactly is missing (says items) */
-		npc.add(ConversationStates.QUESTION_2,
-				"items",
+		// player asks what is missing (says "items")
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("item", "items", "ingredient", "ingredients"),
 				null,
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_1,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
-		/* player says he has a required item with him (says yes) */
-		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_2, "What did you bring?",
+		// player says has a required item with him (says "yes")
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.QUESTION_2,
+				"What did you bring?",
 				null);
-
+		
+		// Players says has required items (alternate conversation state)
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.QUESTION_2,
+				"What did you bring?",
+				null);
+		
 		// Returned too early; still working
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -222,7 +269,7 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"Ok, no rush.", 
+				"Ok. Is there anything else I can help you with? Do you need reminded of which #items I still need?", 
 				null);
 
 		/* player says he didn't bring any items to different question */
@@ -230,15 +277,7 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"Ok, no rush.",
-				null);
-
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestCompletedCondition(QUEST_SLOT)),
-				ConversationStates.ATTENDING, 
-				"Are you enjoying your new ring?",
+				"Ok. Is there anything else I can help you with? Do you need reminded of which #items I still need?",
 				null);
 		
 		// player offers item that isn't in the list.
@@ -274,7 +313,7 @@ public class AntivenomRing extends AbstractQuest {
 		}
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new IncreaseXPAction(20000));
+		reward.add(new IncreaseXPAction(2000));
 		reward.add(new IncreaseKarmaAction(25.0));
 		reward.add(new EquipItemAction("antivenom ring", 1, true));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
