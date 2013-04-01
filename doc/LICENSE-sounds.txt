@@ -1,6 +1,7 @@
 These files are in the public domain:
     alligator-1:        http://www.fws.gov/video/sound.htm
     bee-1:              http://soundbible.com/971-Bee.html
+    church-bells-1:     http://soundbible.com/253-Church-Bells-Ringing.html
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
     demon_haunting:     http://soundbible.com/1883-Scary-Demon-Haunting.html
