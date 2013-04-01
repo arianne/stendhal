@@ -22,6 +22,7 @@
 - An apothecary has moved into a hut on Semos Mountain
 - Someone fixed the pianos in Faimouni
 - Home owners now have running water
+- Athor's ferry has begun "creaking". Probably due to old age.
 
 *client*
 - A lot of redrawn tilesets
