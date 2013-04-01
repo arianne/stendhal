@@ -28,6 +28,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="You will never find the way out!"/>
+        <sound value="monster-11" />
+        <sound value="monster-12" />
+        <sound value="monster-14" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -64,6 +67,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="I am the king of this area!"/>
+        <sound value="monster-1" />
+        <sound value="monster-2" />
+        <sound value="monster-16" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
