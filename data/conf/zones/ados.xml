@@ -1761,7 +1761,7 @@ in roaches.
         </entity>
         
         <!-- faucet running water -->
-        <entity x="1" y="19">
+        <entity x="19" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
