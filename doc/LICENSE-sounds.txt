@@ -1,12 +1,12 @@
 These files are in the public domain:
     alligator-1:        http://www.fws.gov/video/sound.htm
     ambiance-church-1:  http://soundbible.com/253-Church-Bells-Ringing.html
+    ambiance-demon-1:   http://soundbible.com/1883-Scary-Demon-Haunting.html
     ambiance-restaurant-1:
                         http://soundbible.com/1664-Restaurant-Ambiance.html
     bee-1:              http://soundbible.com/971-Bee.html
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
-    ambiance-demon-1:   http://soundbible.com/1883-Scary-Demon-Haunting.html
     elephant-1:         http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
     elephant-2:         http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
     elephant-3:         https://sourceforge.net/projects/myabcs
@@ -16,7 +16,11 @@ These files are in the public domain:
     horse-2:            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
     lion-1:             http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     lion-2:             https://sourceforge.net/projects/myabcs
+    piano-1:            
     pig-3:              http://www.mediacollege.com/downloads/sound-effects/animals/pig/
+    roar-dragon-1:      http://www.freesound.org/people/JoelAudio/sounds/85568/
+    roar-dragon-2:      http://www.freesound.org/people/frasbr/sounds/145729/
+    roar-large-1:       http://www.freesound.org/people/ibm5155/sounds/174913/
     robot-2:            http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
     robot-3:            http://soundbible.com/1758-Door-Entry-Notification.html
     scream-fem-2:       http://soundbible.com/1627-Female-Scream-Horror.html
@@ -25,6 +29,7 @@ These files are in the public domain:
     tiger-2:            http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
     toilet-flush-1:     http://soundbible.com/1657-Toilet-Flushing.html
     water-faucet-1		http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
+    wings-flap-large-1: http://www.freesound.org/people/dave.des/sounds/127197/
     From http://www.freewebs.com/jordansroom/sounds.html:
         chicken-2, fire-1, mouse-2
     From http://opengameart.org/content/monster-sound-effects-2:

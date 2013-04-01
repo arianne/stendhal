@@ -27,6 +27,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -96,6 +99,9 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -134,6 +140,9 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -201,6 +210,9 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -237,6 +249,11 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+        <sound value="roar-dragon-1" />
+        <sound value="wings-flap-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -272,6 +289,10 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-large-1" />
+        <sound value="wings-flap-large-1" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -311,6 +332,7 @@
       <says>
         <noise state="idle follow fight" value="Wheee!!"/>
         <noise state="idle follow fight" value="It's fun up here!"/>
+        <sound value="roar-large-1" />
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -381,6 +403,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Charrrrrrrrge!"/>
+        <sound value="roar-large-1" />
       </says>
       <profile name="brave"/>
       <profile name="animal"/>

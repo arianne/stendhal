@@ -30,6 +30,10 @@
       <damage rangedType="fire"/>
     </abilities>
     <ai>
+      <says>
+        <sound value="roar-dragon-1" />
+        <sound value="roar-dragon-2" />
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
