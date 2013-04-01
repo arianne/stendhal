@@ -68,7 +68,8 @@ public class HealerNPC implements ZoneConfigurator {
 				"Giants dwell in caves west of here. Good luck slaying those beasts ...");
 				addOffer("I can #concoct a #'mega potion' for you. I will need a #'giant heart' for this.");
 				addReply("mega potion", "It is a powerful elixir. If you want one, ask me to #'concoct 1 mega potion'.");
-				addReply("money", "That is your own concern. We of the cloth need not scurry around to make cash.");    
+				addReply("money", "That is your own concern. We of the cloth need not scurry around to make cash.");
+				addReply("apothecary", "Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was retreating into the mountains.");
 				addHelp("If you want to become wise like me, you should visit a library. There is much to learn and #ideas to explore.");
 				addGoodbye("Fare thee well.");
 
