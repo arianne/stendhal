@@ -28,6 +28,7 @@ These files are in the public domain:
     tiger-1:            http://www.mediacollege.com/downloads/sound-effects/animals/cat/tiger.html
     tiger-2:            http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
     toilet-flush-1:     http://soundbible.com/1657-Toilet-Flushing.html
+    undead-5:           http://www.freesound.org/people/ArriGD/sounds/144005/
     water-faucet-1		http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
     wings-flap-large-1: http://www.freesound.org/people/dave.des/sounds/127197/
     From http://www.freewebs.com/jordansroom/sounds.html:
