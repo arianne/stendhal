@@ -59,7 +59,7 @@ import java.util.Map;
  * 
  * STEPS:
  * <ul>
- * <li>Bring Klass's note and to Jameson.</li>
+ * <li>Bring note to apothecary and to Jameson.</li>
  * <li>As a favor to Klaas, Jameson will help you to strengthen your medicinal ring.</li>
  * <li>Bring Jameson a medicinal ring, venom gland, 2 mandragora and 5 fairycakes.</li>
  * <li>Jameson concocts a mixture that doubles your rings' resistance against poison.</li>
@@ -113,11 +113,11 @@ public class AntivenomRing extends AbstractQuest {
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Jameson");
         
-		// If player has Klaas's note then quest is offered
+		// If player has note to apothecary then quest is offered
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new PlayerHasItemWithHimCondition("Klaas's note"),
+				new PlayerHasItemWithHimCondition("note to apothecary"),
 				new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start"))),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from #Klaas. He has asked me to enhance a ring for you. I owe him a big favor. Will you gather the items I need?",
@@ -132,7 +132,7 @@ public class AntivenomRing extends AbstractQuest {
 				new MultipleActions(
 						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay, I need you to bring me [items]."),
-						new DropItemAction("Klaas's note")));
+						new DropItemAction("note to apothecary")));
 		
 		// Player rejects quest
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -154,7 +154,7 @@ public class AntivenomRing extends AbstractQuest {
 		// Player asks for quest without having Klass's note
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
+				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("note to apothecary")),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.",

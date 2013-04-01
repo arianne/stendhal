@@ -54,7 +54,7 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li>1000 XP</li>
- * <li>Klaas's note
+ * <li>note to apothecary
  * <li>Can sell rodent traps to Klaas</li>
  * <li>Karma: 10</li>
  * </ul>
@@ -162,7 +162,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Reward
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("rodent trap", 20));
-		reward.add(new EquipItemAction("Klaas's note", 1, true));
+		reward.add(new EquipItemAction("note to apothecary", 1, true));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
@@ -214,12 +214,12 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Player has lost note
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("Klaas's note")),
+				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("note to apothecary")),
 						new QuestCompletedCondition(QUEST_SLOT),
 						new QuestNotStartedCondition("antivenom_ring")),
 				ConversationStates.ATTENDING,
 				"You lost the note? Well, I guess I can write you up another, but be careful this time.",
-				new EquipItemAction("Klaas's note", 1, true));
+				new EquipItemAction("note to apothecary", 1, true));
 
 	}
 
