@@ -65,6 +65,7 @@ public class WizardNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am a wizard who sells #magic #scrolls. Just ask me for an #offer!");
 				addHelp("You can take powerful magic with you on your adventures with the aid of my #magic #scrolls!");
+				addReply("apothecary", "Yes, there was once an estudious man in Ados. But, due to complications with leadership there he was forced to leave. I heard that he settled somewhere in the Semos region.");
 
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 
