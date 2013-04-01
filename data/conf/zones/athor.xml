@@ -95,8 +95,6 @@
 		</implementation>
 		</entity>
 		
-		
-		
      </zone>
 
      <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
@@ -926,7 +924,7 @@
 
  <!-- Level -1 -->
 
-     <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
+    <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
       <attributes>
          <parameter name="color_method">softlight</parameter>
          <parameter name="color">#0c4774</parameter>
@@ -1045,10 +1043,18 @@ You get your stake back when there is a draw. If you win, you get the double of 
 			<parameter name="radius">8</parameter>
 		</implementation>
 		</entity>
-
-       
+        
+        <!-- Creaking ship -->
+        <entity x="0" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+            <parameter name="sound">creak-2</parameter>
+            <parameter name="min">3</parameter>
+            <parameter name="max">15</parameter>
+            <parameter name="volume">120</parameter>
+          </implementation>
+        </entity>
+        
      </zone>
-
 
   <zone name="-1_athor_island" level="-1" x="501024" y="500384" file="Level -1/athor/island.tmx">
     <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
@@ -1095,7 +1101,6 @@ You get your stake back when there is a draw. If you win, you get the double of 
      </implementation>
    </entity>
    
-
   	   	<entity x="22" y="47">
 		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 			<parameter name="sound">water-2</parameter>
@@ -1185,9 +1190,18 @@ You get your stake back when there is a draw. If you win, you get the double of 
 			<parameter name="radius">10</parameter>
 		</implementation>
 		</entity>
-
   
- </zone>
+        <!-- Creaking ship -->
+        <entity x="0" y="0">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+            <parameter name="sound">creak-2</parameter>
+            <parameter name="min">3</parameter>
+            <parameter name="max">15</parameter>
+            <parameter name="volume">120</parameter>
+          </implementation>
+        </entity>
+        
+    </zone>
 
 
  <!-- Level -3 -->
