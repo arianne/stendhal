@@ -1232,7 +1232,7 @@ below average.
 		</entity>
 		<entity x="0" y="0">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">demon_haunting</parameter>
+				<parameter name="sound">ambiance-demon-1</parameter>
 				<parameter name="volume">120</parameter>
 			</implementation>
 		</entity>
