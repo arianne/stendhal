@@ -51,6 +51,7 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	            addGreeting("Hello, welcome to my lab.");
 	            addJob("I used to be an #apothecary, but now I have retired.");
 	            addHelp("I'm sorry, but I don't think there is anything I can help you with.");
+	            addOffer("I have nothing to offer.");
 	            addReply("Klaas", "Oh yes, my good old friend. I used to travel to Athor quite often to gather the very rare #kokuda herb. I got to know Klaas very well as a result.");
 	            addReply("kokuda", "The kokuda is an herb that can only be found inside #Athor Island's labrynth");
 	            addReply("Athor", "You mean you haven't visited Athor? It is a beautiful island. A great place to get away. But stay away from the cannibals' territory. If they invite you for dinner you might never make it home.");
