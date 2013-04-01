@@ -107,22 +107,22 @@
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC5NnZGCQH+JYnAg81Mz7x0A/88jBg928UTyKRzHtMQCZHv3JQAYAAA==
+   H4sIAAAAAAAAC5NnZGCQH2DMD8Xk6hcnAg818/4x0M88cvBgN28Uj+JRTHsMAIi3rJdABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC8XT3QoBQRQH8FF2FVey+YxWSOQrIpTPWy+wbyAv4lG4WoqX8EZu/SezdVo7Zhbl1K/ZnW3/e2rPJBljqR+xIAdpiIVgRZ7oXgayIs+EKp7zimI1wBT3tPavW2wGc0j48lTVhg50ydqDBSwD8u4aeX0YkPVd3lajxwkxFXsrWAfk7d7klCGuUNDsbyO+XYOSgq3Rn5dXZ/rzx/OMgPnwqsLUM+mfv28r7PzxakATTgK/bknyDnCEC1zJPS3ZTH/an2ymZXkO3ARHkvev/s7gknddsUdrCCOfsaI/79+FLZqXZ+rzqXt+i0x9LnXZ8ADTLg7IQAYAAA==
+   H4sIAAAAAAAAC8XT7aoBURQG4KUYRdSJfEZOh0THR0Soc3z8PHMD7kBuxKXwC8VNuKPz1zu1ppZptr0HZdXTNnvnnVWz9gcRpV4kDXnIQDSARIgoGbrdy0KO8yyo4typMNYIWPwsa8PrH85sPv+BX4h78nTVgjZ0xNqFKcx88v4N8nrQF+u9vJVBj2NhwntzWPjkre/kfEJMo2jYn83vrkFZo2LQn5tXJ/P5c/IiPvPh1hfpZ9I7f89W0PlzqgFNODDn97cibws7OMFZPMtSzfSj/almWpW3hAtbKvLe1d8R9uK/e96TNYChx0jTn/vtgpbMK5D+fpre3xLp76WpClwB9WYfhUAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NggICrQHwNyr6ARQwZJEMxPnAbiO8A8V8g/gfE/5HEYKAFiOOBmJeRgYGPEcIeBRCQTYSaKVA6GogTCKhNpcg1mCCHyuYRA7YA8TYgrgTiKiQ+uWAXEO8B4logrkPiDxagzwihzYC0OSOqGCXAAmiGJRXMgQEroFnWVDAPm9+o4V8ToBmmVPQvNcESIF6KRA81AAAQqHhMQAYAAA==
+   H4sIAAAAAAAAC2NggICrQHwNyr6ARQwZJEMxPnAbiO8A8V8g/gfE/5HEYKAFiOOBuAGK4wmYOZJANhFqpkDpaCBOIKA2lSLXYIIcKptHDNgCxNuAuBKIq5D45IJdQLwHiGuBuA6JP1iAPiOENgPS5oyoYpQAC6AZllQwBwasgGZZU8E8bH6jhn9NgGaYUtG/1ARLgHgpEj3UAAAEnOQSQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoD2YAcTz8cg3QDG1gA8jA4MvIxUNJAKkUdm8DCqbh8t9rmSah8t95Jo3EEAXSxrBJkYs0IPqXQXFyGLoYBEQLwbiDUC8EYlPSwDzmw2QtmVEFSMHYPMbLv+SAgyBZhgRMGc1kWKkAuS4wwYWAPFCJHqkAwCnxB/NQAYAAA==
+   H4sIAAAAAAAAC2NgoD2YAcTz6WDPQII0KpuXQWXzcLnPlUzzcLmPXPMGAugyEidGLNCD6l0Fxchi6GAREC8G4g1AvBGJT0sA85sNkLZlRBUjB2DzGy7/kgIMgWYYETBnNZFipALkuMMGFgDxQiR6pAMAg3BbU0AGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
