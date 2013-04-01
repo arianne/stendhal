@@ -177,21 +177,29 @@ public class TrapsForKlaas extends AbstractQuest {
 				"Did you bring any #traps?",
 				null);
 		
-		// Player is not carrying 20 traps
+		// Player is not carrying any traps
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestActiveCondition(QUEST_SLOT),
-						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
+						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap"))),
 			ConversationStates.ATTENDING, 
 			"I could really use those #traps. How can I help you?",
 			null);
-
-		npc.add(
-				ConversationStates.QUEST_ITEM_BROUGHT,
+		
+		// Player is not carrying 20 traps
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
-				new PlayerHasItemWithHimCondition("rodent trap"),
+				new AndCondition(new PlayerHasItemWithHimCondition("rodent trap"),
+						new NotCondition(new PlayerHasItemWithHimCondition("rodent trap", 20))),
 				ConversationStates.ATTENDING,
+				"I'm sorry but I need 20 #rodent #traps",
+				null);
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES,
+				new PlayerHasItemWithHimCondition("rodent trap", 20),
+				ConversationStates.IDLE,
 				"Thanks! I've got to get these set up as quickly as possible. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				new MultipleActions(reward));
 
