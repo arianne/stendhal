@@ -38,6 +38,8 @@ These files are in the public domain:
         snake-cobra-1, snake-cobra-2
     From http://soundbible.com/2034-Growling-Snarling-Dogs.html
         dog-angry-low-1, dog-snarl-1, dog-snarl-2:
+    From http://www.freesound.org/people/SmallQuadruped/sounds/42201
+        growl-large-3, grunt-large-1, grunt-large-2
     
 
 These files are released under the following BSD license:
