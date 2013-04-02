@@ -696,10 +696,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="slimy-1" />
-        <sound value="slimy-2" />
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -760,10 +756,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="slimy-1" />
-        <sound value="slimy-2" />
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -816,10 +808,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="slimy-1" />
-        <sound value="slimy-2" />
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -877,10 +865,6 @@
     <equips>
     </equips>
     <ai>
-      <says>
-        <sound value="slimy-1" />
-        <sound value="slimy-2" />
-      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
