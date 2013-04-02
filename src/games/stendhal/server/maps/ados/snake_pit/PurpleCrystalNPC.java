@@ -49,7 +49,7 @@ public class PurpleCrystalNPC implements ZoneConfigurator {
 				"fright", "frightened", "afraid", "scared");
 		
 		// Message to show when player begins conversation
-		final String riddle = "What is the answer to my riddle?";
+		final String riddle = "I dare not come out and avoid the consequence. They try and convince my but I shall not. Trembling is my favorite activity. What am I?";
 		
 		// Message when player leaves conversation
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
