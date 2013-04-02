@@ -45,10 +45,10 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 		final String RIDDLE_NAME = "pink_crystal";
 		
 		// Answers to the riddle
-		final List<String> answers = Arrays.asList("love", "amor", "amour", "amity");
+		final List<String> answers = Arrays.asList("love", "amor", "amour", "amity", "compassion");
 		
 		// Message to show when player begins conversation
-		final String riddle = "What is the answer to my riddle?";
+		final String riddle = "I care for all things. I cannot be apart. If you share me I'm sure I will be reciprocated. What am I?";
 		
 		// Message when player leaves conversation
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
