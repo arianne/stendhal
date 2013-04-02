@@ -12,11 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.maps.athor.ship;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -38,8 +40,8 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 
 	private void buildNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Klaas") {
-
-			@Override
+			
+			/*@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				// to the bucket
@@ -55,7 +57,7 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				// towards the bow
 				nodes.add(new Node(22,42));
 				setPath(new FixedPath(nodes, true));
-			}
+			}*/
 
 			@Override
 			public void createDialog() {
@@ -69,7 +71,13 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 						new BuyerBehaviour(SingletonRepository.getShopList().get("buypoisons")), true);
 
 				addGoodbye("Please kill some rats on your way up!");
-			}};
+			}
+			
+			@Override
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
+			}
+		};
 
 			new AthorFerry.FerryListener() {
 
@@ -88,9 +96,10 @@ public class CargoWorkerNPC implements ZoneConfigurator  {
 				}
 			};
 
-			npc.setPosition(24, 42);
+			npc.setPosition(25, 38);
 			npc.setEntityClass("seller2npc");
 			npc.setDescription ("You see Klaas who takes care of the cargo. He hates rats!");
+			npc.setDirection(Direction.DOWN);
 			zone.add(npc);	
 	}
 }
