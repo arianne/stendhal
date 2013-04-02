@@ -4,21 +4,20 @@
 1.07
 
 *world*
-- more light on Ados market
-- more creature descriptions added
-- new achievement "feeling blue"
-- New look for mountain orc 
-- Dwarves rebuilt rails in Semos Mine
-- more creature descriptions added
-- introducing Mimics, cobra, king cobra, and lamia to the world
-- Some creatures went up to the mountains
 - Mayor Chalmers and Hazel heard of new items they could need
 - Katinka wants just the best for her animals with more food
 - Adventurers have discovered a pit full of snakes beneath Ados caves
-- Pdiddi warns first customers better
 - New dropped items: elvish hat, medicinal ring, rodent trap
 - New quest items: note to apothecary, antivenom ring
-- Nuw summonable only items: gm antitoxin ring
+- More light on Ados market
+- New achievement "feeling blue"
+- New look for mountain orc 
+- Dwarves rebuilt rails in Semos Mine
+- Introducing Mimics, cobra, king cobra, and lamia to the world
+- More sounds for creatures
+- More creature descriptions added
+- Some creatures went up to the mountains
+- Pdiddi warns first customers better
 - An apothecary has moved into a hut on Semos Mountain
 - Someone fixed the pianos in Faimouni
 - Home owners now have running water
@@ -26,15 +25,12 @@
 
 *client*
 - A lot of redrawn tilesets
-- Redrawn Pina Colada
-- more sounds for creatures
 - style changeable from settings menu
 
 *fixes*
-- Alice Farmer test implemented
+- Special character in offline messages (postman messages) work now
 - Fixed imperial defender sprite
-- Athor cocktail bar sides fixed
-- statue fixes (collisions and layer)
+- Map fixes
 
 
 1.06
