@@ -49,7 +49,7 @@ public class RedCrystalNPC implements ZoneConfigurator {
 				"hate", "hatred", "animosity");
 		
 		// Message to show when player begins conversation
-		final String riddle = "What is the answer to my riddle?";
+		final String riddle = "I burn like fire. My presence is not enjoyed. Those who test me will feel my wrath. What am I?";
 		
 		// Message when player leaves conversation
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
