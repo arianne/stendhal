@@ -4684,7 +4684,10 @@ East Tunnel: Uncharted</attribute>
      <parameter name="color_method">multiply</parameter>
      <parameter name="color">#776899</parameter>
      <parameter name="blend_method">bleach</parameter>
-   </attributes>   
+   </attributes>  
+   
+   <configurator class-name="games.stendhal.server.maps.ados.snake_pit.PurpleCrystalNPC" />
+    
    <entity x="0" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
        <parameter name="sound">sewers</parameter>

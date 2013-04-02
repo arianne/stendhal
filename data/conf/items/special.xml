@@ -140,4 +140,105 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+  <item name="crystal of anger">
+    <type class="special" subclass="crystal_red" tileid="-1" />
+    <description>You see a #crystal #of #anger.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="crystal of fear">
+    <type class="special" subclass="crystal_purple" tileid="-1" />
+    <description>You see a #crystal #of #fear.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="crystal of joy">
+    <type class="special" subclass="crystal_yellow" tileid="-1" />
+    <description>You see a #crystal #of #joy.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="crystal of love">
+    <type class="special" subclass="crystal_pink" tileid="-1" />
+    <description>You see a #crystal #of #love.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="crystal of peace">
+    <type class="special" subclass="crystal_blue" tileid="-1" />
+    <description>You see a #crystal #of #love.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
 </items>

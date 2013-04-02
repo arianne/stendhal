@@ -42,6 +42,9 @@
 
 	<zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128"
 		file="Level 0/nalwor/forest_ne.tmx">
+		
+		<configurator class-name="games.stendhal.server.maps.nalwor.forest.RedCrystalNPC" />
+		
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
@@ -874,6 +877,9 @@ below average.
 
 	<zone name="0_nalwor_river_sw" level="0" x="500128" y="500384"
 		file="Level 0/nalwor/river_sw.tmx">
+		
+		<configurator class-name="games.stendhal.server.maps.nalwor.river.PinkCrystalNPC" />
+		
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>

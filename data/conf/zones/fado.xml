@@ -1041,6 +1041,10 @@ For example say:  11  if you want the room called Water of Love.
   <destination zone="int_fado_elf_hut_3" ref="entrance"/>
  </portal>
 
+ <portal x="10" y="43" ref="hut4_entrance">
+  <destination zone="int_fado_elf_hut_4" ref="entrance"/>
+ </portal>
+
 </zone>
 
 <zone name="0_fado_forest_s_e3" level="0" x="500128" y="500640" file="Level 0/fado/forest_s_e3.tmx" accessible="false">
@@ -1066,6 +1070,13 @@ For example say:  11  if you want the room called Water of Love.
 <zone name="int_fado_elf_hut_3" file="interiors/fado/elf_hut_3.tmx">
   <portal x="9" y="19" ref="entrance">
    <destination zone="0_fado_forest_s_e2" ref="hut3_entrance"/>
+  </portal>
+</zone>
+
+<zone name="int_fado_elf_hut_4" file="interiors/fado/elf_hut_4.tmx">
+  <configurator class-name="games.stendhal.server.maps.fado.hut.BlueCrystalNPC" />
+  <portal x="9" y="19" ref="entrance">
+   <destination zone="0_fado_forest_s_e2" ref="hut4_entrance"/>
   </portal>
 </zone>
 

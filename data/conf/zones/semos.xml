@@ -13,6 +13,9 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
+		
+		<configurator class-name="games.stendhal.server.maps.semos.mountain.YellowCrystalNPC" />
+		
 		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 			<parameter name="x">77</parameter>
 			<parameter name="y">47</parameter>
