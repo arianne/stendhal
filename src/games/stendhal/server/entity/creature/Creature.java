@@ -782,14 +782,16 @@ public class Creature extends NPC {
 		if (sumAll > 1) { sumAll = 1; }
 		
 		// Checking creatures poison value
-		System.out.println("Poison probability before: " + poisoner.getProbability());
+		LOGGER.debug("Poison probability before: " + poisoner.getProbability());
 		// Checking player's antipoison value
-		System.out.println("Antipoison value = " + sumAll);
+		LOGGER.debug("Antipoison value = " + sumAll);
+		
 		if (sumAll > 0) {
 			poisoner.applyAntipoison(sumAll);
 		}
+		
 		// Checking creatures poison value after antipoison is applied
-		System.out.println("Poison probability after: " + poisoner.getProbability());
+		LOGGER.debug("Poison probability after: " + poisoner.getProbability());
 		
 		if (poisoner.attack(entity)) {
 			new GameEvent(getName(), "poison", entity.getName()).raise();
