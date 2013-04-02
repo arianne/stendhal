@@ -45,7 +45,8 @@ public class RedCrystalNPC implements ZoneConfigurator {
 		final String RIDDLE_NAME = "red_crystal";
 		
 		// Answers to the riddle
-		final List<String> answers = Arrays.asList("anger", "hostility");
+		final List<String> answers = Arrays.asList("anger", "angry", "mad", "offended", "hostility", "hostile",
+				"hate", "hatred", "animosity");
 		
 		// Message to show when player begins conversation
 		final String riddle = "What is the answer to my riddle?";

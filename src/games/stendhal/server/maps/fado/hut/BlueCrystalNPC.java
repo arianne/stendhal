@@ -45,7 +45,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		final String RIDDLE_NAME = "blue_crystal";
 		
 		// Answers to the riddle
-		final List<String> answers = Arrays.asList("peace");
+		final List<String> answers = Arrays.asList("peace", "serenity", "serene", "calmness", "calm");
 		
 		// Message to show when player begins conversation
 		final String riddle = "What is the answer to my riddle?";
