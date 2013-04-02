@@ -443,6 +443,9 @@ public final class ShopList {
 		shops.add("buypoisons", "mega poison", 500);
 		shops.add("buypoisons", "disease poison", 2000);
 
+		// Should have its own shop (buytraps)
+		shops.add("buypoisons", "rodent trap", 50);
+		
 		// Mine Town Revival Weeks Caroline
 		shops.add("sellrevivalweeks", "cherry pie", 195);
 		shops.add("sellrevivalweeks", "apple pie", 195);
