@@ -297,7 +297,8 @@
     <respawn value="3400"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,60]" probability="100.0"/>
+      <item value="money" quantity="[5,60]" probability="100.0" />
+      <item value="medicinal ring" quantity="[1,1]" probability="2.0" />
     </drops>
     <equips>
     </equips>
