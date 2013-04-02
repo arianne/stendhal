@@ -34,6 +34,8 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @author AntumDeluge
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
@@ -84,7 +86,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalbluenpc");
 		crystal.setPosition(9, 8);
 		crystal.initHP(100);
-		crystal.setDescription("You see a crystal.");
+		crystal.setDescription("You see a blue colored crystal. Somehow, your shoulders feel lighter.");
 		crystal.setResistance(0);
 		
 		// Offering a riddle

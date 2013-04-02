@@ -34,6 +34,8 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @author AntumDeluge
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
@@ -85,7 +87,7 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalyellownpc");
 		crystal.setPosition(76, 16);
 		crystal.initHP(100);
-		crystal.setDescription("You see a crystal.");
+		crystal.setDescription("You see a yellow colored crystal. What an energetic sight.");
 		crystal.setResistance(0);
 		
 		// Offering a riddle
