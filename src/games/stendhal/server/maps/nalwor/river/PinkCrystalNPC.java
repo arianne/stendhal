@@ -80,7 +80,8 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 			}
 		};
 
-		crystal.setEntityClass("invisible");
+		crystal.setEntityClass("transparentnpc");
+		crystal.setAlternativeImage("crystalpinknpc");
 		crystal.setPosition(99, 53);
 		crystal.initHP(100);
 		crystal.setDescription("You see a crystal.");

@@ -80,7 +80,8 @@ public class PurpleCrystalNPC implements ZoneConfigurator {
 			}
 		};
 
-		crystal.setEntityClass("invisible");
+		crystal.setEntityClass("transparentnpc");
+		crystal.setAlternativeImage("crystalpurplenpc");
 		crystal.setPosition(47, 64);
 		crystal.initHP(100);
 		crystal.setDescription("You see a crystal.");

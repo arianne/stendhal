@@ -80,7 +80,8 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 			}
 		};
 
-		crystal.setEntityClass("invisible");
+		crystal.setEntityClass("transparentnpc");
+		crystal.setAlternativeImage("crystalbluenpc");
 		crystal.setPosition(9, 8);
 		crystal.initHP(100);
 		crystal.setDescription("You see a crystal.");
