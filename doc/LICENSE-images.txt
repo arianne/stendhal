@@ -14,7 +14,11 @@ The following images are in the public domain:
                     http://openclipart.org/detail/173471/minerals-by-qubodup-173471
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
-    mimic.png & mimic_idle.png - Copyright 2013 Diligent Dodo
+    mimic.png & mimic_idle.png:
+        Copyright 2013 Diligent Dodo
+    rotating_crystals, crystals, crystal_red, crystal_purple, crystal_yellow, crystal_pink, crystal_blue:
+        Copyright qubodup
+        Source: http://opengameart.org/content/rotating-crystal-animation-8-step 
 
 Permission has been granted to use the image dog_small (originally called brown_puppy). See permission_dog_small_sprite.pdf.
     dog_small.xcf.bz2:  http://rpgmaker.net/media/content/users/17733/locker/brown_puppy.png
