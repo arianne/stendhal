@@ -48,7 +48,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		final List<String> answers = Arrays.asList("peace", "serenity", "serene", "calmness", "calm");
 		
 		// Message to show when player begins conversation
-		final String riddle = "What is the answer to my riddle?";
+		final String riddle = "I do not let things bother me. I never get overly energetic. Meditation is my fortay. What am I?";
 		
 		// Message when player leaves conversation
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
