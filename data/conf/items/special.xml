@@ -223,7 +223,7 @@
   
   <item name="crystal of peace">
     <type class="special" subclass="crystal_blue" tileid="-1" />
-    <description>You see a #crystal #of #love.</description>
+    <description>You see a #crystal #of #peace.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
       <quantity value="1" />
