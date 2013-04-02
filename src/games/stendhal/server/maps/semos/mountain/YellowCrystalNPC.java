@@ -49,7 +49,7 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 				"cheer", "cheery", "cheerful", "cheerfulness");
 		
 		// Message to show when player begins conversation
-		final String riddle = "What is the answer to my riddle?";
+		final String riddle = "I can't be stopped. Only positive, no negative, can exist in my heart. If you spead me life will be as sunshine. What am I?";
 		
 		// Message when player leaves conversation
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
