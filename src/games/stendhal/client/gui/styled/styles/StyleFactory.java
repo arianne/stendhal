@@ -129,6 +129,25 @@ public class StyleFactory {
 			}
 		},
 		
+		LEATHER_BLACK("Leather Black") {
+			@Override
+			Style create() {
+				Color highlight = new Color(50, 50, 50); // Dark Grey (also text shadow)
+				Color shadow = new Color(100, 100, 100); // Grey (also inactive text color)
+				Color foreground = new Color(255, 255, 255); // White
+				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
+						false, highlight, shadow, Color.white, foreground);
+				Color bhigh = new Color(255, 255, 180);
+				Color bshadow = new Color(100, 80, 20);
+				
+				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
+						bhigh, bhigh, bshadow, bshadow));
+				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
+						bhigh, bhigh, bshadow, bshadow));
+				return style;
+			}
+		},
+		
 		PARQUET_BROWN("Parquet Brown") {
 			@Override
 			Style create() {
