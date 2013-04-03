@@ -37,6 +37,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang.WordUtils;
+
 /**
  * QUEST: Emotion Crystals
  * 
@@ -70,12 +72,16 @@ public class EmotionCrystals extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "emotion_crystals";
 	
+	private final List<String> crystalColors = Arrays.asList("red", "purple", "yellow", "pink", "blue");
+	/*
 	private final List<String> requiredCrystals = Arrays.asList("red emotion crystal", "purple emotion crystal",
-			"yellow emotion crystal", "pink emotion crystal", "blue emotion crystal");
+			"yellow emotion crystal", "pink emotion crystal", "blue emotion crystal");*/
 	
 	private List<String> gatheredCrystals = new ArrayList<String>();
 	
-
+	// Amount of time, in minutes, player must wait before retrying the riddle
+	final int WAIT_TIME = 24 * 60;
+	
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -95,9 +101,9 @@ public class EmotionCrystals extends AbstractQuest {
 			boolean foundCrystal = false;
 			boolean hasAllCrystals = true;
 			
-			for (int x = 0; x < requiredCrystals.size(); x++) {
-				if (player.isEquipped(requiredCrystals.get(x))) {
-					gatheredCrystals.add(requiredCrystals.get(x));
+			for (int x = 0; x < crystalColors.size(); x++) {
+				if (player.isEquipped(crystalColors.get(x) + " emotion crystal")) {
+					gatheredCrystals.add(crystalColors.get(x) + " emotion crystal");
 					foundCrystal = true;
 				}
 				else {
@@ -125,6 +131,134 @@ public class EmotionCrystals extends AbstractQuest {
 			res.add("I gave the crystals to Julius for his wife. I got some experience and karma.");
 		}
 		return res;
+	}
+	
+	private void prepareRiddlesStep() {
+		
+		// List of NPCs
+		final List<SpeakerNPC> npcList = new ArrayList<SpeakerNPC>();
+		
+		// Add the crystals to the NPC list with their riddle
+		for (int c = 0; c < crystalColors.size(); c++) {
+			npcList.add(npcs.get(WordUtils.capitalize(crystalColors.get(c)) + " Crystal"));
+		}
+		
+		// Riddles
+		final List<String> riddles = new ArrayList<String>();
+		// Answers to riddles
+		final List<List<String>> answers = new ArrayList<List<String>>();
+		
+		// Red Crystal (crystal of anger)
+		riddles.add("I burn like fire. My presence is not enjoyed. Those who test me will feel my wrath. What am I?");
+		answers.add(Arrays.asList("anger", "angry", "mad", "offended", "hostility", "hostile", "hate", "hatred", "animosity"));
+		// Purple Crystal (crystal of fear)
+		riddles.add("I dare not come out and avoid the consequence. They try and convince my but I shall not. Trembling is my favorite activity. What am I?");
+		answers.add(Arrays.asList("fear", "fearful", "fearfullness", "fright", "frightened", "afraid", "scared"));
+		// Yellow Crystal (crystal of joy)
+		riddles.add("I can't be stopped. Only positive, no negative, can exist in my heart. If you spread me life will be as sunshine. What am I?");
+		answers.add(Arrays.asList("joy", "joyful", "joyfulness", "happy", "happiness", "happyness", "cheer", "cheery",
+						"cheerful", "cheerfulness"));
+		// Pink Crystal (crystal of love)
+		riddles.add("I care for all things. I am purest of all. If you share me I'm sure I will be reciprocated. What am I?");
+		answers.add(Arrays.asList("love", "amor", "amour", "amity", "compassion"));
+		// Blue Crystal (crystal of peace)
+		riddles.add("I do not let things bother me. I never get overly energetic. Meditation is my fortay. What am I?");
+		answers.add(Arrays.asList("peace", "peaceful", "peacefullness", "serenity", "serene", "calmness", "calm"));
+		
+		// Add conversation states
+		for (int n = 0; n < npcList.size(); n++)
+		{
+			SpeakerNPC crystalNPC = npcList.get(n);
+			String rewardItem = crystalColors.get(n) + " emotion crystal";
+			String crystalRiddle = riddles.get(n); 
+			List<String> crystalAnswers = answers.get(n);
+			
+			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
+			rewardAction.add(new EquipItemAction(rewardItem));
+			rewardAction.add(new IncreaseKarmaAction(5));
+			
+			// The player speaks to crystal and receives riddle
+			crystalNPC.add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					crystalRiddle,
+					null);
+			
+			// Player says "bye"
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.GOODBYE_MESSAGES,
+					null,
+					ConversationStates.IDLE,
+					"Farewell, return to me when you have found the answer to my riddle.",
+					null);
+			
+			// Player gets the riddle right
+			crystalNPC.add(ConversationStates.ATTENDING,
+					crystalAnswers,
+					null,
+					ConversationStates.IDLE,
+					"That is correct. Take this crystal as a reward",
+					new MultipleActions(rewardAction));
+			
+			// Player gets the riddle wrong
+			crystalNPC.add(ConversationStates.ATTENDING,
+					"",
+					null,
+					ConversationStates.IDLE,
+					"I'm sorry, that is incorrect.",
+					null);
+			
+			// Player returns before time is up
+			
+			// Player already has crystal reward
+			crystalNPC.add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new PlayerHasItemWithHimCondition(rewardItem),
+					ConversationStates.IDLE,
+					"I have nothing left to offer you.",
+					null);
+			
+			// Player asks for quest
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"If you solve my #riddle you shall have your reward.",
+					null);
+			
+			// Player asks about riddle
+			crystalNPC.add(ConversationStates.ATTENDING,
+					Arrays.asList("riddle", "question", "query", "puzzle"),
+					null,
+					ConversationStates.ATTENDING,
+					crystalRiddle,
+					null);
+			
+			// Player asks about job
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.JOB_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I am a crystal. What more can I say?",
+					null);
+			
+			// Player asks for help
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.HELP_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I cannot offer help, but I can offer a #riddle",
+					null);
+			
+			// Player asks for offer
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.OFFER_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I will offer you up this #riddle.",
+					null);
+		}
 	}
 
 	private void prepareRequestingStep() {
@@ -197,8 +331,8 @@ public class EmotionCrystals extends AbstractQuest {
 		
 		// Reward
 		final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
-		for (int x = 0; x < requiredCrystals.size(); x++) {
-			rewardAction.add(new DropItemAction(requiredCrystals.get(x)));
+		for (int x = 0; x < crystalColors.size(); x++) {
+			rewardAction.add(new DropItemAction(crystalColors.get(x) + " emotion crystal"));
 		}
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
@@ -257,6 +391,7 @@ public class EmotionCrystals extends AbstractQuest {
 				"Emotion Crystals",
 				"Julius wants to cheer up his wife.",
 				false);
+		prepareRiddlesStep();
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
