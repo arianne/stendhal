@@ -14,6 +14,7 @@
 	<group uri="items/drinks.xml"/>
     <group uri="items/flowers.xml"/>
 	<group uri="items/food.xml"/>
+	<group uri="items/gems.xml"/>
 	<group uri="items/helmets.xml"/>
 	<group uri="items/herbs.xml"/>
 	<group uri="items/jewellery.xml"/>
