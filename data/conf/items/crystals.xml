@@ -84,7 +84,7 @@
   
   <item name="blue emotion crystal">
     <type class="crystal" subclass="crystal_blue" tileid="-1" />
-    <description>You see a #blue #emotion #crystal. While holding it your worries seem to desappear.</description>
+    <description>You see a #blue #emotion #crystal. While holding it your worries seem to disappear.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
       <quantity value="1" />
