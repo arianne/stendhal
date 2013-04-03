@@ -282,7 +282,7 @@ public class EmotionCrystals extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"I don't get to see my wife very often because I am so busy gaurding this entrance. I would like to do something for her. Would you help me?",
+			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
 			null);
 		
 		// Player asks for quest after completed
@@ -326,7 +326,7 @@ public class EmotionCrystals extends AbstractQuest {
 			Arrays.asList("emotion", "emotions"),
 			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Don't you know what emotions are? Surely you've experienct joy or sadness.",
+			"Don't you know what emotions are? Surely you've experienced joy or sadness.",
 			null);
 		
 		// Player asks about crystals
@@ -335,7 +335,7 @@ public class EmotionCrystals extends AbstractQuest {
 			Arrays.asList("crystal", "crystals", "emotion crystal", "emotion crystals", "emotions crystal", "emotions crystals"),
 			null,
 			ConversationStates.ATTENDING,
-			"I've heard that there crystals scattered throughout Faimouni, special crystals that can bring out any emotion.",
+			"I've heard that there are crystals scattered throughout Faimouni, special crystals that can bring out any emotion.",
 			null);
 	}
 
@@ -384,7 +384,7 @@ public class EmotionCrystals extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
-				"Thanks you so much! I'm sure these will make my wife feel much better. Please, take these stone legs as a reward.",
+				"Thank you so much! I'm sure these will make my wife feel much better. Please, take these stone legs as a reward.",
 				new MultipleActions(rewardAction));
 		
 		// Player says "no" (has not brought crystals)
