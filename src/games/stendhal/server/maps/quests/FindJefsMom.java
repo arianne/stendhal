@@ -234,7 +234,7 @@ public class FindJefsMom extends AbstractQuest {
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"), new PlayerHasItemWithHimCondition("zantedeschia")),
 				ConversationStates.ATTENDING, null,
 				new MultipleActions(new DropItemAction("zantedeschia"),
-                                    new IncreaseXPAction(5000),
+                                    new IncreaseXPAction(800),
                                     new IncreaseKarmaAction(15),
 									addRandomNumberOfItemsAction,                       
 									new IncrementQuestAction(QUEST_SLOT, 2, 1),
