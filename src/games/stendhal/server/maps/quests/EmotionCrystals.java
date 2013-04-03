@@ -91,6 +91,7 @@ public class EmotionCrystals extends AbstractQuest {
 			res.add("I promised to gather crystals from all across Faimouni.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start")) {
+			gatheredCrystals.clear();
 			boolean foundCrystal = false;
 			boolean hasAllCrystals = true;
 			
