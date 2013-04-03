@@ -84,9 +84,10 @@ public class StyleFactory {
 			@Override
 			Style create() {
 				Color highlight = new Color(219, 191, 130);
-				Color shadow = new Color(134, 106, 45);
+				Color shadow = new Color(36, 14, 0); // Light brown (also inactive text)
 				PixmapStyle style = new PixmapStyle("data/gui/panel_brick_brown_001.png",
 						false, highlight, shadow, Color.white, Color.white);
+				// Border
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 						highlight, highlight, shadow, shadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
