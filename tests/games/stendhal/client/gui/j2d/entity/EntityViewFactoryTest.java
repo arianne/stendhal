@@ -58,6 +58,7 @@ public class EntityViewFactoryTest {
 		assertEquals(EntityViewFactory.getViewClass("area", null, null),  InvisibleEntity2DView.class);
 		
 	    assertEquals(EntityViewFactory.getViewClass("item", "special", "mithril clasp"), Item2DView.class);
+		assertEquals(EntityViewFactory.getViewClass("item", "crystal", null),  Item2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("item", null, null),  Item2DView.class);
 		assertEquals(EntityViewFactory.getViewClass("npc", null, null), NPC2DView.class);
 		

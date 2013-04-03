@@ -10,11 +10,11 @@
 	<group uri="items/cloaks.xml"/>
 	<group uri="items/clubs.xml"/>
 	<group uri="items/containers.xml"/>
+	<group uri="items/crystals.xml"/>
 	<group uri="items/documents.xml"/>
 	<group uri="items/drinks.xml"/>
     <group uri="items/flowers.xml"/>
 	<group uri="items/food.xml"/>
-	<group uri="items/gems.xml"/>
 	<group uri="items/helmets.xml"/>
 	<group uri="items/herbs.xml"/>
 	<group uri="items/jewellery.xml"/>

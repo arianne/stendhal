@@ -89,7 +89,7 @@ public class JItem extends javax.swing.JFrame {
 
 		itemClass.setModel(new javax.swing.DefaultComboBoxModel(
 				new String[] { "ammunition", "armor", "axe", "book", "boots",
-						"box", "cloak", "club", "container", "CVS", "drink",
+						"box", "cloak", "club", "container", "crystal", "CVS", "drink",
 						"food", "grower", "helmet", "herb", "jewellery", "key",
 						"legs", "misc", "missile", "money", "projectiles",
 						"ranged", "resource", "ring", "scent", "scroll",

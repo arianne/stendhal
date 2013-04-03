@@ -3,7 +3,7 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
   
   <item name="crystal of anger">
-    <type class="gem" subclass="crystal_red" tileid="-1" />
+    <type class="crystal" subclass="crystal_red" tileid="-1" />
     <description>You see a #crystal #of #anger.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
@@ -23,7 +23,7 @@
   </item>
   
   <item name="crystal of fear">
-    <type class="gem" subclass="crystal_purple" tileid="-1" />
+    <type class="crystal" subclass="crystal_purple" tileid="-1" />
     <description>You see a #crystal #of #fear.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
@@ -43,7 +43,7 @@
   </item>
   
   <item name="crystal of joy">
-    <type class="gem" subclass="crystal_yellow" tileid="-1" />
+    <type class="crystal" subclass="crystal_yellow" tileid="-1" />
     <description>You see a #crystal #of #joy.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
@@ -63,7 +63,7 @@
   </item>
   
   <item name="crystal of love">
-    <type class="gem" subclass="crystal_pink" tileid="-1" />
+    <type class="crystal" subclass="crystal_pink" tileid="-1" />
     <description>You see a #crystal #of #love.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
@@ -83,7 +83,7 @@
   </item>
   
   <item name="crystal of peace">
-    <type class="gem" subclass="crystal_blue" tileid="-1" />
+    <type class="crystal" subclass="crystal_blue" tileid="-1" />
     <description>You see a #crystal #of #peace.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
