@@ -984,21 +984,23 @@ public class j2DClient implements UserInterface {
 		list.add(edit);
 
 		// ** Main channel **
-		// Compatibility hack. Sets the default string for main channel from
-		// the old configuration values.
-		String mainDefault = "";
+		// Follow settings changes for the main channel
 		WtWindowManager wm = WtWindowManager.getInstance();
-		if (!Boolean.parseBoolean(wm.getProperty("ui.healingmessage", "false"))) {
-			mainDefault += NotificationType.HEAL;
-		}
-		if (!Boolean.parseBoolean(wm.getProperty("ui.poisonmessage", "false"))) {
-			if (!"".equals(mainDefault)) {
-				mainDefault += ",";
+		final NotificationChannel mainChannel = new NotificationChannel("Main", edit, true, "");
+		wm.registerSettingChangeListener("ui.healingmessage", new SettingChangeAdapter("ui.healingmessage", "false") {
+			@Override
+			public void changed(String newValue) {
+				mainChannel.setTypeFiltering(NotificationType.HEAL, Boolean.parseBoolean(newValue));
 			}
-			mainDefault += NotificationType.POISON;
-		}
+		});
+		wm.registerSettingChangeListener("ui.poisonmessage", new SettingChangeAdapter("ui.poisonmessage", "false") {
+			@Override
+			public void changed(String newValue) {
+				mainChannel.setTypeFiltering(NotificationType.POISON, Boolean.parseBoolean(newValue));
+			}
+		});
 
-		channelManager.addChannel(new NotificationChannel("Main", edit, true, mainDefault));
+		channelManager.addChannel(mainChannel);
 
 		// ** Private channel **
 		edit = new KTextEdit();
