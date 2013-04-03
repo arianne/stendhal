@@ -156,10 +156,12 @@ public class StyleFactory {
 				Color shadow = new Color(90, 38, 0);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_parquet_brown_001.png",
 						false, shadow, highlight, Color.white, Color.white);
+				
+				// Border
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, highlight, shadow, shadow));
+						Color.white, highlight, shadow, Color.black));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, highlight, shadow, shadow));
+						Color.white, highlight, shadow, Color.black));
 				
 				return style;
 			}
