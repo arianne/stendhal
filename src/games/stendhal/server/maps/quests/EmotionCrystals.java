@@ -70,8 +70,8 @@ public class EmotionCrystals extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "emotion_crystals";
 	
-	private final List<String> requiredCrystals = Arrays.asList("crystal of anger", "crystal of fear",
-			"crystal of joy", "crystal of love", "crystal of peace");
+	private final List<String> requiredCrystals = Arrays.asList("red emotion crystal", "purple emotion crystal",
+			"yellow emotion crystal", "pink emotion crystal", "blue emotion crystal");
 	
 	private List<String> gatheredCrystals = new ArrayList<String>();
 	
@@ -196,11 +196,9 @@ public class EmotionCrystals extends AbstractQuest {
 		
 		// Reward
 		final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
-		rewardAction.add(new DropItemAction("crystal of anger"));
-		rewardAction.add(new DropItemAction("crystal of fear"));
-		rewardAction.add(new DropItemAction("crystal of joy"));
-		rewardAction.add(new DropItemAction("crystal of love"));
-		rewardAction.add(new DropItemAction("crystal of peace"));
+		for (int x = 0; x < requiredCrystals.size(); x++) {
+			rewardAction.add(new DropItemAction(requiredCrystals.get(x)));
+		}
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
 		rewardAction.add(new IncreaseKarmaAction(15));
@@ -211,11 +209,11 @@ public class EmotionCrystals extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
-						new PlayerHasItemWithHimCondition("crystal of anger"),
-						new PlayerHasItemWithHimCondition("crystal of fear"),
-						new PlayerHasItemWithHimCondition("crystal of joy"),
-						new PlayerHasItemWithHimCondition("crystal of love"),
-						new PlayerHasItemWithHimCondition("crystal of peace")),
+						new PlayerHasItemWithHimCondition("red emotion crystal"),
+						new PlayerHasItemWithHimCondition("purple emotion crystal"),
+						new PlayerHasItemWithHimCondition("yellow emotion crystal"),
+						new PlayerHasItemWithHimCondition("pink emotion crystal"),
+						new PlayerHasItemWithHimCondition("blue emotion crystal")),
 				ConversationStates.QUEST_ITEM_BROUGHT, 
 				"Did you bring the crystals?",
 				null);
@@ -224,11 +222,11 @@ public class EmotionCrystals extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						new OrCondition(new NotCondition(new PlayerHasItemWithHimCondition("crystal of anger")),
-								new NotCondition(new PlayerHasItemWithHimCondition("crystal of fear")),
-								new NotCondition(new PlayerHasItemWithHimCondition("crystal of joy")),
-								new NotCondition(new PlayerHasItemWithHimCondition("crystal of love")),
-								new NotCondition(new PlayerHasItemWithHimCondition("crystal of peace")))),
+						new OrCondition(new NotCondition(new PlayerHasItemWithHimCondition("red emotion crystal")),
+								new NotCondition(new PlayerHasItemWithHimCondition("purple emotion crystal")),
+								new NotCondition(new PlayerHasItemWithHimCondition("yellow emotion crystal")),
+								new NotCondition(new PlayerHasItemWithHimCondition("pink emotion crystal")),
+								new NotCondition(new PlayerHasItemWithHimCondition("blue emotion crystal")))),
 			ConversationStates.ATTENDING, 
 			"Please bring me all the emotion crystals you can find.",
 			null);
@@ -238,7 +236,7 @@ public class EmotionCrystals extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
-				"Thanks you so much! I'm sure these will make my wife feel much better.",
+				"Thanks you so much! I'm sure these will make my wife feel much better. Please, take these stone legs as a reward.",
 				new MultipleActions(rewardAction));
 		
 		// Player says "no" (has not brought crystals)

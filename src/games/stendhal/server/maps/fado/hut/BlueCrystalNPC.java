@@ -56,7 +56,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		final String goodbyeMessage = "Farewell, return to me when you have found the answer to my riddle.";
 		
 		// Item given as reward for answering the riddle
-		final String rewardItem = "crystal of peace";
+		final String rewardItem = "blue emotion crystal";
 		
 		// Reward for getting riddle right
 		final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
