@@ -9,19 +9,22 @@
 - Adventurers have discovered a pit full of snakes beneath Ados caves
 - New dropped items: elvish hat, medicinal ring, rodent trap
 - New quest items: note to apothecary, antivenom ring
-- More light on Ados market
-- New achievement "feeling blue"
+- More light on Ados market, around Athor island and more light effects 
 - New look for mountain orc 
 - Dwarves rebuilt rails in Semos Mine
 - Introducing Mimics, cobra, king cobra, and lamia to the world
 - More sounds for creatures
 - More creature descriptions added
 - Some creatures went up to the mountains
-- Pdiddi warns first customers better
+- Pdiddi warns first customers about the risk of his pills
 - An apothecary has moved into a hut on Semos Mountain
-- Someone fixed the pianos in Faimouni
+- Someone fixed the pianos and clocks in Faimouni
 - Home owners now have running water
 - Athor's ferry has begun "creaking". Probably due to old age.
+- Jef feels better but still wants to hear from his mom
+- Pushable stone blocks have been spotted
+- Background music in hell underlines atmosphere
+- Growing cherry trees spotted on Orril Mountain
 
 *client*
 - A lot of redrawn tilesets
@@ -30,7 +33,7 @@
 *fixes*
 - Special character in offline messages (postman messages) work now
 - Fixed imperial defender sprite
-- Map fixes
+- Map fixes (e.g. collision errors and layers)
 
 
 1.06
