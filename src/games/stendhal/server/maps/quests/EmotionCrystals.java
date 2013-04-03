@@ -205,7 +205,7 @@ public class EmotionCrystals extends AbstractQuest {
 					crystalAnswers,
 					null,
 					ConversationStates.IDLE,
-					"That is correct. Take this crystal as a reward",
+					"That is correct. Take this crystal as a reward.",
 					new MultipleActions(rewardAction));
 			
 			// Player gets the riddle wrong
