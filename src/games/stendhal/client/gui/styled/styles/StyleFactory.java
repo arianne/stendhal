@@ -152,16 +152,16 @@ public class StyleFactory {
 		PARQUET_BROWN("Parquet Brown") {
 			@Override
 			Style create() {
-				Color highlight = new Color(225, 173, 110);
-				Color shadow = new Color(90, 38, 0);
+				Color highlight = new Color(59, 25, 0); // Dark brwon
+				Color shadow = new Color(225, 173, 110);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_parquet_brown_001.png",
-						false, shadow, highlight, Color.white, Color.white);
+						false, highlight, shadow, Color.white, Color.white);
 				
 				// Border
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						Color.white, highlight, shadow, Color.black));
+						Color.white, shadow, highlight, Color.black));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						Color.white, highlight, shadow, Color.black));
+						Color.white, shadow, highlight, Color.black));
 				
 				return style;
 			}
