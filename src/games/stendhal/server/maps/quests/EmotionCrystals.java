@@ -87,49 +87,63 @@ public class EmotionCrystals extends AbstractQuest {
 	
 	@Override
 	public List<String> getHistory(final Player player) {
+		
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
-		res.add("I have talked to Julius, the soldier that guards the entrance to Ados.");
+		
 		final String questState = player.getQuest(QUEST_SLOT);
-		if ("rejected".equals(questState)) {
-			res.add("I'm emotionally incapable.");
+		
+		// Only include Julius in the quest log if player has spoken to him
+		if (player.isQuestInState(QUEST_SLOT, "start") || player.isQuestInState(QUEST_SLOT,  "rejected")) {
+			res.add("I have talked to Julius, the soldier that guards the entrance to Ados.");
+			if ("rejected".equals(questState)) {
+				res.add("I'm emotionally incapable and have rejected his request.");
+			}
+			else {
+				res.add("I promised to gather crystals from all across Faimouni.");
+			}
 		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I promised to gather crystals from all across Faimouni.");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start")) {
-			gatheredCrystals.clear();
-			boolean foundCrystal = false;
-			boolean hasAllCrystals = true;
+		
+		gatheredCrystals.clear();
+		boolean foundCrystal = false;
+		boolean hasAllCrystals = true;
+		
+		for (int x1 = 0; x1 < crystalColors.size(); x1++) {
 			
-			for (int x = 0; x < crystalColors.size(); x++) {
-				if (player.isEquipped(crystalColors.get(x) + " emotion crystal")) {
-					gatheredCrystals.add(crystalColors.get(x) + " emotion crystal");
-					foundCrystal = true;
-				}
-				else {
-					hasAllCrystals = false;
-				}
+			if (player.isEquipped(crystalColors.get(x1) + " emotion crystal")) {
+				gatheredCrystals.add(crystalColors.get(x1) + " emotion crystal");
+				foundCrystal = true;
 			}
-			if (foundCrystal) {
-				String tell = "I have found the following crystals: ";
-				for (int x = 0; x < gatheredCrystals.size(); x++) {
-					// First crystal will be on a new line and not have ","
-					if (x == 0) {
-						tell += gatheredCrystals.get(x);
-						}
-					else {
-						tell += ", " + gatheredCrystals.get(x);
-					}
-				}
-				res.add(tell);
-			}
-			if (hasAllCrystals) {
-				res.add("I have obtained all of the emotion crystals");
+			else {
+				hasAllCrystals = false;
 			}
 		}
+		if (foundCrystal) {
+			String tell = "I have found the following crystals: ";
+			for (int x2 = 0; x2 < gatheredCrystals.size(); x2++) {
+				// First crystal will not be preceded by ","
+				if (x2 == 0) {
+					tell += gatheredCrystals.get(x2);
+					}
+				else {
+					tell += ", " + gatheredCrystals.get(x2);
+				}
+			}
+			res.add(tell);
+		}
+		
+		if (hasAllCrystals) {
+			res.add("I have obtained all of the emotion crystals");
+			if (player.isQuestInState(QUEST_SLOT, "start")) {
+				res.add("I should bring them to Julius.");
+			}
+			else {
+				res.add("I should find someone who can use them.");
+			}
+		}
+		
 		if ("done".equals(questState)) {
 			res.add("I gave the crystals to Julius for his wife. I got some experience and karma.");
 		}
@@ -177,12 +191,12 @@ public class EmotionCrystals extends AbstractQuest {
 			List<String> crystalAnswers = answers.get(n);
 			
 			// In place of QUEST_SLOT
-			String RIDDLER_SLOT = crystalColors.get(n) + "_crystal_riddle";
+			//String RIDDLER_SLOT = crystalColors.get(n) + "_crystal_riddle";
 			
 			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
 			rewardAction.add(new EquipItemAction(rewardItem));
 			rewardAction.add(new IncreaseKarmaAction(5));
-			rewardAction.add(new SetQuestToTimeStampAction(RIDDLER_SLOT, 1));
+			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
 			
 			// The player speaks to crystal and receives riddle
 			crystalNPC.add(ConversationStates.IDLE,
@@ -214,15 +228,15 @@ public class EmotionCrystals extends AbstractQuest {
 					null,
 					ConversationStates.IDLE,
 					"I'm sorry, that is incorrect.",
-					new SetQuestToTimeStampAction(RIDDLER_SLOT, 1));
+					new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
 			
 			// Player returns before time is up
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new NotCondition(new TimePassedCondition(RIDDLER_SLOT, 1, WAIT_TIME)),
+					new NotCondition(new TimePassedCondition(QUEST_SLOT, n+1, WAIT_TIME)),
 					ConversationStates.IDLE,
 					null,
-					new SayTimeRemainingAction(RIDDLER_SLOT, 1, WAIT_TIME, "Think hard on your answer and return to me again in"));
+					new SayTimeRemainingAction(QUEST_SLOT, n+1, WAIT_TIME, "Think hard on your answer and return to me again in"));
 			
 			// Player can do riddle but already has crystal reward
 			crystalNPC.add(ConversationStates.IDLE,
@@ -350,13 +364,13 @@ public class EmotionCrystals extends AbstractQuest {
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
 		rewardAction.add(new IncreaseKarmaAction(15));
-		rewardAction.add(new SetQuestAction(QUEST_SLOT, "done"));
+		rewardAction.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		
 		// Player has all crystals
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
-						new QuestActiveCondition(QUEST_SLOT),
+						new QuestInStateCondition(QUEST_SLOT, "start"),
 						new PlayerHasItemWithHimCondition("red emotion crystal"),
 						new PlayerHasItemWithHimCondition("purple emotion crystal"),
 						new PlayerHasItemWithHimCondition("yellow emotion crystal"),
@@ -369,8 +383,10 @@ public class EmotionCrystals extends AbstractQuest {
 		// Player is not carrying all the crystals
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						new OrCondition(new NotCondition(new PlayerHasItemWithHimCondition("red emotion crystal")),
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new OrCondition(
+								new NotCondition(new PlayerHasItemWithHimCondition("red emotion crystal")),
 								new NotCondition(new PlayerHasItemWithHimCondition("purple emotion crystal")),
 								new NotCondition(new PlayerHasItemWithHimCondition("yellow emotion crystal")),
 								new NotCondition(new PlayerHasItemWithHimCondition("pink emotion crystal")),
@@ -402,7 +418,7 @@ public class EmotionCrystals extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Emotion Crystals",
-				"Julius wants to cheer up his wife.",
+				"Solve the riddles of the crystals spread across Faimouni.",
 				false);
 		prepareRiddlesStep();
 		prepareRequestingStep();
