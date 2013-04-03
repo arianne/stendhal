@@ -20,8 +20,10 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -29,6 +31,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -79,7 +82,7 @@ public class EmotionCrystals extends AbstractQuest {
 	
 	private List<String> gatheredCrystals = new ArrayList<String>();
 	
-	// Amount of time, in minutes, player must wait before retrying the riddle
+	// Amount of time, in minutes, player must wait before retrying the riddle (24 hours)
 	final int WAIT_TIME = 24 * 60;
 	
 	@Override
@@ -173,9 +176,13 @@ public class EmotionCrystals extends AbstractQuest {
 			String crystalRiddle = riddles.get(n); 
 			List<String> crystalAnswers = answers.get(n);
 			
+			// In place of QUEST_SLOT
+			String RIDDLER_SLOT = crystalColors.get(n) + "_crystal_riddle";
+			
 			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
 			rewardAction.add(new EquipItemAction(rewardItem));
 			rewardAction.add(new IncreaseKarmaAction(5));
+			rewardAction.add(new SetQuestToTimeStampAction(RIDDLER_SLOT, 1));
 			
 			// The player speaks to crystal and receives riddle
 			crystalNPC.add(ConversationStates.IDLE,
@@ -207,11 +214,17 @@ public class EmotionCrystals extends AbstractQuest {
 					null,
 					ConversationStates.IDLE,
 					"I'm sorry, that is incorrect.",
-					null);
+					new SetQuestToTimeStampAction(RIDDLER_SLOT, 1));
 			
 			// Player returns before time is up
+			crystalNPC.add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new NotCondition(new TimePassedCondition(RIDDLER_SLOT, 1, WAIT_TIME)),
+					ConversationStates.IDLE,
+					null,
+					new SayTimeRemainingAction(RIDDLER_SLOT, 1, WAIT_TIME, "Think hard on your answer and return to me again in"));
 			
-			// Player already has crystal reward
+			// Player can do riddle but already has crystal reward
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new PlayerHasItemWithHimCondition(rewardItem),
