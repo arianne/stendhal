@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -291,14 +292,6 @@ public class EmotionCrystals extends AbstractQuest {
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Julius");
 		
-		// Player asks for quest
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
-			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
-			null);
-		
 		// Player asks for quest after completed
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
@@ -315,6 +308,14 @@ public class EmotionCrystals extends AbstractQuest {
 				"I believe I already asked you to do something for me",
 				null);
 		
+		// Player asks for quest
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, 
+			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
+			null);
+		
 		// Player accepts quest
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -322,7 +323,9 @@ public class EmotionCrystals extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. I would like to gather the #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "start"),
+					new IncreaseKarmaAction(5)));
 		
 		// Player rejects quest
 		npc.add(
@@ -332,7 +335,9 @@ public class EmotionCrystals extends AbstractQuest {
 			// Klaas walks away
 			ConversationStates.IDLE,
 			"Hmph!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+			new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+					new DecreaseKarmaAction(5)));
 		
 		// Player asks about emotions
 		npc.add(
