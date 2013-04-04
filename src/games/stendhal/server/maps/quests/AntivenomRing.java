@@ -120,7 +120,7 @@ public class AntivenomRing extends AbstractQuest {
 				new PlayerHasItemWithHimCondition("note to apothecary"),
 				new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start"))),
 				ConversationStates.QUEST_OFFERED, 
-				"Oh, a message from #Klaas. He has asked me to enhance a ring for you. I owe him a big favor. Will you gather the items I need?",
+				"Oh, a message from #Klaas. Is that for me?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
         
 		// Player accepts quest
@@ -131,7 +131,7 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				new MultipleActions(
 						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay, I need you to bring me [items]."),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items]."),
 						new DropItemAction("note to apothecary")));
 		
 		// Player rejects quest
