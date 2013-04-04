@@ -34,6 +34,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -181,7 +182,7 @@ class StyleSettings {
 	 */
 	private void toggleComponents(Container container) {
 		boolean custom = false;
-		
+		/*
 		if (this.customStyleSelector.isSelected()) {
 			custom = true;
 		}
@@ -198,7 +199,7 @@ class StyleSettings {
 			if (c instanceof Container) {
 				toggleComponents((Container) c);
 			}
-		}
+		}*/
 	}
 	
 	/**
@@ -213,7 +214,7 @@ class StyleSettings {
 		JComponent styleBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		styleBox.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
-		
+		/*
 		// Button group for selecting between defined and custom styles
 		definedStyleSelector = new JRadioButton("Use a pre-defined style", true);
 		customStyleSelector = new JRadioButton("Use a custom style");
@@ -221,6 +222,7 @@ class StyleSettings {
 		
 		// Defined style selector
 		styleTypeSelection.add(definedStyleSelector);
+		*/
 		JComponent definedStylesHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		JLabel selectorLabel = new JLabel("Client style:");
 		selectorLabel.setName("defined");
@@ -230,10 +232,10 @@ class StyleSettings {
 		definedStylesHBox.add(selector);
 		definedStylesHBox.setToolTipText("<html>The style used to draw the controls in the game client."
 				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
-		
-		styleBox.add(definedStyleSelector);
+		/*
+		styleBox.add(definedStyleSelector);*/
 		styleBox.add(definedStylesHBox);
-		
+		/*
 		// Custom style options
 		styleTypeSelection.add(customStyleSelector);
 		styleBox.add(customStyleSelector);
@@ -273,9 +275,6 @@ class StyleSettings {
 		bgSelectorHBox.add(bgSelectorButton);
 		bgSelectorHBox.add(bgSelectorInput);
 		
-/*		customStyleObjects.add(bgSelectorText);
-		customStyleObjects.add(bgSelectorHBox);*/
-		
 		styleBox.add(bgSelectorText);
 		styleBox.add(bgSelectorHBox);
 		
@@ -303,7 +302,7 @@ class StyleSettings {
 						toggleComponents(colorsPanel);
 					}
 				});
-		
+		*/
 		return styleBox;
 	}
 	
@@ -433,12 +432,13 @@ class StyleSettings {
 		return !currentSetting.equals(DEFAULT_FONT);
 	}
 	
-	private Color selectBGImage() {
+	private String selectBGImage() {
 		JFileChooser bgSelector = new JFileChooser();
 		bgSelector.setDialogType(JFileChooser.OPEN_DIALOG | JFileChooser.FILES_ONLY);
 		bgSelector.setDialogTitle("Select an image to use for the client background");
 		//bgSelector.createDialog(this.page);
 		
-		return Color.white;
+		// Returning null until I figure out how to use JFileChooser
+		return null;
 	}
 }
