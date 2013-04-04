@@ -706,7 +706,7 @@
 			<attribute name="height">4</attribute>
 		</entity>
 		
-		<entity x="21" y="5">
+		<entity x="21" y="15">
 			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
 			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
 			<attribute name="width">1</attribute>
