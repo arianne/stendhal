@@ -1596,6 +1596,17 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
+    <!-- piano sound effect -->
+     <entity x="20" y="14">
+            <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+              <parameter name="sound">piano-1</parameter>
+              <parameter name="radius">40</parameter>
+            </implementation>
+            <attribute name="width">2</attribute>
+            <attribute name="height">2</attribute>
+            <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+      </entity>
+          
 	<portal x="12" y="23" ref="entrance">
 		<destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
 	</portal>
