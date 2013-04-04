@@ -22,21 +22,37 @@ import games.stendhal.client.gui.styled.styles.StyleFactory;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
+import games.stendhal.tools.colorselector.ColorSelector;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import org.h2.util.Utils;
 
 /**
  * Page for style settings.
@@ -44,6 +60,13 @@ import javax.swing.UIManager;
 class StyleSettings {
 	private static final String STYLE_PROPERTY = "ui.style";
 	private static final String DEFAULT_STYLE = "Wood (default)";
+
+	/** Containers that have components to be toggled */
+	//private JPanel colorsPanel;
+	
+	/** Buttons for selecting either defined styles or custom styles */
+	private JRadioButton definedStyleSelector;
+	private JRadioButton customStyleSelector;
 	
 	/** Default decorative font. */
 	private static final String DEFAULT_FONT = "BlackChancery";
@@ -76,16 +99,10 @@ class StyleSettings {
 		
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		
-		// Style selector
-		JComponent hbox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		JComponent selectorLabel = new JLabel("Client style:");
-		hbox.add(selectorLabel);
-		JComponent selector = createStyleSelector();
-		hbox.add(selector);
-		hbox.setToolTipText("<html>The style used to draw the controls in the game client."
-				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
-		page.add(hbox);
-		page.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
+		page.add(createStyleTypeSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		
+		// Disable widgets not in use
+		toggleComponents(page);
 		
 		// Lighting effects
 		JCheckBox mapColoring = SettingsComponentFactory.createSettingsToggle(MAP_COLOR_PROPERTY, "true",
@@ -157,6 +174,137 @@ class StyleSettings {
 		});
 		
 		return selector;
+	}
+	
+	/**
+	 * Disables widgets not being used
+	 */
+	private void toggleComponents(Container container) {
+		boolean custom = false;
+		
+		if (this.customStyleSelector.isSelected()) {
+			custom = true;
+		}
+		
+		Component[] components = container.getComponents();
+		
+		for (Component c : components) {
+			if (c.getName() == "defined") {
+				c.setEnabled(!custom);
+			}
+			else if (c.getName() == "custom") {
+				c.setEnabled(custom);
+			}
+			if (c instanceof Container) {
+				toggleComponents((Container) c);
+			}
+		}
+	}
+	
+	/**
+	 * Create selector for choosing between defined and custom styles
+	 * 
+	 * @return layout for styles widgets
+	 */
+	private JComponent createStyleTypeSelector() {
+		int pad = SBoxLayout.COMMON_PADDING;
+		
+		// Styles
+		JComponent styleBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		styleBox.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
+				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
+		
+		// Button group for selecting between defined and custom styles
+		definedStyleSelector = new JRadioButton("Use a pre-defined style", true);
+		customStyleSelector = new JRadioButton("Use a custom style");
+		ButtonGroup styleTypeSelection = new ButtonGroup();
+		
+		// Defined style selector
+		styleTypeSelection.add(definedStyleSelector);
+		JComponent definedStylesHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+		JLabel selectorLabel = new JLabel("Client style:");
+		selectorLabel.setName("defined");
+		definedStylesHBox.add(selectorLabel);
+		JComponent selector = createStyleSelector();
+		selector.setName("defined");
+		definedStylesHBox.add(selector);
+		definedStylesHBox.setToolTipText("<html>The style used to draw the controls in the game client."
+				+ "<p>This affects the look only, and will not change the behavior of the game.</html>");
+		
+		styleBox.add(definedStyleSelector);
+		styleBox.add(definedStylesHBox);
+		
+		// Custom style options
+		styleTypeSelection.add(customStyleSelector);
+		styleBox.add(customStyleSelector);
+		
+		// Text and border colors
+		final JPanel colorsPanel = new JPanel();
+		colorsPanel.setName("custom");
+		colorsPanel.setLayout(new GridLayout(2, 1));
+		List<JLabel> colorLabels = Arrays.asList(
+				new JLabel("Text"), new JLabel("Hightlight"), new JLabel("Shadow"),
+				new JLabel("Border Color 1"), new JLabel("Border Color 2"),
+				new JLabel("Border Color 3"), new JLabel("Border Color 4")
+				);
+		int ccount;
+		List<ColorSelector> colorButtons = Arrays.asList(
+				new ColorSelector(), new ColorSelector(), new ColorSelector(),
+				new ColorSelector(), new ColorSelector(), new ColorSelector(),
+				new ColorSelector()
+				);
+		for (ccount = 0; ccount < colorLabels.size(); ccount++) {
+			colorsPanel.add(colorLabels.get(ccount));
+		}
+		for (ccount = 0; ccount < colorButtons.size(); ccount++) {
+			colorsPanel.add(colorButtons.get(ccount));
+		}
+		
+		styleBox.add(colorsPanel);
+		
+		// Background image
+		JLabel bgSelectorText = new JLabel("Background image");
+		bgSelectorText.setName("custom");
+		JButton bgSelectorButton = new JButton("...");
+		bgSelectorButton.setName("custom");
+		JTextField bgSelectorInput = new JTextField();
+		bgSelectorInput.setName("custom");
+		JComponent bgSelectorHBox = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
+		bgSelectorHBox.add(bgSelectorButton);
+		bgSelectorHBox.add(bgSelectorInput);
+		
+/*		customStyleObjects.add(bgSelectorText);
+		customStyleObjects.add(bgSelectorHBox);*/
+		
+		styleBox.add(bgSelectorText);
+		styleBox.add(bgSelectorHBox);
+		
+		bgSelectorButton.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						selectBGImage();
+					}
+				});
+		
+		styleBox.add(Box.createHorizontalStrut(SBoxLayout.COMMON_PADDING));
+		
+		// Add event handlers for the style selector radio buttons
+		definedStyleSelector.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						toggleComponents(page);
+						toggleComponents(colorsPanel);
+					}
+				});
+		customStyleSelector.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						toggleComponents(page);
+						toggleComponents(colorsPanel);
+					}
+				});
+		
+		return styleBox;
 	}
 	
 	/**
@@ -283,5 +431,14 @@ class StyleSettings {
 	private boolean fontChanged() {
 		String currentSetting = WtWindowManager.getInstance().getProperty(FONT_PROPERTY, DEFAULT_FONT);
 		return !currentSetting.equals(DEFAULT_FONT);
+	}
+	
+	private Color selectBGImage() {
+		JFileChooser bgSelector = new JFileChooser();
+		bgSelector.setDialogType(JFileChooser.OPEN_DIALOG | JFileChooser.FILES_ONLY);
+		bgSelector.setDialogTitle("Select an image to use for the client background");
+		//bgSelector.createDialog(this.page);
+		
+		return Color.white;
 	}
 }
