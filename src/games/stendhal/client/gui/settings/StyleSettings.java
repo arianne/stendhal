@@ -53,8 +53,6 @@ import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import org.h2.util.Utils;
-
 /**
  * Page for style settings.
  */
@@ -212,9 +210,9 @@ class StyleSettings {
 		
 		// Styles
 		JComponent styleBox = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
+		/*
 		styleBox.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(pad, pad, pad, pad)));
-		/*
 		// Button group for selecting between defined and custom styles
 		definedStyleSelector = new JRadioButton("Use a pre-defined style", true);
 		customStyleSelector = new JRadioButton("Use a custom style");
