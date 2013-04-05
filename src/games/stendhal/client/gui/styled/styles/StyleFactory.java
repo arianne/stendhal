@@ -84,15 +84,19 @@ public class StyleFactory {
 		BRICK_BROWN("Brick Brown") {
 			@Override
 			Style create() {
+				
+				// Text
 				Color highlight = new Color(219, 191, 130);
 				Color shadow = new Color(36, 14, 0); // Light brown (also inactive text)
 				PixmapStyle style = new PixmapStyle("data/gui/panel_brick_brown_001.png",
 						false, highlight, shadow, Color.white, Color.white);
 				// Border
+				Color blightin = new Color(181, 140, 50);
+				Color bshadowin = new Color(98, 47, 15);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, highlight, shadow, shadow));
+						highlight, blightin, shadow, bshadowin));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, highlight, shadow, shadow));
+						highlight, blightin, shadow, bshadowin));
 				return style;
 			}
 		},
