@@ -134,6 +134,7 @@
           <parameter name="rejected">You feel a cool breeze coming in from somewhere.</parameter>
         </implementation>
         <attribute name="resistance">0</attribute>
+        <attribute name="hidden" />
 	  </portal>
 	  
       <!-- Guitar -->
