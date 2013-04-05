@@ -194,7 +194,7 @@ public class AntivenomRing extends AbstractQuest {
 				Arrays.asList("medicinal ring", "medicinal rings"),
 				null,
 				ConversationStates.QUESTION_1,
-				"Some poisonous creatures carry them",
+				"Some poisonous creatures carry them.",
 				null);
 		
 		npc.add(ConversationStates.QUESTION_1,
@@ -333,7 +333,7 @@ public class AntivenomRing extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Antivenom Ring",
-				"As a favor to an old friend Jameson, the apothecary, will strengthen the medicinal ring.",
+				"As a favor to an old friend, Jameson the apothecary will strengthen the medicinal ring.",
 				false);
 		prepareRequestingStep();
 		prepareBringingStep();
