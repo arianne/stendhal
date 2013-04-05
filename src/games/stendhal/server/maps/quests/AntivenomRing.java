@@ -188,12 +188,20 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.QUESTION_1,
+				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
 						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
 						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items]."),
 						new DropItemAction("note to apothecary")));
+		
+		// Player tries to leave without accepting/rejecting the quest
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"That is not a \"yes\" or \"no\" question. I said, Is that note you are carrying for me?",
+				null);
 		
 		// Player rejects quest
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -201,7 +209,7 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				// NPC walks away
 				ConversationStates.IDLE,
-				"Well, this work isn't for everyone.",
+				"Oh, well, carry on then.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
 		// Player asks for quest without having Klass's note
@@ -392,7 +400,7 @@ public class AntivenomRing extends AbstractQuest {
 							"Excellent! Do you have anything else with you?",
 							"You brought me that already.",
 							enhanceAction,
-							ConversationStates.ATTENDING
+							ConversationStates.IDLE
 							)
 			);
 		}
