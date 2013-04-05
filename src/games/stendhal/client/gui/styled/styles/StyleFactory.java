@@ -173,13 +173,14 @@ public class StyleFactory {
 				Color foreground = new Color(255, 255, 255); // White
 				PixmapStyle style = new PixmapStyle("data/gui/paneldrock048.jpg",
 						false, highlight, shadow, Color.white, foreground);
-				Color bhigh = new Color(130, 130, 130);
-				Color bshadow = new Color(50, 50, 50);
+				Color bhighout = new Color(130, 130, 130);
+				Color bhighin = new Color(100, 100, 100);
+				Color bshadow = new Color(20, 20, 20);
 				
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						bhigh, bhigh, bshadow, bshadow));
+						bhighout, bhighin, highlight, bshadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						bhigh, bhigh, bshadow, bshadow));
+						bhighout, bhighin, highlight, bshadow));
 				return style;
 			}
 		},
