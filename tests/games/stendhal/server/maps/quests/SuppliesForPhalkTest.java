@@ -85,7 +85,7 @@ public class SuppliesForPhalkTest {
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I've been here a long time, and I can not leave this place. Could you bring me some food?", getReply(npc));
 		en.step(player, "yes");
@@ -138,7 +138,7 @@ public class SuppliesForPhalkTest {
 		assertEquals("Bye.", getReply(npc));
 		
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I am waiting for you to bring me new #clothes from Wrvil and Mrotho.", getReply(npc));
 		en.step(player, "clothes");
@@ -153,7 +153,7 @@ public class SuppliesForPhalkTest {
 		PlayerTestHelper.equipWithItem(player, "dwarf cloak");
 		
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I am waiting for you to bring me new #clothes from Wrvil and Mrotho.", getReply(npc));
 		en.step(player, "clothes");
@@ -309,7 +309,7 @@ public class SuppliesForPhalkTest {
 		player.setQuest(questSlot,"clothes;cloak;armor");
 		
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I am waiting for you to bring me new #clothes from Wrvil and Mrotho.", getReply(npc));
 		
@@ -335,7 +335,7 @@ public class SuppliesForPhalkTest {
 		final int xp = player.getXP();
 		
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("I am waiting for you to bring me new #clothes from Wrvil and Mrotho.", getReply(npc));
 		en.step(player, "clothes");
@@ -353,7 +353,7 @@ public class SuppliesForPhalkTest {
 		
 		// test reply to quest message when task is completed.
 		en.step(player, "hi");
-		assertEquals("There is something huge there! Everyone is very nervous. Be careful.", getReply(npc));
+		assertEquals("There is something huge there! Everyone is very nervous. Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...", getReply(npc));
 		en.step(player, "task");
 		assertEquals("Thanks for getting me the food and clothes. I think I can stand here warning people for some months longer now.", getReply(npc));
 		en.step(player, "bye");

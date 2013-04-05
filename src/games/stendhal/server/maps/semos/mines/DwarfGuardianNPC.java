@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class DwarfGuardianNPC implements ZoneConfigurator {
@@ -53,13 +54,14 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
-							reply += "You are too weak to enter there.";
+							reply += "You are too weak to enter there. Once you feel strong enough, push these #stones beside and enter the dark parts of the mines...";
 						} else {
-							reply += "Be careful.";
+							reply += "Be careful! For entering the dark parts of the mines, push the #stones away which are laying infront of the entrance...";
 						}
 						raiser.say(reply);
 					}
 				});
+				addReply(Arrays.asList("stone", "stones"), "You can find tons of them around Faiumoni. Some aren't that huge so you can take all of your power and push them away...but I guess anyway that a great warrior like you wouldn't have any problems with that.");
 				addJob("I am a dwarf Guardian and try to abandon adventurers to their fate.");
 				addHelp("Take care when you are running through the tunnels of the Semos mines. There are some strong creatures waiting! If you need a better equipment, you can ask Harold in the Semos Tavern for some offers, maybe he can help you out...");
 				addGoodbye();
