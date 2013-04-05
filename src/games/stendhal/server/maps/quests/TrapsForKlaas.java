@@ -28,8 +28,8 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -97,7 +97,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
 			"The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
 			null);
@@ -113,9 +113,9 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Player asks for quest after already started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
+				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"I believe I already asked you to do something for me",
+				"I believe I already asked you to get me " + REQUIRED_TRAPS + "rodent traps.",
 				null);
 		
 		// Player accepts quest
