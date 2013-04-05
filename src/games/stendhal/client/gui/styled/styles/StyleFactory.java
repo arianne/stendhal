@@ -66,23 +66,17 @@ public class StyleFactory {
 			}
 		},
 		
-		TILE_AQUA("Tile Aqua") {
+		AUBERGINE("Aubergine") {
 			@Override
 			Style create() {
-				
-				// Text
-				Color highlight = new Color(137, 157, 157);
-				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
-						false, highlight, Color.black, Color.white, Color.white);
-				
-				// Border
-				Color blightout = new Color(187, 240, 240);
-				Color bshadowin = new Color(23, 71, 71);
-				Color bshadowout = new Color(16, 36, 36);
+				Color highlight = new Color(184, 149, 193);
+				Color shadow = new Color(42, 7, 51);
+				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine_001.png",
+						false, highlight, shadow, Color.white, Color.white);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, blightout, bshadowout, bshadowin));
+						highlight, highlight, shadow, shadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, blightout, bshadowout, bshadowin));
+						highlight, highlight, shadow, shadow));
 				return style;
 			}
 		},
@@ -95,21 +89,6 @@ public class StyleFactory {
 				PixmapStyle style = new PixmapStyle("data/gui/panel_brick_brown_001.png",
 						false, highlight, shadow, Color.white, Color.white);
 				// Border
-				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, highlight, shadow, shadow));
-				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, highlight, shadow, shadow));
-				return style;
-			}
-		},
-		
-		AUBERGINE("Aubergine") {
-			@Override
-			Style create() {
-				Color highlight = new Color(184, 149, 193);
-				Color shadow = new Color(42, 7, 51);
-				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine_001.png",
-						false, highlight, shadow, Color.white, Color.white);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
 						highlight, highlight, shadow, shadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
@@ -194,6 +173,27 @@ public class StyleFactory {
 						bhigh, bhigh, bshadow, bshadow));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
 						bhigh, bhigh, bshadow, bshadow));
+				return style;
+			}
+		},
+		
+		TILE_AQUA("Tile Aqua") {
+			@Override
+			Style create() {
+				
+				// Text
+				Color highlight = new Color(137, 157, 157);
+				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
+						false, highlight, Color.black, Color.white, Color.white);
+				
+				// Border
+				Color blightout = new Color(187, 240, 240);
+				Color bshadowin = new Color(23, 71, 71);
+				Color bshadowout = new Color(16, 36, 36);
+				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
+						highlight, blightout, bshadowout, bshadowin));
+				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
+						highlight, blightout, bshadowout, bshadowin));
 				return style;
 			}
 		};
