@@ -69,14 +69,21 @@ public class StyleFactory {
 		AUBERGINE("Aubergine") {
 			@Override
 			Style create() {
+				
+				// Text
 				Color highlight = new Color(184, 149, 193);
 				Color shadow = new Color(42, 7, 51);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_aubergine_001.png",
 						false, highlight, shadow, Color.white, Color.white);
+				
+				// Border
+				Color bhighdark = new Color (119,74,130);
+				Color bshadowlight = new Color(84, 42, 95);
+				Color bshadowdark = new Color(37, 1, 46);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, highlight, shadow, shadow));
+						bhighdark, highlight, bshadowdark, bshadowlight));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, highlight, shadow, shadow));
+						bhighdark, highlight, bshadowdark, bshadowlight));
 				return style;
 			}
 		},
