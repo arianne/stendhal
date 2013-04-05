@@ -77,7 +77,7 @@
   
   <item name="dwarvish legs">
     <type class="legs" subclass="dwarvish_legs" tileid="-1"/>
-    <description>You see a pair of dwarvish legs, designed by master craftsmen.</description>
+    <description>You see a pair of #dwarvish #legs, designed by master craftsmen.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
       <min_level value="65"/>
@@ -241,7 +241,7 @@
 
   <item name="stone legs">
     <type class="legs" subclass="stone_legs" tileid="-1"/>
-    <description>You see a pair of stone legs, heavy and durable.</description>
+    <description>You see a pair of #stone #legs, heavy and durable.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
       <min_level value="70"/>
