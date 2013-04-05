@@ -30,7 +30,7 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -294,7 +294,7 @@ public class EmotionCrystals extends AbstractQuest {
 		// Player asks for quest after completed
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "done"),
+			new QuestInStateCondition(QUEST_SLOT, 0, "done"),
 			ConversationStates.ATTENDING, 
 			"My wife is sure to love these emotion crystals.",
 			null);
@@ -302,15 +302,15 @@ public class EmotionCrystals extends AbstractQuest {
 		// Player asks for quest after already started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
-				"I believe I already asked you to do something for me",
+				"I believe I already asked you to do something for me.",
 				null);
 		
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
 			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
 			null);
@@ -388,7 +388,7 @@ public class EmotionCrystals extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 						new OrCondition(
 								new NotCondition(new PlayerHasItemWithHimCondition("red emotion crystal")),
 								new NotCondition(new PlayerHasItemWithHimCondition("purple emotion crystal")),
