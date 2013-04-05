@@ -137,6 +137,15 @@
         <attribute name="hidden" />
 	  </portal>
 	  
+      <!-- Note on table -->
+      <entity x="12" y="8">
+        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+          <attribute name="text">Dear Klaas,
+
+Unfortunately I will not be able to visit Athor this year. I have run into a bit of bad luck. Perhaps when times get better we'll be able to chat once again.</attribute>
+        <attribute name="class">transparent</attribute>
+      </entity>
+	  
       <!-- Guitar -->
       <entity x="6" y="1">
         <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">

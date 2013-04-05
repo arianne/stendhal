@@ -57,6 +57,9 @@
  <tileset firstgid="120" name="ukulele" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/instrument/ukulele.png" width="128" height="96"/>
  </tileset>
+ <tileset firstgid="132" name="letter" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/documents/letter.png" width="64" height="32"/>
+ </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9NjYGDQJwMbArEREBsDsQoJ2ASITaF6lYHYkQSsMap3VO+o3kGj1xyI1UnAFlC9VkBsTQa2BWIA5IeoybAEAAA=
@@ -69,7 +72,7 @@
  </layer>
  <layer name="2_object" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAXDDTAPtANGwSigEQAAkA/YKrAEAAA=
+   H4sIAAAAAAAAC2NgGAXDDTBToLeVaq4YBaOA+gAA2lRIZ7AEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="20">
