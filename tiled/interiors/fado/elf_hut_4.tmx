@@ -19,7 +19,7 @@
   <image source="../../tileset/building/wall/int_clay.png" width="320" height="320"/>
  </tileset>
  <tileset firstgid="160" name="rotating_crystal" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/rotating_crystal.png" width="768" height="352"/>
+  <image source="../../tileset/object/rotating_crystal.png" width="256" height="192"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
@@ -28,7 +28,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC7NhYGBwpBJ2AmI3IHYHYi8KsTcQl0DNC2SgHGSOmjcg5jFS2TxcgBTzJuJyFJnmEQMGwjwmIsyBBcVw8O9gMo+LArO40MzLB+ICHLgQqicejxoQLoaaVwHElXhwNRDXAHEtAXUgXAfEAOICoSVABgAA
+   H4sIAAAAAAAAC7NhYGBwpBJ2AmI3IHYHYi8KsTcQl0DNC2SgHGSOmjcg5jFSwbwTRNgzWPw7mMxjIsIcWPwMB/8OJvO4KDCLC828fCAuwIELoXri8agB4WKoeRVAXIkHVwNxDRDXElAHwnVADABwGisQQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -38,7 +38,7 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjgHoggZGBIRGIkxipY14F0JxKIK6iknmjYBRgA2wDpHeoAwDNZBNKQAYAAA==
+   H4sIAAAAAAAAC2NgGAWjgLrgwEA7YBSMAhIB2wDpHeoAAFr4ErFABgAA
   </data>
  </layer>
  <layer name="objects" width="20" height="20">
