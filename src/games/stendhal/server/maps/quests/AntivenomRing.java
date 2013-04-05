@@ -109,6 +109,57 @@ public class AntivenomRing extends AbstractQuest {
 		}
 		return res;
 	}
+	
+	private void prepareHintNPCs() {
+		final SpeakerNPC hintNPC1 = npcs.get("Valo");
+		final SpeakerNPC hintNPC2 = npcs.get("Haizen");
+		final SpeakerNPC hintNPC3 = npcs.get("Ortiv Milquetoast");
+		
+		// Valo is asked about an apothecary
+		hintNPC1.add(ConversationStates.ATTENDING,
+				"apothecary",
+				null,
+				ConversationStates.ATTENDING,
+				"Hmmm, yes, I knew a man long ago who was studying medicines and antipoisons. The last I heard he was #retreating into the mountains.",
+				null);
+		
+		hintNPC1.add(ConversationStates.ATTENDING,
+				Arrays.asList("retreat", "retreats", "retreating"),
+				null,
+				ConversationStates.ATTENDING,
+				"He's probably hiding. Keep an eye out for hidden entrances",
+				null);
+		
+		// Haizen is asked about an apothecary
+		hintNPC2.add(ConversationStates.ATTENDING,
+				"apothecary",
+				null,
+				ConversationStates.ATTENDING,
+				"Yes, there was once an estudious man in Ados. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
+				null);
+		
+		hintNPC2.add(ConversationStates.ATTENDING,
+				Arrays.asList("hide", "hides", "hiding", "hidden"),
+				null,
+				ConversationStates.ATTENDING,
+				"If I were hiding I would surely do it in a secret room with a hidden entrance.",
+				null);
+		
+		// Ortiv Milquetoast is asked about an apothecary
+		hintNPC3.add(ConversationStates.ATTENDING,
+				"apothecary",
+				null,
+				ConversationStates.ATTENDING,
+				"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Ados. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+				null);
+		
+		hintNPC3.add(ConversationStates.ATTENDING,
+				Arrays.asList("hide", "hides", "hiding", "hidden"),
+				null,
+				ConversationStates.ATTENDING,
+				"He hinted at a secret laboratory that he had built. Something about a hidden doorway.",
+				null);
+	}
 
 	private void prepareRequestingStep() {
 		final SpeakerNPC npc = npcs.get("Jameson");
@@ -117,8 +168,8 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new PlayerHasItemWithHimCondition("note to apothecary"),
-				new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start"))),
+						new PlayerHasItemWithHimCondition("note to apothecary"),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start"))),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from #Klaas. Is that for me?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
@@ -335,6 +386,7 @@ public class AntivenomRing extends AbstractQuest {
 				"Antivenom Ring",
 				"As a favor to an old friend, Jameson the apothecary will strengthen the medicinal ring.",
 				false);
+		prepareHintNPCs();
 		prepareRequestingStep();
 		prepareBringingStep();
 	}

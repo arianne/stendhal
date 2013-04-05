@@ -82,8 +82,6 @@ public class RetiredTeacherNPC implements ZoneConfigurator {
 				addOffer("Sorry, but I can't offer you anything. I have some major problems in my basement at the moment!");
 				addQuest("I want to prepare a mixture to keep the assassins and bandits in my cellar.");
 				addGoodbye("Take care of yourself and please return soon to visit me again, I'm scared alone!");
-				addReply("apothecary", "You must be speaking of my colleague, Jameson. He was forced to hide out because of problems in Ados. He hasn't told me where, but he does bring the most delicious pears when he visits.");
-				
 			}
 		};
 
