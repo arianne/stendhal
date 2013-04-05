@@ -22,7 +22,7 @@
       <item value="scale armor" quantity="[1,1]" probability="1.0"/>
       <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
       <item value="plate shield" quantity="[1,1]" probability="1.0"/>
-      <item value="blue boots" quantity="[1,1]" probability="0.5"/>
+      <item value="blue boots" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -56,8 +56,8 @@
       <item value="money" quantity="[5,30]" probability="100.0"/>
       <item value="trout" quantity="[1,1]" probability="10.0"/>
       <item value="blue shield" quantity="[1,1]" probability="2.0"/>
-      <item value="blue striped cloak" quantity="[1,1]" probability="1.0"/>
-       <item value="blue legs" quantity="[1,1]" probability="1.0"/>
+      <item value="blue striped cloak" quantity="[1,1]" probability="2.0"/>
+       <item value="blue legs" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
