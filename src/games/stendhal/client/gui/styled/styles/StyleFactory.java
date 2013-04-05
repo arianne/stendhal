@@ -128,18 +128,21 @@ public class StyleFactory {
 		LEATHER_BLACK("Leather Black") {
 			@Override
 			Style create() {
-				Color highlight = new Color(0, 0, 0); // Dark Grey (also text shadow)
+				
+				// Text
 				Color shadow = new Color(130, 130, 130); // Grey (also inactive text color)
 				Color foreground = new Color(255, 255, 255); // White
 				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
-						false, highlight, shadow, Color.white, foreground);
-				Color bhigh = new Color(100, 100, 100);
-				Color bshadow = new Color(20, 20, 20);
+						false, Color.black, shadow, Color.white, foreground);
 				
+				// Border
+				Color bhighout = new Color(120, 120, 120);
+				Color bhighin = new Color(80, 80, 80);
+				Color bshadowin = new Color(40, 40, 40);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						bhigh, bhigh, bshadow, bshadow));
+						bhighout, bhighin, Color.black, bshadowin));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						bhigh, bhigh, bshadow, bshadow));
+						bhighout, bhighin, bshadowin, Color.black));
 				return style;
 			}
 		},
