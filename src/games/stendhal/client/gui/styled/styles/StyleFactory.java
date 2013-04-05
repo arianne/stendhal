@@ -114,18 +114,23 @@ public class StyleFactory {
 		HONEYCOMB("Honeycomb") {
 			@Override
 			Style create() {
+				
+				// Font
+				Color foreground = new Color(42, 18, 0); // Brown
 				Color highlight = new Color(142, 90, 0); // Light brown (also text shadow)
 				Color shadow = new Color(255, 255, 255); // White (also inactive text color)
-				Color foreground = new Color(107, 47, 0); // Brown
 				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
 						false, highlight, shadow, Color.white, foreground);
-				Color bhigh = new Color(255, 255, 180);
-				Color bshadow = new Color(100, 80, 20);
 				
+				// Border
+				Color blightout = new Color(255, 255, 180);
+				Color blightin = new Color(202, 202, 101);
+				Color bshadowin = new Color(160, 128, 32);
+				Color bshadowout = new Color(86, 69, 17);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						bhigh, bhigh, bshadow, bshadow));
+						blightout, blightin, bshadowout, bshadowin));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						bhigh, bhigh, bshadow, bshadow));
+						blightout, blightin, bshadowin, bshadowout));
 				return style;
 			}
 		},
