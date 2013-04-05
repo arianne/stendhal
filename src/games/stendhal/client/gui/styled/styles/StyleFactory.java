@@ -69,13 +69,20 @@ public class StyleFactory {
 		TILE_AQUA("Tile Aqua") {
 			@Override
 			Style create() {
-				Color highlight = new Color(137,157,157);
+				
+				// Text
+				Color highlight = new Color(137, 157, 157);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
 						false, highlight, Color.black, Color.white, Color.white);
+				
+				// Border
+				Color blightout = new Color(187, 240, 240);
+				Color bshadowin = new Color(23, 71, 71);
+				Color bshadowout = new Color(16, 36, 36);
 				style.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						highlight, highlight, Color.black, Color.black));
+						highlight, blightout, bshadowout, bshadowin));
 				style.setBorderDown(BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-						highlight, highlight, Color.black, Color.black));
+						highlight, blightout, bshadowout, bshadowin));
 				return style;
 			}
 		},
