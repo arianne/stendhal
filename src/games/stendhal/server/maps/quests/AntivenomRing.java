@@ -34,8 +34,8 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
@@ -169,7 +169,17 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new PlayerHasItemWithHimCondition("note to apothecary"),
-						new NotCondition(new QuestInStateCondition(QUEST_SLOT,"start"))),
+						new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.QUEST_OFFERED, 
+				"Oh, a message from #Klaas. Is that for me?",
+				new SetQuestAction(QUEST_SLOT, "offered"));
+        
+		// In case player dropped note before speaking to Jameson
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+						new PlayerHasItemWithHimCondition("note to apothecary"),
+						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from #Klaas. Is that for me?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
@@ -194,14 +204,6 @@ public class AntivenomRing extends AbstractQuest {
 				"Well, this work isn't for everyone.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
-		// Quest has previously been completed.
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
-				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
-				null);
-		
 		// Player asks for quest without having Klass's note
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -209,6 +211,22 @@ public class AntivenomRing extends AbstractQuest {
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"I'm sorry, but I'm much too busy right now. Perhaps you could talk to #Klaas.",
+				null);
+		
+		// Player asks for quest after it is started
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
+				null);
+		
+		// Quest has previously been completed.
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
 				null);
 		
         // Player asks about required items
@@ -304,6 +322,22 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				ConversationStates.QUESTION_2,
 				"What did you bring?",
+				null);
+		
+		// player says does not have a required item with him (says "no")
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Okay. Is there anything else I can help you with?",
+				null);
+		
+		// Players says does not have required items (alternate conversation state)
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Okay. Is there anything else I can help you with?",
 				null);
 		
 		// Returned too early; still working
