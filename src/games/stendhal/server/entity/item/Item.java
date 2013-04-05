@@ -621,7 +621,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		final String boundTo = getBoundTo();
 
 		if (boundTo != null) {
-			text = text + " It is a special quest reward for " + boundTo
+			text = text + " It is a special reward for " + boundTo
 					+ ", and cannot be used by others.";
 		}
 
