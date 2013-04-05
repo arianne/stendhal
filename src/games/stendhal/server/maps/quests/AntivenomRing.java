@@ -226,8 +226,8 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
-				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
-				null);
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]."));
 		
 		// Quest has previously been completed.
 		npc.add(ConversationStates.ATTENDING,
@@ -346,6 +346,14 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Okay. Is there anything else I can help you with?",
+				null);
+		
+		// player says "bye" while listing items
+		npc.add(ConversationStates.QUESTION_2,
+				ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Goodbye. Let me know when you get the rest of the ingredients.",
 				null);
 		
 		// Returned too early; still working
