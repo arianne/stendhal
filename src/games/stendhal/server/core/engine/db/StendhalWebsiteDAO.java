@@ -12,6 +12,7 @@
 package games.stendhal.server.core.engine.db;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -117,7 +118,12 @@ public class StendhalWebsiteDAO {
 		params.put("cloak", extractName(instance.getCloak()));
 		params.put("finger", extractHandName(instance, "finger"));
 		params.put("name", instance.getName());
-		params.put("zone", instance.getZone().getName());
+		String zoneName = "";
+		StendhalRPZone zone = instance.getZone();
+		if (zone != null) {
+			zoneName = zone.getName();
+		}
+		params.put("zone", zoneName);
 		params.put("lastseen", new Timestamp(new Date().getTime()));
 		return params;
 	}
