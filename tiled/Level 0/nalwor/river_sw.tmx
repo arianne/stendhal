@@ -66,6 +66,12 @@
  <tileset firstgid="622" name="rotating_crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/rotating_crystal.png" width="256" height="192"/>
  </tileset>
+ <tileset firstgid="670" name="light/white_1x1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/white_1x1.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="671" name="light_5x5" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/light_5x5.png" width="160" height="160"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt2rFu2zAUhlE5gJfm/eeORaeiQ9+vUxHDkGtSFHVJ3jOczYOp77cEO/nYtu0DAAAAAAAAAAAAABL7Vij6fRLT3RbW0dLcBuZ2Zns7mEuv9jYwh979bWBsV/S3g3Fd2d8GxqN/biXNPh/YwFpq+5+xhegzU9ffBtbV2v/oBqLPTf0GXu1A/7nVtvMMWEtUfxsYR8sG9J+f/uifm/65Henf0l7/seifm/65ef7npn9u+uemf27653akf0t7/ceif2765+b5n9uR9vqvo6a5/wFbT0v/IxuIPi/6c17/mg1EnxX9iekffU769S/ZQPQ5qdtATft3/aPPR3n/2u4lG4g+H2X9W9q/6h99NvSnf3/3/nm19td+bvrn5jtfbn7vyanX773R56K+/1nt9Z/HY6+S9nu70X4Nv2//b//nFv8e6efVc8BnOwf9c7vvtH/cwH2zgRX9a1vS3wbWc9/e9/98el3PDXje9O383Lyk/d4Gena3gXOu3V7no+33NvCspl3J70g20HbdSjfQq/+Zoq/7CM66lu/af799qdnAj4fX2MF43ff83On76/al9D5w5O8EdhDTvOZ+fwYbiGsd0fuqDUR3G7X3aO17bSC6o+766x63geiuo7SPbhq1gei2uusfda+PbjjCDqJb+7zHbiBD81W7z7iJq3pnbN5jD7M11/38DbRsQftxXN1C+zFFd9J7HNENtdZfd/111z/6WmQU3Vz3sWhOrx1En4nrtxD93gEAAAAAAAAAAABgJX8BBvNtQw==
@@ -104,6 +110,16 @@
  <layer name="protection" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
+  </data>
+ </layer>
+ <layer name="blend_ground" width="128" height="128" opacity="0.47">
+  <data encoding="base64" compression="zlib">
+   eJzt0csJgDAURNFH+i/D3yomVugUIYpwDtz9wFQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC/LK1qTVva09G+XsSbev4+00gzXf4HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4zA197wbD
+  </data>
+ </layer>
+ <layer name="blend_roof" width="128" height="128" opacity="0.45">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6DP/hnMagyngwQkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB3dW0PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP4YDg8AoQ==
   </data>
  </layer>
 </map>

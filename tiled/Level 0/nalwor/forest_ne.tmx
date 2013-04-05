@@ -81,6 +81,12 @@
  <tileset firstgid="310" name="rotating_crystal" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/rotating_crystal.png" width="256" height="192"/>
  </tileset>
+ <tileset firstgid="358" name="light/white_1x1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/white_1x1.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="359" name="light_5x5" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/light_5x5.png" width="160" height="160"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt3EEKwjAURdHYzbj/HTpwUkKENhZfzT+DM5XIuxQV4tZa227g+XhLnwP7k9tfAzXt99dATRpAA9gfDaABNIAGsH9tngFooDa/DdF3kD4LGkADZBtInwMNkN1fA3X5bkjfQfosaIB8AzqoSQNoAA3Qd5A+CxpAA+iAezSgg7r6DrRQ26iBUSM6Wdd+30/ba6Au++M5gAbQADpAA+gADaABRg2kz0K+gSO+eZ30e+WaTmbb0cB/u/LZkH4v/J4G0AAawGdEAAAAAAAAAAAAAAAAIO3InWl3ntZx5i6bu2/rmdnR/uuwf21nd/T8X8vMfyLZfy22x/bYHgAAAAAAAAAAAAAAAAAAAAAAAAC4qxeYpq+B
@@ -119,6 +125,16 @@
  <layer name="protection" width="128" height="128" visible="0" opacity="0.46">
   <data encoding="base64" compression="zlib">
    eJzt2EEOQDAURVEWZf9bkz8klNRA2ndOYgXvpuiy/G9bjw9Z7J/tvL8Gslztr4Ecd/trIIsGsD8aQANoAA1g/2z+C7F/NmcAGqBoAA1gfzSQzTchGkADFB2gATSABtAAGqBoAGcBdw3oIEurAy1keNuATub2tK+zIsvT3hqYnwZo0QAawPsADVB0gAYoGkAD9NwjtRpxDzWerw24ixxfbwNfH8aiAXo31ABFA3gvYH/sDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQKodPShbVw==
+  </data>
+ </layer>
+ <layer name="blend_ground" width="128" height="128" opacity="0.45">
+  <data encoding="base64" compression="zlib">
+   eJzt0cENgDAQA8FLvxB4AaF6XAX3mZH2b8lVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHTaRtWeZjrSOboX8acrf9/pSSu9/gcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACg0QeT3QSJ
+  </data>
+ </layer>
+ <layer name="blend_roof" width="128" height="128" opacity="0.43">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6Bb1v4RjKGbkIAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuKJrewAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwGcDL8MAaA==
   </data>
  </layer>
 </map>
