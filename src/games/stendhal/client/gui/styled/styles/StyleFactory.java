@@ -130,10 +130,10 @@ public class StyleFactory {
 			Style create() {
 				
 				// Text
-				Color shadow = new Color(130, 130, 130); // Grey (also inactive text color)
 				Color foreground = new Color(255, 255, 255); // White
+				Color highlight = new Color(130, 130, 130); // Grey
 				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
-						false, Color.black, shadow, Color.white, foreground);
+						false, highlight, Color.black, Color.white, foreground);
 				
 				// Border
 				Color bhighout = new Color(120, 120, 120);
