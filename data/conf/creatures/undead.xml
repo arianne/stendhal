@@ -771,6 +771,7 @@
     </ai>
   </creature>
   
+  <!-- Disabled until future review
   <creature name="myling">
     <type class="undead" subclass="myling" tileid="undead.png:14"/>
     <description>You see a myling which roams in search of someone to give it a proper burial.</description>
@@ -800,5 +801,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+-->
 
 </creatures>
