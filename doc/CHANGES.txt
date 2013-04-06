@@ -8,7 +8,7 @@
 - Katinka wants just the best for her animals with more food
 - Adventurers have discovered a pit full of snakes beneath Ados caves
 - New dropped items: elvish hat, medicinal ring, rodent trap
-- New quest items: note to apothecary, antivenom ring
+- New quest items: note to apothecary, antivenom ring, stone legs
 - More light on Ados market, around Athor island and more light effects 
 - New look for mountain orc 
 - Dwarves rebuilt rails in Semos Mine
