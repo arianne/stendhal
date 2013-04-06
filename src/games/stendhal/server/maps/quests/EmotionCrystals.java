@@ -304,7 +304,7 @@ public class EmotionCrystals extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
 				ConversationStates.ATTENDING,
-				"I believe I already asked you to do something for me.",
+				"I believe I already asked you to get me some #crystals.",
 				null);
 		
 		// Player asks for quest
