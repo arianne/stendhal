@@ -194,7 +194,7 @@ public class EmotionCrystals extends AbstractQuest {
 			//String RIDDLER_SLOT = crystalColors.get(n) + "_crystal_riddle";
 			
 			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
-			rewardAction.add(new EquipItemAction(rewardItem));
+			rewardAction.add(new EquipItemAction(rewardItem,1,true));
 			rewardAction.add(new IncreaseKarmaAction(5));
 			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
 			
