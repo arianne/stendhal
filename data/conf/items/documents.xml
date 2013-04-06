@@ -189,7 +189,7 @@
 
   <item name="note to apothecary">
     <type class="documents" subclass="paper" tileid="-1"/>
-    <description>You see a #note #to #apothecary. It is a recommendation from Klaas.</description>
+    <description>You see a note to apothecary. It is a recommendation from Klaas.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
     <attributes>
     </attributes>
