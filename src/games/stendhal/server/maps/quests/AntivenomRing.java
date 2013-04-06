@@ -127,7 +127,7 @@ public class AntivenomRing extends AbstractQuest {
 				Arrays.asList("retreat", "retreats", "retreating"),
 				null,
 				ConversationStates.ATTENDING,
-				"He's probably hiding. Keep an eye out for hidden entrances",
+				"He's probably hiding. Keep an eye out for hidden entrances.",
 				null);
 		
 		// Haizen is asked about an apothecary
@@ -171,7 +171,7 @@ public class AntivenomRing extends AbstractQuest {
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
-				"Oh, a message from #Klaas. Is that for me?",
+				"Oh, a message from Klaas. Is that for me?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
         
 		// In case player dropped note before speaking to Jameson
