@@ -172,7 +172,7 @@ public class StyleFactory {
 			}
 		},
 		
-		ROCK_SANDSTONE("Rock Sandstone") {
+		STONE("Stone") {
 			@Override
 			Style create() {
 				Color highlight = new Color(50, 50, 50); // Dark Grey (also text shadow)
