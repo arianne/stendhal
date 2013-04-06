@@ -980,6 +980,7 @@ For example say:  11  if you want the room called Water of Love.
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -988,6 +989,7 @@ For example say:  11  if you want the room called Water of Love.
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
   <portal x="4" y="14" ref="entrance">
