@@ -181,7 +181,7 @@ public class AntivenomRing extends AbstractQuest {
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
-				"Oh, a message from #Klaas. Is that for me?",
+				"Oh, a message from Klaas. Is that for me?",
 				new SetQuestAction(QUEST_SLOT, "offered"));
         
 		// Player accepts quest
