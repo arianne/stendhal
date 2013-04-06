@@ -49,6 +49,7 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 		this.leaveMessage = leaveMessage;
 	}
 	
+	@Override
 	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((enterMessage != null) && (entity instanceof Player)) {
 			/*
@@ -59,17 +60,19 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 			 * could mean some inadvertently lost messages under certain unusual
 			 * conditions.
 			 */
-			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.AREA, 1);
+			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
 		}
 	}
 	
+	@Override
 	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((leaveMessage != null) && (entity instanceof Player)) {
 			// needs to be delayed since normal messages get lost in case the player leaves zone
-			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.AREA, 1);
+			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.SCENE_SETTING, 1);
 		}
 	}
 	
+	@Override
 	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX, final int oldY, final int newX, final int newY) {
 		// required by interface
 	}
