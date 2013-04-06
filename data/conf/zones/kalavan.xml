@@ -1018,6 +1018,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
   
   <portal x="8" y="23" ref="entrance">
@@ -1185,6 +1186,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
   
  </zone>
@@ -1244,7 +1246,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
-          <attribute name="description">You see a toilet.</attribute>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
   
   <portal x="16" y="23" ref="entrance_left">
@@ -1299,6 +1301,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
   
    <portal x="6" y="23" ref="entrance">
