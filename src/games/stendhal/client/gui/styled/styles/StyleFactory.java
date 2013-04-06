@@ -69,7 +69,6 @@ public class StyleFactory {
 		AUBERGINE("Aubergine") {
 			@Override
 			Style create() {
-				
 				// Text
 				Color highlight = new Color(184, 149, 193);
 				Color shadow = new Color(42, 7, 51);
@@ -91,7 +90,6 @@ public class StyleFactory {
 		BRICK_BROWN("Brick Brown") {
 			@Override
 			Style create() {
-				
 				// Text
 				Color highlight = new Color(219, 191, 130);
 				Color shadow = new Color(36, 14, 0); // Light brown (also inactive text)
@@ -111,13 +109,11 @@ public class StyleFactory {
 		HONEYCOMB("Honeycomb") {
 			@Override
 			Style create() {
-				
 				// Font
 				Color foreground = new Color(42, 18, 0); // Brown
 				Color highlight = new Color(142, 90, 0); // Light brown (also text shadow)
-				Color shadow = new Color(255, 255, 255); // White (also inactive text color)
 				PixmapStyle style = new PixmapStyle("data/gui/panel_honeycomb_001.png",
-						false, highlight, shadow, Color.white, foreground);
+						false, highlight, Color.white, Color.white, foreground);
 				
 				// Border
 				Color blightout = new Color(255, 255, 180);
@@ -135,9 +131,8 @@ public class StyleFactory {
 		LEATHER_BLACK("Leather Black") {
 			@Override
 			Style create() {
-				
 				// Text
-				Color foreground = new Color(255, 255, 255); // White
+				Color foreground = Color.white;
 				Color highlight = new Color(130, 130, 130); // Grey
 				PixmapStyle style = new PixmapStyle("data/gui/panel_leather_black_001.png",
 						false, highlight, Color.black, Color.white, foreground);
@@ -177,9 +172,8 @@ public class StyleFactory {
 			Style create() {
 				Color highlight = new Color(50, 50, 50); // Dark Grey (also text shadow)
 				Color shadow = new Color(175, 175, 175); // Light rey (also inactive text color)
-				Color foreground = new Color(255, 255, 255); // White
 				PixmapStyle style = new PixmapStyle("data/gui/paneldrock048.jpg",
-						false, highlight, shadow, Color.white, foreground);
+						false, highlight, shadow, Color.white, Color.white);
 				Color bhighout = new Color(130, 130, 130);
 				Color bhighin = new Color(100, 100, 100);
 				Color bshadow = new Color(20, 20, 20);
@@ -195,7 +189,6 @@ public class StyleFactory {
 		TILE_AQUA("Tile Aqua") {
 			@Override
 			Style create() {
-				
 				// Text
 				Color highlight = new Color(137, 157, 157);
 				PixmapStyle style = new PixmapStyle("data/gui/panel_tile_aqua_001.png",
@@ -217,7 +210,11 @@ public class StyleFactory {
 		
 		/** Human readable name of the style. */ 
 		private final String name;
-		/** Create the Style. */
+		/**
+		 * Create the Style.
+		 * 
+		 * @return style corresponding to the definition
+		 */
 		abstract Style create();
 		
 		/**
