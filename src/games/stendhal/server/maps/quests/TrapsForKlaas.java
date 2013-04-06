@@ -115,7 +115,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"I believe I already asked you to get me " + REQUIRED_TRAPS + "rodent traps.",
+				"I believe I already asked you to get me " + REQUIRED_TRAPS + " rodent traps.",
 				null);
 		
 		// Player accepts quest
