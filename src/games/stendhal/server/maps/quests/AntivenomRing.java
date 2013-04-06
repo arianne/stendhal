@@ -364,7 +364,7 @@ public class AntivenomRing extends AbstractQuest {
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
 				ConversationStates.IDLE,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I have not finished with the ring. Please check back in" + "."));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I have not finished with the ring. Please check back in "));
 		
 		/* player says he didn't bring any items (says no) */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
