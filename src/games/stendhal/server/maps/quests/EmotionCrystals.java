@@ -135,7 +135,7 @@ public class EmotionCrystals extends AbstractQuest {
 		}
 		
 		if (hasAllCrystals) {
-			res.add("I have obtained all of the emotion crystals");
+			res.add("I have obtained all of the emotion crystals.");
 			if (player.isQuestInState(QUEST_SLOT, "start")) {
 				res.add("I should bring them to Julius.");
 			}
@@ -302,7 +302,7 @@ public class EmotionCrystals extends AbstractQuest {
 		// Player asks for quest after already started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I believe I already asked you to get me some #crystals.",
 				null);
@@ -331,7 +331,7 @@ public class EmotionCrystals extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES,
 			null,
-			// Klaas walks away
+			// Julius walks away
 			ConversationStates.IDLE,
 			"Hmph!",
 			new MultipleActions(
@@ -374,7 +374,7 @@ public class EmotionCrystals extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("red emotion crystal"),
 						new PlayerHasItemWithHimCondition("purple emotion crystal"),
 						new PlayerHasItemWithHimCondition("yellow emotion crystal"),
