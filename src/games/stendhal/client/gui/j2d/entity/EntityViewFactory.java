@@ -178,7 +178,6 @@ public class EntityViewFactory {
 		register("area", null, null, InvisibleEntity2DView.class);
 
 		register("item", "special", "mithril clasp", Item2DView.class);
-		register("item", "crystal", null, Item2DView.class);
 		register("item", null, null, Item2DView.class);
 		register("npc", null, null, NPC2DView.class);
 
