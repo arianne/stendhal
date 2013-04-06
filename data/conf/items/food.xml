@@ -162,7 +162,7 @@
 
 	<item name="olive">
 		<type class="food" subclass="olive" tileid="-1" />
-		<description>You see a small ripe olive.  It can be eaten or used to create olive oil.</description>
+		<description>You see a small ripe olive. It can be eaten or used to create olive oil.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="5" />
@@ -272,7 +272,7 @@
 
 	<item name="artichoke">
 		<type class="food" subclass="artichoke" tileid="-1" />
-		<description>You see an artichoke.  It can be an ingredient, or you can eat it.</description>
+		<description>You see an artichoke. It can be an ingredient, or you can eat it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
@@ -316,7 +316,7 @@
 
 	<item name="carrot">
 		<type class="food" subclass="carrot" tileid="-1" />
-		<description>You see a carrot.  It can be an ingredient, or you can eat it.</description>
+		<description>You see a carrot. It can be an ingredient, or you can eat it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
@@ -558,7 +558,7 @@
 
 	<item name="button mushroom">
 		<type class="food" subclass="button_mushroom" tileid="-1" />
-		<description>You see a button mushroom.  It can be an ingredient, or you can eat it.</description>
+		<description>You see a button mushroom. It can be an ingredient, or you can eat it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
@@ -580,7 +580,7 @@
 
 	<item name="porcini">
 		<type class="food" subclass="porcini" tileid="-1" />
-		<description>You see a porcini.  It can be an ingredient, or you can eat it.</description>
+		<description>You see a porcini. It can be an ingredient, or you can eat it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="30" />
@@ -824,7 +824,7 @@
     <!-- product -->
 	<item name="bread">
 		<type class="food" subclass="baguette" tileid="-1" />
-		<description>You see a loaf of bread.  It is freshly baked and ready to eat.</description>
+		<description>You see a loaf of bread. It is freshly baked and ready to eat.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="40" />
@@ -1332,7 +1332,7 @@
     <!-- dropped -->
 	<item name="cheese">
 		<type class="food" subclass="cheese" tileid="-1" />
-		<description>You see some cheese.  Eat it and see what happens.</description>
+		<description>You see some cheese. Eat it and see what happens.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food" />
 		<attributes>
 			<amount value="20" />
