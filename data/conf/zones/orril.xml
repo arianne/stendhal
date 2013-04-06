@@ -610,18 +610,21 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         <entity x="6" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         <entity x="8" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucets running water -->
@@ -630,12 +633,14 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         <entity x="2" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
     </zone>

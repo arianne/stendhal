@@ -471,6 +471,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- 2 faucets running water -->
@@ -479,12 +480,14 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         <entity x="5" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
   <portal x="14" y="23" ref="entrance">
@@ -516,6 +519,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -524,6 +528,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -552,6 +557,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -560,6 +566,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -610,6 +617,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -618,6 +626,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -668,6 +677,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -676,6 +686,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -772,6 +783,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -780,6 +792,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -830,6 +843,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -838,6 +852,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -896,6 +911,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -904,6 +920,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -941,6 +958,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -949,6 +967,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
 		<portal x="19" y="23" ref="entrance">
@@ -989,6 +1008,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- faucet running water -->
@@ -997,6 +1017,7 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
 		<portal x="19" y="23" ref="entrance">
@@ -1035,6 +1056,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- 2 faucets running water -->
@@ -1043,12 +1065,14 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         <entity x="5" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
   <portal x="21" y="23" ref="entrance">
@@ -1102,6 +1126,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- 2 faucets running water -->
@@ -1110,12 +1135,14 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         <entity x="14" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
@@ -1166,6 +1193,7 @@
             <parameter name="sound">toilet-flush-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a toilet.</attribute>
         </entity>
         
         <!-- 2 faucets running water -->
@@ -1174,12 +1202,14 @@
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         <entity x="14" y="1">
           <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
             <parameter name="sound">water-faucet-1</parameter>
             <parameter name="radius">40</parameter>
           </implementation>
+          <attribute name="description">You see a wash basin.</attribute>
         </entity>
         
  </zone>
