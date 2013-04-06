@@ -146,14 +146,6 @@ public class TrapsForKlaas extends AbstractQuest {
 			"I don't know of anyone who sells 'em. But I did hear a story once about a fella who killed a large rat and discovered a trap snapped shut on its foot.",
 			null);
 		
-		// Player asks about the apothecary
-		npc.add(
-			ConversationStates.ATTENDING,
-			"apothecary",
-			null,
-			ConversationStates.ATTENDING,
-			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know.",
-			null);
 	}
 
 	private void prepareBringingStep() {
@@ -174,7 +166,7 @@ public class TrapsForKlaas extends AbstractQuest {
 						new QuestActiveCondition(QUEST_SLOT),
 						new PlayerHasItemWithHimCondition("rodent trap")),
 				ConversationStates.QUEST_ITEM_BROUGHT, 
-				"Did you bring any #traps?",
+				"Did you bring any traps?",
 				null);
 		
 		// Player is not carrying any traps
@@ -199,9 +191,18 @@ public class TrapsForKlaas extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("rodent trap", 20),
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"Thanks! I've got to get these set up as quickly as possible. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				new MultipleActions(reward));
+		
+		// Player asks about the apothecary
+		npc.add(
+			ConversationStates.ATTENDING,
+			"apothecary",
+			null,
+			ConversationStates.ATTENDING,
+			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know.",
+			null);
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
