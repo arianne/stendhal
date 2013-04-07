@@ -82,7 +82,7 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 	
 	/**
 	 * return random rat from allowed list
-	 * @return
+	 * @return a random rat creature
 	 */
 	public static Creature getRandomRat() {
 		// Gaussian distribution
