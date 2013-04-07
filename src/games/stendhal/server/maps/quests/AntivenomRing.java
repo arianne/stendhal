@@ -365,8 +365,8 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
-				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
+				"Okay. Let me know when you have found something.",
+				null);//new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// player says "bye" while listing items
 		npc.add(ConversationStates.QUESTION_2,
