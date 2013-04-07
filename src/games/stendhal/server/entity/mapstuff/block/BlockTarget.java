@@ -10,16 +10,12 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 
-import org.apache.log4j.Logger;
-
 /**
  * An entity representing a target for a pushable block
  * 
  * @author madmetzger
  */
 public class BlockTarget extends AreaEntity {
-	
-	private static final Logger logger = Logger.getLogger(BlockTarget.class);
 	
 	private ChatAction action;
 	
