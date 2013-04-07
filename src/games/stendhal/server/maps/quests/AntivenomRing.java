@@ -174,7 +174,7 @@ public class AntivenomRing extends AbstractQuest {
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from Klaas. Is that for me?",
-				new SetQuestAction(QUEST_SLOT, "offered"));
+				null);
         
 		// In case player dropped note before speaking to Jameson
 		npc.add(ConversationStates.ATTENDING,
@@ -184,7 +184,7 @@ public class AntivenomRing extends AbstractQuest {
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from Klaas. Is that for me?",
-				new SetQuestAction(QUEST_SLOT, "offered"));
+				null);
         
 		// Player accepts quest
 		npc.add(ConversationStates.QUEST_OFFERED,
