@@ -10,7 +10,18 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-
+/**
+ * Configurator for a block target
+ * 
+ * required parameters
+ * - x and y coordinate
+ * 
+ * optional parameters
+ * - condition the condition to evaluate when a block target can be triggered
+ * - action the trigger action when the block target is triggered
+ * 
+ * @author madmetzger
+ */
 public class BlockTargetZoneConfigurator implements ZoneConfigurator {
 
 	@Override
