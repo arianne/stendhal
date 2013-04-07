@@ -314,6 +314,65 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"I've heard rumor newly discovered put full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
 				null);
+		
+        // Player asks about required items
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
+				null,
+				ConversationStates.ATTENDING,
+				"Some #snakes have a gland in which their venom is stored.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("mandragora", "mandragoras", "root of mandragora", "roots of mandragora", "root of mandragoras", "roots of mandragoras"),
+				null,
+				ConversationStates.ATTENDING,
+				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("cake", "fairy cake"),
+				null,
+				ConversationStates.ATTENDING,
+				"Oh, they are the best treat I have ever tasted. Only the most heavenly creatures could make such angelic food.",
+				null);
+		
+		// Player asks about rings
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("ring", "rings"),
+				null,
+				ConversationStates.ATTENDING,
+				"There are many types of rings.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("medicinal ring", "medicinal rings"),
+				null,
+				ConversationStates.ATTENDING,
+				"Some poisonous creatures carry them.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("antivenom ring", "antivenom rings"),
+				null,
+				ConversationStates.ATTENDING,
+				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
+				null,
+				ConversationStates.ATTENDING,
+				"Heh! This is the ultimate protection against poisoning. Good luck getting one!",
+				null);
+		
+		// Player asks about snakes
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("snake", "snakes", "cobra", "cobras"),
+				null,
+				ConversationStates.ATTENDING,
+				"I've heard rumor newly discovered put full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
+				null);
 	}
 
 	private void prepareBringingStep() {
@@ -332,7 +391,7 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("item", "items", "ingredient", "ingredients"),
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_1,
+				ConversationStates.ATTENDING,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
@@ -368,9 +427,17 @@ public class AntivenomRing extends AbstractQuest {
 				"Okay. Let me know when you have found something.",
 				null);//new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
+		List<String> GOODBYE_NO_MESSAGES = new ArrayList<String>();
+		for (String message : ConversationPhrases.GOODBYE_MESSAGES) {
+			GOODBYE_NO_MESSAGES.add(message);
+		}
+		for (String message : ConversationPhrases.NO_MESSAGES) {
+			GOODBYE_NO_MESSAGES.add(message);
+		}
+		
 		// player says "bye" while listing items
 		npc.add(ConversationStates.QUESTION_2,
-				ConversationPhrases.GOODBYE_MESSAGES,
+				GOODBYE_NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
 				null,
