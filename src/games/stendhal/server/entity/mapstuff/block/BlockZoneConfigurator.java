@@ -11,13 +11,14 @@ import java.util.Map;
 /**
  * Factory for pushable Blocks
  * 
- * Necessary parameters:
+ * required parameters:
  * start-x = initial x coordinate, where the block also will be resetted to
  * start-y = initial y coordinate, where the block also will be resetted to
  * 
  * optional parameters:
  * multi = boolean flag to allow the block being pushed more than once from its initial position, defaults to false
  * class = defines the client side representation differing from the default boulder, defaults to block
+ * descriptin = override default description
  * 
  * @author madmetzger
  */
