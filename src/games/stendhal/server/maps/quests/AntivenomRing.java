@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
@@ -225,7 +226,8 @@ public class AntivenomRing extends AbstractQuest {
 		// Player asks for quest after it is started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestStartedCondition(QUEST_SLOT),
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
+						new QuestNotCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]."));
@@ -321,7 +323,7 @@ public class AntivenomRing extends AbstractQuest {
 		// player says has a required item with him (says "yes")
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
-				null,
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
 				"What did you bring?",
 				null);
