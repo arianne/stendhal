@@ -194,7 +194,7 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				new MultipleActions(
 						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items]."),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?"),
 						new DropItemAction("note to apothecary")));
 		
 		// Player tries to leave without accepting/rejecting the quest
@@ -230,14 +230,30 @@ public class AntivenomRing extends AbstractQuest {
 						new QuestNotCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]."));
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]. Do you have any of those with you?"));
 		
 		// Quest has previously been completed.
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, 
+				ConversationStates.QUESTION_1, 
 				"Thank you so much. It had been so long since I was able to enjoy a fairy cake. Are you enjoying your ring?",
+				null);
+		
+		// Player is enjoying the ring
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Wonderful!",
+				null);
+		
+		// Player is not enjoying the ring
+		npc.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.NO_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Oh, that's too bad.",
 				null);
 		
         // Player asks about required items
@@ -315,7 +331,7 @@ public class AntivenomRing extends AbstractQuest {
 		// player asks what is missing (says "items")
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("item", "items", "ingredient", "ingredients"),
-				null,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
@@ -323,7 +339,7 @@ public class AntivenomRing extends AbstractQuest {
 		// player says has a required item with him (says "yes")
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
 				"What did you bring?",
 				null);
@@ -331,7 +347,7 @@ public class AntivenomRing extends AbstractQuest {
 		// Players says has required items (alternate conversation state)
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				null,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
 				"What did you bring?",
 				null);
@@ -339,26 +355,26 @@ public class AntivenomRing extends AbstractQuest {
 		// player says does not have a required item with him (says "no")
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.IDLE,
 				null,
-				ConversationStates.ATTENDING,
-				"Okay. Is there anything else I can help you with?",
-				null);
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Players says does not have required items (alternate conversation state)
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.IDLE,
 				null,
-				ConversationStates.ATTENDING,
-				"Okay. Is there anything else I can help you with?",
-				null);
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// player says "bye" while listing items
 		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.GOODBYE_MESSAGES,
-				null,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
-				"Goodbye. Let me know when you get the rest of the ingredients.",
-				null);
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Returned too early; still working
 		npc.add(ConversationStates.IDLE,
@@ -370,24 +386,26 @@ public class AntivenomRing extends AbstractQuest {
 				null,
 				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I have not finished with the ring. Please check back in "));
 		
-		/* player says he didn't bring any items (says no) */
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
+/*		// player says he didn't bring any items (says no)
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"Ok. Is there anything else I can help you with? Do you need reminded of which #items I still need?", 
+				ConversationStates.IDLE,
+				"Ok. Let me know when you have found something.", 
 				null);
 
-		/* player says he didn't bring any items to different question */
+		// player says he didn't bring any items to different question
 		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"Ok. Is there anything else I can help you with? Do you need reminded of which #items I still need?",
+				ConversationStates.IDLE,
+				"Ok. Let me know when you have found something.",
 				null);
-		
+		*/
 		// player offers item that isn't in the list.
 		npc.add(ConversationStates.QUESTION_2, "",
-			new NotCondition(new TriggerInListCondition(NEEDED_ITEMS)),
+			new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+					new NotCondition(new TriggerInListCondition(NEEDED_ITEMS))),
 			ConversationStates.QUESTION_2,
 			"I don't believe I asked for that.", null);
 
@@ -403,7 +421,7 @@ public class AntivenomRing extends AbstractQuest {
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
 			npc.add(ConversationStates.QUESTION_2,
 					item.getKey(),
-					null,
+					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.QUESTION_2,
 					null,
 					new CollectRequestedItemsAction(
