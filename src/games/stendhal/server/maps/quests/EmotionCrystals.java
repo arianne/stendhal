@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -302,7 +303,8 @@ public class EmotionCrystals extends AbstractQuest {
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+			new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+					new QuestNotCompletedCondition(QUEST_SLOT)),
 			ConversationStates.QUEST_OFFERED, 
 			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
 			null);
