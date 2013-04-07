@@ -30,6 +30,7 @@ public class BlockZoneConfigurator implements ZoneConfigurator {
 		int y = Integer.parseInt(attributes.get("start-y"));
 		boolean multiPush = false;
 		final String multiString = attributes.get("multi");
+		final String description = attributes.get("description");
 		
 		if(multiString != null) {
 			multiPush = Boolean.parseBoolean(multiString);
@@ -42,6 +43,10 @@ public class BlockZoneConfigurator implements ZoneConfigurator {
 			b = new Block(x, y, multiPush);
 		} else {
 			b = new Block(x, y, multiPush, style);
+		}
+		
+		if(description != null) {
+			b.setDescription(description);
 		}
 		
 		zone.add(b, false);
