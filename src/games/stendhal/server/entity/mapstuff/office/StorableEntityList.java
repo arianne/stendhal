@@ -173,7 +173,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	protected abstract String getName(T entity);
 
-	protected boolean shouldExpire(final T entity) {
+	protected boolean shouldExpire(@SuppressWarnings("unused") final T entity) {
 		return false;
 	}
 
