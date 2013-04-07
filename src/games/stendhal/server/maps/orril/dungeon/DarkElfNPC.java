@@ -34,11 +34,10 @@ public class DarkElfNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildTunnelArea(zone, attributes);
+		buildTunnelArea(zone);
 	}
 
-	private void buildTunnelArea(final StendhalRPZone zone,
-			final Map<String, String> attributes) {
+	private void buildTunnelArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Waerryna") {
 				// name means deep and hidden hired mercenary according to http://www.angelfire.com/rpg2/vortexshadow/drownames.html
 			@Override

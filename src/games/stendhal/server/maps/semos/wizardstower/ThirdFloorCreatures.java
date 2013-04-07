@@ -32,10 +32,10 @@ public class ThirdFloorCreatures implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildThirdFloor(zone, attributes);
+		buildThirdFloor(zone);
 	}
 
-	private void buildThirdFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildThirdFloor(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = manager.getCreature("fallen warrior");

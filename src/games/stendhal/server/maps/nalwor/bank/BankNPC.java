@@ -40,15 +40,15 @@ public class BankNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildoldNPC(zone, attributes);
-		buildladyNPC(zone, attributes);
+		buildoldNPC(zone);
+		buildladyNPC(zone);
 	}
 
 	//
 	// name inspired by a name in lotr
 	// TODO: He complains if someone steals something from his chest: they should be sent to elf jail.
 
-	private void buildoldNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildoldNPC(final StendhalRPZone zone) {
 		final SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
 
 			@Override
@@ -77,7 +77,7 @@ public class BankNPC implements ZoneConfigurator {
 	//
 	// Ariannyddion is welsh for bank, so ...
 	//
-	private void buildladyNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildladyNPC(final StendhalRPZone zone) {
 		final SpeakerNPC ladynpc = new SpeakerNPC("Nnyddion") {
 
 			@Override

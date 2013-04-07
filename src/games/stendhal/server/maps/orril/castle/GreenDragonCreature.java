@@ -35,10 +35,10 @@ public class GreenDragonCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildCastleDungeonArea(zone, attributes);
+		buildCastleDungeonArea(zone);
 	}
 
-	private void buildCastleDungeonArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildCastleDungeonArea(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		final Creature creature = new ItemGuardCreature(manager.getCreature("green dragon"), "dungeon silver key");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);

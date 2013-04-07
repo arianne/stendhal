@@ -36,10 +36,10 @@ public class SergeantNPC implements ZoneConfigurator  {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildHideoutArea(zone, attributes);
+		buildHideoutArea(zone);
 	}
 
-	private void buildHideoutArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildHideoutArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Sergeant James") {
 
 			@Override

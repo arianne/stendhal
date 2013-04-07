@@ -45,10 +45,10 @@ public class CuratorNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Hazel") {
 
 			@Override
@@ -67,6 +67,7 @@ public class CuratorNPC implements ZoneConfigurator {
 				addGoodbye("Good bye, it was pleasant talking with you.");
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.RIGHT);
 			}

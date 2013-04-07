@@ -32,10 +32,10 @@ public class SixthFloorCreatures implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSixthFloor(zone, attributes);
+		buildSixthFloor(zone);
 	}
 
-	private void buildSixthFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSixthFloor(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = manager.getCreature("littlefairy");

@@ -29,10 +29,10 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSemosVillageBench(zone, attributes);
+		buildSemosVillageBench(zone);
 	}
 
-	private void buildSemosVillageBench(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSemosVillageBench(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Ketteh Wehoh") {
 
 			@Override

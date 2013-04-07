@@ -30,10 +30,10 @@ public class HousewifeNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSemosStorageArea(zone, attributes);
+		buildSemosStorageArea(zone);
 	}
 
-	private void buildSemosStorageArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSemosStorageArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Eonna") {
 
 			/**

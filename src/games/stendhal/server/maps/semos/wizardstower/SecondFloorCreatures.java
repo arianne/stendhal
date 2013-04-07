@@ -32,10 +32,10 @@ public class SecondFloorCreatures implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSecondFloor(zone, attributes);
+		buildSecondFloor(zone);
 	}
 
-	private void buildSecondFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSecondFloor(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = manager.getCreature("air elemental");

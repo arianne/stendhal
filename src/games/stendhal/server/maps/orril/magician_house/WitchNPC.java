@@ -44,11 +44,10 @@ public class WitchNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildJynathHouse(zone, attributes);
+		buildJynathHouse(zone);
 	}
 
-	private void buildJynathHouse(final StendhalRPZone zone,
-			final Map<String, String> attributes) {
+	private void buildJynathHouse(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Jynath") {
 
 			@Override

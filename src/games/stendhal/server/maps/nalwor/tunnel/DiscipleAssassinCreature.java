@@ -32,10 +32,10 @@ public class DiscipleAssassinCreature implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildAssassinIdGuy(zone, attributes);
+		buildAssassinIdGuy(zone);
 	}
 
-	private void buildAssassinIdGuy(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildAssassinIdGuy(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("disciple assassin"), "assassins id");

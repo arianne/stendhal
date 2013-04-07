@@ -53,11 +53,11 @@ public class AcceptOfferHandler extends OfferHandler {
 				npc.say("Sorry, I did not understand you. "
 						+ sentence.getErrorString());
 			} else {
-				handleSentence(player, sentence, npc);
+				handleSentence(sentence, npc);
 			}
 		}
 
-		private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
+		private void handleSentence(Sentence sentence, EventRaiser npc) {
 			MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 			try {
 				String offerNumber = getOfferNumberFromSentence(sentence).toString();

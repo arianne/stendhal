@@ -34,10 +34,10 @@ public class DemonSkeletonCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildLichPalace(zone, attributes);
+		buildLichPalace(zone);
 	}
 
-	private void buildLichPalace(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildLichPalace(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		final Creature creature = new ItemGuardCreature(manager.getCreature("demon skeleton"), "lich gold key");
 

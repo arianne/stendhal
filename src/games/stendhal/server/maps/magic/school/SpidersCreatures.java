@@ -42,7 +42,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildMagicSchoolCellarArea(zone, attributes);
+		buildMagicSchoolCellarArea(zone);
 	}
 	
 	protected void updatePlayerQuest(final CircumstancesOfDeath circ) {
@@ -72,7 +72,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 	
 	protected final SpidersObserver observer = new SpidersObserver(); 
 	
-	private void buildMagicSchoolCellarArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildMagicSchoolCellarArea(final StendhalRPZone zone) {
 		for(CreatureRespawnPoint p:zone.getRespawnPointList()) {
 			if(p!=null) {
 				if(creatures.indexOf(p.getPrototypeCreature().getName())!=-1) {

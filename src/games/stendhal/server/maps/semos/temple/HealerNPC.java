@@ -37,10 +37,10 @@ public class HealerNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSemosTempleArea(zone, attributes);
+		buildSemosTempleArea(zone);
 	}
 
-	private void buildSemosTempleArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSemosTempleArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Ilisa") {
 
 			@Override

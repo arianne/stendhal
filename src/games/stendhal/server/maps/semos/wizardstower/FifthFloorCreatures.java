@@ -32,10 +32,10 @@ public class FifthFloorCreatures implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildFifthFloor(zone, attributes);
+		buildFifthFloor(zone);
 	}
 
-	private void buildFifthFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildFifthFloor(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = manager.getCreature("stone golem");

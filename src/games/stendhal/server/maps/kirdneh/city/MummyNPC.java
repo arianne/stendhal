@@ -40,10 +40,10 @@ public class MummyNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Carey") {
 
 			@Override
@@ -64,6 +64,7 @@ public class MummyNPC implements ZoneConfigurator {
 				addGoodbye("Thank you for meeting us here.");
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}

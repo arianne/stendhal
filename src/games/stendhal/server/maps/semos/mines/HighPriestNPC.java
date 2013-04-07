@@ -35,11 +35,10 @@ public class HighPriestNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildMineArea(zone, attributes);
+		buildMineArea(zone);
 	}
 
-	private void buildMineArea(final StendhalRPZone zone,
-			final Map<String, String> attributes) {
+	private void buildMineArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Aenihata") {
 
 			@Override

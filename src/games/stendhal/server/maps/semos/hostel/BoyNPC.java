@@ -41,10 +41,10 @@ public class BoyNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSemosTownhallArea(zone, attributes);
+		buildSemosTownhallArea(zone);
 	}
 
-	private void buildSemosTownhallArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSemosTownhallArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Tad") {
 
 			@Override

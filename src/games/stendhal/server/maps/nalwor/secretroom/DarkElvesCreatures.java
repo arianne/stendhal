@@ -46,7 +46,7 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSecretRoomArea(zone, attributes);
+		buildSecretRoomArea(zone);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class DarkElvesCreatures implements ZoneConfigurator {
 		}
 	}
 
-	private void buildSecretRoomArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSecretRoomArea(final StendhalRPZone zone) {
 		Observer observer = new DrowObserver();
 		for(CreatureRespawnPoint p:zone.getRespawnPointList()) {
 			if(p!=null) {

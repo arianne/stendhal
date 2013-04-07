@@ -37,10 +37,10 @@ public class DuergarKingCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildPrisonArea(zone, attributes);
+		buildPrisonArea(zone);
 	}
 
-	private void buildPrisonArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildPrisonArea(final StendhalRPZone zone) {
 		final Creature creature = new ItemGuardCreature(manager.getCreature("duergar king"), "kanmararn prison key");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 50, 15, creature, 1);
 		zone.add(point);

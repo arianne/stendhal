@@ -54,7 +54,7 @@ public class DrowCreatures implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSecretRoomArea(zone, attributes);
+		buildSecretRoomArea(zone);
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class DrowCreatures implements ZoneConfigurator {
 		}
 	}
 
-	private void buildSecretRoomArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSecretRoomArea(final StendhalRPZone zone) {
 		Observer observer = new DrowObserver();
 		
 		// describe secret room tunnel here

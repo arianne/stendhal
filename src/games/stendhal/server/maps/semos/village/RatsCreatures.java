@@ -32,10 +32,10 @@ public class RatsCreatures implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildVillage(zone, attributes);
+		buildVillage(zone);
 	}
 	
-	private void buildVillage(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildVillage(final StendhalRPZone zone) {
 		
 		for(CreatureRespawnPoint p:zone.getRespawnPointList()) {
 			if(p!=null) {

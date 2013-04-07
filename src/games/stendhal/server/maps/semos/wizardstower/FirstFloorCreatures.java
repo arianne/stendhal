@@ -32,10 +32,10 @@ public class FirstFloorCreatures implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildFirstFloor(zone, attributes);
+		buildFirstFloor(zone);
 	}
 
-	private void buildFirstFloor(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildFirstFloor(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = manager.getCreature("fire elemental");

@@ -40,10 +40,10 @@ public class GossipNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Jef") {
 
 			@Override
@@ -51,6 +51,7 @@ public class GossipNPC implements ZoneConfigurator {
 				setPath(null);
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
