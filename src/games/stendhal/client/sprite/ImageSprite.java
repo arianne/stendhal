@@ -123,8 +123,9 @@ public class ImageSprite implements Sprite {
 	 * 
 	 * @return A new sprite.
 	 */
-	public Sprite createRegion(final int x, final int y, final int width,
-			final int height, final Object ref) {
+	@Override
+	public Sprite createRegion(final int x, final int y, int width,
+			int height, final Object ref) {
 		final int iwidth = getWidth();
 		final int iheight = getHeight();
 
@@ -133,8 +134,10 @@ public class ImageSprite implements Sprite {
 			 * Outside of image (nothing to draw)
 			 */
 			return new EmptySprite(width, height, ref);
-
 		}
+		// Exclude regions outside the original image
+		width = Math.min(width, iwidth);
+		height = Math.min(height, iheight);
 
 		/*
 		 * Full copy method (the memory hog)
@@ -159,6 +162,7 @@ public class ImageSprite implements Sprite {
 	 * @param y
 	 *            The y location at which to draw the sprite
 	 */
+	@Override
 	public void draw(final Graphics g, final int x, final int y) {
 		g.drawImage(image, x, y, null);
 	}
@@ -181,6 +185,7 @@ public class ImageSprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
+	@Override
 	public void draw(final Graphics g, final int destx, final int desty, final int x, final int y, final int w,
 			final int h) {
 		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y
@@ -192,6 +197,7 @@ public class ImageSprite implements Sprite {
 	 * 
 	 * @return The height in pixels of this sprite
 	 */
+	@Override
 	public int getHeight() {
 		return image.getHeight(null);
 	}
@@ -204,6 +210,7 @@ public class ImageSprite implements Sprite {
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
+	@Override
 	public Object getReference() {
 		return reference;
 	}
@@ -213,6 +220,7 @@ public class ImageSprite implements Sprite {
 	 * 
 	 * @return The width in pixels of this sprite
 	 */
+	@Override
 	public int getWidth() {
 		return image.getWidth(null);
 	}
