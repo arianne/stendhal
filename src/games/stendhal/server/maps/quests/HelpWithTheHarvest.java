@@ -148,8 +148,13 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				new OutputQuestSlotAction(QUEST_SLOT));
 		ChatCondition c = constructHayCartsNotYetCompletedCondition();
 		
+		String cartDescription = "You see a hay cart. Can you manage to push it to Karl's barn?";
+		
 		Block cartOne = new Block(87, 100, true, "hay_cart");
+		cartOne.setDescription(cartDescription);
 		Block cartTwo = new Block(79, 106, true, "hay_cart");
+		cartTwo.setDescription(cartDescription);
+		
 		zone.add(cartOne);
 		zone.add(cartTwo);
 		zone.addMovementListener(cartOne);
