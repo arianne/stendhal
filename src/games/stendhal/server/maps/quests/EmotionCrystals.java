@@ -102,7 +102,7 @@ public class EmotionCrystals extends AbstractQuest {
 				res.add("I'm emotionally incapable and have rejected his request.");
 			}
 			else {
-				res.add("I promised to gather crystals from all across Faimouni.");
+				res.add("I promised to gather five crystals from all across Faimouni.");
 			}
 		}
 		
@@ -313,7 +313,7 @@ public class EmotionCrystals extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Thank you. I would like to gather the #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
+			"Thank you. I would like to gather the five #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
 			new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, 0, "start"),
 					new IncreaseKarmaAction(5)));
@@ -329,6 +329,15 @@ public class EmotionCrystals extends AbstractQuest {
 			new MultipleActions(
 					new SetQuestAction(QUEST_SLOT, 0, "rejected"),
 					new DecreaseKarmaAction(5)));
+		
+		// Player tries to leave without accepting/rejecting the quest
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.GOODBYE_MESSAGES,
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"That is not a \"yes\" or \"no\" question. I said, would you do a favor for me?",
+			null);
 		
 		// Player asks about emotions
 		npc.add(
