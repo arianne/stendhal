@@ -65,7 +65,7 @@ public class CaptureFlagUseListener implements UseListener {
 	 * (that is a feeble approach to Effects)
 	 * 
 	 * @param text
-	 * @return
+	 * @return string determining outcome of the check
 	 */
 	// protected Effect checkEquippedAndInRange
 	// protected String checkEquippedAndInRange() {
