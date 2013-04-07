@@ -34,6 +34,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
@@ -303,7 +304,8 @@ public class AntivenomRing extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), 
-						new QuestActiveCondition(QUEST_SLOT)),
+						new QuestActiveCondition(QUEST_SLOT),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 0, "enhancing"))),
 				ConversationStates.ATTENDING,
 				"Hello again! Did you bring me the #items I requested?",
 				null);
