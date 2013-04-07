@@ -3,6 +3,7 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.StatefulEntity;
+import games.stendhal.client.sprite.EmptySprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -17,7 +18,8 @@ public class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity
 		String entityType = entity.getType();
 		if (entityType != null) {
 			if (entity.getName() == null) {
-				sprite = store.getSprite(translate("signs/transparent"));
+				setSprite(new EmptySprite(1, 1, null));
+				return;
 			} else {
 				sprite = store.getModifiedSprite(translate(getClassResourcePath() + "/" + entity.getName()),
 						info.getZoneColor(), info.getColorMethod());
