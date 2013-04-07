@@ -198,14 +198,6 @@ public class EmotionCrystals extends AbstractQuest {
 			rewardAction.add(new IncreaseKarmaAction(5));
 			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
 			
-			// The player speaks to crystal and receives riddle
-			crystalNPC.add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					crystalRiddle,
-					null);
-			
 			// Player says "bye"
 			crystalNPC.add(ConversationStates.ATTENDING,
 					ConversationPhrases.GOODBYE_MESSAGES,
