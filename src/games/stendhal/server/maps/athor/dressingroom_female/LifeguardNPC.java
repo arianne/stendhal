@@ -40,10 +40,10 @@ public class LifeguardNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildFemaleDressingRoom(zone, attributes);
+		buildFemaleDressingRoom(zone);
 	}
 
-	private void buildFemaleDressingRoom(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildFemaleDressingRoom(final StendhalRPZone zone) {
 		final SpeakerNPC pam = new SpeakerNPC("Pam") {
 
 			@Override

@@ -46,14 +46,14 @@ public class GreeterNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
 	//
 	// OL0_GreeterNPC
 	//
 
-	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC greeterNPC = new SpeakerNPC("Xhiphin Zohos") {
 
 			@Override

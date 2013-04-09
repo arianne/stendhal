@@ -36,10 +36,10 @@ public class BarmanNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildBar(zone, attributes);
+		buildBar(zone);
 	}
 
-	private void buildBar(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildBar(final StendhalRPZone zone) {
 		final SpeakerNPC barman = new SpeakerNPC("Pedro") {
 
 			@Override

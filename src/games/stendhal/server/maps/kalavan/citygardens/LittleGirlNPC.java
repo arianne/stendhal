@@ -39,11 +39,11 @@ public class LittleGirlNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		createNPC(zone, attributes);
+		createNPC(zone);
 	}
 
 
-	private void createNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void createNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Annie Jones") {
 			
 			@Override

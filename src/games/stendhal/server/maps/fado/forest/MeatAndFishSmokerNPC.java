@@ -22,12 +22,12 @@ import games.stendhal.server.entity.npc.behaviour.adder.MultiProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Provides a Meat and Fish professional smoker in Fado forest.
@@ -42,10 +42,10 @@ public class MeatAndFishSmokerNPC implements ZoneConfigurator {
      * @param   attributes  Configuration attributes.
      */
     public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-        buildNPC(zone, attributes);
+        buildNPC(zone);
     }
 
-    private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+    private void buildNPC(final StendhalRPZone zone) {
         final SpeakerNPC npc = new SpeakerNPC("Olmo") {
 
             @Override

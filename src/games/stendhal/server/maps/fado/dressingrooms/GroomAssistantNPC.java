@@ -39,10 +39,10 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildDressingRoom(zone, attributes);
+		buildDressingRoom(zone);
 	}
 
-	private void buildDressingRoom(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildDressingRoom(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Timothy") {
 
 			@Override

@@ -32,10 +32,10 @@ public class MinotaurCreature implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildQuicksandArea(zone, attributes);
+		buildQuicksandArea(zone);
 	}
 
-	private void buildQuicksandArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildQuicksandArea(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("minotaur"), "minotaur key");

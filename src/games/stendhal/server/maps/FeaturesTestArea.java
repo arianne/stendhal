@@ -42,11 +42,11 @@ public class FeaturesTestArea implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		createDoorAndKey(zone, attributes);
-		attackableAnimal(zone, attributes);
+		createDoorAndKey(zone);
+		attackableAnimal(zone);
 	}
 
-	private void createDoorAndKey(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void createDoorAndKey(final StendhalRPZone zone) {
 		final List<String> slots = new LinkedList<String>();
 		slots.add("bag");
 
@@ -61,7 +61,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		zone.add(point);
 	}
 
-	private void attackableAnimal(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void attackableAnimal(final StendhalRPZone zone) {
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60 * 60 * 3);

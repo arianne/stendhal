@@ -43,13 +43,13 @@ public class SmallBoyNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSmallBoyNPC(zone, attributes);
+		buildSmallBoyNPC(zone);
 	}
 
 	//
 	// A Small Boy NPC a bit below the tavern
 	//
-	private void buildSmallBoyNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSmallBoyNPC(final StendhalRPZone zone) {
 		final SpeakerNPC boynpc = new SpeakerNPC("Bobby") {
 
 			@Override
