@@ -41,10 +41,10 @@ public class BakerNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildBakery(zone, attributes);
+		buildBakery(zone);
 	}
 
-	private void buildBakery(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildBakery(final StendhalRPZone zone) {
 		final SpeakerNPC baker = new SpeakerNPC("Arlindo") {
 
 			@Override

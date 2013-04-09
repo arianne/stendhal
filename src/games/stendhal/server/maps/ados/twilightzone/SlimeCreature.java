@@ -36,10 +36,10 @@ public class SlimeCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildTwilightArea(zone, attributes);
+		buildTwilightArea(zone);
 	}
 
-	private void buildTwilightArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildTwilightArea(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 		final Creature creature = new ItemGuardCreature(manager.getCreature("twilight slime"), "twilight elixir", "mithril_cloak", "twilight_zone");
 		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 5, 5, creature, 1);

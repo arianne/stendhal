@@ -40,10 +40,10 @@ public class GoldsmithNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildGoldsmith(zone, attributes);
+		buildGoldsmith(zone);
 	}
 
-	private void buildGoldsmith(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildGoldsmith(final StendhalRPZone zone) {
 		final SpeakerNPC goldsmith = new SpeakerNPC("Joshua") {
 
 			@Override

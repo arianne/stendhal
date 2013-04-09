@@ -36,10 +36,10 @@ public class MithrilForgerNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildForger(zone, attributes);
+		buildForger(zone);
 	}
 
-	private void buildForger(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildForger(final StendhalRPZone zone) {
 		final SpeakerNPC forger = new SpeakerNPC("Pedinghaus") {
 
 			@Override

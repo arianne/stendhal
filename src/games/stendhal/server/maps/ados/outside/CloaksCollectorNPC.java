@@ -30,10 +30,10 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildZooSub3Area(zone, attributes);
+		buildZooSub3Area(zone);
 	}
 
-	private void buildZooSub3Area(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildZooSub3Area(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Bario") {
 
 			@Override

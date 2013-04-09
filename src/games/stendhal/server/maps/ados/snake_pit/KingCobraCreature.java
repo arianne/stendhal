@@ -32,10 +32,10 @@ public class KingCobraCreature implements ZoneConfigurator {
 	 */
 
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildSnakePit(zone, attributes);
+		buildSnakePit(zone);
 	}
 
-	private void buildSnakePit(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildSnakePit(final StendhalRPZone zone) {
 		final EntityManager manager = SingletonRepository.getEntityManager();
 
 		final Creature creature = new ItemGuardCreature(manager.getCreature("king cobra"), "venom gland");

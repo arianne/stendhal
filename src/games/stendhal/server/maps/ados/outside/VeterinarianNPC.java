@@ -44,10 +44,10 @@ public class VeterinarianNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildZooArea(zone, attributes);
+		buildZooArea(zone);
 	}
 
-	private void buildZooArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildZooArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Dr. Feelgood") {
 
 			@Override

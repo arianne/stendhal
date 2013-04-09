@@ -43,10 +43,10 @@ public class LibrarianNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildLibrary(zone, attributes);
+		buildLibrary(zone);
 	}
 
-	private void buildLibrary(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildLibrary(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
 
 			@Override

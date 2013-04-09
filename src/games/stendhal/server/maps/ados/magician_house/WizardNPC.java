@@ -38,10 +38,10 @@ public class WizardNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
-		buildMagicianHouseArea(zone, attributes);
+		buildMagicianHouseArea(zone);
 	}
 
-	private void buildMagicianHouseArea(final StendhalRPZone zone, final Map<String, String> attributes) {
+	private void buildMagicianHouseArea(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Haizen") {
 
 			@Override
