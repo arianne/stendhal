@@ -1,23 +1,24 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.library.WriterNPC;
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
-import utilities.ZonePlayerAndNPCTestImpl;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.PlayerTestHelper;
+import utilities.QuestHelper;
+import utilities.ZonePlayerAndNPCTestImpl;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 
 public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
@@ -26,9 +27,9 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 	private static final String ZONE_NAME = "testzone";
 	
 	private static MeetMarieHenri quest;
-	private static Player player = null;
-	private static SpeakerNPC npc = null;
-	private static Engine en = null;
+	private Player player = null;
+	private SpeakerNPC npc = null;
+	private Engine en = null;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -42,6 +43,7 @@ public class MeetMarieHenriTest extends ZonePlayerAndNPCTestImpl {
 		
 	}
 	
+	@Override
 	@Before
 	public void setUp() {
 		player = PlayerTestHelper.createPlayer("player");

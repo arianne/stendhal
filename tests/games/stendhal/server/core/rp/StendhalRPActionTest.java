@@ -12,10 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static utilities.PlayerTestHelper.getPrivateReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
@@ -31,9 +27,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static utilities.PlayerTestHelper.getPrivateReply;
 
 public class StendhalRPActionTest {
-	private static StendhalRPZone zone;
+	private StendhalRPZone zone;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
