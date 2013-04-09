@@ -38,7 +38,7 @@ import static org.junit.Assert.fail;
 public class SummonAtActionTest {
 	@BeforeClass
 	public static void init() {
-		UserInterfaceTestHelper.initUserInterface();
+		UserInterfaceTestHelper.resetUserInterface();
 	}
 
 	@After

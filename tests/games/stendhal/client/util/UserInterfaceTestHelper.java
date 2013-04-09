@@ -22,4 +22,8 @@ public class UserInterfaceTestHelper {
 		}
 	}
 
+	public static void resetUserInterface() {
+		ClientSingletonRepository.setUserInterface(new MockUserInterface());
+	}
+
 }
