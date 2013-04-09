@@ -12,21 +12,23 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.MockUserInterface;
 import games.stendhal.client.gui.UserInterface;
 import games.stendhal.client.scripting.ChatLineParser;
+import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPAction;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Test the SummonAtAction class.
@@ -36,7 +38,7 @@ import org.junit.Test;
 public class SummonAtActionTest {
 	@BeforeClass
 	public static void init() {
-		ClientSingletonRepository.setUserInterface(new MockUserInterface());
+		UserInterfaceTestHelper.initUserInterface();
 	}
 
 	@After

@@ -12,10 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.util.UserInterfaceTestHelper;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -24,10 +21,14 @@ import javax.swing.JPanel;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class InternalWindowTest {
 	@BeforeClass
 	public static void init() {
-		ClientSingletonRepository.setUserInterface(new MockUserInterface());
+		UserInterfaceTestHelper.initUserInterface();
 	}
 	
 	/**
