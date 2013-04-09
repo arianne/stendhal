@@ -25,8 +25,12 @@ import javax.swing.event.MouseInputListener;
  * @since August 16, 2010
  */
 public class ColorSwatch extends JPanel {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5148427974120905902L;
 
-  /** The rollover color. */
+/** The rollover color. */
   private static final Color ROLLOVER_COLOR = new Color(0x80ffffff, true);
 
   /** The listener. */
@@ -41,8 +45,8 @@ public class ColorSwatch extends JPanel {
   }
 
   /** The listeners. */
-  private transient List
- listeners = new ArrayList();
+  private transient List<ColorListener>
+ listeners = new ArrayList<ColorListener>();
 
   /** The colors. */
   private Color[][] colors;
@@ -77,7 +81,7 @@ public class ColorSwatch extends JPanel {
 
         // notify about selection
         for (int i = 0; i < listeners.size(); i++) {
-          ((ColorListener) listeners.get(i)).handleColor(color);
+          listeners.get(i).handleColor(color);
         }
       }
       public void mouseMoved(MouseEvent event) {
@@ -160,10 +164,10 @@ public class ColorSwatch extends JPanel {
     int margin = getMargin();
     int colorSize = getColorSize();
     int colorSpacing = getColorSpacing();
-    x -= margin;
-    y -= margin;
-    int col = x / (colorSize + colorSpacing);
-    int row = y / (colorSize + colorSpacing);
+    int marginedX = x - margin;
+    int marginedY = y - margin;
+    int col = marginedX / (colorSize + colorSpacing);
+    int row = marginedY / (colorSize + colorSpacing);
     if ((col < 0) || (col >= colors[0].length) || (row < 0) 
                        || (row >= colors.length)) {
       return null;
