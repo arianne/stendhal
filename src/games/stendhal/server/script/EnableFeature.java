@@ -17,6 +17,7 @@ public class EnableFeature extends ScriptImpl {
 	public void execute(final Player admin, final List<String> args) {
 		if(args != null && args.size() != 2) {
 			admin.sendPrivateText("Usage of EnableFeature: [player] [feature]");
+			return;
 		}
 		final String feature = args.get(1);
 		final String name = args.get(0);
