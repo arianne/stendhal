@@ -34,10 +34,16 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 	@Override
 	public abstract void init();
 
+	/**
+	 * @param name  
+	 */
 	public synchronized boolean perform(final String name) {
 		return (false);
 	}
 
+	/**
+	 * @param name  
+	 */
 	public String getMessage(final String name) {
 		return (null);
 	}
