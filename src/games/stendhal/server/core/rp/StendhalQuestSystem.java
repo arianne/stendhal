@@ -13,7 +13,6 @@
 package games.stendhal.server.core.rp;
 
 
-import games.stendhal.server.core.config.annotations.ServerModeUtil;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
@@ -105,9 +104,7 @@ public class StendhalQuestSystem {
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
 		loadQuest(new HelpMrsYeti());
-		if(ServerModeUtil.isTestServer()) {
-			loadQuest(new HelpWithTheHarvest());
-		}
+		loadQuest(new HelpWithTheHarvest());
 		loadQuest(new HerbsForCarmen());
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
