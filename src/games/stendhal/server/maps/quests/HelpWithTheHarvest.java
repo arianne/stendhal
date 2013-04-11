@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipRandomAmountOfItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
@@ -19,9 +20,9 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateGreaterThanCondition;
 import games.stendhal.server.entity.player.Player;
@@ -51,14 +52,17 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	@Override
 	public List<String> getHistory(Player player) {
 		List<String> result = new ArrayList<String>();
-		if(new QuestStartedCondition(QUEST_SLOT).fire(player, null, null)) {
+		if(new QuestStartedCondition(QUEST_SLOT).fire(player, null, null) && !createFinishedCondition().fire(player, null, null)) {
 			result.add("I want to help Eheneumniranin with his harvest.");
 		}
 		if(constructHayCartsNotYetCompletedCondition().fire(player, null, null)) {
 			result.add("I need to bring two hay carts to the barn just north of Eheneumniranin.");
 		}
-		if(createFinishedCondition().fire(player, null, null)) {
+		if(createTaskFinishedCondition().fire(player, null, null)) {
 			result.add("I have brought enough hay carts to the barn. I can tell Eheneumniranin now that I am done.");
+		}
+		if(createFinishedCondition().fire(player, null, null)) {
+			result.add("I have helped " + getNPCName() + " an got my reward.");
 		}
 		return result;
 	}
@@ -128,11 +132,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		 */
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("done"),
-				createFinishedCondition(),
+				createTaskFinishedCondition(),
 				ConversationStates.ATTENDING,
 				"Thank you for helping me with the harvest. Here is your reward.",
 				createReward());
 	}
+
 
 	/**
 	 * Place the carts and targets into the zone
@@ -170,7 +175,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	}
 
 	/**
-	 * Create condition determining if hay carts have been moved completely to the barn
+	 * Create condition determining if hay carts have not been moved completely to the barn
 	 * 
 	 * @return the condition
 	 */
@@ -183,6 +188,19 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	}
 	
 	/**
+	 * Create condition determining when hay carts were move to the barn
+	 * 
+	 * @return the condition
+	 */
+	private ChatCondition createTaskFinishedCondition() {
+		ChatCondition c = new AndCondition(
+				new QuestStartedCondition(QUEST_SLOT), 
+				new QuestInStateCondition(QUEST_SLOT, 0, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, 1, "0"));
+		return c;
+	}
+	
+	/**
 	 * Create the reward action
 	 * 
 	 * @return the action for rewarding finished quest
@@ -191,6 +209,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		return new MultipleActions(
 					new IncreaseKarmaAction(5),
 					new IncreaseXPAction(50),
+					new EquipRandomAmountOfItemAction("grain", 10, 50),
 					new SetQuestAction(QUEST_SLOT, "done"));	
 	}
 	
@@ -200,9 +219,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	 * @return the condition
 	 */
 	private ChatCondition createFinishedCondition() {
-		return new AndCondition(new QuestStartedCondition(QUEST_SLOT), 
-					new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-					new QuestSmallerThanCondition(QUEST_SLOT, 1, 1));
+		return new QuestCompletedCondition(QUEST_SLOT);
 	}
 
 	@Override
