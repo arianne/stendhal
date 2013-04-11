@@ -13,9 +13,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.BlockTestHelper;
-
 import static org.hamcrest.CoreMatchers.is;
-
 import static org.junit.Assert.assertThat;
 
 

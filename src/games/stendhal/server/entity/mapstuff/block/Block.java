@@ -66,12 +66,23 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * 			is pushing multiple times allowed
 	 */
 	public Block(int startX, int startY, boolean multiPush) {
-		this(startX, startY, multiPush, "block", Arrays.asList("scrape-1", "scrape-2"));
+		this(startX, startY, multiPush, "block", null, Arrays.asList("scrape-1", "scrape-2"));
+	}
+	
+	/**
+	 * 
+	 * @param startX
+	 * @param startY
+	 * @param multiPush
+	 * @param style
+	 * @param shape
+	 */
+	public Block(int startX, int startY, boolean multiPush, String style) {
+		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
 	}
 	
 	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
-		this(startX, startY, multiPush, style, Collections.<String> emptyList());
-		this.put("shape", shape);
+		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
 	}
 
 	/**
@@ -88,7 +99,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * @param sounds
 	 * 			what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style, List<String> sounds) {
+	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
 		super();
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
@@ -100,15 +111,18 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		this.sounds = sounds;
 		// Count as collision for the client and pathfinder
 		setResistance(100);
-        // a nice description TODO make it dynamically computed
         setDescription("You see a solid block of rock. Are you strong enough to push it away?");
 		if(style != null) {
 			put("name", style);
 		} else {
 			put("name", "block");
 		}
+		if(shape != null) {
+			put("shape", shape);
+		}
 		this.reset();
 	}
+	
 
 	/**
 	 * Resets the block position to its initial state
