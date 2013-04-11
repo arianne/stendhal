@@ -268,7 +268,7 @@ public class EmotionCrystals extends AbstractQuest {
 					ConversationPhrases.HELP_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
-					"I cannot offer help, but I can offer a #riddle",
+					"I cannot offer help, but I can offer a #riddle.",
 					null);
 			
 			// Player asks for offer
