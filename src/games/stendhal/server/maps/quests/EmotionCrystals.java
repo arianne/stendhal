@@ -356,7 +356,7 @@ public class EmotionCrystals extends AbstractQuest {
 			Arrays.asList("crystal", "crystals", "emotion crystal", "emotion crystals", "emotions crystal", "emotions crystals"),
 			null,
 			ConversationStates.ATTENDING,
-			"I've heard that there are crystals scattered throughout Faimouni, special crystals that can bring out any emotion.",
+			"I've heard that there are crystals scattered throughout Faiumoni, special crystals that can bring out any emotion.",
 			null);
 	}
 
@@ -425,7 +425,7 @@ public class EmotionCrystals extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Emotion Crystals",
-				"Solve the riddles of the crystals spread across Faimouni.",
+				"Solve the riddles of the crystals spread across Faiumoni.",
 				false);
 		prepareRiddlesStep();
 		prepareRequestingStep();
