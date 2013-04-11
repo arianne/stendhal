@@ -62,7 +62,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 			result.add("I have brought enough hay carts to the barn. I can tell Eheneumniranin now that I am done.");
 		}
 		if(createFinishedCondition().fire(player, null, null)) {
-			result.add("I have helped " + getNPCName() + " an got my reward.");
+			result.add("I have helped " + getNPCName() + " and got my reward.");
 		}
 		return result;
 	}
@@ -134,8 +134,51 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("done"),
 				createTaskFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Thank you for helping me with the harvest. Here is your reward.",
+				"Thank you for helping me with the harvest. Here is your reward. Maybe you can bring the grain to #Jenny who can mill #flour from the grain.",
 				createReward());
+		/*
+		 * Player has finished the quest and can get additional information
+		 */
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("jenny"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"You can find #Jenny near Semos at the mill. She mills grain to #flour for you if you bring her a few sheaves grain.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("flour"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"#Jenny will mill the grain I gave you as reward to flour which you maybe could use for #bread?",
+				null);
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("bread"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"#Erna did never bake a bread for you yet? It is really worth it, because you can use it to let #Leander make #sandwiches for you.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("sandwich"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"You did not try a #sandwich made by #Leander yet? They are so tasty.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("leander"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"Leander runs the bakery in semos city and can make #sandwiches for you if you bring him the ingredients. Why don't you spend him a visit?",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("erna"),
+				createFinishedCondition(),
+				ConversationStates.ATTENDING,
+				"Erna is the assistant of #Leander in the bakery. If you bring her #flour, she will bake #bread for you.",
+				null);
 	}
 
 
@@ -209,7 +252,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		return new MultipleActions(
 					new IncreaseKarmaAction(5),
 					new IncreaseXPAction(50),
-					new EquipRandomAmountOfItemAction("grain", 10, 50),
+					new EquipRandomAmountOfItemAction("grain", 10, 20),
 					new SetQuestAction(QUEST_SLOT, "done"));	
 	}
 	
