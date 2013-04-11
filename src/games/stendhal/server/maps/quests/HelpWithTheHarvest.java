@@ -16,7 +16,6 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.OutputQuestSlotAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -102,9 +101,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"This is really nice. I was getting tired of bringing the two carts with stray to Karl.",
-				new MultipleActions(
-						new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0), 
-						new OutputQuestSlotAction(QUEST_SLOT)));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
 		/*
 		 * Player refused to help - end the conversation.
@@ -143,9 +140,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	private void placeCartsAndTargets() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_ados_forest_w2");
 		
-		ChatAction a = new MultipleActions(
-				new IncrementQuestAction(QUEST_SLOT, 1, -1),
-				new OutputQuestSlotAction(QUEST_SLOT));
+		ChatAction a = new IncrementQuestAction(QUEST_SLOT, 1, -1);
 		ChatCondition c = constructHayCartsNotYetCompletedCondition();
 		
 		String cartDescription = "You see a hay cart. Can you manage to push it to Karl's barn?";
