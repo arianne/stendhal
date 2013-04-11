@@ -133,7 +133,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("done"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Thank you for helping me with the harvest. Here is your reward",
+				"Thank you for helping me with the harvest. Here is your reward.",
 				createReward());
 	}
 
