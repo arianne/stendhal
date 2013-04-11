@@ -54,7 +54,7 @@ public class FarmerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(64, 75));
+				nodes.add(new Node(64, 76));
 				nodes.add(new Node(64, 86));	
 				nodes.add(new Node(68, 86));	
 				nodes.add(new Node(68, 84));
@@ -90,7 +90,7 @@ public class FarmerNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Karl, a friendly elderly farmer.");
 		npc.setEntityClass("beardmannpc");
-		npc.setPosition(64, 75);
+		npc.setPosition(64, 76);
 		npc.initHP(100);
 		zone.add(npc);
 	}
