@@ -133,16 +133,18 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 					}
 				}
 			}
-            this.notifyWorldAboutChanges();
             this.sendSound();
+            this.notifyWorldAboutChanges();
 			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
 		}
 	}
 	
 	
 	private void sendSound() {
-		SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
-		this.addEvent(e);
+		if("block".equals(this.get("name"))) {
+			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
+			this.addEvent(e);
+		}
 	}
 
 	protected int getYAfterPush(Direction d) {
