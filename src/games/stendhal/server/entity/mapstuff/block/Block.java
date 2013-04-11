@@ -14,6 +14,7 @@ import games.stendhal.server.events.SoundEvent;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import marauroa.common.game.Definition;
@@ -36,7 +37,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
     private static final String START_X = "start-x";
     
-    private static final List<String> sounds = Arrays.asList("scrape-1", "scrape-2");
+    private final List<String> sounds;
 
     private static final Logger logger = Logger.getLogger(Block.class);
 
@@ -65,11 +66,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * 			is pushing multiple times allowed
 	 */
 	public Block(int startX, int startY, boolean multiPush) {
-		this(startX, startY, multiPush, "block");
+		this(startX, startY, multiPush, "block", Arrays.asList("scrape-1", "scrape-2"));
 	}
 	
 	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
-		this(startX, startY, multiPush, style);
+		this(startX, startY, multiPush, style, Collections.<String> emptyList());
 		this.put("shape", shape);
 	}
 
@@ -84,8 +85,10 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * 			is pushing multiple times allowed
 	 * @param style
 	 * 			what style should the client use?
+	 * @param sounds
+	 * 			what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style) {
+	public Block(int startX, int startY, boolean multiPush, String style, List<String> sounds) {
 		super();
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
@@ -94,6 +97,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		setRPClass("block");
 		put("type", "block");
 		put("class", "block");
+		this.sounds = sounds;
 		// Count as collision for the client and pathfinder
 		setResistance(100);
         // a nice description TODO make it dynamically computed
@@ -141,7 +145,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	
 	
 	private void sendSound() {
-		if("block".equals(this.get("name"))) {
+		if(!this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
 			this.addEvent(e);
 		}
