@@ -103,7 +103,7 @@ public class EmotionCrystals extends AbstractQuest {
 				res.add("I'm emotionally incapable and have rejected his request.");
 			}
 			else {
-				res.add("I promised to gather five crystals from all across Faimouni.");
+				res.add("I promised to gather five crystals from all across Faiumoni.");
 			}
 		}
 		
