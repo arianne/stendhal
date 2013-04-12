@@ -34,7 +34,7 @@ import java.util.List;
 
 /**
  * In this quest the player can help Eheneumniranin by bringing
- * two carts with stray up to the barn near Karl.
+ * two carts with straw up to the barn near Karl.
  * 
  * (proof of concept for pushable blocks)
  * 
@@ -56,10 +56,10 @@ public class HelpWithTheHarvest extends AbstractQuest {
 			result.add("I want to help Eheneumniranin with his harvest.");
 		}
 		if(constructHayCartsNotYetCompletedCondition().fire(player, null, null)) {
-			result.add("I need to bring two hay carts to the barn just north of Eheneumniranin.");
+			result.add("I need to bring two straw carts to the barn just north of Eheneumniranin.");
 		}
 		if(createTaskFinishedCondition().fire(player, null, null)) {
-			result.add("I have brought enough hay carts to the barn. I can tell Eheneumniranin now that I am done.");
+			result.add("I have brought enough straw carts to the barn. I can tell Eheneumniranin now that I am done.");
 		}
 		if(createFinishedCondition().fire(player, null, null)) {
 			result.add("I have helped " + getNPCName() + " and got my reward.");
@@ -104,7 +104,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"This is really nice. I was getting tired of bringing the two carts with stray to Karl.",
+				"This is really nice. I was getting tired of bringing the two carts with straw to Karl.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
 		/*
@@ -124,7 +124,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				constructHayCartsNotYetCompletedCondition(),
 				ConversationStates.ATTENDING,
-				"You did not bring yet both hay carts next to the hay cart near the barn just north of here.",
+				"You did not bring yet both straw carts next to the straw cart near the barn just north of here.",
 				null);
 		
 		/*
@@ -191,7 +191,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		ChatAction a = new IncrementQuestAction(QUEST_SLOT, 1, -1);
 		ChatCondition c = constructHayCartsNotYetCompletedCondition();
 		
-		String cartDescription = "You see a hay cart. Can you manage to push it to Karl's barn?";
+		String cartDescription = "You see a straw cart. Can you manage to push it to Karl's barn?";
 		
 		Block cartOne = new Block(87, 100, true, "hay_cart");
 		cartOne.setDescription(cartDescription);
@@ -218,7 +218,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	}
 
 	/**
-	 * Create condition determining if hay carts have not been moved completely to the barn
+	 * Create condition determining if straw carts have not been moved completely to the barn
 	 * 
 	 * @return the condition
 	 */
@@ -231,7 +231,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	}
 	
 	/**
-	 * Create condition determining when hay carts were move to the barn
+	 * Create condition determining when straw carts were move to the barn
 	 * 
 	 * @return the condition
 	 */
