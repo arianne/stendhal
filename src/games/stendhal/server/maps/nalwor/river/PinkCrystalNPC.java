@@ -49,8 +49,8 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I care for all things. I am purest of all. If you share me I'm sure I will be reciprocated. What am I?");
-				addGoodbye("Farewell, return to me when you have found the answer to my riddle.");     
+				addGreeting("Nice that you found me here! This water is beautiful.");
+				addGoodbye("Farewell, return to me whenever you need my help.");     
 			}
 		};
 
@@ -58,7 +58,7 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalpinknpc");
 		crystal.setPosition(99, 53);
 		crystal.initHP(100);
-		crystal.setDescription("You see a pink colored crystal. It is strangely attractive.");
+		crystal.setDescription("You see a pink coloured crystal. It is strangely attractive.");
 		crystal.setResistance(0);
 		
 		zone.add(crystal);

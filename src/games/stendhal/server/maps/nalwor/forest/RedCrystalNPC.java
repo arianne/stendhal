@@ -49,8 +49,9 @@ public class RedCrystalNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I burn like fire. My presence is not enjoyed. Those who test me will feel my wrath. What am I?");
-				addGoodbye("Farewell, return to me when you have found the answer to my riddle.");     
+				addGreeting("Hello stranger, nice to meet you.");
+				addGoodbye("Farewell, return to me whenever you need my help."); 
+			
 			}
 		};
 
@@ -58,7 +59,7 @@ public class RedCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalrednpc");
 		crystal.setPosition(44, 75);
 		crystal.initHP(100);
-		crystal.setDescription("You see a red colored crystal. Looking at it makes you a little agitated.");
+		crystal.setDescription("You see a red coloured crystal. Looking at it makes you a little agitated.");
 		crystal.setResistance(0);
 		
 		zone.add(crystal);
