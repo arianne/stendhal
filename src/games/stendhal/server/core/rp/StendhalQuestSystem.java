@@ -67,7 +67,7 @@ public class StendhalQuestSystem {
 
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
-		loadQuest(new AntivenomRing());
+//		loadQuest(new AntivenomRing());
 		loadQuest(new ArmorForDagobert());
 		loadQuest(new BalloonForBobby());
 		loadQuest(new BeerForHayunn());
@@ -92,7 +92,7 @@ public class StendhalQuestSystem {
 		loadQuest(new EasterGiftsForChildren());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
-		loadQuest(new EmotionCrystals());
+//		loadQuest(new EmotionCrystals());
 		loadQuest(new FindGhosts());
 		loadQuest(new FindJefsMom());
 		loadQuest(new FindRatChildren());
