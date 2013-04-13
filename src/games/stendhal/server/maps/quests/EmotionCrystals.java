@@ -29,9 +29,11 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
@@ -49,6 +51,7 @@ import org.apache.commons.lang.WordUtils;
  * PARTICIPANTS:
  * <ul>
  * <li>Julius (the Soldier who guards the entrance to Ados City)</li>
+ * <li>Crystal NPCs around Faiumoni</li>
  * </ul>
  * 
  * STEPS:
@@ -151,6 +154,87 @@ public class EmotionCrystals extends AbstractQuest {
 		return res;
 	}
 	
+	private void prepareRequestingStep() {
+		final SpeakerNPC npc = npcs.get("Julius");
+		
+	
+		// Player asks for quest
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES, 
+			new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
+					new QuestNotCompletedCondition(QUEST_SLOT)),
+			ConversationStates.QUEST_OFFERED, 
+			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
+			null);
+		
+		// Player accepts quest
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"Thank you. I would like to gather five #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
+			new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "start"),
+					new IncreaseKarmaAction(5)));
+		
+		// Player rejects quest
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			// Julius walks away
+			ConversationStates.IDLE,
+			"Hmph! I'll ask someone else then.",
+			new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+					new DecreaseKarmaAction(5)));
+		
+		// Player tries to leave without accepting/rejecting the quest
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.GOODBYE_MESSAGES,
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"That is not a \"yes\" or \"no\" question. I said, would you do a favor for me?",
+			null);
+		
+		// Player asks about emotions
+		npc.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("emotion", "emotions"),
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Don't you know what emotions are? Surely you've experienced joy or sadness.",
+			null);
+		
+		// Player asks about crystals
+		npc.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("crystal", "crystals", "emotion crystal", "emotion crystals", "emotions crystal", "emotions crystals"),
+			null,
+			ConversationStates.ATTENDING,
+			"I've heard that there are crystals scattered throughout Faiumoni, special crystals that can bring out any emotion. There are five at all, hidden in dungeons, on mountains, in forests and I've heard that one is standing next to a house in the forest.",
+			null);
+		
+		// Player asks for quest after completed
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT, 0, "done"),
+			ConversationStates.ATTENDING, 
+			"My wife is sure to love these emotion crystals.",
+			null);
+		
+		// Player asks for quest after already started
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I believe I already asked you to get me some #crystals.",
+				null);
+	}
+	
+	
 	private void prepareRiddlesStep() {
 		
 		// List of NPCs
@@ -198,19 +282,28 @@ public class EmotionCrystals extends AbstractQuest {
 			rewardAction.add(new EquipItemAction(rewardItem,1,true));
 			rewardAction.add(new IncreaseKarmaAction(5));
 			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
-			
-			// Player says "bye"
+				
+			// Player asks about riddle
 			crystalNPC.add(ConversationStates.ATTENDING,
-					ConversationPhrases.GOODBYE_MESSAGES,
-					null,
-					ConversationStates.IDLE,
-					"Farewell, return to me when you have found the answer to my riddle.",
-					null);
+				ConversationPhrases.QUEST_MESSAGES, 
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+								new QuestCompletedCondition(QUEST_SLOT)),
+				ConversationStates.QUEST_OFFERED, 
+				"Please answer the #riddle which I have for you...",
+				null);
+			
+			// Player asks about riddle
+			crystalNPC.add(ConversationStates.ATTENDING,
+					Arrays.asList("riddle", "question", "query", "puzzle"),
+					new QuestActiveCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING,
+					crystalRiddle,
+					new SetQuestAction(QUEST_SLOT, "riddle"));
 			
 			// Player gets the riddle right
 			crystalNPC.add(ConversationStates.ATTENDING,
 					crystalAnswers,
-					null,
+					new QuestInStateCondition(QUEST_SLOT, "riddle"),
 					ConversationStates.IDLE,
 					"That is correct. Take this crystal as a reward.",
 					new MultipleActions(rewardAction));
@@ -218,7 +311,7 @@ public class EmotionCrystals extends AbstractQuest {
 			// Player gets the riddle wrong
 			crystalNPC.add(ConversationStates.ATTENDING,
 					"",
-					null,
+					new QuestInStateCondition(QUEST_SLOT, "riddle"),
 					ConversationStates.IDLE,
 					"I'm sorry, that is incorrect.",
 					new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
@@ -231,134 +324,48 @@ public class EmotionCrystals extends AbstractQuest {
 					null,
 					new SayTimeRemainingAction(QUEST_SLOT, n+1, WAIT_TIME, "Think hard on your answer and return to me again in"));
 			
-			// Player can do riddle but already has crystal reward
+			// Player can't do riddle twice
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new PlayerHasItemWithHimCondition(rewardItem),
-					ConversationStates.IDLE,
+					new QuestCompletedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING,
 					"I have nothing left to offer you.",
 					null);
 			
-			// Player asks for quest
+			// Player asks for quest without talking to Julius first
 			crystalNPC.add(ConversationStates.ATTENDING,
 					ConversationPhrases.QUEST_MESSAGES,
-					null,
+					new QuestNotStartedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING,
+					"Sorry, but I have nothing to offer you. Maybe someone needs a sparkling #crystal soon...",
+					null);
+			
+			crystalNPC.add(ConversationStates.ATTENDING,
+					ConversationPhrases.QUEST_MESSAGES,
+					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"If you solve my #riddle you shall have your reward.",
 					null);
 			
-			// Player asks about riddle
+			
 			crystalNPC.add(ConversationStates.ATTENDING,
-					Arrays.asList("riddle", "question", "query", "puzzle"),
-					null,
+					Arrays.asList("crystal", "sparkling crystal"),
+					new QuestNotStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
-					crystalRiddle,
+					"There is a soldier in Ados who used some beautiful crystals in jewellery for his wife...",
 					null);
 			
-			// Player asks about job
-			crystalNPC.add(ConversationStates.ATTENDING,
-					ConversationPhrases.JOB_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"I am a crystal. What more can I say?",
-					null);
-			
-			// Player asks for help
-			crystalNPC.add(ConversationStates.ATTENDING,
-					ConversationPhrases.HELP_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"I cannot offer help, but I can offer a #riddle.",
-					null);
 			
 			// Player asks for offer
 			crystalNPC.add(ConversationStates.ATTENDING,
 					ConversationPhrases.OFFER_MESSAGES,
-					null,
+					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"I will offer you up this #riddle.",
 					null);
 		}
 	}
 
-	private void prepareRequestingStep() {
-		final SpeakerNPC npc = npcs.get("Julius");
-		
-		// Player asks for quest after completed
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, 0, "done"),
-			ConversationStates.ATTENDING, 
-			"My wife is sure to love these emotion crystals.",
-			null);
-		
-		// Player asks for quest after already started
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"I believe I already asked you to get me some #crystals.",
-				null);
-		
-		// Player asks for quest
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start"),
-					new QuestNotCompletedCondition(QUEST_SLOT)),
-			ConversationStates.QUEST_OFFERED, 
-			"I don't get to see my wife very often because I am so busy guarding this entrance. I would like to do something for her. Would you help me?",
-			null);
-		
-		// Player accepts quest
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Thank you. I would like to gather the five #emotion #crystals as a gift for my wife. Please find all that you can and bring them to me.",
-			new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, 0, "start"),
-					new IncreaseKarmaAction(5)));
-		
-		// Player rejects quest
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			// Julius walks away
-			ConversationStates.IDLE,
-			"Hmph!",
-			new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, 0, "rejected"),
-					new DecreaseKarmaAction(5)));
-		
-		// Player tries to leave without accepting/rejecting the quest
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.GOODBYE_MESSAGES,
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"That is not a \"yes\" or \"no\" question. I said, would you do a favor for me?",
-			null);
-		
-		// Player asks about emotions
-		npc.add(
-			ConversationStates.ATTENDING,
-			Arrays.asList("emotion", "emotions"),
-			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"Don't you know what emotions are? Surely you've experienced joy or sadness.",
-			null);
-		
-		// Player asks about crystals
-		npc.add(
-			ConversationStates.ATTENDING,
-			Arrays.asList("crystal", "crystals", "emotion crystal", "emotion crystals", "emotions crystal", "emotions crystals"),
-			null,
-			ConversationStates.ATTENDING,
-			"I've heard that there are crystals scattered throughout Faiumoni, special crystals that can bring out any emotion.",
-			null);
-	}
 
 	private void prepareBringingStep() {
 		final SpeakerNPC npc = npcs.get("Julius");
@@ -427,8 +434,8 @@ public class EmotionCrystals extends AbstractQuest {
 				"Emotion Crystals",
 				"Solve the riddles of the crystals spread across Faiumoni.",
 				false);
-		prepareRiddlesStep();
 		prepareRequestingStep();
+		prepareRiddlesStep();
 		prepareBringingStep();
 	}
 
