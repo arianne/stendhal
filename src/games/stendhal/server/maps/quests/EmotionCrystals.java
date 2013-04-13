@@ -29,7 +29,6 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
@@ -141,10 +140,10 @@ public class EmotionCrystals extends AbstractQuest {
 		if (hasAllCrystals) {
 			res.add("I have obtained all of the emotion crystals.");
 			if (player.isQuestInState(QUEST_SLOT, "start")) {
-				res.add("I should bring them to Julius.");
+				res.add("I should bring them to Julius in Ados.");
 			}
 			else {
-				res.add("I should find someone who can use them.");
+				res.add("I still need some crystals for Julius in Ados.");
 			}
 		}
 		
@@ -281,29 +280,30 @@ public class EmotionCrystals extends AbstractQuest {
 			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
 			rewardAction.add(new EquipItemAction(rewardItem,1,true));
 			rewardAction.add(new IncreaseKarmaAction(5));
-			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
+			rewardAction.add(new SetQuestAction(QUEST_SLOT, n+1, "riddle_solved"));
 				
 			// Player asks about riddle
 			crystalNPC.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-								new QuestCompletedCondition(QUEST_SLOT)),
-				ConversationStates.QUEST_OFFERED, 
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+								new QuestNotInStateCondition (QUEST_SLOT, n+1, "riddle_solved")),
+				ConversationStates.ATTENDING, 
 				"Please answer the #riddle which I have for you...",
 				null);
 			
 			// Player asks about riddle
 			crystalNPC.add(ConversationStates.ATTENDING,
 					Arrays.asList("riddle", "question", "query", "puzzle"),
-					new QuestActiveCondition(QUEST_SLOT),
+					new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+							new QuestNotInStateCondition(QUEST_SLOT, n+1, "riddle_solved")),
 					ConversationStates.ATTENDING,
 					crystalRiddle,
-					new SetQuestAction(QUEST_SLOT, "riddle"));
+					new SetQuestAction(QUEST_SLOT, n+1, "riddle"));
 			
 			// Player gets the riddle right
 			crystalNPC.add(ConversationStates.ATTENDING,
 					crystalAnswers,
-					new QuestInStateCondition(QUEST_SLOT, "riddle"),
+					new QuestInStateCondition(QUEST_SLOT, n+1, "riddle"),
 					ConversationStates.IDLE,
 					"That is correct. Take this crystal as a reward.",
 					new MultipleActions(rewardAction));
@@ -311,7 +311,7 @@ public class EmotionCrystals extends AbstractQuest {
 			// Player gets the riddle wrong
 			crystalNPC.add(ConversationStates.ATTENDING,
 					"",
-					new QuestInStateCondition(QUEST_SLOT, "riddle"),
+					new QuestInStateCondition(QUEST_SLOT, n+1, "riddle"),
 					ConversationStates.IDLE,
 					"I'm sorry, that is incorrect.",
 					new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
@@ -327,9 +327,10 @@ public class EmotionCrystals extends AbstractQuest {
 			// Player can't do riddle twice
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new QuestCompletedCondition(QUEST_SLOT),
+					new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+							new QuestInStateCondition(QUEST_SLOT, n+1, "riddle_solved")),
 					ConversationStates.ATTENDING,
-					"I have nothing left to offer you.",
+					"I hope you made someone happy with your crystal!",
 					null);
 			
 			// Player asks for quest without talking to Julius first
@@ -341,28 +342,12 @@ public class EmotionCrystals extends AbstractQuest {
 					null);
 			
 			crystalNPC.add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					new QuestActiveCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING,
-					"If you solve my #riddle you shall have your reward.",
-					null);
-			
-			
-			crystalNPC.add(ConversationStates.ATTENDING,
 					Arrays.asList("crystal", "sparkling crystal"),
 					new QuestNotStartedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
 					"There is a soldier in Ados who used some beautiful crystals in jewellery for his wife...",
 					null);
 			
-			
-			// Player asks for offer
-			crystalNPC.add(ConversationStates.ATTENDING,
-					ConversationPhrases.OFFER_MESSAGES,
-					new QuestActiveCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING,
-					"I will offer you up this #riddle.",
-					null);
 		}
 	}
 
@@ -432,7 +417,7 @@ public class EmotionCrystals extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Emotion Crystals",
-				"Solve the riddles of the crystals spread across Faiumoni.",
+				"Julius needs to get some crystals for his wife which are spread across Faiumoni.",
 				false);
 		prepareRequestingStep();
 		prepareRiddlesStep();
@@ -456,7 +441,7 @@ public class EmotionCrystals extends AbstractQuest {
 	
 	@Override
 	public int getMinLevel() {
-		return 0;
+		return 70;
 	}
 
 	@Override
