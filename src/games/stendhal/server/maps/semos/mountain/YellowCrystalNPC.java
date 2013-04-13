@@ -47,8 +47,8 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I can't be stopped. Only positive, no negative, can exist in my heart. If you spread me life will be as sunshine. What am I?");
-				addGoodbye("Farewell, return to me when you have found the answer to my riddle.");     
+				addGreeting("Hello, I hope you enjoy the nature here.");
+				addGoodbye("Farewell, return to me whenever you need my help.");     
 			}
 		};
 
@@ -56,7 +56,7 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalyellownpc");
 		crystal.setPosition(76, 16);
 		crystal.initHP(100);
-		crystal.setDescription("You see a yellow colored crystal. What an energetic sight.");
+		crystal.setDescription("You see a yellow coloured crystal. What an energetic sight.");
 		crystal.setResistance(0);
 		
 		zone.add(crystal);

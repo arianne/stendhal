@@ -49,8 +49,8 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I do not let things bother me. I never get overly energetic. Meditation is my fortay. What am I?");
-				addGoodbye("Farewell, return to me when you have found the answer to my riddle.");     
+				addGreeting("Nice to meet you! This hut here is lovely.");
+				addGoodbye("Farewell, return to me whenever you need my help.");     
 			}
 		};
 
@@ -58,7 +58,7 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 		crystal.setAlternativeImage("crystalbluenpc");
 		crystal.setPosition(9, 8);
 		crystal.initHP(100);
-		crystal.setDescription("You see a blue colored crystal. Somehow, your shoulders feel lighter.");
+		crystal.setDescription("You see a blue coloured crystal. Somehow, your shoulders feel lighter.");
 		crystal.setResistance(0);
 		
 		zone.add(crystal);

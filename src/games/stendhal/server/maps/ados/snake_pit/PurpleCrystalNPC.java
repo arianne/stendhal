@@ -49,8 +49,8 @@ public class PurpleCrystalNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("I dare not come out and avoid the consequence. They try and convince my but I shall not. Trembling is my favorite activity. What am I?");
-				addGoodbye("Farewell, return to me when you have found the answer to my riddle.");     
+				addGreeting("This fierce atmosphere in this dungeon makes me tremble...");
+				addGoodbye("Farewell, return to me whenever you need my help.");     
 			}
 		};
 
