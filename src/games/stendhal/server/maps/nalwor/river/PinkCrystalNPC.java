@@ -50,7 +50,10 @@ public class PinkCrystalNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Nice that you found me here! This water is beautiful.");
-				addGoodbye("Farewell, return to me whenever you need my help.");     
+				addJob("I am a crystal. What more can I say?");
+				addHelp("I've heard that the water you get from the spring at the waterfall tastes great!");
+				addGoodbye("Farewell, return to me whenever you need my help."); 
+				
 			}
 		};
 
