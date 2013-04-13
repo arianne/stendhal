@@ -32,7 +32,7 @@
 - Special character in offline messages (postman messages) work now
 - Fixed imperial defender sprite
 - Map fixes (e.g. collision errors and layers)
-- Slighty increasing drop rates for blue items
+- Slightly increasing drop rates for blue items
 
 
 1.06
