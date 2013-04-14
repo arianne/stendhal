@@ -92,7 +92,7 @@ public class StendhalQuestSystem {
 		loadQuest(new EasterGiftsForChildren());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
-//		loadQuest(new EmotionCrystals());
+		loadQuest(new EmotionCrystals());
 		loadQuest(new FindGhosts());
 		loadQuest(new FindJefsMom());
 		loadQuest(new FindRatChildren());

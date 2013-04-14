@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../items.xsd ">
+  
+  <item name="red emotion crystal">
+    <type class="crystal" subclass="crystal_red" tileid="-1" />
+    <description>You see a red emotion crystal. It feels hot to the touch.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="purple emotion crystal">
+    <type class="crystal" subclass="crystal_purple" tileid="-1" />
+    <description>You see a purple emotion crystal. It feels cold to the touch.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="yellow emotion crystal">
+    <type class="crystal" subclass="crystal_yellow" tileid="-1" />
+    <description>You see a yellow emotion crystal. It energizes you.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="pink emotion crystal">
+    <type class="crystal" subclass="crystal_pink" tileid="-1" />
+    <description>You see a pink emotion crystal. It almost feels soft.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+  <item name="blue emotion crystal">
+    <type class="crystal" subclass="crystal_blue" tileid="-1" />
+    <description>You see a blue emotion crystal. While holding it your worries seem to disappear.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <quantity value="1" />
+      <max_quantity value="2147483647" />
+    </attributes>
+    <weight value="0.1" />
+    <value value="100" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="lhand" />
+      <slot name="rhand" />
+      <slot name="head" />
+      <slot name="bag" />
+    </equipable>
+  </item>
+  
+</items>
