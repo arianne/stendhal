@@ -115,7 +115,7 @@
 			</implementation>
 		</entity>
 		<portal x="8" y="22" ref="apothecary_entrance">
-		  <destination zone="int_apothecary_cabin" ref="exit" />
+		  <destination zone="0_semos_city" ref="house_exit_1" />
 		</portal>
 	</zone>
 	
