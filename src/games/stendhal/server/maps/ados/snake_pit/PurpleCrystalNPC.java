@@ -50,7 +50,10 @@ public class PurpleCrystalNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("This fierce atmosphere in this dungeon makes me tremble...");
-				addGoodbye("Farewell, return to me whenever you need my help.");     
+				addHelp("These snakes down here are scary! Take care about their king!");
+				addJob("I am a crystal. What more can I say?");
+				addGoodbye("Farewell, return to me whenever you need my help.");   
+				
 			}
 		};
 

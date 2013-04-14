@@ -50,7 +50,10 @@ public class RedCrystalNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello stranger, nice to meet you.");
+				addHelp("Take care. Femme Fatale told me about the assassin school inside. They are running around there and even annoy their teachers!");
+				addJob("I am a crystal. What more can I say?");
 				addGoodbye("Farewell, return to me whenever you need my help."); 
+				
 			
 			}
 		};

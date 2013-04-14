@@ -48,7 +48,10 @@ public class YellowCrystalNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, I hope you enjoy the nature here.");
-				addGoodbye("Farewell, return to me whenever you need my help.");     
+				addHelp("There is a beautiful looking tower around the mountains. It's huge!");
+				addJob("I am a crystal. What more can I say?");
+				addGoodbye("Farewell, return to me whenever you need my help.");   
+				
 			}
 		};
 

@@ -50,6 +50,8 @@ public class BlueCrystalNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Nice to meet you! This hut here is lovely.");
+				addHelp("Lupos is always searching for handmade elvish equipment.");
+				addJob("I am a crystal. What more can I say?");
 				addGoodbye("Farewell, return to me whenever you need my help.");     
 			}
 		};
