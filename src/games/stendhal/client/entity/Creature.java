@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Rectangle;
@@ -161,6 +162,15 @@ public class Creature extends AudibleEntity {
 		if (changes.has("metamorphosis")) {
 			metamorphosis = null;
 			fireChange(PROP_METAMORPHOSIS);
+		}
+	}
+	
+	// Called when entity says text
+	@Override
+	public void onTalk(final String text) {
+		boolean showCreatureSpeech = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.creaturespeech", "true"));
+		if (showCreatureSpeech) {
+			super.onTalk(text);
 		}
 	}
 }
