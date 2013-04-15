@@ -22,6 +22,9 @@ import javax.swing.JComponent;
  */
 class GeneralSettings {
 	private static final String GAMESCREEN_AUTORAISECORPSE = "gamescreen.autoraisecorpse";
+	
+	private static final String GAMESCREEN_CREATURESPEECH = "gamescreen.creaturespeech";
+	
 	/** Property used for the double click setting. */
 	private static final String DOUBLE_CLICK_PROPERTY = "ui.doubleclick";
 	
@@ -60,6 +63,11 @@ class GeneralSettings {
 		JCheckBox showPoisonToggle = SettingsComponentFactory.createSettingsToggle(POISON_MESSAGE_PROPERTY, "false",
 										"Show poison messages", "Show poisoned messages in the chat log");
 		page.add(showPoisonToggle);
+		
+		// show creature speech bubbles
+		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
+										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
+		page.add(showCreatureSpeechToggle);
 	}
 		
 	/**

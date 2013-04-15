@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.events;
 
+import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 
 /**
@@ -27,7 +29,16 @@ public class PublicTextEvent extends Event<RPEntity> {
 	 */
 	@Override
 	public void execute() {
-		entity.onTalk(event.get("text"));
+		boolean showCreatureSpeech = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("gamescreen.creaturespeech", "true"));
+		System.out.println(showCreatureSpeech);
+		if (entity instanceof Creature) {
+			if (showCreatureSpeech) {
+				entity.onTalk(event.get("text"));
+			}
+		}
+		else {
+			entity.onTalk(event.get("text"));
+		}
 	}
 
 }
