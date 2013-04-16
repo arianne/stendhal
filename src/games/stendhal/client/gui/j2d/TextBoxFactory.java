@@ -12,8 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.FormatTextParserExtension;
-import games.stendhal.client.gui.FormatTextParser;
+import games.stendhal.client.gui.textformat.AttributedStringBuilder;
+import games.stendhal.client.gui.textformat.StringFormatter;
+import games.stendhal.client.gui.textformat.TextAttributeSet;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 
@@ -35,6 +36,7 @@ import java.text.BreakIterator;
 import java.text.CharacterIterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -43,15 +45,15 @@ import org.apache.log4j.Logger;
  * messages used on the screen.
  */
 public class TextBoxFactory {
-	/** Used for calculating the line metrics */
+	/** Used for calculating the line metrics. */
 	private static final Graphics graphics = (new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB)).getGraphics();
 	
 	/** space to be left at the beginning and end of line in pixels. */
 	private static final int MARGIN_WIDTH = 3;
 	/** height of text lines in pixels. */
-	private static int LINE_HEIGHT = graphics.getFontMetrics().getHeight();
+	private static final int LINE_HEIGHT = graphics.getFontMetrics().getHeight();
 	/** Font ascent. */
-	private static int LINE_ASCENT = graphics.getFontMetrics().getAscent();
+	private static final int LINE_ASCENT = graphics.getFontMetrics().getAscent();
 	/** space needed for the bubble "handle" in pixels. */
 	private static final int BUBBLE_OFFSET = 10;
 	/** the diameter of the arc of the rounded bubble corners. */
@@ -61,6 +63,24 @@ public class TextBoxFactory {
 	 * hard limit, but can be exceeded by one in some situations.
 	 */
 	private static final int MAX_LINES = 6;
+	private final StringFormatter<Map<TextAttribute, Object>, TextAttributeSet> formatter;
+	
+	/**
+	 * Create a new TextBoxFactory.
+	 */
+	public TextBoxFactory() {
+		formatter = new StringFormatter<Map<TextAttribute, Object>, TextAttributeSet>();
+
+		// ** Formatting characters and their effects **
+		TextAttributeSet set = new TextAttributeSet();
+		set.setAttribute(TextAttribute.FOREGROUND, Color.blue);
+		set.setAttribute(TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE);
+		formatter.addStyle('#', set);
+		
+		set = new TextAttributeSet();
+		set.setAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		formatter.addStyle('§', set);
+	}
 	
 	/**
 	 * Creates a text box sprite.
@@ -158,7 +178,7 @@ public class TextBoxFactory {
 	/**
 	 * Create formatted lines from a text.
 	 * 
-	 * @param text
+	 * @param text text to be formatted and grouped to lines
 	 * @param textColor base text color
 	 * @param width maximum width of the text in pixels
 	 * 
@@ -221,7 +241,7 @@ public class TextBoxFactory {
 		g2d.setColor(outLineColor);
 		g2d.fillRect(BUBBLE_OFFSET, 0, width, height);
 		g2d.setColor(fillColor);
-		g2d.fillRect(BUBBLE_OFFSET + 1, 1, width - 2, height -2);
+		g2d.fillRect(BUBBLE_OFFSET + 1, 1, width - 2, height - 2);
 	}
 
 	/**
@@ -234,45 +254,15 @@ public class TextBoxFactory {
 	 */
 	private AttributedString formatLine(final String line,
 				final Font normalFont, final Color normalColor) {
-		final Font specialFont = normalFont.deriveFont(Font.ITALIC);
-
 		try {
-			// recreate the string without the # characters
-			final StringBuilder temp = new StringBuilder();
-			FormatTextParser parser = new FormatTextParserExtension(temp);
-			parser.format(line);
-
-			// create the attribute string including formating
-			final AttributedString aStyledText = new AttributedString(temp.toString());
-
-			parser = new FormatTextParser() {
-				private int s = 0;
-
-				@Override
-				public void normalText(final String tok) {
-					if (tok.length() > 0) {
-						aStyledText.addAttribute(TextAttribute.FONT, normalFont, s, s
-								+ tok.length());
-						aStyledText.addAttribute(TextAttribute.FOREGROUND, normalColor, s, s
-								+ tok.length());
-						s += tok.length();
-					}
-				}
-
-				@Override
-				public void colorText(final String tok) {
-					if (tok.length() > 0) {
-						aStyledText.addAttribute(TextAttribute.FONT, specialFont, s, s
-								+ tok.length());
-						aStyledText.addAttribute(TextAttribute.FOREGROUND, Color.blue, s, s
-								+ tok.length());
-						s += tok.length();
-					}
-				}
-			};
-			parser.format(line);
-
-			return aStyledText;
+			TextAttributeSet normal = new TextAttributeSet();
+			normal.setAttribute(TextAttribute.FONT, normalFont);
+			normal.setAttribute(TextAttribute.FOREGROUND, normalColor);
+			
+			AttributedStringBuilder builder = new AttributedStringBuilder();
+			formatter.format(line, normal, builder);
+			
+			return builder.toAttributedString();
 		} catch (final Exception e) {
 			Logger.getLogger(TextBoxFactory.class).error(e, e);
 			return null;
@@ -466,7 +456,7 @@ public class TextBoxFactory {
 	/**
 	 * Check if a location is at a hard line break.
 	 * 
-	 * @param cit
+	 * @param cit iterator
 	 * @return <code>true</code> if there is a hard line break
 	 */
 	private boolean isHardLineBreak(final CharacterIterator cit) {
