@@ -12,7 +12,10 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.chatlog.ChatTextSink;
 import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.textformat.StringFormatter;
+import games.stendhal.client.gui.textformat.StyleSet;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -50,7 +53,7 @@ import org.apache.log4j.Logger;
 /**
  * Appendable text component to be used as the chat log.
  */
-public class KTextEdit extends JComponent {
+class KTextEdit extends JComponent {
 	/** Color of the time stamp written before the lines. */
 	protected static final Color HEADER_COLOR = Color.gray;
 
@@ -65,6 +68,9 @@ public class KTextEdit extends JComponent {
 	private String name = "";
 	/** Background color when not highlighting unread messages. */
 	private Color defaultBackground = Color.white;
+	/** Formatting class for text containing stendhal markup. */
+	private final StringFormatter<Style, StyleSet> formatter = new StringFormatter<Style, StyleSet>();
+	private StyleSet defaultAttributes;
 
 	/** Listener for opening the popup menu when it's requested. */
 	private final class TextPaneMouseListener extends MousePopupAdapter {
@@ -166,6 +172,7 @@ public class KTextEdit extends JComponent {
 	 * @param mainTextSize size of regular text
 	 */
 	protected void initStylesForTextPane(final JTextPane textPane, int mainTextSize) {
+		// ****** General style definitions for the text pane ******
 		Style regular = textPane.getStyle("regular");
 		if (regular == null) {
 			final Style def = StyleContext.getDefaultStyleContext().getStyle(
@@ -206,6 +213,18 @@ public class KTextEdit extends JComponent {
 			StyleConstants.setForeground(s, HEADER_COLOR);
 		}
 		StyleConstants.setFontSize(s, mainTextSize - 1);
+		
+		//****** Styles used by the string formatter ******
+		defaultAttributes = new StyleSet(StyleContext.getDefaultStyleContext(), regular);
+		
+		StyleSet attributes = defaultAttributes.copy();
+		attributes.setAttribute(StyleConstants.Italic, true);
+		attributes.setAttribute(StyleConstants.Foreground, Color.blue);
+		formatter.addStyle('#', attributes);
+
+		attributes = defaultAttributes.copy();
+		attributes.setAttribute(StyleConstants.Underline, true);
+		formatter.addStyle('§', attributes);
 	}
 
 	/**
@@ -226,7 +245,7 @@ public class KTextEdit extends JComponent {
 	/**
 	 * Insert a header.
 	 *
-	 * @param header
+	 * @param header header string
 	 */
 	protected void insertHeader(final String header) {
 		final Document doc = textPane.getDocument();
@@ -260,32 +279,15 @@ public class KTextEdit extends JComponent {
 	/**
 	 * Add text using a style defined for a notification type.
 	 *
-	 * @param text
-	 * @param type
+	 * @param text text contents
+	 * @param type type for formatting
 	 */
 	protected void insertText(final String text, final NotificationType type) {
+		ChatTextSink dest = new ChatTextSink(textPane.getDocument());
+		StyleSet set = new StyleSet(StyleContext.getDefaultStyleContext(), getStyle(type.getColor(), type.getStyleDescription()));
+		set.setAttribute(StyleConstants.Foreground, type.getColor());
 
-			final Color color = type.getColor();
-			final String styleDescription = type.getStyleDescription();
-			final Document doc = textPane.getDocument();
-
-			try {
-				final FormatTextParser parser =	new FormatTextParser() {
-					@Override
-					public void normalText(final String txt) throws BadLocationException {
-						doc.insertString(doc.getLength(), txt, getStyle(color, styleDescription));
-					}
-
-					@Override
-					public void colorText(final String txt) throws BadLocationException {
-						doc.insertString(doc.getLength(), txt, textPane.getStyle("bold"));
-					}
-				};
-				parser.format(text);
-			} catch (final Exception e) {
-				// BadLocationException
-				logger.error("Couldn't insert initial text.", e);
-			}
+		formatter.format(text, set, dest);
 	}
 
 	/**
@@ -368,16 +370,16 @@ public class KTextEdit extends JComponent {
 	/**
 	 * Append an event line.
 	 *
-	 * @param line
+	 * @param line event line
 	 */
-	public void addLine(final EventLine line) {
+	void addLine(final EventLine line) {
 		this.addLine(line.getHeader(), line.getText(), line.getType());
 	}
 
 	/**
 	 * Clear the context.
 	 */
-	public void clear() {
+	void clear() {
 		textPane.setText("");
 	}
 
@@ -428,7 +430,7 @@ public class KTextEdit extends JComponent {
 	/**
 	 * Save the contents into the log file and inform the user about it.
 	 */
-	public void save() {
+	private void save() {
 		String fname = getSaveFileName();
 		Writer fo;
 		try {
