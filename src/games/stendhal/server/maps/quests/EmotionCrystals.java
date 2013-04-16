@@ -86,7 +86,11 @@ public class EmotionCrystals extends AbstractQuest {
 	private final List<String> gatheredCrystals = new ArrayList<String>();
 
 	// Amount of time, in minutes, player must wait before retrying the riddle (24 hours)
-	final int WAIT_TIME = 24 * 60;
+	private final int WAIT_TIME_WRONG = 24 * 60;
+	private final int WAIT_TIME_RETRY = 7 * 24 * 60;
+
+	private final int OFFSET_TIMESTAMPS = 1;
+	private final int OFFSET_SUCCESS_MARKER = 6;
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -280,13 +284,27 @@ public class EmotionCrystals extends AbstractQuest {
 			final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
 			rewardAction.add(new EquipItemAction(rewardItem,1,true));
 			rewardAction.add(new IncreaseKarmaAction(5));
-			rewardAction.add(new SetQuestAction(QUEST_SLOT, n+1, "riddle_solved"));
+			rewardAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, OFFSET_TIMESTAMPS + n));
+			rewardAction.add(new SetQuestAction(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"));
+
+			final List<ChatAction> wrongGuessAction = new LinkedList<ChatAction>();
+			wrongGuessAction.add(new SetQuestToTimeStampAction(QUEST_SLOT, OFFSET_TIMESTAMPS + n));
+			wrongGuessAction.add(new SetQuestAction(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "wrong"));
 
 			// Player asks about riddle
 			crystalNPC.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-								new QuestNotInStateCondition (QUEST_SLOT, n+1, "riddle_solved")),
+				new AndCondition(
+					new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+					new OrCondition(
+						new QuestNotInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"),
+						new AndCondition(
+							new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"),
+							new NotCondition(new PlayerHasItemWithHimCondition(rewardItem)),
+							new TimePassedCondition(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_RETRY)
+						)
+					)
+				),
 				ConversationStates.ATTENDING,
 				"Please answer the #riddle which I have for you...",
 				null);
@@ -294,44 +312,72 @@ public class EmotionCrystals extends AbstractQuest {
 			// Player asks about riddle
 			crystalNPC.add(ConversationStates.ATTENDING,
 					Arrays.asList("riddle", "question", "query", "puzzle"),
-					new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-							new QuestNotInStateCondition(QUEST_SLOT, n+1, "riddle_solved")),
+					new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new OrCondition(
+							new QuestNotInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"),
+							new AndCondition(
+								new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"),
+								new NotCondition(new PlayerHasItemWithHimCondition(rewardItem)),
+								new TimePassedCondition(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_RETRY)
+							)
+						)
+					),
 					ConversationStates.ATTENDING,
 					crystalRiddle,
-					new SetQuestAction(QUEST_SLOT, n+1, "riddle"));
+					new SetQuestAction(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle"));
 
 			// Player gets the riddle right
 			crystalNPC.add(ConversationStates.ATTENDING,
 					crystalAnswers,
-					new QuestInStateCondition(QUEST_SLOT, n+1, "riddle"),
+					new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle"),
 					ConversationStates.IDLE,
 					"That is correct. Take this crystal as a reward.",
 					new MultipleActions(rewardAction));
 
+
 			// Player gets the riddle wrong
 			crystalNPC.add(ConversationStates.ATTENDING,
 					"",
-					new QuestInStateCondition(QUEST_SLOT, n+1, "riddle"),
+					new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle"),
 					ConversationStates.IDLE,
 					"I'm sorry, that is incorrect.",
-					new SetQuestToTimeStampAction(QUEST_SLOT, n+1));
+					new MultipleActions(wrongGuessAction));
 
-			// Player returns before time is up
+			// Player returns before time is up, to get another chance
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new NotCondition(new TimePassedCondition(QUEST_SLOT, n+1, WAIT_TIME)),
+					new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "wrong"),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_WRONG))
+					),
 					ConversationStates.IDLE,
 					null,
-					new SayTimeRemainingAction(QUEST_SLOT, n+1, WAIT_TIME, "Think hard on your answer and return to me again in"));
+					new SayTimeRemainingAction(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_WRONG, "Think hard on your answer and return to me again in"));
 
-			// Player can't do riddle twice
+			// Player returns before time is up, to get another crystal
 			crystalNPC.add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
-					new AndCondition(new QuestInStateCondition(QUEST_SLOT, 0, "start"),
-							new QuestInStateCondition(QUEST_SLOT, n+1, "riddle_solved")),
+					new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, OFFSET_SUCCESS_MARKER + n, "riddle_solved"),
+						new NotCondition(new PlayerHasItemWithHimCondition(rewardItem)),
+						new NotCondition(new TimePassedCondition(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_RETRY))
+					),
+					ConversationStates.IDLE,
+					null,
+					new SayTimeRemainingAction(QUEST_SLOT, OFFSET_TIMESTAMPS + n, WAIT_TIME_RETRY, "Oh, did you lose my crystal? I can give you a new one in"));
+
+			// Player can't do riddle twice while they still have the reward
+			crystalNPC.add(ConversationStates.IDLE,
+					ConversationPhrases.GREETING_MESSAGES,
+					new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, 0, "start"),
+						new PlayerHasItemWithHimCondition(rewardItem)
+					),
 					ConversationStates.ATTENDING,
-					"I hope you made someone happy with your crystal!",
+					"I hope you make someone happy with your crystal!",
 					null);
+
 
 			// Player asks for quest without talking to Julius first
 			crystalNPC.add(ConversationStates.ATTENDING,
