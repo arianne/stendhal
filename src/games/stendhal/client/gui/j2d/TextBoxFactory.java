@@ -20,7 +20,6 @@ import games.stendhal.client.sprite.Sprite;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -187,7 +186,7 @@ public class TextBoxFactory {
 	private List<AttributedCharacterIterator> createFormattedLines(String text,
 			Color textColor, int width) {
 		// Format before splitting to get the coloring right
-		AttributedString formattedString = formatLine(text.trim(), graphics.getFont(), textColor);
+		AttributedString formattedString = formatLine(text.trim(), textColor);
 		// split it to max width long pieces
 		return splitFormatted(formattedString, width);
 	}
@@ -248,15 +247,13 @@ public class TextBoxFactory {
 	 * Color a string according to the formatting characters in it.
 	 * 
 	 * @param line string to be formatted
-	 * @param normalFont base font used for the text
 	 * @param normalColor base color used for the text
 	 * @return colored sting
 	 */
-	private AttributedString formatLine(final String line,
-				final Font normalFont, final Color normalColor) {
+	private AttributedString formatLine(final String line, 
+			final Color normalColor) {
 		try {
 			TextAttributeSet normal = new TextAttributeSet();
-			normal.setAttribute(TextAttribute.FONT, normalFont);
 			normal.setAttribute(TextAttribute.FOREGROUND, normalColor);
 			
 			AttributedStringBuilder builder = new AttributedStringBuilder();
