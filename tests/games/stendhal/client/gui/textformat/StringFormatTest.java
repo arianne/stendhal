@@ -26,7 +26,10 @@ public class StringFormatTest {
 	final StringFormatter<Map<TextAttribute, Object>, TextAttributeSet> f = 
 			new StringFormatter<Map<TextAttribute,Object>, TextAttributeSet>();
 	final TextAttributeSet normal = new TextAttributeSet();
-	
+
+	/**
+	 * Prepare the test parser.
+	 */
 	public StringFormatTest() {
 		// The usual client definitions. Could be something else
 		TextAttributeSet set = new TextAttributeSet();
@@ -40,20 +43,30 @@ public class StringFormatTest {
 	}
 	
 	/**
+	 * Format a string.
+	 * 
+	 * @param s string with markup
+	 * @return AttributedStringBuilder filled with data from the markup string
+	 */
+	private AttributedStringBuilder format(String s) {
+		AttributedStringBuilder dest = new AttributedStringBuilder();
+		f.format(s, normal, dest);
+		
+		return dest;
+	}
+	
+	/**
 	 * Check formatting text with no formatting.
 	 */
 	@Test
 	public void testPlain() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("test", normal, dest);
+		AttributedStringBuilder dest = format("test");
 		assertEquals("test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("test string with no markup", normal, dest);
+		dest = format("test string with no markup");
 		assertEquals("test string with no markup", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("with a\nnewline", normal, dest);
+		dest = format("with a\nnewline");
 		assertEquals("with a\nnewline", dest.toString());
 	}
 	
@@ -63,32 +76,25 @@ public class StringFormatTest {
 	 */
 	@Test
 	public void testSimpleMarkup() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("#test", normal, dest);
+		AttributedStringBuilder dest = format("#test");
 		assertEquals("test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("##test", normal, dest);
+		dest = format("##test");
 		assertEquals("#test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#test#too", normal, dest);
+		dest = format("#test#too");
 		assertEquals("test#too", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#test #too", normal, dest);
+		dest = format("#test #too");
 		assertEquals("test too", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("mark at end#", normal, dest);
+		dest = format("mark at end#");
 		assertEquals("mark at end", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#", normal, dest);
+		dest = format("#");
 		assertEquals("", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("##", normal, dest);
+		dest = format("##");
 		assertEquals("#", dest.toString());
 	}
 	
@@ -98,47 +104,40 @@ public class StringFormatTest {
 	 */
 	@Test
 	public void testSimpleCombined() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("#te§st", normal, dest);
+		AttributedStringBuilder dest = format("#te§st");
 		assertEquals("test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("##test§", normal, dest);
+		dest = format("##test§");
 		assertEquals("#test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#§test#too", normal, dest);
+		dest = format("#§test#too");
 		assertEquals("testtoo", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#test §too", normal, dest);
+		dest = format("#test §too");
 		assertEquals("test too", dest.toString());
 	}
 	
+	/**
+	 * Test markup with quotes.
+	 */
 	@Test
 	public void testAreaMarking() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("#'test'", normal, dest);
+		AttributedStringBuilder dest = format("#'test'");
 		assertEquals("test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'#test", normal, dest);
+		dest = format("#'#test");
 		assertEquals("#test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test too'", normal, dest);
+		dest = format("#'test too'");
 		assertEquals("test too", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test #too'", normal, dest);
+		dest = format("#'test #too'");
 		assertEquals("test #too", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("mark at end#'", normal, dest);
+		dest = format("mark at end#'");
 		assertEquals("mark at end", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'", normal, dest);
+		dest = format("#'");
 		assertEquals("", dest.toString());
 	}
 	
@@ -147,20 +146,16 @@ public class StringFormatTest {
 	 */
 	@Test
 	public void testNesting() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("#'test §'", normal, dest);
+		AttributedStringBuilder dest = format("#'test §'");
 		assertEquals("test ", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test §too'", normal, dest);
+		dest = format("#'test §too'");
 		assertEquals("test too", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test #'too''", normal, dest);
+		dest = format("#'test #'too''");
 		assertEquals("test #too''", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test §'too''", normal, dest);
+		dest = format("#'test §'too''");
 		assertEquals("test too", dest.toString());
 	}
 	
@@ -169,24 +164,19 @@ public class StringFormatTest {
 	 */
 	@Test
 	public void testEscape() {
-		AttributedStringBuilder dest = new AttributedStringBuilder();
-		f.format("#'test \\§'", normal, dest);
+		AttributedStringBuilder dest = format("#'test \\§'");
 		assertEquals("test §", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("\\#test", normal, dest);
+		dest = format("\\#test");
 		assertEquals("#test", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test §too\\'", normal, dest);
+		dest = format("#'test §too\\'");
 		assertEquals("test too'", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test #\\'too''", normal, dest);
+		dest = format("#'test #\\'too''");
 		assertEquals("test #'too'", dest.toString());
 		
-		dest = new AttributedStringBuilder();
-		f.format("#'test \\\\too'", normal, dest);
+		dest = format("#'test \\\\too'");
 		assertEquals("test \\too", dest.toString());
 	}
 }
