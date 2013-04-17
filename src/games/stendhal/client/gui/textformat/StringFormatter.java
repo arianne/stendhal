@@ -190,6 +190,8 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				push();
 				index = newState.parse();
 				beginIndex = index;
+			} else {
+				index++;
 			}
 			
 			// Nothing counts as the end character
@@ -209,7 +211,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		
 		@Override
 		int parse() {
-			for (; index < string.length(); index++) {
+			while (index < string.length()) {
 				if (!readNext()) {
 					return index;
 				}
@@ -272,8 +274,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 				if (endAtQuote || forceEndAtQuote) {
 					push();
 					// eat end char
-					index++;
-					if (endAtQuote && forceEndAtQuote) {
+					if (endAtQuote) {
 						index++;
 					}
 					return false;
@@ -343,6 +344,7 @@ public class StringFormatter<K, T extends FormatSet<K, T>> {
 		@Override
 		int parse() {
 			// Just pass through one character
+			index++;
 			push();
 			return index;
 		}
