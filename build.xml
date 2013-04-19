@@ -486,7 +486,7 @@
 
 		<copy todir="${build_client_data}/data/gui">
 			<fileset dir="${data}">
-				<exclude name="paneldrock*.jpg"/>
+				<exclude name="paneldrock009.jpg"/>
 				<exclude name="panelmetal003.gif"/>
 				<exclude name="panelrock016.jpg"/>
 				<exclude name="panelwood006.jpg"/>
