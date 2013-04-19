@@ -1,6 +1,17 @@
 ﻿Changelog
 ---------
 
+1.08
+
+*world*
+- New achievements: Nalwor's Bane and Feeling Blue
+
+*client*
+
+*fixes*
+- quest log of EmotionCrystals fixed
+
+
 1.07
 
 *world*
