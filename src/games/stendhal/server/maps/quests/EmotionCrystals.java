@@ -401,7 +401,7 @@ public class EmotionCrystals extends AbstractQuest {
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
 		rewardAction.add(new IncreaseKarmaAction(15));
-		rewardAction.add(new SetQuestAction(QUEST_SLOT, "done"));
+		rewardAction.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 
 		// Player has all crystals
 		npc.add(ConversationStates.IDLE,
