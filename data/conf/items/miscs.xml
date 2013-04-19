@@ -273,7 +273,7 @@
 
   <item name="venom gland">
     <type class="misc" subclass="venom_gland" tileid="-1"/>
-    <description>You see the #venom #gland of a giant cobra. It is filled with deadly toxin.</description>
+    <description>You see the §'venom gland' of a giant cobra. It is filled with deadly toxin.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
