@@ -100,8 +100,6 @@ public class EmotionCrystals extends AbstractQuest {
 			return res;
 		}
 
-		final String questState = player.getQuest(QUEST_SLOT);
-
 		// Only include Julius in the quest log if player has spoken to him
 		if (player.isQuestInState(QUEST_SLOT, 0, "start") || player.isQuestInState(QUEST_SLOT, 0,  "rejected")) {
 			res.add("I have talked to Julius, the soldier that guards the entrance to Ados.");
@@ -142,17 +140,11 @@ public class EmotionCrystals extends AbstractQuest {
 		}
 
 		if (hasAllCrystals) {
-			res.add("I have obtained all of the emotion crystals.");
-			if (player.isQuestInState(QUEST_SLOT, "start")) {
-				res.add("I should bring them to Julius in Ados.");
-			}
-			else {
-				res.add("I still need some crystals for Julius in Ados.");
-			}
-		}
-
-		if ("done".equals(questState)) {
-			res.add("I gave the crystals to Julius for his wife. I got some experience and karma.");
+			res.add("I have obtained all of the emotion crystals and should bring them to Julius in Ados.");}
+		
+		
+		if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
+			res.add("I gave the crystals to Julius for his wife. I got some experience, karma and useful stone legs.");
 		}
 		return res;
 	}
@@ -409,7 +401,7 @@ public class EmotionCrystals extends AbstractQuest {
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
 		rewardAction.add(new IncreaseKarmaAction(15));
-		rewardAction.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
+		rewardAction.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		// Player has all crystals
 		npc.add(ConversationStates.IDLE,
