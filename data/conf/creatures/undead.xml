@@ -31,7 +31,6 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not pass!"/>
         <sound value="bones-1"/>
-        <sound value="evillaugh-3"/>
         <sound value="evillaugh-5"/>
       </says>
       <profile name="brave"/>
@@ -110,6 +109,7 @@
       <profile name="rare"/>
     </ai>
   </creature>
+  
   <creature name="bloody zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
     <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
@@ -239,7 +239,6 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not kill!"/>
         <sound value="bones-1"/>
-        <sound value="evillaugh-3"/>
         <sound value="evillaugh-5"/>
       </says>
       <profile name="brave"/>
@@ -277,7 +276,6 @@
         <noise state="idle follow fight" value="Thou shall not survive!"/>
         <sound value="bones-1"/>
         <sound value="evillaugh-3"/>
-        <sound value="evillaugh-5"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -348,6 +346,7 @@
       <says>
         <noise state="idle follow fight" value="Judgement is coming!"/>
         <noise state="idle follow fight" value="Uuuuhhhhh!, i'm gonna get you!"/>
+        <sound value="evillaugh-3"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -380,7 +379,6 @@
       <says>
         <noise state="idle follow fight" value="Thou shall not rob!"/>
         <sound value="bones-1"/>
-        <sound value="evillaugh-3"/>
         <sound value="evillaugh-5"/>
       </says>
       <profile name="brave"/>
