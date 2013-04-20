@@ -195,7 +195,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("lifesteal", Type.FLOAT, Definition.HIDDEN);
 		
 		// Items that protect against poisoning
-		entity.addAttribute("antipoison", Type.FLOAT, Definition.HIDDEN);
+		entity.addAttribute("antipoison", Type.FLOAT, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		// Some items are quest rewards that other players
 		// don't deserve. Not hidden because the client uses it for an anti
