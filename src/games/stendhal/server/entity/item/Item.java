@@ -617,6 +617,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (hasDescription()) {
 			text = getDescription();
 		}
+		// Highlight the item name
+		text = text.replace(getTitle(), "§'" + getTitle() + "'");
 
 		final String boundTo = getBoundTo();
 
