@@ -118,7 +118,7 @@ public class ItemTest {
 	public void testDescribe() {
 		final Item item = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
-		assertThat(item.describe(), equalTo("You see a name1."));
+		assertThat(item.describe(), equalTo("You see a §'name1'."));
 
 		item.setDescription("Description.");
 		item.setBoundTo("hero");
