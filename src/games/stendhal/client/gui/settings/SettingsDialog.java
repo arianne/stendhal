@@ -43,7 +43,7 @@ public class SettingsDialog extends JDialog {
 		tabs = new JTabbedPane();
 		add(tabs);
 		tabs.add("General", new GeneralSettings().getComponent());
-		tabs.add("Visuals", new StyleSettings().getComponent());
+		tabs.add("Visuals", new VisualSettings().getComponent());
 		tabs.add("Sound", new SoundSettings().getComponent());
 		setResizable(false);
 		JButton closeButton = new JButton("Close");

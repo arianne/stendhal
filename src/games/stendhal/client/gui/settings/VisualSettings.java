@@ -44,7 +44,7 @@ import javax.swing.UIManager;
 /**
  * Page for style settings.
  */
-class StyleSettings {
+class VisualSettings {
 	private static final String STYLE_PROPERTY = "ui.style";
 	private static final String DEFAULT_STYLE = "Wood (default)";
 
@@ -80,7 +80,7 @@ class StyleSettings {
 	/**
 	 * Create new StyleSettings.
 	 */
-	StyleSettings() {
+	VisualSettings() {
 		int pad = SBoxLayout.COMMON_PADDING;
 		page = SBoxLayout.createContainer(SBoxLayout.VERTICAL, pad);
 		
