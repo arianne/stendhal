@@ -574,6 +574,7 @@ West: Semos
         <parameter name="width">7</parameter>
         <parameter name="height">7</parameter>
         <parameter name="enterMessage">You hear #very loud hissing from the hole in the ground. There must be some gigantic snakes within.</parameter>
+        <parameter name="warnPlayer">true</parameter>
     </implementation>
   </entity>
 
@@ -3665,6 +3666,7 @@ Southeast: Docks
         <parameter name="width">6</parameter>
         <parameter name="height">4</parameter>
         <parameter name="enterMessage">You see massive footprints around the entrance.</parameter>
+        <parameter name="warnPlayer">true</parameter>
     </implementation>
     </entity>
     <point-of-interest x="65" y="77">
