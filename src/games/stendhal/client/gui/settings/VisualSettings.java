@@ -48,6 +48,8 @@ class VisualSettings {
 	private static final String STYLE_PROPERTY = "ui.style";
 	private static final String DEFAULT_STYLE = "Wood (default)";
 
+	private static final String GAMESCREEN_CREATURESPEECH = "gamescreen.creaturespeech";
+	
 	/** Containers that have components to be toggled */
 	//private JPanel colorsPanel;
 	
@@ -112,6 +114,11 @@ class VisualSettings {
 		JCheckBox showBloodToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_BLOOD, "true",
 				"Show blood and corpses", "Show blood spots on hits during fighting, and corpses.");
 		page.add(showBloodToggle);
+		
+		// show creature speech bubbles
+		JCheckBox showCreatureSpeechToggle = SettingsComponentFactory.createSettingsToggle(GAMESCREEN_CREATURESPEECH, "true",
+										"Show creature speech bubbles", "Show creature speech bubbles in the client display");
+		page.add(showCreatureSpeechToggle);
 		
 		final JCheckBox scaleScreenToggle = SettingsComponentFactory.createSettingsToggle(SCALE_SCREEN_PROPERTY,
 				"true", "Scale view to fit window", "<html>If selected, the game view will scale to fit the available space,<br>otherwise the default sized graphics are used.</html>");
