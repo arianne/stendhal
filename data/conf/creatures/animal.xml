@@ -196,6 +196,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="bird-pigeon-1" />
+        <sound value="bird-pigeon-flap-1" />
+      </says>
       <profile name="animal"/>
       <profile name="non offensive"/>
       <profile name="patrolling"/>

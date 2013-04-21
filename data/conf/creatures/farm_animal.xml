@@ -294,6 +294,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="MOOOOO!!!"/>
+        <sound value="cow-2" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
