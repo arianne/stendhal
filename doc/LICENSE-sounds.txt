@@ -5,6 +5,8 @@ These files are in the public domain:
     ambiance-restaurant-1:
                         http://soundbible.com/1664-Restaurant-Ambiance.html
     bee-1:              http://soundbible.com/971-Bee.html
+    bird-pigeon-1, bird-pigeon-flap-1:
+    					http://freesound.org/people/winsx87/sounds/152024/
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
