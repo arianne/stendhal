@@ -19,7 +19,8 @@ public class MessagingAreaFactory implements ConfigurableFactory {
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final MessagingArea area;
 
-		area = new MessagingArea(coversZone(ctx), getWidth(ctx), getHeight(ctx), getEnterMessage(ctx), getLeaveMessage(ctx));
+		area = new MessagingArea(coversZone(ctx), getWidth(ctx), getHeight(ctx),
+				getEnterMessage(ctx), getLeaveMessage(ctx), warnPlayer(ctx));
 
 		return area;
 	}
@@ -42,5 +43,9 @@ public class MessagingAreaFactory implements ConfigurableFactory {
 	
 	private boolean coversZone(final ConfigurableFactoryContext ctx) {
 		return ctx.getBoolean("coversZone", false);
+	}
+	
+	private boolean warnPlayer(final ConfigurableFactoryContext ctx) {
+		return ctx.getBoolean("warnPlayer", false);
 	}
 }

@@ -29,6 +29,7 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	private final String enterMessage;
 	/** message sent to the players leaving the area. */
 	private final String leaveMessage;
+	private final boolean isWarning;
 	
 	/**
 	 * Create a MessagingArea.
@@ -40,13 +41,14 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	 * @param leaveMessage message to be sent to players leaving the area
 	 */
 	public MessagingArea(final boolean coversZone, final int width, final int height, final String enterMessage, 
-			final String leaveMessage) {
+			final String leaveMessage, final boolean isWarning) {
 		super(width, height);
 		hide();
 		
 		this.coversZone = coversZone;
 		this.enterMessage = enterMessage;
 		this.leaveMessage = leaveMessage;
+		this.isWarning = isWarning;
 	}
 	
 	@Override
@@ -60,7 +62,11 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 			 * could mean some inadvertently lost messages under certain unusual
 			 * conditions.
 			 */
-			new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
+			if (warnPlayer()) {
+				new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.WARNING, 1);				
+			} else {
+				new ConditionalDelayedPlayerTextSender((Player) entity, enterMessage, NotificationType.SCENE_SETTING, 1);
+			}
 		}
 	}
 	
@@ -68,7 +74,11 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int newX, final int newY) {
 		if ((leaveMessage != null) && (entity instanceof Player)) {
 			// needs to be delayed since normal messages get lost in case the player leaves zone
-			new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.SCENE_SETTING, 1);
+			if (warnPlayer()) {
+				new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.WARNING, 1);
+			} else {
+				new DelayedPlayerTextSender((Player) entity, leaveMessage, NotificationType.SCENE_SETTING, 1);
+			}
 		}
 	}
 	
@@ -127,5 +137,9 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY, int newX, int newY) {
 		// nothing to do before a movement
+	}
+	
+	public boolean warnPlayer() {
+		return isWarning;
 	}
 }
