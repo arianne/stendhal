@@ -6,6 +6,7 @@ These files are in the public domain:
                         http://soundbible.com/1664-Restaurant-Ambiance.html
     bee-1:              http://soundbible.com/971-Bee.html
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
+    cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
     elephant-1:         http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
     elephant-2:         http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
