@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -75,15 +76,9 @@ import org.apache.commons.lang.WordUtils;
  * @author AntumDeluge
  */
 public class EmotionCrystals extends AbstractQuest {
-
 	private static final String QUEST_SLOT = "emotion_crystals";
 
-	private final List<String> crystalColors = Arrays.asList("red", "purple", "yellow", "pink", "blue");
-	/*
-	private final List<String> requiredCrystals = Arrays.asList("red emotion crystal", "purple emotion crystal",
-			"yellow emotion crystal", "pink emotion crystal", "blue emotion crystal");*/
-
-	private final List<String> gatheredCrystals = new ArrayList<String>();
+	private static final String[] crystalColors = { "red", "purple", "yellow", "pink", "blue" };
 
 	// Amount of time, in minutes, player must wait before retrying the riddle (24 hours)
 	private final int WAIT_TIME_WRONG = 24 * 60;
@@ -94,7 +89,6 @@ public class EmotionCrystals extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(final Player player) {
-
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
@@ -111,37 +105,25 @@ public class EmotionCrystals extends AbstractQuest {
 			}
 		}
 
-		gatheredCrystals.clear();
-		boolean foundCrystal = false;
+		List<String> gatheredCrystals = new ArrayList<String>();
 		boolean hasAllCrystals = true;
 
-		for (int x1 = 0; x1 < crystalColors.size(); x1++) {
-
-			if (player.isEquipped(crystalColors.get(x1) + " emotion crystal")) {
-				gatheredCrystals.add(crystalColors.get(x1) + " emotion crystal");
-				foundCrystal = true;
-			}
-			else {
+		for (String color : crystalColors) {
+			if (player.isEquipped(color + " emotion crystal")) {
+				gatheredCrystals.add(color + " emotion crystal");
+			} else {
 				hasAllCrystals = false;
 			}
 		}
-		if (foundCrystal) {
+		if (!gatheredCrystals.isEmpty()) {
 			String tell = "I have found the following crystals: ";
-			for (int x2 = 0; x2 < gatheredCrystals.size(); x2++) {
-				// First crystal will not be preceded by ","
-				if (x2 == 0) {
-					tell += gatheredCrystals.get(x2);
-					}
-				else {
-					tell += ", " + gatheredCrystals.get(x2);
-				}
-			}
+			tell += Grammar.enumerateCollection(gatheredCrystals);
 			res.add(tell);
 		}
 
 		if (hasAllCrystals) {
-			res.add("I have obtained all of the emotion crystals and should bring them to Julius in Ados.");}
-		
+			res.add("I have obtained all of the emotion crystals and should bring them to Julius in Ados.");
+		}
 		
 		if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
 			res.add("I gave the crystals to Julius for his wife. I got some experience, karma and useful stone legs.");
@@ -222,13 +204,12 @@ public class EmotionCrystals extends AbstractQuest {
 
 
 	private void prepareRiddlesStep() {
-
 		// List of NPCs
 		final List<SpeakerNPC> npcList = new ArrayList<SpeakerNPC>();
 
 		// Add the crystals to the NPC list with their riddle
-		for (int c = 0; c < crystalColors.size(); c++) {
-			npcList.add(npcs.get(WordUtils.capitalize(crystalColors.get(c)) + " Crystal"));
+		for (String color : crystalColors) {
+			npcList.add(npcs.get(WordUtils.capitalize(color) + " Crystal"));
 		}
 
 		// Riddles
@@ -257,7 +238,7 @@ public class EmotionCrystals extends AbstractQuest {
 		for (int n = 0; n < npcList.size(); n++)
 		{
 			SpeakerNPC crystalNPC = npcList.get(n);
-			String rewardItem = crystalColors.get(n) + " emotion crystal";
+			String rewardItem = crystalColors[n] + " emotion crystal";
 			String crystalRiddle = riddles.get(n);
 			List<String> crystalAnswers = answers.get(n);
 
@@ -386,8 +367,8 @@ public class EmotionCrystals extends AbstractQuest {
 
 		// Reward
 		final List<ChatAction> rewardAction = new LinkedList<ChatAction>();
-		for (int x = 0; x < crystalColors.size(); x++) {
-			rewardAction.add(new DropItemAction(crystalColors.get(x) + " emotion crystal"));
+		for (String color : crystalColors) {
+			rewardAction.add(new DropItemAction(color + " emotion crystal"));
 		}
 		rewardAction.add(new EquipItemAction("stone legs", 1, true));
 		rewardAction.add(new IncreaseXPAction(2000));
