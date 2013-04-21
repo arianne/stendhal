@@ -151,6 +151,12 @@ public enum NotificationType {
 		public String getStyleDescription() {
 			return REGULAR;
 		}
+	},
+	WARNING("warning") {
+		@Override
+		public Color getColor() {
+			return COLOR_WARNING;
+		}
 	};
 	public static final Color COLOR_CLIENT = Color.gray;
 
@@ -189,6 +195,8 @@ public enum NotificationType {
 	
 	// strong bright orange
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
+	
+	public static final Color COLOR_WARNING = Color.red;
 	
 	// TODO: review thinking here of using constants.
 	// these are tied to the ones in client.KTextEdit.gui.initStylesForTextPane
