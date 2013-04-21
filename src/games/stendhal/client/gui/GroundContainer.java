@@ -31,6 +31,8 @@ import games.stendhal.common.NotificationType;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.Point2D;
@@ -46,18 +48,18 @@ import org.apache.log4j.Logger;
 /**
  * Mouse handler for the game screen floor.
  */
-public class GroundContainer extends MouseHandler implements Inspector, 
+public class GroundContainer implements Inspector, MouseListener, MouseMotionListener,
 	MouseWheelListener {
 
 	private static final Logger logger = Logger.getLogger(GroundContainer.class);
 	
 	private CursorRepository cursorRepository = new CursorRepository(); 
 	
-	/** The game screen this handler is providing mouse processing */
+	/** The game screen this handler is providing mouse processing. */
 	private final IGameScreen screen;
-	/** Client for sending actions */
+	/** Client for sending actions. */
 	private final StendhalClient client;
-	/** Component to place popup menus */
+	/** Component to place popup menus. */
 	private final JComponent canvas;
 
 	private GroundContainerMouseState state;
@@ -65,8 +67,8 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	/**
 	 * Create a new GroundContainer.
 	 * 
-	 * @param client
-	 * @param gameScreen
+	 * @param client client
+	 * @param gameScreen screen corresponding to the ground
 	 * @param canvas The component to place popup menus
 	 */
 	public GroundContainer(final StendhalClient client, final IGameScreen gameScreen, 
@@ -78,16 +80,9 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	}
 
 	@Override
-	protected void onDragStart(Point point) {
-		state.onDragStart(point);
-	}
-
-	@Override
 	public synchronized void mouseMoved(MouseEvent e) {
-		super.mouseMoved(e);
-		/*
-		 * Get cursor from entity below the mouse.
-		 */
+		state.mouseMoved(e);
+	
 		if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
 			return;
 		}
@@ -99,10 +94,10 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	/**
 	 * Get cursor for a point.
 	 * 
-	 * @param point
+	 * @param point location of the pointer
 	 * @return cursor
 	 */
-	public StendhalCursor getCursor(Point point) {
+	private StendhalCursor getCursor(Point point) {
 		return state.getCursor(point);
 	}
 	
@@ -131,8 +126,8 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	}
 	
 	/**
-	 * calculates whether the click was close enough to a zone border to trigger
-	 * a zone change
+	 * Calculates whether the click was close enough to a zone border to trigger
+	 * a zone change.
 	 *
 	 * @param point click point in world coordinates
 	 * @return Direction of the zone to change to, <code>null</code> if no zone change should happen
@@ -157,36 +152,13 @@ public class GroundContainer extends MouseHandler implements Inspector,
 		}
 		return null;
 	}
-
-	@Override
-	protected boolean onMouseClick(Point point) {
-		return this.state.onMouseClick(point);
-	}
-
-	@Override
-	protected boolean onMouseDoubleClick(Point point) {
-		return this.state.onMouseDoubleClick(point);
-	}
-
-	@Override
-	protected void onMouseRightClick(Point point) {
-		this.state.onMouseRightClick(point);
-	}
 	
 	/**
-	 * Remembers whether the client was active on last mouse down
-	 */
-	@Override
-	public void mousePressed(MouseEvent e) {
-		super.mousePressed(e);
-		state.mousePressed(e);
-	}
-
-	
-
-	/*
-	 * (non-Javadoc)
-	 * @see games.stendhal.client.gui.DropTarget#dropEntity(games.stendhal.client.entity.IEntity, java.awt.Point)
+	 * Drop an entity to the container.
+	 * 
+	 * @param entity dropped entity
+	 * @param amount number of entities dropped
+	 * @param point dropping location
 	 */
 	public void dropEntity(IEntity entity, int amount, Point point) {
 		final RPAction action = new RPAction();
@@ -228,6 +200,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * (non-Javadoc)
 	 * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
 	 */
+	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if (User.isNull()) {
 			return;
@@ -254,6 +227,7 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	 * (non-Javadoc)
 	 * @see games.stendhal.client.entity.Inspector#inspectMe(games.stendhal.client.entity.IEntity, marauroa.common.game.RPSlot, games.stendhal.client.gui.SlotWindow, int, int)
 	 */
+	@Override
 	public SlotWindow inspectMe(final IEntity suspect, final RPSlot content,
 			final SlotWindow container, final int width, final int height) {
 		if ((container != null) && container.isVisible()) {
@@ -279,20 +253,75 @@ public class GroundContainer extends MouseHandler implements Inspector,
 	}
 	
 
+	/**
+	 * Get the screen corresponding to the ground container.
+	 * 
+	 * @return screen
+	 */
 	public IGameScreen getScreen() {
 		return screen;
 	}
 
+	/**
+	 * Get the JComponent of the container.
+	 * 
+	 * @return component
+	 */
 	public JComponent getCanvas() {
 		return canvas;
 	}
 
+	/**
+	 * Get the client.
+	 * 
+	 * @return client
+	 */
 	public StendhalClient getClient() {
 		return client;
 	}
 
+	/**
+	 * Set the mouse handler state for the ground.
+	 * 
+	 * @param newState new mouse state
+	 */
 	public void setNewMouseHandlerState(
 			GroundContainerMouseState newState) {
 		this.state = newState;
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		state.mouseDragged(e);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		state.mouseReleased(e);
+	}
+	
+	/**
+	 * Remembers whether the client was active on last mouse down.
+	 * 
+	 * @param e event
+	 */
+	@Override
+	public void mousePressed(MouseEvent e) {
+		state.mousePressed(e);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		state.mouseReleased(e);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		state.mouseEntered(e);
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		state.mouseExited(e);
 	}
 }
