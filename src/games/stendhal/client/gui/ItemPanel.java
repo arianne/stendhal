@@ -346,6 +346,8 @@ public class ItemPanel extends JComponent implements DropTarget, Inspectable {
 			// Click on entity. Decide on action
 			if (isUserSlot()) {
 				return view.onHarmlessAction();
+			} else if (isCtrlDown()) {
+				return false;
 			} else {
 				moveItemToBag();
 				return true;
