@@ -37,7 +37,7 @@ public class PassiveNPC extends NPC {
 		createPath();
 		
 		//TODO: Make name not required
-		setName("dummy");
+		setName("");
 		put("title_type", "npc");
 		
 		setSize(1, 1);
