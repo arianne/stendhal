@@ -46,12 +46,17 @@ public class PassiveNPC extends NPC {
 
 	@Override
 	protected void handleObjectCollision() {
-		stop();
+		if (!ignoresCollision()) {
+			stop();
+		}
 	}
 
 	@Override
 	protected void handleSimpleCollision(final int nx, final int ny) {
-		stop();
+		if (!ignoresCollision()) {
+			stop();
+		}
+		super.handleSimpleCollision(nx, ny);
 	}
 	
 	public void logic() {
@@ -60,5 +65,5 @@ public class PassiveNPC extends NPC {
 		}
 		applyMovement();
 	}
-
+	
 }
