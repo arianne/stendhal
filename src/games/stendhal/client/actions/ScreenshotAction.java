@@ -43,6 +43,7 @@ public class ScreenshotAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(String[] params, String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", "Taking a screenshot...", NotificationType.CLIENT));
 		// Ming the image needs to be done in EDT.
@@ -69,6 +70,7 @@ public class ScreenshotAction implements SlashAction {
 				}
 				final String msg = message;
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
 					}
@@ -94,6 +96,7 @@ public class ScreenshotAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -103,6 +106,7 @@ public class ScreenshotAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

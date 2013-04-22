@@ -38,6 +38,7 @@ class GMHelpAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 	    List<String> lines;
 		if (params[0] == null) {
@@ -130,6 +131,7 @@ class GMHelpAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 1;
 	}
@@ -139,6 +141,7 @@ class GMHelpAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

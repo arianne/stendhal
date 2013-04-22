@@ -30,6 +30,7 @@ class SentenceAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
 			return false;
@@ -49,6 +50,7 @@ class SentenceAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -58,6 +60,7 @@ class SentenceAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

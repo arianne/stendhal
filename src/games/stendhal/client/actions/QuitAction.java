@@ -29,6 +29,7 @@ class QuitAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		j2DClient client = j2DClient.get();
 		if (client != null) {
@@ -45,6 +46,7 @@ class QuitAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -54,6 +56,7 @@ class QuitAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

@@ -42,6 +42,7 @@ public class BareBonesBrowserLaunchCommand implements SlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
 				"Trying to open #" + urlToOpen + " in your browser.",
@@ -57,6 +58,7 @@ public class BareBonesBrowserLaunchCommand implements SlashAction{
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -66,6 +68,7 @@ public class BareBonesBrowserLaunchCommand implements SlashAction{
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

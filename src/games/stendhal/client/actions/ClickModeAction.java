@@ -33,6 +33,7 @@ public class ClickModeAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(String[] params, String remainder) {
 		boolean doubleClick = Boolean.parseBoolean(WtWindowManager.getInstance().getProperty("ui.doubleclick", "false"));
 		doubleClick = !doubleClick;
@@ -50,6 +51,7 @@ public class ClickModeAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -59,6 +61,7 @@ public class ClickModeAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

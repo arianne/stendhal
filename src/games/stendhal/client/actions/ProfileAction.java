@@ -31,6 +31,7 @@ public class ProfileAction implements SlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		String url = "https://stendhalgame.org/character/";
 		String name = null;
@@ -57,6 +58,7 @@ public class ProfileAction implements SlashAction{
 	 *
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 1;
 	}
@@ -66,6 +68,7 @@ public class ProfileAction implements SlashAction{
 	 *
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

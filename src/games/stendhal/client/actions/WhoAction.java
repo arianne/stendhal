@@ -30,6 +30,7 @@ class WhoAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction who = new RPAction();
 
@@ -45,6 +46,7 @@ class WhoAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -54,6 +56,7 @@ class WhoAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

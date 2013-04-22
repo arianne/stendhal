@@ -30,6 +30,7 @@ class IgnoreAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
 
@@ -72,6 +73,7 @@ class IgnoreAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 2;
 	}
@@ -81,6 +83,7 @@ class IgnoreAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

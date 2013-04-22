@@ -31,6 +31,7 @@ class TeleportToAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction teleport = new RPAction();
 
@@ -47,6 +48,7 @@ class TeleportToAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -56,6 +58,7 @@ class TeleportToAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

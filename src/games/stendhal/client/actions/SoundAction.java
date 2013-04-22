@@ -30,6 +30,7 @@ class SoundAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		j2DClient.get().addEventLine(new StandardEventLine("This command is outdated. Please use \"/volume\" for changing the volume and \"/mute\" for muting all audio"));
 		return true;
@@ -40,6 +41,7 @@ class SoundAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 5;
 	}
@@ -49,6 +51,7 @@ class SoundAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

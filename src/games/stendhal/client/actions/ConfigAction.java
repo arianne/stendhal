@@ -33,6 +33,7 @@ public class ConfigAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(String[] params, String remainder) {
 		String oldValue = WtWindowManager.getInstance().getProperty(params[0], "{undefined}");
 		if ((remainder == null) || remainder.equals("")) {
@@ -52,6 +53,7 @@ public class ConfigAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 1;
 	}
@@ -61,6 +63,7 @@ public class ConfigAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 1;
 	}

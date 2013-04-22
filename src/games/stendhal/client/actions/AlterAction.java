@@ -30,6 +30,7 @@ class AlterAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (hasInvalidArguments(params, remainder)) {
 			return false;
@@ -62,6 +63,7 @@ class AlterAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 3;
 	}
@@ -71,6 +73,7 @@ class AlterAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 3;
 	}

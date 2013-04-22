@@ -12,6 +12,7 @@ import static games.stendhal.common.constants.Actions.CASTSPELL;
  */
 public class CastSpellAction implements SlashAction {
 
+	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();
 		action.put("type", CASTSPELL);
@@ -31,10 +32,12 @@ public class CastSpellAction implements SlashAction {
 		return true;
 	}
 
+	@Override
 	public int getMaximumParameters() {
 		return 2;
 	}
 
+	@Override
 	public int getMinimumParameters() {
 		return 2;
 	}

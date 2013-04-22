@@ -30,6 +30,7 @@ class SupportAnswerAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction tell = new RPAction();
 
@@ -47,6 +48,7 @@ class SupportAnswerAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 1;
 	}
@@ -56,6 +58,7 @@ class SupportAnswerAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 1;
 	}

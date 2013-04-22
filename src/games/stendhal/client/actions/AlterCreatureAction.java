@@ -30,6 +30,7 @@ class AlterCreatureAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if ((params == null) || (params.length < getMinimumParameters())) {
 			return false;
@@ -49,6 +50,7 @@ class AlterCreatureAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 2;
 	}
@@ -58,6 +60,7 @@ class AlterCreatureAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 2;
 	}

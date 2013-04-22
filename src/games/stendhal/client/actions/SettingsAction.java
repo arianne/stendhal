@@ -33,6 +33,7 @@ public class SettingsAction implements SlashAction {
 	 * 
 	 * @return <code>true</code> if was handled.
 	 */
+	@Override
 	public boolean execute(String[] params, String remainder) {
 		if (dialog == null) {
 			dialog = new SettingsDialog(j2DClient.get().getMainFrame());
@@ -54,6 +55,7 @@ public class SettingsAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -63,6 +65,7 @@ public class SettingsAction implements SlashAction {
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}

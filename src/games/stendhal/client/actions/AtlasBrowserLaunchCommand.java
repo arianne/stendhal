@@ -32,6 +32,7 @@ public class AtlasBrowserLaunchCommand implements SlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		StringBuilder url = new StringBuilder();
 		User user = User.get();
@@ -58,6 +59,7 @@ public class AtlasBrowserLaunchCommand implements SlashAction{
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMaximumParameters() {
 		return 0;
 	}
@@ -67,6 +69,7 @@ public class AtlasBrowserLaunchCommand implements SlashAction{
 	 * 
 	 * @return The parameter count.
 	 */
+	@Override
 	public int getMinimumParameters() {
 		return 0;
 	}
