@@ -35,6 +35,9 @@ public class PassiveNPC extends NPC {
 		setName("");
 		put("title_type", "npc");
 		
+		//Remove health bar
+		put("no_health_bar", "npc");
+		
 		setSize(1, 1);
 		
 		updateModifiedAttributes();
