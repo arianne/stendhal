@@ -1,33 +1,72 @@
 /***************************************************************************
- *						(C) Copyright 2013 - Marauroa					   *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
- *																		   *
- *	 This program is free software; you can redistribute it and/or modify  *
- *	 it under the terms of the GNU General Public License as published by  *
- *	 the Free Software Foundation; either version 2 of the License, or	   *
- *	 (at your option) any later version.								   *
- *																		   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
  ***************************************************************************/
-
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 /**
- * @author AntumDeluge
+ * A stripped down SpeakerNPC that does not interact with players
  * 
- * A passive NPC is an entity that acts like an NPC/Pet/Creature but is non-interactive.
+ * @author AntumDeluge
+ *
  */
-public abstract class PassiveNPC extends PassiveEntity {
-	
+public class PassiveNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(PassiveNPC.class);
-	
+
 	/**
-	 * The range in which the NPC will search for movement paths.
+	 * Creates a new PassiveNPC.
+	 *
 	 */
-	private int movementRange = 20;
+	public PassiveNPC() {
+		baseSpeed = 0.2;
+		createPath();
+		
+		//TODO: Make name not required
+		setName("dummy");
+		put("title_type", "npc");
+		
+		setSize(1, 1);
+		
+		// set the default movement range
+		//setMovementRange(20);
+		
+		updateModifiedAttributes();
+	}
+	
+	protected void createPath() {
+		// sub classes can implement this method
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		stop();
+	}
+
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		stop();
+	}
+	
+	public void logic() {
+		if (hasPath()) {
+			setSpeed(getBaseSpeed());
+		}
+		applyMovement();
+	}
+
 }
