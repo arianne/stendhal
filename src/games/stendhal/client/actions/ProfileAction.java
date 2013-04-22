@@ -22,7 +22,7 @@ import games.stendhal.common.NotificationType;
  *
  * @author hendrik
  */
-public class ProfileAction implements SlashAction{
+class ProfileAction implements SlashAction{
 
 	/**
 	 * Opens an URL with the browser

@@ -21,7 +21,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  *
  * @author hendrik
  */
-public class ClickModeAction implements SlashAction {
+class ClickModeAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.

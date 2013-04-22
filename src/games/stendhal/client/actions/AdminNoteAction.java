@@ -20,7 +20,7 @@ import marauroa.common.game.RPAction;
  * 
  * @author hendrik
  */
-public class AdminNoteAction implements SlashAction {
+class AdminNoteAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.

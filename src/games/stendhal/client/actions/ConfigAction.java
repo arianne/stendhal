@@ -21,7 +21,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  *
  * @author hendrik
  */
-public class ConfigAction implements SlashAction {
+class ConfigAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.

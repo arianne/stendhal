@@ -21,7 +21,7 @@ import java.util.Map.Entry;
  * 
  * @author madmetzger
  */
-public class BareBonesBrowserLaunchCommandsFactory {
+class BareBonesBrowserLaunchCommandsFactory {
 	
 	private static Map<String, String> commandsAndUrls;
 	
@@ -42,7 +42,7 @@ public class BareBonesBrowserLaunchCommandsFactory {
 	 * 
 	 * @return map of the created actions
 	 */
-	public static Map<String, SlashAction> createBrowserCommands() {
+	static Map<String, SlashAction> createBrowserCommands() {
 		initialize();
 		Map<String, SlashAction> commandsMap = new HashMap<String, SlashAction>();
 		for(Entry<String, String> entry : commandsAndUrls.entrySet()) {

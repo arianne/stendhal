@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Admin command to ban a player, either permanently or temporary.
  */
-public class BanAction implements SlashAction {
+class BanAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.

@@ -17,7 +17,7 @@ import games.stendhal.client.gui.j2DClient;
 /**
  * clears the event and chat log window
  */
-public class ClearChatLogAction implements SlashAction {
+class ClearChatLogAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.

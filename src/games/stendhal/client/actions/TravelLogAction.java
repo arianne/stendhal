@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Request the travel (quest and producer) status.
  */
-public class TravelLogAction implements SlashAction {
+class TravelLogAction implements SlashAction {
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();

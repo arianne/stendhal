@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
 /**
  * Take a screenshot, and save it in the game directory.
  */
-public class ScreenshotAction implements SlashAction {
+class ScreenshotAction implements SlashAction {
 	/**
 	 * Execute save a screenshot command.
 	 * 

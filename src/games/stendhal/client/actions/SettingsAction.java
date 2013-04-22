@@ -20,7 +20,7 @@ import java.awt.event.WindowEvent;
 /**
  * Show the settings dialog
  */
-public class SettingsAction implements SlashAction {
+class SettingsAction implements SlashAction {
 	private SettingsDialog dialog;
 
 	/**

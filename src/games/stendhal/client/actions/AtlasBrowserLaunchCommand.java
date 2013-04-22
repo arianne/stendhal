@@ -23,7 +23,7 @@ import games.stendhal.common.NotificationType;
  *
  * @author hendrik
  */
-public class AtlasBrowserLaunchCommand implements SlashAction{
+class AtlasBrowserLaunchCommand implements SlashAction{
 
 	/**
 	 * Opens the atlas URL at the current position
