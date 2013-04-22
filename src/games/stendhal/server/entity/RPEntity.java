@@ -216,6 +216,8 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
 			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
 			entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
+			
+			entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
 
 			entity.addRPSlot("head", 1, Definition.PRIVATE);
 			entity.addRPSlot("rhand", 1, Definition.PRIVATE);
