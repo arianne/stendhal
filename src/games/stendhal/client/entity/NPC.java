@@ -142,4 +142,9 @@ public class NPC extends AudibleEntity {
 			idea = null;
 		}
 	}
+	
+	@Override
+	public boolean ignoresCollision() {
+		return super.ignoresCollision();
+	}
 }

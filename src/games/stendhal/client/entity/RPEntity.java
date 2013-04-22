@@ -166,6 +166,8 @@ public abstract class RPEntity extends ActiveEntity {
 	private int base_mana;
 
 	private boolean ghostmode;
+	
+	private boolean ignoreCollision;
 
 	private String titleType;
 
@@ -535,6 +537,10 @@ public abstract class RPEntity extends ActiveEntity {
 		return ghostmode;
 	}
 
+	public boolean ignoresCollision() {
+		return ignoreCollision;
+	}
+	
 	public boolean isPoisoned() {
 		return poisoned;
 	}
@@ -884,6 +890,13 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		if (object.has("ghostmode")) {
 			ghostmode = true;
+		}
+		
+		/*
+		 * Ignoring collision.
+		 */
+		if (object.has("ignore_collision")) {
+			ignoreCollision = true;
 		}
 
 		/*
