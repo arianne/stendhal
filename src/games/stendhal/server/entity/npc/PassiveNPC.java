@@ -11,11 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.player.Player;
-
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 /**
