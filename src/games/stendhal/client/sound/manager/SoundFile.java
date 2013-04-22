@@ -26,16 +26,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.apache.log4j.Logger;
-
 /**
  *
  * @author silvio
  */
-public class SoundFile extends SignalProcessor implements Cloneable
-
-{
-	private static Logger logger = Logger.getLogger(SoundFile.class);
+public class SoundFile extends SignalProcessor implements Cloneable {
 
     private int                   mNumChannels;
     private int                   mSampleRate;

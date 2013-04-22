@@ -61,6 +61,7 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 * @param y
 	 *            The new Y coordinate (in world units).
 	 */
+	@Override
 	public void positionChanged(final double x, final double y) {
 		for (final PositionChangeListener l : listeners) {
 			l.positionChanged(x, y);

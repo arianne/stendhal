@@ -110,7 +110,7 @@ public class Time implements Cloneable
     public double getInSamples(int sampleRate)
     {
         double seconds = (double)mNanoSeconds / (double)Unit.SEC.getNanos();
-        return seconds * (double)sampleRate;
+        return seconds * sampleRate;
     }
 	
 	@Override

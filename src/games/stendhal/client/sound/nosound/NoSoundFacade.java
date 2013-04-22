@@ -23,53 +23,65 @@ import java.util.List;
 
 public class NoSoundFacade implements SoundSystemFacade {
 
+	@Override
 	public void changeVolume(float volume) {
 		// do nothing
 	}
 
+	@Override
 	public void exit() {
 		// do nothing
 	}
 
+	@Override
 	public SoundGroup getGroup(String groupName) {
 		// do nothing
 		return new NoSoundGroup();
 	}
 
+	@Override
 	public Collection<String> getGroupNames() {
 		// do nothing
 		return new LinkedList<String>();
 	}
 
+	@Override
 	public float getVolume() {
 		// do nothing
 		return 0;
 	}
 
+	@Override
 	public void mute(boolean turnOffSound, boolean useFading, Time delay) {
 		// do nothing
 	}
 
+	@Override
 	public void playerMoved() {
 		// do nothing
 	}
 
+	@Override
 	public void stop(SoundHandle sound, Time fadingDuration) {
 		// do nothing
 	}
 
+	@Override
 	public void update() {
 		// do nothing
 	}
 
+	@Override
 	public void zoneEntered(String zoneName) {
 		// do nothing
 	}
 
+	@Override
 	public void zoneLeft(String zoneName) {
 		// do nothing
 	}
 
+	@Override
 	public List<String> getDeviceNames() {
 		return new LinkedList<String>();
 	}

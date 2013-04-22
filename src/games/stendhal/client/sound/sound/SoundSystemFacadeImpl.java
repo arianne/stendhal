@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
-import games.stendhal.client.WorldObjects.WorldListener;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
@@ -34,11 +33,12 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik, silvio
  */
-public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
+public class SoundSystemFacadeImpl implements SoundSystemFacade {
 	private static Logger logger = Logger.getLogger(SoundSystemFacadeImpl.class);
 	
 	private ExtendedSoundManager manager = new ExtendedSoundManager();
 
+	@Override
 	public void playerMoved() {
 		try {
 			float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
@@ -49,14 +49,17 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 		}
 	}
 
+	@Override
 	public void zoneEntered(String zoneName) {
 		// ignored
 	}
 
+	@Override
 	public void zoneLeft(String zoneName) {
 		// ignored
 	}
 
+	@Override
 	public void exit() {
 		try {
 			manager.exit();
@@ -65,10 +68,12 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 		}
 	}
 
+	@Override
 	public SoundGroup getGroup(String groupName) {
 		return manager.getGroup(groupName);
 	}
 
+	@Override
 	public void update() {
 		try {
 			manager.update();
@@ -77,6 +82,7 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 		}
 	}
 
+	@Override
 	public void stop(SoundHandle sound, Time fadingDuration) {
 		if (sound != null) {
 			try {
@@ -91,22 +97,27 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade, WorldListener {
 		}
 	}
 
+	@Override
 	public void mute(boolean turnOffSound, boolean useFading, Time delay) {
 		manager.mute(turnOffSound, useFading, delay);
 	}
 
+	@Override
 	public float getVolume() {
 		return manager.getVolume();
 	}
 
+	@Override
 	public Collection<String> getGroupNames() {
 		return manager.getGroupNames();
 	}
 
+	@Override
 	public void changeVolume(float volume) {
 		manager.changeVolume(volume);
 	}
 
+	@Override
 	public List<String> getDeviceNames() {
 		List<String> res = new LinkedList<String>();
 		for (Device device : manager.getDevices()) {

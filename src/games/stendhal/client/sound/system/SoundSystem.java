@@ -689,7 +689,8 @@ public class SoundSystem extends Thread
         
         Arrays.sort(mixers, new Comparator<Mixer>()
         {
-            public int compare(Mixer mixer1, Mixer mixer2)
+            @Override
+			public int compare(Mixer mixer1, Mixer mixer2)
             {
                 int numLines1 = mixer1.getMaxLines(dataLineInfo);
                 int numLines2 = mixer2.getMaxLines(dataLineInfo);

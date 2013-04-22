@@ -101,7 +101,8 @@ public class SoundLayers
     private boolean                mStateChanged = true;
     private TreeMap<Integer,Layer> mLayers       = new TreeMap<Integer, Layer>(new Comparator<Integer>()
     {
-        public int compare(Integer a, Integer b)
+        @Override
+		public int compare(Integer a, Integer b)
         {
             return b.compareTo(a);
         }

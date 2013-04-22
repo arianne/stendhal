@@ -47,7 +47,8 @@ public class AudibleCapsuleArea implements AudibleArea
     public float getInnerRadius()               { return mInnerRadius;                   }
     public float getOuterRadius()               { return mOuterRadius;                   }
 
-    public float getHearingIntensity(float[] hearerPos)
+    @Override
+	public float getHearingIntensity(float[] hearerPos)
     {
         float distance = Geometry.distanceSqrt_LinePointf(mStartPoint, mEndPoint, hearerPos);
         
@@ -60,7 +61,8 @@ public class AudibleCapsuleArea implements AudibleArea
         return 1.0f - distance / (mOuterRadius - mInnerRadius);
     }
 
-    public void getClosestPoint(float[] result, float[] hearerPos)
+    @Override
+	public void getClosestPoint(float[] result, float[] hearerPos)
     {
         Geometry.closestPoint_CapsulePointf(result, mStartPoint, mEndPoint, mInnerRadius, hearerPos);
     }

@@ -26,10 +26,13 @@ import java.util.List;
 // TODO: Do not extend WorldListener
 public interface SoundSystemFacade extends WorldListener {
 
+	@Override
 	public void playerMoved();
 
+	@Override
 	public void zoneEntered(String zoneName);
 
+	@Override
 	public void zoneLeft(String zoneName);
 
 	public void exit();

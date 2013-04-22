@@ -127,7 +127,8 @@ public class DeviceEvaluator
 
         Collections.sort(devices, new Comparator<Device>()
         {
-            public int compare(Device device1, Device device2)
+            @Override
+			public int compare(Device device1, Device device2)
             {
 				int numLines1 = device1.mMixer.getMaxLines(dataLineInfo);
 				int numLines2 = device2.mMixer.getMaxLines(dataLineInfo);

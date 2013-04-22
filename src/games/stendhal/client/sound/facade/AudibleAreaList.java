@@ -27,6 +27,7 @@ public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleA
 	 */
 	private static final long serialVersionUID = 8277563402183797791L;
 
+	@Override
 	public float getHearingIntensity(float[] hearerPos)
     {
         if(isEmpty())
@@ -45,7 +46,8 @@ public class AudibleAreaList extends LinkedList<AudibleArea> implements AudibleA
         return intensity;
     }
 
-    public void getClosestPoint(float[] result, float[] hearerPos)
+    @Override
+	public void getClosestPoint(float[] result, float[] hearerPos)
     {
         if(isEmpty())
             return;

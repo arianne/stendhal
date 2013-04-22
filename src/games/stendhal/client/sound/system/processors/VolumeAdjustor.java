@@ -126,7 +126,7 @@ public class VolumeAdjustor extends SignalProcessor
             for(int i=0; i<numSamples; ++i)
             {
                 int    index = i * channels;
-                double vol   = volume + (volumeSegment * (float)i / (float)numSamples);
+                double vol   = volume + (volumeSegment * i / numSamples);
 
                 for(int c=0; c<channels; ++c)
                     data[index + c] *= vol;

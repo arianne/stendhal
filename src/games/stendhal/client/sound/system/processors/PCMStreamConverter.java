@@ -108,7 +108,7 @@ public class PCMStreamConverter extends SignalProcessor
                 if(value >= maxValueHalf)
                     value -= maxValue;
                 
-                mOutputBuffer[i] = (float)((float)value / (float)maxValueHalf);
+                mOutputBuffer[i] = ((float)value / (float)maxValueHalf);
             }
         }
         else
@@ -128,7 +128,7 @@ public class PCMStreamConverter extends SignalProcessor
                     if(value >= maxValueHalf)
                         value -= maxValue;
                     
-                    mOutputBuffer[index + c] = (float)((float)value / (float)maxValueHalf);
+                    mOutputBuffer[index + c] = (float)value / (float)maxValueHalf;
                     frame                   += numBytesPerSample;
                 }
             }

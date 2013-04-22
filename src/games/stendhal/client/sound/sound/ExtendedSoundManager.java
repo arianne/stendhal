@@ -62,6 +62,7 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		private final MemoryCache<String, Sound> mGroupSounds = new MemoryCache<String, Sound>();
 		private boolean streaming = false;
 
+		@Override
 		public boolean loadSound(String name, String filename, SoundFileType fileType, boolean enableStreaming) {
 			try {
 				Sound sound = ExtendedSoundManager.this.mSounds.get(name);
@@ -85,10 +86,12 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 			return false;
 		}
 
+		@Override
 		public float getVolume() {
 			return mVolume;
 		}
 
+		@Override
 		public void changeVolume(float volume) {
 			mVolume = volume;
 
@@ -104,14 +107,17 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		/**
 		 * enables streaming of the music data for this group.
 		 */
+		@Override
 		public void enableStreaming() {
 			streaming = true;
 		}
 
+		@Override
 		public Sound play(String soundName, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
 			return play(soundName, 1.0f, layerLevel, area, fadeInDuration, autoRepeat, clone);
 		}
 
+		@Override
 		public Sound play(String soundName, float volume, int layerLevel, AudibleArea area, Time fadeInDuration, boolean autoRepeat, boolean clone) {
 			if (soundName == null) {
 				return null;
@@ -194,16 +200,19 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		mute(!play, false, new Time(0, Time.Unit.SEC));
 	}*/
 
+	@Override
 	public void playerMoved() {
 		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
 		super.setHearerPosition(position);
 		super.update();
 	}
 
+	@Override
 	public void zoneEntered(String zoneName) {
 		// ignored
 	}
 
+	@Override
 	public void zoneLeft(String zoneName) {
 		// ignored
 	}

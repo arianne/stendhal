@@ -79,14 +79,14 @@ public class ToneGenerator extends SignalProcessor
     private void makeTone(Tone tone, float[] data, int samples, int channels, boolean mixSound)
     {
         final double RAD                      = 2.0 * Math.PI;
-        final float  frequencySampleRateRatio = tone.mFrequency / (float)mSampleRate;
+        final float  frequencySampleRateRatio = tone.mFrequency / mSampleRate;
 
         if(mixSound)
         {
             for(int i=0; i<samples; ++i)
             {
                 int   index = i * channels;
-                float value = (float)Math.sin(RAD * frequencySampleRateRatio * (double)tone.mPosition);
+                float value = (float)Math.sin(RAD * frequencySampleRateRatio * tone.mPosition);
 
                 value *= tone.mVolume;
 
@@ -101,7 +101,7 @@ public class ToneGenerator extends SignalProcessor
             for(int i=0; i<samples; ++i)
             {
                 int   index = i * channels;
-                float value = (float)Math.sin(RAD * frequencySampleRateRatio * (double)tone.mPosition);
+                float value = (float)Math.sin(RAD * frequencySampleRateRatio * tone.mPosition);
 
                 value *= tone.mVolume;
 
