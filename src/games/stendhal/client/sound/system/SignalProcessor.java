@@ -187,6 +187,8 @@ public abstract class SignalProcessor
     /**
      * This will call the generate() method of the first
      * SignalProcessor in the processing chain
+     * 
+     * @return <code>true</code>, until the stream is finished
      */
     public synchronized boolean request()
     {
@@ -222,6 +224,8 @@ public abstract class SignalProcessor
     /**
      * This function should be overwritten by all classes that want to
      * generate an PCM audio stream e.g. a mp3 decoder, a frequency generator, ...
+     * 
+     * @return <code>true</code>, until the stream is finished 
      */
     protected boolean generate() { return false; }
 
