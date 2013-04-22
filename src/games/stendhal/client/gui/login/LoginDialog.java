@@ -261,7 +261,7 @@ public class LoginDialog extends JDialog {
 		this.rootPane.setDefaultButton(loginButton);
 
 		loginButton.addActionListener(new ActionListener() {
-
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 				loginButton_actionPerformed(e);
 			}
@@ -311,7 +311,7 @@ public class LoginDialog extends JDialog {
 		button.setToolTipText("Remove the selected account from the list");
 
 		button.addActionListener(new ActionListener() {
-
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 				removeButton_actionPerformed(e);
 			}
@@ -419,6 +419,7 @@ public class LoginDialog extends JDialog {
 	public void connect(final Profile profile) {
 		// We are not in EDT
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				progressBar = new ProgressBar(LoginDialog.this);
 				progressBar.start();
@@ -432,6 +433,7 @@ public class LoginDialog extends JDialog {
 			// created in EDT, so it is not guaranteed non null in the main
 			// thread.
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					progressBar.step();
 				}
@@ -439,6 +441,7 @@ public class LoginDialog extends JDialog {
 		} catch (final Exception ex) {
 			// if something goes horribly just cancel the progressbar
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					progressBar.cancel();
 					setEnabled(true);
@@ -462,6 +465,7 @@ public class LoginDialog extends JDialog {
 			client.setCharacter(profile.getCharacter());
 			client.login(profile.getUser(), profile.getPassword(), profile.getSeed());
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					progressBar.finish();
 					// workaround near failures in AWT at openjdk (tested on openjdk-1.6.0.0)
@@ -501,6 +505,7 @@ public class LoginDialog extends JDialog {
 	 */
 	private void handleError(final String errorMessage, final String errorTitle) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				progressBar.cancel();
 				JOptionPane.showMessageDialog(
@@ -634,6 +639,7 @@ public class LoginDialog extends JDialog {
 			this.profile = profile;
 		}
 
+		@Override
 		public void run() {
 			connect(profile);
 		}
@@ -644,6 +650,7 @@ public class LoginDialog extends JDialog {
 	 */
 	protected class ProfilesCB implements ActionListener {
 
+		@Override
 		public void actionPerformed(final ActionEvent e) {
 			profilesCB();
 		}
@@ -654,6 +661,7 @@ public class LoginDialog extends JDialog {
 	 */
 	protected class SaveProfileStateCB implements ChangeListener {
 
+		@Override
 		public void stateChanged(final ChangeEvent ev) {
 			saveProfileStateCB();
 		}

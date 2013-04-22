@@ -139,6 +139,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		
 		JButton exitButton = new JButton("Cancel");
 		exitButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(final ActionEvent evt) {
 				onClose();
 			}
@@ -233,6 +234,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		playerButton.setMargin(new Insets(1, 1, 1, 1));
 		
 		playerButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(final ActionEvent evt) {
 				chooseCharacter(name);
 			}
@@ -326,6 +328,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 			this.parent = parent;
 		}
 
+		@Override
 		public void actionPerformed(final ActionEvent evt) {
 			String name = JOptionPane.showInputDialog(parent,
 					"Please enter the name of your character (only letters allowed):",
@@ -357,6 +360,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		while (isVisible()) {
 			StendhalClient.get().sendKeepAlive();

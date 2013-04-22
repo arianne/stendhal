@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.spellcasting;
 
 import games.stendhal.client.StaticGameLayers;
@@ -110,9 +121,11 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 				 * information to prevent walking when hiding the menu.
 				 */
 				menu.addPopupMenuListener(new PopupMenuListener() {
+					@Override
 					public void popupMenuCanceled(PopupMenuEvent e) {
 						//ignore
 					}
+					@Override
 					public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
 						/*
 						 *  Hidden. inform onMouseClick; unfortunately this gets
@@ -120,11 +133,13 @@ public class DefaultGroundContainerMouseState extends GroundContainerMouseState 
 						 *  pack to the event queue
 						 */
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								contextMenuFlag = false;	
 							}
 						});
 					}
+					@Override
 					public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
 						// ignore
 					}

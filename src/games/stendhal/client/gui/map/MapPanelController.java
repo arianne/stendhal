@@ -88,6 +88,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 * 
 	 * @param entity the added entity
 	 */
+	@Override
 	public void addEntity(final IEntity entity) {
 		MapObject object = null;
 		
@@ -120,6 +121,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			// changes to objects that should trigger a refresh
 			if (object instanceof MovingMapObject) {
 				entity.addChangeListener(new EntityChangeListener<IEntity>() {
+					@Override
 					public void entityChanged(final IEntity entity, final Object property) {
 						if ((property == IEntity.PROP_POSITION) 
 								|| (property == RPEntity.PROP_GHOSTMODE)
@@ -139,6 +141,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 * 
 	 * @param entity the entity to be removed
 	 */
+	@Override
 	public void removeEntity(final IEntity entity) {
 		if (mapObjects.containsKey(entity)) {
 			mapObjects.remove(entity);
@@ -171,6 +174,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 		// Panel will do the relevant part in EDT.
 		panel.update(cd, pd);
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				infoPanel.setZoneName(zone);
 				infoPanel.setDangerLevel(dangerLevel);
@@ -186,6 +190,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 * @param y
 	 *            The Y coordinate (in world units).
 	 */
+	@Override
 	public void positionChanged(final double x, final double y) {
 		/*
 		 * The client gets occasionally spurious events.
@@ -195,6 +200,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			this.x = x;
 			this.y = y;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.positionChanged(x, y);
 					/*

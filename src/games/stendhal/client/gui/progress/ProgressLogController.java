@@ -58,6 +58,7 @@ public class ProgressLogController {
 	 */
 	public void showCategories(final List<String> categories) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				// Prepare appropriate action for content clicks
 				RequestAction contentAction = new RequestAction();
@@ -77,6 +78,7 @@ public class ProgressLogController {
 	 */
 	public void showCategorySummary(final String category, final List<String> items) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				// Prepare appropriate action for content clicks
 				RequestAction contentAction = new RequestAction();
@@ -100,6 +102,7 @@ public class ProgressLogController {
 	 */
 	public void showDescription(final String category, final String item, final String description, final String information, final List<String> details) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				getProgressLog().setPageContent(category, item, description, information, details);
 				showWindow();
@@ -141,6 +144,7 @@ public class ProgressLogController {
 		 *
 		 * @param data the value of dataKey, if set
 		 */
+		@Override
 		public void fire(String data) {
 			RPAction action = new RPAction();
 			action.put("type", Actions.PROGRESS_STATUS);

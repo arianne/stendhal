@@ -133,7 +133,7 @@ public class CreateAccountDialog extends JDialog {
 		createAccountButton.setMnemonic(KeyEvent.VK_C);
 		this.rootPane.setDefaultButton(createAccountButton);
 		createAccountButton.addActionListener(new ActionListener() {
-
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 				createAccountButton_actionPerformed(e, false);
 			}

@@ -201,6 +201,7 @@ class SoundSettings {
 		selector.setSelectedItem(current);
 		 
 		selector.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object selected = selector.getSelectedItem();
 				wm.setProperty(DEVICE_PROPERTY, (selected != null) ? selected.toString() : DEFAULT_DEVICE);
@@ -247,6 +248,7 @@ class SoundSettings {
 	 * volume sliders as needed.
 	 */
 	private class MuteListener implements ItemListener {
+		@Override
 		public void itemStateChanged(ItemEvent e) {
 			boolean soundOn = (e.getStateChange() == ItemEvent.SELECTED);
 			WtWindowManager.getInstance().setProperty(SOUND_PROPERTY, Boolean.toString(soundOn));
@@ -261,6 +263,7 @@ class SoundSettings {
 	 * Listener for adjusting the master volume slider.
 	 */
 	private static class MasterVolumeListener implements ChangeListener {
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			JSlider source = (JSlider) e.getSource();
 			int value = source.getValue();
@@ -288,6 +291,7 @@ class SoundSettings {
 			this.groupName = groupName;
 		}
 		
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			JSlider source = (JSlider) e.getSource();
 			int value = source.getValue();

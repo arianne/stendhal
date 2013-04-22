@@ -290,6 +290,7 @@ class MapPanel extends JComponent {
 		g.dispose();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				// Swap the image only after the new one is ready
 				mapImage = newMapImage;

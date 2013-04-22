@@ -51,6 +51,7 @@ public class MovingMapObject extends MapObject implements EntityChangeListener<I
 		g.fillRect(rx, ry, rwidth, rheight);
 	}
 	
+	@Override
 	public void entityChanged(final IEntity entity, final Object property) {
 		if (property == IEntity.PROP_POSITION) {
 			x = entity.getX();

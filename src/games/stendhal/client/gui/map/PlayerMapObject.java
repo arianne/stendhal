@@ -51,6 +51,7 @@ public class PlayerMapObject extends RPEntityMapObject {
 			
 			// Follow the ghost mode changes of other players
 			entity.addChangeListener(new EntityChangeListener<IEntity>() {
+				@Override
 				public void entityChanged(final IEntity entity, final Object property) {
 					if ((property == RPEntity.PROP_GHOSTMODE) || (property == RPEntity.PROP_GROUP_MEMBERSHIP)) {
 						choosePlayerColor(player);
