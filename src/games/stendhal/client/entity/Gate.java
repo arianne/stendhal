@@ -33,10 +33,12 @@ public class Gate implements IEntity {
 		radius = 6;
 	}
 
+	@Override
 	public void addChangeListener(final EntityChangeListener<?> listener) {
 		// unused
 	}
 
+	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
 	}
@@ -46,6 +48,7 @@ public class Gate implements IEntity {
 		return new Rectangle2D.Double(getX() - radius / 2, getY() - radius / 2, radius, radius);
 	}
 
+	@Override
 	public String getEntityClass() {
 		if (rpObject == null) {
 			return "";
@@ -53,6 +56,7 @@ public class Gate implements IEntity {
 		return this.rpObject.get("class");
 	}
 
+	@Override
 	public String getEntitySubclass() {
 		if (rpObject == null) {
 			return "";
@@ -60,10 +64,12 @@ public class Gate implements IEntity {
 		return this.rpObject.get("subclass");
 	}
 
+	@Override
 	public double getHeight() {
 		return height;
 	}
 
+	@Override
 	public ID getID() {
 		if (rpObject == null) {
 			return null;
@@ -73,14 +79,17 @@ public class Gate implements IEntity {
 		
 	}
 
+	@Override
 	public String getName() {
 		return "";
 	}
 
+	@Override
 	public RPObject getRPObject() {
 		return rpObject;
 	}
 
+	@Override
 	public int getResistance() {
 		if (rpObject == null) {
 			return 0;	
@@ -89,14 +98,17 @@ public class Gate implements IEntity {
 		return rpObject.getInt("resistance");
 	}
 
+	@Override
 	public int getResistance(final IEntity entity) {
 		return getResistance();
 	}
 
+	@Override
 	public RPSlot getSlot(final String name) {
 		return null;
 	}
 
+	@Override
 	public String getTitle() {
 		if (rpObject == null) {
 			return null;
@@ -104,6 +116,7 @@ public class Gate implements IEntity {
 		return rpObject.get("title");
 	}
 
+	@Override
 	public String getType() {
 		if (rpObject == null) {
 			return null;
@@ -111,22 +124,27 @@ public class Gate implements IEntity {
 		return rpObject.getRPClass().getName();
 	}
 
+	@Override
 	public int getVisibility() {
 		return 100;
 	}
 
+	@Override
 	public double getWidth() {
 		return width;
 	}
 
+	@Override
 	public double getX() {
 		return x;
 	}
 
+	@Override
 	public double getY() {
 		return y;
 	}
 
+	@Override
 	public void initialize(final RPObject object) {
 		x = object.getInt("x");
 		y = object.getInt("y");
@@ -135,22 +153,27 @@ public class Gate implements IEntity {
 		this.rpObject = object;
 	}
 
+	@Override
 	public boolean isObstacle(final IEntity entity) {
 		return getResistance() > 0;
 	}
 
+	@Override
 	public boolean isOnGround() {
 		return true;
 	}
 	
+	@Override
 	public boolean isUser() {
 		return false;
 	}
 
+	@Override
 	public void release() {
 		// do nothing
 	}
 
+	@Override
 	public void removeChangeListener(final EntityChangeListener<?> listener) {
 		// unused
 	}
@@ -159,10 +182,12 @@ public class Gate implements IEntity {
 		radius = range;	
 	}
 
+	@Override
 	public void update(final int delta) {
 		// unused
 	}
 
+	@Override
 	public String getCursor() {
 		return "ACTIVITY";
 	}
@@ -173,6 +198,7 @@ public class Gate implements IEntity {
 	 * @return List of object identifiers and slot names that make up the
 	 * 	complete path to the entity
 	 */
+	@Override
 	public List<String> getPath() {
 		LinkedList<String> path = new LinkedList<String>();
 		RPObject object = getRPObject();
@@ -189,10 +215,12 @@ public class Gate implements IEntity {
 		return path;
 	}
 
+	@Override
 	public void addContentChangeListener(ContentChangeListener listener) {
 		// unused
 	}
 
+	@Override
 	public void removeContentChangeListener(ContentChangeListener listener) {
 		// unused
 	}

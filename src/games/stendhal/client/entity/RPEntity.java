@@ -454,6 +454,7 @@ public abstract class RPEntity extends ActiveEntity {
 			 * redraw, but it'll be ready for some redraw later.
 			 */
 			GameLoop.get().runOnce(new Runnable() {
+				@Override
 				public void run() {
 					if ((attacking == null) && !released) {
 						String id = rpObject.get("target");
