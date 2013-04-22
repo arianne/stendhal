@@ -18,18 +18,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class TeleportToBuddyAction implements ActionListener {
+	private final String buddyName;
 
-    private final String buddyName;
+	protected TeleportToBuddyAction(final String buddyName) {
+		this.buddyName = buddyName;
+	}
 
-    protected TeleportToBuddyAction(final String buddyName) {
-        this.buddyName = buddyName;
-    }
+	@Override
+	public void actionPerformed(final ActionEvent e) {
+		String remainder = buddyName;
 
-    public void actionPerformed(final ActionEvent e) {
-        String remainder = buddyName;
-        
-        SlashActionRepository.get("teleportto").execute(null, remainder);
-    
-    }
-
+		SlashActionRepository.get("teleportto").execute(null, remainder);
+	}
 }

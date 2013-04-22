@@ -24,11 +24,11 @@ final class RemovebuddyAction implements ActionListener {
 		this.buddyName = buddyName;
 	}
 
+	@Override
 	public void actionPerformed(final ActionEvent e) {
 		final String [] args = new String [1];
 		args[0] = buddyName;
 		
 		SlashActionRepository.get("remove").execute(args, null);
-		
 	}
 }

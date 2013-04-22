@@ -18,15 +18,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class WhereBuddyAction implements ActionListener {
-
 	private final String buddyName;
 
 	protected WhereBuddyAction(final String buddyName) {
 		this.buddyName = buddyName;
 	}
 
+	@Override
 	public void actionPerformed(final ActionEvent e) {
 		SlashActionRepository.get("where").execute(null, buddyName);
 	}
-
 }

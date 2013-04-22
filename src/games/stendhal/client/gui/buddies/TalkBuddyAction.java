@@ -29,9 +29,8 @@ class TalkBuddyAction implements ActionListener {
 		
 	}
 
+	@Override
 	public void actionPerformed(final ActionEvent e) {
 		j2DClient.get().setChatLine("/tell " + buddyName + " ");
-
 	}
-
 }

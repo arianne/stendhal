@@ -27,11 +27,8 @@ class LeaveBuddyMessageAction implements ActionListener {
 		}
 	}
 
+	@Override
 	public void actionPerformed(final ActionEvent e) {
-		
-
 		j2DClient.get().setChatLine("/storemessage " + buddyName + " ");
-
 	}
-
 }

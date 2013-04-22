@@ -73,6 +73,7 @@ class Buddy implements Comparable<Buddy> {
 		return name.hashCode();
 	}
 
+	@Override
 	public int compareTo(Buddy buddy) {
 		if (online != buddy.online) {
 			return (online) ? -1 : 1;

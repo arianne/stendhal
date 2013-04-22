@@ -42,10 +42,12 @@ public class BuddyListModel extends AbstractListModel {
 	private final List<Buddy> buddyList = new ArrayList<Buddy>();
 	private final Map<String, Buddy> buddyMap = new HashMap<String, Buddy>();
 
+	@Override
 	public Object getElementAt(int index) {
 		return buddyList.get(index);
 	}
 
+	@Override
 	public int getSize() {
 		return buddyList.size();
 	}
