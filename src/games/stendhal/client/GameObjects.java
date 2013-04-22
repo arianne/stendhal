@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
+import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.factory.EntityFactory;
 import games.stendhal.client.events.EventDispatcher;
@@ -150,6 +151,14 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 			final Player player = (Player) entity;
 
 			if (player.isGhostMode()) {
+				return false;
+			}
+		}
+		
+		if (entity instanceof NPC) {
+			final NPC npc = (NPC) entity;
+			
+			if (npc.ignoresCollision()) {
 				return false;
 			}
 		}
