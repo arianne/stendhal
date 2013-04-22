@@ -245,6 +245,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param object
 	 *            The object.
 	 */
+	@Override
 	public void onAdded(final RPObject object) {
 		if (isUser(object)) {
 
@@ -263,6 +264,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The changes.
 	 */
+	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		if (isUser(object)) {
 			if (changes.has("adminlevel")) {
@@ -293,6 +295,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The changes.
 	 */
+	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		if (isUser(object)) {
 			if (changes.has("adminlevel")) {
@@ -320,6 +323,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param object
 	 *            The object.
 	 */
+	@Override
 	public void onRemoved(final RPObject object) {
 		if (isUser(object)) {
 			adminlevel = 0;
@@ -340,6 +344,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param sobject
 	 *            The slot object.
 	 */
+	@Override
 	public void onSlotAdded(final RPObject object, final String slotName,
 			final RPObject sobject) {
 	}
@@ -356,6 +361,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
+	@Override
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
@@ -373,6 +379,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
+	@Override
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
@@ -388,6 +395,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param sobject
 	 *            The slot object.
 	 */
+	@Override
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
 	}

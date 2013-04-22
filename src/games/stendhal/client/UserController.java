@@ -41,12 +41,14 @@ public class UserController implements ObjectChangeListener {
 		stats.registerListeners(pcs);
 	}
 
+	@Override
 	public void deleted() {
 		for (final PropertyChangeListener listener : pcs.getPropertyChangeListeners()) {
 			listener.propertyChange(null);
 		}
 	}
 
+	@Override
 	public void modifiedAdded(final RPObject changes) {
 		for (final String attrib : changes) {
 			pcs.firePropertyChange(attrib, null, changes.get(attrib));
@@ -62,6 +64,7 @@ public class UserController implements ObjectChangeListener {
 		}
 	}
 
+	@Override
 	public void modifiedDeleted(final RPObject changes) {
 		for (final String attrib : changes) {
 			pcs.firePropertyChange(attrib, changes.get(attrib), null);

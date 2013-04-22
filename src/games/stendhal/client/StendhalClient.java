@@ -406,6 +406,7 @@ public class StendhalClient extends ClientFramework {
 
 		// show character dialog
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				new CharacterDialog(characters, splashScreen);
 			}
@@ -677,6 +678,7 @@ public class StendhalClient extends ClientFramework {
 					// name checking works correctly, and that there aren't two
 					// zone changes happening from two different threads.
 					GameLoop.get().runOnce(new Runnable() {
+						@Override
 						public void run() {
 							if (!zone.getName().equals(staticLayers.getAreaName())) {
 								/*

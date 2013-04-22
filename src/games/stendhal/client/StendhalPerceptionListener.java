@@ -39,6 +39,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 		this.world_objects = world_objects;
 	}
 	
+	@Override
 	public boolean onAdded(final RPObject object) {
 		if (userContext.isUser(object)) {
 			userContext.setPlayer(object);
@@ -48,24 +49,28 @@ class StendhalPerceptionListener implements IPerceptionListener {
 		return false;
 	}
 
+	@Override
 	public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 		dispatch.onModifiedAdded(object, changes);
 		rpobjDispatcher.dispatchModifyAdded(object, changes);
 		return true;
 	}
 
+	@Override
 	public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 		dispatch.onModifiedDeleted(object, changes);
 		rpobjDispatcher.dispatchModifyRemoved(object, changes);
 		return true;
 	}
 
+	@Override
 	public boolean onDeleted(final RPObject object) {
 		dispatch.onDeleted(object);
 		rpobjDispatcher.dispatchRemoved(object);
 		return false;
 	}
 
+	@Override
 	public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 		dispatch.onMyRPObject(added, deleted);
 		try {
@@ -104,6 +109,7 @@ class StendhalPerceptionListener implements IPerceptionListener {
 		return true;
 	}
 
+	@Override
 	public void onSynced() {
 		dispatch.onSynced();
 		
@@ -114,11 +120,13 @@ class StendhalPerceptionListener implements IPerceptionListener {
 
 	private final Map<ID, RPObject> world_objects;
 
+	@Override
 	public void onUnsynced() {
 		dispatch.onUnsynced();
 		
 	}
 
+	@Override
 	public void onException(final Exception e,
 			final marauroa.common.net.message.MessageS2CPerception perception) {
 		dispatch.onException(e, perception);
@@ -126,15 +134,18 @@ class StendhalPerceptionListener implements IPerceptionListener {
 		System.exit(-1);
 	}
 
+	@Override
 	public boolean onClear() {
 		dispatch.onClear();
 		return false;
 	}
 
+	@Override
 	public void onPerceptionBegin(final byte type, final int timestamp) {
 		dispatch.onPerceptionBegin(type, timestamp);
 	}
 
+	@Override
 	public void onPerceptionEnd(final byte type, final int timestamp) {
 		dispatch.onPerceptionEnd(type, timestamp);
 	}

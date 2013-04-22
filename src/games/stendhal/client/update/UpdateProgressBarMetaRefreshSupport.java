@@ -30,6 +30,7 @@ public class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListen
 	private String url;
 	private int delay;
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		browser = (JEditorPane) event.getSource();
 		String html = browser.getText();
@@ -65,6 +66,7 @@ public class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListen
 		return true;
 	}
 
+	@Override
 	public void run() {
 		// wait the delay
 		try {
@@ -75,6 +77,7 @@ public class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListen
 
 		// load the page
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					browser.setPage(url);

@@ -55,44 +55,55 @@ public class textClient extends Thread {
 
 		handler = new PerceptionHandler(new IPerceptionListener() {
 
+			@Override
 			public boolean onAdded(final RPObject object) {
 				return false;
 			}
 
+			@Override
 			public boolean onClear() {
 				return false;
 			}
 
+			@Override
 			public boolean onDeleted(final RPObject object) {
 				return false;
 			}
 
+			@Override
 			public void onException(final Exception exception,
 					final MessageS2CPerception perception) {
 				exception.printStackTrace();
 			}
 
+			@Override
 			public boolean onModifiedAdded(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
+			@Override
 			public boolean onModifiedDeleted(final RPObject object, final RPObject changes) {
 				return false;
 			}
 
+			@Override
 			public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 				return false;
 			}
 
+			@Override
 			public void onPerceptionBegin(final byte type, final int timestamp) {
 			}
 
+			@Override
 			public void onPerceptionEnd(final byte type, final int timestamp) {
 			}
 
+			@Override
 			public void onSynced() {
 			}
 
+			@Override
 			public void onUnsynced() {
 			}
 		});

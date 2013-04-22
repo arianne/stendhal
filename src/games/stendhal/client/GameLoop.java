@@ -47,6 +47,7 @@ public class GameLoop {
 	 */
 	private GameLoop() {
 		loopThread = new Thread(new Runnable() {
+			@Override
 			public void run() {
 				loop();
 				// gameLoop runs until the client quit

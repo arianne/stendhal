@@ -113,6 +113,7 @@ public class SpriteTileset implements Tileset {
 	 * 
 	 * @return The number of tiles.
 	 */
+	@Override
 	public int getSize() {
 		return tiles.length;
 	}
@@ -125,6 +126,7 @@ public class SpriteTileset implements Tileset {
 	 * 
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
+	@Override
 	public Sprite getSprite(final int index) {
 		if (index < tiles.length) {
 			return tiles[index];

@@ -26,6 +26,7 @@ public class LogUncaughtExceptionHandler implements Thread.UncaughtExceptionHand
 	private static Logger logger = Log4J.getLogger(LogUncaughtExceptionHandler.class);
 	private Thread.UncaughtExceptionHandler next;
 
+	@Override
 	public void uncaughtException(Thread thread, Throwable exception) {
 		logger.error("Exception in thread " + thread.getName(), exception);
 		System.err.println("Exception in thread " + thread.getName());

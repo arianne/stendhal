@@ -44,11 +44,13 @@ public class GameConsoleAppender extends AppenderSkeleton {
 		j2DClient.get().addEventLine(new HeaderLessEventLine(buf.toString(), NotificationType.CLIENT));
 	}
 
+	@Override
 	public void close() {
 		// implementation of abstract method
 		// yet nothing do to
 	}
 
+	@Override
 	public boolean requiresLayout() {
 		return true;
 	}

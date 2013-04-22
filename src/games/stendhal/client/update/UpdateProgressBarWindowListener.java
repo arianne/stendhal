@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class UpdateProgressBarWindowListener implements WindowListener {
 
+	@Override
 	public void windowOpened(WindowEvent e) {
 		// do nothing
 	}
@@ -28,6 +29,7 @@ public class UpdateProgressBarWindowListener implements WindowListener {
 	/**
 	 * Ask for confirmation and closes the JVM
 	 */
+	@Override
 	public void windowClosing(WindowEvent e) {
 		int result = JOptionPane.showConfirmDialog(e.getWindow(),
 				"Are you sure you want to cancel the download?", "Confirmation",
@@ -38,22 +40,27 @@ public class UpdateProgressBarWindowListener implements WindowListener {
 		}
 	}
 
+	@Override
 	public void windowClosed(WindowEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void windowIconified(WindowEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void windowActivated(WindowEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// do nothing
 	}

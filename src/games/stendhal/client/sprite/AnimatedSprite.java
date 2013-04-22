@@ -335,6 +335,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return A new sprite.
 	 */
+	@Override
 	public Sprite createRegion(final int x, final int y, final int width,
 			final int height, final Object ref) {
 		return new TileSprite(this, x, y, width, height, ref);
@@ -350,6 +351,7 @@ public class AnimatedSprite implements Sprite {
 	 * @param y
 	 *            The y location at which to draw the sprite
 	 */
+	@Override
 	public void draw(final Graphics g, final int x, final int y) {
 		update();
 
@@ -376,6 +378,7 @@ public class AnimatedSprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
+	@Override
 	public void draw(final Graphics g, final int destx, final int desty,
 			final int x, final int y, final int w, final int h) {
 		update();
@@ -390,6 +393,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return The height in pixels of this sprite.
 	 */
+	@Override
 	public int getHeight() {
 		return height;
 	}
@@ -402,6 +406,7 @@ public class AnimatedSprite implements Sprite {
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
+	@Override
 	public Object getReference() {
 		return reference;
 	}
@@ -411,6 +416,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return The width in pixels of this sprite.
 	 */
+	@Override
 	public int getWidth() {
 		return width;
 	}

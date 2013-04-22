@@ -134,19 +134,23 @@ public class UpdateProgressBar extends JFrame implements
 		}
 	}
 
+	@Override
 	public void onDownloading(final int downloadedBytes) {
 		// The updater will not be running in EDT
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				progressBar.setValue(sizeOfLastFiles + downloadedBytes);
 			}
 		});
 	}
 
+	@Override
 	public void onDownloadCompleted(final int byteCounter) {
 		sizeOfLastFiles = sizeOfLastFiles + byteCounter;
 		// The updater will not be running in EDT
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				progressBar.setValue(sizeOfLastFiles);
 			}

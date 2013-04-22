@@ -131,10 +131,12 @@ public class CompositeSprite implements Sprite {
 		}
 	}
 
+	@Override
 	public Sprite createRegion(int x, int y, int width, int height, Object ref) {
 		return new TileSprite(this, x, y, width, height, ref);
 	}
 
+	@Override
 	public void draw(Graphics g, int x, int y) {
 		if (!composited) {
 			composite();
@@ -144,6 +146,7 @@ public class CompositeSprite implements Sprite {
 		}
 	}
 
+	@Override
 	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
 			int h) {
 		if (!composited) {
@@ -154,14 +157,17 @@ public class CompositeSprite implements Sprite {
 		}
 	}
 
+	@Override
 	public int getHeight() {
 		return slaves.get(0).getHeight();
 	}
 
+	@Override
 	public Object getReference() {
 		return reference;
 	}
 
+	@Override
 	public int getWidth() {
 		return slaves.get(0).getWidth();
 	}

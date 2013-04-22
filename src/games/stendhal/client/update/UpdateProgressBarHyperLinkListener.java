@@ -36,6 +36,7 @@ import javax.swing.event.HyperlinkListener;
  */
 public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 
+	@Override
 	public void hyperlinkUpdate(HyperlinkEvent e) {
 		if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 			openURL(e.getURL().toExternalForm());

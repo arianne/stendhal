@@ -114,6 +114,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		this.collisionMap = collisionMap;
 	}
 
+	@Override
 	public Iterator<IEntity> iterator() {
 		return objects.values().iterator();
 	}
@@ -218,6 +219,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param object
 	 *            The object.
 	 */
+	@Override
 	public void onAdded(final RPObject object) {
 		if (!object.getRPClass().subclassOf("entity")) {
 			logger.debug("Skipping non-entity object: " + object);
@@ -247,6 +249,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param changes
 	 *            The changes.
 	 */
+	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		final IEntity iEntity = objects.get(FQID.create(object));
 
@@ -268,6 +271,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param changes
 	 *            The changes.
 	 */
+	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		final IEntity entity = objects.get(FQID.create(object));
 
@@ -282,6 +286,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param object
 	 *            The object.
 	 */
+	@Override
 	public void onRemoved(final RPObject object) {
 		final RPObject.ID id = object.getID();
 
@@ -307,6 +312,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param sobject
 	 *            The slot object.
 	 */
+	@Override
 	public void onSlotAdded(final RPObject object, final String slotName,
 			final RPObject sobject) {
 	}
@@ -323,6 +329,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
+	@Override
 	public void onSlotChangedAdded(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
@@ -345,6 +352,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param schanges
 	 *            The slot object changes.
 	 */
+	@Override
 	public void onSlotChangedRemoved(final RPObject object,
 			final String slotName, final RPObject sobject,
 			final RPObject schanges) {
@@ -365,6 +373,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * @param sobject
 	 *            The slot object.
 	 */
+	@Override
 	public void onSlotRemoved(final RPObject object, final String slotName,
 			final RPObject sobject) {
 	}
