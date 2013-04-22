@@ -147,14 +147,13 @@ public class CreditsDialog extends JDialog {
 	 */
 	private void eventHandling() {
 		this.addWindowListener(new WindowAdapter() {
-
 			@Override
 			public void windowClosing(final WindowEvent e) {
 				exit();
 			}
 		});
 		closeButton.addActionListener(new ActionListener() {
-
+			@Override
 			public void actionPerformed(final ActionEvent e) {
 				exit();
 			}
@@ -173,5 +172,4 @@ public class CreditsDialog extends JDialog {
 		this.dispose();
 		logger.debug("about dialog closed");
 	}
-
 }

@@ -59,6 +59,7 @@ public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	 * @param name
 	 *            The name of the feature.
 	 */
+	@Override
 	public void featureDisabled(final String name) {
 		if (name.equals("keyring")) {
 			disableKeyring();
@@ -73,9 +74,11 @@ public class KeyRing extends SlotWindow implements FeatureChangeListener {
 	 * @param value
 	 *            Optional feature specific data.
 	 */
+	@Override
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("keyring")) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					if(!isVisible()) {
 						setVisible(true);

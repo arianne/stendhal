@@ -77,6 +77,7 @@ public class ProgressBar extends JDialog {
 	private class Updater implements ActionListener {
 		private int counter = 0;
 		
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			counter += STEP_SIZE * stepSizeMultiplier;
 			progressBar.setValue(counter);

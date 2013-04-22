@@ -160,6 +160,7 @@ public class StatsPanelController {
 			
 		final String text = "Level: " + level + " (" + nextS + ")";
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.setLevel(text);
 			}
@@ -177,6 +178,7 @@ public class StatsPanelController {
 		}
 		final String text = "HP: " + hp + "/" + maxhpvalue;
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.setHP(text);
 			}
@@ -191,6 +193,7 @@ public class StatsPanelController {
 		final int next = Level.getXP(atk - 9) - atkxp;
 		final String text = "ATK: " + atk + "×" + (1 + weaponAtk) + " (" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.setAtk(text);
 			}
@@ -205,6 +208,7 @@ public class StatsPanelController {
 		final int next = Level.getXP(def - 9) - defxp;
 		final String text = "DEF: " + def + "×" + (1 + itemDef) + " (" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.setDef(text);
 			}
@@ -215,6 +219,7 @@ public class StatsPanelController {
 	 * Listener for HP and base_hp changes.
 	 */
 	private class HPChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -242,7 +247,6 @@ public class StatsPanelController {
 	 * @param slot
 	 * @param object
 	 */
-	@SuppressWarnings("null")
 	private void addMoney(String slot, RPObject object) {
 		HashMap<String, RPObject> set = money.get(slot);
 		String id = object.get("id"); 
@@ -305,6 +309,7 @@ public class StatsPanelController {
 		}
 		final String text = "Money: " + amount;
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.setMoney(text);
 			}
@@ -315,6 +320,7 @@ public class StatsPanelController {
 	 * Listener for atk and atk_xp changes.
 	 */
 	private class ATKChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -333,6 +339,7 @@ public class StatsPanelController {
 	 * Listener for def and def_xp changes.
 	 */
 	private class DEFChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -351,6 +358,7 @@ public class StatsPanelController {
 	 * Listener for xp changes.
 	 */
 	private class XPChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -359,6 +367,7 @@ public class StatsPanelController {
 			updateLevel();
 			final String text = "XP: " + xp;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.setXP(text);
 				}
@@ -370,6 +379,7 @@ public class StatsPanelController {
 	 * Listener for level changes.
 	 */
 	private class LevelChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -385,6 +395,7 @@ public class StatsPanelController {
 	 * Listener for weapon atk changes.
 	 */
 	private class WeaponChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -398,6 +409,7 @@ public class StatsPanelController {
 	 * Listener for armor def changes.
 	 */
 	private class ArmorChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -411,10 +423,12 @@ public class StatsPanelController {
 	 * Listener for eating and choking changes.
 	 */
 	private class EatingChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
 			if (event == null) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						panel.setEating(false);
 						panel.setChoking(false);
@@ -426,12 +440,14 @@ public class StatsPanelController {
 			final boolean newStatus = event.getNewValue() != null;
 			if ("eating".equals(event.getPropertyName())) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						panel.setEating(newStatus);
 					}
 				});
 			} else {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						panel.setChoking(newStatus);
 					}
@@ -444,6 +460,7 @@ public class StatsPanelController {
 	 * Listener for poisoned status changes.
 	 */
 	private class PoisonedChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
 			Object value = null;
@@ -453,6 +470,7 @@ public class StatsPanelController {
 			
 			final boolean poisoned = value != null;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.setPoisoned(poisoned);
 				}
@@ -464,6 +482,7 @@ public class StatsPanelController {
 	 * Listener for away status changes.
 	 */
 	private class AwayChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
 			String value = null;
@@ -475,6 +494,7 @@ public class StatsPanelController {
 			}
 			final String message = value;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.setAway(message);
 				}
@@ -486,6 +506,7 @@ public class StatsPanelController {
 	 * Listener for karma changes.
 	 */
 	private class KarmaChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -504,6 +525,7 @@ public class StatsPanelController {
 	 * Listener for mana changes.
 	 */
 	private class ManaChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				return;
@@ -527,6 +549,7 @@ public class StatsPanelController {
 	 * Listener for grumpy status changes.
 	 */
 	private class GrumpyChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			// Deleted attribute can raise a null event
 			String value = null;
@@ -538,6 +561,7 @@ public class StatsPanelController {
 			}
 			final String message = value;
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.setGrumpy(message);
 				}
@@ -551,6 +575,7 @@ public class StatsPanelController {
 	 * need to listen to all the slots where it's possible to store money.
 	 */
 	private class MoneyChangeListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(final PropertyChangeEvent event) {
 			if (event == null) {
 				/*

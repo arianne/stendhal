@@ -108,10 +108,11 @@ public class ScrollerPanel extends JComponent {
 		this.backgroundColor = backgroundColor;
 		this.t = new Timer((int) (1.0 / scrollSpeed * 1000.0),
 				new ActionListener() {
-					public void actionPerformed(final ActionEvent e) {
-						moveText();
-					}
-				});
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				moveText();
+			}
+		});
 		logger.debug("Created a new scrolling panel");
 		calculateSizes();
 		// setting up event handling

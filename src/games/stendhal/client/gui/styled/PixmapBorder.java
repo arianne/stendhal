@@ -103,6 +103,7 @@ public class PixmapBorder implements Border {
 		return image;
 	}
 	
+	@Override
 	public Insets getBorderInsets(Component component) {
 		if (component instanceof JPopupMenu) {
 			return smallInsets;
@@ -111,10 +112,12 @@ public class PixmapBorder implements Border {
 		}
 	}
 
+	@Override
 	public boolean isBorderOpaque() {
 		return false;
 	}
 
+	@Override
 	public void paintBorder(Component component, Graphics graphics, int x, int y,
 			int width, int height) {
 		Rectangle oldClip = graphics.getClipBounds();

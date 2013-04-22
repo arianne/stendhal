@@ -101,6 +101,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 		acceptButton.setText("Accept");
 		acceptButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(final java.awt.event.ActionEvent evt) {
 				acceptButtonActionPerformed(evt);
 			}
@@ -160,6 +161,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 	 */
 	public static void main(final String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				new PasswordDialog().setVisible(true);
 			}

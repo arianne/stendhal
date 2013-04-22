@@ -86,6 +86,7 @@ class TradingWindow extends InternalManagedWindow {
 		acceptButton = new JButton("Accept");
 		acceptButton.setEnabled(false);
 		acceptButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.acceptTrade();
 			}
@@ -117,6 +118,7 @@ class TradingWindow extends InternalManagedWindow {
 		
 		offerButton = new JButton("Offer");
 		offerButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.lockTrade();
 			}
@@ -134,6 +136,7 @@ class TradingWindow extends InternalManagedWindow {
 		// Cancel button
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Close the window and cancel the trade
 				close();

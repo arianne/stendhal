@@ -44,6 +44,7 @@ class GameKeyHandler implements KeyListener {
 		this.screen = screen;
 	}
 
+	@Override
 	public void keyPressed(final KeyEvent e) {
 		if (e.isShiftDown()) {
 			/*
@@ -104,6 +105,7 @@ class GameKeyHandler implements KeyListener {
 		}
 	}
 
+	@Override
 	public void keyReleased(final KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
@@ -118,6 +120,7 @@ class GameKeyHandler implements KeyListener {
 		}
 	}
 
+	@Override
 	public void keyTyped(final KeyEvent e) {
 		// Ignore. All the work is done in keyPressed and keyReleased methods.
 	}

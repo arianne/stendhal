@@ -74,18 +74,22 @@ public abstract class MouseHandler implements MouseListener, MouseMotionListener
 	 * 
 	 * @param e
 	 */
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		// do nothing
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = true;
@@ -94,6 +98,7 @@ public abstract class MouseHandler implements MouseListener, MouseMotionListener
 		timeOfLastMousePress = System.currentTimeMillis();
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		// be sure to stop dragging operations when the left button is released
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -111,6 +116,7 @@ public abstract class MouseHandler implements MouseListener, MouseMotionListener
 		}
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (rightMouseButtonPressed) {
 			// Disallow dragging with right button.
@@ -123,6 +129,7 @@ public abstract class MouseHandler implements MouseListener, MouseMotionListener
 		}
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// do nothing
 	}

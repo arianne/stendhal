@@ -86,6 +86,7 @@ abstract class CommandList extends WtPopupMenu {
 		// ActionListener
 		//
 
+		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			doAction(ev.getActionCommand());
 		}
@@ -108,15 +109,17 @@ abstract class CommandList extends WtPopupMenu {
 	 * </pre>
 	 */
 	private static class AdminIcon implements Icon {
-
+		@Override
 		public int getIconHeight() {
 			return 7;
 		}
 
+		@Override
 		public int getIconWidth() {
 			return 7;
 		}
 
+		@Override
 		public void paintIcon(final Component c, final Graphics g, final int x, final int y) {
 			Color oldColor;
 

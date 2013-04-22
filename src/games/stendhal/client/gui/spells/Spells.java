@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.client.gui.spells;
 
 import games.stendhal.client.gui.SlotWindow;
@@ -20,10 +31,12 @@ public class Spells extends SlotWindow implements FeatureChangeListener {
 		setCloseable(false);
 	}
 
+	@Override
 	public void featureDisabled(final String name) {
 		if (name.equals("spells")) {
 			if(isVisible()) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						setVisible(false);
 					}
@@ -32,10 +45,12 @@ public class Spells extends SlotWindow implements FeatureChangeListener {
 		}
 	}
 
+	@Override
 	public void featureEnabled(final String name, final String value) {
 		if (name.equals("spells")) {
 			if(!isVisible()) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						setVisible(true);
 					}

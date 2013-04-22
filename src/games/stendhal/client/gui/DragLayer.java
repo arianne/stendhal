@@ -219,6 +219,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 	 * (non-Javadoc)
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
+	@Override
 	public void eventDispatched(AWTEvent e) {
 		if (e instanceof MouseEvent) {
 			MouseEvent event = (MouseEvent) e;

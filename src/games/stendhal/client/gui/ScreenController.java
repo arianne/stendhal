@@ -76,12 +76,14 @@ class ScreenController implements PositionChangeListener {
 		if (!isTalking) {
 			final int priority = getPriority(type);
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					screen.addStaticText(sprite, textLength, priority);
 				}
 			});
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					screen.addTextBox(sprite, x, y, textLength);
 				}
@@ -123,6 +125,7 @@ class ScreenController implements PositionChangeListener {
 	 */
 	void setWorldSize(final double width, final double height) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				screen.setMaxWorldSize(width, height);
 			}
@@ -136,14 +139,17 @@ class ScreenController implements PositionChangeListener {
 	 */
 	void setOffline(final boolean offline) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				screen.setOffline(offline);
 			}
 		});
 	}
 
+	@Override
 	public void positionChanged(final double x, final double y) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				screen.positionChanged(x, y);
 			}
@@ -151,6 +157,7 @@ class ScreenController implements PositionChangeListener {
 	}
 	
 	private final class NextFrameRunner implements Runnable {
+		@Override
 		public void run() {
 			screen.nextFrame();
 		}

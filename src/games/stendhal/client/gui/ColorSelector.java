@@ -114,6 +114,7 @@ class ColorSelector extends JPanel {
 			});
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			// Colors changed
 			repaint();
@@ -354,18 +355,22 @@ class ColorSelector extends JPanel {
 		/** Current color in HSL space. */
 		private float[] hsl = new float[3];
 
+		@Override
 		public void addChangeListener(ChangeListener listener) {
 			listeners.add(listener);
 		}
 
+		@Override
 		public Color getSelectedColor() {
 			return color;
 		}
 
+		@Override
 		public void removeChangeListener(ChangeListener listener) {
 			listeners.remove(listener);
 		}
 
+		@Override
 		public void setSelectedColor(Color color) {
 			if (color != null) {
 				this.color = color;

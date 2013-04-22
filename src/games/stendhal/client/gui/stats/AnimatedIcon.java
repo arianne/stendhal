@@ -52,6 +52,7 @@ public class AnimatedIcon extends JComponent {
 	 * Timer task to update and draw the icon.
 	 */
 	final ActionListener timerTask = new ActionListener() {
+		@Override
 		public void actionPerformed(final ActionEvent e) {
 			current++;
 			if (current >= sprite.length) {

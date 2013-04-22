@@ -84,6 +84,7 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		setCursor(cursorRepository.get(StendhalCursor.NORMAL));
 	}
 
+	@Override
 	public boolean moveTo(int x, int y) {
 		setLocation(x, y);
 		return true;

@@ -211,6 +211,7 @@ public class OutfitDialog extends JDialog {
 		
 		// Hair
 		SpriteRetriever hairRetriever = new SpriteRetriever() {
+			@Override
 			public Sprite getSprite() {
 				return getHairSprite();
 			}
@@ -220,6 +221,7 @@ public class OutfitDialog extends JDialog {
 		
 		// Head
 		SpriteRetriever headRetriever = new SpriteRetriever() {
+			@Override
 			public Sprite getSprite() {
 				return getHeadSprite();
 			}
@@ -229,6 +231,7 @@ public class OutfitDialog extends JDialog {
 		
 		// Body
 		SpriteRetriever bodyRetriever = new SpriteRetriever() {
+			@Override
 			public Sprite getSprite() {
 				return getBodySprite();
 			}
@@ -238,6 +241,7 @@ public class OutfitDialog extends JDialog {
 		
 		// Dress
 		SpriteRetriever dressRetriever = new SpriteRetriever() {
+			@Override
 			public Sprite getSprite() {
 				return getDressSprite();
 			}
@@ -275,6 +279,7 @@ public class OutfitDialog extends JDialog {
 		d.width = SLIDER_WIDTH;
 		directionSlider.setPreferredSize(d);
 		directionSlider.addChangeListener(new ChangeListener() {
+			@Override
 			public void stateChanged(final ChangeEvent evt) {
 				sliderDirectionStateChanged(evt);
 			}
@@ -283,6 +288,7 @@ public class OutfitDialog extends JDialog {
 		
 		okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(final ActionEvent evt) {
 				okActionPerformed(evt);
 			}
@@ -303,6 +309,7 @@ public class OutfitDialog extends JDialog {
 	
 		JButton button = new JButton("<");
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				model.scrollDown();
 			}
@@ -311,6 +318,7 @@ public class OutfitDialog extends JDialog {
 		row.add(label);
 		button = new JButton(">");
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				model.scrollUp();
 			}
@@ -399,6 +407,7 @@ public class OutfitDialog extends JDialog {
 		final ColorSelectionModel model = selector.getSelectionModel(); 
 		model.setSelectedColor(outfitColor.getColor(key));
 		selector.getSelectionModel().addChangeListener(new ChangeListener() {
+			@Override
 			public void stateChanged(ChangeEvent ev) {
 				outfitColor.setColor(key, model.getSelectedColor());
 				label.changed();
@@ -407,6 +416,7 @@ public class OutfitDialog extends JDialog {
 		});
 		
 		enableToggle.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (enableToggle.isSelected()) {
 					// restore previously selected color, if any
@@ -426,6 +436,7 @@ public class OutfitDialog extends JDialog {
 		
 		// For restoring the state
 		resetListeners.add(new ResetListener() {
+			@Override
 			public void reset() {
 				Color color = outfitColor.getColor(key);
 				boolean colored = color != null;
@@ -554,6 +565,7 @@ public class OutfitDialog extends JDialog {
 			this.retrievers = retrievers;
 		}
 		
+		@Override
 		public void changed() {
 			// Update image
 			BufferedImage img = getGraphicsConfiguration().createCompatibleImage(PLAYER_WIDTH, PLAYER_HEIGHT);
