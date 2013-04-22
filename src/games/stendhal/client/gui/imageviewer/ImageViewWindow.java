@@ -53,6 +53,7 @@ public class ImageViewWindow extends InternalManagedWindow {
 		 * thread; do the rest of the work in EDT.
 		 */
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				j2DClient.get().addWindow(ImageViewWindow.this);
 				center();

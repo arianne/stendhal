@@ -28,7 +28,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 public class ChatTextController {
-
 	private final JTextField playerChatText = new JTextField("");
 
 	private ChatCache cache;
@@ -48,17 +47,14 @@ public class ChatTextController {
 	}
 
 	public Component getPlayerChatText() {
-
 		return playerChatText;
 	}
 
 	public void setChatLine(final String text) {
-
 		playerChatText.setText(text);
 	}
 
 	class ChatTextKeyListener extends KeyAdapter {
-
 			@Override
 			public void keyPressed(final KeyEvent e) {
 				final int keypressed = e.getKeyCode();
@@ -85,15 +81,13 @@ public class ChatTextController {
 	}
 
 	class ParserHandler implements ActionListener {
-
+		@Override
 		public void actionPerformed(final ActionEvent e) {
 			final String text = e.getActionCommand();
 
 			if (ChatLineParser.parseAndHandle(text)) {
 				clearLine();
-
 			}
-
 		}
 	}
 	public void addActionListener(final ActionListener l) {
@@ -105,21 +99,18 @@ public class ChatTextController {
 		playerChatText.addKeyListener(l);
 	}
 
-
 	public String getText() {
 		return playerChatText.getText();
 	}
 
 	public void setCache(final ChatCache cache) {
 		this.cache = cache;
-
 	}
 
 	public void clearLine() {
 		cache.addlinetoCache(getText());
 
 		setChatLine("");
-
 	}
 
 	public void saveCache() {

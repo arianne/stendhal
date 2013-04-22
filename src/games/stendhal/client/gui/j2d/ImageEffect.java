@@ -51,6 +51,7 @@ public class ImageEffect implements SequenceSprite.SequenceSpriteListener {
 				VerticalAlignment.MIDDLE, 0, 0);
 	}
 
+	@Override
 	public void endSequence() {
 		view.detachSprite(sequence);
 	}

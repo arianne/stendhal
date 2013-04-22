@@ -20,12 +20,10 @@ import java.util.Locale;
 class StringPrefixFilter extends CollectionFilter<String> {
 	public StringPrefixFilter(final String prefix) {
 		this.addFilterCriteria(new FilterCriteria<String>() {
-
+			@Override
 			public boolean passes(final String o) {
 				return prefix.length() > 0 && o.toLowerCase(Locale.ENGLISH).startsWith(prefix.toLowerCase(Locale.ENGLISH));
 			}
-		});
-		
+		});	
 	}
-	
 }

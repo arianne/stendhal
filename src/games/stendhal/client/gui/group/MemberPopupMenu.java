@@ -56,6 +56,7 @@ class MemberPopupMenu extends JPopupMenu {
 	 * Listener for activating the where menu item.
 	 */
 	private class WhereAction implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			SlashActionRepository.get("where").execute(null, member);
 		}
@@ -65,6 +66,7 @@ class MemberPopupMenu extends JPopupMenu {
 	 * Listener for activating the kick menu item.
 	 */
 	private class KickAction implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			String[] args = { "kick" };
 			SlashActionRepository.get("group").execute(args, member);
@@ -75,6 +77,7 @@ class MemberPopupMenu extends JPopupMenu {
 	 * Listener for activating the "Make Leader" menu item.
 	 */
 	private class TransferLeadershipAction implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String[] args = { "leader" };
 			SlashActionRepository.get("group").execute(args, member);

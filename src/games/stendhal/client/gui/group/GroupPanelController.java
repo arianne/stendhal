@@ -70,6 +70,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	 */
 	public void update(final List<String> members, final String leader, final String lootMode) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				if (members == null) {
 					panel.showHeader("<html>You are not a member of a group.<html>");
@@ -126,6 +127,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 		}
 		if (!players.isEmpty()) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.addPlayers(players);
 				}
@@ -140,6 +142,7 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	 */
 	public void receiveInvite(final String group) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.receiveInvite(group);
 			}
@@ -153,15 +156,18 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 	 */
 	public void expireInvite(final String group) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				panel.expireInvite(group);
 			}
 		});
 	}
 	
+	@Override
 	public void addEntity(final IEntity entity) {
 		if (entity instanceof Player) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.addPlayer((Player) entity);
 				}
@@ -169,9 +175,11 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 		}
 	}
 	
+	@Override
 	public void removeEntity(final IEntity entity) {
 		if (entity instanceof Player) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					panel.removePlayer(entity);
 				}

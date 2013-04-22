@@ -115,6 +115,7 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 		return (System.currentTimeMillis() >= removeTime);
 	}
 
+	@Override
 	public int compareTo(RemovableSprite other) {
 		return priority - other.priority;
 	}

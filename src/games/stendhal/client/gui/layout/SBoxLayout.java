@@ -16,7 +16,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.awt.LayoutManager2;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -36,7 +35,7 @@ import javax.swing.JComponent;
  * Component alignment is supported in the direction perpendicular to the
  * layout direction.
  */
-public class SBoxLayout implements LayoutManager, LayoutManager2 {
+public class SBoxLayout implements LayoutManager2 {
 	/*
 	 * Implementation considerations:
 	 * 	- MaxSize is not fully supported. It could be done the same way as MinSize is now
@@ -138,6 +137,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#addLayoutComponent(java.awt.Component, java.lang.Object)
 	 */
+	@Override
 	public void addLayoutComponent(Component component, Object flags) {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
 		if (flags == null) {
@@ -166,6 +166,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String, java.awt.Component)
 	 */
+	@Override
 	public void addLayoutComponent(String id, Component component) {
 	}
 	
@@ -195,6 +196,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#getLayoutAlignmentX(java.awt.Container)
 	 */
+	@Override
 	public float getLayoutAlignmentX(Container target) {
 		// The specs don't tell what this actually should do
 		return 0;
@@ -204,6 +206,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#getLayoutAlignmentY(java.awt.Container)
 	 */
+	@Override
 	public float getLayoutAlignmentY(Container target) {
 		// The specs don't tell what this actually should do
 		return 0;
@@ -229,6 +232,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#invalidateLayout(java.awt.Container)
 	 */
+	@Override
 	public void invalidateLayout(Container target) {
 		cachedMinimum = null;
 		cachedMaximum = null;
@@ -239,6 +243,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 	 */
+	@Override
 	public void layoutContainer(Container parent) {
 		// Maximum dimensions available for use
 		Dimension realDim = parent.getSize();
@@ -509,6 +514,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager2#maximumLayoutSize(java.awt.Container)
 	 */
+	@Override
 	public Dimension maximumLayoutSize(Container parent) {
 		/*
 		 * The specs are *very* vague about what this should do (and 
@@ -549,6 +555,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 	 */
+	@Override
 	public Dimension minimumLayoutSize(Container parent) {
 		if (cachedMinimum != null) {
 			return new Dimension(cachedMinimum);
@@ -582,6 +589,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 	 */
+	@Override
 	public Dimension preferredLayoutSize(Container parent) {
 		if (cachedPreferred != null) {
 			return new Dimension(cachedPreferred);
@@ -631,6 +639,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * (non-Javadoc)
 	 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 	 */
+	@Override
 	public void removeLayoutComponent(Component component) {
 		EnumSet<?> constr = constraints.get(component);
 		if (constr.contains(SLayout.EXPAND_AXIAL)) {
@@ -744,6 +753,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * Horizontal direction calculations
 	 */
 	private static class HDirection implements Direction {
+		@Override
 		public SLayout translate(SLayout dir) {
 			if (dir == SLayout.EXPAND_X) {
 				dir = SLayout.EXPAND_AXIAL;
@@ -754,28 +764,34 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 			return dir;
 		}
 		
+		@Override
 		public void addComponentDimensions(Dimension result, Dimension dim) {
 			// Avoid integer overflows
 			result.width = safeAdd(result.width, dim.width);
 			result.height = Math.max(result.height, dim.height);
 		}
 
+		@Override
 		public int getPrimary(Dimension dim) {
 			return dim.width;
 		}
 
+		@Override
 		public int getSecondary(Dimension dim) {
 			return dim.height;
 		}
 
+		@Override
 		public void setPrimary(Dimension result, int length) {
 			result.width = length;		
 		}
 
+		@Override
 		public void setSecondary(Dimension result, int length) {
 			result.height = length;
 		}
 
+		@Override
 		public float getComponentAlignment(Component component) {
 			return component.getAlignmentY();
 		}
@@ -785,6 +801,7 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 	 * Vertical dimension calculations.
 	 */
 	private static class VDirection implements Direction  {
+		@Override
 		public SLayout translate(SLayout dir) {
 			if (dir == SLayout.EXPAND_X) {
 				dir = SLayout.EXPAND_PERPENDICULAR;
@@ -795,28 +812,34 @@ public class SBoxLayout implements LayoutManager, LayoutManager2 {
 			return dir;
 		}
 		
+		@Override
 		public void addComponentDimensions(Dimension result, Dimension dim) {
 			result.width = Math.max(result.width, dim.width);
 			// Avoid integer overflows
 			result.height = safeAdd(result.height, dim.height);
 		}
 
+		@Override
 		public int getPrimary(Dimension dim) {
 			return dim.height;
 		}
 
+		@Override
 		public int getSecondary(Dimension dim) {
 			return dim.width;
 		}
 		
+		@Override
 		public void setPrimary(Dimension result, int length) {
 			result.height = length;
 		}
 
+		@Override
 		public void setSecondary(Dimension result, int length) {
 			result.width = length;
 		}
 
+		@Override
 		public float getComponentAlignment(Component component) {
 			return component.getAlignmentX();
 		}
