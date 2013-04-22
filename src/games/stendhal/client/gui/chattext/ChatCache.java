@@ -15,7 +15,6 @@ package games.stendhal.client.gui.chattext;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -70,11 +69,13 @@ public class ChatCache {
 		}
 	}
 
+	/**
+	 * Save the contents of the cache.
+	 */
 	public void save() {
 		if (chatCacheFile == null) {
 			return;
 		}
-		FileOutputStream fo;
 		try {
 			new File(chatCacheFile).getParentFile().mkdirs();
 			final PrintStream ps = new PrintStream(chatCacheFile, "UTF-8");
