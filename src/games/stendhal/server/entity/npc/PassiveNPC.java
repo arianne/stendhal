@@ -42,9 +42,6 @@ public class PassiveNPC extends NPC {
 		
 		setSize(1, 1);
 		
-		// set the default movement range
-		//setMovementRange(20);
-		
 		updateModifiedAttributes();
 	}
 	
