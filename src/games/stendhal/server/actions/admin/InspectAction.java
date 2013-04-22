@@ -62,7 +62,7 @@ public class InspectAction extends AdministrationAction {
 			if (name == null) {
 				name = inspected.getTitle();
 			}
-			if (name != null) {
+			if (name != null && !name.equals("")) {
 				st.append("called \"");
 				st.append(name);
 				st.append("\"");
