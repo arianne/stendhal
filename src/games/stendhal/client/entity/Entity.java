@@ -33,12 +33,12 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/**
 	 * Amount of entity-to-entity resistance (0-100).
 	 */
-	protected int resistance;
+	private int resistance;
 
 	/**
 	 * The entity visibility.
 	 */
-	protected int visibility;
+	private int visibility;
 
 	/**
 	 * Change listeners.
@@ -62,7 +62,7 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	/**
 	 * The entity sub-class.
 	 */
-	protected String subclazz;
+	private String subclazz;
 
 	/**
 	 * The entity title.

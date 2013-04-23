@@ -17,7 +17,7 @@ package games.stendhal.client.entity;
  * a way to carry the data to the entity view.
  */
 public class ImageEventProperty extends Property {
-	final String image;
+	private final String image;
 	
 	/**
 	 * Create a new ImageEventProperty.

@@ -249,7 +249,7 @@ public class User extends Player {
 	/**
 	 * Resets the class to uninitialized.
 	 */
-	public static void setNull() {
+	static void setNull() {
 		instance = null;
 	}
 
@@ -291,7 +291,7 @@ public class User extends Player {
 	 * @param y2 y coordinate
 	 * @return the squared distance
 	 */
-	public static double squaredDistanceTo(final double x2, final double y2) {
+	static double squaredDistanceTo(final double x2, final double y2) {
 		if (User.isNull()) {
 			return Double.POSITIVE_INFINITY;
 		}

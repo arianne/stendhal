@@ -15,12 +15,6 @@ package games.stendhal.client.entity;
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
-
-	/**
-	 * Text property.
-	 */
-	public static final Property PROP_TEXT = new Property();
-
 	/**
 	 * The sign text.
 	 */
@@ -72,12 +66,10 @@ public class Sign extends Entity {
 
 		if (changes.has("action")) {
 			action = changes.get("action");
-			fireChange(PROP_TEXT);
 		}
 
 		if (changes.has("text")) {
 			text = changes.get("text");
-			fireChange(PROP_TEXT);
 		}
 	}
 
@@ -95,7 +87,6 @@ public class Sign extends Entity {
 
 		if (changes.has("text")) {
 			text = "";
-			fireChange(PROP_TEXT);
 		}
 	}
 }

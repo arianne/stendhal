@@ -77,11 +77,6 @@ abstract class AudibleEntity extends RPEntity {
 		ClientSingletonRepository.getSound().update();
 	}
 
-	protected void playSound(String groupName, String soundName) {
-		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
-		group.play(soundName, 0, mAudibleArea, new Time(), false, true);
-	}
-
 	protected void playRandomSoundFromCategory(String groupName, String categoryName) {
 		SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
 		group.play(getRandomSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);

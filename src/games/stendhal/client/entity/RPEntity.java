@@ -98,7 +98,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The entities attacking this entity.
 	 */
-	protected final Collection<Entity> attackers = new ConcurrentLinkedQueue<Entity>();
+	private final Collection<Entity> attackers = new ConcurrentLinkedQueue<Entity>();
 	
 	/**
 	 * The nature of the current attack done by this entity, or
@@ -121,8 +121,6 @@ public abstract class RPEntity extends ActiveEntity {
 		BLOCKED,
 		MISSED;
 	}
-	
-	
 
 	private int atk;
 
@@ -319,17 +317,6 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	public int getOutfit() {
 		return outfit;
-	}
-	
-	/**
-	 * Get a color that should be for coloring an outfit part.
-	 * 
-	 * @param part the outfit part
-	 * @return color as a string, or <code>null</code> if the outfit part should
-	 * 	not use coloring
-	 */
-	public String getOutfitColor(String part) {
-		return rpObject.get("outfit_colors", part);
 	}
 
 	/**
@@ -557,7 +544,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity attacks target.
-	public void onAttack(final IEntity target) {
+	private void onAttack(final IEntity target) {
 		attacking = target.getID();
 	}
 
@@ -598,7 +585,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When attacker attacks this entity.
-	public void onAttacked(final Entity attacker) {
+	private void onAttacked(final Entity attacker) {
 		attackers.remove(attacker);
 		attackers.add(attacker);
 	}
@@ -666,8 +653,12 @@ public abstract class RPEntity extends ActiveEntity {
 		// do nothing for normal rpentities
 	}
 	
-	// When entity adjusts HP
-	public void onHPChange(final int amount) {
+	/**
+	 * Called When entity adjusts HP.
+	 * 
+	 * @param amount change amount
+	 */
+	private void onHPChange(final int amount) {
 		if (User.squaredDistanceTo(x, y) < 15 * 15) {
 			if (amount > 0) {
 				addTextIndicator("+" + amount, NotificationType.POSITIVE);
@@ -686,7 +677,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When entity is poisoned
-	public final void onPoisoned(final int amount) {
+	private final void onPoisoned(final int amount) {
 		setPoisoned(true);
 		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
@@ -731,12 +722,12 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// When this entity stops attacking
-	public void onStopAttack() {
+	private void onStopAttack() {
 		attacking = null;
 	}
 	
 	// When attacker stop attacking us
-	public void onStopAttacked(final IEntity attacker) {
+	private void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
 	}
 	
@@ -1295,17 +1286,17 @@ public abstract class RPEntity extends ActiveEntity {
 		/**
 		 * The age of the message (in ms).
 		 */
-		protected int age;
+		private int age;
 
 		/**
 		 * The message text.
 		 */
-		protected String text;
+		private final String text;
 
 		/**
 		 * The indicator type.
 		 */
-		protected NotificationType type;
+		private final NotificationType type;
 
 		/**
 		 * Create a floating message.
@@ -1315,7 +1306,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * @param type
 		 *            The indicator type.
 		 */
-		public TextIndicator(final String text, final NotificationType type) {
+		private TextIndicator(final String text, final NotificationType type) {
 			this.text = text;
 			this.type = type;
 
@@ -1334,7 +1325,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * 
 		 * @return The new age (in milliseconds).
 		 */
-		public int addAge(final int time) {
+		private int addAge(final int time) {
 			age += time;
 
 			return age;

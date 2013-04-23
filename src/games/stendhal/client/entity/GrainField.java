@@ -22,11 +22,6 @@ import marauroa.common.game.RPObject;
  */
 public class GrainField extends Entity {
 	/**
-	 * Maximum ripeness property.
-	 */
-	public static final Property PROP_MAX_RIPENESS = new Property();
-
-	/**
 	 * Ripeness property.
 	 */
 	public static final Property PROP_RIPENESS = new Property();
@@ -34,7 +29,7 @@ public class GrainField extends Entity {
 	/**
 	 * The maximum ripeness.
 	 */
-	protected int maxRipeness;
+	private int maxRipeness;
 	
 	/**
 	 * Current ripeness.
@@ -135,7 +130,6 @@ public class GrainField extends Entity {
 
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
-			fireChange(PROP_MAX_RIPENESS);
 		}
 	}
 }

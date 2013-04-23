@@ -97,7 +97,7 @@ public class Gate implements IEntity {
 		
 		return rpObject.getInt("resistance");
 	}
-
+	
 	@Override
 	public int getResistance(final IEntity entity) {
 		return getResistance();
