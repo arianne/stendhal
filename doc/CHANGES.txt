@@ -13,6 +13,7 @@
 
 
 1.07
+18th April 2013
 
 *world*
 - Mayor Chalmers and Hazel heard of new items they could need
@@ -47,6 +48,7 @@
 
 
 1.06
+12th February 2013
 
 *world*
 - more light in Ados city
@@ -69,6 +71,7 @@
 
 
 1.05
+15th December 2012
 
 *world*
 - added Rudolph and a quest for goodies
@@ -89,6 +92,7 @@
 - several small fixes to entity views sometimes missing changes
 
 1.04
+22th October 2012
 
 *world*
 - Mine Town Revival Weeks!
@@ -116,6 +120,7 @@
 
 
 1.03
+12th September 2012
 
 *world*
 - Ados Botanical Gardens
@@ -144,6 +149,7 @@
 
 
 1.02
+7th August 2012
 
 *world*
 - clocks around the world show the server time
@@ -186,10 +192,14 @@
 
 
 1.01.1
+5th July 2012
+
 *fixes*
 - fixed slow processing of sound data causing lag on zone change and on spawning of sound aware creatures
 
 1.01
+1st July 2012
+
 *world*
 - Venethiel teaches players about Haizen's maze
 - Will warns players leaving Semos city 
@@ -224,6 +234,7 @@
 
 
 1.00
+17th May 2012
 
 * lots of testing
 * nice descriptions for many NPCs
@@ -233,6 +244,7 @@
 
 
 0.99
+5th February 2012
 
 *world*
 
@@ -262,6 +274,7 @@
 
 
 0.98
+2nd December 2011
 
 *client*
 
@@ -294,9 +307,8 @@
 - Fixed descriptions for items that can be picked 
 
 
-
-
 0.97
+12th October 2011
 
 * Revival Weeks*
 - Faiumoni's inhabitants are excited for the Mine Town Revival Weeks already and decorated Semos City and the Mine Town area
@@ -342,8 +354,8 @@
 - table itemid was replaced with table item.
 
 
-
 0.96
+25th August 2011
 
 *world*
 - Barbarus moved his work place a bit closer to the Mines entrance and reduced the pick price to 400 money each
@@ -371,7 +383,6 @@
 *fixes*
 - fixed kill enemy army quest (load again + added madaram archer and windwalker to kill-list)
 - harold now understands plural words properly
-
 
 
 0.95
