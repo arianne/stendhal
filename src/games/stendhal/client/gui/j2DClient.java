@@ -127,8 +127,7 @@ public class j2DClient implements UserInterface {
 
 	private boolean gameRunning;
 
-
-	ChatTextController chatText = new ChatTextController();
+	private final ChatTextController chatText = new ChatTextController();
 
 	/** settings panel. */
 	private SettingsPanel settings;
@@ -151,7 +150,7 @@ public class j2DClient implements UserInterface {
 
 	private boolean offline;
 
-	OutfitDialog outfitDialog;
+	private OutfitDialog outfitDialog;
 
 
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
@@ -176,7 +175,7 @@ public class j2DClient implements UserInterface {
 	 * @param sharedUI
 	 *            The Stendhal UI.
 	 */
-	public static void setDefault(final j2DClient sharedUI) {
+	private static void setDefault(final j2DClient sharedUI) {
 		j2DClient.sharedUI = sharedUI;
 		ClientSingletonRepository.setUserInterface(sharedUI);
 	}
@@ -676,12 +675,9 @@ public class j2DClient implements UserInterface {
 	 * @param comp
 	 *            The component to add.
 	 */
-	public void addDialog(final Component comp) {
+	private void addDialog(final Component comp) {
 		pane.add(comp, JLayeredPane.PALETTE_LAYER);
 	}
-
-	/** Time of receiving the last network activity */
-	long lastMessageHandle;
 
 	/**
 	 * Start the game loop thread.
@@ -712,7 +708,6 @@ public class j2DClient implements UserInterface {
 			}
 		});
 
-		lastMessageHandle = System.currentTimeMillis();
 		gameRunning = true;
 
 		loop.start();
@@ -802,9 +797,7 @@ public class j2DClient implements UserInterface {
 
 		logger.debug("Query network");
 
-		if (client.loop(0)) {
-			lastMessageHandle = time;
-		}
+		client.loop(0);
 
 		gameKeyHandler.processDelayedDirectionRelease();
 	}
@@ -837,7 +830,7 @@ public class j2DClient implements UserInterface {
 	/**
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
-	public void shutdown() {
+	void shutdown() {
 		gameRunning = false;
 
 		// try to save the window configuration

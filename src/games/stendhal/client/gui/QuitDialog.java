@@ -28,8 +28,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-@SuppressWarnings("serial")
-public class QuitDialog {
+@SuppressWarnings("serial") class QuitDialog {
 	private static final int PADDING = 10;
 	/** Quit dialog window. */
 	private InternalManagedWindow quitDialog;
@@ -93,7 +92,7 @@ public class QuitDialog {
 	/**
 	 * Call back at "No" answer to quit.
 	 */
-	protected class QuitCancelCB implements ActionListener {
+	private class QuitCancelCB implements ActionListener {
 		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			quitDialog.setVisible(false);
@@ -115,7 +114,7 @@ public class QuitDialog {
 	 * and shows a dialog in which the player can confirm that they really wants
 	 * to quit the program. If so it flags the client for termination.
 	 */
-	public void requestQuit() {
+	void requestQuit() {
 		/*
 		 * Stop the player
 		 */

@@ -31,7 +31,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-public class ContainerPanel extends JScrollPane implements Inspector {
+class ContainerPanel extends JScrollPane implements Inspector {
 	/**
 	 * serial version uid
 	 */
@@ -68,7 +68,7 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 	 * @param child component to be added
 	 * @param constraints packing constraints
 	 */
-	public void add(JComponent child, Object constraints) {
+	void add(JComponent child, Object constraints) {
 		child.setAlignmentX(LEFT_ALIGNMENT);
 		panel.add(child, constraints);
 		panel.revalidate();
@@ -82,7 +82,7 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 	 * 
 	 * @param child
 	 */
-	public void addRepaintable(JComponent child) {
+	void addRepaintable(JComponent child) {
 		child.setIgnoreRepaint(true);
 		panel.add(child);
 		repaintable.add(child);
@@ -104,7 +104,7 @@ public class ContainerPanel extends JScrollPane implements Inspector {
 	/**
 	 * Request repainting of all the child panels.
 	 */
-	public void repaintChildren() {
+	void repaintChildren() {
 		for (JComponent child : repaintable) {
 			child.repaint();
 		}

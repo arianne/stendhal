@@ -24,9 +24,9 @@ import javax.swing.border.Border;
  * the scroll bars are not shown.
  */
 public class ScrolledViewport {
-	final JScrollPane scrollPane;
-	final JComponent view;
-	final Border originalBorder;
+	private final JScrollPane scrollPane;
+	private final JComponent view;
+	private final Border originalBorder;
 	
 	/**
 	 * Create a new ScrolledViewport.

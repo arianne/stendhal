@@ -237,7 +237,7 @@ public class StendhalFirstScreen extends JFrame {
 	/**
 	 * Opens the create account dialog after checking the server version.
 	 */
-	public void createAccount() {
+	private void createAccount() {
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
 	}
 

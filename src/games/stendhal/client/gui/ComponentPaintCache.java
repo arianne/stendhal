@@ -31,7 +31,7 @@ import java.awt.Transparency;
  */
 public class ComponentPaintCache {
 	/** The cached component */
-	Cacheable component;
+	private Cacheable component;
 	/** Cached width of the component */
 	private int oldWidth;
 	/** Cached height of the component */
@@ -86,13 +86,6 @@ public class ComponentPaintCache {
 			imageGraphics.dispose();				
 		}
 		g.drawImage(cachedImage, 0, 0, null);
-	}
-	
-	/**
-	 * Invalidate the current cached image.
-	 */
-	public void invalidate() {
-		cachedImage = null;
 	}
 	
 	/**

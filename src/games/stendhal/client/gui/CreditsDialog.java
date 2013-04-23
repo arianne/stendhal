@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
 /**
  * Displays a credits dialog box.
  */
-public class CreditsDialog extends JDialog {
+class CreditsDialog extends JDialog {
 
 	private static final long serialVersionUID = 4312205320503928411L;
 
@@ -64,7 +64,7 @@ public class CreditsDialog extends JDialog {
 	 * @param owner
 	 *            owner window
 	 */
-	public CreditsDialog(final Frame owner) {
+	CreditsDialog(final Frame owner) {
 		super(owner, true);
 		initGUI(owner);
 		logger.debug("about dialog initialized");
@@ -163,7 +163,7 @@ public class CreditsDialog extends JDialog {
 	/**
 	 * Exits Credits Dialog.
 	 */
-	protected void exit() {
+	private void exit() {
 		sp.stop();
 		this.setVisible(false);
 		if (getOwner() != null) {

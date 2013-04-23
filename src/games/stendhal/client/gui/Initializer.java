@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  * start was used. So to avoid code duplication, the potential initial windows
  * should call this class.
  */
-public class Initializer {
+class Initializer {
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
 	/** Font used for the html areas */

@@ -47,7 +47,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A component representing space in a slot. 
  */
-public class ItemPanel extends JComponent implements DropTarget, Inspectable {
+class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	/** serial version uid. */
 	private static final long serialVersionUID = 3409932623156446910L;
 
@@ -95,7 +95,7 @@ public class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	 * @param slotName name of the slot this refers to 
 	 * @param placeholder image used in an empty panel, or <code>null</code>
 	 */
-	public ItemPanel(final String slotName, final Sprite placeholder) {
+	ItemPanel(final String slotName, final Sprite placeholder) {
 		this.placeholder = placeholder;
 		setName(slotName);
 		

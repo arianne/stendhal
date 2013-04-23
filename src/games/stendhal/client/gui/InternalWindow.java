@@ -88,7 +88,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * 
 	 * @param title title text
 	 */
-	public InternalWindow(String title) {
+	InternalWindow(String title) {
 		setLayout(new BorderLayout());
 		
 		titleBar = new TitleBar();

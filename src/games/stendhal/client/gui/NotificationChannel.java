@@ -101,15 +101,6 @@ class NotificationChannel {
 	}
 	
 	/**
-	 * Get the notification types the channel shows.
-	 * 
-	 * @return notification types
-	 */
-	Set<NotificationType> getNotificationTypes() {
-		return eventTypes;
-	}
-	
-	/**
 	 * Add an event line to the channel, if it's of type that should be
 	 * displayed.
 	 * 

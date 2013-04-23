@@ -39,20 +39,20 @@ import org.apache.log4j.Logger;
  * A class for showing a selector for dropped item amounts and taking control
  * of the drop handling of those drops.
  */
-public class DropAmountChooser {
+class DropAmountChooser {
 	/** Space between the popup border and actual content components */
 	private static final int BORDER = 2;
 	
 	/** Item to be dropped. */
-	final StackableItem item;
+	private final StackableItem item;
 	/** Target where the user is dropping the item. */
-	final DropTarget target;
+	private final DropTarget target;
 	/** Drop location within the target component */
-	final Point location;
+	private final Point location;
 	/** Created selector popup menu */
-	final JPopupMenu popup;
+	private final JPopupMenu popup;
 	/** Number selector within the popup menu */
-	JSpinner spinner;
+	private JSpinner spinner;
 	
 	/**
 	 * Create a new DropAmountChooser.

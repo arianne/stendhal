@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
  * A key ring.
  */
 @SuppressWarnings("serial")
-public class KeyRing extends SlotWindow implements FeatureChangeListener {
+class KeyRing extends SlotWindow implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
 	 */

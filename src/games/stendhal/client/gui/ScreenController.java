@@ -41,7 +41,7 @@ class ScreenController implements PositionChangeListener {
 	/** Depends on TUTORIAL_BACKGROUND. */
 	private static final int TUTORIAL_CENTER_TILE_HEIGHT = 8;
 	
-	final GameScreen screen;
+	private final GameScreen screen;
 	// nextFrame() gets called all the time. Avoid needlessly creating new
 	// objects for it.
 	private final Runnable nextFrameRunner = new NextFrameRunner();

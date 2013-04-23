@@ -54,7 +54,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public class OutfitDialog extends JDialog {
+class OutfitDialog extends JDialog {
 
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
@@ -109,7 +109,7 @@ public class OutfitDialog extends JDialog {
 	 * @param outfitColor coloring information. <b>Note that outfitColor
 	 *	can be modified by the dialog.</b> 
 	 */
-	public OutfitDialog(final Frame parent, final String title, final int outfit,
+	OutfitDialog(final Frame parent, final String title, final int outfit,
 			OutfitColor outfitColor) {
 		this(parent, title, outfit, outfitColor, Outfits.HAIR_OUTFITS,
 				Outfits.HEAD_OUTFITS, Outfits.BODY_OUTFITS,	Outfits.CLOTHES_OUTFITS);

@@ -122,7 +122,7 @@ public class OutfitColor {
 	 * @param value color, or <code>null</code> if the default colors should be
 	 * 	used
 	 */
-	public void setColor(String key, Color value) {
+	void setColor(String key, Color value) {
 		if (value != null) {
 			map.put(key, value);
 		} else {

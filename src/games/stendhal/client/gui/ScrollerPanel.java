@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
  * ScrollerPanel can be used for displaying a scrolling text (as in movie
  * credits).
  */
-public class ScrollerPanel extends JComponent {
+class ScrollerPanel extends JComponent {
 
 	private static final long serialVersionUID = -9047582023793318785L;
 
@@ -68,19 +68,6 @@ public class ScrollerPanel extends JComponent {
 	private GradientPaint gp;
 
 	/**
-	 * creates an ScrollerPane which scrolls the given text and using defaults
-	 * for the other attributes.
-	 * 
-	 * @param text
-	 *            the text array which should be scrolled - one string per line
-	 *            is scrolled
-	 */
-	public ScrollerPanel(final List<String> text) {
-		this(text, new Font("SansSerif", Font.BOLD, 12), 0, Color.GRAY,
-				Color.WHITE, 20);
-	}
-
-	/**
 	 * Creates an ScrollerPane which scrolls the given text and uses the given
 	 * attributes.
 	 * 
@@ -98,7 +85,7 @@ public class ScrollerPanel extends JComponent {
 	 * @param scrollSpeed
 	 *            defines the scroller speed (pixel per second);
 	 */
-	public ScrollerPanel(final List<String> text, final Font font, final int lineSpacing,
+	ScrollerPanel(final List<String> text, final Font font, final int lineSpacing,
 			final Color textColor, final Color backgroundColor, final int scrollSpeed) {
 		super();
 		this.text = text;
@@ -196,7 +183,7 @@ public class ScrollerPanel extends JComponent {
 	/**
 	 * Stops scrolling.
 	 */
-	public void stop() {
+	void stop() {
 		t.stop();
 		logger.debug("stop scrolling");
 	}

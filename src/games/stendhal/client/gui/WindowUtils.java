@@ -63,7 +63,7 @@ public class WindowUtils {
 	 * 
 	 * @param frame window to make obey the escape key
 	 */
-	public static void closeOnEscape(final JFrame frame) {
+	static void closeOnEscape(final JFrame frame) {
 		closeOnEscape(frame, frame.getRootPane());
 	}
 	

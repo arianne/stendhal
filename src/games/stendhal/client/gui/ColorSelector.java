@@ -44,9 +44,9 @@ import javax.swing.event.ChangeListener;
  * selection dialog.
  */
 class ColorSelector extends JPanel {
-	final HSLSelectionModel model;
-	final JComponent hueSaturationSelector;
-	final JComponent lightnessSelector;
+	private final HSLSelectionModel model;
+	private final JComponent hueSaturationSelector;
+	private final JComponent lightnessSelector;
 
 
 	/**

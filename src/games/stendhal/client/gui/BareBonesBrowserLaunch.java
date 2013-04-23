@@ -32,11 +32,10 @@ import javax.swing.JOptionPane;
  * @version 3.0, February 7, 2010
  */
 public class BareBonesBrowserLaunch {
-
-	static final String[] browsers = { "google-chrome", "chromium-browser", "firefox", "opera",
+	private static final String[] browsers = { "google-chrome", "chromium-browser", "firefox", "opera",
 			"konqueror", "epiphany", "seamonkey", "galeon", "kazehakase",
 			"mozilla" };
-	static final String errMsg = "Error attempting to launch web browser:\n ";
+	private static final String errMsg = "Error attempting to launch web browser:\n ";
 
 	/**
 	 * Opens the specified web page in the user's default browser

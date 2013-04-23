@@ -36,8 +36,8 @@ public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	 */
 	private static final int MAX_DISTANCE = 4;
 	
-	protected final SlotGrid content;
-	protected IEntity parent;
+	private final SlotGrid content;
+	private IEntity parent;
 	
 	/**
 	 * Create a new EntityContainer.

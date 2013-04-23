@@ -25,7 +25,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class MainFrame {
+class MainFrame {
 	private final JFrame mainFrame;
 
 	/**

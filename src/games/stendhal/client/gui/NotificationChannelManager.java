@@ -21,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Container for NotificationChannels.
  */
-public class NotificationChannelManager {
+class NotificationChannelManager {
 	/** All available channels. */
 	private final List<NotificationChannel> channels = new ArrayList<NotificationChannel>();
 	/** Channel listeners. */

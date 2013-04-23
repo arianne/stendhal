@@ -471,7 +471,7 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * A hyperlink listener for link activation.
 	 */
-	protected class ActivateLinkCB implements HyperlinkListener {
+	private class ActivateLinkCB implements HyperlinkListener {
 		@Override
 		public void hyperlinkUpdate(final HyperlinkEvent ev) {
 			if (ev.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
