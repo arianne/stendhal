@@ -717,7 +717,7 @@ public abstract class Entity extends RPObject {
 	 * 
 	 * @param ignore
 	 */
-	public void setIgnoreCollision(boolean ignore) {
+	public void setIgnoresCollision(boolean ignore) {
 		ignoreCollision = ignore;
 		if (!has("ignore_collision")) {
 			put("ignore_collision", "");
