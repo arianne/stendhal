@@ -18,7 +18,7 @@ package games.stendhal.client.gui.textformat;
  * @param <K> Type of the wrapper interface itself. Used for type safe copies
  * 	and unions
  */
-public interface FormatSet<T, K extends FormatSet<T, K>> {
+interface FormatSet<T, K extends FormatSet<T, K>> {
 	/**
 	 * Create a new FormatSet, starting with the values in the current set
 	 * and adding all values in additional. If the format sets define values for

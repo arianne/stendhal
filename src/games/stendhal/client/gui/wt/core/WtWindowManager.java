@@ -270,19 +270,6 @@ public final class WtWindowManager {
 		config.minimized = state;
 	}
 
-	/**
-	 * Notify that a window's visibility has changed.
-	 * 
-	 * @param window changed window
-	 * @param state the new visibility state. <code>true</code> if visible,
-	 * 	<code>false</code> otherwise
-	 */
-	public void setVisible(final ManagedWindow window, final boolean state) {
-		final WindowConfiguration config = getConfig(window);
-
-		config.visible = state;
-	}
-
 	/** encapsulates the configuration of a window. */
 	private static final class WindowConfiguration {
 		/** name of the window. */

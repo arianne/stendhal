@@ -44,7 +44,7 @@ public class StyleUtil {
 	 * @param width width of the area
 	 * @param height height of the area
 	 */
-	public static void fillBackground(Style style, Graphics graphics, int x, 
+	static void fillBackground(Style style, Graphics graphics, int x, 
 			int y, int width, int height) {
 		// Prepare clipping
 		graphics = graphics.create();

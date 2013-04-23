@@ -23,9 +23,9 @@ import javax.swing.text.StyleContext;
  */
 public class StyleSet implements FormatSet<Style, StyleSet> {
 	/** Style context. Required for using NamedStyles. */
-	final StyleContext sc;
+	private final StyleContext sc;
 	/** Style represented by this StyleSet. */
-	final Style style;
+	private final Style style;
 	/**
 	 * A Workaround. Styles have extra junk that we haven't added. Avoid
 	 * overwriting the things from the base StyleSet in union() by storing
