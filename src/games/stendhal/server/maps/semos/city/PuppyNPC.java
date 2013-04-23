@@ -23,7 +23,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A young lady (original name: Carmen) who heals players without charge. 
+ * A playful puppy
+ * 
+ * @author AntumDeluge
  */
 public class PuppyNPC implements ZoneConfigurator {
 	
