@@ -14,14 +14,12 @@ package games.stendhal.client.events;
 
 import games.stendhal.client.entity.RPEntity;
 
-
 /**
  * Private chat
  *
  * @author hendrik
  */
-public class PrivateTextEvent extends Event<RPEntity> {
-
+class PrivateTextEvent extends Event<RPEntity> {
 	/**
 	 * executes the event
 	 */
@@ -29,5 +27,4 @@ public class PrivateTextEvent extends Event<RPEntity> {
 	public void execute() {
 		entity.onPrivateListen(event.get("texttype"), event.get("text"));
 	}
-
 }

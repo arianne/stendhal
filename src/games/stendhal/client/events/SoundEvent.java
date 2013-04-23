@@ -26,8 +26,7 @@ import games.stendhal.common.math.Numeric;
  *
  * @author hendrik
  */
-public class SoundEvent extends Event<Entity> {
-
+class SoundEvent extends Event<Entity> {
 	/**
 	 * executes the event
 	 */
@@ -53,5 +52,4 @@ public class SoundEvent extends Event<Entity> {
 		group.loadSound(soundName, soundName + ".ogg", SoundFileType.OGG, false);
 		group.play(soundName, volume, 0, area, null, false, true);
 	}
-
 }

@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class ProgressStatusEvent extends Event<RPEntity> {
+class ProgressStatusEvent extends Event<RPEntity> {
 	private static Logger logger = Logger.getLogger(ProgressStatusEvent.class);
 
 	/**

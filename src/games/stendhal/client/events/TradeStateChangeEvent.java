@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class TradeStateChangeEvent extends Event<RPEntity> {
+class TradeStateChangeEvent extends Event<RPEntity> {
 	private static Logger logger = Logger.getLogger(TradeStateChangeEvent.class);
 
 	/**

@@ -24,8 +24,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class EventFactory {
-
+class EventFactory {
 	private static final Logger logger = Logger.getLogger(EventFactory.class);
 
 	/**
@@ -34,7 +33,7 @@ public class EventFactory {
 	 * @param rpevent
 	 * @return event
 	 */
-	public static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
+	static Event<? extends Entity> create(Entity entity, RPEvent rpevent) {
 		Event<? extends Entity> res = null;
 		if (entity instanceof RPEntity) {
 			res = createEventsForRPEntity((RPEntity)entity, rpevent);

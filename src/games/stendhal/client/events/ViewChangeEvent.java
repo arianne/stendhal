@@ -19,7 +19,7 @@ import games.stendhal.client.entity.Entity;
 /**
  * View center changing event.
  */
-public class ViewChangeEvent extends Event<Entity> {
+class ViewChangeEvent extends Event<Entity> {
 	@Override
 	public void execute() {
 		final int x = event.getInt("x");

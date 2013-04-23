@@ -17,8 +17,7 @@ import org.apache.log4j.Logger;
 import games.stendhal.client.World;
 import games.stendhal.client.entity.Entity;
 
-public class PlayerLoggedOnEvent extends Event<Entity> {
-	
+class PlayerLoggedOnEvent extends Event<Entity> {
 	private static final Logger logger = Logger.getLogger(PlayerLoggedOnEvent.class);
 
 	@Override
@@ -27,5 +26,4 @@ public class PlayerLoggedOnEvent extends Event<Entity> {
 		logger.debug("Executing logon event for "+playerName);
 		World.get().addPlayerLoggingOn(playerName);
 	}
-
 }

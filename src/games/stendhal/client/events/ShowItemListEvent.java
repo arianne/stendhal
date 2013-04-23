@@ -21,8 +21,7 @@ import games.stendhal.client.gui.imageviewer.ItemListImageViewerEvent;
  *
  * @author hendrik
  */
-public class ShowItemListEvent extends Event<Entity> {
-
+class ShowItemListEvent extends Event<Entity> {
 	/**
 	 * executes the event
 	 */
@@ -30,5 +29,4 @@ public class ShowItemListEvent extends Event<Entity> {
 	public void execute() {
 		new ItemListImageViewerEvent(event).view();
 	}
-
 }

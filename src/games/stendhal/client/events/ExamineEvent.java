@@ -21,8 +21,7 @@ import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
  *
  * @author hendrik
  */
-public class ExamineEvent extends Event<Entity> {
-
+class ExamineEvent extends Event<Entity> {
 	/**
 	 * executes the event
 	 */
@@ -30,5 +29,4 @@ public class ExamineEvent extends Event<Entity> {
 	public void execute() {
 		RPEventImageViewer.viewImage(event);
 	}
-
 }

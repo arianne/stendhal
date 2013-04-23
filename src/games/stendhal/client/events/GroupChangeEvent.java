@@ -21,8 +21,7 @@ import games.stendhal.client.gui.group.GroupPanelController;
  *
  * @author hendrik
  */
-public class GroupChangeEvent extends Event<RPEntity> {
-
+class GroupChangeEvent extends Event<RPEntity> {
 	/**
 	 * executes the event
 	 */
@@ -36,5 +35,4 @@ public class GroupChangeEvent extends Event<RPEntity> {
 			GroupPanelController.get().update(null, null, null);
 		}
 	}
-
 }

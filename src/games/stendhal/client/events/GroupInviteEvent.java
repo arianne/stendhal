@@ -20,8 +20,7 @@ import games.stendhal.client.gui.group.GroupPanelController;
  *
  * @author hendrik
  */
-public class GroupInviteEvent extends Event<RPEntity> {
-
+class GroupInviteEvent extends Event<RPEntity> {
 	/**
 	 * executes the event
 	 */
@@ -33,5 +32,4 @@ public class GroupInviteEvent extends Event<RPEntity> {
 			GroupPanelController.get().receiveInvite(event.get("leader"));
 		}
 	}
-
 }
