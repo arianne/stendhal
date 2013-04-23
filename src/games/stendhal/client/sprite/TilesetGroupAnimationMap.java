@@ -37,7 +37,7 @@ public class TilesetGroupAnimationMap {
 	/**
 	 * The map of tileset animation maps.
 	 */
-	protected Map<String, TilesetAnimationMap> tilesets;
+	private Map<String, TilesetAnimationMap> tilesets;
 
 	/**
 	 * Create a map of tileset animation maps.
@@ -58,7 +58,7 @@ public class TilesetGroupAnimationMap {
 	 * 
 	 * @return An tileset animation map.
 	 */
-	protected TilesetAnimationMap acquire(final String name) {
+	private TilesetAnimationMap acquire(final String name) {
 		TilesetAnimationMap map = tilesets.get(name);
 
 		if (map == null) {
@@ -84,7 +84,7 @@ public class TilesetGroupAnimationMap {
 	 * @param frameDelays
 	 *            The delays of frame tiles.
 	 */
-	public void add(final String name, final int index,
+	private void add(final String name, final int index,
 			final int[] frameIndexes, final int[] frameDelays) {
 		acquire(name).add(index, frameIndexes, frameDelays);
 	}
@@ -104,7 +104,7 @@ public class TilesetGroupAnimationMap {
 	 * @param frameDelays
 	 *            The delays of frame tiles.
 	 */
-	public void add(final String name, final int[] frameIndexes,
+	private void add(final String name, final int[] frameIndexes,
 			final int[] frameDelays) {
 		acquire(name).add(frameIndexes, frameDelays);
 	}
@@ -117,7 +117,7 @@ public class TilesetGroupAnimationMap {
 	 * 
 	 * @see #load(InputStream)
 	 */
-	protected void addConfig(final String line) {
+	private void addConfig(final String line) {
 
 		int defaultDelay;
 
@@ -225,13 +225,6 @@ public class TilesetGroupAnimationMap {
 	}
 
 	/**
-	 * Clear the map.
-	 */
-	public void clear() {
-		tilesets.clear();
-	}
-
-	/**
 	 * Get a named tileset map.
 	 * 
 	 * @param name
@@ -269,8 +262,6 @@ public class TilesetGroupAnimationMap {
 	 * 
 	 * @throws IOException
 	 *             If an I/O error occurred.
-	 * 
-	 * @see #clear()
 	 */
 	public void load(final InputStream in) throws IOException {
 		final BufferedReader r = new BufferedReader(new InputStreamReader(in, "UTF-8"));

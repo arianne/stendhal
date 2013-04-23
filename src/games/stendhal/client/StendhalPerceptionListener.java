@@ -21,7 +21,7 @@ import marauroa.common.game.RPObject.ID;
 import org.apache.log4j.Logger;
 
 class StendhalPerceptionListener implements IPerceptionListener {
-	static final Logger logger = Logger.getLogger(StendhalPerceptionListener.class);
+	private static final Logger logger = Logger.getLogger(StendhalPerceptionListener.class);
 
 	/**
 	 * 

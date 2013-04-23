@@ -40,7 +40,7 @@ public class OutfitStore {
 	/**
 	 * The sprite store.
 	 */
-	protected SpriteStore store;
+	private SpriteStore store;
 
 	/**
 	 * Create an outfit store.
@@ -48,7 +48,7 @@ public class OutfitStore {
 	 * @param store
 	 *            The sprite store to use.
 	 */
-	public OutfitStore(final SpriteStore store) {
+	private OutfitStore(final SpriteStore store) {
 		this.store = store;
 	}
 
@@ -70,7 +70,7 @@ public class OutfitStore {
 	 * 
 	 * @return A walking state tileset.
 	 */
-	protected Sprite buildOutfit(int code, OutfitColor color) {
+	private Sprite buildOutfit(int code, OutfitColor color) {
 		int basecode = code % 100;
 		code /= 100;
 		
@@ -226,7 +226,7 @@ public class OutfitStore {
 	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
-	public Sprite getDetailSprite(final int index, OutfitColor color) {
+	private Sprite getDetailSprite(final int index, OutfitColor color) {
 		if (index == 0) {
 			return getEmptySprite();
 		}
@@ -250,7 +250,7 @@ public class OutfitStore {
 	 * 
 	 * @return An walking state tileset.
 	 */
-	public Sprite getOutfit(final int code, OutfitColor color) {
+	private Sprite getOutfit(final int code, OutfitColor color) {
 		// Use the normalized string for the reference
 		final String reference = buildReference(code, color.toString());
 		return getOutfit(code, color, reference);

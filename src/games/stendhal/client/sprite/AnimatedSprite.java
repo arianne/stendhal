@@ -27,17 +27,17 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * The identifier reference.
 	 */
-	protected Object reference;
+	private Object reference;
 
 	/**
 	 * Whether the sprite is currently animating.
 	 */
-	protected boolean animating;
+	private boolean animating;
 
 	/**
 	 * The amount of time passed in the cycle.
 	 */
-	protected int cycleTime;
+	private int cycleTime;
 
 	/**
 	 * The [minimum] frame durations.
@@ -47,12 +47,12 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * The total duration of a cycle.
 	 */
-	protected int duration;
+	private int duration;
 
 	/**
 	 * The current frame index.
 	 */
-	protected int index;
+	private int index;
 
 	/**
 	 * The frame sprites.
@@ -62,7 +62,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * The sprite height.
 	 */
-	protected int height;
+	private int height;
 
 	/**
 	 * The time of the last update.
@@ -82,7 +82,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * The sprite width.
 	 */
-	protected int width;
+	private int width;
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
@@ -99,7 +99,7 @@ public class AnimatedSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite[] frames, final int delay) {
+	AnimatedSprite(final Sprite[] frames, final int delay) {
 		this(frames, delay, true);
 	}
 
@@ -144,7 +144,7 @@ public class AnimatedSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite[] frames, final int delay,
+	private AnimatedSprite(final Sprite[] frames, final int delay,
 			final boolean animating, final Object reference) {
 		this(frames, createDelays(delay, frames.length), animating, reference);
 	}
@@ -168,7 +168,7 @@ public class AnimatedSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite[] frames, final int[] delays,
+	AnimatedSprite(final Sprite[] frames, final int[] delays,
 			final boolean animating, final Object reference) {
 		if (frames.length == 0) {
 			logger.warn("AnimatedSprite needs at least one frame");
@@ -243,7 +243,7 @@ public class AnimatedSprite implements Sprite {
 	 * 
 	 * @return An array of delays.
 	 */
-	protected static int[] createDelays(final int delay, final int count) {
+	private static int[] createDelays(final int delay, final int count) {
 		final int[] delays = new int[count];
 		Arrays.fill(delays, delay);
 

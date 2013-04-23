@@ -61,7 +61,7 @@ public class StendhalClient extends ClientFramework {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalClient.class);
 
-	final Map<RPObject.ID, RPObject> world_objects;
+	private final Map<RPObject.ID, RPObject> world_objects;
 
 	private final PerceptionHandler handler;
 
@@ -113,7 +113,7 @@ public class StendhalClient extends ClientFramework {
 		client = null;
 	}
 
-	public StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
+	StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
 		super(LOG4J_PROPERTIES);
 		client = this;
 		ClientSingletonRepository.setClientFramework(this);
@@ -160,7 +160,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param zoneid
 	 *            The zone entered.
 	 */
-	protected void onBeforeSync(final String zoneid) {
+	private void onBeforeSync(final String zoneid) {
 		/*
 		 * Simulate object disassembly
 		 */
@@ -546,11 +546,6 @@ public class StendhalClient extends ClientFramework {
 		userContext.addFeatureChangeListener(l);
 	}
 
-	public void removeFeatureChangeListener(final FeatureChangeListener l) {
-		userContext.removeFeatureChangeListener(l);
-	}
-
-
 	//
 	//
 
@@ -590,7 +585,7 @@ public class StendhalClient extends ClientFramework {
 	 *
 	 * @return <code>true</code> if it is the user object.
 	 */
-	public boolean isUser(final RPObject object) {
+	boolean isUser(final RPObject object) {
 		if (object.getRPClass().subclassOf("player")) {
 			return getCharacter().equalsIgnoreCase(object.get("name"));
 		} else {
@@ -606,15 +601,15 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
-	static class MoveRPAction extends RPAction {
-		public MoveRPAction(final Direction dir) {
+	private static class MoveRPAction extends RPAction {
+		private MoveRPAction(final Direction dir) {
 			put("type", "move");
 			put("dir", dir.get());
 		}
 	}
 
-	static class FaceRPAction extends RPAction {
-		public FaceRPAction(final Direction dir) {
+	private static class FaceRPAction extends RPAction {
+		private FaceRPAction(final Direction dir) {
 			put("type", "face");
 			put("dir", dir.get());
 		}
@@ -648,7 +643,7 @@ public class StendhalClient extends ClientFramework {
 	 * Interface for listeners that need to be informed when the user is
 	 * changing zone.
 	 */
-	public static interface ZoneChangeListener {
+	static interface ZoneChangeListener {
 		/**
 		 * Called when the user is changing zone.
 		 */

@@ -26,9 +26,9 @@ import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class UserController implements ObjectChangeListener {
+class UserController implements ObjectChangeListener {
 
-	final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	//TODO: add 2 more for events and slots so you can add listeners distinguished
 	// maybe extend this
 	

@@ -25,7 +25,7 @@ public class SpriteTileset implements Tileset {
 	/**
 	 * The sprite tiles.
 	 */
-	protected Sprite[] tiles;
+	private Sprite[] tiles;
 
 	/**
 	 * Create a tileset.
@@ -79,7 +79,7 @@ public class SpriteTileset implements Tileset {
 	 * 
 	 * @return An array of sprites.
 	 */
-	protected Sprite[] extractTiles(final SpriteStore store,
+	private Sprite[] extractTiles(final SpriteStore store,
 			final Sprite sprite, final int size) {
 		final int rows = sprite.getHeight() / size;
 		final int cols = sprite.getWidth() / size;

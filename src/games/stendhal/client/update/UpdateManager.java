@@ -25,7 +25,7 @@ import java.util.Properties;
  *
  * @author hendrik
  */
-public class UpdateManager {
+class UpdateManager {
 
 	private String jarFolder;
 	private Properties bootProp;

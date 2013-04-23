@@ -30,7 +30,7 @@ import javax.swing.SwingUtilities;
 /**
  * A progress bar for the download progress.
  */
-public class UpdateProgressBar extends JFrame implements
+class UpdateProgressBar extends JFrame implements
 		HttpClient.ProgressListener {
 	private static final long serialVersionUID = -1607102841664745919L;
 
@@ -67,7 +67,7 @@ public class UpdateProgressBar extends JFrame implements
 	 * @param fromVersion the version the update is based on, may be <code>null</code>
 	 * @param toVersion the version the download leads to
 	 */
-	public UpdateProgressBar(final int max, final String urlBase, final String fromVersion, final String toVersion) {
+	UpdateProgressBar(final int max, final String urlBase, final String fromVersion, final String toVersion) {
 		super("Downloading...");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new UpdateProgressBarWindowListener());

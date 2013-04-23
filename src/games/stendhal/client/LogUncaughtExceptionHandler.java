@@ -22,7 +22,7 @@ import marauroa.common.Logger;
  * there would be no information in the logfile without
  * this class.
  */
-public class LogUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+class LogUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 	private static Logger logger = Log4J.getLogger(LogUncaughtExceptionHandler.class);
 	private Thread.UncaughtExceptionHandler next;
 
@@ -39,7 +39,7 @@ public class LogUncaughtExceptionHandler implements Thread.UncaughtExceptionHand
 	/**
 	 * installs this uncaught exception handler
 	 */
-	public static void setup() {
+	static void setup() {
 		LogUncaughtExceptionHandler handler = new LogUncaughtExceptionHandler();
 		handler.next = Thread.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(handler);

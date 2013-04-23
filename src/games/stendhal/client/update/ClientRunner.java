@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 /**
  * @author hendrik
  */
-public class ClientRunner {
+class ClientRunner {
 
 	/**
 	 * Starts stendhal.
@@ -24,7 +24,7 @@ public class ClientRunner {
 	 * @param args
 	 *            args
 	 */
-	public static void run(final String[] args) {
+	static void run(final String[] args) {
 
 
 		try {

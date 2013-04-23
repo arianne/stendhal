@@ -29,7 +29,7 @@ public class TextSprite extends ImageSprite {
 	// string widths other than having a Graphics object
 	private static final Graphics graphics = (new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB)).getGraphics(); 
 	
-	protected TextSprite(Image image) {
+	private TextSprite(Image image) {
 		super(image);
 	}
 	

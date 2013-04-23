@@ -34,7 +34,7 @@ import javax.swing.event.HyperlinkListener;
  * 
  * @version 3.0, February 7, 2010
  */
-public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
+class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 
 	@Override
 	public void hyperlinkUpdate(HyperlinkEvent e) {
@@ -55,7 +55,7 @@ public class UpdateProgressBarHyperLinkListener implements HyperlinkListener {
 	 *            A web address (URL) of a web page (ex:
 	 *            "http://www.google.com/")
 	 */
-	public static void openURL(String url) {
+	private static void openURL(String url) {
 		try { // attempt to use Desktop library from JDK 1.6+ (even if on 1.5)
 			Class<?> d = Class.forName("java.awt.Desktop");
 			d.getDeclaredMethod("browse", new Class[] { java.net.URI.class })

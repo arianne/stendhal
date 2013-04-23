@@ -17,58 +17,36 @@ import java.awt.Graphics;
 /**
  * This is a sprite that is a tile region of another sprite.
  */
-public class TileSprite implements Sprite {
+class TileSprite implements Sprite {
 	/**
 	 * The identifier reference.
 	 */
-	protected Object reference;
+	private Object reference;
 
 	/**
-	 * The underyling sprite.
+	 * The underlying sprite.
 	 */
-	protected Sprite sprite;
+	private Sprite sprite;
 
 	/**
 	 * The tile height.
 	 */
-	protected int height;
+	private int height;
 
 	/**
 	 * The tile width.
 	 */
-	protected int width;
+	private int width;
 
 	/**
 	 * The tile X coordinate.
 	 */
-	protected int x;
+	private int x;
 
 	/**
 	 * The tile Y coordinate.
 	 */
-	protected int y;
-
-	/**
-	 * Create a tile region of another sprite.
-	 * 
-	 * <strong>NOTE: The sprite passed is not copied, and must not be modified
-	 * while this instance exists (unless you are sure you know what you are
-	 * doing).</strong>
-	 * 
-	 * @param sprite
-	 *            The source sprite.
-	 * @param x 
-	 * @param y 
-	 * @param width 
-	 * @param height 
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the region if beyond the source sprite's bounds.
-	 */
-	public TileSprite(final Sprite sprite, final int x, final int y, final int width, final int height) {
-		this(sprite, x, y, width, height, createReference(sprite, x, y, width,
-				height));
-	}
+	private int y;
 
 	/**
 	 * Create a tile region of another sprite.
@@ -90,7 +68,7 @@ public class TileSprite implements Sprite {
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
-	public TileSprite(final Sprite sprite, final int x, final int y, final int width, final int height,
+	TileSprite(final Sprite sprite, final int x, final int y, final int width, final int height,
 			final Object reference) {
 		this.sprite = sprite;
 		this.x = x;
@@ -115,7 +93,7 @@ public class TileSprite implements Sprite {
 	 * 
 	 * 
 	 */
-	public static TSRef createReference(final Sprite sprite, final int x, final int y,
+	static TSRef createReference(final Sprite sprite, final int x, final int y,
 			final int width, final int height) {
 		final Object ref = sprite.getReference();
 
@@ -241,17 +219,17 @@ public class TileSprite implements Sprite {
 	 * An opaque sprite reference for a tile region.
 	 */
 	protected static class TSRef {
-		protected Object parent;
+		private Object parent;
 
-		protected int x;
+		private int x;
 
-		protected int y;
+		private int y;
 
-		protected int width;
+		private int width;
 
-		protected int height;
+		private int height;
 
-		public TSRef(final Object parent, final int x, final int y, final int width, final int height) {
+		private TSRef(final Object parent, final int x, final int y, final int width, final int height) {
 			this.parent = parent;
 			this.x = x;
 			this.y = y;

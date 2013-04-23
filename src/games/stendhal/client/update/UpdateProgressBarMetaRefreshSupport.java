@@ -25,7 +25,7 @@ import javax.swing.SwingUtilities;
  *
  * @author hendrik
  */
-public class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListener, Runnable {
+class UpdateProgressBarMetaRefreshSupport implements PropertyChangeListener, Runnable {
 	private JEditorPane browser;
 	private String url;
 	private int delay;

@@ -65,20 +65,10 @@ public class WorldObjects {
 		}
 	}
 
-	/** 
-	 * Removes a WorldListener from this event distributor. 
-	 * @param listener to be removed 
-	 */
-	public static void removeWorldListener(final WorldListener listener) {
-		synchronized (worldListeners) {
-			worldListeners.remove(listener);
-		}
-	}
-
 	/** Create a zone-entered event. 
 	 * @param zoneName the name of the zone 
 	 */
-	public static void fireZoneEntered(final String zoneName) {
+	static void fireZoneEntered(final String zoneName) {
 		synchronized (worldListeners) {
 			for (final WorldListener wl : worldListeners) {
 				wl.zoneEntered(zoneName);
@@ -90,7 +80,7 @@ public class WorldObjects {
 	 * @param zoneName of the zone left
 	 * 
 	 */
-	public static void fireZoneLeft(final String zoneName) {
+	static void fireZoneLeft(final String zoneName) {
 		synchronized (worldListeners) {
 			for (final WorldListener wl : worldListeners) {
 				wl.zoneLeft(zoneName);

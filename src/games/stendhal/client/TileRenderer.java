@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * This is a helper class to render coherent tiles based on the tileset. This
  * should be replaced by independent tiles as soon as possible .
  */
-public class TileRenderer extends LayerRenderer {
+class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(TileRenderer.class);
 	/** Tileset used for the map data */

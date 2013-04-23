@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * 
  * @author hendrik
  */
-public class UpdateGUIDialogs {
+class UpdateGUIDialogs {
 
 	private static final String DIALOG_TITLE = ClientGameConfiguration.get("GAME_NAME") + " Update";
 
@@ -33,7 +33,7 @@ public class UpdateGUIDialogs {
 	 *            true, if it is an update, false on first install
 	 * @return true if the update should be performed, false otherwise
 	 */
-	public static boolean askForDownload(final int updateSize, final boolean update) {
+	static boolean askForDownload(final int updateSize, final boolean update) {
 		// format number, only provide decimal digits on very small sizes
 		float size = (float) updateSize / 1024;
 		if (size > 10) {
@@ -66,7 +66,7 @@ public class UpdateGUIDialogs {
 	 * @param message
 	 *            message to display
 	 */
-	public static void messageBox(final String message) {
+	static void messageBox(final String message) {
 		JOptionPane.showMessageDialog(null, new SelectableLabel(message), DIALOG_TITLE,
 				JOptionPane.INFORMATION_MESSAGE);
 	}

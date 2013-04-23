@@ -192,15 +192,8 @@ public class stendhal {
 	/**
 	 * @return the name of the log folder
 	 */
-	public static String getLogFolder() {
+	private static String getLogFolder() {
 		return getGameFolder() + LOG_FOLDER;
-	}
-
-	/**
-	 * @return the name of the log file
-	 */
-	public static String getLogFile() {
-		return getLogFolder() + GAME_NAME.toLowerCase() + ".txt";
 	}
 
 	/**
@@ -215,7 +208,6 @@ public class stendhal {
 			}
 		}
 	}
-
 
 	/**
 	 * Get the location of persistent game client data.

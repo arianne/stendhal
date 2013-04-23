@@ -961,30 +961,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		return null;
 	}
-
-	/**
-	 * Convert world X coordinate to screen view coordinate.
-	 *
-	 * @param wx
-	 *            World X coordinate.
-	 *
-	 * @return Screen X coordinate (in integer value).
-	 */
-	private int convertWorldXToScreenView(final double wx) {
-		return convertWorldToPixelUnits(wx) - svx;
-	}
-
-	/**
-	 * Convert world Y coordinate to screen view coordinate.
-	 *
-	 * @param wy
-	 *            World Y coordinate.
-	 *
-	 * @return Screen Y coordinate (in integer value).
-	 */
-	private int convertWorldYToScreenView(final double wy) {
-		return convertWorldToPixelUnits(wy) - svy;
-	}
 	
 	/**
 	 * Convert a world x coordinate to <em>raw</em> (native resolution)
@@ -1006,18 +982,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private int convertWorldYToScaledScreen(double y) {
 		return (int) (convertWorldToPixelUnits(y - svy / (double) SIZE_UNIT_PIXELS) * scale) + svy;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see games.stendhal.client.IGameScreen#convertWorldToScreenView(double,
-	 *      double)
-	 */
-	@Override
-	public Point convertWorldToScreenView(final double wx, final double wy) {
-		return new Point(convertWorldXToScreenView(wx),
-				convertWorldYToScreenView(wy));
 	}
 
 	/**

@@ -22,17 +22,17 @@ public class EmptySprite implements Sprite {
 	/**
 	 * The identifier reference.
 	 */
-	protected Object reference;
+	private Object reference;
 
 	/**
 	 * The sprite height.
 	 */
-	protected int height;
+	private int height;
 
 	/**
 	 * The sprite width.
 	 */
-	protected int width;
+	private int width;
 
 	/**
 	 * Create an empty sprite.
@@ -61,7 +61,7 @@ public class EmptySprite implements Sprite {
 	 * 
 	 * 
 	 */
-	public static Object createReference(final int width, final int height) {
+	static Object createReference(final int width, final int height) {
 		return new ESRef(width, height);
 	}
 
@@ -168,11 +168,11 @@ public class EmptySprite implements Sprite {
 	/**
 	 * An opaque sprite reference for an empty sprite.
 	 */
-	protected static class ESRef {
-		protected int width;
-		protected int height;
+	private static class ESRef {
+		private int width;
+		private int height;
 
-		public ESRef(final int width, final int height) {
+		private ESRef(final int width, final int height) {
 			this.width = width;
 			this.height = height;
 		}

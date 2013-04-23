@@ -23,7 +23,7 @@ import java.util.List;
  * A LayerRenderer that merges several tile layers in to one using
  * CompositeSprites.
  */
-public class CompositeLayerRenderer extends TileRenderer {
+class CompositeLayerRenderer extends TileRenderer {
 	/**
 	 * Create a CompositeLayerRenderer from a set of {@link TileRenderer}s
 	 * 
@@ -31,7 +31,7 @@ public class CompositeLayerRenderer extends TileRenderer {
 	 * @param blend composite mode for drawing the adjustment layer
 	 * @param adjustLayer adjustment layer
 	 */
-	public CompositeLayerRenderer(List<TileRenderer> layerRenderers,
+	CompositeLayerRenderer(List<TileRenderer> layerRenderers,
 			Composite blend, TileRenderer adjustLayer) {
 		LayerRenderer lr = layerRenderers.get(0);
 		width = lr.getWidth();

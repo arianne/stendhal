@@ -34,7 +34,7 @@ import marauroa.common.net.InputSerializer;
 import org.apache.log4j.Logger;
 
 /** It is class to get tiles from the tileset. */
-public class TileStore implements Tileset {
+class TileStore implements Tileset {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(TileStore.class);
 
@@ -184,7 +184,7 @@ public class TileStore implements Tileset {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void addTilesets(final InputSerializer in) throws IOException,
+	void addTilesets(final InputSerializer in) throws IOException,
 			ClassNotFoundException {
 		final int amount = in.readInt();
 
@@ -223,7 +223,7 @@ public class TileStore implements Tileset {
 	 *
 	 * @return A tileset animation map.
 	 */
-	protected static TilesetGroupAnimationMap createAnimationMap() {
+	private static TilesetGroupAnimationMap createAnimationMap() {
 		final TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
 		final URL url = DataLoader.getResource(baseFolder + "tileset/animation.seq");

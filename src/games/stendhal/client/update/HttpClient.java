@@ -47,7 +47,7 @@ public class HttpClient {
 	 * An interface to notify some other parts of the program about download
 	 * process.
 	 */
-	public interface ProgressListener {
+	interface ProgressListener {
 
 		/**
 		 * update download status.
@@ -84,7 +84,7 @@ public class HttpClient {
 	 * @param tryVeryHard
 	 *            true, to do several attempts.
 	 */
-	public HttpClient(final String url, final boolean tryVeryHard) {
+	HttpClient(final String url, final boolean tryVeryHard) {
 		this.urlString = url;
 		this.tryVeryHard = tryVeryHard;
 	}
@@ -162,7 +162,7 @@ public class HttpClient {
 	/**
 	 * Closes the connection and associated streams.
 	 */
-	public void close() {
+	void close() {
 		if (is != null) {
 			try {
 				is.close();
@@ -206,7 +206,7 @@ public class HttpClient {
 	 * 
 	 * @return the first line
 	 */
-	public Properties fetchProperties() {
+	Properties fetchProperties() {
 		Properties prop = null;
 		openInputStream();
 		if (is == null) {
@@ -230,7 +230,7 @@ public class HttpClient {
 	 *            name of the file to write
 	 * @return true on success, false otherwise
 	 */
-	public boolean fetchFile(final String filename) {
+	boolean fetchFile(final String filename) {
 		boolean res = false;
 
 		openInputStream();

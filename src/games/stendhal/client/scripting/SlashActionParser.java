@@ -23,9 +23,9 @@ import java.text.CharacterIterator;
  * 
  * @author Martin Fuchs
  */
-public class SlashActionParser extends CommandlineParser {
+class SlashActionParser extends CommandlineParser {
 
-	SlashActionParser(final String text) {
+	private SlashActionParser(final String text) {
 		super(text);
 	}
 
@@ -34,7 +34,7 @@ public class SlashActionParser extends CommandlineParser {
 	 *
 	 * @return the parsed SlashActionCommand 
 	 */
-	protected SlashActionCommand extractCommand() {
+	private SlashActionCommand extractCommand() {
 		final SlashActionCommand command = new SlashActionCommand();
 
 		char ch = ci.current();
@@ -89,7 +89,7 @@ public class SlashActionParser extends CommandlineParser {
 	 *            the client command line
 	 * @return SlashActionCommand object
 	 */
-	public static SlashActionCommand parse(final String text) {
+	static SlashActionCommand parse(final String text) {
 		/*
 		 * Parse command
 		 */

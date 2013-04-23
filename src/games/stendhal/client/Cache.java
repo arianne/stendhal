@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
 /**
  * Manages a cache for content files such as zone data transmitted by the server
  */
-public class Cache {
+class Cache {
 	private static Logger logger = Logger.getLogger(Cache.class);
 
 	/**
@@ -134,7 +134,7 @@ public class Cache {
 	 * @param name name
 	 * @return filename
 	 */
-	public String getFilename(String name) {
+	String getFilename(String name) {
 		if (name.indexOf("..") > -1) {
 			logger.error("Cannot access item in cache because .. is not allowed in name " + name);
 			return null;

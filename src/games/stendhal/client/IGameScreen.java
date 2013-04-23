@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.gui.j2d.RemovableSprite;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
@@ -60,12 +59,6 @@ public interface IGameScreen {
 	 * Removes all the text entities.
 	 */
 	void clearTexts();
-	
-	/**
-	 * Get the graphics buffer context for the sreen
-	 * @return The graphics context
-	 */
-	Graphics getGraphics();
 
 	/**
 	 * Gets an entity view at given coordinates.
@@ -103,23 +96,6 @@ public interface IGameScreen {
 	 * 	not found.
 	 */
 	RemovableSprite getTextAt(int x, int y);
-
-	/**
-	 * Convert world coordinates to screen view coordinates.
-	 *
-	 * This does have some theorical range limits. Assuming a tile size of
-	 * 256x256 pixels (very high def), world coordinates are limited to a little
-	 * over +/-8 million, before the int (31-bit) values returned from this are
-	 * wrapped. So I see no issues, even if absolute world coordinates are used.
-	 *
-	 * @param wx
-	 *            World X coordinate.
-	 * @param wy
-	 *            World Y coordinate.
-	 *
-	 * @return Screen view coordinates (in integer values).
-	 */
-	Point convertWorldToScreenView(double wx, double wy);
 
 	/**
 	 * Convert screen view coordinates to world coordinates.

@@ -41,14 +41,9 @@ public class UserContext implements RPObjectChangeListener {
 	private static final Logger logger = Logger.getLogger(UserContext.class);
 
 	/**
-	 * The currently known buddies.
-	 */
-	protected HashMap<String, Boolean> buddies;
-
-	/**
 	 * The currently enabled features.
 	 */
-	protected HashMap<String, String> features;
+	private HashMap<String, String> features;
 
 	/**
 	 * The feature change listeners.
@@ -58,17 +53,17 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * The admin level.
 	 */
-	protected int adminlevel;
+	private int adminlevel;
 
 	/**
 	 * The player character's name.
 	 */
-	protected String name;
+	private String name;
 
 	/**
 	 * The owned sheep RPObject ID.
 	 */
-	protected int sheepID;
+	private int sheepID;
 
 	private RPObject player;
 
@@ -81,7 +76,6 @@ public class UserContext implements RPObjectChangeListener {
 		adminlevel = 0;
 		name = null;
 		sheepID = 0;
-		buddies = new HashMap<String, Boolean>();
 		features = new HashMap<String, String>();
 	}
 
@@ -95,11 +89,9 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param l
 	 *            The listener.
 	 */
-	public void addFeatureChangeListener(final FeatureChangeListener l) {
+	void addFeatureChangeListener(final FeatureChangeListener l) {
 		featureListeners.add(l);
 	}
-
-
 
 	/**
 	 * Fire feature enabled to all registered listeners.
@@ -107,7 +99,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param name
 	 *            The name of the feature.
 	 */
-	protected void fireFeatureDisabled(final String name) {
+	private void fireFeatureDisabled(final String name) {
 		logger.debug("Feature disabled: " + name);
 
 		for (final FeatureChangeListener l : featureListeners) {
@@ -123,7 +115,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param value
 	 *            The optional feature value.
 	 */
-	protected void fireFeatureEnabled(final String name, final String value) {
+	private void fireFeatureEnabled(final String name, final String value) {
 		logger.debug("Feature enabled: " + name + " = " + value);
 
 		for (final FeatureChangeListener l : featureListeners) {
@@ -175,7 +167,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param listener
 	 *            The listener.
 	 */
-	public void removeFeatureChangeListener(final FeatureChangeListener listener) {
+	void removeFeatureChangeListener(final FeatureChangeListener listener) {
 		featureListeners.remove(listener);
 	}
 
@@ -186,7 +178,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeaturesAdded(final Map<String, String> changes) {
+	private void processFeaturesAdded(final Map<String, String> changes) {
 		for (final Entry<String, String> entry : changes.entrySet()) {
 			if (!features.containsKey(entry.getKey())) {
 				features.put(entry.getKey(), entry.getValue());
@@ -201,7 +193,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeaturesRemoved(final Map<String, String> changes) {
+	private void processFeaturesRemoved(final Map<String, String> changes) {
 		for (final String feature : changes.keySet()) {
 			if (features.containsKey(feature)) {
 				features.remove(feature);
@@ -224,7 +216,7 @@ public class UserContext implements RPObjectChangeListener {
 		}
 	}
 
-	public boolean isUser(final RPObject object) {
+	boolean isUser(final RPObject object) {
 		if (name == null) {
 			return false;
 		}

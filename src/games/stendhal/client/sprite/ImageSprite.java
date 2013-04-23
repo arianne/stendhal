@@ -29,12 +29,12 @@ import java.awt.Transparency;
  */
 public class ImageSprite implements Sprite {
 	/** The image to be drawn for this sprite. */
-	protected Image image;
+	private Image image;
 
 	/**
 	 * The identifier reference.
 	 */
-	protected Object reference;
+	private Object reference;
 
 	/**
 	 * Create a new sprite based on an image.
@@ -54,7 +54,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	public ImageSprite(final Image image, final Object reference) {
+	ImageSprite(final Image image, final Object reference) {
 		this.image = image;
 		this.reference = reference;
 	}
@@ -77,7 +77,7 @@ public class ImageSprite implements Sprite {
 	 * @param reference
 	 *            The sprite reference, or null.
 	 */
-	public ImageSprite(final Sprite sprite, final Object reference) {
+	private ImageSprite(final Sprite sprite, final Object reference) {
 		this.reference = reference;
 
 		image = getGC().createCompatibleImage(sprite.getWidth(),

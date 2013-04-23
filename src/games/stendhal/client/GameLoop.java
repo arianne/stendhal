@@ -31,7 +31,7 @@ public class GameLoop {
 	/** The actual game loop thread. */
 	private final Thread loopThread;
 	/** Main game loop content. Run at every cycle.*/
-	PersistentTask persistentTask;
+	private PersistentTask persistentTask;
 	/** Run once tasks, requested by other threads. */
 	private final Queue<Runnable> temporaryTasks = new ConcurrentLinkedQueue<Runnable>();
 	/** Tasks to be run when the game loop exits. */

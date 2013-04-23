@@ -34,7 +34,7 @@ public class SpriteCache {
 	/**
 	 * The sprite map.
 	 */
-	protected MemoryCache<Object, Sprite> sprites;
+	private MemoryCache<Object, Sprite> sprites;
 	
 
 	/**
@@ -57,7 +57,7 @@ public class SpriteCache {
 	 * 
 	 * @see Sprite#getReference()
 	 */
-	public void add(final Sprite sprite) {
+	void add(final Sprite sprite) {
 		add(sprite.getReference(), sprite);
 	}
 

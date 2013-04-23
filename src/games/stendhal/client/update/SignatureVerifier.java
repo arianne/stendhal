@@ -24,7 +24,7 @@ import java.security.cert.CertificateException;
 /**
  * verifies a signature
  */
-public class SignatureVerifier {
+class SignatureVerifier {
 	private static SignatureVerifier instance;
 	private KeyStore ks;
 
@@ -57,7 +57,7 @@ public class SignatureVerifier {
 	 *
 	 * @return SignatureVerifier
 	 */
-	public static synchronized SignatureVerifier get() {
+	static synchronized SignatureVerifier get() {
 		if (instance == null) {
 			instance = new SignatureVerifier();
 		}
@@ -71,7 +71,7 @@ public class SignatureVerifier {
 	 * @param signature signature
 	 * @return true, if the signature is fine, false otherwise.
 	 */
-	public boolean checkSignature(String filename, String signature) {
+	boolean checkSignature(String filename, String signature) {
 		if ((ks == null) || (signature == null)) {
 			System.out.println("No signature for " + filename);
 			return false;

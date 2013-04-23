@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 /**
  * Ask for confirmation and exists the JVM if the user closes the progress bar window.
  */
-public class UpdateProgressBarWindowListener implements WindowListener {
+class UpdateProgressBarWindowListener implements WindowListener {
 
 	@Override
 	public void windowOpened(WindowEvent e) {

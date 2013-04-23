@@ -22,12 +22,12 @@ public class TilesetAnimationMap {
 	/**
 	 * The default frame delay (in ms).
 	 */
-	public static final int DEFAULT_DELAY = 500;
+	static final int DEFAULT_DELAY = 500;
 
 	/**
 	 * The map of tileset animations.
 	 */
-	protected Map<Integer, Mapping> animations;
+	private Map<Integer, Mapping> animations;
 
 	/**
 	 * Create a tileset animation map.
@@ -53,7 +53,7 @@ public class TilesetAnimationMap {
 	 * @param frameDelays
 	 *            The frame delays (in ms).
 	 */
-	public void add(final int index, final int[] frameIndexes,
+	void add(final int index, final int[] frameIndexes,
 			final int[] frameDelays) {
 		animations.put(Integer.valueOf(index), new Mapping(frameIndexes,
 				frameDelays));
@@ -72,7 +72,7 @@ public class TilesetAnimationMap {
 	 * @throws IllegalArgumentException
 	 *             If the number of indexes and delays don't match.
 	 */
-	public void add(final int[] frameIndexes, final int[] frameDelays) {
+	void add(final int[] frameIndexes, final int[] frameDelays) {
 		if (frameIndexes.length != frameDelays.length) {
 			throw new IllegalArgumentException(
 					"Mismatched number of frame indexes and delays");
@@ -138,16 +138,16 @@ public class TilesetAnimationMap {
 	/**
 	 * A frame indexes/delays mapping entry for an animated tile.
 	 */
-	protected static class Mapping {
+	private static class Mapping {
 		/**
 		 * The frame indexes.
 		 */
-		protected int[] indices;
+		private int[] indices;
 
 		/**
 		 * The frame delays.
 		 */
-		protected int[] delays;
+		private int[] delays;
 
 		/**
 		 * Create a new Mapping

@@ -39,16 +39,6 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 		listeners.add(listener);
 	}
 
-	/**
-	 * Remove a position change listener.
-	 * 
-	 * @param listener
-	 *            The listener.
-	 */
-	public void remove(final PositionChangeListener listener) {
-		listeners.remove(listener);
-	}
-
 	//
 	// PositionChangeListener
 	//

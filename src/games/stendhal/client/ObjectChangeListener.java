@@ -22,10 +22,8 @@ import marauroa.common.game.RPObject;
  * @author astrid
  *
  */
-public interface ObjectChangeListener {
-
+interface ObjectChangeListener {
 	void deleted();
 	void modifiedAdded(RPObject changes);
 	void modifiedDeleted(RPObject changes);
-
 }

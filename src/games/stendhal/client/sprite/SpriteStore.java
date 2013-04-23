@@ -52,7 +52,7 @@ public class SpriteStore {
 	/**
 	 * Screen graphics configuration.
 	 */
-	protected GraphicsConfiguration gc;
+	private GraphicsConfiguration gc;
 
 	protected SpriteStore() {
 		try {
@@ -277,7 +277,7 @@ public class SpriteStore {
 	 * 
 	 * @return A sprite, or <code>null</code> if missing/on error.
 	 */
-	protected Sprite loadSprite(final String ref) {
+	private Sprite loadSprite(final String ref) {
 		BufferedImage sourceImage = null;
 
 		try {

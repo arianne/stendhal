@@ -16,7 +16,7 @@ package games.stendhal.client.update;
  * 
  * @author hendrik
  */
-public enum VersionState {
+enum VersionState {
 
 	/** this version is up to date, no update available. */
 	CURRENT,
@@ -47,7 +47,7 @@ public enum VersionState {
 	 *            a string representation
 	 * @return VersionState. In case of an error VersionState.ERROR is returned
 	 */
-	public static VersionState getFromString(final String versionStateString) {
+	static VersionState getFromString(final String versionStateString) {
 		try {
 			if ((versionStateString == null)
 					|| (versionStateString.trim().equals(""))) {

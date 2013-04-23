@@ -85,7 +85,7 @@ public class StaticGameLayers {
 	 * @return <code>true</code>, if the shape overlaps the static zone
 	 *	collision, <code>false</code> otherwise
 	 */
-	public boolean collides(final Rectangle2D shape) {
+	boolean collides(final Rectangle2D shape) {
 		if (currentZone != null) {
 			return currentZone.collides(shape);
 		}
@@ -93,7 +93,7 @@ public class StaticGameLayers {
 	}
 
 	/** Prepare for zone change. */
-	public void clear() {
+	void clear() {
 		zoneInfo.zoneChanged();
 	}
 
@@ -128,7 +128,7 @@ public class StaticGameLayers {
 	 * @param adjustLayer name of the adjustment layer
 	 * @param layers names of the layer set, starting from the bottom
 	 */
-	public void drawLayers(Graphics g, final String area, final String compositeName,
+	void drawLayers(Graphics g, final String area, final String compositeName,
 			final int x, final int y, final int width, final int height,
 			String adjustLayer, String ... layers) {
 		LayerRenderer lr = getMerged(area, compositeName, adjustLayer, layers);

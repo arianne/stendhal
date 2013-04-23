@@ -27,7 +27,7 @@ import marauroa.common.net.message.MessageS2CPerception;
  * @author astrid
  *
  */
-public class PerceptionToObject implements IPerceptionListener {
+class PerceptionToObject implements IPerceptionListener {
 
 	Map<RPObject.ID, Set<ObjectChangeListener>> map = Collections
 			.synchronizedMap(new HashMap<RPObject.ID,  Set<ObjectChangeListener>>());
@@ -158,7 +158,7 @@ public class PerceptionToObject implements IPerceptionListener {
 
 	}
 
-	public void register(final RPObject object, final ObjectChangeListener listener) {
+	void register(final RPObject object, final ObjectChangeListener listener) {
 		if (object != null) {
 		if (!map.containsKey(object.getID())) {
 			map.put(object.getID(), new HashSet<ObjectChangeListener>());		
@@ -167,10 +167,9 @@ public class PerceptionToObject implements IPerceptionListener {
 		}
 	}
 	
-	public void unregister(final ObjectChangeListener listener) {
+	void unregister(final ObjectChangeListener listener) {
 		for (final Set<ObjectChangeListener> set : map.values()) {
 			set.remove(listener);
 		}
 	}
-
 }

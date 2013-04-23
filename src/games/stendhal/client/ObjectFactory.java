@@ -14,7 +14,7 @@ package games.stendhal.client;
 
 import marauroa.common.game.RPObject;
 
-public class ObjectFactory {
+class ObjectFactory {
 
 	private static final ObjectChangeListenerAdapter LISTENER = new ObjectChangeListenerAdapter();
 /**
@@ -23,7 +23,7 @@ public class ObjectFactory {
  * @param object
  * @param perceptionTobject
  */
-	public void onAdded(final RPObject object,
+	void onAdded(final RPObject object,
 			final PerceptionToObject perceptionTobject) {
 		if ("player".equals(object.getRPClass().getName())) {
 			if (StendhalClient.client.isUser(object)) {

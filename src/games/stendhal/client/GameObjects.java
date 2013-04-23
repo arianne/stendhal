@@ -130,7 +130,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	/**
 	 * Removes all the object entities.
 	 */
-	public void clear() {
+	void clear() {
 		if (!objects.isEmpty()) {
 			logger.debug("Game objects not empty!");
 
@@ -199,7 +199,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * 
 	 * @return An entity.
 	 */
-	protected IEntity add(final RPObject object) {
+	private IEntity add(final RPObject object) {
 		final IEntity entity = EntityFactory.createEntity(object);
 
 		if (entity != null) {
@@ -385,11 +385,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 	 * A fully qualified ID. This will make an nested ID unique, even when in a
 	 * slot tree.
 	 */
-	protected static class FQID {
+	private static class FQID {
 		/**
 		 * The object identification path.
 		 */
-		protected Object[] path;
+		private Object[] path;
 
 		/**
 		 * Create a fully qualified ID.
@@ -397,7 +397,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		 * @param id
 		 *            And object ID.
 		 */
-		public FQID(final RPObject.ID id) {
+		private FQID(final RPObject.ID id) {
 			this(new Object[] { Integer.valueOf(id.getObjectID()) });
 		}
 
@@ -425,7 +425,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<IEntity> {
 		 * 
 		 * @return A FQID.
 		 */
-		public static FQID create(final RPObject object) {
+		private static FQID create(final RPObject object) {
 			final LinkedList<Object> path = new LinkedList<Object>();
 			RPObject node = object;
 
