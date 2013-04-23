@@ -107,7 +107,7 @@ public class Dsp {
 					for (int c = 0; c < numChannels; ++c)
 						value += samples[index + c];
 
-					samples[i] = value / (float) numChannels;
+					samples[i] = value / numChannels;
 				}
 			} else {
 				// not implemented yet

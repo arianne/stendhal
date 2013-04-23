@@ -25,6 +25,6 @@ public class Numeric
 
     public static float intToFloat(int value, float accuracy)
     {
-        return (float)(value / accuracy);
+        return value / accuracy;
     }
 }
