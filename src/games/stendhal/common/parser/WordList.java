@@ -648,9 +648,11 @@ final public class WordList {
 
 	/**
 	 * Check for compatible types.
+	 * 
 	 * @param lastExpr last word in an expression
 	 * @param typeString expected type string
-	 * @return
+	 * @return <code>true</code> if the expression is of compatible type,
+	 * 	otherwise <code>false</code>
 	 */
 	private static boolean isNameCompatibleLastType(
 			final Expression lastExpr, final String typeString) {

@@ -28,6 +28,7 @@ public final class SentenceImplementation extends Sentence {
      * Create a SentenceImplementation object in preparation to parse a text phrase.
      *
      * @param ctx
+     * @param text phrase
      */
     SentenceImplementation(final ConversationContext ctx, String text) {
         super(ctx);

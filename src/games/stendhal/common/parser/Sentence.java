@@ -91,7 +91,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      *
      * @return Expression iterator
      */
-    public Iterator<Expression> iterator() {
+    @Override
+	public Iterator<Expression> iterator() {
         return expressions.iterator();
     }
 
@@ -647,7 +648,6 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
      * @param other
      * @return difference String
      */
-    @SuppressWarnings("null")
 	public String diffNormalized(final Sentence other) {
         final SentenceBuilder ret = new SentenceBuilder();
 

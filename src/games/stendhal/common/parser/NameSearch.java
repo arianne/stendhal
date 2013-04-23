@@ -130,7 +130,7 @@ public final class NameSearch {
     /**
      * Check for end matches while searching for item names.
      * @param itemName
-     * @return
+     * @return <code>true</true> if a match was found
      */
 	private boolean searchEndMatch(final String itemName) {
 		for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {

@@ -108,6 +108,7 @@ public class ItemParser {
 	 * @param res
 	 * @param userAction
 	 * @param npcAction
+	 * @return error message
 	 */
 	public String getErrormessage(final ItemParserResult res, final String userAction, final String npcAction) {
 		String chosenItemName = res.getChosenItemName();

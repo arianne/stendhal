@@ -413,6 +413,7 @@ public final class ExpressionType implements Serializable {
      * This are the two typical cases:
      * VER -> VER-NEG
      * VER-NEG -> VER
+     * @return negated expression
      */
     public ExpressionType negate()
     {

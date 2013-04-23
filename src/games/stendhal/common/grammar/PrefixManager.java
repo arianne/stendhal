@@ -105,6 +105,7 @@ final class PrefixManager
 	 * Prefix one of the registered nouns with an expression like "piece of".
 	 * 
 	 * @param str noun to process
+	 * @param lowString lowercase version of str
 	 * @return noun with prefix
 	 */
 	public String fullForm(final String str, final String lowString) {

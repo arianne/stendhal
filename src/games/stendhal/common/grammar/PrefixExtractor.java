@@ -77,6 +77,7 @@ public class PrefixExtractor
 		return changed;
 	}
 
+	@Override
 	public String toString() {
 		return txt;
 	}
