@@ -16,11 +16,10 @@ import games.stendhal.client.actions.SlashActionRepository;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InviteBuddyAction implements ActionListener {
-	
+class InviteBuddyAction implements ActionListener {
 	private final String buddyName;
 	
-	public InviteBuddyAction(String buddyName) {
+	InviteBuddyAction(String buddyName) {
 		if (buddyName.indexOf(' ') > -1) {
 			this.buddyName = "'" + buddyName + "'";
 		} else {

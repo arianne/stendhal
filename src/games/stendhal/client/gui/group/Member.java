@@ -25,9 +25,9 @@ class Member implements Comparable<Member> {
 	private boolean leader;
 	private boolean present;
 	/** Model for detecting which HP changes are significant */
-	final LinearScalingModel hpModel = new LinearScalingModel();
+	private final LinearScalingModel hpModel = new LinearScalingModel();
 	/** Listener that needs to be notified about significant HP changes. */
-	ChangeListener listener;
+	private ChangeListener listener;
 	
 	/**
 	 * Create a new member.

@@ -47,7 +47,7 @@ class BuddyLabel extends JLabel implements ListCellRenderer {
 	 * @param online <code>true</code> if the buddy is online,
 	 * <code>false</code> if away
 	 */
-	void setOnline(final boolean online) {
+	private void setOnline(final boolean online) {
 		this.setEnabled(online);
 	}
 

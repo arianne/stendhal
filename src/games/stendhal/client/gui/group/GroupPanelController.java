@@ -36,13 +36,13 @@ public class GroupPanelController implements GameObjects.GameObjectListener {
 		static GroupPanelController instance = new GroupPanelController();
 	}
 	
-	final GroupPanel panel;
-	final Set<String> members = new HashSet<String>();
+	private final GroupPanel panel;
+	private final Set<String> members = new HashSet<String>();
 	/**
 	 * Grouping status of the player. <code>true</code> if the player is in a
 	 * group <code>false</code> otherwise.
 	 */
-	boolean grouped = false;
+	private boolean grouped = false;
 	
 	/**
 	 * Create a new GroupPaneController.

@@ -24,15 +24,13 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-public class ChatCache {
-
+class ChatCache {
 	private final static Logger logger = Logger.getLogger(ChatCache.class);
 
 	private final String chatCacheFile;
 	private int current;
 
-
-	public ChatCache(final String chatLogFile) {
+	ChatCache(final String chatLogFile) {
 		this.chatCacheFile = chatLogFile;
 	}
 
@@ -72,7 +70,7 @@ public class ChatCache {
 	/**
 	 * Save the contents of the cache.
 	 */
-	public void save() {
+	void save() {
 		if (chatCacheFile == null) {
 			return;
 		}
@@ -115,20 +113,19 @@ public class ChatCache {
 		}
 	}
 
-	public String current() {
+	String current() {
 		return getLines().get(current - 1);
 	}
 
-	public boolean hasNext() {
+	boolean hasNext() {
 		return lines.size() > current;
 	}
 
-	public boolean hasPrevious() {
+	boolean hasPrevious() {
 		return current > 1;
 	}
 
-	public String previous() {
-
+	String previous() {
 		try {
 			current--;
 			return current();
@@ -137,11 +134,9 @@ public class ChatCache {
 			current++;
 			throw new NoSuchElementException();
 		}
-
 	}
 
-	public String next() {
-
+	String next() {
 		try {
 			current++;
 			return current();
@@ -150,5 +145,4 @@ public class ChatCache {
 			throw new NoSuchElementException();
 		}
 	}
-
 }

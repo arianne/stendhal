@@ -37,8 +37,8 @@ class MemberCellRenderer implements ListCellRenderer {
 	private final JLabel label;
 	private final HPBar hpBar;
 	
-	final Font boldFont;
-	final Font normalFont;
+	private final Font boldFont;
+	private final Font normalFont;
 	
 	/**
 	 * Create a new MemberCellRenderer. 

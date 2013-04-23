@@ -27,7 +27,7 @@ import javax.swing.event.ChangeListener;
  * A <code>ListModel</code> for group members. The group leader is always kept
  * first.
  */
-public class MemberListModel extends AbstractListModel implements Iterable<Member> {
+class MemberListModel extends AbstractListModel implements Iterable<Member> {
 	// Keep FindBugs happy
 	private static final long serialVersionUID = -5983645746012160833L;
 	

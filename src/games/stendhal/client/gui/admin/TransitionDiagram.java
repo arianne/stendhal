@@ -43,7 +43,7 @@ public class TransitionDiagram {
 		showTransitionDiagram(data, null);
 	}
 
-	public void showTransitionDiagram(final String data, final Frame parent) {
+	private void showTransitionDiagram(final String data, final Frame parent) {
 		try {
 			final File dat = File.createTempFile("stendhal-graph-data", ".txt");
 			final File image = File.createTempFile("stendhal-graph", ".png");

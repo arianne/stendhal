@@ -54,7 +54,7 @@ public class ChatTextController {
 		playerChatText.setText(text);
 	}
 
-	class ChatTextKeyListener extends KeyAdapter {
+	private class ChatTextKeyListener extends KeyAdapter {
 			@Override
 			public void keyPressed(final KeyEvent e) {
 				final int keypressed = e.getKeyCode();
@@ -80,7 +80,7 @@ public class ChatTextController {
 		}
 	}
 
-	class ParserHandler implements ActionListener {
+	private class ParserHandler implements ActionListener {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			final String text = e.getActionCommand();
@@ -90,9 +90,9 @@ public class ChatTextController {
 			}
 		}
 	}
-	public void addActionListener(final ActionListener l) {
+	
+	private void addActionListener(final ActionListener l) {
 		playerChatText.addActionListener(l);
-
 	}
 
 	public void addKeyListener(final KeyListener l) {
@@ -107,7 +107,7 @@ public class ChatTextController {
 		this.cache = cache;
 	}
 
-	public void clearLine() {
+	private void clearLine() {
 		cache.addlinetoCache(getText());
 
 		setChatLine("");
@@ -115,6 +115,5 @@ public class ChatTextController {
 
 	public void saveCache() {
 		cache.save();
-
 	}
 }

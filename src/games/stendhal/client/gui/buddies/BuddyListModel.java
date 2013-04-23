@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * A <code>ListModel</code> for buddies that keeps itself sorted first by online
  * status and secondarily by buddy name.
  */
-public class BuddyListModel extends AbstractListModel {
+class BuddyListModel extends AbstractListModel {
 	/**
 	 * serial version uid
 	 */
@@ -60,7 +60,7 @@ public class BuddyListModel extends AbstractListModel {
 	 * @param online <code>true</code> if the buddy is at the moment online,
 	 * 	false otherwise
 	 */
-	public void setOnline(String name, boolean online) {
+	void setOnline(String name, boolean online) {
 		if (name == null) {
 			Logger.getLogger(BuddyListModel.class).error("Buddy with no name set " + ((online) ? "online" : "offline"));
 			return;
@@ -90,7 +90,7 @@ public class BuddyListModel extends AbstractListModel {
 	 * 
 	 * @param name name of the removed player
 	 */
-	public void removeBuddy(String name) {
+	void removeBuddy(String name) {
 		Buddy buddy = buddyMap.get(name);
 		if (buddy != null) {
 			buddyMap.remove(name);
