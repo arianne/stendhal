@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of a spell.
  */
-public class Spell2DView extends Entity2DView<IEntity> {
+class Spell2DView extends Entity2DView<IEntity> {
 
 	private static final Logger logger = Logger.getLogger(Spell2DView.class);
 

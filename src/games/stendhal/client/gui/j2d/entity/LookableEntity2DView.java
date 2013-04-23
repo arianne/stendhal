@@ -22,7 +22,7 @@ import marauroa.common.game.RPObject;
  * @author madmetzger
  * @param <T> entity type
  */
-public class LookableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
+class LookableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity2DView<T> {
 
     @Override
     public int getZIndex() {

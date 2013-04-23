@@ -26,7 +26,7 @@ import java.awt.Graphics;
  * dimensions.
  */
 public class BackgroundPainter {
-	final Sprite[] images;
+	private final Sprite[] images;
 	/** Width of the tiles. */
 	private final int tileWidth;
 	/** Height of the tiles. */

@@ -50,7 +50,7 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 	 *  
 	 * @param entity the entity to build animations for 
 	 */
-	protected void buildAnimations(T entity) {
+	private void buildAnimations(T entity) {
 		buildSprites(entity, sprites);
 	}
 
@@ -89,7 +89,7 @@ abstract class StateEntity2DView<T extends IEntity> extends Entity2DView<T> {
 	 * @param entity 
 	 * @return The appropriate sprite for the current state.
 	 */
-	protected Sprite getStateSprite(T entity) {
+	private Sprite getStateSprite(T entity) {
 		final Object state = getState(entity);
 		final Sprite sprite = getSprite(state);
 

@@ -37,7 +37,7 @@ abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T
 	 * 
 	 * @return A named state.
 	 */
-	protected Direction getDirectionState(final Direction direction) {
+	private Direction getDirectionState(final Direction direction) {
 		if (direction == Direction.STOP) {
 			return Direction.DOWN;
 		}

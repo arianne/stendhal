@@ -22,7 +22,7 @@ import javax.swing.JComponent;
  *
  * @author hendrik
  */
-public abstract class ViewPanel extends JComponent {
+abstract class ViewPanel extends JComponent {
 
 	private static final long serialVersionUID = 7442185832293104642L;
 

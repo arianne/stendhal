@@ -25,7 +25,7 @@ import javax.swing.SwingUtilities;
  * 
  * @author timothyb89
  */
-public class ImageViewWindow extends InternalManagedWindow {
+class ImageViewWindow extends InternalManagedWindow {
 	/**
 	 * serial version uid
 	 */
@@ -42,7 +42,7 @@ public class ImageViewWindow extends InternalManagedWindow {
 	 * @param title title of the window
 	 * @param viewPanel View Panel
 	 */
-	public ImageViewWindow(String title, ViewPanel viewPanel) {
+	ImageViewWindow(String title, ViewPanel viewPanel) {
 		super("examine", title);
 		
 		viewPanel.prepareView(genMaxSize());

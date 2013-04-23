@@ -61,7 +61,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * The entity drawing composite.
 	 */
-	protected Composite entityComposite;
+	private Composite entityComposite;
 	
 	/**
 	 * Model values affecting animation.
@@ -91,7 +91,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * The X alignment offset.
 	 */
-	protected int xoffset;
+	private int xoffset;
 
 	/**
 	 * The screen Y coordinate.
@@ -101,7 +101,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * The Y alignment offset.
 	 */
-	protected int yoffset;
+	private int yoffset;
 
 	/**
 	 * The entity image (or current one at least).
@@ -241,7 +241,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param eheight
 	 *            The entity height (in pixels).
 	 */
-	protected void calculateOffset(final int swidth, final int sheight,
+	private void calculateOffset(final int swidth, final int sheight,
 			final int ewidth, final int eheight) {
 		switch (xAlign) {
 		case LEFT:
@@ -671,7 +671,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param sprite
 	 *            The sprite.
 	 */
-	protected void setAnimation(final Sprite sprite) {
+	private void setAnimation(final Sprite sprite) {
 		if (sprite instanceof AnimatedSprite) {
 			final AnimatedSprite asprite = (AnimatedSprite) sprite;
 

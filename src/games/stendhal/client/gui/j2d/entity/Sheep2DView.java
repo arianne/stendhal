@@ -26,7 +26,7 @@ class Sheep2DView extends DomesticAnimal2DView<Sheep> {
 	/**
 	 * The weight that a sheep becomes fat (big).
 	 */
-	protected static final int BIG_WEIGHT = 60;
+	private static final int BIG_WEIGHT = 60;
 
 	//
 	// DomesticAnimal2DView

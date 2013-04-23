@@ -32,9 +32,9 @@ public class RemovableSprite implements Comparable<RemovableSprite> {
 
 	private final int y;
 
-	protected final Sprite sprite;
+	private final Sprite sprite;
 	/** Time after which the sprite should be removed. */
-	protected long removeTime;
+	private long removeTime;
 	/** Importance of the message to keep it above others. */
 	private int priority;
 

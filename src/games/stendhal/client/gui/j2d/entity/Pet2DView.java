@@ -26,7 +26,7 @@ class Pet2DView extends DomesticAnimal2DView<Pet> {
 	/**
 	 * The weight that a pet becomes fat (big).
 	 */
-	protected static final int BIG_WEIGHT = 20;
+	private static final int BIG_WEIGHT = 20;
 
 	//
 	// DomesticAnimal2DView

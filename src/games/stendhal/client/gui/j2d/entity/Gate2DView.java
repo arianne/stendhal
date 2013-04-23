@@ -27,8 +27,8 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public class Gate2DView extends Entity2DView<IEntity> {
-	static final HashMap<String, Sprite[]> sprites = new HashMap<String, Sprite[]>();
+class Gate2DView extends Entity2DView<IEntity> {
+	private static final HashMap<String, Sprite[]> sprites = new HashMap<String, Sprite[]>();
 
 	private Sprite openSprite, closedSprite;
 	

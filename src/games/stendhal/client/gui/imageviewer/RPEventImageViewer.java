@@ -50,7 +50,7 @@ public final class RPEventImageViewer {
 		new RPEventImageViewer(e);
 	}
 
-	public URL genURL() {
+	private URL genURL() {
 		try {
 			URL url = null;
 			if (path.startsWith("http://")) {
@@ -65,7 +65,7 @@ public final class RPEventImageViewer {
 		return null;
 	}
 
-	public void view() {
+	private void view() {
 		final ViewPanel vp = new ImageViewPanel(genURL(), caption);
 		new ImageViewWindow(title, vp);
 	}

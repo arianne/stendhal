@@ -18,7 +18,7 @@ import games.stendhal.client.sprite.EmptySprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-public class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<T> {
+class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<T> {
 	
 	@Override
 	protected void buildRepresentation(T entity) {

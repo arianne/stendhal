@@ -18,7 +18,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.util.List;
 
-public class UseableRing2DView extends Ring2DView {
+class UseableRing2DView extends Ring2DView {
 
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry

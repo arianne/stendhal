@@ -38,22 +38,22 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	/**
 	 * The down facing big state.
 	 */
-	protected static final String STATE_BIG_DOWN = "big:move_down";
+	private static final String STATE_BIG_DOWN = "big:move_down";
 
 	/**
 	 * The up facing big state.
 	 */
-	protected static final String STATE_BIG_UP = "big:move_up";
+	private static final String STATE_BIG_UP = "big:move_up";
 
 	/**
 	 * The left facing big state.
 	 */
-	protected static final String STATE_BIG_LEFT = "big:move_left";
+	private static final String STATE_BIG_LEFT = "big:move_left";
 
 	/**
 	 * The right facing big state.
 	 */
-	protected static final String STATE_BIG_RIGHT = "big:move_right";
+	private static final String STATE_BIG_RIGHT = "big:move_right";
 
 	/**
 	 * The idea property changed.
@@ -117,7 +117,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	 * 
 	 * @return The sprite representing the current idea, or null.
 	 */
-	protected Sprite getIdeaSprite() {
+	private Sprite getIdeaSprite() {
 		final String idea = entity.getIdea();
 
 		if (idea == null) {

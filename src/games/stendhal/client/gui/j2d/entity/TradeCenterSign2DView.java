@@ -18,7 +18,7 @@ import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
-public class TradeCenterSign2DView extends Sign2DView<Sign> {
+class TradeCenterSign2DView extends Sign2DView<Sign> {
 
 	/* (non-Javadoc)
 	 * @see games.stendhal.client.gui.j2d.entity.Entity2DView#buildActions(java.util.List)

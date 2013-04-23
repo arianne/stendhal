@@ -37,12 +37,12 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	/*
 	 * The closed state.
 	 */
-	protected static final String STATE_CLOSED = "close";
+	private static final String STATE_CLOSED = "close";
 
 	/*
 	 * The open state.
 	 */
-	protected static final String STATE_OPEN = "open";
+	private static final String STATE_OPEN = "open";
 
 	/**
 	 * The chest model open value changed.

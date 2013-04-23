@@ -25,8 +25,8 @@ import games.stendhal.client.sprite.SpriteStore;
 public class ImageEffect implements SequenceSprite.SequenceSpriteListener {
 	private final static String IMAGE_LOCATION = "data/sprites/effects/";
 	
-	final Entity2DView view;
-	final Sprite sequence;
+	private final Entity2DView view;
+	private final Sprite sequence;
 	
 	/**
 	 * Create a new ImageEffect.

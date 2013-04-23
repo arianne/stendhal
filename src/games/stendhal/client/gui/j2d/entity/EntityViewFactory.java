@@ -31,45 +31,17 @@ public class EntityViewFactory {
 	private static final Logger LOGGER = Logger.getLogger(EntityViewFactory.class);
 
 	private static Map<Triple<String, String, String>, Class<? extends EntityView>> viewMap = new HashMap<Triple<String, String, String>, Class<? extends EntityView>>();
-	/**
-	 * The shared instance.
-	 */
-	private static final EntityViewFactory sharedInstance = new EntityViewFactory();
 
 	/**
 	 * Create an entity view factory.
 	 */
-	public EntityViewFactory() {
-
+	static {
 		configure();
 	}
 
 	//
 	// Entity2DViewFactory
 	//
-
-	/**
-	 * @param type
-	 *            the type of the entity to be created, such as Item, creature
-	 * @param eclass
-	 *            the subtype of type such as book, drink, food , ,
-	 *            small_animal, huge_animal
-	 * @param subClass
-	 *
-	 * @return the java class of the Entity belonging to type and eclass
-	 */
-	public static Class<? extends EntityView> getClass(final String type, final String eclass,
-			final String subClass) {
-		Class<? extends EntityView> result = viewMap.get(new Triple<String, String, String>(type,
-				eclass, subClass));
-		if (result == null) {
-			result = viewMap.get(new Triple<String, String, String>(type, eclass, null));
-		}
-		if (result == null) {
-			result = viewMap.get(new Triple<String, String, String>(type, null, null));
-		}
-		return result;
-	}
 
 	/**
 	 * Create an entity view from an entity.
@@ -81,7 +53,6 @@ public class EntityViewFactory {
 	 */
 	@SuppressWarnings("unchecked")
 	public static EntityView<IEntity> create(final IEntity entity) {
-
 		try {
 			// use User2DView for the active player
 			if (entity.isUser()) {
@@ -131,7 +102,7 @@ public class EntityViewFactory {
 	 *
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class<? extends EntityView> getViewClass(final String type, final String eclass,
+	static Class<? extends EntityView> getViewClass(final String type, final String eclass,
 			final String subClass) {
 		Class<? extends EntityView> result = viewMap.get(new Triple<String, String, String>(type,
 				eclass, subClass));
@@ -147,7 +118,7 @@ public class EntityViewFactory {
 	/**
 	 * Configure the view map.
 	 */
-	protected void configure() {
+	private static void configure() {
 
 		register("blood", null, null, Blood2DView.class);
 		register("creature", "ent", null, BossCreature2DView.class);
@@ -249,14 +220,5 @@ public class EntityViewFactory {
 	private static void register(final String type, final String eclass, final String subClass,
 			final Class<? extends EntityView> entityClazz) {
 		viewMap.put(new Triple<String, String, String>(type, eclass, subClass), entityClazz);
-	}
-
-	/**
-	 * Get the shared [singleton] instance.
-	 *
-	 * @return the singleton instance
-	 */
-	public static EntityViewFactory get() {
-		return sharedInstance;
 	}
 }

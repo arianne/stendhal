@@ -31,29 +31,27 @@ class Door2DView extends StateEntity2DView<Door> {
 	/*
 	 * The closed state.
 	 */
-	protected static final String STATE_CLOSED = "close";
+	private static final String STATE_CLOSED = "close";
 
 	/*
 	 * The open state.
 	 */
-	protected static final String STATE_OPEN = "open";
+	private static final String STATE_OPEN = "open";
 
 	/*
 	 * The drawn width.
 	 */
-	protected int width;
+	private int width;
 
 	/*
 	 * The drawn height.
 	 */
-	protected int height;
+	private int height;
 
 	/**
 	 * Create a 2D view of a door.
 	 */
 	public Door2DView() {
-	
-
 		width = IGameScreen.SIZE_UNIT_PIXELS;
 		height = IGameScreen.SIZE_UNIT_PIXELS;
 	}

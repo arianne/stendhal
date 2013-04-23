@@ -26,15 +26,15 @@ import org.apache.log4j.Logger;
  * 
  * @author timothyb89
  */
-public class ImageViewPanel extends ViewPanel {
+class ImageViewPanel extends ViewPanel {
 
 	/**
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = 7018901196859465211L;
 
-	public static final String FONT_COLOR = "#FFFFFF";
-	public static final String FONT_SIZE = "5";
+	private static final String FONT_COLOR = "#FFFFFF";
+	private static final String FONT_SIZE = "5";
 	/**
 	 * The image to be displayed.
 	 */
@@ -43,7 +43,7 @@ public class ImageViewPanel extends ViewPanel {
 	private final URL url;
 	private final String caption;
 
-	public ImageViewPanel(final URL url, final String caption) {
+	ImageViewPanel(final URL url, final String caption) {
 		this.url = url;
 		this.caption = caption;
 	}

@@ -89,7 +89,7 @@ class Ring2DView extends Item2DView<Ring> {
 	 * 
 	 * @return A sprite.
 	 */
-	protected Sprite getStateSprite() {
+	private Sprite getStateSprite() {
 		if (entity.isWorking()) {
 			return working;
 		} else {
