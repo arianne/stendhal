@@ -11,6 +11,6 @@
  ***************************************************************************/
 package games.stendhal.client.gui.progress;
 
-public interface ProgressStatusQuery {
+interface ProgressStatusQuery {
 	public void fire(String data);
 }

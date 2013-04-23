@@ -26,8 +26,7 @@ import javax.swing.Timer;
 /**
  * A component that draws an animated sprite.
  */
-public class AnimatedIcon extends JComponent {
-
+class AnimatedIcon extends JComponent {
 	/**
 	 * serial version uid
 	 */
@@ -35,11 +34,10 @@ public class AnimatedIcon extends JComponent {
 
 	private static final int TILE_SIZE = 32;
 
-	final Sprite[] sprite;
-	final int height;
-	final Timer timer;
-	final Dimension size;
-	int current = 0;
+	private final Sprite[] sprite;
+	private final Timer timer;
+	private final Dimension size;
+	private int current = 0;
 
 	/*
 	 * AnimatedSprite is designed to be used in a drawing loop,
@@ -51,7 +49,7 @@ public class AnimatedIcon extends JComponent {
 	/**
 	 * Timer task to update and draw the icon.
 	 */
-	final ActionListener timerTask = new ActionListener() {
+	private final ActionListener timerTask = new ActionListener() {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			current++;
@@ -71,11 +69,10 @@ public class AnimatedIcon extends JComponent {
 	 * @param frames number of animation frames
 	 * @param delay delay between the frames
 	 */
-	public AnimatedIcon(Sprite baseSprite, int yOffset, int height, int frames, int delay) {
+	AnimatedIcon(Sprite baseSprite, int yOffset, int height, int frames, int delay) {
 		setOpaque(false);
 
 		this.sprite = new Sprite[frames];
-		this.height = height;
 		timer = new Timer(delay, timerTask);
 
 		size = new Dimension(TILE_SIZE, height);

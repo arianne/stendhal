@@ -42,7 +42,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	private final MapPanel panel;
 	private final InformationPanel infoPanel;
 	final Map<IEntity, MapObject> mapObjects = new ConcurrentHashMap<IEntity, MapObject>();
-	double x, y;
+	private double x, y;
 
 	/**
 	 * <code>true</code> if the map should be repainted, <code>false</code>

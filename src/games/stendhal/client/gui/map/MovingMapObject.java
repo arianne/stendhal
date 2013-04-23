@@ -18,20 +18,20 @@ import java.awt.Graphics;
 import games.stendhal.client.entity.EntityChangeListener;
 import games.stendhal.client.entity.IEntity;
 
-public class MovingMapObject extends MapObject implements EntityChangeListener<IEntity> {
+class MovingMapObject extends MapObject implements EntityChangeListener<IEntity> {
 	/**
 	 * The color of a general entity (pale green).
 	 */
 	private static final Color COLOR = new Color(200, 255, 200);
 	
-	public MovingMapObject(final IEntity entity) {
+	MovingMapObject(final IEntity entity) {
 		super(entity);
 		
 		entity.addChangeListener(this);
 	}
 	
 	@Override
-	public void draw(final Graphics g, final int scale) {
+	void draw(final Graphics g, final int scale) {
 		draw(g, scale, COLOR);
 	}
 	
@@ -41,7 +41,7 @@ public class MovingMapObject extends MapObject implements EntityChangeListener<I
 	 * @param scale Scaling factor
 	 * @param color Drawing color
 	 */
-	protected void draw(final Graphics g, final int scale, final Color color) {
+	void draw(final Graphics g, final int scale, final Color color) {
 		final int rx = worldToCanvas(x, scale);
 		final int ry = worldToCanvas(y, scale);
 		final int rwidth = width * scale;

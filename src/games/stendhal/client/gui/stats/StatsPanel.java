@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  * Display panel for status icons and player stats. The methods may be safely
  * called outside the event dispatch thread.
  */
-public class StatsPanel extends JPanel {
+class StatsPanel extends JPanel {
 
 	/**
 	 * serial version uid

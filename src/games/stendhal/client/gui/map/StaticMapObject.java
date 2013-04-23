@@ -17,8 +17,8 @@ import games.stendhal.client.entity.IEntity;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class StaticMapObject extends MapObject {
-	public StaticMapObject(final IEntity entity) {
+abstract class StaticMapObject extends MapObject {
+	StaticMapObject(final IEntity entity) {
 		super(entity);
 	}
 
@@ -30,7 +30,7 @@ public abstract class StaticMapObject extends MapObject {
 	 * @param color Drawing Color
 	 * @param outline Outline color, or <code>null</code> if no outline
 	 */
-	protected void draw(final Graphics g, final int scale, final Color color, final Color outline) {
+	void draw(final Graphics g, final int scale, final Color color, final Color outline) {
 		final int rx = worldToCanvas(x, scale);
 		final int ry = worldToCanvas(y, scale);
 		final int rwidth = width * scale;

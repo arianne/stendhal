@@ -47,7 +47,7 @@ import javax.swing.text.DefaultCaret;
 /**
  * Progress status window. For displaying quest information.
  */
-public class ProgressLog {
+class ProgressLog {
 	/** Width of the window content. */
 	private static final int PAGE_WIDTH = 450;
 	/** Height of the window content. */

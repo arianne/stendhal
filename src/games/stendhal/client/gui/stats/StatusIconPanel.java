@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-public class StatusIconPanel extends JComponent {
+class StatusIconPanel extends JComponent {
 	/**
 	 * serial version uid
 	 */

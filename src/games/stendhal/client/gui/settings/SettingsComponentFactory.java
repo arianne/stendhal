@@ -18,9 +18,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 
-public class SettingsComponentFactory {
-	
-	public static JCheckBox createSettingsToggle(final String parameter, String defaultValue, String label, String tooltip) {
+class SettingsComponentFactory {
+	static JCheckBox createSettingsToggle(final String parameter, String defaultValue, String label, String tooltip) {
 		boolean selected = false;
 		JCheckBox toggle = new JCheckBox(label);
 		toggle.setToolTipText(tooltip);

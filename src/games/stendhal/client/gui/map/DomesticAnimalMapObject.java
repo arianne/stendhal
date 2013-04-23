@@ -18,20 +18,20 @@ import games.stendhal.client.entity.User;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class DomesticAnimalMapObject extends MovingMapObject {
+class DomesticAnimalMapObject extends MovingMapObject {
 	private static final Color COLOR_DOMESTIC_ANIMAL = new Color(255, 150, 0);
 	
 	private DomesticAnimal domesticanimal;
-	protected Color drawColor;
+	private Color drawColor;
 	
-	public DomesticAnimalMapObject(final DomesticAnimal domesticanimal) {
+	DomesticAnimalMapObject(final DomesticAnimal domesticanimal) {
 		super(domesticanimal);
 		this.domesticanimal = domesticanimal;
 		drawColor = COLOR_DOMESTIC_ANIMAL;
 	}
 	
 	@Override
-	public void draw(final Graphics g, final int scale) {
+	void draw(final Graphics g, final int scale) {
 		// we check this here rather than in the MapPanel so that any changes to the user are refreshed (e.g. disowning pet)
 		User user = User.get();
 		if ((user != null) && ((user.hasPet() && user.getPetID() == domesticanimal.getObjectID())

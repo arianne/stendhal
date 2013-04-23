@@ -35,9 +35,7 @@ import javax.swing.Box;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
@@ -54,8 +52,8 @@ class VisualSettings {
 	//private JPanel colorsPanel;
 	
 	/** Buttons for selecting either defined styles or custom styles */
-	private JRadioButton definedStyleSelector;
-	private JRadioButton customStyleSelector;
+	/*private JRadioButton definedStyleSelector;
+	private JRadioButton customStyleSelector;*/
 	
 	/** Default decorative font. */
 	private static final String DEFAULT_FONT = "BlackChancery";
@@ -174,8 +172,8 @@ class VisualSettings {
 	 * Disables widgets not being used
 	 */
 	private void toggleComponents(Container container) {
-		boolean custom = false;
 		/*
+		boolean custom = false;
 		if (this.customStyleSelector.isSelected()) {
 			custom = true;
 		}
@@ -424,7 +422,8 @@ class VisualSettings {
 		String currentSetting = WtWindowManager.getInstance().getProperty(FONT_PROPERTY, DEFAULT_FONT);
 		return !currentSetting.equals(DEFAULT_FONT);
 	}
-	
+
+	/*
 	private String selectBGImage() {
 		JFileChooser bgSelector = new JFileChooser();
 		bgSelector.setDialogType(JFileChooser.OPEN_DIALOG | JFileChooser.FILES_ONLY);
@@ -434,4 +433,5 @@ class VisualSettings {
 		// Returning null until I figure out how to use JFileChooser
 		return null;
 	}
+	*/
 }

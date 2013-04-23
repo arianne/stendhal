@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 /**
  * Area for displaying information about a zone.
  */
-public class InformationPanel extends JComponent {
+class InformationPanel extends JComponent {
 	/** Maximum number of skull icons in the danger indicator. */
 	private static final int MAX_SKULLS = 5;
 	/**
