@@ -26,8 +26,7 @@ import java.util.Iterator;
 /**
  * User login profile list.
  */
-public class ProfileList {
-
+class ProfileList implements Iterable<Profile >{
 	protected ArrayList<Profile> profiles;
 
 	/**
@@ -47,7 +46,7 @@ public class ProfileList {
 	 * @param profile
 	 *            A user login profile.
 	 */
-	public void add(final Profile profile) {
+	void add(final Profile profile) {
 		/*
 		 * Keep one equivalent entry (can't use HasSet and preserve order)
 		 */
@@ -58,7 +57,7 @@ public class ProfileList {
 	/**
 	 * Remove all profiles.
 	 */
-	public void clear() {
+	private void clear() {
 		profiles.clear();
 	}
 
@@ -67,6 +66,7 @@ public class ProfileList {
 	 *
 	 * @return An iterator of profiles.
 	 */
+	@Override
 	public Iterator<Profile> iterator() {
 		return profiles.iterator();
 	}
@@ -77,7 +77,7 @@ public class ProfileList {
 	 * @param in The Stream to read
 	 * @throws IOException if any IO operation fails
 	 */
-	public void load(final InputStream in) throws IOException {
+	void load(final InputStream in) throws IOException {
 		final Encoder codec = new Encoder();
 		String s;
 
@@ -96,7 +96,7 @@ public class ProfileList {
 	 * @param profile
 	 *            A user login profile.
 	 */
-	public void remove(final Profile profile) {
+	void remove(final Profile profile) {
 		profiles.remove(profile);
 	}
 
@@ -107,16 +107,14 @@ public class ProfileList {
 	 *            The stream to write.
 	 * @throws IOException if any IO operation fails
 	 */
-	public void save(final OutputStream out) throws IOException {
+	void save(final OutputStream out) throws IOException {
 		final Encoder codec = new Encoder();
 
 		final Writer writer = new OutputStreamWriter(out, "UTF-8");
 
 		try {
-			final Iterator<Profile> iter = iterator();
-
-			while (iter.hasNext()) {
-				writer.write(codec.encode(iter.next().encode()));
+			for (Profile p : this) {
+				writer.write(codec.encode(p.encode()));
 				writer.write(System.getProperty("line.separator"));
 			}
 		} finally {
@@ -149,10 +147,8 @@ public class ProfileList {
 			in.close();
 		}
 
-		final Iterator<Profile> iter = list.iterator();
-
-		while (iter.hasNext()) {
-			System.out.println(iter.next());
+		for (Profile p : list) {
+			System.out.println(p);
 		}
 	}
 }

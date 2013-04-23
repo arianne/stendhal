@@ -324,7 +324,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 
 	static class CreateCharacterAction implements ActionListener {
 		private CharacterDialog parent;
-		public CreateCharacterAction(CharacterDialog parent) {
+		private CreateCharacterAction(CharacterDialog parent) {
 			this.parent = parent;
 		}
 

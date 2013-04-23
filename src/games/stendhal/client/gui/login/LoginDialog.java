@@ -35,7 +35,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -70,7 +69,7 @@ public class LoginDialog extends JDialog {
 
 	private static final long serialVersionUID = -1182930046629241075L;
 
-	protected ProfileList profiles;
+	private ProfileList profiles;
 
 	private JComboBox profilesComboBox;
 
@@ -553,13 +552,11 @@ public class LoginDialog extends JDialog {
 	 * Populate the profiles combobox and select the default.
 	 * @param profiles
 	 */
-	protected void populateProfiles(final ProfileList profiles) {
+	private void populateProfiles(final ProfileList profiles) {
 		profilesComboBox.removeAllItems();
 
-		final Iterator< ? > iter = profiles.iterator();
-
-		while (iter.hasNext()) {
-			profilesComboBox.addItem(iter.next());
+		for (Profile p : profiles) {
+			profilesComboBox.addItem(p);
 		}
 
 		/*
@@ -574,7 +571,7 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Called when a profile selection is changed.
 	 */
-	protected void profilesCB() {
+	private void profilesCB() {
 		Profile profile;
 		String host;
 
@@ -624,18 +621,17 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Called when save profile selection change.
 	 */
-	protected void saveProfileStateCB() {
+	private void saveProfileStateCB() {
 		savePasswordBox.setEnabled(saveLoginBox.isSelected());
 	}
 
 	/**
 	 * Server connect thread runnable.
 	 */
-	protected class ConnectRunnable implements Runnable {
+	private class ConnectRunnable implements Runnable {
+		private Profile profile;
 
-		protected Profile profile;
-
-		public ConnectRunnable(final Profile profile) {
+		private ConnectRunnable(final Profile profile) {
 			this.profile = profile;
 		}
 
@@ -648,8 +644,7 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Profiles combobox selection change listener.
 	 */
-	protected class ProfilesCB implements ActionListener {
-
+	private class ProfilesCB implements ActionListener {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			profilesCB();
@@ -659,8 +654,7 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Save profile selection change.
 	 */
-	protected class SaveProfileStateCB implements ChangeListener {
-
+	private class SaveProfileStateCB implements ChangeListener {
 		@Override
 		public void stateChanged(final ChangeEvent ev) {
 			saveProfileStateCB();

@@ -16,7 +16,6 @@ package games.stendhal.client.gui.login;
  * User login profile.
  */
 public class Profile {
-
 	/** Default server port. */
 	static final int DEFAULT_SERVER_PORT = 32160;
 	
@@ -42,17 +41,12 @@ public class Profile {
 		this("", DEFAULT_SERVER_PORT, "", "");
 	}
 
-	public Profile(final String host, final int port, final String user, final String password) {
+	private Profile(final String host, final int port, final String user, final String password) {
 		this.host = host;
 		this.port = port;
 		this.user = user;
 		this.password = password;
 
-	}
-
-	public Profile(final String host, final int port, final String user, final String password, String character) {
-		this(host, port, user, password);
-		this.character = character;
 	}
 
 	//
@@ -64,7 +58,7 @@ public class Profile {
 	 * 
 	 * @return A string excoded form (with newlines).
 	 */
-	public String encode() {
+	String encode() {
 		StringBuilder sbuf;
 
 		sbuf = new StringBuilder();
@@ -115,7 +109,7 @@ public class Profile {
 	 * 
 	 * @return A login profile.
 	 */
-	public static Profile decode(final String info) {
+	static Profile decode(final String info) {
 		String[] params;
 		Profile profile;
 		String s;

@@ -445,7 +445,7 @@ public class CreateAccountDialog extends JDialog {
 		}
 	}
 
-	public boolean validatePassword(final String username, final String password) {
+	boolean validatePassword(final String username, final String password) {
 		if (password.length() > 5) {
 
 			// check for all numbers
@@ -527,8 +527,7 @@ public class CreateAccountDialog extends JDialog {
 	 * Prints text only when running stand-alone.
 	 * @param text 
 	 */
-	public void debug(final String text) {
-
+	private void debug(final String text) {
 		if (client == null) {
 			logger.debug(text);
 		}
