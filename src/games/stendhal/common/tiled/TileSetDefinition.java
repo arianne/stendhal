@@ -86,12 +86,14 @@ public class TileSetDefinition implements Serializable {
 		return array.toByteArray();
 	}
 
+	@Override
 	public void readObject(final InputSerializer in) throws IOException {
 		name = in.readString();
 		source = in.readString();
 		gid = in.readInt();
 	}
 
+	@Override
 	public void writeObject(final OutputSerializer out) throws IOException {
 		out.write(name);
 		out.write(source);

@@ -181,6 +181,8 @@ public class ServerTMXLoader {
 						while (offset != raw.length) {
 							offset += is.read(raw, offset, raw.length - offset);
 						}
+						
+						bais.close();
 					}
 				}
 			}

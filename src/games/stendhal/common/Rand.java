@@ -185,22 +185,22 @@ public class Rand {
 	}
 	
 	/**
-	 * Calculate the propability for a given mean value in an exponential distribution
+	 * Calculate the probability for a given mean value in an exponential distribution
 	 * 
 	 * @param mean the desired mean value of the distribution
-	 * @return the propability to reach the given mean value (1 for mean == 0)
+	 * @return the probability to reach the given mean value (1 for mean == 0)
 	 */
 	public static double propabilityForMeanExp(final long mean) {
 		if(mean == 0) {
 			return 1;
 		}
 		double meandouble = mean;
-		return (double) 1d/meandouble;
+		return 1d/meandouble;
 	}
 	
 	/**
-	 * Flip a coin to decide between true and false based on a propability
-	 * @param propability the propability to get true
+	 * Flip a coin to decide between true and false based on a probability
+	 * @param propability the probability to get true
 	 * @return true or false randomly
 	 */
 	public static boolean flipCoin(final double propability) {

@@ -27,6 +27,7 @@ public class ErrorBuffer implements ErrorDrain {
 	 * 
 	 * @param error message
 	 */
+	@Override
 	public void setError(final String error) {
 		if (errorBuffer == null) {
 			errorBuffer = error;
@@ -41,6 +42,7 @@ public class ErrorBuffer implements ErrorDrain {
 	 * 
 	 * @return error flag
 	 */
+	@Override
 	public boolean hasError() {
 		return errorBuffer != null;
 	}
@@ -50,6 +52,7 @@ public class ErrorBuffer implements ErrorDrain {
 	 * 
 	 * @return error string
 	 */
+	@Override
 	public String getErrorString() {
 		return errorBuffer;
 	}

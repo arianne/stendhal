@@ -100,6 +100,7 @@ public class FeatureList implements Iterable<String> {
 	//
 	// Iterable
 	//
+	@Override
 	public Iterator<String> iterator() {
 		return list.keySet().iterator();
 	}

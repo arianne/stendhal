@@ -261,6 +261,7 @@ public class LayerDefinition implements Serializable {
 		return name;
 	}
 
+	@Override
 	public void readObject(final InputSerializer in) throws IOException {
 		name = in.readString();
 		width = in.readInt();
@@ -268,6 +269,7 @@ public class LayerDefinition implements Serializable {
 		raw = in.readByteArray();
 	}
 
+	@Override
 	public void writeObject(final OutputSerializer out) throws IOException {
 		out.write(name);
 		out.write(width);
