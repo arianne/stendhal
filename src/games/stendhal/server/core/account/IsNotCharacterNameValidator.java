@@ -41,6 +41,7 @@ public class IsNotCharacterNameValidator implements AccountParameterValidator {
 		this.username = username;
 	}
 
+	@Override
 	public Result validate() {
 		 try {
 			 if(DAORegister.get().get(CharacterDAO.class).getAccountName(username) != null) {

@@ -41,6 +41,7 @@ public class PasswordDiffersFromUsernameValidator implements
 		this.password = password;
 	}
 
+	@Override
 	public Result validate() {
 		// check for username
 		boolean hasUsername = false;

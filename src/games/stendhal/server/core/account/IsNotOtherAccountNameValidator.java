@@ -44,6 +44,7 @@ public class IsNotOtherAccountNameValidator implements AccountParameterValidator
 		this.username = username;
 	}
 
+	@Override
 	public Result validate() {
 		if (charname.equals(username)) {
 			return null;

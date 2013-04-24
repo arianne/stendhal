@@ -35,7 +35,6 @@ import marauroa.server.game.db.DAORegister;
 import org.apache.log4j.Logger;
 
 public class BanAction extends AdministrationAction {
-	@SuppressWarnings("hiding")
 	private static Logger logger = Logger.getLogger(BanAction.class);
 
 	@Override

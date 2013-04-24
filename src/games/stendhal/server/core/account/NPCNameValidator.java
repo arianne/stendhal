@@ -34,6 +34,7 @@ public class NPCNameValidator implements AccountParameterValidator {
 		this.parameterValue = parameterValue;
 	}
 
+	@Override
 	public Result validate() {
 		final NPCList npcs = SingletonRepository.getNPCList();
 		for (final String name : npcs.getNPCs()) {

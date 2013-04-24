@@ -41,11 +41,11 @@ public class CommonPassword implements AccountParameterValidator {
 		this.parameterValue = parameterValue;
 	}
 
+	@Override
 	public Result validate() {
 		if (commonPasswords.contains(parameterValue.toLowerCase(Locale.ENGLISH))) {
 			return Result.FAILED_PASSWORD_TO_WEAK;
 		}
 		return null;
 	}
-
 }

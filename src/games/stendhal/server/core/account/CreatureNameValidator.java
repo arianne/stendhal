@@ -37,6 +37,7 @@ public class CreatureNameValidator implements AccountParameterValidator {
 		this.parameterValue = parameterValue;
 	}
 
+	@Override
 	public Result validate() {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (final Creature creature : creatures) {

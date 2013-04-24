@@ -103,7 +103,6 @@ public class MoveToAction implements ActionListener {
 	 * one step further into the requested direction. This allows the client
 	 * to trigger a zone change with the mouse.
 	 *
-	 * @param player player requesting the action
 	 * @param action move-to action
 	 * @param path the path to extend if requested
 	 */

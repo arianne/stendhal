@@ -36,6 +36,7 @@ public class MinLengthValidator implements AccountParameterValidator {
 		this.minLength = minLength;
 	}
 
+	@Override
 	public Result validate() {
 		if (parameterValue.length() < minLength) {
 			return Result.FAILED_STRING_TOO_SHORT;

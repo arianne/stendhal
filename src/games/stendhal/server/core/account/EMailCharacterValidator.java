@@ -33,6 +33,7 @@ public class EMailCharacterValidator implements AccountParameterValidator {
 		this.parameterValue = parameterValue;
 	}
 
+	@Override
 	public Result validate() {
 		// only letters are allowed
 		for (int i = parameterValue.length() - 1; i >= 0; i--) {
