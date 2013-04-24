@@ -4,6 +4,7 @@ import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import marauroa.common.game.RPObject;
 
 public class ExpirationTrackerTransformer implements Transformer {
+	@Override
 	public RPObject transform(RPObject object) {
 		ExpirationTracker entity = new ExpirationTracker();
 		

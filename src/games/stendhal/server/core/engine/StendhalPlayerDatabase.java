@@ -67,7 +67,6 @@ public class StendhalPlayerDatabase {
 	 * creates the Stendhal database tables unless they already exist
 	 *
 	 * @param transaction   DBTransaction
-	 * @throws SQLException in case of an unexpected database error
 	 */
 	private void createTablesUnlessTheyAlreadyExist(final DBTransaction transaction) {
 		new JDBCSQLHelper(transaction).runDBScript("games/stendhal/server/stendhal_init.sql");

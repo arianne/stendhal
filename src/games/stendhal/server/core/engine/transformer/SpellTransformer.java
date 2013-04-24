@@ -10,6 +10,7 @@ import marauroa.common.game.RPObject;
  */
 public class SpellTransformer implements Transformer {
 
+	@Override
 	public RPObject transform(RPObject object) {
 		Spell spell = SingletonRepository.getEntityManager().getSpell(object.get("subclass"));
 		if(spell != null) {

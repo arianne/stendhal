@@ -17,6 +17,7 @@ import marauroa.common.game.RPObject;
 
 public class StoredChestTransformer implements Transformer {
 
+	@Override
 	public RPObject transform(final RPObject object) {
 				return new StoredChest(object);
 	}

@@ -16,6 +16,7 @@ import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import marauroa.common.game.RPObject;
 
 public class HousePortalTransformer implements Transformer {
+	@Override
 	public RPObject transform(final RPObject object) {
 		return new HousePortal(object);
 	}

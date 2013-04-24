@@ -17,6 +17,7 @@ import marauroa.common.game.RPObject;
 
 public class EarningTransformer implements Transformer {
 
+	@Override
 	public RPObject transform(RPObject object) {
 		return new Earning(object);
 	}

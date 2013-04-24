@@ -17,6 +17,7 @@ import marauroa.common.game.RPObject;
 
 public class FlowerGrowerTransFormer implements Transformer {
 
+	@Override
 	public RPObject transform(final RPObject object) {
 			String itemname = object.get("class");
 			itemname = itemname.substring(itemname.lastIndexOf('/') + 1, itemname.length() - "_grower".length());
