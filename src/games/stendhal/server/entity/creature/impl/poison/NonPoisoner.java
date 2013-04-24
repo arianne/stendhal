@@ -20,18 +20,22 @@ class NonPoisoner implements Attacker {
 		super();
 	}
 
+	@Override
 	public boolean attack(final RPEntity victim) {
 		return false;
 	}
 
+	@Override
 	public void applyAntipoison(double antipoison) {
 	}
 	
+	@Override
 	public int getProbability() {
 		// Non-poisoner has 0% chance of poisoning
 		return 0;
 	}
 	
+	@Override
 	public void setProbability(int p) {
 	}
 }

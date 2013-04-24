@@ -29,6 +29,7 @@ class RangeAttack implements AttackStrategy {
 		this.range = MathHelper.parseIntDefault(range, DEFAULT_RANGE);
 	}
 
+	@Override
 	public void attack(final Creature creature) {
 
 		if ((SingletonRepository.getRuleProcessor().getTurn() % 5 == creature.getAttackTurn())) {
@@ -37,10 +38,12 @@ class RangeAttack implements AttackStrategy {
 		}
 	}
 	
+	@Override
 	public boolean canAttackNow(final Creature creature) {
 		return canAttackNow(creature, creature.getAttackTarget());
 	}
 
+	@Override
 	public boolean canAttackNow(final Creature creature, RPEntity target) {
 		if (target != null) {
 			return ((creature.squaredDistance(target) <= range * range) && creature.hasLineOfSight(target));
@@ -49,6 +52,7 @@ class RangeAttack implements AttackStrategy {
 		}
 	}
 
+	@Override
 	public void findNewTarget(final Creature creature) {
 		final RPEntity enemy = creature.getNearestEnemy(creature.getPerceptionRange()+2);
 		if (enemy != null) {
@@ -56,6 +60,7 @@ class RangeAttack implements AttackStrategy {
 		}
 	}
 
+	@Override
 	public void getBetterAttackPosition(final Creature creature) {
 		final Entity target = creature.getAttackTarget();
 		final double distance = creature.squaredDistance(target);
@@ -99,6 +104,7 @@ class RangeAttack implements AttackStrategy {
 		}
 	}
 
+	@Override
 	public boolean hasValidTarget(final Creature creature) {
 		if (!creature.isAttacking()) {
 			return false;
@@ -140,6 +146,7 @@ class RangeAttack implements AttackStrategy {
 		return tmp * tmp;
 	}
 	
+	@Override
 	public int getRange() {
 		return range;
 	}

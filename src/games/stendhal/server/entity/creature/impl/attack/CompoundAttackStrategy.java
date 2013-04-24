@@ -99,30 +99,37 @@ class CompoundAttackStrategy implements AttackStrategy {
 		this.positioner = positioner;
 	}
 
+	@Override
 	public void attack(Creature creature) {
 		base.attack(creature);
 	}
 
+	@Override
 	public boolean canAttackNow(Creature creature) {
 		return base.canAttackNow(creature);
 	}
 
+	@Override
 	public void findNewTarget(Creature creature) {
 		targeter.findNewTarget(creature);
 	}
 
+	@Override
 	public void getBetterAttackPosition(Creature creature) {
 		positioner.getBetterAttackPosition(creature);
 	}
 
+	@Override
 	public int getRange() {
 		return base.getRange();
 	}
 
+	@Override
 	public boolean hasValidTarget(Creature creature) {
 		return targeter.hasValidTarget(creature);
 	}
 
+	@Override
 	public boolean canAttackNow(Creature attacker, RPEntity target) {
 		return base.canAttackNow(attacker, target);
 	}

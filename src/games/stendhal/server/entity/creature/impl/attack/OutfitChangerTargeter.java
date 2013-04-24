@@ -35,10 +35,12 @@ public class OutfitChangerTargeter implements TargetSelectionStrategy {
 		currentOutfit = peaceful;
 	}
 
+	@Override
 	public void findNewTarget(Creature creature) {
 		base.findNewTarget(creature);
 	}
 
+	@Override
 	public boolean hasValidTarget(Creature creature) {
 		boolean rval = base.hasValidTarget(creature);
 		String outfit;

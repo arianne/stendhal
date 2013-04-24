@@ -24,12 +24,14 @@ class Healer implements HealerBehavior {
 		init(healingProfile);
 	}
 
+	@Override
 	public void init(final String healingProfile) {
 		final String[] healingAttributes = healingProfile.split(",");
 		amount = Integer.parseInt(healingAttributes[0]);
 		frequency = Integer.parseInt(healingAttributes[1]);
 	}
 
+	@Override
 	public void heal(final Creature creature) {
 		if ((SingletonRepository.getRuleProcessor().getTurn() % frequency == 0)
 				&& (creature.getHP() > 0)) {

@@ -30,6 +30,7 @@ class Poisoner implements Attacker {
 		// standard constructor
 	}
 
+	@Override
 	public boolean attack(final RPEntity victim) {
 		final int roll = Rand.roll1D100();
 		if (roll <= probability) {
@@ -43,6 +44,7 @@ class Poisoner implements Attacker {
 		return false;
 	}
 	
+	@Override
 	public void applyAntipoison(double antipoison) {
 		/*
 		 * invert the value for multiplying
@@ -51,10 +53,12 @@ class Poisoner implements Attacker {
 		this.probability *= antipoison;
 	}
 	
+	@Override
 	public int getProbability() {
 		return this.probability;
 	}
 	
+	@Override
 	public void setProbability(int p) {
 		this.probability = p;
 	}

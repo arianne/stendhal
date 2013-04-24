@@ -17,10 +17,12 @@ import games.stendhal.server.entity.creature.Creature;
 final class NonHealingBehaviour implements HealerBehavior {
 
 	
+	@Override
 	public void heal(final Creature creature) {
 		// does not heal;
 	}
 
+	@Override
 	public void init(final String healingProfile) {
 		// does not need init
 		

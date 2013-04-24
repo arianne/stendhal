@@ -18,6 +18,7 @@ import games.stendhal.server.entity.creature.Creature;
  * from distance.
  */
 class DualAttackPositioningStrategy implements PositioningStrategy {
+	@Override
 	public void getBetterAttackPosition(Creature creature) {
 		AttackStrategy strategy = creature.getAttackStrategy();
 

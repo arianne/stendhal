@@ -18,6 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
 public class StandOnIdle implements IdleBehaviour {
+	@Override
 	public void perform(final Creature creature) {
 		retreatUnderFire(creature);
 	}
