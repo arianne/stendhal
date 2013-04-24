@@ -31,14 +31,13 @@ public class GoToPosition implements Observer {
 		private boolean s = false;
 	
 	/**
-	 * constructor
-	 * @param entity - pathnotifier owner
+	 * Constructor
+	 * 
+	 * @param entity - path notifier owner
+	 * @param position target position
+	 * @param o observer
 	 */
-	public GoToPosition(
-			final GuidedEntity entity,
-			final Node position,
-			final Observer o) {
-
+	public GoToPosition(GuidedEntity entity, Node position, Observer o) {
 		ent=entity;
 		finishnotifier.setObserver(o);		
 		this.position = position;
@@ -60,6 +59,7 @@ public class GoToPosition implements Observer {
 	 * @param o - not used
 	 * @param arg - arguments, not used
 	 */
+	@Override
 	public void update(Observable o, Object arg) {
 	    // are we at our destination? 
 		Node current = new Node(ent.getX(), ent.getY());

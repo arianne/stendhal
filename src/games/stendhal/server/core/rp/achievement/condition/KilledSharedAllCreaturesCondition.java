@@ -28,8 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  *
  */
 public class KilledSharedAllCreaturesCondition implements ChatCondition {
-
-
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {

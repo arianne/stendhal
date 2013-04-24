@@ -30,6 +30,7 @@ public class QuestCountCompletedCondition implements ChatCondition {
 		this.count = count;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		List<String> quests = SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player);
 		if (quests.size()>=count) {

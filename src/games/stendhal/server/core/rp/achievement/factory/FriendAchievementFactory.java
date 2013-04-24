@@ -75,6 +75,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 														new QuestCompletedCondition("find_ghosts"),
 														// Meet Angels (any of the cherubs)
 														new ChatCondition() {
+															@Override
 															public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 																if (!player.hasQuest("seven_cherubs")) {
 																	return false;
@@ -90,6 +91,7 @@ public class FriendAchievementFactory extends AbstractAchievementFactory {
 		achievements.add(createAchievement("friend.karma.250", "Good Samaritan", "Earn a very good karma",
 				Achievement.MEDIUM_BASE_SCORE, true,
 				new ChatCondition() {
+			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 				return player.getKarma()>250;
 			}

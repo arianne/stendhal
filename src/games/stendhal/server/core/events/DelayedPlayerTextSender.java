@@ -57,6 +57,7 @@ public class DelayedPlayerTextSender implements TurnListener {
 		SingletonRepository.getTurnNotifier().notifyInSeconds(seconds, this);
 	}
 	
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		player.sendPrivateText(type, message);
 	}

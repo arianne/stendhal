@@ -317,7 +317,6 @@ public final class AchievementNotifier {
 	 * Notifies a player about reached achievements via private message
 	 *
 	 * @param player
-	 * @param achievements
 	 */
 	private void notifyPlayerAboutReachedAchievements(Player player, List<Achievement> achievementsToNotifyAbout) {
 		for (Achievement achievement : achievementsToNotifyAbout) {

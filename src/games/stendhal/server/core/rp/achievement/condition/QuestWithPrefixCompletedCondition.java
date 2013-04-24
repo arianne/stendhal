@@ -39,6 +39,7 @@ public class QuestWithPrefixCompletedCondition implements ChatCondition {
 		this.questname = questname;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		List<String> quests = player.getQuests();
 		for (String quest : quests) {

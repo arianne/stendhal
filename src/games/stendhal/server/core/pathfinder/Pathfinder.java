@@ -79,6 +79,7 @@ public abstract class Pathfinder {
 	 */
 	private final PriorityQueue<TreeNode> openList = new PriorityQueue<TreeNode>(16,
 			new Comparator<TreeNode>() {
+		@Override
 		public int compare(final TreeNode o1, final TreeNode o2) {
 			return (int) Math.signum(o1.weight - o2.weight);
 		}

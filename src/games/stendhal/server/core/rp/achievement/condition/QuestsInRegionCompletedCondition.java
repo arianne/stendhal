@@ -40,6 +40,7 @@ public class QuestsInRegionCompletedCondition implements ChatCondition {
 		this.region = region;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		List<String> quests = SingletonRepository.getStendhalQuestSystem().getIncompleteQuests(player, region);
 		if (quests.isEmpty()) {

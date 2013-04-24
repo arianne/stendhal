@@ -29,8 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author kymara
  */
 public class KilledRareCreatureCondition implements ChatCondition {
-
-
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		for (Creature creature : creatures) {
