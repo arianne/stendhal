@@ -233,6 +233,7 @@ public class Portal extends Entity implements UseListener {
 		return true;
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (user instanceof Player) {
 			return usePortal((Player) user);

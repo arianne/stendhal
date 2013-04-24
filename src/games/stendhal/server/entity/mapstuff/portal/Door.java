@@ -172,6 +172,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 		return (text);
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		close();
 		notifyWorldAboutChanges();

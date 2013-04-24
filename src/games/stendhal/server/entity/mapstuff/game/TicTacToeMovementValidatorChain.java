@@ -47,6 +47,7 @@ public class TicTacToeMovementValidatorChain implements MoveValidator {
 		validators.add(new MovementTargetEmptyValidator());
 	}
 
+	@Override
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
 		for (MoveValidator validator : validators) {
 			if (!validator.validate(board, player, token, xIndex, yIndex)) {

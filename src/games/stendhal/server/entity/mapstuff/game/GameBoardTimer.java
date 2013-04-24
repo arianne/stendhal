@@ -35,6 +35,7 @@ public class GameBoardTimer implements TurnListener {
 		this.seconds = seconds;
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		gameBoard.timeOut();
 	}

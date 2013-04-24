@@ -52,6 +52,7 @@ public class LockedDoorFactory extends DoorFactory {
 	 * 
 	 * @see LockedDoor
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new LockedDoor(getKey(ctx), getClass(ctx));
 	}

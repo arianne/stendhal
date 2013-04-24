@@ -67,6 +67,7 @@ abstract class AccessCheckingPortalFactory implements
 	 * 
 	 * @see KeyedPortal
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
 

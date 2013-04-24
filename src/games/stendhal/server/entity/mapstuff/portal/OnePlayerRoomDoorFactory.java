@@ -35,6 +35,7 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 	 * 
 	 * @see OnePlayerRoomDoor
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new OnePlayerRoomDoor(getClass(ctx));
 	}

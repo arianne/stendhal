@@ -67,6 +67,7 @@ public class PopupImageFactory implements ConfigurableFactory {
 	 * 
 	 * @see PopupImage
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new PopupImage(getImage(ctx), getTitle(ctx), getCaption(ctx));
 	}

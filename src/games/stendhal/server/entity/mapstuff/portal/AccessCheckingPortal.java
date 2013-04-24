@@ -140,6 +140,7 @@ abstract class AccessCheckingPortal extends Portal {
 		 * @param currentTurn
 		 *            Current turn number.
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			user.sendPrivateText(this.text);
 			user.notifyWorldAboutChanges();

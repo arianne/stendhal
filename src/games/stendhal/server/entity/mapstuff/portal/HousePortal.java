@@ -287,6 +287,7 @@ public class HousePortal extends AccessCheckingPortal {
 		 */
 		needsSaving = true;
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
+			@Override
 			public void onTurnReached(int turn) {
 				if (needsSaving) {
 					needsSaving = false;

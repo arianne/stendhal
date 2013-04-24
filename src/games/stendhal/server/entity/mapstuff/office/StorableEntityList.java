@@ -154,7 +154,8 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
 	}
 
-    public void onTurnReached(final int currentTurn) {
+    @Override
+	public void onTurnReached(final int currentTurn) {
 		boolean modified = false;
     	final List<T> entities = getList();
     	for (final T entity : entities) {
@@ -173,8 +174,7 @@ public abstract class StorableEntityList<T extends Entity> implements TurnListen
 
 	protected abstract String getName(T entity);
 
-	protected boolean shouldExpire(@SuppressWarnings("unused") final T entity) {
+	protected boolean shouldExpire(final T entity) {
 		return false;
 	}
-
 }

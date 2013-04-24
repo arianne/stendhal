@@ -31,6 +31,7 @@ public class OnePlayerRoomDoor extends Door {
 	 */
 	class PeriodicOpener implements TurnListener {
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			if (!isOpen()) {
 				if (isAllowed(null)) {

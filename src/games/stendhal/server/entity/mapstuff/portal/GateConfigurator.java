@@ -24,6 +24,7 @@ import java.util.Map;
 import org.codehaus.groovy.control.CompilationFailedException;
 
 public class GateConfigurator implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		final int x = MathHelper.parseInt(attributes.get("x"));

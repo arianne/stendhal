@@ -89,8 +89,8 @@ public class ShopSignFactory implements ConfigurableFactory {
 	 * 
 	 * @see ShopSign
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new ShopSign(getShop(ctx), getTitle(ctx), getCaption(ctx), getSeller(ctx));
 	}
-
 }

@@ -130,6 +130,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 		setOpen(false);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (this.nextTo(user)) {
 			if (isAllowed(user)) {
@@ -232,6 +233,7 @@ public class Gate extends Entity implements UseListener, TurnListener {
 	 * Callback for the turn notifier to automatically close the gate if the 
 	 * interval is set 
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		setOpen(false);
 		/*

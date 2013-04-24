@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class StoredEntityMoveConfigurator implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		final int x = MathHelper.parseInt(attributes.get("x"));
 		final int y = MathHelper.parseInt(attributes.get("y"));

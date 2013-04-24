@@ -72,6 +72,7 @@ public class ShopSign extends Sign implements UseListener {
 	/**
 	 * Handles use-actions.
 	 */
+	@Override
 	public boolean onUsed(RPEntity user) {
 		List<Item> itemList = generateItemList();
 		ShowItemListEvent event = new ShowItemListEvent(title, caption, itemList);

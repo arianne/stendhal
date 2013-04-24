@@ -39,6 +39,7 @@ public class PopupImage extends Sign implements UseListener {
 		this.caption = caption;
 	}
 
+	@Override
 	public boolean onUsed(RPEntity user) {
 		user.addEvent(new ExamineEvent("examine/" + image, title, caption));
 		return true;

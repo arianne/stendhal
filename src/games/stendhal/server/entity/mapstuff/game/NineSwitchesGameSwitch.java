@@ -38,6 +38,7 @@ public class NineSwitchesGameSwitch extends UseableEntity{
 	/**
 	 * someone clicked a switch.
 	 */
+	@Override
 	public boolean onUsed(RPEntity user) {
 		board.usedSwitch(user, this);
 		return true;
