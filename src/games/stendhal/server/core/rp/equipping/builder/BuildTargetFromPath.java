@@ -27,6 +27,7 @@ import marauroa.common.game.RPObject;
 
 class BuildTargetFromPath implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		List<String> path = action.getList(Actions.TARGET_PATH);
 		Iterator<String> it = path.iterator();

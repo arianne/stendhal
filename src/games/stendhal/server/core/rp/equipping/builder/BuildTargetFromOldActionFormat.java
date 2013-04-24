@@ -20,6 +20,7 @@ import marauroa.common.game.RPAction;
 
 class BuildTargetFromOldActionFormat implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		// get parent
 		Entity parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.TARGET_OBJECT));

@@ -22,6 +22,7 @@ import marauroa.common.game.RPAction;
  */
 public class BuildError implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		data.setErrorMessage("");
 	}

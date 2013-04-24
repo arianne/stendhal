@@ -20,6 +20,7 @@ import games.stendhal.server.core.rp.equipping.EquipmentActionData;
  */
 public class IsThereEnoughSpace implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 
 		// Simple cases: enough empty slots

@@ -23,6 +23,7 @@ import marauroa.server.db.command.DBCommandQueue;
  */
 public class DumpSpeakerNPCtoDB implements TurnListener {
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		DBCommandQueue.get().enqueue(new DumpSpeakerNPCsCommand());
 	}

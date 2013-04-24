@@ -492,10 +492,12 @@ public class StendhalQuestSystem {
 
 
 	/**
-	 * gets quest descriptions for unstarted quests in a specified region matching a specific npc name
+	 * Gets quest descriptions for unstarted quests in a specified region
+	 * matching a specific npc name.
 	 *
 	 * @param player Player to return the list for
 	 * @param region Region to check in
+	 * @param name npc name
 	 * @return quest description (there may be more than one)
 	 */
 	public List<String> getQuestDescriptionForUnstartedQuestInRegionFromNPCName(Player player, String region, String name) {

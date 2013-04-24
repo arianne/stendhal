@@ -23,6 +23,7 @@ import marauroa.common.game.RPSlot;
 
 class BuildSourceFromOldActionFormat implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		final Entity parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.BASE_OBJECT));
 

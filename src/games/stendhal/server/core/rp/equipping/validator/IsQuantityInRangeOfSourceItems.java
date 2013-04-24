@@ -24,6 +24,7 @@ import games.stendhal.server.entity.item.StackableItem;
  */
 public class IsQuantityInRangeOfSourceItems implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 		// -1 means everything
 		int quantity = data.getQuantity();

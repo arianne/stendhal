@@ -21,6 +21,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
  */
 public class AreSlotsReachable implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 
 		// source slots

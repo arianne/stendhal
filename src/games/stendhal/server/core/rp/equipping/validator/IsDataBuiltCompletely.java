@@ -20,6 +20,7 @@ import games.stendhal.server.core.rp.equipping.EquipmentActionData;
  */
 class IsDataBuiltCompletely implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 		if (data.getErrorMessage() != null) {
 			return false;

@@ -20,6 +20,7 @@ import marauroa.common.game.RPAction;
 
 class BuildTargetFromGround implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		final int x = action.getInt(X);
 		final int y = action.getInt(Y);

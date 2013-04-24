@@ -29,6 +29,7 @@ import marauroa.common.game.RPSlot;
 
 class BuildSourceFromPath implements PartialBuilder {
 
+	@Override
 	public void build(EquipmentActionData data, Player player, RPAction action) {
 		List<String> path = action.getList(EquipActionConsts.SOURCE_PATH);
 		Iterator<String> it = path.iterator();

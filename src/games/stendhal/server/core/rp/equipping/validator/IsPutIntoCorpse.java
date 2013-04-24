@@ -22,6 +22,7 @@ import games.stendhal.server.entity.item.Corpse;
  */
 class IsPutIntoCorpse implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 		// players sometimes accidentally drop items into corpses, so inform about all drops into a corpse
 		// which aren't just a movement from one corpse to another.

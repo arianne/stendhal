@@ -21,6 +21,7 @@ import games.stendhal.server.entity.slot.EntitySlot;
  */
 class IsSwappingSupportedBySlots implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 
 		// Is the source owned by the player?

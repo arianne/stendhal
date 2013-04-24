@@ -50,6 +50,7 @@ public class DaylightUpdater implements TurnListener {
 		setZoneColor(attr, currentColor);
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		updateDaytimeColor();
 		SingletonRepository.getTurnNotifier().notifyInSeconds(CHECK_INTERVAL, this);

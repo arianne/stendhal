@@ -22,6 +22,7 @@ import games.stendhal.server.entity.item.Item;
  */
 public class IsBoundStatusRespected implements Validator {
 
+	@Override
 	public boolean validate(EquipmentActionData data) {
 
 		// get boundTo, return on unbound items

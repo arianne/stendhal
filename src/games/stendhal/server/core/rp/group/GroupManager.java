@@ -107,6 +107,7 @@ public class GroupManager implements TurnListener, LoginListener {
 	/**
 	 * cleans up
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		clean();
 		TurnNotifier.get().notifyInSeconds(60, this);
@@ -115,6 +116,7 @@ public class GroupManager implements TurnListener, LoginListener {
 	/**
 	 * tell the reconnecting client if he is in a group
 	 */
+	@Override
 	public void onLoggedIn(Player player) {
 		Group group = getGroup(player.getName());
 		if (group != null) {

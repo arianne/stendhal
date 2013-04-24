@@ -1,17 +1,16 @@
 package games.stendhal.server.core.rp.economy;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import marauroa.common.game.IRPZone;
 
 /**
@@ -127,15 +126,6 @@ public class StendhalEconomy {
 		 */
 		public List<DropItem> getDropList() {
 			return dropsItems;
-		}
-	}
-	
-	/**
-	 * Comparator for sorting the item list.
-	 */
-	private static class EntryComparator implements Comparator<Entry<String, Double>> {
-		public int compare(Entry<String, Double> o1, Entry<String, Double> o2) {
-			return o1.getValue().compareTo(o2.getValue());
 		}
 	}
 	
