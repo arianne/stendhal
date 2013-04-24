@@ -27,12 +27,12 @@ public class FullSpellCreator extends AbstractSpellCreator {
 	@Override
 	protected Spell createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return (Spell) construct.newInstance(defaultSpell.getName(), defaultSpell.getNature(), (Object) defaultSpell.getAmount(),
-									(Object) defaultSpell.getAtk(), (Object) defaultSpell.getCooldown(),
-									(Object) defaultSpell.getDef(), (Object) defaultSpell.getLifesteal(),
-									(Object) defaultSpell.getMana(),
-									(Object) defaultSpell.getMinimumLevel(), (Object) defaultSpell.getRange(),
-									(Object) defaultSpell.getRate(), (Object) defaultSpell.getRegen(), (Object) defaultSpell.getModifier());
+		return (Spell) construct.newInstance(defaultSpell.getName(), defaultSpell.getNature(), defaultSpell.getAmount(),
+									defaultSpell.getAtk(), defaultSpell.getCooldown(),
+									defaultSpell.getDef(), defaultSpell.getLifesteal(),
+									defaultSpell.getMana(),
+									defaultSpell.getMinimumLevel(), defaultSpell.getRange(),
+									defaultSpell.getRate(), defaultSpell.getRegen(), defaultSpell.getModifier());
 	}
 
 }
