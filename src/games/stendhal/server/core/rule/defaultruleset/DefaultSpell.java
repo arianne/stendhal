@@ -65,11 +65,12 @@ public class DefaultSpell {
 	/**
 	 * Creates a new {@link DefaultSpell}
 	 * @param name the name of that spell
+	 * @param clazzName class name
 	 */
 	public DefaultSpell(String name, String clazzName) {
 		try {
 			this.name = name;
-			this.implementationClass = (Class<?>) Class.forName(clazzName);
+			this.implementationClass = Class.forName(clazzName);
 			this.buildCreator(implementationClass);
 		} catch (ClassNotFoundException e) {
 			logger.error("Error while creating DefaultSpell", e);

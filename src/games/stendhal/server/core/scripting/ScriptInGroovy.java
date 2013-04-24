@@ -54,14 +54,11 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	/**
 	 * Initial load of this script.
 	 *
-	 * @param admin
+	 * @param player
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
-	 * @param sandbox
-	 *            all modifications to the game must be done using this object
-	 *            in order for the script to be unloadable
 	 */
 	@Override
 	public boolean load(final Player player, final List<String> args) {
@@ -95,7 +92,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	/**
 	 * Executes this script.
 	 *
-	 * @param admin
+	 * @param player
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args
 	 *            the arguments the admin specified or <code>null</code> on

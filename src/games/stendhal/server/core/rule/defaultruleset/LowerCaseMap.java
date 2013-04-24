@@ -25,20 +25,23 @@ public class LowerCaseMap<V> implements Map<String, V> {
 		data = new HashMap<String, V>();
 	}
 
+	@Override
 	public void clear() {
 		data.clear();
 		
 	}
-
 	
+	@Override
 	public boolean containsValue(final Object value) {
 		return data.containsValue(value);
 	}
 
+	@Override
 	public Set<java.util.Map.Entry<String, V>> entrySet() {
 		return data.entrySet();
 	}
 
+	@Override
 	public V get(final Object key) {
 		if (key instanceof String) {
 			final String new_name = (String) key;
@@ -47,18 +50,22 @@ public class LowerCaseMap<V> implements Map<String, V> {
 		return null;
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return data.isEmpty();
 	}
 
+	@Override
 	public Set<String> keySet() {
 		return data.keySet();
 	}
 
+	@Override
 	public V put(final String key, final V value) {
 		return data.put(key.toLowerCase(), value);
 	}
 
+	@Override
 	public void putAll(final Map< ? extends String, ? extends V> m) {
 		   for (final Iterator< ? extends Map.Entry< ? extends String, ? extends V>> i = m.entrySet().iterator(); i.hasNext();) {
 			                 final Map.Entry< ? extends String, ? extends V> e = i.next();
@@ -66,6 +73,7 @@ public class LowerCaseMap<V> implements Map<String, V> {
 			              }
 	}
 
+	@Override
 	public V remove(final Object key) {
 		if (key instanceof String) {
 			final String new_name = (String) key;
@@ -74,14 +82,17 @@ public class LowerCaseMap<V> implements Map<String, V> {
 		return null;
 	}
 
+	@Override
 	public int size() {
 		return data.size();
 	}
 
+	@Override
 	public Collection<V> values() {
 		return data.values();
 	}
 
+	@Override
 	public boolean containsKey(final Object key) {
 		if (key instanceof String) {
 			final String new_name = (String) key;

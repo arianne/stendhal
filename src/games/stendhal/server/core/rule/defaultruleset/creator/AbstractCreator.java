@@ -26,7 +26,10 @@ public abstract class AbstractCreator<T> {
 	private final String creatorFor;
 
 	/**
+	 * Create a new AbstracCreator.
+	 * 
 	 * @param construct
+	 * @param creatorFor 
 	 */
 	public AbstractCreator(Constructor<?> construct, String creatorFor) {
 		super();

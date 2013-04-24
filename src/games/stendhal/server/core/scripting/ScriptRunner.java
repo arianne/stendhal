@@ -55,6 +55,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 		if (url != null) {
 			final File dir = new File(url.getFile());
 			final String[] strs = dir.list(new FilenameFilter() {
+				@Override
 				public boolean accept(final File dir, final String name) {
 					return name.endsWith(".groovy");
 				}
@@ -177,11 +178,13 @@ public class ScriptRunner extends StendhalServerExtension implements
 		// *.class scripts is in data/script/games/stendhal/server/script/
 		final File dirClasses = new File(scriptDir+"games/stendhal/server/script/");
 		final String[] scriptsGroovy = dirGroovy.list(new FilenameFilter() {
+				@Override
 				public boolean accept(final File dir, final String name) {
 					return (name.endsWith(".groovy") && (name.indexOf('$') == -1));
 				}
 			});
 		final String[] scriptsJava = dirClasses.list(new FilenameFilter(){
+				@Override
 				public boolean accept(final File dir, final String name) {
 					// remove filenames with '$' inside because they are inner classes
 					return (name.endsWith(".class") && (name.indexOf('$') == -1));
@@ -245,6 +248,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 		return (null);
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {

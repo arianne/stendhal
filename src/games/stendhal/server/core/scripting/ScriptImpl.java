@@ -26,14 +26,17 @@ public class ScriptImpl implements Script {
 	/** all modifications must be done using this object to be undoable on unload. */
 	protected ScriptingSandbox sandbox;
 
+	@Override
 	public void execute(final Player admin, final List<String> args) {
 		// do nothing
 	}
 
+	@Override
 	public void load(final Player admin, final List<String> args, final ScriptingSandbox sandbox) {
 		this.sandbox = sandbox;
 	}
 
+	@Override
 	public void unload(final Player admin, final List<String> args) {
 		// do nothing
 	}

@@ -152,6 +152,7 @@ public class DefaultEntityManager implements EntityManager {
 		}
 	}
 
+	@Override
 	public boolean addItem(final DefaultItem item) {
 		final String clazz = item.getItemName();
 
@@ -165,6 +166,7 @@ public class DefaultEntityManager implements EntityManager {
 		return true;
 	}
 	
+	@Override
 	public boolean addCreature(final DefaultCreature creature) {
 		final String id = creature.getTileId();
 		final String clazz = creature.getCreatureName();
@@ -182,6 +184,7 @@ public class DefaultEntityManager implements EntityManager {
 		return true;
 	}
 
+	@Override
 	public boolean addSpell(DefaultSpell spell) {
 		if(nameToSpell.containsKey(spell.getName())) {
 			LOGGER.warn("Repeated spell name: "+ spell.getName());
@@ -193,6 +196,7 @@ public class DefaultEntityManager implements EntityManager {
 	/**
 	 * @return a list of all Creatures that are instantiated.
 	 */
+	@Override
 	public Collection<Creature> getCreatures() {
 		return createdCreature.values();
 	}
@@ -200,6 +204,7 @@ public class DefaultEntityManager implements EntityManager {
 	/**
 	 * @return a list of all Items that are instantiated.
 	 */
+	@Override
 	public Collection<Item> getItems() {
 		return createdItem.values();
 	}
@@ -214,6 +219,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
+	@Override
 	public Entity getEntity(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -240,6 +246,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @param id 
 	 * @return the creature or <code>null</code> if the id is unknown.
 	 */
+	@Override
 	public Creature getCreature(final String tileset, final int id) {
 		final String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
@@ -256,6 +263,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
+	@Override
 	public Creature getCreature(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -281,6 +289,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
+	@Override
 	public DefaultCreature getDefaultCreature(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -293,6 +302,7 @@ public class DefaultEntityManager implements EntityManager {
 	/** @param tileset 
 	 * @param id 
 	 * @return true if the Entity is a creature. */
+	@Override
 	public boolean isCreature(final String tileset, final int id) {
 		final String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
@@ -304,6 +314,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** @param clazz 
 	 * @return true if the Entity is a creature . */
+	@Override
 	public boolean isCreature(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -314,6 +325,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** @param clazz 
 	 * @return true if the Entity is a creature. */
+	@Override
 	public boolean isItem(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -329,6 +341,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
+	@Override
 	public Item getItem(final String clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("entity class is null");
@@ -346,6 +359,7 @@ public class DefaultEntityManager implements EntityManager {
 		return null;
 	}
 
+	@Override
 	public Spell getSpell(String spell) {
 		if(spell == null) {
 			throw new IllegalArgumentException("spell name is null");
@@ -361,10 +375,12 @@ public class DefaultEntityManager implements EntityManager {
 		return null;
 	}
 
+	@Override
 	public boolean isSpell(String spellName) {
 		return nameToSpell.containsKey(spellName);
 	}
 
+	@Override
 	public Collection<Spell> getSpells() {
 		return createdSpell.values();
 	}
@@ -373,6 +389,7 @@ public class DefaultEntityManager implements EntityManager {
 		return classToItem.keySet();
 	}
 
+	@Override
 	public Collection<String> getConfiguredSpells() {
 		return nameToSpell.keySet();
 	}

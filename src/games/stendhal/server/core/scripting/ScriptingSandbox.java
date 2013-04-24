@@ -176,7 +176,7 @@ public abstract class ScriptingSandbox {
 	/**
 	 * Unloads this script.
 	 *
-	 * @param admin
+	 * @param player
 	 *            the admin who load it or <code>null</code> on server start.
 	 * @param args
 	 *            the arguments the admin specified or <code>null</code> on
@@ -208,7 +208,6 @@ public abstract class ScriptingSandbox {
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
 	 */
-	@SuppressWarnings("unused")
 	protected void preExecute(final Player player, final List<String> args) {
 		TransitionContext.set(filename);
 	}
@@ -223,7 +222,6 @@ public abstract class ScriptingSandbox {
 	 *            server start.
 	 * @param result true, if the execution was successful; false otherwise
 	 */
-	@SuppressWarnings("unused")
 	protected void postExecute(final Player player, final List<String> args, boolean result) {
 		TransitionContext.set(null);
 	}
@@ -237,6 +235,8 @@ public abstract class ScriptingSandbox {
 	 * @param args
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
+	 * @return <code>true</code> at successful execution, otherwise
+	 * 	<code>false</code>
 	 */
 	public boolean execute(final Player player, final List<String> args) {
 		// do nothing

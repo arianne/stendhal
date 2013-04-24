@@ -78,9 +78,6 @@ public class ScriptInJava extends ScriptingSandbox {
 	 * @param args
 	 *            the arguments the admin specified or <code>null</code> on
 	 *            server start.
-	 * @param sandbox
-	 *            all modifications to the game must be done using this object
-	 *            in order for the script to be unloadable
 	 */
 	@Override
 	public boolean load(final Player admin, final List<String> args) {
