@@ -17,6 +17,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Stuffer implements Feeder {
 
+	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 		player.heal(((ConsumableItem) item.splitOff(1)).getAmount(), true);
 		return true;

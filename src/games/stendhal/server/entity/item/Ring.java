@@ -46,9 +46,8 @@ public class Ring extends Item implements UseListener {
 		super(item);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		return false;
 	}
-
-
 }

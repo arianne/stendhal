@@ -30,6 +30,8 @@ public class Token extends Item {
 
 	/**
 	 * A listener that will be notified on token move.
+	 * 
+	 * @param <T> token type
 	 */
 	public interface TokenMoveListener<T extends Token> {
 

@@ -20,6 +20,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Immunizer implements Feeder {
 
+	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 		player.setImmune();
 		

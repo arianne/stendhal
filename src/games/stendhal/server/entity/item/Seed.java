@@ -42,6 +42,7 @@ public class Seed extends StackableItem implements UseListener {
 		super(name, clazz, subclass, attributes);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (!this.isContained()) {
 			// the seed is on the ground, but not next to the player

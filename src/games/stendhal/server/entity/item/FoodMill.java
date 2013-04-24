@@ -58,7 +58,8 @@ public class FoodMill extends Item implements UseListener {
     	}
     }
 
-    public boolean onUsed(final RPEntity user) {
+    @Override
+	public boolean onUsed(final RPEntity user) {
     	/* is the mill equipped at all? */
     	if (!isContained()) {
     		user.sendPrivateText("You should be carrying the " + getName() + " in order to use it.");

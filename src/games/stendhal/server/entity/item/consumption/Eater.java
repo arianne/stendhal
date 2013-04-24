@@ -21,6 +21,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Eater implements Feeder {
 
+	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 		if (player.isChokingToDeath()) {
 			int playerHP = player.getHP();

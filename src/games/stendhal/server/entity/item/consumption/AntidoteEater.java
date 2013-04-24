@@ -18,6 +18,7 @@ class AntidoteEater implements TurnListener {
 		refName = player.getName();
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		Player player = ref.get();
 		

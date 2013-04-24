@@ -55,6 +55,7 @@ public class Scroll extends StackableItem implements UseListener {
 		super(item);
 	}
 
+	@Override
 	public final boolean onUsed(final RPEntity user) {
 		RPObject base = getBaseContainer();
 

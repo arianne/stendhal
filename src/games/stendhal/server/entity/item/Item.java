@@ -789,6 +789,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * currently returns boolean, to indicate whether it made any change
 	 * 
 	 * TODO: should this return some sort of undoable thing (if it can be undone?)
+	 * 
+	 * @param equipper entity equipping the item 
+	 * @param slot slot where the item is equipped
+	 * @return unknown, see the note above
 	 */
 	public boolean onEquipped(RPEntity equipper, String slot) {
 		
@@ -807,12 +811,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * 
 	 * TODO: i don't think the parameters are necessary.  can get
 	 *       owner and slot from Item api 
+	 * @return needs documenting 
 	 */
-	// public boolean onUnequipped(RPEntity equipper, String slot) {
-	// 	return false;
-	// }
 	public boolean onUnequipped() {
 		return false;
 	}
-
 }

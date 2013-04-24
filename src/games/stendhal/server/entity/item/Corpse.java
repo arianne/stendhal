@@ -46,6 +46,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @author madmetzger
 	 */
 	private final class CorpseRottingTurnListener implements TurnListener {
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			Corpse.this.onTurnReached(currentTurn);
 		}
@@ -58,6 +59,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 	 * @author madmetzger
 	 */
 	private final class CorpseReleaseRewardingForEveryoneTurnListener implements TurnListener {
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			setCorpseOwner(null);
 		}
@@ -420,6 +422,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		return (text);
 	}
 
+	@Override
 	public boolean canBeEquippedIn(final String slot) {
 		return false;
 	}

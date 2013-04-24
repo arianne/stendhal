@@ -78,6 +78,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		return quantity;
 	}
 
+	@Override
 	public void setQuantity(final int amount) {
 		if (amount <= 0) {
 			logger.error("Trying to set invalid quantity: " + amount,
@@ -104,6 +105,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		return getQuantity();
 	}
 
+	@Override
 	public int add(final StackableItem other) {
 		if (this.isStackable(other)) {
 			setQuantity(other.getQuantity() + getQuantity());
@@ -165,6 +167,7 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		splitOff(1);
 	}
 
+	@Override
 	public boolean isStackable(final StackableItem onTop) {
 		if (this == onTop) {
 			return false;
@@ -188,10 +191,12 @@ public class StackableItem extends Item implements Stackable<StackableItem> {
 		return true;
 	}
 
+	@Override
 	public int getCapacity() {
 		return capacity;
 	}
 
+	@Override
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}

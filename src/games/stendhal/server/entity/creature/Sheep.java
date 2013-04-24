@@ -211,7 +211,7 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 		Collections.sort(resultList, new Comparator<SheepFood>() {
-
+			@Override
 			public int compare(final SheepFood o1, final SheepFood o2) {
 				return Double.compare(squaredDistance(o1), squaredDistance(o2));
 

@@ -109,8 +109,11 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	/**
-	 * checks if this domestic animal was owned by a player, 
+	 * Checks if this domestic animal was owned by a player, 
 	 * regardless of whether it is owned at the moment.
+	 * 
+	 * @return <code>true</code>, if the creature had been owned, otherwise
+	 * 	<code>false</code> 
 	 */
 	public boolean wasOwned() {
 		return wasOwned;

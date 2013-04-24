@@ -89,7 +89,7 @@ public class CaptureTheFlagFlag extends Item {
 	@Override
 	public boolean onEquipped(RPEntity equipper, String slot) {
 
-		boolean result = super.onEquipped(equipper, slot);
+		super.onEquipped(equipper, slot);
 
 		// System.out.println("flag.onEquipped() - super result: " + result);
 		
@@ -123,7 +123,7 @@ public class CaptureTheFlagFlag extends Item {
 	
 		// System.out.println("CaptureTheFlagFlag.onUnequipped(): " + this.get("name"));
 
-		boolean result      = super.onUnequipped();
+		super.onUnequipped();
 
 		SlotOwner owner     = this.getContainerOwner();
 		

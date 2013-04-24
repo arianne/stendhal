@@ -113,8 +113,7 @@ public class NecroStaff extends Item implements UseListener {
 	 *            The player who used the staff
 	 * @return true iff summoning was successful
 	 */
-	
-	//@Override
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (!this.isContained()) {
 			user.sendPrivateText("The staff must be wielded.");

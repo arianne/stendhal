@@ -17,6 +17,7 @@ import games.stendhal.server.entity.player.Player;
 
 class Poisoner implements Feeder {
 
+	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 
 		return player.poison((ConsumableItem) item.splitOff(1));

@@ -133,6 +133,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	 * @param user the eating player
 	 * @return true if consumption can be started
 	 */
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (user instanceof Player) {
 			final Player player = (Player) user;
@@ -169,6 +170,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
+	@Override
 	public int compareTo(final ConsumableItem other) {
 
 		final float result = (float) other.getRegen() / (float) other.getFrecuency()

@@ -55,6 +55,7 @@ public class Box extends Item implements UseListener {
 		super(item);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (this.isContained()) {
 			// We modify the base container if the object change.

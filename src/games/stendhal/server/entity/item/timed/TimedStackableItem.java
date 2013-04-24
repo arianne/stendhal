@@ -64,6 +64,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 		super(item);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		boolean result = false;
 

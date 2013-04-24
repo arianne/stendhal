@@ -527,6 +527,7 @@ public class Creature extends NPC {
 		return corpseName;
 	}
 	
+	@Override
 	public String getHarmlessCorpseName() {
 		if (harmlessCorpseName == null) {
 			return "bag";

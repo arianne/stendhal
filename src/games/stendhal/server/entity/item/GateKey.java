@@ -62,6 +62,7 @@ public class GateKey extends Item {
 	 * time.
 	 * 
 	 * @param gateId The identifier to link with.
+	 * @param expirationTime time stamp
 	 */
 	public void setup(final String gateId, final long expirationTime) {
 		setInfoString(gateId + ";" + Long.toString(expirationTime));

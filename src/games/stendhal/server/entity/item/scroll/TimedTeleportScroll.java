@@ -279,6 +279,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			this.player = player;
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			teleportBack(player);
 		}
@@ -302,6 +303,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			this.warningMessage = warningMessage;
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			if ((player == null) || (player.getZone() == null) || (zone == null)) {
 				return;
