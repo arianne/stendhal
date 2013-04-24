@@ -104,10 +104,7 @@ public class TiledArea extends AreaEntity {
 	}
 
 	/**
-	 * inits the data arrays based on the size of the entity
-	 *
-	 * @param width
-	 * @param height
+	 * Initializes the data arrays based on the size of the entity.
 	 */
 	private void initDataArrays() {
 		int size = (int) (super.getWidth() * super.getHeight());

@@ -49,6 +49,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @see OnePlayerArea
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new OnePlayerArea(getWidth(ctx), getHeight(ctx));
 	}

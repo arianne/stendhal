@@ -208,6 +208,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@Override
 	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 			final int newY) {
 		/*
@@ -250,6 +251,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 *            The old Y coordinate.
 	 *
 	 */
+	@Override
 	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 			final int oldY) {
 		/*
@@ -276,6 +278,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@Override
 	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 			final int oldY, final int newX, final int newY) {
 		// does nothing, but is specified in the implemented interface

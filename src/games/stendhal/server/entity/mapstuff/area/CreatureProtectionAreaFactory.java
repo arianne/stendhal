@@ -165,6 +165,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * 
 	 * @see CreatureProtectionArea
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		CreatureProtectionArea area;
 

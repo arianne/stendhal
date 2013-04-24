@@ -101,6 +101,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
 	 */
+	@Override
 	public AreaEntity create(final ConfigurableFactoryContext ctx) {
 		AreaEntity area = new AreaEntity(getWidth(ctx), getHeight(ctx));
 		NoLoginAreaBehaviour noLoginAreaBehaviour = new NoLoginAreaBehaviour(getNewX(ctx), getNewY(ctx), getMessage(ctx));

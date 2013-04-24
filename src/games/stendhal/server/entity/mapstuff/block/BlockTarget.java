@@ -58,6 +58,7 @@ public class BlockTarget extends AreaEntity {
 	 * Check if a Block would trigger this BlockTarget
 	 * 
 	 * @param b the Block to check
+	 * @param p 
 	 * @return true iff the given Block would trigger this target
 	 */
 	public boolean doesTrigger(Block b, Player p) {

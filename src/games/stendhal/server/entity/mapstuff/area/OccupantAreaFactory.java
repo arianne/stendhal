@@ -76,6 +76,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 		return ctx.getRequiredBoolean("players-only");
 	}
 
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		OccupantArea area;
 

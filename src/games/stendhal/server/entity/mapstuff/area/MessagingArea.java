@@ -39,6 +39,8 @@ public class MessagingArea extends AreaEntity implements MovementListener {
 	 * @param height height of the area
 	 * @param enterMessage message to be sent to players entering the area 
 	 * @param leaveMessage message to be sent to players leaving the area
+	 * @param isWarning set to <code>true</code> if the message is a warning
+	 * 	that is especially important for the player to see
 	 */
 	public MessagingArea(final boolean coversZone, final int width, final int height, final String enterMessage, 
 			final String leaveMessage, final boolean isWarning) {

@@ -18,10 +18,12 @@ package games.stendhal.server.entity.mapstuff.area;
  */
 public class HideAreaBehaviour implements AreaBehaviour {
 
+	@Override
 	public void addToWorld(AreaEntity parentAreaEntity) {
 		parentAreaEntity.hide();
 	}
 
+	@Override
 	public void removeFromWorld() {
 		return;
 	}

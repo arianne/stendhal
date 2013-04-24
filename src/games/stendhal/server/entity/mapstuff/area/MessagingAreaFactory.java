@@ -16,6 +16,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 
 public class MessagingAreaFactory implements ConfigurableFactory {
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final MessagingArea area;
 

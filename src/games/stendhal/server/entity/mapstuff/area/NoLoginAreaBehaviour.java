@@ -42,15 +42,18 @@ public class NoLoginAreaBehaviour implements LoginListener, AreaBehaviour {
 		this.message = message;
 	}
 
+	@Override
 	public void addToWorld(AreaEntity parentAreaEntity) {
 		this.areaEntity = parentAreaEntity;
 		SingletonRepository.getLoginNotifier().addListener(this);
 	}
 
+	@Override
 	public void removeFromWorld() {
 		SingletonRepository.getLoginNotifier().removeListener(this);
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		if (player.getZone().equals(areaEntity.getZone())) {
 			if (areaEntity.getArea().contains(player.getX(), player.getY())) {

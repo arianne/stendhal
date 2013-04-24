@@ -233,6 +233,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@Override
 	public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 			final int newY) {
 		/*
@@ -270,6 +271,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 *            The old Y coordinate.
 	 * 
 	 */
+	@Override
 	public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 			final int oldY) {
 		/*
@@ -311,6 +313,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@Override
 	public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 			final int oldY, final int newX, final int newY) {
 		/*
@@ -337,6 +340,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	 * @param currentTurn
 	 *            Current turn number.
 	 */
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		IRPZone zone;
 		Rectangle2D area;

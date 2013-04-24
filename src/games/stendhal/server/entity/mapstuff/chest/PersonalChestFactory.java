@@ -49,6 +49,7 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 * 
 	 * @see PersonalChest
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new PersonalChest(getSlot(ctx));
 	}

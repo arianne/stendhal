@@ -61,6 +61,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 * 
 	 * @see NPCOwnedChest
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new NPCOwnedChest(getNPC(ctx));
 	}

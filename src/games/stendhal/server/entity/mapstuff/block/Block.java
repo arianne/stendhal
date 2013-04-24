@@ -75,7 +75,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * @param startY
 	 * @param multiPush
 	 * @param style
-	 * @param shape
 	 */
 	public Block(int startX, int startY, boolean multiPush, String style) {
 		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
@@ -96,6 +95,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * 			is pushing multiple times allowed
 	 * @param style
 	 * 			what style should the client use?
+	 * @param shape 
 	 * @param sounds
 	 * 			what sounds should be played on push?
 	 */
@@ -134,6 +134,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
 	/**
 	 * Push this Block into a given direction
+	 * @param p 
 	 * @param d
 	 * 			the direction, this block is pushed into
 	 */

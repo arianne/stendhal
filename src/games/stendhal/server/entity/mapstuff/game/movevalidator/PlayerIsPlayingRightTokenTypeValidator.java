@@ -23,6 +23,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class PlayerIsPlayingRightTokenTypeValidator implements MoveValidator {
   
+	@Override
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
 		if (!token.getName().equals(board.getCurrentTokenType())) {
 			player.sendPrivateText("Hey, you are playing the wrong token.");

@@ -23,6 +23,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class GameIsActiveValidator implements MoveValidator {
 
+	@Override
 	public boolean validate(GameBoard board, Player player, BoardToken token, int xIndex, int yIndex) {
 		if (!board.isGameActive()) {
 			player.sendPrivateText("Please start the game first by talking to " + board.getNPCName() + ".");

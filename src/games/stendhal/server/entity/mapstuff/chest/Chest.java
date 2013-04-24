@@ -157,6 +157,7 @@ public class Chest extends Entity implements UseListener {
 	// UseListener
 	//
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		if (user.nextTo(this)) {
 			if (isOpen()) {

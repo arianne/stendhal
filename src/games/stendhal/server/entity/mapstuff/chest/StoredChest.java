@@ -158,6 +158,7 @@ public class StoredChest extends Chest {
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			StendhalRPZone zone = getZone();
 			if (zone != null) {

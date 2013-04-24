@@ -234,18 +234,18 @@ public class PersonalChest extends Chest {
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			if (syncContent()) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 			}
 		}
-		
-		
 	}
-@Override
-public void onRemoved(final StendhalRPZone zone) {
-	SingletonRepository.getTurnNotifier().dontNotify(chestSynchronizer);
+	
+	@Override
+	public void onRemoved(final StendhalRPZone zone) {
+		SingletonRepository.getTurnNotifier().dontNotify(chestSynchronizer);
 
-	super.onRemoved(zone);
-}
+		super.onRemoved(zone);
+	}
 }
