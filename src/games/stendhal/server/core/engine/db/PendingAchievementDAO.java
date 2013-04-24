@@ -77,6 +77,7 @@ public class PendingAchievementDAO {
 	 *
 	 * @param charname
 	 * return details as param and count
+	 * @return pending achievements
 	 * @throws SQLException
 	 */
 	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname) throws SQLException {

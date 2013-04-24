@@ -39,7 +39,8 @@ public class StendhalKillLogDAO {
 	
 	/**
 	 * Logs a kill.
-	 *
+	 * 
+	 * @param transaction transaction
 	 * @param killed killed entity
 	 * @param killer killer
 	 * @throws SQLException 

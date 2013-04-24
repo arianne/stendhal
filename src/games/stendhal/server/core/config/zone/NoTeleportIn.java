@@ -19,6 +19,7 @@ import java.util.Map;
 
 public class NoTeleportIn implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		if ((attributes != null) && attributes.containsKey("x")) {
 			int x = Integer.parseInt(attributes.get("x"));

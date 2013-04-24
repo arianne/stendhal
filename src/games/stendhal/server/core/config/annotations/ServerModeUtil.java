@@ -8,7 +8,9 @@ public abstract class ServerModeUtil {
 	
 	/**
 	 * Determines if the current running server is a testserver
-	 * @return
+	 * 
+	 * @return <code>true</code> if the server is a test server, otherwise
+	 * 	<code>false</code>
 	 */
 	public static boolean isTestServer() {
 		return System.getProperty(TestServerOnly.TEST_SERVER_PROPERTY) != null;
@@ -28,5 +30,4 @@ public abstract class ServerModeUtil {
 		}
 		return true;
 	}
-
 }

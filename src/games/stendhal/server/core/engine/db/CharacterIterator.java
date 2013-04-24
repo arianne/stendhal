@@ -42,6 +42,7 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 		result = transaction.query(query, null);
 	}
 
+	@Override
 	public boolean hasNext() {
 		try {
 			return result.next();
@@ -51,6 +52,7 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 		}
 	}
 
+	@Override
 	public RPObject next() {
 		try {
 			final int objectid = result.getInt("object_id");
@@ -61,10 +63,12 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 		}
 	}
 
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Iterator<RPObject> iterator() {
 		return this;
 	}

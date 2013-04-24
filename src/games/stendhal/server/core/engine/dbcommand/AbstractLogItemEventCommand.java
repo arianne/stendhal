@@ -23,7 +23,6 @@ import marauroa.server.db.StringChecker;
 import marauroa.server.db.command.AbstractDBCommand;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.log4j.Logger;
 
 /**
  * base class for item logging
@@ -31,9 +30,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
-	
 	public static final String ATTR_ITEM_LOGID = "logid";
-	private static final Logger logger = Logger.getLogger(AbstractLogItemEventCommand.class);
 
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {

@@ -63,6 +63,7 @@ public class PostmanDAO {
 	 * @param source  name of source 
 	 * @param target  name of player that the message is for
 	 * @param message 	message to be sent
+	 * @param messagetype type of the message
 	 */
 	public void storeMessage(String source, String target, String message, String messagetype) {
 		DBTransaction transaction = TransactionPool.get().beginWork();

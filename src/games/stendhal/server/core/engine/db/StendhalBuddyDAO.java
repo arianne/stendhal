@@ -49,10 +49,10 @@ public class StendhalBuddyDAO {
 
 	/**
 	 * saves the buddy list for the specified charname
-	 *
+	 * 
+	 * @param transaction transaction
 	 * @param charname name of char
 	 * @param buddies buddy list
-	 * @throws SQLException 
 	 * @throws SQLException in case of an database error
 	 */
 	public void saveBuddyList(DBTransaction transaction, String charname, Set<String> buddies) throws SQLException {

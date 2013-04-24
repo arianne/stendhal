@@ -29,6 +29,7 @@ public class NoTeleport implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		if ((attributes != null) && attributes.containsKey("x")) {
 			int x = Integer.parseInt(attributes.get("x"));

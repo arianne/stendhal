@@ -32,8 +32,11 @@ public class WriteReachedAchievementCommand extends AbstractDBCommand {
 	private final String playerName;
 
 	/**
-	 * create a new command
+	 * Create a new command.
+	 * 
 	 * @param id database id of the achievement
+	 * @param title achievement title 
+	 * @param category achievement category
 	 * @param playerName name of player who has reached it
 	 */
 	public WriteReachedAchievementCommand(Integer id, String title, Category category, String playerName) {
