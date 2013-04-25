@@ -15,12 +15,11 @@ package games.stendhal.server.entity.npc.behaviour.journal;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -183,19 +182,14 @@ public class ProducerRegister {
 		}
 		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
 			MultiProducerBehaviour behaviour = producer.second();
-			HashSet<String> products =  behaviour.getProductsNames();
-            Iterator<String> i = products.iterator();
-            String product;
-
-            while (i.hasNext()) {
-                product = (String) i.next();
-                if(itemName.equals(product)) {
+			for (String product : behaviour.getProductsNames()) {
+				if(itemName.equals(product)) {
                     String npcName = producer.first();
                     String activity =  behaviour.getProductionActivity();
                     String resources = behaviour.getRequiredResourceNames(product, 1);
                     return npcName + " " + Grammar.plural(activity) + " " + Grammar.plural(product) + ", which need " + resources + " each.";
                 }
-            }
+			}
 		}
 		return "";
 	}
@@ -218,16 +212,12 @@ public class ProducerRegister {
 		}
 		for (final Pair<String, MultiProducerBehaviour> producer : multiproducers) {
 			final MultiProducerBehaviour behaviour = producer.second();
-			final HashSet<String> products =  behaviour.getProductsNames();
-            Iterator<String> i = products.iterator();
-            String product;
-            while (i.hasNext()) {
-                product = (String) i.next();
-                final Item item = SingletonRepository.getEntityManager().getItem(product);
+			for (String product : behaviour.getProductsNames()) {
+				final Item item = SingletonRepository.getEntityManager().getItem(product);
                 if (item.isOfClass(clazz)) {
                     res.add(product);
                 }
-            }
+			}
 		}
 		return res;
 	}
