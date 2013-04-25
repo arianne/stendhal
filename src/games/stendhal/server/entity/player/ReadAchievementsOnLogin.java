@@ -29,12 +29,14 @@ public class ReadAchievementsOnLogin implements LoginListener, TurnListener {
 	
 	private ResultHandle handle = new ResultHandle();
 	
+	@Override
 	public void onLoggedIn(Player player) {
 		DBCommand command = new ReadAchievementsForPlayerCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		ReadAchievementsForPlayerCommand command = DBCommandQueue.get().getOneResult(ReadAchievementsForPlayerCommand.class, handle);
 		if (command == null) {

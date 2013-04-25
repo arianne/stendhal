@@ -127,6 +127,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	/**
 	 * @return  the interator over the SpeakerNPC objects.
 	 */
+	@Override
 	public Iterator<SpeakerNPC> iterator() {
 		return contents.values().iterator();
 	}

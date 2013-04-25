@@ -18,6 +18,7 @@ import games.stendhal.server.entity.player.Player;
 
 public interface ChatAction extends PostTransitionAction {
 
+	@Override
 	void fire(final Player player, final Sentence sentence, final EventRaiser npc);
 
 }

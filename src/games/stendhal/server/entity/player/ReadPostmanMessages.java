@@ -51,6 +51,7 @@ public class ReadPostmanMessages implements LoginListener, TurnListener {
 	 * 
 	 * @param player the player who logged in
 	 */
+	@Override
 	public void onLoggedIn(final Player player) {
 		readMessages(player);
 	}
@@ -60,6 +61,7 @@ public class ReadPostmanMessages implements LoginListener, TurnListener {
 	 * 
 	 * @param currentTurn ignored
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		GetPostmanMessagesCommand command = DBCommandQueue.get().getOneResult(GetPostmanMessagesCommand.class, handle);
 		

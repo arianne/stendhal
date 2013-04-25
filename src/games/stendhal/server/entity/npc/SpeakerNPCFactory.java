@@ -153,6 +153,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * 
 	 * @see SpeakerNPC
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final SpeakerNPC npc = instantiate(getName(ctx));
 

@@ -58,7 +58,14 @@ public class ConversationPhrases {
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList("bye", "goodbye",
 			"farewell", "cya", "adios");
 
-	/** combine a string collection (list) with additional strings */
+	/**
+	 * Combine a string collection (list) with additional strings.
+	 *  
+	 * @param list 
+	 * @param args additional strings
+	 * @return new list with the contents of the list and all the additional
+	 * 	strings 
+	 */
 	public static final List<String> combine(Collection<String> list, String ...args) {
 		List<String> ret = new ArrayList<String>(list);
 
@@ -69,7 +76,13 @@ public class ConversationPhrases {
 		return ret;
 	}
 
-	/** combine a string collection with another collection */
+	/**
+	 * Combine a string collection with other collections.
+	 * 
+	 * @param list1 
+	 * @param lists 
+	 * @return a new list with contents of all the collections
+	 */
 	public static final List<String> combine(Collection<String> list1, Collection<String>... lists) {
 		List<String> ret = new LinkedList<String>(list1);
 		for (Collection<String> list : lists) {

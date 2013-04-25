@@ -522,6 +522,7 @@ public class SpeakerNPC extends NPC {
 	 *            a simple text reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
+	 * @param label 
 	 */
 	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
@@ -741,6 +742,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -784,6 +786,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -804,6 +807,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.ATTENDING, text, action);
 
 		addWaitMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
@@ -887,6 +891,7 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES,
 				ConversationStates.IDLE, text, new ChatAction() {
 
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						((SpeakerNPC) npc.getEntity()).onGoodbye(player);

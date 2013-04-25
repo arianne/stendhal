@@ -19,5 +19,6 @@ import games.stendhal.server.entity.player.Player;
 
 public interface ChatCondition extends PreTransitionCondition {
 
+	@Override
 	boolean fire(Player player, Sentence sentence, Entity npc);
 }

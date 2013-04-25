@@ -27,6 +27,8 @@ public final class NPCChatting implements Observer, TurnListener {
 	 * constructor
 	 * @param first - first npc (who strarting conversation)
 	 * @param second - second npc
+	 * @param conversations 
+	 * @param explainations 
 	 * @param n - observer n
 	 */
 	public NPCChatting(
@@ -55,6 +57,7 @@ public final class NPCChatting implements Observer, TurnListener {
 		onTurnReached(0);
 	}
 	
+	@Override
 	public void update(Observable o, Object arg) {
 		first.clearPath();
 		first.pathnotifier.deleteObservers();
@@ -62,6 +65,7 @@ public final class NPCChatting implements Observer, TurnListener {
 		setupDialog();
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		first.faceToward(second);
 		second.faceToward(first);

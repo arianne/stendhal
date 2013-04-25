@@ -164,6 +164,7 @@ public class GagManager implements LoginListener {
 		return false;
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		if (!isGagged(player)) {
 			return;
@@ -182,6 +183,7 @@ public class GagManager implements LoginListener {
 		// serving his sentence. We're using the TurnNotifier; we use
 		SingletonRepository.getTurnNotifier().notifyInSeconds(
 				(int) (getTimeRemaining(criminal) / 1000), new TurnListener() {
+					@Override
 					public void onTurnReached(final int currentTurn) {
 
 						final Player criminal2 = SingletonRepository.getRuleProcessor().getPlayer(

@@ -50,6 +50,7 @@ public class AfkTimeouter implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		Collection<Player> players = StendhalRPRuleProcessor.get().getOnlinePlayers().getAllPlayers();
 		Set<Player> toDisconnect = new HashSet<Player>();

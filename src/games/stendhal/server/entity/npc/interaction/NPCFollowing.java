@@ -29,6 +29,7 @@ public final class NPCFollowing implements Observer {
 		this.finish=finish;
 	}
 	
+	@Override
 	public void update(Observable o, Object arg) {
 		follower.clearPath();
 		follower.pathnotifier.deleteObservers();

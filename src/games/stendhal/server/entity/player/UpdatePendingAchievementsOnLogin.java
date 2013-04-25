@@ -36,12 +36,14 @@ public class UpdatePendingAchievementsOnLogin implements LoginListener, TurnList
 	
 	private ResultHandle handle = new ResultHandle();
 	
+	@Override
 	public void onLoggedIn(Player player) {
 		DBCommand command = new ReadPendingAchievementDetailsCommand(player);
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);
 		TurnNotifier.get().notifyInTurns(1, new TurnListenerDecorator(this));
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		ReadPendingAchievementDetailsCommand command = DBCommandQueue.get().getOneResult(ReadPendingAchievementDetailsCommand.class, handle);
 

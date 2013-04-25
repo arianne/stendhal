@@ -53,6 +53,7 @@ public abstract class RatKidsNPCBase extends SpeakerNPC {
 	 * @author Norien
 	 */
 	private static class RatKidGreetingAction implements ChatAction {
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			if (!player.hasQuest(QUEST_SLOT) || player.isQuestInState(QUEST_SLOT, "rejected")) {
 				npc.say("Mother says I mustn't talk to strangers.");
