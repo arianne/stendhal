@@ -22,11 +22,16 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -85,7 +90,7 @@ public class ItemTest {
 	 * Tests for clone.
 	 */
 	@Test
-	public void testClone() throws Exception {
+	public void testClone() {
 		Map<String, String> attribs = new HashMap<String, String>();
 		attribs.put("att_1", "val_1");
 		attribs.put("att_2", "val_2");
@@ -475,4 +480,33 @@ public class ItemTest {
 		assertThat(mo.getBoundTo(), not(is("bob")));
 	}
 
+	/**
+	 * Test that all items that are storable to "content" have a copy
+	 * constructor. Bank chests need those, and the items may otherwise seem to
+	 * work correctly, but putting to them to bank fails.
+	 */
+	@Test
+	public void testCopyConstructors() {
+		EntityManager manager = SingletonRepository.getEntityManager();
+		if (manager instanceof DefaultEntityManager) {
+			for (String itemName : ((DefaultEntityManager) manager).getConfiguredItems()) {
+				Item item = manager.getItem(itemName);
+				// Only items that can be placed in chests need to be checked
+				if (item.canBeEquippedIn("content")) {
+					Object clone = null;
+					try {
+						Class<?> clazz = item.getClass();
+						Constructor<?> ctor = clazz.getConstructor(clazz);
+						clone = ctor.newInstance(item);
+					} catch (Exception e) {
+						fail("copying " + item.getName() + " failed: " + e.toString());
+					}
+					assertEquals(item, clone);
+					assertFalse(item == clone);
+				}
+			}
+		} else {
+			fail("Unable to test copy constructors");
+		}
+	}
 }
