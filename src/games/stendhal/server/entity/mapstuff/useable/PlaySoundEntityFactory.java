@@ -27,6 +27,7 @@ public class PlaySoundEntityFactory extends SoundSourceFactory {
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource
 	 */
+	@Override
 	public PlaySoundEntity create(final ConfigurableFactoryContext ctx) {
 		PlaySoundEntity source;
 

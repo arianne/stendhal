@@ -54,6 +54,7 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 		startTimer();
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		Calendar now = Calendar.getInstance();
 		int minute = now.get(Calendar.MINUTE);
@@ -103,6 +104,7 @@ public class BellSoundSource extends PassiveEntity implements TurnListener {
 			onTurnReached(0);
 		}
 
+		@Override
 		public void onTurnReached(int currentTurn) {
 			playSound();
 			if (times > 0) {

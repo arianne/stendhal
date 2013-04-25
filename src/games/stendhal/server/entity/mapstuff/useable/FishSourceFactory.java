@@ -47,6 +47,7 @@ public class FishSourceFactory implements ConfigurableFactory {
 	 * 
 	 * @see FishSource
 	 */
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new FishSource(getSpecies(ctx));
 	}

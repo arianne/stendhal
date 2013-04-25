@@ -43,6 +43,7 @@ public class Fire extends Entity implements UseListener {
 		setResistance(100);
 	}
 
+	@Override
 	public boolean onUsed(final RPEntity user) {
 		user.sendPrivateText("Not a good idea!");
 		return true;

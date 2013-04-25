@@ -23,6 +23,10 @@ public class BackgroundMusicSource extends LoopedSoundSource  {
 
 	/**
 	 * Create an ambient sound area.
+	 * 
+	 * @param sound sound name 
+	 * @param radius
+	 * @param volume
 	 */
 	public BackgroundMusicSource(String sound, int radius, int volume) {
 		super(sound, radius, volume, SoundLayer.BACKGROUND_MUSIC);

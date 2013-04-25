@@ -140,6 +140,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		growNewFruit();
 	}

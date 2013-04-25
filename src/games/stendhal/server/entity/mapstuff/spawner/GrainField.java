@@ -97,6 +97,7 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	 * @param entity the harvesting entity
 	 * @return true if successful
 	 */
+	@Override
 	public boolean onUsed(final RPEntity entity) {
 		if (!entity.nextTo(this)) {
 			entity.sendPrivateText("You can't reach that " + grainName + " from here.");

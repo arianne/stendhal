@@ -25,6 +25,7 @@ public class BackgroundMusicSourceFactory extends SoundSourceFactory {
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource
 	 */
+	@Override
 	public BackgroundMusicSource create(final ConfigurableFactoryContext ctx) {
 		BackgroundMusicSource source;
 
@@ -32,5 +33,4 @@ public class BackgroundMusicSourceFactory extends SoundSourceFactory {
 
 		return source;
 	}
-
 }

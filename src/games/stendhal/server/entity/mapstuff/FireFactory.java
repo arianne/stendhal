@@ -20,6 +20,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  */
 public class FireFactory implements ConfigurableFactory {
 
+	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		return new Fire(ctx.getRequiredInt("width"),
 				ctx.getRequiredInt("height"));

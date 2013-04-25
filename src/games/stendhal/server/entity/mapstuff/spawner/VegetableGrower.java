@@ -112,6 +112,7 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 	 * @param entity that tries to harvest
 	 * @return true on success
 	 */
+	@Override
 	public boolean onUsed(final RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == getMaxRipeness()) {

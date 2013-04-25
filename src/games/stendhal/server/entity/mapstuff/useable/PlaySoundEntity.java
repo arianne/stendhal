@@ -42,6 +42,7 @@ public class PlaySoundEntity extends UseableEntity {
 	/**
 	 * plays a sound
 	 */
+	@Override
 	public boolean onUsed(RPEntity user) {
 		if (!nextTo(user)) {
 			user.sendPrivateText("You cannot reach that from here.");

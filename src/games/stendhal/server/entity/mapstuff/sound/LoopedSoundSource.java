@@ -38,6 +38,11 @@ public class LoopedSoundSource extends PassiveEntity {
 
 	/**
 	 * Create an ambient sound area.
+	 * 
+	 * @param sound sound name
+	 * @param radius 
+	 * @param volume 
+	 * @param layer 
 	 */
 	public LoopedSoundSource(String sound, int radius, int volume, SoundLayer layer) {
 		setRPClass(RPCLASS_NAME);

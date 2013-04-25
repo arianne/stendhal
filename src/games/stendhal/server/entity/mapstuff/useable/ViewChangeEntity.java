@@ -45,6 +45,7 @@ public class ViewChangeEntity extends UseableEntity {
 			+ " money. Stay still and concentrate while viewing\".";
 	}
 
+	@Override
 	public boolean onUsed(RPEntity user) {
 		if (!nextTo(user)) {
 			user.sendPrivateText("You cannot reach that from here.");

@@ -12,9 +12,6 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  * A factory for PeriodicAmbientSoundSource.
  */
 public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
-
-
-
 	/**
 	 * gets the minimum interval, defaulting to one minute
 	 *
@@ -49,6 +46,7 @@ public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource
 	 */
+	@Override
 	public PeriodicAmbientSoundSource create(final ConfigurableFactoryContext ctx) {
 		PeriodicAmbientSoundSource source;
 
@@ -56,5 +54,4 @@ public class PeriodicAmbientSoundSourceFactory extends SoundSourceFactory {
 
 		return source;
 	}
-
 }

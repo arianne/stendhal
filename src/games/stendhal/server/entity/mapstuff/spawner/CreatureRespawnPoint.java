@@ -121,6 +121,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param maximum
 	 *            The number of creatures spawned here that can exist at the
 	 *            same time
+	 * @param observer 
 	 */
 	public CreatureRespawnPoint(StendhalRPZone zone, int x,
 			int y, Creature creature, int maximum, final Observer observer) {
@@ -165,6 +166,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * 
 	 * @see games.stendhal.server.core.events.TurnListener#onTurnReached(int)
 	 */
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		respawn();
 
@@ -214,7 +216,9 @@ public class CreatureRespawnPoint implements TurnListener {
 	}
 	
 	/**
+	 * Set the prototype creature for the spawner.
 	 * 
+	 * @param creature prototype creature 
 	 */
     public void setPrototypeCreature(final Creature creature) {
     	this.prototypeCreature = creature;

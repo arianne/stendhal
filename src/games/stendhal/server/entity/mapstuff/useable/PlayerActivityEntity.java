@@ -45,6 +45,8 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	
 	/**
 	 * Returns source name (type of source).
+	 * 
+	 * @return source name
 	 */
 	protected abstract String getName();
 
@@ -147,6 +149,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	 * 
 	 * @return <code>true</code> if the entity was used.
 	 */
+	@Override
 	public boolean onUsed(final RPEntity entity) {
 
 		if (!(entity instanceof Player)) {
@@ -234,6 +237,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			final Player player = getPlayer();
 

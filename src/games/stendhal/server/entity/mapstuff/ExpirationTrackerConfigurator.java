@@ -24,6 +24,7 @@ import games.stendhal.server.entity.Entity;
  */
 public class ExpirationTrackerConfigurator implements ZoneConfigurator {
 	
+	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		final int x = MathHelper.parseInt(attributes.get("x"));
 		final int y = MathHelper.parseInt(attributes.get("y"));

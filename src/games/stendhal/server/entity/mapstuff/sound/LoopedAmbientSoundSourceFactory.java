@@ -12,8 +12,6 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  * A factory for a LoopedAmbientSoundSource.
  */
 public class LoopedAmbientSoundSourceFactory extends SoundSourceFactory {
-
-
 	/**
 	 * Create an LoopedAmbientSoundSource.
 	 * 
@@ -26,6 +24,7 @@ public class LoopedAmbientSoundSourceFactory extends SoundSourceFactory {
 	 *             If there is a problem with the attributes.
 	 * @see LoopedAmbientSoundSource
 	 */
+	@Override
 	public LoopedAmbientSoundSource create(final ConfigurableFactoryContext ctx) {
 		LoopedAmbientSoundSource source;
 
@@ -33,5 +32,4 @@ public class LoopedAmbientSoundSourceFactory extends SoundSourceFactory {
 
 		return source;
 	}
-
 }
