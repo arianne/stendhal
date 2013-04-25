@@ -217,6 +217,8 @@ public class Market extends PassiveEntity {
 	 * 
 	 * @param offer
 	 * @param acceptingPlayer
+	 * @return <code>true</code> if the trade was done, <code>false</code> on
+	 * 	failure
 	 */
 	public boolean acceptOffer(final Offer offer, final Player acceptingPlayer) {
 		if (getSlot(OFFERS_SLOT_NAME).has(offer.getID()) && offer.hasItem()) {

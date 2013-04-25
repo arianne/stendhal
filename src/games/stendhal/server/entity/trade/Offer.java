@@ -60,7 +60,11 @@ public class Offer extends Entity implements Dateable {
 	}
 
 	/**
-	 * @param item
+	 * Create a new Offer.
+	 * 
+	 * @param item offered item
+	 * @param price price of the item
+	 * @param offerer player making the offer
 	 */
 	public Offer(final Item item, final Integer price, final Player offerer) {
 		super();
@@ -158,6 +162,7 @@ public class Offer extends Entity implements Dateable {
 	 * 
 	 * @return Timestamp in milliseconds
 	 */
+	@Override
 	public long getTimestamp() {
 		long timeStamp = 0;
 		try {

@@ -98,6 +98,7 @@ public class Earning extends Entity implements Dateable {
 		return (getInt(REWARD_ATTRIBUTE) != 0);
 	}
 
+	@Override
 	public long getTimestamp() {
 		long timeStamp = 0;
 		try {

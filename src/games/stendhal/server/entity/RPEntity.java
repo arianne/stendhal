@@ -1169,6 +1169,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * returns string - what happened.  no effect returns null
 	 *
 	 * @param attacker
+	 * @return event description
 	 */
 	public String maybeDropDroppables(RPEntity attacker) {
 
@@ -1178,7 +1179,6 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 
 		for (Item droppable : droppables) {
-
 			// roll two dice, tie goes to defender
 			//   TODO: integrate skills, ctf atk/def
 			int attackerRoll = Rand.roll1D20();

@@ -39,6 +39,7 @@ public class Blood extends PassiveEntity {
 
 	private TurnListener turnlistener = new TurnListener() {
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			Blood.this.onTurnReached(currentTurn);
 		}

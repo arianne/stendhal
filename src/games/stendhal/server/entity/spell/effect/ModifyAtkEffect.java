@@ -17,6 +17,7 @@ public class ModifyAtkEffect extends AbstractEffect {
 		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 	}
 
+	@Override
 	public void act(final Player caster, final Entity target) {
 		actInternal(caster, (RPEntity) target);
 	}

@@ -35,7 +35,7 @@ public class HealingEffect extends AbstractEffect implements TurnListener {
 	private Player playerToHeal;
 	
 	/**
-	 * Creates a new {@link HealingEffect}
+	 * Creates a new {@link HealingEffect}.
 	 * 
 	 * @param nature
 	 * @param amount
@@ -44,6 +44,7 @@ public class HealingEffect extends AbstractEffect implements TurnListener {
 	 * @param lifesteal
 	 * @param rate
 	 * @param regen
+	 * @param modifier 
 	 */
 	public HealingEffect(Nature nature, int amount, int atk, int def, double lifesteal, int rate,
 			int regen, double modifier) {
@@ -51,6 +52,7 @@ public class HealingEffect extends AbstractEffect implements TurnListener {
 		this.restAmount = amount;
 	}
 
+	@Override
 	public void act(Player caster, Entity target) {
 		if (target instanceof Player) {
 			actInternal(caster, (Player) target);
@@ -64,6 +66,7 @@ public class HealingEffect extends AbstractEffect implements TurnListener {
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new TurnListenerDecorator(this));
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		if(restAmount > 0) {
 			int toHeal = Math.min(restAmount, getRegen());

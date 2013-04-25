@@ -38,12 +38,16 @@ public abstract class AbstractEffect implements Effect {
 	private final double modifier;
 
 	/**
+	 * Create a new AbstractEffect.
+	 *  
+	 * @param nature 
 	 * @param amount
 	 * @param atk
 	 * @param def
 	 * @param lifesteal
 	 * @param rate
 	 * @param regen
+	 * @param modifier 
 	 */
 	public AbstractEffect(Nature nature, int amount, int atk, int def, double lifesteal,
 			int rate, int regen, double modifier) {

@@ -43,19 +43,23 @@ public class EntitySlot extends RPSlot implements Slot {
 		this.contentSlotName = contentSlotName;
 	}
 
+	@Override
 	public boolean isReachableForTakingThingsOutOfBy(final Entity entity) {
 		setErrorMessage("The " + getName() + " of " + ((Entity) getOwner()).getDescriptionName(true) + " is too far away.");
 		return false;
 	}
 
+	@Override
 	public boolean isReachableForThrowingThingsIntoBy(final Entity entity) {
 		return isReachableForTakingThingsOutOfBy(entity);
 	}
 
+	@Override
 	public boolean isItemSlot() {
 		return true;
 	}
 
+	@Override
 	public boolean isTargetBoundCheckRequired() {
 		return false;
 	}

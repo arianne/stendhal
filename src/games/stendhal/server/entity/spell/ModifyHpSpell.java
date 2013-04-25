@@ -27,6 +27,7 @@ public class ModifyHpSpell extends Spell {
 	 * @param range
 	 * @param rate
 	 * @param regen
+	 * @param modifier 
 	 */
 	public ModifyHpSpell(String name, Nature nature, int amount, int atk,
 			int cooldown, int def, double lifesteal, int mana,

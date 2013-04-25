@@ -49,6 +49,7 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 	}
 
+	@Override
 	public void act(Player caster, Entity target) {
 		if (target instanceof RPEntity) {
 			actInternal(caster, (RPEntity) target);
@@ -57,6 +58,7 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 		}
 	}
 	
+	@Override
 	public void onTurnReached(int currentTurn) {
 		if(numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
 			

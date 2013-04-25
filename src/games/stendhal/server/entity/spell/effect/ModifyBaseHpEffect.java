@@ -16,6 +16,7 @@ public class ModifyBaseHpEffect extends AbstractEffect {
 		super(nature, amount, atk, def, lifesteal, rate, regen, modifier);
 	}
 
+	@Override
 	public void act(Player caster, Entity target) {
 		actInternal(caster, (RPEntity) target);
 	}

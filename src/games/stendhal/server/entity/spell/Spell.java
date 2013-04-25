@@ -93,6 +93,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 *  
 	 * @param caster the player who tries to cast this spell
 	 * @param target the entity the spell is aimed at
+	 * @throws SpellException 
 	 */
 	public void cast(final Player caster, final Entity target) throws SpellException {
 		if(checkPreConditions(caster, target)) {
@@ -238,6 +239,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * @param range the max distance for the spell target
 	 * @param rate the frequency of the effect of this spell
 	 * @param regen the amount to regen with each effect turn
+	 * @param modifier 
 	 */
 	public Spell(	final String name, final Nature nature, final int amount, final int atk, final int cooldown,
 			final int def, final double lifesteal, final int mana, final int minimumlevel,
@@ -262,6 +264,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		put("type", "spell");
 	}
 
+	@Override
 	public boolean canBeEquippedIn(final String slot) {
 		return this.possibleSlots.contains(slot);
 	}
@@ -398,6 +401,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 		return 0;
 	}
 
+	@Override
 	public long getTimestamp() {
 		long timeStamp = 0;
 		try {
