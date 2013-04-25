@@ -28,6 +28,7 @@ import java.util.Map;
  */
 public class HotelGuestNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -35,6 +36,7 @@ public class HotelGuestNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Damon") {
 		    
+			@Override
 			protected void createPath() {
 				setPath(null);
 			}
@@ -54,6 +56,7 @@ public class HotelGuestNPC implements ZoneConfigurator {
 				addGoodbye("Bye bye!");
 			}
 
+		@Override
 		protected void onGoodbye(RPEntity player) {
 			setDirection(Direction.RIGHT);
 		}

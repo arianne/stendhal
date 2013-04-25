@@ -31,6 +31,7 @@ public class MinotaurKingCreature implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildLabyrinth(zone);
 	}

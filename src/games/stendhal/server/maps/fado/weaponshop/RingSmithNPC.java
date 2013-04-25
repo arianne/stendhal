@@ -49,6 +49,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);

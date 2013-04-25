@@ -25,6 +25,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class LeaveAction implements ChatAction {
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 

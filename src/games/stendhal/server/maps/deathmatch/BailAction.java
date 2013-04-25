@@ -25,6 +25,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class BailAction implements ChatAction {
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final String questInfo = player.getQuest("deathmatch");
 		if (questInfo == null) {

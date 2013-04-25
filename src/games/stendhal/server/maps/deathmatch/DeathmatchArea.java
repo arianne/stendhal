@@ -38,6 +38,7 @@ public class DeathmatchArea implements LoginListener {
 
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 
 		if (area.contains(player)) {

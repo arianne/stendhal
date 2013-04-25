@@ -36,6 +36,7 @@ public class StartAction implements ChatAction {
 		this.deathmatchInfo = deathmatchInfo;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say("Have fun!");
 		// Track starts. The three first numbers are reserved for level,

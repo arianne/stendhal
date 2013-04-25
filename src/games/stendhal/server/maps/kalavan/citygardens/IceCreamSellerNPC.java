@@ -46,6 +46,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -75,6 +76,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING, 
 					null, 
 					new ChatAction() {
+						@Override
 						public void fire(final Player player,final Sentence sentence, final EventRaiser npc) {
 							((SpeakerNPC) npc.getEntity()).getEngine().step(player, "buy ice cream");
 							}

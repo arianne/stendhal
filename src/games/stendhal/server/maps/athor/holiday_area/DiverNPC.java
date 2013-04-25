@@ -26,6 +26,7 @@ import java.util.Map;
 
 public class DiverNPC implements ZoneConfigurator  {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);

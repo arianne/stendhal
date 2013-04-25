@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class CookNPC implements ZoneConfigurator  {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -70,6 +71,7 @@ public class CookNPC implements ZoneConfigurator  {
 
 			}};
 			new AthorFerry.FerryListener() {
+				@Override
 				public void onNewFerryState(final Status status) {
 					switch (status) {
 					case ANCHORED_AT_MAINLAND:

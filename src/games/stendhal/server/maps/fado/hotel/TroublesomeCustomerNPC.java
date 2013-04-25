@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final String[] rants = {
 			"... Bah! I wonder how long a hungry customer has to wait before a waiter shows up...",
@@ -46,6 +47,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 	private SpeakerNPC buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Groongo Rahnnt") {
 		    
+			@Override
 			protected void createPath() {
 				setPath(null);
 			}
@@ -64,6 +66,7 @@ public class TroublesomeCustomerNPC implements ZoneConfigurator {
 
 			}
 
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.RIGHT);
 			}

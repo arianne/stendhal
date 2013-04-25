@@ -50,6 +50,7 @@ class DeathmatchEngine implements TurnListener {
 	 *            Player for whom this match is created
 	 * @param deathmatchInfo
 	 *            Information about the place of the deathmatch
+	 * @param raiser 
 	 */
 	public DeathmatchEngine(final Player player, final DeathmatchInfo deathmatchInfo, final EventRaiser raiser) {
 		this.dmInfo = deathmatchInfo;
@@ -78,6 +79,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (condition()) {
 			action();

@@ -32,6 +32,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 
 	private Status ferrystate;
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -54,6 +55,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferrystate.toString());
 						//.getCurrentDescription());
@@ -71,6 +73,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 
 		new AthorFerry.FerryListener() {
 			
+			@Override
 			public void onNewFerryState(final Status status) {
 				ferrystate = status;
 				switch (status) {

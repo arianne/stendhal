@@ -24,6 +24,7 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 
 public class SadScientsBrother implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final EntityManager manager = SingletonRepository.getEntityManager();

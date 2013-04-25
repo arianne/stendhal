@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class CoastConveyerNPC implements ZoneConfigurator  {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -73,6 +74,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferryState.toString());
 					}
@@ -84,6 +86,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						ConversationStates.ATTENDING,
 						null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
@@ -109,6 +112,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 						null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
@@ -138,6 +142,7 @@ public class CoastConveyerNPC implements ZoneConfigurator  {
 			new AthorFerry.FerryListener() {
 
 
+				@Override
 				public void onNewFerryState(final Status status) {
 					ferryState = status;
 					switch (status) {

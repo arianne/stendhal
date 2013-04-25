@@ -21,6 +21,7 @@ import java.util.Map;
  * Creates a slim and an eared bottle on the counter in front of the small hut.
  */
 public class ItemsOnTable implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildOutsideHutArea(zone);
 	}

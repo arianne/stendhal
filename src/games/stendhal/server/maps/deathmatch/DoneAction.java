@@ -58,6 +58,7 @@ public class DoneAction implements ChatAction {
 		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), "D", deathmatchState.getPoints(), true));
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {

@@ -36,6 +36,7 @@ import java.util.Map;
 
 public class FerryConveyerNPC implements ZoneConfigurator  {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -73,6 +74,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 				"The ferry sails regularly between this island and the mainland, Faiumoni. You can #board it when it's here. Ask me for the #status to find out where it is currently.");
 				add(ConversationStates.ATTENDING, "status", null,
 						ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say(ferrystate.toString());
 					}
@@ -80,6 +82,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 
 				add(ConversationStates.ATTENDING, "board", null,
 						ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
 						if (ferrystate == Status.ANCHORED_AT_ISLAND) {
@@ -97,6 +100,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 				add(ConversationStates.SERVICE_OFFERED,
 						ConversationPhrases.YES_MESSAGES, null,
 						ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
@@ -117,6 +121,7 @@ public class FerryConveyerNPC implements ZoneConfigurator  {
 			new AthorFerry.FerryListener() {
 
 
+				@Override
 				public void onNewFerryState(final Status status) {
 					ferrystate = status;
 					switch (status) {

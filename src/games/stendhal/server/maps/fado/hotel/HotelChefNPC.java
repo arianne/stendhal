@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public class HotelChefNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -38,6 +39,7 @@ public class HotelChefNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Stefan") {
 		    
+			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(92, 9));
