@@ -411,6 +411,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 *
 	 * @param res
 	 * @param npcAction
+	 * @return error message
 	 */
 	public String getErrormessage(final ItemParserResult res, final String npcAction) {
 		return getErrormessage(res, getProductionActivity(), npcAction);

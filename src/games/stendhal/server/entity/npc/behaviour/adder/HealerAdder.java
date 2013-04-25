@@ -66,6 +66,7 @@ public class HealerAdder {
 		engine.add(ConversationStates.ATTENDING, "heal", null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						ItemParserResult res = new ItemParserResult(true, "heal", 1, null);
 
@@ -119,6 +120,7 @@ public class HealerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						int cost = healerBehaviour.getCharge(currentBehavRes, player);
 						if (cost < 0) {

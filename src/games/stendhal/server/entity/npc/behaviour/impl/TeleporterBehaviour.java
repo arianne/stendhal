@@ -55,6 +55,7 @@ public class TeleporterBehaviour implements TurnListener {
 		// say something every minute so that can be noticed more easily
 		SingletonRepository.getTurnNotifier().notifyInTurns(60, new TurnListener() {
 
+			@Override
 			public void onTurnReached(final int currentTurn) {
 				doRegularBehaviour();
 				SingletonRepository.getTurnNotifier().notifyInTurns(60 * 3, this);
@@ -124,6 +125,7 @@ public class TeleporterBehaviour implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (speakerNPC.getEngine().getCurrentState() != ConversationStates.IDLE) {
 			speakerNPC.say("Bye.");

@@ -150,6 +150,7 @@ public class SellerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final String itemName = currentBehavRes.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player " + player.getName());

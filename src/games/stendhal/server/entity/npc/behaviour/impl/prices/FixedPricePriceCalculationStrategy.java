@@ -19,10 +19,12 @@ public class FixedPricePriceCalculationStrategy implements
 
 	private final Map<String, Integer> prices;
 
+	@Override
 	public int calculatePrice(Item i, Player p) {
 		return calculatePrice(i.getName(), p);
 	}
 
+	@Override
 	public int calculatePrice(String item, Player p) {
 		if(this.prices.containsKey(item)) {
 			return this.prices.get(item);
@@ -30,14 +32,17 @@ public class FixedPricePriceCalculationStrategy implements
 		return -1;
 	}
 
+	@Override
 	public Set<String> dealtItems() {
 		return this.prices.keySet();
 	}
 
+	@Override
 	public boolean hasItem(String item) {
 		return prices.containsKey(item);
 	}
 
+	@Override
 	public void addCoveredItem(String item, int price) {
 		this.prices.put(item, price);
 	}

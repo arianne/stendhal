@@ -118,6 +118,7 @@ public class OutfitChangerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						final String itemName = currentBehavRes.getChosenItemName();
@@ -149,6 +150,7 @@ public class OutfitChangerAdder {
 			engine.add(ConversationStates.ATTENDING, "return", null,
 					false, ConversationStates.ATTENDING,
 					null, new ChatAction() {
+						@Override
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
 							if (outfitBehaviour.returnToOriginalOutfit(player)) {

@@ -73,6 +73,7 @@ public class RepairerAdder {
 				false, ConversationStates.ATTENDING, "I can #repair items for you.", null);
 
 		ChatAction behaviourAcceptedAction =new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				repairerBehaviour.transactAgreedDeal(repairerBehaviour.parse(sentence), raiser, player);
 			}

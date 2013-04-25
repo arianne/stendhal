@@ -142,7 +142,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
         String requiredResourceName;
         Iterator<String> i = requiredResourcesPerProduct.keySet().iterator();
         while (i.hasNext()) {
-            requiredResourceName = (String) i.next();
+            requiredResourceName = i.next();
             logger.debug("Registering OBJECT [" + requiredResourceName + "] in the word list");
 			WordList.getInstance().registerName(requiredResourceName, ExpressionType.OBJECT);
 		}
@@ -428,6 +428,7 @@ public class MultiProducerBehaviour extends TransactionBehaviour {
 	 *
 	 * @param res
 	 * @param npcAction
+	 * @return error message
 	 */
 	public String getErrormessage(final ItemParserResult res, final String npcAction) {
 		return getErrormessage(res, getProductionActivity(), npcAction);

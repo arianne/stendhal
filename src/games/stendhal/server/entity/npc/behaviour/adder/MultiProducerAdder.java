@@ -46,7 +46,13 @@ public class MultiProducerAdder {
      */
     private ItemParserResult currentBehavRes;
 
-    /** Adds all the dialogue associated with a Producing NPC */
+    /**
+     * Adds all the dialogue associated with a Producing NPC
+     *  
+     * @param npc producer 
+     * @param behaviour 
+     * @param welcomeMessage
+     */
     public void addMultiProducer(
             final SpeakerNPC npc,
             final MultiProducerBehaviour behaviour,
@@ -69,7 +75,8 @@ public class MultiProducerAdder {
 
         /* If the NPC is attending another player, say who they are attending */
         npc.addWaitMessage(null, new ChatAction() {
-            public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+            @Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
                 raiser.say("Please wait! I am attending " + raiser.getAttending().getName() + ".");
             }
         });
@@ -127,7 +134,8 @@ public class MultiProducerAdder {
                 ConversationPhrases.YES_MESSAGES, null,
                 false, ConversationStates.ATTENDING,
                 null, new ChatAction() {
-                    public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+                    @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                         behaviour.transactAgreedDeal(currentBehavRes, npc, player);
 
                         currentBehavRes = null;
@@ -146,7 +154,8 @@ public class MultiProducerAdder {
                 new QuestActiveCondition(QUEST_SLOT), 
                 false, ConversationStates.ATTENDING,
                 null, new ChatAction() {
-                    public void fire(final Player player, final Sentence sentence,
+                    @Override
+					public void fire(final Player player, final Sentence sentence,
                             final EventRaiser npc) {
                         // TODO: check - can the StateRemainingTimeAction be used here? 
                         npc.say("I still haven't finished your last order. Come back in "
@@ -165,7 +174,8 @@ public class MultiProducerAdder {
                         new QuestActiveCondition(QUEST_SLOT)),
                 false, ConversationStates.ATTENDING,
                 null, new ChatAction() {
-                    public void fire(final Player player, final Sentence sentence,
+                    @Override
+					public void fire(final Player player, final Sentence sentence,
                             final EventRaiser npc) {
                         behaviour.giveProduct(npc, player);
                     }

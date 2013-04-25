@@ -164,6 +164,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			return name.hashCode();
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			Player player = SingletonRepository.getRuleProcessor().getPlayer(name);
 			if ((player == null) || player.isDisconnected()) {

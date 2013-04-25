@@ -140,6 +140,7 @@ public class BuyerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						logger.debug("Buying something from player " + player.getName());
 

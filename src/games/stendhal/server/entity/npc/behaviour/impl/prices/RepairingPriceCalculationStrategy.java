@@ -33,11 +33,13 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 		items = repairableItems;
 	}
 
+	@Override
 	public int calculatePrice(Item i, Player p) {
 		itemToRepair = i;
 		return calculatePrice(itemToRepair.getName(), p);
 	}
 
+	@Override
 	public int calculatePrice(String item, Player p) {
 		double itemvalue = SingletonRepository.getEconomy().getValue(item);
 		double adjustedFactor = adjustFactorBasedOnMinLevel(item);
@@ -59,14 +61,17 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 		return REPAIR_PRICE_FACTOR;
 	}
 
+	@Override
 	public Set<String> dealtItems() {
 		return items;
 	}
 
+	@Override
 	public boolean hasItem(String item) {
 		return items.contains(item);
 	}
 
+	@Override
 	public void addCoveredItem(String item, int price) {
 		items.add(item);
 	}

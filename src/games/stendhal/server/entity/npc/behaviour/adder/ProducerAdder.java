@@ -46,7 +46,13 @@ public class ProducerAdder {
 	 */
 	private ItemParserResult currentBehavRes;
 
-    /** Adds all the dialogue associated with a Producing NPC */
+    /**
+     * Adds all the dialogue associated with a Producing NPC
+     *  
+     * @param npc producer
+     * @param behaviour 
+     * @param welcomeMessage
+     */
 	public void addProducer(final SpeakerNPC npc, final ProducerBehaviour behaviour,
 			final String welcomeMessage) {
 
@@ -67,6 +73,7 @@ public class ProducerAdder {
 
         /* If the NPC is attending another player, say who they are attending */
 		npc.addWaitMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				raiser.say("Please wait! I am attending "
 						+ raiser.getAttending().getName() + ".");
@@ -125,6 +132,7 @@ public class ProducerAdder {
 				ConversationPhrases.YES_MESSAGES, null,
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
 
@@ -144,6 +152,7 @@ public class ProducerAdder {
 				new QuestActiveCondition(QUEST_SLOT), 
                 false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
                         // TODO: check - can the StateRemainingTimeAction be used here? 
@@ -163,6 +172,7 @@ public class ProducerAdder {
 						new QuestActiveCondition(QUEST_SLOT)),
 				false, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);

@@ -38,6 +38,7 @@ public final class MonologueBehaviour implements TurnListener {
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (speakerNPC.getEngine().getCurrentState() == ConversationStates.IDLE) {
 			speakerNPC.say(repeatedText[i % repeatedText.length]);

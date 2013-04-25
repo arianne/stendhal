@@ -82,6 +82,7 @@ public class RepairerBehaviour extends TransactionBehaviour {
 	@Override
 	public ChatCondition getTransactionCondition() {
 		return new ChatCondition() {
+			@Override
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
 				ItemParserResult res = parse(sentence);
 				return canDealWith(res.getChosenItemName());
