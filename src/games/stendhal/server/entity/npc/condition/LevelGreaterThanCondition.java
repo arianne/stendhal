@@ -43,6 +43,7 @@ public class LevelGreaterThanCondition implements ChatCondition {
 	/**
 	 * @return true if players level greater then conditions Level
 	 */
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.getLevel() > level);
 	}

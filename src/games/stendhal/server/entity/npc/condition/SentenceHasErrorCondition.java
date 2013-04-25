@@ -28,6 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.CHAT, label="Error?")
 public class SentenceHasErrorCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (sentence.hasError());
 	}

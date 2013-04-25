@@ -40,6 +40,7 @@ public class QuestNotCompletedCondition implements ChatCondition {
 		this.questname = questname;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (!player.isQuestCompleted(questname));
 	}

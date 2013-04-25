@@ -44,6 +44,7 @@ public class QuestStateStartsWithCondition implements ChatCondition {
 		this.state = state;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.hasQuest(questname) && player.getQuest(questname).startsWith(
 				state));

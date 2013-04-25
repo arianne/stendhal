@@ -40,6 +40,7 @@ public class LevelLessThanCondition implements ChatCondition {
 		this.level = level;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.getLevel() < level);
 	}

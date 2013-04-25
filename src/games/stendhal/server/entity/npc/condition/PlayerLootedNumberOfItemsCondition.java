@@ -41,6 +41,7 @@ public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
 		}
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		for(String item : items) {
 			if(player.getNumberOfLootsForItem(item) < number) {

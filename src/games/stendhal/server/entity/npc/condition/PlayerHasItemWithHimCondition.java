@@ -58,6 +58,7 @@ public class PlayerHasItemWithHimCondition implements ChatCondition {
 		this.amount = amount;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return player.isEquipped(itemName, amount);
 	}

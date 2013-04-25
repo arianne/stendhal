@@ -73,6 +73,7 @@ public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition 
 		}
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		for (Entry<String, Integer> entry : creatures.entrySet()) {
 			int actualSharedKills = player.getSharedKill(entry.getKey());

@@ -54,6 +54,7 @@ public class TriggerInListCondition implements ChatCondition {
 		triggers = new TriggerList(trigger);
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return triggers.contains(sentence.getTriggerExpression());
 	}

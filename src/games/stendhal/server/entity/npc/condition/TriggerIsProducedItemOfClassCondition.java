@@ -45,6 +45,7 @@ public class TriggerIsProducedItemOfClassCondition implements ChatCondition {
 		this.clazz = clazz;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		TriggerList triggers = new TriggerList (producerRegister.getProducedItemNames(clazz));
 		return triggers.contains(sentence.getTriggerExpression());

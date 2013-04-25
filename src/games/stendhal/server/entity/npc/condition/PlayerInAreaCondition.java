@@ -41,6 +41,7 @@ public class PlayerInAreaCondition implements ChatCondition {
 		this.area = area;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return area.contains(player);
 	}

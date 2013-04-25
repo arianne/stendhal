@@ -44,6 +44,7 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 		this.outfitToCheck = outfit;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		final Outfit players_outfit = player.getOutfit();
 		return this.outfitToCheck.isPartOf(players_outfit);

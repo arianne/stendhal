@@ -29,6 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.OUTFIT, label="Outfit?")
 public class NakedCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Outfit outfit = player.getOutfit();
 		return outfit.isNaked();

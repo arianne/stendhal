@@ -60,6 +60,7 @@ public class KilledForQuestCondition implements ChatCondition {
 	/**
 	 * return true if player have killed proper creature numbers.
 	 */
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		final String temp = player.getQuest(QUEST_SLOT, questIndex);
 		if(temp==null) {

@@ -29,6 +29,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.LOGIC, label="True!")
 public class AlwaysTrueCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return true;
 	}

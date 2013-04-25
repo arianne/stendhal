@@ -41,6 +41,7 @@ public class PlayerMinedNumberOfItemsCondition implements ChatCondition {
 		quantity = number;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		for(String item : itemMinedList) {
 			if(quantity > player.getQuantityOfMinedItems(item)) {

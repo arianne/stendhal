@@ -64,6 +64,7 @@ public class QuestInStateCondition implements ChatCondition {
 		this.state = state;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		if (!player.hasQuest(questname)) {
 			return false;

@@ -34,6 +34,7 @@ public class DaylightCondition implements ChatCondition {
 		this.daylightPhases = Arrays.asList(daylightPhases);
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		return daylightPhases.contains(DaylightPhase.current());
 	}

@@ -40,6 +40,7 @@ public class SystemPropertyCondition implements ChatCondition {
 		this.value = value;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		if (value == null) {
 			return System.getProperty(key) != null;

@@ -67,6 +67,7 @@ public class TimePassedCondition implements ChatCondition {
 		this.index = 0;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		if (!player.hasQuest(questname)) {
 			// never done quest so enough 'time' has passed

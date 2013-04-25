@@ -39,6 +39,7 @@ public class EmoteCondition implements ChatCondition {
 		this.playerAction = playerAction.trim();
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final String text = sentence.getOriginalText();
 		return ((text.startsWith("!me")) &&

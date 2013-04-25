@@ -59,6 +59,7 @@ public class PlayerHasCompletedAchievementsCondition implements ChatCondition {
 		this(-1, achievementIdentifiers);
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		int reached = 0;
 		for (String achievementIdentifier : achievements) {

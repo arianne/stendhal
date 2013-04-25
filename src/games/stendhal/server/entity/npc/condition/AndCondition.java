@@ -44,6 +44,7 @@ public class AndCondition implements ChatCondition {
 		this.conditions = Arrays.asList(condition);
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		for (final ChatCondition condition : conditions) {
 			final boolean res = condition.fire(player, sentence, entity);

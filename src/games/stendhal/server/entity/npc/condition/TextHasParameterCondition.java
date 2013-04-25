@@ -25,6 +25,7 @@ import games.stendhal.server.entity.player.Player;
 @Dev(category=Category.CHAT, label="\"\"?")
 public class TextHasParameterCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final String text = sentence.getOriginalText();
 		return text.indexOf(' ') > -1;

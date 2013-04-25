@@ -57,6 +57,7 @@ public class KilledCondition implements ChatCondition {
 		this.toKill = new TreeSet<String>(Arrays.asList(toKill));
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		for (final String creature : toKill) {
 			if (!player.hasKilled(creature)) {

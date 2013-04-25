@@ -48,6 +48,7 @@ public class PlayerVisitedZonesCondition implements ChatCondition {
 		}
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		for(String zone : zoneNames) {
 			StendhalRPZone zoneObject = SingletonRepository.getRPWorld().getZone(zone);

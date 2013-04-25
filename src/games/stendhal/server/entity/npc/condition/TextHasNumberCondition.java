@@ -62,6 +62,7 @@ public class TextHasNumberCondition implements ChatCondition {
 		this.max = max;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final Expression number = sentence.getNumeral();
 

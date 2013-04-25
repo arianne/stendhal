@@ -61,6 +61,7 @@ public class PlayerHasRecordedItemWithHimCondition implements ChatCondition {
 		this.index = index;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		String itemName=player.getRequiredItemName(questName,index);
 		int amount = player.getRequiredItemQuantity(questName,index);

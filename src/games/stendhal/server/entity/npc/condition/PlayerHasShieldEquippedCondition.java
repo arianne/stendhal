@@ -30,6 +30,7 @@ import games.stendhal.server.entity.player.Player;
 @Dev(category=Category.ITEMS_OWNED, label="Item?")
 public class PlayerHasShieldEquippedCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return player.hasShield();
 	}

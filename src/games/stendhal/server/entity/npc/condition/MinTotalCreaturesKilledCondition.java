@@ -59,7 +59,8 @@ public class MinTotalCreaturesKilledCondition implements ChatCondition {
      *
      * @return True if the player has killed the correct number of creatures or more, false otherwise
      */
-    public boolean fire(Player player, Sentence sentence, Entity npc) {
+    @Override
+	public boolean fire(Player player, Sentence sentence, Entity npc) {
         EntityManager manager = SingletonRepository.getEntityManager();
         int totalKills = 0;
 

@@ -18,6 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.OTHER, label="GoodBoy?")
 public class PlayerIsAGoodBoyCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return !player.isBadBoy();
 	}

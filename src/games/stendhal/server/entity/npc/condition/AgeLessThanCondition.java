@@ -43,6 +43,7 @@ public class AgeLessThanCondition implements ChatCondition {
 	/**
 	 * @return true if players age less than age in condition
 	 */
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.getAge() < age);
 	}

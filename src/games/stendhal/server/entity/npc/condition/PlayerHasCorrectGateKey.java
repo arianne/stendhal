@@ -20,6 +20,7 @@ import java.util.List;
 @Dev(category=Category.IGNORE, label="Key?")
 public class PlayerHasCorrectGateKey implements ChatCondition {
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity raiser) {
 		// entity can't handle it without the identifier of the key
 		if (!(raiser.has("identifier"))) {

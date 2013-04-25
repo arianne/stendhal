@@ -40,6 +40,7 @@ public class PlayerHasStorableEntityCondition implements ChatCondition {
 		this.storeableEntityList = storeableEntityList;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return storeableEntityList.getByName(player.getName()) != null;
 	}

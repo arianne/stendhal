@@ -53,6 +53,7 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 		this.regions=regions;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		List<String> npcs = new LinkedList<String>();
 		for (String region: regions) {

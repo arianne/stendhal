@@ -49,6 +49,7 @@ public class PlayerHasInfostringItemWithHimCondition implements ChatCondition {
 		this.infostring = infostring;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		final List<Item> items = player.getAllEquipped(itemName);
 		for (final Item item : items) {

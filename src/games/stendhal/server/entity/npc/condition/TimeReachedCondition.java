@@ -58,6 +58,7 @@ public class TimeReachedCondition implements ChatCondition {
 		this.index = index;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		long timestamp;
 

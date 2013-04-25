@@ -54,6 +54,7 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 		this.index = index;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		if(player.hasQuest(questSlot)) {
 			String questState = player.getQuest(questSlot);

@@ -33,6 +33,7 @@ public class PlayerHasItemEquippedInSlot implements ChatCondition {
 		this.slot = slot;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		return player.isEquippedItemClass(this.slot, this.item);
 	}

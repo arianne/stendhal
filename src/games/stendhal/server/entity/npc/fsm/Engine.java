@@ -332,13 +332,14 @@ public class Engine {
 	/**
 	 * Create a collection of trigger expressions from trigger strings
 	 * while checking for duplicate transitions.
+	 * 
 	 * @param state
 	 * @param triggerStrings
 	 * @param matcher
 	 * @param condition
 	 * @param reply
 	 * @param action
-	 * @return
+	 * @return trigger expressions
 	 */
 	private Collection<Expression> createUniqueTriggerExpressions(
 			final ConversationStates state,

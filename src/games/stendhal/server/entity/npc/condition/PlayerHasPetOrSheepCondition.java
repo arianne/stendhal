@@ -28,6 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Dev(category=Category.OTHER, label="Pet?")
 public class PlayerHasPetOrSheepCondition implements ChatCondition {
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 	    return (player.hasPet() || player.hasSheep());
 	}

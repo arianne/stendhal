@@ -29,6 +29,7 @@ public class PlayerGotNumberOfItemsFromWellCondition implements ChatCondition {
 		number = quantity;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return number < player.getQuantityOfObtainedItems();
 	}

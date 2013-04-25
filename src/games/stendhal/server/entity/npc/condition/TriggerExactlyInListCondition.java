@@ -63,6 +63,7 @@ public class TriggerExactlyInListCondition implements ChatCondition {
 		}
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 
 		// TODO: lowercase "and" at the beginning of a sentence is ignored, even in full match mode: "and the other gold"

@@ -45,6 +45,7 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 		nameWords = Arrays.asList(name.toLowerCase().split(" "));
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		if (sentence == null) {
 			return true;
@@ -71,8 +72,10 @@ public class GreetingMatchesNameCondition implements ChatCondition {
 
 	/**
 	 * Check if all of the given words are present in nameWords.
+	 * 
 	 * @param words list of words to search for
-	 * @return
+	 * @return <code>true</code> if all the words were found, otherwise
+	 * 	<code>false</code>
 	 */
 	private boolean matchesName(String... words) {
 		for(String word : words) {

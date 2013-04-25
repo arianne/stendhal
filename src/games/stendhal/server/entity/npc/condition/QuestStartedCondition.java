@@ -40,6 +40,7 @@ public class QuestStartedCondition implements ChatCondition {
 		this.questname = questname;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.hasQuest(questname) && !"rejected".equals(player.getQuest(questname, 0)));
 	}

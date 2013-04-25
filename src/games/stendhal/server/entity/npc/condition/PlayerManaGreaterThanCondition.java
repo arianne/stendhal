@@ -29,6 +29,7 @@ public class PlayerManaGreaterThanCondition implements ChatCondition {
 		this.mana = mana;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		return player.getMana() > this.mana;
 	}

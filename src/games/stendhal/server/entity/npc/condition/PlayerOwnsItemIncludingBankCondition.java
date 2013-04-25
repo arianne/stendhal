@@ -62,6 +62,7 @@ public class PlayerOwnsItemIncludingBankCondition implements ChatCondition {
 		this.amount = amount;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return playerOwnsItemsInAnySlot(player, itemName, amount);
 	}

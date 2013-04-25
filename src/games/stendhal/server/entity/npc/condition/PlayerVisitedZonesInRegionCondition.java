@@ -70,6 +70,7 @@ public class PlayerVisitedZonesInRegionCondition implements ChatCondition {
 		this(region, exterior, aboveGround, Boolean.TRUE);
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		Collection<StendhalRPZone> zones = SingletonRepository.getRPWorld().getAllZonesFromRegion(region, exterior, aboveGround, accessible);
 		for(StendhalRPZone zone : zones) {

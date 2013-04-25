@@ -40,6 +40,7 @@ public class NotCondition implements ChatCondition {
 		this.condition = condition;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return !condition.fire(player, sentence, entity);
 	}

@@ -48,6 +48,7 @@ public class AdminCondition implements ChatCondition {
 		this.requiredAdminlevel = requiredAdminlevel;
 	}
 
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		return (player.getAdminLevel() >= requiredAdminlevel);
 	}
