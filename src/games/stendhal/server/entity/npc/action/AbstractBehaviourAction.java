@@ -23,6 +23,8 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * AbstractBehaviourAction is the base of ChatActions handling Behaviour requests.
+ * 
+ * @param <B> behavior type
  */
 @Dev(category=Category.IGNORE)
 abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatAction {
@@ -37,6 +39,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 		this.npcAction = npcAction;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		if (sentence.hasError()) {
 			fireSentenceError(player, sentence, npc);

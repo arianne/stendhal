@@ -57,6 +57,7 @@ public class PlaySoundAction implements ChatAction {
 		this.delay = delay;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!delay) {
 			raiser.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
@@ -94,6 +95,7 @@ public class PlaySoundAction implements ChatAction {
 		/**
 		 * plays the sound
 		 */
+		@Override
 		public void onTurnReached(int currentTurn) {
 			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
 		}

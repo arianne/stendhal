@@ -53,6 +53,7 @@ public class SetQuestToPlayerAgeAction implements ChatAction {
 		this.index = index;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String state = Integer.toString(player.getAge());
 		if (index > -1) {

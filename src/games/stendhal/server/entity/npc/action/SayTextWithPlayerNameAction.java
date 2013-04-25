@@ -47,6 +47,7 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 		this.text = text;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("name", player.getTitle());

@@ -37,6 +37,7 @@ public class IncreaseXPAction implements ChatAction {
 		this.xpDiff = xpDiff;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		player.addXP(xpDiff);
 		player.notifyWorldAboutChanges();

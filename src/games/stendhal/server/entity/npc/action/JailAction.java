@@ -38,7 +38,8 @@ public class JailAction implements ChatAction {
 
 	/**
 	 * Creates a new JailAction.
-	 *
+	 * 
+	 * @param minutes sentence duration in minutes
 	 * @param reason reason for jailing player
 	 */
 	public JailAction(final int minutes, final String reason) {
@@ -46,6 +47,7 @@ public class JailAction implements ChatAction {
 		this.reason = reason;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		// e.g this will be fine for SpeakerNPCs
 		if (npc.getEntity() instanceof RPEntity) {

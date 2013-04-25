@@ -64,6 +64,7 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 		this.fametype = fametype;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String orgAge = null;
 		if (index > -1) {

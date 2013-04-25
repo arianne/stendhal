@@ -54,6 +54,7 @@ public class LoadSignFromHallOfFameAction implements ChatAction {
 		this.ascending = ascending;
 	}
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sign != null) {
 			SignFromHallOfFameLoader loader = new SignFromHallOfFameLoader(sign, introduction, fametype, max, ascending, false);

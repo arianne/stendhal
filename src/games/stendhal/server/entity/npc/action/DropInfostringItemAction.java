@@ -68,6 +68,7 @@ public class DropInfostringItemAction implements ChatAction {
 		this.infostring = infostring;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final List<Item> items = player.getAllEquipped(itemName);
 		boolean res = false;

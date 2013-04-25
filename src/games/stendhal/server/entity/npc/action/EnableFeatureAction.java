@@ -53,6 +53,7 @@ public class EnableFeatureAction implements ChatAction {
 	}
 
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		player.setFeature(feature, value);
 	}

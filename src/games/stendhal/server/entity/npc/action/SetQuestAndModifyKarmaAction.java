@@ -46,6 +46,7 @@ public class SetQuestAndModifyKarmaAction implements ChatAction {
 		this.karmaDiff = karmaDiff;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		player.setQuest(questname, state);
 		player.addKarma(karmaDiff);

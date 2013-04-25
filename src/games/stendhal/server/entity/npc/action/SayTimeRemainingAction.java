@@ -82,6 +82,7 @@ public class SayTimeRemainingAction implements ChatAction {
 		this.index = 0;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (!player.hasQuest(questname)) {
 			return;

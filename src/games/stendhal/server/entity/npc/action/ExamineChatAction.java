@@ -47,6 +47,7 @@ public class ExamineChatAction implements ChatAction {
 		this.caption = caption;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		player.addEvent(new ExamineEvent("examine/" + image, title, caption));
 	}

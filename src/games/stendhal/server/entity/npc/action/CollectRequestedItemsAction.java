@@ -63,6 +63,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		this.stateAfterCompletion = stateAfterCompletion;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		ItemCollection missingItems = getMissingItems(player);
 		final Integer missingCount = missingItems.get(itemName);

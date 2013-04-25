@@ -53,6 +53,7 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 		this.regions = regions;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		// to build up the message the npc will say
 		StringBuilder sb = new StringBuilder();

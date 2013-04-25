@@ -56,6 +56,7 @@ public class SendPrivateMessageAction implements ChatAction {
 		this.type = type;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		player.sendPrivateText(type, text);
 	}

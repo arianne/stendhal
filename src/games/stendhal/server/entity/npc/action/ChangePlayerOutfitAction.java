@@ -52,6 +52,7 @@ public class ChangePlayerOutfitAction implements ChatAction {
 		this.temporaryOutfit = temporaryOutfit;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		Outfit outfit = player.getOriginalOutfit();
 		if (outfit == null) {

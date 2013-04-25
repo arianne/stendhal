@@ -92,6 +92,7 @@ public class StartRecordingKillsAction implements ChatAction {
 		this.KILLS_INDEX = index;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final StringBuilder sb = new StringBuilder("");
 		for (final String creature : toKill.keySet()) {

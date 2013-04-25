@@ -41,6 +41,7 @@ public class RemoveStorableEntityAction implements ChatAction {
 		this.storeableEntityList = storeableEntityList;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		storeableEntityList.removeByName(player.getName());
 	}

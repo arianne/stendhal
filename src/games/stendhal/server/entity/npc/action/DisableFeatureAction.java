@@ -29,6 +29,7 @@ public class DisableFeatureAction implements ChatAction {
 		this.feature = feature;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		player.unsetFeature(this.feature);
 	}

@@ -63,6 +63,7 @@ public class SetQuestAction implements ChatAction {
 		this.state = state;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (index > -1) {
 			player.setQuest(questname, index, state);

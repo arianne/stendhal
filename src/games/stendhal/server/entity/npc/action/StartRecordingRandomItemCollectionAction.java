@@ -83,6 +83,7 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		this.message = message;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final String itemname = Rand.rand(items.keySet());
 		final int quantity = items.get(itemname);

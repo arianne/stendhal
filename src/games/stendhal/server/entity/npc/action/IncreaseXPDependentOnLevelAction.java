@@ -41,6 +41,7 @@ public class IncreaseXPDependentOnLevelAction implements ChatAction {
 		this.karmabonus = karmabonus;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final int start = Level.getXP(player.getLevel());
 		final int next = Level.getXP(player.getLevel() + 1);

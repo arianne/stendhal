@@ -64,6 +64,7 @@ public class IncrementQuestAction implements ChatAction {
 		this.increment = increment;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String substate = player.getQuest(questname,index);
 		int questcount;

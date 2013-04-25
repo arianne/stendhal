@@ -56,6 +56,7 @@ public class ListProducedItemsOfClassAction implements ChatAction {
 		this.message = message;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		Map<String, String> substitutes = new HashMap<String, String>();
 		substitutes.put("items", Grammar.enumerateCollection(producerRegister.getProducedItemNames(clazz)));

@@ -39,6 +39,7 @@ public class SayTextAction implements ChatAction {
 		this.text = text;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say(text);
 	}

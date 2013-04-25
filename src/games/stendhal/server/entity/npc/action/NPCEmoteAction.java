@@ -39,6 +39,7 @@ public class NPCEmoteAction implements ChatAction {
 		this.npcAction = npcAction.trim();
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		raiser.say("!me " + npcAction + " " + player.getName());
 	}

@@ -56,6 +56,7 @@ public class SetQuestToTimeStampAction implements ChatAction {
 		this.index = index;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String state = Long.toString(System.currentTimeMillis());
 		if (index > -1) {

@@ -55,6 +55,7 @@ public class TeleportAction implements ChatAction {
 		this.direction = direction;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zonename);
 		player.teleport(zone, x, y, direction, player);

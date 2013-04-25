@@ -55,6 +55,7 @@ public class SetQuestToYearAction implements ChatAction {
 		this.index = index;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String state = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
 		if (index > -1) {

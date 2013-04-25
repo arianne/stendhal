@@ -57,6 +57,7 @@ public class DropItemAction implements ChatAction {
 		this.amount = amount;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final boolean res = player.drop(itemName, amount);
 		if (!res) {

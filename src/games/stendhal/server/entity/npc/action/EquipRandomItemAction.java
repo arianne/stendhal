@@ -98,6 +98,7 @@ public class EquipRandomItemAction implements ChatAction {
 		this.bind = bind;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final String itemName = Rand.rand(items.keySet());
 		final Integer amount = items.get(itemName);

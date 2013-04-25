@@ -74,6 +74,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 		this.increment = multiplayer;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		if ( (increment <= 0) || ((increment > max) && ((increment > min)) ) ){
 			logger.error("Increment value '" + increment + "' is invalid when max is '" + max + "'.", new Throwable());

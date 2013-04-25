@@ -37,6 +37,7 @@ public class DecreaseKarmaAction implements ChatAction {
 		this.karmaDiff = karmaDiff;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		player.addKarma(-1 * karmaDiff);
 	}

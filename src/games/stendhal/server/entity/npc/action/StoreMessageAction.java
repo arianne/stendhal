@@ -43,6 +43,7 @@ public class StoreMessageAction implements ChatAction {
 		this.message = message;
 	}
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		DBCommandQueue.get().enqueue(new StoreMessageCommand(npcName, player.getName(), message, "N"));
 	}

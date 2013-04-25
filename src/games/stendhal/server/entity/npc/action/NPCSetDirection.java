@@ -42,6 +42,7 @@ public final class NPCSetDirection implements ChatAction {
 		this.direction = direction;
 	}
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (npc.getEntity() instanceof ActiveEntity) {
 			((ActiveEntity) npc.getEntity()).setDirection(direction);

@@ -70,6 +70,7 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 		this.max_delay = maxDelay;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
         String timestamp = Long.toString(
             System.currentTimeMillis() + ( Rand.randUniform(min_delay, max_delay) * MathHelper.MILLISECONDS_IN_ONE_MINUTE));

@@ -35,6 +35,7 @@ public class ListProducedItemDetailAction implements ChatAction {
 	private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String itemName = sentence.getTriggerExpression().toString();
 		String message = producerRegister.getProducedItemDetails(itemName);

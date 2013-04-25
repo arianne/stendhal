@@ -75,6 +75,7 @@ public class EquipItemAction implements ChatAction {
 		this.bind = bind;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {
