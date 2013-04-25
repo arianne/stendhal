@@ -21,6 +21,7 @@ import java.util.Map;
  * Creates bottles in Ados bar 1st floor (Upstairs)
  */
 public class ItemsOnTableUpstairs implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBarUpstairsArea(zone);
 	}

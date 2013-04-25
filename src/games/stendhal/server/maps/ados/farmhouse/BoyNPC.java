@@ -38,6 +38,7 @@ public class BoyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -55,6 +56,7 @@ public class BoyNPC implements ZoneConfigurator {
 				// boy says nothing at all
 				// mother gets stressed
 				addGreeting(null,new ChatAction(){
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final NPCList npcs = SingletonRepository.getNPCList();
 						final SpeakerNPC npc = npcs.get("Anastasia");

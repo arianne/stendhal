@@ -34,6 +34,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDeathmatchRecruiter(zone);
 	}

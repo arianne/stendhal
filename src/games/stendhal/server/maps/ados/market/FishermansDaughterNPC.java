@@ -28,6 +28,7 @@ import java.util.Map;
  */
 public class FishermansDaughterNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		createFishermansDaughterSellingNPC(zone);
 	}
@@ -58,6 +59,7 @@ public class FishermansDaughterNPC implements ZoneConfigurator {
 				addGoodbye("Thank you for visiting us here and have a nice day.");
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}

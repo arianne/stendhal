@@ -31,7 +31,8 @@ import java.util.TreeMap;
  */
 public class FierywaterDistillerNPC implements ZoneConfigurator {
 
-    public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
+    @Override
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
         buildNPC(zone);
     }
 

@@ -43,6 +43,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZooArea(zone);
 	}
@@ -99,6 +100,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 	 * Action for healing pets
 	 */
 	private static class HealPetsAction implements ChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			List<DomesticAnimal> healed = new LinkedList<DomesticAnimal>();
 			

@@ -26,6 +26,7 @@ import java.util.Map;
  * @author hendrik
  */
 public class ItemsOnTable implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMagicianHouseArea(zone);
 	}

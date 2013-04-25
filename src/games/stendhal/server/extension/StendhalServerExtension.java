@@ -36,6 +36,7 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 
 	/**
 	 * @param name  
+	 * @return <code>true</code> on success, otherwise <code>false>/code> 
 	 */
 	public synchronized boolean perform(final String name) {
 		return (false);
@@ -43,6 +44,7 @@ public abstract class StendhalServerExtension implements StendhalServerExtension
 
 	/**
 	 * @param name  
+	 * @return message
 	 */
 	public String getMessage(final String name) {
 		return (null);

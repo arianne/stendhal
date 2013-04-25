@@ -44,6 +44,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZooArea(zone);
 	}
@@ -71,6 +72,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING,
 					ConversationPhrases.HELP_MESSAGES,
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence,
 											final Entity engine) {
 							return player.hasPet();
@@ -83,6 +85,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					ConversationPhrases.YES_MESSAGES, null,
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
+						@Override
 						public void fire(final Player player, final Sentence sentence,
 										 final EventRaiser npc) {
 							Pet pet = player.getPet();
@@ -114,6 +117,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING,
 					ConversationPhrases.HELP_MESSAGES,
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence,
 											final Entity engine) {
 							return !player.hasPet();

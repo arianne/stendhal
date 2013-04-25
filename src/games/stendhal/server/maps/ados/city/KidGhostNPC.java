@@ -46,6 +46,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -77,7 +78,8 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    	ConversationStates.IDLE,
 			    	null,
 			    	new ChatAction() {
-			    		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			    		@Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			    			if (!player.hasQuest("find_ghosts")) {
 			    				player.setQuest("find_ghosts", "looking:said");
 			    			}

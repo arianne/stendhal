@@ -33,6 +33,7 @@ public class Deathmatch implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		final Rectangle2D shape = new Rectangle2D.Double();
 		shape.setRect(88, 77, 112 - 88 + 1, 94 - 77 + 1);

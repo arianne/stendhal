@@ -33,6 +33,7 @@ public class DwarfBuyerGuyNPC implements ZoneConfigurator  {
 	
     private final ShopList shops = SingletonRepository.getShopList();
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);

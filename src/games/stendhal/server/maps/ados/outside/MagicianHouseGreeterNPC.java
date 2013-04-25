@@ -26,6 +26,7 @@ import java.util.Map;
  */
 public class MagicianHouseGreeterNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		createMagicianHouseGreeterNPC(zone);
 	}

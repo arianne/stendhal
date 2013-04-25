@@ -32,6 +32,7 @@ public class CafeSellerNPC implements ZoneConfigurator {
 	/**
 	 * region that this NPC can give information about
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);

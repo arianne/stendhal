@@ -41,6 +41,7 @@ public class SoundEvent extends RPEvent {
 	 * Creates a new sound event.
 	 *
 	 * @param sound name of sound to play
+	 * @param layer 
 	 */
 	public SoundEvent(final String sound, SoundLayer layer) {
 		super(Events.SOUND);

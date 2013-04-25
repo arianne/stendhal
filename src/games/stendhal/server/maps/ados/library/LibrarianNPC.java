@@ -42,6 +42,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildLibrary(zone);
 	}
@@ -66,7 +67,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addHelp("Just ask me to #explain something.");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
 				        new ChatAction() {
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					        @Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					        	String text = sentence.getOriginalText();
 						        // extract the title
 						        int pos = text.indexOf(" ");
@@ -112,6 +114,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 			this.access = access;
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			if (!access.isFinished()) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(3, new WikipediaWaiter(npc, access));

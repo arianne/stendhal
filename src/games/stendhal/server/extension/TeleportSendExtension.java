@@ -59,6 +59,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements
 		// implemented as /commands that are handled onAction
 	}
 
+	@Override
 	public void onAction(final Player player, final RPAction action) {
 		final String type = action.get("type");
 

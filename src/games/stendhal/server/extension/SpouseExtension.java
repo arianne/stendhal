@@ -79,7 +79,6 @@ public class SpouseExtension extends StendhalServerExtension implements
 		}
 	}
 
-	@SuppressWarnings("null")
 	private void onMarry(final Player player, final RPAction action) {
 		final String usage = "Usage: #/marry #<player1> #<player2>";
 		String text = "";
