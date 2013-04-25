@@ -48,6 +48,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Haunchy", "Barbarus");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

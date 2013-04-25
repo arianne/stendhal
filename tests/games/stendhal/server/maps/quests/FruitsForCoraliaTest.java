@@ -51,6 +51,7 @@ public class FruitsForCoraliaTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Coralia");
 	}
 
+	@Override
 	@Before
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);

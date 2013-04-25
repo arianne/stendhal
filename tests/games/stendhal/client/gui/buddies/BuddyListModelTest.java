@@ -253,18 +253,21 @@ public class BuddyListModelTest implements ListDataListener {
 	/*
 	 * **** ListDataListener. Update the test class state at model changes ****
 	 */
+	@Override
 	public void contentsChanged(ListDataEvent e) {
 		contentsChangedFlag = true;
 		index0 = e.getIndex0();
 		index1 = e.getIndex1();
 	}
 
+	@Override
 	public void intervalAdded(ListDataEvent e) {
 		intervalAddedFlag = true;
 		index0 = e.getIndex0();
 		index1 = e.getIndex1();
 	}
 
+	@Override
 	public void intervalRemoved(ListDataEvent e) {
 		intervalRemovedFlag = true;
 		index0 = e.getIndex0();

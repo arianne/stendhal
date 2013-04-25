@@ -37,6 +37,7 @@ public class HolidayingWomanNPCTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME, new HolidayingWomanNPC(), new ChefNPC(), new ShopAssistantNPC());
 	}
 	
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

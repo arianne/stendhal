@@ -78,6 +78,7 @@ public class PlayerListTest {
 		list.add(ghost);
 		final String testString = "testString";
 		list.forAllPlayersExecute(new Task<Player>() {
+			@Override
 			public void execute(final Player player) {
 				player.put(testString, testString);
 			}
@@ -88,10 +89,12 @@ public class PlayerListTest {
 		assertEquals(testString, ghost.get(testString));
 
 		list.forFilteredPlayersExecute(new Task<Player>() {
+			@Override
 			public void execute(final Player player) {
 				player.put(testString, "");
 			}
 		}, new FilterCriteria<Player>() {
+			@Override
 			public boolean passes(final Player o) {
 				return o.isGhost();
 			}
@@ -116,6 +119,7 @@ public class PlayerListTest {
 		list.add(ghost);
 		list.forAllPlayersExecute(new Task<Player>() {
 
+			@Override
 			public void execute(final Player player) {
 				list.remove(player);
 			}

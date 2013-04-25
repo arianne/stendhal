@@ -39,6 +39,7 @@ public class CommandCenterTest {
 	@Test
 	public void testRegister() {
 		final ActionListener listener = new ActionListener() {
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 				player.put("success", "true");
 			}
@@ -59,12 +60,14 @@ public class CommandCenterTest {
 	public void testRegisterTwice() {
 		CommandCenter.register("this", new ActionListener() {
 
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 
 			}
 		});
 
 		CommandCenter.register("this", new ActionListener() {
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 
 			}
@@ -88,15 +91,18 @@ public class CommandCenterTest {
 		final RPAction action = new RPAction();
 		
 		CommandCenter.register("this", new ActionListener() {
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 			}
 		});
 		CommandCenter.register("that", new ActionListener() {
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 
 			}
 		});
 		CommandCenter.register("thus", new ActionListener() {
+			@Override
 			public void onAction(final Player player, final RPAction action) {
 			}
 		});

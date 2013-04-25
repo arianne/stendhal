@@ -34,7 +34,9 @@ public class CaptureTheFlagFlagTest {
 			this("NoName");
 		}
 
+		@Override
 		public void dropItemsOn(Corpse corpse) {}
+		@Override
 		public void logic() {}
 	}
 
@@ -57,6 +59,7 @@ public class CaptureTheFlagFlagTest {
 			return result;
 		}
 		
+		@Override
 		public SlotOwner getContainerOwner() {
 			return owner;
 		}

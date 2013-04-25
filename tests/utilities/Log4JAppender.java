@@ -29,10 +29,12 @@ public class Log4JAppender extends AppenderSkeleton {
 		messages.add(event.getRenderedMessage());
 	}
 
+	@Override
 	public void close() {
 		// do nothing
 	}
 
+	@Override
 	public boolean requiresLayout() {
 		return false;
 	}

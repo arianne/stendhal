@@ -149,6 +149,7 @@ public class TransitionTest {
 		assertNull(t.getAction());
 		final PostTransitionAction postTransitionAction = new PostTransitionAction() {
 
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 				// do nothing
 			}
@@ -167,6 +168,7 @@ public class TransitionTest {
 										null, false, idle_0, null, null);
 		assertNull(t.getCondition());
 		final ChatCondition cond = new ChatCondition() {
+			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				return false;
 			}

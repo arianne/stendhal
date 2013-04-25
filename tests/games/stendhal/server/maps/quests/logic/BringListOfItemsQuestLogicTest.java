@@ -306,22 +306,27 @@ public class BringListOfItemsQuestLogicTest {
 			this.npc = npc;
 		}
 
+		@Override
 		public String askForItemsAfterPlayerSaidHeHasItems() {
 			return "askForItemsAfterPlayerSaidHeHasItems";
 		}
 
+		@Override
 		public String askForMissingItems(final List<String> missingItems) {
 			return Grammar.enumerateCollection(missingItems);
 		}
 		
+		@Override
 		public String firstAskForMissingItems(final List<String> missingItems) {
 			return "firstAskForMissingItems";
 		}
 		
+		@Override
 		public List<String> getAdditionalTriggerPhraseForQuest() {
 			return Arrays.asList(new String[] { "getAdditionalTriggerPhraseForQuest" });
 		}
 
+		@Override
 		public SpeakerNPC getNPC() {
 			if (npc == null) {
 
@@ -331,74 +336,92 @@ public class BringListOfItemsQuestLogicTest {
 			return npc;
 		}
 
+		@Override
 		public List<String> getNeededItems() {
 			return Arrays.asList(new String[] { "one", "two", "three" });
 		}
 
+		@Override
 		public String getSlotName() {
 			return "MockBringListOfItemsQuest";
 		}
 
+		@Override
 		public List<String> getTriggerPhraseToEnumerateMissingItems() {
 			return Arrays.asList("getTriggerPhraseToEnumerateMissingItems");
 		}
 
+		@Override
 		public String respondToItemBrought() {
 			return "respondToItemBrought";
 		}
 
+		@Override
 		public String respondToLastItemBrought() {
 			return "respondToLastItemBrought";
 		}
 
+		@Override
 		public String respondToOfferOfNotExistingItem(final String itemName) {
 			return "respondToOfferOfNotExistingItem" + itemName;
 		}
 
+		@Override
 		public String respondToOfferOfNotMissingItem() {
 			return "respondToOfferOfNotMissingItem";
 		}
 
+		@Override
 		public String respondToOfferOfNotNeededItem() {
 			return "respondToOfferOfNotNeededItem";
 		}
 
+		@Override
 		public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 			return "respondToPlayerSayingHeHasNoItems";
 		}
 
+		@Override
 		public String respondToQuest() {
 			return "respondToQuest";
 		}
 
+		@Override
 		public String respondToQuestAcception() {
 			return "respondToQuestAcception";
 		}
 
+		@Override
 		public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
+		@Override
 		public String respondToQuestRefusal() {
 			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
+		@Override
 		public void rewardPlayer(final Player player) {
 			
 		}
 
+		@Override
 		public boolean shouldWelcomeAfterQuestIsCompleted() {
 			return isWelcomingAfterQuests;
 		}
 
+		@Override
 		public String welcomeAfterQuestIsCompleted() {
 			return "shouldWelcomeAfterQuestIsCompleted";
 		}
 
+		@Override
 		public String welcomeBeforeStartingQuest() {
 			return "welcomeBeforeStartingQuest";
 		}
 
+		@Override
 		public String welcomeDuringActiveQuest() {
 			return "welcomeDuringActiveQuest";
 		}
@@ -407,6 +430,7 @@ public class BringListOfItemsQuestLogicTest {
 			this.isWelcomingAfterQuests = isWelcomingAfterQuests;
 		}
 
+		@Override
 		public double getKarmaDiffForQuestResponse() {
 			return 5.0;
 		}
@@ -421,22 +445,27 @@ public class BringListOfItemsQuestLogicTest {
 	class NullValueMockBringListOfItemsQuest implements BringListOfItemsQuest {
 		private SpeakerNPC npc;
 
+		@Override
 		public String askForItemsAfterPlayerSaidHeHasItems() {
 			return null;
 		}
 
+		@Override
 		public String askForMissingItems(final List<String> missingItems) {
 			return null;
 		}
 		
+		@Override
 		public String firstAskForMissingItems(final List<String> missingItems) {
 			return null;
 		}		
 
+		@Override
 		public List<String> getAdditionalTriggerPhraseForQuest() {
 			return null;
 		}
 
+		@Override
 		public SpeakerNPC getNPC() {
 			if (npc == null) {
 
@@ -446,79 +475,97 @@ public class BringListOfItemsQuestLogicTest {
 			return npc;
 		}
 
+		@Override
 		public List<String> getNeededItems() {
 			return null;
 		}
 
+		@Override
 		public String getSlotName() {
 
 			return "NullValueMockBringListOfItemsQuest";
 		}
 
+		@Override
 		public List<String> getTriggerPhraseToEnumerateMissingItems() {
 			return null;
 		}
 
+		@Override
 		public String respondToItemBrought() {
 
 			return null;
 		}
 
+		@Override
 		public String respondToLastItemBrought() {
 
 			return null;
 		}
 
+		@Override
 		public String respondToOfferOfNotExistingItem(final String itemName) {
 
 			return null;
 		}
 
+		@Override
 		public String respondToOfferOfNotMissingItem() {
 
 			return null;
 		}
 
+		@Override
 		public String respondToOfferOfNotNeededItem() {
 			return null;
 		}
 
+		@Override
 		public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 			return null;
 		}
 
+		@Override
 		public String respondToQuest() {
 			return "respondToQuest";
 		}
 
+		@Override
 		public String respondToQuestAcception() {
 			return "respondToQuestAcception";
 		}
 
+		@Override
 		public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
+		@Override
 		public String respondToQuestRefusal() {
 			return "respondToQuestRefusal";
 		}
 
+		@Override
 		public void rewardPlayer(final Player player) {
 
 		}
 
+		@Override
 		public boolean shouldWelcomeAfterQuestIsCompleted() {
 			return false;
 		}
 
+		@Override
 		public String welcomeAfterQuestIsCompleted() {
 			return "welcomeAfterQuestIsCompleted";
 		}
 
+		@Override
 		public String welcomeBeforeStartingQuest() {
 			return "welcomeBeforeStartingQuest";
 		}
 
+		@Override
 		public String welcomeDuringActiveQuest() {
 			return "welcomeDuringActiveQuest";
 		}
@@ -527,6 +574,7 @@ public class BringListOfItemsQuestLogicTest {
 			this.npc = npc;
 		}
 
+		@Override
 		public double getKarmaDiffForQuestResponse() {
 			return 0;
 		}

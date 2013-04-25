@@ -49,6 +49,7 @@ public class McPeglegIOUTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "McPegleg");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

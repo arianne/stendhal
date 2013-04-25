@@ -50,6 +50,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Crearid");
 	}
 
+	@Override
 	@Before
 	public void setUp() {
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);

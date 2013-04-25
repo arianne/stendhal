@@ -49,6 +49,7 @@ public class KillDhohrNuggetcutterTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Zogfang");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

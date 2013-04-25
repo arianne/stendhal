@@ -199,6 +199,7 @@ public class FileTree extends JTree {
 
 	// Inner class that handles Tree Expansion Events
 	protected static class TreeExpansionHandler implements TreeExpansionListener {
+		@Override
 		public void treeExpanded(final TreeExpansionEvent evt) {
 			// The expanded path
 			final TreePath path = evt.getPath();
@@ -213,6 +214,7 @@ public class FileTree extends JTree {
 			}
 		}
 
+		@Override
 		public void treeCollapsed(final TreeExpansionEvent evt) {
 			// Nothing to do
 		}

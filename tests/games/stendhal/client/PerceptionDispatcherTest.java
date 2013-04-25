@@ -39,56 +39,67 @@ public class PerceptionDispatcherTest {
 			this.dispatched = dispatched;
 		}
 
+		@Override
 		public boolean onAdded(final RPObject newObject) {
 			newObject.put(dispatched, "");
 			return false;
 		}
 
+		@Override
 		public boolean onClear() {
 			cleared = true;
 			return false;
 		}
 
+		@Override
 		public boolean onDeleted(final RPObject deletedObject) {
 			deletedObject.put(dispatched, "");
 			return false;
 		}
 
+		@Override
 		public void onException(final Exception exception,
 				final MessageS2CPerception perception) {
 			onExceptionCalled = true;
 		}
 
+		@Override
 		public boolean onModifiedAdded(final RPObject baseObject, final RPObject changes) {
 			baseObject.put(dispatched, "");
 			return false;
 		}
 
+		@Override
 		public boolean onModifiedDeleted(final RPObject baseObject, final RPObject changes) {
 			baseObject.put(dispatched, "");
 			return false;
 		}
 
+		@Override
 		public boolean onMyRPObject(final RPObject added, final RPObject deleted) {
 			added.put(dispatched, "");
 			return false;
 		}
 
+		@Override
 		public void onPerceptionBegin(final byte type, final int timestamp) {
 			this.byteparam = 5;
 
 		}
 
+		@Override
 		public void onPerceptionEnd(final byte type, final int timestamp) {
 			this.byteparam = 6;
 
 		}
 
+		@Override
 		public void onSynced() {
 			this.byteparam = 7;
 
 		}
 
+		@Override
 		public void onUnsynced() {
 			this.byteparam = 8;
 

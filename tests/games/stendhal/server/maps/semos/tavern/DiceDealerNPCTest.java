@@ -63,6 +63,7 @@ public class DiceDealerNPCTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Ricardo");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

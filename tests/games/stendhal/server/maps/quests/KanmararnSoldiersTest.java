@@ -49,6 +49,7 @@ public class KanmararnSoldiersTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Henry", "Sergeant James");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

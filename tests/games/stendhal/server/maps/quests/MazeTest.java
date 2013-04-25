@@ -53,6 +53,7 @@ public class MazeTest extends ZonePlayerAndNPCTestImpl {
 		super(ZONE_NAME, "Haizen");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();

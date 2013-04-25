@@ -65,6 +65,7 @@ public class EngineTest {
 		final ConversationStates nextState = ConversationStates.ATTENDING;
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
 			}
@@ -98,6 +99,7 @@ public class EngineTest {
 		en.add(IDLE, (String)null, null, false, IDLE, null, null);
 		assertThat(en.getTransitions().size(), is(1));
 		en.add(IDLE, (String)null, null, false, IDLE, null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
@@ -114,6 +116,7 @@ public class EngineTest {
 
 
 		en.add(IDLE, (String)null, null, false, IDLE, null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
@@ -132,6 +135,7 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction = new ChatAction() {
 
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
@@ -151,12 +155,14 @@ public class EngineTest {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction1 = new ChatAction() {
 
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
 		};
 		ChatAction chatAction2 = new ChatAction() {
 
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// empty method
 			}
@@ -182,6 +188,7 @@ public class EngineTest {
 		final String triggers = "boo";
 
 		final ChatCondition cc = new ChatCondition() {
+			@Override
 			public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 				return true;
@@ -190,6 +197,7 @@ public class EngineTest {
 
 		final String reply = "huch";
 		final ChatAction action = new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 			}

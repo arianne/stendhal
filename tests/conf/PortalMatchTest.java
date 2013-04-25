@@ -50,6 +50,7 @@ public class PortalMatchTest {
 			final File directory = new File("data/conf/zones/");
 			final File[] files = directory.listFiles(new FileFilter() {
 
+				@Override
 				public boolean accept(final File file) {
 					return file.getName().endsWith("xml");
 				}

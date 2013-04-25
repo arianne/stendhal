@@ -45,12 +45,14 @@ public class MockScreen implements IGameScreen {
 	public void addText(final int sx, final int sy, final String text, final Color color, final boolean isTalking) {
 	}
 
+	@Override
 	public void center() {
 	}
 
 	public void clear() {
 	}
 
+	@Override
 	public void clearTexts() {
 	}
 
@@ -58,10 +60,12 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
+	@Override
 	public Point2D convertScreenViewToWorld(final Point p) {
 		return null;
 	}
 
+	@Override
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
 		return null;
 	}
@@ -114,6 +118,7 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
+	@Override
 	public RemovableSprite getTextAt(final int x, final int y) {
 		return null;
 	}
@@ -126,9 +131,11 @@ public class MockScreen implements IGameScreen {
 		return false;
 	}
 
+	@Override
 	public void nextFrame() {
 	}
 
+	@Override
 	public void positionChanged(final double x, final double y) {
 	}
 
@@ -138,12 +145,15 @@ public class MockScreen implements IGameScreen {
 	public void removeEntity(final IEntity entity) {
 	}
 
+	@Override
 	public void removeText(final RemovableSprite entity) {
 	}
 
+	@Override
 	public void setMaxWorldSize(final double width, final double height) {
 	}
 
+	@Override
 	public void setOffline(final boolean offline) {
 	}
 
@@ -151,10 +161,12 @@ public class MockScreen implements IGameScreen {
 		return null;
 	}
 
+	@Override
 	public EntityView<?> getEntityViewAt(final double x, final double y) {
 		return null;
 	}
 
+	@Override
 	public EntityView<?> getMovableEntityViewAt(final double x, final double y) {
 		return null;
 	}

@@ -64,6 +64,7 @@ public class CollectionFilterTest {
 
 	private static class Adminfilter implements FilterCriteria<Player> {
 
+		@Override
 		public boolean passes(final Player o) {
 			return o.getAdminLevel() == 0;
 		}
@@ -72,6 +73,7 @@ public class CollectionFilterTest {
 
 	private static class NoAdminfilter implements FilterCriteria<Player> {
 
+		@Override
 		public boolean passes(final Player o) {
 			return o.getAdminLevel() > 0;
 		}

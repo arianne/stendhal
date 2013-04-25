@@ -32,14 +32,17 @@ public class PerceptionToObjectTest {
 			
 		}
 
+		@Override
 		public void deleted() {
 			
 		}
 
+		@Override
 		public void modifiedAdded(final RPObject changes) {
 			
 		}
 
+		@Override
 		public void modifiedDeleted(final RPObject changes) {
 			
 		}

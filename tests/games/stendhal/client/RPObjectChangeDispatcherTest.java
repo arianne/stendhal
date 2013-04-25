@@ -28,34 +28,42 @@ public class RPObjectChangeDispatcherTest {
 	public void testDispatchModifyRemoved() {
 		final RPObjectChangeListener listener = new RPObjectChangeListener() {
 
+			@Override
 			public void onAdded(final RPObject object) {
 
 			}
 
+			@Override
 			public void onChangedAdded(final RPObject object, final RPObject changes) {
 
 			}
 
+			@Override
 			public void onChangedRemoved(final RPObject object, final RPObject changes) {
 
 			}
 
+			@Override
 			public void onRemoved(final RPObject object) {
 
 			}
 
+			@Override
 			public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
 
 			}
 
+			@Override
 			public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
 
 			}
 
+			@Override
 			public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
 
 			}
 
+			@Override
 			public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
 
 			}

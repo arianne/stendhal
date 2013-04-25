@@ -256,6 +256,7 @@ public class CreatureAnimationPreview {
 			}
 			if (jTree != null) {
 				jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+					@Override
 					public void valueChanged(final javax.swing.event.TreeSelectionEvent e) {
 						jFrame.setTitle(e.getNewLeadSelectionPath().getLastPathComponent().toString());
 

@@ -56,6 +56,7 @@ public class AnimationRunner implements ActionListener {
 
 	
 
+	@Override
 	public void actionPerformed(final ActionEvent e) {
 		ivs.setImage(frames[currentframe]);
 

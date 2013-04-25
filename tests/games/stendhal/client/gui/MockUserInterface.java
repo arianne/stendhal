@@ -26,6 +26,7 @@ public class MockUserInterface implements UserInterface {
 	/** Stored last message */
 	private EventLine previousEventLine;
 
+	@Override
 	public void addEventLine(EventLine line) {
 		previousEventLine = line;
 	}
@@ -44,15 +45,18 @@ public class MockUserInterface implements UserInterface {
 		return null;
 	}
 
+	@Override
 	public void addGameScreenText(double x, double y, String text,
 			NotificationType type, boolean isTalking) {
 		// do nothing
 	}
 
+	@Override
 	public SoundSystemFacade getSoundSystemFacade() {
 		return sound;
 	}
 
+	@Override
 	public void addAchievementBox(String title, String description,
 			String category) {
 		// do nothing
