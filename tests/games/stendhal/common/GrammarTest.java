@@ -682,7 +682,7 @@ public class GrammarTest {
 	 * Tests for enumerateCollectionCollection.
 	 */
 	@Test
-	public void testEnumerateCollectionCollection() throws Exception {
+	public void testEnumerateCollectionCollection() {
 		assertEquals("", Grammar.enumerateCollection(null));
 		final Collection<String> source = new LinkedList<String>();
 		assertEquals("", Grammar.enumerateCollection(source));
@@ -703,7 +703,7 @@ public class GrammarTest {
 	 * Tests for enumerateCollectionWithHash
 	 */
 	@Test
-	public void testEnumerateCollectionWithHash() throws Exception {
+	public void testEnumerateCollectionWithHash() {
 		assertEquals("", Grammar.enumerateCollectionWithHash(null));
 		final Collection<String> source = new LinkedList<String>();
 		assertEquals("", Grammar.enumerateCollectionWithHash(source));
@@ -837,7 +837,7 @@ public class GrammarTest {
 	 * Tests for leatherLegs.
 	 */
 	@Test
-	public void testLeatherLegs() throws Exception {
+	public void testLeatherLegs() {
 		assertEquals("leather legs", Grammar.singular("leather legs"));
 	}
 

@@ -119,7 +119,7 @@ public class FlowerGrowerTest {
 	 * Tests for growOnFertileGround.
 	 */
 	@Test
-	public void testGrowOnFertileGround() throws Exception {
+	public void testGrowOnFertileGround() {
 		final FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -137,7 +137,7 @@ public class FlowerGrowerTest {
 	 * Tests for growOnFertileGround2.
 	 */
 	@Test
-	public void testGrowOnFertileGround2() throws Exception {
+	public void testGrowOnFertileGround2() {
 		final FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -155,7 +155,7 @@ public class FlowerGrowerTest {
 	 * Tests for growFertileGroundElsewhere.
 	 */
 	@Test
-	public void testGrowFertileGroundElsewhere() throws Exception {
+	public void testGrowFertileGroundElsewhere() {
 		final FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
 		final StendhalRPZone zone = new StendhalRPZone("zone");
@@ -175,7 +175,7 @@ public class FlowerGrowerTest {
 	 * Tests for growOnInFertileGround.
 	 */
 	@Test
-	public void testGrowOnInFertileGround() throws Exception {
+	public void testGrowOnInFertileGround() {
 
 		final FlowerGrower fl = new FlowerGrower();
 		fl.setRipeness(0);
@@ -189,7 +189,7 @@ public class FlowerGrowerTest {
 	 * Check that growing on top of another FlowerGrower fails
 	 */
 	@Test
-	public void testGrowOnFreeFertileGroundReserved() throws Exception {
+	public void testGrowOnFreeFertileGroundReserved() {
 		final FlowerGrower fl = new FlowerGrower();
 		final FlowerGrower fl2 = new FlowerGrower();
 		fl.setRipeness(0);

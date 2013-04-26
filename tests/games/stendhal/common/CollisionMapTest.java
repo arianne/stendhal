@@ -56,7 +56,7 @@ public class CollisionMapTest {
 	 * Tests for collissionMap.
 	 */
 	@Test
-	public void testCollissionMap() throws Exception {
+	public void testCollissionMap() {
 		final CollisionMap map = new CollisionMap(1, 1);
 		assertThat(map.getWidth(), is(1));
 		assertThat(map.getHeight(), is(1));
@@ -70,7 +70,7 @@ public class CollisionMapTest {
 	 * Tests for collides.
 	 */
 	@Test
-	public void testcollides() throws Exception {
+	public void testcollides() {
 		final CollisionMap map = new CollisionMap(2, 2);
 		assertFalse(map.get(0, 0));
 		assertFalse(map.get(1, 0));
@@ -89,7 +89,7 @@ public class CollisionMapTest {
 	 * Tests for collides2.
 	 */
 	@Test
-	public void testcollides2() throws Exception {
+	public void testcollides2() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		map.set(0, 0);
 		map.set(3, 0);
@@ -123,7 +123,7 @@ public class CollisionMapTest {
 	 * Tests for collidesEdges.
 	 */
 	@Test
-	public void testcollidesEdges() throws Exception {
+	public void testcollidesEdges() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		assertFalse(map.collides(0, 0, 2, 2));
 		assertFalse(map.collides(0, 1, 2, 2));
@@ -151,7 +151,7 @@ public class CollisionMapTest {
 	 * Tests for bitsetlogic.
 	 */
 	@Test
-	public void testbitsetlogic() throws Exception {
+	public void testbitsetlogic() {
 		final BitSet setallfalse = new BitSet(7);
 		final BitSet invert = (BitSet) setallfalse.clone();
 		assertThat(invert.length(), is(0));
@@ -190,7 +190,7 @@ public class CollisionMapTest {
 	 * Tests for clear.
 	 */
 	@Test
-	public void testClear() throws Exception {
+	public void testClear() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		map.set(0, 0);
 		map.set(3, 0);
@@ -206,7 +206,7 @@ public class CollisionMapTest {
 	 * Tests for setCollideRectangle2D2x1.
 	 */
 	@Test
-	public void testsetCollideRectangle2D2x1() throws Exception {
+	public void testsetCollideRectangle2D2x1() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		Rectangle2D shape = new Rectangle2D.Double(1.0, 2.0, 2.0, 1.0);
 		map.set(shape);
@@ -235,7 +235,7 @@ public class CollisionMapTest {
 	 * Tests for setCollideRectangle2D2x3.
 	 */
 	@Test
-	public void testsetCollideRectangle2D2x3() throws Exception {
+	public void testsetCollideRectangle2D2x3() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		Rectangle2D shape = new Rectangle2D.Double(1.0, 0.0, 2.0, 3.0);
 		map.set(shape);
@@ -266,7 +266,7 @@ public class CollisionMapTest {
 	 * Tests for createLayerDefintion.
 	 */
 	@Test
-	public void testCreateLayerDefintion() throws Exception {
+	public void testCreateLayerDefintion() {
 		LayerDefinition layer;
 		final int width = 3;
 		final int height = 4;
@@ -291,7 +291,7 @@ public class CollisionMapTest {
 	 * Tests for collidesEntity.
 	 */
 	@Test
-	public void testCollidesEntity() throws Exception {
+	public void testCollidesEntity() {
 		final CollisionMap map = new CollisionMap(4, 4);
 		map.set(1, 1);
 		Player bob = new Player();

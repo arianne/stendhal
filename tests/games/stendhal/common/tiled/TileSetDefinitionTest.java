@@ -51,6 +51,8 @@ public class TileSetDefinitionTest {
 
 	/**
 	 * Tests for serialization.
+	 * 
+	 * @throws IOException 
 	 */
 	@Test
 	public void testSerialization() throws IOException { //, ClassNotFoundException

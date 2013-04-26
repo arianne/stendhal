@@ -38,7 +38,7 @@ public class NPCEmoteActionTest {
 	 * Tests for constructor.
 	 */
 	@Test
-	public void testConstructor() throws Throwable {
+	public void testConstructor() {
 		final NPCEmoteAction npcEmoteAction = new NPCEmoteAction("");
 		assertEquals("npcEmoteAction.hashCode()", 629,
 				npcEmoteAction.hashCode());
@@ -48,7 +48,7 @@ public class NPCEmoteActionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		final NPCEmoteAction obj = new NPCEmoteAction("hugs");
 		assertTrue(obj.equals(obj));
 		assertTrue(new NPCEmoteAction("hugs").equals(new NPCEmoteAction("hugs")));
@@ -65,7 +65,7 @@ public class NPCEmoteActionTest {
 	 * Tests for fire.
 	 */
 	@Ignore
-	public void testFire() throws Throwable {
+	public void testFire() {
 		final SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC();
 		npc.setName("TestNPC");
 		EventRaiser raiser = new EventRaiser(npc);
@@ -90,7 +90,7 @@ public class NPCEmoteActionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		assertEquals("result", 3214638, new NPCEmoteAction("hugs").hashCode());
 		assertEquals("result", 3292627, new NPCEmoteAction("kill").hashCode());
 	}
@@ -99,7 +99,7 @@ public class NPCEmoteActionTest {
 	 * Tests for toString.
 	 */
 	@Test
-	public void testToString() throws Throwable {
+	public void testToString() {
 		assertEquals("result", "NPCEmoteAction",
 				new NPCEmoteAction("hugs").toString());
 	}
@@ -108,7 +108,7 @@ public class NPCEmoteActionTest {
 	 * Tests for fireThrowsNullPointerException.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void testFireThrowsNullPointerException() throws Throwable {
+	public void testFireThrowsNullPointerException() {
 		new NPCEmoteAction("hugs").fire(null, ConversationParser.parse("!me hugs TestNPC"),
 				null);
 	}

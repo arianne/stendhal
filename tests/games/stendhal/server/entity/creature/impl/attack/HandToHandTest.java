@@ -54,7 +54,7 @@ public class HandToHandTest {
 	 * Tests for attack.
 	 */
 	@Test
-	public void testAttack() throws Exception {
+	public void testAttack() {
 		MockStendhalRPRuleProcessor.get();
 		final HandToHand hth = new HandToHand();
 		final Creature creature = createMock(Creature.class);
@@ -70,7 +70,7 @@ public class HandToHandTest {
 	 * Tests for notAttackTurnAttack.
 	 */
 	@Test
-	public void testNotAttackTurnAttack() throws Exception {
+	public void testNotAttackTurnAttack() {
 		MockStendhalRPRuleProcessor.get();
 		final HandToHand hth = new HandToHand();
 		final Creature creature = createMock(Creature.class);
@@ -293,7 +293,7 @@ public class HandToHandTest {
 	 * Tests for findNewtarget.
 	 */
 	@Test
-	public void testFindNewtarget() throws Exception {
+	public void testFindNewtarget() {
 		MockStendhalRPRuleProcessor.get();
 		final HandToHand hth = new HandToHand();
 		final Creature lonesomeCreature = new Creature();

@@ -27,7 +27,7 @@ public class InfoActionTest {
 	 * Tests for execute.
 	 */
 	@Test
-	public void testExecute() throws Exception {
+	public void testExecute() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		InfoAction info = new InfoAction();
 		info.onAction(bob, null);

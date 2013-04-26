@@ -45,6 +45,7 @@ public class BanActionTest {
 
 	/**
 	 * Tests for perform.
+	 * @throws Throwable 
 	 */
 	@Test
 	public void testPerform() throws Throwable {
@@ -91,6 +92,7 @@ public class BanActionTest {
 	
 	/**
 	 * Tests for commandCenterPerform.
+	 * @throws Throwable 
 	 */
 	@Test
 	public void testCommandCenterPerform() throws Throwable {
@@ -150,6 +152,7 @@ public class BanActionTest {
 	
 	/**
 	 * Tests without the valid character
+	 * @throws Throwable 
 	 */
 	@Test
 	public void testWithoutCharacter() throws Throwable {
@@ -204,6 +207,7 @@ public class BanActionTest {
 	
 	/**
 	 * Tests for a temporary ban
+	 * @throws Throwable 
 	 */
 	@Test
 	public void testTemporaryBan() throws Throwable {

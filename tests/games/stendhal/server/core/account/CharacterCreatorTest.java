@@ -40,6 +40,7 @@ public class CharacterCreatorTest {
 
 	/**
 	 * Tests for create.
+	 * @throws SQLException 
 	 */
 	@Test
 	public void testCreate() throws SQLException {

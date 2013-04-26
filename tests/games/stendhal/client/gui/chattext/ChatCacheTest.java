@@ -82,7 +82,7 @@ public class ChatCacheTest {
 	 * Tests for nextAndPrevious.
 	 */
 	@Test
-	public void testNextAndPrevious() throws Exception {
+	public void testNextAndPrevious() {
 		ChatCache cache = new ChatCache(null);
 		assertFalse(cache.hasNext());
 		cache.addlinetoCache("one");
@@ -104,7 +104,7 @@ public class ChatCacheTest {
 	 * Tests for nextOnEmptyCache.
 	 */
 	@Test
-	public void testNextOnEmptyCache() throws Exception {
+	public void testNextOnEmptyCache() {
 
 		ChatCache cache = new ChatCache(null);
 		cache.addlinetoCache("one");
@@ -120,7 +120,7 @@ public class ChatCacheTest {
 	/**
 	 * Tests for previousOnEmptyCache.
 	 */
-	public void testPreviousOnEmptyCache() throws Exception {
+	public void testPreviousOnEmptyCache() {
 
 		ChatCache cache = new ChatCache(null);
 		assertFalse(cache.hasPrevious());

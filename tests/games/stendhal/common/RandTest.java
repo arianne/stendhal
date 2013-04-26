@@ -37,7 +37,7 @@ public class RandTest {
 	 * Tests for randUniform.
 	 */
 	@Test
-	public void testRandUniform() throws Exception {
+	public void testRandUniform() {
 		assertEquals(0, Rand.randUniform(0, 0));
 	}
 	
@@ -45,7 +45,7 @@ public class RandTest {
 	 * Tests for randUniform2.
 	 */
 	@Test
-	public void testRandUniform2() throws Exception {
+	public void testRandUniform2() {
 		for (int i = 0; i < 10; i++) {
 			assertThat(Rand.randUniform(-1, 0), isIn(Arrays.asList(0, -1)));
 			assertThat(Rand.randUniform(0, -1), isIn(Arrays.asList(0, -1)));

@@ -90,6 +90,8 @@ public class LayerDefinitionTest {
 
 	/**
 	 * Tests for serialization.
+	 * 
+	 * @throws IOException 
 	 */
 	@Test
 	public void testSerialization() throws IOException { //, ClassNotFoundException
