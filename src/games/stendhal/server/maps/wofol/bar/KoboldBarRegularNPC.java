@@ -32,7 +32,8 @@ public class KoboldBarRegularNPC implements ZoneConfigurator {
      * @param   zone        The zone to be configured.
      * @param   attributes  Configuration attributes.
      */
-    public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
+    @Override
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
         buildNPC(zone);
     }
 

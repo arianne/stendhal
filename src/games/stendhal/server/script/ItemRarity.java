@@ -114,6 +114,7 @@ public class ItemRarity extends ScriptImpl {
 	 * Comparator for sorting the item list.
 	 */
 	private static class EntryComparator implements Comparator<Entry<String, Double>> {
+		@Override
 		public int compare(Entry<String, Double> o1, Entry<String, Double> o2) {
 			return o1.getValue().compareTo(o2.getValue());
 		}

@@ -35,6 +35,7 @@ public class VaultRemover implements TurnListener {
 		this.zone = zone;
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		// Tell all corpses they are to be removed
 		// (stops timers)

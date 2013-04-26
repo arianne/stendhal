@@ -43,6 +43,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildMineArea(zone);
@@ -114,6 +115,7 @@ public class BoyGuardianNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("WillFirstChat")) {
 					player.setQuest("WillFirstChat", "done");

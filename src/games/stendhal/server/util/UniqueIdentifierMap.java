@@ -62,6 +62,7 @@ public class UniqueIdentifierMap<V> implements Serializable,
 		return key;
 	}
 
+	@Override
 	public Iterator<Map.Entry<String, V>> iterator() {
 		return mapKeys.entrySet().iterator();
 	}

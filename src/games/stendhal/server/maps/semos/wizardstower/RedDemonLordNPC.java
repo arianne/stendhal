@@ -25,6 +25,7 @@ import java.util.Map;
  */
 public class RedDemonLordNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildDemonlord(zone);
 	}

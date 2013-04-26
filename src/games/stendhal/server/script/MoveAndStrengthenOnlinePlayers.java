@@ -83,9 +83,11 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 			admin = executor;
 		}
 
+		@Override
 		public void onTurnReached(int currentTurn) {
 			playersToDealWith.forAllPlayersExecute(new Task<Player>() {
 
+				@Override
 				public void execute(Player player) {
 					equipPlayer(player);
 					fillBag(player);

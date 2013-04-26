@@ -126,13 +126,15 @@ public class ColorSelector extends JButton {
 
     // listen to clicks and display popup as needed
     addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
+      @Override
+	public void actionPerformed(ActionEvent arg0) {
         // create and show swatch
         final JPopupMenu popup = new JPopupMenu();
         popup.setOpaque(false);
         ColorSwatch swatch = new ColorSwatch(ColorSelector.this.colors);
         swatch.addColorListener(new ColorSwatch.ColorListener() {
-          public void handleColor(Color color) {
+          @Override
+		public void handleColor(Color color) {
             // set the new color
             if (color != null) {
               ColorSelector.this.setColor(color);

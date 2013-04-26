@@ -39,7 +39,8 @@ import java.util.Map;
  */
 public class GossipNPC implements ZoneConfigurator {
     
-    public void configureZone(StendhalRPZone zone,
+    @Override
+	public void configureZone(StendhalRPZone zone,
             Map<String, String> attributes) {
         buildNPC(zone);
     }

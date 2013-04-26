@@ -40,6 +40,7 @@ public class BoyNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTownhallArea(zone);
 	}
@@ -60,6 +61,7 @@ public class BoyNPC implements ZoneConfigurator {
 								new GreetingMatchesNameCondition(getName()),
 								new QuestNotStartedCondition("introduce_players"),
 								new ChatCondition() {
+									@Override
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 										return !player.isGhost();
 									}
@@ -99,6 +101,7 @@ public class BoyNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("TadFirstChat")) {
 					player.setQuest("TadFirstChat", "done");

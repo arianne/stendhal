@@ -32,6 +32,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildRicardo(zone);
 	}
@@ -54,6 +55,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			addGoodbye();
 		}
 		
+		@Override
 		protected void onGoodbye(RPEntity player) {
 			setDirection(Direction.DOWN);
 		}

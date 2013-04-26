@@ -26,6 +26,7 @@ import java.util.Map;
  * @author kymara
  */
 public class FlowerSellerNPC implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 
         	new TeleporterBehaviour(buildSemosHouseArea(), "Flowers! Get your fresh flowers here!");

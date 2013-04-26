@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class WizardsGuardStatueSpireNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildZekielSpire(zone);
 	}

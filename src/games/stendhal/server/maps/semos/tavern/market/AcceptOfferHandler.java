@@ -48,6 +48,7 @@ public class AcceptOfferHandler extends OfferHandler {
 	}
 	
 	class AcceptOfferChatAction extends KnownOffersChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
@@ -84,6 +85,7 @@ public class AcceptOfferHandler extends OfferHandler {
 	}
 
 	class ConfirmAcceptOfferChatAction implements ChatAction {
+		@Override
 		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			Market m = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());

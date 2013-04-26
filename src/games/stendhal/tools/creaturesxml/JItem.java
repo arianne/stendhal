@@ -78,10 +78,12 @@ public class JItem extends javax.swing.JFrame {
 
 	void setLists() {
 		itemEquipable.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				return EditorXML.slots[i];
 			}
 
+			@Override
 			public int getSize() {
 				return EditorXML.slots.length;
 			}
@@ -101,10 +103,12 @@ public class JItem extends javax.swing.JFrame {
 
 	private void updateCreatureList(String item) {
 		itemUsedAtList.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				return xml.getCreatures().get(i).getCreatureName();
 			}
 
+			@Override
 			public int getSize() {
 				return xml.getCreatures().size();
 			}
@@ -135,11 +139,13 @@ public class JItem extends javax.swing.JFrame {
 		}
 
 		itemList.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				DefaultItem item = filteredItems.get(i);
 				return "(" + item.getItemClass() + ") " + item.getItemName();
 			}
 
+			@Override
 			public int getSize() {
 				return filteredItems.size();
 			}
@@ -175,7 +181,7 @@ public class JItem extends javax.swing.JFrame {
 			return;
 		}
 
-		DefaultItem actual = (DefaultItem) filteredItems.get(pos);
+		DefaultItem actual = filteredItems.get(pos);
 
 		if (actual.getItemName() == null) {
 			return;
@@ -237,6 +243,7 @@ public class JItem extends javax.swing.JFrame {
 		}
 
 		itemUsedAtList.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				Pair<DefaultCreature, DropItem> item = usedAt.get(i);
 				return "(" + item.first().getLevel() + ")"
@@ -245,6 +252,7 @@ public class JItem extends javax.swing.JFrame {
 						+ item.second().min + "," + item.second().max + "]";
 			}
 
+			@Override
 			public int getSize() {
 				return usedAt.size();
 			}
@@ -310,6 +318,7 @@ public class JItem extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Stendhal Item Editor 2.30");
 		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
@@ -319,15 +328,18 @@ public class JItem extends javax.swing.JFrame {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4",
 					"Item 5" };
 
+			@Override
 			public int getSize() {
 				return strings.length;
 			}
 
+			@Override
 			public Object getElementAt(int i) {
 				return strings[i];
 			}
 		});
 		itemList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+			@Override
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				itemListValueChanged(evt);
 			}
@@ -337,6 +349,7 @@ public class JItem extends javax.swing.JFrame {
 
 		addButton.setText("Add");
 		addButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addButtonActionPerformed(evt);
 			}
@@ -345,6 +358,7 @@ public class JItem extends javax.swing.JFrame {
 		setButton.setFont(new java.awt.Font("Arial", 1, 12));
 		setButton.setText("Set");
 		setButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setButtonActionPerformed(evt);
 			}
@@ -517,6 +531,7 @@ public class JItem extends javax.swing.JFrame {
 
 		suggestedValueButton.setText("Suggest Value");
 		suggestedValueButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				suggestedValueButtonActionPerformed(evt);
 			}
@@ -603,10 +618,12 @@ public class JItem extends javax.swing.JFrame {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4",
 					"Item 5" };
 
+			@Override
 			public int getSize() {
 				return strings.length;
 			}
 
+			@Override
 			public Object getElementAt(int i) {
 				return strings[i];
 			}
@@ -621,10 +638,12 @@ public class JItem extends javax.swing.JFrame {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4",
 					"Item 5" };
 
+			@Override
 			public int getSize() {
 				return strings.length;
 			}
 
+			@Override
 			public Object getElementAt(int i) {
 				return strings[i];
 			}
@@ -671,6 +690,7 @@ public class JItem extends javax.swing.JFrame {
 
 		filterButton.setText("Filter");
 		filterButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				filterButtonActionPerformed(evt);
 			}
@@ -678,6 +698,7 @@ public class JItem extends javax.swing.JFrame {
 
 		clearButton.setText("Clear");
 		clearButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				clearButtonActionPerformed(evt);
 			}
@@ -686,6 +707,7 @@ public class JItem extends javax.swing.JFrame {
 		jLoad.setText("Load");
 		jLoadFromFile.setText("From File");
 		jLoadFromFile.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jLoadFromFileActionPerformed(evt);
 			}
@@ -698,6 +720,7 @@ public class JItem extends javax.swing.JFrame {
 		jSave.setText("Save");
 		jSaveToFile.setText("To File");
 		jSaveToFile.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jSaveToFileActionPerformed(evt);
 			}
@@ -878,17 +901,17 @@ public class JItem extends javax.swing.JFrame {
 				rate = Integer.parseInt(attributes.get("rate"));
 			}
 
-			value = (int) (10 * atk * atk * atk * 5.0 / (double) rate);
+			value = (int) (10 * atk * atk * atk * 5.0 / rate);
 		} else if (attributes.containsKey("def")) {
 			int def = Integer.parseInt(attributes.get("def"));
 
-			value = (int) (7 * def * def * def);
+			value = 7 * def * def * def;
 		} else if (attributes.containsKey("regen")) {
 			int amount = Integer.parseInt(attributes.get("amount"));
 			int regen = Integer.parseInt(attributes.get("regen"));
 			int frecuency = Integer.parseInt(attributes.get("frequency"));
 
-			value = (int) ((amount * regen) / (5 * frecuency));
+			value = (amount * regen) / (5 * frecuency);
 		}
 
 		return value;
@@ -933,7 +956,7 @@ public class JItem extends javax.swing.JFrame {
 			setButton.setForeground(Color.BLACK);
 
 			int pos = itemList.getSelectedIndex();
-			DefaultItem actual = (DefaultItem) filteredItems.get(pos);
+			DefaultItem actual = filteredItems.get(pos);
 
 			actual.setItemName(itemName.getText());
 			actual.setDescription(itemDescription.getText());

@@ -35,6 +35,7 @@ public class ShowOfferItemsChatAction implements ChatAction {
 	/**
 	 * show a list of all items for which offers exist.
 	 */
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(player.getZone());
 		RPSlot offersSlot = market.getSlot(Market.OFFERS_SLOT_NAME);

@@ -73,6 +73,7 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			// list quest
 			final StringBuilder sb = new StringBuilder("Your quest states are:");
@@ -105,6 +106,7 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			SingletonRepository.getTurnNotifier().notifyInTurns(0,
 					new TeleportScriptAction(player, (SpeakerNPC) raiser.getEntity(), sentence, sandbox));
@@ -141,6 +143,7 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			boolean keepRunning = true;
 			counter++;
@@ -233,6 +236,7 @@ public class Debuggera extends ScriptImpl {
 			}
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			this.player = player;
 			counter = 0;
@@ -240,6 +244,7 @@ public class Debuggera extends ScriptImpl {
 			SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			try {
 				final String zoneName = zones.get(counter);

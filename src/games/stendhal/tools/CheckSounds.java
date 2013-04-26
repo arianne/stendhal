@@ -43,6 +43,7 @@ public class CheckSounds {
 
 		public boolean active = true;
 
+		@Override
 		public void update(final LineEvent event) {
 			if (event.getType() == LineEvent.Type.STOP) {
 				active = false;

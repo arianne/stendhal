@@ -122,6 +122,7 @@ public class AdminMaker extends ScriptImpl {
 			}
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			raiser.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
 			xpGain(player);
@@ -200,6 +201,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 	
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 			// before we send the player off into the unknown give a marked

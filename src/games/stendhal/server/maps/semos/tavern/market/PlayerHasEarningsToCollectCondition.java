@@ -12,6 +12,7 @@ import games.stendhal.server.entity.trade.Market;
  */
 public class PlayerHasEarningsToCollectCondition implements ChatCondition {
 	
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		Market market = TradeCenterZoneConfigurator.getShopFromZone(npc.getZone());
 		if(market != null) {

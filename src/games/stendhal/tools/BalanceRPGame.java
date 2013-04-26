@@ -117,6 +117,7 @@ public class BalanceRPGame {
 		final List<DefaultCreature> creatures = loader.load();
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
+			@Override
 			public int compare(final DefaultCreature o1, final DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}

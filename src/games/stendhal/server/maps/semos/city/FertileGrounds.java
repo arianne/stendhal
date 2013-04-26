@@ -43,6 +43,7 @@ import org.apache.log4j.Logger;
  */
 public class FertileGrounds implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		if (zone != null) {
 			if (isValid(attributes)) {

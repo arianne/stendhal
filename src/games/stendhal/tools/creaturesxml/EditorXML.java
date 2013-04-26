@@ -82,6 +82,7 @@ public class EditorXML {
 	void sortCreatures(final List<DefaultCreature> creatures) {
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
 
+			@Override
 			public int compare(DefaultCreature o1, DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
@@ -132,6 +133,7 @@ public class EditorXML {
 	void sortItems(final List<DefaultItem> items) {
 		Collections.sort(items, new Comparator<DefaultItem>() {
 
+			@Override
 			public int compare(DefaultItem o1, DefaultItem o2) {
 				int cmp = o1.getItemClass().compareTo(o2.getItemClass());
 				if (cmp == 0) {

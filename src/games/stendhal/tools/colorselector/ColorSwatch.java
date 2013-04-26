@@ -76,7 +76,8 @@ public class ColorSwatch extends JPanel {
 
     // add listener
     MouseInputListener mouseListener = new MouseInputListener() {
-      public void mousePressed(MouseEvent event) {
+      @Override
+	public void mousePressed(MouseEvent event) {
         Color color = getColor(event.getX(), event.getY());
 
         // notify about selection
@@ -84,23 +85,29 @@ public class ColorSwatch extends JPanel {
           listeners.get(i).handleColor(color);
         }
       }
-      public void mouseMoved(MouseEvent event) {
+      @Override
+	public void mouseMoved(MouseEvent event) {
         rolloverColor = getColor(event.getX(), event.getY());
         repaint();
       }
-      public void mouseDragged(MouseEvent event) {
+      @Override
+	public void mouseDragged(MouseEvent event) {
         // not used
       }
-      public void mouseReleased(MouseEvent event) {
+      @Override
+	public void mouseReleased(MouseEvent event) {
         // not used
       }
-      public void mouseClicked(MouseEvent arg0) {
+      @Override
+	public void mouseClicked(MouseEvent arg0) {
         // not used
       }
-      public void mouseEntered(MouseEvent arg0) {
+      @Override
+	public void mouseEntered(MouseEvent arg0) {
         // not used
       }
-      public void mouseExited(MouseEvent arg0) {
+      @Override
+	public void mouseExited(MouseEvent arg0) {
         rolloverColor = null;
         repaint();
       }

@@ -39,6 +39,7 @@ public class ProlongOfferHandler extends OfferHandler {
 	
 	protected class ProlongOfferChatAction extends KnownOffersChatAction {
 
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
@@ -103,6 +104,7 @@ public class ProlongOfferHandler extends OfferHandler {
 	}
 	
 	protected class ConfirmProlongOfferChatAction implements ChatAction {
+		@Override
 		public void fire (Player player, Sentence sentence, EventRaiser npc) {
 			Offer offer = getOffer();
 			if (!wouldOverflowMaxOffers(player, offer)) {

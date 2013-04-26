@@ -59,6 +59,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 					
 				new Task<Player>() {
 
+				@Override
 				public void execute(final Player player) {
 
 					if (sb.length() > 10) {
@@ -90,6 +91,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			admin.sendPrivateText(sb.toString());
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			list();
 			if (counter < INTERVALS.length) {

@@ -33,6 +33,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildMineArea(zone);
@@ -49,6 +50,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "I am summoning a barrier to keep the #balrog away.";
 
@@ -66,6 +68,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.LEFT);
 			}
@@ -73,6 +76,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 		
 
 		npc.addInitChatMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("AenihataReward")
 						&& (player.getLevel() >= 150)) {

@@ -33,6 +33,7 @@ import java.util.Map;
  */
 public class AdminHelpNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Skye") {

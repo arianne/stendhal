@@ -37,6 +37,7 @@ public class RemoveOfferHandler extends OfferHandler {
 	}
 
 	protected class RemoveOfferChatAction extends KnownOffersChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (sentence.hasError()) {
 				npc.say("Sorry, I did not understand you. "
@@ -85,6 +86,7 @@ public class RemoveOfferHandler extends OfferHandler {
 	}
 	
 	protected class ConfirmRemoveOfferChatAction implements ChatAction {
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			removeOffer(player, npc);
 			// Changed the status, or it has been changed by expiration. Obsolete the offers

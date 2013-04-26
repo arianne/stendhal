@@ -172,6 +172,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class BetCondition implements ChatCondition {
 
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return state == State.ACCEPTING_BETS;
 		}
@@ -182,6 +183,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class NoBetCondition implements ChatCondition {
 
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return state != State.ACCEPTING_BETS;
 		}
@@ -192,6 +194,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 */
 	protected class BetAction implements ChatAction {
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();
@@ -263,6 +266,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		if (state != State.PAYING_BETS) {
 			logger.error("onTurnReached invoked but state is not PAYING_BETS: "

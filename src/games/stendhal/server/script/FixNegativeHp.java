@@ -34,6 +34,7 @@ public class FixNegativeHp extends ScriptImpl implements LoginListener {
 		LoginNotifier.get().addListener(this);
 	}
 
+	@Override
 	public void onLoggedIn(Player player) {
 		if (player.getHP() <= 0) {
 			SingletonRepository.getRuleProcessor().sendMessageToSupporters("JailKeeper", "set hp of player " + player.getName() + " from " + player.getHP() + " to 1.");

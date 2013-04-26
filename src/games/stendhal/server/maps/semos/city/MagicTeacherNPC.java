@@ -35,6 +35,7 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 	 */
 	private final class TeachMagicAction implements ChatAction {
 		
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			enableSpellsFeature(player);
 			boostMana(player);
@@ -69,6 +70,7 @@ public class MagicTeacherNPC implements ZoneConfigurator {
 		
 	}
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 		Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Mirlen") {

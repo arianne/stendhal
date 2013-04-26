@@ -36,6 +36,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class GuardNPC implements ZoneConfigurator  {
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -99,6 +100,7 @@ public class GuardNPC implements ZoneConfigurator  {
 	 */
 	public static class InJailCondition implements ChatCondition {
 
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return Jail.isInJail(player);
 		}
@@ -109,6 +111,7 @@ public class GuardNPC implements ZoneConfigurator  {
 	 */
 	public static class NotInJailCondition implements ChatCondition {
 
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			return !Jail.isInJail(player);
 		}

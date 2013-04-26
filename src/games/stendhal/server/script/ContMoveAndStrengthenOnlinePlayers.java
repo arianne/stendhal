@@ -66,6 +66,7 @@ public class ContMoveAndStrengthenOnlinePlayers extends ScriptImpl {
 			zoneAfterlife = StendhalRPWorld.get().getZone("int_afterlife");
 		}
 
+		@Override
 		public void onTurnReached(int currentTurn) {
 			List<Player> list = new LinkedList<Player>();
 			list.addAll(zoneGuardHouse.getPlayers());

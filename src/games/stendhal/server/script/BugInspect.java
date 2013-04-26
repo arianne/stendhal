@@ -47,11 +47,13 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		seen.clear();
 	}
 
+	@Override
 	public void onTurnReached(final int currentTurn) {
 		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
 				
 			new Task<Player>() {
 
+			@Override
 			public void execute(final Player player) {
 				if (!seen.contains(player.getName())) {
 

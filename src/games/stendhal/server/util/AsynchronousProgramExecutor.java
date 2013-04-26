@@ -44,6 +44,7 @@ public class AsynchronousProgramExecutor extends Thread {
 	/**
 	 * Executes the program. Use "start()" for asynchronous access.
 	 */
+	@Override
 	public void run() {
 		Configuration configuration;
 		try {

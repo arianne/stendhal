@@ -21,6 +21,7 @@ import java.util.Map;
  * Creates bottles in Semos bakery
  */
 public class ItemsOnTable implements ZoneConfigurator {
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBakeryArea(zone);
 	}

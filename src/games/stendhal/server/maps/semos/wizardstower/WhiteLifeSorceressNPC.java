@@ -29,6 +29,7 @@ import java.util.Map;
  */
 public class WhiteLifeSorceressNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildElana(zone);
 	}

@@ -25,6 +25,7 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -32,7 +33,8 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 	    final SpeakerNPC npc = new SpeakerNPC("Jameson") {
 	        
-	        protected void createPath() {
+	        @Override
+			protected void createPath() {
 	            List<Node> nodes=new LinkedList<Node>();
 	            nodes.add(new Node(7,9));
 	            nodes.add(new Node(16,9));
@@ -47,7 +49,8 @@ public class ApothecaryNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 	        }
 	
-	        protected void createDialog() {
+	        @Override
+			protected void createDialog() {
 	            addGreeting("Hello, welcome to my lab.");
 	            addJob("I used to be an #apothecary, but now I have retired.");
 	            addHelp("I'm sorry, but I don't think there is anything I can help you with.");

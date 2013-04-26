@@ -41,6 +41,7 @@ public class ShowOffersChatAction implements ChatAction {
 	/** Maximum list length that is shown to the players */
 	private static final int MAX_SHOWN_OFFERS = 20;
 	
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "

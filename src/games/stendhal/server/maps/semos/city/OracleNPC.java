@@ -40,6 +40,7 @@ public class OracleNPC implements ZoneConfigurator {
 	 */
 	private final List<String> regions = Arrays.asList(Region.SEMOS_CITY, Region.SEMOS_SURROUNDS);
 	
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);

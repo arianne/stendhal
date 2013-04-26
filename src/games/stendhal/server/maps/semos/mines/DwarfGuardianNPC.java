@@ -34,6 +34,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildMineArea(zone);
@@ -50,6 +51,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
@@ -66,12 +68,14 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.LEFT);
 			}
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");

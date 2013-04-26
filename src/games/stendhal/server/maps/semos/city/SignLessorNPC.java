@@ -62,6 +62,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 	private static final int MONEY = 100; 
 	protected RentedSignList rentedSignList;
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final Shape shape = new Rectangle(21, 48, 17, 1);
@@ -96,6 +97,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					ConversationStates.BUY_PRICE_OFFERED, 
 					null,
 					new ChatAction() {
+						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							text = sentence.getOriginalText().substring(5).trim();
 
@@ -147,6 +149,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 					new AdminCondition(100),
 					ConversationStates.ATTENDING, null,
 					new ChatAction() {
+						@Override
 						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 							if (sentence.getExpressions().size() < 2) {
 								npc.say("Syntax: delete <nameofplayer>");
@@ -190,6 +193,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 
 	private static ChatCondition getRentMatchCond() {
 		return new ChatCondition() {
+			@Override
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
 				String txt = sentence.getOriginalText();
 
@@ -207,6 +211,7 @@ public class SignLessorNPC implements ZoneConfigurator {
 
 		private final Logger logger = Logger.getLogger(RentSignChatAction.class);
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			if (text.length() > 1000) {
 				text = text.substring(0, 1000) + "...";

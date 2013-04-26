@@ -45,6 +45,7 @@ import java.util.Map;
 public class RetiredAdventurerNPC implements ZoneConfigurator {
 	private static final String QUEST_SLOT="meet_hayunn";
 	
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);

@@ -33,6 +33,7 @@ public class TradeCenterZoneConfigurator implements ZoneConfigurator {
 	private static final int COORDINATE_Y = 13;
 	private static final int COORDINATE_X = 10;
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		Market market = addShopToZone(zone);

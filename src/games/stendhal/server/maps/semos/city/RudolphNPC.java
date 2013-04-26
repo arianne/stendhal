@@ -29,6 +29,7 @@ import java.util.Map;
 public class RudolphNPC implements ZoneConfigurator {
 
 	
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final SpeakerNPC npc = new SpeakerNPC("Rudolph") {

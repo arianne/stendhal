@@ -298,6 +298,7 @@ public class CreatureInfo {
 		final StringBuilder result = new StringBuilder();
 		final List<DropItem> dropItems = creature.getDropItems();
 		Collections.sort(dropItems, new Comparator<DropItem>() {
+			@Override
 			public int compare(final DropItem o1, final DropItem o2) {
 				if (o1.probability < o2.probability) {
 					return 1;

@@ -63,6 +63,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	 */
 	protected abstract T createObject();
 
+	@Override
 	public boolean hasNext() {
 		if (nextCalled) {
 			return hasNext;
@@ -88,6 +89,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
         }
     }
 
+	@Override
 	public T next() {
 		if (!nextCalled) {
 			resultSetNext();
@@ -96,6 +98,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 		return createObject();
 	}
 
+	@Override
 	public void remove() {
 		try {
 			if (nextCalled) {
@@ -132,6 +135,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
         }
 	}
 
+	@Override
 	public Iterator<T> iterator() {
 		return this;
 	}

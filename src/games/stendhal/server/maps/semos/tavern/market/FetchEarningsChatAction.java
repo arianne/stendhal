@@ -29,6 +29,7 @@ import java.util.Set;
  */
 public class FetchEarningsChatAction implements ChatAction {
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "

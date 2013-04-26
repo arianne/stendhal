@@ -47,6 +47,7 @@ public class UnblockTradeTable extends ScriptImpl implements TurnListener {
 	/**
 	 * checks
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		TurnNotifier.get().notifyInSeconds(CHECK_INTERVAL, this);
 		if (!isBlockSituation()) {

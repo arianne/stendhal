@@ -63,6 +63,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildBlacksmith(zone);
 	}
@@ -230,6 +231,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 						ConversationPhrases.YES_MESSAGES, null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						behaviour.transactAgreedDeal(currentBehavRes, npc, player);
@@ -247,6 +249,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 						new QuestActiveCondition(behaviour.getQuestSlot()),
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						behaviour.giveProduct(npc, player);
 					}

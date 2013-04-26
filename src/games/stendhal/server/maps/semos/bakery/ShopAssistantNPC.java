@@ -65,6 +65,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 	private static final List<String> ITEMS = Arrays.asList("sugar mill", "pestle and mortar");
 
 			
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -201,6 +202,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 					    ConversationStates.ATTENDING, 
 					    null,
 					    new ChatAction() {
+							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 								final Item item =  SingletonRepository.getEntityManager().getItem(itemName);
 								if (item == null) {
@@ -224,6 +226,7 @@ public class ShopAssistantNPC implements ZoneConfigurator  {
 					    ConversationStates.ATTENDING, 
 					    null,
 					    new ChatAction() {
+							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 								npc.say("Sorry, I can't lend out sugar, only a #sugar #mill.");
 							}

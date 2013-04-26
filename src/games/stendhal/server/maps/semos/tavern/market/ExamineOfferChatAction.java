@@ -22,6 +22,7 @@ import games.stendhal.server.events.ExamineEvent;
 import java.util.Map;
 
 public class ExamineOfferChatAction extends KnownOffersChatAction {
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (sentence.hasError()) {
 			npc.say("Sorry, I did not understand you. "

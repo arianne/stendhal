@@ -46,6 +46,7 @@ public class TelepathNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildSemosTempleArea(zone);
 	}
@@ -81,6 +82,7 @@ public class TelepathNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
+									@Override
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 										return player.isBadBoy() ;
 									}
@@ -95,6 +97,7 @@ public class TelepathNPC implements ZoneConfigurator {
 						new AndCondition(new GreetingMatchesNameCondition(getName()),
 								new QuestStartedCondition("meet_io"),
 								new ChatCondition() {
+									@Override
 									public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 										return !player.isBadBoy() ;
 									}
@@ -117,7 +120,8 @@ public class TelepathNPC implements ZoneConfigurator {
 				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        null, new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					        @Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						       	if ((player.getLastPVPActionTime() > System.currentTimeMillis()
 											- 2 * MathHelper.MILLISECONDS_IN_ONE_WEEK)) {
 									// player attacked another within the last two weeks
@@ -141,7 +145,8 @@ public class TelepathNPC implements ZoneConfigurator {
 				add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
 				        "Good, I knew you were.", new ChatAction() {
 
-					        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					        @Override
+							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 								player.rehabilitate(); 	
 							} });
 				// player said no they are not really sorry

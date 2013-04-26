@@ -40,6 +40,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildHouseArea(zone);
 	}
@@ -66,6 +67,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					    if (player.hasQuest(QUEST_SLOT)) {
 						final long delay = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY;
@@ -102,6 +104,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					}
 				});
 		        addReply("hatch", null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					    if (player.hasPet()) {
 						// there's actually also a check for this when the egg is hatched,

@@ -35,6 +35,7 @@ import java.util.Map;
  */
 public class SheepBuyerNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		final SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {

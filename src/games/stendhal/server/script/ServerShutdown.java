@@ -39,7 +39,8 @@ public class ServerShutdown extends ScriptImpl {
 
 		new Thread(
 			new Runnable() {
-    			public void run() {
+    			@Override
+				public void run() {
     				//marauroad.finish() is already called using a JRE shutdown hook, so we don't need
     				// to call it here directly:
     				//marauroad.getMarauroa().finish();

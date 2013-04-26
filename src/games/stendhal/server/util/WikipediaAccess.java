@@ -221,6 +221,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 		finished = false;
 	}
 
+	@Override
 	public void run() {
 		parse();
 

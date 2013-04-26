@@ -37,6 +37,7 @@ public class WhereWho extends ScriptImpl {
 				
 			new Task<Player>() {
 
+			@Override
 			public void execute(final Player player) {
 				final StendhalRPZone zone = player.getZone();
 				String zoneid;

@@ -88,10 +88,12 @@ public class JCreature extends javax.swing.JFrame {
 
 	private void updateItemLists() {
 		itemList.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				return xml.getItems().get(i).getItemName();
 			}
 
+			@Override
 			public int getSize() {
 				return xml.getItems().size();
 			}
@@ -122,12 +124,14 @@ public class JCreature extends javax.swing.JFrame {
 		}
 
 		creatureList.setModel(new javax.swing.AbstractListModel() {
+			@Override
 			public Object getElementAt(int i) {
 				DefaultCreature creature = filteredCreatures.get(i);
 				return "(" + creature.getLevel() + ") "
 						+ creature.getCreatureName();
 			}
 
+			@Override
 			public int getSize() {
 				return filteredCreatures.size();
 			}
@@ -185,7 +189,7 @@ public class JCreature extends javax.swing.JFrame {
 			return;
 		}
 
-		DefaultCreature actual = (DefaultCreature) filteredCreatures.get(pos);
+		DefaultCreature actual = filteredCreatures.get(pos);
 
 		if (actual.getCreatureName() == null) {
 			return;
@@ -353,6 +357,7 @@ public class JCreature extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Stendhal Creature Editor 2.30");
 		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
@@ -362,16 +367,19 @@ public class JCreature extends javax.swing.JFrame {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4",
 					"Item 5" };
 
+			@Override
 			public int getSize() {
 				return strings.length;
 			}
 
+			@Override
 			public Object getElementAt(int i) {
 				return strings[i];
 			}
 		});
 		creatureList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 		creatureList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+			@Override
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				creatureListValueChanged(evt);
 			}
@@ -420,6 +428,7 @@ public class JCreature extends javax.swing.JFrame {
 		updateGFXButton.setFont(new java.awt.Font("Tahoma", 0, 10));
 		updateGFXButton.setText("Update GFX");
 		updateGFXButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				updateGFXButtonActionPerformed(evt);
 			}
@@ -576,6 +585,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		SuggestAttributeButton.setText("Suggest Attributes");
 		SuggestAttributeButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				SuggestAttributeButtonActionPerformed(evt);
 			}
@@ -619,6 +629,7 @@ public class JCreature extends javax.swing.JFrame {
 				0, 0, 0, 0));
 		justEditCreature.setMargin(new java.awt.Insets(0, 0, 0, 0));
 		justEditCreature.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				justEditCreatureActionPerformed(evt);
 			}
@@ -863,10 +874,12 @@ public class JCreature extends javax.swing.JFrame {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4",
 					"Item 5" };
 
+			@Override
 			public int getSize() {
 				return strings.length;
 			}
 
+			@Override
 			public Object getElementAt(int i) {
 				return strings[i];
 			}
@@ -875,6 +888,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		pushIntoArea.setText("<<");
 		pushIntoArea.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				pushIntoAreaActionPerformed(evt);
 			}
@@ -908,6 +922,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		addButton.setText("Add");
 		addButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addButtonActionPerformed(evt);
 			}
@@ -916,6 +931,7 @@ public class JCreature extends javax.swing.JFrame {
 		setButton.setFont(new java.awt.Font("Arial", 1, 12));
 		setButton.setText("Set");
 		setButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setButtonActionPerformed(evt);
 			}
@@ -925,6 +941,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		FilterButton.setText("Filter");
 		FilterButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				FilterButtonActionPerformed(evt);
 			}
@@ -932,6 +949,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		ClearButton.setText("Clear");
 		ClearButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ClearButtonActionPerformed(evt);
 			}
@@ -944,6 +962,7 @@ public class JCreature extends javax.swing.JFrame {
 		jLoad.setText("Load");
 		jLoadFromFile.setText("From file");
 		jLoadFromFile.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jLoadFromFileActionPerformed(evt);
 			}
@@ -956,6 +975,7 @@ public class JCreature extends javax.swing.JFrame {
 		jSave.setText("Save");
 		jSaveToFile.setText("To File");
 		jSaveToFile.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jSaveToFileActionPerformed(evt);
 			}
@@ -1238,7 +1258,7 @@ public class JCreature extends javax.swing.JFrame {
 			setButton.setForeground(Color.BLACK);
 
 			int pos = creatureList.getSelectedIndex();
-			DefaultCreature actual = (DefaultCreature) filteredCreatures.get(pos);
+			DefaultCreature actual = filteredCreatures.get(pos);
 
 			actual.setCreatureName(creatureName.getText());
 			actual.setCreatureClass((String) creatureClass.getSelectedItem());

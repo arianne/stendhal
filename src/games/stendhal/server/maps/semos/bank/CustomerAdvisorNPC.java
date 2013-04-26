@@ -36,6 +36,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 
 	private static final class VaultChatAction implements ChatAction {
 		
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final StendhalRPZone vaultzone = (StendhalRPZone) SingletonRepository
 					.getRPWorld().getRPZone("int_vault");
@@ -50,6 +51,7 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 		}
 	}
 	
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		final SpeakerNPC npc = new SpeakerNPC("Dagobert") {

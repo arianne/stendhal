@@ -45,6 +45,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);
@@ -62,6 +63,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.isEquipped("sedah gate key")) {
 							// toss a coin to see if he notices player still has
