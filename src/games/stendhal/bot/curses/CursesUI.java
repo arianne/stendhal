@@ -45,6 +45,7 @@ public class CursesUI implements UserInterface {
 	 *
 	 * @param line to print
 	 */
+	@Override
 	public void addEventLine(EventLine line) {
         Protocol.debug("addEventLine (" + window + "): " + line);
         if (this.window != null) {
@@ -61,6 +62,7 @@ public class CursesUI implements UserInterface {
 	 * @param type type of text
 	 * @param isTalking chat?
 	 */
+	@Override
 	public void addGameScreenText(double x, double y, 
 			String text, NotificationType type,
 			boolean isTalking) {
@@ -72,10 +74,12 @@ public class CursesUI implements UserInterface {
 	 *
 	 * @return SoundSystemFacade
 	 */
+	@Override
 	public SoundSystemFacade getSoundSystemFacade() {
 		return soundSystemFacade;
 	}
 
+	@Override
 	public void addAchievementBox(String title, String description,
 			String category) {
 		// ignored

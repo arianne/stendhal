@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
 public class InputReader implements Runnable {
 	private static Logger logger = Logger.getLogger(InputReader.class);
 
+	@Override
 	public void run() {
 		SlashActionRepository.register();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -133,7 +133,8 @@ public class CursesClient {
         client.startClient();
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
+            @Override
+			public void run() {
                 Toolkit.shutdown();
             }
         });

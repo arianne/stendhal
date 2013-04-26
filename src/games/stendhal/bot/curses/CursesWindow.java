@@ -69,7 +69,8 @@ public class CursesWindow extends Window implements ActionListener {
     /**
      * handles the line typed by the user.
      */
-    public void actionPerformed(ActionEvent arg0) {
+    @Override
+	public void actionPerformed(ActionEvent arg0) {
         String line = textField.getText();
         textField.setText("");
         ChatLineParser.parseAndHandle(line);

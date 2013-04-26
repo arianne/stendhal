@@ -43,6 +43,7 @@ public class TextUI implements UserInterface {
 	 *
 	 * @param line to print
 	 */
+	@Override
 	public void addEventLine(EventLine line) {
 		System.out.println(ESC_COLOR_RESET + line + ESC_COLOR_INPUT);
 	}
@@ -56,6 +57,7 @@ public class TextUI implements UserInterface {
 	 * @param type type of text
 	 * @param isTalking chat?
 	 */
+	@Override
 	public void addGameScreenText(double x, double y, 
 			String text, NotificationType type,
 			boolean isTalking) {
@@ -68,10 +70,12 @@ public class TextUI implements UserInterface {
 	 *
 	 * @return SoundSystemFacade
 	 */
+	@Override
 	public SoundSystemFacade getSoundSystemFacade() {
 		return soundSystemFacade;
 	}
 
+	@Override
 	public void addAchievementBox(String title, String description,
 			String category) {
 		// ignored
