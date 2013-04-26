@@ -39,6 +39,7 @@ public class OracleNPC implements ZoneConfigurator {
 	 */
 	private final List<String> regions = Arrays.asList(Region.NALWOR_CITY, Region.ORRIL_DUNGEONS, Region.HELL);
 
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildNPC(zone);

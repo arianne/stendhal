@@ -32,6 +32,7 @@ public class DarkElfNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone,
 			final Map<String, String> attributes) {
 		buildTunnelArea(zone);
@@ -48,6 +49,7 @@ public class DarkElfNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						String reply = "If you're going to the filthy rat city, don't come past me. ";
 						if (player.getLevel() < 60) {
@@ -66,6 +68,7 @@ public class DarkElfNPC implements ZoneConfigurator {
 		};
 
 		npc.addInitChatMessage(null, new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				if (!player.hasQuest("WaerrynaFirstChat")) {
 					player.setQuest("WaerrynaFirstChat", "done");

@@ -32,6 +32,7 @@ public class RedCrystalNPC implements ZoneConfigurator {
 	 * 
 	 * @author AntumDeluge
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}

@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class GuardBarracksNPC implements ZoneConfigurator {
     
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -112,6 +113,7 @@ public class GuardBarracksNPC implements ZoneConfigurator {
 
 			}
 
+			@Override
 			protected void createDialog() {
 				addGreeting("Hey, [name]! Why are you sneaking around in here? Out with you, NOW!");
 						
