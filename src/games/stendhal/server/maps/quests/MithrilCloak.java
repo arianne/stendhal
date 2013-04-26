@@ -99,6 +99,7 @@ public class MithrilCloak extends AbstractQuest {
 		
 		// login notifier to teleport away players logging into the twilight zone.
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
+			@Override
 			public void onLoggedIn(final Player player) {
 				TwilightMossScroll scroll = (TwilightMossScroll) SingletonRepository.getEntityManager().getItem("twilight moss");
 				scroll.teleportBack(player);

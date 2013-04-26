@@ -85,6 +85,7 @@ public class DiceGambling extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"OK, here are the dice. Just throw them when you're ready. Good luck!",
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					player.drop("money", STAKE);
 					final Dice dice = (Dice) SingletonRepository.getEntityManager()

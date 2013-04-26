@@ -184,7 +184,8 @@ public class ElfPrincess extends AbstractQuest {
 	    		 new QuestInStateCondition(QUEST_SLOT, 0, "got_flower"),
 				 // check chest and so on first - maybe the player does still have it (though we can't check house chests or the floor)
 				 new ChatCondition() {
-				     public boolean fire(final Player player, final Sentence sentence, final Entity entity) { 
+				     @Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity entity) { 
 				    	 return player.getTotalNumberOf("rhosyd") == 0;
 				     }
 				 },
@@ -235,6 +236,7 @@ public class ElfPrincess extends AbstractQuest {
 	private void bringFlowerStep() {
 		final SpeakerNPC npc = npcs.get("Tywysoga");
 		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				//add random number of goldbars
 				final StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager()

@@ -115,6 +115,7 @@ public class MeetMarieHenri extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.QUEST_OFFERED, null, new ChatAction() {
+					@Override
 					public void fire(final Player player,
 							final Sentence sentence, final EventRaiser npc) {
 						final String questState = player.getQuest(QUEST_SLOT);
@@ -188,6 +189,7 @@ public class MeetMarieHenri extends AbstractQuest {
 		npc.addMatching(ConversationStates.QUESTION_2, Expression.JOKER,
 				new JokerExprMatcher(), null, ConversationStates.ATTENDING,
 				null, new ChatAction() {
+					@Override
 					public void fire(final Player player,
 							final Sentence sentence, final EventRaiser npc) {
 						final Sentence answer = sentence.parseAsMatchingSource();

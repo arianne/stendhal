@@ -114,6 +114,7 @@ public class TheMissingBooks extends AbstractQuest {
 			new GreetingMatchesNameCondition(npc.getName()), true,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("Hello and welcome to my little library! As I see, you must be a friend of Constantine, his guards didn't send you out again. I think, I can trust you. Maybe you can do me a little #favour!");
@@ -131,6 +132,7 @@ public class TheMissingBooks extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("Thanks but I am happy already. The book you found was one of my most precious ones and it's there.");
@@ -154,6 +156,7 @@ public class TheMissingBooks extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String startsentence = Rand.rand(quotes.keySet());
 					npc.say("Please search the book which includes a sentence starting with " + startsentence + " and tell me the rest of sentence for showing me that you found it.");
@@ -174,6 +177,7 @@ public class TheMissingBooks extends AbstractQuest {
 		npc.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String startsentence = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(startsentence);

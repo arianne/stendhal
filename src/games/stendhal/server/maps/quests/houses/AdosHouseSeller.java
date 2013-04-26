@@ -109,6 +109,7 @@ final class AdosHouseSeller extends HouseSellerNPCBase {
 		
 	}
 
+	@Override
 	protected int getCost() {
 		return AdosHouseSeller.COST_ADOS;
 	}

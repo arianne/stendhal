@@ -150,7 +150,8 @@ public class SheepGrowing extends AbstractQuest {
 
         // If quest is not done or started yet ask player for help (if he does not have a sheep already)
         ChatCondition playerHasNoSheep = new ChatCondition() {
-            public boolean fire(Player player, Sentence sentence, Entity npc) {
+            @Override
+			public boolean fire(Player player, Sentence sentence, Entity npc) {
                 return !player.hasSheep();
             }
         };
@@ -195,7 +196,8 @@ public class SheepGrowing extends AbstractQuest {
         List<ChatAction> sheepActions = new LinkedList<ChatAction>();
         sheepActions.add(new SetQuestAction(QUEST_SLOT, "start"));
         sheepActions.add(new ChatAction() {
-            public void fire(Player player, Sentence sentence, EventRaiser npc) {
+            @Override
+			public void fire(Player player, Sentence sentence, EventRaiser npc) {
                 final Sheep sheep = new Sheep(player);
                 StendhalRPAction.placeat(npc.getZone(), sheep, npc.getX(), npc.getY() + 1);
             }
@@ -218,7 +220,8 @@ public class SheepGrowing extends AbstractQuest {
         // Remove action
         final List<ChatAction> removeSheepAction = new LinkedList<ChatAction>();
         removeSheepAction.add(new ChatAction() {
-            public void fire(Player player, Sentence sentence, EventRaiser npc) {
+            @Override
+			public void fire(Player player, Sentence sentence, EventRaiser npc) {
                 // remove sheep
                 final Sheep sheep = player.getSheep();
                 if(sheep != null) {
@@ -242,7 +245,8 @@ public class SheepGrowing extends AbstractQuest {
 
         // Hand-Over condition
         ChatCondition playerHasFullWeightSheep = new ChatCondition() {
-            public boolean fire(Player player, Sentence sentence, Entity npc) {
+            @Override
+			public boolean fire(Player player, Sentence sentence, Entity npc) {
                 return player.hasSheep()
                     && player.getSheep().getWeight() >= Sheep.MAX_WEIGHT;
             }
@@ -309,7 +313,8 @@ public class SheepGrowing extends AbstractQuest {
     private void preparePlayerReturnsStep() {
         final List<ChatAction> reward = new LinkedList<ChatAction>();
         reward.add(new ChatAction() {
-            public void fire(Player player, Sentence sentence, EventRaiser npc) {
+            @Override
+			public void fire(Player player, Sentence sentence, EventRaiser npc) {
                 // give XP to level 2
                 int reward = Level.getXP( 2 ) - player.getXP();
                 if(reward > MIN_XP_GAIN) {

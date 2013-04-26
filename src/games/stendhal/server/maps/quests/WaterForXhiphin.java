@@ -133,6 +133,7 @@ public class WaterForXhiphin extends AbstractQuest {
 		// if you go to him with one checked and one unchecked he might just check the checked one again - depends what sits first in bag
 		actions.add(new DropItemAction("water",1));
 		actions.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item water = SingletonRepository.getEntityManager().getItem("water");
 				water.setInfoString(CLEAN_WATER_INFOSTRING);

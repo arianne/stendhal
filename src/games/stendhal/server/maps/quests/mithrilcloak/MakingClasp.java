@@ -78,6 +78,7 @@ class MakingClasp {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isEquipped("mithril bar")) {
 						player.drop("mithril bar");
@@ -104,6 +105,7 @@ class MakingClasp {
 			Arrays.asList("clasp", "mithril clasp", "ida", "cloak", "mithril cloak"),
 			new QuestStateStartsWithCondition(mithrilcloak.getQuestSlot(), "forgingclasp;"),
 			ConversationStates.ATTENDING, null, new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String[] tokens = player.getQuest(mithrilcloak.getQuestSlot()).split(";");
 					// minutes -> milliseconds

@@ -39,6 +39,7 @@ public class HouseBuying extends AbstractQuest {
 				false);
 	}
 	
+	@Override
 	public LinkedList<String> getHistory(final Player player) {
 		return quest.getHistory(player);
 	}

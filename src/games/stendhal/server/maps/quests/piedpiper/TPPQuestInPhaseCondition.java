@@ -27,6 +27,7 @@ public class TPPQuestInPhaseCondition implements ChatCondition {
 		phase = ph;
 	}
 
+	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
 		if(ThePiedPiper.getPhase().compareTo(phase)==0) {
 			return true;

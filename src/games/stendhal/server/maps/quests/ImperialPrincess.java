@@ -155,6 +155,7 @@ public class ImperialPrincess extends AbstractQuest {
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						raiser.say("I need "
 								+ Integer.toString(1 + player.getLevel()
@@ -177,6 +178,7 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. " +
 				"When you return with the items, please say codeword #herbs.",
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						// store the current level in case it increases before
 						// she see them next.
@@ -218,6 +220,7 @@ public class ImperialPrincess extends AbstractQuest {
 						new NotCondition(new QuestInStateCondition(QUEST_SLOT,"recommended"))),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						try {
 							final int level = Integer.parseInt(player.getQuest(QUEST_SLOT));

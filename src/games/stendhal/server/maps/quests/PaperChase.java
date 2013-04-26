@@ -114,6 +114,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			this.idx = idx;
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			final String state = points.get(idx);
 			final String next = points.get(idx + 1);
@@ -276,6 +277,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	}
 
 
+	@Override
 	public void onTeleport(Player player, boolean playerAction) {
 		if (!playerAction) {
 			return;

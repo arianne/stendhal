@@ -93,6 +93,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, 
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final RingOfLife emeraldRing = (RingOfLife) player.getFirstEquipped("emerald ring");
 					
@@ -174,6 +175,7 @@ public class RingMaker extends AbstractQuest {
 						new DropItemAction("emerald", REQUIRED_GEM),
 						new DropItemAction("money", REQUIRED_MONEY), 
 						new ChatAction() {
+							@Override
 							public void fire(final Player player,
 									final Sentence sentence,
 									final EventRaiser npc) {

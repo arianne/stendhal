@@ -131,6 +131,7 @@ public class AwaitingPhase extends TPPQuest {
 	/**
 	 * prepare actions
 	 */
+	@Override
 	public void prepare() {
 		createPiedPiper();
 	}
@@ -178,6 +179,7 @@ public class AwaitingPhase extends TPPQuest {
 	/**
 	 * @return - min quest phase timeout
 	 */
+	@Override
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
@@ -186,6 +188,7 @@ public class AwaitingPhase extends TPPQuest {
 	/**
 	 * @return - max quest phase timeout
 	 */
+	@Override
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
@@ -194,6 +197,7 @@ public class AwaitingPhase extends TPPQuest {
 	/**
 	 * @param comments - comments for switching event
 	 */
+	@Override
 	public void phaseToDefaultPhase(List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToDefaultPhase(comments);		
@@ -204,6 +208,7 @@ public class AwaitingPhase extends TPPQuest {
 	 * @param nextPhase - next phase
 	 * @param comments - comments for switching event
 	 */
+	@Override
 	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToNextPhase(nextPhase, comments);
@@ -214,6 +219,7 @@ public class AwaitingPhase extends TPPQuest {
 	 *  Pied Piper will now start to collect rats :-)
 	 *  @return - npc shouts at switching quest phase.
 	 */
+	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = 
 			/*
@@ -234,6 +240,7 @@ public class AwaitingPhase extends TPPQuest {
 	/**
 	 * @return - current phase
 	 */
+	@Override
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_AWAITING;
 	}		

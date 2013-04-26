@@ -103,6 +103,7 @@ public class LookUpQuote extends AbstractQuest {
 			new GreetingMatchesNameCondition(fisherman.getName()), true,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("Hello newcomer! I can #help you on your way to become a real fisherman!");
@@ -121,6 +122,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("No, thanks. I have all I need.");
@@ -144,6 +146,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = Rand.rand(quotes.keySet());
 					npc.say("Please look up the famous quote by " + name + ".");
@@ -164,6 +167,7 @@ public class LookUpQuote extends AbstractQuest {
 		fisherman.addMatching(ConversationStates.QUESTION_2, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String name = player.getQuest(QUEST_SLOT);
 					final String quote = quotes.get(name);

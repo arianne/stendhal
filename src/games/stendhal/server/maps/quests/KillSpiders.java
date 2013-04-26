@@ -81,6 +81,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							raiser.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
@@ -137,6 +138,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.hasKilled("spider")
 								&& player.hasKilled("poisonous spider")
@@ -162,6 +164,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (player.getQuest(QUEST_SLOT, 1).equals("spider") &&
 							player.getQuest(QUEST_SLOT, 2).equals("poisonous spider") &&

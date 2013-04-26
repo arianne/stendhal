@@ -147,6 +147,7 @@ public class CloaksForBario extends AbstractQuest {
 						new QuestActiveCondition(QUEST_SLOT)),
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						raiser.say("Hi again! I still need "
 							+ player.getQuest(QUEST_SLOT)
@@ -177,6 +178,7 @@ public class CloaksForBario extends AbstractQuest {
 				new MultipleActions(
 						new DropItemAction("blue elf cloak"),
 						new ChatAction() {
+							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 								// find out how many cloaks the player still has to
 								// bring. incase something has gone wrong and we can't parse the slot, assume it was just started

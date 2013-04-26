@@ -141,6 +141,7 @@ npc.add(ConversationStates.ATTENDING,
 			new MultipleActions(
 						new DropItemAction("pina colada"), 
 						new ChatAction() {
+							@Override
 							public void fire(final Player player,
 									final Sentence sentence,
 									final EventRaiser npc) {

@@ -162,6 +162,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
@@ -174,6 +175,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		fisherman.add(ConversationStates.ATTENDING, "exam", null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
@@ -204,6 +206,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"Fine. The first question is: What kind of fish is this?",
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						startQuiz();
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
@@ -214,6 +217,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						String species = getCurrentSpecies();
 						String obj = sentence.getObjectName();
@@ -247,6 +251,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.IDLE, "Goodbye.", new ChatAction() {
 			
 		    // this should be put into a custom ChatAction for this quest when the quest is refactored
+			@Override
 			public void fire(final Player player, final Sentence sentence,
 					final EventRaiser npc) {
 				cleanUpTable();

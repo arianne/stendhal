@@ -174,6 +174,7 @@ public class FindGhosts extends AbstractQuest {
 			npc.add(ConversationStates.QUESTION_1, spiritName, null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String name = spiritName;
 

@@ -57,6 +57,7 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING, 
 				"divorce",
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()))
 								&& player.isEquipped("wedding ring") && player.isEquipped("money",200*player.getLevel());
@@ -65,6 +66,7 @@ class Divorce {
 				ConversationStates.QUESTION_3,
 				null,
 			   	new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						Player husband;
 						Player wife;
@@ -91,7 +93,8 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING, 
 				  "divorce",
 				  new ChatCondition() {
-					  public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					  @Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						  return (player.isQuestCompleted(marriage.getQuestSlot()))
 							  && player.isEquipped("wedding ring") && !player.isEquipped("money",200*player.getLevel());
 					  }
@@ -99,7 +102,8 @@ class Divorce {
 				  ConversationStates.QUESTION_3,
 				  null,
 				  new ChatAction() {
-					  public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					  @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						  Player husband;
 						  Player wife;
 						  String partnerName;
@@ -124,6 +128,7 @@ class Divorce {
 		clerk.add(ConversationStates.ATTENDING,
 					"divorce",
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 							return (player.hasQuest(marriage.getQuestSlot())
 									&& player.getQuest(marriage.getQuestSlot()).equals("just_married"))
@@ -139,6 +144,7 @@ class Divorce {
 				new NotCondition(
 					// isMarriedCondition()
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 							return (player.isQuestCompleted(marriage.getQuestSlot()) ||
 									(player.hasQuest(marriage.getQuestSlot()) && player.getQuest(marriage.getQuestSlot()).equals("just_married")));
@@ -153,6 +159,7 @@ class Divorce {
 				new AndCondition(
 					// isMarriedCondition()
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 							return (player.isQuestCompleted(marriage.getQuestSlot()) ||
 									(player.hasQuest(marriage.getQuestSlot()) && player.getQuest(marriage.getQuestSlot()).equals("just_married")));
@@ -178,6 +185,7 @@ class Divorce {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						Player husband;
 						Player wife;

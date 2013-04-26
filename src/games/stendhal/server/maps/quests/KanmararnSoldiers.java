@@ -148,6 +148,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			return corpse.getName().equals(item.getInfoString());
 		}
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			boolean isStillFilled = false;
 			// Check if the item is still in the corpse. Note that somebody
@@ -183,12 +184,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 
 	static class HenryQuestNotCompletedCondition implements ChatCondition {
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	static class HenryQuestCompletedCondition implements ChatCondition {
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
@@ -201,6 +204,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			this.bind = bind;
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			final Item map = SingletonRepository.getEntityManager().getItem("map");
 			map.setInfoString(npc.getName());

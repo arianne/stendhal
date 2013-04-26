@@ -232,6 +232,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 
 	static class DeathMatchEmptyCondition implements ChatCondition {
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			final List<Player> dmplayers = arena.getPlayers();
 			return (dmplayers.size() == 0);
@@ -245,7 +246,8 @@ public class AdosDeathmatch extends AbstractQuest {
 				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
 				 null,
 				 new ChatAction() {
-					 public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					 @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						 final List<Player> dmplayers = arena.getPlayers();
 						 final List<String> dmplayernames = new LinkedList<String>();
 						 for (Player dmplayer : dmplayers) {
@@ -275,7 +277,8 @@ public class AdosDeathmatch extends AbstractQuest {
 					  new NotCondition(new PlayerHasPetOrSheepCondition())), 
 				 ConversationStates.QUESTION_1, null,				 
 				 new ChatAction() {
-					 public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+					 @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						 final List<Player> dmplayers = arena.getPlayers();
 						 final List<String> dmplayernames = new LinkedList<String>();
 						 for (Player dmplayer : dmplayers) {

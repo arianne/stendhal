@@ -220,6 +220,7 @@ public class Campfire extends AbstractQuest {
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
 		reward.add(new IncreaseKarmaAction(10));
 		reward.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				String rewardClass;
 				if (Rand.throwCoin() == 1) {

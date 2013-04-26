@@ -321,7 +321,8 @@ public class KoboldishTorcibud extends AbstractQuest {
             ConversationStates.QUESTION_1, null,
             new MultipleActions(
             		new ChatAction() {
-            			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+            			@Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
             				int pLevel = player.getLevel();
             				player.setQuest(QUEST_SLOT, getRequiredItemsCollection(pLevel));
             			}
@@ -437,7 +438,8 @@ public class KoboldishTorcibud extends AbstractQuest {
 
         // create the ChatAction to reward the player
         ChatAction addRewardAction = new ChatAction() {
-            public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+            @Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
                 final StackableItem
                     koboldish_torcibud_vsop = (StackableItem)
                         SingletonRepository

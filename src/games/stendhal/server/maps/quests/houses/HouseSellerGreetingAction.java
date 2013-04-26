@@ -24,6 +24,7 @@ final class HouseSellerGreetingAction extends HouseChatAction implements ChatAct
 		super(questslot);
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		String reply = "";
 		

@@ -129,6 +129,7 @@ public class HelpTomi extends AbstractQuest {
 				// we are storing the number of times the player has done the quest in the quest slot like
 				// done;N. We reward based on this number. If the quest slot isn't split like this and only 'done' 
 				// we assume it was just done once (sorry, guys)
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					int N;
 					// compatibility with old version

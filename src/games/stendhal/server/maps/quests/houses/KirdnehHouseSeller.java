@@ -87,6 +87,7 @@ final class KirdnehHouseSeller extends HouseSellerNPCBase {
 		
 	}
 
+	@Override
 	protected int getCost() {
 		return KirdnehHouseSeller.COST_KIRDNEH;
 	}

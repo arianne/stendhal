@@ -234,6 +234,7 @@ public class SolveRiddles extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						// randomly choose from available riddles
 						final String riddle = riddles.getRiddle(); 
@@ -249,6 +250,7 @@ public class SolveRiddles extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
 					npc.say("You must solve the riddle which I previously set you: " + riddle);
@@ -258,6 +260,7 @@ public class SolveRiddles extends AbstractQuest {
 		reaper.add(ConversationStates.QUESTION_1, "", null,
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String riddle = player.getQuest(QUEST_SLOT);
 					final String triggerText = sentence.getTriggerExpression().getNormalized();

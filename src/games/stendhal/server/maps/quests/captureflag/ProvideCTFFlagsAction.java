@@ -20,6 +20,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class ProvideCTFFlagsAction implements ChatAction {
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 
 		// TODO: should do some checks first

@@ -78,6 +78,7 @@ class TwilightZone {
 				new TextHasNumberCondition(1, 5000),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 
                         final int required = (sentence.getNumeral().getAmount());

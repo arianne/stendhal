@@ -84,10 +84,12 @@ public class WeaponsCollector extends AbstractQuest implements
 		bringItems.addToWorld();
 	}
 
+	@Override
 	public SpeakerNPC getNPC() {
 		return npcs.get("Balduin");
 	}
 
+	@Override
 	public List<String> getNeededItems() {
 		return neededWeapons;
 	}
@@ -97,56 +99,68 @@ public class WeaponsCollector extends AbstractQuest implements
 		return QUEST_SLOT;
 	}
 
+	@Override
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
 		return Arrays.asList("collection");
 	}
 
+	@Override
 	public List<String> getAdditionalTriggerPhraseForQuest() {
 		return ConversationPhrases.EMPTY;
 	}
 
+	@Override
 	public double getKarmaDiffForQuestResponse() {
 		return 0;
 	}
 
+	@Override
 	public String welcomeBeforeStartingQuest() {
 		return "Greetings. I am Balduin. Are you interested in weapons? "
 				+ "I certainly am, I have been collecting them since I was "
 				+ "young. Maybe you can do a little #task for me.";
 	}
 
+	@Override
 	public String welcomeDuringActiveQuest() {
 		return "Welcome back. I hope you have come to help me with my #collection.";
 	}
 
+	@Override
 	public String welcomeAfterQuestIsCompleted() {
 		return "Welcome! Thanks again for completing my collection.";
 	}
 
+	@Override
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		// because of WeaponsCollector2
 		return false; 
 	}
 
+	@Override
 	public String respondToQuest() {
 		return "Although I have collected weapons for such a long time, I "
 				+ "still don't have everything I want. I need "
 				+ "help to complete my #collection.";
 	}
 
+	@Override
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 		return "My collection is now complete! Thanks again.";
 	}
 
+	@Override
 	public String respondToQuestAcception() {
 		return "If you help me to complete my collection, I will give you "
 				+ "something very interesting and useful in exchange. Bye";
 	}
 
+	@Override
 	public String respondToQuestRefusal() {
 		return "Well, maybe someone else will happen by and help me. Bye";
 	}
 
+	@Override
 	public String askForMissingItems(final List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
 				+ Grammar.quantityplnoun(missingItems.size(), "weapon", "a")
@@ -154,6 +168,7 @@ public class WeaponsCollector extends AbstractQuest implements
 				+ Grammar.enumerateCollection(missingItems)
 				+ ". Do you have anything of that nature with you?";
 	}
+	@Override
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
 				+ Grammar.quantityplnoun(missingItems.size(), "weapon", "a")
@@ -163,24 +178,29 @@ public class WeaponsCollector extends AbstractQuest implements
 	}
 
 
+	@Override
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Let me know as soon as you find "
 				+ Grammar.itthem(missingItems.size()) + ". Farewell.";
 	}
 
+	@Override
 	public String askForItemsAfterPlayerSaidHeHasItems() {
 		return "What is it that you found?";
 	}
 
+	@Override
 	public String respondToItemBrought() {
 		return "Thank you very much! Do you have anything else for me?";
 	}
 
+	@Override
 	public String respondToLastItemBrought() {
 		return "At last, my collection is complete! Thank you very much; "
 				+ "here, take this #'ice sword' in exchange!";
 	}
 
+	@Override
 	public void rewardPlayer(final Player player) {
 		final Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
@@ -188,16 +208,19 @@ public class WeaponsCollector extends AbstractQuest implements
 		player.addXP(5000);
 	}
 
+	@Override
 	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "I may be old, but I'm not senile, and you clearly don't have "
 				+ Grammar.a_noun(itemName)
 				+ ". What do you really have for me?";
 	}
 
+	@Override
 	public String respondToOfferOfNotMissingItem() {
 		return "I already have that one. Do you have any other weapon for me?";
 	}
 
+	@Override
 	public String respondToOfferOfNotNeededItem() {
 		return "Oh, that is not an interesting weapon";
 	}

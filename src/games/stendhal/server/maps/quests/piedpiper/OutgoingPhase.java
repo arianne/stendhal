@@ -86,6 +86,7 @@ public class OutgoingPhase extends TPPQuest {
 		rats=TPPQuestHelperFunctions.getRats();
 	}
 
+	@Override
 	public void prepare() {
 		rats.clear();
 		createPiedPiper();
@@ -121,6 +122,7 @@ public class OutgoingPhase extends TPPQuest {
 	 */
 	class AttractRat implements Observer {
 
+		@Override
 		public void update(Observable arg0, Object arg1) {
 			SummonRat();
 		}
@@ -134,6 +136,7 @@ public class OutgoingPhase extends TPPQuest {
 
 		final Observer o;
 		
+		@Override
 		public void update(Observable arg0, Object arg1) {
 			logger.debug("road's end.");
 			o.update(null, null);
@@ -164,22 +167,26 @@ public class OutgoingPhase extends TPPQuest {
 		o.update(null, null);
 	}
 	
+	@Override
 	public int getMinTimeOut() {
 		return minPhaseChangeTime;
 	}
 	
 
+	@Override
 	public int getMaxTimeOut() {
 		return maxPhaseChangeTime;
 	}
 
 
+	@Override
 	public void phaseToDefaultPhase(List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToDefaultPhase(comments);		
 	}
 
 
+	@Override
 	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		destroyPiedPiper();
 		super.phaseToNextPhase(nextPhase, comments);
@@ -189,6 +196,7 @@ public class OutgoingPhase extends TPPQuest {
 	/*
 	 *  Pied Piper sent rats away:-)
 	 */
+	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		final String text = 
 			"Mayor Chalmers shouts: Thankfully, all the #rats are gone now, " +
@@ -198,6 +206,7 @@ public class OutgoingPhase extends TPPQuest {
 		return text;
 	}
 
+	@Override
 	public TPP_Phase getPhase() {
 		return TPP_Phase.TPP_OUTGOING;
 	}

@@ -143,6 +143,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 		
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
@@ -261,6 +262,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 										new TeleportAction(ZONE_NAME, 10, 10, Direction.DOWN),
 										new SetQuestAction(QUEST_SLOT, "start"),
 										new ChatAction() {
+											@Override
 											public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 												SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
 											}}));
@@ -313,6 +315,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								new TeleportAction(ZONE_NAME, 15, 16, Direction.DOWN),
 								new SetQuestAction(QUEST_SLOT, "done"),
 								new ChatAction() {
+									@Override
 									public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 										SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
 									}}));
@@ -343,6 +346,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		zone.add(npc);
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		/*
 		 *  Stop any possible running notifiers that might be left after the player

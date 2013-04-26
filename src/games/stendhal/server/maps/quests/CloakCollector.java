@@ -91,6 +91,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 			npc.add(ConversationStates.QUEST_OFFERED, itemName, null,
 				ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						Expression obj = sentence.getObject(0);
 						if (obj!=null && !obj.getNormalized().equals(itemName)) {
@@ -119,14 +120,17 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		}
 	}
 
+	@Override
 	public List<String> getAdditionalTriggerPhraseForQuest() {
 		return Arrays.asList("clothes");
 	}
 
+	@Override
 	public SpeakerNPC getNPC() {
 		return npcs.get("Josephine");
 	}
 
+	@Override
 	public List<String> getNeededItems() {
 		return NEEDED_CLOAKS;
 	}
@@ -136,88 +140,108 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return QUEST_SLOT;
 	}
 
+	@Override
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
 		return Arrays.asList("cloaks");
 	}
 
+	@Override
 	public double getKarmaDiffForQuestResponse() {
 		return 5.0;
 	}
 
+	@Override
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		return false;
 	}
 
+	@Override
 	public String welcomeBeforeStartingQuest() {
 		return "Hi there, gorgeous! I can see you like my pretty dress. I just love #clothes...";
 	}
 
+	@Override
 	public String welcomeDuringActiveQuest() {
 		return "Hello! Did you bring any #cloaks with you?";
 	}
 	
+	@Override
 	public String welcomeAfterQuestIsCompleted() {
 		return "Hi again, lovely. The cloaks still look great. Thanks!";
 	}
 
+	@Override
 	public String respondToQuest() {
 		return "At the moment I'm obsessed with #cloaks! They come in so many colours. I want all the pretty ones!";
 	}
 
+	@Override
 	public String respondToQuestAcception() {
 		// player.addKarma(5.0);
 		return "Brilliant! I'm so excited!";
 	}
 
+	@Override
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 		return "Hi again, lovely. The cloaks still look great. Thanks!";
 	}
 
+	@Override
 	public String respondToQuestRefusal() {
 		// player.addKarma(-5.0);
 		return "Oh ... you're not very friendly. Bye then.";
 	}
 
+	@Override
 	public String askForItemsAfterPlayerSaidHeHasItems() {
 		return "Great! What #cloaks did you bring?";
 	}
 
+	@Override
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak", "a")
 				+ ". That's " + Grammar.enumerateCollection(missingItems)
 				+ ". Will you find them?";
 	}
 
+	@Override
 	public String askForMissingItems(final List<String> missingItems) {
 		return "I want " + Grammar.quantityplnoun(missingItems.size(), "cloak", "a")
 				+ ". That's " + Grammar.enumerateCollection(missingItems)
 				+ ". Did you bring any?";
 	}
 
+	@Override
 	public String respondToItemBrought() {
 		return "Wow, thank you! What else did you bring?";
 	}
 
+	@Override
 	public String respondToLastItemBrought() {
 		return "Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.";
 	}
 
+	@Override
 	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Oh, I'm disappointed. You don't really have " + Grammar.a_noun(itemName) + " with you.";
 	}
 
+	@Override
 	public String respondToOfferOfNotMissingItem() {
 		return "You've already brought that cloak to me.";
 	}
 
+	@Override
 	public String respondToOfferOfNotNeededItem() {
 		return "Sorry, that's not a cloak I asked you for.";
 	}
 
+	@Override
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Okay then. Come back later.";
 	}
 
+	@Override
 	public void rewardPlayer(final Player player) {
 		final Item blackcloak = SingletonRepository.getEntityManager().getItem("black cloak");
 		blackcloak.setBoundTo(player.getName());

@@ -102,10 +102,12 @@ public class ToysCollector extends AbstractQuest implements
 				null);
 	}
 
+	@Override
 	public SpeakerNPC getNPC() {
 		return npcs.get("Anna");
 	}
 
+	@Override
 	public List<String> getNeededItems() {
 		return neededToys;
 	}
@@ -115,75 +117,93 @@ public class ToysCollector extends AbstractQuest implements
 		return QUEST_SLOT;
 	}
 
+	@Override
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
 		return ConversationPhrases.EMPTY;
 	}
 
+	@Override
 	public List<String> getAdditionalTriggerPhraseForQuest() {
 		return Arrays.asList("toys");
 	}
 
+	@Override
 	public double getKarmaDiffForQuestResponse() {
 		return 8.0;
 	}
 
+	@Override
 	public String welcomeBeforeStartingQuest() {
 		return "Mummy said, we are not allowed to talk to strangers. But I'm bored. I want some #toys!";
 	}
 
+	@Override
 	public String welcomeDuringActiveQuest() {
 		return "Hello! I'm still bored. Did you bring me toys?";
 	}
 
+	@Override
 	public String welcomeAfterQuestIsCompleted() {
 		return "Hi! I'm busy playing with my toys, no grown ups allowed.";
 	}
 
+	@Override
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		return true;
 	}
 
+	@Override
 	public String respondToQuest() {
 		return "I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?";
 	}
 
+	@Override
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 		return "The toys are great! Thanks!";
 	}
 
+	@Override
 	public String respondToQuestAcception() {
 		return "Hooray! How exciting. See you soon.";
 	}
 
+	@Override
 	public String respondToQuestRefusal() {
 		return "Oh ... you're mean.";
 	}
 	
 	// not used
+	@Override
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?";
 	}
 	
+	@Override
 	public String askForMissingItems(final List<String> missingItems) {
 		return "What toys did you bring?";
 	}
 
+	@Override
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "Okay then. Come back later.";
 	}
 
+	@Override
 	public String askForItemsAfterPlayerSaidHeHasItems() {
 		return "What did you bring?!";
 	}
 
+	@Override
 	public String respondToItemBrought() {
 		return "Thank you very much! What else did you bring?";
 	}
 
+	@Override
 	public String respondToLastItemBrought() {
 		return "These toys will keep me happy for ages! Please take these pies. Arlindo baked them for us but I think you should have them.";
 	}
 
+	@Override
 	public void rewardPlayer(final Player player) {
 		final StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"pie");
@@ -193,15 +213,18 @@ public class ToysCollector extends AbstractQuest implements
 		player.addKarma(10.0);
 	}
 
+	@Override
 	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Hey! It's bad to lie! You don't have "
 				+ Grammar.a_noun(itemName) + " with you.";
 	}
 
+	@Override
 	public String respondToOfferOfNotMissingItem() {
 		return "I already have that toy!";
 	}
 
+	@Override
 	public String respondToOfferOfNotNeededItem() {
 		return "That's not a good toy!";
 	}

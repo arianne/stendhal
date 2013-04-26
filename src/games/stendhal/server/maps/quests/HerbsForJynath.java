@@ -69,7 +69,8 @@ public class HerbsForJynath extends AbstractQuest {
 	} */
     
     // TODO: update this for the different stages of the quest
-    public List<String> getHistory(final Player player) {
+    @Override
+	public List<String> getHistory(final Player player) {
         final List<String> questHistory = new ArrayList<String>();
         if (!player.hasQuest(QUEST_SLOT)) {
             return questHistory;

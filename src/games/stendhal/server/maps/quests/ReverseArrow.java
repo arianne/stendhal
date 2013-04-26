@@ -118,6 +118,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 			// sort the tokens according to their position
 			Collections.sort(tokens, new Comparator<Token>() {
+				@Override
 				public int compare(final Token t1, final Token t2) {
 					int d = t1.getY() - t2.getY();
 					if (d == 0) {
@@ -159,6 +160,7 @@ public class ReverseArrow extends AbstractQuest implements
 		 * invoked shortly after the player did his/her third move.
 		 * @param currentTurn on which it is invoked
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -202,6 +204,7 @@ public class ReverseArrow extends AbstractQuest implements
 		 * invoked shortly after the player did his job.
 		 * @param currentTurn on which it is invoked
 		 */
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			finish(reset, finishPlayer);
 		}
@@ -226,6 +229,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		private int counter = TIME;
 
+		@Override
 		public void onTurnReached(final int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
@@ -420,6 +424,7 @@ public class ReverseArrow extends AbstractQuest implements
 		entranceZone.add(sign);
 	}
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		// need to do this on the next turn
 		SingletonRepository.getTurnNotifier().notifyInTurns(1, new FinishNotifier(false, player));
@@ -431,6 +436,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 * @param player Player
 	 * @param token Token
 	 */
+	@Override
 	public void onTokenMoved(final Player player, Token token) {
 		//TODO only count if the token really changed its position
 		moveCount++;

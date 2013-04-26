@@ -77,6 +77,7 @@ public class MeetKetteh extends AbstractQuest {
 						        // but they should do learnt_manners too
 						        new QuestInStateCondition(QUEST_SLOT,"done"))),
 				new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 				}

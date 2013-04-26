@@ -17,12 +17,17 @@ import java.util.List;
 public interface ITPPQuest extends ITPPQuestConstants {
 	
 	/**
-	 * function will change phase to next phase 
+	 * Function will change phase to next phase.
+	 *  
+	 * @param nextPhase 
+	 * @param comments 
 	 */
 	void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments);
 	
 	/**
 	 * function will reset quest state to default phase (INACTIVE).
+	 * 
+	 * @param comments 
 	 */
 	void phaseToDefaultPhase(List<String> comments);
 	
@@ -51,7 +56,9 @@ public interface ITPPQuest extends ITPPQuestConstants {
 	int getMaxTimeOut();
 	
 	/**
-	 * return quest phase
+	 * Get the current phase.
+	 * 
+	 * @return quest phase 
 	 */
 	TPP_Phase getPhase();
 

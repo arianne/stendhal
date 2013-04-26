@@ -24,6 +24,7 @@ final class ListUnboughtHousesAction implements ChatAction {
 		this.location = location;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		final List<String> unbought = HouseUtilities.getUnboughtHousesInLocation(location);
 		if (unbought.size() > 0) {

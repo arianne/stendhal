@@ -32,6 +32,7 @@ final class ResellHouseAction implements ChatAction {
 		this.houseTax = houseTax;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 		// we need to find out where this house is so we know how much to refund them

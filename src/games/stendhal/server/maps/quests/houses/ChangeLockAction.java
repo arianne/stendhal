@@ -22,6 +22,7 @@ final class ChangeLockAction extends HouseChatAction implements ChatAction {
 		super(questslot);
 	}
 	
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 		if (player.isEquipped("money", HouseChatAction.COST_OF_SPARE_KEY)) {
 			// we need to find out which this houseportal is so we can change lock

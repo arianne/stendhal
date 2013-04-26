@@ -136,6 +136,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 							if (player.isQuestCompleted(QUEST_SLOT)) {
 								raiser.say("My collection is now complete! Thanks again.");
@@ -154,6 +155,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						raiser.say("Wonderful. Now, the #list is small but the risk may be great. "
 								+ "If you return safely, I have another reward for you.");
@@ -176,6 +178,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> needed = missingWeapons(player, true);
 						raiser.say("There "
@@ -195,6 +198,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> missing = missingWeapons(player, false);
 						raiser.say("Let me know as soon as you find "
@@ -218,6 +222,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						List<String> missing = missingWeapons(player, false);
 

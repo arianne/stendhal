@@ -68,6 +68,7 @@ public class NineSwitchesGame implements LoadableContent {
 						new PlayAction(board));
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
@@ -95,6 +96,7 @@ public class NineSwitchesGame implements LoadableContent {
 			this.board = board;
 		}
 
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			if (board.getPlayerName() != null) {
 				npc.say("Sorry, " + player.getName() + " there is already a game in progress. Please wait a little.");
@@ -104,6 +106,7 @@ public class NineSwitchesGame implements LoadableContent {
 		}
 	}
 
+	@Override
 	public void addToWorld() {
 		zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 
@@ -118,6 +121,7 @@ public class NineSwitchesGame implements LoadableContent {
 	 *
 	 * @return <code>true</code>
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		NPCList.get().remove("Paul Sheriff");
 		zone.remove(npc);

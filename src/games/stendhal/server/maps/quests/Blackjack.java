@@ -257,6 +257,7 @@ public class Blackjack extends AbstractQuest {
 		SingletonRepository.getTurnNotifier().notifyInSeconds(1, new TurnListener() {
 			private final String name = playerName;
 
+			@Override
 			public void onTurnReached(final int currentTurn) {
 				if (name.equals(ramon.getAttending().getName())) {
 					dealCards(ramon.getAttending(), 1);
@@ -394,6 +395,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						dealCards(player, 1);
 					}
@@ -404,6 +406,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						playerStands = true;
 						if (bankStands) {

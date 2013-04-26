@@ -154,6 +154,7 @@ public class BringListOfItemsQuestLogic {
 				concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 				null, ConversationStates.QUEST_OFFERED, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final List<String> missingItems = getListOfStillMissingItems(player, false);
 						raiser.say(concreteQuest.firstAskForMissingItems(missingItems));
@@ -187,6 +188,7 @@ public class BringListOfItemsQuestLogic {
 			new QuestActiveCondition(concreteQuest.getSlotName()),
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> missingItems = getListOfStillMissingItems(player, true);
 					raiser.say(concreteQuest.askForMissingItems(missingItems));
@@ -206,6 +208,7 @@ public class BringListOfItemsQuestLogic {
 	    final ConversationStates[] states = new ConversationStates[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final List<String> missingItems = getListOfStillMissingItems(player, false);
 					raiser.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
@@ -238,6 +241,7 @@ public class BringListOfItemsQuestLogic {
 			concreteQuest.getNPC().add(ConversationStates.QUESTION_1, itemName, null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						List<String> missing = getListOfStillMissingItems(player, false);
 

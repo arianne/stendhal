@@ -165,6 +165,7 @@ public class FishSoup extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					if (player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT)) { 
 						npc.say("I have everything for the fish soup recipe now.");
@@ -180,6 +181,7 @@ public class FishSoup extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED, "ingredients", null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I need "
@@ -256,6 +258,7 @@ public class FishSoup extends AbstractQuest {
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.QUESTION_1, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final List<String> needed = missingFood(player, true);
 					npc.say("I still need "
@@ -275,6 +278,7 @@ public class FishSoup extends AbstractQuest {
 			npc.add(ConversationStates.QUESTION_1, itemName, null,
 				ConversationStates.QUESTION_1, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						List<String> missing = missingFood(player, false);
 
@@ -319,7 +323,8 @@ public class FishSoup extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				null,
 				new ChatAction() {
-			    public void fire(final Player player, final Sentence sentence,
+			    @Override
+				public void fire(final Player player, final Sentence sentence,
 					   final EventRaiser npc) {
 			    	checkForAllIngredients(player, npc);
 			}

@@ -48,6 +48,7 @@ class Engagement {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser raiser) {
 						if (!player.hasQuest(marriage.getQuestSlot())) {
@@ -91,6 +92,7 @@ class Engagement {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						// find out whom the player wants to marry.
@@ -110,6 +112,7 @@ class Engagement {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						askBrideE();
@@ -129,6 +132,7 @@ class Engagement {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
 						finishEngagement();

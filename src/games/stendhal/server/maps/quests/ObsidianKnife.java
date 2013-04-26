@@ -232,6 +232,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String food = player.getQuest(QUEST_SLOT);
 					npc.say("Thank you! I hope it doesn't take too long to collect. Don't forget to say '"
@@ -259,6 +260,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String food = Rand.rand(FOOD_LIST);
 						player.setQuest(QUEST_SLOT, food);
@@ -276,6 +278,7 @@ public class ObsidianKnife extends AbstractQuest {
 		for(final String itemName : FOOD_LIST) {
 			final List<ChatAction> reward = new LinkedList<ChatAction>();
 			reward.add(new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.drop(itemName, REQUIRED_FOOD)) {
 							npc.say("Great! You brought the " + itemName + "!");
@@ -288,6 +291,7 @@ public class ObsidianKnife extends AbstractQuest {
 			npc.add(ConversationStates.ATTENDING, 
 				itemName,
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(itemName)

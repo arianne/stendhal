@@ -33,6 +33,7 @@ final class BuyHouseChatAction extends HouseChatAction implements ChatAction {
 		this.cost = cost;
 	}
 
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 		final int number = sentence.getNumeral().getAmount();

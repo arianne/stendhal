@@ -37,9 +37,9 @@ public class CaptureFlagUseListener implements UseListener {
 	}
 
 	/**
-	 * called when tagger tags the target
+	 * Called when tagger tags the target
 	 * 
-	 * @param user
+	 * @param tagger
 	 */
 	private void init(Player tagger) {
 		sender      = tagger;
@@ -64,7 +64,6 @@ public class CaptureFlagUseListener implements UseListener {
 	 * the ammunition or weapon name - "fumble arrow" -> fumble.
 	 * (that is a feeble approach to Effects)
 	 * 
-	 * @param text
 	 * @return string determining outcome of the check
 	 */
 	// protected Effect checkEquippedAndInRange
@@ -119,6 +118,7 @@ public class CaptureFlagUseListener implements UseListener {
 	/**
 	 * this is called when another player left-clicks on this.target
 	 */
+	@Override
 	public boolean onUsed(RPEntity user) {
 
 		String result = null;

@@ -277,6 +277,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		actions.add(new IncreaseXPDependentOnLevelAction(5.0/3.0, 290.0));
 		actions.add(new IncreaseKarmaAction(10.0));
 		actions.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				int goldamount;
 				final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()

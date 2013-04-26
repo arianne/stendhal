@@ -57,6 +57,7 @@ class MakeRings {
 				ConversationStates.QUEST_ITEM_QUESTION, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if (player.isQuestInState(marriage.getQuestSlot(), "engaged_with_ring")) {
 							// player has wedding ring already. just remind to
@@ -117,7 +118,8 @@ class MakeRings {
 				ConversationStates.IDLE, 
 		 		null, 
 				new ChatAction() {
-	 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+	 				@Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 	 					final String[] tokens = player.getQuest(marriage.getQuestSlot()).split(";");
 						final long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 						final long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
@@ -162,6 +164,7 @@ class MakeRings {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 								&& (player.isEquipped("money", REQUIRED_MONEY))) {

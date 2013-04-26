@@ -59,7 +59,9 @@ public class TPPQuestHelperFunctions implements ITPPQuestConstants {
 	}
 	
 	/**
+	 * Get the amount of rats.
 	 * 
+	 * @return rat count
 	 */
 	public static int getRatsCount() {
 		return(getRats().size());

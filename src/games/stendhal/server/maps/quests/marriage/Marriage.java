@@ -59,6 +59,7 @@ class Marriage {
 		priest.add(ConversationStates.ATTENDING,
 					"marry",
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence,
 								final Entity npc) {
 							return player.hasQuest(marriage.getQuestSlot())
@@ -73,6 +74,7 @@ class Marriage {
 					null,
 					new ChatAction() {
 
+						@Override
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
 							// find out whom the player wants to marry.
@@ -93,6 +95,7 @@ class Marriage {
 					null,
 					new ChatAction() {
 
+						@Override
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
 							askBride();
@@ -113,6 +116,7 @@ class Marriage {
 					null,
 					new ChatAction() {
 
+						@Override
 						public void fire(final Player player, final Sentence sentence,
 								final EventRaiser npc) {
 							finishMarriage();
@@ -131,6 +135,7 @@ class Marriage {
 		priest.add(ConversationStates.ATTENDING,
 					"marry",
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence,
 								final Entity npc) {
 							return (!player.hasQuest(marriage.getQuestSlot()) 
@@ -145,6 +150,7 @@ class Marriage {
 		priest.add(ConversationStates.ATTENDING, 
 				"marry",
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence,
 							final Entity npc) {
 						return (player.isQuestCompleted(marriage.getQuestSlot()));

@@ -290,6 +290,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						raiser.say("I can forge a shield made from mithril along with several other items. Would you like me to do that?");
@@ -307,6 +308,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					raiser.say(I_WILL_NEED_MANY_THINGS);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
@@ -339,6 +341,7 @@ public class StuffForBaldemar extends AbstractQuest {
 					new QuestStateStartsWithCondition(QUEST_SLOT, "start")),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
@@ -406,6 +409,7 @@ public class StuffForBaldemar extends AbstractQuest {
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;")),
 				ConversationStates.IDLE, null, new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -438,6 +442,7 @@ public class StuffForBaldemar extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 

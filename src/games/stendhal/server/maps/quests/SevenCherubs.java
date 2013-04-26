@@ -124,6 +124,7 @@ public class SevenCherubs extends AbstractQuest {
 				new GreetingMatchesNameCondition(getName()), true,
 				ConversationStates.IDLE, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT)) {
 							player.setQuest(QUEST_SLOT, "");

@@ -40,25 +40,41 @@ public class HouseBuyingMain {
 	/** Kirdneh house seller Zone name. */
 	private static final String KIRDNEH_TOWNHALL = "int_kirdneh_townhall";
 
-	/** The NPC for Kalavan Houses. */
+	/**
+	 * The NPC for Kalavan Houses.
+	 *  
+	 * @param zone target zone
+	 */
 	public void createKalavanNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new KalavanHouseseller("Barrett Holmes", "kalavan", houseTax);
 		zone.add(npc);
 	}
 
-	/** The NPC for Ados Houses. */
+	/**
+	 * The NPC for Ados Houses.
+	 * 
+	 * @param zone target zone
+	 */
 	public void createAdosNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new AdosHouseSeller("Reg Denson", "ados", houseTax);
 		zone.add(npc);
 	}
 
-	/** The NPC for Kirdneh Houses. */
+	/**
+	 * The NPC for Kirdneh Houses.
+	 * 
+	 * @param zone target zone
+	 */
 	public void createKirdnehNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new KirdnehHouseSeller("Roger Frampton", "kirdneh", houseTax);
 		zone.add(npc);
 	}
 
-	/** The NPC for Athor Apartments. */
+	/**
+	 * The NPC for Athor Apartments.
+	 * 
+	 * @param zone target zone
+	 */
 	public void createAthorNPC(StendhalRPZone zone) {
 		final SpeakerNPC npc = new AthorHouseSeller("Cyk", "athor", houseTax);
 		zone.add(npc);

@@ -110,6 +110,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 							return !player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(OLD_QUEST);
 						}
@@ -125,6 +126,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						entity.say("It's missing "
@@ -146,6 +148,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.IDLE, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
@@ -165,6 +168,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null, 
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
@@ -190,6 +194,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUEST_2_OFFERED, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						Expression obj = sentence.getObject(0);
 						if (obj!=null && !obj.getNormalized().equals(itemName)) {
@@ -240,6 +245,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						final List<String> needed2 = missingcloaks2(player, true);
 						entity.say("I want "
@@ -269,6 +275,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2,
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						List<String> missing = missingcloaks2(player, false);
 
@@ -313,6 +320,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
@@ -325,6 +333,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, 
 				ConversationPhrases.NO_MESSAGES,
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}

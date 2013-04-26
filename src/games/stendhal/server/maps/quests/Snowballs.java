@@ -228,6 +228,7 @@ public class Snowballs extends AbstractQuest {
 		// player gets either cod or perch, which we don't have a standard action for
 		// and the npc says the name of the reward, too
 		reward.add(new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						String rewardClass;
 						if (Rand.throwCoin() == 1) {

@@ -215,6 +215,7 @@ import org.apache.log4j.Logger;
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("steel arrow",20));
 		actions.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
 				cloak.setInfoString("Phalk");
@@ -256,6 +257,7 @@ import org.apache.log4j.Logger;
 		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
 		actions2.add(new DropItemAction("money",250));
 		actions2.add(new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final Item cloak = SingletonRepository.getEntityManager().getItem("dwarf cloak");
 					cloak.setInfoString("Phalk");
@@ -323,6 +325,7 @@ import org.apache.log4j.Logger;
 		actions.add(new IncreaseXPAction(200));
 		actions.add(new DropItemAction("gold bar",20));
 		actions.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
 				armor.setInfoString("Phalk");
@@ -362,6 +365,7 @@ import org.apache.log4j.Logger;
 		final List<ChatAction> actions2 = new LinkedList<ChatAction>();
 		actions2.add(new DropItemAction("money",10000));
 		actions2.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item armor = SingletonRepository.getEntityManager().getItem("golden armor");
 				armor.setInfoString("Phalk");

@@ -54,6 +54,7 @@ public class InvasionPhase extends TPPQuest {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("There " + Grammar.isare(TPPQuestHelperFunctions.getRats().size()) +
 								" still about "+Integer.toString(TPPQuestHelperFunctions.getRats().size())+
@@ -86,7 +87,9 @@ public class InvasionPhase extends TPPQuest {
 	}
 
 	/**
-	 * constructor
+	 * Create InvasionPhase.
+	 * 
+	 * @param timings 
 	 */
 	public InvasionPhase(Map<String, Integer> timings) {
 		super(timings);
@@ -240,7 +243,9 @@ public class InvasionPhase extends TPPQuest {
 	}
 
 	/**
-	 *  Red alert! Rats in the Ados city!
+	 * Red alert! Rats in the Ados city!
+	 * 
+	 * @return Ados mayor's call for help message
 	 */
 	protected String ratsProblem() {
 		final String text = "Mayor Chalmers shouts: Ados City is being invaded by #rats!"+
@@ -274,6 +279,7 @@ public class InvasionPhase extends TPPQuest {
      *  in player's quest slot.
      */
 	class RatsObserver implements Observer {
+		@Override
 		public void update (Observable obj, Object arg) {
 	        if (arg instanceof CircumstancesOfDeath) {
 	    		final CircumstancesOfDeath circs=(CircumstancesOfDeath)arg;

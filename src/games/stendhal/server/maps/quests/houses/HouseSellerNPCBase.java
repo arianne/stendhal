@@ -197,6 +197,7 @@ abstract class HouseSellerNPCBase extends SpeakerNPC {
 	protected abstract int getHighestHouseNumber();
 }
 final class PlayerOwnsHouseCondition implements ChatCondition {
+	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 		return HouseUtilities.playerOwnsHouse(player);
 	}

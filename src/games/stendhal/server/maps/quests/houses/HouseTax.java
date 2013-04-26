@@ -127,6 +127,7 @@ class HouseTax implements TurnListener {
 		portal.setExpireTime(portal.getExpireTime() +  ((long) periods * (long) TAX_PAYMENT_PERIOD * 1000));
 	}
 
+	@Override
 	public void onTurnReached(final int turn) {
 		SingletonRepository.getTurnNotifier().notifyInSeconds(TAX_CHECKING_PERIOD, this);
 
@@ -204,6 +205,7 @@ class HouseTax implements TurnListener {
 		taxman.add(ConversationStates.ATTENDING,
 				"pay",
 				new ChatCondition() {
+					@Override
 					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						return getUnpaidTaxPeriods(player) > 0;
 					}
@@ -215,7 +217,8 @@ class HouseTax implements TurnListener {
 		taxman.add(ConversationStates.ATTENDING,
 				   Arrays.asList("pay", "payment"),
 				   new ChatCondition() {
-					   public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
+					   @Override
+					public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 						   return getUnpaidTaxPeriods(player) <= 0;
 					   }
 				   },
@@ -230,6 +233,7 @@ class HouseTax implements TurnListener {
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final int periods = getUnpaidTaxPeriods(player);
 						final int cost = getTaxDebt(periods);

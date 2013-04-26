@@ -222,6 +222,7 @@ public class FishSoupForHughie extends AbstractQuest {
 		reward.add(new IncreaseKarmaAction(5));
 		reward.add(new EquipItemAction("potion",10));
 		reward.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item soup = SingletonRepository.getEntityManager()
 				.getItem("fish soup");

@@ -159,6 +159,7 @@ public class CoalForHaunchy extends AbstractQuest {
 						new DropItemAction("coal",25), 
 						new IncreaseXPAction(200),
 						new ChatAction() {
+							@Override
 							public void fire(final Player player,
 									final Sentence sentence,
 									final EventRaiser npc) {

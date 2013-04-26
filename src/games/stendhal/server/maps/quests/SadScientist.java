@@ -323,6 +323,7 @@ public class SadScientist extends AbstractQuest {
 
 	private void playerVisitsMayorSakhs(final SpeakerNPC npc) {
 		final ChatAction action = new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				final Item item = SingletonRepository.getEntityManager().getItem("note");
 				item.setInfoString(player.getName());

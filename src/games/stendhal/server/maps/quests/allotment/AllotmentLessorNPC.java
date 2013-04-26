@@ -39,6 +39,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 	 * @param zone The zone to be configured.
 	 * @param attributes Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		rentHelper = AllotmentUtilities.get();
 		buildNPC(zone, attributes);
@@ -53,6 +54,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone, final Map<String, String> attributes) {
 		// condition to check if there are any allotments available
 		final ChatCondition hasAllotments = new ChatCondition() {
+			@Override
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
 				return rentHelper.getAvailableAllotments(zone.getName()).size() > 0;
 			}
@@ -64,6 +66,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 		 * the time that the player speaks to the NPC 
 		 */ 
 		final ChatCondition questActive = new ChatCondition() {
+			@Override
 			public boolean fire(Player player, Sentence sentence, Entity npc) {
 				return new QuestStateGreaterThanCondition(QUEST_SLOT, 1, (int) System.currentTimeMillis()).fire(player,  sentence, npc);
 			}				
@@ -130,6 +133,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					ConversationStates.ATTENDING,
 					null,
 					new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							long diff = rentHelper.getNextExpiryTime(zone.getName()) - System.currentTimeMillis();
 							
@@ -153,6 +157,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					null,
 					new ChatAction() {
 						//say which ones are available
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							List<String> allotments = rentHelper.getAvailableAllotments(zone.getName());
 							String reply = Grammar.enumerateCollection(allotments);
@@ -178,6 +183,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					null,
 					new ChatAction() {
 						// does the transaction if possible
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final int number = sentence.getNumeral().getAmount();
 							final String allotmentNumber = Integer.toString(number);
@@ -215,6 +221,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					"",
 					// gives player a new key to give to friends to use
 					new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							GateKey key = rentHelper.getKey(zone.getName(), player.getName());
 							
@@ -238,6 +245,7 @@ public class AllotmentLessorNPC implements ZoneConfigurator {
 					null,
 					// gets a new key
 					new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							npc.say("The time remaining on your rent is " + rentHelper.getTimeLeftPlayer(zone.getName(), player.getName()) + ".");
 						}

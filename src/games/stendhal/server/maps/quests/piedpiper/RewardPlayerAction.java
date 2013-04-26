@@ -13,6 +13,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class RewardPlayerAction implements ChatAction, ITPPQuestConstants {
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 		    	final int quantity = TPPQuestHelperFunctions.calculateReward(player);
 		    	// to avoid giving karma without job

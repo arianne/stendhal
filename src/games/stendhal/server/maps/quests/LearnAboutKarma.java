@@ -134,6 +134,7 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final long roundedkarma = Math.round(player.getKarma());
 					final String Yk = "Your karma ";

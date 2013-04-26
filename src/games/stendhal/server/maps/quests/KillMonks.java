@@ -149,6 +149,7 @@ public class KillMonks extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Andy");
 		
 		ChatAction addRandomNumberOfItemsAction = new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				//add random number of soups
 				final StackableItem soup = (StackableItem) SingletonRepository.getEntityManager()

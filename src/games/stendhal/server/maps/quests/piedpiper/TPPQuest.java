@@ -29,14 +29,17 @@ public class TPPQuest implements ITPPQuest {
 	protected static final Logger logger = Logger.getLogger(ThePiedPiper.class);	
 	protected Map<String, Integer> timings;
 	
+	@Override
 	public String getSwitchingToNextPhaseMessage() {
 		return null;
 	}
 	
+	@Override
 	public String getSwitchingToDefPhaseMessage() {
 		return null;
 	}
 	
+	@Override
 	public TPP_Phase getPhase() {
 		return null;
 	}
@@ -73,6 +76,7 @@ public class TPPQuest implements ITPPQuest {
 			TurnNotifier.get().dontNotify(this);
 		}
 		
+		@Override
 		public void onTurnReached(int currentTurn) {			
 			start();
 		}
@@ -110,6 +114,7 @@ public class TPPQuest implements ITPPQuest {
 	}
 
 	
+	@Override
 	public void phaseToDefaultPhase(List<String> comments) {
 		shoutMessage(getSwitchingToDefPhaseMessage());
 		ThePiedPiper.setPhase(ThePiedPiper.getDefaultPhaseClass().getPhase());
@@ -127,6 +132,7 @@ public class TPPQuest implements ITPPQuest {
 		}
 	}
 
+	@Override
 	public void phaseToNextPhase(ITPPQuest nextPhase, List<String> comments) {
 		shoutMessage(getSwitchingToNextPhaseMessage());
 		if(!comments.isEmpty()) {
@@ -141,14 +147,17 @@ public class TPPQuest implements ITPPQuest {
 		nextPhase.prepare();
 	}
 	
+	@Override
 	public void prepare() {
 		
 	}
 	
+	@Override
 	public int getMaxTimeOut() {
 		return 0;
 	}
 
+	@Override
 	public int getMinTimeOut() {
 		return 0;
 	}

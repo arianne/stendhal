@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 public class DetailsKillingsAction implements ChatAction, ITPPQuestConstants {
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser mayor) {
 		if (TPPQuestHelperFunctions.calculateReward(player)==0) {
 			mayor.say("You killed no rats during the #rats invasion. "+

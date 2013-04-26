@@ -124,6 +124,7 @@ public class NewsFromHackim extends AbstractQuest {
 					new QuestInStateCondition(QUEST_SLOT, "start")),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					String answer;
 					if (player.isEquipped("leather legs")) {

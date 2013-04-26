@@ -68,6 +68,7 @@ public class BalloonForBobby extends AbstractQuest {
 	private static final Outfit[] balloonList = new Outfit[4];
 
 
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		prepareBalloonList();

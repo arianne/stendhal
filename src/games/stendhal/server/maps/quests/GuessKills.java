@@ -186,7 +186,8 @@ public class GuessKills extends AbstractQuest {
 
         //checks if guess is exact answer
         final ChatCondition exact = new ChatCondition() {
-            public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+            @Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
                 final Expression number = sentence.getNumeral();
                 final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
 
@@ -202,7 +203,8 @@ public class GuessKills extends AbstractQuest {
 
         //checks if guess is close to actual answer
         final ChatCondition close = new ChatCondition() {
-            public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
+            @Override
+			public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
                 final Expression number = sentence.getNumeral();
                 final int kills = player.getSharedKill(CREATURE) + player.getSoloKill(CREATURE);
 
@@ -222,6 +224,7 @@ public class GuessKills extends AbstractQuest {
         
         //gets the creature from unfinished quest
         final ChatAction getSavedCreature = new ChatAction() {
+			@Override
 			public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				CREATURE = player.getQuest(QUEST_SLOT, 2);
 				
@@ -306,7 +309,8 @@ public class GuessKills extends AbstractQuest {
                 null,
                 new MultipleActions(
 	                new ChatAction() {
-	                    public void fire(Player player, Sentence sentence, EventRaiser npc) {
+	                    @Override
+						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 	                        do {
 	                            CREATURE = Rand.rand(POSSIBLE_CREATURES).getName();
 	                        } while(!player.hasKilled(CREATURE));
@@ -403,7 +407,8 @@ public class GuessKills extends AbstractQuest {
                 null,
                 new MultipleActions(
                     new ChatAction() {
-                        public void fire(Player player, Sentence sentence, EventRaiser npc) {
+                        @Override
+						public void fire(Player player, Sentence sentence, EventRaiser npc) {
                         	int exactNumber = (player.getSoloKill(CREATURE) + player.getSharedKill(CREATURE));
                         	npc.say("Unfortunately that is incorrect. The correct answer is in the region of "
                         	+ (int) Math.max(Math.floor(exactNumber - Math.max(exactNumber * 0.2, 10) + exactNumber * 0.1 * Rand.rand()), 0)

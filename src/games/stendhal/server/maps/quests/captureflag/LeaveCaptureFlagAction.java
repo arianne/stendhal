@@ -31,6 +31,7 @@ public class LeaveCaptureFlagAction implements ChatAction {
 	 * drop anything the player is carrying that is ctf-related
 	 * 
 	 * TODO: probably goes elsewhere - more general support class
+	 * @param player player whose items should be dropped
 	 */
 	public void dropAllCTFItems(Player player) {
 		
@@ -53,6 +54,7 @@ public class LeaveCaptureFlagAction implements ChatAction {
 	}
 	
 	
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		player.removeUseListener();
 

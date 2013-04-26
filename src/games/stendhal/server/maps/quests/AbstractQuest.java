@@ -30,10 +30,12 @@ public abstract class AbstractQuest implements IQuest {
 
 	protected QuestInfo questInfo = new QuestInfo();
 
+	@Override
 	public QuestInfo getQuestInfo(Player player) {
 		return questInfo;
 	}
 
+	@Override
 	public void updatePlayer(Player player) {
 		// do nothing, but may be overridden by children
 	}
@@ -59,8 +61,10 @@ public abstract class AbstractQuest implements IQuest {
 	 * @return the slot's name
 	 *
 	 */
+	@Override
 	public abstract String getSlotName();
 
+	@Override
 	public void addToWorld() {
 		// sub classes can implement this method
 	}
@@ -70,38 +74,47 @@ public abstract class AbstractQuest implements IQuest {
 	 *
 	 * @return true, if the quest could be removed; false otherwise.
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		// sub classes can implement this method but should not call super if they do
 		return false;
 	}
 
+	@Override
 	public List<String> getHint(final Player player) {
 		return EMPTY_LIST;
 	}
 
 	// Determines if the player should be given a hint to start the quest.
 	// Not a hard condition about the quest itself. (use level check ChatConditions for that)
+	@Override
 	public int getMinLevel() {
 		return 0;
 	}
 
+	@Override
 	public abstract List<String> getHistory(final Player player);
 
+	@Override
 	public boolean isCompleted(final Player player) {
 		return player.hasQuest(getSlotName())
 				&& player.isQuestCompleted(getSlotName());
 	}
 
+	@Override
 	public boolean isRepeatable(final Player player) {
 		return false;
 	}
 
+	@Override
 	public boolean isStarted(final Player player) {
 		return player.hasQuest(getSlotName());
 	}
 
+	@Override
 	public abstract String getName();
 
+	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return true;
 	}
@@ -111,6 +124,7 @@ public abstract class AbstractQuest implements IQuest {
 	 *
 	 * @return region, or null for global quests
 	 */
+	@Override
 	public String getRegion() {
 		return null;
 	}
@@ -120,6 +134,7 @@ public abstract class AbstractQuest implements IQuest {
 	 *
 	 * @return NPC name, or null for quests with no starter NPC
 	 */
+	@Override
 	public String getNPCName() {
 		return null;
 	}

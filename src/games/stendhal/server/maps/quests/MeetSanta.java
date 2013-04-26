@@ -91,7 +91,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationStates.IDLE,
 					"Hi again! Good bye, and remember to behave if you want a present next year!",
 				    new ChatAction() {
-					    public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+					    @Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					    	addHat(player);
 					    }
 					}
@@ -101,7 +102,8 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
-				        public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				        @Override
+						public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						    addHat(player);
 						}
 				    }
@@ -159,6 +161,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	}
 
 
+	@Override
 	public void onLoggedIn(final Player player) {
 		// is it Christmas?
 		final Outfit outfit = player.getOutfit();

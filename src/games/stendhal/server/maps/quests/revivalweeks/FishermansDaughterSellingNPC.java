@@ -53,6 +53,7 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrevivalweeks")), false);
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
@@ -79,6 +80,7 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 		npc.getZone().remove(npc);
 	}
 
+	@Override
 	public void addToWorld() {
 		removeNPC("Caroline");
 		createFishermansDaughterSellingNPC();
@@ -90,6 +92,7 @@ public class FishermansDaughterSellingNPC implements LoadableContent {
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		removeNPC("Caroline");
 

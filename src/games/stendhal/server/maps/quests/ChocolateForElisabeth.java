@@ -198,6 +198,7 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("chocolate bar"));
 		reward.add(new ChatAction() {
+			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 				// pick a random flower
 				String rewardClass = Rand.rand(Arrays.asList("daisies","zantedeschia","pansy"));

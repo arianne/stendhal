@@ -157,6 +157,7 @@ public class HouseUtilities {
 		final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		
 		final List<Entity> chests = zone.getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
 			public boolean passes(final Entity object) {
 				return (object instanceof StoredChest);
 			}

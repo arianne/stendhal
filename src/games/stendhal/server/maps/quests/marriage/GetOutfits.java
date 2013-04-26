@@ -40,6 +40,7 @@ class GetOutfits {
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tam.getName()),
 						new ChatCondition() {
+							@Override
 							public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 								return marriage.isEngaged(player);
 							}
@@ -50,6 +51,7 @@ class GetOutfits {
 		tam.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tam.getName()),
 						new ChatCondition() {
+							@Override
 							public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 								return !marriage.isEngaged(player);
 							}
@@ -62,6 +64,7 @@ class GetOutfits {
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tim.getName()),
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 							return marriage.isEngaged(player);
 						}
@@ -72,6 +75,7 @@ class GetOutfits {
 		tim.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new GreetingMatchesNameCondition(tim.getName()),
 					new ChatCondition() {
+						@Override
 						public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 							return !marriage.isEngaged(player);
 						}

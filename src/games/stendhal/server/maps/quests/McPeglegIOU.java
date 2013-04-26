@@ -67,6 +67,7 @@ public class McPeglegIOU extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
 
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					// from all notes that the player is carrying, try to
 					// find the IOU note

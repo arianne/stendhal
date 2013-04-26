@@ -300,6 +300,7 @@ import marauroa.common.Pair;
 		 * function will update player quest slot.
 		 * @param player - player for which we will record quest.
 		 */
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monstersType = chooseRandomEnemys();
 			speakerNPC.say("I need help to defeat #enemy " + monstersType +
@@ -322,6 +323,7 @@ import marauroa.common.Pair;
 		 * function will complete quest and reward player.
 		 * @param player - player to be rewarded.
 		 */
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser speakerNPC) {
 			final String monsters = player.getQuest(QUEST_SLOT, 1);
 			int killed=getKilledCreaturesNumber(player);
@@ -353,6 +355,7 @@ import marauroa.common.Pair;
 	 */
 	class ExplainAction implements ChatAction {
 
+		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 				final String monsters = player.getQuest(QUEST_SLOT, 1);
 				int killed=getKilledCreaturesNumber(player);
@@ -410,6 +413,7 @@ import marauroa.common.Pair;
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
+						@Override
 						public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							npc.say(enemyForces.get(player.getQuest(QUEST_SLOT, 1)).second());
 						}
@@ -475,6 +479,7 @@ import marauroa.common.Pair;
 	/**
 	 * return name of quest slot.
 	 */
+	@Override
 	public String getSlotName() {
 		return(QUEST_SLOT);
 	}
@@ -482,6 +487,7 @@ import marauroa.common.Pair;
 	/**
 	 * return name of quest.
 	 */
+	@Override
 	public String getName() {
 		return("KillEnemyArmy");
 	}

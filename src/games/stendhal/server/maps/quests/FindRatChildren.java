@@ -190,6 +190,7 @@ public class FindRatChildren extends AbstractQuest {
 			npc.add(ConversationStates.QUESTION_1, name, null,
 					ConversationStates.QUESTION_1, null,
 					new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					final String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					final String[] npcDoneText = npcQuestText.split(":");

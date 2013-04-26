@@ -156,6 +156,7 @@ public class Maze extends AbstractQuest {
 			// empty constructor to prevent warning
 		}
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			maze = new MazeGenerator(player.getName() + "_maze", 128, 128);
 			maze.setReturnLocation(player.getZone().getName(), player.getX(), player.getY());
@@ -171,6 +172,8 @@ public class Maze extends AbstractQuest {
 
 	/**
 	 * Access the portal from MazeTest.
+	 * 
+	 * @return return portal from the maze
 	 */
 	protected Portal getPortal() {
 		return maze.getPortal();

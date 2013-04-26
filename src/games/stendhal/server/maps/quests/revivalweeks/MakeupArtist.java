@@ -38,6 +38,7 @@ public class MakeupArtist implements LoadableContent {
 		npc.getZone().remove(npc);
 	}
 
+	@Override
 	public void addToWorld() {
 		removeNPC("Fidorea");
 
@@ -55,6 +56,7 @@ public class MakeupArtist implements LoadableContent {
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		removeNPC("Fidorea");
 

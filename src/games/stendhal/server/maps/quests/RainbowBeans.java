@@ -164,6 +164,7 @@ public class RainbowBeans extends AbstractQuest {
 						new EquipItemAction("rainbow beans", 1, true),
 						// this is still complicated and could probably be split out further
 						new ChatAction() {
+							@Override
 							public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 								if (player.hasQuest(QUEST_SLOT)) {
 									final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -223,6 +224,7 @@ public class RainbowBeans extends AbstractQuest {
 		 * there is a note in TimedTeleportScroll that it should be done there or its subclass.
 		 */
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
+			@Override
 			public void onLoggedIn(final Player player) {
 				RainbowBeansScroll scroll = (RainbowBeansScroll) SingletonRepository.getEntityManager().getItem("rainbow beans");
 				scroll.teleportBack(player);

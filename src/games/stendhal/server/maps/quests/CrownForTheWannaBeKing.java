@@ -247,6 +247,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				new QuestInStateCondition(QUEST_SLOT, "reward"),
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Oh yes, "
 									+ NPC_NAME

@@ -92,6 +92,7 @@ public class AllotmentUtilities implements TurnListener {
 	 */
 	private List<Entity> getAllotments(final String zoneName) {
 		return getZone(zoneName).getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
 			public boolean passes(Entity o) {
 				return o instanceof Allotment;
 			}
@@ -106,6 +107,7 @@ public class AllotmentUtilities implements TurnListener {
 	 */
 	private List<Entity> getGates(final String zoneName) {
 		return getZone(zoneName).getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
 			public boolean passes(Entity o) {
 				return o instanceof Gate;
 			}
@@ -120,6 +122,7 @@ public class AllotmentUtilities implements TurnListener {
 	 */
 	private List<Entity> getTrackers(final String zoneName) {
 		return getZone(zoneName).getFilteredEntities(new FilterCriteria<Entity>() {
+			@Override
 			public boolean passes(Entity o) {
 				return o instanceof ExpirationTracker;
 			}
@@ -141,6 +144,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * 
 	 * @param zoneName the zone where the allotment is
 	 * @param allotment the name of the allotment (found in the zone's xml file)
+	 * @param player name of the renting player
 	 * 
 	 * @return true if successful, false otherwise
 	 */
@@ -185,6 +189,7 @@ public class AllotmentUtilities implements TurnListener {
 	/**
 	 * Gets the rental time left given a player
 	 * 
+	 * @param zoneName zone where the allotment is
 	 * @param player the player who is enquiring about the time left
 	 * 
 	 * @return the time remaining till the allotment expires
@@ -203,6 +208,7 @@ public class AllotmentUtilities implements TurnListener {
 	/**
 	 * Gets the time that the next allotment expires
 	 * 
+	 * @param zoneName allotment zone
 	 * @return the expiry time for the next allotment that expires
 	 */
 	public long getNextExpiryTime(String zoneName) {
@@ -217,10 +223,10 @@ public class AllotmentUtilities implements TurnListener {
 	}
 	
 	/**
-	 * Gets the rental time left given an allotment 
-	 * 
+	 * Gets the rental time left given an allotment
+	 *  
+	 * @param zoneName allotment zone
 	 * @param allotment the allotment to check
-	 * 
 	 * @return the time remaining till the allotment expires
 	 */
 	public long getTimeLeftAllotment(final String zoneName, final String allotment) {
@@ -294,6 +300,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Callback to kick players when rental time expires
 	 */
 	private TurnListener kickPlayers = new TurnListener() {
+		@Override
 		public void onTurnReached(int currentTurn) {
 			// Kick players if they're in an allotment that has expired
 			for (String zoneName : zones) {
@@ -349,6 +356,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Callback to warn players that rental time is expiring
 	 */
 	private TurnListener warnPlayers = new TurnListener() {
+		@Override
 		public void onTurnReached(int currentTurn) {
 			// Kick players if they're in an allotment that has expired
 			for (String zoneName : zones) {
@@ -394,6 +402,7 @@ public class AllotmentUtilities implements TurnListener {
 	 * Callback for TurnNotifier - periodically checks if any allotment has
 	 * expired and kicks players if it has
 	 */
+	@Override
 	public void onTurnReached(int currentTurn) {
 		//Set up the next check
 		SingletonRepository.getTurnNotifier().notifyInSeconds(EXPIRATION_CHECKING_PERIOD, this);

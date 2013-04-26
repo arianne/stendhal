@@ -90,53 +90,65 @@ public class ElvishArmor extends AbstractQuest implements
 		setupAbstractQuest();
 	}
 
+	@Override
 	public SpeakerNPC getNPC() {
 		return npcs.get("Lupos");
 	}
 
+	@Override
 	public List<String> getNeededItems() {
 		return NEEDEDITEMS;
 	}
 
+	@Override
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
 		return Arrays.asList("equipment");
 	}
 
+	@Override
 	public List<String> getAdditionalTriggerPhraseForQuest() {
 		return Arrays.asList("secrets");
 	}
 
+	@Override
 	public double getKarmaDiffForQuestResponse() {
 		return 5.0;
 	}
 
+	@Override
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		return true;
 	}
 
+	@Override
 	public String welcomeBeforeStartingQuest() {
 		return "Greetings, traveller. I see that you have come far to be here. "
 			+ "I am interested in anyone who has encountered our kin, the green elves of Nalwor. They guard their #secrets closely.";
 	}
 
+	@Override
 	public String respondToQuest() {
 		return "They won't share knowledge of how to create the green armor, shields and the like. You would call them elvish items. "
 			+ "I wonder if a traveller like you could bring me any?";
 	}
 
+	@Override
 	public String respondToQuestAcception() {
 		return "The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!";
 	}
 
+	@Override
 	public String respondToQuestRefusal() {
 		return "Another unhelpful soul, I see.";
 	}
 
+	@Override
 	public String welcomeDuringActiveQuest() {
 		return "Hello! I hope your search for elvish #equipment is going well?";
 	}
 
 	// this one not actually used here
+	@Override
 	public String firstAskForMissingItems(final List<String> missingItems) {
 		return "I have heard descriptions of "
 								+ Grammar.quantityplnoun(missingItems.size(), "item", "a")
@@ -145,6 +157,7 @@ public class ElvishArmor extends AbstractQuest implements
 								+ ". Will you collect them?";
 	}
 
+	@Override
 	public String askForMissingItems(final List<String> missingItems) {
 		return "I have heard descriptions of "
 								+ Grammar.quantityplnoun(missingItems.size(), "item", "a")
@@ -153,45 +166,55 @@ public class ElvishArmor extends AbstractQuest implements
 								+ ". Have you looted any?";
 	}
 
+	@Override
 	public String askForItemsAfterPlayerSaidHeHasItems() {
 		return "Felicitations! What #equipment did you pillage?";
 	}
 
+	@Override
 	public String respondToItemBrought() {
 		return "Excellent work. Is there more that you plundered?";
 	}
 
 
+	@Override
 	public String respondToLastItemBrought() {
 		return "I will study these! The albino elves owe you a debt of thanks.";
 	}
 								
+	@Override
 	public String respondToOfferOfNotExistingItem(final String itemName) {
 		return "Liar! You don't really have "
 										+ Grammar.a_noun(itemName)
 										+ " with you.";
 	}
+	@Override
 	public String respondToOfferOfNotMissingItem() {
 		return "You've already brought that elvish item to me.";
 	}
 
+	@Override
 	public String respondToOfferOfNotNeededItem() {
 		return	"I don't think that's a piece of elvish armor...";
 	}
 
+	@Override
 	public String respondToPlayerSayingHeHasNoItems(final List<String> missingItems) {
 		return "I understand, the green elves protect themselves well. If there's anything else I can do for you, just say.";
 	}
 
+	@Override
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
 		return "I'm now busy studying the properties of the elvish armor you brought me. It really is intriguing. Until I can reproduce it, I would buy similar items from you."; 
 	}
 
+	@Override
 	public void rewardPlayer(final Player player) {
 		player.addKarma(20.0);
 		player.addXP(20000);
 	}
 
+	@Override
 	public String welcomeAfterQuestIsCompleted() {
 		return "Greetings again, old friend.";
 	}

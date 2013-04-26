@@ -90,6 +90,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, null,
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						raiser.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
@@ -107,6 +108,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					raiser.say("I will need several things: "
 						+ REQUIRED_IRON
@@ -148,6 +150,7 @@ public class StuffForVulcanus extends AbstractQuest {
 						new QuestStateStartsWithCondition(QUEST_SLOT, "start")),
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
@@ -257,6 +260,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
 						new QuestStateStartsWithCondition(QUEST_SLOT, "forging;")),
 			ConversationStates.IDLE, null, new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
@@ -289,6 +293,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					final String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 

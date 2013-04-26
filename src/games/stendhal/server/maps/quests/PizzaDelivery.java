@@ -566,6 +566,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
@@ -595,6 +596,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					startDelivery(player, npc);
 				}
@@ -607,6 +609,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 					putOffUniform(player);
 				}
@@ -629,6 +632,7 @@ public class PizzaDelivery extends AbstractQuest {
 			npc.add(ConversationStates.ATTENDING, "pizza", null,
 				ConversationStates.ATTENDING, null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						handOverPizza(player, npc);
 					}

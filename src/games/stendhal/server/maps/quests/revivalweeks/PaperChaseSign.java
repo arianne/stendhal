@@ -38,6 +38,7 @@ public class PaperChaseSign implements LoadableContent {
 	/**
 	 * adds the sign to the world
 	 */
+	@Override
 	public void addToWorld() {
 		createHallOfFameSign();
 	}
@@ -47,6 +48,7 @@ public class PaperChaseSign implements LoadableContent {
 	 *
 	 * @return <code>true</code>
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		zone.remove(sign);

@@ -103,14 +103,17 @@ initHP(100);
 		
 	}
 
+	@Override
 	protected int getCost() {
 		return KalavanHouseseller.COST_KALAVAN;
 	}
 
+	@Override
 	protected int getHighestHouseNumber() {
 		return 25;
 	}
 
+	@Override
 	protected int getLowestHouseNumber() {
 		return 1;
 	}

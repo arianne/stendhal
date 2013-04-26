@@ -16,6 +16,7 @@ public final class PhaseSwitcher implements Observer {
 
 	private ITPPQuest myphase; 
 	
+	@Override
 	public void update(Observable arg0, Object arg1) {
 		myphase.phaseToNextPhase(
 				ThePiedPiper.getNextPhaseClass(ThePiedPiper.getPhase()), 

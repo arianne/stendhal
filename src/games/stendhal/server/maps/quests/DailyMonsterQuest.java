@@ -105,6 +105,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	static class DailyQuestAction implements ChatAction {
 		//private String debugString;
 		
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 
 			final String questInfo = player.getQuest(QUEST_SLOT);
@@ -327,6 +328,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("You're already on a quest to slay " + 
 								Grammar.a_noun(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
@@ -346,6 +348,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						if(player.getQuest(QUEST_SLOT, 0)!=null) {
 								npc.say("You're already on a quest to slay " + 
@@ -418,6 +421,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final String questKill = player.getQuest(QUEST_SLOT, 0).split(",")[0];
 							npc.say("You didn't kill " + Grammar.a_noun(questKill)

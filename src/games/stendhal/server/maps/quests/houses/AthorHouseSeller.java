@@ -88,6 +88,7 @@ final class AthorHouseSeller extends HouseSellerNPCBase {
 		
 	}
 
+	@Override
 	protected int getCost() {
 		return AthorHouseSeller.COST_ATHOR;
 	}

@@ -278,6 +278,7 @@ import org.apache.log4j.Logger;
 			ConversationStates.ATTENDING,
 			null,
 			new ChatAction() {
+				@Override
 				public void fire(final Player player, final Sentence sentence,
 								 final EventRaiser npc) {
 					if(!player.hasPet()){

@@ -66,6 +66,7 @@ public class DadNPC implements LoadableContent {
 		npc.getZone().remove(npc);
 	}
 
+	@Override
 	public void addToWorld() {
 		removeNPC("Mr Ross");
 		createDadNPC();
@@ -77,6 +78,7 @@ public class DadNPC implements LoadableContent {
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		removeNPC("Mr Ross");
 

@@ -88,6 +88,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							raiser.say("We are unable to rid our area of dwarves. Especially one mighty one named Dhohr Nuggetcutter. Would you please kill them?");
@@ -152,6 +153,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						raiser.say("Just go kill Dhohr Nuggetcutter and his minions; the mountain leader, hero and elder dwarves. Even the simple mountain dwarves are a danger to us, kill them too.");								
 				}
@@ -164,6 +166,7 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 				ConversationStates.ATTENDING, 
 				null,
 				new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						raiser.say("Thank you so much. You are a warrior, indeed! Here, have one of these. We have found them scattered about. We have no idea what they are.");
 							final Item mithrilnug = SingletonRepository.getEntityManager()

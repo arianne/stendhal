@@ -251,6 +251,7 @@ public class FoundGirl implements LoadableContent {
 	/**
 	 * removes Susi from her home in Ados and adds her to the Mine Towns.
 	 */
+	@Override
 	public void addToWorld() {
 		removeNPC("Susi");
 
@@ -265,6 +266,7 @@ public class FoundGirl implements LoadableContent {
 	 *
 	 * @return <code>true</code>, if the content was removed, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean removeFromWorld() {
 		removeNPC("Susi");
 
