@@ -22,8 +22,10 @@ public class AddBalloonListener implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
+			@Override
 			public void onLoggedIn(final Player player) {
 				BalloonScroll scroll = (BalloonScroll) SingletonRepository.getEntityManager().getItem(BALLOON);
 				scroll.teleportBack(player);

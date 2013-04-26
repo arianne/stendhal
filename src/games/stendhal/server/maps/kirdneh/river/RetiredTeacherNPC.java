@@ -31,6 +31,7 @@ import java.util.Map;
  */
 public class RetiredTeacherNPC implements ZoneConfigurator {
 
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}

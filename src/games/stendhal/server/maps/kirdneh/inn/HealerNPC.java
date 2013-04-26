@@ -51,6 +51,7 @@ public class HealerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}
@@ -112,7 +113,8 @@ public class HealerNPC implements ZoneConfigurator {
 				false, 
 				ConversationStates.HEAL_OFFERED,
 		        null, new ChatAction() {
-			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+			        @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 			        	currentBehavRes = new ItemParserResult(true, "heal", 1, null);
                         String badboymsg = "";
 			        	int cost = healerBehaviour.getCharge(currentBehavRes, player);
@@ -134,7 +136,8 @@ public class HealerNPC implements ZoneConfigurator {
 		        false, 
 		        ConversationStates.IDLE,
 		        null, new ChatAction() {
-			        public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
+			        @Override
+					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				        if (player.drop("money", healerBehaviour.getCharge(currentBehavRes, player))) {
 					        healerBehaviour.heal(player);
 					        raiser.say("All better now, everyone better. I love you, I do. Bye bye.");

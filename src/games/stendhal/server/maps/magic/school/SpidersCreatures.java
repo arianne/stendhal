@@ -41,6 +41,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	@Override
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildMagicSchoolCellarArea(zone);
 	}
@@ -65,6 +66,7 @@ public class SpidersCreatures implements ZoneConfigurator {
 	}
 
 	class SpidersObserver implements Observer {
+		@Override
 		public void update(Observable o, Object arg) {
 			updatePlayerQuest((CircumstancesOfDeath) arg);			
 		}

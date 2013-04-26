@@ -106,15 +106,18 @@ public class AdventureIsland extends StendhalRPZone {
 			returnY = y;
 		}
 
+		@Override
 		public Rectangle2D getArea() {
 			return area;
 		}
 
+		@Override
 		public void onEntered(final ActiveEntity entity, final StendhalRPZone zone, final int newX,
 								  final int newY) {
 				// ignore
 		}
 
+		@Override
 		public void onExited(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							 final int oldY) {
 			if (!(entity instanceof Player)) {
@@ -137,6 +140,7 @@ public class AdventureIsland extends StendhalRPZone {
 			}
 		}
 
+		@Override
 		public void onMoved(final ActiveEntity entity, final StendhalRPZone zone, final int oldX,
 							final int oldY, final int newX, final int newY) {
 

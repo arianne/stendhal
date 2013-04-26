@@ -63,6 +63,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 
 	private static final class ChallengeChatAction implements ChatAction {
 
+		@Override
 		public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 			int cost = COST_FACTOR * player.getLevel();
 			// check the money but take it later
@@ -113,6 +114,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 		}
 	}
 
+	@Override
 	public void configureZone(StendhalRPZone zone,
 			Map<String, String> attributes) {
 		buildNPC(zone);
@@ -147,6 +149,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 								ConversationStates.QUEST_OFFERED, 
 								null,
 								new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						npc.say("The fee is your current level, multiplied by " + COST_FACTOR + " and payable in cash. At your level of " 
 								+ player.getLevel() + " the fee is " + COST_FACTOR * player.getLevel() + " money. Do you want to fight?");			
@@ -214,6 +217,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 						ConversationStates.IDLE, 
 						null, 
 						new ChatAction() {
+					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 						final String zoneName = player.getName() + "_adventure_island";
 						final StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
@@ -251,6 +255,7 @@ public class ChallengerNPC implements ZoneConfigurator  {
 
 	// Not made as an entity.npc.condition. file because the zone name depends on player here. 
 	private static final class AdventureZoneExistsCondition implements ChatCondition {
+		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 			final String zoneName = player.getName() + "_adventure_island";
 			final IRPZone.ID zoneid = new IRPZone.ID(zoneName);

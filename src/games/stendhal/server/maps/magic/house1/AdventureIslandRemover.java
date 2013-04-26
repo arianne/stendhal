@@ -38,6 +38,7 @@ public class AdventureIslandRemover implements TurnListener {
 		this.zone = zone;
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		if (zone.getPlayers().size()==0) {
 			// Tell all corpses they are to be removed
