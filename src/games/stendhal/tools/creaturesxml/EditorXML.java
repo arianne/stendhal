@@ -62,7 +62,11 @@ public class EditorXML {
 
 	JItem itemFrame;
 
-	/** Creates a new instance of EditorXML. */
+	/**
+	 * Creates a new instance of EditorXML.
+	 *  
+	 * @throws SAXException
+	 */
 	public EditorXML() throws SAXException {
 		creaturesChange = false;
 		itemsChange = false;

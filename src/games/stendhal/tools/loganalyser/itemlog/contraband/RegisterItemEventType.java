@@ -16,6 +16,7 @@ import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
 
 public class RegisterItemEventType implements ItemEventType {
 
+	@Override
 	public void process(LogEntry entry, ItemInfo info) {
 		info.setName(entry.getParam1());
 	}

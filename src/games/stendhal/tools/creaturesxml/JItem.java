@@ -60,7 +60,11 @@ public class JItem extends javax.swing.JFrame {
 
 	private List<Pair<DefaultCreature, DropItem>> usedAt;
 
-	/** Creates new form JItem. */
+	/**
+	 * Creates new form JItem.
+	 *  
+	 * @param xml
+	 */
 	public JItem(EditorXML xml) {
 		this.xml = xml;
 		initComponents();

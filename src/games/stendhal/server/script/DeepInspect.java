@@ -54,7 +54,7 @@ public class DeepInspect extends ScriptImpl {
 	 * inspect an online character
 	 *
 	 * @param admin  Inspector
-	 * @param character name of online character to inspect
+	 * @param charname name of online character to inspect
 	 */
 	private void inspectOnline(final Player admin, final String charname) {
 		Player player = SingletonRepository.getRuleProcessor().getPlayer(charname);

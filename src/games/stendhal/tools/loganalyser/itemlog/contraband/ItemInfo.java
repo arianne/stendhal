@@ -56,6 +56,7 @@ public class ItemInfo implements Cloneable {
 		this.owner = owner;
 	}
 
+	@Override
 	public Object clone() {
 		try {
 			return super.clone();

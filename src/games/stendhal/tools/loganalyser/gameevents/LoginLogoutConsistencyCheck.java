@@ -52,6 +52,8 @@ public class LoginLogoutConsistencyCheck {
 	 * analyses the log
 	 *
 	 * @param timedate date when to start
+	 * @return <code>false</code> if there were problems, <code>true</code>
+	 * 	otherwise
 	 */
 	public boolean analyse(final String timedate) {
 		boolean okay = true;

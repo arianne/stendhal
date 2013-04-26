@@ -31,7 +31,8 @@ public class LogEntry {
 
 	/**
 	 * Creates a new LogEntry.
-	 *
+	 * 
+	 * @param id 
 	 * @param timestamp timestamp
 	 * @param itemid id of the item
 	 * @param source name of player

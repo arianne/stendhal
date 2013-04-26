@@ -56,7 +56,11 @@ public class JCreature extends javax.swing.JFrame {
 
 	private EditorXML xml;
 
-	/** Creates new form JCreature. */
+	/**
+	 * Creates new form JCreature.
+	 *  
+	 * @param xml
+	 */
 	public JCreature(EditorXML xml) {
 		this.xml = xml;
 		initComponents();

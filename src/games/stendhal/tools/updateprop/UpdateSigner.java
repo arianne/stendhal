@@ -43,6 +43,7 @@ public class UpdateSigner extends Task {
 
 	/**
 	 * creates a UpdateSigner
+	 * @throws Exception 
 	 */
 	public UpdateSigner() throws Exception {
 		Properties antProp = new Properties();

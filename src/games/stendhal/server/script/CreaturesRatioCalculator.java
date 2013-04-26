@@ -49,9 +49,10 @@ public class CreaturesRatioCalculator extends ScriptImpl {
 	List<Pair<Double, String>> listEfficiency = new LinkedList<Pair<Double, String>>();
 
 	/**
-	 * search for max price of item.
+	 * Search for max price of item.
 	 * @param item
-	 * @return
+	 * 
+	 * @return maximum price
 	 */
 	private Integer getMaxPrice(String item) {
 		Integer maxPrice = 0;

@@ -16,6 +16,7 @@ import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
 
 public class DoNothingItemEventType implements ItemEventType {
 
+	@Override
 	public void process(LogEntry entry, ItemInfo info) {
 		// do nothing
 	}

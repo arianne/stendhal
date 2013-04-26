@@ -16,6 +16,7 @@ import games.stendhal.tools.loganalyser.itemlog.consistency.LogEntry;
 
 public class MergedInItemEventType implements ItemEventType {
 
+	@Override
 	public void process(LogEntry entry, ItemInfo info) {
 		info.setQuantity(entry.getParam2());
 	}

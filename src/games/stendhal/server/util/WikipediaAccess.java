@@ -110,8 +110,9 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Extract plain text from Wikipedia article content.
+	 * 
 	 * @param content
-	 * @return
+	 * @return plain text
 	 */
 	private static String wikiToPlainText(String content) {
 		// remove image links
@@ -156,9 +157,6 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Starts the parsing of the specified article.
-	 * 
-	 * @throws Exception
-	 *             in case of an unexpected error
 	 */
 	private boolean parse() {
 		String keyword = title;
