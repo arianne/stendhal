@@ -110,6 +110,24 @@ public class BalanceRPGame {
 	private static final double DEFAULT_DURATION_THRESHOLD = 0.2;
 	private static double durationThreshold;
 	private static Player player;
+	
+	/**
+	 * Place an item to a slot, unless the slot is already used.
+	 * 
+	 * @param player player to equip
+	 * @param slot slot name
+	 * @param item item to be placed
+	 * @return <code>true</code> on success, or if the player was already
+	 *	equipped with an item in the specified slot, <code>false</code> if the
+	 *	slot was vacant, but placing the item failed
+	 */
+	private static boolean equipToSlot(Player player, String slot, Item item) {
+		if (player.getSlot(slot).isEmpty() && !player.equip(slot, item)) {
+			System.err.println("Failed to place " + item.getName() + " to " + slot);
+			return false;
+		}
+		return true;
+	}
 
 	public static void main(final String[] args) throws Exception {
 		new RPClassGenerator().createRPClasses();
@@ -136,22 +154,22 @@ public class BalanceRPGame {
 		final EntityManager em = SingletonRepository.getEntityManager();
 
 		final Item shield = em.getItem("wooden shield");
-
 		final Item armor = em.getItem("dress");
-
 		final Item helmet = em.getItem("leather helmet");
-
 		final Item legs = em.getItem("leather legs");
-
 		final Item boots = em.getItem("leather boots");
 
 		player = Player.createZeroLevelPlayer("Tester", null);
 
-		player.equipToInventoryOnly(shield);
-		player.equipToInventoryOnly(armor);
-		player.equipToInventoryOnly(helmet);
-		player.equipToInventoryOnly(legs);
-		player.equipToInventoryOnly(boots);
+		if (!(equipToSlot(player, "lhand", shield)
+				&& equipToSlot(player, "armor", armor)
+				&& equipToSlot(player, "head", helmet)
+				&& equipToSlot(player, "legs", legs)
+				&& equipToSlot(player, "feet", boots))) {
+			System.err.println("Terminating due to failure of preparing the player.");
+			
+			return;
+		}
 
 		// Setup the list of creatures to balance
 		Collection<DefaultCreature> creaturesToBalance;
@@ -262,8 +280,6 @@ public class BalanceRPGame {
 			stringBuilder.append(target.getDef());
 			stringBuilder.append("\t\tHP: ");
 			stringBuilder.append(target.getBaseHP());
-			stringBuilder.append("\t\tXP: ");
-			stringBuilder.append(creature.getXP());
 			System.out.println(stringBuilder.toString());
 		}
 	}
