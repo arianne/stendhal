@@ -67,18 +67,17 @@ public class CampfireTest {
 
 	
 	@Before
-	public void setUp() throws Exception {
-		 player = PlayerTestHelper.createPlayer("player");
-		 zone = new StendhalRPZone("zone");
+	public void setUp() {
+		player = PlayerTestHelper.createPlayer("player");
+		zone = new StendhalRPZone("zone");
 		new CampingGirlNPC().configureZone(zone, null);
 		npc = NPCList.get().get("Sally");
 		final Campfire cf = new Campfire();
 		cf.addToWorld();
 	}
 	
-	
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown()  {
 		player = null;
 		NPCList.get().clear();
 	}
@@ -87,7 +86,7 @@ public class CampfireTest {
 	 * Tests for canStartQuestNow.
 	 */
 	@Test
-	public void testCanStartQuestNow() throws Exception {
+	public void testCanStartQuestNow() {
 		
 		final Engine en = npc.getEngine();
 
@@ -180,7 +179,7 @@ public class CampfireTest {
 	 * Tests for isRepeatable.
 	 */
 	@Test
-	public void testIsRepeatable() throws Exception {
+	public void testIsRepeatable() {
 		player.setQuest(CAMPFIRE, "start");
 		assertFalse(new Campfire().isRepeatable(player));
 		player.setQuest(CAMPFIRE, "rejected");

@@ -64,7 +64,7 @@ public class BarMaidNPCTest {
 	 * Tests for hiandBye.
 	 */
 	@Test
-	public void testHiandBye() throws Exception {
+	public void testHiandBye() {
 		SingletonRepository.getRPWorld();
 		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -89,7 +89,7 @@ public class BarMaidNPCTest {
 	 * Tests for jobOfferQuest.
 	 */
 	@Test
-	public void testJobOfferQuest() throws Exception {
+	public void testJobOfferQuest() {
 		SingletonRepository.getRPWorld();
 		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -121,7 +121,7 @@ public class BarMaidNPCTest {
 	 * Tests for buyerBehaviour.
 	 */
 	@Test
-	public void testBuyerBehaviour() throws Exception {
+	public void testBuyerBehaviour() {
 		SingletonRepository.getRPWorld();
 
 		final BarMaidNPC barmaidConfigurator = new BarMaidNPC();

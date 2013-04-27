@@ -27,12 +27,12 @@ import utilities.PlayerTestHelper;
 public class ListRaidsTest {
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
@@ -40,11 +40,10 @@ public class ListRaidsTest {
 	 * Tests for name.
 	 */
 	@Test
-	public void testname() throws Exception {
+	public void testname() {
 		ListRaids script = new ListRaids();
 		Player player = PlayerTestHelper.createPlayer("george");
 		script.execute(player, null);
 		assertThat(player.events().get(0).toString(), containsString("CreateRaid"));
 	}
-
 }

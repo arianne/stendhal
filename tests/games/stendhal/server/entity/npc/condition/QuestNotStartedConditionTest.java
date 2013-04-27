@@ -73,7 +73,7 @@ public class QuestNotStartedConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertFalse(new QuestNotStartedCondition("questname").equals(null));
 
 		final QuestNotStartedCondition obj = new QuestNotStartedCondition("questname");
@@ -103,7 +103,7 @@ public class QuestNotStartedConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		final QuestNotStartedCondition obj = new QuestNotStartedCondition("questname");
 		assertTrue(obj.equals(obj));
 		assertEquals(obj.hashCode(), obj.hashCode());

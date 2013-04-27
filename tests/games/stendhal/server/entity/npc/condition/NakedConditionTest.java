@@ -65,7 +65,7 @@ public class NakedConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 
 		assertFalse(new NakedCondition().equals(null));
 

@@ -92,7 +92,7 @@ public class QuestCompletedConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertTrue(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
 				"questname")));
 		assertTrue(new QuestCompletedCondition(null).equals(new QuestCompletedCondition(
@@ -119,7 +119,7 @@ public class QuestCompletedConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Exception {
+	public void testHashCode() {
 		assertEquals(new QuestCompletedCondition("questname").hashCode(),
 				new QuestCompletedCondition("questname").hashCode());
 		assertEquals(new QuestCompletedCondition(null).hashCode(),

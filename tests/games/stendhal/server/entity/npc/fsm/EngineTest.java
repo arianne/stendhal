@@ -80,7 +80,7 @@ public class EngineTest {
 	 * Tests for addBothActionsNull.
 	 */
 	@Test
-	public void testaddBothActionsNull() throws Exception {
+	public void testaddBothActionsNull() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		assertTrue(en.getTransitions().isEmpty());
 		en.add(IDLE, (String)null, null, false, IDLE, null, null);
@@ -93,7 +93,7 @@ public class EngineTest {
 	 * Tests for addExistingActionNull.
 	 */
 	@Test
-	public void testaddExistingActionNull() throws Exception {
+	public void testaddExistingActionNull() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 
 		en.add(IDLE, (String)null, null, false, IDLE, null, null);
@@ -111,7 +111,7 @@ public class EngineTest {
 	 * Tests for addnewNullAction.
 	 */
 	@Test
-	public void testaddnewNullAction() throws Exception {
+	public void testaddnewNullAction() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 
 
@@ -131,7 +131,7 @@ public class EngineTest {
 	 * Tests for addSameAction.
 	 */
 	@Test
-	public void testaddSameAction() throws Exception {
+	public void testaddSameAction() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction = new ChatAction() {
 
@@ -151,7 +151,7 @@ public class EngineTest {
 	 * Tests for addNotSameAction.
 	 */
 	@Test
-	public void testaddNotSameAction() throws Exception {
+	public void testaddNotSameAction() {
 		final Engine en = new Engine(new SpeakerNPC("bob"));
 		ChatAction chatAction1 = new ChatAction() {
 

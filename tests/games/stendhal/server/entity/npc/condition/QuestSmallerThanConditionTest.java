@@ -90,7 +90,7 @@ public class QuestSmallerThanConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		final int value = 2009;
 		assertFalse(new QuestSmallerThanCondition(QUESTNAME, value).equals(null));
 
@@ -116,7 +116,7 @@ public class QuestSmallerThanConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 
 		final QuestSmallerThanCondition obj = new QuestSmallerThanCondition(QUESTNAME, 2009);
 		assertEquals(obj.hashCode(), obj.hashCode());

@@ -125,7 +125,7 @@ public class NotConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 
 		assertFalse(new NotCondition(trueCondition).equals(null));
 

@@ -60,7 +60,7 @@ public class CompareConditionsTests {
 	 * Tests for name.
 	 */
 	@Test
-	public void testname() throws Exception {
+	public void testname() {
 		for (final ChatCondition cond1 : conditionsA2) {
 			for (final ChatCondition cond2 : conditionsB2) {
 				if (cond1 != cond2) {					

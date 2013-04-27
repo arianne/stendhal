@@ -35,6 +35,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for loadPlayer.
+	 * @throws Exception 
 	 */
 	@Ignore
 	@Test
@@ -59,6 +60,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for loadPlayerNameIsNull.
+	 * @throws Exception 
 	 */
 	@Test
 	public void testLoadPlayerNameIsNull() throws Exception {
@@ -77,6 +79,7 @@ public class PlayerModifierTest {
 
 	/**
 	 * Tests for modifyPlayer.
+	 * @throws Exception 
 	 */
 	@Ignore
 	@Test

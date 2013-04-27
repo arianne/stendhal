@@ -92,7 +92,7 @@ public class QuestInStateConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		final String state = "state";
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(null));
 
@@ -127,8 +127,7 @@ public class QuestInStateConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
-
+	public void testHashCode() {
 		final QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME, "state");
 		assertEquals(obj.hashCode(), obj.hashCode());
 

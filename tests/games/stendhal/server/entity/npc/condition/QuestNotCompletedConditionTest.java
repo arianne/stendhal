@@ -89,7 +89,7 @@ public class QuestNotCompletedConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertFalse(new QuestNotCompletedCondition("questname").equals(null));
 
 		final QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
@@ -116,7 +116,7 @@ public class QuestNotCompletedConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Exception {
+	public void testHashCode() {
 		final QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
 				"questname");
 

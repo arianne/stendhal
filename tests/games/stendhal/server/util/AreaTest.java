@@ -86,7 +86,7 @@ public class AreaTest {
 	 * Tests for containsNull.
 	 */
 	@Test
-	public void testContainsNull() throws Exception {
+	public void testContainsNull() {
 		
 		final Area area = new Area(null, null);
 		final Entity entity = null;

@@ -44,7 +44,6 @@ public class SeedSellerBehaviourTest {
 	/**
 	 * Tests for transactAgreedDeal.
 	 */
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testTransactAgreedDeal() {
 		final Map<String, Integer> pricelist = new HashMap<String, Integer>();

@@ -33,21 +33,21 @@ public class AndConditionTest {
 	private ChatCondition falsecondition;
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		Log4J.init();
 		MockStendlRPWorld.get();
 	}
 	
 	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		trueCondition = new AlwaysTrueCondition();
 		falsecondition = new NotCondition(new AlwaysTrueCondition());
 
 	}
 
 	@Test
-	public void selftest() throws Exception {
+	public void selftest() {
 		assertTrue("true  delivers true", trueCondition.fire(
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAndConditionText"),
@@ -62,7 +62,7 @@ public class AndConditionTest {
 	 * Tests for constructor.
 	 */
 	@Test
-	public void testConstructor() throws Throwable {
+	public void testConstructor() {
 		new AndCondition();
 	}
 
@@ -70,7 +70,7 @@ public class AndConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertFalse(new AndCondition().equals(null));
 
 		final AndCondition obj = new AndCondition();
@@ -94,7 +94,7 @@ public class AndConditionTest {
 	 * Tests for equalsthisandsingle.
 	 */
 	@Test
-	public void testEqualsthisandsingle() throws Exception {
+	public void testEqualsthisandsingle() {
 		final String QUEST_SLOT = "quest";
 		final ChatCondition andcon =  new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start")
 		   , new KilledCondition("dark elf archer", "dark elf captain", "thing"));
@@ -109,7 +109,7 @@ public class AndConditionTest {
 	 * Tests for fire.
 	 */
 	@Test
-	public void testFire() throws Throwable {
+	public void testFire() {
 
 		assertTrue("empty And is true", new AndCondition().fire(
 				PlayerTestHelper.createPlayer("player"), ConversationParser.parse("testAndConditionText"),
@@ -141,7 +141,7 @@ public class AndConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		final AndCondition obj = new AndCondition();
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new AndCondition().hashCode(),
@@ -155,7 +155,7 @@ public class AndConditionTest {
 	 * Tests for toString.
 	 */
 	@Test
-	public void testToString() throws Throwable {
+	public void testToString() {
 		assertEquals("[]", new AndCondition().toString());
 
 		assertEquals("[true]", new AndCondition(trueCondition).toString());

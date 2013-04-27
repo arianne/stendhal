@@ -50,7 +50,7 @@ public class RingMakerTest {
 	private Player player;
 	
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get();
@@ -65,7 +65,7 @@ public class RingMakerTest {
 	}
 
 	@AfterClass
-	public static void tearDownAftereClass() throws Exception {
+	public static void tearDownAftereClass() {
 		MockStendlRPWorld.reset();
 		
 		 npc = null;
@@ -82,7 +82,7 @@ public class RingMakerTest {
 	 * Tests for hiandBye.
 	 */
 	@Test
-	public void testHiandBye() throws Exception {
+	public void testHiandBye() {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", getReply(npc));
 		assertTrue(en.step(player, "bye"));
@@ -367,18 +367,15 @@ public class RingMakerTest {
 	
 	}
 	
-	
 	/**
 	 * Tests for name.
 	 */
 	@Test
-	public void testname() throws Exception {
+	public void testname() {
 		Scanner sc = new Scanner("forging;123").useDelimiter(";");
 		assertFalse(sc.hasNextInt());
 		assertThat(sc.next(), is("forging"));
 		assertTrue(sc.hasNextInt());
-		assertThat(sc.next(), is("123"));
-		
+		assertThat(sc.next(), is("123"));		
 	}
-	
 }

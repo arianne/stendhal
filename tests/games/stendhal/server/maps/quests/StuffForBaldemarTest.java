@@ -55,6 +55,8 @@ public class StuffForBaldemarTest {
 
 	/**
 	 * Tests for step1.
+	 * 
+	 * @throws Exception if setup failed 
 	 */
 	@Test
 	public void teststep1() throws Exception {
@@ -198,7 +200,7 @@ public class StuffForBaldemarTest {
 	 * Tests for itemData.
 	 */
 	@Test
-	public void testItemData() throws Exception {
+	public void testItemData() {
 		int needed = 20;
 		ItemData id = new ItemData("name", needed, "prefix ", " suffix");
 		assertEquals(needed, id.getStillNeeded());

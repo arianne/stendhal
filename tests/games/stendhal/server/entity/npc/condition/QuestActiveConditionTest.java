@@ -90,7 +90,7 @@ public class QuestActiveConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertThat(new QuestActiveCondition("questname"), not(equalTo(null)));
 
 		final QuestActiveCondition obj = new QuestActiveCondition("questname");
@@ -124,7 +124,7 @@ public class QuestActiveConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Exception {
+	public void testHashCode() {
 		final QuestActiveCondition obj = new QuestActiveCondition("questname");
 		assertThat(obj.hashCode(), equalTo(obj.hashCode()));
 		assertThat(new QuestActiveCondition("questname").hashCode(),

@@ -320,17 +320,14 @@ public class RPEntityTest {
 	/**
 	 * Tests for attackCanHitreturnTruedamageZero.
 	 */
-	@SuppressWarnings("null")
 	@Test
 	public void testAttackCanHitreturnTruedamageZero() {
 		MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		final RPEntity attacker = new RPEntity() {
-
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
-
 			}
 
 			@Override
@@ -347,22 +344,18 @@ public class RPEntityTest {
 			@Override
 			public void logic() {
 				// do nothing
-
 			}
 		};
 
 		final RPEntity defender = new RPEntity() {
-
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
-
 			}
 
 			@Override
 			public void logic() {
 				// do nothing
-
 			}
 		};
 
@@ -398,17 +391,14 @@ public class RPEntityTest {
 	/**
 	 * Tests for attackCanHitreturnTruedamage30.
 	 */
-	@SuppressWarnings("null")
 	@Test
 	public void testAttackCanHitreturnTruedamage30() {
 		MockStendlRPWorld.get();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
 		final RPEntity attacker = new RPEntity() {
-
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
-
 			}
 
 			@Override
@@ -425,17 +415,14 @@ public class RPEntityTest {
 			@Override
 			public void logic() {
 				// do nothing
-
 			}
 		};
 		attacker.updateModifiedAttributes();
 
 		final RPEntity defender = new RPEntity() {
-
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
 				// do nothing
-
 			}
 
 			@Override

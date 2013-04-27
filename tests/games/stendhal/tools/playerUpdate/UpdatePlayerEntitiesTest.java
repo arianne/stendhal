@@ -49,9 +49,10 @@ public class UpdatePlayerEntitiesTest {
 	//@Ignore
 	/**
 	 * Tests for doUpdate.
+	 * @throws Throwable
 	 */
 	@Test
-	public void testDoUpdate() throws Exception, Throwable {
+	public void testDoUpdate() throws Throwable {
 		MockStendlRPWorld.get();
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {

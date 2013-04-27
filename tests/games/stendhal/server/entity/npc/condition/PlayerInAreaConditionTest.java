@@ -76,7 +76,7 @@ public class PlayerInAreaConditionTest {
 	 * Tests for fireNPE.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void testFireNPE() throws Exception {
+	public void testFireNPE() {
 		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
 		final Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(cond.fire(player, null, null));

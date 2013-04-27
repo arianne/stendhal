@@ -36,7 +36,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for constructor.
 	 */
 	@Test
-	public void testConstructor() throws Throwable {
+	public void testConstructor() {
 		final EmoteCondition emoteCondition = new EmoteCondition("");
 		assertEquals("emoteCondition.hashCode()", 629,
 				emoteCondition.hashCode());
@@ -46,7 +46,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		final EmoteCondition obj = new EmoteCondition("hugs");
 		assertTrue(obj.equals(obj));
 		assertTrue(new EmoteCondition("hugs").equals(new EmoteCondition("hugs")));
@@ -63,7 +63,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for fire.
 	 */
 	@Test
-	public void testFire() throws Throwable {
+	public void testFire() {
 		final SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC();
 		npc.setName("TestNPC");
 		assertTrue(new EmoteCondition("hugs").fire(createPlayer("player"),
@@ -87,7 +87,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		assertEquals("result", 3214638, new EmoteCondition("hugs").hashCode());
 		assertEquals("result", 3292627, new EmoteCondition("kill").hashCode());
 	}
@@ -96,7 +96,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for toString.
 	 */
 	@Test
-	public void testToString() throws Throwable {
+	public void testToString() {
 		assertEquals("result", "EmoteCondition",
 				new EmoteCondition("hugs").toString());
 	}
@@ -105,7 +105,7 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 * Tests for fireThrowsNullPointerException.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void testFireThrowsNullPointerException() throws Throwable {
+	public void testFireThrowsNullPointerException() {
 		new EmoteCondition("hugs").fire(null, ConversationParser.parse("!me hugs TestNPC"),
 				null);
 	}

@@ -281,15 +281,6 @@ public class ResultSetIteratorTest {
 			// Stub
 			return null;
 		}
-
-		public void closeOnCompletion() throws SQLException {
-			// Stub
-		}
-
-		public boolean isCloseOnCompletion() throws SQLException {
-			// Stub
-			return false;
-		}
 	}
 
 	/**

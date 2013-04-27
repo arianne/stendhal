@@ -35,7 +35,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for constructor.
 	 */
 	@Test
-	public void testConstructor() throws Throwable {
+	public void testConstructor() {
 		final AdminCondition adminCondition = new AdminCondition();
 		assertEquals("adminCondition.hashCode()", 5629,
 				adminCondition.hashCode());
@@ -45,7 +45,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for constructor1.
 	 */
 	@Test
-	public void testConstructor1() throws Throwable {
+	public void testConstructor1() {
 		final AdminCondition adminCondition = new AdminCondition(100);
 		assertEquals("adminCondition.hashCode()", 729,
 				adminCondition.hashCode());
@@ -55,7 +55,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		final AdminCondition obj = new AdminCondition(100);
 		assertTrue(obj.equals(obj));
 		assertTrue(new AdminCondition().equals(new AdminCondition()));
@@ -72,7 +72,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for fire.
 	 */
 	@Test
-	public void testFire() throws Throwable {
+	public void testFire() {
 		assertTrue(new AdminCondition(0).fire(createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
@@ -86,7 +86,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		assertEquals("result", 629, new AdminCondition(0).hashCode());
 		assertEquals("result", 729, new AdminCondition(100).hashCode());
 	}
@@ -95,7 +95,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for toString.
 	 */
 	@Test
-	public void testToString() throws Throwable {
+	public void testToString() {
 		assertEquals("result", "admin <100>",
 				new AdminCondition(100).toString());
 	}
@@ -104,7 +104,7 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 * Tests for fireThrowsNullPointerException.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void testFireThrowsNullPointerException() throws Throwable {
+	public void testFireThrowsNullPointerException() {
 		new AdminCondition(100).fire(null, ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC());
 	}

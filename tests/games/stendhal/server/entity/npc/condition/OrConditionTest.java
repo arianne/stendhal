@@ -41,7 +41,7 @@ public class OrConditionTest {
 	 * Tests for constructor.
 	 */
 	@Test
-	public void testConstructor() throws Throwable {
+	public void testConstructor() {
 		new OrCondition();
 	}
 
@@ -49,7 +49,7 @@ public class OrConditionTest {
 	 * Tests for equals.
 	 */
 	@Test
-	public void testEquals() throws Throwable {
+	public void testEquals() {
 		assertFalse(new OrCondition().equals(null));
 
 		final OrCondition obj = new OrCondition();
@@ -73,8 +73,7 @@ public class OrConditionTest {
 	 * Tests for fire.
 	 */
 	@Test
-	public void testFire() throws Throwable {
-
+	public void testFire() {
 		assertFalse("empty OR is false", new OrCondition().fire(
 				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
@@ -110,7 +109,7 @@ public class OrConditionTest {
 	 * Tests for hashCode.
 	 */
 	@Test
-	public void testHashCode() throws Throwable {
+	public void testHashCode() {
 		final OrCondition obj = new OrCondition();
 		assertEquals(obj.hashCode(), obj.hashCode());
 		assertEquals(new OrCondition().hashCode(), new OrCondition().hashCode());
@@ -123,7 +122,7 @@ public class OrConditionTest {
 	 * Tests for toString.
 	 */
 	@Test
-	public void testToString() throws Throwable {
+	public void testToString() {
 		assertEquals("or <[]>", new OrCondition().toString());
 
 		assertEquals("or <[true]>", new OrCondition(trueCondition).toString());

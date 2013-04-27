@@ -30,7 +30,7 @@ import utilities.RPClass.ArrestWarrentTestHelper;
 
 public class JailTest {
 	@BeforeClass
-	public static void setUpClass() throws Exception {
+	public static void setUpClass() {
 		Log4J.init();
 		ArrestWarrentTestHelper.generateRPClasses();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
@@ -41,7 +41,7 @@ public class JailTest {
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// release bob from jail in case he is still imprisoned
 		SingletonRepository.getJail().release("bob");
 
@@ -68,7 +68,7 @@ public class JailTest {
 	 * Tests for criminalimprison.
 	 */
 	@Test
-	public final void testCriminalimprison() throws Exception {
+	public final void testCriminalimprison() {
 		final Player policeman = PlayerTestHelper.createPlayer("police officer");
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
@@ -87,7 +87,7 @@ public class JailTest {
 	 * Tests for repeatedJailing.
 	 */
 	@Test
-	public final void testrepeatedJailing() throws Exception {
+	public final void testrepeatedJailing() {
 
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		final StendhalRPZone zone = new StendhalRPZone("knast", 100, 100);
@@ -107,8 +107,7 @@ public class JailTest {
 	 * Tests for isInJail.
 	 */
 	@Test
-	public final void testIsInJail() throws Exception {
-
+	public final void testIsInJail() {
 		StendhalRPZone jail = new StendhalRPZone("testknast");
 		Jail jailcnf = new Jail();
 		jailcnf.configureZone(jail, null);
@@ -121,8 +120,5 @@ public class JailTest {
 		bob.setPosition(1, 1);
 
 		assertTrue(Jail.isInJail(bob));
-		
 	}
-
-	
 }

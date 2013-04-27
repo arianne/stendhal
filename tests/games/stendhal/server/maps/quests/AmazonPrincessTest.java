@@ -68,7 +68,7 @@ public class AmazonPrincessTest {
 	 * Tests for getSlotname.
 	 */
 	@Test
-	public void testGetSlotname() throws Exception {
+	public void testGetSlotname() {
 		assertEquals("amazon_princess", new AmazonPrincess().getSlotName());
 	}
 	
@@ -76,7 +76,7 @@ public class AmazonPrincessTest {
 	 * Tests for hasRecovered.
 	 */
 	@Test
-	public void testhasRecovered() throws Exception {
+	public void testhasRecovered() {
 		en.setCurrentState(ConversationStates.ATTENDING);
 		player.setQuest(new AmazonPrincess().getSlotName(), "drinking;0");
 		en.step(player, "task");

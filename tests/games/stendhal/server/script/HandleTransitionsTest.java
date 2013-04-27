@@ -78,7 +78,7 @@ public class HandleTransitionsTest {
 	 * Tests for -list command
 	 */
 	@Test
-	public void testList() throws Exception {
+	public void testList() {
 		player.clearEvents();
 		arguments.clear();
 		arguments.add("just_npc");
@@ -91,7 +91,7 @@ public class HandleTransitionsTest {
 	 * Tests for -add command
 	 */
 	@Test
-	public void testAdd() throws Exception {	
+	public void testAdd() {	
 		player.clearEvents();
 		arguments.clear();
 		arguments.add("just_npc");
@@ -112,7 +112,7 @@ public class HandleTransitionsTest {
 	 * Tests for -del command
 	 */
 	@Test
-	public void testDel() throws Exception {
+	public void testDel() {
 		npc.add(
 				ConversationStates.ANY, 
 				"tr2", 
@@ -149,7 +149,7 @@ public class HandleTransitionsTest {
 	 * Tests for -alter command
 	 */
 	@Test
-	public void testAlter() throws Exception {
+	public void testAlter() {
 		player.clearEvents();
 		npc.add(
 				ConversationStates.ANY, 

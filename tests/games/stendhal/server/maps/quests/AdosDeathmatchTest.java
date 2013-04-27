@@ -64,7 +64,7 @@ public class AdosDeathmatchTest {
 	 * Tests for recruiter.
 	 */
 	@Test
-	public void testRecruiter() throws Exception {
+	public void testRecruiter() {
 		final SpeakerNPC recruiter = SingletonRepository.getNPCList().get("Thonatus");
 		assertNotNull(recruiter);
 		assertNotNull(zone);

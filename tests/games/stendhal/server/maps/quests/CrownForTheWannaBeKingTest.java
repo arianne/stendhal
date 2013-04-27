@@ -43,7 +43,7 @@ public class CrownForTheWannaBeKingTest {
 	private static SpeakerNPC npc;
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		PlayerTestHelper.generateNPCRPClasses();
 
 		npc = new SpeakerNPC("Ivan Abe");
@@ -59,23 +59,23 @@ public class CrownForTheWannaBeKingTest {
 	}
 
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public static void tearDownAfterClass() {
 		SingletonRepository.getNPCList().clear();
 	}
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 	}
 
 	/**
 	 * Tests for idleToQuestion1.
 	 */
 	@Test
-	public void testIdleToQuestion1() throws Exception {
+	public void testIdleToQuestion1() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			bob.setQuest(QUEST_SLOT, "");
@@ -90,7 +90,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for idleToIdleQuestCompleted.
 	 */
 	@Test
-	public void testIdleToIdleQuestCompleted() throws Exception {
+	public void testIdleToIdleQuestCompleted() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -107,7 +107,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for idleToIdleQuestinStatereward.
 	 */
 	@Test
-	public void testIdleToIdleQuestinStatereward() throws Exception {
+	public void testIdleToIdleQuestinStatereward() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -124,7 +124,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for idleToAttending.
 	 */
 	@Test
-	public void testIdleToAttending() throws Exception {
+	public void testIdleToAttending() {
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -143,7 +143,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for attendingToQuestOffered.
 	 */
 	@Test
-	public void testAttendingToQuestOffered() throws Exception {
+	public void testAttendingToQuestOffered() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		npcEngine.setCurrentState(ConversationStates.ATTENDING);
 		assertThat(bob.isQuestCompleted(QUEST_SLOT), is(false));
@@ -156,7 +156,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for attendingToIdle.
 	 */
 	@Test
-	public void testAttendingToIdle() throws Exception {
+	public void testAttendingToIdle() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		npcEngine.setCurrentState(ConversationStates.ATTENDING);
 		npcEngine.step(bob, "reward");
@@ -170,7 +170,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for attendingToIdleQuestNotCompleted.
 	 */
 	@Test
-	public void testAttendingToIdleQuestNotCompleted() throws Exception {
+	public void testAttendingToIdleQuestNotCompleted() {
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -188,7 +188,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for questOfferedToQuestion1.
 	 */
 	@Test
-	public void testQuestOfferedToQuestion1() throws Exception {
+	public void testQuestOfferedToQuestion1() {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 			final double oldkarma = bob.getKarma();
@@ -210,7 +210,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for questOfferedToIdle.
 	 */
 	@Test
-	public void testQuestOfferedToIdle() throws Exception {
+	public void testQuestOfferedToIdle() {
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -230,7 +230,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for attendingToAttending.
 	 */
 	@Test
-	public void testAttendingToAttending() throws Exception {
+	public void testAttendingToAttending() {
 		final String[] triggers = { "plan", "favor", "favour", "quest", "task", "work", "job", "trade", "deal", "offer" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -246,7 +246,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for question1toQuestion1.
 	 */
 	@Test
-	public void testQuestion1toQuestion1() throws Exception {
+	public void testQuestion1toQuestion1() {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
 
@@ -261,7 +261,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for question1toQuestion1PosactionList.
 	 */
 	@Test
-	public void testQuestion1toQuestion1PosactionList() throws Exception {
+	public void testQuestion1toQuestion1PosactionList() {
 		npc.remove("text");
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.setQuest(QUEST_SLOT, CrownForTheWannaBeKing.NEEDED_ITEMS);
@@ -279,7 +279,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for question1ToIdle.
 	 */
 	@Test
-	public void testQuestion1ToIdle() throws Exception {
+	public void testQuestion1ToIdle() {
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -298,7 +298,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for question1ToQuestion1Itembrought.
 	 */
 	@Test
-	public void testQuestion1ToQuestion1Itembrought() throws Exception {
+	public void testQuestion1ToQuestion1Itembrought() {
 		final String[] triggers = { "obsidian", "diamond", "carbuncle", "sapphire", "emerald", "gold bar" };
 
 		for (final String playerSays : triggers) {
@@ -364,7 +364,7 @@ public class CrownForTheWannaBeKingTest {
 	 * Tests for bringItems.
 	 */
 	@Test
-	public void testBringItems() throws Exception {
+	public void testBringItems() {
 		final Player bob = PlayerTestHelper.createPlayer("bob");
 		bob.setQuest(QUEST_SLOT, CrownForTheWannaBeKing.NEEDED_ITEMS);
 

@@ -88,7 +88,7 @@ public class KillDarkElvesTest {
 	 * Tests for idleToAttending.
 	 */
 	@Test
-	public void testIdleToAttending() throws Exception {
+	public void testIdleToAttending() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 
@@ -111,7 +111,7 @@ public class KillDarkElvesTest {
 	 * Tests for questOfferedToQuestOffered.
 	 */
 	@Test
-	public void testQuestOfferedToQuestOffered() throws Exception {
+	public void testQuestOfferedToQuestOffered() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
@@ -134,7 +134,7 @@ public class KillDarkElvesTest {
 	 * Tests for questStartedToAttending.
 	 */
 	@Test
-	public void testQuestStartedToAttending() throws Exception {
+	public void testQuestStartedToAttending() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : Arrays.asList("secret", "room", "secret xxxx", "secret room")) {
 
@@ -157,7 +157,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToAttending.
 	 */
 	@Test
-	public void testAttendingToAttending() throws Exception {
+	public void testAttendingToAttending() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -176,7 +176,7 @@ public class KillDarkElvesTest {
 	 * Tests for questOfferedToAttendingNo.
 	 */
 	@Test
-	public void testQuestOfferedToAttendingNo() throws Exception {
+	public void testQuestOfferedToAttendingNo() {
 		LinkedList<String> questHistory = new LinkedList<String>();		
 		final String[] triggers = { "no", "nothing" };
 		for (final String playerSays : triggers) {
@@ -207,7 +207,7 @@ public class KillDarkElvesTest {
 	 * Tests for idleToQuestStarted.
 	 */
 	@Test
-	public void testOldQuestIdleToQuestStarted() throws Exception {
+	public void testOldQuestIdleToQuestStarted() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -233,7 +233,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToQuestOffered.
 	 */
 	@Test
-	public void testOldQuestAttendingToQuestOffered() throws Exception {
+	public void testOldQuestAttendingToQuestOffered() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -259,7 +259,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToAttendingAllKilledNoAmulet.
 	 */
 	@Test
-	public void testOldQuestAttendingToAttendingAllKilledNoAmulet() throws Exception {
+	public void testOldQuestAttendingToAttendingAllKilledNoAmulet() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -290,7 +290,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToAttendingAllKilledHaveAmulet.
 	 */
 	@Test
-	public void testOldQuestAttendingToAttendingAllKilledHaveAmulet() throws Exception {
+	public void testOldQuestAttendingToAttendingAllKilledHaveAmulet() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -346,7 +346,7 @@ public class KillDarkElvesTest {
 	 * Tests for questOfferedToAttendingYes.
 	 */
 	@Test
-	public void testQuestOfferedToAttendingYes() throws Exception {
+	public void testQuestOfferedToAttendingYes() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -379,7 +379,7 @@ public class KillDarkElvesTest {
 	 * Tests for testAttendingToQuestOffered.
 	 */
 	@Test
-	public void testAttendingToQuestOffered() throws Exception {
+	public void testAttendingToQuestOffered() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.QUEST_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -411,7 +411,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToAttendingAllKilledNoAmulet.
 	 */
 	@Test
-	public void testAttendingToAttendingAllKilledNoAmulet() throws Exception {
+	public void testAttendingToAttendingAllKilledNoAmulet() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
@@ -448,7 +448,7 @@ public class KillDarkElvesTest {
 	 * Tests for attendingToAttendingAllKilledHaveAmulet.
 	 */
 	@Test
-	public void testAttendingToAttendingAllKilledHaveAmulet() throws Exception {
+	public void testAttendingToAttendingAllKilledHaveAmulet() {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.GREETING_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
