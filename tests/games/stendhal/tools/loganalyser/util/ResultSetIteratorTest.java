@@ -281,6 +281,25 @@ public class ResultSetIteratorTest {
 			// Stub
 			return null;
 		}
+		
+		/*
+		 * NOTE: Compatibility with java 7 which adds this to the Statement
+		 * interface. Do not remove
+		 */
+		@SuppressWarnings("unused")
+		public void closeOnCompletion() throws SQLException {
+			// Stub
+		}
+		
+		/*
+		 * NOTE: Compatibility with java 7 which adds this to the Statement
+		 * interface. Do not remove
+		 */
+		@SuppressWarnings("unused")
+		public boolean isCloseOnCompletion() throws SQLException {
+			// Stub
+			return false;
+		}
 	}
 
 	/**
