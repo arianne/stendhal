@@ -82,12 +82,12 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 			logger.error("Invalid min/max values '" + min + "', '" + max + "'.", new Throwable());
 		} else{
 			final String itemName = item;
-			Integer attempt = Rand.randUniform(min, max);
+			int attempt = Rand.randUniform(min, max);
 			if (attempt % increment != 0){
-			// if the number isn't a multiple of increment, round it to nearest
-				attempt = Math.round(attempt/increment) * increment;
+				// if the number isn't a multiple of increment, round it to nearest
+				attempt = (attempt / increment) * increment;
 				if (attempt == 0){
-					attempt = (min < max)? min:max;
+					attempt = Math.min(min, max);
 				}
 			}
 			final Integer amount = attempt;
