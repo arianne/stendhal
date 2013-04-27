@@ -95,7 +95,7 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetCost() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(120000, seller.getCost());
 	}
 
@@ -104,7 +104,7 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetLowestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(50, seller.getLowestHouseNumber());
 
 	}
@@ -114,7 +114,7 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testGetHighestHouseNumber() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		assertEquals(77, seller.getHighestHouseNumber());
 		assertThat(seller.getLowestHouseNumber(), is(lessThan(seller.getHighestHouseNumber())));
 
@@ -125,7 +125,7 @@ public class AdosHouseSellerTest {
 	 */
 	@Test
 	public void testAdosHouseSellerTooYoungNoQuests() {
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		assertThat(en.getCurrentState(), is(IDLE));
 		
@@ -156,7 +156,7 @@ public class AdosHouseSellerTest {
 	@Test
 	public void testAdosHouseSellerNoZones() {
 		HouseUtilities.clearCache();
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 	
@@ -182,7 +182,7 @@ public class AdosHouseSellerTest {
 		ados.add(chest);
 		HouseUtilities.clearCache();
 		
-		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", HouseBuyingMain.houseTax);
+		AdosHouseSeller seller = new AdosHouseSeller("bob", "nirvana", new HouseTax());
 		Engine en = seller.getEngine();
 		en.setCurrentState(QUEST_OFFERED);
 		

@@ -28,8 +28,7 @@ import java.util.LinkedList;
  * @author kymara
  */
 public class HouseBuyingMain {
-	
-	static HouseTax houseTax = null;
+	private HouseTax houseTax = null;
 
 	/** Kalavan house seller Zone name. */
 	private static final String KALAVAN_CITY = "0_kalavan_city";
