@@ -61,7 +61,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	private StendhalRPZone zone;
 
-	private static Area arena;
+	private Area arena;
 
 	private DeathmatchInfo deathmatchInfo;
 
@@ -231,7 +231,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	}
 
 
-	static class DeathMatchEmptyCondition implements ChatCondition {
+	class DeathMatchEmptyCondition implements ChatCondition {
 		@Override
 		public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
 			final List<Player> dmplayers = arena.getPlayers();
