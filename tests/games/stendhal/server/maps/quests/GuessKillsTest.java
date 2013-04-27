@@ -56,6 +56,8 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		final StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		new GuessKillsNPC().configureZone(zone, null);
 
+		// Add creature
+		SingletonRepository.getEntityManager().getCreature("deer");
 		AbstractQuest quest = new GuessKills();
 		quest.addToWorld();
 
@@ -88,9 +90,6 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		
 		// Give player enough kills
 		player.setKeyedSlot("!kills", "solo.deer", "1001");
-		
-		// Add creature
-		SingletonRepository.getEntityManager().getCreature("deer");
 
 		// Test quest offer if meets requirements
 		en.step(player, "hi");
@@ -98,6 +97,7 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "play");
 		assertEquals("I'm a little bored at the moment. Would you like to play a game?", getReply(npc));
 		en.step(player, "yes");
+		// Deer was added in setup(), so we know that's what we get
 		assertEquals("I've been counting how many creatures you have killed, now tell me, how many deer do you think you've killed? You have three guesses and I'll accept guesses that are close to the correct answer.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Goodbye, come back when you want to continue.", getReply(npc));
@@ -126,7 +126,6 @@ public class GuessKillsTest extends ZonePlayerAndNPCTestImpl {
 
 		// Reset quest because of timestamp
 		player.setQuest(questSlot, "done;0;");
-		SingletonRepository.getEntityManager().getCreatures().remove("rat");
 		
 		// Test bogus answers and exact answer
 		en.step(player, "play");
