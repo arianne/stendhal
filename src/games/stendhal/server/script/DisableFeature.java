@@ -15,7 +15,7 @@ public class DisableFeature extends ScriptImpl {
 
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		if(args != null && args.size() != 2) {
+		if (args == null || args.size() != 2) {
 			admin.sendPrivateText("Usage of DisableFeature: [player] [feature]");
 			return;
 		}

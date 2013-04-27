@@ -12,10 +12,9 @@ import java.util.List;
  * @author madmetzger
  */
 public class EnableFeature extends ScriptImpl {
-
 	@Override
 	public void execute(final Player admin, final List<String> args) {
-		if(args != null && args.size() != 2) {
+		if (args == null || args.size() != 2) {
 			admin.sendPrivateText("Usage of EnableFeature: [player] [feature]");
 			return;
 		}
@@ -24,5 +23,4 @@ public class EnableFeature extends ScriptImpl {
 		final Player player = SingletonRepository.getRuleProcessor().getPlayer(name);
 		new EnableFeatureAction(feature).fire(player, null, null);
 	}
-
 }
