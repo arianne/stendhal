@@ -42,7 +42,9 @@ public class EasterBunny extends ScriptImpl {
 	}
 
 	/**
-	 * starts Easter
+	 * Starts Easter.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void startEaster(Player admin) {
 		if (System.getProperty("stendhal.easterbunny") != null) {
@@ -54,7 +56,9 @@ public class EasterBunny extends ScriptImpl {
 	}
 
 	/**
-	 * ends Easter
+	 * Ends Easter.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void stopEaster(Player admin) {
 		System.getProperties().remove("stendhal.easterbunny");

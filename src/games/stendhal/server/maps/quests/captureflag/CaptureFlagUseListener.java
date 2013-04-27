@@ -47,7 +47,10 @@ public class CaptureFlagUseListener implements UseListener {
 	}
 
 	/**
-	 * confirm that target is online at this time
+	 * Confirm that target is online at this time.
+	 * 
+	 * @return <code>true</code> if the target is online, otherwise
+	 * 	<code>false</code> 
 	 */
 	private boolean checkOnline() {
 		if ((target == null) || (target.isGhost() && (sender.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")))) {

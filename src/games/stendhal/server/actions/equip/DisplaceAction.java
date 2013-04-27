@@ -164,11 +164,11 @@ public class DisplaceAction implements ActionListener {
 	 * 
 	 * @param player
 	 *            the player doing the displacement
+	 * @param entity destination entity 
 	 * @param x      x-position
 	 * @param y      y-position
 	 * @return true, if in range; false otherwise
 	 */
-
 	private boolean destInRange(final Player player, final Entity entity, final int x, final int y) {
 		// Calculate from the center to make moving large items, like big corpses feel more natural
 		int centerX = (int) (x + (entity.getArea().getWidth() / 2));
@@ -251,6 +251,7 @@ public class DisplaceAction implements ActionListener {
 	 * @param x      new x-position
 	 * @param y      new y-position
 	 * @param entity entity to move
+	 * @param quantity quantity of moved entities
 	 */
 	private void displace(final Player player, final StendhalRPZone zone, final int x, final int y, final PassiveEntity entity, final int quantity) {
 		new GameEvent(player.getName(), "displace", entity.get("type")).raise();
@@ -294,6 +295,9 @@ public class DisplaceAction implements ActionListener {
 	 * again). The splitted StackableItem is reduced and a new StackableItem
 	 * with the splitted off amount is returned.
 	 * 
+	 * @param player player performing the action
+	 * @param stackableItem splitted item stack
+	 * @param quantity amount to split
 	 * @return Entity to place somewhere else in the world
 	 */
 	private Item removeFromWorld(final Player player, final StackableItem stackableItem, final int quantity) {

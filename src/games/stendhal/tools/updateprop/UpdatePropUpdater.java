@@ -129,9 +129,11 @@ public class UpdatePropUpdater {
 	}
 
 	/**
-	 * update the file size and signature sections
+	 * Update the file size and signature sections
+	 * 
+	 * @throws Exception 
 	 */
-	private void updateFileSizeAndSignature() throws Exception{
+	private void updateFileSizeAndSignature() throws Exception {
 		for (String filename : files) {
 			File file = new File(folder + "/" + filename);
 			prop.put("file-size." + filename, Long.toString(file.length()));

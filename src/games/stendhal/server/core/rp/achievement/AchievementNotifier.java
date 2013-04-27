@@ -287,11 +287,12 @@ public final class AchievementNotifier {
 	}
 
 	/**
-	 * checks for each achievement if the player has reached it. in case of reaching
-	 * an achievement it starts logging and notifying about reaching
+	 * Checks for each achievement if the player has reached it. in case of reaching
+	 * an achievement it starts logging and notifying about reaching.
 	 *
-	 * @param player
-	 * @param toCheck
+	 * @param player player to be checked
+	 * @param toCheck list of checked achievements
+	 * @return list of reached achievements
 	 */
 	private List<Achievement> checkAchievements(Player player,
 			List<Achievement> toCheck) {
@@ -317,6 +318,8 @@ public final class AchievementNotifier {
 	 * Notifies a player about reached achievements via private message
 	 *
 	 * @param player
+	 * @param achievementsToNotifyAbout list of achievements the player should
+	 * 	be notified about
 	 */
 	private void notifyPlayerAboutReachedAchievements(Player player, List<Achievement> achievementsToNotifyAbout) {
 		for (Achievement achievement : achievementsToNotifyAbout) {

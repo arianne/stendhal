@@ -425,6 +425,8 @@ public final class ZonesXMLLoader {
 	 * interiors:
 	 * int_region_zonename_number (number for houses)
 	 * @param name the name of the zone to parse
+	 * 
+	 * @return region name
 	 */
 	private String parseRegionFromZone(String name) {
 		String[] split = name.split("_");

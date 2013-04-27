@@ -102,7 +102,9 @@ public class Dice extends Item {
 	}
 
 	/**
-	 * Player throws the dice, get the new values on the faces
+	 * Player throws the dice, get the new values on the faces.
+	 * 
+	 * @param player player throwing the dice 
 	 */
 	private void randomize(final Player player) {
 		topFaces = new int[NUMBER_OF_DICE];

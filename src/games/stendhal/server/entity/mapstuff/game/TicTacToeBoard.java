@@ -49,7 +49,8 @@ public class TicTacToeBoard extends GameBoard implements TokenMoveListener<Board
 
 	/**
 	 * Creates a token and adds it to the world.
-	 *
+	 * 
+	 * @param name token name
 	 * @param x
 	 *            x-position
 	 * @param y

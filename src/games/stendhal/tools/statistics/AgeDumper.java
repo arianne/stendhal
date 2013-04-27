@@ -38,6 +38,7 @@ public final class AgeDumper {
 	/**
 	 * Dumps the items.
 	 * 
+	 * @param transaction 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -58,6 +59,7 @@ public final class AgeDumper {
 	/**
 	 * Logs a player.
 	 * 
+	 * @param ps 
 	 * @param name
 	 *            character name
 	 * @param object

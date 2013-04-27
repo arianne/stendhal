@@ -62,6 +62,7 @@ public class PassiveNPC extends NPC {
 		super.handleSimpleCollision(nx, ny);
 	}
 	
+	@Override
 	public void logic() {
 		if (hasPath()) {
 			setSpeed(getBaseSpeed());

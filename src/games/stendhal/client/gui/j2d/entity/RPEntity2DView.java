@@ -492,6 +492,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * @param g2d The graphic context
 	 * @param x The x-center of the arrows
 	 * @param y The y-center of the arrows
+	 * @param width ring width
+	 * @param height ring height
 	 * @param directions The directions an arrow should be drawn
 	 * @param lineColor The color of the outline of the arrow
 	 */

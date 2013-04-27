@@ -49,6 +49,8 @@ public class ManaIndicator extends StatusDisplayBar implements PropertyChangeLis
 	
 	/**
 	 * Create a new mana indicator.
+	 * 
+	 * @param model scaling model used for the indicator
 	 */
 	private ManaIndicator(final LinearScalingModel model) {
 		super(model);

@@ -217,6 +217,8 @@ class SoundSettings {
 	
 	/**
 	 * Create a volume slider for the master channel.
+	 * 
+	 * @return master volume slider slider
 	 */
 	private JSlider createMasterVolumeSlider() {
 		JSlider slider = new JSlider(0, 100);

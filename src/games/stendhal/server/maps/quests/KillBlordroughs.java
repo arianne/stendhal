@@ -104,6 +104,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * function decides, if quest can be given to player
 	 * @param player - player for which we will check quest slot
+	 * @param currenttime 
 	 * @return - true if player can get quest.
 	 */
 	private boolean questCanBeGiven(final Player player, final Long currenttime) {
@@ -124,6 +125,7 @@ import org.apache.log4j.Logger;
 	/**
 	 * function will return NPC answer how much time remains.
 	 * @param player - chatting player.
+	 * @param currenttime 
 	 * @return - NPC's reply string
 	 */
 	private String getNPCTextReply(final Player player, final Long currenttime) {

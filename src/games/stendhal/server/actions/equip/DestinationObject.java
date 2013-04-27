@@ -255,10 +255,12 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true if zone is semos tavern and entity is dice
+	 * Check if the entity is dice played at the gambling table.
 	 *
 	 * @param entity the item
 	 * @param player the player to get the zone from
+	 * @return <code>true</code> if the if zone is Semos tavern and entity is
+	 * 	dice
 	 */
 	private boolean isGamblingZoneAndIsDice(final Entity entity, final Player player) {
 		final StendhalRPZone zone = player.getZone();

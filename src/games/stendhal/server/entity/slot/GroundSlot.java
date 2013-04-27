@@ -101,9 +101,10 @@ public class GroundSlot extends EntitySlot {
 	}
 
 	/**
-	 * returns true if zone is semos tavern and entity is dice
+	 * Check if the entity is dice thrown on the gambling table.
 	 *
 	 * @param entity the item
+	 * @return <code>true</code>if zone is semos tavern and entity is dice
 	 */
 	private boolean isGamblingZoneAndIsDice(final Entity entity) {
 		return "int_semos_tavern_0".equals(zone.getName()) && ("dice").equals(entity.getTitle());
@@ -113,8 +114,10 @@ public class GroundSlot extends EntitySlot {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 *
+	 * 
+	 * @param player the player in respect to whom the check is done
 	 * @return name of other player standing on the item or <code>null</code>
+	 * 	if nobody, or the player themselves is standing on the item
 	 */
 	private String getOtherPlayerStandingOnItem(final Entity player) {
 		if (item == null) {

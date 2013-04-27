@@ -159,6 +159,9 @@ public class SupportAnswerAction extends AdministrationAction implements TurnLis
 	/**
 	 * Gets anonymised admin name from map and updates timestamp,
 	 * or sets new anonymised name if some time has passed since last use of supportanswer
+	 * 
+	 * @param adminName adminstrator name
+	 * @return anonymized name for the adminstarator
 	 */
 	private String getAnonymisedAdminName(String adminName) {
 		String anonymisedAdminName;

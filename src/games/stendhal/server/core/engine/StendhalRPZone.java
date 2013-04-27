@@ -485,6 +485,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Get the area of the zone, excluding static collisions.
+	 * 
+	 * @return free area size
 	 */
 	private int getFreeArea() {
 		int res = 0;

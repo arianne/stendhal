@@ -42,7 +42,9 @@ public class Santa extends ScriptImpl {
 	}
 
 	/**
-	 * starts Christmas.
+	 * Starts Christmas.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void startChristmas(Player admin) {
 		if (System.getProperty("stendhal.santa") != null) {
@@ -54,7 +56,9 @@ public class Santa extends ScriptImpl {
 	}
 
 	/**
-	 * ends Christmas
+	 * Ends Christmas.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void stopChristmas(Player admin) {
 		if (System.getProperty("stendhal.santa") == null) {

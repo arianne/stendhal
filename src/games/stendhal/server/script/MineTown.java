@@ -43,7 +43,9 @@ public class MineTown extends ScriptImpl {
 	}
 
 	/**
-	 * starts the Mine Town Revival Weeks
+	 * Starts the Mine Town Revival Weeks.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void startSemosMineTowns(Player admin) {
 		if (StendhalQuestSystem.get().getQuest(MineTownRevivalWeeks.QUEST_NAME) != null) {
@@ -54,7 +56,9 @@ public class MineTown extends ScriptImpl {
 	}
 
 	/**
-	 * ends the Mine Town Revival Weeks
+	 * Ends the Mine Town Revival Weeks.
+	 * 
+	 * @param admin adminstrator running the script
 	 */
 	private void stopSemosMineTowns(Player admin) {
 		if (StendhalQuestSystem.get().getQuest(MineTownRevivalWeeks.QUEST_NAME) == null) {

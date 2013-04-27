@@ -121,6 +121,8 @@ public class WeddingRing extends Ring {
 	 * 
 	 * @param player
 	 *            The ring's owner.
+	 * @return <code>true</code> if the teleport was successful, otherwise
+	 * 	<code>false</code>
 	 */
 	private boolean teleportToSpouse(final Player player) {
 		// check if pets and sheep are near
@@ -258,6 +260,7 @@ public class WeddingRing extends Ring {
 	 *
 	 * @param container 
 	 * @param ring the ring to be destroyed
+	 * @param slot the slot holding the ring
 	 */
 	private void destroyRing(SlotOwner container, final WeddingRing ring, final RPSlot slot) {
 		// The players need to be told first, while the ring still
@@ -276,6 +279,8 @@ public class WeddingRing extends Ring {
 	
 	/**
 	 * Give a nice message to nearby players when rings get destroyed.
+	 * 
+	 * @param ring the ring that got destroyed
 	 */
 	private void informNearbyPlayers(final WeddingRing ring) {
 		try {

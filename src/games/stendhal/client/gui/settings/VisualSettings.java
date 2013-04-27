@@ -169,7 +169,9 @@ class VisualSettings {
 	}
 	
 	/**
-	 * Disables widgets not being used
+	 * Disables widgets not being used.
+	 * 
+	 * @param container the container to look within
 	 */
 	private void toggleComponents(Container container) {
 		/*

@@ -148,6 +148,10 @@ public class StendhalWebsiteDAO {
 	 * Used to get the items in the hands container, as they can be different to weapons or shields...
 	 * Could also be done using getEquippedItemClass and using all posibble classes for
 	 * the objects that can be used in hands.
+	 * 
+	 * @param instance player 
+	 * @param handSlot hand slot name
+	 * @return item name
 	 */
 	private String extractHandName(final Player instance, final String handSlot) {
 		if (instance != null && handSlot != null) {

@@ -118,6 +118,8 @@ public class CompositeSprite implements Sprite {
 	 *  
 	 * @param slaves Non empty slave Sprites. The first is the bottom of the
 	 * 	Sprite stack
+	 * @param blend blending mode for the blend layer
+	 * @param adj sprite for the blend layer
 	 * @param reference Identifier for cache lookups
 	 */
 	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj, 

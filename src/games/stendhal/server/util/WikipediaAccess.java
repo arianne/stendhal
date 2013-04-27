@@ -157,6 +157,9 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Starts the parsing of the specified article.
+	 * 
+	 * @return <code>true</code> on successful parsing, <code>false</code> on
+	 * 	failure
 	 */
 	private boolean parse() {
 		String keyword = title;

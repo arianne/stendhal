@@ -38,6 +38,7 @@ public class ItemDumper {
 	/**
 	 * dumps the items.
 	 * 
+	 * @param transaction 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -75,8 +76,9 @@ public class ItemDumper {
 	}
 
 	/**
-	 * logs an item.
+	 * Logs an item.
 	 * 
+	 * @param ps 
 	 * @param name
 	 *            character name
 	 * @param slotName

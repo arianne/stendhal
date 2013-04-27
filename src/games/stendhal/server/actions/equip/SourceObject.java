@@ -83,6 +83,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Translate old style object reference to entity path.
+	 * @param action action to upgrade to use entity paths
 	 */
 	private static void translateCompatibilityToPaths(RPAction action) {
 		if (action.has(EquipActionConsts.BASE_OBJECT)) {
