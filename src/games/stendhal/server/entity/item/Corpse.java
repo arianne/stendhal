@@ -159,7 +159,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		put("stage", stage);
 		// default to player corpse image
 		put(ATTR_IMAGE, "player");
-		put(ATTR_HARMLESS_IMAGE, "player");
+		put(ATTR_HARMLESS_IMAGE, "harmless_player");
 		setResistance(calculateResistance());
 		
 		final RPSlot slot = new LootableSlot(this);
