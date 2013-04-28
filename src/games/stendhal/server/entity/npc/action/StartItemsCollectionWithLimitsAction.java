@@ -22,6 +22,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * For quests that use collections with random quantities for each item
+ * 
+ * @author AntumDeluge
+ */
 public class StartItemsCollectionWithLimitsAction implements ChatAction {
 	
 	private List<String> items;
@@ -31,12 +36,34 @@ public class StartItemsCollectionWithLimitsAction implements ChatAction {
 	
 	private int ITEM_INDEX = 1;
 	
+	/**
+	 * Creates a new StartItemsCollectionWithLimitsAction
+	 * 
+	 * @param quest
+	 * 			Quest slot name
+	 * @param items
+	 * 			List of items required
+	 * @param limit
+	 * 			The sum of all items
+	 */
 	public StartItemsCollectionWithLimitsAction(final String quest, final List<String> items, int limit) {
 		this.QUEST_SLOT = quest;
 		this.items = items;
 		this.limit = limit;
 	}
 	
+	/**
+	 * Creates a new StartItemsCollectionWithLimitsAction
+	 * 
+	 * @param quest
+	 * 			Quest slot name
+	 * @param index
+	 * 			index of sub state
+	 * @param items
+	 * 			List of items required
+	 * @param limit
+	 * 			The sum of all items
+	 */
 	public StartItemsCollectionWithLimitsAction(final String quest, final int index, final List<String> items, int limit) {
 		this.QUEST_SLOT = quest;
 		this.items = items;
@@ -55,6 +82,14 @@ public class StartItemsCollectionWithLimitsAction implements ChatAction {
 		final String result = sb.toString().substring(0, sb.toString().length() - 1);
 		player.setQuest(QUEST_SLOT, ITEM_INDEX, result);
 	}
+	
+	/**
+	 * 
+	 * @param limit
+	 * 			Sum of all items
+	 * @return
+	 * 			List of item quantities
+	 */
 	
 	List<Integer> setRequestedQuantities(int limit) {
 		List<Integer> quantities = new ArrayList<Integer>();
