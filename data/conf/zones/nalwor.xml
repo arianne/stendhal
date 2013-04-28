@@ -208,9 +208,15 @@ below average.
 	</zone>
 
 	<zone name="int_nalwor_flowershop" file="interiors/nalwor/flowershop.tmx">
-		<portal x="7" y="23" ref="entrance">
-			<destination zone="0_nalwor_city" ref="flowershop_entrance" />
-		</portal>
+	
+	  <!-- NPCs -->
+	  <configurator class-name="games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC" />
+	  
+	  <!-- Portals -->
+	  <portal x="7" y="23" ref="entrance">
+	    <destination zone="0_nalwor_city" ref="flowershop_entrance" />
+	  </portal>
+	  
 	</zone>
 
 	<zone name="int_nalwor_prison" file="interiors/nalwor/jail.tmx">
