@@ -30,8 +30,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not pass!"/>
-        <sound value="bones-1"/>
-        <sound value="evillaugh-5"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="evillaugh-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -238,8 +239,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not kill!"/>
-        <sound value="bones-1"/>
-        <sound value="evillaugh-5"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="evillaugh-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -274,8 +276,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not survive!"/>
-        <sound value="bones-1"/>
-        <sound value="evillaugh-3"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="evillaugh-3" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -378,8 +381,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not rob!"/>
-        <sound value="bones-1"/>
-        <sound value="evillaugh-5"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="evillaugh-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
