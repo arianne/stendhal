@@ -77,6 +77,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 
 	/** List of possible sound events. */
 	private List<String> sounds;
+	
+	/** Looped sound effect for creature */
+	private String loopedSound;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 
@@ -300,6 +303,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 				}
 			} else if (qName.equals("sound")) {
 				sounds.add(attrs.getValue("value"));
+			} else if (qName.equals("looped-sound")) {
+				loopedSound = "loop-" + attrs.getValue("value");
 			}
 		} else if (qName.equals("abilities")) {
 			abilities = true;
@@ -352,6 +357,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setSusceptibilities(susceptibilities);
 			creature.setDamageTypes(damageType, rangedDamageType);
 			creature.setCreatureSounds(sounds);
+			creature.setCreatureLoopedSound(loopedSound);
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;

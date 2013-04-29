@@ -41,6 +41,8 @@ import games.stendhal.server.entity.creature.impl.poison.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource;
+import games.stendhal.server.entity.mapstuff.sound.LoopedCreatureSoundSource;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -119,6 +121,10 @@ public class Creature extends NPC {
 	 * Possible sound events.
 	 */
 	private List<String> sounds;
+	
+	private String loopedSound;
+	private boolean playingLoopedSound = false;
+	private LoopedCreatureSoundSource loopedSoundSource;
 
 	/**
 	 * List of things this creature should say.
@@ -233,6 +239,7 @@ public class Creature extends NPC {
 
 		setLevel(copy.getLevel());
 		setSounds(copy.sounds);
+		setLoopedSound(copy.loopedSound);
 
 		for (RPSlot slot : copy.slots()) {
 			this.addSlot((RPSlot) slot.clone());
@@ -364,6 +371,10 @@ public class Creature extends NPC {
 	 */
 	public void setSounds(List<String> sounds) {
 		this.sounds = new ArrayList<String>(sounds);
+	}
+	
+	public void setLoopedSound(String sound) {
+		this.loopedSound = sound;
 	}
 
 	/**
@@ -901,6 +912,11 @@ public class Creature extends NPC {
 				}
 			}
 			maybeMakeSound();
+			
+			// Play a looped sound for creatrue
+			if (loopedSound != null && !isPlayingLoopedSound()) {
+				makeLoopedSound();
+			}
 			this.notifyWorldAboutChanges();
 		} else {
 			/*
@@ -955,6 +971,34 @@ public class Creature extends NPC {
 				addEvent(new SoundEvent(Rand.rand(sounds), SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE));
 			}
 		}
+	}
+	
+	/**
+	 * Generates a looped sound for creature
+	 * 
+	 * FIXME: Does not activate LoopedSoundSource
+	 */
+	private void makeLoopedSound() {
+		playingLoopedSound = true;
+		loopedSoundSource = new LoopedCreatureSoundSource(loopedSound, SOUND_RADIUS, 100);
+	}
+	
+	/**
+	 * Stops the looped sound
+	 * 
+	 * FIXME: Does not stop sound
+	 */
+	public void stopLoopedSound() {
+		playingLoopedSound = false;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * 		true if looped sound is currently playing
+	 */
+	public boolean isPlayingLoopedSound() {
+		return playingLoopedSound;
 	}
 
 	public boolean hasTargetMoved() {

@@ -82,6 +82,9 @@ public class DefaultCreature {
 	
 	/** List of possible sound events. */
 	private List<String> sounds;
+	
+	/** Looped sound effect for creature */
+	private String loopedSound;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
 	
@@ -259,6 +262,7 @@ public class DefaultCreature {
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
 		creature.setSounds(sounds);
+		creature.setLoopedSound(loopedSound);
 		
 		return creature;
 	}
@@ -305,7 +309,17 @@ public class DefaultCreature {
 	public void setCreatureSounds(List<String> sounds) {
 		this.sounds = sounds;
 	}
-
+	
+	/**
+	 * Set a looped sound effect for creature
+	 * 
+	 * @param loopedSound
+	 * 				desired sound effect
+	 */
+	public void setCreatureLoopedSound(String loopedSound) {
+		this.loopedSound = loopedSound;
+	}
+	
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
 		for (final DropItem item : dropsItems) {
 			if (!defaultEntityManager.isItem(item.name)) {
