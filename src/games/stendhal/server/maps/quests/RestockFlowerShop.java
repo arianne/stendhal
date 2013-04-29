@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.AddItemToCollectionAction;
 import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -60,6 +61,7 @@ import java.util.List;
  * <ul>
  * <li>1000 XP</li>
  * <li>25 karma</li>
+ * <li>5 nalwor city scrolls</li>
  * </ul>
  * 
  * REPETITIONS:
@@ -246,6 +248,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new IncreaseKarmaAction(25.0));
+		reward.add(new EquipItemAction("nalwor city scroll", 5));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		reward.add(new SayTextAction("Thank you so much! Now I can fill all of my orders."));
