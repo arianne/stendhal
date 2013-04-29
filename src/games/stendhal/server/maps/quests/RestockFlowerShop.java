@@ -144,7 +144,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)),
 				ConversationStates.ATTENDING,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, "The flowers you brought are selling quickly. I may need your help again in"));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, WAIT_TIME, "The flowers you brought are selling quickly. I may need your help again in"));
 		
 		// Player accepts quest
 		npc.add(ConversationStates.QUEST_OFFERED,
