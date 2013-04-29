@@ -83,7 +83,7 @@ public class RestockFlowerShop extends AbstractQuest {
 	private static String requestedFlowers;
 	
 	// Time player must wait to repeat quest (3 days)
-	private static final int WAIT_TIME = 2;// 60 * 24 * 3;
+	private static final int WAIT_TIME = 60 * 24 * 3;
 	
 	// Quest NPC
 	private final SpeakerNPC npc = npcs.get("Seremela");
