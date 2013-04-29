@@ -37,7 +37,7 @@ These files are in the public domain:
     water-faucet-1		http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
     wings-flap-large-1: http://www.freesound.org/people/dave.des/sounds/127197/
     From http://www.freewebs.com/jordansroom/sounds.html:
-        chicken-2, fire-1, mouse-2
+        bones-2, chicken-2, fire-1, mouse-2
     From http://opengameart.org/content/monster-sound-effects-2:
         monster-1, monster-2, monster-11, monster-12, monster-14, monster-16
     From http://archive.org/details/unknowncobracobrabitewmv
