@@ -15,6 +15,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.ItemCollection;
 
 /**
  * Adds an item to a player's quest slot string
@@ -28,7 +29,7 @@ public class AddItemToCollectionAction implements ChatAction {
 	
 	private String QUEST_SLOT;
 	
-	private int ITEM_INDEX;
+	private int ITEM_INDEX = -1;
 	
 	/**
 	 * Creates a new AddItemToCollectionAction
@@ -44,9 +45,6 @@ public class AddItemToCollectionAction implements ChatAction {
 		this.QUEST_SLOT = quest;
 		this.item = item;
 		this.quantity = quantity;
-		
-		String[] collectionItems = this.QUEST_SLOT.split(";");
-		ITEM_INDEX = collectionItems.length;
 	}
 	
 	/**
@@ -69,8 +67,12 @@ public class AddItemToCollectionAction implements ChatAction {
 	}
 	
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		final String result = item + "=" + quantity;
-		player.setQuest(QUEST_SLOT, ITEM_INDEX, result);
+		int index = ITEM_INDEX;
+		if (index < 0) {
+			index = player.getQuest(QUEST_SLOT).split(";").length;
+		}
+		String result = item + "=" + quantity;
+		player.setQuest(QUEST_SLOT, index, result);
 	}
 	
 }
