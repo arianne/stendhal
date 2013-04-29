@@ -59,6 +59,7 @@ public class AddItemToCollectionAction implements ChatAction {
 	 * 			Item quantity
 	 */
 	public AddItemToCollectionAction(final String quest, final int index, final String item, int quantity) {
+		// FIXME: Overwrites item at ITEM_INDEX, should insert it
 		this.QUEST_SLOT = quest;
 		this.ITEM_INDEX = index;
 		this.item = item;
