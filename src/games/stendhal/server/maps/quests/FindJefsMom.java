@@ -209,7 +209,15 @@ public class FindJefsMom extends AbstractQuest {
 		    	ConversationStates.IDLE,
 		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
 		    	null);
-
+	    
+	    // replace flower if lost
+	    amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zant", "zantedeschia"),
+	    		new AndCondition(
+	    				new QuestInStateCondition(QUEST_SLOT, "found_mom"),
+	    				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia"))),
+	    		ConversationStates.IDLE,
+	    		"Oh you lost the flower? I'm afraid I don't have anymore. Speak with Jenny, by the windmill. She may be able to help you.",
+	    		null); 
 
 	}
 
