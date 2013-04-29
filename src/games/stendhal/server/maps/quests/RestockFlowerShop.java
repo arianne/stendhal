@@ -123,7 +123,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.ANY,
 				"flower",
 				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-				null,
+				ConversationStates.ATTENDING,
 				"Aren't flowers beautiful?",
 				null);
 		
@@ -131,7 +131,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.ANY,
 				ConversationPhrases.HELP_MESSAGES,
 				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-				null,
+				ConversationStates.ATTENDING,
 				"Hmmmm, I don't think there is anything I can help with.",
 				null);
 	}
@@ -141,23 +141,23 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.ANY,
 				ConversationPhrases.HELP_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				null,
+				ConversationStates.ATTENDING,
 				"I can #remind you of which #flowers I need. I might also be able help you figure out #where you can find some.",
 				null);
 		
 		// Player asks to be reminded of remaining flowers required
 		npc.add(ConversationStates.ANY,
-				Arrays.asList("flower", "remind"),
+				Arrays.asList("flower", "remind", "what"),
 				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
 				null,
-				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]"));
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
 		// Player asks about where to find flowers
 		npc.add(ConversationStates.ANY,
 				Arrays.asList("where", "who"),
 				new QuestActiveCondition(QUEST_SLOT),
-				null,
+				ConversationStates.ATTENDING,
 				"#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.",
 				null);
 		
@@ -270,7 +270,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		// Player confirms brought flowers
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
-				null,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
 				"What kind of flowers did you bring?",
 				null);
@@ -278,7 +278,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		// Player didn't bring flowers
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
-				null,
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Don't stop to smell the roses yet. Orders are backing up. I can #remind you of what to bring.",
 				null);
@@ -286,18 +286,10 @@ public class RestockFlowerShop extends AbstractQuest {
 		// Player offers item that wasn't requested
 		npc.add(ConversationStates.QUESTION_2,
 				"",
-			new QuestActiveCondition(QUEST_SLOT),
-			ConversationStates.QUESTION_2,
-			"I don't think that would look good in the shop.",
-			null);
-		
-		// Remind player of requested flowers
-		npc.add(ConversationStates.ANY,
-				Arrays.asList("flower", "flowers", "remind", "what"),
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_1,
-				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Great! Here is what I need: [items]. Did you bring any of those?"));
+				ConversationStates.QUESTION_2,
+				"I don't think that would look good in the shop.",
+				null);
 		
 		// Player says "bye" or "no" while listing flowers
 		List<String> endDiscussionPhrases = new ArrayList<String>();
