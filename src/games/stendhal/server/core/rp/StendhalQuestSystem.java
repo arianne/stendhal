@@ -145,7 +145,7 @@ public class StendhalQuestSystem {
 		loadQuest(new PizzaDelivery());
 		loadQuest(new PlinksToy());
 		loadQuest(new RainbowBeans());
-		loadQuest(new StockFlowerShop());
+		loadQuest(new RestockFlowerShop());
 		loadQuest(new ReverseArrow());
 		loadQuest(new RingMaker());
 		loadQuest(new SadScientist());

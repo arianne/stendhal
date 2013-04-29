@@ -1,23 +1,3 @@
-package games.stendhal.server.maps.quests;
-
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StartItemsCollectionWithLimitsAction;
-import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.TimePassedCondition;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.Region;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /***************************************************************************
  *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
@@ -29,10 +9,68 @@ import java.util.List;
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+package games.stendhal.server.maps.quests;
 
-public class StockFlowerShop extends AbstractQuest {
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.action.StartItemsCollectionWithLimitsAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
+import games.stendhal.server.util.ItemCollection;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * QUEST: Restock the Flower Shop
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Seremela, the elf girl who watches over Nalwor's flower shop</li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li>Seremela asks you to bring a variety of flowers to restock the flower shop</li>
+ * <li>Gather the requested amounts of each flower type and bring them to Seremela</li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li>1000 XP</li>
+ * <li>25 karma</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>Once every 3 days</li>
+ * </ul>
+ * 
+ * @author AntumDeluge
+ *
+ */
+public class RestockFlowerShop extends AbstractQuest {
 	
-	public static final String QUEST_SLOT = "stock_flowershop";
+	public static final String QUEST_SLOT = "restock_flowershop";
 	
 	// Different types of flowers needed in quest
 	private static final List<String> flowerTypes = Arrays.asList(
@@ -41,10 +79,10 @@ public class StockFlowerShop extends AbstractQuest {
 	
 	private int MAX_FLOWERS = flowerTypes.size() * 15;
 	
-	private static String flowersBrought;
+	private static String requestedFlowers;
 	
-	// Time (in minutes) player must wait to repeat quest
-	private static final int WAIT_TIME = 1;
+	// Time player must wait to repeat quest (3 days)
+	private static final int WAIT_TIME = 60 * 24 * 3;
 	
 	// Quest NPC
 	private final SpeakerNPC npc = npcs.get("Seremela");
@@ -52,6 +90,7 @@ public class StockFlowerShop extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
+		String questState = player.getQuest(QUEST_SLOT);
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
@@ -61,10 +100,13 @@ public class StockFlowerShop extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, 0, "start")) {
 			res.add("I have offered to help " + npc.getName() + " restock the flower shop.");
 			
+			final ItemCollection remaining = new ItemCollection();
+			remaining.addFromQuestStateString(questState);
+			
 			// Check to avoid ArrayIndexOutOfBoundsException
-			if (QUEST_SLOT.split(",").length > 1) {
-				flowersBrought = "I have brought the requested amounts of the following flowers:";
-				
+			if (questState.split(";").length > 1) {
+				requestedFlowers = "I still need to bring the following flowers: " + Grammar.enumerateCollection(remaining.toStringList()) + ".";
+				/*
 				for (int f = 0; f <= flowerTypes.size(); f++) {
 					if (player.isQuestInState(QUEST_SLOT, f+1, flowerTypes.get(f))) {
 						flowersBrought += " " + flowerTypes.get(f);
@@ -74,28 +116,13 @@ public class StockFlowerShop extends AbstractQuest {
 							flowersBrought += ".";
 						}
 					}
-				}
-				res.add(flowersBrought);
+				}*/
+				res.add(requestedFlowers);
 			}
 		}
 		
 		return res;
 	}
-	/*
-	private void setFlowerQuantities() {
-		int flowersLeft = flowerTypes.size() * 15; // Average 15 flowers per type
-		int askedAmount;
-		
-		for (int f = flowerTypes.size(); f > 0; f--) {
-			// Generate a random number for each flower type but leave at least 1 for each remaining flower type
-			askedAmount = Rand.randUniform(1, flowersLeft - (f-1));
-			
-			// Add the requested amount for each flower to a list
-			requestedQuantities.add(askedAmount);
-			
-			flowersLeft -= askedAmount;
-		}
-	}*/
 	
 	
 	private void prepareRequestingStep() {
@@ -108,7 +135,7 @@ public class StockFlowerShop extends AbstractQuest {
 						new TimePassedCondition(QUEST_SLOT, flowerTypes.size()+1, WAIT_TIME)
 						),
 				ConversationStates.QUEST_OFFERED,
-				"My shop is running low on flowers. Will help me restock it?",
+				"The flower shop is running low on flowers. Will help me restock it?",
 				null);
 		
 		// Player requests quest after started
@@ -142,7 +169,33 @@ public class StockFlowerShop extends AbstractQuest {
 	
 	
 	private void prepareBringingStep() {
+		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new IncreaseKarmaAction(25.0));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
 		
+		ChatAction rewardAction = new MultipleActions(reward);
+		
+		/* add triggers for the item names */
+		final ItemCollection items = new ItemCollection();
+		items.addFromQuestStateString(QUEST_SLOT);
+		for (final Map.Entry<String, Integer> item : items.entrySet()) {
+			npc.add(ConversationStates.QUESTION_2,
+					item.getKey(),
+					new QuestActiveCondition(QUEST_SLOT),
+					ConversationStates.QUESTION_2,
+					null,
+					new CollectRequestedItemsAction(
+							item.getKey(),
+							QUEST_SLOT,
+							"Thank you! Did you bring any other flowers?",
+							"I don't need any more of those flowers.",
+							rewardAction,
+							ConversationStates.IDLE
+							)
+			);
+		}
 	}
 	
 	
@@ -158,7 +211,7 @@ public class StockFlowerShop extends AbstractQuest {
 	
 	@Override
 	public String getName() {
-		return "StockFlowerShop";
+		return "RestockFlowerShop";
 	}
 	
 	public String getTitle() {
@@ -180,7 +233,7 @@ public class StockFlowerShop extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				getTitle(),
-				getNPCName() + " needs to restock her flower shop in Nalwor City.",
+				getNPCName() + " needs to restock the flower shop in Nalwor City.",
 				true);
 		prepareRequestingStep();
 		prepareBringingStep();
