@@ -25,6 +25,8 @@
       <says>
         <noise state="idle follow fight" value="peep peep"/>
         <noise state="idle follow fight" value="peep peep peep"/>
+        <sound value="chicken-chick-1" />
+        <sound value="chicken-chick-2" />
       </says>
       <profile name="animal"/>
       <profile name="patrolling"/>
