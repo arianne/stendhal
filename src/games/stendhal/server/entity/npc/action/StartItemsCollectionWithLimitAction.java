@@ -93,7 +93,6 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	
 	List<Integer> setRequestedQuantities(int limit) {
 		List<Integer> quantities = new ArrayList<Integer>();
-		int itemsRemaining = limit;
 		int askedAmount = 0;
 		int itemsSum = 0;
 		boolean repeat;
