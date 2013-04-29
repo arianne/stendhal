@@ -5,11 +5,19 @@
 
 *world*
 - New achievements: Nalwor's Bane and Feeling Blue
+- New puppy NPC in Semos City
+- Some new creature sound effects
+- Some new creature corpses
+- New NPC type: PassiveNPC
+- Warning messages for dangerous areas now show up in client display
 
 *client*
+- Option to turn off creature speech bubbles
 
 *fixes*
 - quest log of EmotionCrystals fixed
+- Fixed text on sign near Jynath's house
+- Kanmararn Soldiers harmless corpses fixed
 
 
 1.07
