@@ -108,6 +108,11 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="bat-1" />
+        <sound value="bat-2" />
+        <sound value="bat-3" />
+      </says>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
@@ -640,6 +645,11 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="bat-1" />
+        <sound value="bat-2" />
+        <sound value="bat-3" />
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
