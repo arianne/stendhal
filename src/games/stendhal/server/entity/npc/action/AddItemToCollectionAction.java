@@ -16,6 +16,11 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Adds an item to a player's quest slot string
  * 
@@ -59,7 +64,6 @@ public class AddItemToCollectionAction implements ChatAction {
 	 * 			Item quantity
 	 */
 	public AddItemToCollectionAction(final String quest, final int index, final String item, int quantity) {
-		// FIXME: Overwrites item at ITEM_INDEX, should insert it
 		this.QUEST_SLOT = quest;
 		this.ITEM_INDEX = index;
 		this.item = item;
@@ -68,11 +72,32 @@ public class AddItemToCollectionAction implements ChatAction {
 	
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		int index = ITEM_INDEX;
+		
+		String result = item + "=" + quantity;		
+		
+		String[] itemList = player.getQuest(QUEST_SLOT).split(";");
+		
 		if (index < 0) {
-			index = player.getQuest(QUEST_SLOT).split(";").length;
+			index = itemList.length;
+			player.setQuest(QUEST_SLOT, index, result);
+		} else {
+			List<String> itemListArray = new ArrayList<String>();
+			
+			// add the original elements
+			for (int x = 0; x < itemList.length; x++) {
+				itemListArray.add(itemList[x]);
+			}
+			
+			// Add the new element
+			if (index > itemListArray.size()) {
+				itemListArray.add(result);
+			} else {
+				itemListArray.add(index, result);
+			}
+			
+			itemList = itemListArray.toArray(itemList);
+			player.setQuest(QUEST_SLOT, StringUtils.join(itemList, ";"));
 		}
-		String result = item + "=" + quantity;
-		player.setQuest(QUEST_SLOT, index, result);
 	}
 	
 }
