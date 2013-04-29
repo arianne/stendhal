@@ -52,8 +52,8 @@ import java.util.List;
  * 
  * STEPS:
  * <ul>
- * <li>Seremela asks you to bring a variety of flowers to restock the flower shop</li>
- * <li>Gather the requested amounts of each flower type and bring them to Seremela</li>
+ * <li>Seremela asks you to bring a variety of flowers to restock the flower shop and 15 bottles of water to maintain them</li>
+ * <li>Bring the requested amounts water and each flower type to Seremela</li>
  * </ul>
  * 
  * REWARD:
@@ -160,6 +160,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				Arrays.asList("who", "where"),
 				Arrays.asList("jenny"),
 				Arrays.asList("fleur"),
+				Arrays.asList("flask"),
 				ConversationPhrases.HELP_MESSAGES);
 		List<String> descriptions = new ArrayList<String>();
 		descriptions.add("Daisies are...");
@@ -167,10 +168,11 @@ public class RestockFlowerShop extends AbstractQuest {
 		descriptions.add("Pansies are...");
 		descriptions.add("Roses are...");
 		descriptions.add("Zantedeschias are...");
-		descriptions.add("You'll need to find a water source and fill up some #flasks.");
+		descriptions.add("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.");
 		descriptions.add("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.");
 		descriptions.add("You can find Jenny around the windmill near Semos where she mills flour.");
 		descriptions.add("Fleur works at the market in Kirdneh.");
+		descriptions.add("Ask the barmaid in Semos.");
 		descriptions.add("I can #remind you of which #flowers I need. I might also be able help you figure out #where you can find some.");
 		
 		for (int f = 0; f < flowerTypes.size(); f++) {
@@ -235,7 +237,10 @@ public class RestockFlowerShop extends AbstractQuest {
 	
 	
 	private void prepareBringingStep() {
-		List<String> requestedItems = flowerTypes;
+		List<String> requestedItems = new ArrayList<String>();
+		for (String f : flowerTypes) {
+			requestedItems.add(f);
+		}
 		requestedItems.add("water");
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
@@ -281,7 +286,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
-				"What kind of flowers did you bring?",
+				"What did you bring?",
 				null);
 		
 		// Player didn't bring flowers
