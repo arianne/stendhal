@@ -205,10 +205,18 @@ public class FindJefsMom extends AbstractQuest {
 
         // don't give the flower if the quest state isn't start
 	    amber.add(ConversationStates.ATTENDING, "Jef",
-		     	new AndCondition(new QuestNotInStateCondition(QUEST_SLOT, 0, "start")),
+		     	new AndCondition(new NotCondition(new QuestActiveCondition(QUEST_SLOT))),
 		    	ConversationStates.IDLE,
 		    	"I don't trust you. Your voice shivered while you told me my sons name. I bet he is fine and happy and safe.",
 		    	null);
+	    
+	    amber.add(ConversationStates.ATTENDING, "Jef",
+	    		new AndCondition(
+	    				new QuestInStateCondition(QUEST_SLOT, "found_mom"),
+	    				new PlayerHasItemWithHimCondition("zantedeschia")),
+	    		ConversationStates.IDLE,
+	    		"Please give that flower to my son and let him know that I am #fine.",
+	    		null);
 	    
 	    // replace flower if lost
 	    amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zant", "zantedeschia"),
