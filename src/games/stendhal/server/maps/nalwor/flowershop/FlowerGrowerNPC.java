@@ -66,10 +66,10 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     		public void createDialog() {
     			addGreeting("Hello.");
     			addGoodbye("Goodbye!");
-    			addHelp("Hmmm, I don't think there is anything I can help with.");
+    			//addHelp("Hmmm, I don't think there is anything I can help with.");
     			addJob("I take care of our city's beautiful flowers.");
     			addOffer("I don't have anything to offer");
-    			addReply(Arrays.asList("flower", "flowers"), "Aren't flowers beautiful?");
+    			//addReply(Arrays.asList("flower", "flowers"), "Aren't flowers beautiful?");
     			//addEmotionReply(ConversationPhrases.GOODBYE_MESSAGES, "winks");
     		}
     	};

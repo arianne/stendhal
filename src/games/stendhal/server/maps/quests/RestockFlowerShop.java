@@ -118,6 +118,65 @@ public class RestockFlowerShop extends AbstractQuest {
 	}
 	
 	
+	private void setupBasicResponses() {
+		// Player asks about flowers
+		npc.add(ConversationStates.ANY,
+				"flower",
+				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+				null,
+				"Aren't flowers beautiful?",
+				null);
+		
+		// Player asks for help
+		npc.add(ConversationStates.ANY,
+				ConversationPhrases.HELP_MESSAGES,
+				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+				null,
+				"Hmmmm, I don't think there is anything I can help with.",
+				null);
+	}
+	
+	private void setupActiveQuestResponses() {
+		// Player asks for help
+		npc.add(ConversationStates.ANY,
+				ConversationPhrases.HELP_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				null,
+				"I can #remind you of which #flowers I need. I might also be able help you figure out #where you can find some.",
+				null);
+		
+		// Player asks to be reminded of remaining flowers required
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("flower", "remind"),
+				new QuestActiveCondition(QUEST_SLOT),
+				null,
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]"));
+		
+		// Player asks about where to find flowers
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("where", "who"),
+				new QuestActiveCondition(QUEST_SLOT),
+				null,
+				"#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.",
+				null);
+		
+		List<String> flowerNPCs = Arrays.asList(
+				"jenny", "fleur");
+		List<String> descriptions = new ArrayList<String>();
+		descriptions.add("You can find Jenny around the windmill near Semos where she mills flour.");
+		descriptions.add("Fleur works at the market in Kirdneh.");
+		
+		for (int n = 0; n < flowerNPCs.size(); n++) {
+			npc.add(ConversationStates.ANY,
+					flowerNPCs.get(n),
+					new QuestActiveCondition(QUEST_SLOT),
+					null,
+					descriptions.get(n),
+					null);
+		}
+	}
+	
 	private void prepareRequestingStep() {
 		
 		// Player requests quest
@@ -316,6 +375,8 @@ public class RestockFlowerShop extends AbstractQuest {
 				getTitle(),
 				getNPCName() + " needs to restock the flower shop in Nalwor City.",
 				true);
+		setupBasicResponses();
+		setupActiveQuestResponses();
 		prepareRequestingStep();
 		prepareBringingStep();
 	}
