@@ -81,7 +81,7 @@ public class RestockFlowerShop extends AbstractQuest {
 			"daisies", "lilia", "pansy", "rose", "zantedeschia");
 	public static List<Integer> requestedQuantities = Arrays.asList();
 	
-	private int MAX_FLOWERS = flowerTypes.size() * 15;
+	private int MAX_FLOWERS = flowerTypes.size() * 10;
 	
 	private static String requestedFlowers;
 	
