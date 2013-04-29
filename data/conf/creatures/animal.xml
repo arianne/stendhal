@@ -80,6 +80,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="click-clack-click"/>
+        <sound value="click-clack-1" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
