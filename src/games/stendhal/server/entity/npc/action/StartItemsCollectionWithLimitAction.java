@@ -94,17 +94,35 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	List<Integer> setRequestedQuantities(int limit) {
 		List<Integer> quantities = new ArrayList<Integer>();
 		int itemsRemaining = limit;
-		int askedAmount;
+		int askedAmount = 0;
+		int itemsSum = 0;
+		boolean repeat;
 		
 		int i;
 		for (i = this.items.size(); i > 0; i--) {
-			// Generate a random number for each item type but leave at least 1 for each remaining type
-			askedAmount = Rand.randUniform(1, itemsRemaining - (i - 1));
+			repeat = true;
+			
+			while (repeat) {
+				// Fill the last item with remainder
+				if (i == 1) {
+					askedAmount = limit - itemsSum;
+					break;
+				}
+				// Generate a random number for each item type but leave at least 1 for each remaining type
+				//askedAmount = Rand.randUniform(1, itemsRemaining - (i - 1));
+				askedAmount = Rand.randUniform(1, limit);
+				itemsSum += askedAmount;
+				if (itemsSum >= limit) {
+					itemsSum -= askedAmount;
+				} else {
+					repeat = false;
+				}
+			}
 			
 			// Add the requested amount for each item to a list
 			quantities.add(askedAmount);
 			
-			itemsRemaining -= askedAmount;
+			//itemsRemaining -= askedAmount;
 		}
 		
 		// Re-order quantities to make more random
