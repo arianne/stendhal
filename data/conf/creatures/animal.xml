@@ -175,6 +175,8 @@
       <says>
         <noise state="idle follow fight" value="Oou! Oou!"/>
         <noise state="idle follow fight" value="*flap* *flap*"/>
+        <sound value="penguin-1" />
+        <sound value="penguin-2" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
