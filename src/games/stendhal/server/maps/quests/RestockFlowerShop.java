@@ -135,7 +135,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"You still haven't brought me the flowers I asked for.",
+				"You still haven't brought me the #flowers I asked for.",
 				null);
 		
 		// Player requests quest before wait period ended
@@ -190,7 +190,7 @@ public class RestockFlowerShop extends AbstractQuest {
 							flower,
 							QUEST_SLOT,
 							"Thank you! What other flowers did you bring?",
-							"I don't need any more of those flowers.",
+							"I don't need any more of those.",
 							rewardAction,
 							ConversationStates.IDLE
 							));
@@ -221,16 +221,24 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Please keep looking. Orders are getting backed up.",
+				"Don't stop to smell the roses yet. Orders are backing up. I can #remind you of what to bring.",
 				null);
 		
-		// player offers item that wasn't requested
+		// Player offers item that wasn't requested
 		npc.add(ConversationStates.QUESTION_2,
 				"",
 			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_2,
 			"I don't think that would look good in the shop.",
 			null);
+		
+		// Remind player of requested flowers
+		npc.add(ConversationStates.ANY,
+				Arrays.asList("flower", "flowers", "remind", "what"),
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Great! Here is what I need: [items]. Did you bring any of those?"));
 		
 		// Player says "bye" or "no" while listing flowers
 		List<String> endDiscussionPhrases = new ArrayList<String>();
@@ -246,6 +254,29 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationStates.IDLE,
 				"Please come back when you have found some flowers.",
 				null);
+		
+		/* START: Player asks about different types of flowers */
+		List<List<String>> keywords = Arrays.asList(
+				Arrays.asList("daisy", "daisies"),
+				Arrays.asList("lilia"),
+				Arrays.asList("pansy", "pansies"),
+				Arrays.asList("rose"),
+				Arrays.asList("zantedeschia", "zant"));
+		List<String> descriptions = new ArrayList<String>();
+		descriptions.add("Daisies are...");
+		descriptions.add("Lilias are...");
+		descriptions.add("Pansies are...");
+		descriptions.add("Roses are...");
+		descriptions.add("Zantedeschias are...");
+		
+		for (int f = 0; f < flowerTypes.size(); f++) {
+			npc.add(ConversationStates.ANY,
+					keywords.get(f),
+					new QuestActiveCondition(QUEST_SLOT),
+					null,
+					descriptions.get(f),
+					null);
+		}
 	}
 	
 	
