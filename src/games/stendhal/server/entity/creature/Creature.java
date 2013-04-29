@@ -41,8 +41,6 @@ import games.stendhal.server.entity.creature.impl.poison.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource;
-import games.stendhal.server.entity.mapstuff.sound.LoopedCreatureSoundSource;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -60,11 +58,11 @@ import java.util.Map;
 import java.util.Observer;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -124,7 +122,7 @@ public class Creature extends NPC {
 	
 	private String loopedSound;
 	private boolean playingLoopedSound = false;
-	private LoopedCreatureSoundSource loopedSoundSource;
+	private SoundEvent loopedSoundEvent;
 
 	/**
 	 * List of things this creature should say.
@@ -980,7 +978,10 @@ public class Creature extends NPC {
 	 */
 	private void makeLoopedSound() {
 		playingLoopedSound = true;
-		loopedSoundSource = new LoopedCreatureSoundSource(loopedSound, SOUND_RADIUS, 100);
+		if (loopedSoundEvent == null) {
+			loopedSoundEvent = new SoundEvent(loopedSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
+		}
+		addEvent(loopedSoundEvent);
 	}
 	
 	/**
