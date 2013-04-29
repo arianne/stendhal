@@ -27,6 +27,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Thou shall not maim!"/>
+        <sound value="bones-2" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
