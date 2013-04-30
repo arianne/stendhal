@@ -585,7 +585,7 @@
         <noise state="idle follow fight" value="WHOOOOEOEOEZZZZZZ!!!"/>
         <sound value="elephant-1" />
         <sound value="elephant-2" />
-        <sound value="elephant-3" />
+        <sound value="elephant-rumble-1" />
       </says>
       <profile name="non offensive"/>
       <profile name="animal"/>
