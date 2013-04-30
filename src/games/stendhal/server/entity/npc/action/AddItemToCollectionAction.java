@@ -70,6 +70,7 @@ public class AddItemToCollectionAction implements ChatAction {
 		this.quantity = quantity;
 	}
 	
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		int index = ITEM_INDEX;
 		

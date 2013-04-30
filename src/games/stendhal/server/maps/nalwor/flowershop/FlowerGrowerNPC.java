@@ -62,7 +62,8 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     			setPath(new FixedPath(nodes, true));
     		}
     		
-    		public void createDialog() {
+			@Override
+			public void createDialog() {
     			addGreeting("Hello.");
     			addGoodbye("Goodbye!");
     			//addHelp("Hmmm, I don't think there is anything I can help with.");

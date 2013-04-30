@@ -71,6 +71,7 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		this.ITEM_INDEX = index;
 	}
 	
+	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
 		List<Integer> requestedQuantities = setRequestedQuantities(this.limit);
 		
