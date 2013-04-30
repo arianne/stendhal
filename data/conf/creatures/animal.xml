@@ -239,6 +239,9 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="monkey-1" />
+        <sound value="monkey-2" />
+        <sound value="monkey-3" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
