@@ -15,6 +15,7 @@ These files are in the public domain:
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     cowbell-1:          http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
+    creak-tree-2:       http://www.freesound.org/people/Department64/sounds/95262/
     elephant-1, elephant-2:
                         http://www.freesound.org/people/vataaa/sounds/148873/
     elephant-rumble-1:  http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
