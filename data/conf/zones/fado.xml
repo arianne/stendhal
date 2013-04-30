@@ -1529,7 +1529,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
         <parameter name="width">5</parameter>
         <parameter name="height">8</parameter>
-        <parameter name="enterMessage">You feel heat from the breath of the dragon, and realise that he can hurt you even if you are not stood close.</parameter>
+        <parameter name="enterMessage">You feel heat from the breath of the dragon, and realise that he can hurt you even if you are not standing close.</parameter>
     </implementation>
   </entity>
   
