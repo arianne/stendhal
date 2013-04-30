@@ -29,6 +29,7 @@ These files are in the public domain:
                         http://www.freesound.org/people/Bidone/sounds/66150/
     piano-1:            
     pig-3:              http://www.mediacollege.com/downloads/sound-effects/animals/pig/
+    rattlesnake-1:      http://soundbible.com/237-Rattlesnake-Rattle.html
     roar-dragon-1:      http://www.freesound.org/people/JoelAudio/sounds/85568/
     roar-dragon-2:      http://www.freesound.org/people/frasbr/sounds/145729/
     roar-large-1:       http://www.freesound.org/people/ibm5155/sounds/174913/
