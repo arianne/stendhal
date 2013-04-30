@@ -56,7 +56,7 @@ These files are in the public domain:
     
 
 These files are released under the following BSD license:
-    laugh-evil-1, mutant-frog-1, mutant-frog-2, robot-1, slimy-1, slimy-2, snake-2,
+    laugh-evil-1, monkey-1, monkey-2, monkey-3, mutant-frog-1, mutant-frog-2, robot-1, slimy-1, slimy-2, snake-2,
     undead-1, undead-2, undead-3, undead-4, witch-cackle-1
 
 Copyright (c) 2013, Jordan Irwin
