@@ -300,7 +300,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
-        <sound value="bark-1"/>
+        <sound value="howl-1"/>
         <sound value="howl-5"/>
         <sound value="howl-2"/>
         <sound value="howl-11"/>
@@ -335,7 +335,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
-        <sound value="bark-1"/>
+        <sound value="howl-1"/>
         <sound value="howl-5"/>
         <sound value="howl-2"/>
         <sound value="howl-11"/>
