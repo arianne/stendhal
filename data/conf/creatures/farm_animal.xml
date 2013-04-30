@@ -120,6 +120,7 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Baaaaaa"/>
+        <sound value="sheep-4" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -176,7 +177,8 @@
       <says>
         <noise state="idle follow fight" value="Moooo       moooo           mooooooo"/>
         <noise state="idle follow fight" value="mooooo"/>
-        <sound value="cow-1"/>
+        <sound value="cow-1" />
+        <sound value="cowbell-1" />
       </says>
       <profile name="animal"/>
     </ai>
