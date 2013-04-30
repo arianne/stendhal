@@ -33,7 +33,7 @@
         <noise state="idle follow fight" value="Grrrr! Wooof!"/>
         <sound value="panda-1"/>
         <sound value="panda-2"/>
-        <sound value="racoon-1"/>
+        <sound value="raccoon-1"/>
         <sound value="lama-1"/>
       </says>
       <profile name="brave"/>
