@@ -14,9 +14,9 @@ These files are in the public domain:
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     creak-2:			http://soundbible.com/1717-Creaking-Door-Spooky.html
-    elephant-1:         http://sounds.simplythebest.net/details/12/Elephant-1-sound.html
-    elephant-2:         http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
-    elephant-3:         https://sourceforge.net/projects/myabcs
+    elephant-1, elephant-2:
+                        http://www.freesound.org/people/vataaa/sounds/148873/
+    elephant-rumble-1:  http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
     goat-1:             http://soundbible.com/1632-On-The-Farm.html
     goat-2:             http://soundbible.com/1662-Farm.html
     horse-1:            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
