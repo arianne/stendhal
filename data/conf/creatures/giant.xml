@@ -30,7 +30,7 @@
       <says>
       	<sound value="yell-1"/>
       	<sound value="laugh-33"/>
-      	<sound value="evillaugh-4"/>
+      	<sound value="laugh-evil-4"/>
       	<sound value="grunt-1"/>
       	<sound value="grunt-2"/>
       </says>
