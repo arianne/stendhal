@@ -118,8 +118,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2"/>
-        <sound value="snake-2"/>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
@@ -180,6 +180,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -274,6 +278,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -304,7 +312,8 @@
     </equips>
     <ai>
       <says>
-        <sound value="scream-fem-2"/>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
       </says>
       <profile name="poisonous" params="5,greater poison"/>
       <profile name="brave"/>
