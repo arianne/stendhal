@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
+  
   <creature name="amazoness archer">
     <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
     <description>You see an amazoness archer. She handles her bow quite well and her arrows are very dangerous when she shoots them at you out of the forest!</description>
@@ -32,64 +32,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="amazoness hunter">
-    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
-    <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn't like that you are in her hunting area!</description>
-    <attributes>
-      <atk value="484"/>
-      <def value="57"/>
-      <hp value="700"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="64"/>
-    <experience value="3390"/>
-    <respawn value="2000"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[1,30]" probability="100.0"/>
-      <item value="wooden spear" quantity="[2,5]" probability="10.0"/>
-      <item value="hunter crossbow" quantity="[1,1]" probability="2.0"/>
-      <item value="red legs" quantity="[1,1]" probability="3.0"/>
-      <item value="red cloak" quantity="[1,1]" probability="2.5"/>
-    </drops>
-    <equips>      
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="amazoness coastguard">
-    <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
-    <description>You see an amazoness coastguard. She protects the coasts of Amazon Island from intruders. She is not too happy to see you running in her island.</description>
-    <attributes>
-      <atk value="509"/>
-      <def value="67"/>
-      <hp value="700"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="69"/>
-    <experience value="4110"/>
-    <respawn value="2000"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[1,30]" probability="100.0"/>
-      <item value="red shield" quantity="[1,1]" probability="1.0"/>
-      <item value="red legs" quantity="[1,1]" probability="2.5"/>
-      <item value="sandwich" quantity="[1,1]" probability="5.5"/>
-    </drops>
-    <equips>      
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
     </ai>
   </creature>
   
@@ -124,36 +66,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="amazoness elite coastguard">
-    <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
-    <description>You see an amazoness elite coastguard. When it is her shift to protect the island, you would just wish to have stayed at home.</description>
-    <attributes>
-      <atk value="538"/>
-      <def value="73"/>
-      <hp value="700"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="75"/>
-    <experience value="4960"/>
-    <respawn value="2500"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,30]" probability="100.0"/>
-      <item value="red armor" quantity="[1,1]" probability="2.0"/>
-      <item value="red cloak" quantity="[1,1]" probability="5.5"/>
-      <item value="red boots" quantity="[1,1]" probability="5.5"/>
-      <item value="fish pie" quantity="[1,1]" probability="3.5"/>
-    </drops>
-    <equips>      
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
   
   <creature name="amazoness bodyguard">
     <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
@@ -174,6 +86,34 @@
       <item value="red armor" quantity="[1,1]" probability="2.0"/>
       <item value="red shield" quantity="[1,1]" probability="5.5"/>
      </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+    </ai>
+  </creature>
+  
+  <creature name="amazoness coastguard">
+    <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
+    <description>You see an amazoness coastguard. She protects the coasts of Amazon Island from intruders. She is not too happy to see you running in her island.</description>
+    <attributes>
+      <atk value="509"/>
+      <def value="67"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="69"/>
+    <experience value="4110"/>
+    <respawn value="2000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="red shield" quantity="[1,1]" probability="1.0"/>
+      <item value="red legs" quantity="[1,1]" probability="2.5"/>
+      <item value="sandwich" quantity="[1,1]" probability="5.5"/>
+    </drops>
     <equips>      
     </equips>
     <ai>
@@ -241,26 +181,57 @@
     </ai>
   </creature>
   
-  <creature name="amazoness vigilance">
-    <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
-    <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don't want her to hear you!</description>
+  <creature name="amazoness elite coastguard">
+    <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
+    <description>You see an amazoness elite coastguard. When it is her shift to protect the island, you would just wish to have stayed at home.</description>
     <attributes>
-      <atk value="629"/>
-      <def value="86"/>
-      <hp value="900"/>
+      <atk value="538"/>
+      <def value="73"/>
+      <hp value="700"/>
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="95"/>
-    <experience value="9520"/>
-    <respawn value="3990"/>
+    <level value="75"/>
+    <experience value="4960"/>
+    <respawn value="2500"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[10,70]" probability="100.0"/>
-      <item value="red armor" quantity="[1,1]" probability="5.0"/>
-      <item value="red cloak" quantity="[1,1]" probability="6.5"/>
-      <item value="red helmet" quantity="[1,1]" probability="5.0"/>
-     </drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="red armor" quantity="[1,1]" probability="2.0"/>
+      <item value="red cloak" quantity="[1,1]" probability="5.5"/>
+      <item value="red boots" quantity="[1,1]" probability="5.5"/>
+      <item value="fish pie" quantity="[1,1]" probability="3.5"/>
+    </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="amazoness hunter">
+    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
+    <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn't like that you are in her hunting area!</description>
+    <attributes>
+      <atk value="484"/>
+      <def value="57"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="64"/>
+    <experience value="3390"/>
+    <respawn value="2000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="wooden spear" quantity="[2,5]" probability="10.0"/>
+      <item value="hunter crossbow" quantity="[1,1]" probability="2.0"/>
+      <item value="red legs" quantity="[1,1]" probability="3.0"/>
+      <item value="red cloak" quantity="[1,1]" probability="2.5"/>
+    </drops>
     <equips>      
     </equips>
     <ai>
@@ -295,6 +266,35 @@
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
+    </ai>
+  </creature>
+  
+  <creature name="amazoness vigilance">
+    <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
+    <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don't want her to hear you!</description>
+    <attributes>
+      <atk value="629"/>
+      <def value="86"/>
+      <hp value="900"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="95"/>
+    <experience value="9520"/>
+    <respawn value="3990"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="red armor" quantity="[1,1]" probability="5.0"/>
+      <item value="red cloak" quantity="[1,1]" probability="6.5"/>
+      <item value="red helmet" quantity="[1,1]" probability="5.0"/>
+     </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
   
