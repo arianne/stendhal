@@ -149,13 +149,20 @@ Authors of Stendhal are:
 - Arco Mul aka Lumocra
   . Coder
 - AntumDeluge
-  . Maps (snake pit)
-  . Art (giant cobra)
-  . Sound Effects
-      Voiced: laugh-evil-1, mutant-frog-1, robot-1, snake-2, undead-(1-4)
+  . Coder
+  . Quests
+    . Antivenom Ring, Traps for Klaas, Emotion Crystals (mostly), Restock the Flower Shop
+  . Art
+  . Maps & maps touchups
+    . snake pit, apothecary lab
+  . Art & art touchups:
+    . giant cobra, medicinal ring, antivenom ring, gm antitoxin ring, rodent trap & more
+  . Sound editing/recording
+      Voiced sounds: laugh-evil-1, mutant-frog-1, robot-1, snake-2, undead-(1-4), monkey-(1-3), witch-cackle-1
   . Bugs
-  . Maps Touchup
   . Wiki
+  . Very small contribution the Stendhal main website
+  . Testing
   
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
