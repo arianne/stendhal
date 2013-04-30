@@ -26,6 +26,8 @@ These files are in the public domain:
     lion-2:             https://sourceforge.net/projects/myabcs
     loop-dragging-slimy-1:
                         http://www.freesound.org/people/altfuture/sounds/174634/
+    loop-grinding-stone-1:
+                        http://www.freesound.org/people/j1987/sounds/95007/
     penguin-1, penguin-2:
                         http://www.freesound.org/people/Bidone/sounds/66150/
     piano-1:            
