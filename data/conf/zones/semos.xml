@@ -3712,6 +3712,7 @@ Southwest: Or'ril Castle and Fado City
 				<parameter name="width">51</parameter>
 				<parameter name="height">25</parameter>
 				<parameter name="enterMessage">Your ears are ringing. Something is really wrong here.</parameter>
+				<parameter name="warnPlayer">true</parameter>
 			</implementation>
 		</entity>
 	</zone>

@@ -916,6 +916,7 @@ below average.
 				<parameter name="width">5</parameter>
 				<parameter name="height">5</parameter>
 				<parameter name="enterMessage">You hear faintly incantations of dark magic from below. The place reeks of danger.</parameter>
+                <parameter name="warnPlayer">true</parameter>
 			</implementation>
 		</entity>
 		
