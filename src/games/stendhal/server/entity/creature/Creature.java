@@ -122,7 +122,7 @@ public class Creature extends NPC {
 	
 	private String loopedSound;
 	private boolean playingLoopedSound = false;
-	private SoundEvent loopedSoundEvent;
+	private SoundEvent creatureLoopedSoundEvent;
 
 	/**
 	 * List of things this creature should say.
@@ -974,14 +974,17 @@ public class Creature extends NPC {
 	/**
 	 * Generates a looped sound for creature
 	 * 
-	 * FIXME: Does not activate LoopedSoundSource
+	 * FIXME: Does not prevent multiple SoundEvents from being added
 	 */
 	private void makeLoopedSound() {
-		playingLoopedSound = true;
-		if (loopedSoundEvent == null) {
-			loopedSoundEvent = new SoundEvent(loopedSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
+		// Create the sound event
+		if (creatureLoopedSoundEvent == null) {
+			creatureLoopedSoundEvent = new SoundEvent(loopedSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
 		}
-		addEvent(loopedSoundEvent);
+		
+		// Adds looped sound to list of events
+		addEvent(creatureLoopedSoundEvent);
+		playingLoopedSound = true;
 	}
 	
 	/**

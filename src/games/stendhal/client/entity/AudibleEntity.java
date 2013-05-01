@@ -69,6 +69,26 @@ abstract class AudibleEntity extends RPEntity {
 
 		return null;
 	}
+	
+	private String getSoundFromCategory(String groupName) {
+	    ArrayList<String> soundNameList = mCategorys.get(groupName);
+	    
+	    if ((soundNameList != null) && !soundNameList.isEmpty()) {
+	        return soundNameList.get(0);
+	    }
+	    
+	    return null;
+	}
+	
+	private String getSoundFromCategory(String groupName, int index) {
+	    ArrayList<String> soundNameList = mCategorys.get(groupName);
+	    
+	    if ((soundNameList != null) && !soundNameList.isEmpty()) {
+	        return soundNameList.get(index);
+	    }
+	    
+	    return null;
+	}
 
 	@Override
 	protected void onPosition(double x, double y) {
@@ -88,4 +108,14 @@ abstract class AudibleEntity extends RPEntity {
 			mWaitTime = System.currentTimeMillis() + waitTimeInMilliSec;
 		}
 	}
+	
+	protected void playSoundFromCategory(String groupName, String categoryName) {
+	    SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
+	    group.play(getSoundFromCategory(categoryName), 0, mAudibleArea, new Time(), false, true);
+	}
+	
+    protected void playSoundFromCategory(String groupName, String categoryName, int index) {
+        SoundGroup group = ClientSingletonRepository.getSound().getGroup(groupName);
+        group.play(getSoundFromCategory(categoryName, index), 0, mAudibleArea, new Time(), false, true);
+    }
 }

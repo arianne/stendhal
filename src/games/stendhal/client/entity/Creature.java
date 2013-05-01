@@ -101,6 +101,9 @@ public class Creature extends AudibleEntity {
 				"punch-1"   , "punch-2", "punch-3",
 				"punch-4"   , "punch-5", "punch-6",
 				"swingaxe-1", "slap-1" , "arrow-1");
+			
+	        addSounds(SoundLayer.FIGHTING_NOISE.groupName, "defend",
+	                "clang-dull-1");
 		}
 
 		if (object.has("metamorphosis")) {
@@ -109,6 +112,12 @@ public class Creature extends AudibleEntity {
 			metamorphosis = null;
 		}
 	}
+
+    @Override
+    public void onBlocked(IEntity attacker) {
+        super.onBlocked(attacker);
+        playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
+    }
 
 	@Override
 	public void onDamaged(Entity attacker, int damage) {

@@ -152,6 +152,15 @@ public class Player extends AudibleEntity {
 			"punch-1"   , "punch-2", "punch-3",
 			"punch-4"   , "punch-5", "punch-6",
 			"swingaxe-1", "slap-1" , "arrow-1");
+		
+		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
+		        "clang-dull-1");
+	}
+	
+	@Override
+	public void onBlocked(IEntity attacker) {
+	    super.onBlocked(attacker);
+	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
 
 	@Override
