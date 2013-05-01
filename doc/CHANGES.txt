@@ -10,6 +10,7 @@
 - Some new creature corpses
 - New NPC type: PassiveNPC
 - Warning messages for dangerous areas now show up in client display
+- Sound plays when player/creature blocks an attack
 
 *client*
 - Option to turn off creature speech bubbles
