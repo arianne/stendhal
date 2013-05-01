@@ -121,6 +121,7 @@
       <says>
         <noise state="idle follow fight" value="Baaaaaa"/>
         <sound value="sheep-4" />
+        <sound value="sheep-5" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
