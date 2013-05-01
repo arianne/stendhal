@@ -10,6 +10,7 @@ These files are in the public domain:
     					http://freesound.org/people/winsx87/sounds/152024/
     chicken-chick-1, chicken-chick-2:
                         http://www.freesound.org/people/Barbamiz/sounds/116135/
+    clang-dull-1:       http://www.freesound.org/people/alienistcog/sounds/124711/
     click-clack-1:      http://www.freesound.org/people/ecfike/sounds/128918/
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
