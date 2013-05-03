@@ -66,6 +66,38 @@
     </ai>
   </creature>
   
+  <creature name="mimic">
+    <type class="hybrid" subclass="mimic_idle" tileid="hybrid.png:14"/>
+    <description>You see a mimic. Its content might be different from what you expect.</description>
+    <attributes>
+      <atk value="240"/>
+      <def value="41"/>
+      <hp value="170"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1200"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="money" quantity="[45,85]" probability="50.0" />
+      <item value="broadsword" quantity="[1,1]" probability="4.0" />
+      <item value="dagger" quantity="[1,1]" probability="3.5" />
+      <item value="golden legs" quantity="[1,1]" probability="0.5" />
+      <item value="golden chainmail" quantity="[1,1]" probability="7.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      </says>
+      <profile name="brave"/>
+      <profile name="non-offensive" />
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
+    </ai>
+  </creature>
+  
   <creature name="red roohako">
     <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
     <description></description>
@@ -444,38 +476,6 @@
       <profile name="animal"/>
       <profile name="poisonous" params="4,mega poison"/>
       <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="mimic">
-    <type class="hybrid" subclass="mimic_idle" tileid="hybrid.png:14"/>
-    <description>You see a mimic. Its content might be different from what you expect.</description>
-    <attributes>
-      <atk value="240"/>
-      <def value="41"/>
-      <hp value="170"/>
-      <speed value="0.4"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="25"/>
-    <experience value="400"/>
-    <respawn value="1200"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="money" quantity="[45,85]" probability="50.0" />
-      <item value="broadsword" quantity="[1,1]" probability="4.0" />
-      <item value="dagger" quantity="[1,1]" probability="3.5" />
-      <item value="golden legs" quantity="[1,1]" probability="0.5" />
-      <item value="golden chainmail" quantity="[1,1]" probability="7.0" />
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-      </says>
-      <profile name="brave"/>
-      <profile name="non-offensive" />
-      <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
     </ai>
   </creature>
   
