@@ -184,6 +184,38 @@
     </ai>
   </creature>
   
+   <creature name="king cobra">
+    <type class="huge_animal" subclass="king_cobra" tileid="huge_animal.png:9"/>
+    <description>You see a king cobra. It is extremely venomous.</description>
+    <attributes>
+      <atk value="750"/>
+      <def value="102"/>
+      <hp value="1499"/>
+      <speed value="0.8"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="120"/>
+    <experience value="18850"/>
+    <respawn value="5400"/>
+    <corpse name="huge_animal" width="2" height="2"/>
+    <drops>
+      <item value="disease poison" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="snake-cobra-1" />
+        <sound value="snake-cobra-2" />
+      </says>
+      <profile name="poisonous" params="5,disease poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
   <creature name="red dragon">
     <type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:7"/>
     <description>You see into the emerald eyes of a red dragon. With these it can spot prey in the darkness. It's red scales serve it well, reflecting any light that shines on them blinding enemies. The scales are prized for their beauty, and difficult to obtain from such a ferocious beast.</description>
@@ -501,38 +533,6 @@
       <profile name="lifesteal" params="0.1"/>
       <profile name="patrolling"/>
       <profile name="attack weakest"/>
-    </ai>
-  </creature>
-  
-   <creature name="king cobra">
-    <type class="huge_animal" subclass="king_cobra" tileid="huge_animal.png:9"/>
-    <description>You see a king cobra. It is extremely venomous.</description>
-    <attributes>
-      <atk value="750"/>
-      <def value="102"/>
-      <hp value="1499"/>
-      <speed value="0.8"/>
-      <size value="3,2"/>
-    </attributes>
-    <level value="120"/>
-    <experience value="18850"/>
-    <respawn value="5400"/>
-    <corpse name="huge_animal" width="2" height="2"/>
-    <drops>
-      <item value="disease poison" quantity="[1,1]" probability="5.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="snake-cobra-1" />
-        <sound value="snake-cobra-2" />
-      </says>
-      <profile name="poisonous" params="5,disease poison"/>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
   
