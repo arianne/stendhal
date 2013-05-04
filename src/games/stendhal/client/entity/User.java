@@ -16,6 +16,7 @@ import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
+import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.grammar.Grammar;
 
@@ -32,6 +33,11 @@ import marauroa.common.game.RPObject;
  * @author durkham, hendrik
  */
 public class User extends Player {
+	/**
+	 * The speed at which to start moving before the the server responds to
+	 * pressing the arrow keys.
+	 */
+	private static final double PREDICTED_SPEED= 0.5;
 
 	private static User instance;
 	private static String groupLootmode;
@@ -437,5 +443,23 @@ public class User extends Player {
 	 */
 	public String getZoneName() {
 		return rpObject.getID().getZoneID();
+	}
+	
+	/**
+	 * Start movement towards a direction. This is for
+	 * the client side movement prediction to start moving before the server
+	 * responds to the move action.
+	 * 
+	 * @param direction new direction 
+	 * 
+	 */
+	public void predictMovement(final Direction direction) {
+		// Only handle the case of starting movement. Prediction when already
+		// moving looks odd.
+		if (stopped()) {
+			super.setDirection(direction);
+			fireChange(PROP_DIRECTION);
+			setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
+		}
 	}
 }

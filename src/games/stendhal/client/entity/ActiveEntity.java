@@ -48,8 +48,7 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	ActiveEntity() {
 		direction = Direction.DOWN;
-		dx = 0.0;
-		dy = 0.0;
+		setSpeed(0.0, 0.0);
 	}
 
 	//
@@ -71,7 +70,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param direction
 	 *            The direction.
 	 */
-	private void setDirection(final Direction direction) {
+	void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
 
@@ -133,8 +132,7 @@ public abstract class ActiveEntity extends Entity {
 
 		double oldx = this.x;
 		double oldy = this.y;
-		this.dx = direction.getdx() * speed;
-		this.dy = direction.getdy() * speed;
+		setSpeed(direction.getdx() * speed, direction.getdy() * speed);
 
 		if ((Direction.LEFT.equals(direction))
 				|| (Direction.RIGHT.equals(direction))) {
@@ -304,8 +302,7 @@ public abstract class ActiveEntity extends Entity {
 
 		boolean positionChanged = false;
 		if ((Direction.STOP.equals(tempDirection)) || (speed == 0)) {
-			dx = 0.0;
-			dy = 0.0;
+			setSpeed(0.0, 0.0);
 			
 			/*
 			 * Try to ensure relocation in the case the client and server were
@@ -326,5 +323,18 @@ public abstract class ActiveEntity extends Entity {
 		if (positionChanged || ((oldx != newX) && (oldy != newY))) {
 			onPosition(newX, newY);
 		}
+	}
+	
+	/**
+	 * Set the current client side speed. This is used by the movement
+	 * prediction at key press. <b>Do not call unless you know what you're
+	 * doing. </b>
+	 * 
+	 * @param dx horizontal speed
+	 * @param dy vertical speed
+	 */
+	void setSpeed(double dx, double dy) {
+		this.dx = dx;
+		this.dy = dy;
 	}
 }
