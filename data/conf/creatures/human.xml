@@ -3351,6 +3351,8 @@
   
   <!-- END: risecia -->
   
+  <!-- START: wizard -->
+  
   <creature name="littlewitch">
     <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
     <description>You see a little witch. Witches are are evil little girls who are very dangerous.</description>
@@ -3405,8 +3407,6 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-  
-  <!-- START: wizard -->
   
   <!-- END: wizard -->
   
