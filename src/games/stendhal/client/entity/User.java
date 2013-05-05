@@ -460,6 +460,7 @@ public class User extends Player {
 			super.setDirection(direction);
 			fireChange(PROP_DIRECTION);
 			setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
+			fireChange(PROP_SPEED);
 		}
 	}
 }
