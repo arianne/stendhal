@@ -20,6 +20,7 @@
 - Fixed text on sign near Jynath's house
 - Kanmararn Soldiers harmless corpses fixed
 - Removed background noise from many sound effects
+- Creature XML files have been reorganized without affecting client/server compatibility
 
 
 1.07
