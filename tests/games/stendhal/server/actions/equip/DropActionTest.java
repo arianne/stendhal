@@ -54,7 +54,7 @@ public class DropActionTest extends ZoneAndPlayerTestImpl {
 		localzone.add(player);
 
 		Item item = SingletonRepository.getEntityManager().getItem("dice");
-		player.equip(item, 1);
+		player.equipToInventoryOnly(item);
 
 		assertEquals(0, localzone.getItemsOnGround().size());
 

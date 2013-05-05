@@ -36,6 +36,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
@@ -170,12 +171,15 @@ public class HouseBuyingAthorTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("athor apartment 101;0;player", item.get("infostring"));
 		assertFalse(item.isBound());
 		
-		player.equip(SingletonRepository.getEntityManager().getItem("money"), 1000);
+		PlayerTestHelper.equipWithMoney(player, 1000);
+		assertTrue(player.isEquipped("money", 1000));
 		assertEquals("Before we go on, I must warn you that anyone with a key to your house can enter it, and access the items in the chest in your house. Do you still wish to buy a spare key?", getReply(npc));
 		en.step(player, "yes");
-
+		assertFalse(player.isEquipped("money", 1000));
 		assertEquals("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust! Anyone with a spare key can access your chest, and tell anyone that you give a key to, to let you know if they lose it. If that happens, you should #change your locks.", getReply(npc));
 		// [14:07] You see a key to player's property, athor apartment 101.
+		PlayerTestHelper.equipWithMoney(player, 1000);
+		assertTrue(player.isEquipped("money", 1000));
 		en.step(player, "change");
 		assertEquals("If you are at all worried about the security of your house or, don't trust anyone you gave a spare key to, it is wise to change your locks. Do you want me to change your house lock and give you a new key now?", getReply(npc));
 		en.step(player, "no");

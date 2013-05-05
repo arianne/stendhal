@@ -535,7 +535,7 @@ public class VampireSwordTest {
 			final Item goblet = player.getFirstEquipped("goblet");
 			assertEquals("The filled goblet is bound", "me", goblet.getBoundTo());
 			
-			player.dropAll("goblet");
+			player.drop("goblet");
 		}
 	}
 	

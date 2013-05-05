@@ -49,7 +49,6 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
-import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -158,6 +157,10 @@ public class Player extends RPEntity implements UseListener {
 	 * version of the client
 	 */
 	private String clientVersion;
+	/**
+	 * The turn when the player last time pushed something.
+	 */
+	private int turnOfLastPush;
 	/**
 	 * The turn the player started moving using the keyboard. Used for
 	 * detecting quick presses ment to move one tile.
@@ -1565,21 +1568,6 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * Removes all units of an item from the RPEntity. The item can either be
-	 * stackable or non-stackable. If the RPEntity doesn't have any of the item,
-	 * doesn't remove anything.
-	 *
-	 * @param name
-	 *            The name of the item
-	 * @return true iff dropping the item was successful.
-	 */
-	public boolean dropAll(final String name) {
-		return drop(name, getNumberOfEquipped(name));
-	}
-
-	private int turnOfLastPush;
-
-	/**
 	 * Called when player push entity. The entity displacement is handled by the
 	 * action itself.
 	 *
@@ -2131,18 +2119,6 @@ public class Player extends RPEntity implements UseListener {
 				TutorialNotifier.killedPlayer(killer);
             }
 		}
-	}
-
-	public void equip(final Item item, final int amount) {
-		if (item instanceof Stackable<?>) {
-			((Stackable<?>) item).setQuantity(amount);
-			super.equipToInventoryOnly(item);
-		} else {
-			for (int i = 1; i <= amount; i++) {
-				super.equipOrPutOnGround(item);
-			}
-		}
-		super.equipToInventoryOnly(item);
 	}
 
 	public PetOwner getPetOwner() {
