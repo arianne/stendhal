@@ -31,8 +31,7 @@ public class StopAction implements ActionListener {
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
-
-		player.stop();
+		player.requestStop();
 
 		if (action.has(ATTACK)) {
 			player.stopAttack();

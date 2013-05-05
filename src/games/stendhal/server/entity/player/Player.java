@@ -35,6 +35,8 @@ import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -162,6 +164,11 @@ public class Player extends RPEntity implements UseListener {
 	 * version of the client
 	 */
 	private String clientVersion;
+	/**
+	 * The turn the player started moving using the keyboard. Used for
+	 * detecting quick presses ment to move one tile.
+	 */
+	private int startMoveTurn;
 
 
 	/**
@@ -293,6 +300,7 @@ public class Player extends RPEntity implements UseListener {
 			clearPath();
 		}
 
+		startMoveTurn = SingletonRepository.getRuleProcessor().getTurn();
 		directions.remove(direction);
 		directions.add(direction);
 	}
@@ -316,7 +324,7 @@ public class Player extends RPEntity implements UseListener {
 	public void applyClientDirection(final boolean stopOnNone) {
 		int size;
 		Direction direction;
-
+		
 		/*
 		 * For now just take last direction.
 		 *
@@ -335,8 +343,6 @@ public class Player extends RPEntity implements UseListener {
 
 			setDirection(direction);
 			setSpeed(getBaseSpeed());
-		} else if (stopOnNone) {
-			stop();
 		}
 	}
 
@@ -349,6 +355,32 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		return super.isObstacle(entity);
+	}
+	
+	/**
+	 * Request stopping the player, unless the player started moving the same
+	 * turn. Intended for client initiated stops, that should not prevent the
+	 * player moving one tile with a quick key press.
+	 */
+	public void requestStop() {
+		int turn = SingletonRepository.getRuleProcessor().getTurn();
+		
+		if (turn != startMoveTurn) {
+			stop();
+		} else {
+			TurnNotifier.get().notifyInTurns(1, new TurnListener() {
+				@Override
+				public void onTurnReached(int currentTurn) {
+					/*
+					 * Check the turn again. The player may have sent yet
+					 * another move command, and we do not want to cancel that.
+					 */
+					if (currentTurn != startMoveTurn) {
+						stop();
+					}
+				}
+			});
+		}
 	}
 
 	/**
