@@ -19,6 +19,7 @@
 - quest log of EmotionCrystals fixed
 - Fixed text on sign near Jynath's house
 - Kanmararn Soldiers harmless corpses fixed
+- Removed background noise from many sound effects
 
 
 1.07
