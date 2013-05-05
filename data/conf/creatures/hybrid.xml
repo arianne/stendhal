@@ -38,7 +38,7 @@
   
   <!-- END: arachnid -->
   
-  <!-- START: cat woman -->
+  <!-- START: feline -->
   
   <creature name="cat woman">
     <type class="mutant" subclass="cat_woman" tileid="mutant.png:5"/>
@@ -71,7 +71,7 @@
     </ai>
   </creature>
   
-  <!-- END: cat woman -->
+  <!-- END: feline -->
   
   <!-- START: frogman -->
   
