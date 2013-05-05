@@ -5,7 +5,7 @@
   <!-- START: amazon -->
   
   <creature name="amazoness archer">
-    <type class="amazon" subclass="amazoness_archer" tileid="human/amazon.png:1"/>
+    <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
     <description>You see an amazoness archer. She handles her bow quite well and her arrows are very dangerous when she shoots them at you out of the forest!</description>
     <attributes>
       <atk value="448"/>
@@ -38,7 +38,7 @@
   </creature>
   
   <creature name="amazoness archer commander">
-    <type class="amazon" subclass="amazoness_archer_commander" tileid="human/amazon.png:0"/>
+    <type class="amazon" subclass="amazoness_archer_commander" tileid="amazon.png:0"/>
     <description>You see an amazoness archer commander. She is the leader of amazoness archers. Her bow skills are incredible and her arrows pierce everything.</description>
     <attributes>
       <atk value="518"/>
@@ -70,7 +70,7 @@
   </creature>
   
   <creature name="amazoness bodyguard">
-    <type class="amazon" subclass="amazoness_bodyguard" tileid="human/amazon.png:2"/>
+    <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
     <description>You see an amazoness bodyguard who will guarantee the safety to the people of Amazon island.</description>
     <attributes>
       <atk value="548"/>
@@ -97,7 +97,7 @@
   </creature>
   
   <creature name="amazoness coastguard">
-    <type class="amazon" subclass="amazoness_coastguard" tileid="human/amazon.png:3"/>
+    <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
     <description>You see an amazoness coastguard. She protects the coasts of Amazon Island from intruders. She is not too happy to see you running in her island.</description>
     <attributes>
       <atk value="509"/>
@@ -125,7 +125,7 @@
   </creature>
   
   <creature name="amazoness coastguard mistress">
-    <type class="amazon" subclass="amazoness_coastguard_master" tileid="human/amazon.png:9"/>
+    <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
     <description>You see an amazoness coastguard mistress. Even if they are women, these blue haired mistresses should not be underestimated.</description>
     <attributes>
       <atk value="569"/>
@@ -156,7 +156,7 @@
   </creature>
   
   <creature name="amazoness commander">
-    <type class="amazon" subclass="amazoness_commander" tileid="human/amazon.png:4"/>
+    <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
     <description>You see an amazoness commander who is specialised in eliminating any strangers who dare to take a step to her island.</description>
     <attributes>
       <atk value="566"/>
@@ -184,7 +184,7 @@
   </creature>
   
   <creature name="amazoness elite coastguard">
-    <type class="amazon" subclass="amazoness_elite_coastguard" tileid="human/amazon.png:5"/>
+    <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
     <description>You see an amazoness elite coastguard. When it is her shift to protect the island, you would just wish to have stayed at home.</description>
     <attributes>
       <atk value="538"/>
@@ -214,7 +214,7 @@
   </creature>
   
   <creature name="amazoness hunter">
-    <type class="amazon" subclass="amazoness_hunter" tileid="human/amazon.png:6"/>
+    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
     <description>You see an amazoness hunter. She creeps through the forest to hunt animals. But she doesn't like that you are in her hunting area!</description>
     <attributes>
       <atk value="484"/>
@@ -244,7 +244,7 @@
   </creature>
   
   <creature name="amazoness vigilance">
-    <type class="amazon" subclass="amazoness_vigilance" tileid="human/amazon.png:8"/>
+    <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
     <description>You see an amazoness vigilance. Her senses are well tuned, so you have to be very silent when you don't want her to hear you!</description>
     <attributes>
       <atk value="629"/>
@@ -273,7 +273,7 @@
   </creature>
   
   <creature name="amazoness imperator">
-    <type class="amazon" subclass="amazoness_imperator" tileid="human/amazon.png:7"/>
+    <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
     <description>You see an amazoness imperator. She is the emperor of Amazon island and has ruled it for decades and won't let you get past her very easily.</description>
     <attributes>
       <atk value="687"/>
