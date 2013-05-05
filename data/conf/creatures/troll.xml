@@ -1,7 +1,178 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
+  
+  <!-- START: cyclops -->
+  
+  <creature name="cyclops">
+    <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
+    <description>You see a cyclops. It just has one eye.</description>
+    <attributes>
+      <atk value="125"/>
+      <def value="26"/>
+      <hp value="60"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="9"/>
+    <experience value="90"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[6,13]" probability="100.0"/>
+      <item value="chain armor" quantity="[1,1]" probability="1.0"/>
+      <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="studded boots" quantity="[1,1]" probability="0.5"/>
+      <item value="enhanced mace" quantity="[1,1]" probability="1.0"/>
+      <item value="studded shield" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      	<sound value="yell-1"/>
+      	<sound value="laugh-33"/>
+      	<sound value="laugh-evil-4"/>
+      	<sound value="grunt-1"/>
+      	<sound value="grunt-2"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: cyclops -->
+  
+  <!-- START: ogre -->
+  
+  <creature name="ogre">
+    <type class="giant" subclass="ogre" tileid="giant.png:2"/>
+    <description>You see an ogre, it is nude and rude!</description>
+    <attributes>
+      <atk value="151"/>
+      <def value="20"/>
+      <hp value="140"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[6,19]" probability="100.0"/>
+      <item value="hammer" quantity="[1,1]" probability="7.0"/>
+      <item value="golden hammer" quantity="[1,1]" probability="0.7"/>
+      <item value="chain armor" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="0.9"/>
+      <item value="enhanced mace" quantity="[1,1]" probability="0.9"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="yell-1"/>
+        <sound value="groan-1"/>
+        <sound value="moan-1"/>
+        <sound value="fart-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="elder ogre">
+    <type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
+     <description>You see an elder ogre, he's in the last moments of his life, take pity on him.</description>
+    <attributes>
+      <atk value="195"/>
+      <def value="13"/>
+      <hp value="350"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="17"/>
+    <experience value="210"/>
+    <respawn value="1240"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[6,27]" probability="100.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="4.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="1.0"/>
+      <item value="skull staff" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="ogre soldier">
+    <type class="giant" subclass="ogre_soldier" tileid="giant.png:3"/>
+    <description>You see an ogre soldier, smelling like it didn't have had a bath for years. Ewww.</description>
+    <attributes>
+      <atk value="222"/>
+      <def value="40"/>
+      <hp value="132"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="22"/>
+    <experience value="320"/>
+    <respawn value="1270"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[6,31]" probability="100.0"/>
+      <item value="battle axe" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="superogre">
+    <type class="giant" subclass="superogre" tileid="giant.png:4"/>
+    <description>You see a superogre which belongs to the family of very material creatures, the Ogres. Ever since this one happened upon a peculiar helmet and has been revered among its peers. Take care, it throws a mean punch!</description>
+    <attributes>
+      <atk value="296"/>
+      <def value="52"/>
+      <hp value="195"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="33"/>
+    <experience value="640"/>
+    <respawn value="1380"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[6,31]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <!-- END: ogre -->
+  
+  <!-- START: troll -->
+  
   <creature name="troll">
     <type class="troll" subclass="troll" tileid="troll.png:0"/>
     <description>You see a troll, be careful in his terrain.</description>
@@ -112,6 +283,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-   
-</creatures>  
+  
+  <!-- END: troll -->
+  
+</creatures>

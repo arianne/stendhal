@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+  
+  <!-- START: dark -->
+  
+  <creature name="dark angel">
+    <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
+    <description>You see a dark angel. He is an strong evil angel, and for now he is under cover of darkness.</description>
+    <attributes>
+      <atk value="1755"/>
+      <def value="142"/>
+      <hp value="12000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="400"/>
+    <experience value="623000"/>
+    <respawn value="160000"/>
+    <corpse name="giant_humanoid" harmless="halo_large" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[2,4]" probability="50.0"/>
+      <item value="giant heart" quantity="[1,1]" probability="90.0"/>
+      <item value="money" quantity="[3000,30000]" probability="100.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="2.0"/>
+      <item value="jewelled legs" quantity="[1,1]" probability="2.5"/>
+      <item value="black cloak" quantity="[1,1]" probability="2.5"/>
+      <item value="liberty helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="magic twoside axe" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="My will be done over land and sky!"/>
+        <noise state="idle follow fight" value="Mine is the Power and the Glory!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="lifesteal" params="0.1"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <creature name="dark archangel">
+    <type class="giant_human" subclass="dark_archangel" tileid="giant_human.png:12"/>
+    <description>You see a dark archangel. After she fell from heaven her soul became as dark as she is now.</description>
+    <attributes>
+      <atk value="1965"/>
+      <def value="171"/>
+      <hp value="18000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="500"/>
+    <experience value="750000"/>
+    <respawn value="100000"/>
+    <corpse name="giant_humanoid" harmless="halo_large" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[2,5]" probability="50.0"/>
+      <item value="soup" quantity="[2,4]" probability="50.0"/>
+      <item value="giant heart" quantity="[1,1]" probability="90.0"/>
+      <item value="mithril boots" quantity="[1,1]" probability="1.0"/>
+      <item value="power arrow" quantity="[10,30]" probability="5.0"/>
+      <item value="mithril bow" quantity="[1,1]" probability="0.5"/>
+      <item value="money" quantity="[5000,25000]" probability="100.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="power arrow" quantity="10000"/>
+      <slot name="rhand" item="hunter crossbow" quantity="1"/>
+    </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.8"/>
+      <susceptibility type="light" value="1.1"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I will strike you down with more power than you can imagine!!"/>
+        <noise state="idle follow fight" value="My will be done!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="archer"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="lifesteal" params="0.05"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: dark -->
+  
+  <!-- START: fallen -->
+  
+  <creature name="fallen angel">
+    <type class="giant_human" subclass="fallen_angel" tileid="giant_human.png:7"/>
+    <description>You see a fallen angel. When he turned away from good, he fell down from heaven.</description>
+    <attributes>
+      <atk value="1120"/>
+      <def value="105"/>
+      <hp value="4333"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="210"/>
+    <experience value="90000"/>
+    <respawn value="28000"/>
+    <corpse name="giant_humanoid" harmless="halo_large_red" width="2" height="2"/>
+    <drops>
+      <item value="greater potion" quantity="[1,2]" probability="50.0"/>
+      <item value="giant heart" quantity="[1,1]" probability="85.0"/>
+      <item value="money" quantity="[200,1000]" probability="100.0"/>
+      <item value="black armor" quantity="[1,1]" probability="0.02"/>
+      <item value="vulcano hammer" quantity="[1,1]" probability="0.01"/>
+      <item value="black cloak" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You are DOOMED."/>
+        <noise state="idle follow fight" value="I am here to destroy all people."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: fallen -->
+  
+  <!-- START: light -->
+  
+  <creature name="baby angel">
+    <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
+    <description>You see a baby angel. Will it ever get a chance to grow up?</description>
+    <attributes>
+      <atk value="628"/>
+      <def value="100"/>
+      <hp value="700"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <corpse name="humanoid" harmless="halo" />
+    <drops>
+      <item value="money" quantity="[30,60]" probability="100.0"/>
+      <item value="fairy cake" quantity="[1,5]" probability="10.0"/>
+      <item value="empty scroll" quantity="[1,2]" probability="5.0"/>
+      <item value="golden cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="liberty helmet" quantity="[1,1]" probability="0.1"/>
+      <item value="balloon" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.3"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I want to grow to be mighty!"/>
+	<sound value="sneeze-baby-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="angel">
+    <type class="giant_human" subclass="angel" tileid="giant_human.png:4"/>
+    <description>You see an angel. With his flame sword he guards the way and doesn't let you pass.</description>
+    <attributes>
+      <atk value="1187"/>
+      <def value="128"/>
+      <hp value="4000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="230"/>
+    <experience value="123000"/>
+    <respawn value="36000"/>
+    <corpse name="giant_humanoid" harmless="halo_large" width="2" height="2"/>
+    <drops>
+      <item value="greater potion" quantity="[1,4]" probability="50.0"/>
+      <item value="giant heart" quantity="[1,1]" probability="85.0"/>
+      <item value="money" quantity="[300,3000]" probability="100.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.1"/>
+      <item value="magic chain helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="immortal sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.2"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Meet thy maker!"/>
+        <noise state="idle follow fight" value="Mere mortals cannot challenge me!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="10,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="archangel">
+    <type class="giant_human" subclass="archangel" tileid="giant_human.png:11"/>
+    <description>You see an archangel. She wants to kill you because she doesn't want you in the clouds.</description>
+    <attributes>
+      <atk value="1455"/>
+      <def value="162"/>
+      <hp value="7000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="330"/>
+    <experience value="363000"/>
+    <respawn value="40000"/>
+    <corpse name="giant_humanoid" harmless="halo_large" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[1,4]" probability="40.0"/>
+      <item value="soup" quantity="[1,3]" probability="30.0"/>
+      <item value="giant heart" quantity="[1,1]" probability="90.0"/>
+      <item value="mithril legs" quantity="[1,1]" probability="0.3"/>
+      <item value="power arrow" quantity="[10,30]" probability="7.0"/>
+      <item value="mithril bow" quantity="[1,1]" probability="0.2"/>
+      <item value="money" quantity="[4000,9000]" probability="100.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="power arrow" quantity="10000"/>
+      <slot name="rhand" item="hunter crossbow" quantity="1"/>
+    </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.2"/>
+      <susceptibility type="light" value="0.7"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Leave now, before it is too late for you."/>
+        <noise state="idle follow fight" value="Your destiny is not here."/>
+        <noise state="idle follow fight" value="Neither the earth nor the sky has a place for you..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="archer"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="10,50"/>
+      <profile name="lifesteal" params="0.01"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: light -->
+  
+</creatures>

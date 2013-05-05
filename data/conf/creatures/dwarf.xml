@@ -1,142 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
-  <creature name="dwarf">
-    <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
-    <description>You see a dwarf who works in the mine to find some iron for us.</description>
-    <attributes>
-      <atk value="168"/>
-      <def value="26"/>
-      <hp value="140"/>
-      <speed value="0.3"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="15"/>
-    <experience value="180"/>
-    <respawn value="1230"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[9,22]" probability="100.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
-      <item value="axe" quantity="[1,1]" probability="3.0"/>
-      <item value="enhanced mace" quantity="[1,1]" probability="0.5"/>
-      <item value="steel boots" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="dwarf guardian">
-    <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
-    <description>You see a dwarf guardian who fights against the humans.</description>
-    <attributes>
-      <atk value="200"/>
-      <def value="31"/>
-      <hp value="150"/>
-      <speed value="0.6"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="18"/>
-    <experience value="230"/>
-    <respawn value="1240"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[9,25]" probability="100.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="7.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="2.5"/>
-      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.35"/>
-      <item value="battle axe" quantity="[1,1]" probability="3.0"/>
-      <item value="golden mace" quantity="[1,1]" probability="0.5"/>
-      <item value="steel boots" quantity="[1,1]" probability="1.0"/>
-      <item value="viking helmet" quantity="[1,1]" probability="3.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="elder dwarf">
-    <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
-    <description>You see an elder dwarf, a mighty warrior tired of fighting.</description>
-    <attributes>
-      <atk value="214"/>
-      <def value="33"/>
-      <hp value="180"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="20"/>
-    <experience value="280"/>
-    <respawn value="1260"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[9,30]" probability="100.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="5.0"/>
-      <item value="golden chainmail" quantity="[1,1]" probability="1.0"/>
-      <item value="twoside axe" quantity="[1,1]" probability="2.5"/>
-      <item value="hammer" quantity="[1,1]" probability="0.5"/>
-      <item value="steel boots" quantity="[1,1]" probability="1.0"/>
-      <item value="dwarf cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="lion shield" quantity="[1,1]" probability="3.5"/>
-      <item value="halberd" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips/>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
   
-  <creature name="hero dwarf">
-    <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
-    <description>You see a hero dwarf. He is an old dwarf warrior who became a hero for fighting in many dwarf wars and he is very famous for his strength and brutality.</description>
-    <attributes>
-      <atk value="244"/>
-      <def value="43"/>
-      <hp value="160"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="25"/>
-    <experience value="400"/>
-    <respawn value="1300"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="4.5"/>
-      <item value="plate armor" quantity="[1,1]" probability="0.05"/>
-      <item value="twoside axe" quantity="[1,1]" probability="3.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="0.05"/>
-      <item value="golden boots" quantity="[1,1]" probability="0.1"/>
-      <item value="golden hammer" quantity="[1,1]" probability="3.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
- 
-   <creature name="duergar">
+  <!-- START: duergar -->
+  
+  <creature name="duergar">
     <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
     <description></description>
     <attributes>
@@ -164,7 +32,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="duergar axeman">
     <type class="dwarf" subclass="duergar_axe" tileid="dwarf_duergar.png:0"/>
     <description></description>
@@ -196,42 +64,7 @@
     </ai>
   </creature>
   
-   <creature name="leader dwarf">
-    <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
-    <description>You see a leader dwarf. He is the most mighty dwarf of his tribe so he enjoys much popularity there.</description>
-    <attributes>
-      <atk value="311"/>
-      <def value="111"/>
-      <hp value="80"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="35"/>
-    <experience value="770"/>
-    <respawn value="1420"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="plate armor" quantity="[1,1]" probability="8.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="0.25"/>
-      <item value="bardiche" quantity="[1,1]" probability="0.45"/>
-      <item value="war hammer" quantity="[1,1]" probability="5.25"/>
-      <item value="stone boots" quantity="[1,1]" probability="0.0050"/>
-      <item value="stone cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="potion" quantity="[1,2]" probability="1.5"/>
-      <item value="crown shield" quantity="[1,1]" probability="4.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="attack weakest"/>
-    </ai>
-  </creature>
-  
-   <creature name="elder duergar">
+  <creature name="elder duergar">
     <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
     <description></description>
     <attributes>
@@ -257,7 +90,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>  
-   
+  
   <creature name="duergar elite">
     <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
     <description></description>
@@ -347,6 +180,351 @@
     </ai>
   </creature>
   
+  <creature name="black duergar">
+    <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="473"/>
+      <def value="69"/>
+      <hp value="458"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="60"/>
+    <experience value="2760"/>
+    <respawn value="1800"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>      
+      <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
+      <item value="black legs" quantity="[1,1]" probability="0.0010"/>
+      <item value="halberd" quantity="[1,1]" probability="0.5"/>
+      <item value="golden twoside axe" quantity="[1,1]" probability="0.01"/>
+      <item value="black boots" quantity="[1,1]" probability="0.0010"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Dwarves are the enemy ... but we kill all who cross our path!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="duergar king">
+    <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="593"/>
+      <def value="82"/>
+      <hp value="736"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="81"/>
+    <experience value="6120"/>
+    <respawn value="2880"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[30,97]" probability="90.0"/>      
+      <item value="stone armor" quantity="[1,1]" probability="0.1"/>
+      <item value="black armor" quantity="[1,1]" probability="0.0001"/>
+      <item value="horned golden helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="dwarvish legs" quantity="[1,1]" probability="1.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <!-- END: duergar -->
+  
+  <!-- START: dwarf -->
+  
+  <creature name="dwarf">
+    <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
+    <description>You see a dwarf who works in the mine to find some iron for us.</description>
+    <attributes>
+      <atk value="168"/>
+      <def value="26"/>
+      <hp value="140"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[9,22]" probability="100.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="axe" quantity="[1,1]" probability="3.0"/>
+      <item value="enhanced mace" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="dwarf guardian">
+    <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
+    <description>You see a dwarf guardian who fights against the humans.</description>
+    <attributes>
+      <atk value="200"/>
+      <def value="31"/>
+      <hp value="150"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="18"/>
+    <experience value="230"/>
+    <respawn value="1240"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[9,25]" probability="100.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="7.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="2.5"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.35"/>
+      <item value="battle axe" quantity="[1,1]" probability="3.0"/>
+      <item value="golden mace" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="1.0"/>
+      <item value="viking helmet" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="elder dwarf">
+    <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
+    <description>You see an elder dwarf, a mighty warrior tired of fighting.</description>
+    <attributes>
+      <atk value="214"/>
+      <def value="33"/>
+      <hp value="180"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[9,30]" probability="100.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="1.0"/>
+      <item value="twoside axe" quantity="[1,1]" probability="2.5"/>
+      <item value="hammer" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarf cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="lion shield" quantity="[1,1]" probability="3.5"/>
+      <item value="halberd" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="hero dwarf">
+    <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
+    <description>You see a hero dwarf. He is an old dwarf warrior who became a hero for fighting in many dwarf wars and he is very famous for his strength and brutality.</description>
+    <attributes>
+      <atk value="244"/>
+      <def value="43"/>
+      <hp value="160"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="4.5"/>
+      <item value="plate armor" quantity="[1,1]" probability="0.05"/>
+      <item value="twoside axe" quantity="[1,1]" probability="3.0"/>
+      <item value="bardiche" quantity="[1,1]" probability="0.05"/>
+      <item value="golden boots" quantity="[1,1]" probability="0.1"/>
+      <item value="golden hammer" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="leader dwarf">
+    <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
+    <description>You see a leader dwarf. He is the most mighty dwarf of his tribe so he enjoys much popularity there.</description>
+    <attributes>
+      <atk value="311"/>
+      <def value="111"/>
+      <hp value="80"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="35"/>
+    <experience value="770"/>
+    <respawn value="1420"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="8.0"/>
+      <item value="golden armor" quantity="[1,1]" probability="0.25"/>
+      <item value="bardiche" quantity="[1,1]" probability="0.45"/>
+      <item value="war hammer" quantity="[1,1]" probability="5.25"/>
+      <item value="stone boots" quantity="[1,1]" probability="0.0050"/>
+      <item value="stone cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="potion" quantity="[1,2]" probability="1.5"/>
+      <item value="crown shield" quantity="[1,1]" probability="4.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <!-- END: dwarf -->
+  
+  <!-- START: giant dwarf -->
+  
+  <creature name="giant dwarf">
+    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:5"/>
+    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because some of the other dwarves don't really see him as one of them because of his height... But in his big heart he is a dwarf and in a battle he will fight against each enemy!</description>
+    <attributes>
+      <atk value="616"/>
+      <def value="99"/>
+      <hp value="700"/>
+      <speed value="0.4"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[50,200]" probability="100.0"/>
+      <item value="stone armor" quantity="[1,1]" probability="1.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="magic twoside axe" quantity="[1,1]" probability="0.2"/>
+      <item value="durin axe" quantity="[1,1]" probability="0.01"/>
+      <item value="golden mace" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="Dhohr Nuggetcutter">
+    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="619"/>
+      <def value="101"/>
+      <hp value="700"/>
+      <speed value="0.4"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[50,200]" probability="100.0"/>
+      <item value="mithril bar" quantity="[1,1]" probability="0.0010"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="mithril nugget" quantity="[1,1]" probability="0.2"/>
+      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
+      <item value="snowglobe" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="Lord Durin">
+    <type class="dwarf" subclass="lord_durin" tileid="dwarf.png:7"/>
+    <description>You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.</description>
+    <attributes>
+      <atk value="1855"/>
+      <def value="180"/>
+      <hp value="6500"/>
+      <speed value="0.5"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="325"/>
+    <experience value="300000"/>
+    <respawn value="75000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[1,4]" probability="20.0"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.25"/>
+      <item value="durin axe" quantity="[1,1]" probability="1.0"/>
+      <item value="pie" quantity="[2,4]" probability="10.0"/>
+      <item value="money" quantity="[3000,8000]" probability="100.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="durin axe" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Don't call me Friend."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: giant dwarf -->
+  
+  <!-- START: mountain dwarf -->
+  
   <creature name="mountain dwarf">
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
     <description>You see a mountain dwarf. He likes earth, stones and rocks. Deep within the mountain, where no animal and no human has ever been, you can hear the sound of his pickaxe as he searches for gold and ore.</description>
@@ -410,42 +588,8 @@
       <profile name="patrolling"/>
     </ai>
   </creature>  
- 
-   <creature name="black duergar">
-    <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
-    <description></description>
-    <attributes>
-      <atk value="473"/>
-      <def value="69"/>
-      <hp value="458"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="60"/>
-    <experience value="2760"/>
-    <respawn value="1800"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[3,27]" probability="90.0"/>      
-      <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
-      <item value="black legs" quantity="[1,1]" probability="0.0010"/>
-      <item value="halberd" quantity="[1,1]" probability="0.5"/>
-      <item value="golden twoside axe" quantity="[1,1]" probability="0.01"/>
-      <item value="black boots" quantity="[1,1]" probability="0.0010"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Dwarves are the enemy ... but we kill all who cross our path!"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
- 
-   <creature name="mountain elder dwarf">
+  
+  <creature name="mountain elder dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="mountain_dwarf.png:2"/>
     <description>You see a mountain elder dwarf. For many years he worked deep in the mountain and found much gold and ore in his life. Soon he will be too old to do this work but at the moment he is still a strong dwarf.</description>
     <attributes>
@@ -512,7 +656,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="mountain leader dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="mountain_dwarf.png:4"/>
     <description>You see a mountain leader dwarf. He is responsible for the mountain dwarves and their work, and also for the organization of the guardian troops. But in serious cases he will also fight on his own!</description>
@@ -550,136 +694,6 @@
     </ai>
   </creature>
   
+  <!-- END: mountain dwarf -->
   
-  <creature name="duergar king">
-    <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
-    <description></description>
-    <attributes>
-      <atk value="593"/>
-      <def value="82"/>
-      <hp value="736"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="81"/>
-    <experience value="6120"/>
-    <respawn value="2880"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[30,97]" probability="90.0"/>      
-      <item value="stone armor" quantity="[1,1]" probability="0.1"/>
-      <item value="black armor" quantity="[1,1]" probability="0.0001"/>
-      <item value="horned golden helmet" quantity="[1,1]" probability="0.5"/>
-      <item value="dwarvish legs" quantity="[1,1]" probability="1.0" />
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="attack weakest"/>
-    </ai>
-  </creature>
-  
-  <creature name="giant dwarf">
-    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:5"/>
-    <description>You see a giant dwarf. It is very hard for him to be a giant dwarf because some of the other dwarves don't really see him as one of them because of his height... But in his big heart he is a dwarf and in a battle he will fight against each enemy!</description>
-    <attributes>
-      <atk value="616"/>
-      <def value="99"/>
-      <hp value="700"/>
-      <speed value="0.4"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="90"/>
-    <experience value="8190"/>
-    <respawn value="3530"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
-    <drops>
-      <item value="money" quantity="[50,200]" probability="100.0"/>
-      <item value="stone armor" quantity="[1,1]" probability="1.0"/>
-      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
-      <item value="magic twoside axe" quantity="[1,1]" probability="0.2"/>
-      <item value="durin axe" quantity="[1,1]" probability="0.01"/>
-      <item value="golden mace" quantity="[1,1]" probability="15.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="Dhohr Nuggetcutter">
-    <type class="dwarf" subclass="giant_dwarf" tileid="dwarf.png:6"/>
-    <description></description>
-    <attributes>
-      <atk value="619"/>
-      <def value="101"/>
-      <hp value="700"/>
-      <speed value="0.4"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="90"/>
-    <experience value="8190"/>
-    <respawn value="3530"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
-    <drops>
-      <item value="money" quantity="[50,200]" probability="100.0"/>
-      <item value="mithril bar" quantity="[1,1]" probability="0.0010"/>
-      <item value="magic plate armor" quantity="[1,1]" probability="0.0010"/>
-      <item value="mithril nugget" quantity="[1,1]" probability="0.2"/>
-      <item value="greater potion" quantity="[1,2]" probability="30.0"/>
-      <item value="snowglobe" quantity="[1,1]" probability="15.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="Lord Durin">
-    <type class="dwarf" subclass="lord_durin" tileid="dwarf.png:7"/>
-    <description>You see the mighty Lord Durin, an ancient dwarf who has led his race through countless battles.</description>
-    <attributes>
-      <atk value="1855"/>
-      <def value="180"/>
-      <hp value="6500"/>
-      <speed value="0.5"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="325"/>
-    <experience value="300000"/>
-    <respawn value="75000"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
-    <drops>
-      <item value="mega potion" quantity="[1,4]" probability="20.0"/>
-      <item value="black halberd" quantity="[1,1]" probability="0.25"/>
-      <item value="durin axe" quantity="[1,1]" probability="1.0"/>
-      <item value="pie" quantity="[2,4]" probability="10.0"/>
-      <item value="money" quantity="[3000,8000]" probability="100.0"/>
-    </drops>
-    <equips>
-      <slot name="lhand" item="durin axe" quantity="1"/>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Don't call me Friend."/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  
-</creatures>  
+</creatures>

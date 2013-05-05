@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
+  
+  <!-- START: gnome -->
+  
   <creature name="gnome">
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
     <description>You see a gnome who lives in the mountains.</description>
@@ -35,7 +37,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="mage gnome">
     <type class="gnome" subclass="woman_gnome" tileid="gnome.png:1"/>
     <description>You see a mage gnome, she cleans the dirty mountain.</description>
@@ -69,7 +71,11 @@
     </ai>
   </creature>
   
-    <creature name="infantry gnome">
+  <!-- END: gnome -->
+  
+  <!-- START: militant -->
+  
+  <creature name="infantry gnome">
     <type class="gnome" subclass="infantryman" tileid="gnome_patrol.png:0"/>
     <description>You see an infantry gnome who will protect his little town against the humans!</description>
     <attributes>
@@ -102,8 +108,8 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
- 
-   <creature name="cavalryman gnome">
+  
+  <creature name="cavalryman gnome">
     <type class="gnome" subclass="cavalryman" tileid="gnome_patrol.png:1"/>
     <description>You see a cavalryman gnome who does long travels to search for gold.</description>
     <attributes>
@@ -136,5 +142,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-    
-</creatures>  
+  
+  <!-- END: militant -->
+  
+</creatures>

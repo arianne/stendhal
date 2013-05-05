@@ -1,451 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
-  <creature name="tiny skelly">
-    <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
-    <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
-    <attributes>
-      <atk value="173"/>
-      <def value="28"/>
-      <hp value="125"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="15"/>
-    <experience value="180"/>
-    <respawn value="1200"/>
-    <corpse name="tiny_bone" harmless="tiny_bone" />
-    <drops>
-      <item value="money" quantity="[3,10]" probability="90.0"/>
-      <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
-      <item value="buckler" quantity="[1,1]" probability="15.5"/>
-      <item value="dagger" quantity="[1,1]" probability="10.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Thou shall not maim!"/>
-        <sound value="bones-2" />
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-      <profile name="poisonous" params="5,poison"/>
-    </ai>
-  </creature>
   
-  <creature name="brain ahouga">
-    <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
-    <description>You see a brain ahouga, a very strange creature only living in your dreams!</description>
-    <attributes>
-      <atk value="207"/>
-      <def value="38"/>
-      <hp value="140"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="20"/>
-    <experience value="280"/>
-    <respawn value="1260"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,25]" probability="100.0"/>
-      <item value="plate armor" quantity="[1,1]" probability="0.5"/>
-      <item value="mainio legs" quantity="[1,1]" probability="0.05"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="mimic">
-    <type class="hybrid" subclass="mimic_idle" tileid="hybrid.png:14"/>
-    <description>You see a mimic. Its content might be different from what you expect.</description>
-    <attributes>
-      <atk value="240"/>
-      <def value="41"/>
-      <hp value="170"/>
-      <speed value="0.4"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="25"/>
-    <experience value="400"/>
-    <respawn value="1200"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="money" quantity="[45,85]" probability="50.0" />
-      <item value="broadsword" quantity="[1,1]" probability="4.0" />
-      <item value="dagger" quantity="[1,1]" probability="3.5" />
-      <item value="golden legs" quantity="[1,1]" probability="0.5" />
-      <item value="golden chainmail" quantity="[1,1]" probability="7.0" />
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-      </says>
-      <profile name="brave"/>
-      <profile name="non-offensive" />
-      <profile name="strategy" params=",outfit_changer(hand_to_hand;mimic_idle;mimic),"/>
-    </ai>
-  </creature>
-  
-  <creature name="red roohako">
-    <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
-    <description></description>
-    <attributes>
-      <atk value="271"/>
-      <def value="48"/>
-      <hp value="168"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="28"/>
-    <experience value="490"/>
-    <respawn value="1300"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[3,27]" probability="90.0"/>
-      <item value="dagger" quantity="[1,1]" probability="3.0"/>
-      <item value="mainio boots" quantity="[1,1]" probability="0.05"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-    </ai>
-  </creature>
-  
-  <creature name="robot aruthon">
-    <type class="hybrid" subclass="robot_aruthon" tileid="hybrid.png:4"/>
-    <description></description>
-    <attributes>
-      <atk value="330"/>
-      <def value="57"/>
-      <hp value="233"/>
-      <speed value="0.9"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="37"/>
-    <experience value="900"/>
-    <respawn value="1500"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,70]" probability="100.0"/>
-      <item value="plate armor" quantity="[1,1]" probability="5.0"/>
-      <item value="mainio helmet" quantity="[1,1]" probability="0.1"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="robot-1" />
-        <sound value="robot-2" />
-        <sound value="robot-3" />
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="violet avenger">
-    <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
-    <description></description>
-    <attributes>
-      <atk value="368"/>
-      <def value="71"/>
-      <hp value="250"/>
-      <speed value="0.9"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="44"/>
-    <experience value="1290"/>
-    <respawn value="1600"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,30]" probability="100.0"/>
-      <item value="antidote" quantity="[1,2]" probability="30.0"/>
-      <item value="mainio cloak" quantity="[1,1]" probability="0.1"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="googon">
-    <type class="hybrid" subclass="googon" tileid="hybrid.png:10"/>
-    <description>You see a googon that comes from the worst place in this world...Be careful this creature is a deadly killer.</description>
-    <attributes>
-      <atk value="430"/>
-      <def value="128"/>
-      <hp value="165"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="55"/>
-    <experience value="2210"/>
-    <respawn value="1610"/>
-    <corpse name="small_boneless"/>
-    <drops>
-      <item value="money" quantity="[5,50]" probability="100.0"/>
-      <item value="antidote" quantity="[1,1]" probability="3.0"/>
-      <item value="surgeonfish" quantity="[1,3]" probability="10.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="blue mohiko">
-    <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
-    <description></description>
-    <attributes>
-      <atk value="450"/>
-      <def value="50"/>
-      <hp value="600"/>
-      <speed value="0.9"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="56"/>
-    <experience value="2400"/>
-    <respawn value="1700"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,30]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="10.0"/>
-      <item value="mainio boots" quantity="[1,1]" probability="0.2"/>
-      <item value="claymore" quantity="[1,1]" probability="2.0"/>
-       <item value="blue helmet" quantity="[1,1]" probability="2.5"/>
-       <item value="blue armor" quantity="[1,1]" probability="4.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-    </ai>
-  </creature>
-  
-  <creature name="snarfkin">
-    <type class="hybrid" subclass="snarfkin" tileid="hybrid.png:11"/>
-    <description>You see a snarfkin, the favourite pet of wizards. Be careful, its claws are poisonous!</description>
-    <attributes>
-      <atk value="472"/>
-      <def value="74"/>
-      <hp value="480"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="62"/>
-    <experience value="3000"/>
-    <respawn value="1870"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="money" quantity="[9,35]" probability="100.0"/>
-      <item value="egg" quantity="[1,1]" probability="2.0"/>
-      <item value="poison" quantity="[1,1]" probability="5.0"/>
-      <item value="stone armor" quantity="[1,1]" probability="1.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="poisonous" params="5,greater poison"/>
-    </ai>
-  </creature>
-  
-  <creature name="dark aruthon">
-    <type class="hybrid" subclass="dark_aruthon" tileid="hybrid.png:2"/>
-    <description></description>
-    <attributes>
-      <atk value="583"/>
-      <def value="73"/>
-      <hp value="750"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="80"/>
-    <experience value="5920"/>
-    <respawn value="3000"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="mainio legs" quantity="[1,1]" probability="1.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <abilities>
-      <damage type="dark"/>
-      <susceptibility type="dark" value="0.7"/>
-      <susceptibility type="light" value="1.2"/>
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="grobble monster">
-    <type class="hybrid" subclass="grobble_monster" tileid="hybrid.png:12"/>
-    <description></description>
-    <attributes>
-      <atk value="609"/>
-      <def value="73"/>
-      <hp value="1000"/>
-      <speed value="0.9"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="90"/>
-    <experience value="8190"/>
-    <respawn value="3530"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
-    <drops>
-      <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="greater poison" quantity="[1,2]" probability="5.0"/>
-      <item value="mainio boots" quantity="[1,1]" probability="1.5"/>
-      <item value="spotted egg" quantity="[1,1]" probability="0.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="grobble grubble grobble"/>
-        <noise state="idle follow fight" value="gribble grobble grubble"/>
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-      <profile name="poisonous" params="5,greater poison"/>
-    </ai>
-  </creature>
-
-  <creature name="winged blurble">
-    <type class="hybrid" subclass="winged_blurble" tileid="hybrid.png:5"/>
-    <description></description>
-    <attributes>
-      <atk value="666"/>
-      <def value="78"/>
-      <hp value="1200"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="102"/>
-    <experience value="12200"/>
-    <respawn value="3000"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[20,110]" probability="100.0"/>
-      <item value="greater potion" quantity="[1,2]" probability="80.0"/>
-      <item value="mainio shield" quantity="[1,1]" probability="1.5"/>
-      <item value="mainio legs" quantity="[1,1]" probability="0.5"/>
-      <item value="spotted egg" quantity="[1,1]" probability="0.05"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="xenocium">
-    <type class="hybrid" subclass="xenocium" tileid="hybrid.png:6"/>
-    <description></description>
-    <attributes>
-      <atk value="953"/>
-      <def value="114"/>
-      <hp value="2350"/>
-      <speed value="0.7"/>
-      <size value="2,2"/>
-    </attributes>
-    <level value="170"/>
-    <experience value="50800"/>
-    <respawn value="3000"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
-    <drops>
-      <item value="money" quantity="[30,100]" probability="100.0"/>
-      <item value="xeno shield" quantity="[1,1]" probability="1.0"/>
-      <item value="xeno cloak" quantity="[1,1]" probability="1.5"/>
-      <item value="xeno boots" quantity="[1,1]" probability="2.5"/>
-      <item value="xeno sword" quantity="[1,1]" probability="0.5"/>
-      <item value="xeno armor" quantity="[1,1]" probability="1.5"/>
-      <item value="xeno legs" quantity="[1,1]" probability="1.5"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="15,50"/>
-    </ai>
-  </creature>
-  
-  <creature name="necrosophia">
-    <type class="hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
-    <description></description>
-    <attributes>
-      <atk value="1292"/>
-      <def value="154"/>
-      <hp value="4118"/>
-      <speed value="0.8"/>
-      <size value="4,3"/>
-    </attributes>
-    <level value="250"/>
-    <experience value="150000"/>
-    <respawn value="3000"/>
-    <corpse name="huger_animal" width="4" height="4"/>
-    <drops>
-      <item value="mega potion" quantity="[1,2]" probability="50.0"/>
-      <item value="money" quantity="[500,4000]" probability="100.0"/>
-      <item value="mainio cloak" quantity="[1,1]" probability="2.5"/>
-      <item value="mainio helmet" quantity="[1,1]" probability="2.0"/>
-      <item value="mainio legs" quantity="[1,1]" probability="2.5"/>
-      <item value="mainio boots" quantity="[1,1]" probability="2.5"/>
-      <item value="mainio shield" quantity="[1,1]" probability="2.5"/>
-      <item value="mainio armor" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <abilities>
-      <damage type="fire"/>
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="heal" params="30,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
+  <!-- START: arachnid -->
   
   <creature name="arachne">
     <type class="hybrid" subclass="arachne" tileid="hybrid.png:13"/>
@@ -478,5 +35,870 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <!-- END: arachnid -->
+  
+  <!-- START: cat woman -->
+  
+  <creature name="cat woman">
+    <type class="mutant" subclass="cat_woman" tileid="mutant.png:5"/>
+     <description>You see a cat woman. She's agile, stealthy, fast and sharp, so stay focused and don't get cut!</description>
+    <attributes>
+      <atk value="329"/>
+      <def value="84"/>
+      <hp value="160"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="39"/>
+    <experience value="990"/>
+    <respawn value="1500"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,3]" probability="10.0"/>
+      <item value="stone cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="perch" quantity="[1,1]" probability="1.0"/>
+      <item value="night dagger" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,30"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: cat woman -->
+  
+  <!-- START: frogman -->
+  
+  <creature name="frogman">
+    <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
+    <description>You see a frogman which lives in a lake which isn't very deep.</description>
+    <attributes>
+      <atk value="171"/>
+      <def value="33"/>
+      <hp value="98"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,19]" probability="100.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="6.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="1.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="plate shield" quantity="[1,1]" probability="1.0"/>
+      <item value="blue boots" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+	    <sound value="mutant-frog-1" />
+	    <sound value="mutant-frog-2" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="elite frogman">
+    <type class="frogman" subclass="caped_frogman" tileid="frogman.png:0"/>
+    <description>You see an elite frogman. His huge eyes let you shiver!</description>
+    <attributes>
+      <atk value="257"/>
+      <def value="50"/>
+      <hp value="156"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="26"/>
+    <experience value="430"/>
+    <respawn value="1310"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="trout" quantity="[1,1]" probability="10.0"/>
+      <item value="blue shield" quantity="[1,1]" probability="2.0"/>
+      <item value="blue striped cloak" quantity="[1,1]" probability="2.0"/>
+       <item value="blue legs" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+	    <sound value="mutant-frog-1" />
+	    <sound value="mutant-frog-2" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="wizard frogman">
+    <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:2"/>
+    <description>You see a mighty wizard frogman. His wand and magical cloak show his wisdom and power.</description>
+    <attributes>
+      <atk value="305"/>
+      <def value="57"/>
+      <hp value="210"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="34"/>
+    <experience value="730"/>
+    <respawn value="1410"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="cod" quantity="[1,4]" probability="20.0"/>
+      <item value="blue striped cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="blue boots" quantity="[1,1]" probability="1.5"/>
+      <item value="blue helmet" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+	    <sound value="mutant-frog-1" />
+	    <sound value="mutant-frog-2" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <!-- END: frogman -->
+  
+  <!-- START: kobold -->
+  
+  <creature name="kobold">
+    <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
+    <description>You see a kobold. People say that it is a mythical spirit.</description>
+    <attributes>
+      <atk value="88"/>
+      <def value="16"/>
+      <hp value="50"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="5"/>
+    <experience value="50"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[2,6]" probability="90.0"/>
+      <item value="leather legs" quantity="[1,1]" probability="10.0"/>
+      <item value="leather armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather cuirass" quantity="[1,1]" probability="2.0"/>
+      <item value="small axe" quantity="[1,1]" probability="1.3"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="buckler" quantity="[1,1]" probability="0.5"/>
+      <item value="knife" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Grrrr! Wooof!"/>
+        <sound value="panda-1"/>
+        <sound value="panda-2"/>
+        <sound value="raccoon-1"/>
+        <sound value="lama-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="soldier kobold">
+    <type class="kobold" subclass="soldier_kobold" tileid="kobold.png:3"/>
+    <description>You see a soldier kobold, he's protecting his king.</description>
+    <attributes>
+      <atk value="105"/>
+      <def value="20"/>
+      <hp value="65"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="7"/>
+    <experience value="70"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,11]" probability="90.0"/>
+      <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="6.0"/>
+      <item value="studded legs" quantity="[1,1]" probability="8.0"/>
+      <item value="hand axe" quantity="[1,1]" probability="1.4"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="leather helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="1.3"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Woorf wer warf!"/>
+        <sound value="panda-1"/>
+        <sound value="panda-2"/>
+        <sound value="raccoon-1"/>
+        <sound value="lama-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="archer kobold">
+    <type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
+    <description>You see an archer kobold. It runs away from humans.</description>
+    <attributes>
+      <atk value="115"/>
+      <def value="28"/>
+      <hp value="40"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="8"/>
+    <experience value="80"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="leather scale armor" quantity="[1,1]" probability="10.0"/>
+      <item value="wooden arrow" quantity="[3,12]" probability="6.0"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden bow" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="wooden arrow" quantity="10000" />
+      <slot name="rhand" item="wooden bow" quantity="1" />
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Wssss! Warf wit!"/>
+        <sound value="panda-1"/>
+        <sound value="panda-2"/>
+        <sound value="raccoon-1"/>
+        <sound value="lama-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="veteran kobold">
+    <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
+    <description>You see a veteran kobold, it is mighty!</description>
+    <attributes>
+      <atk value="125"/>
+      <def value="31"/>
+      <hp value="50"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="9"/>
+    <experience value="90"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,13]" probability="90.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="10.0"/>
+      <item value="plate shield" quantity="[1,1]" probability="50.0"/>
+      <item value="flail" quantity="[1,1]" probability="10.0"/>
+      <item value="leather armor" quantity="[1,1]" probability="10.0"/>
+      <item value="axe" quantity="[1,1]" probability="2.0"/>
+      <item value="studded boots" quantity="[1,1]" probability="0.5"/>
+      <item value="leather helmet" quantity="[1,1]" probability="1.5"/>
+      <item value="short sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="panda-1"/>
+        <sound value="panda-2"/>
+        <sound value="raccoon-1"/>
+        <sound value="lama-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="leader kobold">
+    <type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
+    <description>You see a leader kobold, one of the mighty warriors.</description>
+    <attributes>
+      <atk value="155"/>
+      <def value="39"/>
+      <hp value="65"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="13"/>
+    <experience value="150"/>
+    <respawn value="1220"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,20]" probability="90.0"/>
+      <item value="chain armor" quantity="[1,1]" probability="8.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="1.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="0.05"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="battle axe" quantity="[1,1]" probability="1.5"/>
+      <item value="chain boots" quantity="[1,1]" probability="1.5"/>
+      <item value="minor potion" quantity="[1,2]" probability="1.5"/>
+      <item value="chain helmet" quantity="[1,1]" probability="3.0"/>
+      <item value="plate shield" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="panda-1"/>
+        <sound value="panda-2"/>
+        <sound value="raccoon-1"/>
+        <sound value="lama-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <!-- END: kobold -->
+  
+  <!-- START: minotaur -->
+  
+  <creature name="minotaur">
+    <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
+    <description>You see a minotaur. He escaped from his labyrinth and is very angry now!</description>
+    <attributes>
+      <atk value="373"/>
+      <def value="122"/>
+      <hp value="125"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="45"/>
+    <experience value="1360"/>
+    <respawn value="1620"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,46]" probability="100.0"/>
+      <item value="empty scroll" quantity="[1,1]" probability="1.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="7.0"/>
+      <item value="golden armor" quantity="[1,1]" probability="0.3"/>
+      <item value="war hammer" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You will never find the way out!"/>
+        <sound value="monster-11" />
+        <sound value="monster-12" />
+        <sound value="monster-14" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="minotaur king">
+    <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
+    <description>You see a Minotaur King. He doesn't have to escape from his labyrinth to be very angry...</description>
+    <attributes>
+      <atk value="481"/>
+      <def value="57"/>
+      <hp value="675"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="62"/>
+    <experience value="3000"/>
+    <respawn value="1870"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[15,89]" probability="100.0"/>
+      <item value="golden armor" quantity="[1,1]" probability="1.5"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos hammer" quantity="[1,1]" probability="0.25"/>
+      <item value="vulcano hammer" quantity="[1,1]" probability="0.0050"/>
+      <item value="greater potion" quantity="[1,2]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I am the king of this area!"/>
+        <sound value="monster-1" />
+        <sound value="monster-2" />
+        <sound value="monster-16" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: minotaur -->
+  
+  <!-- START: naga -->
+  
+  <creature name="naga">
+    <type class="mutant" subclass="naga" tileid="naga.png:2"/>
+    <description> You see a naga. She awaits unwary victims to whom she may give her deadly kiss.</description>
+    <attributes>
+      <atk value="536"/>
+      <def value="81"/>
+      <hp value="622"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="73"/>
+    <experience value="4620"/>
+    <respawn value="2400"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="medicinal ring" quantity="[1,1]" probability="0.5" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="high naga">
+    <type class="mutant" subclass="high_naga" tileid="naga.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="587"/>
+      <def value="79"/>
+      <hp value="782"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="84"/>
+    <experience value="6760"/>
+    <respawn value="3080"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,60]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="medicinal ring" quantity="[1,1]" probability="0.75" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="armed naga">
+    <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="617"/>
+      <def value="86"/>
+      <hp value="944"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="94"/>
+    <experience value="9240"/>
+    <respawn value="3850"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,60]" probability="100.0"/>
+      <item value="ice armor" quantity="[1,1]" probability="0.4"/>
+      <item value="shadow cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="magic plate shield" quantity="[1,1]" probability="1.0"/>
+      <item value="ice sword" quantity="[1,1]" probability="0.4"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="lamia">
+    <type class="mutant" subclass="lamia" tileid="naga.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="719"/>
+      <def value="91"/>
+      <hp value="1300"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="112"/>
+    <experience value="14750"/>
+    <respawn value="3400"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,60]" probability="100.0" />
+      <item value="medicinal ring" quantity="[1,1]" probability="2.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="scream-fem-2" />
+        <sound value="rattlesnake-1" />
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: naga -->
+  
+  <!-- START: ratfolk -->
+  
+   <creature name="ratman">
+    <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
+    <description>You see a ratman. He is a mutation that comes from old times.</description>
+    <attributes>
+      <atk value="171"/>
+      <def value="19"/>
+      <hp value="225"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,22]" probability="100.0"/>
+      <item value="cheese" quantity="[4,8]" probability="85.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="0.4"/>
+      <item value="skull staff" quantity="[1,1]" probability="0.5"/>
+      <item value="lion shield" quantity="[1,1]" probability="0.4"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You, humans, never leave us alone!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="ratwoman">
+    <type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
+    <description>You see a ratwoman. She is a mutation of women with the rats in the century XVIII.</description>
+    <attributes>
+      <atk value="170"/>
+      <def value="18"/>
+      <hp value="225"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,22]" probability="100.0"/>
+      <item value="cheese" quantity="[4,8]" probability="85.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.5"/>
+      <item value="steel boots" quantity="[1,1]" probability="0.4"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You humans never leave us alone!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="archrat">
+    <type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
+    <description>You see an archrat. You will be distracted with its aura, be careful...</description>
+    <attributes>
+      <atk value="229"/>
+      <def value="77"/>
+      <hp value="60"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You're messing with the rats?!"/>
+        <noise state="idle follow fight" value="Your death has come!"/>
+        <noise state="idle follow fight" value="Feel my wrath!"/>
+      </says>
+      <profile name="poisonous" params="40,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>   
+   
+  <!-- END: ratfolk -->
+  
+  <!-- START: sheepman -->
+  
+  <creature name="sheepman">
+    <type class="sheepman" subclass="sheepman" tileid="sheepman.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="245"/>
+      <def value="47"/>
+      <hp value="150"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="meat" quantity="[1,5]" probability="10.0"/>
+      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater poison" quantity="[1,1]" probability="7.0"/>
+      <item value="studded legs" quantity="[1,1]" probability="10.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="I'm no fluffy lamb!"/>
+      </says>
+      <profile name="poisonous" params="30,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="armored sheepman">
+    <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="287"/>
+      <def value="51"/>
+      <hp value="188"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="31"/>
+    <experience value="600"/>
+    <respawn value="1370"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden chainmail" quantity="[1,1]" probability="12.0"/>
+      <item value="greater poison" quantity="[1,1]" probability="7.0"/>
+      <item value="twoside axe" quantity="[1,1]" probability="10.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You're baaaarmy to attack me!"/>
+      </says>
+      <profile name="poisonous" params="35,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="elder sheepman">
+    <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="326"/>
+      <def value="58"/>
+      <hp value="241"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="38"/>
+    <experience value="920"/>
+    <respawn value="1480"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="morning star" quantity="[1,1]" probability="2.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="10.5"/>
+      <item value="greater poison" quantity="[1,2]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Bah! Stay away!"/>
+      </says>
+      <profile name="poisonous" params="40,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <creature name="elite sheepman">
+    <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="373"/>
+      <def value="70"/>
+      <hp value="241"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="43"/>
+    <experience value="1120"/>
+    <respawn value="1680"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,45]" probability="100.0"/>
+      <item value="meat" quantity="[2,6]" probability="22.5"/>
+      <item value="greater poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting sword" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Baaaaack away!"/>
+      </says>
+      <profile name="poisonous" params="40,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: sheepman -->
+  
+  <!-- START: werewolf -->
+  
+  <creature name="werewolf">
+    <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
+    <description>You see a werewolf. Normally he is a human but at fullmoon nights he turns into a dangerous beast! His poison seems to last forever.</description>
+    <attributes>
+      <atk value="584"/>
+      <def value="79"/>
+      <hp value="722"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="80"/>
+    <experience value="5920"/>
+    <respawn value="2820"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[30,50]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="5,disease poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: werewolf -->
   
 </creatures>  

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
- 
+  
+  <!-- START: oni -->
+  
   <creature name="oni warrior">
     <type class="oni" subclass="oni_warrior" tileid="oni.png:0"/>
     <description>You see an oni warrior. His purple skin colour should not lull you into a false sense of security!</description>
@@ -123,7 +125,7 @@
       <profile name="human"/>
     </ai>
   </creature>
-
+  
   <creature name="oni queen">
     <type class="oni" subclass="oni_queen" tileid="oni.png:4"/>
     <description>You see the oni queen. She supports her husband and takes an eye onto their kingdom while he conquers new land and fights on battlefields.</description>
@@ -157,4 +159,6 @@
     </ai>
   </creature>
   
-</creatures>  
+  <!-- END: oni -->
+  
+</creatures>

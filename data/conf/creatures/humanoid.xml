@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+  
+  <!-- START: aruthon -->
+  
+  <creature name="robot aruthon">
+    <type class="hybrid" subclass="robot_aruthon" tileid="hybrid.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="330"/>
+      <def value="57"/>
+      <hp value="233"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="37"/>
+    <experience value="900"/>
+    <respawn value="1500"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="5.0"/>
+      <item value="mainio helmet" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="robot-1" />
+        <sound value="robot-2" />
+        <sound value="robot-3" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="dark aruthon">
+    <type class="hybrid" subclass="dark_aruthon" tileid="hybrid.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="583"/>
+      <def value="73"/>
+      <hp value="750"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="80"/>
+    <experience value="5920"/>
+    <respawn value="3000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="mainio legs" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="dark"/>
+      <susceptibility type="dark" value="0.7"/>
+      <susceptibility type="light" value="1.2"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: aruthon -->
+  
+  <!-- START: fairy -->
+  
+  <creature name="leprechaun">
+    <type class="fairy" subclass="leprechaun" tileid="fairy.png:2"/>
+    <description>You see a leprechaun, you would be lucky if you found his treasure.</description>
+    <attributes>
+      <atk value="126"/>
+      <def value="20"/>
+      <hp value="95"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="9"/>
+    <experience value="90"/>
+    <respawn value="1200"/>
+    <corpse name="tiny_humanoid" harmless="leprechaun_green" />
+    <drops>
+      <item value="money" quantity="[30,100]" probability="30.0"/>
+      <item value="sandwich" quantity="[1,1]" probability="2.0"/>
+      <item value="lucky charm" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="They're always after my Lucky Charms!!"/>
+        <noise state="idle follow fight" value="Clovers and rainbows... stars and horseshoes..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="littlefairy">
+    <type class="fairy" subclass="littlefairy" tileid="fairy.png:3"/>
+    <description>You see a little fairy, which is magical and nice.</description>
+    <attributes>
+      <atk value="143"/>
+      <def value="26"/>
+      <hp value="81"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="11"/>
+    <experience value="120"/>
+    <respawn value="1210"/>
+    <corpse name="tiny_humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,7]" probability="90.0"/>
+      <item value="fairy cake" quantity="[1,2]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="clurichaun">
+    <type class="fairy" subclass="clurichaun" tileid="fairy.png:1"/>
+    <description>You see a clurichaun. He is rich, but you don't know if you are able to find his gold!</description>
+    <attributes>
+      <atk value="152"/>
+      <def value="27"/>
+      <hp value="95"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
+    <corpse name="tiny_humanoid" harmless="leprechaun_purple" />
+    <drops>
+      <item value="money" quantity="[30,100]" probability="50.0"/>
+      <item value="beer" quantity="[2,5]" probability="10.0"/>
+      <item value="wine" quantity="[1,5]" probability="10.0"/>
+      <item value="lucky charm" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Join me for a drink, lassie?"/>
+        <noise state="idle follow fight" value="Floating blue balloons..."/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature> 
+  
+  <!-- END: fairy -->
+  
+  <!-- START: misc -->
+  
+  <creature name="brain ahouga">
+    <type class="hybrid" subclass="brain_ahouga" tileid="hybrid.png:1"/>
+    <description>You see a brain ahouga, a very strange creature only living in your dreams!</description>
+    <attributes>
+      <atk value="207"/>
+      <def value="38"/>
+      <hp value="140"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,25]" probability="100.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="0.5"/>
+      <item value="mainio legs" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: misc -->
+  
+  <!-- START: mohiko -->
+  
+  <creature name="blue mohiko">
+    <type class="hybrid" subclass="blue_mohiko" tileid="hybrid.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="450"/>
+      <def value="50"/>
+      <hp value="600"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="56"/>
+    <experience value="2400"/>
+    <respawn value="1700"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="10.0"/>
+      <item value="mainio boots" quantity="[1,1]" probability="0.2"/>
+      <item value="claymore" quantity="[1,1]" probability="2.0"/>
+       <item value="blue helmet" quantity="[1,1]" probability="2.5"/>
+       <item value="blue armor" quantity="[1,1]" probability="4.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <!-- END: mohiko -->
+  
+  <!-- START: roohako -->
+  
+  <creature name="red roohako">
+    <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="271"/>
+      <def value="48"/>
+      <hp value="168"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="28"/>
+    <experience value="490"/>
+    <respawn value="1300"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+      <item value="dagger" quantity="[1,1]" probability="3.0"/>
+      <item value="mainio boots" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+  
+  <!-- END: roohako -->
+  
+</creatures>

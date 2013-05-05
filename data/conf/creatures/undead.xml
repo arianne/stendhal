@@ -1,78 +1,42 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
-  <creature name="skeleton">
-    <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
-    <description>You see a skeleton which survives to get revenge.</description>
+  
+  <!-- START: animal -->
+  
+  <creature name="zombie rat">
+    <type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
+    <description>You see a hungry zombie rat and it doesn't like to see you.</description>
     <attributes>
-      <atk value="98"/>
-      <def value="13"/>
-      <hp value="95"/>
-      <speed value="0.5"/>
+      <atk value="105"/>
+      <def value="19"/>
+      <hp value="70"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="6"/>
-    <experience value="60"/>
+    <level value="7"/>
+    <experience value="70"/>
     <respawn value="1200"/>
-    <corpse name="bone" harmless="bone" />
+    <corpse name="small_animal" harmless="tail_rodent" />
     <drops>
-      <item value="money" quantity="[3,10]" probability="90.0"/>
-      <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
-      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
-      <item value="mace" quantity="[1,1]" probability="1.0"/>
-      <item value="wooden shield" quantity="[1,1]" probability="0.5"/>
-      <item value="studded legs" quantity="[1,1]" probability="1.0"/>
-      <item value="dagger" quantity="[1,1]" probability="0.5"/>
+      <item value="money" quantity="[3,10]" probability="100.0"/>
+      <item value="cheese" quantity="[2,5]" probability="50.0"/>
+      <item value="deadly poison" quantity="[1,1]" probability="8.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="Thou shall not pass!"/>
-        <sound value="bones-1" />
-        <sound value="bones-2" />
-        <sound value="laugh-evil-5" />
+        <noise state="idle follow fight" value="SHREEAK!!"/>
+        <noise state="idle follow fight" value="SHAAAAAAA!!"/>
       </says>
+      <profile name="poisonous" params="5,deadly poison"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="ghost">
-    <type class="undead" subclass="ghost" tileid="undead.png:5"/>
-    <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
-    <attributes>
-      <atk value="171"/>
-      <def value="25"/>
-      <hp value="140"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="15"/>
-    <experience value="180"/>
-    <respawn value="1230"/>
-    <corpse name="cloaked_white" harmless="cloaked_white" />
-    <drops>
-      <item value="money" quantity="[4,23]" probability="100.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Ooooouuuuuh!"/>
-        <sound value="ghost-1"/>
-        <sound value="ghost-2"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="coward"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
- 
+  
   <creature name="ghost hound">
     <type class="undead" subclass="ghosthound" tileid="undead.png:13"/>
     <description>As you catch sight of its shaggy shape and gleaming evil eyes, you suddenly remember all the horror stories around the dreaded ghost hound!</description>
@@ -111,70 +75,340 @@
     </ai>
   </creature>
   
-  <creature name="bloody zombie">
-    <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
-    <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
+  <!-- END: animal -->
+  
+  <!-- START: fallen -->
+  
+  <creature name="fallen warrior">
+    <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
+    <description></description>
     <attributes>
-      <atk value="182"/>
-      <def value="34"/>
-      <hp value="100"/>
+      <atk value="438"/>
+      <def value="66"/>
+      <hp value="402"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="55"/>
+    <experience value="2210"/>
+    <respawn value="1650"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,1]" probability="30.0"/>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="shadow legs" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow shield" quantity="[1,1]" probability="0.05"/>
+      <item value="dark dagger" quantity="[1,1]" probability="0.050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="fallen priest">
+    <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
+    <description>You see a fallen priest. He was once just a regular human priest, until the dark powers corrupted him and turned him to the dark side. </description>
+    <attributes>
+      <atk value="546"/>
+      <def value="80"/>
+      <hp value="636"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="74"/>
+    <experience value="4790"/>
+    <respawn value="2460"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,2]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow boots" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos cloak" quantity="[1,1]" probability="0.050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="fallen high priest">
+    <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="619"/>
+      <def value="81"/>
+      <hp value="894"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="91"/>
+    <experience value="8440"/>
+    <respawn value="3610"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="mega potion" quantity="[1,1]" probability="10.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="magic plate armor" quantity="[1,1]" probability="0.005"/>
+      <item value="golden twoside axe" quantity="[1,1]" probability="2.5"/>
+      <item value="demon fire sword" quantity="[1,1]" probability="0.0010"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: fallen -->
+  
+  <!-- START: lich -->
+  
+  <creature name="lich">
+    <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
+    <description>You see a lich, a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.</description>
+    <attributes>
+      <atk value="468"/>
+      <def value="53"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="60"/>
+    <experience value="2760"/>
+    <respawn value="1800"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <creature name="dead lich">
+    <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="582"/>
+      <def value="80"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="82"/>
+    <experience value="6330"/>
+    <respawn value="2950"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="golden shield" quantity="[1,1]" probability="1.5"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.0080"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="high lich">
+    <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
+    <description>The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.</description>
+    <attributes>
+      <atk value="693"/>
+      <def value="123"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="104"/>
+    <experience value="12800"/>
+    <respawn value="5950"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="mega potion" quantity="[1,1]" probability="20.0"/>
+      <item value="money" quantity="[40,100]" probability="100.0"/>
+      <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
+      <item value="lich cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="black shield" quantity="[1,1]" probability="0.0010"/>
+      <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: lich -->
+  
+  <!-- START: misc -->
+  
+  <creature name="death knight">
+    <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
+    <description>You see a death knight. Some time ago he fought in tournaments where his only aim was to kill as many enemies as possible.</description>
+    <attributes>
+      <atk value="421"/>
+      <def value="52"/>
+      <hp value="500"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="52"/>
+    <experience value="1920"/>
+    <respawn value="1620"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,60]" probability="100.0"/>
+      <item value="golden armor" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="shadow boots" quantity="[1,1]" probability="1.5"/>
+      <item value="shadow helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="fire sword" quantity="[1,1]" probability="0.5"/>
+      <item value="night dagger" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="necrosophia">
+    <type class="hybrid" subclass="necrosophia" tileid="hybrid.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="1292"/>
+      <def value="154"/>
+      <hp value="4118"/>
+      <speed value="0.8"/>
+      <size value="4,3"/>
+    </attributes>
+    <level value="250"/>
+    <experience value="150000"/>
+    <respawn value="3000"/>
+    <corpse name="huger_animal" width="4" height="4"/>
+    <drops>
+      <item value="mega potion" quantity="[1,2]" probability="50.0"/>
+      <item value="money" quantity="[500,4000]" probability="100.0"/>
+      <item value="mainio cloak" quantity="[1,1]" probability="2.5"/>
+      <item value="mainio helmet" quantity="[1,1]" probability="2.0"/>
+      <item value="mainio legs" quantity="[1,1]" probability="2.5"/>
+      <item value="mainio boots" quantity="[1,1]" probability="2.5"/>
+      <item value="mainio shield" quantity="[1,1]" probability="2.5"/>
+      <item value="mainio armor" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="fire"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="30,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: misc -->
+  
+  <!-- START: mummy -->
+  
+  <creature name="mummy">
+    <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
+    <description>You see a mummy which usually sleeps in a coffin.</description>
+    <attributes>
+      <atk value="154"/>
+      <def value="42"/>
+      <hp value="55"/>
       <speed value="0.4"/>
       <size value="1,1"/>
     </attributes>
-    <level value="16"/>
-    <experience value="200"/>
-    <respawn value="1230"/>
+    <level value="12"/>
+    <experience value="130"/>
+    <respawn value="1210"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[10,25]" probability="100.0"/>
-      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
-      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="0.3"/>
+      <item value="money" quantity="[3,20]" probability="90.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="10.0"/>
+      <item value="short sword" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="brrraaaaaaaaaains"/>
-        <sound value="undead-1"/>
-        <sound value="undead-2"/>
-        <sound value="undead-3"/>
-        <sound value="undead-4"/>
+        <sound value="undead-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
-    </ai>
+    </ai>  
   </creature>
- 
-  <creature name="zombie">
-    <type class="undead" subclass="zombie" tileid="undead.png:11"/>
-    <description>You see a zombie. It woke up just to take revenge, be silent.</description>
+  
+  <creature name="royal mummy">
+    <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
+    <description>You see a royal mummy. You wonder what keeps this king's soul from finding peace.</description>
     <attributes>
-      <atk value="202"/>
-      <def value="49"/>
+      <atk value="250"/>
+      <def value="71"/>
       <hp value="80"/>
       <speed value="0.4"/>
       <size value="1,1"/>
     </attributes>
-    <level value="19"/>
-    <experience value="250"/>
-    <respawn value="1250"/>
+    <level value="24"/>
+    <experience value="370"/>
+    <respawn value="1290"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="4.0"/>
-      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.5"/>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="3.0"/>
+      <item value="aventail" quantity="[1,1]" probability="1.0"/>
+      <item value="skull shield" quantity="[1,1]" probability="5.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="undead-1"/>
-        <sound value="undead-2"/>
-        <sound value="undead-3"/>
-        <sound value="undead-4"/>
+        <sound value="undead-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -183,37 +417,85 @@
     </ai>
   </creature>
   
-  <creature name="headless monster">
-    <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
-    <description>You see a headless monster, how can he hear that we come to him?</description>
+  <!-- END: mummy -->
+  
+  <!-- START: skeleton -->
+  
+  <creature name="skeleton">
+    <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
+    <description>You see a skeleton which survives to get revenge.</description>
     <attributes>
-      <atk value="221"/>
-      <def value="54"/>
-      <hp value="100"/>
-      <speed value="0.3"/>
+      <atk value="98"/>
+      <def value="13"/>
+      <hp value="95"/>
+      <speed value="0.5"/>
       <size value="1,1"/>
     </attributes>
-    <level value="21"/>
-    <experience value="300"/>
-    <respawn value="1260"/>
-    <!-- a corpse with a skull is somewhat inapropriate for a headless monster, 
-        but we don't have anything better -->
-    <corpse name="humanoid"/>
+    <level value="6"/>
+    <experience value="60"/>
+    <respawn value="1200"/>
+    <corpse name="bone" harmless="bone" />
     <drops>
-      <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="iron scale armor" quantity="[1,1]" probability="10.0"/>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="mace" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="0.5"/>
+      <item value="studded legs" quantity="[1,1]" probability="1.0"/>
+      <item value="dagger" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not pass!"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="laugh-evil-5" />
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature>  
-     
-   <creature name="warrior skeleton">
+  </creature>
+  
+  <creature name="tiny skelly">
+    <type class="hybrid" subclass="tiny_skelly" tileid="hybrid.png:9"/>
+    <description>You see a tiny skelly. It is silly, little and evil, be careful with its poison...</description>
+    <attributes>
+      <atk value="173"/>
+      <def value="28"/>
+      <hp value="125"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1200"/>
+    <corpse name="tiny_bone" harmless="tiny_bone" />
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="dwarvish armor" quantity="[1,1]" probability="0.5"/>
+      <item value="buckler" quantity="[1,1]" probability="15.5"/>
+      <item value="dagger" quantity="[1,1]" probability="10.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Thou shall not maim!"/>
+        <sound value="bones-2" />
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="poisonous" params="5,poison"/>
+    </ai>
+  </creature>
+  
+  <creature name="warrior skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
     <description>You see a warrior skeleton, it's just a normal skeleton with a shield!</description>
     <attributes>
@@ -287,38 +569,100 @@
     </ai>
   </creature>   
   
-  <creature name="rotten zombie">
-    <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
-    <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
+  <creature name="demon skeleton">
+    <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
+    <description>You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!</description>
     <attributes>
-      <atk value="256"/>
-      <def value="70"/>
+      <atk value="316"/>
+      <def value="102"/>
       <hp value="100"/>
-      <speed value="0.3"/>
+      <speed value="0.8"/>
       <size value="1,1"/>
     </attributes>
-    <level value="27"/>
-    <experience value="460"/>
-    <respawn value="1320"/>
-    <corpse name="humanoid"/>
+    <level value="42"/>
+    <experience value="1160"/>
+    <respawn value="1660"/>
+    <corpse name="bone" harmless="bone" />
     <drops>
-      <item value="money" quantity="[3,35]" probability="100.0"/>
-      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="15.0"/>
-      <item value="plate armor" quantity="[1,1]" probability="2.0"/>
-      <item value="hammer" quantity="[1,1]" probability="2.0"/>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="demon sword" quantity="[1,1]" probability="1.0"/>
+      <item value="hell dagger" quantity="[1,1]" probability="0.03"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="bluuergghhhoooorrghhhhh"/>
-        <sound value="undead-1"/>
-        <sound value="undead-2"/>
-        <sound value="undead-3"/>
-        <sound value="undead-4"/>
+        <noise state="idle follow fight" value="Thou shall not rob!"/>
+        <sound value="bones-1" />
+        <sound value="bones-2" />
+        <sound value="laugh-evil-5" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="gashadokuro">
+    <type class="mythical_animal" subclass="gashadokuro" tileid="mythical_animal.png:1"/>
+    <description>A giant figure made of bone, known only as gashadokuro, towers before you. He is created from the bones of starving humans.</description>
+    <attributes>
+      <atk value="2000"/>
+      <def value="171"/>
+      <hp value="18000"/>
+      <speed value="0.7"/>
+      <size value="4,3"/>
+    </attributes>
+    <level value="500"/>
+    <experience value="750000"/>
+    <respawn value="300000"/>
+    <corpse name="giant_bone" harmless="giant_bone" width="6" height="6"/>
+    <drops>
+      <item value="money" quantity="[5000,30000]" probability="100.0"/>
+      <item value="skull staff" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="50,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: skeleton -->
+  
+  <!-- START: specter -->
+  
+  <creature name="ghost">
+    <type class="undead" subclass="ghost" tileid="undead.png:5"/>
+    <description>You see a ghost, don't be afraid! It doesn't seem to be evil.</description>
+    <attributes>
+      <atk value="171"/>
+      <def value="25"/>
+      <hp value="140"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="cloaked_white" harmless="cloaked_white" />
+    <drops>
+      <item value="money" quantity="[4,23]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Ooooouuuuuh!"/>
+        <sound value="ghost-1"/>
+        <sound value="ghost-2"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="coward"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
@@ -356,42 +700,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
- 
-  <creature name="demon skeleton">
-    <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
-    <description>You see a demon skeleton. Demon skeletons have ascended from the underworld and they are going to take over this world. You really should slay them before it is too late!</description>
-    <attributes>
-      <atk value="316"/>
-      <def value="102"/>
-      <hp value="100"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="42"/>
-    <experience value="1160"/>
-    <respawn value="1660"/>
-    <corpse name="bone" harmless="bone" />
-    <drops>
-      <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="demon sword" quantity="[1,1]" probability="1.0"/>
-      <item value="hell dagger" quantity="[1,1]" probability="0.03"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Thou shall not rob!"/>
-        <sound value="bones-1" />
-        <sound value="bones-2" />
-        <sound value="laugh-evil-5" />
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
+  
   <creature name="invisible man">
     <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
     <description>You see nothing but the landscape. As you stare at the point where you think you have seen something, you suddenly see the slight contour of a man!</description>
@@ -418,102 +727,6 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
- 
-   <creature name="death knight">
-    <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
-    <description>You see a death knight. Some time ago he fought in tournaments where his only aim was to kill as many enemies as possible.</description>
-    <attributes>
-      <atk value="421"/>
-      <def value="52"/>
-      <hp value="500"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="52"/>
-    <experience value="1920"/>
-    <respawn value="1620"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,60]" probability="100.0"/>
-      <item value="golden armor" quantity="[1,1]" probability="0.5"/>
-      <item value="shadow armor" quantity="[1,1]" probability="0.0050"/>
-      <item value="shadow boots" quantity="[1,1]" probability="1.5"/>
-      <item value="shadow helmet" quantity="[1,1]" probability="0.35"/>
-      <item value="fire sword" quantity="[1,1]" probability="0.5"/>
-      <item value="night dagger" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="devil queen">
-    <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
-    <description></description>
-    <attributes>
-      <atk value="423"/>
-      <def value="61"/>
-      <hp value="400"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="52"/>
-    <experience value="1920"/>
-    <respawn value="1620"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="great sword" quantity="[1,1]" probability="2.0"/>
-      <item value="night dagger" quantity="[1,1]" probability="1.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Who wakes me from my meditation?"/>
-        <noise state="idle follow fight" value="You will regret this!"/>
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-    </ai>
-  </creature>
-
-  <creature name="fallen warrior">
-    <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
-    <description></description>
-    <attributes>
-      <atk value="438"/>
-      <def value="66"/>
-      <hp value="402"/>
-      <speed value="0.9"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="55"/>
-    <experience value="2210"/>
-    <respawn value="1650"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="greater potion" quantity="[1,1]" probability="30.0"/>
-      <item value="money" quantity="[10,70]" probability="100.0"/>
-      <item value="shadow legs" quantity="[1,1]" probability="0.5"/>
-      <item value="shadow shield" quantity="[1,1]" probability="0.05"/>
-      <item value="dark dagger" quantity="[1,1]" probability="0.050"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -546,71 +759,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>   
-
-  <creature name="lich">
-    <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
-    <description>You see a lich, a dark desolate creature which has been doomed to wander in endless turmoil, feeding on the souls of the righteous.</description>
-    <attributes>
-      <atk value="468"/>
-      <def value="53"/>
-      <hp value="650"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="60"/>
-    <experience value="2760"/>
-    <respawn value="1800"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
-      <item value="lich cloak" quantity="[1,1]" probability="1.0"/>
-      <item value="golden shield" quantity="[1,1]" probability="0.5"/>
-      <item value="soul dagger" quantity="[1,1]" probability="0.0050"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-      <profile name="attack weakest"/>
-    </ai>
-  </creature>
   
-  <creature name="fallen priest">
-    <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
-    <description>You see a fallen priest. He was once just a regular human priest, until the dark powers corrupted him and turned him to the dark side. </description>
-    <attributes>
-      <atk value="546"/>
-      <def value="80"/>
-      <hp value="636"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="74"/>
-    <experience value="4790"/>
-    <respawn value="2460"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="greater potion" quantity="[1,2]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="shadow boots" quantity="[1,1]" probability="0.5"/>
-      <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
-      <item value="chaos cloak" quantity="[1,1]" probability="0.050"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
   <creature name="incorporeal armor">
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
     <description>You see an incorporeal armor. You are quite surprised as it walks towards you because there is nobody in it.</description>
@@ -641,134 +790,333 @@
     </ai>
   </creature>
   
-  <creature name="dead lich">
-    <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
-    <description></description>
+  <creature name="black death">
+    <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
+    <description>You see a black death. With his scythe he reaps your soul and then he takes it over the river where it has to stay until judgement day arrives.</description>
     <attributes>
-      <atk value="582"/>
-      <def value="80"/>
-      <hp value="751"/>
+      <atk value="1451"/>
+      <def value="154"/>
+      <hp value="5900"/>
       <speed value="1.0"/>
-      <size value="1,1"/>
+      <size value="3,2"/>
     </attributes>
-    <level value="82"/>
-    <experience value="6330"/>
-    <respawn value="2950"/>
-    <corpse name="humanoid"/>
+    <level value="300"/>
+    <experience value="270000"/>
+    <respawn value="70000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
     <drops>
-      <item value="greater potion" quantity="[1,1]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
-      <item value="lich cloak" quantity="[1,1]" probability="1.5"/>
-      <item value="golden shield" quantity="[1,1]" probability="1.5"/>
-      <item value="soul dagger" quantity="[1,1]" probability="0.0080"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="fallen high priest">
-    <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
-    <description></description>
-    <attributes>
-      <atk value="619"/>
-      <def value="81"/>
-      <hp value="894"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="91"/>
-    <experience value="8440"/>
-    <respawn value="3610"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="mega potion" quantity="[1,1]" probability="10.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="magic plate armor" quantity="[1,1]" probability="0.005"/>
-      <item value="golden twoside axe" quantity="[1,1]" probability="2.5"/>
-      <item value="demon fire sword" quantity="[1,1]" probability="0.0010"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-  
-  <creature name="high lich">
-    <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
-    <description>The terrible grinning skull of a high lich leers at you as it prepares to slaughter you in a myriad of magical ways.</description>
-    <attributes>
-      <atk value="693"/>
-      <def value="123"/>
-      <hp value="751"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="104"/>
-    <experience value="12800"/>
-    <respawn value="5950"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="mega potion" quantity="[1,1]" probability="20.0"/>
-      <item value="money" quantity="[40,100]" probability="100.0"/>
-      <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
-      <item value="lich cloak" quantity="[1,1]" probability="2.0"/>
-      <item value="black shield" quantity="[1,1]" probability="0.0010"/>
-      <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="devil monk">
-    <type class="undead" subclass="devil_monk" tileid="undead_fallen.png:8"/>
-    <description>You see a devil monk. He is a member of a devil cult which practises black rituals.</description>
-    <attributes>
-      <atk value="1089"/>
-      <def value="108"/>
-      <hp value="4000"/>
-      <speed value="1.0"/>
-      <size value="2,1"/>
-    </attributes>
-    <level value="205"/>
-    <experience value="86000"/>
-    <respawn value="26000"/>
-    <corpse name="humanoid" harmless="cloaked_large_red" />
-    <drops>
-      <item value="money" quantity="[100,600]" probability="100.0"/>
-      <item value="greater potion" quantity="[2,4]" probability="20.0"/>
-      <item value="mega potion" quantity="[1,1]" probability="20.0"/>
-      <item value="vulcano hammer" quantity="[1,1]" probability="0.01"/>
-      <item value="black scythe" quantity="[1,1]" probability="0.1"/>
-      <item value="hell dagger" quantity="[1,1]" probability="0.5"/>
+      <item value="mega potion" quantity="[2,4]" probability="50.0"/>
+      <item value="money" quantity="[3000,10000]" probability="100.0"/>
+      <item value="black armor" quantity="[1,1]" probability="1.0"/>
+      <item value="black legs" quantity="[1,1]" probability="2.0"/>
+      <item value="black boots" quantity="[1,1]" probability="1.0"/>
+      <item value="black shield" quantity="[1,1]" probability="1.0"/>
+      <item value="black scythe" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <abilities>
       <damage type="dark"/>
-      <susceptibility type="dark" value="0.8"/>
-      <susceptibility type="light" value="1.15"/>
+      <susceptibility type="dark" value="0.6"/>
+      <susceptibility type="light" value="1.3"/>
     </abilities>
     <ai>
+      <says>
+        <noise state="idle follow fight" value="Your time to die has come!"/>
+        <noise state="idle follow fight" value="Say goodbye to this world!"/>
+        <sound value="laugh-evil-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.05"/>
+      <profile name="heal" params="35,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <creature name="golden death">
+    <type class="huge_animal" subclass="golden_death" tileid="huge_animal.png:12"/>
+    <description>You see the golden death. He came to take your soul away to pay for all your sins.</description>
+    <attributes>
+      <atk value="1968"/>
+      <def value="171"/>
+      <hp value="14000"/>
+      <speed value="1.0"/>
+      <size value="3,2"/>
+    </attributes>
+    <level value="450"/>
+    <experience value="700000"/>
+    <respawn value="240000"/>
+    <corpse name="giant_humanoid" width="2" height="2"/>
+    <drops>
+      <item value="mega potion" quantity="[5,20]" probability="80.0"/>
+      <item value="gold bar" quantity="[2,10]" probability="30.0"/>
+      <item value="money" quantity="[8000,40000]" probability="100.0"/>
+      <item value="emerald ring" quantity="[1,1]" probability="2.0"/>
+      <item value="golden blade" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="light"/>
+      <susceptibility type="dark" value="1.1"/>
+      <susceptibility type="light" value="0.8"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="You will dream of me tonight..."/>
+        <noise state="idle follow fight" value="You will pay for your greed!"/>
+        <sound value="laugh-evil-1"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="20,50"/>
+      <profile name="lifesteal" params="0.1"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <!-- END: specter -->
+  
+  <!-- START: vampire -->
+  
+  <creature name="vampire bride">
+    <type class="vampire" subclass="vampire_lord_bride" tileid="vampire.png:0"/>
+    <description>You see a vampire bride. She was resurrected from the dead by a wicked vampire lord.</description>
+    <attributes>
+      <atk value="186"/>
+      <def value="4"/>
+      <hp value="800"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,30]" probability="75.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="greater antidote" quantity="[1,2]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.5"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampire_lord_bride;vampire_lord_bride_evil),"/>
+    </ai>
+  </creature>
+
+  <creature name="vampirette">
+    <type class="vampire" subclass="vampirette" tileid="vampire.png:4"/>
+    <description>You see a Vampirette. Beware of its sharp teeth! She wants to drink your blood and turn you into a vampire!</description>
+    <attributes>
+      <atk value="353"/>
+      <def value="43"/>
+      <hp value="140"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="40"/>
+    <experience value="1040"/>
+    <respawn value="1520"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="vampirette entrails" quantity="[1,1]" probability="100.0"/>
+      <item value="vampire cloak" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.8"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+      <profile name="strategy" params=",outfit_changer(hand_to_hand;vampirette;vampirette_evil),"/>
+    </ai>
+  </creature>
+  
+  <creature name="vampire lord">
+    <type class="vampire" subclass="vampire_lord" tileid="vampire.png:2"/>
+    <description>You see a vampire lord. Be careful, he is after your blood!</description>
+    <attributes>
+      <atk value="497"/>
+      <def value="35"/>
+      <hp value="750"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="65"/>
+    <experience value="3390"/>
+    <respawn value="2000"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[15,100]" probability="100.0"/>
+      <item value="mega potion" quantity="[1,2]" probability="55.0"/>
+      <item value="vampire cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="vampire sword" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="1"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="strategy" params=",outfit_changer(attack_weakest;vampire_lord;vampire_lord_evil),"/>
+    </ai>
+  </creature>
+   
+  <!-- END: vampire -->
+  
+  <!-- START: zombie -->
+  
+  <creature name="bloody zombie">
+    <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
+    <description>You see a bloody zombie. Can you see the drops of blood which fall from his body?</description>
+    <attributes>
+      <atk value="182"/>
+      <def value="34"/>
+      <hp value="100"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="16"/>
+    <experience value="200"/>
+    <respawn value="1230"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,25]" probability="100.0"/>
+      <item value="enhanced chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="scale armor" quantity="[1,1]" probability="2.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="0.3"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="brrraaaaaaaaaains"/>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="lifesteal" params="0.05"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="zombie">
+    <type class="undead" subclass="zombie" tileid="undead.png:11"/>
+    <description>You see a zombie. It woke up just to take revenge, be silent.</description>
+    <attributes>
+      <atk value="202"/>
+      <def value="49"/>
+      <hp value="80"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="19"/>
+    <experience value="250"/>
+    <respawn value="1250"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="4.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="headless monster">
+    <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
+    <description>You see a headless monster, how can he hear that we come to him?</description>
+    <attributes>
+      <atk value="221"/>
+      <def value="54"/>
+      <hp value="100"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="21"/>
+    <experience value="300"/>
+    <respawn value="1260"/>
+    <!-- a corpse with a skull is somewhat inapropriate for a headless monster, 
+        but we don't have anything better -->
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+      <item value="iron scale armor" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>  
+  
+  <creature name="rotten zombie">
+    <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
+    <description>You see a rotten zombie. You are disgusted as you see its rotten skin that hangs down in pieces from his half rotten bones.</description>
+    <attributes>
+      <atk value="256"/>
+      <def value="70"/>
+      <hp value="100"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="27"/>
+    <experience value="460"/>
+    <respawn value="1320"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[3,35]" probability="100.0"/>
+      <item value="pauldroned iron cuirass" quantity="[1,1]" probability="15.0"/>
+      <item value="plate armor" quantity="[1,1]" probability="2.0"/>
+      <item value="hammer" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="bluuergghhhoooorrghhhhh"/>
+        <sound value="undead-1"/>
+        <sound value="undead-2"/>
+        <sound value="undead-3"/>
+        <sound value="undead-4"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -803,6 +1151,8 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
--->
-
+  -->
+  
+  <!-- END: zombie -->
+  
 </creatures>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
-    
- <creature name="goblin">
+  
+  <!-- START: goblin -->
+  
+  <creature name="goblin">
     <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
     <description>You see a goblin, it is an evil and mischievous creature.</description>
     <attributes>
@@ -32,6 +34,45 @@
     <ai>
       <says>
         <noise state="idle follow fight" value="Umm! Tasty meat." />
+        <sound value="saur-3" />
+        <sound value="saur-4" />
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="veteran goblin">
+    <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
+    <description>You see a veteran goblin, an old warrior...</description>
+    <attributes>
+      <atk value="106"/>
+      <def value="14"/>
+      <hp value="120"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="7"/>
+    <experience value="70"/>
+    <respawn value="1200"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[4,11]" probability="90.0"/>
+      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="studded legs" quantity="[1,1]" probability="10.0"/>
+      <item value="studded armor" quantity="[1,1]" probability="4.0"/>
+      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="mace" quantity="[1,1]" probability="2.0"/>
+      <item value="wooden shield" quantity="[1,1]" probability="1.0"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Breakfast time!" />
         <sound value="saur-3" />
         <sound value="saur-4" />
       </says>
@@ -79,45 +120,8 @@
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
-  </creature> 
-  
-  <creature name="veteran goblin">
-    <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
-    <description>You see a veteran goblin, an old warrior...</description>
-    <attributes>
-      <atk value="106"/>
-      <def value="14"/>
-      <hp value="120"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="7"/>
-    <experience value="70"/>
-    <respawn value="1200"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[4,11]" probability="90.0"/>
-      <item value="pauldroned leather cuirass" quantity="[1,1]" probability="10.0"/>
-      <item value="studded legs" quantity="[1,1]" probability="10.0"/>
-      <item value="studded armor" quantity="[1,1]" probability="4.0"/>
-      <item value="leather boots" quantity="[1,1]" probability="0.5"/>
-      <item value="cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="mace" quantity="[1,1]" probability="2.0"/>
-      <item value="wooden shield" quantity="[1,1]" probability="1.0"/>
-      <item value="dress" quantity="[1,1]" probability="5.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Breakfast time!" />
-        <sound value="saur-3" />
-        <sound value="saur-4" />
-      </says>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
   </creature>
+  
+  <!-- END: goblin -->
   
 </creatures>  

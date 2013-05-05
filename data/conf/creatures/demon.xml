@@ -1,73 +1,70 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../creatures.xsd ">
- 
-   <creature name="imp">
-    <type class="demon" subclass="imp" tileid="demon.png:0"/>
-    <description>You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!</description>
-    <attributes>
-      <atk value="495"/>
-      <def value="73"/>
-      <hp value="530"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="66"/>
-    <experience value="3530"/>
-    <respawn value="2050"/>
-    <corpse name="humanoid"/>
-    <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <abilities>
-      <damage type="fire"/>
-      <susceptibility type="ice" value="1.2"/>
-      <susceptibility type="fire" value="0.75"/>
-    </abilities>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="winged blue imp">
-    <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
+  
+  <!-- START: demon -->
+  
+  <creature name="violet avenger">
+    <type class="hybrid" subclass="violet_avenger" tileid="hybrid.png:8"/>
     <description></description>
     <attributes>
-      <atk value="515"/>
-      <def value="86"/>
-      <hp value="500"/>
-      <speed value="0.8"/>
+      <atk value="368"/>
+      <def value="71"/>
+      <hp value="250"/>
+      <speed value="0.9"/>
       <size value="1,1"/>
     </attributes>
-    <level value="70"/>
-    <experience value="4130"/>
-    <respawn value="2250"/>
+    <level value="44"/>
+    <experience value="1290"/>
+    <respawn value="1600"/>
     <corpse name="humanoid"/>
     <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
-      <item value="poison" quantity="[1,2]" probability="40.0"/>
-       <item value="blue boots" quantity="[1,1]" probability="5.0"/>
-        <item value="blue legs" quantity="[1,1]" probability="1.5"/>
+      <item value="money" quantity="[10,30]" probability="100.0"/>
+      <item value="antidote" quantity="[1,2]" probability="30.0"/>
+      <item value="mainio cloak" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="poisonous" params="15,poison"/>
-      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
   
-    <creature name="demon">
+  <creature name="devil queen">
+    <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="423"/>
+      <def value="61"/>
+      <hp value="400"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="52"/>
+    <experience value="1920"/>
+    <respawn value="1620"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="great sword" quantity="[1,1]" probability="2.0"/>
+      <item value="night dagger" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Who wakes me from my meditation?"/>
+        <noise state="idle follow fight" value="You will regret this!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+    </ai>
+  </creature>
+  
+  <creature name="demon">
     <type class="demon" subclass="demon" tileid="demon.png:4"/>
     <description>You see a demon. He personifies evil.</description>
     <attributes>
@@ -100,7 +97,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="imperial demon servant">
     <type class="demon" subclass="imperial_demon_servant" tileid="demon.png:3"/>
     <description>You see an imperial demon servant who carries out whims of his demon lords. </description>
@@ -129,7 +126,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="imperial demon lord">
     <type class="demon" subclass="imperial_demon_lord" tileid="demon.png:2"/>
     <description>You see an imperial demon lord. He holds the rank of General among demons, and very few out rank it in hell.</description>
@@ -161,5 +158,120 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <creature name="balrog">
+    <type class="mythical_animal" subclass="balrog" tileid="enormous_creature.png:0"/>
+    <description>You see a huge balrog. He is slow hitting, but terribly strong as he stands towering above you.</description>
+    <attributes>
+      <atk value="2557"/>
+      <def value="154"/>
+      <hp value="10000"/>
+      <speed value="1.0"/>
+      <size value="6,6"/>
+    </attributes>
+    <level value="350"/>
+    <experience value="430000"/>
+    <respawn value="120000"/>
+    <corpse name="enormous_humanoid" width="6" height="6"/>
+    <drops>
+      <item value="money" quantity="[2000,20000]" probability="100.0"/>
+      <item value="mega potion" quantity="[2,4]" probability="60.0"/>
+      <item value="black armor" quantity="[1,1]" probability="2.5"/>
+      <item value="black shield" quantity="[1,1]" probability="2.5"/>
+      <item value="mithril nugget" quantity="[2,5]" probability="1.0"/>
+      <item value="demon fire sword" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+      <slot name="rhand" item="demon fire sword"/>
+    </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.7"/>
+    </abilities>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Growwwwwwwrrrrrrr!"/>
+        <noise state="idle follow fight" value="Arrrrllllggggghhhh"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+      <profile name="attack weakest"/>
+    </ai>
+  </creature>
+  
+  <!-- END: demon -->
+  
+  <!-- START: imp -->
+  
+  <creature name="imp">
+    <type class="demon" subclass="imp" tileid="demon.png:0"/>
+    <description>You see an imp. He may look a little bit cute, but don't forget he is one of the devil's servants!</description>
+    <attributes>
+      <atk value="495"/>
+      <def value="73"/>
+      <hp value="530"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="66"/>
+    <experience value="3530"/>
+    <respawn value="2050"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <abilities>
+      <damage type="fire"/>
+      <susceptibility type="ice" value="1.2"/>
+      <susceptibility type="fire" value="0.75"/>
+    </abilities>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="winged blue imp">
+    <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="515"/>
+      <def value="86"/>
+      <hp value="500"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="70"/>
+    <experience value="4130"/>
+    <respawn value="2250"/>
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="poison" quantity="[1,2]" probability="40.0"/>
+       <item value="blue boots" quantity="[1,1]" probability="5.0"/>
+        <item value="blue legs" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="15,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: imp -->
   
 </creatures>  

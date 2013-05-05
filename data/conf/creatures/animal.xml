@@ -1,63 +1,100 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <creatures xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../creatures.xsd ">
-  <creature name="deer" condition="!stendhal.christmas">
-    <type class="animal" subclass="deer" tileid="animal.png:9"/>
-    <description>You see a defenseless deer, do not have fear of it.</description>
+    xsi:schemaLocation="stendhal ../creatures.xsd ">
+  
+  <!-- START: arachnid -->
+  
+  <creature name="spider">
+    <type class="animal" subclass="spider" tileid="animal.png:18"/>
+    <description>You see a spider. It makes a giant spider web to trap you!</description>
     <attributes>
-      <atk value="8"/>
-      <def value="3"/>
-      <hp value="20"/>
+      <atk value="213"/>
+      <def value="56"/>
+      <hp value="80"/>
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="0"/>
-    <experience value="0"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
+    <level value="20"/>
+    <experience value="280"/>
+    <respawn value="1260"/>
+    <corpse name="small_boneless"/>
     <drops>
-      <item value="meat" quantity="[1,3]" probability="60.0"/>
-      <item value="ham" quantity="[1,2]" probability="30.0"/>
-      <item value="antidote" quantity="[1,1]" probability="5.0"/>
+      <item value="money" quantity="[10,20]" probability="75.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="non offensive"/>
-      <profile name="animal"/>
-      <profile name="coward"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
-  <creature name="deer" condition="stendhal.christmas">
-    <type class="animal" subclass="reindeer" tileid="animal.png:9"/>
-    <description>You see a reindeer running freely, and wonder if he is one of Santa's special helpers.</description>
+  
+  <creature name="poisonous spider">
+    <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
+    <description>You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!</description>
     <attributes>
-      <atk value="8"/>
-      <def value="3"/>
-      <hp value="20"/>
+      <atk value="244"/>
+      <def value="61"/>
+      <hp value="100"/>
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="0"/>
-    <experience value="0"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1300"/>
+    <corpse name="small_boneless"/>
     <drops>
-      <item value="meat" quantity="[1,3]" probability="60.0"/>
-      <item value="ham" quantity="[1,2]" probability="30.0"/>
-      <item value="antidote" quantity="[1,1]" probability="5.0"/>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="greater poison" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="non offensive"/>
-      <profile name="animal"/>
-      <profile name="coward"/>
+      <profile name="poisonous" params="40,greater poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
+  <creature name="giant spider">
+    <type class="huge_animal" subclass="giant_spider" tileid="huge_animal.png:5"/>
+    <description>You see a giant spider. It has very long legs which are quite dangerous.</description>
+    <attributes>
+      <atk value="709"/>
+      <def value="94"/>
+      <hp value="1200"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="110"/>
+    <experience value="14400"/>
+    <respawn value="5400"/>
+    <corpse name="huge_animal" width="2" height="2"/>
+    <drops>
+      <item value="greater potion" quantity="[1,4]" probability="70.0"/>
+      <item value="greater poison" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[30,150]" probability="100.0"/>
+      <item value="silk gland" quantity="[1,1]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: arachnid -->
+  
+  <!-- START: crustacean -->
+  
   <creature name="crab">
     <type class="animal" subclass="crab" tileid="animal.png:8"/>
     <description>You see a little crab that comes from the beach, be careful of its pincers.</description>
@@ -87,38 +124,44 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="bat">
-    <type class="animal" subclass="bat" tileid="animal.png:0"/>
-    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+  
+  <!-- END: crustacean -->
+  
+  <!-- START: fowl -->
+  
+  <creature name="chick">
+    <type class="farm_animal" subclass="chick" tileid="farm_animal.png:2"/>
+    <description>You see a little chick, it doesn't like to be away from its mother.</description>
     <attributes>
-      <atk value="36"/>
+      <atk value="32"/>
       <def value="7"/>
-      <hp value="20"/>
+      <hp value="25"/>
       <speed value="0.5"/>
       <size value="1,1"/>
     </attributes>
     <level value="1"/>
-    <experience value="10"/>
+    <experience value="5"/>
     <respawn value="900"/>
-   	<corpse name="small_winged" harmless="winged_bat" />
+    <corpse name="small_winged" harmless="feathered" />
     <drops>
-      <item value="meat" quantity="[1,2]" probability="50.0"/>
+      <item value="chicken" quantity="[1,1]" probability="70.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="bat-1" />
-        <sound value="bat-2" />
-        <sound value="bat-3" />
+        <noise state="idle follow fight" value="peep peep"/>
+        <noise state="idle follow fight" value="peep peep peep"/>
+        <sound value="chicken-chick-1" />
+        <sound value="chicken-chick-2" />
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
       <profile name="patrolling"/>
+      <profile name="non offensive"/>
+      <profile name="coward"/>
     </ai>
   </creature>
-
+  
   <creature name="chicken">
     <type class="animal" subclass="chicken" tileid="animal.png:25"/>
     <description>You see a chicken, isn't it nice?</description>
@@ -150,7 +193,38 @@
       <profile name="coward"/>
     </ai>
   </creature>
-
+  
+  <creature name="mother hen">
+    <type class="farm_animal" subclass="hen" tileid="farm_animal.png:6"/>
+    <description>You see a mother hen, she will probably hurt you if you touch her sons.</description>
+    <attributes>
+      <atk value="29"/>
+      <def value="6"/>
+      <hp value="25"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="small_winged" harmless="feathered" />
+    <drops>
+      <item value="chicken" quantity="[1,2]" probability="70.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="peep peep"/>
+        <noise state="idle follow fight" value="peep peep peep"/>
+        <sound value="chicken-1"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+      <profile name="non offensive"/>
+    </ai>
+  </creature>
+  
   <creature name="penguin">
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
     <description>You see a penguin, smart and silly.</description>
@@ -183,7 +257,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="pigeon">
     <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
     <description>You see a pigeon, it loves the little seeds.</description>
@@ -214,7 +288,538 @@
       <profile name="coward"/>
     </ai>
   </creature>
-
+  
+  <!-- END: fowl -->
+  
+  <!-- START: insect -->
+  
+  <creature name="killer bee">
+    <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
+    <description>You see a killer bee which will sting you to death!</description>
+    <attributes>
+      <atk value="170"/>
+      <def value="25"/>
+      <hp value="100"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="200"/>
+    <respawn value="1000"/>
+    <corpse name="small_boneless"/>
+    <drops>
+      <item value="honey" quantity="[1,2]" probability="15.0"/>
+      <item value="poison" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="steel arrow" quantity="10000"/>
+      <slot name="rhand" item="wooden bow" quantity="1"/>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="BbzzZZzzz!"/>
+        <sound value="bee-1"/>
+      </says>
+      <profile name="poisonous" params="10,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: insect -->
+  
+  <!-- START: mammal -->
+  
+  <creature name="deer" condition="!stendhal.christmas">
+    <type class="animal" subclass="deer" tileid="animal.png:9"/>
+    <description>You see a defenseless deer, do not have fear of it.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="0"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,3]" probability="60.0"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
+      <item value="antidote" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="animal"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="deer" condition="stendhal.christmas">
+    <type class="animal" subclass="reindeer" tileid="animal.png:9"/>
+    <description>You see a reindeer running freely, and wonder if he is one of Santa's special helpers.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="0"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,3]" probability="60.0"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
+      <item value="antidote" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="animal"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="mouse">
+    <type class="small_animal" subclass="mouse" tileid="farm_animal.png:8"/>
+    <description>You see a small mouse that seems to be very hungry.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="tail_rodent" />
+    <drops>
+      <item value="cheese" quantity="[1,2]" probability="100.0"/>
+     </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="squeak ... squeak!"/>
+        <sound value="mouse-2"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="rat">
+    <type class="small_animal" subclass="rat" tileid="small_animal.png:1"/>
+    <description>You see a small rat that seems to be extremely hungry.</description>
+    <attributes>
+      <atk value="8"/>
+      <def value="3"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="0"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="tail_rodent"/>
+    <drops>
+      <item value="cheese" quantity="[1,1]" probability="50.0"/>
+      <item value="money" quantity="[1,3]" probability="70.0"/>
+      <item value="club" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Squeak! Squeak!"/>
+        <sound value="rats-2"/>
+        <sound value="rats-41"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="stupid coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="bat">
+    <type class="animal" subclass="bat" tileid="animal.png:0"/>
+    <description>You see a bat, it will seek your blood, don't be distracted...</description>
+    <attributes>
+      <atk value="36"/>
+      <def value="7"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="10"/>
+    <respawn value="900"/>
+   	<corpse name="small_winged" harmless="winged_bat" />
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="bat-1" />
+        <sound value="bat-2" />
+        <sound value="bat-3" />
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="caverat">
+    <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
+    <description>You see a caverat which is dirty and loves the dungeons.</description>
+    <attributes>
+      <atk value="34"/>
+      <def value="6"/>
+      <hp value="30"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="10"/>
+    <respawn value="900"/>
+    <corpse name="small_animal" harmless="tail_rodent" />
+    <drops>
+      <item value="money" quantity="[1,6]" probability="90.0"/>
+      <item value="cheese" quantity="[1,2]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      	<sound value="rats-2"/>
+        <sound value="rats-41"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="piglet">
+    <type class="farm_animal" subclass="piglet" tileid="farm_animal.png:9"/>
+    <description>You see a piglet, a bit dirty.</description>
+    <attributes>
+      <atk value="31"/>
+      <def value="7"/>
+      <hp value="25"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="5"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="ham" quantity="[1,1]" probability="70.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="oink"/>
+        <noise state="idle follow fight" value="oink oink"/>
+        <noise state="idle follow fight" value="shnuffle"/>
+        <sound value="pig-3" />
+      </says>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="babybear">
+    <type class="animal" subclass="babybear" tileid="animal.png:21"/>
+    <description>You see a babybear, isn't it sweet?</description>
+    <attributes>
+      <atk value="48"/>
+      <def value="7"/>
+      <hp value="54"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="50.0"/>
+      <item value="ham" quantity="[1,1]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Roar!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="beaver">
+    <type class="farm_animal" subclass="beaver" tileid="farm_animal.png:0"/>
+    <description>You see a beaver. It likes to build dams in the river.</description>
+    <attributes>
+      <atk value="53"/>
+      <def value="8"/>
+      <hp value="35"/>
+      <speed value="0.6"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+      <item value="wood" quantity="[1,2]" probability="20.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="big bad wolf">
+    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
+	<description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
+    <attributes>
+      <atk value="46"/>
+      <def value="9"/>
+      <hp value="35"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <!-- once in a month -->
+    <respawn value="8640000"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="money" quantity="[2,5]" probability="70.0"/>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
+        <sound value="howl-1"/>
+        <sound value="howl-5"/>
+        <sound value="howl-2"/>
+        <sound value="howl-11"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+  
+  <creature name="boar">
+    <type class="animal" subclass="boar" tileid="animal.png:4"/>
+    <description>You see a boar, they are pretty wild!</description>
+    <attributes>
+      <atk value="53"/>
+      <def value="7"/>
+      <hp value="50"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="ham" quantity="[1,1]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Oink!!"/>
+        <sound value="pig-1"/>
+        <sound value="pig-2"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="bull">
+    <type class="farm_animal" subclass="bull" tileid="farm_animal.png:1"/>
+    <description>You see a bull, run away!!!</description>
+    <attributes>
+      <atk value="47"/>
+      <def value="9"/>
+      <hp value="35"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,3]" probability="80.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="MOOOOO!!!"/>
+        <sound value="cow-2" />
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="cow">
+    <type class="farm_animal" subclass="cow" tileid="farm_animal.png:3"/>
+    <description>You see a cow, taste her delicious milk.</description>
+    <attributes>
+      <atk value="51"/>
+      <def value="9"/>
+      <hp value="30"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Moooo       moooo           mooooooo"/>
+        <noise state="idle follow fight" value="mooooo"/>
+        <sound value="cow-1" />
+        <sound value="cowbell-1" />
+      </says>
+      <profile name="animal"/>
+    </ai>
+  </creature>
+  
+  <creature name="fox">
+    <type class="animal" subclass="fox" tileid="animal.png:24"/>
+	<description>You see a fox, it becomes extinct!</description>
+    <attributes>
+      <atk value="55"/>
+      <def value="8"/>
+      <hp value="35"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="goat">
+    <type class="farm_animal" subclass="goat" tileid="farm_animal.png:4"/>
+    <description>You see a goat, which is wild and lives in the mountain.</description>
+    <attributes>
+      <atk value="52"/>
+      <def value="9"/>
+      <hp value="30"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <sound value="goat-1" />
+        <sound value="goat-2" />
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="horse">
+    <type class="farm_animal" subclass="horse" tileid="farm_animal.png:7"/>
+    <description>You see a horse, don't slap it or it will run away!</description>
+    <attributes>
+      <atk value="48"/>
+      <def value="10"/>
+      <hp value="30"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="neigghhh neigghhh"/>
+        <sound value="horse-1" />
+        <sound value="horse-2" />
+      </says>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
     <description>You see a monkey, would you like to offer it a banana?</description>
@@ -248,12 +853,42 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="boar">
-    <type class="animal" subclass="boar" tileid="animal.png:4"/>
-    <description>You see a boar, they are pretty wild!</description>
+  
+  <creature name="panda">
+    <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
+    <description>You see a panda which comes from an exotic land.</description>
     <attributes>
-      <atk value="53"/>
+      <atk value="48"/>
+      <def value="7"/>
+      <hp value="54"/>
+      <speed value="0.4"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,3]" probability="50.0"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Roar!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="ram">
+    <type class="farm_animal" subclass="ram" tileid="farm_animal.png:10"/>
+    <description>You see a ram, maybe you are able to shear it?</description>
+    <attributes>
+      <atk value="52"/>
       <def value="7"/>
       <hp value="50"/>
       <speed value="0.5"/>
@@ -264,18 +899,48 @@
     <respawn value="900"/>
     <corpse name="animal"/>
     <drops>
-      <item value="ham" quantity="[1,1]" probability="40.0"/>
+      <item value="meat" quantity="[1,1]" probability="40.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <noise state="idle follow fight" value="Oink!!"/>
-        <sound value="pig-1"/>
-        <sound value="pig-2"/>
+        <noise state="idle follow fight" value="Baaaaaa"/>
+        <sound value="sheep-4" />
+        <sound value="sheep-5" />
       </says>
       <profile name="animal"/>
       <profile name="offensive"/>
+    </ai>
+  </creature>
+  
+  <creature name="white horse">
+    <type class="farm_animal" subclass="white_horse" tileid="farm_animal.png:11"/>
+    <description>You see a white horse, they love to stay with their brown friends.</description>
+    <attributes>
+      <atk value="50"/>
+      <def value="9"/>
+      <hp value="30"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="80.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="naayyy"/>
+        <sound value="horse-1" />
+        <sound value="horse-2" />
+      </says>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -313,191 +978,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="big bad wolf">
-    <type class="animal" subclass="wolf" tileid="animal.png:26"/>
-	<description>You see a big bad wolf. It is really wild, hungry and really dangerous!</description>
-    <attributes>
-      <atk value="46"/>
-      <def value="9"/>
-      <hp value="35"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <!-- once in a month -->
-    <respawn value="8640000"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Aooooooouuhhh!!"/>
-        <sound value="howl-1"/>
-        <sound value="howl-5"/>
-        <sound value="howl-2"/>
-        <sound value="howl-11"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-      <profile name="rare"/>
-    </ai>
-  </creature>
-
-  <creature name="fox">
-    <type class="animal" subclass="fox" tileid="animal.png:24"/>
-	<description>You see a fox, it becomes extinct!</description>
-    <attributes>
-      <atk value="55"/>
-      <def value="8"/>
-      <hp value="35"/>
-      <speed value="0.8"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="caiman">
-    <type class="animal" subclass="caiman" tileid="animal.png:6"/>
-    <description>You see a caiman, which is hidden in the water.</description>
-    <attributes>
-      <atk value="49"/>
-      <def value="9"/>
-      <hp value="35"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="money" quantity="[2,8]" probability="70.0"/>
-      <item value="ham" quantity="[1,3]" probability="45.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Grrr Grrr!"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="babybear">
-    <type class="animal" subclass="babybear" tileid="animal.png:21"/>
-    <description>You see a babybear, isn't it sweet?</description>
-    <attributes>
-      <atk value="48"/>
-      <def value="7"/>
-      <hp value="54"/>
-      <speed value="0.4"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="meat" quantity="[1,2]" probability="50.0"/>
-      <item value="ham" quantity="[1,1]" probability="30.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Roar!"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="panda">
-    <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
-    <description>You see a panda which comes from an exotic land.</description>
-    <attributes>
-      <atk value="48"/>
-      <def value="7"/>
-      <hp value="54"/>
-      <speed value="0.4"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="2"/>
-    <experience value="20"/>
-    <respawn value="900"/>
-    <corpse name="animal"/>
-    <drops>
-      <item value="meat" quantity="[1,3]" probability="50.0"/>
-      <item value="ham" quantity="[1,2]" probability="30.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="Roar!"/>
-      </says>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
   
-    <creature name="snake">
-    <type class="animal" subclass="snake" tileid="animal.png:7"/>
-    <description>You see a snake, it came from the forest to poison you!</description>
-    <attributes>
-      <atk value="67"/>
-      <def value="13"/>
-      <hp value="40"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="3"/>
-    <experience value="30"/>
-    <respawn value="900"/>
-    <corpse name="small_boneless"/>
-    <drops>
-      <item value="money" quantity="[2,6]" probability="60.0"/>
-      <item value="poison" quantity="[1,1]" probability="10.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="SsSssSsssssss!"/>
-        <sound value="snake-1"/>
-      </says>
-      <profile name="poisonous" params="5,poison"/>
-      <profile name="animal"/>
-      <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
   <creature name="bear">
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
     <description>You see a bear. You are lucky and found it awake.</description>
@@ -530,7 +1011,7 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
+  
   <creature name="lion">
     <type class="animal" subclass="lion" tileid="animal.png:14"/>
     <description>You see a lion, dangerous and hungry...</description>
@@ -563,7 +1044,7 @@
     </ai>
   </creature>
   
-    <creature name="elephant">
+  <creature name="elephant">
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
     <description>You see an elephant, a huge animal with lots of ham and meat. Are you sure that you want to attack it?</description>
     <attributes>
@@ -629,6 +1110,40 @@
     </ai>
   </creature>
   
+  <creature name="venomrat">
+    <type class="small_animal" subclass="venomrat" tileid="small_animal.png:3"/>
+    <description>You see a venomrat, extremely poisonous.</description>
+    <attributes>
+      <atk value="89"/>
+      <def value="14"/>
+      <hp value="70"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="5"/>
+    <experience value="50"/>
+    <respawn value="1200"/>
+    <corpse name="small_animal" harmless="tail_rodent" />
+    <drops>
+      <item value="money" quantity="[3,7]" probability="100.0"/>
+      <item value="cheese" quantity="[1,3]" probability="50.0"/>
+      <item value="greater poison" quantity="[1,1]" probability="15.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      	<sound value="rats-2"/>
+        <sound value="rats-41"/>
+      </says>
+      <profile name="poisonous" params="5,greater poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
   <creature name="killer bat">
     <type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
     <description>You see a killer bat which will suck your blood!</description>
@@ -657,71 +1172,6 @@
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="killer bee">
-    <type class="animal" subclass="killer_bee" tileid="animal.png:27"/>
-    <description>You see a killer bee which will sting you to death!</description>
-    <attributes>
-      <atk value="170"/>
-      <def value="25"/>
-      <hp value="100"/>
-      <speed value="0.6"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="15"/>
-    <experience value="200"/>
-    <respawn value="1000"/>
-    <corpse name="small_boneless"/>
-    <drops>
-      <item value="honey" quantity="[1,2]" probability="15.0"/>
-      <item value="poison" quantity="[1,1]" probability="15.0"/>
-    </drops>
-    <equips>
-      <slot name="lhand" item="steel arrow" quantity="10000"/>
-      <slot name="rhand" item="wooden bow" quantity="1"/>
-    </equips>
-    <ai>
-      <says>
-        <noise state="idle follow fight" value="BbzzZZzzz!"/>
-        <sound value="bee-1"/>
-      </says>
-      <profile name="poisonous" params="10,poison"/>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="green slime">
-    <type class="animal" subclass="green_slime" tileid="animal.png:12"/>
-    <description>You see a green slime, sticky and shiny.</description>
-    <attributes>
-      <atk value="114"/>
-      <def value="18"/>
-      <hp value="90"/>
-      <speed value="0.3"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="8"/>
-    <experience value="80"/>
-    <respawn value="1200"/>
-    <corpse name="puddle_green" harmless="puddle_green" />
-    <drops>
-      <item value="money" quantity="[5,10]" probability="100.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
-      <says>
-        <sound value="loop-drag-slimy-1" />
-      </says>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -759,120 +1209,298 @@
     </ai>
   </creature>
   
-  <creature name="brown slime">
-    <type class="animal" subclass="brown_slime" tileid="animal.png:5"/>
-    <description>You see a brown slime, sticky and hungry.</description>
+  <creature name="razorrat">
+    <type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
+    <description>You see a razorrat, its noise will make you crazy!</description>
     <attributes>
-      <atk value="184"/>
-      <def value="26"/>
-      <hp value="160"/>
-      <speed value="0.4"/>
+      <atk value="119"/>
+      <def value="28"/>
+      <hp value="45"/>
+      <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
-    <level value="16"/>
-    <experience value="200"/>
-    <respawn value="1230"/>
-    <corpse name="puddle_brown" harmless="puddle_brown" />
+    <level value="8"/>
+    <experience value="80"/>
+    <respawn value="1200"/>
+    <corpse name="small_animal" harmless="tail_rodent" />
     <drops>
       <item value="money" quantity="[5,10]" probability="100.0"/>
+      <item value="cheese" quantity="[1,3]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+      	<sound value="rats-1"/>
       </says>
       <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-   
-  <creature name="spider">
-    <type class="animal" subclass="spider" tileid="animal.png:18"/>
-    <description>You see a spider. It makes a giant spider web to trap you!</description>
-    <attributes>
-      <atk value="213"/>
-      <def value="56"/>
-      <hp value="80"/>
-      <speed value="1.0"/>
-      <size value="1,1"/>
-    </attributes>
-    <level value="20"/>
-    <experience value="280"/>
-    <respawn value="1260"/>
-    <corpse name="small_boneless"/>
-    <drops>
-      <item value="money" quantity="[10,20]" probability="75.0"/>
-    </drops>
-    <equips>
-    </equips>
-    <ai>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
   
-  <creature name="black slime">
-    <type class="animal" subclass="black_slime" tileid="animal.png:3"/>
-    <description>You see a black slime, with a sticky trail behind it.</description>
+  <creature name="giantrat">
+    <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
+    <description>You see a giant rat. It seems like it survived from an experiment which went wrong.</description>
     <attributes>
-      <atk value="250"/>
-      <def value="36"/>
-      <hp value="210"/>
+      <atk value="173"/>
+      <def value="30"/>
+      <hp value="110"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="huge_animal" harmless="tail_rodent_large" width="2" height="2" />
+    <drops>
+      <item value="money" quantity="[7,20]" probability="100.0"/>
+      <item value="cheese" quantity="[3,7]" probability="80.0"/>
+      <item value="rodent trap" quantity="[1,1]" probability="15.0" />
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+      	<sound value="bobcat-1"/>
+      	<sound value="leopard-11"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: mammal -->
+  
+  <!-- START: mythical -->
+  
+  <creature name="unicorn">
+    <type class="mythical_being" subclass="unicorn" tileid="mythical_being.png:1"/>
+    <description>You see a rare unicorn. It is widely believed to be only a myth.</description>
+    <attributes>
+      <atk value="308"/>
+      <def value="108"/>
+      <hp value="200"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="48"/>
+    <experience value="2000"/>
+    <!-- once in 2 months -->
+    <respawn value="17280000"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="unicorn shield" quantity="[1,1]" probability="80.0"/>
+      <item value="lucky charm" quantity="[1,1]" probability="80.0"/>
+      <item value="diamond" quantity="[1,1]" probability="20.0"/>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="non offensive"/>
+      <profile name="animal"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>   
+  
+  <creature name="centaur">
+    <type class="mythical_being" subclass="centaur" tileid="mythical_being.png:0"/>
+    <description> You see a noble centaur, half man, half horse. He looks capable of great damage but thankfully seems to mean you no harm.</description>
+    <attributes>
+      <atk value="449"/>
+      <def value="76"/>
+      <hp value="350"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="56"/>
+    <experience value="3000"/>
+    <!-- once in 2 weeks -->
+    <respawn value="4032000"/>
+    <!-- uh, should this one be an animal or humanoid? -->
+    <corpse name="humanoid"/>
+    <drops>
+      <item value="money" quantity="[10,100]" probability="70.0"/>
+      <item value="greater potion" quantity="[1,4]" probability="30.0"/>
+      <item value="wooden spear" quantity="[20,40]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
+      <profile name="patrolling"/>
+      <profile name="rare"/>
+    </ai>
+  </creature>
+  
+  <creature name="pegasus">
+    <type class="mythical_being" subclass="pegasus" tileid="mythical_being.png:2"/>
+    <description>You see Pegasus, the winged horse. His name means Lightning and he carries bolts of Thunder.</description>
+    <attributes>
+      <atk value="1590"/>
+      <def value="214"/>
+      <hp value="5000"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="340"/>
+    <experience value="500000"/>
+    <!-- once in 6 weeks -->
+    <respawn value="12096000"/>
+    <corpse name="animal"/>
+    <drops>
+      <item value="ice sword" quantity="[1,1]" probability="20.0"/>
+      <item value="apple" quantity="[10,30]" probability="80.0"/>
+    </drops>
+    <equips/>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="non offensive"/>
+      <profile name="heal" params="10,50"/>
+      <profile name="rare"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <!-- END: mythical -->
+  
+  <!-- START: reptile -->
+  
+  <creature name="caiman">
+    <type class="animal" subclass="caiman" tileid="animal.png:6"/>
+    <description>You see a caiman, which is hidden in the water.</description>
+    <attributes>
+      <atk value="49"/>
+      <def value="9"/>
+      <hp value="35"/>
       <speed value="0.5"/>
       <size value="1,1"/>
     </attributes>
-    <level value="24"/>
-    <experience value="370"/>
-    <respawn value="1290"/>
-    <corpse name="puddle_black" harmless="puddle_black" />
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
     <drops>
-      <item value="money" quantity="[5,19]" probability="100.0"/>
+      <item value="money" quantity="[2,8]" probability="70.0"/>
+      <item value="ham" quantity="[1,3]" probability="45.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <noise state="idle follow fight" value="Grrr Grrr!"/>
       </says>
-      <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
   
-  <creature name="poisonous spider">
-    <type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
-    <description>You see a poisonous spider. Be careful! Its poison is very strong! It will make you very weak and can probably kill you!</description>
+  <creature name="grass snake">
+    <type class="farm_animal" subclass="grass_snake" tileid="farm_animal.png:5"/>
+    <description>You see a grass snake which is quite dangerous.</description>
     <attributes>
-      <atk value="244"/>
-      <def value="61"/>
-      <hp value="100"/>
-      <speed value="1.0"/>
+      <atk value="68"/>
+      <def value="15"/>
+      <hp value="35"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
-    <level value="25"/>
-    <experience value="400"/>
-    <respawn value="1300"/>
+    <level value="3"/>
+    <experience value="30"/>
+    <respawn value="900"/>
     <corpse name="small_boneless"/>
     <drops>
-      <item value="money" quantity="[10,35]" probability="100.0"/>
-      <item value="greater poison" quantity="[1,1]" probability="10.0"/>
+      <item value="money" quantity="[2,6]" probability="60.0"/>
+      <item value="poison" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="poisonous" params="40,greater poison"/>
-      <profile name="brave"/>
+      <says>
+        <noise state="idle follow fight" value="sssSSSsssss..."/>
+        <sound value="snake-1"/>
+      </says>
+      <profile name="poisonous" params="5,poison"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
+  
+  <creature name="snake">
+    <type class="animal" subclass="snake" tileid="animal.png:7"/>
+    <description>You see a snake, it came from the forest to poison you!</description>
+    <attributes>
+      <atk value="67"/>
+      <def value="13"/>
+      <hp value="40"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="3"/>
+    <experience value="30"/>
+    <respawn value="900"/>
+    <corpse name="small_boneless"/>
+    <drops>
+      <item value="money" quantity="[2,6]" probability="60.0"/>
+      <item value="poison" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="SsSssSsssssss!"/>
+        <sound value="snake-1"/>
+      </says>
+      <profile name="poisonous" params="5,poison"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+  
+  <creature name="crocodile">
+    <type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
+    <description>You see a crocodile, it arises from the deep waters in the rivers.</description>
+    <attributes>
+      <atk value="172"/>
+      <def value="30"/>
+      <hp value="110"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="1230"/>
+    <corpse name="huge_animal" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[3,12]" probability="100.0"/>
+      <item value="meat" quantity="[3,7]" probability="80.0"/>
+      <item value="ham" quantity="[2,5]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise state="idle follow fight" value="Rrrrrrrrr"/>
+        <sound value="alligator-1" />
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>  
   
   <creature name="cobra">
     <type class="animal" subclass="cobra" tileid="animal.png:28"/>
@@ -903,36 +1531,39 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
-  <creature name="twilight slime">
-    <type class="animal" subclass="twilight_slime" tileid="animal.png:-1"/>
-    <description>You see a twilight slime, so strange and beautiful. Why is it coming towards you? Runnnnnnnnn!</description>
+  
+  <creature name="king cobra">
+    <type class="huge_animal" subclass="king_cobra" tileid="huge_animal.png:9"/>
+    <description>You see a king cobra. It is extremely venomous.</description>
     <attributes>
-      <atk value="718"/>
-      <def value="88"/>
-      <hp value="1290"/>
-      <speed value="0.5"/>
-      <size value="1,1"/>
+      <atk value="750"/>
+      <def value="102"/>
+      <hp value="1499"/>
+      <speed value="0.8"/>
+      <size value="3,2"/>
     </attributes>
-    <level value="111"/>
-    <experience value="14580"/>
-    <respawn value="1200"/>
-    <corpse name="puddle_light_blue" harmless="puddle_light_blue" />
+    <level value="120"/>
+    <experience value="18850"/>
+    <respawn value="5400"/>
+    <corpse name="huge_animal" width="2" height="2"/>
     <drops>
-      <item value="greater antidote" quantity="[1,1]" probability="100.0"/>
+      <item value="disease poison" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <sound value="snake-cobra-1" />
+        <sound value="snake-cobra-2" />
       </says>
+      <profile name="poisonous" params="5,disease poison"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="patrolling"/>
-      <profile name="rare"/>
     </ai>
   </creature>
+  
+  <!-- END: reptile -->
   
 </creatures>
