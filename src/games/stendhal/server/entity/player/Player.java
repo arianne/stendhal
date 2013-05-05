@@ -21,11 +21,9 @@ import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
 import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
-import games.stendhal.common.FeatureList;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
 import games.stendhal.common.Level;
-import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.TradeState;
 import games.stendhal.common.Version;
@@ -57,7 +55,6 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -89,26 +86,23 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * Currently active client directions (in oldest-newest order).
 	 */
-	protected List<Direction> directions;
+	private final List<Direction> directions;
 
 	/**
 	 * Karma (luck).
 	 */
-	protected double karma;
+	private double karma;
 	/**
 	 * number of successful trades
 	 */
-	protected int tradescore;
+	private int tradescore;
 
-	/**
-	 * A list of enabled client features.
-	 */
-	protected FeatureList features;
+	
 
 	/**
 	 * A list of away replies sent to players.
 	 */
-	protected HashMap<String, Long> awayReplies;
+	private HashMap<String, Long> awayReplies;
 
 	/**
 	 * Food, drinks etc. that the player wants to consume and has not finished
@@ -420,7 +414,7 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * Clear out all recorded away responses.
 	 */
-	public void resetAwayReplies() {
+	private void resetAwayReplies() {
 		awayReplies.clear();
 	}
 
@@ -762,7 +756,7 @@ public class Player extends RPEntity implements UseListener {
 				Integer.valueOf(newValue).toString());
 	}
 
-	public int getMagicSkill(final Nature nature) {
+	private int getMagicSkill(final Nature nature) {
 		int skillLevel = 0;
 		String skillString = getSkill(nature.toString());
 		if(skillString != null) {
@@ -833,18 +827,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public String getFeature(final String name) {
 		return get("features", name);
-	}
-
-	/**
-	 * Determine if a client feature is enabled.
-	 *
-	 * @param name
-	 *            The feature mnemonic.
-	 *
-	 * @return <code>true</code> if the feature is enabled.
-	 */
-	public boolean hasFeature(final String name) {
-		return (get("features", name) != null);
 	}
 
 	/**
@@ -1377,22 +1359,6 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
-	 * return differences between stored in quest slot info about killed creatures
-	 *    and number of killed creatures.
-	 * @param questSlot  - name of quest
-	 * @param questIndex - index of quest's record
-	 * @param creature   - name of creature
-	 * @return - difference in killed creatures
-	 */
-	public int getQuestKills(final String questSlot, final int questIndex, final String creature) {
-		final List<String> content = Arrays.asList(getQuest(questSlot, questIndex).split(","));
-		final int index = content.indexOf(creature);
-		final int solo = MathHelper.parseIntDefault(content.get(index+1),0);
-		final int shared = MathHelper.parseIntDefault(content.get(index+2),0);
-		return(getSoloKill(creature)+getSharedKill(creature)-solo-shared);
-	}
-
-	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
 	 * @return true if player still has poisons to consume
@@ -1463,7 +1429,7 @@ public class Player extends RPEntity implements UseListener {
 		sendPrivateText("You are not immune to poison anymore.");
 	}
 
-	public void consume(final int turn) {
+	private void consume(final int turn) {
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size() > 0) {
 			final ConsumableItem food = itemsToConsume.get(0);
@@ -2167,7 +2133,6 @@ public class Player extends RPEntity implements UseListener {
 		}
 	}
 
-
 	public void equip(final Item item, final int amount) {
 		if (item instanceof Stackable<?>) {
 			((Stackable<?>) item).setQuantity(amount);
@@ -2393,7 +2358,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @param partnerName name of partner (to make sure the correct trade offer is canceled)
 	 * @return true, if a trade was unlocked, false if it was already unlocked
 	 */
-	public boolean unlockTradeItemOfferInternally(String partnerName) {
+	boolean unlockTradeItemOfferInternally(String partnerName) {
 		return trade.unlockItemOfferInternally(partnerName);
 	}
 
@@ -2456,16 +2421,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public int getQuantityOfHarvestedItems(String item) {
 		return itemCounter.getQuantityOfHarvestedItems(item);
-	}
-
-	/**
-	 * Gets the amount a player has harvested of an item
-	 *
-	 * @param item the item name
-	 * @return the harvested amount
-	 */
-	public int getQuantityOfBoughtItems(String item) {
-		return itemCounter.getQuantityOfBoughtItems(item);
 	}
 
 	/**
