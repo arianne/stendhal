@@ -111,6 +111,8 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private int base_mana;
 
+    private boolean ignoreCollision;
+
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
 	 * the last damage has occurred.
@@ -244,6 +246,7 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
+        ignoreCollision = false;
 	}
 
 	public RPEntity() {
@@ -253,6 +256,7 @@ public abstract class RPEntity extends GuidedEntity {
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
+        ignoreCollision = false;
 	}
 
 	/**
@@ -2903,4 +2907,38 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String getLanguage() {
 		return null;
 	}
+    /**
+     * gets the named entity slot
+     *
+     * @param name name of entity slot
+     * @return EntitySlot or <code>null</code>
+     */
+    public EntitySlot getEntitySlot(String name) {
+        RPSlot slot = super.getSlot(name);
+        if (!(slot instanceof EntitySlot)) {
+            return null;
+        }
+        return (EntitySlot) slot;
+    }
+    
+    /**
+     * Set entity to ignore collision tiles
+     * 
+     * @param ignore
+     */
+    public void setIgnoresCollision(boolean ignore) {
+        ignoreCollision = ignore;
+        if (!has("ignore_collision")) {
+            put("ignore_collision", "");
+        }
+    }
+    
+    /**
+     * Tells if entity can pass through collision tiles
+     * 
+     * @return ignoreCollision
+     */
+    public boolean ignoresCollision() {
+        return ignoreCollision;
+    }
 }
