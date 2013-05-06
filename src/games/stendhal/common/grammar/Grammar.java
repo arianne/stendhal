@@ -234,6 +234,22 @@ public class Grammar {
 	}
 	
 	/**
+	 * "a [noun]" or "an [noun]", depending on the first syllable.
+	 * Method to prevent collision of items and creatures.
+	 * 
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "a [noun]" or "an [noun]" as appropriate
+	 */
+	public static String a_nounCreature(final String noun) {
+		if (noun.equals("chicken")) {
+			return "a chicken";
+		}
+		
+		return a_noun(noun);
+	}
+	
+	/**
 	 * "a " or "an ", depending on the noun
 	 * 
 	 * @param noun the noun to be examined
@@ -550,6 +566,22 @@ public class Grammar {
 			return enoun + "s" + postfix;
 		}
 	}
+	
+	/**
+	 * Returns the plural form of the given noun if not already given in plural
+	 * form. Method to prevent collision of items and creatures.
+	 * 
+	 * @param noun
+	 *            The noun to examine
+	 * @return An appropriate plural form
+	 */
+	public static String pluralCreature(final String noun) {
+		if (noun.equals("chicken")) {
+			return "chickens";
+		}
+		
+		return plural(noun);
+	}
 
 	/**
 	 * Returns the singular form of the given noun if not already given in
@@ -685,6 +717,28 @@ public class Grammar {
 			return plural(noun);
 		}
 	}
+	
+	/**
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity. Method to prevent collision of items and creatures.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[noun]" or plural("[noun]") as appropriate
+	 */
+	public static String plnounCreature(final int quantity, final String noun) {
+		if (noun.equals("chicken")) {
+			if (quantity == 1) {
+				return "chicken";
+			} else {
+				return "chickens";
+			}
+		}
+		
+		return plnoun(quantity, noun);
+	}
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
@@ -700,6 +754,28 @@ public class Grammar {
 	public static String quantityplnoun(final int quantity, final String noun) {
 		final String end = plnoun(quantity, noun);
 		return Integer.toString(quantity) + " " + end;	
+	}
+	
+	/**
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity; also prefixes the quantity. Method to prevent
+	 * collision of items and creatures
+	 * 
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnounCreature(final int quantity, final String noun) {
+		if (noun.equals("chicken")) {
+			final String end = plnounCreature(quantity, noun);
+			return Integer.toString(quantity) + " " + end;
+		}
+		
+		return quantityplnoun(quantity, noun);
 	}
 
 	/**

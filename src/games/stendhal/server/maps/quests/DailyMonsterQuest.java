@@ -141,7 +141,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 			String creatureName = pickedCreature.getName();
 			
 			
-			raiser.say("Semos is in need of help. Go kill " + Grammar.a_noun(creatureName)
+			raiser.say("Semos is in need of help. Go kill " + Grammar.a_nounCreature(creatureName)
 					+ " and say #complete, once you're done.");
 
 			questLast = "" + (new Date()).getTime();
@@ -273,7 +273,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					.fire(player, null, null);
 			final String creatureToKill = getCreatureToKillFromPlayer(player);
 			if (!questDone) {
-				res.add("I have been asked to kill " + Grammar.a_noun(creatureToKill)
+				res.add("I have been asked to kill " + Grammar.a_nounCreature(creatureToKill)
 						+ " to help Semos. I haven't killed it yet.");
 			} else {
 				res.add("I have killed the " + creatureToKill
@@ -296,7 +296,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		final int repetitions = player.getNumberOfRepetitions(getSlotName(), 2);
 		if (repetitions > 0) {
 			res.add("I helped and saved Semos "
-					+ Grammar.quantityplnoun(repetitions, "time") + " so far.");
+					+ Grammar.quantityplnounCreature(repetitions, "time") + " so far.");
 		}
 		return res;
 	}
@@ -331,7 +331,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						npc.say("You're already on a quest to slay " + 
-								Grammar.a_noun(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
+								Grammar.a_nounCreature(player.getQuest(QUEST_SLOT,0).split(",")[0]) + 
 								". Say #complete if you're done with it!");
 					}			
 				});
@@ -352,7 +352,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 						if(player.getQuest(QUEST_SLOT, 0)!=null) {
 								npc.say("You're already on a quest to slay " + 
-										Grammar.a_noun(player.getQuest(QUEST_SLOT, 0).split(",")[0]) + 
+										Grammar.a_nounCreature(player.getQuest(QUEST_SLOT, 0).split(",")[0]) + 
 										". Say #complete if you're done with it!" +
 										" If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
 						}
@@ -424,7 +424,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, EventRaiser npc) {
 							final String questKill = player.getQuest(QUEST_SLOT, 0).split(",")[0];
-							npc.say("You didn't kill " + Grammar.a_noun(questKill)
+							npc.say("You didn't kill " + Grammar.a_nounCreature(questKill)
 									+ " yet. Go and do it and say #complete only after you're done.");							
 					}
 				});

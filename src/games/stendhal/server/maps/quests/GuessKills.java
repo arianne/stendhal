@@ -148,7 +148,7 @@ public class GuessKills extends AbstractQuest {
 		final String creature = player.getQuest(QUEST_SLOT, 2);
 		
 		res.add("I have met Crearid. She is an old lady in Nalwor city.");
-		res.add("She asked me to guess how many " + Grammar.plural(creature) + " I have killed.");		
+		res.add("She asked me to guess how many " + Grammar.pluralCreature(creature) + " I have killed.");		
 		
 		if ("1".equals(state)) {
 			res.add("I have three guesses left.");
@@ -230,9 +230,9 @@ public class GuessKills extends AbstractQuest {
 				
 				int guesses = 4 - MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, 0), 1);
 				
-				npc.say("Let me see... you have " + Grammar.quantityplnoun(guesses, "guess") + 
+				npc.say("Let me see... you have " + Grammar.quantityplnounCreature(guesses, "guess") + 
 						" left... and if I recall correctly I asked you..." +
-						" how many " + Grammar.plural(CREATURE) + " do think you have killed?");
+						" how many " + Grammar.pluralCreature(CREATURE) + " do think you have killed?");
 			}        	
         };
         
@@ -319,7 +319,7 @@ public class GuessKills extends AbstractQuest {
 	                        player.setQuest(QUEST_SLOT, 2, CREATURE);
 	
 	                        npc.say("I've been counting how many creatures you have killed, now tell me, how many " +
-	                                Grammar.plural(CREATURE) + " do you think you've killed? You have three guesses and I'll accept " +
+	                                Grammar.pluralCreature(CREATURE) + " do you think you've killed? You have three guesses and I'll accept " +
 	                                "guesses that are close to the correct answer.");
 	                    }
 	                },
