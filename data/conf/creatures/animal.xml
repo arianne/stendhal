@@ -1253,7 +1253,7 @@
     <level value="15"/>
     <experience value="180"/>
     <respawn value="1230"/>
-    <corpse name="huge_animal" harmless="tail_rodent_large" width="2" height="2" />
+    <corpse name="huge_animal" harmless="tail_rodent_2x2" width="2" height="2" />
     <drops>
       <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
