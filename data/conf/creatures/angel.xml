@@ -17,7 +17,7 @@
     <level value="400"/>
     <experience value="623000"/>
     <respawn value="160000"/>
-    <corpse name="giant_humanoid" harmless="halo_3x2" width="3" height="2" />
+    <corpse name="humanoid_3x2" harmless="halo_3x2" width="3" height="2" />
     <drops>
       <item value="mega potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="90.0"/>
@@ -63,7 +63,7 @@
     <level value="500"/>
     <experience value="750000"/>
     <respawn value="100000"/>
-    <corpse name="giant_humanoid" harmless="halo_3x2" width="3" height="2" />
+    <corpse name="humanoid_3x2" harmless="halo_3x2" width="3" height="2" />
     <drops>
       <item value="mega potion" quantity="[2,5]" probability="50.0"/>
       <item value="soup" quantity="[2,4]" probability="50.0"/>
@@ -196,7 +196,7 @@
     <level value="230"/>
     <experience value="123000"/>
     <respawn value="36000"/>
-    <corpse name="giant_humanoid" harmless="halo_3x2" width="3" height="2" />
+    <corpse name="humanoid_3x2" harmless="halo_3x2" width="3" height="2" />
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -238,7 +238,7 @@
     <level value="330"/>
     <experience value="363000"/>
     <respawn value="40000"/>
-    <corpse name="giant_humanoid" harmless="halo_3x2" width="3" height="2" />
+    <corpse name="humanoid_3x2" harmless="halo_3x2" width="3" height="2" />
     <drops>
       <item value="mega potion" quantity="[1,4]" probability="40.0"/>
       <item value="soup" quantity="[1,3]" probability="30.0"/>
