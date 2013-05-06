@@ -2928,8 +2928,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      */
     public void setIgnoresCollision(boolean ignore) {
         ignoreCollision = ignore;
-        if (!has("ignore_collision")) {
+        if (ignore) {
             put("ignore_collision", "");
+        } else {
+            remove("ignore_collision");
         }
     }
     
