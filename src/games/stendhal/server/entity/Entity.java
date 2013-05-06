@@ -48,8 +48,6 @@ public abstract class Entity extends RPObject {
 	 * Amount of resistance this has with other entities (0-100).
 	 */
 	private int resistance;
-	
-	private boolean ignoreCollision;
 
 	private StendhalRPZone zone;
 	private StendhalRPZone lastZone;
@@ -80,8 +78,6 @@ public abstract class Entity extends RPObject {
 		if (!has("visibility")) {
 			put("visibility", 100);
 		}
-		
-		ignoreCollision = false;
 
 		update();
 	}
@@ -98,8 +94,6 @@ public abstract class Entity extends RPObject {
 
 		setResistance(100);
 		setVisibility(100);
-		
-		ignoreCollision = false;
 	}
 
 	public static void generateRPClass() {
@@ -710,26 +704,5 @@ public abstract class Entity extends RPObject {
 			return null;
 		}
 		return (EntitySlot) slot;
-	}
-	
-	/**
-	 * Set entity to ignore collision tiles
-	 * 
-	 * @param ignore
-	 */
-	public void setIgnoresCollision(boolean ignore) {
-		ignoreCollision = ignore;
-		if (!has("ignore_collision")) {
-			put("ignore_collision", "");
-		}
-	}
-	
-	/**
-	 * Tells if entity can pass through collision tiles
-	 * 
-	 * @return ignoreCollision
-	 */
-	public boolean ignoresCollision() {
-		return ignoreCollision;
 	}
 }

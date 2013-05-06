@@ -276,10 +276,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	@Override
 	protected void handleObjectCollision() {
-		if (!ignoresCollision()) {
-			stop();
-			clearPath();
-		}
+		stop();
+		clearPath();
 	}
 
 	public void updateModifiedAttributes() {

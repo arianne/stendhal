@@ -169,7 +169,7 @@ public abstract class ActiveEntity extends Entity {
 				return;
 			}
 		}
-		if (isGhost() || ignoresCollision()) {
+		if (isGhost()) {
 			move(getX(), getY(), nx, ny);
 		}
 	}
