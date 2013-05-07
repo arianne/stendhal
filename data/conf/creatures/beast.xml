@@ -591,7 +591,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <movement value="loop-drag-slimy-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -621,7 +621,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <movement value="loop-drag-slimy-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -651,7 +651,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <movement value="loop-drag-slimy-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -681,7 +681,7 @@
     </equips>
     <ai>
       <says>
-        <sound value="loop-drag-slimy-1" />
+        <movement value="loop-drag-slimy-1" />
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
