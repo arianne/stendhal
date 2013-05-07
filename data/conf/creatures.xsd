@@ -111,6 +111,8 @@
 				maxOccurs="unbounded" />
 			<xsd:element name="sound" type="Q2:Sound" minOccurs="0"
 				maxOccurs="unbounded" />
+			<xsd:element name="movement" type="Q2:Movement" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xsd:sequence>
 	</xsd:complexType>
 
@@ -120,6 +122,10 @@
 	</xsd:complexType>
 	
 	<xsd:complexType name="Sound">
+		<xsd:attribute name="value" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="Movement">
 		<xsd:attribute name="value" type="xsd:string" />
 	</xsd:complexType>
 
