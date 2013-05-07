@@ -369,14 +369,17 @@ public class Creature extends NPC {
 	 */
 	public void setSounds(List<String> sounds) {
 		this.sounds = new ArrayList<String>(sounds);
-		// FIXME: movementSound loops currently not working so adding movement sounds to regular sound list
-		if (movementSound != null) {
-		    this.sounds.add(movementSound);
-		}
 	}
 	
 	public void setMovementSound(String sound) {
-		this.movementSound = sound;
+		// FIXME: movement sound not working. adding to regular sounds
+	    //this.movementSound = sound;
+	    if (movementSound != null) {
+	        if (this.sounds == null) {
+	            this.sounds = new ArrayList<String>();
+	        }
+	        this.sounds.add(movementSound);
+	    }
 	}
 
 	/**
