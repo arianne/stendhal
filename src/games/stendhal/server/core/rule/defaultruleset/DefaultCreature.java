@@ -83,7 +83,7 @@ public class DefaultCreature {
 	/** List of possible sound events. */
 	private List<String> sounds;
 	
-	/** Looped sound effect for creature */
+	/** Looped sound effect for moving creature */
 	private String movementSound;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
@@ -311,9 +311,9 @@ public class DefaultCreature {
 	}
 	
 	/**
-	 * Set a looped sound effect for creature when walking
+	 * Set a looped sound effect for creature when moving
 	 * 
-	 * @param loopedSound
+	 * @param movementSound
 	 * 				desired sound effect
 	 */
 	public void setCreatureMovementSound(String movementSound) {
