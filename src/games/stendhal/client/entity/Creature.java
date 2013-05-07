@@ -103,7 +103,7 @@ public class Creature extends AudibleEntity {
 				"swingaxe-1", "slap-1" , "arrow-1");
 			
 	        addSounds(SoundLayer.FIGHTING_NOISE.groupName, "defend",
-	                "clang-dull-1");
+	                "clang-metallic-1");
 		}
 
 		if (object.has("metamorphosis")) {

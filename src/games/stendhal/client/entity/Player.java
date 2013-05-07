@@ -154,7 +154,7 @@ public class Player extends AudibleEntity {
 			"swingaxe-1", "slap-1" , "arrow-1");
 		
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
-		        "clang-dull-1");
+		        "clang-metallic-1");
 	}
 	
 	@Override
