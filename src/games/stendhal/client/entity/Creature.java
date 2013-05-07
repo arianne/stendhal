@@ -102,7 +102,7 @@ public class Creature extends AudibleEntity {
 				"punch-4"   , "punch-5", "punch-6",
 				"swingaxe-1", "slap-1" , "arrow-1");
 			
-	        addSounds(SoundLayer.FIGHTING_NOISE.groupName, "defend",
+	        addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
 	                "clang-metallic-1");
 		}
 
