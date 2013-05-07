@@ -369,6 +369,10 @@ public class Creature extends NPC {
 	 */
 	public void setSounds(List<String> sounds) {
 		this.sounds = new ArrayList<String>(sounds);
+		// FIXME: movementSound loops currently not working so adding movement sounds to regular sound list
+		if (!movementSound.equals(null)) {
+		    this.sounds.add(movementSound);
+		}
 	}
 	
 	public void setMovementSound(String sound) {
@@ -911,10 +915,10 @@ public class Creature extends NPC {
 			}
 			maybeMakeSound();
 			
-			// Play a looped sound for walking creatrue
-			if (movementSound != null && !isPlayingMovementSound()) {
+			// FIXME: Play a looped sound for walking creatrue
+/*			if (movementSound != null && !isPlayingMovementSound()) {
 				makeMovementSound();
-			}
+			}*/
 			this.notifyWorldAboutChanges();
 		} else {
 			/*
