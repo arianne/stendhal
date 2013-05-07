@@ -120,9 +120,9 @@ public class Creature extends NPC {
 	 */
 	private List<String> sounds;
 	
+	// A looped sound to be played while creature is moving
 	private String movementSound;
-	private boolean playingMovementSound = false;
-	private SoundEvent creatureMovementSoundEvent;
+	private SoundEvent movementSoundEvent;
 
 	/**
 	 * List of things this creature should say.
@@ -371,15 +371,12 @@ public class Creature extends NPC {
 		this.sounds = new ArrayList<String>(sounds);
 	}
 	
+	/**
+	 * Set looped sound to be played while creature is walking
+	 * @param sound sound effect file name
+	 */
 	public void setMovementSound(String sound) {
-		// FIXME: movement sound not working. adding to regular sounds
-	    //this.movementSound = sound;
-	    if (movementSound != null) {
-	        if (this.sounds == null) {
-	            this.sounds = new ArrayList<String>();
-	        }
-	        this.sounds.add(movementSound);
-	    }
+	    this.movementSound = sound;
 	}
 
 	/**
@@ -919,9 +916,9 @@ public class Creature extends NPC {
 			maybeMakeSound();
 			
 			// FIXME: Play a looped sound for walking creatrue
-/*			if (movementSound != null && !isPlayingMovementSound()) {
-				makeMovementSound();
-			}*/
+			if (movementSound != null && movementSoundEvent == null) {
+				loopMovementSound();
+			}
 			this.notifyWorldAboutChanges();
 		} else {
 			/*
@@ -981,26 +978,18 @@ public class Creature extends NPC {
 	/**
 	 * Generates a looped sound for creature
 	 * 
-	 * FIXME: Does not prevent multiple SoundEvents from being added
+	 * FIXME: doesn't play sound
 	 */
-	private void makeMovementSound() {
-		// Create the sound event
-		if (creatureMovementSoundEvent == null) {
-			creatureMovementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
-		}
-		
-		// Adds looped sound to list of events
-		addEvent(creatureMovementSoundEvent);
-		playingMovementSound = true;
+	private void loopMovementSound() {
+	    movementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
+	    addEvent(movementSoundEvent);
 	}
 	
 	/**
 	 * Stops the looped sound
-	 * 
-	 * FIXME: Does not stop sound
 	 */
 	public void stopMovementSound() {
-		playingMovementSound = false;
+		movementSoundEvent = null;
 	}
 	
 	/**
@@ -1009,7 +998,7 @@ public class Creature extends NPC {
 	 * 		true if looped sound is currently playing
 	 */
 	public boolean isPlayingMovementSound() {
-		return playingMovementSound;
+		return (movementSoundEvent != null);
 	}
 
 	public boolean hasTargetMoved() {

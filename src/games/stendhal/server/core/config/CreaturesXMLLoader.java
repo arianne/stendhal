@@ -78,7 +78,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	/** List of possible sound events. */
 	private List<String> sounds;
 	
-	/** Looped sound effect for creature */
+	/** Looped sound effect for moving creature */
 	private String movementSound;
 
 	private LinkedHashMap<String, LinkedList<String>> creatureSays;
