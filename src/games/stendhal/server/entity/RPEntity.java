@@ -2907,19 +2907,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String getLanguage() {
 		return null;
 	}
-    /**
-     * gets the named entity slot
-     *
-     * @param name name of entity slot
-     * @return EntitySlot or <code>null</code>
-     */
-    public EntitySlot getEntitySlot(String name) {
-        RPSlot slot = super.getSlot(name);
-        if (!(slot instanceof EntitySlot)) {
-            return null;
-        }
-        return (EntitySlot) slot;
-    }
     
     /**
      * Set entity to ignore collision tiles
