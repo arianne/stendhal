@@ -97,7 +97,7 @@
       <def value="75"/>
       <hp value="300"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
@@ -134,7 +134,7 @@
       <def value="48"/>
       <hp value="400"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
@@ -171,7 +171,7 @@
       <def value="57"/>
       <hp value="900"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="70"/>
     <experience value="4130"/>
