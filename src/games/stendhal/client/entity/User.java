@@ -453,14 +453,19 @@ public class User extends Player {
 	 * @param direction new direction 
 	 * 
 	 */
-	public void predictMovement(final Direction direction) {
+	public void predictMovement(Direction direction) {
 		// Only handle the case of starting movement. Prediction when already
 		// moving looks odd.
 		if (stopped()) {
-			super.setDirection(direction);
-			fireChange(PROP_DIRECTION);
 			setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
 			fireChange(PROP_SPEED);
+			// A little bit of drunken start effect looks nice for the movement,
+			// but facing needs to try to conform to what the server will say.
+			if (isPoisoned()) {
+				direction = direction.oppositeDirection();
+			}
+			setDirection(direction);
+			fireChange(PROP_DIRECTION);
 		}
 	}
 }
