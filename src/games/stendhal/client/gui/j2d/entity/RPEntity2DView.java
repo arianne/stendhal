@@ -315,7 +315,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	protected void drawStatusBar(final Graphics2D g2d, final int x,
 			final int y, final int width) {
 		drawTitle(g2d, x, y, width);
-		drawHPbar(g2d, x, y, width);
+		if (!entity.getRPObject().has("no_health_bar")) {
+		    drawHPbar(g2d, x, y, width);
+		}
 	}
 
 	/**

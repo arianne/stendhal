@@ -31,8 +31,6 @@ public class PassiveNPC extends NPC {
 		baseSpeed = 0.2;
 		createPath();
 		
-		//TODO: Hide healthbar
-		
 		//TODO: Make name not required
 		setName("");
 		put("title_type", "npc");
