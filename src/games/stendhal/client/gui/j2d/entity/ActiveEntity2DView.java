@@ -55,7 +55,7 @@ abstract class ActiveEntity2DView<T extends IEntity> extends StateEntity2DView<T
 	 * @return The model state.
 	 */
 	@Override
-	protected Direction getState(IEntity entity) {
+	protected Direction getState(T entity) {
 		return getDirectionState(((ActiveEntity) entity).getDirection());
 	}
 
