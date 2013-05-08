@@ -221,7 +221,7 @@ public abstract class RPEntity extends GuidedEntity {
 			
 			entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
 			
-			// Supress drawing of health bar
+			entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
 			entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
 			
 			entity.addRPSlot("head", 1, Definition.PRIVATE);

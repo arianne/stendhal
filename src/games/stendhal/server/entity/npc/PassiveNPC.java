@@ -31,13 +31,14 @@ public class PassiveNPC extends NPC {
 		baseSpeed = 0.2;
 		createPath();
 		
-		//TODO: Make name not required
-		setName("Unnamed");
 		put("title_type", "npc");
-		//put("unnamed", "");
 		
-		//Remove health bar
-		put("no_hpbar", "npc");
+		// Entity name is not drawn because of "unnamed" attribute
+        setName("PassiveNPC");
+		put("unnamed", "");
+		
+		// Health bar drawing is supressed
+		put("no_hpbar", "");
 		
 		setSize(1, 1);
 		
