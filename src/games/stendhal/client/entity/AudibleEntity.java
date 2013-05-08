@@ -28,8 +28,7 @@ import java.util.HashMap;
  *
  * @author silvio
  */
-abstract class AudibleEntity extends RPEntity {
-
+abstract class AudibleEntity extends ActiveEntity {
 	private final AudibleCircleArea mAudibleArea = new AudibleCircleArea(Algebra.vecf(0, 0), 1.5f, 23);
 	private final HashMap<String, ArrayList<String>> mCategorys = new HashMap<String, ArrayList<String>>();
 	private long mWaitTime = 0;

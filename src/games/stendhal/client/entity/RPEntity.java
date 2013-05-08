@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
  * objects.<br>
  * You need to extend this object in order to add new elements to the game.
  */
-public abstract class RPEntity extends ActiveEntity {
+public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * Admin Level property.
 	 */

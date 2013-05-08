@@ -21,7 +21,7 @@ import marauroa.common.game.RPObject;
 /**
  * A domestic animal entity.
  */
-public abstract class DomesticAnimal extends AudibleEntity {
+public abstract class DomesticAnimal extends RPEntity {
 	/**
 	 * DomesticAnimal idea property.
 	 */

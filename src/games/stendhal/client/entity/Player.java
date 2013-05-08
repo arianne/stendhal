@@ -17,7 +17,7 @@ import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /** A Player entity. */
-public class Player extends AudibleEntity {
+public class Player extends RPEntity {
 	
 	/**
 	 * Away property.

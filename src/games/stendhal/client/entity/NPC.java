@@ -18,7 +18,7 @@ import marauroa.common.game.RPObject;
 /**
  * An NPC entity.
  */
-public class NPC extends AudibleEntity {
+public class NPC extends RPEntity {
 	
 	/**
 	 * The NPC's idea.

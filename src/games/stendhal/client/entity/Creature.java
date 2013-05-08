@@ -20,7 +20,7 @@ import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
 
-public class Creature extends AudibleEntity {
+public class Creature extends RPEntity {
 	/**
 	 * Debug property.
 	 */
