@@ -58,7 +58,7 @@ public class FightingAchievementFactory extends AbstractAchievementFactory {
 
 		fightingAchievements.add(createAchievement("fight.special.all", "Legend", "Kill all creatures solo", Achievement.HARD_BASE_SCORE, true,
 				new KilledSoloAllCreaturesCondition()));
-		fightingAchievements.add(createAchievement("fight.special.allshared", "Team Player", "Kill all creatures in a team", Achievement.HARD_BASE_SCORE, false,
+		fightingAchievements.add(createAchievement("fight.special.allshared", "Team Player", "Kill all creatures in a team", Achievement.HARD_BASE_SCORE, true,
 				new KilledSharedAllCreaturesCondition()));
 		return fightingAchievements;
 	}
