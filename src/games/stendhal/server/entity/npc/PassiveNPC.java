@@ -32,11 +32,12 @@ public class PassiveNPC extends NPC {
 		createPath();
 		
 		//TODO: Make name not required
-		setName("");
+		setName("Unnamed");
 		put("title_type", "npc");
+		//put("unnamed", "");
 		
 		//Remove health bar
-		put("no_health_bar", "npc");
+		put("no_hpbar", "npc");
 		
 		setSize(1, 1);
 		
