@@ -1515,7 +1515,7 @@
     <level value="96"/>
     <experience value="9630"/>
     <respawn value="3900"/>
-    <corpse name="small_boneless" width="2" height="2" />
+    <corpse name="snake_2x2" width="2" height="2" />
     <drops>
     </drops>
     <equips>
