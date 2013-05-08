@@ -22,6 +22,7 @@ import games.stendhal.client.gui.chatlog.StandardHeaderedEventLine;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 
 import java.util.Collection;
@@ -590,14 +591,17 @@ public abstract class RPEntity extends AudibleEntity {
 		attackers.add(attacker);
 	}
 
-	// When this entity blocks the attack by attacker
+	/**
+	 * Called when this entity blocks the attack by attacker.
+	 * 
+	 * @param attacker attacking entity
+	 */
 	public void onBlocked(final IEntity attacker) {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.BLOCKED;
 		combatIconTime = System.currentTimeMillis();
+	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
-
-	
 	
 	// When this entity is damaged by attacker with damage amount
 	public void onDamaged(final Entity attacker, final int damage) {
@@ -920,6 +924,21 @@ public abstract class RPEntity extends AudibleEntity {
 		} else {
 			titleType = null;
 		}
+		
+		initializeSounds();
+	}
+	
+	/**
+	 * Initialize the fighting sounds.
+	 */
+	private void initializeSounds() {
+		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "attack",
+			"punch-1"   , "punch-2", "punch-3",
+			"punch-4"   , "punch-5", "punch-6",
+			"swingaxe-1", "slap-1" , "arrow-1");
+		
+		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
+		        "clang-metallic-1");
 	}
 
 	/**

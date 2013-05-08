@@ -96,28 +96,12 @@ public class Creature extends RPEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		if (object.has("name")) {
-			addSounds(SoundLayer.FIGHTING_NOISE.groupName, "attack",
-				"punch-1"   , "punch-2", "punch-3",
-				"punch-4"   , "punch-5", "punch-6",
-				"swingaxe-1", "slap-1" , "arrow-1");
-			
-	        addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
-	                "clang-metallic-1");
-		}
-
 		if (object.has("metamorphosis")) {
 			metamorphosis = object.get("metamorphosis");
 		} else {
 			metamorphosis = null;
 		}
 	}
-
-    @Override
-    public void onBlocked(IEntity attacker) {
-        super.onBlocked(attacker);
-        playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
-    }
 
 	@Override
 	public void onDamaged(Entity attacker, int damage) {
