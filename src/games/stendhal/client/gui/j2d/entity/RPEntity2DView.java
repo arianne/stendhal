@@ -20,6 +20,7 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.j2d.entity.helpers.AttackPainter;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.sprite.AnimatedSprite;
@@ -30,19 +31,15 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.constants.Nature;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
@@ -55,27 +52,6 @@ import marauroa.common.game.RPAction;
 abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> {
 	private static final int ICON_OFFSET = 8;
 	private static final int HEALTH_BAR_HEIGHT = 4;
-	
-	/** Number of frames in attack sprites. */
-	private static final int NUM_ATTACK_FRAMES = 3;
-	private static final Stroke ARROW_STROKE = new BasicStroke(2);
-	private static final Map<Nature, Color> arrowColor;
-	
-	static {
-		arrowColor = new EnumMap<Nature, Color>(Nature.class);
-		arrowColor.put(Nature.CUT, Color.LIGHT_GRAY);
-		arrowColor.put(Nature.DARK, Color.DARK_GRAY);
-		arrowColor.put(Nature.LIGHT, new Color(255, 240, 140)); // light yellow
-		arrowColor.put(Nature.FIRE, new Color(255, 100, 0)); // reddish orange
-		arrowColor.put(Nature.ICE, new Color(140, 140, 255)); // light blue
-	}
-
-	/**
-	 * The attack sprites. The top level map contains all the
-	 * strike sprites sorted by damage type. Those in turn are
-	 * retrievable by the attack direction.
-	 */
-	private static final Map<Nature, Map<Direction, Sprite[]>> bladeStrikeSprites;
 
 	private static final Sprite eatingSprite;
 	private static final Sprite poisonedSprite;
@@ -88,6 +64,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
 	private static final Color RING_COLOR_DARK_RED = new Color(74, 0, 0);
 	private static final Color RING_COLOR_ORANGE = new Color(255, 200, 0);
+	
+	private static final double SQRT2 = 1.414213562;
 	
 	/** Temporary text sprites, like HP and XP changes. */
 	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
@@ -122,39 +100,12 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private volatile boolean isAttacking;
 	/** <code>true</code> if the current attack is ranged. */
 	private boolean rangedAttack;
-	/** Attack sprites to be used for the current attack. */
-	private Sprite[] attackSprite;
-	/** Blade strike frame. */
-	private volatile int bladeStrikeFrame;
+
+	/** Object for drawing the attack. */
+	private AttackPainter attackPainter;
 	
 	static {
 		final SpriteStore st = SpriteStore.get();
-		
-		final int twidth = NUM_ATTACK_FRAMES * IGameScreen.SIZE_UNIT_PIXELS;
-		final int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
-
-		bladeStrikeSprites = new EnumMap<Nature, Map<Direction, Sprite[]>>(Nature.class);
-		
-		// Load all attack sprites
-		for (Nature damageType : Nature.values()) {
-			final Sprite tiles = st.getSprite("data/sprites/combat/blade_strike_" 
-					+ damageType.toString().toLowerCase(Locale.US) + ".png");
-
-			Map<Direction, Sprite[]> map = new EnumMap<Direction, Sprite[]>(Direction.class);
-			bladeStrikeSprites.put(damageType, map);
-			
-			int y = 0;
-			map.put(Direction.UP, st.getTiles(tiles, 0, y, 3, twidth, theight));
-
-			y += theight;
-			map.put(Direction.RIGHT, st.getTiles(tiles, 0, y, 3, twidth, theight));
-
-			y += theight;
-			map.put(Direction.DOWN, st.getTiles(tiles, 0, y, 3, twidth, theight));
-
-			y += theight;
-			map.put(Direction.LEFT, st.getTiles(tiles, 0, y, 3, twidth, theight));
-		}
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
@@ -251,7 +202,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			if (adminlevel >= 800) {
 				nameColor = new Color(200, 200, 0);
 			} else if (adminlevel >= 400) {
-				nameColor = new Color(255, 255, 0);
+				nameColor = Color.yellow;
 			} else if (adminlevel > 0) {
 				nameColor = new Color(255, 255, 172);
 			} else {
@@ -412,18 +363,16 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				(int) (wrect.getHeight() * IGameScreen.SIZE_UNIT_PIXELS)
 		);
 		
-		final double DIVISOR = 1.414213562; // sqrt(2)
-		
 		// Calculating the circle's height
-		int circleHeight = (int) ((srect.height - 2) / DIVISOR);
+		int circleHeight = (int) ((srect.height - 2) / SQRT2);
 		circleHeight = Math.max(circleHeight, srect.height - IGameScreen.SIZE_UNIT_PIXELS / 2);
 		
 		// When the entity is attacking the user give him a orange ring
 		if (entity.isAttacking(User.get())) {
 			g2d.setColor(RING_COLOR_ORANGE); 
-			g2d.drawOval(srect.x-1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+			g2d.drawOval(srect.x - 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 			g2d.drawOval(srect.x, srect.y + srect.height - circleHeight, srect.width, circleHeight);
-			g2d.drawOval(srect.x+1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+			g2d.drawOval(srect.x + 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 			drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_ORANGE, true, false);
 		}
 		
@@ -433,25 +382,22 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			g2d.setColor(RING_COLOR_RED);
 			
 			// When it is also attacking the user give him only a red outline
-			if (entity.isAttacking(User.get()))
-			{
+			if (entity.isAttacking(User.get())) {
 				lineColor = RING_COLOR_RED;
 				drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_RED, false, true);
-			}
-			// Otherwise make his complete ring red
-			else
-			{
+			} else {
+				// Otherwise make his complete ring red
 				lineColor = RING_COLOR_DARK_RED;
-				g2d.drawOval(srect.x-1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+				g2d.drawOval(srect.x - 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 				g2d.drawOval(srect.x, srect.y + srect.height - circleHeight, srect.width, circleHeight);
-				g2d.drawOval(srect.x+1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
+				g2d.drawOval(srect.x + 1, srect.y + srect.height - circleHeight, srect.width, circleHeight);
 				drawShadedOval(g2d, srect.x + 1, srect.y + srect.height - circleHeight + 1, srect.width - 2, circleHeight - 2, RING_COLOR_RED, true, false);
 				drawShadedOval(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, RING_COLOR_ORANGE, false, false);
 			}
 			
 			// Get the direction of his opponents and draw an arrow to those
 			EnumSet<Direction> directions = EnumSet.noneOf(Direction.class);
-			for(Entity attacker : entity.getAttackers()) {
+			for (Entity attacker : entity.getAttackers()) {
 				directions.add(Direction.getAreaDirectionTowardsArea(entity.getArea(), attacker.getArea()));	
 			}
 			drawArrows(g2d, srect.x - 1, srect.y + srect.height - circleHeight - 1, srect.width + 2, circleHeight + 2, directions, lineColor);
@@ -565,7 +511,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		// Calculate how much darker the ring must be made (depends on the boolean 'light')
 		float multi1;
 		float multi2;
-		if(light) {
+		if (light) {
 			multi1 = reversed ? 1f : 0.8f;
 			multi2 = reversed ? 0.8f : 1f;
 		} else {
@@ -595,118 +541,21 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	private void drawAttack(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		if (isAttacking) {
-			if (bladeStrikeFrame < NUM_ATTACK_FRAMES) {
+			if (!attackPainter.isDoneAttacking()) {
 				RPEntity target = entity.getAttackTarget();
 				
 				if (target != null) {
 					if (rangedAttack) {
-						drawDistanceAttack(g2d, entity, target, x, y, width, height);
+						attackPainter.drawDistanceAttack(g2d, entity, target, x, y, width, height);
 					} else {
-						drawStrike(g2d, x, y, width, height);
+						attackPainter.draw(g2d, entity.getDirection(), x, y, width, height);
 					}
 				}
-				bladeStrikeFrame++;
 			} else {
-				bladeStrikeFrame = 0;
 				isAttacking = false;
 			}
 		}
-	}
-	
-	/**
-	 * Draw a blade strike.
-	 *  
-	 * @param g2d
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	private void drawStrike(final Graphics2D g2d, final int x, final int y,
-			final int width, final int height) {
-		final Sprite sprite = attackSprite[bladeStrikeFrame];
-
-		final int spriteWidth = sprite.getWidth();
-		final int spriteHeight = sprite.getHeight();
-
-		int sx;
-		int sy;
-
-		/*
-		 * Align swipe image to be 16 px past the facing edge, centering
-		 * in other axis.
-		 * 
-		 * Swipe image is 3x4 tiles, but really only uses partial areas.
-		 * Adjust positions to match (or fix images to be
-		 * uniform/centered).
-		 */
-		switch (entity.getDirection()) {
-		case UP:
-			sx = x + ((width - spriteWidth) / 2) + 16;
-			sy = y - 16 - 32;
-			break;
-
-		case DOWN:
-			sx = x + ((width - spriteWidth) / 2);
-			sy = y + height - spriteHeight + 16;
-			break;
-
-		case LEFT:
-			sx = x - 16;
-			sy = y + ((height - spriteHeight) / 2) - 16;
-			break;
-
-		case RIGHT:
-			sx = x + width - spriteWidth + 16;
-			sy = y + ((height - spriteHeight) / 2) - ICON_OFFSET;
-			break;
-
-		default:
-			sx = x + ((width - spriteWidth) / 2);
-			sy = y + ((height - spriteHeight) / 2);
-		}
-
-		sprite.draw(g2d, sx, sy);
-	}
-	
-	/**
-	 * Draw a distance attack line.
-	 * 
-	 * @param g2d
-	 * @param entity
-	 * @param target
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	private void drawDistanceAttack(final Graphics2D g2d, final RPEntity entity, final RPEntity target,
-			final int x, final int y, final int width, final int height) {
-		Nature nature = entity.getShownDamageType(); 
-
-		int startX = x + width / 2;
-		int startY = y + height / 2;
-		int endX = (int) (32 * (target.getX() + target.getWidth() / 2));
-		// Target at the upper edge of the occupied area.
-		// Getting the EntityView from an entity is tedious, and
-		// still does not work reliable for everything (rats)
-		int endY = (int) (32 * target.getY()); 
-
-		int yLength = (endY - startY) / NUM_ATTACK_FRAMES;
-		int xLength = (endX - startX) / NUM_ATTACK_FRAMES;
-
-		startY += bladeStrikeFrame * yLength;
-		endY = startY + yLength;
-
-		startX += bladeStrikeFrame * xLength;
-		endX = startX + xLength;
-
-		g2d.setColor(arrowColor.get(nature));
-		Stroke oldStroke = g2d.getStroke();
-		g2d.setStroke(ARROW_STROKE);
-		g2d.drawLine(startX, startY, endX, endY);
-		g2d.setStroke(oldStroke);
-	}
+	}	
 
 	/**
 	 * Get the full directional animation tile set for this entity.
@@ -959,11 +808,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				isAttacking = false;
 			} else {
 				rangedAttack = entity.isDoingRangedAttack();
-				if (!rangedAttack) {
-					attackSprite = bladeStrikeSprites.get(nature).get(getState(entity));
+				if (attackPainter == null || !attackPainter.hasNature(nature)) {
+					attackPainter = AttackPainter.get(nature, (int) Math.min(entity.getWidth(), entity.getHeight()));	
 				}
+				attackPainter.prepare(getState(entity));
 				isAttacking = true;
-				bladeStrikeFrame = 0;
 			}
 		}
 		
