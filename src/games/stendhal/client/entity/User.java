@@ -451,14 +451,16 @@ public class User extends Player {
 	 * responds to the move action.
 	 * 
 	 * @param direction new direction 
-	 * 
+	 * @param facing <code>true</code> if the player should just turn
 	 */
-	public void predictMovement(Direction direction) {
+	public void predictMovement(Direction direction, boolean facing) {
 		// Only handle the case of starting movement. Prediction when already
 		// moving looks odd.
 		if (stopped()) {
-			setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
-			fireChange(PROP_SPEED);
+			if (!facing) {
+				setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
+				fireChange(PROP_SPEED);
+			}
 			// A little bit of drunken start effect looks nice for the movement,
 			// but facing needs to try to conform to what the server will say.
 			if (isPoisoned()) {

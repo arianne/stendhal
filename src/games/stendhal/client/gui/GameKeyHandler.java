@@ -191,7 +191,7 @@ class GameKeyHandler implements KeyListener {
 		// Movement prediction.
 		User user = User.get();
 		if (user != null) {
-			user.predictMovement(direction);
+			user.predictMovement(direction, facing);
 		}
 	}
 
