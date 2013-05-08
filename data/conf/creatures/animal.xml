@@ -1545,7 +1545,7 @@
     <level value="120"/>
     <experience value="18850"/>
     <respawn value="5400"/>
-    <corpse name="huge_animal" width="3" height="2"/>
+    <corpse name="snake_3x2" width="3" height="2"/>
     <drops>
       <item value="disease poison" quantity="[1,1]" probability="5.0"/>
     </drops>
