@@ -74,6 +74,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Model attributes effecting the title changed.
 	 */
 	private boolean titleChanged;
+	/** <code>true</code> if the view should show the entity title. */
+	private boolean showTitle;
 
 	/**
 	 * The title image sprite.
@@ -146,7 +148,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	@Override
 	public void initialize(final T entity) {
 		super.initialize(entity);
-		titleSprite = createTitleSprite();
+		showTitle = !entity.getRPObject().has("notitle");
+		if (showTitle) {
+			titleSprite = createTitleSprite();
+		}
 		titleChanged = false;
 	}
 	//
@@ -314,7 +319,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	protected void drawStatusBar(final Graphics2D g2d, final int x,
 			final int y, final int width) {
-	    if (!entity.getRPObject().has("unnamed")) {
+	    if (showTitle) {
 	        drawTitle(g2d, x, y, width);
 	    }
 		if (!entity.getRPObject().has("no_hpbar")) {
@@ -768,7 +773,12 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		super.update();
 
 		if (titleChanged) {
-			titleSprite = createTitleSprite();
+			showTitle = entity.showTitle();
+			if (showTitle) {
+				titleSprite = createTitleSprite();
+			} else {
+				titleSprite = null;
+			}
 			titleChanged = false;
 		}
 	}

@@ -149,6 +149,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private boolean poisoned;
 
 	private boolean choking;
+	
+	private boolean showTitle = true;
 
 	/**
 	 * Time stamp of previous attack event. Volatile to prevent reordering
@@ -924,6 +926,7 @@ public abstract class RPEntity extends AudibleEntity {
 		} else {
 			titleType = null;
 		}
+		showTitle = !object.has("notitle");
 		
 		initializeSounds();
 	}
@@ -1132,6 +1135,10 @@ public abstract class RPEntity extends AudibleEntity {
 					|| changes.has("title")) {
 				fireChange(PROP_TITLE);
 			}
+			if (changes.has("unnamed")) {
+				showTitle = false;
+				fireChange(PROP_TITLE);
+			}
 		}
 
 		if (changes.has("atk")) {
@@ -1296,6 +1303,24 @@ public abstract class RPEntity extends AudibleEntity {
 				attackTarget = null;
 			}
 		}
+		
+		/*
+		 * Title
+		 */
+		if (changes.has("unnamed")) {
+			showTitle = true;
+			fireChange(PROP_TITLE);
+		}
+	}
+	
+	/**
+	 * Check if the entity view should show the title.
+	 * 
+	 * @return <code>true</code>, if the title should be displayed,
+	 * 	<code>false</code> if it should be hidden
+	 */
+	public boolean showTitle() {
+		return showTitle;
 	}
 
 	//
