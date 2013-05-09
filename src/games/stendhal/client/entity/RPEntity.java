@@ -70,6 +70,10 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Hp and max HP property.
 	 */
 	public static final Property PROP_HP_RATIO = new Property();
+	/** 
+	 * Property for showing and hiding the HP bar.
+	 */
+	public static final Property PROP_HP_DISPLAY = new Property();
 	/**
 	 * Eating property.
 	 */
@@ -151,6 +155,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private boolean choking;
 	
 	private boolean showTitle = true;
+	
+	private boolean showHP = true;
 
 	/**
 	 * Time stamp of previous attack event. Volatile to prevent reordering
@@ -926,7 +932,8 @@ public abstract class RPEntity extends AudibleEntity {
 		} else {
 			titleType = null;
 		}
-		showTitle = !object.has("notitle");
+		showTitle = !object.has("unnamed");
+		showHP = !object.has("no_hpbar");
 		
 		initializeSounds();
 	}
@@ -1101,6 +1108,11 @@ public abstract class RPEntity extends AudibleEntity {
 					onDeath(attackers);
 				}
 				fireChange(PROP_HP_RATIO);
+			}
+			
+			if (changes.has("no_hpbar")) {
+				showHP = false;
+				fireChange(PROP_HP_DISPLAY);
 			}
 
 			/*
@@ -1311,6 +1323,11 @@ public abstract class RPEntity extends AudibleEntity {
 			showTitle = true;
 			fireChange(PROP_TITLE);
 		}
+		
+		if (changes.has("no_hpbar")) {
+			showHP = true;
+			fireChange(PROP_HP_DISPLAY);
+		}
 	}
 	
 	/**
@@ -1321,6 +1338,16 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public boolean showTitle() {
 		return showTitle;
+	}
+	
+	/**
+	 * Check if the entity view should show the HP indicator.
+	 * 
+	 * @return <code>true</code>, if the HP bar should be displayed,
+	 * 	<code>false</code> if it should be hidden
+	 */
+	public boolean showHPBar() {
+		return showHP;
 	}
 
 	//

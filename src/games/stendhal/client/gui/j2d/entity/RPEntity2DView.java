@@ -76,6 +76,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private boolean titleChanged;
 	/** <code>true</code> if the view should show the entity title. */
 	private boolean showTitle;
+	/** <code>true</code> if the view should show the HP bar. */
+	private boolean showHP;
 
 	/**
 	 * The title image sprite.
@@ -148,7 +150,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	@Override
 	public void initialize(final T entity) {
 		super.initialize(entity);
-		showTitle = !entity.getRPObject().has("notitle");
+		showTitle = entity.showTitle();
+		showHP = entity.showHPBar();
 		if (showTitle) {
 			titleSprite = createTitleSprite();
 		}
@@ -322,7 +325,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	    if (showTitle) {
 	        drawTitle(g2d, x, y, width);
 	    }
-		if (!entity.getRPObject().has("no_hpbar")) {
+		if (showHP) {
 		    drawHPbar(g2d, x, y, width);
 		}
 	}
@@ -816,6 +819,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			if (healthBar != null) {
 				healthBar.setHPRatio(entity.getHpRatio());
 			}
+		} else if (property == RPEntity.PROP_HP_DISPLAY) {
+			showHP = entity.showHPBar();
 		} else if (property == RPEntity.PROP_ATTACK) {
 			Nature nature = entity.getShownDamageType();
 			if (nature == null) {
