@@ -17,7 +17,7 @@
     <level value="175"/>
     <experience value="55300"/>
     <respawn value="17300"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[80,100]" probability="100.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -53,7 +53,7 @@
     <level value="110"/>
     <experience value="14400"/>
     <respawn value="5400"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="80.0"/>
@@ -87,7 +87,7 @@
     <level value="135"/>
     <experience value="25900"/>
     <respawn value="8800"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -124,7 +124,7 @@
     <level value="144"/>
     <experience value="30800"/>
     <respawn value="12800"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -160,7 +160,7 @@
     <level value="220"/>
     <experience value="108000"/>
     <respawn value="32000"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -210,7 +210,7 @@
     <level value="116"/>
     <experience value="16100"/>
     <respawn value="6400"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="60.0"/>
@@ -248,7 +248,7 @@
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1650"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[10,60]" probability="100.0"/>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
@@ -287,7 +287,7 @@
     <level value="87"/>
     <experience value="7300"/>
     <respawn value="3350"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[5,95]" probability="100.0"/>
       <item value="mainio cloak" quantity="[1,1]" probability="1.6"/>

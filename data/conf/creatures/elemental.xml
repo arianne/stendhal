@@ -256,7 +256,7 @@
     <level value="160"/>
     <experience value="42500"/>
     <respawn value="13700"/>
-    <corpse name="giant_humanoid" width="2" height="2"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
