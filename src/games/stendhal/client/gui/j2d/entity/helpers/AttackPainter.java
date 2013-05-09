@@ -111,6 +111,7 @@ public final class AttackPainter {
 	 */
 	private AttackPainter(Nature nature, Map<Direction, Sprite[]> sprites) {
 		this.nature = nature;
+		// A full clone. Use the same mapping.
 		this.map = sprites;
 	}
 	
@@ -121,7 +122,8 @@ public final class AttackPainter {
 	 */
 	private AttackPainter(AttackPainter original) {
 		this.nature = original.nature;
-		map = original.map;
+		// This is used by scale(), which needs to modify the map
+		map = new EnumMap<Direction, Sprite[]>(original.map);
 	}	
 	
 	/**
@@ -161,8 +163,12 @@ public final class AttackPainter {
 		for (Direction d : Direction.values()) {
 			Sprite[] sprites = copy.map.get(d);
 			if (sprites != null) {
+				// The sprite arrays are the same as in the original. Avoid
+				// overwriting those.
+				Sprite[] scaled = new Sprite[sprites.length];
 				for (int i = 0; i < NUM_ATTACK_FRAMES; i++) {
 					Sprite orig = sprites[i];
+					
 					final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 					int newWidth = orig.getWidth() + (size - 1) * TILE_SIZE;
 					double scaling = newWidth / (double) orig.getWidth();
@@ -175,8 +181,9 @@ public final class AttackPainter {
 					orig.draw(g, 0, 0);
 					
 					g.dispose();
-					sprites[i] = new ImageSprite(image);
+					scaled[i] = new ImageSprite(image);
 				}
+				copy.map.put(d, scaled);
 			}
 		}
 		
