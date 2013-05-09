@@ -18,12 +18,14 @@ import games.stendhal.server.entity.player.Player;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 /**
- * Lists raid scripts
+ * Lists raid scripts.
  */
 public class ListRaids extends ScriptImpl {
 	private static Logger logger = Logger.getLogger(ListRaids.class);
@@ -33,8 +35,16 @@ public class ListRaids extends ScriptImpl {
 		StringBuilder textToSend = new StringBuilder("Known RaidScripts:\n");
 		try {
 			ArrayList<Class<?>> dir = getClasses("games.stendhal.server.script");
+			Collections.sort(dir, new Comparator<Class<?>>() {
+				@Override
+				public int compare(Class<?> o1, Class<?> o2) {
+					return o1.getSimpleName().compareTo(o2.getSimpleName());
+				}
+			});
+			
 			for (final Class<?> clazz : dir) {
-				if (CreateRaid.class.isAssignableFrom(clazz)) {
+				// CreateRaid is abstract and useless for users by itself.
+				if (CreateRaid.class.isAssignableFrom(clazz) && (CreateRaid.class != clazz)) {
 					textToSend.append(clazz.getSimpleName()).append("\n");
 				}
 			}
@@ -47,6 +57,14 @@ public class ListRaids extends ScriptImpl {
 		admin.sendPrivateText(textToSend.toString());
 	}
 
+	/**
+	 * Fetch classes of available scripts.
+	 * 
+	 * @param pckgname the package name of scripts
+	 * @return list of script classes
+	 * @throws ClassNotFoundException if getting the class loader or reading the
+	 * 	script resources fail
+	 */
 	private static ArrayList<Class<?>> getClasses(final String pckgname)
 			throws ClassNotFoundException {
 		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
