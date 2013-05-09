@@ -556,44 +556,24 @@ public abstract class RPEntity extends AudibleEntity {
 	private void onAttack(final IEntity target) {
 		attacking = target.getID();
 	}
-
+	
 	/**
-	 * When this entity's attack is blocked by the adversary.
-	 * 
-	 * @param type attack nature
-	 * @param ranged
-	 */
-	public void onAttackBlocked(final Nature type, boolean ranged) {
-		attackNature = type;
-		isDoingRangedAttack = ranged;
-		fireChange(PROP_ATTACK);
-	}
-
-	/**
-	 * When this entity causes damaged to adversary, with damage amount
+	 * When this entity performs an attack.
 	 * 
 	 * @param type
 	 * @param ranged
 	 */
-	public void onAttackDamage(final Nature type, boolean ranged) {
+	public void onAttackPerformed(final Nature type, boolean ranged) {
 		attackNature = type;
 		isDoingRangedAttack = ranged;
 		fireChange(PROP_ATTACK);
 	}
 
 	/**
-	 * When this entity's attack is missing the adversary
+	 * When attacker attacks this entity.
 	 * 
-	 * @param type
-	 * @param ranged
+	 * @param attacker attacking entity
 	 */
-	public void onAttackMissed(final Nature type, boolean ranged) {
-		attackNature = type;
-		isDoingRangedAttack = ranged;
-		fireChange(PROP_ATTACK);
-	}
-
-	// When attacker attacks this entity.
 	private void onAttacked(final Entity attacker) {
 		attackers.remove(attacker);
 		attackers.add(attacker);
@@ -611,16 +591,15 @@ public abstract class RPEntity extends AudibleEntity {
 	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "block");
 	}
 	
-	// When this entity is damaged by attacker with damage amount
+	/**
+	 * When this entity is damaged by attacker with damage amount
+	 * @param attacker attacking entity
+	 * @param damage amount of damage
+	 */
 	public void onDamaged(final Entity attacker, final int damage) {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.HIT;
 		combatIconTime = System.currentTimeMillis();
-		/*try {
-			SoundSystemFacade.get().play(attackSounds[Rand.rand(attackSounds.length)], x, y, SoundLayer.CREATURE_NOISE, 100);
-		} catch (final NullPointerException e) {
-			// ignore errors
-		}*/
 
 		boolean showAttackInfoForPlayer = (this.isUser() || attacker.isUser());
 		showAttackInfoForPlayer = showAttackInfoForPlayer
