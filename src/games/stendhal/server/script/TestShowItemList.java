@@ -15,6 +15,7 @@ package games.stendhal.server.script;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.ItemInformation;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ShowItemListEvent;
@@ -54,7 +55,7 @@ public class TestShowItemList extends ScriptImpl {
 		}
 
 		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", 
-				"Please talk to Aramyk to #buy or #sell items.", 
+				"Please talk to Aramyk to buy or sell items.",
 				itemList);
 		admin.addEvent(event);
 	}
@@ -67,8 +68,11 @@ public class TestShowItemList extends ScriptImpl {
 	 * @return Item
 	 */
 	private Item prepareItem(String name, int price) {
-		Item item = SingletonRepository.getEntityManager().getItem(name);
+		Item prototype = SingletonRepository.getEntityManager().getItem(name);
+		Item item = new ItemInformation(prototype);
 		item.put("price", -price);
+		item.put("description_info", item.describe());
+		// compatibility with 0.85 clients
 		item.put("description", item.describe());
 		return item;
 	}
