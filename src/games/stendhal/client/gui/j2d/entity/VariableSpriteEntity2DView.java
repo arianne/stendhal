@@ -26,18 +26,11 @@ class VariableSpriteEntity2DView<T extends StatefulEntity> extends Entity2DView<
 		Sprite sprite;
 		ZoneInfo info = ZoneInfo.get();
 		
-		String entityType = entity.getType();
-		if (entityType != null) {
-			if (entity.getName() == null) {
-				setSprite(new EmptySprite(1, 1, null));
-				return;
-			} else {
-				sprite = store.getModifiedSprite(translate(getClassResourcePath() + "/" + entity.getName()),
-						info.getZoneColor(), info.getColorMethod());
-			}
+		if (entity.getName() == null) {
+			setSprite(new EmptySprite(1, 1, null));
+			return;
 		} else {
-			// compatiblity with 0.86 server
-			sprite = store.getModifiedSprite(translate("source/" + entityType),
+			sprite = store.getModifiedSprite(translate(getClassResourcePath() + "/" + entity.getName()),
 					info.getZoneColor(), info.getColorMethod());
 		}
 
