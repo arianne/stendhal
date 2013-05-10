@@ -25,7 +25,7 @@ import org.junit.Test;
 
 public class PerceptionDispatcherTest {
 
-	private final String DISPATCHED = "dispatched";
+	private static final String DISPATCHED = "dispatched";
 
 	private static final class ObjectChangeperception implements IPerceptionListener {
 		boolean cleared;
