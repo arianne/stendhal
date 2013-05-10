@@ -50,7 +50,7 @@ public class PuppyCollisionTestNPC implements ZoneConfigurator {
 		
 		dog.setPosition(14, 37);
 		dog.setDescription("You see a puppy on the roof.");
-		dog.setEntityClass("dog_small");
+		dog.setEntityClass("animal/puppy");
 		dog.setBaseSpeed(0.5);
 		dog.setIgnoresCollision(true);
 		zone.add(dog);

@@ -52,7 +52,7 @@ public class PuppyNPC implements ZoneConfigurator {
 		
 		dog.setPosition(23, 54);
 		dog.setDescription("You see a playful puppy.");
-		dog.setEntityClass("dog_small");
+		dog.setEntityClass("animal/puppy");
 		dog.setBaseSpeed(0.5);
 		zone.add(dog);
 	}
