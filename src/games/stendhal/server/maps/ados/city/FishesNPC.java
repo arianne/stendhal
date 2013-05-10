@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.ados.city;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -37,25 +38,19 @@ public class FishesNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(76, 62));
-				nodes.add(new Node(76, 66));
-				nodes.add(new Node(73, 66));
-				nodes.add(new Node(73, 62));
-				/*nodes.add(new Node(85, 53));
-				nodes.add(new Node(88, 53));
-				nodes.add(new Node(88, 56));
-				nodes.add(new Node(85, 56));*/
+				nodes.add(new Node(53, 108));
+				nodes.add(new Node(58, 108));
+				nodes.add(new Node(58, 111));
+				nodes.add(new Node(53, 111));
 				setPath(new FixedPath(nodes, true));
 			}
 		};
 		
-		f1.setPosition(76, 62);
+		f1.setPosition(53, 109);
 		f1.setDescription("You see a fish.");
-		f1.setResistance(0);
-		f1.setEntityClass("fish");
+		f1.setDirection(Direction.DOWN);
+		f1.setEntityClass("animal/fish_roach");
 		f1.setVisibility(50); //underwater
-		//f1.setRandomPathFrom(76, 62, 5);
-		f1.setIgnoresCollision(true);
 		zone.add(f1);
 	}
 }
