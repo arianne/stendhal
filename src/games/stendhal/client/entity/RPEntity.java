@@ -42,6 +42,14 @@ import org.apache.log4j.Logger;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends AudibleEntity {
+	private static final Logger LOGGER = Logger.getLogger(RPEntity.class);
+	
+	/**
+	 * Square of the distance where to observe various events, such as speech.
+	 */
+	private static final int HEARING_DISTANCE_SQ = 15 * 15;
+	/** Turn length in milliseconds. */
+	private static final int TURN_LENGTH = 300;
 	/**
 	 * Admin Level property.
 	 */
@@ -91,14 +99,12 @@ public abstract class RPEntity extends AudibleEntity {
 	 * The value of an outfit that isn't set.
 	 */
 	public static final int OUTFIT_UNSET = -1;
-	
-	private static final Logger LOGGER = Logger.getLogger(RPEntity.class);
 
 
 	/**
 	 * Entity we are attacking. (need to reconsile this with 'attacking')
 	 */
-	protected RPEntity attackTarget;
+	RPEntity attackTarget;
 
 	/**
 	 * The entities attacking this entity.
@@ -119,13 +125,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * Flag for checking attack targets that were added in the zone later than
 	 * this entity.
 	 */
-	private boolean targetUpdated = false;
-
-	public enum Resolution {
-		HIT,
-		BLOCKED,
-		MISSED;
-	}
+	private boolean targetUpdated;
 
 	private int atk;
 
@@ -142,9 +142,9 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	private int outfit;
 
-	private int base_hp;
+	private int baseHP;
 
-	private float hp_base_hp;
+	private float hpRatio;
 
 	private int level;
 
@@ -170,15 +170,13 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int mana;
 
-	private int base_mana;
+	private int baseMana;
 
 	private boolean ghostmode;
 	
 	private boolean ignoreCollision;
 
 	private String titleType;
-
-	
 
 	/**
 	 * The result of previous attack against this entity. Volatile to prevent
@@ -194,8 +192,15 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private int defItem = -1;
 	
-	/** A flag that gets set once the entity has been released */
+	/** A flag that gets set once the entity has been released. */
 	private boolean released;
+	
+	/** Possible attack results. */
+	public enum Resolution {
+		HIT,
+		BLOCKED,
+		MISSED;
+	}
 
 	/** Creates a new game entity. */
 	RPEntity() {
@@ -255,14 +260,14 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @return Returns the base_hp.
 	 */
 	public int getBaseHP() {
-		return base_hp;
+		return baseHP;
 	}
 
 	/**
 	 * @return Returns the base mana value
 	 */
 	public int getBaseMana() {
-		return base_mana;
+		return baseMana;
 	}
 
 	/**
@@ -286,17 +291,13 @@ public abstract class RPEntity extends AudibleEntity {
 		return defXp;
 	}
 
-	public int getHP() {
-		return hp;
-	}
-
 	/**
 	 * Get the ratio of HP to base HP.
 	 * 
 	 * @return The HP ratio (0.0 - 1.0).
 	 */
 	public float getHpRatio() {
-		return hp_base_hp;
+		return hpRatio;
 	}
 
 	/**
@@ -308,7 +309,12 @@ public abstract class RPEntity extends AudibleEntity {
 		return textIndicators.iterator();
 	}
 
-	public int getLevel() {
+	/**
+	 * Get the entity level.
+	 * 
+	 * @return level
+	 */
+	int getLevel() {
 		return level;
 	}
 
@@ -412,7 +418,8 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * Get title type.
 	 * 
-	 * @return The title type.
+	 * @return The title type, or <code>null</code> if the entity has no special
+	 * 	title type
 	 */
 	public String getTitleType() {
 		return titleType;
@@ -482,10 +489,23 @@ public abstract class RPEntity extends AudibleEntity {
 		return defenderID.equals(getTargetID());
 	}
 
+	/**
+	 * Check if the entity is a target of an attack.
+	 * 
+	 * @return <code>true</code> if the entity is being attacked, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean isBeingAttacked() {
 		return !attackers.isEmpty();
 	}
 
+	/**
+	 * Check if a specific entity is attacking this RPEntity.
+	 * 
+	 * @param attacker potential attacker
+	 * @return <code>true</code> if attacker is attacking this RPEntity,
+	 * 	otherwise <code>false</code>
+	 */
 	public boolean isAttackedBy(final IEntity attacker) {
 		return attackers.contains(attacker);
 	}
@@ -518,9 +538,15 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public boolean isDefending() {
 		return (isBeingAttacked() && (System.currentTimeMillis()
-				- combatIconTime < 4 * 300));
+				- combatIconTime < 4 * TURN_LENGTH));
 	}
 
+	/**
+	 * Check if the entity is eating.
+	 * 
+	 * @return <code>true</code> if the entity is eating, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean isEating() {
 		return eating;
 	}
@@ -534,25 +560,47 @@ public abstract class RPEntity extends AudibleEntity {
 		return ghostmode;
 	}
 
+	/**
+	 * Check if the entity can pass through static collisions.
+	 * 
+	 * @return <code>true</code> if the entity can pass through walls, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean ignoresCollision() {
 		return ignoreCollision;
 	}
 	
+	/**
+	 * Check if the entity is poisoned.
+	 * 
+	 * @return <code>true</code> if the entity is poisoned, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean isPoisoned() {
 		return poisoned;
 	}
 
+	/**
+	 * Check if the entity is choking.
+	 * 
+	 * @return <code>true</code> if the entity is choking, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean isChoking() {
 		return choking;
 	}
 
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
-	protected void nonCreatureClientAddEventLine(final String text) {
+	void nonCreatureClientAddEventLine(final String text) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new StandardHeaderedEventLine(getTitle(), text));
 	}
 
-	// When this entity attacks target.
+	/**
+	 * Called when this entity attacks target.
+	 * 
+	 * @param target attack target
+	 */
 	private void onAttack(final IEntity target) {
 		attacking = target.getID();
 	}
@@ -560,8 +608,9 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * When this entity performs an attack.
 	 * 
-	 * @param type
-	 * @param ranged
+	 * @param type attack nature
+	 * @param ranged <code>true</code> if it's a ranged attack, otherwise
+	 * 	<code>false</code>
 	 */
 	public void onAttackPerformed(final Nature type, boolean ranged) {
 		attackNature = type;
@@ -592,7 +641,8 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 	
 	/**
-	 * When this entity is damaged by attacker with damage amount
+	 * Called when this entity is damaged by attacker with damage amount.
+	 * 
 	 * @param attacker attacking entity
 	 * @param damage amount of damage
 	 */
@@ -639,7 +689,11 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 
-	// When entity gets healed
+	/**
+	 * Called when the entity gets healed.
+	 * 
+	 * @param amount amount healed
+	 */
 	public void onHealed(final int amount) {
 		// do nothing for normal rpentities
 	}
@@ -650,7 +704,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param amount change amount
 	 */
 	private void onHPChange(final int amount) {
-		if (User.squaredDistanceTo(x, y) < 15 * 15) {
+		if (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ) {
 			if (amount > 0) {
 				addTextIndicator("+" + amount, NotificationType.POSITIVE);
 			} else {
@@ -660,17 +714,25 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 
-	// When this entity skip attacker's attack.
+	/**
+	 * Called when an attacker misses this entity.
+	 * 
+	 * @param attacker attacking entity
+	 */
 	public void onMissed(final IEntity attacker) {
 		// Resolution must be set before isDefending may return true.
 		resolution = Resolution.MISSED;
 		combatIconTime = System.currentTimeMillis();
 	}
 
-	// When entity is poisoned
-	private final void onPoisoned(final int amount) {
+	/**
+	 * Called when entity is poisoned.
+	 * 
+	 * @param amount lost HP
+	 */
+	private void onPoisoned(final int amount) {
 		setPoisoned(true);
-		if ((User.squaredDistanceTo(x, y) < 15 * 15)) {
+		if ((User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
 							getTitle() + " is poisoned, losing "
@@ -682,7 +744,7 @@ public abstract class RPEntity extends AudibleEntity {
 	/**
 	 * Set the poisoning status.
 	 * 
-	 * @param poisoned
+	 * @param poisoned new status
 	 */
 	private void setPoisoned(boolean poisoned) {
 		if (this.poisoned != poisoned) {
@@ -691,7 +753,12 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 
-	// Called when entity listen to text from talker
+	/**
+	 * Called when entity listen to text from talker.
+	 * 
+	 * @param texttype type of talk (normal private talk, administrator message)
+	 * @param text message contents
+	 */
 	public void onPrivateListen(final String texttype, final String text) {
 		NotificationType type;
 		try {
@@ -712,23 +779,40 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 
-	// When this entity stops attacking
+	/**
+	 * Called when this entity stops attacking.
+	 */
 	private void onStopAttack() {
 		attacking = null;
 	}
 	
-	// When attacker stop attacking us
+	/**
+	 * Called when attacker stop attacking us.
+	 * 
+	 * @param attacker the attacked that stopped attacking
+	 */
 	private void onStopAttacked(final IEntity attacker) {
 		attackers.remove(attacker);
 	}
 	
+	/**
+	 * Called when the entity reaches an achievement.
+	 * 
+	 * @param achievementTitle title of the achievement
+	 * @param achievementDescription description of the achievement
+	 * @param achievementCategory achievement category
+	 */
 	public void onReachAchievement(String achievementTitle, String achievementDescription, String achievementCategory) {
 		ClientSingletonRepository.getUserInterface().addAchievementBox(achievementTitle, achievementDescription, achievementCategory);
 	}
 
-	// Called when entity says text
+	/**
+	 * Called when entity says something.
+	 * 
+	 * @param text message contents
+	 */
 	public void onTalk(final String text) {
-		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < 15 * 15)) {
+		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			String line = text.replace("|", "");
 			
 			//an emote action is changed server side to an chat action with a leading !me
@@ -747,20 +831,20 @@ public abstract class RPEntity extends AudibleEntity {
 			// nearest space etc.
 			if (line.length() > 84) {
 				line = line.substring(0, 84);
-				int l = line.lastIndexOf(" ");
-				int ln = line.lastIndexOf("-");
+				int l = line.lastIndexOf(' ');
+				int ln = line.lastIndexOf('-');
 
 				if (ln > l) {
 					l = ln;
 				}
 
-				ln = line.lastIndexOf(".");
+				ln = line.lastIndexOf('.');
 
 				if (ln > l) {
 					l = ln;
 				}
 
-				ln = line.lastIndexOf(",");
+				ln = line.lastIndexOf(',');
 
 				if (ln > l) {
 					l = ln;
@@ -813,9 +897,9 @@ public abstract class RPEntity extends AudibleEntity {
 		 * Base HP
 		 */
 		if (object.has("base_hp")) {
-			base_hp = object.getInt("base_hp");
+			baseHP = object.getInt("base_hp");
 		} else {
-			base_hp = 0;
+			baseHP = 0;
 		}
 
 		/*
@@ -830,12 +914,12 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * HP ratio
 		 */
-		if (hp >= base_hp) {
-			hp_base_hp = 1.0f;
+		if (hp >= baseHP) {
+			hpRatio = 1.0f;
 		} else if (hp <= 0) {
-			hp_base_hp = 0.0f;
+			hpRatio = 0.0f;
 		} else {
-			hp_base_hp = hp / (float) base_hp;
+			hpRatio = hp / (float) baseHP;
 		}
 
 		/*
@@ -1036,11 +1120,11 @@ public abstract class RPEntity extends AudibleEntity {
 			 * Base HP
 			 */
 			if (changes.has("base_hp")) {
-				base_hp = changes.getInt("base_hp");
+				baseHP = changes.getInt("base_hp");
 				hpRatioChange = true;
 			}
 			if (changes.has("modified_base_hp")) {
-				base_hp = changes.getInt("modified_base_hp");
+				baseHP = changes.getInt("modified_base_hp");
 				hpRatioChange = true;
 			}
 
@@ -1076,12 +1160,12 @@ public abstract class RPEntity extends AudibleEntity {
 			 * HP ratio
 			 */
 			if (hpRatioChange) {
-				if (hp >= base_hp) {
-					hp_base_hp = 1.0f;
+				if (hp >= baseHP) {
+					hpRatio = 1.0f;
 				} else if (hp <= 0) {
-					hp_base_hp = 0.0f;
+					hpRatio = 0.0f;
 				} else {
-					hp_base_hp = hp / (float) base_hp;
+					hpRatio = hp / (float) baseHP;
 				}
 				if (hp == 0) {
 					onDeath(attackers);
@@ -1180,10 +1264,10 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 
 		if (changes.has("base_mana")) {
-			base_mana = changes.getInt("base_mana");
+			baseMana = changes.getInt("base_mana");
 		}
 		if (changes.has("modified_base_mana")) {
-			base_mana = changes.getInt("modified_base_mana");
+			baseMana = changes.getInt("modified_base_mana");
 		}
 
 		if (changes.has("ghostmode")) {
@@ -1194,51 +1278,53 @@ public abstract class RPEntity extends AudibleEntity {
 		if (changes.has("xp")) {
 			int newXp = changes.getInt("xp"); 
 			
-			if (object.has("xp")) {
-				if (User.squaredDistanceTo(x, y) < 15 * 15) {
-					final int amount = newXp - xp;
-					if (amount > 0) {
-						addTextIndicator("+" + amount,
-								NotificationType.SIGNIFICANT_POSITIVE);
-						ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-								getTitle()
-								+ " earns "
-								+ Grammar.quantityplnoun(amount,
-								"experience point") + ".",
-								NotificationType.SIGNIFICANT_POSITIVE));
-					} else if (amount < 0) {
-						addTextIndicator("" + amount,
-								NotificationType.SIGNIFICANT_NEGATIVE);
-						ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
-								getTitle()
-								+ " loses "
-								+ Grammar.quantityplnoun(-amount,
-								"experience point") + ".",
-								NotificationType.SIGNIFICANT_NEGATIVE));
-					}
+			if (object.has("xp") && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+				final int amount = newXp - xp;
+				if (amount > 0) {
+					addTextIndicator("+" + amount,
+							NotificationType.SIGNIFICANT_POSITIVE);
+					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
+							getTitle()
+							+ " earns "
+							+ Grammar.quantityplnoun(amount,
+									"experience point") + ".",
+									NotificationType.SIGNIFICANT_POSITIVE));
+				} else if (amount < 0) {
+					addTextIndicator(Integer.toString(amount),
+							NotificationType.SIGNIFICANT_NEGATIVE);
+					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(
+							getTitle()
+							+ " loses "
+							+ Grammar.quantityplnoun(-amount,
+									"experience point") + ".",
+									NotificationType.SIGNIFICANT_NEGATIVE));
 				}
 			}
 			
 			xp = newXp;
 		}
 
-		if (changes.has("level") && object.has("level")) {
-			if (User.squaredDistanceTo(x, y) < 15 * 15) {
-				final String text = getTitle() + " reaches Level " + getLevel();
-				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
-						NotificationType.SIGNIFICANT_POSITIVE));
+		if (changes.has("level") && object.has("level")
+				&& (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+			final String text = getTitle() + " reaches Level " + getLevel();
+			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text,
+					NotificationType.SIGNIFICANT_POSITIVE));
 
-				ClientSingletonRepository.getUserInterface().addGameScreenText(
-						getX() + (getWidth() / 2.0), getY(),
-						text, NotificationType.SIGNIFICANT_POSITIVE, false);
-			}
+			ClientSingletonRepository.getUserInterface().addGameScreenText(
+					getX() + (getWidth() / 2.0), getY(),
+					text, NotificationType.SIGNIFICANT_POSITIVE, false);
 		}
 	}
 
+	/**
+	 * Called when the entity dies.
+	 * 
+	 * @param attackers the entities that were attacking the deceased
+	 */
 	private void onDeath(final Collection<Entity> attackers) {
 		if (!attackers.isEmpty()) {
 			Collection<String> attackerNames = new LinkedList<String>();
-			for(Entity attacker : attackers) {
+			for (Entity attacker : attackers) {
 					attackerNames.add(attacker.getTitle());
 			}
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(
@@ -1332,7 +1418,10 @@ public abstract class RPEntity extends AudibleEntity {
 	//
 	//
 
-	public static class TextIndicator {
+	/**
+	 * Data container for the text floaters.
+	 */
+	public static final class TextIndicator {
 		/**
 		 * The age of the message (in ms).
 		 */
