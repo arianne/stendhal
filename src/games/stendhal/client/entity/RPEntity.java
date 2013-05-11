@@ -951,16 +951,12 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * Ghost mode feature.
 		 */
-		if (object.has("ghostmode")) {
-			ghostmode = true;
-		}
+		ghostmode = object.has("ghostmode");
 		
 		/*
 		 * Ignoring collision.
 		 */
-		if (object.has("ignore_collision")) {
-			ignoreCollision = true;
-		}
+		ignoreCollision = object.has("ignore_collision");
 
 		/*
 		 * Healed
@@ -986,11 +982,8 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * Title type
 		 */
-		if (object.has("title_type")) {
-			titleType = object.get("title_type");
-		} else {
-			titleType = null;
-		}
+		titleType = object.get("title_type");
+
 		showTitle = !object.has("unnamed");
 		showHP = !object.has("no_hpbar");
 		
@@ -1421,7 +1414,7 @@ public abstract class RPEntity extends AudibleEntity {
 		/**
 		 * The age of the message (in ms).
 		 */
-		private int age;
+		private int age = 0;
 
 		/**
 		 * The message text.
@@ -1444,8 +1437,6 @@ public abstract class RPEntity extends AudibleEntity {
 		private TextIndicator(final String text, final NotificationType type) {
 			this.text = text;
 			this.type = type;
-
-			age = 0;
 		}
 
 		//
