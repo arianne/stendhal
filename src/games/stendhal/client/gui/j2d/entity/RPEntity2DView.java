@@ -19,6 +19,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.TextIndicator;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.helpers.AttackPainter;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
@@ -68,7 +69,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final double SQRT2 = 1.414213562;
 	
 	/** Temporary text sprites, like HP and XP changes. */
-	private Map<RPEntity.TextIndicator, Sprite> floaters = new HashMap<RPEntity.TextIndicator, Sprite>();
+	private Map<TextIndicator, Sprite> floaters = new HashMap<TextIndicator, Sprite>();
 
 	/**
 	 * Model attributes effecting the title changed.
@@ -279,8 +280,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	private void drawFloaters(final Graphics2D g2d, final int x, final int y,
 			final int width) {
-		for (Map.Entry<RPEntity.TextIndicator, Sprite> floater : floaters.entrySet()) {
-			final RPEntity.TextIndicator indicator = floater.getKey();
+		for (Map.Entry<TextIndicator, Sprite> floater : floaters.entrySet()) {
+			final TextIndicator indicator = floater.getKey();
 			final Sprite sprite = floater.getValue();
 			final int age = indicator.getAge();
 			
@@ -841,11 +842,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 	
 	private void onFloatersChanged() {
-		Iterator<RPEntity.TextIndicator> it = entity.getTextIndicators();
-		Map<RPEntity.TextIndicator, Sprite> newFloaters = new HashMap<RPEntity.TextIndicator, Sprite>();
+		Iterator<TextIndicator> it = entity.getTextIndicators();
+		Map<TextIndicator, Sprite> newFloaters = new HashMap<TextIndicator, Sprite>();
 		
 		while (it.hasNext()) {
-			RPEntity.TextIndicator floater = it.next();
+			TextIndicator floater = it.next();
 			Sprite sprite = floaters.get(floater);
 			if (sprite == null) {
 				sprite = TextSprite.createTextSprite(floater.getText(), floater.getType().getColor());
