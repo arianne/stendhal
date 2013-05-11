@@ -50,6 +50,8 @@ public abstract class RPEntity extends AudibleEntity {
 	private static final int HEARING_DISTANCE_SQ = 15 * 15;
 	/** Turn length in milliseconds. */
 	private static final int TURN_LENGTH = 300;
+	/** Maximum length of text in entity speech bubbles. */
+	private static final int BUBBLE_TEXT_LENGTH = 84;
 	/**
 	 * Admin Level property.
 	 */
@@ -811,56 +813,50 @@ public abstract class RPEntity extends AudibleEntity {
 	 * 
 	 * @param text message contents
 	 */
-	public void onTalk(final String text) {
+	public void onTalk(String text) {
 		if (User.isAdmin() || (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
-			String line = text.replace("|", "");
-			
 			//an emote action is changed server side to an chat action with a leading !me
 			//this supports also invoking an emote with !me instead of /me
 			if (text.startsWith("!me")) {
-				line = line.replace("!me", getTitle());
-				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(line, NotificationType.EMOTE));
+				text = text.replace("!me", getTitle());
+				ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(text, NotificationType.EMOTE));
 				
 				return;
 			} else {
 				//add the original version
 				nonCreatureClientAddEventLine(text);
 			}
-
-			// Allow for more characters and cut the text if possible at the
-			// nearest space etc.
-			if (line.length() > 84) {
-				line = line.substring(0, 84);
-				int l = line.lastIndexOf(' ');
-				int ln = line.lastIndexOf('-');
-
-				if (ln > l) {
-					l = ln;
-				}
-
-				ln = line.lastIndexOf('.');
-
-				if (ln > l) {
-					l = ln;
-				}
-
-				ln = line.lastIndexOf(',');
-
-				if (ln > l) {
-					l = ln;
-				}
-
-				if (l > 0) {
-					line = line.substring(0, l);
-				}
-
-				line = line + " ...";
-			}
+			
+			text = trimText(text);
 
 			ClientSingletonRepository.getUserInterface().addGameScreenText(
-					getX() + getWidth(), getY(), line,
+					getX() + getWidth(), getY(), text,
 					NotificationType.NORMAL, true);
 		}
+	}
+	
+	/**
+	 * Trim text for a speech bubble.
+	 * 
+	 * @param text text to be trimmed
+	 * @return text suitably trimmed for a speech bubble
+	 */
+	private String trimText(String text) {
+		if (text.length() > BUBBLE_TEXT_LENGTH) {
+			text = text.substring(0, BUBBLE_TEXT_LENGTH);
+			// Cut the text if possible at the nearest space etc.
+			int n = text.lastIndexOf(' ');
+			n = Math.max(n, text.lastIndexOf('-'));
+			n = Math.max(n, text.lastIndexOf('.'));
+			n = Math.max(n, text.lastIndexOf(','));
+
+			if (n > 0) {
+				text = text.substring(0, n);
+			}
+
+			text += " ...";
+		}
+		return text;
 	}
 
 	//
