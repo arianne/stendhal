@@ -13,8 +13,6 @@
 package games.stendhal.client.sound.sound;
 
 import games.stendhal.client.MemoryCache;
-import games.stendhal.client.WorldObjects.WorldListener;
-import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.facade.AudibleArea;
 import games.stendhal.client.sound.facade.SoundFileType;
@@ -23,7 +21,6 @@ import games.stendhal.client.sound.facade.Time;
 import games.stendhal.client.sound.manager.AudioResource;
 import games.stendhal.client.sound.manager.DeviceEvaluator;
 import games.stendhal.client.sound.manager.SoundManagerNG;
-import games.stendhal.common.math.Algebra;
 import games.stendhal.common.math.Numeric;
 
 import java.util.Collection;
@@ -41,7 +38,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik, silvio
  */
-public class ExtendedSoundManager extends SoundManagerNG implements WorldListener {
+public class ExtendedSoundManager extends SoundManagerNG {
 	private static Logger logger = Logger.getLogger(ExtendedSoundManager.class);
 
 	private static class Multiplicator {
@@ -199,23 +196,6 @@ public class ExtendedSoundManager extends SoundManagerNG implements WorldListene
 		boolean play = Boolean.parseBoolean(config.getProperty("sound.play", "true"));
 		mute(!play, false, new Time(0, Time.Unit.SEC));
 	}*/
-
-	@Override
-	public void playerMoved() {
-		float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
-		super.setHearerPosition(position);
-		super.update();
-	}
-
-	@Override
-	public void zoneEntered(String zoneName) {
-		// ignored
-	}
-
-	@Override
-	public void zoneLeft(String zoneName) {
-		// ignored
-	}
 
 	public Group getGroup(String groupName) {
 		Group group = mGroups.get(groupName);
