@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.sound.sound;
 
-import games.stendhal.client.entity.User;
 import games.stendhal.client.sound.facade.SoundGroup;
 import games.stendhal.client.sound.facade.SoundHandle;
 import games.stendhal.client.sound.facade.SoundSystemFacade;
@@ -37,26 +36,15 @@ public class SoundSystemFacadeImpl implements SoundSystemFacade {
 	private static Logger logger = Logger.getLogger(SoundSystemFacadeImpl.class);
 	
 	private ExtendedSoundManager manager = new ExtendedSoundManager();
-
 	@Override
-	public void playerMoved() {
+	public void positionChanged(double x, double y) {
 		try {
-			float[] position = Algebra.vecf((float) User.get().getX(), (float) User.get().getY());
+			float[] position = Algebra.vecf((float) x, (float) y);
 			manager.setHearerPosition(position);
 			manager.update();
 		} catch (RuntimeException e) {
 			logger.error(e, e);
 		}
-	}
-
-	@Override
-	public void zoneEntered(String zoneName) {
-		// ignored
-	}
-
-	@Override
-	public void zoneLeft(String zoneName) {
-		// ignored
 	}
 
 	@Override

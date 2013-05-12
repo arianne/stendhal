@@ -57,11 +57,6 @@ public class NoSoundFacade implements SoundSystemFacade {
 	}
 
 	@Override
-	public void playerMoved() {
-		// do nothing
-	}
-
-	@Override
 	public void stop(SoundHandle sound, Time fadingDuration) {
 		// do nothing
 	}
@@ -70,14 +65,9 @@ public class NoSoundFacade implements SoundSystemFacade {
 	public void update() {
 		// do nothing
 	}
-
+	
 	@Override
-	public void zoneEntered(String zoneName) {
-		// do nothing
-	}
-
-	@Override
-	public void zoneLeft(String zoneName) {
+	public void positionChanged(double x, double y) {
 		// do nothing
 	}
 
@@ -85,5 +75,4 @@ public class NoSoundFacade implements SoundSystemFacade {
 	public List<String> getDeviceNames() {
 		return new LinkedList<String>();
 	}
-
 }

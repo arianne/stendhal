@@ -21,7 +21,6 @@ import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.UserContext;
 import games.stendhal.client.World;
-import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.User;
@@ -535,7 +534,7 @@ public class j2DClient implements UserInterface {
 				maxBounds.height  - 80));
 
 		checkAndComplainAboutJavaImplementation();
-		WorldObjects.addWorldListener(getSoundSystemFacade());
+		positionChangeListener.add(getSoundSystemFacade());
 		WindowUtils.watchFontSize(mainFrame.getMainFrame());
 	} // constructor
 

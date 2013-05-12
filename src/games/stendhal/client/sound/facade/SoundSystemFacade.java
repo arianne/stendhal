@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound.facade;
 
-import games.stendhal.client.WorldObjects.WorldListener;
+import games.stendhal.client.listener.PositionChangeListener;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,18 +23,7 @@ import java.util.List;
  * 
  * @author hendrik, silvio
  */
-// TODO: Do not extend WorldListener
-public interface SoundSystemFacade extends WorldListener {
-
-	@Override
-	public void playerMoved();
-
-	@Override
-	public void zoneEntered(String zoneName);
-
-	@Override
-	public void zoneLeft(String zoneName);
-
+public interface SoundSystemFacade extends PositionChangeListener {
 	public void exit();
 
 	public SoundGroup getGroup(String groupName);
@@ -52,5 +41,4 @@ public interface SoundSystemFacade extends WorldListener {
 	public void changeVolume(float volume);
 
 	public List<String> getDeviceNames();
-	
 }
