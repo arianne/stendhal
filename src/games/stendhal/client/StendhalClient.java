@@ -175,14 +175,6 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		gameObjects.clear();
-
-		// If player exists, notify zone leaving.
-		if (!User.isNull()) {
-			WorldObjects.fireZoneLeft(User.get().getID().getZoneID());
-		}
-
-		// Notify zone entering.
-		WorldObjects.fireZoneEntered(zoneid);
 	}
 
 	@Override

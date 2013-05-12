@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.WorldObjects;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.common.Direction;
 import games.stendhal.common.NotificationType;
@@ -67,21 +66,6 @@ public class User extends Player {
 	 */
 	public User() {
 		instance = this;
-	}
-
-	/**
-	 * When the entity's position changed.
-	 *
-	 * @param x
-	 *            The new X coordinate.
-	 * @param y
-	 *            The new Y coordinate.
-	 */
-	@Override
-	protected void onPosition(final double x, final double y) {
-		super.onPosition(x, y);
-
-		WorldObjects.firePlayerMoved();
 	}
 
 	@Override
