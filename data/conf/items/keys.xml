@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
+  
   <item name="dungeon silver key">
     <type class="key" subclass="silver" tileid="-1"/>
     <description>You see a silver dungeon key. Use it only if you are brave.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
-    	<autobind value=""/>
+    	<autobind value="" />
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -22,9 +23,9 @@
   <item name="lich gold key">
     <type class="key" subclass="gold" tileid="-1"/>
     <description>You see a golden lich key. It will open the door to terrible things.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
-    	<autobind value=""/>
+    	<autobind value="" />
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -40,7 +41,8 @@
   <item name="minotaur key">
     <type class="key" subclass="bronze" tileid="-1"/>
     <description>You see a fancy bronze key. It smells faintly of minotaur, perhaps one dropped it?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -56,7 +58,8 @@
   <item name="nalwor bank key">
     <type class="key" subclass="nalwor" tileid="-1"/>
     <description>You see a key to the customer room of Nalwor Bank.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -72,7 +75,8 @@
   <item name="kotoch prison key">
     <type class="key" subclass="copper" tileid="-1"/>
     <description>You see an ancient copper key, enscribed with something in Orcish.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -88,7 +92,8 @@
   <item name="kanmararn prison key">
     <type class="key" subclass="blue" tileid="-1"/>
     <description>You see a key which matches the locks in the Kanmararn prison.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -104,7 +109,8 @@
   <item name="sedah gate key">
     <type class="key" subclass="square" tileid="-1"/>
     <description>You see a key for the gate to the imperial city of Sedah.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -121,7 +127,8 @@
   <item name="pet sanctuary key">
     <type class="key" subclass="rat" tileid="-1"/>
     <description>You see a key for the pet sanctuary in Ados.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -137,8 +144,10 @@
   <item name="house key">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You should not see this description</description>
-    <implementation class-name="games.stendhal.server.entity.item.HouseKey"/>
-    <attributes/>
+    <implementation class-name="games.stendhal.server.entity.item.HouseKey" />
+    <attributes>
+      <undroppableondeath value="1" />
+    </attributes>
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
@@ -154,7 +163,8 @@
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You should not see this description</description>
     <implementation class-name="games.stendhal.server.entity.item.GateKey"/>
-    <attributes/>
+    <attributes>
+    </attributes>
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
@@ -171,7 +181,8 @@
     <type class="key" subclass="rat" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.MasterKey"/>
-    <attributes/>
+    <attributes>
+    </attributes>
     <weight value="1.0"/>
     <value value="1"/>
     <equipable>
@@ -186,7 +197,8 @@
 <!--  <item name="fado hotel key 001">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #001 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -202,7 +214,8 @@
   <item name="fado hotel key 002">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #002 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -218,7 +231,8 @@
   <item name="fado hotel key 003">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #003 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -234,7 +248,8 @@
   <item name="fado hotel key 004">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #004 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -250,7 +265,8 @@
   <item name="fado hotel key 005">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #005 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -266,7 +282,8 @@
   <item name="fado hotel key 006">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #006 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -282,7 +299,8 @@
   <item name="fado hotel key 007">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #007 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -298,7 +316,8 @@
   <item name="fado hotel key 008">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #008 in the Fado Hotel.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -314,7 +333,8 @@
   <item name="small key">
     <type class="key" subclass="common" tileid="-1"/>
     <description>You see the key for Zara's row house in Ados.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
