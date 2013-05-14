@@ -194,6 +194,7 @@ public class DragLayer extends JComponent implements AWTEventListener {
 			}
 		}
 
+		dragged.release();
 		dragged = null;
 	}
 
