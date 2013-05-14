@@ -917,6 +917,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	@Override
 	public void release() {
 		entity.removeChangeListener(this);
+		entity.removeChangeListener(updateFlagChanger);
 		released = true;
 	}
 	
