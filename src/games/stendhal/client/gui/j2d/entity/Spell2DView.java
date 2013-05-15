@@ -82,25 +82,13 @@ class Spell2DView extends Entity2DView<IEntity> {
 		return "data/sprites/spells/" + translatedname + ".png";
 	}
 
-	//
-	// EntityChangeListener
-	//
-
 	private String translateName(String name) {
 		return name.replaceAll(" ", "_");
 	}
 
-	/**
-	 * An entity was changed.
-	 *
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final IEntity entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;

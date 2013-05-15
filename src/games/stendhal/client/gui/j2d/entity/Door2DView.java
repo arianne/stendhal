@@ -176,21 +176,9 @@ class Door2DView extends StateEntity2DView<Door> {
 		return "data/sprites/doors/" + name + ".png";
 	}
 
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 * 
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final Door entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;

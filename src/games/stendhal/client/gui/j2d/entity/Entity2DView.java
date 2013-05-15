@@ -265,7 +265,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * Mark this as changed. This will force the <code>update()</code> method to
 	 * be called.
 	 */
-	protected void markChanged() {
+	void markChanged() {
 		changed = true;
 	}
 	
@@ -764,14 +764,12 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	}
 
 	/**
-	 * An entity was changed.
+	 * A property of the entity changed.
 	 * 
-	 * @param entity
-	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
 	 */
-	void entityChanged(final T entity, final Object property) {
+	void entityChanged(final Object property) {
 		if (property == IEntity.PROP_ANIMATED) {
 			animatedChanged = true;
 		} else if (property == IEntity.PROP_POSITION) {
@@ -980,7 +978,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 		public void entityChanged(T entity, Object property) {
 			// In this order, to ensure the changed flag is toggled only after
 			// all the changes have been made.
-			Entity2DView.this.entityChanged(entity, property);
+			Entity2DView.this.entityChanged(property);
 			markChanged();
 		}
 	}

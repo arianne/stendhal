@@ -83,21 +83,9 @@ class Food2DView extends StateEntity2DView<Food> {
 		return 6000;
 	}
 
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 * 
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final Food entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == Food.PROP_AMOUNT) {
 			proceedChangedState(entity);

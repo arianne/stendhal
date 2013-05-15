@@ -787,21 +787,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 	}
 
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 * 
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final T entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == RPEntity.PROP_ADMIN_LEVEL) {
 			titleChanged = true;
@@ -840,7 +828,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			handler.check(property, entity);
 		}
 	}
-	
+
+	/**
+	 * Called when the floating text indicators change.
+	 */
 	private void onFloatersChanged() {
 		Iterator<TextIndicator> it = entity.getTextIndicators();
 		Map<TextIndicator, Sprite> newFloaters = new HashMap<TextIndicator, Sprite>();

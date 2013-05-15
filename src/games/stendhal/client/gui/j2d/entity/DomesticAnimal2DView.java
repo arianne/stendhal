@@ -219,21 +219,9 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 		}
 	}
 
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 * 
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final T entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == DomesticAnimal.PROP_IDEA) {
 			ideaChanged = true;

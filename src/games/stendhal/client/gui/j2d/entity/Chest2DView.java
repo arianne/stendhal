@@ -192,14 +192,12 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	/**
 	 * An entity was changed.
 	 * 
-	 * @param entity
-	 *            The entity that was changed.
 	 * @param property
 	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Chest entity, final Object property) {
-		super.entityChanged(entity, property);
+	public void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == Chest.PROP_OPEN) {
 			proceedChangedState(entity);

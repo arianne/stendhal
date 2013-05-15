@@ -83,21 +83,9 @@ class User2DView<T extends User> extends Player2DView<T> {
 		}
 	}
 
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 * 
-	 * @param entity
-	 *            The entity that was changed.
-	 * @param property
-	 *            The property identifier.
-	 */
 	@Override
-	public void entityChanged(final T entity, final Object property) {
-		super.entityChanged(entity, property);
+	void entityChanged(final Object property) {
+		super.entityChanged(property);
 
 		if (property == IEntity.PROP_POSITION) {
 			j2DClient.get().setPosition(entity.getX(), entity.getY());
