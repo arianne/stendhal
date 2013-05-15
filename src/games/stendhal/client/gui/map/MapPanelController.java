@@ -36,6 +36,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+/**
+ * Controller object for the map panel.
+ */
 public class MapPanelController implements GameObjects.GameObjectListener, PositionChangeListener {
 	private static final boolean supermanMode = (System.getProperty("stendhal.superman") != null);
 	private final JComponent container;
@@ -50,6 +53,11 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 */ 
 	private volatile boolean needsRefresh;
 	
+	/**
+	 * Create a MapPanelController.
+	 * 
+	 * @param client client object
+	 */
 	public MapPanelController(final StendhalClient client) {
 		container = new MapContainer();
 		container.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
@@ -106,7 +114,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			object = new WalkBlockerMapObject(entity);
 		} else if (entity instanceof DomesticAnimal) {
 			// Only own pets and sheep are drawn but this is checked in the map object so the user status is always up to date
-			object = new DomesticAnimalMapObject((DomesticAnimal)entity);
+			object = new DomesticAnimalMapObject((DomesticAnimal) entity);
 		} else if (supermanMode && User.isAdmin()) {
 			if (entity instanceof RPEntity) {
 				object = new RPEntityMapObject(entity);
@@ -143,8 +151,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 	 */
 	@Override
 	public void removeEntity(final IEntity entity) {
-		if (mapObjects.containsKey(entity)) {
-			mapObjects.remove(entity);
+		if (mapObjects.remove(entity) != null) {
 			needsRefresh = true;
 		}
 	}
