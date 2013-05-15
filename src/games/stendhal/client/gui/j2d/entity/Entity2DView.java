@@ -51,8 +51,7 @@ import org.apache.log4j.Logger;
  * 
  * @param <T> type of entity
  */
-public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
-	EntityChangeListener<T> {
+public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	/**
 	 * The entity this view is for.
 	 */
@@ -128,10 +127,11 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	private volatile boolean released = false;
 	/**
-	 * A Hack to toggle the changed flag <em>after</em> entityChanged() has been
-	 * run (including any overrides in subclasses).
+	 * Listener for entity changes. Forwards the changes to the the EntityView.
+	 * The purpose is that extending classes get a chance to process the changes
+	 * before the {@link #changed} flag is toggled.
 	 */
-	private final UpdateFlagChanger updateFlagChanger = new UpdateFlagChanger(); 
+	private final UpdateListener updateListener = new UpdateListener();
 
 	@Override
 	public void initialize(final T entity) {
@@ -139,8 +139,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 			throw new IllegalArgumentException("entity must not be null");
 		}
 		if (this.entity != null) {
-			this.entity.removeChangeListener(this);
-			this.entity.removeChangeListener(updateFlagChanger);
+			this.entity.removeChangeListener(updateListener);
 		}
 		this.entity = entity;
 
@@ -157,10 +156,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		visibilityChanged = true;
 		representationChanged = true;
 
-		// In this order, to ensure the changed flag is toggled only after all
-		// the changes have been made.
-		entity.addChangeListener(this);
-		entity.addChangeListener(updateFlagChanger);
+		entity.addChangeListener(updateListener);
 	}
 
 	//
@@ -767,11 +763,6 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 		}
 	}
 
-
-	//
-	// EntityChangeListener
-	//
-
 	/**
 	 * An entity was changed.
 	 * 
@@ -780,8 +771,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 * @param property
 	 *            The property identifier.
 	 */
-	@Override
-	public void entityChanged(final T entity, final Object property) {
+	void entityChanged(final T entity, final Object property) {
 		if (property == IEntity.PROP_ANIMATED) {
 			animatedChanged = true;
 		} else if (property == IEntity.PROP_POSITION) {
@@ -916,8 +906,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	 */
 	@Override
 	public void release() {
-		entity.removeChangeListener(this);
-		entity.removeChangeListener(updateFlagChanger);
+		entity.removeChangeListener(updateListener);
 		released = true;
 	}
 	
@@ -986,9 +975,12 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T>,
 	/**
 	 * Helper for monitoring entity changes.
 	 */
-	private class UpdateFlagChanger implements EntityChangeListener<IEntity> {
+	private class UpdateListener implements EntityChangeListener<T> {
 		@Override
-		public void entityChanged(IEntity entity, Object property) {
+		public void entityChanged(T entity, Object property) {
+			// In this order, to ensure the changed flag is toggled only after
+			// all the changes have been made.
+			Entity2DView.this.entityChanged(entity, property);
 			markChanged();
 		}
 	}
