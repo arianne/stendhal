@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - 2011 Stendhal                 *
+ *                      (C) Copyright 2003 - 2013 Stendhal                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -27,16 +27,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,8 +50,10 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Outfit selection dialog.
+ */
 class OutfitDialog extends JDialog {
-
 	/** the logger instance. */
 	private static final Logger LOGGER = Logger.getLogger(OutfitDialog.class);
 
@@ -76,15 +74,13 @@ class OutfitDialog extends JDialog {
 	 */
 	private final OutfitColor outfitColor;
 
-	/** Sprite direction: 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT */
+	/** Sprite direction: 0 for direction UP, 1 RIGHT, 2 DOWN and 3 LEFT. */
 	private int direction = 2;
 
 	private final SpriteStore store = SpriteStore.get();
 	private final OutfitStore ostore = OutfitStore.get();
 	
 	private final List<ResetListener> resetListeners = new ArrayList<ResetListener>();
-
-	private JButton okButton;
 
 	/** Label containing the hair image. */
 	private OutfitLabel hairLabel;
@@ -94,10 +90,10 @@ class OutfitDialog extends JDialog {
 	private OutfitLabel bodyLabel;
 	/** Label containing the dress image. */
 	private OutfitLabel dressLabel;
-	/** Label containing the full outfit image */
+	/** Label containing the full outfit image. */
 	private OutfitLabel outfitLabel;
 
-	/** Selector for the sprite direction */
+	/** Selector for the sprite direction. */
 	private JSlider directionSlider;
 
 	/**
@@ -195,6 +191,9 @@ class OutfitDialog extends JDialog {
 		WindowUtils.closeOnEscape(this);
 	}
 
+	/**
+	 * Create the component layout.
+	 */
 	private void initComponents() {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -281,16 +280,16 @@ class OutfitDialog extends JDialog {
 		directionSlider.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(final ChangeEvent evt) {
-				sliderDirectionStateChanged(evt);
+				sliderDirectionStateChanged();
 			}
 		});
 		column.add(directionSlider);
-		
-		okButton = new JButton("OK");
+
+		JButton okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
-				okActionPerformed(evt);
+				okActionPerformed();
 			}
 		});
 		okButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -329,10 +328,9 @@ class OutfitDialog extends JDialog {
 	}
 
 	/**
-	 * this is called every time the user moves the slider.
-	 * @param evt
+	 * This is called every time the user moves the slider.
 	 */
-	private void sliderDirectionStateChanged(final ChangeEvent evt) {
+	private void sliderDirectionStateChanged() {
 		direction = directionSlider.getValue();
 
 		outfitLabel.changed();
@@ -462,9 +460,8 @@ class OutfitDialog extends JDialog {
 
 	/**
 	 * OK Button action.
-	 * @param evt
 	 */
-	private void okActionPerformed(final ActionEvent evt) {
+	private void okActionPerformed() {
 		sendAction();
 		this.dispose();
 	} 
@@ -474,13 +471,6 @@ class OutfitDialog extends JDialog {
 	 */
 	private void sendAction() {
 		StendhalClient client = StendhalClient.get();
-		if (client == null) {
-			/** If running standalone, just print the outfit */
-			System.out.println("OUTFIT is: "
-					+ (body.getIndex() + dress.getIndex() * 100 + head.getIndex() * 100
-							* 100 + hair.getIndex() * 100 * 100 * 100));
-			return;
-		}
 
 		final RPAction rpaction = new RPAction();
 		rpaction.put("type", "outfit");
@@ -544,6 +534,9 @@ class OutfitDialog extends JDialog {
 		}
 	}
 	
+	/**
+	 * Interface for components that can be reseted to a default state. 
+	 */
 	private interface ResetListener {
 		void reset();
 	}
@@ -604,25 +597,16 @@ class OutfitDialog extends JDialog {
 		/**
 		 * Add a new listener for value changes.
 		 * 
-		 * @param listener
+		 * @param listener added listener
 		 */
 		void addListener(IndexChangeListener listener) {
 			listeners.add(listener);
 		}
 		
 		/**
-		 * Get the number of elements. (maximum index + 1)
-		 * 
-		 * @return maximum index + 1
-		 */
-		int getN() {
-			return n;
-		}
-		
-		/**
 		 * Set index.
 		 *  
-		 * @param index
+		 * @param index new index
 		 */
 		void setIndex(int index) {
 			if ((index < 0) || (index >= n)) {
@@ -692,54 +676,5 @@ class OutfitDialog extends JDialog {
 		 * Called when the model changes.
 		 */
 		void changed();
-	}
-	
-	private void generateAllOutfits(final String baseDir) {
-		/** TEST METHOD: DON'T NO USE */
-		for (body.setIndex(0); body.getIndex() < body.getN(); body.setIndex(body.getIndex() + 1)) {
-			for (dress.setIndex(0); dress.getIndex() < dress.getN(); dress.setIndex(dress.getIndex() + 1)) {
-				for (head.setIndex(0); head.getIndex() < head.getN(); head.setIndex(head.getIndex() + 1)) {
-					for (hair.setIndex(0); hair.getIndex() < hair.getN(); hair.setIndex(hair.getIndex() + 1)) {
-						final String name = Integer.toString(body.getIndex()
-								+ dress.getIndex() * 100 + head.getIndex() * 100 * 100
-								+ hair.getIndex() * 100 * 100 * 100);
-						final File file = new File(baseDir + "outfits/" + name
-								+ ".png");
-
-						// for performance reasons only write new files.
-						if (!file.exists()) {
-							System.out.println("Creating " + name + ".png");
-							final Image image = new BufferedImage(PLAYER_WIDTH,
-									PLAYER_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-							Graphics g = image.getGraphics();
-							getBodySprite().draw(g, 0, 0);
-							getDressSprite().draw(g, 0, 0);
-							getHeadSprite().draw(g, 0, 0);
-							getHairSprite().draw(g, 0, 0);
-							g.dispose();
-							try {
-								ImageIO.write((RenderedImage) image, "png",
-										file);
-							} catch (final Exception e) {
-								LOGGER.error(e, e);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	public static void main(final String[] args) {
-		String baseDir = "";
-		if (args.length > 0) {
-			baseDir = args[0] + "/";
-		}
-
-		final OutfitDialog f = new OutfitDialog(null, "Stendhal - Choose outfit",
-				0, OutfitColor.PLAIN);
-		// show is required now, because getGraphics() returns null otherwise
-		f.setVisible(true);
-		f.generateAllOutfits(baseDir);
 	}
 }
