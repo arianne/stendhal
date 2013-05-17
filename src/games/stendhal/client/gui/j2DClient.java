@@ -54,7 +54,6 @@ import games.stendhal.common.constants.SoundLayer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
@@ -119,7 +118,7 @@ public class j2DClient implements UserInterface {
 
 	private JLayeredPane pane;
 
-	/** Chat channels */
+	/** Chat channels. */
 	private NotificationChannelManager channelManager;
 
 	private ContainerPanel containerPanel;
@@ -127,9 +126,6 @@ public class j2DClient implements UserInterface {
 	private boolean gameRunning;
 
 	private final ChatTextController chatText = new ChatTextController();
-
-	/** settings panel. */
-	private SettingsPanel settings;
 
 	/** the Character panel. */
 	private Character character;
@@ -151,14 +147,12 @@ public class j2DClient implements UserInterface {
 
 	private OutfitDialog outfitDialog;
 
-
 	private final PositionChangeMulticaster positionChangeListener = new PositionChangeMulticaster();
 
 	private UserContext userContext;
 
-	/** Key handling */
+	/** Key handling. */
 	private GameKeyHandler gameKeyHandler;
-
 
 	/**
 	 * Get the default UI.
@@ -200,7 +194,6 @@ public class j2DClient implements UserInterface {
 				addEventLine(new HeaderLessEventLine("Unsynced: Resynchronizing...",
 						NotificationType.CLIENT));
 			}
-
 		}
 	};
 
@@ -285,7 +278,7 @@ public class j2DClient implements UserInterface {
 		 * Game log
 		 */
 		final JComponent chatLogArea = createLogArea();
-		chatLogArea.setPreferredSize(new Dimension(getWidth(), 171));
+		chatLogArea.setPreferredSize(new Dimension(screen.getWidth(), 171));
 
 		// *** Key handling ***
 		gameKeyHandler = new GameKeyHandler(client, screen);
@@ -312,14 +305,6 @@ public class j2DClient implements UserInterface {
 				}
 			}
 		});
-
-		// Display a warning message in case the screen size was adjusted
-		// This is a temporary solution until this issue is fixed server side.
-		// I hope that it discourages its use without the risks of unupdateable
-		// clients being distributed
-		if (!screenSize.equals(new Dimension(640, 480))) {
-			addEventLine(new HeaderLessEventLine("Using window size cheat: " + getWidth() + "x" + getHeight(), NotificationType.NEGATIVE));
-		}
 
 		// Display a hint if this is a debug client
 		if (Debug.PRE_RELEASE_VERSION != null) {
@@ -592,7 +577,7 @@ public class j2DClient implements UserInterface {
 		 * Contents of the containerPanel
 		 */
 		// The setting bar to the top
-		settings = new SettingsPanel();
+		JComponent settings = new SettingsPanel();
 		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
 
 		// Character window
@@ -649,6 +634,10 @@ public class j2DClient implements UserInterface {
 		spells.setVisible(false);
 	}
 
+	/**
+	 * Check the used java version, and show a warning if it's not known to be
+	 * a compatible one.
+	 */
 	private void checkAndComplainAboutJavaImplementation() {
 		final String vmName = System.getProperty("java.vm.name", "unknown").toLowerCase(Locale.ENGLISH);
 		if ((vmName.indexOf("hotspot") < 0) && (vmName.indexOf("openjdk") < 0)) {
@@ -661,6 +650,9 @@ public class j2DClient implements UserInterface {
 		}
 	}
 
+	/**
+	 * Called at quit.
+	 */
 	private void cleanup() {
 		chatText.saveCache();
 		getSoundSystemFacade().exit();
@@ -779,16 +771,14 @@ public class j2DClient implements UserInterface {
 
 		final User user = User.get();
 
-		if (user != null) {
-			// check if the player object has changed.
-			// Note: this is an exact object reference check
-			if (user != lastuser) {
-				character.setPlayer(user);
-				keyring.setSlot(user, "keyring");
-				spells.setSlot(user, "spells");
-				inventory.setSlot(user, "bag");
-				lastuser = user;
-			}
+		// check if the player object has changed.
+		// Note: this is an exact object reference check
+		if ((user != null) && (user != lastuser)) {
+			character.setPlayer(user);
+			keyring.setSlot(user, "keyring");
+			spells.setSlot(user, "spells");
+			inventory.setSlot(user, "bag");
+			lastuser = user;
 		}
 
 		triggerPainting();
@@ -801,6 +791,11 @@ public class j2DClient implements UserInterface {
 	}
 
 	private int paintCounter;
+	
+	/**
+	 * Requests repaint at the window areas that are painted according to the
+	 * game loop frame rate.
+	 */
 	private void triggerPainting() {
 		if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
 			paintCounter++;
@@ -814,6 +809,11 @@ public class j2DClient implements UserInterface {
 		}
     }
 
+	/**
+	 * Initialize the sounds used by the user interfase.
+	 * 
+	 * @return user interface sound group
+	 */
 	private SoundGroup initSoundSystem() {
 		SoundGroup group = getSoundSystemFacade().getGroup(SoundLayer.USER_INTERFACE.groupName);
 		group.loadSound("harp-1", "harp-1.ogg", SoundFileType.OGG, false);
@@ -842,11 +842,7 @@ public class j2DClient implements UserInterface {
 	/**
 	 * Add a new window.
 	 *
-	 * @param mw
-	 *            A managed window.
-	 *
-	 * @throws IllegalArgumentException
-	 *             If an unsupported ManagedWindow is given.
+	 * @param mw A managed window.
 	 */
 	public void addWindow(final ManagedWindow mw) {
 		if (mw instanceof InternalManagedWindow) {
@@ -861,37 +857,17 @@ public class j2DClient implements UserInterface {
 	// j2DClient
 	//
 
-	/**
-	 * Add an event line.
-	 *
-	 */
 	@Override
 	public void addEventLine(final EventLine line) {
 		channelManager.addEventLine(line);
 	}
 
-	/**
-	 * adds a text box on the screen
-	 *
-	 * @param x  x
-	 * @param y  y
-	 * @param text text to display
-	 * @param type type of text
-	 * @param isTalking chat?
-	 */
 	@Override
 	public void addGameScreenText(final double x, final double y, final String text, final NotificationType type,
 			final boolean isTalking) {
 		screenController.addText(x, y, text, type, isTalking);
 	}
 
-	/**
-	 * Display a box for a reached achievement
-	 *
-	 * @param title the title of the achievement
-	 * @param description the description of the achievement
-	 * @param category the category of the achievement
-	 */
 	@Override
 	public void addAchievementBox(String title, String description, String category) {
 		screen.addAchievementBox(title, description, category);
@@ -941,7 +917,8 @@ public class j2DClient implements UserInterface {
 				if (channelName.startsWith("* ")) {
 					tabs.setTitleAt(i, channelName.substring(2));
 				}
-			}});
+			}
+		});
 		List<JComponent> logs = createNotificationChannels();
 
 		Iterator<NotificationChannel> it = channelManager.getChannels().iterator();
@@ -1025,26 +1002,6 @@ public class j2DClient implements UserInterface {
 	}
 
 	/**
-	 * Get the current game screen height.
-	 *
-	 * @return The height.
-	 */
-	public int getHeight() {
-		return screen.getHeight();
-	}
-
-	/**
-	 * Get the current game screen width.
-	 *
-	 * @return The width.
-	 */
-	public int getWidth() {
-		return screen.getWidth();
-	}
-
-
-
-	/**
 	 * Set the input chat line text.
 	 *
 	 * @param text
@@ -1085,6 +1042,9 @@ public class j2DClient implements UserInterface {
 		this.offline = offline;
 	}
 
+	/**
+	 * Called when the user presses ESC, or tries to close the main game window.
+	 */
 	public void requestQuit() {
 		if (client.getConnectionState() || !offline) {
 			quitDialog.requestQuit();
@@ -1093,6 +1053,11 @@ public class j2DClient implements UserInterface {
 		}
 	}
 
+	/**
+	 * PerceptionListener for the game window.
+	 * 
+	 * @return listener
+	 */
 	public IPerceptionListener getPerceptionListener() {
 		return perceptionListener;
 	}
@@ -1113,6 +1078,11 @@ public class j2DClient implements UserInterface {
 	private static class SplitPaneResizeListener extends ComponentAdapter {
 		private final Component child;
 
+		/**
+		 * Create a SplitPaneResizeListener.
+		 * 
+		 * @param child the component that needs to be resized
+		 */
 		public SplitPaneResizeListener(Component child) {
 			this.child = child;
 		}
@@ -1124,20 +1094,6 @@ public class j2DClient implements UserInterface {
 		}
 	}
 
-	/**
-	 * sets the cursor
-	 *
-	 * @param cursor Cursor
-	 */
-	public void setCursor(Cursor cursor) {
-		pane.setCursor(cursor);
-	}
-
-	/**
-	 * gets the sound system
-	 *
-	 * @return SoundSystemFacade
-	 */
 	@Override
 	public SoundSystemFacade getSoundSystemFacade() {
 		if (soundSystemFacade == null) {

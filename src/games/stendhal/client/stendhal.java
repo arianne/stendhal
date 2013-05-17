@@ -38,7 +38,10 @@ import marauroa.common.MarauroaUncaughtExceptionHandler;
 
 import org.apache.log4j.Logger;
 
-public class stendhal {
+/**
+ * Main game class.
+ */
+public final class stendhal {
 
 	private static final String LOG_FOLDER = "log/";
 	private static final Logger logger = Logger.getLogger(stendhal.class);
@@ -73,7 +76,7 @@ public class stendhal {
 
 	public static final String VERSION = Version.getVersion();
 
-	private static Dimension screenSize = new Dimension(640, 480);
+	private static final Dimension screenSize = new Dimension(640, 480);
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -82,6 +85,12 @@ public class stendhal {
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
 	public static final int FPS_LIMIT = 25;
+	
+	/**
+	 * Make the class non-instantiable.
+	 */
+	private stendhal() {
+	}
 
 	/**
 	 * Initialize the client game directory.
@@ -116,35 +125,21 @@ public class stendhal {
 		gameFolder = defaultFolder;
 	}
 
+	/**
+	 * Notify that the login has been performed and the client should proceed
+	 * to show the game window.
+	 */
 	public static void setDoLogin()	{
 		doLogin = true;
 	}
 
+	/**
+	 * Get the maximum size of the visible game area.
+	 * 
+	 * @return screen dimensions
+	 */
 	public static Dimension getScreenSize() {
 		return screenSize;
-	}
-
-	/**
-	 * Parses command line arguments.
-	 *
-	 * @param args
-	 *            command line arguments
-	 */
-	private static void parseCommandlineArguments(final String[] args) {
-		String size = null;
-		int i = 0;
-
-		while (i != args.length) {
-			if (args[i].equals("-s")) {
-				size = args[i + 1];
-			}
-			i++;
-		}
-
-		if (size != null) {
-			String[] tempsize = size.split("x");
-			screenSize = new Dimension(Integer.parseInt(tempsize[0]), Integer.parseInt(tempsize[1]));
-		}
 	}
 
 	/**
@@ -163,7 +158,7 @@ public class stendhal {
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
 		logger.info(Debug.PRE_RELEASE_VERSION);
-		logger.info("Logging to directory: "+ getLogFolder());
+		logger.info("Logging to directory: " + getLogFolder());
 
 		String patchLevel = System.getProperty("sun.os.patch.level");
 		if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
@@ -182,6 +177,9 @@ public class stendhal {
 		LogUncaughtExceptionHandler.setup();
 	}
 
+	/**
+	 * Initialize the logging system.
+	 */
 	private static void prepareLoggingSystemEnviroment() {
 		// property configuration relies on this parameter
 		System.setProperty("log.directory", getLogFolder());
@@ -225,8 +223,6 @@ public class stendhal {
 	 *            command line arguments
 	 */
 	public static void main(final String[] args) {
-		// get size string
-		parseCommandlineArguments(args);
 		startLogSystem();
 		MarauroaUncaughtExceptionHandler.setup(false);
 		final UserContext userContext = new UserContext();
