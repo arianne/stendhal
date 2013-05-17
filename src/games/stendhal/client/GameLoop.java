@@ -141,7 +141,7 @@ public class GameLoop {
 				refreshTime = now;
 
 				// process the persistent task
-				persistentTask.run(now, delta);
+				persistentTask.run(delta);
 
 				// process the temporary tasks queue
 				Runnable tempTask = temporaryTasks.poll();
@@ -207,9 +207,8 @@ public class GameLoop {
 		/**
 		 * Run the task.
 		 * 
-		 * @param time current time.
 		 * @param delta time since the last run
 		 */
-		void run(long time, int delta);
+		void run(int delta);
 	}
 }

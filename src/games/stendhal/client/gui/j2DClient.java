@@ -695,8 +695,8 @@ public class j2DClient implements UserInterface {
 
 		loop.runAllways(new GameLoop.PersistentTask() {
 			@Override
-			public void run(long time, int delta) {
-				gameLoop(time, delta, gameLayers, gameObjects);
+			public void run(int delta) {
+				gameLoop(delta, gameLayers, gameObjects);
 			}
 		});
 
@@ -715,13 +715,12 @@ public class j2DClient implements UserInterface {
 	/**
 	 * Main game loop contents. Updates objects, and requests redraws.
 	 *
-	 * @param time current time
 	 * @param delta difference to previous calling time
 	 * @param gameLayers
 	 * @param gameObjects
 	 */
-	private void gameLoop(final long time, final int delta,
-			final StaticGameLayers gameLayers, final GameObjects gameObjects) {
+	private void gameLoop(final int delta, final StaticGameLayers gameLayers,
+			final GameObjects gameObjects) {
 		// Check logouts first, in case something goes wrong with the drawing
 		// code
 
