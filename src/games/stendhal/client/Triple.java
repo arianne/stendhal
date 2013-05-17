@@ -12,7 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-
+/**
+ * A container for three objects.
+ *
+ * @param <P> type of first object
+ * @param <S> type of second object
+ * @param <T> type of third object
+ */
 public final class Triple<P, S, T> {
 	// they are used in equals and hashcode
 	private final P prim;
@@ -55,43 +61,43 @@ public final class Triple<P, S, T> {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		if (!(obj instanceof Triple)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+		
 		final Triple<P, S , T> other = (Triple <P, S, T>) obj;
-		if (prim == null) {
-			if (other.prim != null) {
-				return false;
-			}
-		} else if (!prim.equals(other.prim)) {
-			return false;
+		
+		return nullSafeEquals(prim, other.prim) && nullSafeEquals(sec, other.sec)
+				&& nullSafeEquals(third, other.third);
+	}
+	
+	/**
+	 * Null safe equality check for objects. <b>Note: this should be replaced
+	 * 	with Objects.equals() once we start requiring java 7.</b>
+	 * 
+	 * @param a first object
+	 * @param b second object
+	 * @return <code>true</code> if both <code>a</code> and <code>b</code> are
+	 * 	<code>null</code> or if they are equal otherwise. In any other case the
+	 * 	result is <code>false</code>
+	 */
+	private boolean nullSafeEquals(Object a, Object b) {
+		if (a == null) {
+			return b == null;
 		}
-		if (sec == null) {
-			if (other.sec != null) {
-				return false;
-			}
-		} else if (!sec.equals(other.sec)) {
-			return false;
-		}
-		if (third == null) {
-			if (other.third != null) {
-				return false;
-			}
-		} else if (!third.equals(other.third)) {
-			return false;
-		}
-		return true;
+		return a.equals(b);
 	}
 
+	/**
+	 * Create a triple.
+	 * 
+	 * @param prim first object
+	 * @param sec second object
+	 * @param third third object
+	 */
 	public Triple(final P prim, final S sec, final T third) {
 		this.prim = prim;
 		this.sec = sec;
 		this.third = third;
 	}
-
-	
-
 }
