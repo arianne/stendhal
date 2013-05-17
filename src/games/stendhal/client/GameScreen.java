@@ -63,7 +63,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private static final long serialVersionUID = -4070406295913030925L;
 
-	private static Logger logger = Logger.getLogger(GameScreen.class);
+	private static final Logger logger = Logger.getLogger(GameScreen.class);
 	
 	/** Map KeyEvents to a number, i.e. to determine position in spells slot based on pressed key **/
 	private static final Map<Integer, Integer> keyEventMapping = new HashMap<Integer, Integer>();
@@ -103,7 +103,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	/**
 	 * Static game layers.
 	 */
-	private StaticGameLayers gameLayers;
+	private final StaticGameLayers gameLayers;
 	
 	/** Entity views container. */
 	private final EntityViewManager viewManager = new EntityViewManager();
@@ -196,7 +196,7 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * A flag for telling if the screen is being actually scaled. Used for
 	 * detecting if the ground layers will need triple buffering.
 	 */
-	private boolean useTripleBuffer = false;
+	private boolean useTripleBuffer;
 	/**
 	 * Buffer for drawing the ground layers when the screen is scaled.
 	 */
