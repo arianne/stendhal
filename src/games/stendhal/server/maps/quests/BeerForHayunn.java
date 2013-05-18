@@ -65,8 +65,8 @@ import java.util.List;
  * </ul>
  */
 public class BeerForHayunn extends AbstractQuest {
-
 	public static final String QUEST_SLOT = "beer_hayunn";
+	private static final String OTHER_QUEST_SLOT = "meet_hayunn";
 
 	
 
@@ -98,8 +98,11 @@ public class BeerForHayunn extends AbstractQuest {
 		final SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationPhrases.QUEST_MESSAGES,
+			// Don't give the task until the previous is completed to avoid
+			// confusing Hayunn in a lot of places later.
+			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT),
+					new QuestCompletedCondition(OTHER_QUEST_SLOT)),
 			ConversationStates.QUEST_OFFERED, 
 			"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
 			null);
