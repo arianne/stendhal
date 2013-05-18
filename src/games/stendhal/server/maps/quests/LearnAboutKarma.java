@@ -118,16 +118,24 @@ public class LearnAboutKarma extends AbstractQuest {
 					new SetQuestAction(QUEST_SLOT, "done"),
 					new EnableFeatureAction("karma_indicator")));
 
-		// player wants to know what karma is
+		// player wants to know what karma is, and has completed the quest
 		npc.add(
 			ConversationStates.ATTENDING,
 			"karma",
-			null,
+			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUESTION_1,
 			"When you do a good thing like a #task for someone else, you get good karma. Good karma means you're likely to " 
 			+ "do well in battle and when fishing or searching for something like gold. " 
 			+ "Do you want to know what your karma is now?",
 			null);
+		
+		// Player wants to know what karma is, but has not yet completed the
+		// quest. Act like the player asked about for a task.
+		npc.add(ConversationStates.ATTENDING,
+				"karma",
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"Are you someone who likes to help others?", null);
 
 		// player wants to know what his own karma is
 		npc.add(ConversationStates.QUESTION_1,
