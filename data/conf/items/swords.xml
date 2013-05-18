@@ -498,10 +498,12 @@
   <item name="l hand sword">
     <type class="sword" subclass="l_hand_sword" tileid="-1"/>
     <description>You see l hand sword. It must be used with right hand sword.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="12"/>
+      <def value="2"/>
       <rate value="3"/>
-	  <min_level value="80"/>
+      <min_level value="80"/>
     </attributes>
     <weight value="4.0"/>
     <value value="33750"/>
@@ -618,10 +620,12 @@
   <item name="r hand sword">
     <type class="sword" subclass="r_hand_sword" tileid="-1"/>
     <description>You see r hand sword. It must be used with a left hand sword.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="12"/>
+      <def value="2"/>
       <rate value="3"/>
-	  <min_level value="80"/>
+      <min_level value="80"/>
     </attributes>
     <weight value="4.0"/>
     <value value="33750"/>
@@ -753,6 +757,4 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
-
 </items>
