@@ -44,6 +44,6 @@ public class ListRaidsTest {
 		ListRaids script = new ListRaids();
 		Player player = PlayerTestHelper.createPlayer("george");
 		script.execute(player, null);
-		assertThat(player.events().get(0).toString(), containsString("CreateRaid"));
+		assertThat(player.events().get(0).toString(), containsString("ZombieRaid"));
 	}
 }
