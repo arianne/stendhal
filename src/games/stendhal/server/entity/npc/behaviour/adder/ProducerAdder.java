@@ -36,7 +36,7 @@ import games.stendhal.server.entity.player.Player;
 import org.apache.log4j.Logger;
 
 public class ProducerAdder {
-	private static Logger logger = Logger.getLogger(ProducerAdder.class);
+	private static final Logger logger = Logger.getLogger(ProducerAdder.class);
 	
     private final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
 
@@ -155,10 +155,15 @@ public class ProducerAdder {
 					@Override
 					public void fire(final Player player, final Sentence sentence,
 							final EventRaiser npc) {
-                        // TODO: check - can the StateRemainingTimeAction be used here? 
-						npc.say("I still haven't finished your last order. Come back in "
-								+ behaviour.getApproximateRemainingTime(player)
-								+ "!");
+						if (behaviour.isOrderReady(player)) {
+							// This can happen if the player had the bag full
+							// when coming to talk to the NPC.
+							npc.say("You haven't fetched your last order yet.");
+						} else {
+							npc.say("I still haven't finished your last order. Come back in "
+									+ behaviour.getApproximateRemainingTime(player)
+									+ "!");
+						}
 					}
 				});
 
@@ -179,5 +184,4 @@ public class ProducerAdder {
 					}
 				});
 	}
-
 }
