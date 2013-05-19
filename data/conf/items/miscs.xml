@@ -98,7 +98,13 @@
   <item name="teddy">
     <type class="misc" subclass="teddy" tileid="-1"/>
     <description>You see a teddy bear. Its soft and cuddly, and children love them.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <behavior class-name="games.stendhal.server.entity.item.behavior.MessagingUseBehavior">
+    	<parameter name="public" value="!me hugs teddy."/>
+    	<parameter name="private" value="The teddy feels soft and comforting."/>
+    </behavior>
+    <attributes>
+      <menu value="Hug|Use"/>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
