@@ -34,15 +34,6 @@ class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity
 		this.action = ActionType.USE;
 	}
 
-	/**
-	 * creates a new USeableEntity2DView
-	 *
-	 * @param action use action
-	 */
-	public UseableEntity2DView(ActionType action) {
-		this.action = action;
-	}
-
 	@Override
 	void entityChanged(final Object property) {
 		super.entityChanged(property);
