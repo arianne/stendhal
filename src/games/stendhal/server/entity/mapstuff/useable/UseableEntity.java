@@ -48,9 +48,6 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		// name of item: gold_source
 		rpclass.addAttribute("name", Type.STRING);
 
-		// menu (Make a wish,use)
-		rpclass.addAttribute("menu", Type.STRING);
-
 		// state (row in sprite image)
 		rpclass.addAttribute("state", Type.INT);
 	}
@@ -73,18 +70,4 @@ public abstract class UseableEntity extends Entity implements UseListener {
 		put("state", state);
 		notifyWorldAboutChanges();
 	}
-
-	/**
-	 * The menu to display on the client in the format:
-	 * <pre>
-	 *    Display Name 1|action1,
-	 *    Display Name 2|action2
-	 * </pre>
-	 *
-	 * @param menu menu string
-	 */
-	public void setMenu(String menu) {
-		put("menu", menu);
-	}
-
 }

@@ -137,6 +137,9 @@ public abstract class Entity extends RPObject {
 
 		// cursor
 		entity.addAttribute("cursor", Type.STRING);
+		
+		// menu (Make a wish,use)
+		entity.addAttribute("menu", Type.STRING, Definition.VOLATILE);
 
 		// sound events
 		entity.addRPEvent(Events.SOUND, Definition.VOLATILE);
@@ -704,5 +707,18 @@ public abstract class Entity extends RPObject {
 			return null;
 		}
 		return (EntitySlot) slot;
+	}
+	
+	/**
+	 * The menu to display on the client in the format:
+	 * <pre>
+	 *    Display Name 1|action1,
+	 *    Display Name 2|action2
+	 * </pre>
+	 *
+	 * @param menu menu string
+	 */
+	public void setMenu(String menu) {
+		put("menu", menu);
 	}
 }
