@@ -20,8 +20,10 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.behavior.UseBehavior;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 
@@ -42,7 +44,8 @@ import marauroa.common.game.RPSlot;
 /**
  * This is an item.
  */
-public class Item extends PassiveEntity implements TurnListener, EquipListener {
+public class Item extends PassiveEntity implements TurnListener, EquipListener,
+	UseListener {
 
 	private static final int DEFAULT_ATTACK_RATE = 5;
 
@@ -81,6 +84,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private Map<Nature, Double> susceptibilities;
 
 	private boolean fromCorpse = false;
+	
+	/**
+	 * Use behavior implementation, or <code>null</code> if the item does not
+	 * have any, or if the behavior is implemented in a subclass.
+	 */
+	private UseBehavior useBehavior;
 
 	/**
 	 *
@@ -502,6 +511,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			remove("undroppableondeath");
 		}
 	}
+	
+	/**
+	 * Set behavior to follow when the item is used.
+	 * 
+	 * @param behavior new behavior
+	 */
+	public void setUseBehavior(UseBehavior behavior) {
+		useBehavior = behavior;
+	}
 
 	/**
 	 * Set the item's infostring. The infostring contains context specific
@@ -814,6 +832,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @return needs documenting 
 	 */
 	public boolean onUnequipped() {
+		return false;
+	}
+
+	@Override
+	public boolean onUsed(RPEntity user) {
+		if (useBehavior != null) {
+			return useBehavior.use(user, this);
+		}
+		
 		return false;
 	}
 }
