@@ -182,6 +182,9 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 *            The list to populate.
 	 */
 	protected void buildActions(final List<String> list) {
+		if (entity.getRPObject().has("menu")) {
+			list.add(entity.getRPObject().get("menu"));
+		}
 		list.add(ActionType.LOOK.getRepresentation());
 	}
 

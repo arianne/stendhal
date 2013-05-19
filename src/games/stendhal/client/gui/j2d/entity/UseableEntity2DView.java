@@ -80,9 +80,7 @@ class UseableEntity2DView<T extends StatefulEntity> extends VariableSpriteEntity
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (entity.getRPObject().has("menu")) {
-			list.add(entity.getRPObject().get("menu"));
-		} else {
+		if (!entity.getRPObject().has("menu")) {
 			list.add(action.getRepresentation());
 		}
 
