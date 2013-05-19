@@ -50,7 +50,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	public WaterSpringSource() {
 		put("class", "source");
 		put("name", "water_source");
-		setMenu("Fill");
+		setMenu("Fill|Use");
 		setDescription("You see some bubbles in the water. Seems like you found a spring.");
 		setResistance(0);
 	}

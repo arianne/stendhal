@@ -56,7 +56,7 @@ public class WellSource extends PlayerActivityEntity {
 	public WellSource() {
 		put("class", "source");
 		put("name", "well_source");
-		setMenu("Make a wish");
+		setMenu("Make a wish|Use");
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		setResistance(0);
 	}
