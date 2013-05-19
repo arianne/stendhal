@@ -24,7 +24,7 @@
   <item name="skull ring">
     <type class="relic" subclass="skull_ring" tileid="-1"/>
     <description>You see a skull ring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

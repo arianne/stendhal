@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
  * 
  * @author daniel
  */
-public class WeddingRing extends Ring {
+public class WeddingRing extends Item {
 	/** The cooling period of players of same level in seconds */ 
 	private static final long MIN_COOLING_PERIOD = 5 * 60;
 	
