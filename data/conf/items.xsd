@@ -16,6 +16,7 @@
 			<element name="type" type="Q1:typeType" />
 			<element name="description" type="string"></element>
 			<element name="implementation" type="Q1:implementation"></element>
+			<element name="behavior" type="Q1:behavior" minOccurs="0" maxOccurs="1"></element>
 			<element name="attributes" type="Q1:attributes"></element>
 			<element name="weight" type="Q1:attribute"></element>
 			<element name="value" type="Q1:attribute"></element>
@@ -34,6 +35,18 @@
 
 	<complexType name="implementation">
 		<attribute name="class-name" type="string"></attribute>
+	</complexType>
+	
+	<complexType name="behavior">
+		<sequence>
+			<element name="parameter" type="Q1:pair" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="class-name" type="string"/>
+	</complexType>
+	
+	<complexType name="pair">
+		<attribute name="name" type="string"/>
+		<attribute name="value" type="string"/>
 	</complexType>
 
 	<complexType name="attributes">
@@ -56,6 +69,7 @@
 			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"></element>
 			<element name="autobind" type="Q1:attribute" minOccurs="0"></element>
 			<element name="antipoison" type="Q1:attribute" minOccurs="0"></element>
+			<element name="menu" type="Q1:attribute" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 

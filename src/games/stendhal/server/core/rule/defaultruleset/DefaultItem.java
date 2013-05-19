@@ -18,6 +18,7 @@ import games.stendhal.server.core.rule.defaultruleset.creator.AttributesItemCrea
 import games.stendhal.server.core.rule.defaultruleset.creator.DefaultItemCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.FullItemCreator;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.behavior.UseBehavior;
 
 import java.lang.reflect.Constructor;
 import java.util.EnumMap;
@@ -67,6 +68,12 @@ public class DefaultItem {
 	private Nature damageType;
 	
 	private Map<Nature, Double> susceptibilities;
+	
+	/**
+	 * Use behavior of the item, or <code>null</code> if no special behaviors
+	 * are attached.
+	 */
+	private UseBehavior useBehavior;
 
 	public DefaultItem(final String clazz, final String subclazz, final String name, final int tileid) {
 		this.clazz = clazz;
@@ -130,6 +137,15 @@ public class DefaultItem {
 	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
+	}
+	
+	/**
+	 * Set the use behavior.
+	 * 
+	 * @param behavior new behavior
+	 */
+	public void setBehavior(UseBehavior behavior) {
+		this.useBehavior = behavior;
 	}
 
 	public Class< ? > getImplementation() {
@@ -214,6 +230,7 @@ public class DefaultItem {
 				item.setDamageType(damageType);
 			}
 			item.setSusceptibilities(susceptibilities);
+			item.setUseBehavior(useBehavior);
 		}
 
 		return item;

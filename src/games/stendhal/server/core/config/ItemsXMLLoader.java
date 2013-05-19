@@ -13,6 +13,7 @@
 package games.stendhal.server.core.config;
 
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.entity.item.behavior.UseBehavior;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,6 +40,13 @@ public final class ItemsXMLLoader extends DefaultHandler {
 	private static final Logger LOGGER = Logger.getLogger(ItemsXMLLoader.class);
 
 	private Class< ? > implementation;
+	
+	/** Class of the use behavior, if the item has one. */
+	private Class<?> behaviorClass;
+	/** Parameters to the UseBehavior constructor. */
+	private Map<String, String> behaviorMap;
+	/** UseBehavior. Can be <code>null</code>. */
+	private UseBehavior useBehavior;
 	
 	private String name;
 
@@ -144,6 +152,16 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			damageType = attrs.getValue("type");
 		} else if (qName.equals("susceptibility")) {
 			susceptibilities.put(attrs.getValue("type"), Double.valueOf(attrs.getValue("value")));
+		} else if (qName.equals("behavior")) {
+			String className = attrs.getValue("class-name");
+			try {
+				behaviorClass = Class.forName(className);
+			} catch (ClassNotFoundException e) {
+				LOGGER.error("Unable to load class: " + className);
+			}
+			behaviorMap = new HashMap<String, String>();
+		} else if (qName.equals("parameter")) {
+			behaviorMap.put(attrs.getValue("name"), attrs.getValue("value"));
 		}
 	}
 
@@ -170,6 +188,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			}
 
 			item.setImplementation(implementation);
+			item.setBehavior(useBehavior);
 
 			list.add(item);
 		} else if (qName.equals("attributes")) {
@@ -177,6 +196,12 @@ public final class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("description")) {
 			if (text != null) {
 				description = text.trim();
+			}
+		} else if (qName.equals("behavior")) {
+			try {
+				useBehavior = (UseBehavior) behaviorClass.getConstructor(Map.class).newInstance(behaviorMap);
+			} catch (Exception e) {
+				LOGGER.error("Failed to construct use behavior.", e);
 			}
 		}
 	}
