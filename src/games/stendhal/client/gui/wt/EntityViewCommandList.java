@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 
@@ -21,7 +23,7 @@ import games.stendhal.client.gui.j2d.entity.EntityView;
  * @author mtotz
  */
 public class EntityViewCommandList extends CommandList {
-	
+	private static final Logger LOGGER = Logger.getLogger(EntityViewCommandList.class);
 	private static final long serialVersionUID = -1607102841664745919L;
 	
 
@@ -51,6 +53,11 @@ public class EntityViewCommandList extends CommandList {
 	@Override
 	protected void doAction(final String command) {
 		// tell the entity what happened
+		ActionType action = ActionType.getbyRep(command);
+		if (action == null) {
+			LOGGER.error("Unknown command: '" + command + "'");
+			return;
+		}
 		view.onAction(ActionType.getbyRep(command));
 	}
 }

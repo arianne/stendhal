@@ -31,7 +31,6 @@ import javax.swing.JMenuItem;
 abstract class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-
 	/**
 	 * Create a command list.
 	 * 
@@ -45,6 +44,11 @@ abstract class CommandList extends WtPopupMenu {
 		populate(items);
 	}
 
+	/**
+	 * Populate the menu.
+	 * 
+	 * @param items menu items
+	 */
 	private void populate(final String[] items) {
 		ActionListener listener;
 		Icon adminIcon;
@@ -54,13 +58,32 @@ abstract class CommandList extends WtPopupMenu {
 		listener = new ActionSelectedCB();
 		adminIcon = new AdminIcon();
 
-		for (final String item : items) {
+		for (String item : items) {
+			// Comma separated list of commands, not a single command
+			if (item.indexOf(',') > 0) {
+				String[] sublist = item.split(",");
+				populate(sublist);
+				continue;
+			}
+			
 			if (item.startsWith("(*)")) {
 				icon = adminIcon;
 				label = item.substring(3);
 			} else {
 				icon = null;
 				label = item;
+			}
+			/*
+			 * Deal with '|' definitions. (Coming from server side).
+			 * Before the break is the user representation, after it is the
+			 * usual representation of the actual command.
+			 * 
+			 * That is, a teddy might have a menu item definition "Hug|Use".
+			 */
+			int breakPoint = label.indexOf('|');
+			if (breakPoint >= 0) {
+				label = item.substring(0, breakPoint);
+				item = item.substring(breakPoint + 1);
 			}
 
 			final JMenuItem mi = createItem(label, icon);
@@ -74,18 +97,10 @@ abstract class CommandList extends WtPopupMenu {
 	 * @param command */
 	protected abstract void doAction(final String command);
 
-	//
-	//
-
 	/**
 	 * Handle action selection.
 	 */
 	private class ActionSelectedCB implements ActionListener {
-
-		//
-		// ActionListener
-		//
-
 		@Override
 		public void actionPerformed(final ActionEvent ev) {
 			doAction(ev.getActionCommand());
