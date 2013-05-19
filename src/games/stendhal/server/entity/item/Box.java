@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -28,7 +27,7 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik
  */
-public class Box extends Item implements UseListener {
+public class Box extends Item {
 
 	private final static Logger logger = Logger.getLogger(Box.class);
 

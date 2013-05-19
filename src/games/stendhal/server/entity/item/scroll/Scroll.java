@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
@@ -28,7 +27,7 @@ import org.apache.log4j.Logger;
 /**
  * Represents a scroll.
  */
-public class Scroll extends StackableItem implements UseListener {
+public class Scroll extends StackableItem {
 
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 

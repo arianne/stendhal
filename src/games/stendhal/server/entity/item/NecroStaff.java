@@ -12,13 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import marauroa.common.game.RPObject;
-import games.stendhal.server.core.events.UseListener;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 
@@ -27,12 +25,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 /**
  * Represents a creature summon staff.
  */
-public class NecroStaff extends Item implements UseListener {
+public class NecroStaff extends Item {
 
 	/** the max number of entities we want in a zone, for performance reasons. */
 	private static final int MAX_ZONE_NPCS = 50;

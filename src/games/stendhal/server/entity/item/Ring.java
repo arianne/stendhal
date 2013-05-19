@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.core.events.UseListener;
-import games.stendhal.server.entity.RPEntity;
-
 import java.util.Map;
 
 /**
@@ -22,7 +19,7 @@ import java.util.Map;
  * 
  * @author miguel
  */
-public class Ring extends Item implements UseListener {
+public class Ring extends Item {
 	/**
 	 * Creates a new ring.
 	 * 
@@ -44,10 +41,5 @@ public class Ring extends Item implements UseListener {
 	 */
 	public Ring(final Ring item) {
 		super(item);
-	}
-
-	@Override
-	public boolean onUsed(final RPEntity user) {
-		return false;
 	}
 }

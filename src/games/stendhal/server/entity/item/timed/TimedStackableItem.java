@@ -15,7 +15,6 @@ package games.stendhal.server.entity.item.timed;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
@@ -34,8 +33,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author johnnnny
  */
-public abstract class TimedStackableItem extends StackableItem implements
-		UseListener {
+public abstract class TimedStackableItem extends StackableItem {
 
 	private static Logger logger = Log4J.getLogger(TimedStackableItem.class);
 

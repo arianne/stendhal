@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.consumption.Feeder;
@@ -31,8 +30,7 @@ import org.apache.log4j.Logger;
  * 
  * Note: this class has a natural ordering that is inconsistent with equals.
  */
-public class ConsumableItem extends StackableItem implements UseListener,
-		Comparable<ConsumableItem> {
+public class ConsumableItem extends StackableItem implements Comparable<ConsumableItem> {
 
 	private final static Logger logger = Logger.getLogger(ConsumableItem.class);
 

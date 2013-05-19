@@ -14,14 +14,13 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
-public class FoodMill extends Item implements UseListener {
+public class FoodMill extends Item {
 
 	/** The item to be processed */
 	private String input;

@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.core.events.TurnNotifier;
-import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.spawner.FlowerGrower;
 
@@ -24,7 +23,7 @@ import java.util.Map;
  * The plant action defines the behaviour (e.g. only plantable on fertile ground).
  * The infostring stores what it will grow.
  */
-public class Seed extends StackableItem implements UseListener {
+public class Seed extends StackableItem {
 
 	public Seed(final Seed item) {
 		super(item);
