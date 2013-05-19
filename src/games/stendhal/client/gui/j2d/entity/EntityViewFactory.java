@@ -135,12 +135,12 @@ public class EntityViewFactory {
 		register("door", null, null, Door2DView.class);
 
 		register("fire", null, null, UseableEntity2DView.class);
-		register("fish_source", null, null, FishSource2DView.class);
+		register("fish_source", null, null, UseableEntity2DView.class);
 
 		register("game_board", null, null, GameBoard2DView.class);
 		register("gate", null, null, Gate2DView.class);
 
-		register("gold_source", null, null, GoldSource2DView.class);
+		register("gold_source", null, null, UseableEntity2DView.class);
 
 		register("growing_entity_spawner", null, null, GrainField2DView.class);
 
@@ -204,7 +204,7 @@ public class EntityViewFactory {
 		
 		register("block", null, null, LookableEntity2DView.class);
 		
-		register("well_source", null, null, WellSource2DView.class);
+		register("well_source", null, null, UseableEntity2DView.class);
 	}
 
 	/**
