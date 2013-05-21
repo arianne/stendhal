@@ -1652,9 +1652,10 @@ in roaches.
  </zone>
 
   <zone name="int_ados_felinas_house" file="interiors/ados/felinas_house.tmx">
-    <configurator class-name="games.stendhal.server.maps.ados.felinashouse.CatSellerNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.felinashouse.CatSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.felinashouse.KittensNPC" />
     <portal x="12" y="23" ref="entrance">
-     <destination zone="0_ados_wall" ref="felina_entrance"/>
+     <destination zone="0_ados_wall" ref="felina_entrance" />
     </portal>
   </zone>
 
