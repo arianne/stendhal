@@ -307,7 +307,7 @@
 			<attribute name="text">
 North: Or'ril castle
 West: Fado
-East: Nalwor,
+East: Nalwor
 Northeast: Semos
     </attribute>
 			<attribute name="class">signpost</attribute>
