@@ -12,7 +12,8 @@ These files are in the public domain:
                         http://www.freesound.org/people/Barbamiz/sounds/116135/
     clang-dull-1:       http://www.freesound.org/people/alienistcog/sounds/124711/
     clang-metallic-1:   http://www.freesound.org/people/lostchocolatelab/sounds/1468/
-    click-clack-1:      http://www.freesound.org/people/ecfike/sounds/128918/
+    click-clack-1 & click-1:
+                        http://www.freesound.org/people/satrebor/sounds/113218/
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     cowbell-1:          http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
