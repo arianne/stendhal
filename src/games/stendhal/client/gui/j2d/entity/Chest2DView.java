@@ -173,7 +173,17 @@ class Chest2DView extends StateEntity2DView<Chest> {
 			if (entity.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					showWindow();
+					/*
+					 * The component hierarchy of the game screen should not
+					 * be modified in middle of the draw, so we push the
+					 * operation to the end of the queue.
+					 */
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							showWindow();
+						}
+					});
 				}
 			} else {
 				if (slotWindow != null) {
