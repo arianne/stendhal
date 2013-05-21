@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
-	
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
   <item name="fierywater">
     <type class="drink" subclass="fierywater" tileid="-1"/>
     <description>You see a bottle of fierywater. Do not drink it pure, you would evaporate!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="-1000"/>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="-1000"/>
       <frequency value="90"/>
       <quantity value="1"/>
       <regen value="-1"/>
@@ -22,12 +21,12 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="mild koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_mild" tileid="-1"/>
     <description>You see a bottle of mild koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="90"/>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="90"/>
       <frequency value="12"/>
       <quantity value="1"/>
       <regen value="3"/>
@@ -43,12 +42,12 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="strong koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_strong" tileid="-1"/>
     <description>You see a bottle of strong koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="180"/>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="180"/>
       <frequency value="10"/>
       <quantity value="1"/>
       <regen value="6"/>
@@ -64,12 +63,12 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="vsop koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_vsop" tileid="-1"/>
     <description>You see a bottle of VSOP koboldish torcibud, specially aged in oak casks wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="270"/>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="270"/>
       <frequency value="8"/>
       <quantity value="1"/>
       <regen value="9"/>
@@ -86,12 +85,12 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="apple juice">
     <type class="drink" subclass="red_juice" tileid="-1"/>
     <description>You see apple juice. On a hot summer day, it would taste great.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-       <amount value="30"/>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
+      <amount value="30"/>
       <frequency value="12"/>
       <quantity value="1"/>
       <regen value="3"/>
@@ -107,11 +106,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-	
   <item name="beer">
     <type class="drink" subclass="beer" tileid="-1"/>
     <description>You see a beer. On a hot summer day, it would taste great.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="6"/>
       <frequency value="5"/>
       <quantity value="1"/>
@@ -128,11 +127,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="wine">
     <type class="drink" subclass="wine" tileid="-1"/>
     <description>You see a glass of red wine. It will quench your thirst.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="10"/>
       <frequency value="5"/>
       <quantity value="1"/>
@@ -149,11 +148,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-  
-    <item name="water">
+  <item name="water">
     <type class="drink" subclass="waterbottle" tileid="-1"/>
     <description>You see a bottle of fresh spring water. It's really tasty and fresh.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="15"/>
       <frequency value="6"/>
       <quantity value="1"/>
@@ -170,11 +169,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="pina colada">
     <type class="drink" subclass="pina_colada2" tileid="-1"/>
     <description>You see a pina colada. It looks delicious but tastes dangerously strong!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="28"/>
       <frequency value="3"/>
       <quantity value="1"/>
@@ -191,11 +190,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
- <item name="tea">
+  <item name="tea">
     <type class="drink" subclass="tea" tileid="-1"/>
     <description>You see a lovely cup of tea.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="30"/>
       <frequency value="5"/>
       <quantity value="1"/>
@@ -212,11 +211,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
- <item name="milk">
+  <item name="milk">
     <type class="drink" subclass="milk" tileid="-1"/>
     <description>You see a small bottle of fresh milk.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="10"/>
       <frequency value="5"/>
       <quantity value="1"/>
@@ -233,11 +232,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
     <description>You see an antidote, to cure you of poison and protect you for a while.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="400"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -254,11 +253,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="greater antidote">
     <type class="drink" subclass="greater_antidote" tileid="-1"/>
     <description>You see a greater antidote, to cure you of poison and protect you for a long while.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="800"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -275,11 +274,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="mana">
     <type class="drink" subclass="mana" tileid="-1"/>
     <description>You see an bottle of mana, to increase your mana rapidly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="20"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -296,11 +295,11 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
   <item name="poison">
     <type class="drink" subclass="poison" tileid="-1"/>
     <description>You see a bottle of poison. Don't drink it!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="-40"/>
       <frequency value="30"/>
       <quantity value="1"/>
@@ -317,11 +316,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="greater poison">
     <type class="drink" subclass="greater_poison" tileid="-1"/>
     <description>You see a greater poison. Don't drink it!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="-60"/>
       <frequency value="15"/>
       <quantity value="1"/>
@@ -338,11 +337,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="deadly poison">
     <type class="drink" subclass="deadly_poison" tileid="-1"/>
     <description>You see a deadly poison. Don't drink it!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="-100"/>
       <frequency value="15"/>
       <quantity value="1"/>
@@ -359,11 +358,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="disease poison">
     <type class="drink" subclass="disease_poison" tileid="-1"/>
     <description>You see a disease poison.  Be careful, it's wicked.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="-2000"/>
       <frequency value="20"/>
       <quantity value="1"/>
@@ -380,11 +379,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="mega poison">
     <type class="drink" subclass="mega_poison" tileid="-1"/>
     <description>You see a mega poison. This is some wicked poison.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="-500"/>
       <frequency value="10"/>
       <quantity value="1"/>
@@ -401,11 +400,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="twilight elixir">
     <type class="drink" subclass="twilight_elixir" tileid="-1"/>
     <description>You see a bottle of medicinal elixir.</description>
-    <implementation class-name="games.stendhal.server.entity.item.TwilightElixir"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.TwilightElixir"/>
+    <attributes>
       <amount value="-1000"/>
       <frequency value="5"/>
       <quantity value="1"/>
@@ -422,11 +421,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="minor potion">
     <type class="drink" subclass="minor_potion" tileid="-1"/>
     <description>You see a minor potion. It's not much but may save you in a tight spot.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="50"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -443,11 +442,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="soup">
     <type class="drink" subclass="soup" tileid="-1"/>
     <description>You see a bowl of soup. Its contents fill you up.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="2500"/>
       <frequency value="8"/>
       <quantity value="1"/>
@@ -465,11 +464,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
-<item name="fish soup">
+  <item name="fish soup">
     <type class="drink" subclass="fish_soup" tileid="-1"/>
     <description>You see a bowl of fish soup. Its contents fill you up.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="3500"/>
       <frequency value="8"/>
       <quantity value="1"/>
@@ -487,11 +486,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="potion">
     <type class="drink" subclass="potion" tileid="-1"/>
     <description>You see a potion. Take it to battle and you may survive longer.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="100"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -508,11 +507,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="greater potion">
     <type class="drink" subclass="greater_potion" tileid="-1"/>
     <description>You see a greater potion, invaluable in battle.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="300"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -529,11 +528,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="mega potion">
     <type class="drink" subclass="mega_potion" tileid="-1"/>
     <description>You see a mega potion. It strengthens greatly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="800"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -550,11 +549,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="love potion">
     <type class="drink" subclass="love_potion" tileid="-1"/>
     <description>You see a love potion. It looks powerful so take care to use it carefully!</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="400"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -571,11 +570,11 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
   <item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>
+    <attributes>
       <amount value="400"/>
       <frequency value="1"/>
       <quantity value="1"/>
@@ -592,5 +591,4 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
 </items>
