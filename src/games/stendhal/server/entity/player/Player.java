@@ -1775,7 +1775,14 @@ public class Player extends RPEntity implements UseListener {
 
 		if (isAttacking()
 				&& ((turn % getAttackRate()) == 0)) {
-			StendhalRPAction.playerAttack(this, getAttackTarget());
+		    RPEntity attackTarget = getAttackTarget();
+		    
+		    // Face target if player is not moving
+		    if (stopped() && !isFacingToward(attackTarget)) {
+		        faceToward(attackTarget);
+		    }
+		    
+			StendhalRPAction.playerAttack(this, attackTarget);
 		}
 
 		agePlayer(turn);
