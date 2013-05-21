@@ -40,7 +40,9 @@ class UseableItem2DView extends StackableItem2DView<StackableItem> {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.USE.getRepresentation());
+		if (!entity.getRPObject().has("menu")) {
+			list.add(ActionType.USE.getRepresentation());
+		}
 
 		super.buildActions(list);
 	}
