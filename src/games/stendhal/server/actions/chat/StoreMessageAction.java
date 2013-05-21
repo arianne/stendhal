@@ -70,7 +70,7 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 			return;
 		}
 
-		String message = action.get(TEXT);
+		String message = QuoteSpecials.quote(action.get(TEXT));
 
 		DBCommand command = new StoreMessageCommand(player.getName(), action.get(TARGET), message, "P");
 		DBCommandQueue.get().enqueueAndAwaitResult(command, handle);

@@ -56,7 +56,7 @@ public class GroupMessageAction implements ActionListener {
 		}
 
 		if (validateAction(action)) {
-			group.sendGroupMessage(player.getName(), action.get(TEXT));
+			group.sendGroupMessage(player.getName(), QuoteSpecials.quote(action.get(TEXT)));
 		}
 	}
 

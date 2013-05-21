@@ -31,7 +31,7 @@ public class PublicChatAction implements ActionListener {
 			return;
 		}
 
-		final String text = action.get(TEXT);
+		final String text = QuoteSpecials.quote(action.get(TEXT));
 		player.put("text", text);
 		new GameEvent(player.getName(), "chat",  null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
 

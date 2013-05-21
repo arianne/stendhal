@@ -42,7 +42,7 @@ public class AwayAction implements ActionListener {
 	public void onAction(final Player player, final RPAction action) {
 		if (AWAY.equals(action.get(TYPE))) {
 			if (action.has(MESSAGE)) {
-				player.setAwayMessage(action.get(MESSAGE));
+				player.setAwayMessage(QuoteSpecials.quote(action.get(MESSAGE)));
 			} else {
 				player.setAwayMessage(null);
 				// get the postman messages you might have received when you were away

@@ -36,7 +36,7 @@ public class EmoteAction implements ActionListener {
 
 		//emote actions are treated as normal chat actions
 		//on the client side, !me is replaced with the name
-		final String text = "!me " + action.get(TEXT);
+		final String text = "!me " + QuoteSpecials.quote(action.get(TEXT));
 		player.put("text", text);
 
 		new GameEvent(player.getName(), "chat", null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();

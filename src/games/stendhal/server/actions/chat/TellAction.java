@@ -50,7 +50,7 @@ public class TellAction implements ActionListener {
 			return;
 		}
 
-		String text = action.get(TEXT).trim();
+		String text = QuoteSpecials.quote(action.get(TEXT).trim());
 		String senderName = player.getName();
 		String receiverName = action.get(TARGET);
 
