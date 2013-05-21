@@ -13,6 +13,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -35,6 +36,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="1" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -57,6 +59,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -79,6 +82,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -101,6 +105,7 @@
 			<frequency value="5" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -147,6 +152,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -169,6 +175,7 @@
 			<frequency value="1" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value=".01" />
 		<value value="1" />
@@ -191,6 +198,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -213,6 +221,7 @@
 			<frequency value="7" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -235,6 +244,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -257,6 +267,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.1" />
 		<value value="1" />
@@ -279,6 +290,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -301,6 +313,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -323,6 +336,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -345,6 +359,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -367,6 +382,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -389,6 +405,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -411,6 +428,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -433,6 +451,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -455,6 +474,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -477,6 +497,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -499,6 +520,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -521,6 +543,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -543,6 +566,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="1" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="0.5" />
 		<value value="1" />
@@ -565,6 +589,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -587,6 +612,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -609,6 +635,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="-5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="3" />
@@ -632,6 +659,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -654,6 +682,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -676,6 +705,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -698,6 +728,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -720,6 +751,7 @@
 			<frequency value="25" />
 			<quantity value="1" />
 			<regen value="1" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -742,6 +774,7 @@
 			<frequency value="30" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -764,6 +797,7 @@
 			<frequency value="25" />
 			<quantity value="1" />
 			<regen value="-5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -786,6 +820,7 @@
 			<frequency value="25" />
 			<quantity value="1" />
 			<regen value="2" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -808,6 +843,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -831,6 +867,7 @@
 			<frequency value="30" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -853,6 +890,7 @@
 			<frequency value="5" />
 			<quantity value="1" />
 			<regen value="5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="5" />
@@ -875,6 +913,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="15" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="20" />
@@ -897,6 +936,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="15" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="20" />
@@ -919,6 +959,7 @@
 			<frequency value="25" />
 			<quantity value="1" />
 			<regen value="12" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="12" />
@@ -941,6 +982,7 @@
 			<frequency value="18" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="13" />
@@ -963,6 +1005,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -985,6 +1028,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="12" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="3" />
@@ -1007,6 +1051,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1029,6 +1074,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="8" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1051,6 +1097,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="8" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1073,6 +1120,7 @@
 			<frequency value="40" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="6" />
@@ -1096,6 +1144,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="1" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -1118,6 +1167,7 @@
 			<frequency value="40" />
 			<quantity value="1" />
 			<regen value="4" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="6" />
@@ -1140,6 +1190,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="3" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -1162,6 +1213,7 @@
 			<frequency value="5" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1500" />
@@ -1184,6 +1236,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="16" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1206,6 +1259,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="18" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1228,6 +1282,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1250,6 +1305,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1272,6 +1328,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="13" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1294,6 +1351,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="20" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1316,6 +1374,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="20" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="8" />
@@ -1339,6 +1398,7 @@
 			<frequency value="15" />
 			<quantity value="1" />
 			<regen value="1" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1" />
@@ -1361,6 +1421,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1383,6 +1444,7 @@
 			<frequency value="5" />
 			<quantity value="1" />
 			<regen value="10" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1500" />
@@ -1405,6 +1467,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="5" />
@@ -1427,6 +1490,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="6" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="3" />
@@ -1449,6 +1513,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="5" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1473,6 +1538,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="30" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="1500" />
@@ -1495,6 +1561,7 @@
 			<frequency value="10" />
 			<quantity value="1" />
 			<regen value="20" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="200" />
@@ -1517,6 +1584,7 @@
 			<frequency value="20" />
 			<quantity value="1" />
 			<regen value="20" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="2" />
@@ -1539,6 +1607,7 @@
 			<frequency value="12" />
 			<quantity value="1" />
 			<regen value="50" />
+			<menu value="Eat|Use"/>
 		</attributes>
 		<weight value="1.0" />
 		<value value="25" />
