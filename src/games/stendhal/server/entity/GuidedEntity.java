@@ -167,7 +167,7 @@ public abstract class GuidedEntity extends ActiveEntity {
      * 
      * @return
      */
-    protected boolean hasRandomPath() {
+    protected boolean usesRandomPath() {
         return randomPath;
     }
 
