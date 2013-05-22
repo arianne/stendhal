@@ -23,6 +23,9 @@ public class PassiveNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(PassiveNPC.class);
 	
+    protected int pauseValue = 0;
+	protected int pauseProbability = 0;
+	
 	/**
 	 * Creates a new PassiveNPC.
 	 *
@@ -65,11 +68,23 @@ public class PassiveNPC extends NPC {
 	    
 		if (hasPath()) {
 			setSpeed(getBaseSpeed());
-		} else if (isMovingEntity() && usesRandomPath()) {
-		    // FIXME: There is a pause before getting new path
-    		setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
 		}
 		
 		applyMovement();
+	}
+	
+	@Override
+	public void onFinishedPath() {
+	    super.onFinishedPath();
+	    
+	    if (isMovingEntity() && usesRandomPath()) {
+	        // FIXME: There is a pause when renewing path
+            setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+	    }
+	}
+	
+	public void setPathCompletePause(int pause, int probability) {
+        this.pauseValue = pause;
+	    this.pauseProbability = probability;
 	}
 }
