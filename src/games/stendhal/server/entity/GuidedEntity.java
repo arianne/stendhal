@@ -332,4 +332,22 @@ public abstract class GuidedEntity extends ActiveEntity {
 		//TODO base speed does not get transfered to the client? testing showed, that speed is used at client side
 	}
 	
+	/**
+	 * Denotes that the entity should have a path and be moving
+	 */
+	public void setMovingEntity() {
+	    movingEntity = true;
+	}
+	
+	/**
+	 * @param moving
+	 *         <code>true</code> entity should have a path and be moving
+	 */
+	public void setMovingEntity(boolean moving) {
+	    if (moving) {
+	        movingEntity = true;
+	        return;
+	    }
+	    movingEntity = false;
+	}
 }

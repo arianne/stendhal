@@ -228,6 +228,7 @@ public abstract class NPC extends RPEntity {
 	
     // Give NPC random path
     public void moveRandomly() {
+        super.setMovingEntity();
         setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
     }
 }
