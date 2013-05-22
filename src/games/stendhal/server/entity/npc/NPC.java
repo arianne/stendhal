@@ -238,11 +238,11 @@ public abstract class NPC extends RPEntity {
     @Override
     protected void handleObjectCollision() {
         if (!ignoresCollision()) {
+            stop();
+            clearPath();
+            
             if (usesRandomPath()) {
-                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
-            } else {
-                super.handleObjectCollision();
             }
         }
     }
@@ -250,12 +250,11 @@ public abstract class NPC extends RPEntity {
     @Override
     protected void handleSimpleCollision(final int nx, final int ny) {
         if (!ignoresCollision()) {
+            stop();
+            clearPath();
+            
             if (usesRandomPath()) {
-                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
-            } else {
-                stop();
-                clearPath();
             }
         }
         super.handleSimpleCollision(nx, ny);
