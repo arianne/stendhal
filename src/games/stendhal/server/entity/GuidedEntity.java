@@ -105,7 +105,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	/**
 	 * Sets the entity's path as random
 	 */
-    public void setRandomPath() {
+    public void setHasRandomPath() {
         randomPath = true;
     }
     
@@ -115,7 +115,7 @@ public abstract class GuidedEntity extends ActiveEntity {
      * @param random
      *      <code>true</code> if entity's path is random
      */
-    public void setRandomPath(boolean random) {
+    public void setHasRandomPath(boolean random) {
         if (random) {
             randomPath = true;
         } else {
