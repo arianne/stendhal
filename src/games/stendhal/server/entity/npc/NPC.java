@@ -225,5 +225,9 @@ public abstract class NPC extends RPEntity {
 	public void logic() {
 		// sub classes can implement this method
 	}
-
+	
+    // Give NPC random path
+    public void moveRandomly() {
+        setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+    }
 }

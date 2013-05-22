@@ -143,10 +143,6 @@ public abstract class DomesticAnimal extends Creature {
 		// setAsynchonousMovement(owner,0,0);
 	}
 
-	protected void moveRandomly() {
-		setRandomPathFrom(getX(), getY(), getMovementRange()/2);
-	}
-
 	/**
 	 * Can be called when the sheep dies. Puts meat onto its corpse; the amount
 	 * of meat depends on the domestic animal's weight.
