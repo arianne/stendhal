@@ -30,6 +30,11 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	public Registrator pathnotifier = new Registrator();
 	
+    /**
+     * The entity is using a random path
+     */
+    private boolean randomPath = false;
+    
 	/**
 	 * Create a guided entity.
 	 */
@@ -96,6 +101,27 @@ public abstract class GuidedEntity extends ActiveEntity {
 			guide.clearPath();
 		}
 	}
+	
+	/**
+	 * Sets the entity's path as random
+	 */
+    public void setRandomPath() {
+        randomPath = true;
+    }
+    
+    /**
+     * Sets or unsets entity's path as random
+     * 
+     * @param random
+     *      <code>true</code> if entity's path is random
+     */
+    public void setRandomPath(boolean random) {
+        if (random) {
+            randomPath = true;
+        } else {
+            randomPath = false;
+        }
+    }
 
 	/**
 	 * function return current entity's path.
@@ -122,6 +148,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return (guide.path != null);
 	}
 
+    /**
+     * Determines whether the entity is using a random path
+     * 
+     * @return
+     */
+    protected boolean hasRandomPath() {
+        return randomPath;
+    }
 
 	/**
 	 * Is the path a loop.
