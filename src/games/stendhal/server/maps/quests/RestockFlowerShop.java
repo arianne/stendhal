@@ -128,16 +128,16 @@ public class RestockFlowerShop extends AbstractQuest {
 		List<List<String>> keywords = Arrays.asList(
 				Arrays.asList("flower"),
 				ConversationPhrases.HELP_MESSAGES);
-		List<String> descriptions = Arrays.asList(
+		List<String> responses = Arrays.asList(
 				"Aren't flowers beautiful?",
 				"Hmmmm, I don't think there is anything I can help with.");
 		
-		for (int i = 0; i < keywords.size(); i++) {
+		for (int i = 0; i < responses.size(); i++) {
 			npc.add(ConversationStates.ANY,
 					keywords.get(i),
 					new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
 					ConversationStates.ATTENDING,
-					descriptions.get(i),
+					responses.get(i),
 					null);
 		}
 	}
@@ -164,25 +164,25 @@ public class RestockFlowerShop extends AbstractQuest {
 				Arrays.asList("fleur"),
 				Arrays.asList("flask"),
 				ConversationPhrases.HELP_MESSAGES);
-		List<String> descriptions = new ArrayList<String>();
-		descriptions.add("Daisies are...");
-		descriptions.add("Lilias are...");
-		descriptions.add("Pansies are...");
-		descriptions.add("Roses are...");
-		descriptions.add("Zantedeschias are...");
-		descriptions.add("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.");
-		descriptions.add("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.");
-		descriptions.add("You can find Jenny around the windmill near Semos where she mills flour.");
-		descriptions.add("Fleur works at the market in Kirdneh.");
-		descriptions.add("Ask the barmaid in Semos.");
-		descriptions.add("I can #remind you of which #flowers I need. I might also be able help you figure out #where you can find some.");
+		List<String> responses = new ArrayList<String>();
+		responses.add("Daisies are...");
+		responses.add("Lilias are...");
+		responses.add("Pansies are...");
+		responses.add("Roses are...");
+		responses.add("Zantedeschias are...");
+		responses.add("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.");
+		responses.add("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.");
+		responses.add("You can find Jenny around the windmill near Semos where she mills flour.");
+		responses.add("Fleur works at the market in Kirdneh.");
+		responses.add("Ask the barmaid in Semos.");
+		responses.add("I can #remind you of which #flowers I need. I might also be able help you figure out #where you can find some.");
 		
-		for (int f = 0; f < flowerTypes.size(); f++) {
+		for (int f = 0; f < responses.size(); f++) {
 			npc.add(ConversationStates.ANY,
 					keywords.get(f),
 					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
-					descriptions.get(f),
+					responses.get(f),
 					null);
 		}
 	}
