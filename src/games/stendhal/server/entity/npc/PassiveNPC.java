@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Direction;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -23,8 +25,9 @@ public class PassiveNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(PassiveNPC.class);
 	
-    protected int pauseValue = 0;
-	protected int pauseProbability = 0;
+    protected int pauseTurns = 0;
+	protected int pauseTurnsRemaining = 0;
+	protected Direction pauseDirection;
 	
 	/**
 	 * Creates a new PassiveNPC.
@@ -54,13 +57,24 @@ public class PassiveNPC extends NPC {
 
 	@Override
 	public void logic() {
-	    super.logic();
-	    
-		if (hasPath()) {
-			setSpeed(getBaseSpeed());
+        if (pauseTurnsRemaining == 0) {
+    	    super.logic();
+    	    
+    		if (hasPath()) {
+    			setSpeed(getBaseSpeed());
+    		}
+    		
+		    applyMovement();
+		} else {
+		    if (!stopped()) {
+		        stop();
+	            if (pauseDirection != null) setDirection(pauseDirection);
+		    }
+		    
+		    pauseTurnsRemaining -= 1;
 		}
-		
-		applyMovement();
+        
+        notifyWorldAboutChanges();
 	}
 	
 	@Override
@@ -71,10 +85,20 @@ public class PassiveNPC extends NPC {
 	        // FIXME: There is a pause when renewing path
             setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
 	    }
+	    
+	    pauseTurnsRemaining = pauseTurns;
 	}
 	
-	public void setPathCompletePause(int pause, int probability) {
-        this.pauseValue = pause;
-	    this.pauseProbability = probability;
+	/**
+	 * Pause the entity when path is completed.
+	 * Call setDirection() first to specify which
+	 * way entity should face during pause.
+	 * 
+	 * @param pause
+	 *         Number of turns entity should stay paused
+	 */
+	public void setFinishedPathPause(int pause) {
+	    this.pauseTurns = pause;
+	    this.pauseDirection = getDirection();
 	}
 }
