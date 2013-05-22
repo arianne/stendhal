@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Events;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -52,6 +53,14 @@ public abstract class NPC extends RPEntity {
 	 * The range in which the NPC will search for movement paths.
 	 */
 	private int movementRange = 20;
+	
+	/**
+	 * Idling between path cycles
+	 */
+    protected int pauseTurns = 0;
+    public int pauseTurnsRemaining = 0;
+    protected Direction pauseDirection;
+    
 
 	public static void generateRPClass() {
 		try {
@@ -233,6 +242,23 @@ public abstract class NPC extends RPEntity {
 		        logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
 		    }
 		}
+	    
+        if (pauseTurnsRemaining == 0) {
+            if (hasPath()) {
+                setSpeed(getBaseSpeed());
+            }
+            
+            applyMovement();
+        } else {
+            if (!stopped()) {
+                stop();
+                if (pauseDirection != null) setDirection(pauseDirection);
+            }
+            
+            pauseTurnsRemaining -= 1;
+        }
+        
+        notifyWorldAboutChanges();
 	}
 	
     @Override
@@ -265,5 +291,30 @@ public abstract class NPC extends RPEntity {
      */
     public void moveRandomly() {
         setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+    }
+    
+    @Override
+    public void onFinishedPath() {
+        super.onFinishedPath();
+        
+        if (isMovingEntity() && usesRandomPath()) {
+            // FIXME: There is a pause when renewing path
+            moveRandomly();
+        }
+        
+        pauseTurnsRemaining = pauseTurns;
+    }
+    
+    /**
+     * Pause the entity when path is completed.
+     * Call setDirection() first to specify which
+     * way entity should face during pause.
+     * 
+     * @param pause
+     *         Number of turns entity should stay paused
+     */
+    public void setFinishedPathPause(int pause) {
+        this.pauseTurns = pause;
+        this.pauseDirection = getDirection();
     }
 }
