@@ -31,9 +31,13 @@
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
-		<configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC"/>
-		<configurator class-name="games.stendhal.server.maps.fado.city.NunNPC"/>
-		<configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC"/>
+    
+    <!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC" />
+		<configurator class-name="games.stendhal.server.maps.fado.city.NunNPC" />
+		<configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.city.RabbitNPC" />
+    
 		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
 			<parameter name="x">55</parameter>
 			<parameter name="y">22</parameter>
