@@ -1063,13 +1063,16 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
             </portal>
     </zone>
 
-       	<zone name="0_semos_plains_n" level="0" x="500000" y="499872"
-		file="Level 0/semos/plains_n.tmx">
+  <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="Level 0/semos/plains_n.tmx">
 		<attributes>
 			<parameter name="color_method">time</parameter>
 		</attributes>
-		<configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
-		<configurator class-name="games.stendhal.server.maps.semos.plains.AddPostmanListener"/>
+    
+    <!-- NPCs -->
+		<configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC" />
+		<configurator class-name="games.stendhal.server.maps.semos.plains.AddPostmanListener" />
+    <configurator class-name="games.stendhal.server.maps.semos.plains.ButterfliesNPC"/>
+    
 		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
 			<parameter name="x">60</parameter>
 			<parameter name="y">44</parameter>
