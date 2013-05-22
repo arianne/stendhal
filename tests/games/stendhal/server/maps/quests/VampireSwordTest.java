@@ -281,6 +281,9 @@ public class VampireSwordTest {
 			final SpeakerNPC npc = vs.npcs.get(VAMPIRE_NPC);
 			final Engine en = vs.npcs.get(VAMPIRE_NPC).getEngine();
 			
+            // Make sure npc is not attending for each pass
+            en.step(player, "bye");
+            
 			en.step(player, hello);
 			assertEquals("vampires greeting", "Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.", getReply(npc));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
