@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 public class PassiveNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(PassiveNPC.class);
-
+	
 	/**
 	 * Creates a new PassiveNPC.
 	 *
@@ -51,25 +51,25 @@ public class PassiveNPC extends NPC {
 
 	@Override
 	protected void handleObjectCollision() {
-		if (!ignoresCollision()) {
-			stop();
-		}
+	    super.handleObjectCollision();
 	}
 
 	@Override
 	protected void handleSimpleCollision(final int nx, final int ny) {
-		if (!ignoresCollision()) {
-			stop();
-		}
 		super.handleSimpleCollision(nx, ny);
 	}
 	
 	@Override
 	public void logic() {
+	    super.logic();
+	    
 		if (hasPath()) {
 			setSpeed(getBaseSpeed());
+		} else if (isMovingEntity() && usesRandomPath()) {
+		    // FIXME: There is a pause before getting new path
+    		setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
 		}
+		
 		applyMovement();
 	}
-	
 }
