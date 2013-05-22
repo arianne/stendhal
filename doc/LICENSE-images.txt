@@ -34,7 +34,7 @@ These images are released under the following BSD license:
     gnome_homes                     royal_blue_drapes
     panel_tile_aqua_001             elvish_hat
     corpse/*rock                    crab_meat
-    torch_2
+    torch_2                         butterfly
     giant_boulder
     elvish_hat
     corpse/*cloaked
