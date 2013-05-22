@@ -162,6 +162,8 @@ public abstract class NPC extends RPEntity {
 	 *			  The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
+	    super.setHasRandomPath();
+	    
 		final int dist2_1 = distance + distance + 1;
 		final int dx = Rand.rand(dist2_1) - distance;
 		final int dy = Rand.rand(dist2_1) - distance;
@@ -226,6 +228,30 @@ public abstract class NPC extends RPEntity {
 		// sub classes can implement this method
 	}
 	
+    @Override
+    protected void handleObjectCollision() {
+        if (!ignoresCollision()) {
+            if (hasRandomPath()) {
+                setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+            } else {
+                super.handleObjectCollision();
+            }
+        }
+    }
+
+    @Override
+    protected void handleSimpleCollision(final int nx, final int ny) {
+        if (!ignoresCollision()) {
+            if (hasRandomPath()) {
+                setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
+            } else {
+                stop();
+                clearPath();
+            }
+        }
+        super.handleSimpleCollision(nx, ny);
+    }
+    
     // Give NPC random path
     public void moveRandomly() {
         super.setMovingEntity();
