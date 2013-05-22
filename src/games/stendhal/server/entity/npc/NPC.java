@@ -239,9 +239,9 @@ public abstract class NPC extends RPEntity {
     protected void handleObjectCollision() {
         if (!ignoresCollision()) {
             stop();
-            clearPath();
             
             if (usesRandomPath()) {
+                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
             }
         }
@@ -251,9 +251,9 @@ public abstract class NPC extends RPEntity {
     protected void handleSimpleCollision(final int nx, final int ny) {
         if (!ignoresCollision()) {
             stop();
-            clearPath();
             
             if (usesRandomPath()) {
+                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
             }
         }
