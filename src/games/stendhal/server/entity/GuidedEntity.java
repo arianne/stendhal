@@ -35,6 +35,9 @@ public abstract class GuidedEntity extends ActiveEntity {
      */
     private boolean randomPath = false;
     
+    // Denotes that the entity should have a path and be moving
+    private boolean movingEntity = false;
+
 	/**
 	 * Create a guided entity.
 	 */
@@ -93,13 +96,17 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public final void setPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
+		    movingEntity = true;
 			setSpeed(getBaseSpeed());
 			guide.path = path;
 			guide.pathPosition = 0;
 			guide.followPath(this);
-		} else {
-			guide.clearPath();
+			
+			return;
 		}
+		
+		guide.clearPath();
+		movingEntity = false;
 	}
 	
 	/**
@@ -121,6 +128,13 @@ public abstract class GuidedEntity extends ActiveEntity {
         } else {
             randomPath = false;
         }
+    }
+    
+    /**
+     * Determines if the entity should have a path and be moving
+     */
+    public boolean isMovingEntity() {
+        return movingEntity;
     }
 
 	/**
