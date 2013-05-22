@@ -162,7 +162,7 @@ public abstract class NPC extends RPEntity {
 	 *			  The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
-	    super.setHasRandomPath();
+	    if (!usesRandomPath()) super.setUsesRandomPath();
 	    
 		final int dist2_1 = distance + distance + 1;
 		final int dx = Rand.rand(dist2_1) - distance;
@@ -225,13 +225,21 @@ public abstract class NPC extends RPEntity {
 
 	@Override
 	public void logic() {
-		// sub classes can implement this method
+		if (!hasPath() && isMovingEntity()) {
+		    if (logger.isDebugEnabled()) {
+		        String title = getTitle();
+		        String zone = getZone().getName();
+		        String coords = Integer.toString(getX()) + ", " + Integer.toString(getY());
+		        logger.debug("Moving entity " + title + " at " + zone + " " + coords + " does not have a path");
+		    }
+		}
 	}
 	
     @Override
     protected void handleObjectCollision() {
         if (!ignoresCollision()) {
-            if (hasRandomPath()) {
+            if (usesRandomPath()) {
+                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
             } else {
                 super.handleObjectCollision();
@@ -242,7 +250,8 @@ public abstract class NPC extends RPEntity {
     @Override
     protected void handleSimpleCollision(final int nx, final int ny) {
         if (!ignoresCollision()) {
-            if (hasRandomPath()) {
+            if (usesRandomPath()) {
+                clearPath();
                 setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
             } else {
                 stop();
@@ -252,9 +261,10 @@ public abstract class NPC extends RPEntity {
         super.handleSimpleCollision(nx, ny);
     }
     
-    // Give NPC random path
+    /**
+     * Give NPC a random path
+     */
     public void moveRandomly() {
-        super.setMovingEntity();
         setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
     }
 }
