@@ -53,16 +53,6 @@ public class PassiveNPC extends NPC {
 	}
 
 	@Override
-	protected void handleObjectCollision() {
-	    super.handleObjectCollision();
-	}
-
-	@Override
-	protected void handleSimpleCollision(final int nx, final int ny) {
-		super.handleSimpleCollision(nx, ny);
-	}
-	
-	@Override
 	public void logic() {
 	    super.logic();
 	    
