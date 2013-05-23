@@ -12,7 +12,7 @@
     </attributes>
     <ai>
       <says>
-        <noise value="arf arf" />
+        <noise state="idle" value="arf arf" />
         <sound value="puppy-bark-1" />
       </says>
       <profile name="patrolling" />
