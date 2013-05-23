@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A playful puppy
+ * A bunch of butterflies
  * 
  * @author AntumDeluge
  */
@@ -98,6 +98,64 @@ public class ButterfliesNPC implements ZoneConfigurator {
         };
         b4.setPosition(115, 118);
         butterflies.add(b4);
+        
+        // Butterfly 5
+        final PassiveNPC b5 = new PassiveNPC() {
+            @Override
+            protected void createPath() {
+                List<Node> nodes = new LinkedList<Node>();
+                nodes.add(new Node(112, 120));
+                nodes.add(new Node(116, 120));
+                nodes.add(new Node(116, 123));
+                nodes.add(new Node(112, 123));
+                setPath(new FixedPath(nodes, true));
+            }
+        };
+        b5.setPosition(116, 120);
+        butterflies.add(b5);
+        
+        // Butterfly 6
+        final PassiveNPC b6 = new PassiveNPC() {
+            @Override
+            protected void createPath() {
+                List<Node> nodes = new LinkedList<Node>();
+                nodes.add(new Node(24, 31));
+                nodes.add(new Node(24, 53));
+                nodes.add(new Node(54, 53));
+                nodes.add(new Node(54, 31));
+                setPath(new FixedPath(nodes, true));
+            }
+        };
+        b5.setPosition(24, 31);
+        butterflies.add(b6);
+        
+        // Butterflies with random paths
+        final List<PassiveNPC> randomButterflies = new LinkedList<PassiveNPC>();
+        
+        final PassiveNPC br1 = new PassiveNPC();
+        br1.setPosition(69, 55);
+        randomButterflies.add(br1);
+        
+        final PassiveNPC br2 = new PassiveNPC();
+        br2.setPosition(70, 55);
+        randomButterflies.add(br2);
+        
+        final PassiveNPC br3 = new PassiveNPC();
+        br3.setPosition(71, 55);
+        randomButterflies.add(br3);
+        
+        final PassiveNPC br4 = new PassiveNPC();
+        br4.setPosition(14, 36);
+        randomButterflies.add(br4);
+        
+        final PassiveNPC br5 = new PassiveNPC();
+        br5.setPosition(25, 17);
+        randomButterflies.add(br5);
+        
+        for (PassiveNPC insect : randomButterflies) {
+            insect.moveRandomly();
+            butterflies.add(insect);
+        }
         
         // Add butterflies to zone
 		for (PassiveNPC insect : butterflies) {
