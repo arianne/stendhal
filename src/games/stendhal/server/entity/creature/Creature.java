@@ -931,18 +931,6 @@ public class Creature extends NPC {
 			}
 		}
 	}
-
-    @Override
-    protected void handleObjectCollision() {
-        // Reroute creature to continue attack
-        clearPath();
-        reroute();
-    }
-
-    @Override
-    protected void handleSimpleCollision(final int nx, final int ny) {
-        // Do nothing
-    }
     
 	/**
 	 * Random sound noises.

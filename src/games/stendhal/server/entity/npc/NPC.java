@@ -260,31 +260,24 @@ public abstract class NPC extends RPEntity {
         
         notifyWorldAboutChanges();
 	}
-	
-    @Override
-    protected void handleObjectCollision() {
-        if (!ignoresCollision()) {
-            stop();
-            
-            if (usesRandomPath()) {
-                clearPath();
-                setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
-            }
-        }
-    }
 
-    @Override
-    protected void handleSimpleCollision(final int nx, final int ny) {
-        if (!ignoresCollision()) {
-            stop();
-            
-            if (usesRandomPath()) {
-                clearPath();
-                setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
-            }
-        }
-        super.handleSimpleCollision(nx, ny);
-    }
+	@Override
+	protected void handleObjectCollision() {
+		if (!ignoresCollision() && usesRandomPath()) {
+			setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+		} else {
+			super.handleObjectCollision();
+		}
+	}
+
+	@Override
+	protected void handleSimpleCollision(final int nx, final int ny) {
+		if (!ignoresCollision() && usesRandomPath()) {
+			setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
+		} else {
+			super.handleSimpleCollision(nx, ny);
+		}
+	}
     
     /**
      * Give NPC a random path
