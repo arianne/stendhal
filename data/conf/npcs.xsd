@@ -11,7 +11,7 @@
   </complexType>
   
   <complexType name="NPC">
-    <attribute name="name" type="string" use="optional" />
+    <attribute name="name" type="string" use="required" />
     <attribute name="condition" type="string" use="optional" />
     <sequence>
       <element name="type" type="Q1:Type" />
