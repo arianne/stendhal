@@ -11,11 +11,13 @@
   </complexType>
   
   <complexType name="NPC">
-    <attribute name="name" type="string" use="required" />
+    <attribute name="name" type="string" use="optional" />
+    <attribute name="condition" type="string" use="optional" />
     <sequence>
       <element name="type" type="Q1:Type" />
       <element name="description" type="string" />
       <element name="implementation" type="Q1:Implementation" />
+      <element name="attributes" type="Q1:Attributes" minOccurs="1" />
       <element name="ai" type="Q1:Ai" minOccurs="1" />
     </sequence>
   </complexType>
@@ -28,6 +30,21 @@
   
   <complexType name="Implementation">
     <attribute name="class-name" type="string" />
+  </complexType>
+  
+  <complexType name="Attributes">
+    <sequence>
+      <element name="speed" minOccurs="1">
+        <complexType>
+          <attribute name="value" type="decimal" />
+        </complexType>
+      </element>
+      <element name="size" minOccurs="1">
+        <complexType>
+          <attribute name="value" type="string" />
+        <complexType>
+      <element>
+    </sequence>
   </complexType>
   
   <complexType name="Ai">

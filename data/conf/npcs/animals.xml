@@ -6,6 +6,10 @@
     <type class="animal" subclass="puppy" tileid="animal:0" />
     <description>You see a playful puppy.</description>
     <implementation class-name="games.stendhal.server.entity.npc.PassiveNPC" />
+    <attributes>
+      <speed value="0.1" />
+      <size value="1,1" />
+    </attributes>
     <ai>
       <says>
         <noise value="arf arf" />
