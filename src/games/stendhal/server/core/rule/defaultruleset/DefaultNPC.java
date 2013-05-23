@@ -1,7 +1,5 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
@@ -26,7 +24,8 @@ public class DefaultNPC {
     private String subclass;
     
     /** NPC name */
-    private String name;
+    // FIXME: name is not getting loaded from xml
+    private String name = "empty";
     
     /** Optional NPC description */
     private String description;
@@ -120,7 +119,7 @@ public class DefaultNPC {
      * 
      * @return a NPC-instance. 
      */
-    public PassiveNPC getNPC() {
+    public NPC getNPC() {
         final PassiveNPC npc = new PassiveNPC();
         
         npc.setEntityClass(clazz);
