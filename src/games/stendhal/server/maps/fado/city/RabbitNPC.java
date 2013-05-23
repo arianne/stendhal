@@ -15,10 +15,12 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
- * A rabbit
+ * Rabbits
  * 
  * @author AntumDeluge
  */
@@ -31,17 +33,28 @@ public class RabbitNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final PassiveNPC rabbit = new PassiveNPC() {
-		};
+	    
+	    // All rabbits
+	    List<PassiveNPC> rabbits = new LinkedList<PassiveNPC>();
+	    
+		final PassiveNPC r1 = new PassiveNPC();
+        r1.setPosition(50, 29);
+        rabbits.add(r1);
 		
-		rabbit.setPosition(50, 29);
-		rabbit.setDescription("You see a rabbit.");
-		rabbit.setEntityClass("animal/rabbit");
-		rabbit.setBaseSpeed(0.2);
-		rabbit.moveRandomly();
-		rabbit.setTitle("RabbitNPC");
-		rabbit.setFinishedPathPause(20);
-		zone.add(rabbit);
+		final PassiveNPC r2 = new PassiveNPC();
+		r2.setPosition(120, 97);
+		rabbits.add(r2);
+		
+		// Add rabbits to zone
+		for (PassiveNPC mammal : rabbits) {
+	        mammal.setDescription("You see a rabbit.");
+	        mammal.setEntityClass("animal/rabbit");
+	        mammal.setBaseSpeed(0.2);
+	        mammal.moveRandomly();
+	        mammal.setTitle("rabbit");
+	        mammal.setFinishedPathPause(20);
+	        zone.add(mammal);
+		}
 	}
 
 }
