@@ -35,7 +35,7 @@ public abstract class GuidedEntity extends ActiveEntity {
      */
     private boolean randomPath = false;
     
-    // Denotes that the entity should have a path and be moving
+    /** Denotes that the entity should have a path and be moving. */
     private boolean movingEntity = false;
 
 	/**
@@ -108,30 +108,22 @@ public abstract class GuidedEntity extends ActiveEntity {
 		guide.clearPath();
 		movingEntity = false;
 	}
-	
-	/**
-	 * Sets the entity's path as random
-	 */
-    public void setUsesRandomPath() {
-        randomPath = true;
-    }
     
     /**
-     * Sets or unsets entity's path as random
+     * Sets or unsets entity's path as random.
      * 
      * @param random
      *      <code>true</code> if entity's path is random
      */
     public void setUsesRandomPath(boolean random) {
-        if (random) {
-            randomPath = true;
-        } else {
-            randomPath = false;
-        }
+    	randomPath = random;
     }
     
     /**
      * Determines if the entity should have a path and be moving
+     * 
+     * @return <code>true</code> if the entity should have a path and be
+     * moving
      */
     public boolean isMovingEntity() {
         return movingEntity;
@@ -162,14 +154,15 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return (guide.path != null);
 	}
 
-    /**
-     * Determines whether the entity is using a random path
-     * 
-     * @return
-     */
-    protected boolean usesRandomPath() {
-        return randomPath;
-    }
+	/**
+	 * Determines whether the entity is using a random path.
+	 * 
+	 * @return <code>true</code> if the entity uses random paths, otherwise
+	 * 	<code>false</code>
+	 */
+	protected boolean usesRandomPath() {
+		return randomPath;
+	}
 
 	/**
 	 * Is the path a loop.
@@ -333,21 +326,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 	
 	/**
-	 * Denotes that the entity should have a path and be moving
-	 */
-	public void setMovingEntity() {
-	    movingEntity = true;
-	}
-	
-	/**
 	 * @param moving
 	 *         <code>true</code> entity should have a path and be moving
 	 */
 	public void setMovingEntity(boolean moving) {
-	    if (moving) {
-	        movingEntity = true;
-	        return;
-	    }
-	    movingEntity = false;
+		movingEntity = moving;
 	}
 }

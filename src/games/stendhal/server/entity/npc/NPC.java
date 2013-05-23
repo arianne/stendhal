@@ -171,7 +171,7 @@ public abstract class NPC extends RPEntity {
 	 *			  The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
-	    if (!usesRandomPath()) super.setUsesRandomPath();
+		setUsesRandomPath(true);
 	    
 		final int dist2_1 = distance + distance + 1;
 		final int dx = Rand.rand(dist2_1) - distance;
