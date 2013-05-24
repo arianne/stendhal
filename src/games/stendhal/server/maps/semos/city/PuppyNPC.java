@@ -14,8 +14,10 @@ package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
 import java.util.LinkedList;
@@ -36,20 +38,11 @@ public class PuppyNPC implements ZoneConfigurator {
 	}
 
 	private void buildNPC(final StendhalRPZone zone) {
-		final PassiveNPC dog = new PassiveNPC() {
-			@Override
-			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(23, 54));
-				nodes.add(new Node(17, 54));
-				nodes.add(new Node(17, 49));
-				nodes.add(new Node(19, 49));
-				nodes.add(new Node(19, 58));
-				nodes.add(new Node(23, 58));
-				setPath(new FixedPath(nodes, true));
-			}
-		};
+		final PassiveNPC dog = new Puppy();
 		
+		dog.put("menu", "Pet|Use");
+		// Not visible, but used for the emote action
+		dog.setName("Puppy");
 		dog.setPosition(23, 54);
 		dog.setDescription("You see a playful puppy.");
 		dog.setEntityClass("animal/puppy");
@@ -57,4 +50,29 @@ public class PuppyNPC implements ZoneConfigurator {
 		zone.add(dog);
 	}
 
+	/**
+	 * A puppy that can be petted.
+	 */
+	private static class Puppy extends PassiveNPC implements UseListener {
+		@Override
+		protected void createPath() {
+			final List<Node> nodes = new LinkedList<Node>();
+			nodes.add(new Node(23, 54));
+			nodes.add(new Node(17, 54));
+			nodes.add(new Node(17, 49));
+			nodes.add(new Node(19, 49));
+			nodes.add(new Node(19, 58));
+			nodes.add(new Node(23, 58));
+			setPath(new FixedPath(nodes, true));
+		}
+
+		@Override
+		public boolean onUsed(RPEntity user) {
+			if (nextTo(user)) {
+				say("!me wags tail.");
+				return true;
+			}
+			return false;
+		}
+	}
 }
