@@ -234,7 +234,7 @@ public abstract class NPC extends RPEntity {
 
 	@Override
 	public void logic() {
-		if (!hasPath() && isMovingEntity()) {
+		if (!hasPath()) {
 		    if (logger.isDebugEnabled()) {
 		        String title = getTitle();
 		        String zone = getZone().getName();
@@ -290,7 +290,7 @@ public abstract class NPC extends RPEntity {
     public void onFinishedPath() {
         super.onFinishedPath();
         
-        if (isMovingEntity() && usesRandomPath()) {
+        if (usesRandomPath()) {
             // FIXME: There is a pause when renewing path
             moveRandomly();
         }

@@ -35,9 +35,6 @@ public abstract class GuidedEntity extends ActiveEntity {
      */
     private boolean randomPath = false;
     
-    /** Denotes that the entity should have a path and be moving. */
-    private boolean movingEntity = false;
-
 	/**
 	 * Create a guided entity.
 	 */
@@ -96,7 +93,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public final void setPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
-		    movingEntity = true;
 			setSpeed(getBaseSpeed());
 			guide.path = path;
 			guide.pathPosition = 0;
@@ -106,7 +102,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 		
 		guide.clearPath();
-		movingEntity = false;
 	}
     
     /**
@@ -119,16 +114,6 @@ public abstract class GuidedEntity extends ActiveEntity {
     	randomPath = random;
     }
     
-    /**
-     * Determines if the entity should have a path and be moving
-     * 
-     * @return <code>true</code> if the entity should have a path and be
-     * moving
-     */
-    public boolean isMovingEntity() {
-        return movingEntity;
-    }
-
 	/**
 	 * function return current entity's path.
 	 * @return path
@@ -323,13 +308,5 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	public void updateModifiedAttributes() {
 		//TODO base speed does not get transfered to the client? testing showed, that speed is used at client side
-	}
-	
-	/**
-	 * @param moving
-	 *         <code>true</code> entity should have a path and be moving
-	 */
-	public void setMovingEntity(boolean moving) {
-		movingEntity = moving;
 	}
 }
