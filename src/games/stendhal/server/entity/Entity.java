@@ -19,6 +19,7 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.slot.EntitySlot;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -44,9 +45,7 @@ public abstract class Entity extends RPObject {
 	private int y;
 
     // Initial coordinates
-    private int originX;
-    
-    private int originY;
+    private Point origin;
 
 	/**
 	 * Amount of resistance this has with other entities (0-100).
@@ -598,9 +597,8 @@ public abstract class Entity extends RPObject {
 		boolean moved = false;
 
         // Set the original position of the entity
-        if ((Integer)originX == null || (Integer)originY == null) {
-            originX = x;
-            originY = y;
+        if (origin == null) {
+            origin = new Point(x, y);
         }
 
 		if (x != oldX) {
