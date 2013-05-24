@@ -220,7 +220,7 @@ public class FindJefsMom extends AbstractQuest {
 	    // replace flower if lost
 	    amber.add(ConversationStates.ATTENDING, Arrays.asList("Jef", "flower", "zant", "zantedeschia"),
 	    		new AndCondition(
-	    				new QuestInStateCondition(QUEST_SLOT, "found_mom"),
+	    				new QuestInStateCondition(QUEST_SLOT, 0, "found_mom"),
 	    				new NotCondition(new PlayerHasItemWithHimCondition("zantedeschia"))),
 	    		ConversationStates.IDLE,
 	    		"Oh you lost the flower? I'm afraid I don't have anymore. Speak with Jenny, by the windmill. She may be able to help you.",
