@@ -654,15 +654,22 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		if (entity.getRPObject().has("menu")) {
-			list.add(entity.getRPObject().get("menu"));
-		}
 		super.buildActions(list);
 
-		if (entity.isAttackedBy(User.get())) {
-			list.add(ActionType.STOP_ATTACK.getRepresentation());
-		} else {
-			list.add(ActionType.ATTACK.getRepresentation());
+		/*
+		 * Menu is used to provide an alternate action for some entities (like
+		 * puppies - and they should not be attackable).
+		 * 
+		 * For now normally attackable entities get a menu only in Capture The
+		 * Flag, and then they don't need attack. If that changes, this code
+		 * will need to be adjusted.
+		 */
+		if (!entity.getRPObject().has("menu")) {
+			if (entity.isAttackedBy(User.get())) {
+				list.add(ActionType.STOP_ATTACK.getRepresentation());
+			} else {
+				list.add(ActionType.ATTACK.getRepresentation());
+			}
 		}
 
 		list.add(ActionType.PUSH.getRepresentation());
