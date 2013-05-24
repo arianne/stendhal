@@ -182,7 +182,7 @@ public class EmotionCrystals extends AbstractQuest {
 			Arrays.asList("crystal", "crystals", "emotion", "emotions", "emotion crystal", "emotion crystals", "emotions crystal", "emotions crystals"),
 			new QuestActiveCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
-			"Don't you know what emotions are? Surely you've experienced joy or sadness. I've heard that there are crystals scattered throughout Faiumoni, special crystals that can bring out any emotion. There are five in all, hidden in dungeons, on mountains and in forests.",
+			"Don't you know what emotions are? Surely you've experienced joy or sadness. I've heard that there are crystals scattered throughout Faiumoni, special crystals that can bring out any emotion. There are five in all, hidden in dungeons, on mountains and in forests. I've even heard of some that have been found near houses.",
 			null);
 
 		// Player asks for quest after completed
