@@ -48,4 +48,22 @@ public class PassiveNPC extends NPC {
 	protected void createPath() {
 		// sub classes can implement this method
 	}
+	
+    @Override
+    protected void handleObjectCollision() {
+        if (!ignoresCollision() && usesRandomPath()) {
+            setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+        } else {
+            stop();
+        }
+    }
+    
+    @Override
+    protected void handleSimpleCollision(final int nx, final int ny) {
+        if (!ignoresCollision() && usesRandomPath()) {
+            setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
+        } else {
+            stop();
+        }
+    }
 }
