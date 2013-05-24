@@ -126,7 +126,7 @@ public class ButterfliesNPC implements ZoneConfigurator {
                 setPath(new FixedPath(nodes, true));
             }
         };
-        b5.setPosition(24, 31);
+        b6.setPosition(24, 31);
         butterflies.add(b6);
         
         // Butterflies with random paths
