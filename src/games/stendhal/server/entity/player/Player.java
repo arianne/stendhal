@@ -1778,7 +1778,7 @@ public class Player extends RPEntity implements UseListener {
 		    RPEntity attackTarget = getAttackTarget();
 		    
 		    // Face target if player is not moving
-		    if (stopped() && !isFacingToward(attackTarget)) {
+		    if (stopped() && isInSight(attackTarget) && !isFacingToward(attackTarget)) {
 		        faceToward(attackTarget);
 		    }
 		    
