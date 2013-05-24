@@ -43,6 +43,10 @@ public abstract class Entity extends RPObject {
 
 	private int y;
 
+    // Initial coordinates
+    private int originX;
+    
+    private int originY;
 
 	/**
 	 * Amount of resistance this has with other entities (0-100).
@@ -592,6 +596,12 @@ public abstract class Entity extends RPObject {
 		final int oldX = this.x;
 		final int oldY = this.y;
 		boolean moved = false;
+
+        // Set the original position of the entity
+        if ((Integer)originX == null || (Integer)originY == null) {
+            originX = x;
+            originY = y;
+        }
 
 		if (x != oldX) {
 			this.x = x;
