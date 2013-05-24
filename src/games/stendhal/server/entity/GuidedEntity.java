@@ -303,6 +303,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	@Override
 	protected void handleObjectCollision() {
 		stop();
+		clearPath();
 	}
 
 	public void updateModifiedAttributes() {
