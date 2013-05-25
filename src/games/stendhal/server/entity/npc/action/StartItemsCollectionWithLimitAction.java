@@ -17,27 +17,25 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
- * For quests that use collections with random quantities for each item
+ * For quests that use collections with random quantities for each item.
  * 
  * @author AntumDeluge
  */
 public class StartItemsCollectionWithLimitAction implements ChatAction {
+	private final List<String> items;
+	private final int limit;
 	
-	private List<String> items;
-	private int limit;
-	
-	private String QUEST_SLOT;
-	
-	private int ITEM_INDEX = 1;
+	/** Quest slot name. */
+	private final String questSlot;
+	/** Index of sub state. */
+	private int itemIndex = 1;
 	
 	/**
-	 * Creates a new StartItemsCollectionWithLimitsAction
+	 * Creates a new StartItemsCollectionWithLimitsAction.
 	 * 
 	 * @param quest
 	 * 			Quest slot name
@@ -47,13 +45,13 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	 * 			The sum of all items
 	 */
 	public StartItemsCollectionWithLimitAction(final String quest, final List<String> items, int limit) {
-		this.QUEST_SLOT = quest;
+		this.questSlot = quest;
 		this.items = items;
 		this.limit = limit;
 	}
 	
 	/**
-	 * Creates a new StartItemsCollectionWithLimitsAction
+	 * Creates a new StartItemsCollectionWithLimitsAction.
 	 * 
 	 * @param quest
 	 * 			Quest slot name
@@ -65,70 +63,46 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	 * 			The sum of all items
 	 */
 	public StartItemsCollectionWithLimitAction(final String quest, final int index, final List<String> items, int limit) {
-		this.QUEST_SLOT = quest;
+		this.questSlot = quest;
 		this.items = items;
 		this.limit = limit;
-		this.ITEM_INDEX = index;
+		this.itemIndex = index;
 	}
 	
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		List<Integer> requestedQuantities = setRequestedQuantities(this.limit);
+		int[] requestedQuantities = randomVector(items.size(), limit);
 		
 		final StringBuilder sb = new StringBuilder("");
-		
-		for (int i = 0; i < this.items.size(); i++) {
-			sb.append(this.items.get(i) + "=" + requestedQuantities.get(i) + ";");
+
+		for (int i = 0; i < items.size(); i++) {
+			sb.append(items.get(i) + "=" + requestedQuantities[i] + ";");
 		}
+		
 		final String result = sb.toString().substring(0, sb.toString().length() - 1);
-		player.setQuest(QUEST_SLOT, ITEM_INDEX, result);
+		player.setQuest(questSlot, itemIndex, result);
 	}
 	
 	/**
+	 * Create an integer array of defined length, and random contents with a
+	 * defined total sum.
 	 * 
-	 * @param limit
-	 * 			Sum of all items
-	 * @return
-	 * 			List of item quantities
+	 * @param length length of the requested array
+	 * @param sum sum of the array contents
+	 * @return array of random integers
 	 */
-	
-	List<Integer> setRequestedQuantities(int limit) {
-		List<Integer> quantities = new ArrayList<Integer>();
-		int askedAmount = 0;
-		int itemsSum = 0;
-		boolean repeat;
-		
-		int i;
-		for (i = this.items.size(); i > 0; i--) {
-			repeat = true;
-			
-			while (repeat) {
-				// Fill the last item with remainder
-				if (i == 1) {
-					askedAmount = limit - itemsSum;
-					break;
-				}
-				// Generate a random number for each item type but leave at least 1 for each remaining type
-				//askedAmount = Rand.randUniform(1, itemsRemaining - (i - 1));
-				askedAmount = Rand.randUniform(1, limit);
-				itemsSum += askedAmount;
-				if (itemsSum >= limit) {
-					itemsSum -= askedAmount;
-				} else {
-					repeat = false;
-				}
-			}
-			
-			// Add the requested amount for each item to a list
-			quantities.add(askedAmount);
-			
-			//itemsRemaining -= askedAmount;
+	private int[] randomVector(int length, int sum) {
+		int[] tmp = new int[length + 1];
+		tmp[0] = 0;
+		tmp[1] = sum;
+		for (int i = 2; i < tmp.length; i++) {
+			tmp[i] = Rand.randUniform(0, sum);
 		}
-		
-		// Re-order quantities to make more random
-		long seed = System.nanoTime();
-		Collections.shuffle(quantities, new Random(seed));
-		
-		return quantities;
+		Arrays.sort(tmp);
+		int[] values = new int[length];
+		for (int i = 1; i < tmp.length; i++) {
+			values[i - 1] = tmp[i] - tmp[i - 1];
+		}
+		return values;
 	}
 }
