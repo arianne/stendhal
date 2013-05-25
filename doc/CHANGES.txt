@@ -11,9 +11,17 @@
 - New NPC type: PassiveNPC
 - Warning messages for dangerous areas now show up in client display
 - Sound plays when player/creature blocks an attack
+- Item names have a new highlighting mode
+- Twin swords have a bit of DEF again
+- Teddies can be hugged
+- Food and drinks have "Eat" and "Drink" menu items, instead of "Use"
 
 *client*
 - Option to turn off creature speech bubbles
+- Ctrl-click no longer works as a looting command
+- Immediate response when starting to move with arrow keys
+- Attack sprites are scaled according to attacker size
+- Screen size cheat code removed
 
 *fixes*
 - quest log of EmotionCrystals fixed
@@ -21,7 +29,15 @@
 - Kanmararn Soldiers harmless corpses fixed
 - Removed background noise from many sound effects
 - Creature XML files have been reorganized without affecting client/server compatibility
+- BalanceRPGame works again
+- Clicking an arrow key always tries to move one tile
+- Producers don't anymore ask to come back in the past under certain conditions
+- Hayunn won't give more than one task at a time
 
+*code*
+- @Override added where applicable
+- Reduced visibility of several classes, methods and fields
+- Unused old code removed
 
 1.07
 18th April 2013
