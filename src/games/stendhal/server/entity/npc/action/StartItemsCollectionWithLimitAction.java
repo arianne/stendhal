@@ -76,7 +76,10 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		final StringBuilder sb = new StringBuilder("");
 
 		for (int i = 0; i < items.size(); i++) {
-			sb.append(items.get(i) + "=" + requestedQuantities[i] + ";");
+			int quantity = requestedQuantities[i];
+			if (quantity != 0) {
+				sb.append(items.get(i) + "=" + quantity + ";");
+			}
 		}
 		
 		final String result = sb.toString().substring(0, sb.toString().length() - 1);
