@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import org.apache.log4j.Logger;
 
 /**
  * A stripped down SpeakerNPC that does not interact with players
@@ -20,12 +19,8 @@ import org.apache.log4j.Logger;
  *
  */
 public class PassiveNPC extends NPC {
-	/** the logger instance. */
-	private static final Logger logger = Logger.getLogger(PassiveNPC.class);
-	
 	/**
 	 * Creates a new PassiveNPC.
-	 *
 	 */
 	public PassiveNPC() {
 		baseSpeed = 0.2;
@@ -45,8 +40,10 @@ public class PassiveNPC extends NPC {
 		updateModifiedAttributes();
 	}
 	
+	/**
+	 * Create path for the NPC. Sub classes can implement this method.
+	 */
 	protected void createPath() {
-		// sub classes can implement this method
 	}
 	
     @Override
