@@ -88,7 +88,6 @@ public class StendhalQuestSystem {
 		loadQuest(new DailyMonsterQuest());
 		loadQuest(new DiceGambling());
 		loadQuest(new DragonLair());
-		loadQuest(new EasterGiftsForChildren());
 		loadQuest(new ElfPrincess());
 		loadQuest(new ElvishArmor());
 		loadQuest(new EmotionCrystals());
@@ -174,6 +173,9 @@ public class StendhalQuestSystem {
 
 		if (System.getProperty("stendhal.christmas") != null) {
 			loadQuest(new GoodiesForRudolph());
+		}
+		if (System.getProperty("stendhal.easter") != null) {
+			loadQuest(new EasterGiftsForChildren());
 		}
 		if (System.getProperty("stendhal.minetown") != null) {
 			loadQuest(new PaperChase()); // needs to be loaded before SemosMineTownRevivalWeeks
