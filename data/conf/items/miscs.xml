@@ -240,9 +240,14 @@
     <type class="misc" subclass="snowglobe" tileid="-1"/>
     <description>You see a snowglobe. It's so festive, it reminds you of Christmas!</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <behavior class-name="games.stendhal.server.entity.item.behavior.MessagingUseBehavior">
+      <parameter name="public" value="!me shakes snowglobe."/>
+      <parameter name="private" value="Snowflakes twirl around and fall softly to the ground of the snowglobe."/>
+    </behavior>
     <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
+      <menu value="Shake|Use"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
