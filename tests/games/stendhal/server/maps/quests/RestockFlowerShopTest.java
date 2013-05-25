@@ -11,6 +11,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.nalwor.flowershop.FlowerGrowerNPC;
+import games.stendhal.server.util.ItemCollection;
 import marauroa.common.Log4J;
 
 import org.junit.Before;
@@ -25,7 +26,7 @@ public class RestockFlowerShopTest {
     
     private RestockFlowerShop rfs;
     
-    private String QUEST_SLOT;
+    private String questSlot;
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -48,12 +49,50 @@ public class RestockFlowerShopTest {
 
         rfs.addToWorld();
         
-        QUEST_SLOT = rfs.getSlotName();
+        questSlot = rfs.getSlotName();
     }
+    
+    /**
+	 * Returns all items that the given player still has to bring to complete the quest.
+	 *
+	 * @param player The player doing the quest
+	 * @return A list of item names
+	 */
+	private ItemCollection getMissingItems(final Player player) {
+		final ItemCollection missingItems = new ItemCollection();
+
+		missingItems.addFromQuestStateString(player.getQuest(questSlot));
+
+		return missingItems;
+	}
+
+	/**
+	 * Try bringing a new item that the player is carrying.
+	 * 
+	 * @param player player engine
+	 * @param en
+	 * @param item brought item
+	 */
+	private void checkNeeded(Player player, Engine en, String item) {
+		ItemCollection needed = getMissingItems(player);
+		if (!player.isQuestCompleted(questSlot)) {
+			if (needed.containsKey(item)) {
+				boolean last = needed.size() == 1;
+				en.step(player, item);
+				if (last) {
+					assertEquals("Thank you so much! Now I can fill all of my orders.", getReply(seremela));
+				} else {
+					assertEquals("Thank you! What else did you bring?", getReply(seremela));
+				}
+			} else {
+				en.step(player, item);
+				assertEquals("I don't need any more of those.", getReply(seremela));
+			}
+		}
+	}
     
     @Test
     public void quest() {
-        
         final Player player = PlayerTestHelper.createPlayer("player");
         
         final Engine en = seremela.getEngine();
@@ -62,7 +101,7 @@ public class RestockFlowerShopTest {
         assertEquals(seremela.getName(), rfs.getNPCName());
         
         // QUEST_SLOT is correct
-        assertEquals(QUEST_SLOT, "restock_flowershop");
+        assertEquals(questSlot, "restock_flowershop");
         
         // Initialize conversation
         en.step(player, "hi");
@@ -81,7 +120,6 @@ public class RestockFlowerShopTest {
         assertEquals("The flower shop is running low on flowers. Will you help me restock it?", getReply(seremela));
         en.step(player, "yes");
         //assertEquals(new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Great! Here is what I need: [items]"), getReply(seremela));
-        
         // Confirm quest is activated
         assertTrue(rfs.isStarted(player));
         
@@ -128,15 +166,16 @@ public class RestockFlowerShopTest {
         // Undesired item
         en.step(player, "cauliflower");
         assertEquals("I don't think that would look good in the shop.", getReply(seremela));
+        ItemCollection needed = getMissingItems(player);
         // Not carrying desired item
         en.step(player, "rose");
-        //assertEquals("You're not carrying any of that.", getReply(seremela));
+        if (needed.containsKey("rose")) {
+        	assertEquals("You don't have a rose with you!", getReply(seremela));
+        } else {
+        	assertEquals("I don't need any of those.", getReply(seremela));
+        }
         // Carrying desired item
-        en.step(player, "daisies");
-        assertEquals("Thank you! What else did you bring?", getReply(seremela));
-        // Already brought item
-        en.step(player, "daisies");
-        assertEquals("I don't need any more of those.", getReply(seremela));
+        checkNeeded(player, en, "daisies");
         
         // End conversation while listing items
         en.step(player, "bye");
@@ -152,19 +191,17 @@ public class RestockFlowerShopTest {
         en.step(player, "no");
         assertEquals("Don't stop to smell the roses yet. Orders are backing up. I can #remind you of what to bring.", getReply(seremela));
         en.step(player, "remind");
-        // FIXME: Code here to show items that Seremela wants
         // Has brought items
         en.step(player, "yes");
         assertEquals("What did you bring?", getReply(seremela));
-        en.step(player, "water");
-        en.step(player, "rose");
-        en.step(player, "lilia");
-        en.step(player, "zantedeschia");
-        en.step(player, "pansies");
-        assertEquals("Thank you so much! Now I can fill all of my orders.", getReply(seremela));
+        checkNeeded(player, en, "water");
+        checkNeeded(player, en, "rose");
+        checkNeeded(player, en, "lilia");
+        checkNeeded(player, en, "zantedeschia");
+        checkNeeded(player, en, "pansy");
         
         // Quest is complete
-        assertTrue(player.isQuestCompleted(QUEST_SLOT));
+        assertTrue(player.isQuestCompleted(questSlot));
         en.step(player, "bye");
         
         // Initialize conversation after quest is completed
@@ -176,7 +213,7 @@ public class RestockFlowerShopTest {
         //assertEquals("The flowers you brought are selling quickly. I may need your help again in 3 days", getReply(seremela));
         
         // Reject the quest
-        player.setQuest(QUEST_SLOT, null);
+        player.setQuest(questSlot, null);
         en.step(player, "quest");
         en.step(player, "no");
         assertEquals("I am sorry to hear that.", getReply(seremela));
