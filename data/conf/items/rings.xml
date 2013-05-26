@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-
+<!-- 
   <item name="antivenom ring">
     <type class="ring" subclass="antivenom_ring" tileid="-1"/>
     <description>You see an antivenom ring. It has a good chance to protect you from poisoning.</description>
@@ -39,7 +39,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-
+-->
   <item name="wedding ring">
     <type class="ring" subclass="wedding" tileid="-1"/>
     <description>You see a golden wedding ring, a symbol of love.</description>
@@ -93,6 +93,7 @@
     </equipable>
   </item>
 
+<!-- 
   <item name="medicinal ring">
     <type class="ring" subclass="medicinal_ring" tileid="-1"/>
     <description>You see a medicinal ring. It could protect you from poisoning.</description>
@@ -111,5 +112,5 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-  
+-->  
 </items>
