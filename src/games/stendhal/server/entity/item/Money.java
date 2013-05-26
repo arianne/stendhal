@@ -46,6 +46,6 @@ public class Money extends StackableItem {
 
 	@Override
 	public String describe() {
-		return "You see " + getQuantity() + " money.";
+		return "You see " + getQuantity() + " §money.";
 	}
 }
