@@ -592,6 +592,8 @@ library	OBJ	libraries
 licorice	OBJ-FOO	licorices
 life	OBJ	lives
 lilia	OBJ	lilias
+lilium OBJ =lilia liliums
+lily OBJ =lilia lilies
 limit	OBJ	limits
 lionfish	OBJ-FOO-ANI	lionfishes
 list	OBJ	lists
