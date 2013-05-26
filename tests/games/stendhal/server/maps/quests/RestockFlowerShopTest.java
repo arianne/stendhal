@@ -138,7 +138,8 @@ public class RestockFlowerShopTest {
         en.step(player, "rose");
         en.step(player, "zantedechia");
         en.step(player, "water");
-        assertEquals("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.", getReply(seremela));
+        assertEquals("You don't have a bottle of water with you!", getReply(seremela));
+        en.step(player, "nothing");
         en.step(player, "who");
         assertEquals("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.", getReply(seremela));
         en.step(player, "jenny");
@@ -154,7 +155,7 @@ public class RestockFlowerShopTest {
         
         // Restart conversation with no required items
         en.step(player, "hi");
-        assertEquals("Hello.", getReply(seremela));
+        assertEquals("Did you bring anything for the shop?", getReply(seremela));
         en.step(player, "bye");
         
         // Restart conversation with required items
