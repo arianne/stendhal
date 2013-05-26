@@ -153,7 +153,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
 		List<List<String>> keywords = Arrays.asList(
-				Arrays.asList("daisy", "daisies", "bunch of daisies", "bunches of daisies", "lilia", "pansy", "pansies"),
+				Arrays.asList("daisy", "bunch of daisies", "bunches of daisies", "lilia", "pansy"),
 				Arrays.asList("rose"),
 				Arrays.asList("zantedeschia"),
 				Arrays.asList("water", "bottle of water"),
