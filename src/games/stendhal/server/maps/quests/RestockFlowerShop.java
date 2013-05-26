@@ -155,7 +155,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		List<List<String>> keywords = Arrays.asList(
 				Arrays.asList("daisy", "daisies", "bunch of daisies", "bunches of daisies", "lilia", "lily", "lilies", "lilium", "pansy", "pansies"),
 				Arrays.asList("rose"),
-				Arrays.asList("zantedeschia", "zant", "arum", "calla"),
+				Arrays.asList("zantedeschia"),
 				Arrays.asList("water", "bottle of water"),
 				Arrays.asList("who", "where"),
 				Arrays.asList("jenny"),

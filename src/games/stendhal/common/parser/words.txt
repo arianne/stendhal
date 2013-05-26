@@ -284,7 +284,7 @@ arandula	OBJ
 armor	OBJ	armors
 arrow	OBJ	arrows
 artichoke	OBJ-FOO	artichokes
-arum OBJ arums
+arum OBJ =zantedeschia arums
 arundula	OBJ	arundulas
 athor	OBJ-NAM	athors
 atmosphere	OBJ	atmospheres
@@ -342,7 +342,7 @@ butter	OBJ-FOO
 button	OBJ	buttons
 caboose	OBJ	cabooses
 cake	OBJ-FOO	cakes
-calla OBJ callas
+calla OBJ =zantedeschia callas
 candle	OBJ	candles
 cane	OBJ	canes
 car	OBJ	cars
@@ -897,7 +897,8 @@ yclept	OBJ	yclepts
 youngster	OBJ	youngsters
 your	OBJ-OBS	your
 yrafear	OBJ-NAM	yrafears
-zantedeschia	OBJ	zantedeschias zant arum calla
+zant OBJ =zantedeschia zants
+zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
 
 abe	SUB-NAM
