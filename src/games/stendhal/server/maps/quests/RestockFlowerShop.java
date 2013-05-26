@@ -153,9 +153,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
 		List<List<String>> keywords = Arrays.asList(
-				Arrays.asList("daisy", "daisies", "bunch of daisies", "bunches of daisies"),
-				Arrays.asList("lilia"),
-				Arrays.asList("pansy", "pansies"),
+				Arrays.asList("daisy", "daisies", "bunch of daisies", "bunches of daisies", "lilia", "lily", "lilies", "pansy", "pansies"),
 				Arrays.asList("rose"),
 				Arrays.asList("zantedeschia", "zant"),
 				Arrays.asList("water", "bottle of water"),
@@ -165,11 +163,9 @@ public class RestockFlowerShop extends AbstractQuest {
 				Arrays.asList("flask"),
 				ConversationPhrases.HELP_MESSAGES);
 		List<String> responses = new ArrayList<String>();
-		responses.add("Daisies are...");
-		responses.add("Lilias are...");
-		responses.add("Pansies are...");
-		responses.add("Roses are...");
-		responses.add("Zantedeschias are...");
+		responses.add("#Jenny carries seeds for this type of flower.");
+		responses.add("#Fleur always has the nicest roses.");
+		responses.add("Zantedeschia is my favorite flower. Ask #Jenny if she has any bulbs.");
 		responses.add("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.");
 		responses.add("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.");
 		responses.add("You can find Jenny around the windmill near Semos where she mills flour.");
