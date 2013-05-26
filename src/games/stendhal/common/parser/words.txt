@@ -585,6 +585,7 @@ lavitae	OBJ-NAM	lavitaes
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
 letter	OBJ	letters
+lettuce OBJ lettuces
 level	OBJ	levels
 liberty	OBJ	liberties
 library	OBJ	libraries
