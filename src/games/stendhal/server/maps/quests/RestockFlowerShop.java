@@ -148,7 +148,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.ANY,
 				Arrays.asList("flower", "remind", "what", "item", "list"),
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUESTION_2,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
@@ -272,12 +272,12 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUESTION_2,
 				"Did you bring anything for the shop?",
 				null);
 		
 		// Player confirms brought flowers
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
@@ -285,7 +285,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				null);
 		
 		// Player didn't bring flowers
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUESTION_2,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
