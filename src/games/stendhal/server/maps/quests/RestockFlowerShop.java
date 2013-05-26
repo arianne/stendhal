@@ -155,7 +155,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		List<List<String>> keywords = Arrays.asList(
 				Arrays.asList("daisy", "daisies", "bunch of daisies", "bunches of daisies", "lilia", "lily", "lilies", "lilium", "pansy", "pansies"),
 				Arrays.asList("rose"),
-				Arrays.asList("zantedeschia", "zant"),
+				Arrays.asList("zantedeschia", "zant", "arum", "calla"),
 				Arrays.asList("water", "bottle of water"),
 				Arrays.asList("who", "where"),
 				Arrays.asList("jenny"),
@@ -165,7 +165,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		List<String> responses = new ArrayList<String>();
 		responses.add("#Jenny carries seeds for this type of flower.");
 		responses.add("#Fleur always has the nicest roses.");
-		responses.add("Zantedeschia is my favorite flower. Ask #Jenny if she has any bulbs.");
+		responses.add("Zantedeschia is my favorite flower. Some call them arum or calla lilies, though they are not true lilies. Ask #Jenny if she has any bulbs.");
 		responses.add("I need water to keep the #flowers fresh. You'll need to find a water source and fill up some #flasks. Maybe there is someone who sells water.");
 		responses.add("#Jenny knows a lot about flowers. You may be able to talk with #Fleur as well.");
 		responses.add("You can find Jenny around the windmill near Semos where she mills flour.");
