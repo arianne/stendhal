@@ -148,7 +148,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.ANY,
 				Arrays.asList("flower", "remind", "what", "item", "list"),
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_1,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
@@ -253,10 +253,10 @@ public class RestockFlowerShop extends AbstractQuest {
 		
 		/* add triggers for the item names */
 		for (String item : requestedItems) {
-			npc.add(ConversationStates.QUESTION_2,
+			npc.add(ConversationStates.QUESTION_1,
 					item,
 					new QuestActiveCondition(QUEST_SLOT),
-					ConversationStates.QUESTION_2,
+					ConversationStates.QUESTION_1,
 					null,
 					new CollectRequestedItemsAction(
 							item,
@@ -272,20 +272,20 @@ public class RestockFlowerShop extends AbstractQuest {
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_1,
 				"Did you bring anything for the shop?",
 				null);
 		
 		// Player confirms brought flowers
-		npc.add(ConversationStates.QUESTION_2,
+		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_1,
 				"What did you bring?",
 				null);
 		
 		// Player didn't bring flowers
-		npc.add(ConversationStates.QUESTION_2,
+		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -293,10 +293,10 @@ public class RestockFlowerShop extends AbstractQuest {
 				null);
 		
 		// Player offers item that wasn't requested
-		npc.add(ConversationStates.QUESTION_2,
+		npc.add(ConversationStates.QUESTION_1,
 				"",
 				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_2,
+				ConversationStates.QUESTION_1,
 				"I don't think that would look good in the shop.",
 				null);
 		
@@ -308,7 +308,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		for (String phrase : ConversationPhrases.GOODBYE_MESSAGES) {
 			endDiscussionPhrases.add(phrase);
 		}
-		npc.add(ConversationStates.QUESTION_2,
+		npc.add(ConversationStates.QUESTION_1,
 				endDiscussionPhrases,
 				null,
 				ConversationStates.IDLE,
