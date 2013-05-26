@@ -95,16 +95,17 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	 * @return array of random integers
 	 */
 	private int[] randomVector(int length, int sum) {
-		int[] tmp = new int[length + 1];
-		tmp[0] = 0;
-		tmp[1] = sum;
-		for (int i = 2; i < tmp.length; i++) {
-			tmp[i] = Rand.randUniform(0, sum);
-		}
-		Arrays.sort(tmp);
 		int[] values = new int[length];
-		for (int i = 1; i < tmp.length; i++) {
-			values[i - 1] = tmp[i] - tmp[i - 1];
+		values[0] = sum;
+		for (int i = 1; i < values.length; i++) {
+			values[i] = Rand.randUniform(0, sum);
+		}
+		Arrays.sort(values);
+		int low = 0;
+		for (int i = 0; i < values.length; i++) {
+			int rnd = values[i] - low;
+			low = values[i];
+			values[i] = rnd;
 		}
 		return values;
 	}
