@@ -52,9 +52,9 @@ public class WeddingRingTest {
 	@Test
 	public void testDescribe() {
 		final WeddingRing ring = (WeddingRing) SingletonRepository.getEntityManager().getItem("wedding ring");
-		assertThat(ring.describe(), is("You see a wedding ring."));
+		assertThat(ring.describe(), is("You see a §'wedding ring'."));
 		ring.setInfoString("juliet");
-		assertThat(ring.describe(), is("You see a wedding ring. Its engraving says: \"In eternal love to juliet\"."));
+		assertThat(ring.describe(), is("You see a §'wedding ring'. Its engraving says: \"In eternal love to juliet\"."));
 	}
 	
 	/**

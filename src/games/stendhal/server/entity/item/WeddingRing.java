@@ -219,10 +219,10 @@ public class WeddingRing extends Item {
 		final String spouseName = getInfoString();
 
 		if (spouseName != null) {
-			return "You see a wedding ring. Its engraving says: \"In eternal love to "
+			return "You see a §'wedding ring'. Its engraving says: \"In eternal love to "
 					+ spouseName + "\".";
 		} else {
-			return "You see a wedding ring.";
+			return "You see a §'wedding ring'.";
 		}
 	}
 	
