@@ -268,17 +268,13 @@ public class RestockFlowerShop extends AbstractQuest {
 							));
 		}
 		
-		// NPC sees that player is carrying flowers
-		for (String item : requestedItems) {
-			npc.add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					new AndCondition(
-							new QuestActiveCondition(QUEST_SLOT),
-							new PlayerHasItemWithHimCondition(item)),
-					ConversationStates.QUESTION_1,
-					"Did you bring anything for the shop?",
-					null);
-		}
+		// NPC asks if player brought items
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1,
+				"Did you bring anything for the shop?",
+				null);
 		
 		// Player confirms brought flowers
 		npc.add(ConversationStates.QUESTION_1,
