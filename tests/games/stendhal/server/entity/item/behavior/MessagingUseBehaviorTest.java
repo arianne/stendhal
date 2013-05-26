@@ -152,6 +152,24 @@ public class MessagingUseBehaviorTest {
 	}
 	
 	/**
+	 * Test using an item that's not reachable by the player.
+	 */
+	@Test
+	public void testUseUnreachable() {
+		final Item item = new Item("name1", "class", "subclass",
+				new HashMap<String, String>());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("private", MSG_1);
+		params.put("public", MSG_2);
+		RPEntity entity = PlayerTestHelper.createPlayer("player");
+		entity.setPosition(10, 10);
+		UseBehavior b = new MessagingUseBehavior(params);
+		b.use(entity, item);
+		assertEquals(WRONG_PRIVATE, "That name1 is too far away.", getPrivate(entity));
+		assertEquals(WRONG_PUBLIC, null, entity.get(TEXT_ATTR));
+	}
+	
+	/**
 	 * NPC that stores the message it says.
 	 */
 	private static class MockNPC extends NPC {
