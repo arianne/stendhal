@@ -66,7 +66,7 @@ public class StendhalQuestSystem {
 
 		loadQuest(new AdosDeathmatch());
 		loadQuest(new AmazonPrincess());
-		loadQuest(new AntivenomRing());
+//		loadQuest(new AntivenomRing());
 		loadQuest(new ArmorForDagobert());
 		loadQuest(new BalloonForBobby());
 		loadQuest(new BeerForHayunn());
@@ -160,7 +160,7 @@ public class StendhalQuestSystem {
 		loadQuest(new TakeGoldforGrafindle());
 		loadQuest(new ThePiedPiper());
 		loadQuest(new ToysCollector());
-		loadQuest(new TrapsForKlaas());
+//		loadQuest(new TrapsForKlaas());
 		loadQuest(new UltimateCollector());
 		loadQuest(new VampireSword());
 		loadQuest(new WaterForXhiphin());
