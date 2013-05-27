@@ -91,6 +91,7 @@ public class RestockFlowerShop extends AbstractQuest {
 	
 	// Quest NPC
 	private final SpeakerNPC npc = npcs.get("Seremela");
+	private String npcName = npc.getName();
 	
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -103,7 +104,7 @@ public class RestockFlowerShop extends AbstractQuest {
 			res.add("Flowers make me sneeze.");
 		}
 		else if (!player.isQuestInState(QUEST_SLOT, 0, "done")) {
-			res.add("I have offered to help " + npc.getName() + " restock the flower shop.");
+			res.add("I have offered to help " + npcName + " restock the flower shop.");
 			
 			final ItemCollection remaining = new ItemCollection();
 			remaining.addFromQuestStateString(questState);
@@ -115,7 +116,11 @@ public class RestockFlowerShop extends AbstractQuest {
 			}
 		}
 		else {
-			res.add(npc.getName() + " now has a good supply of flowers.");
+            if (isRepeatable(player)) {
+                res.add("It has been a while since I helped " + npcName + ". Perhaps she could use my help again.");
+            } else {
+                res.add(npcName + " now has a good supply of flowers.");
+            }
 		}
 		
 		return res;
