@@ -416,7 +416,7 @@ crustaceans	OBJ	crustaceans
 ctf	OBJ
 cuirass	OBJ	cuirasses
 dagger	OBJ	daggers
-daisy	OBJ	daisies
+daisy	OBJ =daisies	daisies
 dart	OBJ	darts
 data	OBJ	datas
 database	OBJ	databases
