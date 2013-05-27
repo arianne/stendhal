@@ -145,7 +145,7 @@ public class RestockFlowerShop extends AbstractQuest {
 		
 		// Player asks to be reminded of remaining flowers required
 		npc.add(ConversationStates.ANY,
-				Arrays.asList("flower", "remind", "what", "item", "list"),
+				Arrays.asList("flower", "remind", "what", "item", "list", "something"),
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				null,
@@ -280,7 +280,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
-				"Did you bring anything for the shop?",
+				"Did you bring #something for the shop?",
 				null);
 		
 		// Player confirms brought flowers
