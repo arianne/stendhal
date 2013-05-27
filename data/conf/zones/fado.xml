@@ -1529,7 +1529,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 <zone name="int_magic_house1" file="interiors/magic/house1.tmx">
  <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
  
-   <entity x="2" y="4">
+   <entity x="7" y="13">
         <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
         <parameter name="width">5</parameter>
         <parameter name="height">8</parameter>
