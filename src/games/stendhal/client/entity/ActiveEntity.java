@@ -71,7 +71,17 @@ public abstract class ActiveEntity extends Entity {
 	 *            The direction.
 	 */
 	void setDirection(final Direction direction) {
+		boolean changed = this.direction != direction;
 		this.direction = direction;
+		if (changed) {
+			/*
+			 * Movement prediction can result in the client entities (User)
+			 * sometimes having the wrong direction, so we do the changed check
+			 * here instead of firing the property only when the RPObject
+			 * changes warrant so.
+			 */
+			fireChange(PROP_DIRECTION);
+		}
 	}
 
 	/**
@@ -269,7 +279,6 @@ public abstract class ActiveEntity extends Entity {
 		if (diff.has("dir")) {
 			tempDirection = Direction.build(diff.getInt("dir"));
 			setDirection(tempDirection);
-			fireChange(PROP_DIRECTION);
 		} else if (base.has("dir")) {
 			tempDirection = Direction.build(base.getInt("dir"));
 			setDirection(tempDirection);
