@@ -1391,7 +1391,14 @@ public class Player extends RPEntity implements UseListener {
 		if (isImmune) {
 			return false;
 		} else {
-			// put("poisoned", "0");
+			/*
+			 * Send the client the new poisoning status, but avoid overwriting
+			 * the real value in case the player was already poisoned.
+			 */
+			if (!has("poisoned")) {
+				put("poisoned", "0");
+				notifyWorldAboutChanges();
+			}
 			poisonToConsume.add(item);
 			TutorialNotifier.poisoned(this);
 			return true;
