@@ -734,7 +734,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	private void onPoisoned(final int amount) {
 		setPoisoned(true);
-		if ((User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
+		if ((amount > 0) && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
 							getTitle() + " is poisoned, losing "
