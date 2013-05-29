@@ -155,13 +155,13 @@ public class RestockFlowerShopTest {
         
         // Restart conversation with no required items
         en.step(player, "hi");
-        assertEquals("Did you bring anything for the shop?", getReply(seremela));
+        assertEquals("Did you bring #something for the shop?", getReply(seremela));
         en.step(player, "bye");
         
         // Restart conversation with required items
         PlayerTestHelper.equipWithStackableItem(player, "daisies", 100);
         en.step(player, "hi");
-        assertEquals("Did you bring anything for the shop?", getReply(seremela));
+        assertEquals("Did you bring #something for the shop?", getReply(seremela));
         en.step(player, "yes");
         assertEquals("What did you bring?", getReply(seremela));
         // Undesired item
