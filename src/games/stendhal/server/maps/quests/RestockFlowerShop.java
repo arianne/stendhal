@@ -109,7 +109,7 @@ public class RestockFlowerShop extends AbstractQuest {
 			remaining.addFromQuestStateString(questState);
 			
 			// Check to avoid ArrayIndexOutOfBoundsException
-			if (questState.split(";").length > 1) {
+			if (questState.split(";").length > 0) {
 				requestedFlowers = "I still need to bring the following flowers: " + Grammar.enumerateCollection(remaining.toStringList()) + ".";
 				res.add(requestedFlowers);
 			}
