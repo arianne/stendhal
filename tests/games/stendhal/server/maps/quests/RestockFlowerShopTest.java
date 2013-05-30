@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -156,6 +155,8 @@ public class RestockFlowerShopTest {
         // Restart conversation with no required items
         en.step(player, "hi");
         assertEquals("Did you bring #something for the shop?", getReply(seremela));
+        en.step(player, "something");
+        assertFalse("I don't think that would look good in the shop.".equals(getReply(seremela)));
         en.step(player, "bye");
         
         // Restart conversation with required items
