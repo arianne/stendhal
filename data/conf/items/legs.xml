@@ -5,7 +5,8 @@
   <item name="black legs">
     <type class="legs" subclass="black_legs" tileid="-1"/>
     <description>You see a pair of black legs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="15"/>
       <min_level value="80"/>
     </attributes>
@@ -25,7 +26,8 @@
   <item name="blue legs">
     <type class="legs" subclass="blue_legs" tileid="-1"/>
     <description>You see a pair of shiny new blue legs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="7"/>
       <min_level value="10"/>
     </attributes>
@@ -43,7 +45,8 @@
   <item name="chain legs">
     <type class="legs" subclass="chain_legs" tileid="-1"/>
     <description>You see a pair of well made chain legs. They should protect you against any attacks aimed low.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="4"/>
     </attributes>
     <weight value="15.0"/>
@@ -60,7 +63,8 @@
   <item name="chaos legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
     <description>You see a pair of chaos legs. The strange colours confuse you.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="40"/>
     </attributes>
@@ -78,7 +82,8 @@
   <item name="dwarvish legs">
     <type class="legs" subclass="dwarvish_legs" tileid="-1"/>
     <description>You see a pair of dwarvish legs, designed by master craftsmen.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="14"/>
       <min_level value="65"/>
     </attributes>
@@ -96,7 +101,8 @@
   <item name="elvish legs">
     <type class="legs" subclass="elvish_legs" tileid="-1"/>
     <description>You see a pair of elvish legs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="6"/>
       <min_level value="5"/>
     </attributes>
@@ -114,7 +120,8 @@
   <item name="golden legs">
     <type class="legs" subclass="golden_legs" tileid="-1"/>
     <description>You see a pair of shining, strong golden legs.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="8"/>
       <min_level value="15"/>
     </attributes>
@@ -132,7 +139,8 @@
   <item name="jewelled legs">
     <type class="legs" subclass="jewelled_legs" tileid="-1"/>
     <description>You see a beautiful pair of jewelled legs. A large red gem glints at you and they're encrusted all over with sapphires.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="13"/>
       <min_level value="50"/>
     </attributes>
@@ -150,7 +158,8 @@
   <item name="leather legs">
     <type class="legs" subclass="leather_legs" tileid="-1"/>
     <description>You see a pair of leather legs. They look new but they're poor quality.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="10.0"/>
@@ -167,7 +176,8 @@
   <item name="mainio legs">
     <type class="legs" subclass="mainio_legs" tileid="-1"/>
     <description>You see a pair of odd looking mainio legs. They are somewhat startling but they give you a good protection.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="10"/>
       <min_level value="30"/>
     </attributes>
@@ -185,7 +195,8 @@
   <item name="mithril legs">
     <type class="legs" subclass="mithril_legs" tileid="-1"/>
     <description>You see a pair of mithril legs. They will serve you well.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="18"/>
       <min_level value="100"/>
     </attributes>
@@ -205,7 +216,8 @@
   <item name="red legs">
     <type class="legs" subclass="red_legs" tileid="-1"/>
     <description>A pair of red legs are in your grasp.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="5"/>
     </attributes>
     <weight value="12.0"/>
@@ -222,7 +234,8 @@
   <item name="shadow legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
     <description>You see a pair of shadow legs. The weight of them is incredible.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="9"/>
       <min_level value="20"/>
     </attributes>
@@ -242,7 +255,8 @@
   <item name="stone legs">
     <type class="legs" subclass="stone_legs" tileid="-1"/>
     <description>You see a pair of stone legs, heavy and durable.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="14"/>
       <min_level value="70"/>
     </attributes>
@@ -262,7 +276,8 @@
   <item name="studded legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
     <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="2"/>
     </attributes>
     <weight value="12.0"/>
@@ -279,7 +294,8 @@
   <item name="xeno legs">
     <type class="legs" subclass="xeno_legs" tileid="-1"/>
     <description>You see a pair of xeno legs. They're very strong and look brand new.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="40"/>
     </attributes>

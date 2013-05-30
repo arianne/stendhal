@@ -5,7 +5,8 @@
     <item name="food mill">
       <type class="tool" subclass="foodmill" tileid="-1"/>
       <description>You see a food mill. It is the traditional tool to mill food.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>
@@ -22,7 +23,8 @@
     <item name="sugar mill">
       <type class="tool" subclass="sugarmill" tileid="-1"/>
       <description>You see a sugar mill. You can obtain sugar if you grind canes with it.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>
@@ -39,7 +41,8 @@
     <item name="scroll eraser">
       <type class="tool" subclass="scrolleraser" tileid="-1"/>
       <description>You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+      <attributes>
       </attributes>
       <weight value="3.0"/>
       <value value="1"/>
@@ -56,7 +59,8 @@
     <item name="pestle and mortar">
       <type class="tool" subclass="pestleandmortar" tileid="-1"/>
       <description>You see a pestle and mortar. This is the traditional tool to pound herbs, food and other substances.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.Item"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>
@@ -73,7 +77,8 @@
     <item name="gold pan">
       <type class="tool" subclass="gold_pan" tileid="-1"/>
       <description>You see a gold pan. It is the traditional tool to prospect for gold.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.Item"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>
@@ -90,7 +95,8 @@
     <item name="fishing rod">
       <type class="tool" subclass="fishing_rod" tileid="-1"/>
       <description>You see a fishing rod. If you find a fishing spot you can catch fish with it.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.Item"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>
@@ -143,7 +149,8 @@
     <item name="pick">
       <type class="tool" subclass="pick" tileid="-1"/>
       <description>You see a pick. It is a tool which helps you to get some coal.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <implementation class-name="games.stendhal.server.entity.item.Item"/>
+      <attributes>
       </attributes>
       <weight value="10.0"/>
       <value value="1"/>

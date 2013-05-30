@@ -5,7 +5,8 @@
   <item name="summon scroll">
     <type class="scroll" subclass="summon" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>
+    <attributes>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
@@ -23,7 +24,8 @@
   <item name="nalwor city scroll">
     <type class="scroll" subclass="nalwor" tileid="-1"/>
     <description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_nalwor_city 40 60"/>
       <quantity value="1"/>
     </attributes>
@@ -42,7 +44,8 @@
   <item name="ados city scroll">
     <type class="scroll" subclass="ados" tileid="-1"/>
     <description>You see a ados city scroll, it will take you back to ados city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_ados_city_n 50 50"/>
       <quantity value="1"/>
     </attributes>
@@ -61,7 +64,8 @@
   <item name="fado city scroll">
     <type class="scroll" subclass="fado" tileid="-1"/>
     <description>You see a fado city scroll, it will take you back to fado city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_fado_city 40 30"/>
       <quantity value="1"/>
     </attributes>
@@ -80,7 +84,8 @@
   <item name="kirdneh city scroll">
     <type class="scroll" subclass="kirdneh" tileid="-1"/>
     <description>You see a kirdneh city scroll, it will take you back to kirdneh city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_kirdneh_city 63 85"/>
       <quantity value="1"/>
     </attributes>
@@ -99,7 +104,8 @@
   <item name="kalavan city scroll">
     <type class="scroll" subclass="kalavan" tileid="-1"/>
     <description>You see a kalavan city scroll, it will take you back to kalavan city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_kalavan_city 64 17"/>
       <quantity value="1"/>
     </attributes>
@@ -118,7 +124,8 @@
   <item name="marked scroll">
     <type class="scroll" subclass="marked" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
@@ -136,7 +143,8 @@
   <item name="invitation scroll">
     <type class="scroll" subclass="invitation" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.InvitationScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.InvitationScroll"/>
+    <attributes>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
@@ -154,7 +162,8 @@
   <item name="home scroll">
     <type class="scroll" subclass="home" tileid="-1"/>
     <description>You see a home scroll, it will take you back to semos city.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+    <attributes>
       <infostring value="0_semos_city 30 40"/>
       <quantity value="1"/>
     </attributes>
@@ -173,7 +182,8 @@
   <item name="empty scroll">
     <type class="scroll" subclass="empty" tileid="-1"/>
     <description>You see an empty scroll. If used correctly it will return you to where you marked it at.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>
+    <attributes>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
@@ -191,7 +201,8 @@
   <item name="rainbow beans">
     <type class="scroll" subclass="rainbow_beans" tileid="-1"/>
     <description>You see a small pile of rainbow beans. One says something odd.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.RainbowBeansScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.RainbowBeansScroll"/>
+    <attributes>
       <infostring value="1_dreamscape 77 35 5400 0_semos_plains_s -1 -1"/>
       <quantity value="1"/>
     </attributes>
@@ -210,7 +221,8 @@
   <item name="balloon">
     <type class="scroll" subclass="balloon" tileid="-1"/>
     <description>You see a bright red balloon. You can use it to float high up into the clouds.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.BalloonScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.BalloonScroll"/>
+    <attributes>
       <infostring value="7_kikareukin_clouds 31 12 10800 6_kikareukin_islands -1 -1"/>
       <quantity value="1"/>
     </attributes>
@@ -229,7 +241,8 @@
   <item name="twilight moss">
     <type class="scroll" subclass="twilightmoss" tileid="-1"/>
     <description>You see a strange looking piece of moss. It looks like it could have hallucinogenic properties.</description>
-    <implementation class-name="games.stendhal.server.entity.item.scroll.TwilightMossScroll"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.TwilightMossScroll"/>
+    <attributes>
       <infostring value="int_ados_twilight_zone 12 20 10800 int_ados_sewing_room -1 -1"/>
       <quantity value="1"/>
     </attributes>

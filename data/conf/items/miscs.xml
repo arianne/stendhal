@@ -63,7 +63,8 @@
   <item name="dice">
     <type class="misc" subclass="dice" tileid="-1"/>
     <description>You see a set of dice. May lady luck be with you.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Dice"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Dice"/>
+    <attributes>
     </attributes>
     <weight value="0.05"/>
     <value value="1"/>

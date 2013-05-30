@@ -5,7 +5,8 @@
   <item name="black cloak">
     <type class="cloak" subclass="black_cloak" tileid="-1"/>
     <description>You see a black cloak. The last owner had black thoughts. Will you?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="25"/>
       <min_level value="180"/>
     </attributes>
@@ -25,7 +26,8 @@
  <item name="black dragon cloak">
     <type class="cloak" subclass="black_dragon_cloak" tileid="-1"/>
     <description>You see a torn section from an enormous black dragon cloak. You're very lucky: the piece is just the right size for a human to wear.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="18"/>
       <min_level value="100"/>
     </attributes>
@@ -43,7 +45,8 @@
  <item name="blue dragon cloak">
     <type class="cloak" subclass="blue_dragon_cloak" tileid="-1"/>
     <description>You see a blue dragon cloak. The weave is tight and strong, though you wish the colour drew less attention.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="13"/>
       <min_level value="55"/>
     </attributes>
@@ -61,7 +64,8 @@
  <item name="blue elf cloak">
     <type class="cloak" subclass="blue_elf_cloak" tileid="-1"/>
     <description>You see a blue elf cloak. The material is thick and warm.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="8"/>
       <min_level value="15"/>
     </attributes>
@@ -79,7 +83,8 @@
   <item name="blue striped cloak">
     <type class="cloak" subclass="blue_striped_cloak" tileid="-1"/>
     <description>You see a fashionable blue striped cloak.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="7"/>
       <min_level value="10"/>
     </attributes>
@@ -97,7 +102,8 @@
    <item name="bone dragon cloak">
     <type class="cloak" subclass="bone_dragon_cloak" tileid="-1"/>
     <description>You see a bone dragon cloak. It's incredibly old, like its last owner.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="40"/>
     </attributes>
@@ -115,7 +121,8 @@
   <item name="chaos cloak">
     <type class="cloak" subclass="chaos_cloak" tileid="-1"/>
     <description>You see a chaos cloak. The colours look like oil shimmering on a puddle.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="20"/>
       <min_level value="110"/>
     </attributes>
@@ -133,7 +140,8 @@
   <item name="cloak">
     <type class="cloak" subclass="cloak" tileid="-1"/>
     <description>You see a simple cloth cloak.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="1.0"/>
@@ -150,7 +158,8 @@
   <item name="dwarf cloak">
     <type class="cloak" subclass="dwarf_cloak" tileid="-1"/>
     <description>You see a dwarf cloak. Apparently this passes for fashion in some parts, but to you it looks more functional than fashionable.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="4"/>
     </attributes>
     <weight value="5.0"/>
@@ -167,7 +176,8 @@
     <item name="elf cloak">
     <type class="cloak" subclass="elf_cloak" tileid="-1"/>
     <description>You see a white elf cloak. It doesn't look very warm.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="3"/>
     </attributes>
     <weight value="1.0"/>
@@ -184,7 +194,8 @@
    <item name="elvish cloak">
     <type class="cloak" subclass="elvish_cloak" tileid="-1"/>
     <description>You see an elvish cloak. The material is dark, but thick and warm.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="6"/>
       <min_level value="5"/>
     </attributes>
@@ -202,7 +213,8 @@
   <item name="golden cloak">
     <type class="cloak" subclass="golden_cloak" tileid="-1"/>
     <description>You see a golden cloak. See how the light glistens off the gold, it is a prized possession.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="19"/>
       <min_level value="105"/>
     </attributes>
@@ -220,7 +232,8 @@
    <item name="green dragon cloak">
     <type class="cloak" subclass="green_dragon_cloak" tileid="-1"/>
     <description>You see a huge green dragon cloak. It's probably too big for you but, even dragging on the floor it will provide excellent protection.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="10"/>
       <min_level value="30"/>
     </attributes>
@@ -238,7 +251,8 @@
   <item name="lich cloak">
     <type class="cloak" subclass="lich_cloak" tileid="-1"/>
     <description>You see a purple lich cloak. It's stained with blood - yours, from the previous undead owner, or perhaps the blood of his enemies...</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="40"/>
     </attributes>
@@ -256,7 +270,8 @@
   <item name="mainio cloak">
     <type class="cloak" subclass="mainio_cloak" tileid="-1"/>
     <description>You see a mainio cloak. Its flashing colours are absurd! But you wear it because it's very well made.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="21"/>
       <min_level value="120"/>
     </attributes>
@@ -274,7 +289,8 @@
   <item name="mithril cloak">
     <type class="cloak" subclass="mithril_cloak" tileid="-1"/>
     <description>You see a mithril cloak. Its weave is so fine and its looks are breathtaking.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="28"/>
     </attributes>
     <weight value="5.0"/>
@@ -293,7 +309,8 @@
   <item name="red cloak">
     <type class="cloak" subclass="red_cloak" tileid="-1"/>
     <description>You see a red cloak covered in polka dots. It's terribly snazzy.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="5"/>
     </attributes>
     <weight value="5.0"/>
@@ -310,7 +327,8 @@
   <item name="red dragon cloak">
     <type class="cloak" subclass="red_dragon_cloak" tileid="-1"/>
     <description>You see a red dragon cloak. He didn't have one for a long time but finally caved in to peer pressure and got one.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="14"/>
       <min_level value="65"/>
     </attributes>
@@ -328,7 +346,8 @@
   <item name="rift cloak">
     <type class="cloak" subclass="rift_cloak" tileid="-1"/>
     <description>You see a rift cloak. Almost useless in the battle, but saves your life when you enter a magical rift.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="2.0"/>
@@ -345,7 +364,8 @@
   <item name="shadow cloak">
     <type class="cloak" subclass="shadow_cloak" tileid="-1"/>
     <description>You see a shadow cloak, in colours of the shadow armor.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="13"/>
       <min_level value="55"/>
     </attributes>
@@ -365,7 +385,8 @@
   <item name="stone cloak">
     <type class="cloak" subclass="stone_cloak" tileid="-1"/>
     <description>You see a stone cloak. It's hard to tell how it was made, as the fibres look like narrow threads of mineral.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="9"/>
       <min_level value="18"/>
     </attributes>
@@ -385,7 +406,8 @@
   <item name="vampire cloak">
     <type class="cloak" subclass="vampire_cloak" tileid="-1"/>
     <description>You see a vibrant red vampire cloak. Wearing it sends a shiver down your spine.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="12"/>
       <min_level value="50"/>
     </attributes>
@@ -403,7 +425,8 @@
   <item name="xeno cloak">
     <type class="cloak" subclass="xeno_cloak" tileid="-1"/>
     <description>You see a xeno cloak. It's heavy and thick, giving you a good protection.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="22"/>
       <min_level value="170"/>
     </attributes>

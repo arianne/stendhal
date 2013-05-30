@@ -4,7 +4,8 @@
   <item name="present">
     <type class="box" subclass="present" tileid="-1"/>
     <description>You see a present. Open it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Present"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Present"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -19,7 +20,8 @@
   <item name="basket">
     <type class="box" subclass="basket" tileid="-1"/>
     <description>You see an easter basket. Look inside.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Basket"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Basket"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

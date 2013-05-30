@@ -24,7 +24,8 @@
   <item name="skull ring">
     <type class="relic" subclass="skull_ring" tileid="-1"/>
     <description>You see a skull ring.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -41,7 +42,8 @@
   <item name="amulet">
     <type class="relic" subclass="amulet" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
@@ -57,7 +59,8 @@
   <item name="ankh">
     <type class="relic" subclass="ankh" tileid="-1"/>
     <description>You see a mysterious ankh. You don't know what it is for.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>

@@ -5,7 +5,8 @@
 <item name="black boots">
     <type class="boots" subclass="black_boots" tileid="-1"/>
     <description>You stub your toe on this pair of black boots. Perhaps they bring you bad luck?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="15"/>
       <min_level value="100"/>
     </attributes>
@@ -25,7 +26,8 @@
 <item name="blue boots">
     <type class="boots" subclass="blue_boots" tileid="-1"/>
     <description>You see a pair of blue boots.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="6"/>
       <min_level value="5"/>
     </attributes>
@@ -43,7 +45,8 @@
   <item name="chain boots">
     <type class="boots" subclass="chain_boots" tileid="-1"/>
     <description>You see a pair of chain boots, quite rusty but still strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="4"/>
     </attributes>
     <weight value="10.0"/>
@@ -60,7 +63,8 @@
   <item name="chaos boots">
     <type class="boots" subclass="chaos_boots" tileid="-1"/>
     <description>You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="45"/>
     </attributes>
@@ -78,7 +82,8 @@
    <item name="elvish boots">
     <type class="boots" subclass="elvish_boots" tileid="-1"/>
     <description>You see a pair of elvish boots.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="7"/>
       <min_level value="8"/>
     </attributes>
@@ -96,7 +101,8 @@
   <item name="golden boots">
     <type class="boots" subclass="golden_boots" tileid="-1"/>
     <description>You see a pair of golden boots. They will be heavy to wear but well worth their weight.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="8"/>
       <min_level value="15"/>
     </attributes>
@@ -114,7 +120,8 @@
   <item name="green thing boots">
     <type class="boots" subclass="green_dragon_boots" tileid="-1"/>
     <description>You see a pair of green thing boots. They're slimy inside, ewwww.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="12"/>
       <min_level value="70"/>
     </attributes>
@@ -132,7 +139,8 @@
    <item name="killer boots">
     <type class="boots" subclass="killer_boots" tileid="-1"/>
     <description>You see a high heeled pair of killer boots. Are you brave enough to wear them?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="22"/>
     </attributes>
     <weight value="18.0"/>
@@ -149,7 +157,8 @@
   <item name="leather boots">
     <type class="boots" subclass="leather_boots" tileid="-1"/>
     <description>You see a simple pair of leather boots to give your feet some protection.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="2.0"/>
@@ -166,7 +175,8 @@
   <item name="mainio boots">
     <type class="boots" subclass="mainio_boots" tileid="-1"/>
     <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="11"/>
       <min_level value="50"/>
     </attributes>
@@ -184,7 +194,8 @@
   <item name="mithril boots">
     <type class="boots" subclass="mithril_boots" tileid="-1"/>
     <description>You see a sparkling set of mithril boots.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="18"/>
       <min_level value="150"/>
     </attributes>
@@ -204,7 +215,8 @@
   <item name="red boots">
     <type class="boots" subclass="red_boots" tileid="-1"/>
     <description>You see a pair of red boots, the colour reminds you of fresh blood.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="5"/>
     </attributes>
     <weight value="10.0"/>
@@ -221,7 +233,8 @@
    <item name="shadow boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
     <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="9"/>
       <min_level value="25"/>
     </attributes>
@@ -241,7 +254,8 @@
   <item name="steel boots">
     <type class="boots" subclass="steel_boots" tileid="-1"/>
     <description>You see a pair of steel boots, fit for any soldier.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="6"/>
       <min_level value="5"/>
     </attributes>
@@ -259,7 +273,8 @@
   <item name="stone boots">
     <type class="boots" subclass="stone_boots" tileid="-1"/>
     <description>You see a pair of stone boots.  They may be heavy, but they protect your feet well.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="10"/>
       <min_level value="30"/>
     </attributes>
@@ -279,7 +294,8 @@
  <item name="studded boots">
     <type class="boots" subclass="studded_boots" tileid="-1"/>
     <description>You see a pair of worn studded boots with moderate protection for your feet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="2"/>
     </attributes>
     <weight value="5.0"/>
@@ -296,7 +312,8 @@
   <item name="xeno boots">
     <type class="boots" subclass="xeno_boots" tileid="-1"/>
     <description>You see a fine specimen of craftmanship, a pair of xeno boots.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="13"/>
       <min_level value="80"/>
     </attributes>

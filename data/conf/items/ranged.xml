@@ -4,7 +4,8 @@
   <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="12"/>
       <range value="3"/>
     </attributes>
@@ -23,7 +24,8 @@
   <item name="longbow">
     <type class="ranged" subclass="longbow" tileid="-1"/>
     <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="14"/>
       <range value="4"/>
     </attributes>
@@ -42,7 +44,8 @@
   <item name="composite bow">
     <type class="ranged" subclass="composite_bow" tileid="-1"/>
     <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="15"/>
       <range value="5"/>
     </attributes>
@@ -61,7 +64,8 @@
   <item name="crossbow">
     <type class="ranged" subclass="crossbow" tileid="-1"/>
  <description>You see a crossbow. The attack is high but it has a very short range, what do you prefer?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="17"/>
       <range value="3"/>
     </attributes>
@@ -80,7 +84,8 @@
   <item name="hunter crossbow">
     <type class="ranged" subclass="hunter_crossbow" tileid="-1"/>
  <description>You see a hunter crossbow. You must decide if the high attack is worth the short range it has.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="21"/>
       <range value="4"/>
     </attributes>
@@ -99,7 +104,8 @@
     <item name="mithril bow">
     <type class="ranged" subclass="mithril_bow" tileid="-1"/>
    <description>You see a light and strong mithril bow. Its impeccable workmanship affords incredible accuracy.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="28"/>
       <range value="4"/>
     </attributes>

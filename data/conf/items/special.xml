@@ -27,7 +27,8 @@
    <item name="mithril clasp">
     <type class="special" subclass="mithril_clasp" tileid="-1"/>
     <description>You see a clasp made from mithril, it would provide the fastening for a cloak.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="1.0"/>
     <value value="200000"/>
@@ -44,7 +45,8 @@
   <item name="mythical egg">
     <type class="special" subclass="mythical_egg" tileid="-1"/>
     <description>You see a mythical egg, but you do not know, what it is for.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
       <quantity value="1"/>
       <max_quantity value="2147483647"/>
     </attributes>

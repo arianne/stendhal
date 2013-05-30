@@ -4,7 +4,8 @@
   <item name="black book">
     <type class="book" subclass="book_black" tileid="-1"/>
     <description>You see the black book that Jynath kept out for so long.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -19,7 +20,8 @@
   <item name="blue book">
     <type class="book" subclass="book_blue" tileid="-1"/>
     <description>You see a book with the words GEMS AND MINERALS on the front cover.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

@@ -35,7 +35,8 @@
   <item name="ctf bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a ctf bow, specially made for use in Capture the Flag games. With this in one hand, and CTF arrows in the other, you may be able to cause fumbles or slow players down.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="-1"/>
       <range value="3"/>
     </attributes>

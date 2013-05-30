@@ -5,7 +5,8 @@
   <item name="rhosyd">
     <type class="flower" subclass="exotic_flower" tileid="-1"/>
     <description>You see a beautiful and rare rhosyd flower.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>

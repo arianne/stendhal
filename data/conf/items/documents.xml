@@ -5,7 +5,8 @@
   <item name="note">
     <type class="documents" subclass="paper" tileid="-1"/>
     <description>You see a note.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -20,7 +21,8 @@
   <item name="coupon">
     <type class="documents" subclass="coupon" tileid="-1"/>
     <description>You see a coupon.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -35,7 +37,8 @@
   <item name="closed envelope">
     <type class="documents" subclass="closed_envelope" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -52,7 +55,8 @@
   <item name="opened envelope">
     <type class="documents" subclass="opened_envelope" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -69,7 +73,8 @@
   <item name="sealed envelope">
     <type class="documents" subclass="sealed_envelope" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -86,7 +91,8 @@
   <item name="unsealed envelope">
     <type class="documents" subclass="unsealed_envelope" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -103,7 +109,8 @@
     <item name="assassins id">
     <type class="documents" subclass="license" tileid="-1"/>
     <description>You see an assassin's ID. Perhaps this can be put to good use.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
        <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
@@ -120,7 +127,8 @@
   <item name="map">
     <type class="documents" subclass="mapwithgrid" tileid="-1"/>
     <description/>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
@@ -173,7 +181,8 @@
  <!--<item name="recipe">
     <type class="documents" subclass="recipe" tileid="-1"/>
     <description>You see a recipe, ready for being delivered to Imorgen. It names ingredients for a powerful potion against werewolves. </description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
