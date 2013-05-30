@@ -2,137 +2,11 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="stendhal ../items.xsd ">
   
-  <item name="aventail">
-    <type class="helmet" subclass="aventail" tileid="-1"/>
-    <description>You see a aventail. It's a clever design.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="6"/>
-      <min_level value="5"/>
-    </attributes>
-    <weight value="6.0"/>
-    <value value="1512"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="black helmet">
-    <type class="helmet" subclass="black_helmet" tileid="-1"/>
-    <description>You see a black helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="26"/>
-      <min_level value="150"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="123032"/>
-    <susceptibility type="light" value="1.3"/>
-    <susceptibility type="dark" value="0.85"/> 
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-  
-  <item name="blue helmet">
-    <type class="helmet" subclass="blue_helmet" tileid="-1"/>
-    <description>You see a brand new blue helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="7"/>
-      <min_level value="10"/>
-    </attributes>
-    <weight value="8.0"/>
-    <value value="3012"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="chain helmet">
-    <type class="helmet" subclass="chain_helmet" tileid="-1"/>
-    <description>You see a solid chain helmet, it will be excellent protection for your head.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="4"/>
-    </attributes>
-    <weight value="6.0"/>
-    <value value="448"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="chaos helmet">
-    <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
-    <description>You see a chaos helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="14"/>
-      <min_level value="65"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="19208"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-  
-  <item name="golden helmet">
-    <type class="helmet" subclass="golden_helmet" tileid="-1"/>
-    <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="9"/>
-      <min_level value="20"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="5103"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="horned golden helmet">
-    <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
-    <description>You see a horned golden helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="12"/>
-      <min_level value="30"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="12096"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
   <item name="leather helmet">
     <type class="helmet" subclass="leather_helmet" tileid="-1"/>
     <description>You see a leather helmet, it seems more like a hat than a defensive item.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="2.0"/>
@@ -146,156 +20,6 @@
     </equipable>
   </item>
   
-  <item name="liberty helmet">
-    <type class="helmet" subclass="liberty_helmet" tileid="-1"/>
-    <description>You see the liberty helmet. It's light and strong, you feel free wearing it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="24"/>
-      <min_level value="130"/>
-    </attributes>
-    <weight value="5.0"/>
-    <value value="100208"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-  
-  <item name="magic chain helmet">
-    <type class="helmet" subclass="magic_chain_helmet" tileid="-1"/>
-    <description>You see a magic chain helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="22"/>
-      <min_level value="110"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="74536"/>
-    <susceptibility type="fire" value="0.98"/>
-    <susceptibility type="ice" value="0.98"/>
-    <susceptibility type="dark" value="0.98"/>
-    <susceptibility type="light" value="0.98"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="mainio helmet">
-    <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
-    <description>You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="16"/>
-      <min_level value="85"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="39208"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-  
-  <item name="mithril helmet">
-    <type class="helmet" subclass="mithril_helmet" tileid="-1"/>
-    <description>You see a mithril helmet.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="29"/>
-      <min_level value="200"/>
-    </attributes>
-    <weight value="12.0"/>
-    <value value="323032"/>
-    <susceptibility type="light" value="0.9"/>
-    <susceptibility type="dark" value="1.3"/> 
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-  
-  <item name="red helmet">
-    <type class="helmet" subclass="red_helmet" tileid="-1"/>
-    <description>You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="7"/>
-      <min_level value="10"/>
-    </attributes>
-    <weight value="6.0"/>
-    <value value="1512"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="robins hat">
-    <type class="helmet" subclass="robins_hat" tileid="-1"/>
-    <description>You see a robins hat. It's cute but that's about it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="2"/>
-    </attributes>
-    <weight value="6.0"/>
-    <value value="56"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="shadow helmet">
-    <type class="helmet" subclass="shadow_helmet" tileid="-1"/>
-    <description>You see a heavy shadow helmet. Instead of shining, it darkly gleams.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="10"/>
-      <min_level value="30"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="7000"/>
-    <susceptibility type="light" value="1.4"/>
-    <susceptibility type="dark" value="0.85"/> 
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-  
-  <item name="studded helmet">
-    <type class="helmet" subclass="studded_helmet" tileid="-1"/>
-    <description>You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="2"/>
-    </attributes>
-    <weight value="3.0"/>
-    <value value="56"/>
-    <equipable>
-      <slot name="ground"/>
-      <slot name="content"/>
-      <slot name="head"/>
-      <slot name="bag"/>
-      <slot name="trade"/>
-    </equipable>
-  </item>
-
   <item name="trophy helmet">
     <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
     <description>You see a Trophy Helmet. Those who were brave and finished the death match, win this helmet.</description>
@@ -314,15 +38,34 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
-  <item name="viking helmet">
-    <type class="helmet" subclass="horned_helmet" tileid="-1"/>
-    <description>You see a viking helmet. The previous owner wore it to many battles.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="5"/>
+  
+  <item name="robins hat">
+    <type class="helmet" subclass="robins_hat" tileid="-1"/>
+    <description>You see a robins hat. It's cute but that's about it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="2"/>
     </attributes>
     <weight value="6.0"/>
-    <value value="875"/>
+    <value value="56"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="studded helmet">
+    <type class="helmet" subclass="studded_helmet" tileid="-1"/>
+    <description>You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="2"/>
+    </attributes>
+    <weight value="3.0"/>
+    <value value="56"/>
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
@@ -335,7 +78,7 @@
   <item name="elvish hat">
     <type class="helmet" subclass="elvish_hat" tileid="-1"/>
     <description>You see an elvish hat. The elf craftmanship has made the leafy material stronger than one would think.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"></implementation>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
     <attributes>
       <def value="3"/>
     </attributes>
@@ -350,7 +93,159 @@
     </equipable>
   </item>
   
-  <!-- Disabled
+  <item name="chain helmet">
+    <type class="helmet" subclass="chain_helmet" tileid="-1"/>
+    <description>You see a solid chain helmet, it will be excellent protection for your head.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="4"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="448"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="viking helmet">
+    <type class="helmet" subclass="horned_helmet" tileid="-1"/>
+    <description>You see a viking helmet. The previous owner wore it to many battles.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="5"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="875"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="aventail">
+    <type class="helmet" subclass="aventail" tileid="-1"/>
+    <description>You see a aventail. It's a clever design.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="6"/>
+      <min_level value="5"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="blue helmet">
+    <type class="helmet" subclass="blue_helmet" tileid="-1"/>
+    <description>You see a brand new blue helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="7"/>
+      <min_level value="10"/>
+    </attributes>
+    <weight value="8.0"/>
+    <value value="3012"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="red helmet">
+    <type class="helmet" subclass="red_helmet" tileid="-1"/>
+    <description>You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="7"/>
+      <min_level value="10"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="golden helmet">
+    <type class="helmet" subclass="golden_helmet" tileid="-1"/>
+    <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="9"/>
+      <min_level value="20"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="5103"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="horned golden helmet">
+    <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
+    <description>You see a horned golden helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="12"/>
+      <min_level value="30"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="12096"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="shadow helmet">
+    <type class="helmet" subclass="shadow_helmet" tileid="-1"/>
+    <description>You see a heavy shadow helmet. Instead of shining, it darkly gleams.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="10"/>
+      <min_level value="30"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="7000"/>
+    <susceptibility type="light" value="1.4"/>
+    <susceptibility type="dark" value="0.85"/> 
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <!-- Disabled xeno
   
 Some other possible DEF : LVL values:
 15 : 70-80
@@ -361,6 +256,8 @@ Some other possible DEF : LVL values:
 
 Possible drops:
 xenocium 1.5%
+
+Possibly add to weekly item quest.
   
   <item name="xeno helmet">
     <type class="helmet" subclass="xeno_helmet" tileid="-1" />
@@ -381,6 +278,128 @@ xenocium 1.5%
     </equipable>
   </item>
   
-  End Disabled -->
+  End xeno -->
+  
+  <item name="chaos helmet">
+    <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
+    <description>You see a chaos helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="14"/>
+      <min_level value="65"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="19208"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+  
+  <item name="mainio helmet">
+    <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
+    <description>You see a strange mainio helmet. You can barely see when wearing it, but it protects your head very well.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="16"/>
+      <min_level value="85"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="39208"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+  
+  <item name="magic chain helmet">
+    <type class="helmet" subclass="magic_chain_helmet" tileid="-1"/>
+    <description>You see a magic chain helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="22"/>
+      <min_level value="110"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="74536"/>
+    <susceptibility type="fire" value="0.98"/>
+    <susceptibility type="ice" value="0.98"/>
+    <susceptibility type="dark" value="0.98"/>
+    <susceptibility type="light" value="0.98"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="head"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
+  <item name="liberty helmet">
+    <type class="helmet" subclass="liberty_helmet" tileid="-1"/>
+    <description>You see the liberty helmet. It's light and strong, you feel free wearing it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="24"/>
+      <min_level value="130"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="100208"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+  
+  <item name="black helmet">
+    <type class="helmet" subclass="black_helmet" tileid="-1"/>
+    <description>You see a black helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="26"/>
+      <min_level value="150"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="123032"/>
+    <susceptibility type="light" value="1.3"/>
+    <susceptibility type="dark" value="0.85"/> 
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+  
+  <item name="mithril helmet">
+    <type class="helmet" subclass="mithril_helmet" tileid="-1"/>
+    <description>You see a mithril helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+      <def value="29"/>
+      <min_level value="200"/>
+    </attributes>
+    <weight value="12.0"/>
+    <value value="323032"/>
+    <susceptibility type="light" value="0.9"/>
+    <susceptibility type="dark" value="1.3"/> 
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
   
 </items>
