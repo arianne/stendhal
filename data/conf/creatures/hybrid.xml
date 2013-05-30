@@ -901,4 +901,41 @@
   
   <!-- END: werewolf -->
   
+  <!-- START: xeno -->
+  
+  <creature name="xenocium">
+    <type class="hybrid" subclass="xenocium" tileid="hybrid.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="953"/>
+      <def value="114"/>
+      <hp value="2350"/>
+      <speed value="0.7"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="170"/>
+    <experience value="50800"/>
+    <respawn value="3000"/>
+    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <drops>
+      <item value="money" quantity="[30,100]" probability="100.0"/>
+      <item value="xeno shield" quantity="[1,1]" probability="1.0"/>
+      <item value="xeno cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno boots" quantity="[1,1]" probability="2.5"/>
+      <item value="xeno sword" quantity="[1,1]" probability="0.5"/>
+      <item value="xeno armor" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno legs" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="15,50"/>
+    </ai>
+  </creature>
+  
+  <!-- END: xeno -->
+  
 </creatures>  
