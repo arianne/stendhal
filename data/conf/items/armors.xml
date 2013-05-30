@@ -5,7 +5,8 @@
   <item name="barbarian armor">
     <type class="armor" subclass="barbarian_armor" tileid="-1"/>
     <description>You see a suit of barbarian armor. It's dirty and smelly, but still, rather strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="15"/>
       <min_level value="35"/>
     </attributes>
@@ -23,7 +24,8 @@
   <item name="black armor">
     <type class="armor" subclass="black_armor" tileid="-1"/>
     <description>You see a suit of black armor. Does it put you in a dark mood?</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="26"/>
 	  <min_level value="200"/>
     </attributes>
@@ -43,7 +45,8 @@
   <item name="blue armor">
     <type class="armor" subclass="blue_armor" tileid="-1"/>
     <description>You see a suit of blue armor. The colour is stunning azure.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="13"/>
       <min_level value="25"/>
     </attributes>
@@ -61,7 +64,8 @@
   <item name="chain armor">
     <type class="armor" subclass="chain_armor" tileid="-1"/>
     <description>You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="6"/>
     </attributes>
     <weight value="45.0"/>
@@ -78,7 +82,8 @@
   <item name="chaos armor">
     <type class="armor" subclass="chaos_armor" tileid="-1"/>
     <description>You see a suit of chaos armor. The reflecting contrasting colours make no sense to you.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="20"/>
 	  <min_level value="100"/>
     </attributes>
@@ -114,7 +119,8 @@
   <item name="dwarvish armor">
     <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
     <description>You see a dwarvish armor. It's made with ingenuity and skill.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="17"/>
 	  <min_level value="50"/>
     </attributes>
@@ -132,7 +138,8 @@
   <item name="elvish armor">
     <type class="armor" subclass="elvish_armor" tileid="-1"/>
     <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="14"/>
       <min_level value="30"/>
     </attributes>
@@ -150,7 +157,8 @@
   <item name="enhanced chainmail">
     <type class="armor" subclass="enhanced_chainmail" tileid="-1"/>
     <description>You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="7"/>
     </attributes>
     <weight value="45.0"/>
@@ -167,7 +175,8 @@
   <item name="golden armor">
     <type class="armor" subclass="golden_armor" tileid="-1"/>
     <description>You see a suit of golden armor. It's made from the best materials with great attention to detail.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="16"/>
       <min_level value="40"/>
     </attributes>
@@ -185,7 +194,8 @@
   <item name="golden chainmail">
     <type class="armor" subclass="golden_chainmail" tileid="-1"/>
     <description>You see a valuable suit of golden chainmail. It is crafted from fine links of expensive metal.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="9"/>
       <min_level value="5"/>
     </attributes>
@@ -203,7 +213,8 @@
   <item name="ice armor">
     <type class="armor" subclass="ice_armor" tileid="-1"/>
     <description>You see a suit of ice armor, to protect even the coldest of hearts.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="19"/>
 	  <min_level value="80"/>
     </attributes>
@@ -224,7 +235,8 @@
   <item name="iron scale armor">
     <type class="armor" subclass="iron_scale_armor" tileid="-1"/>
     <description>You see a suit of iron scale armor, whose rounded scales will protect you from many blows.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="8"/>
     </attributes>
     <weight value="45.0"/>
@@ -260,7 +272,8 @@
   <item name="leather cuirass">
     <type class="armor" subclass="leather_cuirass" tileid="-1"/>
     <description>You see a leather cuirass, well made but still able to be pierced by sharp swords.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="4"/>
     </attributes>
     <weight value="15.0"/>
@@ -277,7 +290,8 @@
   <item name="leather scale armor">
     <type class="armor" subclass="leather_scale_armor" tileid="-1"/>
     <description>You see a suit of leather scale armor. The leather is toughened somehow for better protection.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="4"/>
     </attributes>
     <weight value="15.0"/>
@@ -295,7 +309,8 @@
  <item name="magic plate armor">
     <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
     <description>You see a suit of magic plate armor. The steel is well tempered and the suit is very strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="24"/>
 	  <min_level value="150"/>
     </attributes>
@@ -318,7 +333,8 @@
   <item name="mainio armor">
     <type class="armor" subclass="mainio_armor" tileid="-1"/>
     <description>You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="22"/>
 	  <min_level value="125"/>
     </attributes>
@@ -337,7 +353,8 @@
   <item name="mithril armor">
     <type class="armor" subclass="mithril_armor" tileid="-1"/>
     <description>You see a suit of mithril armor. Its tightly woven links are truly amazing.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="29"/>
     </attributes>
     <weight value="42.0"/>
@@ -356,7 +373,8 @@
   <item name="pauldroned iron cuirass">
     <type class="armor" subclass="enhanced_iron_cuirass" tileid="-1"/>
     <description>You see a formidable pauldroned iron cuirass. The pauldrons (shoulder pieces) will protect your upper half.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="9"/>
       <min_level value="5"/>
     </attributes>
@@ -374,7 +392,8 @@
   <item name="pauldroned leather cuirass">
     <type class="armor" subclass="enhanced_leather_cuirass" tileid="-1"/>
     <description>You see a pauldroned leather cuirass.  It was crafted to withstand minor attacks.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="5"/>
     </attributes>
     <weight value="15.0"/>
@@ -391,7 +410,8 @@
   <item name="plate armor">
     <type class="armor" subclass="plate_armor" tileid="-1"/>
     <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="10"/>
       <min_level value="10"/>
     </attributes>
@@ -409,7 +429,8 @@
   <item name="red armor">
     <type class="armor" subclass="red_armor" tileid="-1"/>
     <description>You see a suit of red armor. The colour is a striking crimson.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="12"/>
       <min_level value="20"/>
     </attributes>
@@ -427,7 +448,8 @@
   <item name="scale armor">
     <type class="armor" subclass="scale_armor" tileid="-1"/>
     <description>You see a suit of scale armor. It is not flexible like chain, but will be a better defense.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="7"/>
     </attributes>
     <weight value="45.0"/>
@@ -444,7 +466,8 @@
   <item name="shadow armor">
     <type class="armor" subclass="shadow_armor" tileid="-1"/>
     <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="17"/>
 	  <min_level value="40"/>
     </attributes>
@@ -464,7 +487,8 @@
   <item name="stone armor">
     <type class="armor" subclass="stone_armor" tileid="-1"/>
     <description>You see a suit of stone armor. Swords will crumble if they try to pierce it.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="18"/>
 	  <min_level value="60"/>
     </attributes>
@@ -484,7 +508,8 @@
   <item name="studded armor">
     <type class="armor" subclass="studded_armor" tileid="-1"/>
     <description>You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="5"/>
     </attributes>
     <weight value="25.0"/>
@@ -501,7 +526,8 @@
   <item name="xeno armor">
     <type class="armor" subclass="xeno_armor" tileid="-1"/>
     <description>You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <def value="21"/>
 	  <min_level value="120"/>
     </attributes>
