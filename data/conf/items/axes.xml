@@ -5,7 +5,8 @@
   <item name="axe">
     <type class="axe" subclass="axe" tileid="-1"/>
     <description>You see a rusty but heavy axe. What it lacks in sharpness it makes up for in weight.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="12"/>
       <rate value="5"/>
     </attributes>
@@ -24,7 +25,8 @@
   <item name="bardiche">
     <type class="axe" subclass="bardiche" tileid="-1"/>
     <description>You see a rare and powerful bardiche.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="33"/>
       <rate value="9"/>
       <min_level value="10"/>
@@ -44,7 +46,8 @@
   <item name="battle axe">
     <type class="axe" subclass="battle_axe" tileid="-1"/>
     <description>You see a battle axe. It is well crafted and sharp despite its age.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="15"/>
       <rate value="6"/>
     </attributes>
@@ -63,7 +66,8 @@
   <item name="black halberd">
     <type class="axe" subclass="black_halberd" tileid="-1"/>
     <description>You see a black halberd. It's immensely heavy so will make huge blows but you can only swing it at a very slow rate.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="57"/>
       <rate value="9"/>
       <min_level value="150"/>
@@ -84,7 +88,8 @@
   <item name="black scythe">
     <type class="axe" subclass="black_scythe" tileid="-1"/>
     <description>You see a black scythe. Its attack is awesome for a farming tool.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="42"/>
       <rate value="6"/>
       <min_level value="200"/>
@@ -127,7 +132,8 @@
   <item name="durin axe">
     <type class="axe" subclass="durin_axe" tileid="-1"/>
     <description>You see a durin axe, a great prize from the dwarves.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="47"/>
       <rate value="9"/>
       <min_level value="60"/>
@@ -147,7 +153,8 @@
   <item name="golden twoside axe">
     <type class="axe" subclass="golden_twosided_poleaxe" tileid="-1"/>
     <description>You see a golden twoside axe.  This axe is a rare find.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="35"/>
       <rate value="7"/>
       <min_level value="50"/>
@@ -167,7 +174,8 @@
   <item name="halberd">
     <type class="axe" subclass="halberd" tileid="-1"/>
     <description>You see a rare halberd, with an axe's blade fused onto a shaft. It is both heavy and keen-edged.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="40"/>
       <rate value="10"/>
       <min_level value="25"/>
@@ -187,7 +195,8 @@
   <item name="hand axe">
     <type class="axe" subclass="hand_axe" tileid="-1"/>
     <description>You see a hand axe, well worn from years of use but may prove useful.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="9"/>
       <rate value="4"/>
     </attributes>
@@ -206,7 +215,8 @@
   <item name="magic twoside axe">
     <type class="axe" subclass="magic_twosided_poleaxe" tileid="-1"/>
     <description>You see a magic twoside axe. The nature of the magic isn't clear to you.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="40"/>
       <rate value="7"/>
       <min_level value="150"/>
@@ -227,7 +237,8 @@
   <item name="old scythe">
     <type class="axe" subclass="oldscythe" tileid="-1"/>
     <description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="2"/>
       <rate value="4"/>
     </attributes>
@@ -246,7 +257,8 @@
   <item name="scythe">
     <type class="axe" subclass="scythe" tileid="-1"/>
     <description>You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="19"/>
       <rate value="5"/>
       <min_level value="20"/>
@@ -266,7 +278,8 @@
   <item name="sickle">
     <type class="axe" subclass="sickle" tileid="-1"/>
     <description>You see a sickle, it is a useful tool for farming.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="2"/>
       <rate value="2"/>
     </attributes>
@@ -285,7 +298,8 @@
   <item name="small axe">
     <type class="axe" subclass="small_axe" tileid="-1"/>
     <description>You see a small axe. It appears well made but you suspect it is too light to do much damage.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="7"/>
       <rate value="3"/>
     </attributes>
@@ -304,7 +318,8 @@
   <item name="twoside axe">
     <type class="axe" subclass="twosided_poleaxe" tileid="-1"/>
     <description>You see a well crafted twoside axe.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
       <atk value="29"/>
       <rate value="7"/>
       <min_level value="30"/>
