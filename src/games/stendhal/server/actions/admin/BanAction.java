@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -32,10 +31,12 @@ import marauroa.server.game.db.AccountDAO;
 import marauroa.server.game.db.CharacterDAO;
 import marauroa.server.game.db.DAORegister;
 
-import org.apache.log4j.Logger;
-
+/**
+ * Bans an account
+ *
+ * @author hendrik
+ */
 public class BanAction extends AdministrationAction {
-	private static Logger logger = Logger.getLogger(BanAction.class);
 
 	@Override
 	protected void perform(final Player player, final RPAction action) {
@@ -100,7 +101,7 @@ public class BanAction extends AdministrationAction {
 		List<String> characters = new LinkedList<String>();
 		final PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
 		for (PlayerEntry entry : playerContainer) {
-			if (username.equals(entry.username)) {
+			if (username.equalsIgnoreCase(entry.username)) {
 				characters.add(entry.character);
 			}
 		}
@@ -113,6 +114,9 @@ public class BanAction extends AdministrationAction {
 		}
 	}
 
+	/**
+	 * registers the ban action
+	 */
 	public static void register() {
 		CommandCenter.register("ban", new BanAction(), 1000);
 	}
