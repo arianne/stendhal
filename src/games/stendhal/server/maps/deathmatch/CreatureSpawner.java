@@ -19,6 +19,7 @@ import games.stendhal.server.entity.creature.ArenaCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
+import games.stendhal.server.entity.npc.condition.KilledForQuestCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -94,16 +95,19 @@ public class CreatureSpawner  {
 	 * @param dmInfo the Deathmatch's Info
 	 */
 	void spawnDailyMonster(final Player player, final DeathmatchInfo dmInfo) {
-		final String dailyInfo = player.getQuest("daily");
+		String dailyInfo = player.getQuest("daily", 0);
 		if (dailyInfo != null) {
-			final String[] dTokens = dailyInfo.split(";");
-			final String daily = dTokens[0];
+			boolean questDone = new KilledForQuestCondition("daily", 0).fire(player, null, null);
+			if (!questDone) {
+				final String[] dTokens = dailyInfo.split(",");
+				if (dTokens.length > 0) {
+					final String daily = dTokens[0];
 
-			if (!player.hasKilled(daily)) {
-				for (final Creature creature : sortedCreatures) {
-					if (creature.getName().equals(daily)) {
-						spawnNewCreature(creature, player, dmInfo);
-						break;
+					for (final Creature creature : sortedCreatures) {
+						if (creature.getName().equals(daily)) {
+							spawnNewCreature(creature, player, dmInfo);
+							break;
+						}
 					}
 				}
 			}
