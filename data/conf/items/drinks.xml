@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="stendhal ../items.xsd ">
+<items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="stendhal ../items.xsd ">
+  
   <item name="fierywater">
     <type class="drink" subclass="fierywater" tileid="-1"/>
     <description>You see a bottle of fierywater. Do not drink it pure, you would evaporate!</description>
@@ -22,7 +24,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="mild koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_mild" tileid="-1"/>
     <description>You see a bottle of mild koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
@@ -45,7 +47,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="strong koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_strong" tileid="-1"/>
     <description>You see a bottle of strong koboldish torcibud. It will help you recover when you're all bruised and battered.</description>
@@ -68,7 +70,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="vsop koboldish torcibud">
     <type class="drink" subclass="koboldish_torcibud_vsop" tileid="-1"/>
     <description>You see a bottle of VSOP koboldish torcibud, specially aged in oak casks wrapped by the darkness of a dungeon cellar. It will help you recover when you're all bruised and battered.</description>
@@ -92,7 +94,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="apple juice">
     <type class="drink" subclass="red_juice" tileid="-1"/>
     <description>You see apple juice. On a hot summer day, it would taste great.</description>
@@ -115,7 +117,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="beer">
     <type class="drink" subclass="beer" tileid="-1"/>
     <description>You see a beer. On a hot summer day, it would taste great.</description>
@@ -138,7 +140,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="wine">
     <type class="drink" subclass="wine" tileid="-1"/>
     <description>You see a glass of red wine. It will quench your thirst.</description>
@@ -161,7 +163,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="water">
     <type class="drink" subclass="waterbottle" tileid="-1"/>
     <description>You see a bottle of fresh spring water. It's really tasty and fresh.</description>
@@ -184,7 +186,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="pina colada">
     <type class="drink" subclass="pina_colada2" tileid="-1"/>
     <description>You see a pina colada. It looks delicious but tastes dangerously strong!</description>
@@ -207,7 +209,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="tea">
     <type class="drink" subclass="tea" tileid="-1"/>
     <description>You see a lovely cup of tea.</description>
@@ -230,7 +232,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="milk">
     <type class="drink" subclass="milk" tileid="-1"/>
     <description>You see a small bottle of fresh milk.</description>
@@ -253,7 +255,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
     <description>You see an antidote, to cure you of poison and protect you for a while.</description>
@@ -276,7 +278,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="greater antidote">
     <type class="drink" subclass="greater_antidote" tileid="-1"/>
     <description>You see a greater antidote, to cure you of poison and protect you for a long while.</description>
@@ -299,7 +301,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="mana">
     <type class="drink" subclass="mana" tileid="-1"/>
     <description>You see an bottle of mana, to increase your mana rapidly.</description>
@@ -322,7 +324,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="poison">
     <type class="drink" subclass="poison" tileid="-1"/>
     <description>You see a bottle of poison. Don't drink it!</description>
@@ -345,7 +347,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="greater poison">
     <type class="drink" subclass="greater_poison" tileid="-1"/>
     <description>You see a greater poison. Don't drink it!</description>
@@ -368,7 +370,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="deadly poison">
     <type class="drink" subclass="deadly_poison" tileid="-1"/>
     <description>You see a deadly poison. Don't drink it!</description>
@@ -391,7 +393,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="disease poison">
     <type class="drink" subclass="disease_poison" tileid="-1"/>
     <description>You see a disease poison.  Be careful, it's wicked.</description>
@@ -414,7 +416,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="mega poison">
     <type class="drink" subclass="mega_poison" tileid="-1"/>
     <description>You see a mega poison. This is some wicked poison.</description>
@@ -437,7 +439,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="twilight elixir">
     <type class="drink" subclass="twilight_elixir" tileid="-1"/>
     <description>You see a bottle of medicinal elixir.</description>
@@ -460,7 +462,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="minor potion">
     <type class="drink" subclass="minor_potion" tileid="-1"/>
     <description>You see a minor potion. It's not much but may save you in a tight spot.</description>
@@ -483,7 +485,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="soup">
     <type class="drink" subclass="soup" tileid="-1"/>
     <description>You see a bowl of soup. Its contents fill you up.</description>
@@ -507,7 +509,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="fish soup">
     <type class="drink" subclass="fish_soup" tileid="-1"/>
     <description>You see a bowl of fish soup. Its contents fill you up.</description>
@@ -531,7 +533,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="potion">
     <type class="drink" subclass="potion" tileid="-1"/>
     <description>You see a potion. Take it to battle and you may survive longer.</description>
@@ -554,7 +556,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="greater potion">
     <type class="drink" subclass="greater_potion" tileid="-1"/>
     <description>You see a greater potion, invaluable in battle.</description>
@@ -577,7 +579,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="mega potion">
     <type class="drink" subclass="mega_potion" tileid="-1"/>
     <description>You see a mega potion. It strengthens greatly.</description>
@@ -600,7 +602,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="love potion">
     <type class="drink" subclass="love_potion" tileid="-1"/>
     <description>You see a love potion. It looks powerful so take care to use it carefully!</description>
@@ -623,7 +625,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
@@ -646,4 +648,5 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
 </items>
