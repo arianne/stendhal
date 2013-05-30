@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
+  xsi:schemaLocation="stendhal ../items.xsd ">
   
   <item name="aventail">
     <type class="helmet" subclass="aventail" tileid="-1"/>
@@ -331,7 +331,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
- 
+  
   <item name="elvish hat">
     <type class="helmet" subclass="elvish_hat" tileid="-1"/>
     <description>You see an elvish hat. The elf craftmanship has made the leafy material stronger than one would think.</description>
@@ -349,5 +349,38 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+  <!-- Disabled
+  
+Some other possible DEF : LVL values:
+15 : 70-80
+17-21 : 90-105
+23 : 115-125
+25 : 135-145
+27-28 : 155-195
+
+Possible drops:
+xenocium 1.5%
+  
+  <item name="xeno helmet">
+    <type class="helmet" subclass="xeno_helmet" tileid="-1" />
+    <description>You see a xeno helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item" />
+    <attributes>
+      <def value="13" />
+      <min_level value="45" />
+    </attributes>
+    <weight value="4.0" />
+    <value value="75000" />
+    <equipable>
+      <slot name="ground" />
+      <slot name="content" />
+      <slot name="bag" />
+      <slot name="trade" />
+      <slot name="head" />
+    </equipable>
+  </item>
+  
+  End Disabled -->
   
 </items>
