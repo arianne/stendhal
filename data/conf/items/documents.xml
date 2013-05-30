@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../items.xsd ">
-
+	  xsi:schemaLocation="stendhal ../items.xsd ">
+  
   <item name="note">
     <type class="documents" subclass="paper" tileid="-1"/>
     <description>You see a note.</description>
@@ -17,7 +17,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="coupon">
     <type class="documents" subclass="coupon" tileid="-1"/>
     <description>You see a coupon.</description>
@@ -33,7 +33,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="closed envelope">
     <type class="documents" subclass="closed_envelope" tileid="-1"/>
     <description/>
@@ -51,7 +51,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="opened envelope">
     <type class="documents" subclass="opened_envelope" tileid="-1"/>
     <description/>
@@ -69,7 +69,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="sealed envelope">
     <type class="documents" subclass="sealed_envelope" tileid="-1"/>
     <description/>
@@ -87,7 +87,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="unsealed envelope">
     <type class="documents" subclass="unsealed_envelope" tileid="-1"/>
     <description/>
@@ -106,7 +106,7 @@
     </equipable>
   </item>
   
-    <item name="assassins id">
+  <item name="assassins id">
     <type class="documents" subclass="license" tileid="-1"/>
     <description>You see an assassin's ID. Perhaps this can be put to good use.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
@@ -123,7 +123,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-
+  
   <item name="map">
     <type class="documents" subclass="mapwithgrid" tileid="-1"/>
     <description/>
@@ -139,7 +139,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="blank scroll">
     <type class="documents" subclass="scroll" tileid="-1"/>
     <description>You see a rolled up blank scroll.</description>
@@ -158,7 +158,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+  
   <item name="ice scroll">
     <type class="documents" subclass="ice_scroll" tileid="-1"/>
     <description>You see a scroll, circled by ice crystals. You can feel its cold aura.</description>
@@ -178,7 +178,7 @@
     </equipable>
   </item>
   
- <!--<item name="recipe">
+  <!--<item name="recipe">
     <type class="documents" subclass="recipe" tileid="-1"/>
     <description>You see a recipe, ready for being delivered to Imorgen. It names ingredients for a powerful potion against werewolves. </description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>
@@ -195,7 +195,7 @@
       <slot name="rhand"/>
     </equipable>
   </item>-->
-
+  
   <item name="note to apothecary">
     <type class="documents" subclass="paper" tileid="-1"/>
     <description>You see a note to apothecary. It is a recommendation from Klaas.</description>
@@ -212,5 +212,5 @@
       <slot name="rhand" />
     </equipable>
   </item>
-
+  
 </items>
