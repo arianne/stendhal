@@ -1641,7 +1641,7 @@ Mature sheep wanted: please speak to Sato.
 				<parameter name="sound">hammer-1, smith-1</parameter>
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
-				<parameter name="radius">4</parameter>
+				<parameter name="radius">6</parameter>
 				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
