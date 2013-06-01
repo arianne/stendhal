@@ -72,7 +72,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Help with the harvest";
+		return "Help with the Harvest";
 	}
 	
 	@Override
