@@ -1636,12 +1636,12 @@ Mature sheep wanted: please speak to Sato.
 		</entity>
 
 		<!--  sounds from houses -->
-		<entity x="12" y="39">
+		<entity x="15" y="42">
 			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
 				<parameter name="sound">hammer-1, smith-1</parameter>
 				<parameter name="min">30</parameter>
 				<parameter name="max">60</parameter>
-				<parameter name="radius">6</parameter>
+				<parameter name="radius">4</parameter>
 				<parameter name="volume">100</parameter>
 			</implementation>
 		</entity>
