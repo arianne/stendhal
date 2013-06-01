@@ -52,9 +52,6 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	@Override
 	public List<String> getHistory(Player player) {
 		List<String> result = new ArrayList<String>();
-		if (player.isQuestInState(QUEST_SLOT, "rejected")) {
-		    result.add("Farm work is too hard.");
-		}
 		if(new QuestStartedCondition(QUEST_SLOT).fire(player, null, null) && !createFinishedCondition().fire(player, null, null)) {
 			result.add("I want to help Eheneumniranin with his harvest.");
 		}
@@ -72,7 +69,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Help with the Harvest";
+		return "Help with the harvest";
 	}
 	
 	@Override
@@ -96,14 +93,14 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.QUESTION_1,
 				"Are you here to help me a bit with my harvest?",
 				null);
 		
 		/*
 		 * Player is interested in helping, so explain the quest.
 		 */
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -113,12 +110,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		/*
 		 * Player refused to help - end the conversation.
 		 */
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
 				"Oh, I was hoping to get a bit of help, but ok. Bye.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -2.0));
+				null);
 		
 		/*
 		 * Player has not yet put the carts to the right spots
