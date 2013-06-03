@@ -66,7 +66,6 @@ public class SickleingHalfelfNPC implements ZoneConfigurator {
 				addJob("To gather the sheaves of grain with my #sickle before taking them to the mill I must... How did I get here?... If I only could remember...");
 				addHelp("Ha! Asking for such only reveals how unworthy and undeserving one is... Who am I?... A fog obfuscates my thoughts...");
 				addOffer("Oh?! Given I had anything valuable I would offer it willingly for a glimpse of truth...");
-				addQuest("Ehh... Ready I am not to burden you with my troubles... But come back to visit me from time to time and one day maybe I might require your precious aid...");
 				addReply("sickle","A usefull farming tool indeed, like a scythe also is. To some blacksmith you should ask to if he offers any such sharp utensil.");
 				addGoodbye("In bocca al lupo...");
 			}

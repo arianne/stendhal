@@ -55,6 +55,10 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		if(new QuestStartedCondition(QUEST_SLOT).fire(player, null, null) && !createFinishedCondition().fire(player, null, null)) {
 			result.add("I want to help Eheneumniranin with his harvest.");
 		}
+		if (player.isQuestInState(QUEST_SLOT, "rejected")) {
+		    result.add("Farm work is too hard for me at the moment.");
+		}
+
 		if(constructHayCartsNotYetCompletedCondition().fire(player, null, null)) {
 			result.add("I need to bring two straw carts to the barn just north of Eheneumniranin.");
 		}
@@ -69,7 +73,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Help with the harvest";
+		return "Help with the Harvest";
 	}
 	
 	@Override
@@ -93,35 +97,40 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUESTION_1,
+				ConversationStates.QUEST_OFFERED,
 				"Are you here to help me a bit with my harvest?",
 				null);
 		
 		/*
 		 * Player is interested in helping, so explain the quest.
 		 */
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"This is really nice. I was getting tired of bringing the two carts with straw to Karl.",
+				"This is really nice. I was getting tired of bringing the two carts with straw to Karl. Please #push two stray carts to Karl's #barn and tell me that you are #done afterwards.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
+		npc.addReply("push", "You can easily move these carts by pushing them infront of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
+		
+		npc.addReply("barn", "You can find Karl's barn in the north from here. It has a huge shield on which tells you that its his.");
+		
 		/*
 		 * Player refused to help - end the conversation.
 		 */
-		npc.add(ConversationStates.QUESTION_1,
+		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.IDLE,
-				"Oh, I was hoping to get a bit of help, but ok. Bye.",
-				null);
+				ConversationStates.ATTENDING,
+				"Oh, I was hoping to get a bit of help, but ok...",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -2.0));
+				
 		
 		/*
 		 * Player has not yet put the carts to the right spots
 		 */
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+				Arrays.asList("done"),
 				constructHayCartsNotYetCompletedCondition(),
 				ConversationStates.ATTENDING,
 				"You did not bring yet both straw carts next to the straw cart near the barn just north of here.",
@@ -143,7 +152,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("jenny"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"You can find #Jenny near Semos at the mill. She mills grain to #flour for you if you bring her a few sheaves grain.",
+				"You can find #Jenny near Semos at the mill. She mills grain to #flour for you if you bring her a few sheaves of grain.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
@@ -152,6 +161,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"#Jenny will mill the grain I gave you as reward to flour which you maybe could use for #bread?",
 				null);
+		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("bread"),
 				createFinishedCondition(),
@@ -170,7 +180,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("leander"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Leander runs the bakery in semos city and can make #sandwiches for you if you bring him the ingredients. Why don't you spend him a visit?",
+				"Leander runs the bakery in Semos City and can make #sandwiches for you if you bring him the ingredients. Why don't you spend him a visit?",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
@@ -206,10 +216,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		zone.addZoneEnterExitListener(cartTwo);
 		
 		BlockTarget targetOne = new BlockTarget(64, 75);
+		targetOne.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
 		
-		BlockTarget targetTwo = new BlockTarget(63, 75);
+		BlockTarget targetTwo = new BlockTarget(65, 75);
+		targetTwo.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);
 		

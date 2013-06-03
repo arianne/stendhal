@@ -3568,6 +3568,15 @@ My fee:
 	</attributes>
    <configurator class-name="games.stendhal.server.maps.ados.forest.FarmerNPC"/>
    <configurator class-name="games.stendhal.server.maps.ados.forest.SickleingHalfelfNPC"/>
+   
+    <entity x="62" y="73">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+       <attribute name="text">Karls barn - fresh hay and straw inside.</attribute>
+       <attribute name="class">transparent</attribute>
+       <attribute name="width">2</attribute>
+       <attribute name="height">1</attribute>
+    </entity>
+   
    <portal x="21" y="100" ref="farm">
     <destination zone="int_ados_farm_house" ref="in"/>
    </portal>
