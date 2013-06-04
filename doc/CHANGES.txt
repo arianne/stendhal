@@ -21,7 +21,7 @@
 - Ctrl-click no longer works as a looting command
 - Immediate response when starting to move with arrow keys
 - Attack sprites are scaled according to attacker size
-- Screen size cheat code removed
+
 
 *fixes*
 - quest log of EmotionCrystals fixed
@@ -30,8 +30,8 @@
 - Removed background noise from many sound effects
 - Creature XML files have been reorganized without affecting client/server compatibility
 - BalanceRPGame works again
-- Clicking an arrow key always tries to move one tile
-- Producers don't anymore ask to come back in the past under certain conditions
+- Pressing an arrow key always tries to move one tile
+- Producers don't ask to come back in the past under certain conditions anymore
 - Hayunn won't give more than one task at a time
 
 *code*
