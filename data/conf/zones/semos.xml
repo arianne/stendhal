@@ -114,9 +114,6 @@
 				<parameter name="volume">65</parameter>
 			</implementation>
 		</entity>
-		<portal x="8" y="22" ref="apothecary_entrance">
-		  <destination zone="int_apothecary_cabin" ref="exit" />
-		</portal>
 	</zone>
 	
 	<!-- Interiors in 0_semos_mountain_n2_w -->
