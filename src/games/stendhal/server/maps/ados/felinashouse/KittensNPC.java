@@ -14,8 +14,10 @@ package games.stendhal.server.maps.ados.felinashouse;
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
 import java.util.LinkedList;
@@ -38,20 +40,15 @@ public class KittensNPC implements ZoneConfigurator {
 	private void buildNPC(final StendhalRPZone zone) {
 	    
 	    // Kitten walking around room
-		final PassiveNPC k1 = new PassiveNPC() {
-			@Override
-			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 15));
-				nodes.add(new Node(12, 15));
-				nodes.add(new Node(12, 17));
-				nodes.add(new Node(20, 17));
-                nodes.add(new Node(20, 22));
-                nodes.add(new Node(3, 22));
-				setPath(new FixedPath(nodes, true));
-			}
-		
-        };
+		final PassiveNPC k1 = new Kitten();
+		List<Node> nodes = new LinkedList<Node>();
+		nodes.add(new Node(3, 15));
+		nodes.add(new Node(12, 15));
+		nodes.add(new Node(12, 17));
+		nodes.add(new Node(20, 17));
+        nodes.add(new Node(20, 22));
+        nodes.add(new Node(3, 22));
+		k1.setPath(new FixedPath(nodes, true));
         
         k1.setPosition(3, 15);
         k1.setDescription("You see a kitten exploring.");
@@ -60,13 +57,7 @@ public class KittensNPC implements ZoneConfigurator {
 		zone.add(k1);
 		
 		// Kitten sitting in chair
-        final PassiveNPC k2 = new PassiveNPC() {
-            @Override
-            protected void createPath() {
-                setPath(null);
-            }
-        
-        };
+        final PassiveNPC k2 = new Kitten();
         
         k2.setPosition(20, 15);
         k2.setDescription("You see a kitten relaxing.");
@@ -75,20 +66,15 @@ public class KittensNPC implements ZoneConfigurator {
         zone.add(k2);
         
         // Active kitten
-        final PassiveNPC k3 = new PassiveNPC() {
-            @Override
-            protected void createPath() {
-                final List<Node> nodes = new LinkedList<Node>();
-                nodes.add(new Node(6, 19));
-                nodes.add(new Node(10, 19));
-                nodes.add(new Node(10, 20));
-                nodes.add(new Node(7, 20));
-                nodes.add(new Node(7, 21));
-                nodes.add(new Node(6, 21));
-                setPath(new FixedPath(nodes, true));
-            }
-        
-        };
+        final PassiveNPC k3 = new Kitten();
+        nodes = new LinkedList<Node>();
+        nodes.add(new Node(6, 19));
+        nodes.add(new Node(10, 19));
+        nodes.add(new Node(10, 20));
+        nodes.add(new Node(7, 20));
+        nodes.add(new Node(7, 21));
+        nodes.add(new Node(6, 21));
+        k3.setPath(new FixedPath(nodes, true));
         
         k3.setPosition(6, 19);
         k3.setDescription("You see an energetic kitten.");
@@ -97,4 +83,18 @@ public class KittensNPC implements ZoneConfigurator {
         zone.add(k3);
 	}
 
+	/**
+	 * Kitten NPCs with a helpful message when a player tries to adopt them.
+	 */
+	private static final class Kitten extends PassiveNPC implements UseListener {
+		private Kitten() {
+			setMenu("Own|Use");
+		}
+
+		@Override
+		public boolean onUsed(RPEntity user) {
+			user.sendPrivateText("This kitten is still too young and Felina will not sell her.");
+			return false;
+		}
+	}
 }
