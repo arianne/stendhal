@@ -1,6 +1,5 @@
 package games.stendhal.server.core.config;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultNPC;
 
 import java.io.FileNotFoundException;
