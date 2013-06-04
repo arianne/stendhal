@@ -103,7 +103,7 @@ public class StendhalQuestSystem {
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
 		loadQuest(new HelpMrsYeti());
-		loadQuest(new HelpWithTheHarvest());
+//		loadQuest(new HelpWithTheHarvest());
 		loadQuest(new HerbsForCarmen());
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
