@@ -309,9 +309,6 @@
       <susceptibility type="fire" value="0.9"/>
     </abilities>
     <ai>
-      <says>
-        <movement value="loop-grind-stone-1" />
-      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
