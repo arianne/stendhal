@@ -26,7 +26,7 @@
 
 *client*
 - Option to turn off creature speech bubbles
-- Ctrl-click no longer works as a looting command
+- Fixed accidental looting on drag by deactivating ctrl-click as looting command
 - Immediate response when starting to move with arrow keys
 - Attack sprites are scaled according to attacker size
 - Player now faces attack target if not doing so on each turn
