@@ -72,7 +72,6 @@ import java.util.List;
  *
  */
 public class RestockFlowerShop extends AbstractQuest {
-	
 	public static final String QUEST_SLOT = "restock_flowershop";
 	
 	// Different types of flowers needed in quest
@@ -80,11 +79,9 @@ public class RestockFlowerShop extends AbstractQuest {
 			"daisies", "lilia", "pansy", "rose", "zantedeschia");
 	public static List<Integer> requestedQuantities = Arrays.asList();
 	
-	private int MAX_FLOWERS = flowerTypes.size() * 10;
+	private final int MAX_FLOWERS = flowerTypes.size() * 10;
 	
-	private static String requestedFlowers;
-	
-	private static int REQ_WATER = 15;
+	private static final int REQ_WATER = 15;
 	
 	// Time player must wait to repeat quest (3 days)
 	private static final int WAIT_TIME = 60 * 24 * 3;
@@ -95,27 +92,30 @@ public class RestockFlowerShop extends AbstractQuest {
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
-		String questState = player.getQuest(QUEST_SLOT);
 		if (!player.hasQuest(QUEST_SLOT)) {
 			return res;
 		}
+		String npcName = npc.getName();
 		if (player.isQuestInState(QUEST_SLOT, 0, "rejected")) {
 			res.add("Flowers make me sneeze.");
-		}
-		else if (!player.isQuestInState(QUEST_SLOT, 0, "done")) {
-			res.add("I have offered to help " + npc.getName() + " restock the flower shop.");
+		} else if (!player.isQuestInState(QUEST_SLOT, 0, "done")) {
+			String questState = player.getQuest(QUEST_SLOT);
+			res.add("I have offered to help " + npcName + " restock the flower shop.");
 			
 			final ItemCollection remaining = new ItemCollection();
 			remaining.addFromQuestStateString(questState);
 			
 			// Check to avoid ArrayIndexOutOfBoundsException
-			if (questState.split(";").length > 0) {
-				requestedFlowers = "I still need to bring the following flowers: " + Grammar.enumerateCollection(remaining.toStringList()) + ".";
+			if (remaining.size() > 0) {
+				String requestedFlowers = "I still need to bring the following flowers: " + Grammar.enumerateCollection(remaining.toStringList()) + ".";
 				res.add(requestedFlowers);
 			}
-		}
-		else {
-			res.add(npc.getName() + " now has a good supply of flowers.");
+		} else {
+            if (isRepeatable(player)) {
+                res.add("It has been a while since I helped " + npcName + ". Perhaps she could use my help again.");
+            } else {
+                res.add(npcName + " now has a good supply of flowers.");
+            }
 		}
 		
 		return res;
@@ -144,13 +144,20 @@ public class RestockFlowerShop extends AbstractQuest {
 	private void setupActiveQuestResponses() {
 		
 		// Player asks to be reminded of remaining flowers required
-		npc.add(ConversationStates.ANY,
-				Arrays.asList("flower", "remind", "what", "item", "list"),
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("flower", "remind", "what", "item", "list", "something"),
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
 				null,
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
 		
+        npc.add(ConversationStates.QUESTION_1,
+                Arrays.asList("flower", "remind", "what", "item", "list", "something"),
+                new QuestActiveCondition(QUEST_SLOT),
+                ConversationStates.QUESTION_1,
+                null,
+                new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I still need [items]. Did you bring any of those?"));
+        
         // Player asks to be reminded of remaining flowers required
         npc.add(ConversationStates.QUESTION_1,
                 Arrays.asList("flower", "remind", "what", "item", "list"),
@@ -280,7 +287,7 @@ public class RestockFlowerShop extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1,
-				"Did you bring anything for the shop?",
+				"Did you bring #something for the shop?",
 				null);
 		
 		// Player confirms brought flowers
