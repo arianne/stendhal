@@ -1,11 +1,14 @@
 ﻿Changelog
 ---------
 
+
 1.08
 
 *world*
+- New NPC and quest in Nalwor Flower Shop: Restock Flower Shop
 - New achievements: Nalwor's Bane and Feeling Blue
 - New puppy NPC in Semos City
+- Rodent trap added to Daily Item Quest
 - Some new creature sound effects
 - Some new creature corpses
 - New NPC type: PassiveNPC
@@ -15,29 +18,35 @@
 - Twin swords have a bit of DEF again
 - Teddies can be hugged
 - Food and drinks have "Eat" and "Drink" menu items, instead of "Use"
+- House keys are no longer dropped on death
+- Bufferflies added to Semos Plains North
+- Rabbits added to Fado City
+- Fish added to fountain in Ados City
+- 3 kitten added to Felina's house
+
 
 *client*
 - Option to turn off creature speech bubbles
-- Ctrl-click no longer works as a looting command
+- Fixed accidental looting on drag by deactivating ctrl-click as looting command
 - Immediate response when starting to move with arrow keys
 - Attack sprites are scaled according to attacker size
+- Player now faces attack target if not doing so on each turn
 
 
 *fixes*
 - quest log of EmotionCrystals fixed
-- Fixed text on sign near Jynath's house
-- Kanmararn Soldiers harmless corpses fixed
 - Removed background noise from many sound effects
-- Creature XML files have been reorganized without affecting client/server compatibility
-- BalanceRPGame works again
 - Pressing an arrow key always tries to move one tile
 - Producers don't ask to come back in the past under certain conditions anymore
 - Hayunn won't give more than one task at a time
+- Stone style for client fixed
 
 *code*
 - @Override added where applicable
 - Reduced visibility of several classes, methods and fields
 - Unused old code removed
+
+
 
 1.07
 18th April 2013
