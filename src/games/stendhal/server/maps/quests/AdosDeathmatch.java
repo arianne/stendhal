@@ -61,7 +61,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	private StendhalRPZone zone;
 
-	private Area arena;
+	private static Area arena;
 
 	private DeathmatchInfo deathmatchInfo;
 
@@ -104,7 +104,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	/**
 	 * Create the Deathmatch assistant.
-	 * 
+	 *
 	 * @param name name of the assistant
 	 * @param x x coordinate of the assistant
 	 * @param y y coordinate of the assistant
@@ -242,7 +242,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	private void recruiterInformation() {
 		final SpeakerNPC npc2 = npcs.get("Thonatus");
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status"), 
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status"),
 				 new NotCondition(new DeathMatchEmptyCondition()), ConversationStates.ATTENDING,
 				 null,
 				 new ChatAction() {
@@ -259,23 +259,23 @@ public class AdosDeathmatch extends AbstractQuest {
 					 }
 				 });
 
-		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , new DeathMatchEmptyCondition(), 
+		npc2.add(ConversationStates.ATTENDING, Arrays.asList("heroes", "who", "hero", "status") , new DeathMatchEmptyCondition(),
 				 ConversationStates.ATTENDING,
 				 "Are you a hero? Make the #challenge if you are sure you want to join the deathmatch.", null);
 
-		npc2.add(ConversationStates.ATTENDING, "challenge", 
-				 new AndCondition(new LevelGreaterThanCondition(19), 
+		npc2.add(ConversationStates.ATTENDING, "challenge",
+				 new AndCondition(new LevelGreaterThanCondition(19),
 						  new DeathMatchEmptyCondition(),
-						  new NotCondition(new PlayerHasPetOrSheepCondition())), 
-				 ConversationStates.IDLE, null,				 
+						  new NotCondition(new PlayerHasPetOrSheepCondition())),
+				 ConversationStates.IDLE, null,
 				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
 
-		npc2.add(ConversationStates.ATTENDING, "challenge", 
-			 new AndCondition(new LevelGreaterThanCondition(19), 
+		npc2.add(ConversationStates.ATTENDING, "challenge",
+			 new AndCondition(new LevelGreaterThanCondition(19),
 					  new NotCondition(new DeathMatchEmptyCondition()),
-					  new NotCondition(new PlayerHasPetOrSheepCondition())), 
-				 ConversationStates.QUESTION_1, null,				 
+					  new NotCondition(new PlayerHasPetOrSheepCondition())),
+				 ConversationStates.QUESTION_1, null,
 				 new ChatAction() {
 					 @Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
@@ -290,24 +290,24 @@ public class AdosDeathmatch extends AbstractQuest {
 					 }
 				 });
 
-		npc2.add(ConversationStates.ATTENDING, "challenge", 
-			 new AndCondition(new LevelGreaterThanCondition(19), 
+		npc2.add(ConversationStates.ATTENDING, "challenge",
+			 new AndCondition(new LevelGreaterThanCondition(19),
 					  new PlayerHasPetOrSheepCondition()),
 			 ConversationStates.ATTENDING, "Sorry, but it would be too scary for your pet in there.",
 				 null);
 
 
 		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
-				 ConversationStates.IDLE, null,				 
+				 ConversationStates.IDLE, null,
 				 new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
 
 		npc2.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
-				 ConversationStates.ATTENDING, "That's a bit cowardly, but never mind. If there's anything else you want, just say.",				 
+				 ConversationStates.ATTENDING, "That's a bit cowardly, but never mind. If there's anything else you want, just say.",
 				 null);
 
 		npc2.add(ConversationStates.ATTENDING, "challenge",
-				 new LevelLessThanCondition(20), 
+				 new LevelLessThanCondition(20),
 				 ConversationStates.ATTENDING, "Sorry, you are too weak for the #deathmatch now, come back when you have at least level 20.",
 				 null);
 	}
@@ -331,22 +331,22 @@ public class AdosDeathmatch extends AbstractQuest {
 	public int getMinLevel() {
 		return 20;
 	}
-	
+
 	@Override
 	public boolean isVisibleOnQuestStatus() {
 		return false;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		return new ArrayList<String>();
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.ADOS_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Thonatus";
