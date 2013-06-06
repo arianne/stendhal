@@ -21,10 +21,16 @@ import games.stendhal.common.Direction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import org.apache.log4j.Logger;
+
 /**
  * Main window keyboard handling.
  */
 class GameKeyHandler implements KeyListener {
+    
+    /** Logger instance */
+    private static final Logger logger = Logger.getLogger(GameKeyHandler.class);
+    
 	private final StendhalClient client;
 	private final GameScreen screen;
 
@@ -186,12 +192,12 @@ class GameKeyHandler implements KeyListener {
 			}
 		}
 
-		client.addDirection(direction, facing);
-		
-		// Movement prediction.
-		User user = User.get();
-		if (user != null) {
-			user.predictMovement(direction, facing);
+		if (client.addDirection(direction, facing)) {
+    		// Movement prediction.
+    		User user = User.get();
+    		if (user != null) {
+    			user.predictMovement(direction, facing);
+    		}
 		}
 	}
 

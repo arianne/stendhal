@@ -423,7 +423,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param face
 	 *            If to face direction only.
 	 */
-	public void addDirection(final Direction dir, final boolean face) {
+	public boolean addDirection(final Direction dir, final boolean face) {
 		RPAction action;
 		Direction odir;
 		int idx;
@@ -455,7 +455,7 @@ public class StendhalClient extends ClientFramework {
 
 			if (idx == (directions.size() - 1)) {
 				logger.debug("Ignoring same direction: " + dir);
-				return;
+				return false;
 			}
 
 			/*
@@ -473,6 +473,8 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	send(action);
+	
+	return true;
 	}
 
 
