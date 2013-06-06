@@ -35,7 +35,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Create a new GameKeyHandler.
-	 * 
+	 *
 	 * @param client client to send direction commands
 	 * @param screen screen where to direct game screen related commands
 	 */
@@ -139,9 +139,9 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Convert a keycode to the corresponding direction.
-	 * 
+	 *
 	 * @param keyCode The keycode.
-	 * 
+	 *
 	 * @return The direction, or <code>null</code>.
 	 */
 	private Direction keyCodeToDirection(final int keyCode) {
@@ -165,7 +165,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Handle direction press actions.
-	 * 
+	 *
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
@@ -186,18 +186,19 @@ class GameKeyHandler implements KeyListener {
 			}
 		}
 
-		client.addDirection(direction, facing);
-		
-		// Movement prediction.
-		User user = User.get();
-		if (user != null) {
-			user.predictMovement(direction, facing);
-		}
+        if (client.addDirection(direction, facing)) {
+
+    		// Movement prediction.
+    		User user = User.get();
+    		if (user != null) {
+    			user.predictMovement(direction, facing);
+    		}
+        }
 	}
 
 	/**
 	 * Handle direction release actions.
-	 * 
+	 *
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
@@ -223,7 +224,7 @@ class GameKeyHandler implements KeyListener {
 
 	/**
 	 * Switch the screen to spell casting state.
-	 * 
+	 *
 	 * @param e
 	 */
 	private void switchToSpellCastingState(KeyEvent e) {
@@ -252,10 +253,10 @@ class GameKeyHandler implements KeyListener {
 		/**
 		 * Check if a new direction matches the existing one, and if so, reset
 		 * the expiration point.
-		 * 
+		 *
 		 * @param dir The direction.
 		 * @param facing The facing flag.
-		 * 
+		 *
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(final Direction dir, final boolean facing) {
@@ -280,7 +281,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Get the direction.
-		 * 
+		 *
 		 * @return The direction.
 		 */
 		public Direction getDirection() {
@@ -289,7 +290,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Determine if the delay point has been reached.
-		 * 
+		 *
 		 * @return <code>true</code> if the delay time has been reached.
 		 */
 		public boolean hasExpired() {
@@ -298,7 +299,7 @@ class GameKeyHandler implements KeyListener {
 
 		/**
 		 * Determine if the facing only option was used.
-		 * 
+		 *
 		 * @return <code>true</code> if facing only.
 		 */
 		public boolean isFacing() {

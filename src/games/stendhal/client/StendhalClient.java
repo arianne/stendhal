@@ -102,7 +102,7 @@ public class StendhalClient extends ClientFramework {
 	private final StendhalPerceptionListener stendhalPerceptionListener;
 	/** The zone currently under loading. */
 	private Zone currentZone;
-	
+
 	private JFrame splashScreen;
 
 	public static StendhalClient get() {
@@ -423,7 +423,7 @@ public class StendhalClient extends ClientFramework {
 	 * @param face
 	 *            If to face direction only.
 	 */
-	public void addDirection(final Direction dir, final boolean face) {
+	public boolean addDirection(final Direction dir, final boolean face) {
 		RPAction action;
 		Direction odir;
 		int idx;
@@ -455,7 +455,7 @@ public class StendhalClient extends ClientFramework {
 
 			if (idx == (directions.size() - 1)) {
 				logger.debug("Ignoring same direction: " + dir);
-				return;
+				return false;
 			}
 
 			/*
@@ -473,6 +473,7 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	send(action);
+	    return true;
 	}
 
 
@@ -553,10 +554,10 @@ public class StendhalClient extends ClientFramework {
 	public void setCharacter(String character) {
 		this.character = character;
 	}
-	
+
 	/**
 	 * Set the splash screen window. Used for transient windows.
-	 * 
+	 *
 	 * @param splash first screen window
 	 */
 	public void setSplashScreen(JFrame splash) {
