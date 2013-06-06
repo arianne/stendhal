@@ -90,13 +90,16 @@ public class CreatureSpawner  {
 
 	/**
 	 * Gives the daily quest creature to the player,
-	 * if he hasn't found it yet, to be nice to the player. 
+	 * if he hasn't found it yet, to be nice to the player.
 	 * @param player the player taking the Deathmatch
 	 * @param dmInfo the Deathmatch's Info
 	 */
 	void spawnDailyMonster(final Player player, final DeathmatchInfo dmInfo) {
 		String dailyInfo = player.getQuest("daily", 0);
 		if (dailyInfo != null) {
+		    if (dailyInfo.startsWith("done")) {
+		        return;
+		    }
 			boolean questDone = new KilledForQuestCondition("daily", 0).fire(player, null, null);
 			if (!questDone) {
 				final String[] dTokens = dailyInfo.split(",");
