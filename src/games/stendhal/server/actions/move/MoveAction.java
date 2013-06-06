@@ -20,14 +20,11 @@ import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-import org.apache.log4j.Logger;
-
 /**
  * moves into the specified direction
  */
 public class MoveAction implements ActionListener {
 
-    private static final Logger logger = Logger.getLogger(MoveAction.class);
 	/**
 	 * registers the action
 	 */
@@ -52,6 +49,5 @@ public class MoveAction implements ActionListener {
 
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
-		logger.debug("MoveAction");
 	}
 }
