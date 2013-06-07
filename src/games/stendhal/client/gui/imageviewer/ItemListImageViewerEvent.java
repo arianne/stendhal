@@ -16,14 +16,19 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.gui.ComponentPaintCache;
 import games.stendhal.client.gui.ComponentPaintCache.Cacheable;
 import games.stendhal.client.gui.ScrolledViewport;
+import games.stendhal.client.gui.textformat.HTMLBuilder;
+import games.stendhal.client.gui.textformat.StringFormatter;
+import games.stendhal.client.gui.textformat.TextAttributeSet;
 import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.font.TextAttribute;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,8 +46,13 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	private static final long serialVersionUID = -6114543463410539585L;
 	/** Scrolling speed when using the mouse wheel. */
 	private static final int SCROLLING_SPEED = 8;
+	/** Formatter for item name underlining. */
+	private final StringFormatter<Map<TextAttribute, Object>, TextAttributeSet> formatter
+		= new StringFormatter<Map<TextAttribute, Object>, TextAttributeSet>();
+	/** Default attributes for the item name formatter (empty). */
+	private final TextAttributeSet defaultAttrs = new TextAttributeSet();
 
-	private RPEvent event;
+	private final RPEvent event;
 
 	/**
 	 * Creates a new ItemListImageViewerEvent.
@@ -51,6 +61,11 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 	 */
 	public ItemListImageViewerEvent(RPEvent event) {
 		this.event = event;
+		
+		// Just formatting § for now. Nothing should currently use #
+		TextAttributeSet set = new TextAttributeSet();
+		set.setAttribute(TextAttribute.UNDERLINE, "u");
+		formatter.addStyle('§', set);
 	}
 
 	/**
@@ -95,10 +110,10 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		html.append("<tr><th>Item</th><th>Price</th><th>Description</th></tr>");
 
 		RPSlot slot = event.getSlot("content");
+				
 		for (RPObject item : slot) {
 			createRow(html, item);
 		}
-
 		
 		html.append("</table></body></html>");
 
@@ -121,8 +136,12 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		html.append("</td><td>");
 		html.append(price);
 		html.append("</td><td>");
+		
 		String text = item.get("description_info");
-		html.append(text);
+		HTMLBuilder build = new HTMLBuilder();
+		formatter.format(text, defaultAttrs, build);
+		html.append(build.toHTML());
+		
 		html.append("</td></tr>");
 	}
 
