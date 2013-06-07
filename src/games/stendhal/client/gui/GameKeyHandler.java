@@ -21,16 +21,10 @@ import games.stendhal.common.Direction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import org.apache.log4j.Logger;
-
 /**
  * Main window keyboard handling.
  */
 class GameKeyHandler implements KeyListener {
-    
-    /** Logger instance */
-    private static final Logger logger = Logger.getLogger(GameKeyHandler.class);
-    
 	private final StendhalClient client;
 	private final GameScreen screen;
 
