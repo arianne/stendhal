@@ -32,16 +32,11 @@ import marauroa.common.game.RPObject;
  * @author durkham, hendrik
  */
 public class User extends Player {
-	/**
-	 * The speed at which to start moving before the the server responds to
-	 * pressing the arrow keys.
-	 */
-	private static final double PREDICTED_SPEED= 0.5;
-
 	private static User instance;
 	private static String groupLootmode;
 	private static Set<String> groupMembers;
 	private final HashSet<String> ignore = new HashSet<String>();
+	private final SpeedPredictor speedPredictor;
 
 	/**
 	 * is the user object not set, yet?
@@ -65,6 +60,11 @@ public class User extends Player {
 	 * creates a User object
 	 */
 	public User() {
+		if (instance == null) {
+			speedPredictor = new SpeedPredictor();
+		} else {
+			speedPredictor = new SpeedPredictor(instance.speedPredictor);
+		}
 		instance = this;
 	}
 
@@ -429,6 +429,14 @@ public class User extends Player {
 		return rpObject.getID().getZoneID();
 	}
 	
+	@Override
+	protected void processPositioning(final RPObject base, final RPObject diff) {
+		if (speedPredictor.isActive() && (diff.has("direction") || diff.has("x") || diff.has("y"))) {
+			speedPredictor.onMoved();
+		}
+		super.processPositioning(base, diff);
+	}
+	
 	/**
 	 * Start movement towards a direction. This is for
 	 * the client side movement prediction to start moving before the server
@@ -445,11 +453,13 @@ public class User extends Player {
 				direction = direction.oppositeDirection();
 			}
 			if (!facing) {
-				setSpeed(direction.getdx() * PREDICTED_SPEED, direction.getdy() * PREDICTED_SPEED);
+				double speed = speedPredictor.getSpeed();
+				setSpeed(direction.getdx() * speed, direction.getdy() * speed);
 				fireChange(PROP_SPEED);
+				speedPredictor.startPrediction();
 			}
-			setDirection(direction);
 			// setDirection fires the appropriate property for itself
+			setDirection(direction);
 		}
 	}
 }
