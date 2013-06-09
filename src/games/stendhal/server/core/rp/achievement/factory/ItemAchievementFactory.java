@@ -64,11 +64,9 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.set.mainio", "Excellent Stuff", "Loot a complete mainio equipment set",
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "mainio armor", "mainio helmet", "mainio cloak", "mainio legs", "mainio boots", "mainio shield")));
-		// commented as it is not really a complete equipment set, because the helmet is missing
-		// Update 2013-05-19: xeno helmet added but disabled in helmets.xml
-//		itemAchievements.add(createAchievement("item.set.xeno", "A bit xenophobic?", "Loot a complete xeno equipment set",
-//				Achievement.HARD_BASE_SCORE, true,
-//				new PlayerLootedNumberOfItemsCondition(1, "xeno armor", "xeno helmet", "xeno cloak", "xeno legs", "xeno boots", "xeno shield")));
+		itemAchievements.add(createAchievement("item.set.xeno", "A bit xenophobic?", "Loot a complete xeno equipment set",
+				Achievement.HARD_BASE_SCORE, false,
+				new PlayerLootedNumberOfItemsCondition(1, "xeno armor", "xeno helmet", "xeno cloak", "xeno legs", "xeno boots", "xeno shield")));
 
 		return itemAchievements;
 	}
