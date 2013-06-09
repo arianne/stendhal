@@ -245,7 +245,7 @@
     </equipable>
   </item>
   
-  <!-- Disabled xeno
+  <!-- xeno notes
   
 Some other possible DEF : LVL values:
 15 : 70-80
@@ -257,7 +257,7 @@ Some other possible DEF : LVL values:
 Possible drops:
 xenocium at 1.5%
 
-Possibly add to weekly item quest.
+Possibly add to weekly item quest. -->
   
   <item name="xeno helmet">
     <type class="helmet" subclass="xeno_helmet" tileid="-1" />
@@ -277,8 +277,6 @@ Possibly add to weekly item quest.
       <slot name="head" />
     </equipable>
   </item>
-  
-  End xeno -->
   
   <item name="chaos helmet">
     <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
