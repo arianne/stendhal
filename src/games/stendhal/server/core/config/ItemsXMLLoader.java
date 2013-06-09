@@ -126,6 +126,7 @@ public final class ItemsXMLLoader extends DefaultHandler {
 			slots = new LinkedList<String>();
 			description = "";
 			implementation = null;
+			useBehavior = null;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
