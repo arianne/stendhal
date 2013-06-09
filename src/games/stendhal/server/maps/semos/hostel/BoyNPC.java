@@ -85,7 +85,8 @@ public class BoyNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        null,
 				        new SayTextWithPlayerNameAction("Hi again, [name]! Thanks again, I'm feeling much better now."));
-				
+
+				addWaitMessage();
 				addGoodbye();
 			}
 

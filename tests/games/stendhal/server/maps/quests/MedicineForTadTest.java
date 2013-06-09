@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 import games.stendhal.server.entity.Outfit;
@@ -21,6 +22,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.hostel.BoyNPC;
@@ -86,6 +88,30 @@ public class MedicineForTadTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", getReply(npc));
+	}
+
+	@Test
+	public void testHiTwoPlayers() {
+		Player secondPlayer = createPlayer("secondPlayer");
+		registerPlayer(secondPlayer, zone);
+
+		final SpeakerNPC npc = getNPC("Tad");
+
+		npc.listenTo(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertTrue(npc.isTalking());
+		assertEquals(SSSHH_COME_HERE, getReply(npc));
+		assertNotNull(npc.getAttending());
+
+		npc.listenTo(secondPlayer, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertTrue(npc.isTalking());
+		String pleaseWaitStillAttending = "Please wait, secondPlayer! I am still attending to player.";
+		assertEquals(pleaseWaitStillAttending, getReply(npc));
+
+		npc.listenTo(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
+		assertFalse(npc.isTalking());
+		assertEquals("Bye.", getReply(npc));
+
+		removePlayer(secondPlayer);
 	}
 
 	/**

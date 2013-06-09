@@ -741,14 +741,7 @@ public class SpeakerNPC extends NPC {
 				new GreetingMatchesNameCondition(getName()), true,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				npc.say("Please wait, " + player.getTitle()
-						+ "! I am still attending to "
-						+ npc.getAttending().getTitle() + ".");
-			}
-		});
+		addWaitMessage();
 	}
 
 	/**
@@ -785,14 +778,7 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				npc.say("Please wait, " + player.getTitle()
-						+ "! I am still attending to "
-						+ npc.getAttending().getTitle() + ".");
-			}
-		});
+		addWaitMessage();
 	}
 
 	/**
@@ -806,14 +792,7 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.ATTENDING, triggerStrings, null,
 				ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null, new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-				npc.say("Please wait, " + player.getTitle()
-						+ "! I am still attending to "
-						+ npc.getAttending().getTitle() + ".");
-			}
-		});
+		addWaitMessage();
 	}
 
 	public void addQuest(final String text) {
@@ -945,5 +924,14 @@ public class SpeakerNPC extends NPC {
 		this.alternativeImage = alternativeImage;
 	}
 
-
+	protected void addWaitMessage() {
+		addWaitMessage(null, new ChatAction() {
+			@Override
+			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+				npc.say("Please wait, " + player.getTitle()
+						+ "! I am still attending to "
+						+ npc.getAttending().getTitle() + ".");
+			}
+		});
+	}
 }
