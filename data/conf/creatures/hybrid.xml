@@ -918,13 +918,14 @@
     <respawn value="3000"/>
     <corpse name="humanoid_2x2" width="2" height="2"/>
     <drops>
-      <item value="money" quantity="[30,100]" probability="100.0"/>
-      <item value="xeno shield" quantity="[1,1]" probability="1.0"/>
-      <item value="xeno cloak" quantity="[1,1]" probability="1.5"/>
-      <item value="xeno boots" quantity="[1,1]" probability="2.5"/>
-      <item value="xeno sword" quantity="[1,1]" probability="0.5"/>
-      <item value="xeno armor" quantity="[1,1]" probability="1.5"/>
-      <item value="xeno legs" quantity="[1,1]" probability="1.5"/>
+      <item value="money" quantity="[30,100]" probability="100.0" />
+      <item value="xeno shield" quantity="[1,1]" probability="1.0" />
+      <item value="xeno cloak" quantity="[1,1]" probability="1.5" />
+      <item value="xeno boots" quantity="[1,1]" probability="2.5" />
+      <item value="xeno sword" quantity="[1,1]" probability="0.5" />
+      <item value="xeno armor" quantity="[1,1]" probability="1.5" />
+      <item value="xeno legs" quantity="[1,1]" probability="1.5" />
+      <item value="xeno helmet" quantity="[1,1]" probability="1.5" />
     </drops>
     <equips>
     </equips>
