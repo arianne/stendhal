@@ -420,8 +420,9 @@ public class StendhalClient extends ClientFramework {
 	 *
 	 * @param dir
 	 *            The direction.
-	 * @param face
-	 *            If to face direction only.
+	 * @param face If to face direction only.
+	 *         
+	 * @return <code>true</code> if an action was sent, otherwise <code>false</code
 	 */
 	public boolean addDirection(final Direction dir, final boolean face) {
 		RPAction action;
@@ -466,15 +467,15 @@ public class StendhalClient extends ClientFramework {
 
 		directions.add(dir);
 
-	if (face) {
-		action = new FaceRPAction(dir);
-	} else {
-		action = new MoveRPAction(dir);
-	}
+		if (face) {
+			action = new FaceRPAction(dir);
+		} else {
+			action = new MoveRPAction(dir);
+		}
 
-	send(action);
-	
-	return true;
+		send(action);
+
+		return true;
 	}
 
 
