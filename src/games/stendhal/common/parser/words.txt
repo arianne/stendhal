@@ -810,7 +810,7 @@ sugar	OBJ-FOO	sugar
 suit	OBJ	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
-supplie	OBJ	supplies
+supply	OBJ	supplies
 surgeonfish	OBJ-FOO-ANI	surgeonfishes
 suzette	OBJ-FOO	suzettes
 swamp	OBJ	swamps
