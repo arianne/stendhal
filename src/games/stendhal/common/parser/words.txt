@@ -981,6 +981,7 @@ brui	SUB-NAM
 caiman	SUB-ANI
 cannibal	SUB
 captain	SUB
+captain Brownbeard SUB-NAM
 carena	SUB-NAM
 carey	SUB-NAM
 carmen	SUB-NAM
