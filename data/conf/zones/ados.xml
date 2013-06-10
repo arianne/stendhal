@@ -2963,31 +2963,46 @@ My fee:
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_53" ref="up"/>
   </portal>
- </zone>
- <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">12</parameter>
-    <parameter name="y">13</parameter>
-  </configurator>
+  </zone>
+  
+  <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">12</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">12</parameter>
-    <parameter name="y">10</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
- </configurator>
-  <portal x="9" y="14" ref="in_left">
-    <destination zone="0_ados_city_n" ref="house_54"/>
-  </portal>
-  <portal x="10" y="14" ref="in_right">
-    <destination zone="0_ados_city_n" ref="house_54"/>
-  </portal>
-  <portal x="3" y="3" ref="up">
-    <destination zone="int_ados_house_54_1" ref="down"/>
-  </portal>
- </zone>
+      <parameter name="x">12</parameter>
+      <parameter name="y">10</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="9" y="14" ref="in_left">
+      <destination zone="0_ados_city_n" ref="house_54"/>
+    </portal>
+    <portal x="10" y="14" ref="in_right">
+      <destination zone="0_ados_city_n" ref="house_54"/>
+    </portal>
+    <portal x="3" y="3" ref="up">
+      <destination zone="int_ados_house_54_1" ref="down"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="2" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="9" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+  </zone>
+  
  <zone name="int_ados_house_54_1" file="interiors/ados/house_54_1.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
