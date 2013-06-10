@@ -15,6 +15,7 @@ The following images are in the public domain:
     crystals:       http://www.clker.com/clipart-purple-amethyst.html
                     http://openclipart.org/detail/173471/minerals-by-qubodup-173471
     wooden:         http://www.clker.com/clipart-25040.html
+    juice_glass:    http://openclipart.org/detail/12865/juice-glass-by-anonymous-12865
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
     mimic.png & mimic_idle.png:
