@@ -3649,6 +3649,10 @@ My fee:
       <parameter name="x">11</parameter>
       <parameter name="y">2</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">4</parameter>
+      <parameter name="y">14</parameter>
+    </configurator>
     
     <!-- Portals -->
     <portal x="12" y="22" ref="in">
