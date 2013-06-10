@@ -3674,6 +3674,16 @@ My fee:
       <attribute name="description">You see a wash basin.</attribute>
     </entity>
     
+    <!-- Guitar -->
+    <entity x="21" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">guitar-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a guitar. Play a few chords.</attribute>
+    </entity>
+    
     <!-- Tables -->
     <entity x="18" y="17">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
