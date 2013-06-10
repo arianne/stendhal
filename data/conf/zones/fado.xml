@@ -1519,16 +1519,16 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
    <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance"/>
   </portal> 
 </zone>
-
-<zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
-	<configurator
-		class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" />
-	<configurator
-		class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" />
-	<entity x="18" y="0">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-    <!-- ticking clock sound effect -->
+  
+  <zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" />
+    <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" />
+    
+    <!-- Clock -->
+    <entity x="18" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
     <entity x="18" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
@@ -1536,22 +1536,40 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-	<portal x="18" y="23" ref="entrance">
-		<destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
-	</portal>
-</zone>
-
-<zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
-  <portal x="16" y="23" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
-  </portal>
-  <portal x="17" y="23" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_magic_house1" file="interiors/magic/house1.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
+    
+    <!-- Portals -->
+    <portal x="18" y="23" ref="entrance">
+      <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="10" y="21">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="25" y="21">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
+    <portal x="16" y="23" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
+    </portal>
+    
+    <portal x="17" y="23" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_house1" file="interiors/magic/house1.tmx">
+   <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
  
    <entity x="7" y="13">
         <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
