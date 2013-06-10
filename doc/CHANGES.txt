@@ -1,6 +1,16 @@
 ﻿Changelog
 ---------
 
+1.09
+
+*world*
+- Captain of Athor Ferry named Captain Brownbeard now
+
+*client*
+
+*fixes*
+- Alice Farmer answers to "crepes suzette"
+
 1.08
 
 *world*
