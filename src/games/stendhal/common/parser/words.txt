@@ -411,6 +411,7 @@ cow	OBJ-ANI	cows
 cream	OBJ	creams
 creature	OBJ	creatures
 crepe	OBJ-FOO	crepes
+crepes suzette OBJ-FOO
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
 crustaceans	OBJ	crustaceans
@@ -813,7 +814,7 @@ sun	OBJ	suns
 suntan	OBJ	suntans
 supply	OBJ	supplies
 surgeonfish	OBJ-FOO-ANI	surgeonfishes
-suzette	OBJ-FOO	suzettes
+suzette	OBJ-FOO	
 swamp	OBJ	swamps
 sweatshirt	OBJ	sweatshirts
 swimsuit	OBJ	swimsuits
