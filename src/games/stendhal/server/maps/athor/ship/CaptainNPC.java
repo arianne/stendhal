@@ -39,7 +39,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 	}
 
 	private void buildNPC(StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Captain") {
+		final SpeakerNPC npc = new SpeakerNPC("Captain Brownbeard") {
 
 			@Override
 			public void createDialog() {
@@ -95,7 +95,7 @@ public class CaptainNPC implements ZoneConfigurator  {
 		
 		npc.setPosition(23, 38);
 		npc.setEntityClass("piratenpc");
-		npc.setDescription ("You see the Captain of Athor Ferry. He will bring you from the mainland to the island.");
+		npc.setDescription ("You see Brownbeard, Captain of Athor Ferry. He will bring you from the mainland to the island.");
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);	
 	}
