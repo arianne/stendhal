@@ -27,10 +27,10 @@
 
  <!--  Ground level -->
 
-	<zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
+  <zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
     
     <!-- NPCs -->
 		<configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC" />
@@ -38,165 +38,252 @@
 		<configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.city.RabbitNPC" />
     
-		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-			<parameter name="x">55</parameter>
-			<parameter name="y">22</parameter>
-			<parameter name="image">fence_gate</parameter>
-			<parameter name="orientation">h</parameter>
-			<parameter name="condition">new AlwaysFalseCondition()</parameter>
-			<parameter name="message">The gate is locked.</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-			<parameter name="x">79</parameter>
-			<parameter name="y">88</parameter>
-			<parameter name="image">fence_gate</parameter>
-			<parameter name="orientation">v</parameter>
-			<parameter name="condition">new AlwaysFalseCondition()</parameter>
-			<parameter name="message">The gate is locked.</parameter>
-		</configurator>
-
-	<!-- writing on the wooden arch -->
-		
-		<entity x="29" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Fado</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-		
-		<entity x="30" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Fado</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-		
-		<entity x="31" y="2">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to Fado</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-           
- 	<portal x="36" y="17" ref="tavern_entrance_left">
-             <destination zone="int_fado_tavern" ref="entrance_left"/>
-           </portal>
-           
-           <portal x="48" y="17" ref="tavern_entrance_right">
-             <destination zone="int_fado_tavern" ref="entrance_right"/>
-           </portal>
-           
-           <portal x="46" y="38" ref="bank_entrance">
-             <destination zone="int_fado_bank" ref="entrance"/>
-           </portal> 
-		
-			<point-of-interest x="46" y="38">
-				<name>Fado Bank</name>
-				<type>bank</type>
-				<description>A place to store your possessions.</description>
-				<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
-			</point-of-interest>
-		   
-           <portal x="56" y="38" ref="bakery_entrance">
-             <destination zone="int_fado_bakery" ref="entrance"/>
-           </portal>
-           
-           <portal x="14" y="60" ref="hotel_entrance">
-             <destination zone="int_fado_hotel_0" ref="entrance"/>
-           </portal>
-           
-           <portal x="55" y="50" ref="church_entrance">
-             <destination zone="int_fado_church" ref="entrance_right"/>
-           </portal>
-           
-           <portal x="71" y="99" ref="shepherd_house_entrance">
-             <destination zone="int_fado_shepherd_house" ref="entrance"/>
-           </portal>
-          <portal x="82" y="44" ref="battle_arena_entrance">
-             <destination zone="int_fado_battle_arena" ref="entrance_right"/>
-           </portal> 
-           
-           <portal x="24" y="16" ref="house_entrance">
-             <destination zone="int_fado_house" ref="entrance_right"/>
-           </portal>
-
-	   <portal x="14" y="11" ref="weaponshop_entrance">
-             <destination zone="int_fado_weaponshop" ref="entrance"/>
-           </portal>
-
-	   <portal x="35" y="57" ref="hut_entrance">
-             <destination zone="int_fado_hut" ref="entrance"/>
-           </portal>
-           
-  <entity x="16" y="10">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+    <!-- Gates -->
+    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+      <parameter name="x">55</parameter>
+      <parameter name="y">22</parameter>
+      <parameter name="image">fence_gate</parameter>
+      <parameter name="orientation">h</parameter>
+      <parameter name="condition">new AlwaysFalseCondition()</parameter>
+      <parameter name="message">The gate is locked.</parameter>
+    </configurator>
+    
+    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+      <parameter name="x">79</parameter>
+      <parameter name="y">88</parameter>
+      <parameter name="image">fence_gate</parameter>
+      <parameter name="orientation">v</parameter>
+      <parameter name="condition">new AlwaysFalseCondition()</parameter>
+      <parameter name="message">The gate is locked.</parameter>
+    </configurator>
+    
+    <!-- Signs -->
+    <entity x="29" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to Fado</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <entity x="30" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to Fado</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <entity x="31" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to Fado</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="36" y="17" ref="tavern_entrance_left">
+      <destination zone="int_fado_tavern" ref="entrance_left"/>
+    </portal>
+    
+    <portal x="48" y="17" ref="tavern_entrance_right">
+      <destination zone="int_fado_tavern" ref="entrance_right"/>
+    </portal>
+    
+    <portal x="46" y="38" ref="bank_entrance">
+      <destination zone="int_fado_bank" ref="entrance"/>
+    </portal> 
+    
+    <point-of-interest x="46" y="38">
+      <name>Fado Bank</name>
+      <type>bank</type>
+      <description>A place to store your possessions.</description>
+      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+    </point-of-interest>
+    
+    <portal x="56" y="38" ref="bakery_entrance">
+      <destination zone="int_fado_bakery" ref="entrance"/>
+    </portal>
+    
+    <portal x="14" y="60" ref="hotel_entrance">
+      <destination zone="int_fado_hotel_0" ref="entrance"/>
+    </portal>
+    
+    <portal x="55" y="50" ref="church_entrance">
+      <destination zone="int_fado_church" ref="entrance_right"/>
+    </portal>
+    
+    <portal x="71" y="99" ref="shepherd_house_entrance">
+      <destination zone="int_fado_shepherd_house" ref="entrance"/>
+    </portal>
+    
+    <portal x="82" y="44" ref="battle_arena_entrance">
+      <destination zone="int_fado_battle_arena" ref="entrance_right"/>
+    </portal> 
+    
+    <portal x="24" y="16" ref="house_entrance">
+      <destination zone="int_fado_house" ref="entrance_right"/>
+    </portal>
+    
+	  <portal x="14" y="11" ref="weaponshop_entrance">
+      <destination zone="int_fado_weaponshop" ref="entrance"/>
+    </portal>
+    
+    <portal x="35" y="57" ref="hut_entrance">
+      <destination zone="int_fado_hut" ref="entrance"/>
+    </portal>
+    
+    <entity x="16" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">
 Getting Married? Why not buy an engagement ring? 
 It's not an official engagement without the nun knowing, but your girl will like to wear a diamond ring!
 You'll definitely need a wedding ring. Come here to get yours cast once you are engaged!
-	</attribute>
-      	<attribute name="class">blackboard</attribute>
+      </attribute>
+      <attribute name="class">blackboard</attribute>
     </entity>
-
-	<entity x="55" y="49">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
-		</implementation>
-	</entity>
-
-	<!-- Fado hotel beer garden -->
-
-	<!-- big tables -->
-
-	<!--  Table 1 -->
-	<entity x="21" y="72">
-		<implementation
-			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-		<attribute name="width">4</attribute>
-		<attribute name="height">1</attribute>
-	</entity>
-
-	<!--  Table 2 -->
-	<entity x="27" y="72">
-		<implementation
-			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-		<attribute name="width">4</attribute>
-		<attribute name="height">1</attribute>
-	</entity>
-
-	<!--  Table 3 -->
-	<entity x="21" y="77">
-		<implementation
-			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-		<attribute name="width">4</attribute>
-		<attribute name="height">1</attribute>
-	</entity>
-
-	<!--  Table 4 -->
-	<entity x="27" y="77">
-		<implementation
-			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-		<attribute name="width">4</attribute>
-		<attribute name="height">1</attribute>
-	</entity>
-
-	<!--  Table 5 -->
-	<entity x="33" y="69">
-		<implementation
-			class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-		<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-		<attribute name="width">4</attribute>
-		<attribute name="height">1</attribute>
-	</entity>
-
-	
-
- </zone>
- 
-         <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
+    
+    <!-- Usable sounds -->
+    <entity x="55" y="49">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
+    </entity>
+    
+    <!-- Fado hotel beer garden -->
+    
+    <!-- big tables -->
+    <entity x="21" y="72">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="27" y="72">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="21" y="77">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="27" y="77">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="33" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- Round tables -->
+    <entity x="2" y="62">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="7" y="62">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="11" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="2" y="74">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="11" y="75">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="3" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="11" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="21" y="68">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="24" y="68">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="27" y="68">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="30" y="68">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="21" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="24" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="27" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="30" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="35" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
            
            <portal x="12" y="18" ref="entrance">
