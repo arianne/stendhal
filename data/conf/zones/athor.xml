@@ -777,69 +777,114 @@
         <attribute name="height">1</attribute>
        </entity>
      </zone>
-
-     <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+  
+  <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx" accessible="false">
+	  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+	  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
 	   	<parameter name="x">12</parameter>
-		<parameter name="y">8</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_7_entrance"/>
-       </portal>
-       <!-- whirpool -->
-       <entity x="2" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="3" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="4" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="5" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <!-- table -->
-       <entity x="2" y="10">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a table to place your food and drinks on.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- counter -->
-       <entity x="1" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a counter to place your food and drinks on.</attribute>
-        <attribute name="width">6</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-     </zone>
-
+		  <parameter name="y">8</parameter>
+	  </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_7_entrance"/>
+    </portal>
+    
+    <!-- whirpool -->
+    <entity x="2" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Music/Audio/Ambiance -->
+    <entity x="3" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="5" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Tables/Counters -->
+    <entity x="2" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table to place your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="1" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter to place your food and drinks on.</attribute>
+      <attribute name="width">6</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="11" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="9" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="11" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="14" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="9" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="12" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="14" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+  </zone>
+  
      <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx" accessible="false">
        <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
