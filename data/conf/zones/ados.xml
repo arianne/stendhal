@@ -1581,30 +1581,38 @@ in roaches.
      <destination zone="int_ados_zaras_house_1" ref="down_zaras_house"/>
     </portal>
    </zone>   
-   
-   <zone name="int_ados_zaras_house_1" file="interiors/ados/zaras_house_1.tmx">
+  
+  <zone name="int_ados_zaras_house_1" file="interiors/ados/zaras_house_1.tmx">
+    <!-- Portals -->
     <portal x="11" y="4" ref="down_zaras_house">
-     <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
+      <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
     </portal>
+    
     <entity x="3" y="3">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-      <parameter name="slot">zaras_chest_ados</parameter>
-     </implementation>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">zaras_chest_ados</parameter>
+      </implementation>
     </entity>
     
-        <!-- faucet running water -->
-        <entity x="9" y="8">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-   </zone>
-   
-   
-   <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
+    <!-- Tables -->
+    <entity x="4" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="9" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC" />
     
@@ -2801,16 +2809,19 @@ My fee:
    <destination zone="-1_ados_city" ref="crawlyspaceup"/>
   </portal>
  </zone>
- 
- <zone name="int_ados_ross_house" file="interiors/ados/ross_house.tmx">
-        <configurator class-name="games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC"/>    
-    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC"/>
-    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable"/>
+  
+  <zone name="int_ados_ross_house" file="interiors/ados/ross_house.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC" />    
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC" />
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable" />
+    
+    <!-- Portals -->
     <portal x="7" y="14" ref="entrance">
-     <destination zone="0_ados_city" ref="ross_house_entrance"/>
+      <destination zone="0_ados_city" ref="ross_house_entrance"/>
     </portal>
+    
   </zone>
-
+  
  <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -3158,204 +3169,238 @@ My fee:
    <destination zone="int_ados_house_57" ref="up"/>
   </portal>
  </zone>
-
- <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">11</parameter>
-    <parameter name="y">13</parameter>
-  </configurator>
   
-        <!-- flushing toilet -->
-        <entity x="2" y="9">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
+  <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">11</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    
+    <!-- flushing toilet -->
+    <entity x="2" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="5" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="7" y="14" ref="in">
+      <destination zone="0_ados_city_n" ref="house_58"/>
+    </portal>
+    <portal x="3" y="3" ref="up">
+      <destination zone="int_ados_house_58_1" ref="down"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="5" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+  </zone>
   
-        <!-- faucet running water -->
-        <entity x="5" y="9">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-  <portal x="7" y="14" ref="in">
-    <destination zone="0_ados_city_n" ref="house_58"/>
-  </portal>
-  <portal x="3" y="3" ref="up">
-    <destination zone="int_ados_house_58_1" ref="down"/>
-  </portal>
- </zone>
- 
- <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">3</parameter>
-    <parameter name="y">11</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
- </configurator>
-  <portal x="3" y="3" ref="down">
-   <destination zone="int_ados_house_58" ref="up"/>
-  </portal>
- </zone>
-
- <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">13</parameter>
-    <parameter name="y">8</parameter>
-  </configurator>
+      <parameter name="x">3</parameter>
+      <parameter name="y">11</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="3" y="3" ref="down">
+      <destination zone="int_ados_house_58" ref="up"/>
+    </portal>
+    
+  </zone>
+   
+  <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">13</parameter>
+      <parameter name="y">8</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">2</parameter>
-    <parameter name="y">4</parameter>
-    <parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-        <!-- flushing toilet -->
-        <entity x="6" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
+      <parameter name="x">2</parameter>
+      <parameter name="y">4</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    
+    <!-- flushing toilet -->
+    <entity x="6" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="7" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="7" y="14" ref="in">
+      <destination zone="0_ados_city_n" ref="house_59"/>
+    </portal>
+    <portal x="3" y="3" ref="up">
+      <destination zone="int_ados_house_59_1" ref="down"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="5" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+  </zone>
   
-        <!-- faucet running water -->
-        <entity x="7" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
+  <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    
+    <!-- Portals -->
+    <portal x="3" y="3" ref="down">
+      <destination zone="int_ados_house_59" ref="up"/>
+    </portal>
+    
+  </zone>
   
-  <portal x="7" y="14" ref="in">
-    <destination zone="0_ados_city_n" ref="house_59"/>
-  </portal>
-  <portal x="3" y="3" ref="up">
-    <destination zone="int_ados_house_59_1" ref="down"/>
-  </portal>
- </zone>
- 
- <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="3" y="3" ref="down">
-   <destination zone="int_ados_house_59" ref="up"/>
-  </portal>
- </zone>
-
- <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">7</parameter>
-    <parameter name="y">2</parameter>
-  </configurator>
+  <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">7</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">4</parameter>
-    <parameter name="y">12</parameter>
-    <parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <portal x="7" y="14" ref="in">
-    <destination zone="0_ados_city_n" ref="house_60"/>
-  </portal>
-  <portal x="3" y="3" ref="up">
-    <destination zone="int_ados_house_60_1" ref="down"/>
-  </portal>
+      <parameter name="x">4</parameter>
+      <parameter name="y">12</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="7" y="14" ref="in">
+      <destination zone="0_ados_city_n" ref="house_60"/>
+    </portal>
+    <portal x="3" y="3" ref="up">
+      <destination zone="int_ados_house_60_1" ref="down"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="10" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <!-- flushing toilet -->
+    <entity x="13" y="7">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="12" y="7">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+  </zone>
   
-        <!-- flushing toilet -->
-        <entity x="13" y="7">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
+  <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    
+    <!-- Portals -->
+    <portal x="3" y="3" ref="down">
+      <destination zone="int_ados_house_60" ref="up"/>
+    </portal>
+    
+  </zone>
   
-        <!-- faucet running water -->
-        <entity x="12" y="7">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
+  <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">5</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="7" y="14" ref="in">
+      <destination zone="0_ados_city_n" ref="house_61"/>
+    </portal>
+    <portal x="3" y="3" ref="up">
+      <destination zone="int_ados_house_61_1" ref="down"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="8" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <!-- flushing toilet -->
+    <entity x="12" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="11" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+  </zone>
   
- </zone>
-
- <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="3" y="3" ref="down">
-   <destination zone="int_ados_house_60" ref="up"/>
-  </portal>
- </zone>
-
- <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">5</parameter>
-    <parameter name="y">2</parameter>
-  </configurator>
-  <portal x="7" y="14" ref="in">
-    <destination zone="0_ados_city_n" ref="house_61"/>
-  </portal>
-  <portal x="3" y="3" ref="up">
-    <destination zone="int_ados_house_61_1" ref="down"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="12" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="11" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
- </zone>
-
- <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+  <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">2</parameter>
-    <parameter name="y">9</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
- </configurator>
-  <portal x="3" y="3" ref="down">
-   <destination zone="int_ados_house_61" ref="up"/>
-  </portal>
- </zone>
-
+      <parameter name="x">2</parameter>
+      <parameter name="y">9</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="3" y="3" ref="down">
+      <destination zone="int_ados_house_61" ref="up"/>
+    </portal>
+    
+  </zone>
+  
  <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
@@ -3451,56 +3496,65 @@ My fee:
     <destination zone="0_ados_city" ref="house_65"/>
   </portal>
  </zone>
- 
- <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx" accessible="false">
-  <configurator
-    class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-            class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-    <parameter name="x">19</parameter>
-    <parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-    <parameter name="x">3</parameter>
-    <parameter name="y">23</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  <entity x="2" y="10">
-	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-  </entity>
   
-  <!-- ticking clock sound effect -->
-  <entity x="2" y="10">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-      <parameter name="sound">clock-1</parameter>
-      <parameter name="radius">15</parameter>
-      <parameter name="volume">100</parameter>
-    </implementation>
-  </entity>
+  <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">19</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">3</parameter>
+      <parameter name="y">23</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="20" y="19" ref="in">
+      <destination zone="0_ados_city" ref="house_66"/>
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="12" y="14">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <!-- Clock -->
+    <entity x="2" y="10">
+	    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
+    </entity>
+    
+    <entity x="2" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- flushing toilet -->
+    <entity x="12" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    
+    <!-- faucet running water -->
+    <entity x="13" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+  </zone>
   
-        <!-- flushing toilet -->
-        <entity x="12" y="10">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="13" y="10">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-  <portal x="20" y="19" ref="in">
-    <destination zone="0_ados_city" ref="house_66"/>
-  </portal>
- </zone>
  <zone name="int_ados_house_67" file="interiors/ados/house_67.tmx" accessible="false">
   <configurator
     class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
