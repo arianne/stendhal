@@ -3702,6 +3702,32 @@ My fee:
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
     
+    <!-- Counters -->
+    <entity x="17" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for preparing food and drinks.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="17" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for preparing food and drinks.</attribute>
+      <attribute name="width">6</attribute>
+    </entity>
+    
+    <entity x="22" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for preparing food and drinks.</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+    
+    <entity x="17" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for preparing food and drinks.</attribute>
+      <attribute name="width">6</attribute>
+    </entity>
+    
     <!-- Wastebin -->
     <entity x="14" y="8">
       <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
