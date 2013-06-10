@@ -23,9 +23,6 @@ The following files are released under the terms and conditions of the GPL (see 
         Copyright qubodup
         Source: http://opengameart.org/content/rotating-crystal-animation-8-step 
 
-Permission has been granted to use the image dog_small (originally called brown_puppy). See permission_dog_small_sprite.pdf.
-    dog_small.xcf.bz2:  http://rpgmaker.net/media/content/users/17733/locker/brown_puppy.png
-
 These images are released under the following BSD license:
     antivenom_ring                  lt_blue_drapes
     giant_cobra                     peach_drapes
@@ -35,7 +32,7 @@ These images are released under the following BSD license:
     panel_tile_aqua_001             elvish_hat
     corpse/*rock                    crab_meat
     torch_2                         butterfly
-    giant_boulder
+    giant_boulder                   table/white
     elvish_hat
     corpse/*cloaked
     rock
