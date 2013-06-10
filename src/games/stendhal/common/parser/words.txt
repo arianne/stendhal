@@ -279,6 +279,7 @@ ankh	OBJ	ankhs
 antidote	OBJ-FOO-FLU	antidotes
 apartment	OBJ	apartments
 apology	OBJ	apologies
+apothecary OBJ apothecaries
 apple	OBJ-FOO	apples
 arandula	OBJ
 armor	OBJ	armors
