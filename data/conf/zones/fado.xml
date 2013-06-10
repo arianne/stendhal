@@ -782,12 +782,36 @@ For example say:  11  if you want the room called Water of Love.
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
          </zone>
-
-         <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
-	 
+  
+  <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx" accessible="false">
+    <!-- to disallow making or using marked scrolls-->
+	  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    
+    <!-- Tables -->
+    <entity x="7" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="18" y="14">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="7" y="17">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+    <entity x="18" y="17">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+    </entity>
+    
+  </zone>
+	
 	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx" accessible="false">
          <!-- to disallow making or using marked scrolls-->
 	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
