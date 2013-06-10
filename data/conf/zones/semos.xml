@@ -178,145 +178,165 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
         </implementation>
       </entity>
 	</zone>
-
-	<zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
-		file="Level 0/semos/mountain_n2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-			<parameter name="file" condition="stendhal.minetown">Level 0/semos/mountain_n2_mine_town_weeks.tmx</parameter>
-		</attributes>
-
-		<point-of-interest x="90" y="97">
-			<name>Semos Mines</name>
-			<type>dungeon</type>
-			<description>Western entrance to the Semos Mines, the city of Wofol and the huge tunnel system leading through the mountains. (Player Level 6 - 597)</description>
-			<url>http://stendhalgame.org/wiki/Semos_Mines</url>
-		</point-of-interest>
-
-		<portal x="80" y="108" ref="frank_house">
-			<destination zone="int_semos_frank_house" ref="exit" />
-		</portal>
-
-		<entity x="106" y="111">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Entrance just allowed for mine workers.</attribute>
-		</entity>
-
-		 <!-- START MINE TOWN WEEKS -->
-		
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="94" y="118" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="95" y="119" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- writing on the wooden arch MINE TOWN WEEKS -->
-		<entity x="96" y="119" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
-			<attribute name="class">transparent</attribute>
-			<attribute name="resistance">0</attribute>
-		</entity>
-
-		<!-- Caroline Shop signs for MINE TOWN WEEKS -->
-		<entity x="60" y="105" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-				<parameter name="shop">sellrevivalweeks</parameter>
-				<parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
-				<parameter name="seller">true</parameter>
-				<parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
-			</implementation>
-
-			<attribute name="class">blackboard</attribute>
-		</entity>
-
-		<entity x="55" y="105" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-				<parameter name="shop">sellrevivalweeks</parameter>
-				<parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
-				<parameter name="seller">true</parameter>
-				<parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
-			</implementation>
-			<attribute name="class">blackboard</attribute>
-		</entity>
-
-		<!-- tables during Mine Town -->
-		<entity x="55" y="110" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-
-		<entity x="61" y="110" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-
-		<entity x="67" y="110" condition="stendhal.minetown">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-
-
-		<!-- ENDMINE TOWN WEEKS -->
-	</zone>
-
-	<zone name="int_semos_frank_house" file="interiors/semos/frank_house.tmx">
-
-		<portal x="7" y="30" ref="exit">
-			<destination zone="0_semos_mountain_n2" ref="frank_house" />
-		</portal>
-
-	</zone>
-
-	<zone name="0_semos_mountain_n2_e" level="0" x="500128" y="499744"
-		file="Level 0/semos/mountain_n2_e.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
-
-	<zone name="int_mithrilbourgh_stores" file="interiors/mithrilbourgh/stores.tmx">
-
-		<configurator
-			class-name="games.stendhal.server.maps.mithrilbourgh.stores.BuyerNPC" />
-
-      <entity x="14" y="1">
-       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-         <parameter name="shop">sellarrows</parameter>
-         <parameter name="title">Ammunition sale</parameter>
-         <parameter name="seller">true</parameter>
-         <parameter name="caption">You can buy these arrows here.</parameter>
-        </implementation>
-        <attribute name="class">blackboard</attribute>
-       </entity>
-
-		<portal x="6" y="11" ref="entrance">
-			<destination zone="0_semos_mountain_n2_e2" ref="stores_entrance" />
-		</portal>
-
-	</zone>
-	<zone name="int_mithrilbourgh_throne_room" file="interiors/mithrilbourgh/throne_room.tmx">
-
-		<configurator
-			class-name="games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC" />
-
-
+  
+  <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744" file="Level 0/semos/mountain_n2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+      <parameter name="file" condition="stendhal.minetown">Level 0/semos/mountain_n2_mine_town_weeks.tmx</parameter>
+    </attributes>
+    
+    <point-of-interest x="90" y="97">
+      <name>Semos Mines</name>
+      <type>dungeon</type>
+      <description>Western entrance to the Semos Mines, the city of Wofol and the huge tunnel system leading through the mountains. (Player Level 6 - 597)</description>
+      <url>http://stendhalgame.org/wiki/Semos_Mines</url>
+    </point-of-interest>
+    
+    <!-- Portals -->
+    <portal x="80" y="108" ref="frank_house">
+      <destination zone="int_semos_frank_house" ref="exit" />
+    </portal>
+    
+    <!-- Signs -->
+    <entity x="106" y="111">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Entrance just allowed for mine workers.</attribute>
+    </entity>
+    
+    <!-- START MINE TOWN WEEKS -->
+    
+    <!-- writing on the wooden arch MINE TOWN WEEKS -->
+    <entity x="94" y="118" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <!-- writing on the wooden arch MINE TOWN WEEKS -->
+    <entity x="95" y="119" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <!-- writing on the wooden arch MINE TOWN WEEKS -->
+    <entity x="96" y="119" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <!-- Caroline Shop signs for MINE TOWN WEEKS -->
+    <entity x="60" y="105" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">sellrevivalweeks</parameter>
+        <parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
+        <parameter name="seller">true</parameter>
+        <parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <entity x="55" y="105" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">sellrevivalweeks</parameter>
+        <parameter name="title">Carolines snacks and drinks shop (sells)</parameter>
+        <parameter name="seller">true</parameter>
+        <parameter name="caption">Caroline sells snacks and drinks during the Mine Town Revival weeks.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <!-- Tables during Mine Town -->
+    <entity x="55" y="110" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="61" y="110" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="67" y="110" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- Round tables -->
+    <entity x="56" y="117">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="62" y="117">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="68" y="117">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <!-- ENDMINE TOWN WEEKS -->
+    
+  </zone>
+  
+  <zone name="int_semos_frank_house" file="interiors/semos/frank_house.tmx">
+    <!-- Portals -->
+    <portal x="7" y="30" ref="exit">
+      <destination zone="0_semos_mountain_n2" ref="frank_house" />
+      </portal>
+      
+  </zone>
+  
+  <zone name="0_semos_mountain_n2_e" level="0" x="500128" y="499744" file="Level 0/semos/mountain_n2_e.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+  </zone>
+  
+  <zone name="int_mithrilbourgh_stores" file="interiors/mithrilbourgh/stores.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.mithrilbourgh.stores.BuyerNPC" />
+    
+    <!-- Signs -->
+    <entity x="14" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">sellarrows</parameter>
+        <parameter name="title">Ammunition sale</parameter>
+        <parameter name="seller">true</parameter>
+        <parameter name="caption">You can buy these arrows here.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="6" y="11" ref="entrance">
+      <destination zone="0_semos_mountain_n2_e2" ref="stores_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_mithrilbourgh_throne_room" file="interiors/mithrilbourgh/throne_room.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC" />
+    
+    <!-- Portals -->
 		<portal x="7" y="18" ref="entrance1">
 			<destination zone="0_semos_mountain_n2_e2" ref="throne_entrance1" />
 		</portal>
