@@ -3662,6 +3662,19 @@ My fee:
       <attribute name="resistance">0</attribute>
     </portal>
     
+    <!-- Clock -->
+    <entity x="16" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
+    <entity x="16" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
     <!-- flushing toilet -->
     <entity x="3" y="16">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
