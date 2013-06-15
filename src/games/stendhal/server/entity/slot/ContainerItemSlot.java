@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,8 +24,8 @@ public class ContainerItemSlot extends EntitySlot {
 	/**
 	 * creates a new ContainerItemSlot
 	 *
-	 * @param name
-	 * @param contentSlotName
+	 * @param name name of slot
+	 * @param contentSlotName name of slot used by the "item may be put in" check
 	 */
 	public ContainerItemSlot(String name, String contentSlotName) {
 		super(name, contentSlotName);
@@ -38,4 +38,11 @@ public class ContainerItemSlot extends EntitySlot {
 		return super.hasAsAncestor(entity);
 	}
 
+	/**
+	 * just return the slot name
+	 */
+	@Override
+	public String toString() {
+		return "ContainerItemSlot";
+	}
 }
