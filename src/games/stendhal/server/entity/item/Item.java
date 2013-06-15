@@ -621,6 +621,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	public void onTurnReached(final int currentTurn) {
 		// remove this object from the zone where it's lying on the ground
 		if (getZone() != null) {
+			if (this.hasSlot("content"))
+			for (RPObject obj : getSlot("content")) {
+				new ItemLogger().timeout((Item) obj);
+			}
 			getZone().remove(getID());
 			new ItemLogger().timeout(this);
 		}
