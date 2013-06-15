@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2007-2010 - Stendhal                   *
+ *                    (C) Copyright 2007-2013 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -47,6 +47,10 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 
 	@Override
 	protected void log(final DBTransaction transaction) throws SQLException {
+		// don't log the destruction of items that have not been logged prior.
+		if (event.equals("destroy") && !item.has("logid")) {
+			return;
+		}
 		itemLogAssignIDIfNotPresent(transaction, item);
 		itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
 	}

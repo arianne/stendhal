@@ -80,12 +80,9 @@ public class ItemLogger {
 	 * Call when the item or its container times out, or the containing zone is
 	 * destroyed
 	 * 
-	 * @param item
+	 * @param item Item to log timeout for
 	 */
 	public void timeout(final Item item) {
-		if (!item.has("logid")) {
-			return;
-		}
 		LogSimpleItemEventCommand command;
 		if (!item.isContained()) {
 			command = new LogSimpleItemEventCommand(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());

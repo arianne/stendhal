@@ -342,14 +342,7 @@ public class Corpse extends PassiveEntity implements EquipListener {
 		degradateCorpse();
 		if (isCompletelyRotten()) {
 			for (RPObject obj : getSlot(CONTENT_SLOT)) {
-				/*
-				 * Log items that have a logid. They are put there by players.
-				 * Those that don't have it haven't had their creation logged
-				 * either yet.
-				 */
-				if (obj.has("logid") && (obj instanceof Item)) {
-					new ItemLogger().timeout((Item) obj);
-				}
+				new ItemLogger().timeout((Item) obj);
 			}
 			getZone().remove(this);
 		} else {
