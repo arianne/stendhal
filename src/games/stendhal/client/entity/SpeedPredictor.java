@@ -24,11 +24,6 @@ class SpeedPredictor {
 	 */
 	private static final double INITIAL_PREDICTED_SPEED = 0.3;
 	/**
-	 * Amount of time margin in milliseconds assumed above the calculated
-	 * typical lag. Higher values mean slower starting speed.
-	 */
-	private static final double CONSERVATIVENESS = 30;
-	/**
 	 * Time threshold in milliseconds, above which measured lag events are
 	 * assumed to be caused by temporary network glitches, or other
 	 * anomalous conditions (such as user being unable to move to the
@@ -36,6 +31,11 @@ class SpeedPredictor {
 	 * finding instead of keyboard). 
 	 */
 	private static final double DISCARD_THRESHOLD = 2000;
+	/**
+	 * Very low starting speeds can look odd, so we treat those as 0, and only
+	 * turn the player in the prediction code if that's the case.
+	 */
+	private static final double DISABLING_THRESHDOLD = 0.2;
 	/**
 	 * Length of the lag time accumulation vector. The amount of history
 	 * retained for the prediction purposes. Smaller value means faster
@@ -57,6 +57,11 @@ class SpeedPredictor {
 	 * after that.
 	 */
 	private long timeStamp;
+	/**
+	 * A measure of instability in latency. Not really any exact value, but
+	 * corresponds to milliseconds.
+	 */
+	private double jitter;
 	
 	/**
 	 * Create a new SpeedPredictor with default initial prediction and
@@ -68,7 +73,7 @@ class SpeedPredictor {
 		
 		// Fill the history with data corresponding to the default
 		// prediction.
-		double average = TURN_LENGTH / INITIAL_PREDICTED_SPEED - CONSERVATIVENESS;
+		double average = TURN_LENGTH / INITIAL_PREDICTED_SPEED;
 		for (int i = 0; i < VECTOR_LENGTH; i++) {
 			times[i] = average;
 		}
@@ -83,6 +88,7 @@ class SpeedPredictor {
 	SpeedPredictor(SpeedPredictor old) {
 		times = old.times;
 		prediction = old.prediction;
+		jitter = old.jitter;
 	}
 	
 	/**
@@ -114,15 +120,19 @@ class SpeedPredictor {
 			return;
 		}
 		
+		double recentJitter = 0;
 		double sum = 0.0;
 		for (int i = 0; i < VECTOR_LENGTH; i++) {
 			double old = times[i];
 			double avg = (diff + old) / 2;
+			recentJitter += Math.abs(old - diff);
 			times[i] = avg;
 			diff = old;
 			sum += avg;
 		}
-		prediction = TURN_LENGTH / (sum / VECTOR_LENGTH + CONSERVATIVENESS);
+		recentJitter /= 8;
+		jitter = (jitter + 2.0 * Math.max(jitter, recentJitter) + recentJitter) / 4.0;
+		prediction = TURN_LENGTH / (sum / VECTOR_LENGTH + jitter);
 	}
 
 	/**
@@ -131,6 +141,10 @@ class SpeedPredictor {
 	 * @return predicted speed
 	 */
 	double getSpeed() {
-		return prediction;
+		if (prediction > DISABLING_THRESHDOLD) {
+			return prediction;
+		}
+		
+		return 0.0;
 	}
 }
