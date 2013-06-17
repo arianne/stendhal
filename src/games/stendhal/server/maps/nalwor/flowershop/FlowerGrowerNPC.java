@@ -40,6 +40,9 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     		@Override
     		protected void createPath() {
     			List<Node> nodes = new ArrayList<Node>();
+    			nodes.add(new Node(4, 3));
+    			nodes.add(new Node(3, 3));
+    			nodes.add(new Node(3, 6));
     			nodes.add(new Node(4, 6));
     			nodes.add(new Node(4, 8));
     			nodes.add(new Node(2, 8));
@@ -49,8 +52,13 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     			nodes.add(new Node(4, 8));
     			nodes.add(new Node(4, 6));
     			nodes.add(new Node(10, 6));
-    			nodes.add(new Node(10, 5));
-                nodes.add(new Node(10, 6));
+    			nodes.add(new Node(10, 3));
+    			nodes.add(new Node(10, 4));
+    			nodes.add(new Node(11, 4));
+    			nodes.add(new Node(10, 4));
+    			nodes.add(new Node(10, 6));
+    			nodes.add(new Node(3, 6));
+    			nodes.add(new Node(3, 3));
     			setPath(new FixedPath(nodes, true));
     		}
     		
@@ -66,7 +74,7 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     		}
     	};
     	
-    	npc.setPosition(4, 6);
+    	npc.setPosition(4, 3);
     	npc.setReversiblePath(true);
     	npc.setDescription("You see a beautiful elf girl that loves flowers.");
     	npc.setEntityClass("elfflowergrowernpc");
