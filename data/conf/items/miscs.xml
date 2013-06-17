@@ -78,7 +78,7 @@
 
   <item name="cards">
     <type class="misc" subclass="cards" tileid="-1"/>
-    <description>You see a deck of cards.  Shuffle them well, to get a winning hand.</description>
+    <description>You see a deck of cards. Shuffle them well, to get a winning hand.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
