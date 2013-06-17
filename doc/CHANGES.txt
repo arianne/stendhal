@@ -10,6 +10,7 @@
 
 *fixes*
 - Alice Farmer answers to "crepes suzette"
+- TeleporterBehaviour badZones table updated
 
 1.08
 
