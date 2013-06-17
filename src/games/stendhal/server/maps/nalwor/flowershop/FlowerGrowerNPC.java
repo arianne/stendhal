@@ -67,6 +67,7 @@ public class FlowerGrowerNPC implements ZoneConfigurator {
     	};
     	
     	npc.setPosition(4, 6);
+    	npc.setReversiblePath(true);
     	npc.setDescription("You see a beautiful elf girl that loves flowers.");
     	npc.setEntityClass("elfflowergrowernpc");
     	zone.add(npc);
