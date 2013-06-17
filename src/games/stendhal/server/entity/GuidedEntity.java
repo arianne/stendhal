@@ -15,6 +15,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Collections;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -29,6 +30,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 	private final EntityGuide guide = new EntityGuide();
 
 	public Registrator pathnotifier = new Registrator();
+	
+	/** The entity can reverse its direction after collision */
+	private boolean reversiblePath = false;
 	
     /**
      * The entity is using a random path
@@ -103,7 +107,32 @@ public abstract class GuidedEntity extends ActiveEntity {
 		
 		guide.clearPath();
 	}
+	
+	/*
+	 * Changed the entity's path to walk in the oppisite direction
+	 */
+	public void reversePath() {
+	    if (!randomPath && reversiblePath) {
+	        List<Node> reverseNodes = guide.path.getNodeList();
+	        Collections.reverse(reverseNodes);
+	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()));
+	    }
+	}
+	
+	/**
+	 * @param Entity's path can be changed upon collision to walk in the opposite direction
+	 */
+    public void setReversiblePath(boolean reversible) {
+        reversiblePath = reversible;
+    }
     
+    /**
+     * @return Entity's path can be changed upon collision to walk in the opposite direction
+     */
+	public boolean hasReversiblePath() {
+	    return reversiblePath;
+	}
+	
     /**
      * Sets or unsets entity's path as random.
      * 
