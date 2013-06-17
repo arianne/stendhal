@@ -898,12 +898,22 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	protected void handleObjectCollision() {
-		stop();
+	    if (hasReversiblePath()) {
+	        reversePath();
+	    }
+	    else {
+	        stop();
+	    }
 	}
 
 	@Override
 	protected void handleSimpleCollision(final int nx, final int ny) {
-		stop();
+	    if (hasReversiblePath()) {
+	        reversePath();
+	    }
+	    else {
+	        stop();
+	    }
 	}
 
 	/**
