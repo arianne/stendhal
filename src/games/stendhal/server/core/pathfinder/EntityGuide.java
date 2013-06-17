@@ -72,6 +72,19 @@ public class EntityGuide {
 	}
 	
 	/**
+	 * @return
+	 *         Entity's last position
+	 */
+	public int getPreviousPosition() {
+	    int prevPos = pathPosition - 1;
+	    if (prevPos < 0) {
+	        prevPos = path.getNodeList().size() - 1;
+	    }
+	    
+	    return prevPos;
+	}
+	
+	/**
 	 * Get the next node on the path.
 	 * 
 	 * @return The next <code>Node</code>, or <code>null</code> if there is no next node.
