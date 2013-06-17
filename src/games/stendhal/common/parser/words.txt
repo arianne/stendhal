@@ -310,6 +310,7 @@ beeswax	OBJ	beeswaxes
 bicycle	OBJ	bicycles
 bike	OBJ	bikes
 blackjack	OBJ	blackjacks
+black pearl OBJ
 blade	OBJ	blades
 blood	OBJ	bloods
 board	OBJ	boards
@@ -497,8 +498,10 @@ future	OBJ	futures
 gambling	OBJ	gamblings
 game	OBJ	games
 garlic	OBJ-FOO
+garnet OBJ
 gate	OBJ	gates
 gem	OBJ	gems
+gemstone OBJ gemstones
 geography	OBJ	geographies
 germany	OBJ	germanies
 gingerbread	OBJ-FOO	gingerbreads
@@ -735,6 +738,7 @@ risecia	OBJ	risecias
 roach	OBJ-FOO-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
+rodent trap OBJ rodent traps
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
@@ -862,6 +866,7 @@ ugmash	OBJ	ugmashes
 url	OBJ	urls
 vault	OBJ	vaults
 venom	OBJ	venoms
+venom gland OBJ venom glands
 vertex	OBJ	vertices
 victory	OBJ	victories
 vigilance	OBJ	vigilances
@@ -906,6 +911,7 @@ zantedeschia	OBJ	zantedeschias
 zone	OBJ	zones
 
 abe	SUB-NAM
+adena SUB-NAM
 admin	SUB
 admiral	SUB
 aenihata	SUB-NAM
@@ -979,6 +985,7 @@ bride	SUB
 brother	SUB
 brui	SUB-NAM
 caiman	SUB-ANI
+calla SUB-NAM
 cannibal	SUB
 captain	SUB
 captain Brownbeard SUB-NAM
@@ -1217,6 +1224,7 @@ lion	SUB-ANI	lions
 littlefairy	SUB
 littlewitch	SUB
 littlewizard	SUB
+lobelia SUB-NAM
 lord	SUB
 lorenz	SUB-NAM
 loretta	SUB-NAM
@@ -1245,6 +1253,7 @@ mcpegleg	SUB-NAM
 me	SUB-PRO	=i	us
 meatoch	SUB-NAM
 merenwen	SUB-NAM
+mia SUB-NAM
 mick	SUB-NAM
 milquetoast	SUB-NAM
 minotaur	SUB
@@ -1357,6 +1366,7 @@ saskia	SUB-NAM
 sato	SUB-NAM
 savanka	SUB-NAM
 scientist	SUB
+seremela SUB-NAM
 sergeant	SUB
 sergej	SUB-NAM
 servant	SUB
@@ -1465,6 +1475,7 @@ you	SUB-PRO	you
 yourself	SUB-PRO
 zak	SUB-NAM
 zara	SUB-NAM
+zinnia SUB-NAM
 zekiel	SUB-NAM
 zogfang	SUB-NAM
 zohos	SUB-NAM
