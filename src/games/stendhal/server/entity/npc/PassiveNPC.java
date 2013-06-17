@@ -50,6 +50,8 @@ public class PassiveNPC extends NPC {
     protected void handleObjectCollision() {
         if (!ignoresCollision() && usesRandomPath()) {
             setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+        } else if (hasReversiblePath()) {
+            reversePath();
         } else {
             stop();
         }
@@ -58,7 +60,9 @@ public class PassiveNPC extends NPC {
     @Override
     protected void handleSimpleCollision(final int nx, final int ny) {
         if (!ignoresCollision() && usesRandomPath()) {
-            setRandomPathFrom(getX(), getY(), getMovementRange() / 2); 
+            setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
+        } else if (hasReversiblePath()) {
+            reversePath();
         } else {
             stop();
         }
