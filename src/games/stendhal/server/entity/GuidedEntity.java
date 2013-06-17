@@ -108,15 +108,46 @@ public abstract class GuidedEntity extends ActiveEntity {
 		guide.clearPath();
 	}
 	
+	/**
+     * Set a path for this entity to follow. Any previous path is cleared and
+     * the entity starts at the first node (so the first node should be its
+     * position, of course). The speed will be set to the default for the
+     * entity.
+	 * 
+	 * @param path
+	 *         The path.
+	 * @param position
+	 *         The position of the path where the entity should start
+	 */
+    public final void setPath(final FixedPath path, final int position) {
+        if ((path != null) && !path.isFinished()) {
+            setSpeed(getBaseSpeed());
+            guide.path = path;
+            guide.pathPosition = position;
+            guide.followPath(this);
+            
+            return;
+        }
+        
+        guide.clearPath();
+    }
+    
 	/*
 	 * Changed the entity's path to walk in the oppisite direction
 	 */
 	public void reversePath() {
-	    if (!randomPath && reversiblePath) {
+	    if (!randomPath && reversiblePath && guide.path.isLoop()) {
 	        List<Node> reverseNodes = guide.path.getNodeList();
+	        //System.out.println("Path size: " + guide.path.getNodeList().size());
+	        //System.out.println("Position before: " + guide.pathPosition);
+	        
+	        // Sets the position for the reversed path
+	        int reversePosition = (guide.path.getNodeList().size() - 1) - guide.getPreviousPosition();
+	        //System.out.println("Position after: " + guide.pathPosition);
+	        
 	        Collections.reverse(reverseNodes);
-	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()));
-	    }
+	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
+	        }
 	}
 	
 	/**
