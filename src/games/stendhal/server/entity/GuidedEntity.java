@@ -138,12 +138,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void reversePath() {
 	    if (!randomPath && reversiblePath && guide.path.isLoop()) {
 	        List<Node> reverseNodes = guide.path.getNodeList();
-	        //System.out.println("Path size: " + guide.path.getNodeList().size());
-	        //System.out.println("Position before: " + guide.pathPosition);
 	        
 	        // Sets the position for the reversed path
 	        int reversePosition = (guide.path.getNodeList().size() - 1) - guide.getPreviousPosition();
-	        //System.out.println("Position after: " + guide.pathPosition);
 	        
 	        Collections.reverse(reverseNodes);
 	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
