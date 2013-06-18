@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
+  xsi:schemaLocation="stendhal ../zones.xsd ">
  <!--
    ** Load zones. Written from left to right and from top to bottom.
    ** Please respect it!
@@ -25,765 +25,840 @@
 
 
  <!-- Level 0 (Ground) -->
-
-     <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-      <configurator class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC"/>
-      <configurator class-name="games.stendhal.server.maps.athor.ship.CaptainNPC"/>
-
-       <entity x="34" y="39">
-    	   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	   <parameter name="species">mackerel</parameter>
-    	   </implementation>
-  	   </entity>
-  	
-  	
-  	
-  	   	<entity x="15" y="31">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">10</parameter>
-		</implementation>
-		</entity>
-  	
-  	   	<entity x="30" y="31">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">10</parameter>
-		</implementation>
-		</entity>
-  	   
-  	   	<entity x="30" y="39">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">10</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="15" y="39">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">10</parameter>
-		</implementation>
-		</entity>
-  	   
-  	   	<entity x="22" y="25">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-  	   
-  	   	<entity x="22" y="48">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">8</parameter>
-		</implementation>
-		</entity>
-		
-     </zone>
-
-     <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-     	<entity x="90" y="45">
-    		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     		<parameter name="species">clownfish</parameter>
-    		</implementation>
-  		</entity>
-  		
-	<!-- table around palms -->
-  		
-  	<entity x="109" y="62">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-  	<entity x="112" y="69">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-	</entity>
-		
-  	<entity x="103" y="74">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-	</entity>
-     </zone>
-     
-     <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.YanNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC" />
-       
-       <!-- portals --> 
-       
-       <portal x="57" y="57" ref="apartment_1_entrance">
-         <destination zone="int_athor_apartment_101" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 101</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="66" y="57" ref="apartment_2_entrance">
-         <destination zone="int_athor_apartment_102" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 102</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="78" y="63" ref="apartment_3_entrance">
-         <destination zone="int_athor_apartment_103" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 103</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="78" y="69" ref="apartment_4_entrance">
-         <destination zone="int_athor_apartment_104" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 104</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="66" y="75" ref="apartment_5_entrance">
-         <destination zone="int_athor_apartment_105" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 105</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="57" y="75" ref="apartment_6_entrance">
-         <destination zone="int_athor_apartment_106" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 106</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="47" y="69" ref="apartment_7_entrance">
-         <destination zone="int_athor_apartment_107" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 107</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="47" y="63" ref="apartment_8_entrance">
-         <destination zone="int_athor_apartment_108" ref="out"/>
-		   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-		    <parameter name="doorId">athor apartment 108</parameter>
-			<parameter name="rejected">The door is locked.</parameter>
-		   </implementation>
-       </portal>
-       <portal x="123" y="15" ref="labyrinth_hut_entrance">
-         <destination zone="int_athor_labyrinth_entrance" ref="out"/>
-       </portal>
-       <portal x="16" y="50" ref="cocktail_bar_entrance">
-         <destination zone="int_athor_cocktail_bar" ref="entrance"/>
-       </portal>
-       <portal x="87" y="40" ref="dressing_room_m_entrance">
-         <destination zone="int_athor_dressing_room_m" ref="out"/>
-       </portal>
-       <portal x="82" y="40" ref="dressing_room_f_entrance">
-         <destination zone="int_athor_dressing_room_f" ref="out"/>
-       </portal>
-       <portal x="117" y="95" ref="quicksand_1">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       <portal x="117" y="96" ref="quicksand_2">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       <portal x="117" y="97" ref="quicksand_3">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       <portal x="118" y="95" ref="quicksand_4">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-        <attribute name="hidden"/>
-       </portal>
-       <portal x="118" y="97" ref="quicksand_5">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       <portal x="119" y="95" ref="quicksand_6">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       <portal x="119" y="96" ref="quicksand_7">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-	 <attribute name="hidden"/>
-       </portal>
-       <portal x="119" y="97" ref="quicksand_8">
-         <destination zone="-1_athor_island" ref="quicksand_out"/>
-         <attribute name="hidden"/>
-       </portal>
-       
-       <portal x="60" y="66" ref="pool">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-       </portal>
-       
-       <portal x="63" y="64" ref="diving_board_destination">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-       </portal>
-       <portal x="63" y="67" ref="diving_board">
-         <destination zone="0_athor_island" ref="diving_board_destination"/>
-       </portal>
-
-	<entity x="78" y="39">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-			<parameter name="sound">bell-1</parameter>
-			<parameter name="radius">50</parameter>
-		</implementation>
-		<attribute name="width">2</attribute>
-		<attribute name="height">2</attribute>
-		<attribute name="description">You see a rope leading to the top of the pole. What do you think will happen, when you pull it?</attribute>
-	</entity>
-
-		<!-- Signs -->
-		
-       <entity x="83" y="42">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">Changing Room for Women</attribute>
-       </entity>
-
-       <entity x="88" y="42">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">Changing Room for Men</attribute>
-       </entity>
-
-       <entity x="14" y="51">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">Welcome to Athor bar!</attribute>
-       </entity>
-       
-       <entity x="112" y="96">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">DANGER! Quicksand!</attribute>
-         <attribute name="class">danger_sign</attribute>
-       </entity>
-
-       <entity x="119" y="89">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">DANGER! Quicksand!</attribute>
-         <attribute name="class">danger_sign</attribute>
-       </entity>
-
-       <entity x="120" y="104">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">DANGER! Quicksand!</attribute>
-         <attribute name="class">danger_sign</attribute>
-       </entity>
-
-		<!-- Source -->
-       <entity x="12" y="88">
-    		<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     		<parameter name="species">surgeonfish</parameter>
-    		</implementation>
-  		</entity>
-  		
-		<!--  scrying orbs -->
-		<entity x="54" y="59">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
-				<parameter name="x">63</parameter>
-				<parameter name="y">65</parameter>
-			</implementation>
-		</entity>
-		<entity x="54" y="69">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
-				<parameter name="x">63</parameter>
-				<parameter name="y">65</parameter>
-			</implementation>
-		</entity>
-		<entity x="72" y="59">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
-				<parameter name="x">63</parameter>
-				<parameter name="y">65</parameter>
-			</implementation>
-		</entity>
-		<entity x="72" y="69">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
-				<parameter name="x">63</parameter>
-				<parameter name="y">65</parameter>
-			</implementation>
-		</entity>
-		
-	<!-- Shop  -->  
-   <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
-      <entity x="34" y="65">
-	  	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">buy4hotdogs</parameter>
-			<parameter name="title">Sara Beth's hotdog shop (buying)</parameter>
-			<parameter name="seller">false</parameter>
-			<parameter name="caption">Sara Beth buys these things which are needed to make her snacks.</parameter>
-		</implementation>
-
-		<attribute name="class">blackboard</attribute>
- 
-    </entity> 
-      <entity x="39" y="65">
- 	  	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">sellhotdogs</parameter>
-			<parameter name="title">Sara Beth's hotdog shop (sells)</parameter>
-			<parameter name="seller">true</parameter>
-			<parameter name="caption">Sara Beth sells snacks.</parameter>
-		</implementation>
-
-		<attribute name="class">blackboard</attribute>
+  
+  
+  <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.ship.CaptainNPC" />
+    
+    <entity x="34" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	  <parameter name="species">mackerel</parameter>
+      </implementation>
     </entity>
     
-        <point-of-interest x="118" y="96">
-       	<name>Athor Tunnels</name>
-       	<type>dungeon</type>
-       	<description>Did you fall down to the Athor tunnel? Below the ground live stronger, and more evil creatures than on the surface. Take care of the monks, dragons, and the evil minotaur king! Kill the minotaur king! He is waiting for you!</description>
-       	<url>http://stendhalgame.org/wiki/Athor_Tunnels</url>
-       </point-of-interest>
-       
-      </zone>
-     
-     <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx" accessible="false">
-       <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">2</parameter>
-		<parameter name="y">11</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_1_entrance"/>
-       </portal>
-       <!--  table -->
-					  <entity x="4" y="4">
-					   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-					   <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-					   <attribute name="width">2</attribute>
-					   <attribute name="height">1</attribute>
-					  </entity>
-					  <!-- toilet -->
-					  <entity x="10" y="9">
-					   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-					    <parameter name="sound">drain-water-11</parameter>
-					    <parameter name="radius">50</parameter>
-					   </implementation>
-					   <attribute name="description">You see a toilet.</attribute>
-					   <attribute name="width">1</attribute>
-					   <attribute name="height">1</attribute>
-					  </entity>
-					  <!-- sink -->
-					  <entity x="13" y="10">
-					   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-					    <parameter name="sound">water-4</parameter>
-					    <parameter name="radius">50</parameter>
-					   </implementation>
-					   <attribute name="description">You see a sink to wash your hands.</attribute>
-					   <attribute name="width">1</attribute>
-					   <attribute name="height">1</attribute>
-					  </entity>
-					  <!-- oven -->
-					  <entity x="6" y="1">
-					   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-					    <parameter name="sound">fire-sparkes-1</parameter>
-					    <parameter name="radius">50</parameter>
-					   </implementation>
-					   <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
-					   <attribute name="width">1</attribute>
-					   <attribute name="height">1</attribute>
-					  </entity>
-					  <!-- bell -->
-					  <entity x="2" y="8">
-						<implementation
-							class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource">
-						</implementation>
-					  </entity>
-					  <entity x="2" y="8">
-						<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-					  </entity>
-			          <!-- ticking clock sound effect -->
-			          <entity x="2" y="8">
-			            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-			              <parameter name="sound">clock-1</parameter>
-			              <parameter name="radius">15</parameter>
-			              <parameter name="volume">100</parameter>
-			            </implementation>
-			          </entity>
-
-       <!-- table at whirpool -->
-       <entity x="10" y="13">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="11" y="12">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="12" y="12">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_apartment_102" file="interiors/athor/holiday_apartment_2.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">13</parameter>
-		<parameter name="y">10</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_2_entrance"/>
-       </portal>
-       <!-- chimney -->
-       <entity x="5" y="9">
-			     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-		       <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
-		       <attribute name="class">transparent</attribute>
-		       <attribute name="width">2</attribute>
-		       <attribute name="height">2</attribute>
-			    </entity>
-       <!-- fire in the chimney -->
-       <entity x="5" y="9">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">fire-sparkes-1</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">1</parameter>
-         <parameter name="radius">4</parameter>
-         <parameter name="volume">100</parameter>
-        </implementation>
-       </entity>
-       <!--  table -->
-       <entity x="12" y="12">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- toilet -->
-       <entity x="4" y="1">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-         <parameter name="sound">drain-water-11</parameter>
-         <parameter name="radius">50</parameter>
-        </implementation>
-        <attribute name="description">You see a toilet.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- sink -->
-       <entity x="5" y="1">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-         <parameter name="sound">water-4</parameter>
-         <parameter name="radius">50</parameter>
-        </implementation>
-        <attribute name="description">You see a sink to wash your hands.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- table at whirpool -->
-       <entity x="2" y="5">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="3" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="4" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">7</parameter>
-		<parameter name="y">2</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_3_entrance"/>
-       </portal>
-       <!-- chimney -->
-       <entity x="6" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-         <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
-         <attribute name="class">transparent</attribute>
-         <attribute name="width">2</attribute>
-         <attribute name="height">2</attribute>
-       </entity>
-       <!-- fire in the chimney -->
-       <entity x="6" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">fire-sparkes-1</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">1</parameter>
-         <parameter name="radius">4</parameter>
-         <parameter name="volume">100</parameter>
-        </implementation>
-       </entity>
-       <!--  table -->
-       <entity x="2" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a table for resting things on.</attribute>
-        <attribute name="width">2</attribute>
-        <attribute name="height">2</attribute>
-       </entity>
-       <!-- sink -->
-       <entity x="10" y="10">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-         <parameter name="sound">water-4</parameter>
-         <parameter name="radius">50</parameter>
-        </implementation>
-        <attribute name="description">You see a sink to wash your hands.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="10" y="12">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="11" y="12">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_apartment_104" file="interiors/athor/holiday_apartment_4.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">7</parameter>
-		<parameter name="y">8</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_4_entrance"/>
-       </portal>
-       <!--  table -->
-       <entity x="2" y="11">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a counter for resting food and drinks on.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">2</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="11" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="12" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <!-- chimney -->
-       <entity x="8" y="7">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-         <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
-         <attribute name="class">transparent</attribute>
-         <attribute name="width">2</attribute>
-         <attribute name="height">2</attribute>
-       </entity>
-       <!-- fire in the chimney -->
-       <entity x="8" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">fire-sparkes-1</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">1</parameter>
-         <parameter name="radius">4</parameter>
-         <parameter name="volume">100</parameter>
-        </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_apartment_105" file="interiors/athor/holiday_apartment_5.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">2</parameter>
-		<parameter name="y">12</parameter>
-	   </configurator>
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_5_entrance"/>
-       </portal>
-       <!-- counter -->
-       <entity x="2" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a counter for resting food and drinks on.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">4</attribute>
-       </entity>
-       <!-- table -->
-       <entity x="4" y="9">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a table for resting food and drinks on.</attribute>
-        <attribute name="width">2</attribute>
-        <attribute name="height">2</attribute>
-       </entity>
-       <!-- bank -->
-       <entity x="13" y="8">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a long wooden bank. You can rest your belongings on it.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">6</attribute>
-       </entity>
-       <!-- whirpool bank (top) -->
-       <entity x="2" y="2">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- whirpool bank (bottom) -->
-       <entity x="2" y="5">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="3" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="4" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <!-- oven -->
-       <entity x="4" y="7">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-         <parameter name="sound">fire-sparkes-1</parameter>
-         <parameter name="radius">50</parameter>
-        </implementation>
-        <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
-        <attribute name="width">1</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_apartment_106" file="interiors/athor/holiday_apartment_6.tmx" accessible="false">
-	   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">2</parameter>
-		<parameter name="y">10</parameter>
-	   </configurator>
-	   <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_6_entrance"/>
-       </portal>
-       <!-- whirpool -->
-       <entity x="3" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="4" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <!-- whirpool bank -->
-       <entity x="2" y="5">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">1</attribute>
-       </entity>
-     </zone>
+    <!-- Portals -->
+    <entity x="15" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="30" y="31">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="30" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="15" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="25">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="48">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">8</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    
+    <entity x="90" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">clownfish</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- table around palms -->
+    <entity x="109" y="62">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="112" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="103" y="74">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your holiday drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+  </zone>
+  
+  <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.YanNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC" />
+    
+    <!-- portals --> 
+    <portal x="57" y="57" ref="apartment_1_entrance">
+      <destination zone="int_athor_apartment_101" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 101</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="66" y="57" ref="apartment_2_entrance">
+      <destination zone="int_athor_apartment_102" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 102</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="78" y="63" ref="apartment_3_entrance">
+      <destination zone="int_athor_apartment_103" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 103</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="78" y="69" ref="apartment_4_entrance">
+      <destination zone="int_athor_apartment_104" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 104</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="66" y="75" ref="apartment_5_entrance">
+      <destination zone="int_athor_apartment_105" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 105</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="57" y="75" ref="apartment_6_entrance">
+      <destination zone="int_athor_apartment_106" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 106</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="47" y="69" ref="apartment_7_entrance">
+      <destination zone="int_athor_apartment_107" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 107</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="47" y="63" ref="apartment_8_entrance">
+      <destination zone="int_athor_apartment_108" ref="out" />
+		  <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+		    <parameter name="doorId">athor apartment 108</parameter>
+			  <parameter name="rejected">The door is locked.</parameter>
+		  </implementation>
+    </portal>
+    
+    <portal x="123" y="15" ref="labyrinth_hut_entrance">
+      <destination zone="int_athor_labyrinth_entrance" ref="out" />
+    </portal>
+    
+    <portal x="16" y="50" ref="cocktail_bar_entrance">
+      <destination zone="int_athor_cocktail_bar" ref="entrance" />
+    </portal>
+    
+    <portal x="87" y="40" ref="dressing_room_m_entrance">
+      <destination zone="int_athor_dressing_room_m" ref="out" />
+    </portal>
+    
+    <portal x="82" y="40" ref="dressing_room_f_entrance">
+      <destination zone="int_athor_dressing_room_f" ref="out" />
+    </portal>
+    
+    <portal x="117" y="95" ref="quicksand_1">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="117" y="96" ref="quicksand_2">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="117" y="97" ref="quicksand_3">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="118" y="95" ref="quicksand_4">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="118" y="97" ref="quicksand_5">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="119" y="95" ref="quicksand_6">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="119" y="96" ref="quicksand_7">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+	    <attribute name="hidden" />
+    </portal>
+    
+    <portal x="119" y="97" ref="quicksand_8">
+      <destination zone="-1_athor_island" ref="quicksand_out" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="60" y="66" ref="pool">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <portal x="63" y="64" ref="diving_board_destination">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <portal x="63" y="67" ref="diving_board">
+      <destination zone="0_athor_island" ref="diving_board_destination" />
+    </portal>
+    
+    <!-- Music/Ambiance -->
+    <entity x="78" y="39">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">bell-1</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a rope leading to the top of the pole. What do you think will happen, when you pull it?</attribute>
+    </entity>
+    
+    <!-- Signs -->
+    <entity x="83" y="42">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Changing Room for Women</attribute>
+    </entity>
+    
+    <entity x="88" y="42">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Changing Room for Men</attribute>
+    </entity>
+    
+    <entity x="14" y="51">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to Athor bar!</attribute>
+    </entity>
+    
+    <entity x="112" y="96">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">DANGER! Quicksand!</attribute>
+      <attribute name="class">danger_sign</attribute>
+    </entity>
+    
+    <entity x="119" y="89">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">DANGER! Quicksand!</attribute>
+      <attribute name="class">danger_sign</attribute>
+    </entity>
+    
+    <entity x="120" y="104">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">DANGER! Quicksand!</attribute>
+      <attribute name="class">danger_sign</attribute>
+    </entity>
+    
+    <!-- Source -->
+    <entity x="12" y="88">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">surgeonfish</parameter>
+      </implementation>
+    </entity>
+    
+    <!--  scrying orbs -->
+    <entity x="54" y="59">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">63</parameter>
+        <parameter name="y">65</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="54" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">63</parameter>
+        <parameter name="y">65</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="72" y="59">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">63</parameter>
+        <parameter name="y">65</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="72" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">63</parameter>
+        <parameter name="y">65</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Shop  -->  
+    <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HotdogLadyNPC" />
+    
+    <entity x="34" y="65">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buy4hotdogs</parameter>
+        <parameter name="title">Sara Beth's hotdog shop (buying)</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Sara Beth buys these things which are needed to make her snacks.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity> 
+    
+    <entity x="39" y="65">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">sellhotdogs</parameter>
+        <parameter name="title">Sara Beth's hotdog shop (sells)</parameter>
+        <parameter name="seller">true</parameter>
+        <parameter name="caption">Sara Beth sells snacks.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <point-of-interest x="118" y="96">
+      <name>Athor Tunnels</name>
+      <type>dungeon</type>
+      <description>Did you fall down to the Athor tunnel? Below the ground live stronger, and more evil creatures than on the surface. Take care of the monks, dragons, and the evil minotaur king! Kill the minotaur king! He is waiting for you!</description>
+      <url>http://stendhalgame.org/wiki/Athor_Tunnels</url>
+    </point-of-interest>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_101" file="interiors/athor/holiday_apartment_1.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">11</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_1_entrance" />
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- Interactive sounds -->
+    <entity x="10" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">drain-water-11</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="13" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-4</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a sink to wash your hands.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="6" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="2" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
+    </entity>
+    
+    <!-- Clock -->
+    <entity x="2" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
+    <entity x="2" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- table at whirpool -->
+    <entity x="10" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="11" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="12" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_102" file="interiors/athor/holiday_apartment_2.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">13</parameter>
+      <parameter name="y">10</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_2_entrance" />
+    </portal>
+    
+    <!-- chimney -->
+    <entity x="5" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- fire in the chimney -->
+    <entity x="5" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+    <!--  Tables -->
+    <entity x="12" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- Interactive sounds -->
+    <entity x="4" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">drain-water-11</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="5" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-4</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a sink to wash your hands.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- table at whirpool -->
+    <entity x="2" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="3" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_103" file="interiors/athor/holiday_apartment_3.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">7</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_3_entrance" />
+    </portal>
+    
+    <!-- chimney -->
+    <entity x="6" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- fire in the chimney -->
+    <entity x="6" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+    <!--  Tables -->
+    <entity x="2" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting things on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- Interactive sounds -->
+    <entity x="10" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-4</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a sink to wash your hands.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="10" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="11" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_104" file="interiors/athor/holiday_apartment_4.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">7</parameter>
+      <parameter name="y">8</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_4_entrance" />
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="2" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for resting food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="11" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="12" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- chimney -->
+    <entity x="8" y="7">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a chimney with a crackling warm fire.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- fire in the chimney -->
+    <entity x="8" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_105" file="interiors/athor/holiday_apartment_5.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">12</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_5_entrance" />
+    </portal>
+    
+    <!-- Counters -->
+    <entity x="2" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a counter for resting food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+    
+    <!-- Tables -->
+    <entity x="4" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- bank -->
+    <entity x="13" y="8">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a long wooden bank. You can rest your belongings on it.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">6</attribute>
+    </entity>
+    
+    <!-- whirpool bank (top) -->
+    <entity x="2" y="2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- whirpool bank (bottom) -->
+    <entity x="2" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="3" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- oven -->
+    <entity x="4" y="7">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_apartment_106" file="interiors/athor/holiday_apartment_6.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">10</parameter>
+    </configurator>
+	  
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_6_entrance" />
+    </portal>
+    
+    <!-- whirpool -->
+    <entity x="3" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- whirpool bank -->
+    <entity x="2" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">Place your clothes and utensil here while taking a bath.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+  </zone>
   
   <zone name="int_athor_apartment_107" file="interiors/athor/holiday_apartment_7.tmx" accessible="false">
-	  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">12</parameter>
-		  <parameter name="y">8</parameter>
-	  </configurator>
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">12</parameter>
+      <parameter name="y">8</parameter>
+    </configurator>
     
     <!-- Portals -->
     <portal x="4" y="14" ref="out">
@@ -801,7 +876,7 @@
       </implementation>
     </entity>
     
-    <!-- Music/Audio/Ambiance -->
+    <!-- Music/Ambiance -->
     <entity x="3" y="4">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">wave-11</parameter>
@@ -885,100 +960,128 @@
     
   </zone>
   
-     <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx" accessible="false">
-       <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-	   <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	   	<parameter name="x">2</parameter>
-		<parameter name="y">7</parameter>
-	   </configurator>
-	   <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island" ref="apartment_8_entrance"/>
-       </portal>
-       <!-- table -->
-       <entity x="4" y="9">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a table to place your food and drinks on.</attribute>
-        <attribute name="width">2</attribute>
-        <attribute name="height">2</attribute>
-       </entity>
-       <!-- whirpool -->
-       <entity x="4" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-       <entity x="5" y="4">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-         <parameter name="sound">wave-11</parameter>
-         <parameter name="min">1</parameter>
-         <parameter name="max">4</parameter>
-         <parameter name="radius">1</parameter>
-         <parameter name="volume">80</parameter>
-        </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_dressing_room_m" file="interiors/athor/dressing_room_m.tmx">
-      <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC"/>
-       <portal x="6" y="14" ref="out">
-         <destination zone="0_athor_island" ref="dressing_room_m_entrance"/>
-       </portal>
-
-        <!-- This must be after the NPC configurator -->
-        <entity x="3" y="10">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-            <parameter name="npc">David</parameter>
-          </implementation>
-        </entity>
-     </zone>
-
-     <zone name="int_athor_dressing_room_f" file="interiors/athor/dressing_room_f.tmx">
-       <portal x="9" y="14" ref="out">
-         <destination zone="0_athor_island" ref="dressing_room_f_entrance"/>
-       </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.dressingroom_female.LifeguardNPC"/>
-       <entity x="12" y="10">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-           <parameter name="npc">Pam</parameter>
-         </implementation>
-       </entity>
-     </zone>
-
-     <zone name="int_athor_cocktail_bar" file="interiors/athor/cocktail_bar.tmx">
-       <configurator class-name="games.stendhal.server.maps.athor.cocktail_bar.BarmanNPC"/>
-       <portal x="9" y="17" ref="entrance">
-         <destination zone="0_athor_island" ref="cocktail_bar_entrance"/>
-       </portal>
-      </zone>
-     
-     <zone name="int_athor_labyrinth_entrance" file="interiors/athor/small_hut.tmx">
-       <portal x="8" y="14" ref="out">
-         <destination zone="0_athor_island" ref="labyrinth_hut_entrance"/>
-       </portal>
-     </zone>
-
-    <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="Level 0/athor/island_e.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
-
+  <zone name="int_athor_apartment_108" file="interiors/athor/holiday_apartment_8.tmx" accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">7</parameter>
+    </configurator>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="out">
+      <destination zone="0_athor_island" ref="apartment_8_entrance" />
+    </portal>
+    
+    <!-- Tables -->
+    <entity x="4" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table to place your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <!-- whirpool -->
+    <entity x="4" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="5" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">4</parameter>
+        <parameter name="radius">1</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  <zone name="int_athor_dressing_room_m" file="interiors/athor/dressing_room_m.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC" />
+    
+    <!-- This must be after the NPC configurator -->
+    <entity x="3" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+        <parameter name="npc">David</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="6" y="14" ref="out">
+      <destination zone="0_athor_island" ref="dressing_room_m_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_athor_dressing_room_f" file="interiors/athor/dressing_room_f.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.dressingroom_female.LifeguardNPC"/>
+    
+    <!-- This must be after the NPC configurator -->
+    <entity x="12" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+        <parameter name="npc">Pam</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="9" y="14" ref="out">
+      <destination zone="0_athor_island" ref="dressing_room_f_entrance"/>
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_athor_cocktail_bar" file="interiors/athor/cocktail_bar.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.cocktail_bar.BarmanNPC" />
+    
+    <!-- Portals -->
+    <portal x="9" y="17" ref="entrance">
+      <destination zone="0_athor_island" ref="cocktail_bar_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_athor_labyrinth_entrance" file="interiors/athor/small_hut.tmx">
+    <!-- Portals -->
+    <portal x="8" y="14" ref="out">
+      <destination zone="0_athor_island" ref="labyrinth_hut_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="Level 0/athor/island_e.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+  </zone>
+  
+  
  <!-- Level -1 -->
-
-    <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
-      <attributes>
-         <parameter name="color_method">softlight</parameter>
-         <parameter name="color">#0c4774</parameter>
-      </attributes>
-      <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
-
-   <entity x="24" y="35">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-         <attribute name="text">
+  
+  
+  <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#0c4774</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
+    
+    <!-- Signs -->
+    <entity x="24" y="35">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">
 BLACKJACK RULES
 
 You play against the bank. The goal is to have a higher number of points than the bank, but not more than 21.
@@ -986,275 +1089,292 @@ You play against the bank. The goal is to have a higher number of points than th
 Jacks, queens, and kings are worth 10 points. Aces are worth 11 points, but only 1 point if your hand would exceed 21 points otherwise. All other cards are worth their number.
 
 You get your stake back when there is a draw. If you win, you get the double of your stake. You get the triple of your stake when you have a Blackjack (i.e. 21 points with only 2 cards).
-         </attribute>
-         <attribute name="class">blackboard</attribute>
-       </entity>
-       
-  	   	<entity x="18" y="35">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">2</parameter>
-		</implementation>
-		</entity>
-       
-  	   	<entity x="22" y="50">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="14" y="38">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="31" y="38">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="28" y="45">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="17" y="45">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="14" y="25">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="31" y="25">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="14" y="32">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">3</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="31" y="32">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">2</parameter>
-			<parameter name="radius">4</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="22" y="25">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2, wave-11</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">8</parameter>
-		</implementation>
-		</entity>
-        
-        <!-- Creaking ship -->
-        <entity x="0" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-            <parameter name="sound">creak-2</parameter>
-            <parameter name="min">3</parameter>
-            <parameter name="max">15</parameter>
-            <parameter name="volume">120</parameter>
-          </implementation>
-        </entity>
-        
-     </zone>
-
+      </attribute>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <!-- Music/Ambiance -->
+    <entity x="18" y="35">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">2</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="50">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="14" y="38">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="31" y="38">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="28" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="17" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="14" y="25">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="31" y="25">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="14" y="32">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">3</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="31" y="32">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">2</parameter>
+        <parameter name="radius">4</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="25">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2, wave-11</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">8</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Creaking ship -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">creak-2</parameter>
+        <parameter name="min">3</parameter>
+        <parameter name="max">15</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
   <zone name="-1_athor_island" level="-1" x="501024" y="500384" file="Level -1/athor/island.tmx">
-    <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
-    <configurator class-name="games.stendhal.server.maps.athor.cave.GhostNPC"/>
+    <!-- Creatures -->
+    <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature" />
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.cave.GhostNPC" />
+    
+    <!-- Portals -->
     <portal x="118" y="96" ref="quicksand_out">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
     </portal>
+    
     <portal x="60" y="66" ref="under_pool">
-      <destination zone="0_athor_island" ref="pool"/>
+      <destination zone="0_athor_island" ref="pool" />
     </portal>
+    
     <portal x="124" y="118" ref="labyrinth_locked_door">
-      <destination zone="-1_athor_island_e" ref="labyrinth2"/>
+      <destination zone="-1_athor_island_e" ref="labyrinth2" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
         <parameter name="class">skulldoor_w</parameter>
         <parameter name="key">minotaur key</parameter>
       </implementation>
     </portal>
+    
   </zone>
-
-  <zone name="-1_athor_island_e" level="-1" x="501152" y="500384" file="Level -1/athor/island_e.tmx">
-    <configurator class-name="games.stendhal.server.maps.athor.labyrinth.MinotaurKingCreature"/>
-    <portal x="1" y="118" ref="labyrinth1">
-      <destination zone="-1_athor_island" ref="labyrinth_locked_door"/>
-    </portal>
-    <portal x="1" y="119" ref="labyrinth2">
-      <destination zone="-1_athor_island" ref="labyrinth_locked_door"/>
-    </portal>
-  </zone>
-
-
- <!-- Level -2 -->
-
- <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="Level -2/athor/ship_w2.tmx">
-   <attributes>
-    <parameter name="color_method">softlight</parameter>
-    <parameter name="color">#052238</parameter>
-   </attributes>
-  <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
-
-    <!-- This must be after the NPC factory -->
-   <entity x="22" y="30">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-       <parameter name="npc">Klaas</parameter>
-     </implementation>
-   </entity>
-   
-  	   	<entity x="22" y="47">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">4</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="19" y="45">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">4</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="26" y="45">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">4</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="16" y="42">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">3</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="29" y="42">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">3</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="7" y="37">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">15</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="38" y="37">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">15</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="13" y="29">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="32" y="29">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">5</parameter>
-		</implementation>
-		</entity>
-
-  	   	<entity x="22" y="23">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-			<parameter name="sound">water-2</parameter>
-			<parameter name="min">1</parameter>
-			<parameter name="max">1</parameter>
-			<parameter name="radius">10</parameter>
-		</implementation>
-		</entity>
   
-        <!-- Creaking ship -->
-        <entity x="0" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-            <parameter name="sound">creak-2</parameter>
-            <parameter name="min">3</parameter>
-            <parameter name="max">15</parameter>
-            <parameter name="volume">120</parameter>
-          </implementation>
-        </entity>
-        
-    </zone>
-
-
+  <zone name="-1_athor_island_e" level="-1" x="501152" y="500384" file="Level -1/athor/island_e.tmx">
+    <!-- Creatures -->
+    <configurator class-name="games.stendhal.server.maps.athor.labyrinth.MinotaurKingCreature" />
+    
+    <!-- Portals -->
+    <portal x="1" y="118" ref="labyrinth1">
+      <destination zone="-1_athor_island" ref="labyrinth_locked_door" />
+    </portal>
+    
+    <portal x="1" y="119" ref="labyrinth2">
+      <destination zone="-1_athor_island" ref="labyrinth_locked_door" />
+    </portal>
+    
+  </zone>
+  
+  
+ <!-- Level -2 -->
+  
+  
+  <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="Level -2/athor/ship_w2.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#052238</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
+    
+    <!-- This must be after the NPC factory -->
+    <entity x="22" y="30">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+        <parameter name="npc">Klaas</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="47">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="19" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="26" y="45">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">4</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="16" y="42">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">3</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="29" y="42">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">3</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="7" y="37">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">15</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="38" y="37">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">15</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="13" y="29">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="32" y="29">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">5</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="22" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">1</parameter>
+        <parameter name="radius">10</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Creaking ship -->
+    <entity x="0" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">creak-2</parameter>
+        <parameter name="min">3</parameter>
+        <parameter name="max">15</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  
  <!-- Level -3 -->
-
-
+  
+  
  <!-- Level -4 -->
-
-
+  
+  
  <!-- Level -5 -->
 
 
