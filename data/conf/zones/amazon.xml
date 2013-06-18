@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
-
-
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!--
+    ** Load zones. Written from left to right and from top to bottom.
+    ** Please respect it!
+  -->
+  
  <!--  Level 6 -->
 
 
@@ -26,133 +25,153 @@
 
 
  <!--  Ground level -->
-	<zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
-		<configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC" />
-		<entity x="16" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="16" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="10" y="18" ref="out">
-			<destination zone="0_amazon_island_ne" ref="in" />
-		</portal>
-	</zone>
-
- <zone name="int_amazon_prison_hut" file="interiors/amazon/prison_hut.tmx">
- <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC"/>
-  <portal x="7" y="14" ref="out">
-   <destination zone="0_amazon_island_sw" ref="in"/>
-  </portal>
- </zone>
-
- <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-	<entity x="43" y="90">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red lionfish</parameter>
-    	</implementation>
-  	 </entity>
-  	 
-  	 <entity x="93" y="19">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red lionfish</parameter>
-    	</implementation>
-  	 </entity>
-  	 
-	<point-of-interest x="56" y="57">
-		<name>Amazon Tunnel East Entrance</name>
- 		<title>Amazon Tunnel</title>
-		<type>dungeon</type>
-		<description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit.</description>
-		<url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
-	</point-of-interest>
-
- </zone>
-
-
- <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC"/>
- <entity x="11" y="81">
-	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-		<parameter name="shop">buyamazoncloaks</parameter>
-		<parameter name="title">Cloaks bought here</parameter>
-		<parameter name="seller">false</parameter>
-		<parameter name="caption">Nicklesworth only buys good quality cloaks:</parameter>
-	</implementation>
-	<attribute name="class">blackboard</attribute>
-  </entity>
+  <zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
+    <configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC" />
+		
+    <!-- Clock -->
+    <entity x="16" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
+    <entity x="16" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="10" y="18" ref="out">
+      <destination zone="0_amazon_island_ne" ref="in" />
+    </portal>
+    
+  </zone>
   
-  	 <entity x="5" y="94">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red lionfish</parameter>
-    	</implementation>
-  	 </entity>
-  	 
-  <portal x="48" y="98" ref="in">
-   <destination zone="int_amazon_princess_hut" ref="out"/>
-  </portal>
+  <zone name="int_amazon_prison_hut" file="interiors/amazon/prison_hut.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC" />
+    
+    <!-- Portals -->
+    <portal x="7" y="14" ref="out">
+      <destination zone="0_amazon_island_sw" ref="in" />
+    </portal>
+    
+  </zone>
   
-  <point-of-interest x="60" y="105">
-  	<name>Amazon Caves</name>
-  	<type>dungeon</type>
-  	<description>A small underground area populated with archers and bodyguards...</description>
-  	<url>http://stendhalgame.org/wiki/Amazon_Caves</url>
-  </point-of-interest>
-
- </zone>
-
- <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  	 <entity x="13" y="38">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red lionfish</parameter>
+  <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <entity x="43" y="90">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	  <parameter name="species">red lionfish</parameter>
     	</implementation>
-  	 </entity>
+    </entity>
+    
+    <entity x="93" y="19">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">red lionfish</parameter>
+      </implementation>
+    </entity>
+    
+    <point-of-interest x="56" y="57">
+      <name>Amazon Tunnel East Entrance</name>
+      <title>Amazon Tunnel</title>
+      <type>dungeon</type>
+      <description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit.</description>
+      <url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
+    </point-of-interest>
+    
+  </zone>
   
-  <portal x="64" y="26" ref="in">
-   <destination zone="int_amazon_prison_hut" ref="out"/>
-  </portal>
- </zone>
-
- <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes> 	
- 	 <entity x="62" y="109">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	<parameter name="species">red lionfish</parameter>
-    	</implementation>
-  	 </entity>
+  <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.amazon.fleamarket.AmazonMermaidArmorNPC" />
+    
+    <entity x="11" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyamazoncloaks</parameter>
+        <parameter name="title">Cloaks bought here</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Nicklesworth only buys good quality cloaks:</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <entity x="5" y="94">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">red lionfish</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="48" y="98" ref="in">
+      <destination zone="int_amazon_princess_hut" ref="out" />
+    </portal>
+    
+    <point-of-interest x="60" y="105">
+      <name>Amazon Caves</name>
+      <type>dungeon</type>
+      <description>A small underground area populated with archers and bodyguards...</description>
+      <url>http://stendhalgame.org/wiki/Amazon_Caves</url>
+    </point-of-interest>
+    
+  </zone>
+  
+  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <entity x="13" y="38">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">red lionfish</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="64" y="26" ref="in">
+      <destination zone="int_amazon_prison_hut" ref="out" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <entity x="62" y="109">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">red lionfish</parameter>
+      </implementation>
+    </entity>
+    
+  </zone>
+  
+  
+ <!--  Level -1 -->
  
- </zone>
-
-
-  <!--  Level -1 -->
- <zone name="-1_amazon_caves" level="-1" x="501152" y="499744" file="Level -1/amazon/caves.tmx">
- </zone>
-
- <zone name="-1_amazon_tunnel_e" level="-1" x="501024" y="499744" file="Level -1/amazon/tunnel_e.tmx">
- </zone>
-
- <zone name="-1_amazon_tunnel" level="-1" x="500896" y="499744" file="Level -1/amazon/tunnel.tmx">
- </zone>
  
+  <zone name="-1_amazon_caves" level="-1" x="501152" y="499744" file="Level -1/amazon/caves.tmx">
+  </zone>
+  
+  <zone name="-1_amazon_tunnel_e" level="-1" x="501024" y="499744" file="Level -1/amazon/tunnel_e.tmx">
+  </zone>
+  
+  <zone name="-1_amazon_tunnel" level="-1" x="500896" y="499744" file="Level -1/amazon/tunnel.tmx">
+  </zone>
+  
+  
  <!--  Level -2 -->
-
-
+ 
+ 
  <!--  Level -3 -->
 
 
