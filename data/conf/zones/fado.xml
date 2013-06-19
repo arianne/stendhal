@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!-- ** Load zones. Written from left to right and from top to bottom. 
+    ** Please respect it! -->
 
 
- <!--  Level 6 -->
+  <!-- Level 6 -->
 
 
- <!--  Level 5 -->
+  <!-- Level 5 -->
 
 
- <!--  Level 4 -->
+  <!-- Level 4 -->
 
 
- <!--  Level 3 -->
+  <!-- Level 3 -->
 
 
- <!--  Level 2 -->
+  <!-- Level 2 -->
 
 
- <!--  Level 1 -->
+  <!-- Level 1 -->
 
 
- <!--  Ground level -->
+  <!-- Ground level -->
 
-  <zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
+  <zone name="0_fado_city" level="0" x="499616" y="500512"
+    file="Level 0/fado/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
     </attributes>
-    
+
     <!-- NPCs -->
-		<configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC" />
-		<configurator class-name="games.stendhal.server.maps.fado.city.NunNPC" />
-		<configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.city.NunNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.city.SmallBoyNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.city.RabbitNPC" />
-    
+
     <!-- Gates -->
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
       <parameter name="x">55</parameter>
       <parameter name="y">22</parameter>
       <parameter name="image">fence_gate</parameter>
@@ -47,8 +47,9 @@
       <parameter name="condition">new AlwaysFalseCondition()</parameter>
       <parameter name="message">The gate is locked.</parameter>
     </configurator>
-    
-    <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
       <parameter name="x">79</parameter>
       <parameter name="y">88</parameter>
       <parameter name="image">fence_gate</parameter>
@@ -56,7 +57,7 @@
       <parameter name="condition">new AlwaysFalseCondition()</parameter>
       <parameter name="message">The gate is locked.</parameter>
     </configurator>
-    
+
     <!-- Signs -->
     <entity x="29" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
@@ -64,75 +65,75 @@
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
-    
+
     <entity x="30" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Welcome to Fado</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
-    
+
     <entity x="31" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Welcome to Fado</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
-    
+
     <!-- Portals -->
     <portal x="36" y="17" ref="tavern_entrance_left">
-      <destination zone="int_fado_tavern" ref="entrance_left"/>
+      <destination zone="int_fado_tavern" ref="entrance_left" />
     </portal>
-    
+
     <portal x="48" y="17" ref="tavern_entrance_right">
-      <destination zone="int_fado_tavern" ref="entrance_right"/>
+      <destination zone="int_fado_tavern" ref="entrance_right" />
     </portal>
-    
+
     <portal x="46" y="38" ref="bank_entrance">
-      <destination zone="int_fado_bank" ref="entrance"/>
-    </portal> 
-    
+      <destination zone="int_fado_bank" ref="entrance" />
+    </portal>
+
     <point-of-interest x="46" y="38">
       <name>Fado Bank</name>
       <type>bank</type>
       <description>A place to store your possessions.</description>
       <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
     </point-of-interest>
-    
+
     <portal x="56" y="38" ref="bakery_entrance">
-      <destination zone="int_fado_bakery" ref="entrance"/>
+      <destination zone="int_fado_bakery" ref="entrance" />
     </portal>
-    
+
     <portal x="14" y="60" ref="hotel_entrance">
-      <destination zone="int_fado_hotel_0" ref="entrance"/>
+      <destination zone="int_fado_hotel_0" ref="entrance" />
     </portal>
-    
+
     <portal x="55" y="50" ref="church_entrance">
-      <destination zone="int_fado_church" ref="entrance_right"/>
+      <destination zone="int_fado_church" ref="entrance_right" />
     </portal>
-    
+
     <portal x="71" y="99" ref="shepherd_house_entrance">
-      <destination zone="int_fado_shepherd_house" ref="entrance"/>
+      <destination zone="int_fado_shepherd_house" ref="entrance" />
     </portal>
-    
+
     <portal x="82" y="44" ref="battle_arena_entrance">
-      <destination zone="int_fado_battle_arena" ref="entrance_right"/>
-    </portal> 
-    
+      <destination zone="int_fado_battle_arena" ref="entrance_right" />
+    </portal>
+
     <portal x="24" y="16" ref="house_entrance">
-      <destination zone="int_fado_house" ref="entrance_right"/>
+      <destination zone="int_fado_house" ref="entrance_right" />
     </portal>
-    
-	  <portal x="14" y="11" ref="weaponshop_entrance">
-      <destination zone="int_fado_weaponshop" ref="entrance"/>
+
+    <portal x="14" y="11" ref="weaponshop_entrance">
+      <destination zone="int_fado_weaponshop" ref="entrance" />
     </portal>
-    
+
     <portal x="35" y="57" ref="hut_entrance">
-      <destination zone="int_fado_hut" ref="entrance"/>
+      <destination zone="int_fado_hut" ref="entrance" />
     </portal>
-    
+
     <entity x="16" y="10">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">
 Getting Married? Why not buy an engagement ring? 
 It's not an official engagement without the nun knowing, but your girl will like to wear a diamond ring!
@@ -140,335 +141,381 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
       </attribute>
       <attribute name="class">blackboard</attribute>
     </entity>
-    
+
     <!-- Usable sounds -->
     <entity x="55" y="49">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
     </entity>
-    
+
     <!-- Fado hotel beer garden -->
-    
+
     <!-- big tables -->
     <entity x="21" y="72">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="27" y="72">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="21" y="77">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="27" y="77">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <entity x="33" y="69">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">1</attribute>
     </entity>
-    
+
     <!-- Round tables -->
     <entity x="2" y="62">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="7" y="62">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="11" y="69">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="2" y="74">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="11" y="75">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="3" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="11" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="21" y="68">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="24" y="68">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="27" y="68">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="30" y="68">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="21" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="24" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="27" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="30" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="35" y="81">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
   </zone>
-  
+
   <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
-           
-           <portal x="12" y="18" ref="entrance">
-             <destination zone="0_fado_city" ref="bank_entrance"/>
-           </portal>
-           
-           <entity x="2" y="8">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-               <parameter name="slot">bank_fado</parameter>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="8">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-               <parameter name="width">5</parameter>
-               <parameter name="height">2</parameter>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="12">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-               <parameter name="slot">bank_fado</parameter>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="12">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-               <parameter name="width">5</parameter>
-               <parameter name="height">2</parameter>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="16">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-               <parameter name="slot">bank_fado</parameter>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="16">
-             <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-               <parameter name="width">5</parameter>
-               <parameter name="height">2</parameter>
-             </implementation>
-           </entity>
-         </zone>
- 
-         <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC"/>
-           <portal x="26" y="14" ref="entrance">
-             <destination zone="0_fado_city" ref="bakery_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_tavern" file="interiors/fado/tavern.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.tavern.MaidNPC"/>
-           <configurator class-name="games.stendhal.server.maps.fado.tavern.ItemsOnTable"/>
-           
-           <portal x="16" y="30" ref="entrance_left">
-             <destination zone="0_fado_city" ref="tavern_entrance_left"/>
-           </portal>
-           
-           <portal x="41" y="30" ref="entrance_right">
-             <destination zone="0_fado_city" ref="tavern_entrance_right"/>
-           </portal>
-           
-           
-           <!-- round table upper left -->
-            <entity x="12" y="21">
-     		  <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-              <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		    </entity>
-           
-           <!-- small table lower left -->
-             <entity x="12" y="25">
-     		  <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-              <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		    </entity>
-           
-           <!-- long vertical table -->
-           
-           <entity x="17" y="20">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
-              <attribute name="width">1</attribute>
-             <attribute name="height">6</attribute>
-  		   </entity>
-          
-  		   
-  		      <!-- upper horizontal table -->
-  		   <entity x="21" y="20">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
-              <attribute name="width">2</attribute>
-             <attribute name="height">1</attribute>
-  		   </entity> 
-  		  	
-  		   
-  		       <!-- horizontal table -->
-  		   <entity x="20" y="23">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
-             <attribute name="width">7</attribute>
-             <attribute name="height">1</attribute>
-  		   </entity> 
-  		   
-  		      <!-- small table lower right-->
-  		   <entity x="22" y="25">
-     		 <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		   </entity> 
-  		  	
-  		 
-  		   
-  		   
-  		  <entity x="21" y="23">
-    		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      		<attribute name="text">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC" />
+
+    <!-- Portals -->
+    <portal x="12" y="18" ref="entrance">
+      <destination zone="0_fado_city" ref="bank_entrance" />
+    </portal>
+
+    <entity x="2" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">5</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC" />
+
+    <!-- Portals -->
+    <portal x="26" y="14" ref="entrance">
+      <destination zone="0_fado_city" ref="bakery_entrance" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_fado_tavern" file="interiors/fado/tavern.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.tavern.MaidNPC" />
+
+    <configurator class-name="games.stendhal.server.maps.fado.tavern.ItemsOnTable" />
+
+    <portal x="16" y="30" ref="entrance_left">
+      <destination zone="0_fado_city" ref="tavern_entrance_left" />
+    </portal>
+
+    <portal x="41" y="30" ref="entrance_right">
+      <destination zone="0_fado_city" ref="tavern_entrance_right" />
+    </portal>
+
+    <!-- round table upper left -->
+    <entity x="12" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+    </entity>
+
+    <!-- small table lower left -->
+    <entity x="12" y="25">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+    </entity>
+
+    <!-- long vertical table -->
+    <entity x="17" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">6</attribute>
+    </entity>
+
+    <!-- upper horizontal table -->
+    <entity x="21" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- horizontal table -->
+    <entity x="20" y="23">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+      <attribute name="width">7</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- small table lower right -->
+    <entity x="22" y="25">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table clean enough to eat from.</attribute>
+    </entity>
+
+    <!-- Signs -->
+    <entity x="21" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 SOUP RECIPE
 
 carrot, salad (From Semos)
 onion, cauliflower, broccoli, leek, spinach, courgette (From Fado)
 collard (special exotic type of cabbage - hard to find. often grows indoors)
-	</attribute>
-      	<attribute name="class">book_blue</attribute>
-    </entity>  
-  		   	    		   	   
-         </zone>
-         
-   	<zone name="int_fado_house" file="interiors/fado/house.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.house.WomanNPC"/>
-	   <portal x="6" y="10" ref="entrance_left">
-             <destination zone="0_fado_city" ref="house_entrance"/>
-           </portal>
-           <portal x="7" y="10" ref="entrance_right">
-             <destination zone="0_fado_city" ref="house_entrance"/>
-           </portal>
-             <entity x="6" y="1">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+      </attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_house" file="interiors/fado/house.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.house.WomanNPC" />
+
+    <!-- Portals -->
+    <portal x="6" y="10" ref="entrance_left">
+      <destination zone="0_fado_city" ref="house_entrance" />
+    </portal>
+
+    <portal x="7" y="10" ref="entrance_right">
+      <destination zone="0_fado_city" ref="house_entrance" />
+    </portal>
+
+    <!-- Signs -->
+    <entity x="6" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 My Wish List
 
 cloak, elf cloak, dwarf cloak, blue elf cloak, stone cloak, green dragon cloak, 
 bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
 
  ... and maybe more later!
-	</attribute>
-      	<attribute name="class">blackboard</attribute>
-    </entity>      
-         </zone>
+       </attribute>
+      <attribute name="class">blackboard</attribute>
+    </entity>
 
-  	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC"/>
+  </zone>
 
-         <entity x="3" y="1">
-           <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-            <parameter name="shop">buyrare2</parameter>
-            <parameter name="title">Yorphin Baos' shop</parameter>
-			<parameter name="seller">false</parameter>
-			<parameter name="caption">Yorphin Baos will buy these items.</parameter>
-           </implementation>
+  <zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.fado.weaponshop.RingSmithNPC" />
 
-           <attribute name="class">blackboard</attribute>
-         </entity>      
+    <!-- Signs -->
+    <entity x="3" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyrare2</parameter>
+        <parameter name="title">Yorphin Baos' shop</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Yorphin Baos will buy these items.</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
 
-           <configurator class-name="games.stendhal.server.maps.fado.weaponshop.RingSmithNPC"/>
+    <entity x="12" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyprecious</parameter>
+        <parameter name="title">Ognir's gem shop</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Ognir will buy your precious stones and gold.</parameter>
+      </implementation>
+      <attribute name="class">book_red</attribute>
+      <attribute name="resistance">10</attribute>
+    </entity>
 
-         <entity x="12" y="14">
-           <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-            <parameter name="shop">buyprecious</parameter>
-            <parameter name="title">Ognir's gem shop</parameter>
-			<parameter name="seller">false</parameter>
-			<parameter name="caption">Ognir will buy your precious stones and gold.</parameter>
-           </implementation>
+    <portal x="5" y="16" ref="entrance">
+      <destination zone="0_fado_city" ref="weaponshop_entrance" />
+    </portal>
 
-           <attribute name="class">book_red</attribute>
-           <attribute name="resistance">10</attribute>
-         </entity>      
-
-	   <portal x="5" y="16" ref="entrance">
-             <destination zone="0_fado_city" ref="weaponshop_entrance"/>
-           </portal>
-
-            <entity x="15" y="13">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+    <entity x="15" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Gemstones and Precious metals
 
 Gems are typically hoarded by dragons. If you're strong enough to kill one,
@@ -477,76 +524,99 @@ gems, and so on.
 
 Gold is harder to find in a land not rich in minerals. Or'ril river has a spot
 where panning for gold is possible. this spot is south of Or'ril castle. 
-	</attribute>
-      	<attribute name="class">book_blue</attribute>
-    </entity>      
-         </zone>
+      </attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
 
-	<zone name="int_fado_hut" file="interiors/fado/hut.tmx">
-		<configurator class-name="games.stendhal.server.maps.fado.hut.SellerNPC" />
-		<entity x="8" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="8" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="3" y="10" ref="entrance">
-			<destination zone="0_fado_city" ref="hut_entrance" />
-		</portal>
-	</zone>
-         
-         <zone name="int_fado_church" file="interiors/fado/church.tmx">
-          <configurator class-name="games.stendhal.server.maps.fado.church.VergerNPC"/>
-          <configurator class-name="games.stendhal.server.maps.fado.church.PriestNPC"/>
-           <portal x="10" y="23" ref="entrance_left2">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="11" y="23" ref="entrance_left">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="12" y="23" ref="entrance_right">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="13" y="23" ref="entrance_right2">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_shepherd_house" file="interiors/fado/shepherd_house.tmx">
-           <portal x="10" y="30" ref="entrance">
-             <destination zone="0_fado_city" ref="shepherd_house_entrance"/>
-           </portal>
-		<configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-			<parameter name="x">15</parameter>
-			<parameter name="y">20</parameter>
-			<parameter name="image">fence_gate</parameter>
-			<parameter name="orientation">h</parameter>
-			<parameter name="condition">new AlwaysFalseCondition()</parameter>
-			<parameter name="message">The gate is locked.</parameter>
-		</configurator>
-         </zone>
-         
-                  
-         <zone name="int_fado_dressing_rooms" file="interiors/fado/dressing_rooms.tmx">
-         <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.BrideAssistantNPC"/>
-         <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC"/>
-         <portal x="11" y="13" ref="entrance_left">
-           <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
-         </portal>
-          <portal x="12" y="13" ref="entrance_right">
-           <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
-         </portal>
-        <entity x="21" y="5">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-      	<attribute name="text">
+  </zone>
+
+  <zone name="int_fado_hut" file="interiors/fado/hut.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.hut.SellerNPC" />
+
+    <!-- Clock -->
+    <entity x="8" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
+    <entity x="8" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- Portals -->
+    <portal x="3" y="10" ref="entrance">
+      <destination zone="0_fado_city" ref="hut_entrance" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_fado_church" file="interiors/fado/church.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.church.VergerNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.church.PriestNPC" />
+
+    <!-- Portals -->
+    <portal x="10" y="23" ref="entrance_left2">
+      <destination zone="0_fado_city" ref="church_entrance" />
+    </portal>
+
+    <portal x="11" y="23" ref="entrance_left">
+      <destination zone="0_fado_city" ref="church_entrance" />
+    </portal>
+
+    <portal x="12" y="23" ref="entrance_right">
+      <destination zone="0_fado_city" ref="church_entrance" />
+    </portal>
+
+    <portal x="13" y="23" ref="entrance_right2">
+      <destination zone="0_fado_city" ref="church_entrance" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_fado_shepherd_house" file="interiors/fado/shepherd_house.tmx">
+    <!-- Portals -->
+    <portal x="10" y="30" ref="entrance">
+      <destination zone="0_fado_city" ref="shepherd_house_entrance" />
+    </portal>
+
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+      <parameter name="x">15</parameter>
+      <parameter name="y">20</parameter>
+      <parameter name="image">fence_gate</parameter>
+      <parameter name="orientation">h</parameter>
+      <parameter name="condition">new AlwaysFalseCondition()</parameter>
+      <parameter name="message">The gate is locked.</parameter>
+    </configurator>
+
+  </zone>
+
+  <zone name="int_fado_dressing_rooms" file="interiors/fado/dressing_rooms.tmx">
+    <!-- NPCs -->
+    <configurator
+      class-name="games.stendhal.server.maps.fado.dressingrooms.BrideAssistantNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC" />
+
+    <!-- Portals -->
+    <portal x="11" y="13" ref="entrance_left">
+      <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+    </portal>
+
+    <portal x="12" y="13" ref="entrance_right">
+      <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance" />
+    </portal>
+
+    <!-- Signs -->
+    <entity x="21" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 ADVICE FOR THE GROOM:
 
 Remember to take a wedding ring, to give the bride, to the church.
@@ -554,44 +624,50 @@ Remind your bride to take a ring for you as well.
 
 When you get to the church, you ask the Priest if you can marry your bride.
 If the bride is called Helen, you should say 'marry Helen'
-	</attribute>
-      	<attribute name="class">book_red</attribute>
+    </attribute>
+      <attribute name="class">book_red</attribute>
     </entity>
-         </zone>
-         
-         <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC"/>    
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelChefNPC"/>
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelGuestNPC"/>
-<!-- requires food items that have been reverted from miscs.xml because food needs to be eatable 
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC"/> -->
-           
-          <!-- Piano -->
-          <entity x="72" y="20">
-            <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-              <parameter name="sound">piano-1</parameter>
-              <parameter name="radius">40</parameter>
-            </implementation>
-            <attribute name="width">2</attribute>
-            <attribute name="height">2</attribute>
-            <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-          </entity>
-  
-           <portal x="8" y="63" ref="entrance">
-             <destination zone="0_fado_city" ref="hotel_entrance"/>
-           </portal>
-           
-           <portal x="41" y="50" ref="dressing_rooms_entrance">
-             <destination zone="int_fado_dressing_rooms" ref="entrance_right"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
-      			<parameter name="quest">marriage</parameter>
-				<parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
-             </implementation>
-           </portal>
 
-                 <entity x="14" y="48">
-    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-     	<attribute name="text">
+  </zone>
+
+  <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelChefNPC" />
+    <configurator class-name="games.stendhal.server.maps.fado.hotel.HotelGuestNPC" />
+    <!-- requires food items that have been reverted from miscs.xml because 
+      food needs to be eatable <configurator class-name="games.stendhal.server.maps.fado.hotel.TroublesomeCustomerNPC"/> -->
+
+    <!-- Interactive sounds -->
+    <entity x="72" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <!-- Portals -->
+    <portal x="8" y="63" ref="entrance">
+      <destination zone="0_fado_city" ref="hotel_entrance" />
+    </portal>
+
+    <portal x="41" y="50" ref="dressing_rooms_entrance">
+      <destination zone="int_fado_dressing_rooms" ref="entrance_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">marriage</parameter>
+        <parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
+      </implementation>
+    </portal>
+
+    <!-- Signs -->
+    <entity x="14" y="48">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 0. Blue Paradise - with a flaming bed
 1. Windy Love - be blown away
 2. Literary Haven - bathe, read and relax
@@ -611,1011 +687,1162 @@ If the bride is called Helen, you should say 'marry Helen'
 
 If you're looking for a honeymoon room, just say the room number you desire
 For example say:  11  if you want the room called Water of Love.
-	</attribute>
-      	<attribute name="class">book_red</attribute>
-    </entity>  
+      </attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
 
-       <!--    these hotel rooms aren't in use yet
-       <portal x="0" y="40" ref="room_001_entrance">
-             <destination zone="int_fado_hotel_room_001" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 001</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="40" ref="room_002_entrance">
-             <destination zone="int_fado_hotel_room_002" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 002</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="33" ref="room_003_entrance">
-             <destination zone="int_fado_hotel_room_003" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 003</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="33" ref="room_004_entrance">
-             <destination zone="int_fado_hotel_room_004" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 004</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="26" ref="room_005_entrance">
-             <destination zone="int_fado_hotel_room_005" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 005</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="26" ref="room_006_entrance">
-             <destination zone="int_fado_hotel_room_006" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 006</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="19" ref="room_007_entrance">
-             <destination zone="int_fado_hotel_room_007" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 007</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="19" ref="room_008_entrance">
-             <destination zone="int_fado_hotel_room_008" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado hotel key 008</parameter>
-               <parameter name="rejected">Keys are at the front desk</parameter>
-             </implementation>
-           </portal>-->
-         </zone>
-    <!-- these hotel rooms aren't in use yet.     
-         <zone name="int_fado_hotel_room_001" file="interiors/fado/room_001.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_002" file="interiors/fado/room_002.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_002_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_003" file="interiors/fado/room_003.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_003_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_004" file="interiors/fado/room_004.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_004_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_005" file="interiors/fado/room_005.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_005_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_006" file="interiors/fado/room_006.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_006_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_007" file="interiors/fado/room_007.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_007_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_008" file="interiors/fado/room_008.tmx">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
-           </portal>
-         </zone> -->
+    <!-- these hotel rooms aren't in use yet <portal x="0" y="40" ref="room_001_entrance"> 
+      <destination zone="int_fado_hotel_room_001" ref="entrance" /> <implementation 
+      class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> <parameter 
+      name="key">fado hotel key 001</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="10" 
+      y="40" ref="room_002_entrance"> <destination zone="int_fado_hotel_room_002" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 002</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="0" 
+      y="33" ref="room_003_entrance"> <destination zone="int_fado_hotel_room_003" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 003</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="10" 
+      y="33" ref="room_004_entrance"> <destination zone="int_fado_hotel_room_004" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 004</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="0" 
+      y="26" ref="room_005_entrance"> <destination zone="int_fado_hotel_room_005" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 005</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="10" 
+      y="26" ref="room_006_entrance"> <destination zone="int_fado_hotel_room_006" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 006</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="0" 
+      y="19" ref="room_007_entrance"> <destination zone="int_fado_hotel_room_007" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 007</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> <portal x="10" 
+      y="19" ref="room_008_entrance"> <destination zone="int_fado_hotel_room_008" 
+      ref="entrance" /> <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal"> 
+      <parameter name="key">fado hotel key 008</parameter> <parameter name="rejected">Keys 
+      are at the front desk</parameter> </implementation> </portal> -->
 
-	<zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx"
-		accessible="false">
-		<!-- to disallow making or using marked scrolls-->
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<entity x="19" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        
-        <!-- ticking clock sound effect -->
-        <entity x="19" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-        
-        <!-- Piano -->
-        <entity x="2" y="21">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">piano-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="width">2</attribute>
-          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-        </entity>
-  
-	</zone>
-	 
-	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+  </zone>
 
-         <zone name="int_fado_lovers_room_2" file="interiors/fado/lovers_room_2.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
-	 
-	 <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-	     
-        <!-- Piano -->
-        <entity x="20" y="14">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">piano-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="width">2</attribute>
-          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-        </entity>
-  
-     </zone>
+  <!-- these hotel rooms aren't in use yet. <zone name="int_fado_hotel_room_001" 
+    file="interiors/fado/room_001.tmx"> <portal x="8" y="14" ref="entrance"> 
+    <destination zone="int_fado_hotel_0" ref="room_001_entrance" /> </portal> 
+    </zone> <zone name="int_fado_hotel_room_002" file="interiors/fado/room_002.tmx"> 
+    <portal x="8" y="14" ref="entrance"> <destination zone="int_fado_hotel_0" 
+    ref="room_002_entrance" /> </portal> </zone> <zone name="int_fado_hotel_room_003" 
+    file="interiors/fado/room_003.tmx"> <portal x="8" y="14" ref="entrance"> 
+    <destination zone="int_fado_hotel_0" ref="room_003_entrance" /> </portal> 
+    </zone> <zone name="int_fado_hotel_room_004" file="interiors/fado/room_004.tmx"> 
+    <portal x="8" y="14" ref="entrance"> <destination zone="int_fado_hotel_0" 
+    ref="room_004_entrance" /> </portal> </zone> <zone name="int_fado_hotel_room_005" 
+    file="interiors/fado/room_005.tmx"> <portal x="8" y="14" ref="entrance"> 
+    <destination zone="int_fado_hotel_0" ref="room_005_entrance" /> </portal> 
+    </zone> <zone name="int_fado_hotel_room_006" file="interiors/fado/room_006.tmx"> 
+    <portal x="8" y="14" ref="entrance"> <destination zone="int_fado_hotel_0" 
+    ref="room_006_entrance" /> </portal> </zone> <zone name="int_fado_hotel_room_007" 
+    file="interiors/fado/room_007.tmx"> <portal x="8" y="14" ref="entrance"> 
+    <destination zone="int_fado_hotel_0" ref="room_007_entrance" /> </portal> 
+    </zone> <zone name="int_fado_hotel_room_008" file="interiors/fado/room_008.tmx"> 
+    <portal x="8" y="14" ref="entrance"> <destination zone="int_fado_hotel_0" 
+    ref="room_008_entrance" /> </portal> </zone> -->
 
-         <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+  <zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 
-	<zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx"
-		accessible="false">
-		<!-- to disallow making or using marked scrolls-->
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<entity x="4" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="4" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-	</zone>
+    <!-- Clock -->
+    <entity x="19" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
 
-         <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
-	 
-	 <zone name="int_fado_lovers_room_7" file="interiors/fado/lovers_room_7.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+    <entity x="19" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 
-	<zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx"
-		accessible="false">
-		<!-- to disallow making or using marked scrolls-->
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<entity x="19" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="19" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-	</zone>
-	 
-	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+    <!-- Interactive sounds -->
+    <entity x="2" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
 
-         <zone name="int_fado_lovers_room_10" file="interiors/fado/lovers_room_10.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
-	 
-	 <zone name="int_fado_lovers_room_11" file="interiors/fado/lovers_room_11.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
+  </zone>
 
-	<zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx"
-		accessible="false">
-		<!-- to disallow making or using marked scrolls-->
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<entity x="20" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="20" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-	</zone>
-	 
-	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-         </zone>
-  
-  <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx" accessible="false">
-    <!-- to disallow making or using marked scrolls-->
-	  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    
+  <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_2" file="interiors/fado/lovers_room_2.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <!-- Piano -->
+    <entity x="20" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <!-- Clock -->
+    <entity x="4" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
+    <entity x="4" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_7" file="interiors/fado/lovers_room_7.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <!-- Clock -->
+    <entity x="19" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
+    <entity x="19" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_10" file="interiors/fado/lovers_room_10.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_11" file="interiors/fado/lovers_room_11.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <!-- Clock -->
+    <entity x="20" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
+    <entity x="20" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
     <!-- Tables -->
     <entity x="7" y="3">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="18" y="14">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="7" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="18" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
+
+  </zone>
+
+  <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx"
+    accessible="false">
+    <!-- to disallow making or using marked scrolls -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+  </zone>
+
+  <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
+    <portal x="30" y="62" ref="entrance_left">
+      <destination zone="0_fado_city" ref="battle_arena_entrance" />
+    </portal>
+
+    <portal x="31" y="62" ref="entrance_right">
+      <destination zone="0_fado_city" ref="battle_arena_entrance" />
+    </portal>
+
+    <portal x="54" y="3" ref="basement_entrance">
+      <destination zone="int_fado_battle_pit" ref="basement_exit" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_fado_battle_pit" file="interiors/fado/battle_arena_-1.tmx">
+    <!-- so lower level players can't use ring to get in -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <portal x="54" y="3" ref="basement_exit">
+      <destination zone="int_fado_battle_arena" ref="basement_entrance" />
+    </portal>
+
+    <portal x="30" y="5" ref="stairs1down">
+      <destination zone="int_fado_battle_pit" ref="stairs1up" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">150</parameter>
+        <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
+      </implementation>
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="31" y="5" ref="stairs2down">
+      <destination zone="int_fado_battle_pit" ref="stairs2up" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">150</parameter>
+        <parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
+      </implementation>
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="30" y="6" ref="stairs1up">
+      <destination zone="int_fado_battle_pit" ref="stairs1down" />
+      <attribute name="hidden" />
+    </portal>
+    
+    <portal x="31" y="6" ref="stairs2up">
+      <destination zone="int_fado_battle_pit" ref="stairs2down" />
+      <attribute name="hidden" />
+    </portal>
     
   </zone>
-	
-	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx" accessible="false">
-         <!-- to disallow making or using marked scrolls-->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-     </zone>
 
-	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
-	  <portal x="30" y="62" ref="entrance_left">
-       <destination zone="0_fado_city" ref="battle_arena_entrance"/>
-      </portal>
-	  <portal x="31" y="62" ref="entrance_right">
-       <destination zone="0_fado_city" ref="battle_arena_entrance"/>
-      </portal>
-	  <portal x="54" y="3" ref="basement_entrance">
-       <destination zone="int_fado_battle_pit" ref="basement_exit"/>
-      </portal> 
-     </zone>
-     <zone name="int_fado_battle_pit" file="interiors/fado/battle_arena_-1.tmx">
-         <!-- so lower level players can't use ring to get in -->
-	 <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
-      <portal x="54" y="3" ref="basement_exit">
-       <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
-      </portal>
-      <portal x="30" y="5" ref="stairs1down">
-      <destination zone="int_fado_battle_pit" ref="stairs1up"/>
-	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">150</parameter>
-		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
-	   </implementation>
-	   <attribute name="hidden"/>
-      </portal>
-      <portal x="31" y="5" ref="stairs2down">
-      <destination zone="int_fado_battle_pit" ref="stairs2up"/>
-	   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">150</parameter>
-		<parameter name="rejected">You are not strong enough to go into the battle pit, but you can watch from the viewing area.</parameter>
-	   </implementation>
-	   <attribute name="hidden"/>
-      </portal>
-      <portal x="30" y="6" ref="stairs1up">
-      <destination zone="int_fado_battle_pit" ref="stairs1down"/>
-	   <attribute name="hidden"/>
-      </portal>
-      <portal x="31" y="6" ref="stairs2up">
-      <destination zone="int_fado_battle_pit" ref="stairs2down"/>
-	   <attribute name="hidden"/>
-      </portal>
-     </zone>
+  <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
+    
+    <entity x="63" y="82">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyaxe</parameter>
+        <parameter name="title">Woody's list of axes</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Woody the Woodcutter will buy these axes:</parameter>
+      </implementation>
+      <attribute name="class">signpost</attribute>
+    </entity>
 
-<zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
- <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
-  <entity x="63" y="82">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-    <parameter name="shop">buyaxe</parameter>
-    <parameter name="title">Woody's list of axes</parameter>
-	<parameter name="seller">false</parameter>
-	<parameter name="caption">Woody the Woodcutter will buy these axes:</parameter>
-    </implementation>
-    <attribute name="class">signpost</attribute>
-  </entity>
+    <portal x="60" y="80" ref="woodcutter_entrance">
+      <destination zone="int_fado_woodcutter_lodge" ref="entrance" />
+    </portal>
+  </zone>
 
-  <portal x="60" y="80" ref="woodcutter_entrance">
-   <destination zone="int_fado_woodcutter_lodge" ref="entrance"/>
-  </portal>
- </zone>
+  <zone name="int_fado_woodcutter_lodge" file="interiors/fado/woodcutter_lodge.tmx">
+    <portal x="7" y="18" ref="entrance">
+      <destination zone="0_fado_forest" ref="woodcutter_entrance" />
+    </portal>
+  </zone>
 
- <zone name="int_fado_woodcutter_lodge" file="interiors/fado/woodcutter_lodge.tmx">
-  <portal x="7" y="18" ref="entrance">
-   <destination zone="0_fado_forest" ref="woodcutter_entrance"/>
-  </portal>
- </zone>
+  <zone name="0_fado_forest_e" level="0" x="499872" y="500512" file="Level 0/fado/forest_e.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <portal x="65" y="68" ref="palace_entrance_left">
+      <destination zone="int_oni_palace_0" ref="entrance1_right" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">60</parameter>
+        <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
+      </implementation>
+    </portal>
+    
+    <portal x="75" y="68" ref="palace_entrance_right">
+      <destination zone="int_oni_palace_0" ref="entrance2_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">60</parameter>
+        <parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
+      </implementation>
+    </portal>
 
+    <point-of-interest x="18" y="120">
+      <name>Fado Great Caves 2</name>
+      <title>Fado Great Caves</title>
+      <type>dungeon</type>
+      <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+    </point-of-interest>
 
-<zone name="0_fado_forest_e" level="0" x="499872" y="500512" file="Level 0/fado/forest_e.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  <portal x="65" y="68" ref="palace_entrance_left">
-   <destination zone="int_oni_palace_0" ref="entrance1_right"/>
-   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">60</parameter>
-		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
-	   </implementation>
-  </portal>
-  <portal x="75" y="68" ref="palace_entrance_right">
-   <destination zone="int_oni_palace_0" ref="entrance2_right"/>
-   <implementation  class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-	    <parameter name="minimum-level">60</parameter>
-		<parameter name="rejected">You are not strong enough to push this heavy door open.</parameter>
-	   </implementation>
-  </portal>
+  </zone>
 
-	<point-of-interest x="18" y="120">
-		<name>Fado Great Caves 2</name>
-		<title>Fado Great Caves</title>
-		<type>dungeon</type>
-		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
-	</point-of-interest>
+  <zone name="int_oni_palace_0" file="interiors/fado/palace_0.tmx">
+    <portal x="5" y="30" ref="entrance1_left">
+      <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+    </portal>
+    
+    <portal x="6" y="30" ref="entrance1_right">
+      <destination zone="0_fado_forest_e" ref="palace_entrance_left" />
+    </portal>
+    
+    <portal x="25" y="30" ref="entrance2_left">
+      <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+    </portal>
+    
+    <portal x="26" y="30" ref="entrance2_right">
+      <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
+    </portal>
+    
+    <portal x="6" y="4" ref="upstairs_left">
+      <destination zone="int_oni_palace_1" ref="downstairs_left" />
+    </portal>
+    
+    <portal x="25" y="4" ref="upstairs_right">
+      <destination zone="int_oni_palace_1" ref="downstairs_right" />
+    </portal>
+    
+    <portal x="3" y="7" ref="magic_portal1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <portal x="4" y="7" ref="magic_portal2">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+  </zone>
 
-</zone>
+  <zone name="int_oni_palace_1" file="interiors/fado/palace_1.tmx">
+    <portal x="6" y="4" ref="downstairs_left">
+      <destination zone="int_oni_palace_0" ref="upstairs_left" />
+    </portal>
+    
+    <portal x="25" y="4" ref="downstairs_right">
+      <destination zone="int_oni_palace_0" ref="upstairs_right" />
+    </portal>
+    
+    <portal x="15" y="0" ref="upstairs_left">
+      <destination zone="int_oni_palace_2" ref="downstairs_left" />
+    </portal>
+    
+    <portal x="16" y="0" ref="upstairs_right">
+      <destination zone="int_oni_palace_2" ref="downstairs_right" />
+    </portal>
+    
+  </zone>
 
- <zone name="int_oni_palace_0" file="interiors/fado/palace_0.tmx">
-  <portal x="5" y="30" ref="entrance1_left">
-   <destination zone="0_fado_forest_e" ref="palace_entrance_left"/>
-  </portal>
-  <portal x="6" y="30" ref="entrance1_right">
-   <destination zone="0_fado_forest_e" ref="palace_entrance_left"/>
-  </portal>
-  <portal x="25" y="30" ref="entrance2_left">
-   <destination zone="0_fado_forest_e" ref="palace_entrance_right"/>
-  </portal>
-  <portal x="26" y="30" ref="entrance2_right">
-   <destination zone="0_fado_forest_e" ref="palace_entrance_right"/>
-  </portal>
-  <portal x="6" y="4" ref="upstairs_left">
-   <destination zone="int_oni_palace_1" ref="downstairs_left"/>
-  </portal>
-  <portal x="25" y="4" ref="upstairs_right">
-   <destination zone="int_oni_palace_1" ref="downstairs_right"/>
-  </portal>
-  <portal x="3" y="7" ref="magic_portal1">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="4" y="7" ref="magic_portal2">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
- </zone>
+  <zone name="int_oni_palace_2" file="interiors/fado/palace_2.tmx">
+    <portal x="15" y="0" ref="downstairs_left">
+      <destination zone="int_oni_palace_1" ref="upstairs_left" />
+    </portal>
+    
+    <portal x="16" y="0" ref="downstairs_right">
+      <destination zone="int_oni_palace_1" ref="upstairs_right" />
+    </portal>
+    
+    <portal x="3" y="7" ref="magic_portal1">
+      <destination zone="int_oni_palace_0" ref="magic_portal1" />
+    </portal>
+    
+    <portal x="4" y="7" ref="magic_portal2">
+      <destination zone="int_oni_palace_0" ref="magic_portal2" />
+    </portal>
+    
+  </zone>
 
- <zone name="int_oni_palace_1" file="interiors/fado/palace_1.tmx">
-  <portal x="6" y="4" ref="downstairs_left">
-   <destination zone="int_oni_palace_0" ref="upstairs_left"/>
-  </portal>
-  <portal x="25" y="4" ref="downstairs_right">
-   <destination zone="int_oni_palace_0" ref="upstairs_right"/>
-  </portal>
-  <portal x="15" y="0" ref="upstairs_left">
-   <destination zone="int_oni_palace_2" ref="downstairs_left"/>
-  </portal>
-  <portal x="16" y="0" ref="upstairs_right">
-   <destination zone="int_oni_palace_2" ref="downstairs_right"/>
-  </portal>
- </zone>
-
- <zone name="int_oni_palace_2" file="interiors/fado/palace_2.tmx">
-  <portal x="15" y="0" ref="downstairs_left">
-   <destination zone="int_oni_palace_1" ref="upstairs_left"/>
-  </portal>
-  <portal x="16" y="0" ref="downstairs_right">
-   <destination zone="int_oni_palace_1" ref="upstairs_right"/>
-  </portal>
-  <portal x="3" y="7" ref="magic_portal1">
-   <destination zone="int_oni_palace_0" ref="magic_portal1"/>
-  </portal>
-  <portal x="4" y="7" ref="magic_portal2">
-   <destination zone="int_oni_palace_0" ref="magic_portal2"/>
-  </portal>
- </zone>
-
-<zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
+  <zone name="0_fado_forest_s" level="0" x="499744" y="500640" file="Level 0/fado/forest_s.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.fado.forest.BeeKeeperNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.OldWomanNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.WitchNPC" />
     <configurator class-name="games.stendhal.server.maps.fado.forest.ItemsOnTable" />
- 
-  	<portal x="53" y="26" ref="imorgens_house_entrance">
-        <destination zone="int_imorgens_house" ref="entrance"/>
+
+    <portal x="53" y="26" ref="imorgens_house_entrance">
+      <destination zone="int_imorgens_house" ref="entrance" />
     </portal>
-           
-</zone>
 
-<zone name="int_imorgens_house" file="interiors/fado/imorgens_house.tmx">
-  <configurator class-name="games.stendhal.server.maps.fado.forest.OldWitchNPC" />
+  </zone>
+
+  <zone name="int_imorgens_house" file="interiors/fado/imorgens_house.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.forest.OldWitchNPC" />
+
+    <!-- Piano -->
+    <entity x="7" y="9">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <!-- Toilet -->
+    <entity x="5" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- Faucet -->
+    <entity x="3" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    
+    <!-- Portals -->
+    <portal x="4" y="14" ref="entrance">
+      <destination zone="0_fado_forest_s" ref="imorgens_house_entrance" />
+    </portal>
+    
+  </zone>
+
+  <zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <point-of-interest x="30" y="105">
+      <name>Fado Great Caves 5</name>
+      <title>Fado Great Caves</title>
+      <type>dungeon</type>
+      <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+    </point-of-interest>
+
+  </zone>
   
-  <!-- Piano -->
-  <entity x="7" y="9">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
+  <zone name="0_fado_forest_s_e2" level="0" x="500000" y="500640" file="Level 0/fado/forest_s_e2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.fado.forest.GreeterNPC" />
+
+    <point-of-interest x="12" y="11">
+      <name>Fado Great Caves 3</name>
+      <title>Fado Great Caves</title>
+      <type>dungeon</type>
+      <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+    </point-of-interest>
+
+    <portal x="26" y="42" ref="hut1_entrance">
+      <destination zone="int_fado_elf_hut_1" ref="entrance" />
+    </portal>
+    
+    <portal x="25" y="30" ref="hut2_entrance">
+      <destination zone="int_fado_elf_hut_2" ref="entrance" />
+    </portal>
+
+    <point-of-interest x="84" y="59">
+      <name>Fado Great Caves 4</name>
+      <title>Fado Great Caves</title>
+      <type>dungeon</type>
+      <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+    </point-of-interest>
+
+    <portal x="97" y="85" ref="hut3_entrance">
+      <destination zone="int_fado_elf_hut_3" ref="entrance" />
+    </portal>
+
+    <portal x="10" y="43" ref="hut4_entrance">
+      <destination zone="int_fado_elf_hut_4" ref="entrance" />
+    </portal>
+
+  </zone>
+
+  <zone name="0_fado_forest_s_e3" level="0" x="500128" y="500640" file="Level 0/fado/forest_s_e3.tmx" accessible="false">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+
+  </zone>
+
+  <zone name="int_fado_elf_hut_1" file="interiors/fado/elf_hut_1.tmx">
+    <portal x="9" y="19" ref="entrance">
+      <destination zone="0_fado_forest_s_e2" ref="hut1_entrance" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_fado_elf_hut_2" file="interiors/fado/elf_hut_2.tmx">
+    <configurator class-name="games.stendhal.server.maps.fado.forest.CraftsmanNPC" />
+    <portal x="9" y="19" ref="entrance">
+      <destination zone="0_fado_forest_s_e2" ref="hut2_entrance" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_fado_elf_hut_3" file="interiors/fado/elf_hut_3.tmx">
+    <portal x="9" y="19" ref="entrance">
+      <destination zone="0_fado_forest_s_e2" ref="hut3_entrance" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_fado_elf_hut_4" file="interiors/fado/elf_hut_4.tmx">
+    <configurator class-name="games.stendhal.server.maps.fado.hut.BlueCrystalNPC" />
+    <portal x="9" y="19" ref="entrance">
+      <destination zone="0_fado_forest_s_e2" ref="hut4_entrance" />
+    </portal>
+    
+  </zone>
+
+  <!-- Level -1 -->
+  <zone name="-1_fado_great_cave_n_w2" level="-1" x="499616" y="500512" file="Level -1/fado/great_cave_n_w2.tmx">
+  </zone>
+
+  <zone name="-1_fado_great_cave_nw" level="-1" x="499744" y="500512" file="Level -1/fado/great_cave_nw.tmx">
+  </zone>
+
+  <zone name="-1_fado_great_cave_n" level="-1" x="499872" y="500512" file="Level -1/fado/great_cave_n.tmx">
+  </zone>
+
+  <zone name="-1_fado_great_cave_ne" level="-1" x="500000" y="500512" file="Level -1/fado/great_cave_ne.tmx">
+  </zone>
   
-        <!-- flushing toilet -->
-        <entity x="5" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="3" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-  <portal x="4" y="14" ref="entrance">
-    <destination zone="0_fado_forest_s" ref="imorgens_house_entrance"/>
-  </portal>
-</zone>
+  <!-- Magic underground city is here -->
+  <zone name="-1_fado_great_cave_n_e2" level="-1" x="500128" y="500512" file="Level -1/fado/great_cave_n_e2.tmx">
+    <portal x="28" y="112" ref="kirdneh_house">
+      <destination zone="int_kirdneh_river_house_0" ref="downstair" />
+    </portal>
+    
+    <portal x="112" y="17" ref="school_entrance_left">
+      <destination zone="int_magic_school_0" ref="entrance_left" />
+    </portal>
+    
+    <portal x="113" y="17" ref="school_entrance_right">
+      <destination zone="int_magic_school_0" ref="entrance_right" />
+    </portal>
+    
+    <entity x="117" y="122">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a burning hot grill, for barbecuing meat, or maybe chicken.</attribute>
+    </entity>
+    
+    <entity x="118" y="122">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue, with a pot on top. Maybe it has stew inside.</attribute>
+    </entity>
+    
+    <portal x="102" y="50" ref="house1_entrance">
+      <destination zone="int_magic_house1" ref="entrance" />
+    </portal>
+    
+  </zone>
 
-<zone name="0_fado_forest_se" level="0" x="499872" y="500640" file="Level 0/fado/forest_se.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-	<point-of-interest x="30" y="105">
-		<name>Fado Great Caves 5</name>
-		<title>Fado Great Caves</title>
-		<type>dungeon</type>
-		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
-	</point-of-interest>
+  <zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.magic.city.HealerNPC" />
+    
+    <entity x="86" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a grill, ready to barbecue some meat. Careful, it's hot!</attribute>
+    </entity>
+    
+    <entity x="82" y="23">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="121" y="68">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a sizzling grill, for barbecuing meat. You can't see a man around but you can smell the burnt food, so one must be close.</attribute>
+    </entity>
+    
+    <entity x="122" y="68">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
+    </entity>
+    
+    <entity x="123" y="68">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a flaming grill, just right to cook some tasty food on.</attribute>
+    </entity>
+    
+    <entity x="121" y="71">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="122" y="71">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="123" y="71">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="124" y="71">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="121" y="76">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="122" y="76">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="123" y="76">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="124" y="76">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+    </entity>
+    
+    <entity x="91" y="70">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">The TrailBlazer, by Best Broom, ltd.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <portal x="85" y="112" ref="house2_entrance">
+      <destination zone="int_magic_house2" ref="entrance" />
+    </portal>
+    
+    <portal x="27" y="72" ref="shrine_entrance_left">
+      <destination zone="int_magic_shrine" ref="entrance_left" />
+    </portal>
+    
+    <portal x="28" y="72" ref="shrine_entrance_right">
+      <destination zone="int_magic_shrine" ref="entrance_right" />
+    </portal>
+    
+    <portal x="74" y="102" ref="house4_entrance">
+      <destination zone="int_magic_house4" ref="entrance" />
+    </portal>
+    
+    <portal x="47" y="61" ref="lounge_entrance">
+      <destination zone="int_magic_lounge" ref="entrance" />
+    </portal>
+    
+    <portal x="21" y="37" ref="bank_entrance">
+      <destination zone="int_magic_bank" ref="entrance" />
+    </portal>
+    
+    <entity x="48" y="112">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    
+    <entity x="49" y="112">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    
+  </zone>
 
-</zone>
-<zone name="0_fado_forest_s_e2" level="0" x="500000" y="500640" file="Level 0/fado/forest_s_e2.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
- <configurator class-name="games.stendhal.server.maps.fado.forest.GreeterNPC" />
+  <!-- Imperial Undergroundcity starts here -->
+  <zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.sedah.gatehouse.GateKeeperNPC" />
+    
+    <portal x="115" y="73" ref="in1">
+      <destination zone="-1_fado_great_cave_w2" ref="in" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">sedah gate key</parameter>
+        <parameter name="rejected">The gate is locked</parameter>
+      </implementation>
+    </portal>
+    
+    <portal x="116" y="73" ref="in2">
+      <destination zone="-1_fado_great_cave_w2" ref="in" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">sedah gate key</parameter>
+        <parameter name="rejected">The gate is locked</parameter>
+      </implementation>
+    </portal>
+    
+    <portal x="117" y="73" ref="in3">
+      <destination zone="-1_fado_great_cave_w2" ref="in" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">sedah gate key</parameter>
+        <parameter name="rejected">The gate is locked</parameter>
+      </implementation>
+    </portal>
+    
+    <portal x="115" y="72" ref="out">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <portal x="115" y="74" ref="out1">
+      <destination zone="-1_fado_great_cave_w2" ref="out" />
+    </portal>
+    
+    <portal x="116" y="74" ref="out2">
+      <destination zone="-1_fado_great_cave_w2" ref="out" />
+    </portal>
+    
+    <portal x="117" y="74" ref="out3">
+      <destination zone="-1_fado_great_cave_w2" ref="out" />
+    </portal>
+    
+    <portal x="116" y="76" ref="in">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <portal x="69" y="92" ref="house1_entrance">
+      <destination zone="int_sedah_house1" ref="entrance" />
+    </portal>
+    
+    <portal x="39" y="94" ref="house0_entrance">
+      <destination zone="int_sedah_house0" ref="entrance_right" />
+    </portal>
+    
+    <portal x="99" y="103" ref="house2_entrance">
+      <destination zone="int_sedah_house2" ref="entrance" />
+    </portal>
+    
+    <portal x="91" y="115" ref="mausoleum_entrance">
+      <destination zone="int_sedah_mausoleum" ref="entrance" />
+    </portal>
+    
+    <portal x="121" y="105" ref="house3_entrance">
+      <destination zone="int_sedah_barracks_0" ref="entrance" />
+    </portal>
+    
+    <portal x="12" y="108" ref="house4_entrance">
+      <destination zone="int_sedah_house4_0" ref="entrance" />
+    </portal>
+    
+  </zone>
 
-	<point-of-interest x="12" y="11">
-		<name>Fado Great Caves 3</name>
-		<title>Fado Great Caves</title>
-		<type>dungeon</type>
-		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
-	</point-of-interest>
+  <zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
+    <portal x="19" y="30" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+    </portal>
+    
+    <portal x="20" y="30" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_w2" ref="house0_entrance" />
+    </portal>
+    
+  </zone>
 
- <portal x="26" y="42" ref="hut1_entrance">
-  <destination zone="int_fado_elf_hut_1" ref="entrance"/>
- </portal>
- <portal x="25" y="30" ref="hut2_entrance">
-  <destination zone="int_fado_elf_hut_2" ref="entrance"/>
- </portal>
+  <zone name="int_sedah_house1" file="interiors/sedah/house1.tmx">
+    <portal x="6" y="13" ref="entrance">
+      <destination zone="-1_fado_great_cave_w2" ref="house1_entrance" />
+    </portal>
+    
+  </zone>
 
-	<point-of-interest x="84" y="59">
-		<name>Fado Great Caves 4</name>
-		<title>Fado Great Caves</title>
-		<type>dungeon</type>
-		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
-	</point-of-interest>
+  <zone name="int_sedah_house2" file="interiors/sedah/house2.tmx">
+    <portal x="6" y="13" ref="entrance">
+      <destination zone="-1_fado_great_cave_w2" ref="house2_entrance" />
+    </portal>
+    
+  </zone>
 
- <portal x="97" y="85" ref="hut3_entrance">
-  <destination zone="int_fado_elf_hut_3" ref="entrance"/>
- </portal>
+  <zone name="int_sedah_house4_0" file="interiors/sedah/house4.tmx">
+    <portal x="15" y="28" ref="entrance">
+      <destination zone="-1_fado_great_cave_w2" ref="house4_entrance" />
+    </portal>
+    
+    <portal x="13" y="13" ref="up">
+      <destination zone="int_sedah_house4_1" ref="down" />
+    </portal>
+    
+  </zone>
 
- <portal x="10" y="43" ref="hut4_entrance">
-  <destination zone="int_fado_elf_hut_4" ref="entrance"/>
- </portal>
+  <zone name="int_sedah_house4_1" file="interiors/sedah/house4_1.tmx">
+    <configurator class-name="games.stendhal.server.maps.sedah.house.WannaBeKingNPC" />
+    <portal x="3" y="3" ref="down">
+      <destination zone="int_sedah_house4_0" ref="up" />
+    </portal>
+    
+  </zone>
 
-</zone>
+  <zone name="int_sedah_mausoleum" file="interiors/sedah/mausoleum.tmx">
+    <portal x="6" y="14" ref="entrance">
+      <destination zone="-1_fado_great_cave_w2" ref="mausoleum_entrance" />
+    </portal>
+    
+  </zone>
 
-<zone name="0_fado_forest_s_e3" level="0" x="500128" y="500640" file="Level 0/fado/forest_s_e3.tmx" accessible="false">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
+  <zone name="int_sedah_barracks_0" file="interiors/sedah/house3.tmx">
+    <portal x="16" y="28" ref="entrance">
+      <destination zone="-1_fado_great_cave_w2" ref="house3_entrance" />
+    </portal>
+    
+    <portal x="4" y="4" ref="up">
+      <destination zone="int_sedah_barracks_1" ref="down" />
+    </portal>
+    
+  </zone>
 
-</zone>
-
-<zone name="int_fado_elf_hut_1" file="interiors/fado/elf_hut_1.tmx">
-  <portal x="9" y="19" ref="entrance">
-   <destination zone="0_fado_forest_s_e2" ref="hut1_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_fado_elf_hut_2" file="interiors/fado/elf_hut_2.tmx">
- <configurator class-name="games.stendhal.server.maps.fado.forest.CraftsmanNPC" />
-  <portal x="9" y="19" ref="entrance">
-   <destination zone="0_fado_forest_s_e2" ref="hut2_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_fado_elf_hut_3" file="interiors/fado/elf_hut_3.tmx">
-  <portal x="9" y="19" ref="entrance">
-   <destination zone="0_fado_forest_s_e2" ref="hut3_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_fado_elf_hut_4" file="interiors/fado/elf_hut_4.tmx">
-  <configurator class-name="games.stendhal.server.maps.fado.hut.BlueCrystalNPC" />
-  <portal x="9" y="19" ref="entrance">
-   <destination zone="0_fado_forest_s_e2" ref="hut4_entrance"/>
-  </portal>
-</zone>
-
- <!--  Level -1 -->
-<zone name="-1_fado_great_cave_n_w2" level="-1" x="499616" y="500512" file="Level -1/fado/great_cave_n_w2.tmx">
-</zone>
-
-<zone name="-1_fado_great_cave_nw" level="-1" x="499744" y="500512" file="Level -1/fado/great_cave_nw.tmx">
-</zone>
-
-<zone name="-1_fado_great_cave_n" level="-1" x="499872" y="500512" file="Level -1/fado/great_cave_n.tmx">
-</zone>
-
-<zone name="-1_fado_great_cave_ne" level="-1" x="500000" y="500512" file="Level -1/fado/great_cave_ne.tmx">
-</zone>
-<!-- Magic underground city is here -->
-<zone name="-1_fado_great_cave_n_e2" level="-1" x="500128" y="500512" file="Level -1/fado/great_cave_n_e2.tmx">
-  <portal x="28" y="112" ref="kirdneh_house">
-   <destination zone="int_kirdneh_river_house_0" ref="downstair"/>
-  </portal>
-  <portal x="112" y="17" ref="school_entrance_left">
-   <destination zone="int_magic_school_0" ref="entrance_left"/>
-  </portal>
-  <portal x="113" y="17" ref="school_entrance_right">
-   <destination zone="int_magic_school_0" ref="entrance_right"/>
-  </portal>
-  <entity x="117" y="122">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a burning hot grill, for barbecuing meat, or maybe chicken.</attribute>
-  </entity>
-  <entity x="118" y="122">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue, with a pot on top. Maybe it has stew inside.</attribute>
-  </entity>
-  <portal x="102" y="50" ref="house1_entrance">
-   <destination zone="int_magic_house1" ref="entrance"/>
-  </portal>
-</zone>
-
-<zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.city.HealerNPC" />
-  <entity x="86" y="23">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a grill, ready to barbecue some meat. Careful, it's hot!</attribute>
-  </entity>
-  <entity x="82" y="23">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="121" y="68">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a sizzling grill, for barbecuing meat. You can't see a man around but you can smell the burnt food, so one must be close.</attribute>
-  </entity>
-  <entity x="122" y="68">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
-  </entity>
-  <entity x="123" y="68">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a flaming grill, just right to cook some tasty food on.</attribute>
-  </entity>
-  <entity x="121" y="71">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="122" y="71">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="123" y="71">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="124" y="71">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="121" y="76">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="122" y="76">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="123" y="76">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="124" y="76">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
-  </entity>
-  <entity x="91" y="70">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">The TrailBlazer, by Best Broom, ltd.</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <portal x="85" y="112" ref="house2_entrance">
-   <destination zone="int_magic_house2" ref="entrance"/>
-  </portal>
-  <portal x="27" y="72" ref="shrine_entrance_left">
-   <destination zone="int_magic_shrine" ref="entrance_left"/>
-  </portal>
-  <portal x="28" y="72" ref="shrine_entrance_right">
-   <destination zone="int_magic_shrine" ref="entrance_right"/>
-  </portal>
-  <portal x="74" y="102" ref="house4_entrance">
-   <destination zone="int_magic_house4" ref="entrance"/>
-  </portal>
-  <portal x="47" y="61" ref="lounge_entrance">
-   <destination zone="int_magic_lounge" ref="entrance"/>
-  </portal>
-  <portal x="21" y="37" ref="bank_entrance">
-   <destination zone="int_magic_bank" ref="entrance"/>
-  </portal>
-  <entity x="48" y="112">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
-  </entity>
-  <entity x="49" y="112">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
-  </entity>
-</zone>
-
-<!-- Imperial Undergroundcity starts here -->
-
-<zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
- <configurator class-name="games.stendhal.server.maps.sedah.gatehouse.GateKeeperNPC" />
-  <portal x="115" y="73" ref="in1">
-  <destination zone="-1_fado_great_cave_w2" ref="in"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah gate key</parameter>
-     <parameter name="rejected">The gate is locked</parameter>
-   </implementation>
-  </portal>
-  <portal x="116" y="73" ref="in2">
-  <destination zone="-1_fado_great_cave_w2" ref="in"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah gate key</parameter>
-     <parameter name="rejected">The gate is locked</parameter>
-   </implementation>
-  </portal>
-  <portal x="117" y="73" ref="in3">
-  <destination zone="-1_fado_great_cave_w2" ref="in"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah gate key</parameter>
-     <parameter name="rejected">The gate is locked</parameter>
-   </implementation>
-  </portal>
-  <portal x="115" y="72" ref="out">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="115" y="74" ref="out1">
-   <destination zone="-1_fado_great_cave_w2" ref="out"/>
-  </portal>
-  <portal x="116" y="74" ref="out2">
-   <destination zone="-1_fado_great_cave_w2" ref="out"/>
-  </portal>
-  <portal x="117" y="74" ref="out3">
-   <destination zone="-1_fado_great_cave_w2" ref="out"/>
-  </portal>
-  <portal x="116" y="76" ref="in">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="69" y="92" ref="house1_entrance">
-   <destination zone="int_sedah_house1" ref="entrance"/>
-  </portal>
-  <portal x="39" y="94" ref="house0_entrance">
-   <destination zone="int_sedah_house0" ref="entrance_right"/>
-  </portal>
-  <portal x="99" y="103" ref="house2_entrance">
-   <destination zone="int_sedah_house2" ref="entrance"/>
-  </portal>
-  <portal x="91" y="115" ref="mausoleum_entrance">
-   <destination zone="int_sedah_mausoleum" ref="entrance"/>
-  </portal>
-  <portal x="121" y="105" ref="house3_entrance">
-   <destination zone="int_sedah_barracks_0" ref="entrance"/>
-  </portal>
-  <portal x="12" y="108" ref="house4_entrance">
-   <destination zone="int_sedah_house4_0" ref="entrance"/>
-  </portal>
- </zone>
-
-<zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
-  <portal x="19" y="30" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_w2" ref="house0_entrance"/>
-  </portal>
-  <portal x="20" y="30" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_w2" ref="house0_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house1" file="interiors/sedah/house1.tmx">
-  <portal x="6" y="13" ref="entrance">
-   <destination zone="-1_fado_great_cave_w2" ref="house1_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house2" file="interiors/sedah/house2.tmx">
-  <portal x="6" y="13" ref="entrance">
-   <destination zone="-1_fado_great_cave_w2" ref="house2_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house4_0" file="interiors/sedah/house4.tmx">
-  <portal x="15" y="28" ref="entrance">
-   <destination zone="-1_fado_great_cave_w2" ref="house4_entrance"/>
-  </portal>
-  <portal x="13" y="13" ref="up">
-   <destination zone="int_sedah_house4_1" ref="down"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house4_1" file="interiors/sedah/house4_1.tmx">
-  <configurator class-name="games.stendhal.server.maps.sedah.house.WannaBeKingNPC"/>
-  <portal x="3" y="3" ref="down">
-   <destination zone="int_sedah_house4_0" ref="up"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_mausoleum" file="interiors/sedah/mausoleum.tmx">
-  <portal x="6" y="14" ref="entrance">
-   <destination zone="-1_fado_great_cave_w2" ref="mausoleum_entrance"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_barracks_0" file="interiors/sedah/house3.tmx">
-  <portal x="16" y="28" ref="entrance">
-   <destination zone="-1_fado_great_cave_w2" ref="house3_entrance"/>
-  </portal>
-  <portal x="4" y="4" ref="up">
-   <destination zone="int_sedah_barracks_1" ref="down"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_barracks_1" file="interiors/sedah/house3_1.tmx">
-  <portal x="4" y="4" ref="down">
-   <destination zone="int_sedah_barracks_0" ref="up"/>
-  </portal>
-  <portal x="15" y="26" ref="up">
-   <destination zone="int_sedah_barracks_2" ref="down"/>
-  </portal>
-  <entity x="15" y="3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">
+  <zone name="int_sedah_barracks_1" file="interiors/sedah/house3_1.tmx">
+    <portal x="4" y="4" ref="down">
+      <destination zone="int_sedah_barracks_0" ref="up" />
+    </portal>
+    
+    <portal x="15" y="26" ref="up">
+      <destination zone="int_sedah_barracks_2" ref="down" />
+    </portal>
+    
+    <entity x="15" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 When your guard starts, get 
 your armor and your weapon.  
 When your guard ends, bring 
 it back as you got it!
    </attribute>
-   <attribute name="class">book_red</attribute>
-  </entity>
-</zone>
-
-<zone name="int_sedah_barracks_2" file="interiors/sedah/house3_2.tmx">
-  <portal x="15" y="26" ref="down">
-   <destination zone="int_sedah_barracks_1" ref="up"/>
-  </portal>
-</zone>
-
-<zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
-  <portal x="52" y="96" ref="shop_in">
-   <destination zone="int_sedah_storage" ref="out"/>
-  </portal>
-  <portal x="37" y="116" ref="house5_in">
-   <destination zone="int_sedah_house5" ref="out"/>
-  </portal>
-  <portal x="92" y="102" ref="house6_in">
-   <destination zone="int_sedah_house6" ref="out"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_storage" file="interiors/sedah/shop.tmx">
- <configurator class-name="games.stendhal.server.maps.sedah.storage.StorageNPC"/>
-  <portal x="17" y="28" ref="out">
-   <destination zone="-1_fado_great_cave_w" ref="shop_in"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
-  <portal x="6" y="13" ref="out">
-   <destination zone="-1_fado_great_cave_w" ref="house5_in"/>
-  </portal>
-</zone>
-
-<zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
-  <portal x="6" y="13" ref="out">
-   <destination zone="-1_fado_great_cave_w" ref="house6_in"/>
-  </portal>
-</zone>
-
-<zone name="-1_fado_great_cave" level="-1" x="499872" y="500640" file="Level -1/fado/great_cave.tmx">
-</zone>
-
-<zone name="-1_fado_great_cave_e" level="-1" x="500000" y="500640" file="Level -1/fado/great_cave_e.tmx">
-</zone>
-
-<zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
-  <portal x="121" y="78" ref="house5_entrance">
-   <destination zone="int_magic_house5" ref="entrance_right"/>
-  </portal>
-</zone>
-<!-- Magic underground city is here -->
-<zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.city.GreeterNPC" />
-  <entity x="60" y="35">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
-  </entity>
-  <entity x="61" y="35">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource"/>
-  </entity>
-  <portal x="12" y="108" ref="theater_entrance_left">
-   <destination zone="int_magic_theater" ref="entrance_left"/>
-  </portal>
-  <portal x="13" y="108" ref="theater_entrance_right">
-   <destination zone="int_magic_theater" ref="entrance_right"/>
-  </portal>
-  <portal x="77" y="50" ref="house3_entrance">
-   <destination zone="int_magic_house3" ref="entrance"/>
-  </portal>
-  <portal x="80" y="10" ref="house6_entrance_left">
-   <destination zone="int_magic_house6" ref="entrance"/>
-  </portal>
-  <portal x="81" y="10" ref="house6_entrance_right">
-   <destination zone="int_magic_house6" ref="entrance"/>
-  </portal>
-  <portal x="91" y="93" ref="bricabrac_entrance_left">
-   <destination zone="int_magic_bric_a_brac" ref="entrance_left"/>
-  </portal>
-  <portal x="92" y="93" ref="bricabrac_entrance_right">
-   <destination zone="int_magic_bric_a_brac" ref="entrance_right"/>
-  </portal>
-  <portal x="113" y="40" ref="clothing_entrance">
-   <destination zone="int_magic_clothing_boutique" ref="entrance"/>
-  </portal>
-  <portal x="91" y="111" ref="flower_entrance">
-   <destination zone="int_magic_flower_shop" ref="entrance_right"/>
-  </portal>
-  <entity x="54" y="48">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Sweeper 3000 series</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <entity x="88" y="113">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">LightningBolt 100, property of B. Fly.</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <portal x="31" y="62" ref="jynath_orb">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <entity x="27" y="61">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">... so goodnight dear Diary till tomorrow. P.s. Must remember to get this diary re-bound as the pages are loose! 
-Today I used an orb in the witch Jynath's house and arrived in a city of witches and wizards. I nearly died when I walked around but luckily I found a home scroll in the corpse of a littlewizard and now I am about to teleport home.</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <entity x="22" y="59">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Notice from Headmistress: School witches and wizards, be more careful with your belongings! Many of you are losing your home scrolls!
-</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-</zone>
-<!-- Interiors for Magic underground city here -->
-<zone name="int_magic_theater" file="interiors/magic/theater.tmx">
-   <configurator class-name="games.stendhal.server.maps.magic.theater.MagicBarmaidNPC" />
-    <entity x="16" y="1">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">sellmagic</parameter>
-      <parameter name="title">Magic Theater Concession</parameter>
-	  <parameter name="seller">true</parameter>
-	  <parameter name="caption">Buy refreshments here:</parameter>
-     </implementation>
-     <attribute name="class">blackboard</attribute>
+      <attribute name="class">book_red</attribute>
     </entity>
-   <configurator class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC" />
-  <portal x="30" y="1" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left"/>
-  </portal>
-  <portal x="31" y="1" ref="entrance">
-   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
-  </portal>
-  <portal x="32" y="1" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
-  </portal>
-</zone>
+    
+  </zone>
 
-<zone name="int_magic_shrine" file="interiors/magic/shrine.tmx">
-	<attributes>
-			<parameter name="blend_method">truecolor</parameter>
-	</attributes>
- <configurator class-name="games.stendhal.server.maps.magic.shrine.PriestessNPC" />
-  <portal x="11" y="23" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_left"/>
-  </portal>
-  <portal x="12" y="23" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_right"/>
-  </portal>
-</zone>
+  <zone name="int_sedah_barracks_2" file="interiors/sedah/house3_2.tmx">
+    <portal x="15" y="26" ref="down">
+      <destination zone="int_sedah_barracks_1" ref="up" />
+    </portal>
+    
+  </zone>
 
-<zone name="int_magic_lounge" file="interiors/magic/lounge.tmx">
-  <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance"/>
-  </portal> 
-</zone>
+  <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
+    <portal x="52" y="96" ref="shop_in">
+      <destination zone="int_sedah_storage" ref="out" />
+    </portal>
+    
+    <portal x="37" y="116" ref="house5_in">
+      <destination zone="int_sedah_house5" ref="out" />
+    </portal>
+    
+    <portal x="92" y="102" ref="house6_in">
+      <destination zone="int_sedah_house6" ref="out" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_sedah_storage" file="interiors/sedah/shop.tmx">
+    <!-- NPCs -->
+    <configurator class-name="games.stendhal.server.maps.sedah.storage.StorageNPC" />
+    
+    <portal x="17" y="28" ref="out">
+      <destination zone="-1_fado_great_cave_w" ref="shop_in" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
+    <portal x="6" y="13" ref="out">
+      <destination zone="-1_fado_great_cave_w" ref="house5_in" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
+    <portal x="6" y="13" ref="out">
+      <destination zone="-1_fado_great_cave_w" ref="house6_in" />
+    </portal>
+    
+  </zone>
+
+  <zone name="-1_fado_great_cave" level="-1" x="499872" y="500640" file="Level -1/fado/great_cave.tmx">
+  </zone>
+
+  <zone name="-1_fado_great_cave_e" level="-1" x="500000" y="500640" file="Level -1/fado/great_cave_e.tmx">
+  </zone>
+
+  <zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
+    <portal x="121" y="78" ref="house5_entrance">
+      <destination zone="int_magic_house5" ref="entrance_right" />
+    </portal>
+    
+  </zone>
+  <!-- Magic underground city is here -->
+  <zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.city.GreeterNPC" />
+    
+    <entity x="60" y="35">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    
+    <entity x="61" y="35">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    
+    <portal x="12" y="108" ref="theater_entrance_left">
+      <destination zone="int_magic_theater" ref="entrance_left" />
+    </portal>
+    
+    <portal x="13" y="108" ref="theater_entrance_right">
+      <destination zone="int_magic_theater" ref="entrance_right" />
+    </portal>
+    
+    <portal x="77" y="50" ref="house3_entrance">
+      <destination zone="int_magic_house3" ref="entrance" />
+    </portal>
+    
+    <portal x="80" y="10" ref="house6_entrance_left">
+      <destination zone="int_magic_house6" ref="entrance" />
+    </portal>
+    
+    <portal x="81" y="10" ref="house6_entrance_right">
+      <destination zone="int_magic_house6" ref="entrance" />
+    </portal>
+    
+    <portal x="91" y="93" ref="bricabrac_entrance_left">
+      <destination zone="int_magic_bric_a_brac" ref="entrance_left" />
+    </portal>
+    
+    <portal x="92" y="93" ref="bricabrac_entrance_right">
+      <destination zone="int_magic_bric_a_brac" ref="entrance_right" />
+    </portal>
+    
+    <portal x="113" y="40" ref="clothing_entrance">
+      <destination zone="int_magic_clothing_boutique" ref="entrance" />
+    </portal>
+    
+    <portal x="91" y="111" ref="flower_entrance">
+      <destination zone="int_magic_flower_shop" ref="entrance_right" />
+    </portal>
+    
+    <entity x="54" y="48">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Sweeper 3000 series</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <entity x="88" y="113">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">LightningBolt 100, property of B. Fly.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <portal x="31" y="62" ref="jynath_orb">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    
+    <entity x="27" y="61">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">... so goodnight dear Diary till tomorrow. P.s. Must remember to get this diary re-bound as the pages are loose! 
+Today I used an orb in the witch Jynath's house and arrived in a city of witches and wizards. I nearly died when I walked around but luckily I found a home scroll in the corpse of a littlewizard and now I am about to teleport home.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    
+    <entity x="22" y="59">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Notice from Headmistress: School witches and wizards, be more careful with your belongings! Many of you are losing your home scrolls!
+</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+  </zone>
   
+  <!-- Interiors for Magic underground city here -->
+  <zone name="int_magic_theater" file="interiors/magic/theater.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.theater.MagicBarmaidNPC" />
+    
+    <entity x="16" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">sellmagic</parameter>
+        <parameter name="title">Magic Theater Concession</parameter>
+        <parameter name="seller">true</parameter>
+        <parameter name="caption">Buy refreshments here:</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+    
+    <configurator class-name="games.stendhal.server.maps.magic.theater.MithrilShieldForgerNPC" />
+    
+    <portal x="30" y="1" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left" />
+    </portal>
+    
+    <portal x="31" y="1" ref="entrance">
+      <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+    </portal>
+    
+    <portal x="32" y="1" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_magic_shrine" file="interiors/magic/shrine.tmx">
+    <attributes>
+      <parameter name="blend_method">truecolor</parameter>
+    </attributes>
+    
+    <configurator class-name="games.stendhal.server.maps.magic.shrine.PriestessNPC" />
+    
+    <portal x="11" y="23" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_left" />
+    </portal>
+    
+    <portal x="12" y="23" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_n_e3" ref="shrine_entrance_right" />
+    </portal>
+    
+  </zone>
+
+  <zone name="int_magic_lounge" file="interiors/magic/lounge.tmx">
+    <portal x="10" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance" />
+    </portal>
+    
+  </zone>
+
   <zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
     <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC" />
     <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLender2NPC" />
-    
+
     <!-- Clock -->
     <entity x="18" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
-    
+
     <entity x="18" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
@@ -1623,68 +1850,74 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-    
+
     <!-- Portals -->
     <portal x="18" y="23" ref="entrance">
       <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance" />
     </portal>
-    
+
     <!-- Tables -->
     <entity x="10" y="21">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="25" y="21">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
   </zone>
-  
+
   <zone name="int_magic_flower_shop" file="interiors/magic/flower_shop.tmx">
     <portal x="16" y="23" ref="entrance_left">
-      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
+      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
     </portal>
-    
+
     <portal x="17" y="23" ref="entrance_right">
-      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance"/>
+      <destination zone="-1_fado_great_cave_e3" ref="flower_entrance" />
     </portal>
-    
+
   </zone>
-  
+
   <zone name="int_magic_house1" file="interiors/magic/house1.tmx">
-   <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
- 
-   <entity x="7" y="13">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+    <configurator class-name="games.stendhal.server.maps.magic.house1.ChallengerNPC" />
+
+    <entity x="7" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
         <parameter name="width">5</parameter>
         <parameter name="height">8</parameter>
         <parameter name="enterMessage">You feel heat from the breath of the dragon, and realise that he can hurt you even if you are not standing close.</parameter>
         <parameter name="warnPlayer">true</parameter>
-    </implementation>
-  </entity>
+      </implementation>
+    </entity>
+
+    <portal x="10" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_magic_house2" file="interiors/magic/house2.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.house2.WizardNPC" />
+    
+    <portal x="10" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance" />
+    </portal>
+    
+  </zone>
   
- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
-  </portal>
-
-		
-</zone>
-
-<zone name="int_magic_house2" file="interiors/magic/house2.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.house2.WizardNPC"/>
- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance"/>
-  </portal>
-</zone>
-<zone name="int_magic_house3" file="interiors/magic/house3.tmx">
-	<entity x="6" y="10">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-    <!-- ticking clock sound effect -->
+  <zone name="int_magic_house3" file="interiors/magic/house3.tmx">
+    <!-- Clock -->
+    <entity x="6" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
     <entity x="6" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
@@ -1692,20 +1925,26 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-	<portal x="10" y="18" ref="entrance">
-		<destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
-	</portal>
-</zone>
-<zone name="int_magic_house4" file="interiors/magic/house4.tmx">
- <portal x="15" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_n_e3" ref="house4_entrance"/>
-  </portal>
-</zone>
-<zone name="int_magic_house5" file="interiors/magic/house5.tmx">
-	<entity x="12" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-    <!-- ticking clock sound effect -->
+    
+    <portal x="10" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_e3" ref="house3_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_house4" file="interiors/magic/house4.tmx">
+    <portal x="15" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_n_e3" ref="house4_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_house5" file="interiors/magic/house5.tmx">
+    <!-- Clock -->
+    <entity x="12" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
     <entity x="12" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
@@ -1713,266 +1952,304 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-	<portal x="9" y="18" ref="entrance_left">
-		<destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
-	</portal>
-	<portal x="10" y="18" ref="entrance_right">
-		<destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
-	</portal>
-</zone>
-<zone name="int_magic_house6" file="interiors/magic/house6.tmx">
-	<entity x="5" y="0">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-    <!-- ticking clock sound effect -->
+    
+    <portal x="9" y="18" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+    </portal>
+    
+    <portal x="10" y="18" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_e2" ref="house5_entrance" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_house6" file="interiors/magic/house6.tmx">
+    <!-- Clock -->
     <entity x="5" y="0">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
+    <entity x="5" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-    <!-- piano sound effect -->
-     <entity x="20" y="14">
-            <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-              <parameter name="sound">piano-1</parameter>
-              <parameter name="radius">40</parameter>
-            </implementation>
-            <attribute name="width">2</attribute>
-            <attribute name="height">2</attribute>
-            <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-      </entity>
-          
-	<portal x="12" y="23" ref="entrance">
-		<destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
-	</portal>
-</zone>
+    
+    <!-- Piano -->
+    <entity x="20" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
 
-<zone name="int_magic_school_0" file="interiors/magic/school_0.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.school.TeacherNPC" />
- <portal x="19" y="28" ref="entrance_left">
-   <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_left"/>
-  </portal>
- <portal x="20" y="28" ref="entrance_right">
-   <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_right"/>
-  </portal>
- <portal x="18" y="3" ref="downstairs">
-   <destination zone="int_magic_school_cellar" ref="upstairs"/>
-  </portal>
- <portal x="21" y="3" ref="upstairs">
-   <destination zone="int_magic_school_1" ref="downstairs"/>
-  </portal>
-</zone>
-<zone name="int_magic_school_cellar" file="interiors/magic/school_cellar.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.school.SpidersCreatures" />
- <portal x="16" y="3" ref="upstairs">
-   <destination zone="int_magic_school_0" ref="downstairs"/>
-  </portal>
-</zone>
-<zone name="int_magic_school_1" file="interiors/magic/school_1.tmx">
- <configurator class-name="games.stendhal.server.maps.magic.school.GroundskeeperNPC" />
- <portal x="21" y="3" ref="downstairs">
-  <destination zone="int_magic_school_0" ref="upstairs"/>
- </portal>
-</zone>
+    <portal x="12" y="23" ref="entrance">
+      <destination zone="-1_fado_great_cave_e3" ref="house6_entrance_right" />
+    </portal>
+    
+  </zone>
 
-<zone name="int_magic_bric_a_brac" file="interiors/magic/bric_a_brac.tmx">
-	<configurator class-name="games.stendhal.server.maps.magic.bricabrac.BuyerNPC" />
-	<portal x="14" y="13" ref="entrance_left">
-		<destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left" />
-	</portal>
-	<portal x="15" y="13" ref="entrance_right">
-		<destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right" />
-	</portal>
-	<entity x="6" y="5">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-		<attribute name="text">Suggested prices for certain desirable items are on the next page ...</attribute>
-		<attribute name="class">transparent</attribute>
-	</entity>
-	<entity x="7" y="5">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-			<parameter name="shop">buymagic</parameter>
-			<parameter name="title">Vonda's shop</parameter>
-			<parameter name="seller">false</parameter>
-			<parameter name="caption">Vonda will pay the following market rates for your magic items:</parameter>
-		</implementation>
-		<attribute name="class">transparent</attribute>
-	</entity>
-	<entity x="15" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-    <!-- ticking clock sound effect -->
+  <zone name="int_magic_school_0" file="interiors/magic/school_0.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.school.TeacherNPC" />
+    <portal x="19" y="28" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_left" />
+    </portal>
+    
+    <portal x="20" y="28" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_n_e2" ref="school_entrance_right" />
+    </portal>
+    
+    <portal x="18" y="3" ref="downstairs">
+      <destination zone="int_magic_school_cellar" ref="upstairs" />
+    </portal>
+    
+    <portal x="21" y="3" ref="upstairs">
+      <destination zone="int_magic_school_1" ref="downstairs" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_school_cellar" file="interiors/magic/school_cellar.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.school.SpidersCreatures" />
+    
+    <portal x="16" y="3" ref="upstairs">
+      <destination zone="int_magic_school_0" ref="downstairs" />
+    </portal>
+    
+  </zone>
+  
+  <zone name="int_magic_school_1" file="interiors/magic/school_1.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.school.GroundskeeperNPC" />
+    
+    <portal x="21" y="3" ref="downstairs">
+      <destination zone="int_magic_school_0" ref="upstairs" />
+    </portal>
+  </zone>
+
+  <zone name="int_magic_bric_a_brac" file="interiors/magic/bric_a_brac.tmx">
+    <configurator class-name="games.stendhal.server.maps.magic.bricabrac.BuyerNPC" />
+    
+    <portal x="14" y="13" ref="entrance_left">
+      <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_left" />
+    </portal>
+    
+    <portal x="15" y="13" ref="entrance_right">
+      <destination zone="-1_fado_great_cave_e3" ref="bricabrac_entrance_right" />
+    </portal>
+    
+    <entity x="6" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Suggested prices for certain desirable items are on the next page ...</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="7" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buymagic</parameter>
+        <parameter name="title">Vonda's shop</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Vonda will pay the following market rates for your magic items:</parameter>
+      </implementation>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <!-- Clock -->
     <entity x="15" y="1">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    
+    <entity x="15" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-</zone>
+    
+  </zone>
 
-<zone name="int_magic_bank" file="interiors/magic/bank.tmx">
- <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport"/>
- <!-- These are now taken care of by the quest code, I *think*! (kymara)
-   <entity x="2" y="2">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
-      <parameter name="width">9</parameter>
-      <parameter name="height">16</parameter>
-      <parameter name="new-x">13</parameter>
-      <parameter name="new-y">15</parameter>
-     </implementation>
-     <attribute name="name">enchanted area</attribute>
+  <zone name="int_magic_bank" file="interiors/magic/bank.tmx">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <!-- These are now taken care of by the quest code, I *think*! (kymara) 
+      <entity x="2" y="2"> <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea"> 
+      <parameter name="width">9</parameter> <parameter name="height">16</parameter> 
+      <parameter name="new-x">13</parameter> <parameter name="new-y">15</parameter> 
+      </implementation> <attribute name="name">enchanted area</attribute> </entity> 
+      <entity x="11" y="2"> <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea"> 
+      <parameter name="width">9</parameter> <parameter name="height">11</parameter> 
+      <parameter name="new-x">15</parameter> <parameter name="new-y">15</parameter> 
+      </implementation> <attribute name="name">enchanted area</attribute> </entity> 
+      <entity x="20" y="2"> <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea"> 
+      <parameter name="width">9</parameter> <parameter name="height">16</parameter> 
+      <parameter name="new-x">17</parameter> <parameter name="new-y">15</parameter> 
+      </implementation> <attribute name="name">enchanted area</attribute> </entity> -->
+
+    <portal x="15" y="18" ref="entrance">
+      <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance" />
+    </portal>
+    
+    <entity x="2" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
     </entity>
-    <entity x="11" y="2">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
-      <parameter name="width">9</parameter>
-      <parameter name="height">11</parameter>
-      <parameter name="new-x">15</parameter>
-      <parameter name="new-y">15</parameter>
-     </implementation>
-     <attribute name="name">enchanted area</attribute>
+    
+    <entity x="2" y="9">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank</parameter>
+      </implementation>
     </entity>
-    <entity x="20" y="2">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
-      <parameter name="width">9</parameter>
-      <parameter name="height">16</parameter>
-      <parameter name="new-x">17</parameter>
-      <parameter name="new-y">15</parameter>
-     </implementation>
-     <attribute name="name">enchanted area</attribute>
-    </entity>-->
-
-
- <portal x="15" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance"/>
-  </portal>
-   <entity x="2" y="8">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-   <entity x="2" y="9">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">bank</parameter>
+    
+    <entity x="2" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
       </implementation>
-   </entity>
-   <entity x="2" y="12">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-   <entity x="2" y="13">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">bank_nalwor</parameter>
+    </entity>
+    
+    <entity x="2" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_nalwor</parameter>
       </implementation>
-   </entity>
-   <entity x="2" y="16">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-   <entity x="2" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">bank_fado</parameter>
+    </entity>
+    
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
       </implementation>
-   </entity>
-   <entity x="24" y="8">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-  <!-- Not sure yet if we want a new chest for this city, or to leave blank
-  for another city?
-   <entity x="27" y="9">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">bank_wizard</parameter>
+    </entity>
+    
+    <entity x="2" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
       </implementation>
-   </entity>-->
-   <entity x="24" y="12">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-   <entity x="27" y="13">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">bank_ados</parameter>
+    </entity>
+    
+    <entity x="24" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
       </implementation>
-   </entity>   
-   <entity x="24" y="16">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-     <parameter name="width">4</parameter>
-     <parameter name="height">2</parameter>
-    </implementation>
-   </entity>
-   <entity x="27" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-         <parameter name="slot">zaras_chest_ados</parameter>
+    </entity>
+    
+    <!-- Not sure yet if we want a new chest for this city, or to leave blank 
+      for another city? <entity x="27" y="9"> <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"> 
+      <parameter name="slot">bank_wizard</parameter> </implementation> </entity> -->
+    
+    <entity x="24" y="12">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
       </implementation>
-   </entity>
-<!-- make books say something -->
-  <entity x="12" y="3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Spells ensuring the safety of deposits include many complex jinxes and charms...</attribute>
-   <attribute name="class">transparent</attribute>
-  </entity>
-  <entity x="13" y="3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Simple spells to detect an intruder can raise an alarm, even if they cannot protect valuables, so it is well worth considering taking even basic safety precautions.</attribute>
-   <attribute name="class">transparent</attribute>
-  </entity>
-  <entity x="17" y="3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Gold which has been summoned using magical powers is easy to detect with a ...</attribute>
-   <attribute name="class">transparent</attribute>
-  </entity>
-  <entity x="18" y="3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Stolen heirlooms or other valuables may reveal their true owner upon inspection of certain areas using a particular light called ...</attribute>
-   <attribute name="class">transparent</attribute>
-  </entity>
-  <entity x="14" y="11">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">
+    </entity>
+    
+    <entity x="27" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_ados</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="24" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">4</parameter>
+        <parameter name="height">2</parameter>
+      </implementation>
+    </entity>
+    
+    <entity x="27" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">zaras_chest_ados</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- make books say something -->
+    <entity x="12" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Spells ensuring the safety of deposits include many complex jinxes and charms...</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="13" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Simple spells to detect an intruder can raise an alarm, even if they cannot protect valuables, so it is well worth considering taking even basic safety precautions.</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="17" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Gold which has been summoned using magical powers is easy to detect with a ...</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="18" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Stolen heirlooms or other valuables may reveal their true owner upon inspection of certain areas using a particular light called ...</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="14" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 List of felons to bar from entry:
 Conual
 Bario
 Nomyr Ahba
 Sister Benedicta
-</attribute>
-   <attribute name="class">book_red</attribute>
-  </entity>
-  <entity x="15" y="11">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">In addition to these names, those who beg for items should be ignored.</attribute>
-   <attribute name="class">book_blue</attribute>
-  </entity>
-  <entity x="16" y="11">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Suspicion should be cast upon any who appear to loiter too long in a bank. This is not likely to be for a law abiding reason.</attribute>
-   <attribute name="class">book_red</attribute>
-  </entity>
-</zone>
-
- <!--  Level -2 -->
-
-
- <!--  Level -3 -->
+      </attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
+    
+    <entity x="15" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">In addition to these names, those who beg for items should be ignored.</attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
+    
+    <entity x="16" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Suspicion should be cast upon any who appear to loiter too long in a bank. This is not likely to be for a law abiding reason.</attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
+    
+  </zone>
 
 
- <!--  Level -4 -->
+  <!-- Level -2 -->
 
 
- <!--  Level -5 -->
+  <!-- Level -3 -->
 
 
- <!--  Level -6 -->
+  <!-- Level -4 -->
 
 
- <!--  Level -7 -->
+  <!-- Level -5 -->
+
+
+  <!-- Level -6 -->
+
+
+  <!-- Level -7 -->
 
 </zones>
