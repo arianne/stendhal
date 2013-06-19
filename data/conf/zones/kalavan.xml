@@ -1,1722 +1,1896 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!-- ** Load zones. Written from left to right and from top to bottom. 
+    ** Please respect it! -->
 
 
- <!--  Level 6 -->
+  <!-- Level 6 -->
 
 
- <!--  Level 5 -->
+  <!-- Level 5 -->
 
 
- <!--  Level 4 -->
+  <!-- Level 4 -->
 
 
- <!--  Level 3 -->
+  <!-- Level 3 -->
 
 
- <!--  Level 2 -->
+  <!-- Level 2 -->
 
 
- <!--  Level 1 -->
+  <!-- Level 1 -->
 
 
- <!--  Ground level -->
+  <!-- Ground level -->
 
- <zone name="0_kalavan_castle" level="0" x="499616" y="500640" file="Level 0/kalavan/castle.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-	<point-of-interest x="110" y="28">
-		<name>Fado Great Caves 1</name>
-		<title>Fado Great Caves</title>
-		<type>dungeon</type>
-		<description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-		<url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
-	</point-of-interest>
+  <zone name="0_kalavan_castle" level="0" x="499616" y="500640"
+    file="Level 0/kalavan/castle.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <point-of-interest x="110" y="28">
+      <name>Fado Great Caves 1</name>
+      <title>Fado Great Caves</title>
+      <type>dungeon</type>
+      <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
+      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+    </point-of-interest>
 
-  <portal x="63" y="72" ref="castle_entrance_left">
-   <destination zone="int_kalavan_castle" ref="entrance_left"/>
-  </portal>
-  <portal x="64" y="72" ref="castle_entrance_right">
-   <destination zone="int_kalavan_castle" ref="entrance_right"/>
-  </portal>
-  <portal x="63" y="48" ref="castle_2_entrance_left">
-   <destination zone="int_kalavan_castle_2" ref="entrance_left"/>
-  </portal>
-  <portal x="64" y="48" ref="castle_2_entrance_right">
-   <destination zone="int_kalavan_castle_2" ref="entrance_right"/>
-  </portal>
- </zone>
+    <portal x="63" y="72" ref="castle_entrance_left">
+      <destination zone="int_kalavan_castle" ref="entrance_left" />
+    </portal>
+    <portal x="64" y="72" ref="castle_entrance_right">
+      <destination zone="int_kalavan_castle" ref="entrance_right" />
+    </portal>
+    <portal x="63" y="48" ref="castle_2_entrance_left">
+      <destination zone="int_kalavan_castle_2" ref="entrance_left" />
+    </portal>
+    <portal x="64" y="48" ref="castle_2_entrance_right">
+      <destination zone="int_kalavan_castle_2" ref="entrance_right" />
+    </portal>
+  </zone>
 
- <zone name="int_kalavan_castle_basement" file="interiors/kalavan/castle_basement.tmx">
- <configurator class-name="games.stendhal.server.maps.kalavan.castle.ItemsOnTable"/>
-<configurator class-name="games.stendhal.server.maps.kalavan.castle.MadScientist1NPC"/>
-<configurator class-name="games.stendhal.server.maps.kalavan.castle.MadScientist2NPC"/>
-<configurator class-name="games.stendhal.server.maps.kalavan.castle.SadScientistNPC"/>
-<configurator class-name="games.stendhal.server.maps.kalavan.castle.SadScientsBrother" />
-  <portal x="31" y="39" ref="upstairs">
-   <destination zone="int_kalavan_castle" ref="downstairs"/>
-  </portal>
- </zone>
+  <zone name="int_kalavan_castle_basement" file="interiors/kalavan/castle_basement.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.ItemsOnTable" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.MadScientist1NPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.MadScientist2NPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.SadScientistNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.SadScientsBrother" />
+    <portal x="31" y="39" ref="upstairs">
+      <destination zone="int_kalavan_castle" ref="downstairs" />
+    </portal>
+  </zone>
 
- <zone name="int_kalavan_castle" file="interiors/kalavan/castle.tmx">
- <configurator class-name="games.stendhal.server.maps.kalavan.castle.PrincessNPC"/>
- <configurator class-name="games.stendhal.server.maps.kalavan.castle.KingNPC"/>
-  <portal x="31" y="63" ref="entrance_left">
-   <destination zone="0_kalavan_castle" ref="castle_entrance_left"/>
-  </portal>
-  <portal x="32" y="63" ref="entrance_right">
-   <destination zone="0_kalavan_castle" ref="castle_entrance_right"/>
-  </portal>
-  <portal x="31" y="39" ref="upstairs">
-   <destination zone="int_kalavan_castle_1" ref="downstairs"/>
-  </portal>
-  <portal x="32" y="39" ref="downstairs">
-   <destination zone="int_kalavan_castle_basement" ref="upstairs"/>
-  </portal>
- </zone>
+  <zone name="int_kalavan_castle" file="interiors/kalavan/castle.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.castle.PrincessNPC" />
+    <configurator class-name="games.stendhal.server.maps.kalavan.castle.KingNPC" />
+    <portal x="31" y="63" ref="entrance_left">
+      <destination zone="0_kalavan_castle" ref="castle_entrance_left" />
+    </portal>
+    <portal x="32" y="63" ref="entrance_right">
+      <destination zone="0_kalavan_castle" ref="castle_entrance_right" />
+    </portal>
+    <portal x="31" y="39" ref="upstairs">
+      <destination zone="int_kalavan_castle_1" ref="downstairs" />
+    </portal>
+    <portal x="32" y="39" ref="downstairs">
+      <destination zone="int_kalavan_castle_basement" ref="upstairs" />
+    </portal>
+  </zone>
 
- <zone name="int_kalavan_castle_1" file="interiors/kalavan/castle_1.tmx">
-  <portal x="31" y="36" ref="downstairs">
-   <destination zone="int_kalavan_castle" ref="upstairs"/>
-  </portal>
-  <portal x="32" y="36" ref="upstairs">
-   <destination zone="int_kalavan_castle_2" ref="downstairs"/>
-  </portal>
- </zone>
+  <zone name="int_kalavan_castle_1" file="interiors/kalavan/castle_1.tmx">
+    <portal x="31" y="36" ref="downstairs">
+      <destination zone="int_kalavan_castle" ref="upstairs" />
+    </portal>
+    <portal x="32" y="36" ref="upstairs">
+      <destination zone="int_kalavan_castle_2" ref="downstairs" />
+    </portal>
+  </zone>
 
- <zone name="int_kalavan_castle_2" file="interiors/kalavan/castle_2.tmx">
-  <portal x="15" y="15" ref="entrance_left">
-   <destination zone="0_kalavan_castle" ref="castle_2_entrance_left"/>
-  </portal>
-  <portal x="16" y="15" ref="entrance_right">
-   <destination zone="0_kalavan_castle" ref="castle_2_entrance_right"/>
-  </portal>
-  <portal x="16" y="10" ref="downstairs">
-   <destination zone="int_kalavan_castle_1" ref="upstairs"/>
-  </portal>
- </zone>
+  <zone name="int_kalavan_castle_2" file="interiors/kalavan/castle_2.tmx">
+    <portal x="15" y="15" ref="entrance_left">
+      <destination zone="0_kalavan_castle" ref="castle_2_entrance_left" />
+    </portal>
+    <portal x="16" y="15" ref="entrance_right">
+      <destination zone="0_kalavan_castle" ref="castle_2_entrance_right" />
+    </portal>
+    <portal x="16" y="10" ref="downstairs">
+      <destination zone="int_kalavan_castle_1" ref="upstairs" />
+    </portal>
+  </zone>
 
- <zone name="0_kalavan_city" level="0" x="499616" y="500768" file="Level 0/kalavan/city.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  <portal x="80" y="10" ref="house_1_entrance">
-   <destination zone="int_kalavan_house_1" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 1</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="99" y="10" ref="house_2_entrance">
-   <destination zone="int_kalavan_house_2" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 2</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="118" y="10" ref="house_3_entrance">
-   <destination zone="int_kalavan_house_3" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 3</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="117" y="27" ref="house_4_entrance">
-   <destination zone="int_kalavan_house_4" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 4</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="121" y="43" ref="house_5_entrance">
-   <destination zone="int_kalavan_house_5" ref="entrance_right"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 5</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="121" y="59" ref="house_6_entrance">
-   <destination zone="int_kalavan_house_6" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 6</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
- <portal x="121" y="74" ref="house_7_entrance">
-   <destination zone="int_kalavan_house_7" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 7</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="118" y="91" ref="house_8_entrance">
-   <destination zone="int_kalavan_house_8" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 8</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal> 
-  <portal x="118" y="106" ref="house_9_entrance">
-   <destination zone="int_kalavan_house_9" ref="entrance_right"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 9</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="118" y="120" ref="house_10_entrance">
-   <destination zone="int_kalavan_house_10" ref="entrance_right"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 10</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="101" y="121" ref="house_11_entrance">
-   <destination zone="int_kalavan_house_11" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 11</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="78" y="121" ref="house_12_entrance">
-   <destination zone="int_kalavan_house_12" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 12</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="61" y="121" ref="house_13_entrance">
-   <destination zone="int_kalavan_house_13" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 13</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="39" y="121" ref="house_14_entrance">
-   <destination zone="int_kalavan_house_14" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 14</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="21" y="121" ref="house_15_entrance">
-   <destination zone="int_kalavan_house_15" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 15</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="9" y="121" ref="house_16_entrance">
-   <destination zone="int_kalavan_house_16" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 16</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="6" y="106" ref="house_17_entrance">
-   <destination zone="int_kalavan_house_17" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 17</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="9" y="91" ref="house_18_entrance">
-   <destination zone="int_kalavan_house_18" ref="entrance_right"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 18</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="7" y="74" ref="house_19_entrance">
-   <destination zone="int_kalavan_house_19" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 19</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="9" y="60" ref="house_20_entrance">
-   <destination zone="int_kalavan_house_20" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 20</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="6" y="44" ref="house_21_entrance">
-   <destination zone="int_kalavan_house_21" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 21</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="9" y="27" ref="house_22_entrance">
-   <destination zone="int_kalavan_house_22" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 22</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="7" y="10" ref="house_23_entrance">
-   <destination zone="int_kalavan_house_23" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 23</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="27" y="10" ref="house_24_entrance">
-   <destination zone="int_kalavan_house_24" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 24</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
-  <portal x="45" y="10" ref="house_25_entrance">
-   <destination zone="int_kalavan_house_25" ref="entrance"/>
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-      <parameter name="doorId">kalavan house 25</parameter>
-      <parameter name="rejected">The door to this house is locked.</parameter>
-    </implementation>
-  </portal>
+  <zone name="0_kalavan_city" level="0" x="499616" y="500768"
+    file="Level 0/kalavan/city.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <portal x="80" y="10" ref="house_1_entrance">
+      <destination zone="int_kalavan_house_1" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 1</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="99" y="10" ref="house_2_entrance">
+      <destination zone="int_kalavan_house_2" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 2</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="118" y="10" ref="house_3_entrance">
+      <destination zone="int_kalavan_house_3" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 3</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="117" y="27" ref="house_4_entrance">
+      <destination zone="int_kalavan_house_4" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 4</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="121" y="43" ref="house_5_entrance">
+      <destination zone="int_kalavan_house_5" ref="entrance_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 5</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="121" y="59" ref="house_6_entrance">
+      <destination zone="int_kalavan_house_6" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 6</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="121" y="74" ref="house_7_entrance">
+      <destination zone="int_kalavan_house_7" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 7</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="118" y="91" ref="house_8_entrance">
+      <destination zone="int_kalavan_house_8" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 8</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="118" y="106" ref="house_9_entrance">
+      <destination zone="int_kalavan_house_9" ref="entrance_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 9</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="118" y="120" ref="house_10_entrance">
+      <destination zone="int_kalavan_house_10" ref="entrance_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 10</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="101" y="121" ref="house_11_entrance">
+      <destination zone="int_kalavan_house_11" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 11</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="78" y="121" ref="house_12_entrance">
+      <destination zone="int_kalavan_house_12" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 12</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="61" y="121" ref="house_13_entrance">
+      <destination zone="int_kalavan_house_13" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 13</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="39" y="121" ref="house_14_entrance">
+      <destination zone="int_kalavan_house_14" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 14</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="21" y="121" ref="house_15_entrance">
+      <destination zone="int_kalavan_house_15" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 15</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="9" y="121" ref="house_16_entrance">
+      <destination zone="int_kalavan_house_16" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 16</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="6" y="106" ref="house_17_entrance">
+      <destination zone="int_kalavan_house_17" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 17</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="9" y="91" ref="house_18_entrance">
+      <destination zone="int_kalavan_house_18" ref="entrance_right" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 18</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="7" y="74" ref="house_19_entrance">
+      <destination zone="int_kalavan_house_19" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 19</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="9" y="60" ref="house_20_entrance">
+      <destination zone="int_kalavan_house_20" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 20</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="6" y="44" ref="house_21_entrance">
+      <destination zone="int_kalavan_house_21" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 21</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="9" y="27" ref="house_22_entrance">
+      <destination zone="int_kalavan_house_22" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 22</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="7" y="10" ref="house_23_entrance">
+      <destination zone="int_kalavan_house_23" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 23</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="27" y="10" ref="house_24_entrance">
+      <destination zone="int_kalavan_house_24" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 24</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="45" y="10" ref="house_25_entrance">
+      <destination zone="int_kalavan_house_25" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kalavan house 25</parameter>
+        <parameter name="rejected">The door to this house is locked.</parameter>
+      </implementation>
+    </portal>
 
-  <entity x="69" y="47">
-  	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-    	<parameter name="species">trout</parameter>
-   	</implementation>
-  </entity>
-  <entity x="69" y="49">
-  	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-    	<parameter name="species">char</parameter>
-   	</implementation>
-  </entity>
-  <entity x="69" y="51">
-  	<implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-    	<parameter name="species">trout</parameter>
-   	</implementation>
-  </entity>
-  <entity x="63" y="10">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Friends, welcome to Kalavan City.</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <entity x="64" y="10">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Enemies, beware!</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <entity x="65" y="10">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Kalavan City, twinned with Deniran.</attribute>
-   <attribute name="class">transparent</attribute>
-   <attribute name="resistance">0</attribute>
-  </entity>
-  <entity x="3" y="29">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a hot grill, for fish, meat or ham.</attribute>
-  </entity>
-  <entity x="3" y="30">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue, and wonder where the cook is.</attribute>
-  </entity>
-  <entity x="123" y="13">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
-  </entity>
-  <entity x="123" y="14">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue for grilling meat, just try not to burn it.</attribute>
-  </entity>
-  <entity x="114" y="44">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Dear Mr Postman, please leave my mail under the mat, as birds are nesting in this mailbox.</attribute>
-   <attribute name="class">transparent</attribute>
-  </entity>
-  <entity x="57" y="125">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a grill, looks like someone is going to barbecue soon.</attribute>
-  </entity>
-  <entity x="58" y="125">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-   <attribute name="description">You see a barbecue, ready to grill some ham. Careful, it's very hot!</attribute>
-  </entity>
-  <!-- The random orb -->
-  <entity x="71" y="33">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal"/>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="use"/>
-  </entity>
- </zone>
-<!-- These are the houses which players can own. Comment out the common chests
-   	until zone memory is possible, or players will lose their stuff -->
- <zone name="int_kalavan_house_1" file="interiors/kalavan/house_1.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">10</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
+    <entity x="69" y="47">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">trout</parameter>
+      </implementation>
+    </entity>
+    <entity x="69" y="49">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">char</parameter>
+      </implementation>
+    </entity>
+    <entity x="69" y="51">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">trout</parameter>
+      </implementation>
+    </entity>
+    <entity x="63" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Friends, welcome to Kalavan City.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    <entity x="64" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Enemies, beware!</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    <entity x="65" y="10">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Kalavan City, twinned with Deniran.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+    <entity x="3" y="29">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a hot grill, for fish, meat or ham.</attribute>
+    </entity>
+    <entity x="3" y="30">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue, and wonder where the cook is.</attribute>
+    </entity>
+    <entity x="123" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
+    </entity>
+    <entity x="123" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue for grilling meat, just try not to burn it.</attribute>
+    </entity>
+    <entity x="114" y="44">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Dear Mr Postman, please leave my mail under the mat, as birds are nesting in this mailbox.</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    <entity x="57" y="125">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a grill, looks like someone is going to barbecue soon.</attribute>
+    </entity>
+    <entity x="58" y="125">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a barbecue, ready to grill some ham. Careful, it's very hot!</attribute>
+    </entity>
+    <!-- The random orb -->
+    <entity x="71" y="33">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal" />
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="use" />
+    </entity>
+  </zone>
   
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">5</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  <portal x="8" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_1_entrance"/>
-  </portal>
-  
-  <!--  left table -->
-		<entity x="15" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<entity x="16" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-		<entity x="15" y="20">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<!--  right table -->
-  <entity x="20" y="13">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-   <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-   <attribute name="width">1</attribute>
-   <attribute name="height">2</attribute>
-  </entity>
-  
-  <entity x="21" y="14">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-   <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
-   <attribute name="width">2</attribute>
-   <attribute name="height">1</attribute>
-  </entity>
-  <!-- toilet -->
-  <entity x="17" y="1">
-	  <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-	   <parameter name="sound">drain-water-11</parameter>
-	   <parameter name="radius">50</parameter>
-	  </implementation>
-   <attribute name="description">You see a toilet.</attribute>
-	  <attribute name="width">1</attribute>
-	  <attribute name="height">1</attribute>
-	 </entity>
-  <!-- sink -->
-  <entity x="18" y="1">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-    <parameter name="sound">water-4</parameter>
-    <parameter name="radius">50</parameter>
-   </implementation>
-   <attribute name="description">You see a sink to wash your hands.</attribute>
-   <attribute name="width">1</attribute>
-   <attribute name="height">1</attribute>
-  </entity>
-  <!-- oven -->
-  <entity x="19" y="13">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-    <parameter name="sound">fire-sparkes-1</parameter>
-    <parameter name="radius">50</parameter>
-   </implementation>
-   <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
-   <attribute name="width">1</attribute>
-   <attribute name="height">1</attribute>
-  </entity>
- </zone>
- 
- <zone name="int_kalavan_house_2" file="interiors/kalavan/house_2.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>		
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">14</parameter>
-	<parameter name="y">8</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
+  <!-- These are the houses which players can own. Comment out the common 
+    chests until zone memory is possible, or players will lose their stuff -->
+  <zone name="int_kalavan_house_1" file="interiors/kalavan/house_1.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">10</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">5</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="8" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_1_entrance" />
+    </portal>
+
+    <!-- left table -->
+    <entity x="15" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="16" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <entity x="15" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- right table -->
+    <entity x="20" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="21" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a kitchen table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <!-- toilet -->
+    <entity x="17" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">drain-water-11</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <!-- sink -->
+    <entity x="18" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-4</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see a sink to wash your hands.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    <!-- oven -->
+    <entity x="19" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">fire-sparkes-1</parameter>
+        <parameter name="radius">50</parameter>
+      </implementation>
+      <attribute name="description">You see an oven. Use it to warm up your food and drinks.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+  </zone>
+
+  <zone name="int_kalavan_house_2" file="interiors/kalavan/house_2.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">14</parameter>
+      <parameter name="y">8</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
     <!-- tables -->
-		<entity x="11" y="4">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="15" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-  <portal x="12" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_2_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_3" file="interiors/kalavan/house_3.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">8</parameter>
-	<parameter name="y">13</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-     <!-- tables -->
-		<entity x="12" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<entity x="21" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">5</attribute>
-		</entity>
-		
-  <portal x="5" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_3_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_4" file="interiors/kalavan/house_4.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
- <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">22</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-	<entity x="2" y="19">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-	
+    <entity x="11" y="4">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="15" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <portal x="12" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_2_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_3" file="interiors/kalavan/house_3.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">8</parameter>
+      <parameter name="y">13</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="12" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="21" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">5</attribute>
+    </entity>
+
+    <portal x="5" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_3_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_4" file="interiors/kalavan/house_4.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">22</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <entity x="2" y="19">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
     <!-- ticking clock sound effect -->
     <entity x="2" y="19">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
+
+    <!-- flushing toilet -->
+    <entity x="15" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="16" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <!-- tables -->
+    <entity x="10" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <portal x="4" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_4_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_5" file="interiors/kalavan/house_5.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">12</parameter>
+      <parameter name="y">18</parameter>
+      <parameter name="width">3</parameter>
+      <parameter name="height">3</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="2" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <entity x="21" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="5" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="18" y="23" ref="entrance_left">
+      <destination zone="0_kalavan_city" ref="house_5_entrance" />
+    </portal>
+    <portal x="19" y="23" ref="entrance_right">
+      <destination zone="0_kalavan_city" ref="house_5_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_6" file="interiors/kalavan/house_6.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">19</parameter>
+      <parameter name="y">6</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="21" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="20" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="4" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="18" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_6_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_7" file="interiors/kalavan/house_7.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">22</parameter>
+      <parameter name="y">18</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="12" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">5</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <portal x="18" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_7_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_8" file="interiors/kalavan/house_8.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="16" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <entity x="21" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">6</attribute>
+    </entity>
+
+    <portal x="4" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_8_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_9" file="interiors/kalavan/house_9.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">6</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="14" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <entity x="21" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <portal x="3" y="23" ref="entrance_left">
+      <destination zone="0_kalavan_city" ref="house_9_entrance" />
+    </portal>
+    <portal x="4" y="23" ref="entrance_right">
+      <destination zone="0_kalavan_city" ref="house_9_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_10" file="interiors/kalavan/house_10.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">11</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="6" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <entity x="14" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <entity x="21" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="10" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="3" y="23" ref="entrance_left">
+      <destination zone="0_kalavan_city" ref="house_10_entrance" />
+    </portal>
+    <portal x="4" y="23" ref="entrance_right">
+      <destination zone="0_kalavan_city" ref="house_10_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_11" file="interiors/kalavan/house_11.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">8</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="6" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="14" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="21" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="11" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="18" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_11_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_12" file="interiors/kalavan/house_12.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">8</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="7" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="14" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="14" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="21" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="4" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="6" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_12_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_13" file="interiors/kalavan/house_13.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">10</parameter>
+      <parameter name="y">3</parameter>
+      <parameter name="width">3</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="14" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="17" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="21" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="18" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="20" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_13_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_14" file="interiors/kalavan/house_14.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">13</parameter>
+      <parameter name="y">15</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="5" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="6" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="21" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="19" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="8" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_14_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_15" file="interiors/kalavan/house_15.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">5</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="3" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="15" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <portal x="6" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_15_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_16" file="interiors/kalavan/house_16.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">12</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="6" y="7">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="6" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="17" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="3" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="16" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_16_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_17" file="interiors/kalavan/house_17.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">20</parameter>
+      <parameter name="y">20</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="12" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <entity x="2" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <portal x="4" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_17_entrance" />
+    </portal>
+
+    <entity x="14" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
     
-        <!-- flushing toilet -->
-        <entity x="15" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="16" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-     <!-- tables -->
-		<entity x="10" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-  <portal x="4" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_4_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_5" file="interiors/kalavan/house_5.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">12</parameter>
-	<parameter name="y">18</parameter>
-	<parameter name="width">3</parameter>
-	<parameter name="height">3</parameter>
-  </configurator>
-  
-      <!-- tables -->
-		<entity x="2" y="13">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-		<entity x="21" y="13">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="5" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="18" y="23" ref="entrance_left">
-   <destination zone="0_kalavan_city" ref="house_5_entrance"/>
-  </portal>
-  <portal x="19" y="23" ref="entrance_right">
-   <destination zone="0_kalavan_city" ref="house_5_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_6" file="interiors/kalavan/house_6.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
- <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">19</parameter>
-	<parameter name="y">6</parameter>
-	<parameter name="width">2</parameter>
-	<parameter name="height">2</parameter>
- </configurator>
- 
-     <!-- tables -->
-		<entity x="21" y="20">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="20" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="4" y="14">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="18" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_6_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_7" file="interiors/kalavan/house_7.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">22</parameter>
-	<parameter name="y">18</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-      <!-- tables -->
-		<entity x="12" y="16">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">5</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-  <portal x="18" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_7_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_8" file="interiors/kalavan/house_8.tmx" accessible="false">
-   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-      <!-- tables -->
-		<entity x="16" y="12">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-		<entity x="21" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">6</attribute>
-		</entity>
-		
-   <portal x="4" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_8_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_9" file="interiors/kalavan/house_9.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">6</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-      <!-- tables -->
-		<entity x="14" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-		<entity x="21" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-  <portal x="3" y="23" ref="entrance_left">
-   <destination zone="0_kalavan_city" ref="house_9_entrance"/>
-  </portal>
-  <portal x="4" y="23" ref="entrance_right">
-   <destination zone="0_kalavan_city" ref="house_9_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_10" file="interiors/kalavan/house_10.tmx" accessible="false">
-  <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">11</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-      <!-- tables -->
-		<entity x="6" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-		<entity x="14" y="16">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-		<entity x="21" y="15">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="10" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="3" y="23" ref="entrance_left">
-   <destination zone="0_kalavan_city" ref="house_10_entrance"/>
-  </portal>
-  <portal x="4" y="23" ref="entrance_right">
-   <destination zone="0_kalavan_city" ref="house_10_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_11" file="interiors/kalavan/house_11.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">8</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-        <!-- tables -->
-		<entity x="6" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="14" y="21">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<entity x="21" y="21">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="11" y="2">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="18" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_11_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_12" file="interiors/kalavan/house_12.tmx" accessible="false">
-   <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">8</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-          <!-- tables -->
-		<entity x="7" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="14" y="20">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="14" y="16">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<entity x="21" y="21">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="4" y="14">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="6" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_12_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_13" file="interiors/kalavan/house_13.tmx" accessible="false">
-   <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">10</parameter>
-	<parameter name="y">3</parameter>
-	<parameter name="width">3</parameter>
-    <parameter name="height">2</parameter>
-  </configurator>
-  
-            <!-- tables -->
-		
-		<entity x="14" y="20">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		<entity x="17" y="14">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		<entity x="21" y="21">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="18" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="20" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_13_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_14" file="interiors/kalavan/house_14.tmx" accessible="false">
-  <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">13</parameter>
-	<parameter name="y">15</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-        <!-- tables -->
-		
-  		<entity x="5" y="8">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		 <entity x="6" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-        <!-- flushing toilet -->
-        <entity x="21" y="13">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="19" y="13">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-  <portal x="8" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_14_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_15" file="interiors/kalavan/house_15.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">5</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-          <!-- tables -->
-		
-  		<entity x="3" y="8">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		 <entity x="15" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-  <portal x="6" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_15_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_16" file="interiors/kalavan/house_16.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">12</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
-  </configurator>
-  
-          <!-- tables -->
-		
-  		<entity x="6" y="7">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="6" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">2</attribute>
-		</entity>	
-			
-	    <entity x="17" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-  <!-- Piano -->
-  <entity x="3" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="16" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_16_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_17" file="interiors/kalavan/house_17.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">20</parameter>
-	<parameter name="y">20</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
-  </configurator>
-  
-           <!-- tables -->
-		
-  		<entity x="12" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">3</attribute>
-		</entity>
-		
-		 <entity x="2" y="17">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">3</attribute>
-		</entity>	
-		
-  <portal x="4" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_17_entrance"/>
-  </portal>
-  
-		<entity x="14" y="9">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="14" y="9">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-        
-        <!-- Piano -->
-        <entity x="15" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">piano-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="width">2</attribute>
-          <attribute name="height">2</attribute>
-          <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-        </entity>
-  
-        <!-- flushing toilet -->
-        <entity x="7" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="5" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
- </zone>
- 
- <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx" accessible="false">
-  <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  
-  <!-- Chest -->
-  <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">20</parameter>
-	<parameter name="y">20</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
-  </configurator>
-  
-        <!-- tables -->
-		
-  		<entity x="17" y="14">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-		</entity>
-		
-		 <entity x="12" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">3</attribute>
-		</entity>	
-		
-		<!-- Clock -->
-		<entity x="18" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-		</entity>
-        <entity x="18" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-        
-  <!-- Piano -->
-  <entity x="15" y="1">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-        <!-- flushing toilet -->
-        <entity x="4" y="17">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="2" y="17">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-  <portal x="16" y="23" ref="entrance_left">
-   <destination zone="0_kalavan_city" ref="house_18_entrance"/>
-  </portal>
-  <portal x="17" y="23" ref="entrance_right">
-   <destination zone="0_kalavan_city" ref="house_18_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx" accessible="false">
-  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">6</parameter>
-	<parameter name="y">14</parameter>
-  </configurator>		
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">4</parameter>
-	<parameter name="y">15</parameter>
-    <parameter name="width">2</parameter>
-    <parameter name="height">2</parameter>
- </configurator>
- 
-          <!-- tables -->
-		
-  		<entity x="7" y="6">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="14" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>	
-		
-        <!-- flushing toilet -->
-        <entity x="18" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-  
-        <!-- faucet running water -->
-        <entity x="17" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-  
-   <portal x="6" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_19_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_20" file="interiors/kalavan/house_20.tmx" accessible="false">
-  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">21</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-  <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">5</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-          <!-- tables -->
-		
-  		<entity x="16" y="5">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="4" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-		 <entity x="16" y="22">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="3" y="13">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="20" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_20_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_21" file="interiors/kalavan/house_21.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" /> 
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
+    <entity x="14" y="9">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="15" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="7" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="5" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+
+    <!-- Chest -->
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">4</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-           <!-- tables -->
-		
-  		<entity x="16" y="5">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="4" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-		 <entity x="16" y="22">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="3" y="13">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="9" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_21_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_22" file="interiors/kalavan/house_22.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
+      <parameter name="x">20</parameter>
+      <parameter name="y">20</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="17" y="14">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+    </entity>
+
+    <entity x="12" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <!-- Clock -->
+    <entity x="18" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <entity x="18" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="15" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="4" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="2" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="16" y="23" ref="entrance_left">
+      <destination zone="0_kalavan_city" ref="house_18_entrance" />
+    </portal>
+    <portal x="17" y="23" ref="entrance_right">
+      <destination zone="0_kalavan_city" ref="house_18_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">6</parameter>
+      <parameter name="y">14</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">4</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-           <!-- tables -->
-		
-  		<entity x="16" y="5">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="4" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-		 <entity x="16" y="22">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">3</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="3" y="13">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="9" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_22_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_23" file="interiors/kalavan/house_23.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
+      <parameter name="x">4</parameter>
+      <parameter name="y">15</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- tables -->
+    <entity x="7" y="6">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="14" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="18" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="17" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="6" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_19_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_20" file="interiors/kalavan/house_20.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">21</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">4</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-           <!-- tables -->
-		
-  		<entity x="16" y="5">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">2</attribute>
-		</entity>
-		
-		 <entity x="4" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">4</attribute>
-			<attribute name="height">1</attribute>
-		</entity>	
-		
-		 <entity x="2" y="19">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">3</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="3" y="13">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="9" y="23" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_23_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_24" file="interiors/kalavan/house_24.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">29</parameter>
-	<parameter name="y">25</parameter>
-  </configurator>
-  
-            <!-- tables -->
-		
-  		<entity x="5" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		 <entity x="29" y="21">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">2</attribute>
-		</entity>	
-		
-		 <entity x="29" y="8">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">4</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="24" y="24">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="18" y="30" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_24_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_kalavan_house_25" file="interiors/kalavan/house_25.tmx" accessible="false">
-  <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator	class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">29</parameter>
-	<parameter name="y">25</parameter>
-  </configurator>
+      <parameter name="x">5</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="16" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="4" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="16" y="22">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="3" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="20" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_20_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_21" file="interiors/kalavan/house_21.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">10</parameter>
-	<parameter name="y">10</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-             <!-- tables -->
-		
-  		<entity x="5" y="18">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">2</attribute>
-			<attribute name="height">1</attribute>
-		</entity>
-		
-		 <entity x="29" y="20">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">2</attribute>
-		</entity>	
-		
-		 <entity x="20" y="3">
-			<implementation	class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-			<attribute name="description">You see a table for resting your food and drinks on.</attribute>
-			<attribute name="width">1</attribute>
-			<attribute name="height">3</attribute>
-		</entity>	
-		
-  <!-- Piano -->
-  <entity x="24" y="24">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="18" y="30" ref="entrance">
-   <destination zone="0_kalavan_city" ref="house_25_entrance"/>
-  </portal>
- </zone> 
+      <parameter name="x">4</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
 
- <zone name="0_kalavan_city_gardens" level="0" x="499744" y="500768" file="Level 0/kalavan/city_gardens.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.MummyNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.OracleNPC"/>
-  <portal x="114" y="116" ref="greenhouse_1_entrance">
-   <destination zone="int_kalavan_greenhouse_1" ref="entrance"/>
-  </portal>
-  <portal x="123" y="118" ref="greenhouse_2_entrance">
-   <destination zone="int_kalavan_greenhouse_2" ref="entrance"/>
-  </portal>
-  <portal x="40" y="26" ref="cottage_entrance">
-   <destination zone="int_kalavan_cottage" ref="entrance"/>
-  </portal>
-  <portal x="9" y="12" ref="cottage_2_entrance">
-   <destination zone="int_kalavan_cottage_2" ref="entrance"/>
-  </portal>
- </zone>
+    <!-- tables -->
 
- <zone name="int_kalavan_cottage_2" file="interiors/kalavan/cottage_2.tmx">
-  <configurator class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerApplePieNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerCherryPieNPC"/>
-  <portal x="10" y="16" ref="entrance">
-   <destination zone="0_kalavan_city_gardens" ref="cottage_2_entrance"/>
-  </portal>
- </zone> 
+    <entity x="16" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
 
- <zone name="int_kalavan_cottage" file="interiors/kalavan/cottage.tmx">
-  <configurator class-name="games.stendhal.server.maps.kalavan.cottage.HouseKeeperNPC"/>
-  <portal x="14" y="19" ref="entrance">
-   <destination zone="0_kalavan_city_gardens" ref="cottage_entrance"/>
-  </portal>
- </zone> 
+    <entity x="4" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
 
- <zone name="int_kalavan_greenhouse_1" file="interiors/kalavan/greenhouse_1.tmx">
-  <portal x="7" y="19" ref="entrance">
-   <destination zone="0_kalavan_city_gardens" ref="greenhouse_1_entrance"/>
-  </portal>
- </zone> 
- <zone name="int_kalavan_greenhouse_2" file="interiors/kalavan/greenhouse_2.tmx">
-  <portal x="7" y="19" ref="entrance">
-   <destination zone="0_kalavan_city_gardens" ref="greenhouse_2_entrance"/>
-  </portal>
- </zone>
+    <entity x="16" y="22">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
 
- <zone name="0_kalavan_forest" level="0" x="499872" y="500768" file="Level 0/kalavan/forest.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
- </zone>
- 
-  <zone name="0_kalavan_forest_e" level="0" x="500000" y="500768" file="Level 0/kalavan/forest_e.tmx" accessible="false">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
- </zone>
- 
-  <zone name="0_kalavan_forest_e2" level="0" x="500128" y="500768" file="Level 0/kalavan/forest_e2.tmx" accessible="false">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
- </zone>
- 
- <!--  Level -1 -->
+    <!-- Piano -->
+    <entity x="3" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="9" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_21_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_22" file="interiors/kalavan/house_22.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">4</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="16" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="4" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="16" y="22">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="3" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="9" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_22_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_23" file="interiors/kalavan/house_23.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">4</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="16" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="4" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="2" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="3" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="9" y="23" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_23_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_24" file="interiors/kalavan/house_24.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">29</parameter>
+      <parameter name="y">25</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="5" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="29" y="21">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="29" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="24" y="24">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="18" y="30" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_24_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_house_25" file="interiors/kalavan/house_25.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">29</parameter>
+      <parameter name="y">25</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">10</parameter>
+      <parameter name="y">10</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- tables -->
+
+    <entity x="5" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="29" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+    <entity x="20" y="3">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+
+    <!-- Piano -->
+    <entity x="24" y="24">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="18" y="30" ref="entrance">
+      <destination zone="0_kalavan_city" ref="house_25_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="0_kalavan_city_gardens" level="0" x="499744" y="500768"
+    file="Level 0/kalavan/city_gardens.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.LittleGirlNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.MummyNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.citygardens.OracleNPC" />
+    <portal x="114" y="116" ref="greenhouse_1_entrance">
+      <destination zone="int_kalavan_greenhouse_1" ref="entrance" />
+    </portal>
+    <portal x="123" y="118" ref="greenhouse_2_entrance">
+      <destination zone="int_kalavan_greenhouse_2" ref="entrance" />
+    </portal>
+    <portal x="40" y="26" ref="cottage_entrance">
+      <destination zone="int_kalavan_cottage" ref="entrance" />
+    </portal>
+    <portal x="9" y="12" ref="cottage_2_entrance">
+      <destination zone="int_kalavan_cottage_2" ref="entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_cottage_2" file="interiors/kalavan/cottage_2.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerApplePieNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.cottage_2.ConfectionerCherryPieNPC" />
+    <portal x="10" y="16" ref="entrance">
+      <destination zone="0_kalavan_city_gardens" ref="cottage_2_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_cottage" file="interiors/kalavan/cottage.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.kalavan.cottage.HouseKeeperNPC" />
+    <portal x="14" y="19" ref="entrance">
+      <destination zone="0_kalavan_city_gardens" ref="cottage_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="int_kalavan_greenhouse_1" file="interiors/kalavan/greenhouse_1.tmx">
+    <portal x="7" y="19" ref="entrance">
+      <destination zone="0_kalavan_city_gardens" ref="greenhouse_1_entrance" />
+    </portal>
+  </zone>
+  <zone name="int_kalavan_greenhouse_2" file="interiors/kalavan/greenhouse_2.tmx">
+    <portal x="7" y="19" ref="entrance">
+      <destination zone="0_kalavan_city_gardens" ref="greenhouse_2_entrance" />
+    </portal>
+  </zone>
+
+  <zone name="0_kalavan_forest" level="0" x="499872" y="500768"
+    file="Level 0/kalavan/forest.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
+
+  <zone name="0_kalavan_forest_e" level="0" x="500000" y="500768"
+    file="Level 0/kalavan/forest_e.tmx" accessible="false">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
+
+  <zone name="0_kalavan_forest_e2" level="0" x="500128" y="500768"
+    file="Level 0/kalavan/forest_e2.tmx" accessible="false">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
+
+  <!-- Level -1 -->
 
 
- <!--  Level -2 -->
+  <!-- Level -2 -->
 
 
- <!--  Level -3 -->
+  <!-- Level -3 -->
 
 
- <!--  Level -4 -->
+  <!-- Level -4 -->
 
 
- <!--  Level -5 -->
+  <!-- Level -5 -->
 
 
- <!--  Level -6 -->
+  <!-- Level -6 -->
 
 
- <!--  Level -7 -->
+  <!-- Level -7 -->
 
 </zones>

@@ -1,772 +1,836 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!-- ** Load zones. Written from left to right and from top to bottom. 
+    ** Please respect it! -->
 
- <!-- Level 6 -->
+  <!-- Level 6 -->
 
- <!-- Level 5 -->
+  <!-- Level 5 -->
 
- <!-- Level 4 -->
+  <!-- Level 4 -->
 
- <!-- Level 3 -->
+  <!-- Level 3 -->
 
- <!-- Level 2 -->
+  <!-- Level 2 -->
 
- <!-- Level 1 -->
+  <!-- Level 1 -->
 
- <!-- Level 0 (Ground) -->
+  <!-- Level 0 (Ground) -->
 
- <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC"/>
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC"/>
-  <entity x="65" y="94">
-     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buykirdneharmor</parameter>
-      <parameter name="title">I buy various armor items:</parameter>
-      <parameter name="seller">false</parameter>
-     </implementation>
-     <attribute name="class">blackboard</attribute>
+  <zone name="0_kirdneh_city" level="0" x="500000" y="500512"
+    file="Level 0/kirdneh/city.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.city.MummyNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC" />
+    <entity x="65" y="94">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buykirdneharmor</parameter>
+        <parameter name="title">I buy various armor items:</parameter>
+        <parameter name="seller">false</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
     </entity>
 
-  <configurator class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC"/>
- <entity x="65" y="85">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
-      <parameter name="shop">buyfishes</parameter>
-      <parameter name="title">Whut I be buyin:</parameter>
-      <parameter name="seller">false</parameter>
-     </implementation>
-     <attribute name="class">blackboard</attribute>
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.city.KirdnehFishyMarketNPC" />
+    <entity x="65" y="85">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyfishes</parameter>
+        <parameter name="title">Whut I be buyin:</parameter>
+        <parameter name="seller">false</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
     </entity>
-  <portal x="50" y="7" ref="diving_board">
-   <destination zone="0_kirdneh_city" ref="pool"/>
-   <attribute name="hidden"/>
-  </portal>
-  <portal x="9" y="92" ref="tavern_left">
-   <destination zone="int_kirdneh_inn" ref="entrance_left"/>
-  </portal>
-  <portal x="10" y="92" ref="tavern">
-   <destination zone="int_kirdneh_inn" ref="entrance"/>
-  </portal>
-  <portal x="48" y="7" ref="pool">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="77" y="58" ref="townhall">
-   <destination zone="int_kirdneh_townhall" ref="entrance"/>
-  </portal>
-  <entity x="20" y="57">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a hot hot barbecue.</attribute>
-  </entity>
-  <entity x="102" y="72">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a sizzling hot barbecue.</attribute>
-  </entity>
-  <entity x="23" y="101">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a sizzling barbecue.</attribute>
-  </entity>
-  <entity x="24" y="101">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a burning hot grill.</attribute>
-  </entity>
-  <entity x="58" y="100">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a very hot grill.</attribute>
-  </entity>
-  <entity x="59" y="100">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
-    <attribute name="description">You see a sizzling barbecue.</attribute>
-  </entity>
-  <portal x="31" y="26" ref="26">
-   <destination zone="int_kirdneh_house_26" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 26</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="51" y="26" ref="27">
-   <destination zone="int_kirdneh_house_27" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 27</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="77" y="25" ref="28">
-   <destination zone="int_kirdneh_house_28" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 28</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="96" y="27" ref="29">
-   <destination zone="int_kirdneh_house_29" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 29</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="31" y="42" ref="30">
-   <destination zone="int_kirdneh_house_30" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 30</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="51" y="42" ref="31">
-   <destination zone="int_kirdneh_house_31" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 31</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="77" y="42" ref="32">
-   <destination zone="int_kirdneh_house_32" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 32</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="96" y="42" ref="33">
-   <destination zone="int_kirdneh_house_33" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 33</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal> 
-  <portal x="31" y="58" ref="34">
-   <destination zone="int_kirdneh_house_34" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 34</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="51" y="58" ref="35">
-   <destination zone="int_kirdneh_house_35" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 35</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="93" y="58" ref="36">
-   <destination zone="int_kirdneh_house_36" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 36</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="99" y="58" ref="37">
-   <destination zone="int_kirdneh_house_37" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 37</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal> 
-  <portal x="32" y="74" ref="38">
-   <destination zone="int_kirdneh_house_38" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 38</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="50" y="74" ref="39">
-   <destination zone="int_kirdneh_house_39" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 39</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="77" y="74" ref="40">
-   <destination zone="int_kirdneh_house_40" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 40</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="96" y="74" ref="41">
-   <destination zone="int_kirdneh_house_41" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 41</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="47" y="89" ref="42">
-   <destination zone="int_kirdneh_house_42" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 42</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="79" y="89" ref="43">
-   <destination zone="int_kirdneh_house_43" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 43</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="96" y="89" ref="44">
-   <destination zone="int_kirdneh_house_44" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 44</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
- <portal x="32" y="105" ref="45">
-   <destination zone="int_kirdneh_house_45" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 45</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="50" y="105" ref="46">
-   <destination zone="int_kirdneh_house_46" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 46</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="77" y="104" ref="47">
-   <destination zone="int_kirdneh_house_47" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 47</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="91" y="104" ref="48">
-   <destination zone="int_kirdneh_house_48" ref="entrance"/>   
-    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 48</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal>
-  <portal x="101" y="104" ref="49">
-   <destination zone="int_kirdneh_house_49" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-    <parameter name="doorId">kirdneh house 49</parameter>
-    <parameter name="rejected">The door is locked.</parameter>
-   </implementation>
-  </portal> 
-  <portal x="116" y="81" ref="museum1">
-   <destination zone="int_kirdneh_museum" ref="entrance1"/>
-  </portal>
-  <portal x="116" y="82" ref="museum2">
-   <destination zone="int_kirdneh_museum" ref="entrance2"/>
-  </portal>
-  <portal x="119" y="37" ref="bank">
-   <destination zone="int_kirdneh_bank" ref="entrance"/>
-  </portal>
-	
-	<point-of-interest x="119" y="37">
-		<name>Kirdneh Bank</name>
-		<type>bank</type>
-		<description>A place to store your possessions. This one is a branch office of Fado bank.</description>
-		<url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
-	</point-of-interest>
-	  
- </zone>
+    <portal x="50" y="7" ref="diving_board">
+      <destination zone="0_kirdneh_city" ref="pool" />
+      <attribute name="hidden" />
+    </portal>
+    <portal x="9" y="92" ref="tavern_left">
+      <destination zone="int_kirdneh_inn" ref="entrance_left" />
+    </portal>
+    <portal x="10" y="92" ref="tavern">
+      <destination zone="int_kirdneh_inn" ref="entrance" />
+    </portal>
+    <portal x="48" y="7" ref="pool">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="77" y="58" ref="townhall">
+      <destination zone="int_kirdneh_townhall" ref="entrance" />
+    </portal>
+    <entity x="20" y="57">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a hot hot barbecue.</attribute>
+    </entity>
+    <entity x="102" y="72">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a sizzling hot barbecue.</attribute>
+    </entity>
+    <entity x="23" y="101">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a sizzling barbecue.</attribute>
+    </entity>
+    <entity x="24" y="101">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a burning hot grill.</attribute>
+    </entity>
+    <entity x="58" y="100">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a very hot grill.</attribute>
+    </entity>
+    <entity x="59" y="100">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a sizzling barbecue.</attribute>
+    </entity>
+    <portal x="31" y="26" ref="26">
+      <destination zone="int_kirdneh_house_26" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 26</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="51" y="26" ref="27">
+      <destination zone="int_kirdneh_house_27" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 27</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="77" y="25" ref="28">
+      <destination zone="int_kirdneh_house_28" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 28</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="96" y="27" ref="29">
+      <destination zone="int_kirdneh_house_29" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 29</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="31" y="42" ref="30">
+      <destination zone="int_kirdneh_house_30" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 30</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="51" y="42" ref="31">
+      <destination zone="int_kirdneh_house_31" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 31</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="77" y="42" ref="32">
+      <destination zone="int_kirdneh_house_32" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 32</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="96" y="42" ref="33">
+      <destination zone="int_kirdneh_house_33" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 33</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="31" y="58" ref="34">
+      <destination zone="int_kirdneh_house_34" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 34</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="51" y="58" ref="35">
+      <destination zone="int_kirdneh_house_35" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 35</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="93" y="58" ref="36">
+      <destination zone="int_kirdneh_house_36" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 36</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="99" y="58" ref="37">
+      <destination zone="int_kirdneh_house_37" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 37</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="32" y="74" ref="38">
+      <destination zone="int_kirdneh_house_38" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 38</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="50" y="74" ref="39">
+      <destination zone="int_kirdneh_house_39" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 39</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="77" y="74" ref="40">
+      <destination zone="int_kirdneh_house_40" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 40</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="96" y="74" ref="41">
+      <destination zone="int_kirdneh_house_41" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 41</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="47" y="89" ref="42">
+      <destination zone="int_kirdneh_house_42" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 42</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="79" y="89" ref="43">
+      <destination zone="int_kirdneh_house_43" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 43</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="96" y="89" ref="44">
+      <destination zone="int_kirdneh_house_44" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 44</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="32" y="105" ref="45">
+      <destination zone="int_kirdneh_house_45" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 45</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="50" y="105" ref="46">
+      <destination zone="int_kirdneh_house_46" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 46</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="77" y="104" ref="47">
+      <destination zone="int_kirdneh_house_47" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 47</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="91" y="104" ref="48">
+      <destination zone="int_kirdneh_house_48" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 48</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="101" y="104" ref="49">
+      <destination zone="int_kirdneh_house_49" ref="entrance" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 49</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+    </portal>
+    <portal x="116" y="81" ref="museum1">
+      <destination zone="int_kirdneh_museum" ref="entrance1" />
+    </portal>
+    <portal x="116" y="82" ref="museum2">
+      <destination zone="int_kirdneh_museum" ref="entrance2" />
+    </portal>
+    <portal x="119" y="37" ref="bank">
+      <destination zone="int_kirdneh_bank" ref="entrance" />
+    </portal>
 
- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">18</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">5</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="3" y="16">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="26"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">15</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">37</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="27"/>
-  </portal>
-  
+    <point-of-interest x="119" y="37">
+      <name>Kirdneh Bank</name>
+      <type>bank</type>
+      <description>A place to store your possessions. This one is a branch office of Fado bank.</description>
+      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+    </point-of-interest>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">18</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">5</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- Piano -->
+    <entity x="3" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="26" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">15</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">37</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="27" />
+    </portal>
+
     <!-- tables -->
-      <entity x="30" y="17">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-        <attribute name="width">2</attribute>
-        <attribute name="height">2</attribute>
-      </entity>
-      <entity x="28" y="15">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      </entity>
-      <entity x="33" y="15">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      </entity>
-      <entity x="28" y="20">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      </entity>
-      <entity x="33" y="20">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      </entity>
-      <entity x="22" y="2">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a sewing table.</attribute>
-        <attribute name="width">3</attribute>
-        <attribute name="height">2</attribute>
-      </entity>
-      <entity x="7" y="16">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-        <attribute name="width">4</attribute>
-        <attribute name="height">3</attribute>
-      </entity>
-      <entity x="12" y="5">
-        <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-        <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      </entity>
-      
- </zone>
- 
- <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">15</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">37</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="28"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">18</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">36</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="20" y="12">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="29"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">17</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">22</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="10" y="16">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="30"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">17</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="15" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="31"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">20</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">2</parameter>
-	<parameter name="y">19</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="32"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_33" file="interiors/kirdneh/house_33.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">29</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">29</parameter>
-	<parameter name="y">9</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="14" y="5">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-        <!-- flushing toilet -->
-        <entity x="7" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- 2 faucets running water -->
-        <entity x="3" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        <entity x="5" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-  <portal x="14" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="33"/>
-  </portal>
- </zone>
- 
- <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">22</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="34"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="37" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="35" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
- <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">22</parameter>
-	<parameter name="y">21</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="35"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="37" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="35" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
-	<zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">2</parameter>
-			<parameter name="y">10</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">2</parameter>
-			<parameter name="y">8</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="6" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="7" y="13" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="36" />
-		</portal>
-		<portal x="2" y="2" ref="down">
-			<destination zone="int_kirdneh_house_36_basement" ref="up" />
-		</portal>
-	</zone>
-	
- <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="2" y="2" ref="up">
-   <destination zone="int_kirdneh_house_36" ref="down"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="10" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="9" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
-	<zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">2</parameter>
-			<parameter name="y">10</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">2</parameter>
-			<parameter name="y">8</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="6" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="7" y="13" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="37" />
-		</portal>
-		<portal x="2" y="2" ref="down">
-			<destination zone="int_kirdneh_house_37_basement" ref="up" />
-		</portal>
-	</zone>
-	
- <zone name="int_kirdneh_house_37_basement"	file="interiors/kirdneh/house_37_basement.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="2" y="2" ref="up">
-   <destination zone="int_kirdneh_house_37" ref="down"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="10" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="9" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
- <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">22</parameter>
-	<parameter name="y">13</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">17</parameter>
-	<parameter name="y">14</parameter>
-	<parameter name="width">3</parameter>
-    <parameter name="height">2</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="35" y="12">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="height">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-  <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="38"/>
-  </portal>
- </zone>
-  
-  <zone name="int_kirdneh_house_39" file="interiors/kirdneh/house_39.tmx" accessible="false">
-    <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <entity x="30" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    <entity x="28" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+    </entity>
+    <entity x="33" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+    </entity>
+    <entity x="28" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+    </entity>
+    <entity x="33" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+    </entity>
+    <entity x="22" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a sewing table.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    <entity x="7" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+    <entity x="12" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">15</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">37</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="28" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">18</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">36</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- Piano -->
+    <entity x="20" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="29" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">17</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">22</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- Piano -->
+    <entity x="10" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="30" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">17</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="15" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="31" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">20</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">19</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="32" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_33" file="interiors/kirdneh/house_33.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">29</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">29</parameter>
+      <parameter name="y">9</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+
+    <!-- Piano -->
+    <entity x="14" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="7" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- 2 faucets running water -->
+    <entity x="3" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    <entity x="5" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="14" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="33" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">22</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="34" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="37" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="35" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">22</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="35" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="37" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="35" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_36" file="interiors/kirdneh/house_36.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">10</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">8</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="6" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    <portal x="7" y="13" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="36" />
+    </portal>
+    <portal x="2" y="2" ref="down">
+      <destination zone="int_kirdneh_house_36_basement" ref="up" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_36_basement" file="interiors/kirdneh/house_36_basement.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <portal x="2" y="2" ref="up">
+      <destination zone="int_kirdneh_house_36" ref="down" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="10" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="9" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_37" file="interiors/kirdneh/house_37.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">10</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">8</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="6" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    <portal x="7" y="13" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="37" />
+    </portal>
+    <portal x="2" y="2" ref="down">
+      <destination zone="int_kirdneh_house_37_basement" ref="up" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_37_basement" file="interiors/kirdneh/house_37_basement.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <portal x="2" y="2" ref="up">
+      <destination zone="int_kirdneh_house_37" ref="down" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="10" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="9" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">22</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">17</parameter>
+      <parameter name="y">14</parameter>
+      <parameter name="width">3</parameter>
+      <parameter name="height">2</parameter>
+    </configurator>
+
+    <!-- Piano -->
+    <entity x="35" y="12">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="38" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_39" file="interiors/kirdneh/house_39.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x">2</parameter>
       <parameter name="y">17</parameter>
     </configurator>
@@ -776,77 +840,89 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
-    
+
     <!-- Portals -->
     <portal x="11" y="23" ref="entrance">
-      <destination zone="0_kirdneh_city" ref="39"/>
+      <destination zone="0_kirdneh_city" ref="39" />
     </portal>
-    
+
     <!-- Tables -->
     <entity x="21" y="6">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="26" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">3</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="8" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="11" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <!-- Tables -->
     <entity x="8" y="19">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="11" y="19">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <!-- Counters -->
     <entity x="24" y="14">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">9</attribute>
     </entity>
-    
+
     <entity x="32" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="height">7</attribute>
     </entity>
-    
+
     <entity x="27" y="22">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">5</attribute>
     </entity>
-    
+
     <entity x="20" y="22">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter.</attribute>
       <attribute name="width">4</attribute>
     </entity>
-    
+
   </zone>
-  
-  <zone name="int_kirdneh_house_40" file="interiors/kirdneh/house_40.tmx" accessible="false">
-    <configurator	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+
+  <zone name="int_kirdneh_house_40" file="interiors/kirdneh/house_40.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x">36</parameter>
       <parameter name="y">13</parameter>
     </configurator>
@@ -856,163 +932,178 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
-    
+
     <!-- Portals -->
     <portal x="19" y="23" ref="entrance">
-      <destination zone="0_kirdneh_city" ref="40"/>
+      <destination zone="0_kirdneh_city" ref="40" />
     </portal>
-    
+
     <!-- Tables -->
     <entity x="6" y="6">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="9" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">7</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="30" y="9">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">4</attribute>
       <attribute name="height">2</attribute>
     </entity>
-    
+
     <entity x="29" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="28" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="31" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="28" y="19">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="31" y="19">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
   </zone>
-  
-  <zone name="int_kirdneh_house_41" file="interiors/kirdneh/house_41.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">37</parameter>
-	<parameter name="y">14</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">33</parameter>
-	<parameter name="y">7</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="20" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="41"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="21" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="19" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
-	<zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">2</parameter>
-			<parameter name="y">10</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">2</parameter>
-			<parameter name="y">7</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="6" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="7" y="13" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="42" />
-		</portal>
-		<portal x="2" y="2" ref="up">
-			<destination zone="int_kirdneh_house_42_1" ref="down" />
-		</portal>
-	</zone>
-	
- <zone name="int_kirdneh_house_42_1" file="interiors/kirdneh/house_42_1.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="2" y="2" ref="down">
-   <destination zone="int_kirdneh_house_42" ref="up"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="10" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="9" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
-  
-  <zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx" accessible="false">
+
+  <zone name="int_kirdneh_house_41" file="interiors/kirdneh/house_41.tmx"
+    accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">37</parameter>
+      <parameter name="y">14</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">33</parameter>
+      <parameter name="y">7</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="20" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="41" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="21" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="19" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_42" file="interiors/kirdneh/house_42.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">2</parameter>
+      <parameter name="y">10</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">2</parameter>
+      <parameter name="y">7</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="6" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    <portal x="7" y="13" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="42" />
+    </portal>
+    <portal x="2" y="2" ref="up">
+      <destination zone="int_kirdneh_house_42_1" ref="down" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_42_1" file="interiors/kirdneh/house_42_1.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <portal x="2" y="2" ref="down">
+      <destination zone="int_kirdneh_house_42" ref="up" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="10" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="9" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_43" file="interiors/kirdneh/house_43.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x">14</parameter>
       <parameter name="y">3</parameter>
     </configurator>
@@ -1022,171 +1113,187 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
-    
+
     <!-- Clock -->
     <entity x="27" y="2">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
-    
+
     <entity x="27" y="2">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-    
+
     <!-- Portals -->
     <portal x="22" y="23" ref="entrance">
       <destination zone="0_kirdneh_city" ref="43" />
     </portal>
-    
+
     <!-- Tables -->
     <entity x="26" y="8">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="6" y="18">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="6" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="7" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="6" y="20">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="7" y="20">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <!-- Counters -->
     <entity x="21" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">8</attribute>
     </entity>
-    
+
     <entity x="28" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="height">5</attribute>
     </entity>
-    
+
     <entity x="23" y="21">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">6</attribute>
     </entity>
-    
+
   </zone>
-  
+
   <zone name="int_kirdneh_house_44" file="interiors/kirdneh/house_44.tmx">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">37</parameter>
-	<parameter name="y">3</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">33</parameter>
-	<parameter name="y">7</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
-  <portal x="20" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="44"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="21" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="19" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
-	<zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">15</parameter>
-			<parameter name="y">18</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">21</parameter>
-			<parameter name="y">21</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="6" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-		
-        <!-- ticking clock sound effect -->
-        <entity x="6" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-        
-        <!-- flushing toilet -->
-        <entity x="7" y="17">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucet running water -->
-        <entity x="8" y="17">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-		<portal x="19" y="23" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="45" />
-		</portal>
-  </zone>
-  
-  <zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">37</parameter>
+      <parameter name="y">3</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">33</parameter>
+      <parameter name="y">7</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <portal x="20" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="44" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="21" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="19" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">15</parameter>
+      <parameter name="y">18</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">21</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="6" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+
+    <!-- ticking clock sound effect -->
+    <entity x="6" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <!-- flushing toilet -->
+    <entity x="7" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucet running water -->
+    <entity x="8" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="45" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_46" file="interiors/kirdneh/house_46.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x">15</parameter>
       <parameter name="y">18</parameter>
     </configurator>
@@ -1196,471 +1303,506 @@
       <parameter name="width">1</parameter>
       <parameter name="height">1</parameter>
     </configurator>
-    
+
     <!-- Clock -->
     <entity x="19" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
-    
+
     <entity x="19" y="0">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-    
+
     <!-- flushing toilet -->
     <entity x="2" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
         <parameter name="sound">toilet-flush-1</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="description">You see a toilet.</attribute>
     </entity>
-    
+
     <!-- faucet running water -->
     <entity x="3" y="17">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
         <parameter name="sound">water-faucet-1</parameter>
         <parameter name="radius">40</parameter>
       </implementation>
       <attribute name="description">You see a wash basin.</attribute>
     </entity>
-    
+
     <!-- Portals -->
     <portal x="19" y="23" ref="entrance">
       <destination zone="0_kirdneh_city" ref="46" />
     </portal>
-    
+
     <!-- Tables -->
     <entity x="16" y="2">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table holding various items.</attribute>
       <attribute name="width">8</attribute>
     </entity>
-    
+
     <entity x="15" y="7">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="18" y="7">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="15" y="11">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <!-- Tables -->
     <entity x="18" y="11">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
     </entity>
-    
+
     <entity x="30" y="18">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
       <attribute name="height">4</attribute>
     </entity>
-    
+
     <!-- Counters -->
     <entity x="36" y="15">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-    
+
     <entity x="37" y="16">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="height">6</attribute>
     </entity>
-    
+
     <entity x="28" y="22">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a counter for preparing food and drinks.</attribute>
       <attribute name="width">10</attribute>
     </entity>
-    
+
   </zone>
-  
-  <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-	<parameter name="x">29</parameter>
-	<parameter name="y">2</parameter>
-  </configurator>
-      <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-	<parameter name="x">29</parameter>
-	<parameter name="y">9</parameter>
-	<parameter name="width">1</parameter>
-    <parameter name="height">1</parameter>
- </configurator>
- 
-  <!-- Piano -->
-  <entity x="14" y="5">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-      <parameter name="sound">piano-1</parameter>
-      <parameter name="radius">40</parameter>
-    </implementation>
-    <attribute name="width">2</attribute>
-    <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-  </entity>
-  
-        <!-- flushing toilet -->
-        <entity x="7" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- 2 faucets running water -->
-        <entity x="3" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        <entity x="5" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-  <portal x="21" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="47"/>
-  </portal>
- </zone>
- 
-	<zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">10</parameter>
-			<parameter name="y">8</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">17</parameter>
-			<parameter name="y">16</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="2" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="2" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="9" y="18" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="48" />
-		</portal>
-		<portal x="2" y="2" ref="up">
-			<destination zone="int_kirdneh_house_48_1" ref="down" />
-		</portal>
-	</zone>
-	
- <zone name="int_kirdneh_house_48_1" file="interiors/kirdneh/house_48_1.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="2" y="2" ref="down">
-   <destination zone="int_kirdneh_house_48" ref="up"/>
-  </portal>
-  
-        <!-- flushing toilet -->
-        <entity x="11" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- 2 faucets running water -->
-        <entity x="13" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        <entity x="14" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
- 
-	<zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx"
-		accessible="false">
-		<configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-		<configurator
-			class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-			<parameter name="x">10</parameter>
-			<parameter name="y">8</parameter>
-		</configurator>
-		<configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-			<parameter name="x">17</parameter>
-			<parameter name="y">16</parameter>
-			<parameter name="width">1</parameter>
-			<parameter name="height">1</parameter>
-		</configurator>
-		<entity x="2" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="2" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		<portal x="9" y="18" ref="entrance">
-			<destination zone="0_kirdneh_city" ref="49" />
-		</portal>
-		<portal x="2" y="2" ref="up">
-			<destination zone="int_kirdneh_house_49_1" ref="down" />
-		</portal>
-	</zone>
-	
- <zone name="int_kirdneh_house_49_1" file="interiors/kirdneh/house_49_1.tmx" accessible="false">
-  <configurator
-   	class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-  <portal x="2" y="2" ref="down">
-   <destination zone="int_kirdneh_house_49" ref="up"/>
-  </portal>
 
-        <!-- flushing toilet -->
-        <entity x="11" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- 2 faucets running water -->
-        <entity x="13" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        <entity x="14" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
- </zone>
+  <zone name="int_kirdneh_house_47" file="interiors/kirdneh/house_47.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">29</parameter>
+      <parameter name="y">2</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">29</parameter>
+      <parameter name="y">9</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
 
-<zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
- <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC"/>
- <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC"/>
- <configurator class-name="games.stendhal.server.maps.kirdneh.inn.ItemsOnTable"/>
-  <portal x="17" y="23" ref="entrance_left">
-   <destination zone="0_kirdneh_city" ref="tavern_left"/>
-  </portal>
-  <portal x="18" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="tavern"/>
-  </portal>
- </zone>
+    <!-- Piano -->
+    <entity x="14" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
 
-<zone name="int_kirdneh_townhall" file="interiors/kirdneh/townhall.tmx">
- <portal x="19" y="23" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="townhall"/>
- </portal>
- <portal x="18" y="3" ref="upstair_left">
-   <destination zone="int_kirdneh_townhall1" ref="downstair_left"/>
- </portal>
- <portal x="19" y="3" ref="upstair_right">
-   <destination zone="int_kirdneh_townhall1" ref="downstair_right"/>
- </portal>
-</zone>
+    <!-- flushing toilet -->
+    <entity x="7" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
 
-<zone name="int_kirdneh_townhall1" file="interiors/kirdneh/townhall1.tmx">
-	<entity x="14" y="11">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
+    <!-- 2 faucets running water -->
+    <entity x="3" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    <entity x="5" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+    <portal x="21" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="47" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">10</parameter>
+      <parameter name="y">8</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">17</parameter>
+      <parameter name="y">16</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="2" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="2" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    <portal x="9" y="18" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="48" />
+    </portal>
+    <portal x="2" y="2" ref="up">
+      <destination zone="int_kirdneh_house_48_1" ref="down" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_48_1" file="interiors/kirdneh/house_48_1.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <portal x="2" y="2" ref="down">
+      <destination zone="int_kirdneh_house_48" ref="up" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="11" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- 2 faucets running water -->
+    <entity x="13" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    <entity x="14" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_house_49" file="interiors/kirdneh/house_49.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">10</parameter>
+      <parameter name="y">8</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">17</parameter>
+      <parameter name="y">16</parameter>
+      <parameter name="width">1</parameter>
+      <parameter name="height">1</parameter>
+    </configurator>
+    <entity x="2" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="2" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    <portal x="9" y="18" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="49" />
+    </portal>
+    <portal x="2" y="2" ref="up">
+      <destination zone="int_kirdneh_house_49_1" ref="down" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_house_49_1" file="interiors/kirdneh/house_49_1.tmx"
+    accessible="false">
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <portal x="2" y="2" ref="down">
+      <destination zone="int_kirdneh_house_49" ref="up" />
+    </portal>
+
+    <!-- flushing toilet -->
+    <entity x="11" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- 2 faucets running water -->
+    <entity x="13" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    <entity x="14" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
+    <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.inn.ItemsOnTable" />
+    <portal x="17" y="23" ref="entrance_left">
+      <destination zone="0_kirdneh_city" ref="tavern_left" />
+    </portal>
+    <portal x="18" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="tavern" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_townhall" file="interiors/kirdneh/townhall.tmx">
+    <portal x="19" y="23" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="townhall" />
+    </portal>
+    <portal x="18" y="3" ref="upstair_left">
+      <destination zone="int_kirdneh_townhall1" ref="downstair_left" />
+    </portal>
+    <portal x="19" y="3" ref="upstair_right">
+      <destination zone="int_kirdneh_townhall1" ref="downstair_right" />
+    </portal>
+  </zone>
+
+  <zone name="int_kirdneh_townhall1" file="interiors/kirdneh/townhall1.tmx">
+    <entity x="14" y="11">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
     <!-- ticking clock sound effect -->
     <entity x="14" y="11">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-	<portal x="18" y="4" ref="downstair_left">
-		<destination zone="int_kirdneh_townhall" ref="upstair_left" />
-	</portal>
-	<portal x="19" y="4" ref="downstair_right">
-		<destination zone="int_kirdneh_townhall" ref="upstair_right" />
-	</portal>
-</zone>
+    <portal x="18" y="4" ref="downstair_left">
+      <destination zone="int_kirdneh_townhall" ref="upstair_left" />
+    </portal>
+    <portal x="19" y="4" ref="downstair_right">
+      <destination zone="int_kirdneh_townhall" ref="upstair_right" />
+    </portal>
+  </zone>
 
-<zone name="int_kirdneh_museum" file="interiors/kirdneh/museum.tmx">
-	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC" />
-	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.WizardNPC" />
-	<configurator class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable" />
-	<entity x="11" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
-	<entity x="18" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-	</entity>
+  <zone name="int_kirdneh_museum" file="interiors/kirdneh/museum.tmx">
+    <configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC" />
+    <configurator class-name="games.stendhal.server.maps.kirdneh.museum.WizardNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable" />
+    <entity x="11" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <entity x="18" y="1">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
     <!-- ticking clock sound effect -->
     <entity x="14" y="1">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">clock-1</parameter>
         <parameter name="radius">15</parameter>
         <parameter name="volume">100</parameter>
       </implementation>
     </entity>
-	<portal x="1" y="24" ref="entrance1">
-		<destination zone="0_kirdneh_city" ref="museum1" />
-	</portal>
-	<portal x="1" y="25" ref="entrance2">
-		<destination zone="0_kirdneh_city" ref="museum2" />
-	</portal>
-</zone>
+    <portal x="1" y="24" ref="entrance1">
+      <destination zone="0_kirdneh_city" ref="museum1" />
+    </portal>
+    <portal x="1" y="25" ref="entrance2">
+      <destination zone="0_kirdneh_city" ref="museum2" />
+    </portal>
+  </zone>
 
-<zone name="int_kirdneh_bank" file="interiors/kirdneh/bank.tmx">
- <portal x="1" y="18" ref="entrance">
-   <destination zone="0_kirdneh_city" ref="bank"/>
- </portal>
- <entity x="3" y="9">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Kirdneh Bank, sub - branch of Fado Bank, proudly providing excellent service day to day.</attribute>
-   <attribute name="class">transparent</attribute>
- </entity>
- <entity x="12" y="9">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Memo: contact main branch, Fado Bank, for staff training.</attribute>
-   <attribute name="class">transparent</attribute>
- </entity>
- <entity x="3" y="2">
-  <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-   <parameter name="slot">bank_fado</parameter>
-  </implementation>
- </entity>
- <entity x="2" y="2">
-  <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-   <parameter name="width">2</parameter>
-   <parameter name="height">4</parameter>
-  </implementation>
- </entity>
- <entity x="13" y="2">
-  <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-   <parameter name="slot">bank_fado</parameter>
-  </implementation>
- </entity>
- <entity x="13" y="2">
-  <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-   <parameter name="width">2</parameter>
-   <parameter name="height">4</parameter>
-  </implementation>
- </entity>
-</zone>
+  <zone name="int_kirdneh_bank" file="interiors/kirdneh/bank.tmx">
+    <portal x="1" y="18" ref="entrance">
+      <destination zone="0_kirdneh_city" ref="bank" />
+    </portal>
+    <entity x="3" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Kirdneh Bank, sub - branch of Fado Bank, proudly providing excellent service day to day.</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    <entity x="12" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Memo: contact main branch, Fado Bank, for staff training.</attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    <entity x="3" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+    <entity x="2" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">4</parameter>
+      </implementation>
+    </entity>
+    <entity x="13" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_fado</parameter>
+      </implementation>
+    </entity>
+    <entity x="13" y="2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">4</parameter>
+      </implementation>
+    </entity>
+  </zone>
 
-<zone name="0_kirdneh_river_w" level="0" x="500128" y="500512" file="Level 0/kirdneh/river_w.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-	<point-of-interest x="9" y="68">
-		<name>Kirdneh Little Dungeon Forest Entrance</name>
-		<title>Kirdneh Little Dungeon</title>
-		<type>dungeon</type>
-		<description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-		<url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
-	</point-of-interest>
-	
-	        <entity x="52" y="114">
-         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
-          <attribute name="text">You see a mailbox. It says: Ortiv Milquetoast, former teacher.</attribute>
-          <attribute name="class">transparent</attribute>
-          <attribute name="width">1</attribute>
-          </entity> 
-          
+  <zone name="0_kirdneh_river_w" level="0" x="500128" y="500512"
+    file="Level 0/kirdneh/river_w.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <point-of-interest x="9" y="68">
+      <name>Kirdneh Little Dungeon Forest Entrance</name>
+      <title>Kirdneh Little Dungeon</title>
+      <type>dungeon</type>
+      <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
+      <url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+    </point-of-interest>
 
-  <portal x="50" y="108" ref="river_house">
-    <destination zone="int_kirdneh_river_house_0" ref="entrance" />
-  </portal>
-  <portal x="51" y="108" ref="river_house_right">
-    <destination zone="int_kirdneh_river_house_0" ref="entrance" />
-  </portal>
-</zone>
-
- <zone name="int_kirdneh_river_house_0" file="interiors/kirdneh/river_house_0.tmx">
- <configurator class-name="games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC"/>
- 
-  <portal x="22" y="2" ref="downstair">
-    <destination zone="-1_fado_great_cave_n_e2" ref="kirdneh_house"/>
-  </portal>
-   
-	<point-of-interest x="22" y="2">
-		<name>Kirdneh Little Dungeon House Entrance</name>
-		<title>Kirdneh Little Dungeon</title>
-		<type>dungeon</type>
-		<description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-		<url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
-	</point-of-interest>
-	
-  <portal x="15" y="30" ref="entrance">
-    <destination zone="0_kirdneh_river_w" ref="river_house"/>
-  </portal>
-  <portal x="20" y="17" ref="upstair">
-    <destination zone="int_kirdneh_river_house_1" ref="downstair"/>
-  </portal>
- </zone>
-
- <zone name="int_kirdneh_river_house_1" file="interiors/kirdneh/river_house_1.tmx">
-  <portal x="12" y="7" ref="downstair">
-    <destination zone="int_kirdneh_river_house_0" ref="upstair" />
-  </portal>
- </zone>
+    <entity x="52" y="114">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a mailbox. It says: Ortiv Milquetoast, former teacher.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">1</attribute>
+    </entity>
 
 
- <!-- Level -1 -->
+    <portal x="50" y="108" ref="river_house">
+      <destination zone="int_kirdneh_river_house_0" ref="entrance" />
+    </portal>
+    <portal x="51" y="108" ref="river_house_right">
+      <destination zone="int_kirdneh_river_house_0" ref="entrance" />
+    </portal>
+  </zone>
 
- <!-- fado great caves are here! see fado.xml-->
+  <zone name="int_kirdneh_river_house_0" file="interiors/kirdneh/river_house_0.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.river.RetiredTeacherNPC" />
 
- <!-- Level -2 -->
+    <portal x="22" y="2" ref="downstair">
+      <destination zone="-1_fado_great_cave_n_e2" ref="kirdneh_house" />
+    </portal>
 
-<zone name="-2_kirdneh_little_dungeon" level="-2" x="500128" y="500576" file="Level -2/kirdneh/little_dungeon.tmx">
-</zone>
+    <point-of-interest x="22" y="2">
+      <name>Kirdneh Little Dungeon House Entrance</name>
+      <title>Kirdneh Little Dungeon</title>
+      <type>dungeon</type>
+      <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
+      <url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+    </point-of-interest>
 
- <!-- Level -3 -->
+    <portal x="15" y="30" ref="entrance">
+      <destination zone="0_kirdneh_river_w" ref="river_house" />
+    </portal>
+    <portal x="20" y="17" ref="upstair">
+      <destination zone="int_kirdneh_river_house_1" ref="downstair" />
+    </portal>
+  </zone>
 
- <!-- Level -4 -->
+  <zone name="int_kirdneh_river_house_1" file="interiors/kirdneh/river_house_1.tmx">
+    <portal x="12" y="7" ref="downstair">
+      <destination zone="int_kirdneh_river_house_0" ref="upstair" />
+    </portal>
+  </zone>
 
- <!-- Level -5 -->
 
- <!-- Level -6 -->
+  <!-- Level -1 -->
 
- <!-- Level -7 -->
+  <!-- fado great caves are here! see fado.xml -->
+
+  <!-- Level -2 -->
+
+  <zone name="-2_kirdneh_little_dungeon" level="-2" x="500128" y="500576"
+    file="Level -2/kirdneh/little_dungeon.tmx">
+  </zone>
+
+  <!-- Level -3 -->
+
+  <!-- Level -4 -->
+
+  <!-- Level -5 -->
+
+  <!-- Level -6 -->
+
+  <!-- Level -7 -->
 
 </zones>

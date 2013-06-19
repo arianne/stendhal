@@ -1,1211 +1,1260 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
-	<!--
-		** Load zones. Written from left to right and from top to bottom. **
-		Please respect it!
-	-->
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!-- ** Load zones. Written from left to right and from top to bottom. 
+    ** Please respect it! -->
 
-	<!-- Level 6 -->
+  <!-- Level 6 -->
 
 
-	<!-- Level 5 -->
+  <!-- Level 5 -->
 
 
-	<!-- Level 4 -->
+  <!-- Level 4 -->
 
 
-	<!-- Level 3 -->
+  <!-- Level 3 -->
 
 
-	<!-- Level 2 -->
+  <!-- Level 2 -->
 
 
-	<!-- Level 1 -->
+  <!-- Level 1 -->
 
 
-	<!-- Level 0 (Ground) -->
+  <!-- Level 0 (Ground) -->
 
-	<zone name="0_orril_mountain_n2_w2" level="0" x="499616" y="500000"
-		file="Level 0/orril/mountain_n2_w2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
+  <zone name="0_orril_mountain_n2_w2" level="0" x="499616" y="500000"
+    file="Level 0/orril/mountain_n2_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
 
-	<zone name="0_orril_mountain_n_w2" level="0" x="499616" y="500128"
-		file="Level 0/orril/mountain_n_w2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
+  <zone name="0_orril_mountain_n_w2" level="0" x="499616" y="500128"
+    file="Level 0/orril/mountain_n_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
 
-	<zone name="0_orril_mountain_nw" level="0" x="499744" y="500128"
-		file="Level 0/orril/mountain_nw.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<point-of-interest x="62" y="40">
-			<name>Kotoch Entrance</name>
-			<type>dungeon</type>
-			<description>Kotoch is a Dungeon which lies in an area of the Orril Mountains. There are lots of routes which you can choose but be careful and keep your eyes open for danger. (Player Level 20 - 65)</description>
-			<url>http://stendhalgame.org/wiki/Kotoch</url>
-		</point-of-interest>
-		
-	</zone>
+  <zone name="0_orril_mountain_nw" level="0" x="499744" y="500128"
+    file="Level 0/orril/mountain_nw.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <point-of-interest x="62" y="40">
+      <name>Kotoch Entrance</name>
+      <type>dungeon</type>
+      <description>Kotoch is a Dungeon which lies in an area of the Orril Mountains. There are lots of routes which you can choose but be careful and keep your eyes open for danger. (Player Level 20 - 65)</description>
+      <url>http://stendhalgame.org/wiki/Kotoch</url>
+    </point-of-interest>
 
-	<zone name="0_orril_forest_n" level="0" x="499872" y="500128"
-		file="Level 0/orril/forest_n.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
+  </zone>
 
-	<zone name="0_orril_mountain_w2" level="0" x="499616" y="500256"
-		file="Level 0/orril/mountain_w2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<point-of-interest x="74" y="42">
-			<name>Orril Dwarf Mine North Entrance</name>
-			<title>Orril Dwarf Mine</title>
-			<type>dungeon</type>
-			<description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
-			<url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
-		</point-of-interest>
-		
-		<point-of-interest x="108" y="111">
-			<name>Orril Dwarf Mine South Entrance</name>
-			<title>Orril Dwarf Mine</title>
-			<type>dungeon</type>
-			<description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
-			<url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
-		</point-of-interest>
-		
-	</zone>
+  <zone name="0_orril_forest_n" level="0" x="499872" y="500128"
+    file="Level 0/orril/forest_n.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
 
-	<zone name="0_orril_mountain_w" level="0" x="499744" y="500256"
-		file="Level 0/orril/mountain_w.tmx">
-		
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<portal x="107" y="113" ref="orb_destination">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
-		
-		<!--<portal x="26" y="62" ref="door_left">
-			<destination zone="int_constantines_villa_entrance" ref="entrance" />
-		</portal>
-		
-		<portal x="27" y="62" ref="door_right">
-			<destination zone="int_constantines_villa_entrance" ref="entrance" />
-		</portal>-->
-	</zone>
+  <zone name="0_orril_mountain_w2" level="0" x="499616" y="500256"
+    file="Level 0/orril/mountain_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <point-of-interest x="74" y="42">
+      <name>Orril Dwarf Mine North Entrance</name>
+      <title>Orril Dwarf Mine</title>
+      <type>dungeon</type>
+      <description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
+      <url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+    </point-of-interest>
 
-	<zone name="0_orril_castle" level="0" x="499872" y="500256"
-		file="Level 0/orril/castle.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<entity x="0" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">a_weird_place</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
-				
-		<portal x="60" y="96" ref="outside_gate_left2">
-			<destination zone="0_orril_castle" ref="inside_gate_left2" />
-		</portal>
+    <point-of-interest x="108" y="111">
+      <name>Orril Dwarf Mine South Entrance</name>
+      <title>Orril Dwarf Mine</title>
+      <type>dungeon</type>
+      <description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
+      <url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+    </point-of-interest>
 
-		<portal x="61" y="96" ref="outside_gate_left">
-			<destination zone="0_orril_castle" ref="inside_gate_left" />
-		</portal>
+  </zone>
 
-		<portal x="62" y="96" ref="outside_gate">
-			<destination zone="0_orril_castle" ref="inside_gate" />
-		</portal>
-		
-		<point-of-interest x="62" y="96">
-			<name>Orril Castle</name>
-			<type>dungeon</type>
-			<description>Huge Orril Castle is located in the Orril Mountain area. It includes different floors and creatures which young adventurers have to pass before they find a secret place waiting underneath the castle... (Player Level 40 - 150)</description>
-			<url>http://stendhalgame.org/wiki/Orril_Castle</url>
-		</point-of-interest>
+  <zone name="0_orril_mountain_w" level="0" x="499744" y="500256"
+    file="Level 0/orril/mountain_w.tmx">
 
-		<portal x="63" y="96" ref="outside_gate_right">
-			<destination zone="0_orril_castle" ref="inside_gate_right" />
-		</portal>
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <portal x="107" y="113" ref="orb_destination">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
 
-		<portal x="64" y="96" ref="outside_gate_right2">
-			<destination zone="0_orril_castle" ref="inside_gate_right2" />
-		</portal>
+    <!--<portal x="26" y="62" ref="door_left"> <destination zone="int_constantines_villa_entrance" 
+      ref="entrance" /> </portal> <portal x="27" y="62" ref="door_right"> <destination 
+      zone="int_constantines_villa_entrance" ref="entrance" /> </portal> -->
+  </zone>
+
+  <zone name="0_orril_castle" level="0" x="499872" y="500256"
+    file="Level 0/orril/castle.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">a_weird_place</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
+
+    <portal x="60" y="96" ref="outside_gate_left2">
+      <destination zone="0_orril_castle" ref="inside_gate_left2" />
+    </portal>
+
+    <portal x="61" y="96" ref="outside_gate_left">
+      <destination zone="0_orril_castle" ref="inside_gate_left" />
+    </portal>
+
+    <portal x="62" y="96" ref="outside_gate">
+      <destination zone="0_orril_castle" ref="inside_gate" />
+    </portal>
+
+    <point-of-interest x="62" y="96">
+      <name>Orril Castle</name>
+      <type>dungeon</type>
+      <description>Huge Orril Castle is located in the Orril Mountain area. It includes different floors and creatures which young adventurers have to pass before they find a secret place waiting underneath the castle... (Player Level 40 - 150)</description>
+      <url>http://stendhalgame.org/wiki/Orril_Castle</url>
+    </point-of-interest>
+
+    <portal x="63" y="96" ref="outside_gate_right">
+      <destination zone="0_orril_castle" ref="inside_gate_right" />
+    </portal>
+
+    <portal x="64" y="96" ref="outside_gate_right2">
+      <destination zone="0_orril_castle" ref="inside_gate_right2" />
+    </portal>
 
 
-		<portal x="60" y="93" ref="inside_gate_left2">
-			<destination zone="0_orril_castle" ref="outside_gate_left2" />
-		</portal>
+    <portal x="60" y="93" ref="inside_gate_left2">
+      <destination zone="0_orril_castle" ref="outside_gate_left2" />
+    </portal>
 
-		<portal x="61" y="93" ref="inside_gate_left">
-			<destination zone="0_orril_castle" ref="outside_gate_left" />
-		</portal>
+    <portal x="61" y="93" ref="inside_gate_left">
+      <destination zone="0_orril_castle" ref="outside_gate_left" />
+    </portal>
 
-		<portal x="62" y="93" ref="inside_gate">
-			<destination zone="0_orril_castle" ref="outside_gate" />
-		</portal>
-		
-		<portal x="63" y="93" ref="inside_gate_right">
-			<destination zone="0_orril_castle" ref="outside_gate_right" />
-		</portal>
+    <portal x="62" y="93" ref="inside_gate">
+      <destination zone="0_orril_castle" ref="outside_gate" />
+    </portal>
 
-		<portal x="64" y="93" ref="inside_gate_right2">
-			<destination zone="0_orril_castle" ref="outside_gate_right2" />
-		</portal>
+    <portal x="63" y="93" ref="inside_gate_right">
+      <destination zone="0_orril_castle" ref="outside_gate_right" />
+    </portal>
+
+    <portal x="64" y="93" ref="inside_gate_right2">
+      <destination zone="0_orril_castle" ref="outside_gate_right2" />
+    </portal>
 
 
-		<portal x="61" y="72" ref="castle_entrance_left">
-			<destination zone="int_orril_castle_0" ref="entrance_left" />
-		</portal>
+    <portal x="61" y="72" ref="castle_entrance_left">
+      <destination zone="int_orril_castle_0" ref="entrance_left" />
+    </portal>
 
-		<portal x="62" y="72" ref="castle_entrance">
-			<destination zone="int_orril_castle_0" ref="entrance" />
-		</portal>
+    <portal x="62" y="72" ref="castle_entrance">
+      <destination zone="int_orril_castle_0" ref="entrance" />
+    </portal>
 
-		<portal x="63" y="72" ref="castle_entrance_right">
-			<destination zone="int_orril_castle_0" ref="entrance_right" />
-		</portal>
-	</zone>
+    <portal x="63" y="72" ref="castle_entrance_right">
+      <destination zone="int_orril_castle_0" ref="entrance_right" />
+    </portal>
+  </zone>
 
-	<zone name="int_orril_castle_0" file="interiors/orril/castle_0.tmx">
+  <zone name="int_orril_castle_0" file="interiors/orril/castle_0.tmx">
 
-		<entity x="0" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">a_weird_place</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">a_weird_place</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
 
-		<portal x="26" y="62" ref="entrance_left">
-			<destination zone="0_orril_castle" ref="castle_entrance_left" />
-		</portal>
+    <portal x="26" y="62" ref="entrance_left">
+      <destination zone="0_orril_castle" ref="castle_entrance_left" />
+    </portal>
 
-		<portal x="27" y="62" ref="entrance">
-			<destination zone="0_orril_castle" ref="castle_entrance" />
-		</portal>
+    <portal x="27" y="62" ref="entrance">
+      <destination zone="0_orril_castle" ref="castle_entrance" />
+    </portal>
 
-		<portal x="28" y="62" ref="entrance_right">
-			<destination zone="0_orril_castle" ref="castle_entrance_right" />
-		</portal>
+    <portal x="28" y="62" ref="entrance_right">
+      <destination zone="0_orril_castle" ref="castle_entrance_right" />
+    </portal>
 
-		<portal x="8" y="1" ref="4">
-			<destination zone="-1_orril_castle" ref="1" />
-		</portal>
-	</zone>
+    <portal x="8" y="1" ref="4">
+      <destination zone="-1_orril_castle" ref="1" />
+    </portal>
+  </zone>
 
-	<zone name="0_orril_forest_e" level="0" x="500000" y="500256"
-		file="Level 0/orril/forest_e.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<entity x="1" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">deep_forest</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
-		
-		<entity x="43" y="103">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
-		</entity>
-		<entity x="44" y="103">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
-		</entity>
-		
-		<point-of-interest x="30" y="31">
-			<name>Orril Dungeon</name>
-			<type>dungeon</type>
-			<description>The Orril Dungeon is also known as the "Rat Dungeon". Maybe you will find your way to something special down in the tunnels... (Player Level 5 - 70)</description>
-			<url>http://stendhalgame.org/wiki/Orril_Dungeon</url>
-		</point-of-interest>
+  <zone name="0_orril_forest_e" level="0" x="500000" y="500256"
+    file="Level 0/orril/forest_e.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">deep_forest</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
 
-	</zone>
+    <entity x="43" y="103">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    <entity x="44" y="103">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
 
-	<zone name="0_orril_river_s_w2" level="0" x="499616" y="500384"
-		file="Level 0/orril/river_s_w2.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<entity x="36" y="26">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-				<parameter name="species">trout</parameter>
-			</implementation>
-		</entity>
-		<entity x="61" y="77">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-				<parameter name="species">trout</parameter>
-			</implementation>
-		</entity>
-		
-        <!-- Crackling fire -->
-        <entity x="13" y="97">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-            <parameter name="sound">fire-1</parameter>
-            <parameter name="radius">12</parameter>
-            <parameter name="volume">120</parameter>
-          </implementation>
-        </entity>
+    <point-of-interest x="30" y="31">
+      <name>Orril Dungeon</name>
+      <type>dungeon</type>
+      <description>The Orril Dungeon is also known as the "Rat Dungeon". Maybe you will find your way to something special down in the tunnels... (Player Level 5 - 70)</description>
+      <url>http://stendhalgame.org/wiki/Orril_Dungeon</url>
+    </point-of-interest>
 
-	</zone>
+  </zone>
 
-	<zone name="0_orril_river_sw" level="0" x="499744" y="500384"
-		file="Level 0/orril/river_sw.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-	</zone>
+  <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384"
+    file="Level 0/orril/river_s_w2.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <entity x="36" y="26">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">trout</parameter>
+      </implementation>
+    </entity>
+    <entity x="61" y="77">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+        <parameter name="species">trout</parameter>
+      </implementation>
+    </entity>
 
-	<zone name="0_orril_river_s" level="0" x="499872" y="500384"
-		file="Level 0/orril/river_s.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<configurator class-name="games.stendhal.server.maps.orril.river.CampingGirlNPC" />
-		<configurator
-			class-name="games.stendhal.server.maps.orril.river.GoldProspectorNPC" />
-		<!-- This must be after the NPC configurator -->
-		<entity x="37" y="60">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-				<parameter name="npc">Sally</parameter>
-			</implementation>
-		</entity>
-		<entity x="101" y="67">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
-		</entity>
-		<entity x="108" y="59">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
-		</entity>
-		<entity x="120" y="67">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
-		</entity>
-        
-		<portal x="39" y="5" ref="jynath_house_entrance">
-			<destination zone="int_orril_jynath_house" ref="entrance" />
-		</portal>
+    <!-- Crackling fire -->
+    <entity x="13" y="97">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">fire-1</parameter>
+        <parameter name="radius">12</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
 
-		<entity x="67" y="9">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+  </zone>
+
+  <zone name="0_orril_river_sw" level="0" x="499744" y="500384"
+    file="Level 0/orril/river_sw.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+  </zone>
+
+  <zone name="0_orril_river_s" level="0" x="499872" y="500384"
+    file="Level 0/orril/river_s.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <configurator
+      class-name="games.stendhal.server.maps.orril.river.CampingGirlNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.orril.river.GoldProspectorNPC" />
+    <!-- This must be after the NPC configurator -->
+    <entity x="37" y="60">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+        <parameter name="npc">Sally</parameter>
+      </implementation>
+    </entity>
+    <entity x="101" y="67">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
+    </entity>
+    <entity x="108" y="59">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
+    </entity>
+    <entity x="120" y="67">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
+    </entity>
+
+    <portal x="39" y="5" ref="jynath_house_entrance">
+      <destination zone="int_orril_jynath_house" ref="entrance" />
+    </portal>
+
+    <entity x="67" y="9">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 North: Or'ril castle
 West: Fado
 East: Nalwor
 Northeast: Semos
     </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-	</zone>
+      <attribute name="class">signpost</attribute>
+    </entity>
+  </zone>
 
-	<zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.orril.magician_house.WitchNPC" />
+  <zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.magician_house.WitchNPC" />
 
-        <portal x="15" y="30" ref="entrance_left">
-            <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
-        </portal>
+    <portal x="15" y="30" ref="entrance_left">
+      <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
+    </portal>
 
-		<portal x="16" y="30" ref="entrance">
-			<destination zone="0_orril_river_s" ref="jynath_house_entrance" />
-		</portal>
+    <portal x="16" y="30" ref="entrance">
+      <destination zone="0_orril_river_s" ref="jynath_house_entrance" />
+    </portal>
 
-		<portal x="12" y="8" ref="orb_left">
-			<destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
-				<parameter name="quest">learn_scrying</parameter>
-				<parameter name="rejected">You must learn to use orb first.
+    <portal x="12" y="8" ref="orb_left">
+      <destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">learn_scrying</parameter>
+        <parameter name="rejected">You must learn to use orb first.
 				</parameter>
-			</implementation>
-			<attribute name="use"/>
-		</portal>
-		<portal x="13" y="8" ref="orb_right">
-			<destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
-				<parameter name="quest">learn_scrying</parameter>
-				<parameter name="rejected">You must learn to use orb first.
+      </implementation>
+      <attribute name="use" />
+    </portal>
+    <portal x="13" y="8" ref="orb_right">
+      <destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">learn_scrying</parameter>
+        <parameter name="rejected">You must learn to use orb first.
 				</parameter>
-			</implementation>
-			<attribute name="use"/>
-		</portal>
-	</zone>
+      </implementation>
+      <attribute name="use" />
+    </portal>
+  </zone>
 
-	<zone name="0_orril_river_se" level="0" x="500000" y="500384"
-		file="Level 0/orril/river_se.tmx">
-		<attributes>
-			<parameter name="color_method">time</parameter>
-		</attributes>
-		<entity x="68" y="1">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">deep_forest</parameter>
-				<parameter name="volume">120</parameter>
-				<parameter name="radius">30</parameter>
-			</implementation>
-		</entity>
-		
-		
-		<entity x="0" y="8">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
-		</entity>
-		<entity x="1" y="8">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
-		</entity>
-		<entity x="47" y="110">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+  <zone name="0_orril_river_se" level="0" x="500000" y="500384"
+    file="Level 0/orril/river_se.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <entity x="68" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">deep_forest</parameter>
+        <parameter name="volume">120</parameter>
+        <parameter name="radius">30</parameter>
+      </implementation>
+    </entity>
+
+
+    <entity x="0" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    <entity x="1" y="8">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+    </entity>
+    <entity x="47" y="110">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 				Danger! Deep Water!
     </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-		<entity x="51" y="110">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="class">signpost</attribute>
+    </entity>
+    <entity x="51" y="110">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 				Danger! Deep Water!
     </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-		<entity x="48" y="112">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="50" y="113">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="51" y="113">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="50" y="115">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="51" y="117">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="44" y="122">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="46" y="122">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="43" y="123">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="48" y="123">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="43" y="124">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="45" y="124">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-				<parameter name="interval">2</parameter>
-				<parameter name="damage">50</parameter>
-				<parameter name="probability">30</parameter>
-				<parameter name="players-only">true</parameter>
-			</implementation>
-			<attribute name="name">deep water</attribute>
-		</entity>
-		<entity x="44" y="126">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="class">signpost</attribute>
+    </entity>
+    <entity x="48" y="112">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="50" y="113">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="51" y="113">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="50" y="115">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="51" y="117">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="44" y="122">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="46" y="122">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="43" y="123">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="48" y="123">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="43" y="124">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="45" y="124">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deep water</attribute>
+    </entity>
+    <entity x="44" y="126">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 				Danger! Deep Water!
     </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-		<entity x="47" y="126">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="class">signpost</attribute>
+    </entity>
+    <entity x="47" y="126">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 				Danger! Deep Water!
     </attribute>
-			<attribute name="class">signpost</attribute>
-		</entity>
-	</zone>
+      <attribute name="class">signpost</attribute>
+    </entity>
+  </zone>
 
- 	<zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
- 		<!--<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardEntranceNPC" />-->
- 	
- 	<!-- 
-        <portal x="15" y="49" ref="entrance">
-            <destination zone="0_orril_mountain_w" ref="door_left" />
-        </portal> 
-        -->
-        
-        <portal x="13" y="0" ref="barracks1">
-            <destination zone="int_constantines_villa_barracks" ref="door1" />
-        </portal>
-        
-        <portal x="14" y="0" ref="barracks2">
-            <destination zone="int_constantines_villa_barracks" ref="door2" />
-        </portal>
-        
-        <portal x="15" y="0" ref="barracks3">
-            <destination zone="int_constantines_villa_barracks" ref="door3" />
-        </portal>
-        
-         <portal x="16" y="0" ref="barracks4">
-            <destination zone="int_constantines_villa_barracks" ref="door4" />
-        </portal>
-        
-         <portal x="17" y="0" ref="barracks5">
-            <destination zone="int_constantines_villa_barracks" ref="door5" />
-        </portal>
-        
-         <portal x="6" y="44" ref="livingroom1">
-            <destination zone="int_constantines_villa_livingroom" ref="door1" />
-        </portal>
-        
-        <portal x="6" y="43" ref="livingroom2">
-            <destination zone="int_constantines_villa_livingroom" ref="door2" />
-        </portal>
-        
-        <portal x="6" y="42" ref="livingroom3">
-            <destination zone="int_constantines_villa_livingroom" ref="door3" />
-        </portal>
-        
-        <portal x="6" y="31" ref="livingroom4">
-            <destination zone="int_constantines_villa_livingroom" ref="door4" />
-        </portal>
-        
-        <portal x="6" y="30" ref="livingroom5">
-            <destination zone="int_constantines_villa_livingroom" ref="door5" />
-        </portal>
-        
-        <portal x="6" y="29" ref="livingroom6">
-            <destination zone="int_constantines_villa_livingroom" ref="door6" />
-        </portal>
-    </zone>
-    
-	<zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
- 		<!--<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardBarracksNPC" />-->
+  <zone name="int_constantines_villa_entrance" file="interiors/orril/constantines_villa_entrance_hall.tmx">
+    <!--<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardEntranceNPC" 
+      /> -->
+
+    <!-- <portal x="15" y="49" ref="entrance"> <destination zone="0_orril_mountain_w" 
+      ref="door_left" /> </portal> -->
+
+    <portal x="13" y="0" ref="barracks1">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door1" />
+    </portal>
+
+    <portal x="14" y="0" ref="barracks2">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door2" />
+    </portal>
+
+    <portal x="15" y="0" ref="barracks3">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door3" />
+    </portal>
+
+    <portal x="16" y="0" ref="barracks4">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door4" />
+    </portal>
+
+    <portal x="17" y="0" ref="barracks5">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door5" />
+    </portal>
+
+    <portal x="6" y="44" ref="livingroom1">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door1" />
+    </portal>
+
+    <portal x="6" y="43" ref="livingroom2">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door2" />
+    </portal>
+
+    <portal x="6" y="42" ref="livingroom3">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door3" />
+    </portal>
+
+    <portal x="6" y="31" ref="livingroom4">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door4" />
+    </portal>
+
+    <portal x="6" y="30" ref="livingroom5">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door5" />
+    </portal>
+
+    <portal x="6" y="29" ref="livingroom6">
+      <destination zone="int_constantines_villa_livingroom"
+        ref="door6" />
+    </portal>
+  </zone>
+
+  <zone name="int_constantines_villa_barracks" file="interiors/orril/constantines_villa_barracks.tmx">
+    <!--<configurator class-name="games.stendhal.server.maps.orril.constantines.GuardBarracksNPC" 
+      /> -->
 
 
-        <portal x="50" y="18" ref="door_right_1">
-            <destination zone="int_constantines_villa_library" ref="library1" />
-        </portal>
-    
-         <portal x="50" y="19" ref="door_right_2">
-            <destination zone="int_constantines_villa_library" ref="library2" />
-        </portal>
-        
-         <portal x="50" y="20" ref="door_right_3">
-            <destination zone="int_constantines_villa_library" ref="library3" />
-        </portal>
-        
-         <portal x="50" y="21" ref="door_right_4">
-            <destination zone="int_constantines_villa_library" ref="library4" />
-        </portal>
-        
-        <portal x="13" y="29" ref="door1">
-            <destination zone="int_constantines_villa_entrance" ref="barracks1" />
-        </portal>
-        
-        <portal x="14" y="29" ref="door2">
-            <destination zone="int_constantines_villa_entrance" ref="barracks2" />
-        </portal>
-        
-        <portal x="15" y="29" ref="door3">
-            <destination zone="int_constantines_villa_entrance" ref="barracks3" />
-        </portal>
-        
-        <portal x="16" y="29" ref="door4">
-            <destination zone="int_constantines_villa_entrance" ref="barracks4" />
-        </portal>
-        
-        <portal x="17" y="29" ref="door5">
-            <destination zone="int_constantines_villa_entrance" ref="barracks5" />
-        </portal>
+    <portal x="50" y="18" ref="door_right_1">
+      <destination zone="int_constantines_villa_library"
+        ref="library1" />
+    </portal>
 
-        <!-- flushing toilets -->
-        <entity x="4" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        <entity x="6" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        <entity x="8" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">toilet-flush-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a toilet.</attribute>
-        </entity>
-        
-        <!-- faucets running water -->
-        <entity x="1" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        <entity x="2" y="1">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-            <parameter name="sound">water-faucet-1</parameter>
-            <parameter name="radius">40</parameter>
-          </implementation>
-          <attribute name="description">You see a wash basin.</attribute>
-        </entity>
-        
-    </zone>
-    
-	<zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
-		<entity x="23" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="23" y="0">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-		
-		<entity x="13" y="33">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="13" y="33">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
-    
-    	<portal x="49" y="44" ref="door1">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom1" />
-        </portal>
-        
-        <portal x="49" y="43" ref="door2">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom2" />
-        </portal>
-        
-        <portal x="49" y="42" ref="door3">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom3" />
-        </portal>
-        
-        <portal x="49" y="31" ref="door4">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom4" />
-        </portal>
-        
-        <portal x="49" y="30" ref="door5">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom5" />
-        </portal>
-        
-        <portal x="49" y="29" ref="door6">
-            <destination zone="int_constantines_villa_entrance" ref="livingroom6" />
-        </portal>
-        
-	</zone>
+    <portal x="50" y="19" ref="door_right_2">
+      <destination zone="int_constantines_villa_library"
+        ref="library2" />
+    </portal>
 
-	<zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
-		
-	<!--<configurator class-name="games.stendhal.server.maps.orril.constantines.LibrarianNPC" />-->
-	
-		<entity x="28" y="17">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+    <portal x="50" y="20" ref="door_right_3">
+      <destination zone="int_constantines_villa_library"
+        ref="library3" />
+    </portal>
+
+    <portal x="50" y="21" ref="door_right_4">
+      <destination zone="int_constantines_villa_library"
+        ref="library4" />
+    </portal>
+
+    <portal x="13" y="29" ref="door1">
+      <destination zone="int_constantines_villa_entrance"
+        ref="barracks1" />
+    </portal>
+
+    <portal x="14" y="29" ref="door2">
+      <destination zone="int_constantines_villa_entrance"
+        ref="barracks2" />
+    </portal>
+
+    <portal x="15" y="29" ref="door3">
+      <destination zone="int_constantines_villa_entrance"
+        ref="barracks3" />
+    </portal>
+
+    <portal x="16" y="29" ref="door4">
+      <destination zone="int_constantines_villa_entrance"
+        ref="barracks4" />
+    </portal>
+
+    <portal x="17" y="29" ref="door5">
+      <destination zone="int_constantines_villa_entrance"
+        ref="barracks5" />
+    </portal>
+
+    <!-- flushing toilets -->
+    <entity x="4" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    <entity x="6" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+    <entity x="8" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">toilet-flush-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a toilet.</attribute>
+    </entity>
+
+    <!-- faucets running water -->
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+    <entity x="2" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">water-faucet-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="description">You see a wash basin.</attribute>
+    </entity>
+
+  </zone>
+
+  <zone name="int_constantines_villa_livingroom" file="interiors/orril/constantines_villa_livingroom.tmx">
+    <entity x="23" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="23" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="13" y="33">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="13" y="33">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+
+    <portal x="49" y="44" ref="door1">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom1" />
+    </portal>
+
+    <portal x="49" y="43" ref="door2">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom2" />
+    </portal>
+
+    <portal x="49" y="42" ref="door3">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom3" />
+    </portal>
+
+    <portal x="49" y="31" ref="door4">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom4" />
+    </portal>
+
+    <portal x="49" y="30" ref="door5">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom5" />
+    </portal>
+
+    <portal x="49" y="29" ref="door6">
+      <destination zone="int_constantines_villa_entrance"
+        ref="livingroom6" />
+    </portal>
+
+  </zone>
+
+  <zone name="int_constantines_villa_library" file="interiors/orril/constantines_villa_library.tmx">
+
+    <!--<configurator class-name="games.stendhal.server.maps.orril.constantines.LibrarianNPC" 
+      /> -->
+
+    <entity x="28" y="17">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 The hidden secrets of Athor island
 -By Sara Beth-
 Down in the deep sea around Athor island it lays, hidden under soft sand - the mighty treasure of Faiumoni.
       	</attribute>
-      		<attribute name="resistance">0</attribute>
-			<attribute name="class">book_red</attribute>
-		</entity>
-		
-		<entity x="6" y="3">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
+
+    <entity x="6" y="3">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Success in fights: a manual
 -By Hayunn Naratha-
 As a mighty warrior, you always need to wear a powerful armor in fights.
      	</attribute>
-     		<attribute name="resistance">0</attribute>
-			<attribute name="class">book_blue</attribute>
-		</entity>
-		
-		<entity x="3" y="27">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
+
+    <entity x="3" y="27">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Wooooza! Magic and its powerful potions
 -By Salva Mattori-
 You don't believe in magic? The potion of love, made from a magician's hand, even works for Yetis.
 	 	</attribute>
-	 		<attribute name="resistance">0</attribute>
-			<attribute name="class">book_green</attribute>
-		</entity>
-		
-		<entity x="25" y="13">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_green</attribute>
+    </entity>
+
+    <entity x="25" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Adventurers and their tricks: Supplies and breaks are always needed!
 -By Thanatos-
 Hungry? Thirsty? Tired? A break might help. Take a look around the lovely nature of Faiumoni and find relaxing places to make a stop at. Even when you are busy during tasks, a healthy snack will power you up.
 			</attribute>
-			<attribute name="resistance">0</attribute>
-			<attribute name="class">book_gray</attribute>
-		</entity>
-		
-		<entity x="5" y="13">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_gray</attribute>
+    </entity>
+
+    <entity x="5" y="13">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Paradies love - or drama?
 -By Tamara-
 And there they were: two strangers, alone in the tunnel of Amazon island, heading out for reaching the right entrance to a life full of joy and peace - at least they hoped for that.
 			</attribute>
-			<attribute name="resistance">0</attribute>
-			<attribute name="class">book_purple</attribute>
-		</entity>
-		
-		<entity x="15" y="15">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_purple</attribute>
+    </entity>
+
+    <entity x="15" y="15">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Diaries of a warrior
 -By Lieutenant Drilenun-
 Oh my oh my oh my! What for a huge creature I'm looking at! It's red, it's huge it's powerful, it has a hard forehand...Could that be it? It is a balrog!"		
 			</attribute>
-			<attribute name="resistance">0</attribute>
-			<attribute name="class">book_turquoise</attribute>
-		</entity>
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_turquoise</attribute>
+    </entity>
 
-		<entity x="20" y="27">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
-			<attribute name="text">
+    <entity x="20" y="27">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">
 Baking for starters
 -By Gaston-
 You need some flour, some eggs, some butter, some sugar, some chocolate and some milk, a hot drink for the winter, some rat to make it silk. Now after waiting for some time and after the job is done: a crepes suzette that is you hold, enjoy it and have fun!
-			</attribute>	
-			<attribute name="resistance">0</attribute>
-			<attribute name="class">book_white</attribute>
-		</entity>
-		
-		<portal x="0" y="18" ref="library1">
-            <destination zone="int_constantines_villa_barracks" ref="door_right_1" />
-        </portal>
-        
-        <portal x="0" y="19" ref="library2">
-            <destination zone="int_constantines_villa_barracks" ref="door_right_2" />
-        </portal>
-        
-        <portal x="0" y="20" ref="library3">
-            <destination zone="int_constantines_villa_barracks" ref="door_right_3" />
-        </portal>
-        
-        <portal x="0" y="21" ref="library4">
-            <destination zone="int_constantines_villa_barracks" ref="door_right_4" />
-        </portal>
-</zone>
-	<!-- Level -1 -->
+			</attribute>
+      <attribute name="resistance">0</attribute>
+      <attribute name="class">book_white</attribute>
+    </entity>
 
-	<zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128"
-		file="Level -1/kotoch/entrance.tmx">
-	</zone>
+    <portal x="0" y="18" ref="library1">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door_right_1" />
+    </portal>
 
-	<zone name="-1_orril_mountain_w2" level="-1" x="499680" y="500256"
-		file="Level -1/orril/mountain_w2.tmx">
-	</zone>
+    <portal x="0" y="19" ref="library2">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door_right_2" />
+    </portal>
 
-	<zone name="-1_orril_dungeon" level="-1" x="500000" y="500256"
-		file="Level -1/orril/dungeon.tmx">
-	</zone>
+    <portal x="0" y="20" ref="library3">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door_right_3" />
+    </portal>
 
-	<zone name="-1_orril_castle_w" level="-1" x="499744" y="500256"
-		file="Level -1/orril/castle_w.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.orril.castle.GreenDragonCreature" />
+    <portal x="0" y="21" ref="library4">
+      <destination zone="int_constantines_villa_barracks"
+        ref="door_right_4" />
+    </portal>
+  </zone>
+  <!-- Level -1 -->
 
-		<entity x="0" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">a_weird_place</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
+  <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128"
+    file="Level -1/kotoch/entrance.tmx">
+  </zone>
 
-		<portal x="69" y="37" ref="0">
-			<destination zone="-2_orril_lich_palace" ref="0" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
-				<parameter name="class">skulldoor_s</parameter>
-				<parameter name="key">dungeon silver key</parameter>
-			</implementation>
-		</portal>
+  <zone name="-1_orril_mountain_w2" level="-1" x="499680" y="500256"
+    file="Level -1/orril/mountain_w2.tmx">
+  </zone>
 
-	</zone>
+  <zone name="-1_orril_dungeon" level="-1" x="500000" y="500256"
+    file="Level -1/orril/dungeon.tmx">
+  </zone>
 
-	<zone name="-1_orril_castle" level="-1" x="499872" y="500256"
-		file="Level -1/orril/castle.tmx">
+  <zone name="-1_orril_castle_w" level="-1" x="499744" y="500256"
+    file="Level -1/orril/castle_w.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.castle.GreenDragonCreature" />
 
-		<entity x="0" y="0">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-				<parameter name="sound">a_weird_place</parameter>
-				<parameter name="volume">120</parameter>
-			</implementation>
-		</entity>
-		
-		<portal x="19" y="22" ref="0">
-			<destination zone="int_orril_castle_0" ref="4" />
-		</portal>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">a_weird_place</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
 
-		<portal x="20" y="22" ref="1">
-			<destination zone="int_orril_castle_0" ref="4" />
-		</portal>
-	</zone>
+    <portal x="69" y="37" ref="0">
+      <destination zone="-2_orril_lich_palace" ref="0" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
+        <parameter name="class">skulldoor_s</parameter>
+        <parameter name="key">dungeon silver key</parameter>
+      </implementation>
+    </portal>
+
+  </zone>
+
+  <zone name="-1_orril_castle" level="-1" x="499872" y="500256"
+    file="Level -1/orril/castle.tmx">
+
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">a_weird_place</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
+
+    <portal x="19" y="22" ref="0">
+      <destination zone="int_orril_castle_0" ref="4" />
+    </portal>
+
+    <portal x="20" y="22" ref="1">
+      <destination zone="int_orril_castle_0" ref="4" />
+    </portal>
+  </zone>
 
 
-	<!-- Level -2 -->
+  <!-- Level -2 -->
 
-	<zone name="-2_kotoch_entrance" level="-2" x="499744" y="500128"
-		file="Level -2/kotoch/entrance.tmx">
-		<configurator class-name="games.stendhal.server.maps.kotoch.OrcSamanNPC" />
-	</zone>
+  <zone name="-2_kotoch_entrance" level="-2" x="499744" y="500128"
+    file="Level -2/kotoch/entrance.tmx">
+    <configurator class-name="games.stendhal.server.maps.kotoch.OrcSamanNPC" />
+  </zone>
 
-	<zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256"
-		file="Level -2/orril/dwarf_mine.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.orril.dwarfmine.IronBuyerNPC" />
-	</zone>
+  <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256"
+    file="Level -2/orril/dwarf_mine.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dwarfmine.IronBuyerNPC" />
+  </zone>
 
-	<zone name="-2_orril_lich_palace" level="-2" x="499744" y="500256"
-		file="Level -2/orril/lich_palace.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.orril.castle.DemonSkeletonCreature" />
-			
-		<entity x="39" y="69">
-			<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock"/>
-		</entity>
-        <!-- ticking clock sound effect -->
-        <entity x="39" y="69">
-          <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-            <parameter name="sound">clock-1</parameter>
-            <parameter name="radius">15</parameter>
-            <parameter name="volume">100</parameter>
-          </implementation>
-        </entity>
+  <zone name="-2_orril_lich_palace" level="-2" x="499744" y="500256"
+    file="Level -2/orril/lich_palace.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.castle.DemonSkeletonCreature" />
 
-		<portal x="70" y="38" ref="0">
-			<destination zone="-1_orril_castle_w" ref="0" />
-		</portal>
+    <entity x="39" y="69">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+    </entity>
+    <!-- ticking clock sound effect -->
+    <entity x="39" y="69">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
 
-		<portal x="54" y="53" ref="locked_outside">
-			<destination zone="-2_orril_lich_palace" ref="locked_inside_left" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
-				<parameter name="class">skulldoor_n</parameter>
-				<parameter name="key">lich gold key</parameter>
-			</implementation>
-		</portal>
+    <portal x="70" y="38" ref="0">
+      <destination zone="-1_orril_castle_w" ref="0" />
+    </portal>
 
-		<portal x="54" y="57" ref="locked_inside_left">
-			<destination zone="-2_orril_lich_palace" ref="locked_outside" />
-		</portal>
+    <portal x="54" y="53" ref="locked_outside">
+      <destination zone="-2_orril_lich_palace" ref="locked_inside_left" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
+        <parameter name="class">skulldoor_n</parameter>
+        <parameter name="key">lich gold key</parameter>
+      </implementation>
+    </portal>
 
-		<portal x="55" y="57" ref="locked_inside_right">
-			<destination zone="-2_orril_lich_palace" ref="locked_outside" />
-		</portal>
+    <portal x="54" y="57" ref="locked_inside_left">
+      <destination zone="-2_orril_lich_palace" ref="locked_outside" />
+    </portal>
 
-		<portal x="54" y="113" ref="orb_table">
-			<destination zone="-2_orril_lich_palace" ref="2nd_room_in" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
-				<parameter name="quest">learn_scrying</parameter>
-				<parameter name="rejected">You do not know how to use the orb.
+    <portal x="55" y="57" ref="locked_inside_right">
+      <destination zone="-2_orril_lich_palace" ref="locked_outside" />
+    </portal>
+
+    <portal x="54" y="113" ref="orb_table">
+      <destination zone="-2_orril_lich_palace" ref="2nd_room_in" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">learn_scrying</parameter>
+        <parameter name="rejected">You do not know how to use the orb.
 				</parameter>
-			</implementation>
-			<attribute name="use"/>
-		</portal>
+      </implementation>
+      <attribute name="use" />
+    </portal>
 
-		<portal x="77" y="117" ref="2nd_room_in">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
+    <portal x="77" y="117" ref="2nd_room_in">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
 
-		<portal x="76" y="117" ref="2nd_room_exit1">
-			<destination zone="-2_orril_lich_palace" ref="2nd_room_out1" />
-		</portal>
-		<portal x="76" y="118" ref="2nd_room_exit2">
-			<destination zone="-2_orril_lich_palace" ref="2nd_room_out2" />
-		</portal>
+    <portal x="76" y="117" ref="2nd_room_exit1">
+      <destination zone="-2_orril_lich_palace" ref="2nd_room_out1" />
+    </portal>
+    <portal x="76" y="118" ref="2nd_room_exit2">
+      <destination zone="-2_orril_lich_palace" ref="2nd_room_out2" />
+    </portal>
 
-		<portal x="71" y="117" ref="2nd_room_out1">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
-		<portal x="71" y="118" ref="2nd_room_out2">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
+    <portal x="71" y="117" ref="2nd_room_out1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="71" y="118" ref="2nd_room_out2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
 
-		<portal x="84" y="108" ref="headstone">
-			<destination zone="-2_orril_lich_palace" ref="3rd_room_in" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
-				<parameter name="class">headstone</parameter>
-				<parameter name="key">carbuncle</parameter>
-				<parameter name="rejected">The tombstone needs a gem to unlock it.
+    <portal x="84" y="108" ref="headstone">
+      <destination zone="-2_orril_lich_palace" ref="3rd_room_in" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+        <parameter name="class">headstone</parameter>
+        <parameter name="key">carbuncle</parameter>
+        <parameter name="rejected">The tombstone needs a gem to unlock it.
 				</parameter>
-			</implementation>
-			<attribute name="description">Only a certain gem can unlock the secrets of the headstone.</attribute>
-		</portal>
+      </implementation>
+      <attribute name="description">Only a certain gem can unlock the secrets of the headstone.</attribute>
+    </portal>
 
-		<portal x="97" y="117" ref="3rd_room_in">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
+    <portal x="97" y="117" ref="3rd_room_in">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
 
-		<portal x="96" y="117" ref="3rd_room_exit1">
-			<destination zone="-2_orril_lich_palace" ref="3rd_room_out1" />
-		</portal>
-		<portal x="96" y="118" ref="3rd_room_exit2">
-			<destination zone="-2_orril_lich_palace" ref="3rd_room_out2" />
-		</portal>
+    <portal x="96" y="117" ref="3rd_room_exit1">
+      <destination zone="-2_orril_lich_palace" ref="3rd_room_out1" />
+    </portal>
+    <portal x="96" y="118" ref="3rd_room_exit2">
+      <destination zone="-2_orril_lich_palace" ref="3rd_room_out2" />
+    </portal>
 
-		<portal x="91" y="117" ref="3rd_room_out1">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
-		<portal x="91" y="118" ref="3rd_room_out2">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
+    <portal x="91" y="117" ref="3rd_room_out1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="91" y="118" ref="3rd_room_out2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
 
-	</zone>
+  </zone>
 
-	<zone name="-2_orril_dungeon" level="-2" x="499936" y="500224"
-		file="Level -2/orril/dungeon.tmx">
-	</zone>
-	<zone name="-2_orril_dungeon_e" level="-2" x="500064" y="500224"
-		file="Level -2/orril/dungeon_e.tmx">
-		<configurator class-name="games.stendhal.server.maps.orril.dungeon.DarkElfNPC" />
-	</zone>
-
-
-	<!-- Level -3 -->
-
-	<zone name="-3_kotoch_prison" level="-3" x="499744" y="500224"
-		file="Level -3/kotoch/prison.tmx">
-		<portal x="15" y="10" ref="kotoch_lock_outside">
-			<destination zone="-3_kotoch_prison" ref="kotoch_lock_inside" />
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-				<parameter name="key">kotoch prison key</parameter>
-				<parameter name="rejected">You do not have the key to open the lock.</parameter>
-			</implementation>
-		</portal>
-		<portal x="15" y="8" ref="kotoch_lock_inside">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
-		<portal x="15" y="9" ref="kotoch_exit_inside">
-			<destination zone="-3_kotoch_prison" ref="kotoch_exit_outside" />
-		</portal>
-		<portal x="15" y="11" ref="kotoch_exit_outside">
-			<implementation
-				class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
-		</portal>
-	</zone>
-
-	<zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352"
-		file="Level -3/orril/dwarf_blacksmith.tmx">
-		<configurator
-			class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC" />
-	</zone>
-
-	<zone name="-3_orril_dungeon" level="-3" x="499936" y="500224"
-		file="Level -3/orril/dungeon.tmx">
-		<attributes>
-          <parameter name="color_method">multiply</parameter>
-          <parameter name="color">#808080</parameter>
-          <parameter name="blend_method">bleach</parameter>
-        </attributes>
-		<configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC" />
-		<!-- <configurator class-name="games.stendhal.server.maps.orril.dungeon.MithrilbourghTraitorNPC" /> -->
-        <portal x="146" y="98" ref="house1_entrance">
-            <destination zone="int_rat_house1" ref="entrance" />
-        </portal>
-        <portal x="162" y="104" ref="house2_entrance">
-            <destination zone="int_rat_house2" ref="entrance" />
-        </portal>
-        <portal x="174" y="104" ref="house3_entrance">
-            <destination zone="int_rat_house3" ref="entrance" />
-        </portal>
-        <portal x="168" y="91" ref="hostel_entrance">
-            <destination zone="int_rat_hostel" ref="entrance" />
-        </portal>
-        <portal x="183" y="86" ref="house4_entrance">
-            <destination zone="int_rat_house4" ref="entrance" />
-        </portal>
-        <portal x="183" y="90" ref="house4_entrance2">
-            <destination zone="int_rat_house4" ref="entrance2" />
-        </portal>
-        <portal x="204" y="104" ref="flower_shop_entrance">
-            <destination zone="int_rat_flower_shop" ref="entrance" />
-        </portal>
-        <portal x="170" y="128" ref="library_entrance">
-            <destination zone="int_rat_library" ref="entrance" />
-        </portal>
-        <portal x="148" y="117" ref="smith_shop_entrance">
-            <destination zone="int_rat_smith_shop" ref="entrance" />
-        </portal>
-        <portal x="217" y="104" ref="house5_entrance">
-            <destination zone="int_rat_house5" ref="entrance" />
-        </portal>
-        <portal x="228" y="104" ref="house6_entrance">
-            <destination zone="int_rat_house6" ref="entrance" />
-        </portal>
-        <portal x="229" y="93" ref="house7_entrance">
-            <destination zone="int_rat_house7" ref="entrance" />
-        </portal>
-        <portal x="200" y="109" ref="bakery_entrance">
-            <destination zone="int_rat_bakery" ref="entrance" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
-    <configurator class-name="games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC" />
-        <portal x="1" y="17" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house1_entrance" />
-        </portal>
-        <portal x="2" y="2" ref="house1_downstairs">
-            <destination zone="-4_orril_dungeon" ref="house1_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_hostel" file="interiors/ratcity/hostel.tmx">
-        <portal x="3" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="hostel_entrance" />
-        </portal>
-        <portal x="2" y="2" ref="hostel_downstairs">
-            <destination zone="-4_orril_dungeon" ref="hostel_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house2" file="interiors/ratcity/house2.tmx">
-        <portal x="10" y="10" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house2_entrance" />
-        </portal>
-        <portal x="15" y="9" ref="house2_downstairs">
-            <destination zone="-4_orril_dungeon" ref="house2_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house3" file="interiors/ratcity/house3.tmx">
-        <portal x="13" y="10" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house3_entrance" />
-        </portal>
-        <portal x="14" y="2" ref="house3_downstairs">
-            <destination zone="-4_orril_dungeon" ref="house3_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house4" file="interiors/ratcity/house4.tmx">
-        <portal x="12" y="4" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house4_entrance" />
-        </portal>
-                <portal x="12" y="17" ref="entrance2">
-            <destination zone="-3_orril_dungeon" ref="house4_entrance2" />
-        </portal>
-        <portal x="6" y="2" ref="house4_downstairs">
-            <destination zone="-4_orril_dungeon" ref="house4_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house5" file="interiors/ratcity/house5.tmx">
-        <portal x="4" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house5_entrance" />
-        </portal>
-    </zone>
-    <zone name="int_rat_house6" file="interiors/ratcity/house6.tmx">
-        <portal x="15" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house6_entrance" />
-        </portal>
-        <portal x="2" y="12" ref="house6_downstairs">
-            <destination zone="-4_orril_dungeon" ref="house6_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_flower_shop" file="interiors/ratcity/flower_shop.tmx">
-        <portal x="16" y="12" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="flower_shop_entrance" />
-        </portal>
-        <portal x="2" y="2" ref="flower_shop_downstairs">
-            <destination zone="-4_orril_dungeon" ref="flower_shop_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_library" file="interiors/ratcity/library.tmx">
-        <portal x="9" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="library_entrance" />
-        </portal>
-        <portal x="2" y="2" ref="library_downstairs">
-            <destination zone="-4_orril_dungeon" ref="library_upstairs" />
-        </portal>
-    </zone>
-    <zone name="int_rat_smith_shop" file="interiors/ratcity/smith_shop.tmx">
-        <portal x="4" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
-        </portal>
-        <portal x="5" y="14" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
-        </portal>
-        <portal x="14" y="3" ref="smith_shop_downstairs">
-            <destination zone="-4_orril_dungeon" ref="smith_shop_upstairs" />
-        </portal>
-    </zone>
-   <zone name="int_rat_house7" file="interiors/ratcity/house7.tmx">
-        <portal x="16" y="4" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="house7_entrance" />
-        </portal>
-    </zone>
-    <zone name="int_rat_bakery" file="interiors/ratcity/bakery.tmx">
-        <configurator class-name="games.stendhal.server.maps.ratcity.bakery.RatChefNPC" />
-        <portal x="10" y="1" ref="entrance">
-            <destination zone="-3_orril_dungeon" ref="bakery_entrance" />
-        </portal>		
-	</zone>
-
-    <!-- Level -4 -->
-    <zone name="-4_orril_dungeon" level="-4" x="499936" y="500224"
-        file="Level -4/orril/dungeon.tmx">
-        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild1NPC" />
-        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChild2NPC" />
-        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC" />
-        <configurator class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC" />
-        <portal x="7" y="29" ref="house1_upstairs">
-            <destination zone="int_rat_house1" ref="house1_downstairs" />
-        </portal>
-        <portal x="23" y="36" ref="house2_upstairs">
-            <destination zone="int_rat_house2" ref="house2_downstairs" />
-        </portal>
-        <portal x="40" y="36" ref="house3_upstairs">
-            <destination zone="int_rat_house3" ref="house3_downstairs" />
-        </portal>
-        <portal x="36" y="13" ref="house4_upstairs">
-            <destination zone="int_rat_house4" ref="house4_downstairs" />
-        </portal>
-        <portal x="122" y="52" ref="house6_upstairs">
-            <destination zone="int_rat_house6" ref="house6_downstairs" />
-        </portal>
-        <portal x="21" y="11" ref="hostel_upstairs">
-            <destination zone="int_rat_hostel" ref="hostel_downstairs" />
-        </portal>
-        <portal x="43" y="123" ref="library_upstairs">
-            <destination zone="int_rat_library" ref="library_downstairs" />
-        </portal>
-        <portal x="102" y="48" ref="flower_shop_upstairs">
-            <destination zone="int_rat_flower_shop" ref="flower_shop_downstairs" />
-        </portal>
-        <portal x="7" y="102" ref="smith_shop_upstairs">
-            <destination zone="int_rat_smith_shop" ref="smith_shop_downstairs" />
-        </portal>
-        <entity x="1" y="1">
-            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-                <parameter name="sound">sewers</parameter>
-            </implementation>
-        </entity>
-    </zone> 
-    <!-- Level -5 -->
-    <zone name="-5_orril_dungeon" level="-5" x="499936" y="500224" file="Level -5/orril/dungeon.tmx">
-         <entity x="1" y="1">
-            <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-                <parameter name="sound">sewers</parameter>
-            </implementation>
-        </entity>
-     </zone> 
- 
- 
-    <!-- Level -6 -->
+  <zone name="-2_orril_dungeon" level="-2" x="499936" y="500224"
+    file="Level -2/orril/dungeon.tmx">
+  </zone>
+  <zone name="-2_orril_dungeon_e" level="-2" x="500064" y="500224"
+    file="Level -2/orril/dungeon_e.tmx">
+    <configurator class-name="games.stendhal.server.maps.orril.dungeon.DarkElfNPC" />
+  </zone>
 
 
-	<!-- Level -7 -->
+  <!-- Level -3 -->
+
+  <zone name="-3_kotoch_prison" level="-3" x="499744" y="500224"
+    file="Level -3/kotoch/prison.tmx">
+    <portal x="15" y="10" ref="kotoch_lock_outside">
+      <destination zone="-3_kotoch_prison" ref="kotoch_lock_inside" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">kotoch prison key</parameter>
+        <parameter name="rejected">You do not have the key to open the lock.</parameter>
+      </implementation>
+    </portal>
+    <portal x="15" y="8" ref="kotoch_lock_inside">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="15" y="9" ref="kotoch_exit_inside">
+      <destination zone="-3_kotoch_prison" ref="kotoch_exit_outside" />
+    </portal>
+    <portal x="15" y="11" ref="kotoch_exit_outside">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+  </zone>
+
+  <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352"
+    file="Level -3/orril/dwarf_blacksmith.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC" />
+  </zone>
+
+  <zone name="-3_orril_dungeon" level="-3" x="499936" y="500224"
+    file="Level -3/orril/dungeon.tmx">
+    <attributes>
+      <parameter name="color_method">multiply</parameter>
+      <parameter name="color">#808080</parameter>
+      <parameter name="blend_method">bleach</parameter>
+    </attributes>
+    <configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC" />
+    <!-- <configurator class-name="games.stendhal.server.maps.orril.dungeon.MithrilbourghTraitorNPC" 
+      /> -->
+    <portal x="146" y="98" ref="house1_entrance">
+      <destination zone="int_rat_house1" ref="entrance" />
+    </portal>
+    <portal x="162" y="104" ref="house2_entrance">
+      <destination zone="int_rat_house2" ref="entrance" />
+    </portal>
+    <portal x="174" y="104" ref="house3_entrance">
+      <destination zone="int_rat_house3" ref="entrance" />
+    </portal>
+    <portal x="168" y="91" ref="hostel_entrance">
+      <destination zone="int_rat_hostel" ref="entrance" />
+    </portal>
+    <portal x="183" y="86" ref="house4_entrance">
+      <destination zone="int_rat_house4" ref="entrance" />
+    </portal>
+    <portal x="183" y="90" ref="house4_entrance2">
+      <destination zone="int_rat_house4" ref="entrance2" />
+    </portal>
+    <portal x="204" y="104" ref="flower_shop_entrance">
+      <destination zone="int_rat_flower_shop" ref="entrance" />
+    </portal>
+    <portal x="170" y="128" ref="library_entrance">
+      <destination zone="int_rat_library" ref="entrance" />
+    </portal>
+    <portal x="148" y="117" ref="smith_shop_entrance">
+      <destination zone="int_rat_smith_shop" ref="entrance" />
+    </portal>
+    <portal x="217" y="104" ref="house5_entrance">
+      <destination zone="int_rat_house5" ref="entrance" />
+    </portal>
+    <portal x="228" y="104" ref="house6_entrance">
+      <destination zone="int_rat_house6" ref="entrance" />
+    </portal>
+    <portal x="229" y="93" ref="house7_entrance">
+      <destination zone="int_rat_house7" ref="entrance" />
+    </portal>
+    <portal x="200" y="109" ref="bakery_entrance">
+      <destination zone="int_rat_bakery" ref="entrance" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house1" file="interiors/ratcity/house1.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.ratcity.house1.OldRatWomanNPC" />
+    <portal x="1" y="17" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house1_entrance" />
+    </portal>
+    <portal x="2" y="2" ref="house1_downstairs">
+      <destination zone="-4_orril_dungeon" ref="house1_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_hostel" file="interiors/ratcity/hostel.tmx">
+    <portal x="3" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="hostel_entrance" />
+    </portal>
+    <portal x="2" y="2" ref="hostel_downstairs">
+      <destination zone="-4_orril_dungeon" ref="hostel_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house2" file="interiors/ratcity/house2.tmx">
+    <portal x="10" y="10" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house2_entrance" />
+    </portal>
+    <portal x="15" y="9" ref="house2_downstairs">
+      <destination zone="-4_orril_dungeon" ref="house2_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house3" file="interiors/ratcity/house3.tmx">
+    <portal x="13" y="10" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house3_entrance" />
+    </portal>
+    <portal x="14" y="2" ref="house3_downstairs">
+      <destination zone="-4_orril_dungeon" ref="house3_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house4" file="interiors/ratcity/house4.tmx">
+    <portal x="12" y="4" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house4_entrance" />
+    </portal>
+    <portal x="12" y="17" ref="entrance2">
+      <destination zone="-3_orril_dungeon" ref="house4_entrance2" />
+    </portal>
+    <portal x="6" y="2" ref="house4_downstairs">
+      <destination zone="-4_orril_dungeon" ref="house4_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house5" file="interiors/ratcity/house5.tmx">
+    <portal x="4" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house5_entrance" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house6" file="interiors/ratcity/house6.tmx">
+    <portal x="15" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house6_entrance" />
+    </portal>
+    <portal x="2" y="12" ref="house6_downstairs">
+      <destination zone="-4_orril_dungeon" ref="house6_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_flower_shop" file="interiors/ratcity/flower_shop.tmx">
+    <portal x="16" y="12" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="flower_shop_entrance" />
+    </portal>
+    <portal x="2" y="2" ref="flower_shop_downstairs">
+      <destination zone="-4_orril_dungeon" ref="flower_shop_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_library" file="interiors/ratcity/library.tmx">
+    <portal x="9" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="library_entrance" />
+    </portal>
+    <portal x="2" y="2" ref="library_downstairs">
+      <destination zone="-4_orril_dungeon" ref="library_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_smith_shop" file="interiors/ratcity/smith_shop.tmx">
+    <portal x="4" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+    </portal>
+    <portal x="5" y="14" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="smith_shop_entrance" />
+    </portal>
+    <portal x="14" y="3" ref="smith_shop_downstairs">
+      <destination zone="-4_orril_dungeon" ref="smith_shop_upstairs" />
+    </portal>
+  </zone>
+  <zone name="int_rat_house7" file="interiors/ratcity/house7.tmx">
+    <portal x="16" y="4" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="house7_entrance" />
+    </portal>
+  </zone>
+  <zone name="int_rat_bakery" file="interiors/ratcity/bakery.tmx">
+    <configurator class-name="games.stendhal.server.maps.ratcity.bakery.RatChefNPC" />
+    <portal x="10" y="1" ref="entrance">
+      <destination zone="-3_orril_dungeon" ref="bakery_entrance" />
+    </portal>
+  </zone>
+
+  <!-- Level -4 -->
+  <zone name="-4_orril_dungeon" level="-4" x="499936" y="500224"
+    file="Level -4/orril/dungeon.tmx">
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dungeon.RatChild1NPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dungeon.RatChild2NPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy1NPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.orril.dungeon.RatChildBoy2NPC" />
+    <portal x="7" y="29" ref="house1_upstairs">
+      <destination zone="int_rat_house1" ref="house1_downstairs" />
+    </portal>
+    <portal x="23" y="36" ref="house2_upstairs">
+      <destination zone="int_rat_house2" ref="house2_downstairs" />
+    </portal>
+    <portal x="40" y="36" ref="house3_upstairs">
+      <destination zone="int_rat_house3" ref="house3_downstairs" />
+    </portal>
+    <portal x="36" y="13" ref="house4_upstairs">
+      <destination zone="int_rat_house4" ref="house4_downstairs" />
+    </portal>
+    <portal x="122" y="52" ref="house6_upstairs">
+      <destination zone="int_rat_house6" ref="house6_downstairs" />
+    </portal>
+    <portal x="21" y="11" ref="hostel_upstairs">
+      <destination zone="int_rat_hostel" ref="hostel_downstairs" />
+    </portal>
+    <portal x="43" y="123" ref="library_upstairs">
+      <destination zone="int_rat_library" ref="library_downstairs" />
+    </portal>
+    <portal x="102" y="48" ref="flower_shop_upstairs">
+      <destination zone="int_rat_flower_shop" ref="flower_shop_downstairs" />
+    </portal>
+    <portal x="7" y="102" ref="smith_shop_upstairs">
+      <destination zone="int_rat_smith_shop" ref="smith_shop_downstairs" />
+    </portal>
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">sewers</parameter>
+      </implementation>
+    </entity>
+  </zone>
+  <!-- Level -5 -->
+  <zone name="-5_orril_dungeon" level="-5" x="499936" y="500224"
+    file="Level -5/orril/dungeon.tmx">
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">sewers</parameter>
+      </implementation>
+    </entity>
+  </zone>
+
+
+  <!-- Level -6 -->
+
+
+  <!-- Level -7 -->
 
 </zones>

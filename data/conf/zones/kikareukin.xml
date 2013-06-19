@@ -1,147 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../zones.xsd ">
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
+  xsi:schemaLocation="stendhal ../zones.xsd ">
+  <!-- ** Load zones. Written from left to right and from top to bottom. 
+    ** Please respect it! -->
 
- <!-- Level 7 -->
+  <!-- Level 7 -->
 
- <zone name="7_kikareukin_clouds" level="7" x="499616" y="499744" file="Level 7/kikareukin/clouds.tmx">
- 	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-<!--Don't allow teleporting in as we don't want marked scrolls made or ring abused-->
-  <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn"/>
+  <zone name="7_kikareukin_clouds" level="7" x="499616" y="499744"
+    file="Level 7/kikareukin/clouds.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <!--Don't allow teleporting in as we don't want marked scrolls made or 
+      ring abused -->
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
 
-	<entity x="1" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-			<parameter name="sound">wind-2</parameter>
-			<parameter name="volume">40</parameter>
-		</implementation>
-	</entity>
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">wind-2</parameter>
+        <parameter name="volume">40</parameter>
+      </implementation>
+    </entity>
 
-  <entity x="0" y="0">
-	<implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-		<parameter name="coversZone">true</parameter>
-		<parameter name="enterMessage">The balloon lifts you into the air and through dark grey clouds. You land on a cloud that seems quite firm, and realise you can walk across the grey clouds ... but not for very long.</parameter>
-	</implementation>
-  </entity>
-  <portal x="29" y="6" ref="exit1">
-   <destination zone="6_kikareukin_islands" ref="cloud_exit1"/>
-  </portal>
-  <portal x="9" y="47" ref="exit2">
-   <destination zone="6_kikareukin_islands" ref="cloud_exit2"/>
-  </portal>
-  <portal x="51" y="18" ref="exit3">
-   <destination zone="6_kikareukin_islands" ref="cloud_exit3"/>
-  </portal>
- </zone>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="coversZone">true</parameter>
+        <parameter name="enterMessage">The balloon lifts you into the air and through dark grey clouds. You land on a cloud that seems quite firm, and realise you can walk across the grey clouds ... but not for very long.</parameter>
+      </implementation>
+    </entity>
+    <portal x="29" y="6" ref="exit1">
+      <destination zone="6_kikareukin_islands" ref="cloud_exit1" />
+    </portal>
+    <portal x="9" y="47" ref="exit2">
+      <destination zone="6_kikareukin_islands" ref="cloud_exit2" />
+    </portal>
+    <portal x="51" y="18" ref="exit3">
+      <destination zone="6_kikareukin_islands" ref="cloud_exit3" />
+    </portal>
+  </zone>
 
- <!-- Level 6 -->
+  <!-- Level 6 -->
 
- <zone name="6_kikareukin_islands" level="6" x="499616" y="499744" file="Level 6/kikareukin/islands.tmx">
-	<attributes>
-		<parameter name="color_method">time</parameter>
-	</attributes>
-   <configurator class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener" />
-	<entity x="1" y="1">
-		<implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-			<parameter name="sound">wind-2</parameter>
-			<parameter name="volume">40</parameter>
-		</implementation>
-	</entity>
+  <zone name="6_kikareukin_islands" level="6" x="499616" y="499744"
+    file="Level 6/kikareukin/islands.tmx">
+    <attributes>
+      <parameter name="color_method">time</parameter>
+    </attributes>
+    <configurator
+      class-name="games.stendhal.server.maps.kikareukin.islands.AddBalloonListener" />
+    <entity x="1" y="1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">wind-2</parameter>
+        <parameter name="volume">40</parameter>
+      </implementation>
+    </entity>
 
-  <entity x="0" y="0">
-    <implementation class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-  	<parameter name="coversZone">true</parameter>
-  	<parameter name="enterMessage">You land on islands floating in the clouds. The lush green grass under your feet feels heavenly.</parameter>
-    </implementation>
-  </entity>
-  <portal x="66" y="63" ref="exit">
-   <destination zone="0_semos_mountain_n2_w3" ref="kikareukin_exit"/>
-  </portal>
-  <portal x="25" y="8" ref="cloud_exit1">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="6" y="110" ref="cloud_exit2">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
-  <portal x="93" y="9" ref="cloud_exit3">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
-  </portal>
- </zone>
-
-
- <!-- Level 5 -->
-
- <zone name="5_kikareukin_cave" level="5" x="499616" y="499744" file="Level 5/kikareukin/cave.tmx">
-   <attributes>
-     <parameter name="color_method">softlight</parameter>
-     <parameter name="color">#501500</parameter>
-     <parameter name="blend_method">bleach</parameter>
-   </attributes>
- </zone>
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="coversZone">true</parameter>
+        <parameter name="enterMessage">You land on islands floating in the clouds. The lush green grass under your feet feels heavenly.</parameter>
+      </implementation>
+    </entity>
+    <portal x="66" y="63" ref="exit">
+      <destination zone="0_semos_mountain_n2_w3" ref="kikareukin_exit" />
+    </portal>
+    <portal x="25" y="8" ref="cloud_exit1">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="6" y="110" ref="cloud_exit2">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+    <portal x="93" y="9" ref="cloud_exit3">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    </portal>
+  </zone>
 
 
- <!-- Level 4 -->
+  <!-- Level 5 -->
 
- <zone name="4_kikareukin_cave" level="4" x="499616" y="499744" file="Level 4/kikareukin/cave.tmx">
-   <attributes>
-     <parameter name="color_method">softlight</parameter>
-     <parameter name="color">#5a0572</parameter>
-     <parameter name="blend_method">bleach</parameter>
-   </attributes>
- </zone>
-
-
- <!-- Level 3 -->
-
- <zone name="3_kikareukin_cave" level="3" x="499616" y="499744" file="Level 3/kikareukin/cave.tmx">
-   <attributes>
-     <parameter name="color_method">softlight</parameter>
-     <parameter name="color">#5e960e</parameter>
-   </attributes>
- </zone>
+  <zone name="5_kikareukin_cave" level="5" x="499616" y="499744"
+    file="Level 5/kikareukin/cave.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#501500</parameter>
+      <parameter name="blend_method">bleach</parameter>
+    </attributes>
+  </zone>
 
 
- <!-- Level 2 -->
+  <!-- Level 4 -->
 
- <zone name="2_kikareukin_cave" level="2" x="499616" y="499744" file="Level 2/kikareukin/cave.tmx">
- </zone>
-
-
- <!-- Level 1 -->
-
- <zone name="1_kikareukin_cave" level="1" x="499616" y="499744" file="Level 1/kikareukin/cave.tmx">
-  <portal x="16" y="96" ref="entrance">
-   <destination zone="0_semos_mountain_n_w4" ref="kikareukin_entrance"/>
-  </portal>
- </zone>
+  <zone name="4_kikareukin_cave" level="4" x="499616" y="499744"
+    file="Level 4/kikareukin/cave.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#5a0572</parameter>
+      <parameter name="blend_method">bleach</parameter>
+    </attributes>
+  </zone>
 
 
- <!-- Level 0 (Ground) -->
+  <!-- Level 3 -->
+
+  <zone name="3_kikareukin_cave" level="3" x="499616" y="499744"
+    file="Level 3/kikareukin/cave.tmx">
+    <attributes>
+      <parameter name="color_method">softlight</parameter>
+      <parameter name="color">#5e960e</parameter>
+    </attributes>
+  </zone>
 
 
- <!-- Level -1 -->
+  <!-- Level 2 -->
+
+  <zone name="2_kikareukin_cave" level="2" x="499616" y="499744"
+    file="Level 2/kikareukin/cave.tmx">
+  </zone>
 
 
- <!-- Level -2 -->
+  <!-- Level 1 -->
+
+  <zone name="1_kikareukin_cave" level="1" x="499616" y="499744"
+    file="Level 1/kikareukin/cave.tmx">
+    <portal x="16" y="96" ref="entrance">
+      <destination zone="0_semos_mountain_n_w4" ref="kikareukin_entrance" />
+    </portal>
+  </zone>
 
 
- <!-- Level -3 -->
+  <!-- Level 0 (Ground) -->
 
 
- <!-- Level -4 -->
+  <!-- Level -1 -->
 
 
- <!-- Level -5 -->
+  <!-- Level -2 -->
 
 
- <!-- Level -6 -->
+  <!-- Level -3 -->
 
 
- <!-- Level -7 -->
+  <!-- Level -4 -->
+
+
+  <!-- Level -5 -->
+
+
+  <!-- Level -6 -->
+
+
+  <!-- Level -7 -->
 
 </zones>
