@@ -349,17 +349,21 @@
       <parameter name="x">15</parameter>
       <parameter name="y">13</parameter>
     </configurator>
+    
+    <!-- Planter box -->
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
       <parameter name="x">37</parameter>
-      <parameter name="y">19</parameter>
+      <parameter name="y">18</parameter>
       <parameter name="width">1</parameter>
-      <parameter name="height">1</parameter>
+      <parameter name="height">3</parameter>
     </configurator>
+    
+    <!-- Portals -->
     <portal x="19" y="23" ref="entrance">
       <destination zone="0_kirdneh_city" ref="27" />
     </portal>
 
-    <!-- tables -->
+    <!-- Tables -->
     <entity x="30" y="17">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
