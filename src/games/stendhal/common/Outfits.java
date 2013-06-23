@@ -20,8 +20,9 @@ package games.stendhal.common;
 public class Outfits {
 
 	/*
-	 * Edit these fields to add new outfits. Note that it counts from 0 and this
-	 * is the total number here
+	 * Edit these fields to add new outfits.
+	 * Note: Outfits are numbered starting at 0 and these
+	 * variables are the total number of outfits.
 	 */
 	public static final int HEAD_OUTFITS = 21;
 
@@ -30,6 +31,4 @@ public class Outfits {
 	public static final int HAIR_OUTFITS = 44;
 
 	public static final int BODY_OUTFITS = 15;
-
-
 }
