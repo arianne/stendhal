@@ -35,7 +35,7 @@ class SpeedPredictor {
 	 * Very low starting speeds can look odd, so we treat those as 0, and only
 	 * turn the player in the prediction code if that's the case.
 	 */
-	private static final double DISABLING_THRESHDOLD = 0.2;
+	private static final double DISABLING_THRESHDOLD = 0.3;
 	/**
 	 * Length of the lag time accumulation vector. The amount of history
 	 * retained for the prediction purposes. Smaller value means faster
