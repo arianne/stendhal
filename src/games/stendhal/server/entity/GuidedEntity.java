@@ -148,7 +148,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	}
 	
 	/**
-	 * @param Entity's path can be changed upon collision to walk in the opposite direction
+	 * Set the entity's path reversible, or non-reversible.
+	 * 
+	 * @param reversible if <code>true</code> the entity's path can be changed
+	 * 	upon collision to walk in the opposite direction
 	 */
     public void setReversiblePath(boolean reversible) {
         reversiblePath = reversible;
