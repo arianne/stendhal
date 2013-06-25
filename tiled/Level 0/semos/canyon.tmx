@@ -18,6 +18,9 @@
  <tileset firstgid="156" name="wooden_brown_fence" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/wooden_brown_fence.png" width="224" height="192"/>
  </tileset>
+ <tileset firstgid="198" name="table/wooden_rectangular" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/table/wooden_rectangular.png" width="96" height="96"/>
+ </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJztzLEKgDAQRMEr79eNEP1kr0kppIhFZBamW15GRAIAAAAAAAAAAAAAAAAAAPBrR2nl3Ky9Si9XuSf/Y1+03zz5NYYn
@@ -25,17 +28,17 @@
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztzzEOQDAAhlH3MRgMXIQzGRiMuKxKTIZaKkTfS/6tbfoVBQAAAADwtCVsPbe9/Jc36NevX79+/frzo1+/fv369evPj379+vXr168/P7n3AwAAAN9SRvZ3VVgTWXueGy73xoR/ePLtmKO9D+tuVodNl7tzwn+kfHsHfcRJag==
+   eJzt0zEOgkAURVH2Q2FhgRvRNVlIYakuCBv35DchIZlibAbGOOckrwPyb0HXAQAAAABru8Xu8x6Vb6lBv379+vXr198e/Uv/FHvWPWdzaf+r7jmb0+//169fv3797dGvX79+/W32AwAAAL+lz+zf7WJDZof5uXPy3qXgDWt+O+fTfoodv2wfG5N3rwXvKPntN1PzTFA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztzkEJAAAIADH7J9GWGkIQYYP7XwQAAAAAAAAA7KoprycAAAAAAAAAAJ5pSagBUg==
+   eJztyqENAEAIBEH6r4TvEgR5iULOJJucuAgAAAAAAAAAuPW6nJ3bEQAAAAAAAACArwA3MgH6
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztzssJwCAAREF7j586tFL3ZAUBCZmBd122FAAAAAAAAADeNtO6fQIAAAAAAAAAOJ5UU0s9jY9s8y8bbRAGdg==
+   eJztzMsJwCAAREF7j586tFL3aAEBCZmBB3vaUgAAAAAAAAB420zr2AAAAAAAAADAXU+qqaWexke++ZcNEcIHFw==
   </data>
  </layer>
  <layer name="4_roof_add" width="64" height="64">
@@ -50,7 +53,7 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.44">
   <data encoding="base64" compression="zlib">
-   eJzt2TEKwCAABEH9/6fTy0lCQJubAWGLFF5SZgwAAAAA4LS56Rb2525hf+4W9uduYX/uFvbnbjGX08b3z93C/twt7M/dwv7cLezP3cL+3C3szw0AAADAXet/+nR2z528ww1ftr+9l1P3+OsBK10AXw==
+   eJzt00EKgDAAA8H2/5/2JIhEFKEiZAaEHDx0LY4BAAAAAKw2L3YL/Xm30J93C/15t9Cfd4tz/xxd3yG1tvUf79z99/a3//9N3Tv9ebfQn3cL/Xm30J93C/15t2jvBwAAAPiL+eC5em/lGb7wpP3uu6w6x1sb0kUAZA==
   </data>
  </layer>
  <layer name="protection" width="64" height="64" opacity="0.48">

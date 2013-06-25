@@ -7,15 +7,16 @@
   <!-- Ground level -->
   
   <zone name="0_semos_canyon" level="0" x="500320" y="499680" file="Level 0/semos/canyon.tmx" accessible="false">
+  <!-- NPCs -->
+  <configurator class-name="games.stendhal.server.maps.semos.canyon.TollboothNPC" />
+  
   <!-- Bridge Portals -->
-  <portal x="35" y="29" ref="north_l">
+  <portal x="35" y="30" ref="north_l">
     <destination zone="0_semos_canyon" ref="south_l" />
-    <attribute name="resistance">0</attribute>
   </portal>
   
-  <portal x="36" y="29" ref="north_r">
+  <portal x="36" y="30" ref="north_r">
     <destination zone="0_semos_canyon" ref="south_r" />
-    <attribute name="resistance">0</attribute>
   </portal>
   
   <portal x="35" y="31" ref="south_l">
