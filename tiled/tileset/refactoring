@@ -109,8 +109,8 @@ furniture/table/vendors_table.png 23
 ground/grass_snow.png 3
 del*/ground/grey_paving.png 
 del*/ground/ground_snow.png 1
-ground/sand_1.png 5
-ground/sand_2.png 6
+ground/sand_1.png 8
+ground/sand_2.png 9
 ground/slate_tiles.png 3
 ground/indoor/floor_tan.png 13
 kih*/ground/indoor/floors_3.png 36
