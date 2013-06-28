@@ -231,7 +231,7 @@ public class EmotionCrystals extends AbstractQuest {
 		riddles.add("I care for all things. I am purest of all. If you share me I'm sure I will be reciprocated. What am I?");
 		answers.add(Arrays.asList("love", "amor", "amour", "amity", "compassion"));
 		// Blue Crystal (crystal of peace)
-		riddles.add("I do not let things bother me. I never get overly energetic. Meditation is my fortay. What am I?");
+		riddles.add("I do not let things bother me. I never get overly energetic. Meditation is my forte. What am I?");
 		answers.add(Arrays.asList("peace", "peaceful", "peacefullness", "serenity", "serene", "calmness", "calm"));
 
 		// Add conversation states
