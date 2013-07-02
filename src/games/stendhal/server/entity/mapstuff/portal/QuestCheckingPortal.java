@@ -17,6 +17,8 @@ import games.stendhal.server.entity.player.Player;
 
 public class QuestCheckingPortal extends AccessCheckingPortal {
 	private final String questslot;
+	
+	private String requiredState;
 
 	public QuestCheckingPortal(final String questslot) {
 		this(questslot, "Why should i go down there?. It looks very dangerous.");
@@ -26,6 +28,13 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 		super(rejectMessage);
 
 		this.questslot = questslot;
+	}
+	
+	public QuestCheckingPortal(final String questslot, final String state, final String rejectMessage) {
+	    super(rejectMessage);
+	    
+	    this.questslot = questslot;
+	    this.requiredState = state;
 	}
 
 	//
@@ -42,10 +51,16 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
+	    Player p = (Player) user;
+	    
+	    if (user instanceof Player && requiredState != null) {
+	        return (p.hasQuest(questslot) && p.isQuestInState(questslot, 0, requiredState));
+	    }
+	    
 		if (user instanceof Player) {
-			return ((Player) user).hasQuest(questslot);
-		} else {
-			return false;
+			return p.hasQuest(questslot);
 		}
+		
+		return false;
 	}
 }

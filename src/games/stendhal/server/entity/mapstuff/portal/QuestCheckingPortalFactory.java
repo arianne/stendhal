@@ -15,11 +15,15 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  * A factory for <code>QuestCheckingPortal</code> objects.
  */
 public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
+    
+    //
+    // QuestCheckingPortalFactory
+    //
 
-	//
-	// QuestCheckingPortalFactory
-	//
-
+    String requiredQuest;
+    String requiredState;
+    String rejectMessage;
+    
 	/**
 	 * Extract the quest name from a context.
 	 * 
@@ -29,8 +33,12 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @throws IllegalArgumentException
 	 *             If the quest attribute is missing.
 	 */
-	protected String getQuest(final ConfigurableFactoryContext ctx) {
-		return ctx.getRequiredString("quest");
+	protected void setQuest(final ConfigurableFactoryContext ctx) {
+        requiredQuest = ctx.getRequiredString("quest");
+	    requiredState = ctx.getString("state", null);
+	    if (requiredState != null) {
+	        rejectMessage = ctx.getRequiredString("rejected");
+	    }
 	}
 
 	//
@@ -54,6 +62,12 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 */
 	@Override
 	protected AccessCheckingPortal createPortal(final ConfigurableFactoryContext ctx) {
-		return new QuestCheckingPortal(getQuest(ctx));
+	    setQuest(ctx);
+	    
+	    if (requiredState != null) {
+	        return new QuestCheckingPortal(requiredQuest, requiredState, rejectMessage);
+	    }
+	    
+		return new QuestCheckingPortal(requiredQuest);
 	}
 }
