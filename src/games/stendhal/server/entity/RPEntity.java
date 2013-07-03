@@ -1426,12 +1426,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *            The entity who caused the death
 	 */
 	public final void onDead(final Entity killer) {
-	    if (deathSound != null) {
-	        // FIXME: Sound not playing
-	        addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
-	        notifyWorldAboutChanges();
-	    }
-	    
 	    onDead(killer, true);
 	}
 
@@ -1499,6 +1493,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		final StendhalRPZone zone = getZone();
 		zone.add(corpse);
+		// Adding to zone clears events, so the sound needs to be added after
+		// that.
+		if (deathSound != null) {
+			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
+		}
 
 		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does),
 		// so defer stopping.
