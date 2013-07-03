@@ -27,6 +27,40 @@ public class MathHelper {
 	public static final int MINUTES_IN_ONE_HOUR = 60;
 	public static final int MINUTES_IN_ONE_DAY = MINUTES_IN_ONE_HOUR * 24;
 	public static final int MINUTES_IN_ONE_WEEK = MINUTES_IN_ONE_DAY * 7;
+	
+	/**
+	 * Parses a double safely, returning a default if nothing can be sanely
+	 * parsed from it.
+	 *
+	 * @param s the string to parse
+	 * @param def the default value
+	 * 
+	 * @return double corresponding to s, or def if s can not be parsed to a
+	 * 	double 
+	 */
+	public static double parseDoubleDefault(String s, double def) {
+		if (s == null) {
+			return def;
+		}
+		try {
+			return Double.parseDouble(s);
+		} catch (NumberFormatException e) {
+			return def;
+		}
+	}
+	
+	/**
+	 * Parses a double safely, returning 0 if nothing can be sanely parsed from
+	 * it.
+	 *
+	 * @param s the string to parse
+	 * 
+	 * @return double corresponding to s, or 0 if s can not be parsed to a
+	 * 	double 
+	 */
+	public static double parseDouble(String s) {
+		return parseDoubleDefault(s, 0.0);
+	}
 
 	/**
 	 * parses an integer safely. returning a default if nothing can be sanely
