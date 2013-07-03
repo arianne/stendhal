@@ -113,6 +113,8 @@
 				maxOccurs="unbounded" />
 			<xsd:element name="movement" type="Q2:Movement" minOccurs="0"
 				maxOccurs="unbounded" />
+			<xsd:element name="death" type="Q2:Death: minOccurs="0"
+			  maxOccurs="1" />
 		</xsd:sequence>
 	</xsd:complexType>
 
@@ -127,6 +129,10 @@
 
 	<xsd:complexType name="Movement">
 		<xsd:attribute name="value" type="xsd:string" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="Death">
+	  <xsd:attribute name="value" type="xsd:string" />
 	</xsd:complexType>
 
 	<xsd:complexType name="Profile">

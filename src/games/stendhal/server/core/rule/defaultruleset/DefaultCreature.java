@@ -83,6 +83,9 @@ public class DefaultCreature {
 	/** List of possible sound events. */
 	private List<String> sounds;
 	
+	/** Sound played on creature death */
+	private String deathSound;
+	
 	/** Looped sound effect for moving creature */
 	private String movementSound;
 
@@ -262,6 +265,7 @@ public class DefaultCreature {
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
 		creature.setSounds(sounds);
+		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
 		
 		return creature;
@@ -308,6 +312,10 @@ public class DefaultCreature {
 	 */
 	public void setCreatureSounds(List<String> sounds) {
 		this.sounds = sounds;
+	}
+	
+	public void setCreatureDeathSound(String deathSound) {
+	    this.deathSound = deathSound;
 	}
 	
 	/**

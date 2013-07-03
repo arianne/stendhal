@@ -78,6 +78,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	/** List of possible sound events. */
 	private List<String> sounds;
 	
+	/** Sound played on creature death */
+	private String deathSound;
+	
 	/** Looped sound effect for moving creature */
 	private String movementSound;
 
@@ -305,6 +308,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 				sounds.add(attrs.getValue("value"));
 			} else if (qName.equals("movement")) {
 				movementSound = attrs.getValue("value");
+            } else if (qName.equals("death")) {
+                deathSound = attrs.getValue("value");
 			}
 		} else if (qName.equals("abilities")) {
 			abilities = true;
@@ -357,6 +362,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setSusceptibilities(susceptibilities);
 			creature.setDamageTypes(damageType, rangedDamageType);
 			creature.setCreatureSounds(sounds);
+			creature.setCreatureDeathSound(deathSound);
 			creature.setCreatureMovementSound(movementSound);
 			list.add(creature);
 		} else if (qName.equals("attributes")) {

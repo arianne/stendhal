@@ -120,6 +120,9 @@ public class Creature extends NPC {
 	 */
 	private List<String> sounds;
 	
+	/** Sound played on death */
+	private String deathSound;
+	
 	// A looped sound to be played while creature is moving
 	private String movementSound;
 	private SoundEvent movementSoundEvent;
@@ -237,6 +240,7 @@ public class Creature extends NPC {
 
 		setLevel(copy.getLevel());
 		setSounds(copy.sounds);
+		setDeathSound(copy.deathSound);
 		setMovementSound(copy.movementSound);
 
 		for (RPSlot slot : copy.slots()) {
@@ -369,6 +373,10 @@ public class Creature extends NPC {
 	 */
 	public void setSounds(List<String> sounds) {
 		this.sounds = new ArrayList<String>(sounds);
+	}
+	
+	public void setDeathSound(String sound) {
+	    this.deathSound = sound;
 	}
 	
 	/**
