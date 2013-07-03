@@ -112,6 +112,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private int base_mana;
 
     private boolean ignoreCollision;
+    
+    private String deathSound;
 
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
@@ -2931,5 +2933,21 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      */
     public boolean ignoresCollision() {
         return ignoreCollision;
+    }
+    
+    /**
+     * Sets the sound played at entity death
+     * 
+     * @param sound Name of sound
+     */
+    public void setDeathSound(final String sound) {
+        deathSound = sound;
+    }
+    
+    /**
+     * @return Name of sound played at entity death
+     */
+    public String getDeathSound() {
+        return deathSound;
     }
 }
