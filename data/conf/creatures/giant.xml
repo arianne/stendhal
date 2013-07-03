@@ -87,7 +87,7 @@
     <level value="135"/>
     <experience value="25900"/>
     <respawn value="8800"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" harmless="cloaked_brown_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -124,7 +124,7 @@
     <level value="144"/>
     <experience value="30800"/>
     <respawn value="12800"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" harmless="cloaked_red_2x2" width="2" height="2"/>
     <drops>
       <item value="greater potion" quantity="[2,4]" probability="50.0"/>
       <item value="giant heart" quantity="[1,1]" probability="85.0"/>
@@ -210,7 +210,7 @@
     <level value="116"/>
     <experience value="16100"/>
     <respawn value="6400"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" harmless="cloaked_red_2x2" width="2" height="2"/>
     <drops>
       <item value="money" quantity="[30,80]" probability="100.0"/>
       <item value="greater potion" quantity="[2,4]" probability="60.0"/>
