@@ -197,6 +197,9 @@ public abstract class RPEntity extends AudibleEntity {
 	/** A flag that gets set once the entity has been released. */
 	private boolean released;
 	
+	/** Sound effect to be played on death */
+	private String deathSound;
+	
 	/** Possible attack results. */
 	public enum Resolution {
 		HIT,
@@ -1001,6 +1004,14 @@ public abstract class RPEntity extends AudibleEntity {
 		
 		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "block",
 		        "clang-metallic-1");
+		
+		if (this instanceof Player) {
+            addSounds(SoundLayer.FIGHTING_NOISE.groupName, "death",
+                    "scream-wilhelm");
+		} else if (deathSound != null) {
+    		addSounds(SoundLayer.FIGHTING_NOISE.groupName, "death",
+    		        deathSound);
+		}
 	}
 
 	/**
@@ -1319,6 +1330,8 @@ public abstract class RPEntity extends AudibleEntity {
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine(
 					getTitle() + " has been killed by " + Grammar.enumerateCollection(attackerNames)));
 		}
+		
+	    playSoundFromCategory(SoundLayer.FIGHTING_NOISE.groupName, "death");
 	}
 
 	/**
