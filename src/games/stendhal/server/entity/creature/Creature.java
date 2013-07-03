@@ -375,8 +375,17 @@ public class Creature extends NPC {
 		this.sounds = new ArrayList<String>(sounds);
 	}
 	
+	/**
+	 * Sets the sound played at creature's death
+	 * 
+	 * @param sound Name of sound
+	 */
+	@Override
 	public void setDeathSound(String sound) {
-	    this.deathSound = sound;
+	    if (deathSound == null) {
+	        deathSound = sound;
+	    }
+	    super.setDeathSound(deathSound);
 	}
 	
 	/**
