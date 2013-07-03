@@ -1427,6 +1427,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public final void onDead(final Entity killer) {
 	    if (deathSound != null) {
+	        // FIXME: Sound not playing
 	        addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
 	        notifyWorldAboutChanges();
 	    }
