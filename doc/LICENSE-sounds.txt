@@ -41,6 +41,7 @@ These files are in the public domain:
     robot-2:            http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
     robot-3:            http://soundbible.com/1758-Door-Entry-Notification.html
     scream-fem-2:       http://soundbible.com/1627-Female-Scream-Horror.html
+    scream-wilhelm:     http://archive.org/details/WilhelmScreamSample
     shake-leaves-1:     http://www.freesound.org/people/vibe_crc/sounds/59315/
     sheep-5:            http://www.freesound.org/people/cognito%20perceptu/sounds/88423/
     snap-branch-1:      http://www.freesound.org/people/mrjingles/sounds/17184/
