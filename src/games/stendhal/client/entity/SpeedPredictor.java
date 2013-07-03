@@ -11,6 +11,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.MathHelper;
+
 /**
  * Object that keeps track of lag between user initiated movement and server
  * responses to them, and calculates appropriate speed based on the lag for the
@@ -43,6 +46,10 @@ class SpeedPredictor {
 	 * predicted lag.
 	 */
 	private static final int VECTOR_LENGTH = 4;
+	/** WM property name for saving the predicted speed. */
+	private static final String SPEED_PROPERTY = "predictor.speed";
+	/** WM property name for saving the recent jitter. */
+	private static final String JITTER_PROPERTY = "predictor.jitter";
 	
 	/**
 	 * Stored time averages.
@@ -69,11 +76,14 @@ class SpeedPredictor {
 	 */
 	SpeedPredictor() {
 		times = new double[VECTOR_LENGTH];
-		prediction = INITIAL_PREDICTED_SPEED;
+		WtWindowManager wm = WtWindowManager.getInstance();
+		prediction = MathHelper.parseDoubleDefault(wm.getProperty(SPEED_PROPERTY,
+				Double.toString(INITIAL_PREDICTED_SPEED)), INITIAL_PREDICTED_SPEED);
+		jitter = MathHelper.parseDouble(wm.getProperty(JITTER_PROPERTY, "0.0"));
 		
-		// Fill the history with data corresponding to the default
+		// Fill the history with data corresponding to the stored, or default
 		// prediction.
-		double average = TURN_LENGTH / INITIAL_PREDICTED_SPEED;
+		double average = TURN_LENGTH / prediction;
 		for (int i = 0; i < VECTOR_LENGTH; i++) {
 			times[i] = average;
 		}
@@ -133,6 +143,11 @@ class SpeedPredictor {
 		recentJitter /= 8;
 		jitter = (jitter + 2.0 * Math.max(jitter, recentJitter) + recentJitter) / 4.0;
 		prediction = TURN_LENGTH / (sum / VECTOR_LENGTH + jitter);
+		
+		// Save for future
+		WtWindowManager wm = WtWindowManager.getInstance();
+		wm.setProperty(SPEED_PROPERTY, Double.toString(prediction));
+		wm.setProperty(JITTER_PROPERTY, Double.toString(jitter));
 	}
 
 	/**
