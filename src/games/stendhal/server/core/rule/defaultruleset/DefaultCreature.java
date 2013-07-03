@@ -314,8 +314,13 @@ public class DefaultCreature {
 		this.sounds = sounds;
 	}
 	
-	public void setCreatureDeathSound(String deathSound) {
-	    this.deathSound = deathSound;
+	/**
+	 * Set the sound played when a creature dies
+	 * 
+	 * @param sound Name of sound
+	 */
+	public void setCreatureDeathSound(String sound) {
+	    this.deathSound = sound;
 	}
 	
 	/**
@@ -324,8 +329,8 @@ public class DefaultCreature {
 	 * @param movementSound
 	 * 				desired sound effect
 	 */
-	public void setCreatureMovementSound(String movementSound) {
-		this.movementSound = movementSound;
+	public void setCreatureMovementSound(String sound) {
+		this.movementSound = sound;
 	}
 	
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
