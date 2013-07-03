@@ -15,6 +15,7 @@ package games.stendhal.server.entity.mapstuff.useable;
 //
 //
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -95,7 +96,7 @@ public class FishSource extends PlayerActivityEntity {
 		final String skill = player.getSkill("fishing");
 
 		if (skill != null) {
-			probability = Math.max(probability, Double.parseDouble(skill));
+			probability = Math.max(probability, MathHelper.parseDouble(skill));
 		}
 
 		return probability + player.useKarma(0.05);

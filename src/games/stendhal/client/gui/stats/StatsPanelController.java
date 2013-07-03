@@ -13,6 +13,7 @@
 package games.stendhal.client.gui.stats;
 
 import games.stendhal.common.Level;
+import games.stendhal.common.MathHelper;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -30,9 +31,9 @@ import org.apache.log4j.Logger;
  * Object for listening for various user state changes that should
  * be show.
  */
-public class StatsPanelController {
+public final class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
-	private StatsPanel panel;
+	private final StatsPanel panel;
 	private static	StatsPanelController instance;
 	
 	/**
@@ -56,7 +57,7 @@ public class StatsPanelController {
 	private int itemDef;
 	
 	private int mana;
-	private int base_mana;
+	private int baseMana;
 	
 	/**
 	 * Create a new <code>StatsPanelController</code>. There
@@ -146,11 +147,11 @@ public class StatsPanelController {
 	
 	private void addPropertyChangeListenerWithModifiedSupport(PropertyChangeSupport pcs, String attribute, PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(attribute, listener);
-		pcs.addPropertyChangeListener("modified_"+attribute, listener);
+		pcs.addPropertyChangeListener("modified_" + attribute, listener);
 	}
 	
 	/**
-	 * Called when xp or level has changed
+	 * Called when xp or level has changed.
 	 */
 	private void updateLevel() {
 		final int next = Level.getXP(level + 1) - xp;
@@ -173,7 +174,7 @@ public class StatsPanelController {
 	private void updateHP() {
 		
 		int maxhpvalue = maxhp;
-		if(maxhpModified != 0) {
+		if (maxhpModified != 0) {
 			maxhpvalue = maxhpModified;
 		}
 		final String text = "HP: " + hp + "/" + maxhpvalue;
@@ -201,7 +202,7 @@ public class StatsPanelController {
 	}
 	
 	/**
-	 * Called when def, defxp, or itemDef changes
+	 * Called when def, defxp, or itemDef changes.
 	 */
 	private void updateDef() {
 		// def uses 10 levels shifted starting point
@@ -228,8 +229,8 @@ public class StatsPanelController {
 			String newValue = (String) event.getNewValue();
 			if (event.getPropertyName().equals("base_hp")) {
 				maxhp = Integer.parseInt(newValue);
-			} else if (event.getPropertyName().equals("base_hp_modified")){
-				if(newValue != null) {
+			} else if (event.getPropertyName().equals("base_hp_modified")) {
+				if (newValue != null) {
 					maxhpModified = Integer.parseInt(newValue);
 				} else {
 					maxhpModified = 0;
@@ -289,10 +290,8 @@ public class StatsPanelController {
 	 */
 	private void removeMoney(String slot, RPObject obj) {
 		HashMap<String, RPObject> set = money.get(slot);
-		if (set != null) {
-			if (set.remove(obj.get("id")) != null) {
-				updateMoney();
-			}
+		if ((set != null) && (set.remove(obj.get("id")) != null)) {
+			updateMoney();
 		}
 	}
 	
@@ -328,7 +327,7 @@ public class StatsPanelController {
 			
 			if ("atk_xp".equals(event.getPropertyName())) {
 				atkxp = Integer.parseInt((String) event.getNewValue());
-			} else if ("atk".equals(event.getPropertyName())){
+			} else if ("atk".equals(event.getPropertyName())) {
 				atk = Integer.parseInt((String) event.getNewValue());
 			}
 			updateAtk();
@@ -384,7 +383,7 @@ public class StatsPanelController {
 			if (event == null) {
 				return;
 			}
-			if(event.getPropertyName().equals("level")) {
+			if (event.getPropertyName().equals("level")) {
 				level = Integer.parseInt((String) event.getNewValue());
 			}
 			updateLevel();
@@ -512,12 +511,7 @@ public class StatsPanelController {
 				return;
 			}
 		
-			try {
-				String newKarma = (String) event.getNewValue();
-				panel.setKarma(Double.parseDouble(newKarma));
-			} catch (NumberFormatException e) {
-				Logger.getLogger(StatsPanelController.class).error("Invalid karma value", e);
-			}
+			panel.setKarma(MathHelper.parseDouble((String) event.getNewValue()));
 		}
 	}
 	
@@ -533,8 +527,8 @@ public class StatsPanelController {
 		
 			try {
 				if (event.getPropertyName().endsWith("base_mana")) {
-					base_mana = Integer.parseInt((String) event.getNewValue());
-					panel.setBaseMana(base_mana);
+					baseMana = Integer.parseInt((String) event.getNewValue());
+					panel.setBaseMana(baseMana);
 				} else {
 					mana = Integer.parseInt((String) event.getNewValue());
 					panel.setMana(mana);
