@@ -500,7 +500,7 @@
     <level value="325"/>
     <experience value="300000"/>
     <respawn value="75000"/>
-    <corpse name="humanoid_2x2" width="2" height="2"/>
+    <corpse name="humanoid_2x2" harmless="cloaked_brown_2x2" width="2" height="2"/>
     <drops>
       <item value="mega potion" quantity="[1,4]" probability="20.0"/>
       <item value="black halberd" quantity="[1,1]" probability="0.25"/>
