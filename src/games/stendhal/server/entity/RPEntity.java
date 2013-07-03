@@ -18,6 +18,7 @@ import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.actions.equip.DropAction;
@@ -38,6 +39,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.AttackEvent;
+import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
@@ -1424,7 +1426,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *            The entity who caused the death
 	 */
 	public final void onDead(final Entity killer) {
-		onDead(killer, true);
+	    if (deathSound != null) {
+	        addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
+	        notifyWorldAboutChanges();
+	    }
+	    
+	    onDead(killer, true);
 	}
 
 	/**
