@@ -1254,6 +1254,30 @@ public class Player extends RPEntity implements UseListener {
 	public void setQuest(final String name, final int index, final String status) {
 		quests.setQuest(name, index, status);
 	}
+	
+	/**
+	 * Set the quest state with a timestamp
+	 * 
+	 * @param questname
+	 * @param status
+	 */
+	public void setQuestWithTimestamp(final String questname) {
+        String state = Long.toString(System.currentTimeMillis());
+        setQuest(questname, state);
+	}
+	
+	/**
+	 * Set the quest state with a timestamp
+	 * 
+	 * @param questname
+	 * @param index
+	 * @param status
+	 */
+	public void setQuestWithTimestamp(final String questname, final int index, final String status) {
+        String state = Long.toString(System.currentTimeMillis());
+        setQuest(questname, status);
+        setQuest(questname, index, state);
+	}
 
 	public List<String> getQuests() {
 		return quests.getQuests();
