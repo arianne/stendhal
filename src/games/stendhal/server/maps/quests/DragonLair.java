@@ -103,7 +103,7 @@ public class DragonLair extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Great! Enjoy your visit. I know THEY will. Oh, watch out, we have a couple chaos dragonriders exercising our dragons. Don't get in their way!",
-				new MultipleActions(new TeleportAction("-1_ados_outside_w", 25, 28, Direction.DOWN), new SetQuestAction(QUEST_SLOT, "done;"), new SetQuestToTimeStampAction(QUEST_SLOT,1)));
+				new SetQuestAction(QUEST_SLOT, "start")); // Portal closes quest
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.NO_MESSAGES,
@@ -111,6 +111,8 @@ public class DragonLair extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Ok, but our dragons will be sorry you didn't stop in for a visit.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		
+		// Leave the dragon lair to complete quest
 	}
 
 	@Override

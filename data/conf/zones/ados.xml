@@ -5306,12 +5306,20 @@ Southeast: Docks
     <!-- <configurator class-name="games.stendhal.server.maps.ados.tunnel.CrulaminNPC"/> -->
     
     <!-- Portals -->
-    <portal x="25" y="28" ref="dragonlairinside">
+    <portal x="26" y="28" ref="dragonlairinside">
       <destination zone="-1_ados_outside_w" ref="dragonlairoutside" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+        <parameter name="action">new MultipleActions([new SetQuestAction("dragon_lair", "done;"), new SetQuestToTimeStampAction("dragon_lair", 1)])</parameter>
+      </implementation>
     </portal>
     
-    <portal x="29" y="27" ref="dragonlairoutside">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+    <portal x="27" y="28" ref="dragonlairoutside">
+      <destination zone="-1_ados_outside_w" ref="dragonlairinside" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">dragon_lair</parameter>
+        <parameter name="state">start</parameter>
+        <parameter name="rejected">Wishman has locked the door to prevent casualties.</parameter>
+      </implementation>
     </portal>
     
   </zone>
