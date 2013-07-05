@@ -4928,7 +4928,7 @@ Southeast: Docks
   </zone>
   
   <!-- fill in the interior portal and chest locations as you uncomment these
-  <zone name="int_ados_house_78" file="interiors/ados/house_78.tmx">
+  <zone name="int_ados_house_78" file="interiors/ados/house_78.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -4941,7 +4941,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_79" file="interiors/ados/house_79.tmx">
+  <zone name="int_ados_house_79" file="interiors/ados/house_79.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -4970,7 +4970,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_80" file="interiors/ados/house_80.tmx">
+  <zone name="int_ados_house_80" file="interiors/ados/house_80.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -4983,7 +4983,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_81" file="interiors/ados/house_81.tmx">
+  <zone name="int_ados_house_81" file="interiors/ados/house_81.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -4996,7 +4996,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_82" file="interiors/ados/house_82.tmx">
+  <zone name="int_ados_house_82" file="interiors/ados/house_82.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -5009,7 +5009,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_83" file="interiors/ados/house_83.tmx">
+  <zone name="int_ados_house_83" file="interiors/ados/house_83.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
@@ -5022,7 +5022,7 @@ Southeast: Docks
     
   </zone>
   
-  <zone name="int_ados_house_84" file="interiors/ados/house_84.tmx">
+  <zone name="int_ados_house_84" file="interiors/ados/house_84.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x"></parameter>
