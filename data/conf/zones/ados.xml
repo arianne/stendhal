@@ -5514,7 +5514,6 @@ East Tunnel: Uncharted</attribute>
     <entity x="120" y="19">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />
       <attribute name="text">You see a piece of paper with writing on it:
-
 I have found some water but fear I am trapped. I have yet to find any food and the creature that chased me here is waiting if I go back the way I came. I have lost my journal and this is my only parchment left. I can feel a weak wind on my face. Perhaps an exit is in this area.
       </attribute>
       <attribute name="class">transparent</attribute>
@@ -5589,7 +5588,6 @@ I have found some water but fear I am trapped. I have yet to find any food and t
     <entity x="19" y="119">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />
       <attribute name="text">You see a torn page from what looks to be a journal:
-
 ...ve attempted to cast a barrier on the hole that led me down to this lower level. But my magic abilities are weak. Hopefully it will prevent adventurers who are too weak from entering.
       </attribute>
       <attribute name="class">transparent</attribute>
@@ -5616,7 +5614,6 @@ I have found some water but fear I am trapped. I have yet to find any food and t
     <entity x="37" y="30">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Reader"/>
       <attribute name="text">The journal of Zephiros the explorer:
-
 It has been three days since I decided to explore the lower levels of the caves and I have yet to find an exit. How I wish I could reach the water source on the upper level. I can hear the nagas in the darkness. I can hardly stand their screaming any longer. May the gods have mercy on me and any who may dare to follow my footsteps.
       </attribute>
       <attribute name="class">transparent</attribute>
