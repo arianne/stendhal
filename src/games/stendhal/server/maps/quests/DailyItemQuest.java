@@ -90,6 +90,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("steel arrow",7);
 		
 		// armor
+        items.put("blue armor",1);
 		items.put("chain armor",1);
 		items.put("dress",1);
 		items.put("enhanced chainmail",1);
@@ -117,6 +118,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("twoside axe",1);
 		
 		// boots
+        items.put("blue boots",1);
 		items.put("chain boots",1);
 		items.put("leather boots",1);
 		items.put("studded boots",1);
@@ -208,6 +210,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("trout",5);
 		
 		// helmet
+        items.put("blue helmet",1);
 		items.put("aventail",1);
 		items.put("chain helmet",1);
 		items.put("leather helmet",1);
@@ -222,6 +225,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("kekik",5);
 		
 		// legs
+        items.put("blue legs",1);
 		items.put("chain legs",1);
 		items.put("leather legs",1);
 		items.put("studded legs",1);
@@ -250,6 +254,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("wood",10);
 		
 		// shield
+        items.put("blue shield",1);
 		items.put("buckler",1);
 		items.put("crown shield",1);
 		items.put("enhanced lion shield",1);

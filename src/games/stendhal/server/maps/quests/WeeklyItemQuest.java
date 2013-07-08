@@ -99,7 +99,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		
 		// armor
 		items.put("barbarian armor",1);
-		items.put("blue armor",1);
 		items.put("chaos armor",1);
 		items.put("dwarvish armor",1);
 		items.put("golden armor",1);
@@ -115,7 +114,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("magic twoside axe",1);
 		
 		// boots
-		items.put("blue boots",1);
 		items.put("chaos boots",1);
 		items.put("golden boots",1);
 		items.put("mainio boots",1);
@@ -143,7 +141,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("fish soup",3);
 		
 		// helmet
-		items.put("blue helmet",1);
 		items.put("chaos helmet",1);
 		items.put("golden helmet",1);
 		items.put("horned golden helmet",1);
@@ -155,7 +152,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("obsidian",1);
 	
 		// legs
-		items.put("blue legs",1);
 		items.put("chaos legs",1);
 		items.put("dwarvish legs",1);
 		items.put("golden legs",1);
@@ -176,7 +172,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 		items.put("mythical egg",1);
 		
 		// shield
-		items.put("blue shield",1);
 		items.put("chaos shield",1);
 		items.put("golden shield",1);
 		items.put("green dragon shield",1);
