@@ -137,8 +137,10 @@ public class DragonLair extends AbstractQuest {
 			} 
 			if (isRepeatable(player)) {
 				res.add("Those dragons might need some fun again, I should visit soon.");
-			} else {
+			} else if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
 				res.add("The dragons have had plenty of excitement recently, Wishman won't let me back in yet.");
+			} else {
+			    res.add("Wishman has unlocked the dragon lair.");
 			}
 			return res;
 	}
