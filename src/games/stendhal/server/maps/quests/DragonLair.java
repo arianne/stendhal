@@ -129,19 +129,25 @@ public class DragonLair extends AbstractQuest {
 			if (!player.hasQuest(QUEST_SLOT)) {
 				return res;
 			}
+			
 			final String questState = player.getQuest(QUEST_SLOT);
 			res.add("Wishman offered that I may play with his dragons!");
 			if ("rejected".equals(questState)) {
 				res.add("They look a bit scary to me.");
 				return res;
-			} 
+            }
+			
+			if (player.isQuestInState(QUEST_SLOT, 0, "start")) {
+                res.add("Wishman has unlocked the dragon lair.");
+                return res;
+			}
+			
 			if (isRepeatable(player)) {
 				res.add("Those dragons might need some fun again, I should visit soon.");
 			} else if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
 				res.add("The dragons have had plenty of excitement recently, Wishman won't let me back in yet.");
-			} else {
-			    res.add("Wishman has unlocked the dragon lair.");
 			}
+			
 			return res;
 	}
 	@Override
