@@ -137,7 +137,7 @@ public class AntivenomRing extends AbstractQuest {
 				"apothecary",
 				null,
 				ConversationStates.ATTENDING,
-				"Yes, there was once an estudious man in Ados. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
+				"Yes, there was once an estudious man in Kalavan. But, due to complications with leadership there he was forced to leave. I heard that he was #hiding somewhere in the Semos region.",
 				null);
 		
 		hintNPC2.add(ConversationStates.ATTENDING,
@@ -152,7 +152,7 @@ public class AntivenomRing extends AbstractQuest {
 				"apothecary",
 				null,
 				ConversationStates.ATTENDING,
-				"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Ados. He hasn't told me where, but he does bring the most delicious pears when he visits.",
+				"You must be speaking of my colleague, Jameson. He was forced to #hide out because of problems in Kalavan. He hasn't told me where, but he does bring the most delicious pears when he visits.",
 				null);
 		
 		hintNPC3.add(ConversationStates.ATTENDING,
@@ -312,7 +312,7 @@ public class AntivenomRing extends AbstractQuest {
 				Arrays.asList("snake", "snakes", "cobra", "cobras"),
 				null,
 				ConversationStates.QUESTION_1,
-				"I've heard rumor newly discovered put full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
+				"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
 				null);
 		
         // Player asks about required items
@@ -371,7 +371,7 @@ public class AntivenomRing extends AbstractQuest {
 				Arrays.asList("snake", "snakes", "cobra", "cobras"),
 				null,
 				ConversationStates.ATTENDING,
-				"I've heard rumor newly discovered put full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
+				"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
 				null);
 	}
 
