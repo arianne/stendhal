@@ -314,21 +314,21 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     </entity>
 
     <!-- Round tables -->
-    <entity x="56" y="117">
+    <entity x="56" y="117" condition="stendhal.minetown">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
 
-    <entity x="62" y="117">
+    <entity x="62" y="117" condition="stendhal.minetown">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
 
-    <entity x="68" y="117">
+    <entity x="68" y="117" condition="stendhal.minetown">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
