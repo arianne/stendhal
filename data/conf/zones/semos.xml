@@ -8,7 +8,9 @@
   
   <zone name="0_semos_canyon" level="0" x="500320" y="499680" file="Level 0/semos/canyon.tmx" accessible="false">
   <!-- NPCs -->
+  <!--  Not ready
   <configurator class-name="games.stendhal.server.maps.semos.canyon.TollboothNPC" />
+  -->
   
   <!-- Bridge Portals -->
   <portal x="35" y="30" ref="north_l">
