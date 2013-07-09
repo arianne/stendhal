@@ -237,3 +237,18 @@ create table if not exists statistics_archive
   primary key(id)
   );
 
+
+create table if not exists trade
+  (
+  id        integer auto_increment not null,
+  charname  varchar(32),
+  itemname  varchar(32),
+  itemid    integer,
+  quantity  integer,
+  price     integer,
+  stats     varchar(255),
+  timedate timestamp default CURRENT_TIMESTAMP,
+  primary key(id)
+  )
+ ;
+/*CREATE INDEX i_trade_timedate ON trade(timedate);*/
