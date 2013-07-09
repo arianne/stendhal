@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.core.engine.dbcommand.AbstractLogItemEventCommand;
 import games.stendhal.server.core.engine.dbcommand.LogMergeItemEventCommand;
 import games.stendhal.server.core.engine.dbcommand.LogSimpleItemEventCommand;
@@ -47,7 +48,7 @@ public class ItemLogger {
 	}
 
 	public void loadOnLogin(final Player player, final RPSlot slot, final Item item) {
-		if (item.has(AbstractLogItemEventCommand.ATTR_ITEM_LOGID)) {
+		if (item.has(StendhalItemDAO.ATTR_ITEM_LOGID)) {
 			return;
 		}
 		addLogItemEventCommand(new LogSimpleItemEventCommand(item, player, "create", item.get("name"), getQuantity(item), "olditem",

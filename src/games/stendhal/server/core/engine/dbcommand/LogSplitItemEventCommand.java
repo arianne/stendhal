@@ -11,12 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.entity.RPEntity;
 
 import java.sql.SQLException;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
+import marauroa.server.game.db.DAORegister;
 
 /**
  * logs splitting off items from a stack.
@@ -47,17 +49,18 @@ public class LogSplitItemEventCommand extends AbstractLogItemEventCommand {
 
 	@Override
 	protected void log(DBTransaction transaction) throws SQLException {
-		itemLogAssignIDIfNotPresent(transaction, liveItem);
-		itemLogAssignIDIfNotPresent(transaction, liveNewItem);
+		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveItem);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveNewItem);
 
 		final String outlivingQuantity = getQuantity(frozenItem);
 		final String newQuantity = getQuantity(frozenNewItem);
 		final String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
-		itemLogWriteEntry(transaction, liveItem.getInt(ATTR_ITEM_LOGID), player, "split out",
-				liveNewItem.get(ATTR_ITEM_LOGID), oldQuantity,
+		stendhalItemDAO.itemLogWriteEntry(transaction, liveItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "split out",
+				liveNewItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				outlivingQuantity, newQuantity);
-		itemLogWriteEntry(transaction, liveNewItem.getInt(ATTR_ITEM_LOGID), player, "splitted out",
-				liveItem.get(ATTR_ITEM_LOGID), oldQuantity,
+		stendhalItemDAO.itemLogWriteEntry(transaction, liveNewItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "splitted out",
+				liveItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity,
 				newQuantity, outlivingQuantity);
 
 	}

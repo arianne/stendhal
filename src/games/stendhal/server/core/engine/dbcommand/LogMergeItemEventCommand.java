@@ -11,12 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.entity.RPEntity;
 
 import java.sql.SQLException;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
+import marauroa.server.game.db.DAORegister;
 
 /**
  * logs merging of items into a stack
@@ -47,18 +49,19 @@ public class LogMergeItemEventCommand extends AbstractLogItemEventCommand {
 
 	@Override
 	protected void log(DBTransaction transaction) throws SQLException {
-		itemLogAssignIDIfNotPresent(transaction, liveOldItem);
-		itemLogAssignIDIfNotPresent(transaction, liveOutlivingItem);
+		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOldItem);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, liveOutlivingItem);
 
 		final String oldQuantity = getQuantity(frozenOldItem);
 		final String oldOutlivingQuantity = getQuantity(frozenOutlivingItem);
 		final String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
 
-		itemLogWriteEntry(transaction, liveOldItem.getInt(ATTR_ITEM_LOGID), player, "merge in", 
-				liveOutlivingItem.get(ATTR_ITEM_LOGID), oldQuantity, 
+		stendhalItemDAO.itemLogWriteEntry(transaction, liveOldItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merge in", 
+				liveOutlivingItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldQuantity, 
 				oldOutlivingQuantity, newQuantity);
-		itemLogWriteEntry(transaction, liveOutlivingItem.getInt(ATTR_ITEM_LOGID), player, "merged in",
-				liveOldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, 
+		stendhalItemDAO.itemLogWriteEntry(transaction, liveOutlivingItem.getInt(StendhalItemDAO.ATTR_ITEM_LOGID), player, "merged in",
+				liveOldItem.get(StendhalItemDAO.ATTR_ITEM_LOGID), oldOutlivingQuantity, 
 				oldQuantity, newQuantity);
 	}
 

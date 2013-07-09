@@ -11,12 +11,14 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
+import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.entity.RPEntity;
 
 import java.sql.SQLException;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
+import marauroa.server.game.db.DAORegister;
 
 /**
  * logs a simple item event
@@ -62,8 +64,9 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 		if (event.equals("destroy") && !item.has("logid")) {
 			return;
 		}
-		itemLogAssignIDIfNotPresent(transaction, item);
-		itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
+		StendhalItemDAO stendhalItemDAO = DAORegister.get().get(StendhalItemDAO.class);
+		stendhalItemDAO.itemLogAssignIDIfNotPresent(transaction, item);
+		stendhalItemDAO.itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
 	}
 
 }
