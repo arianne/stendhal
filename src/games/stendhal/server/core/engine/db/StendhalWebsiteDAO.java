@@ -102,6 +102,31 @@ public class StendhalWebsiteDAO {
 	}
 
 	/**
+	 * logs a trade event
+	 * 
+	 * @param transaction DBTransaction
+	 * @param charname name of character
+	 * @param itemname name of item
+	 * @param itemid   id of item
+	 * @param quantity quantity
+	 * @param price    price
+	 * @param description description of item
+	 * @throws SQLException in case of an database error
+	 */
+	public void logTradeEvent(final DBTransaction transaction, String charname, String itemname, int itemid, int quantity, int price, String stats) throws SQLException {
+		String sql = "INSERT INTO trade(charname, itemname, itemid, quantity, price, stats) "
+				+ " VALUES ('[charname]', '[itemname]', [itemid], [quantity], [price], '[stats]')";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("charname", charname);
+		params.put("itemname", itemname);
+		params.put("itemid", itemid);
+		params.put("quantity", quantity);
+		params.put("price", price);
+		params.put("stats", stats);
+		transaction.execute(sql, params);
+	}
+
+	/**
 	 * updates the statistics information about a player
 	 *
 	 * @param transaction DBTransaction
