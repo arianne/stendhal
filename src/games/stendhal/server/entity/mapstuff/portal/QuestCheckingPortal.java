@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                    (C) Copyright 2003-2013 - Marauroa                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,26 +14,48 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
+/**
+ * checks the state of a quest
+ * 
+ * @author hendrik
+ */
 public class QuestCheckingPortal extends AccessCheckingPortal {
 	private final String questslot;
-	
+
 	private String requiredState;
 
+	/**
+	 * creates a quest checking portal
+	 * 
+	 * @param questslot name of quest slot
+	 */
 	public QuestCheckingPortal(final String questslot) {
 		this(questslot, "Why should i go down there?. It looks very dangerous.");
 	}
 
+	/**
+	 * creates a quest checking portal
+	 * 
+	 * @param questslot name of quest slot
+	 * @param rejectMessage message to tell the player, if the condition is not met
+	 */
 	public QuestCheckingPortal(final String questslot, final String rejectMessage) {
 		super(rejectMessage);
 
 		this.questslot = questslot;
 	}
-	
+
+	/**
+	 * creates a quest checking portal
+	 * 
+	 * @param questslot name of quest slot
+	 * @param state expected state
+	 * @param rejectMessage message to tell the player, if the condition is not met
+	 */
 	public QuestCheckingPortal(final String questslot, final String state, final String rejectMessage) {
-	    super(rejectMessage);
-	    
-	    this.questslot = questslot;
-	    this.requiredState = state;
+		super(rejectMessage);
+		this.questslot = questslot;
+		this.requiredState = state;
 	}
 
 	//
@@ -51,16 +72,19 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
-	    Player p = (Player) user;
-	    
-	    if (user instanceof Player && requiredState != null) {
-	        return (p.hasQuest(questslot) && p.isQuestInState(questslot, 0, requiredState));
-	    }
-	    
-		if (user instanceof Player) {
-			return p.hasQuest(questslot);
+		if (! (user instanceof Player)) {
+			return false;
 		}
-		
-		return false;
+
+		Player player = (Player) user;
+		if (!player.hasQuest(questslot)) {
+			return false;
+		}
+
+		if (requiredState != null) {
+			return (player.isQuestInState(questslot, 0, requiredState));
+		}
+
+		return true;
 	}
 }
