@@ -188,14 +188,22 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
   </zone>
 
   <zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
-    <configurator
-      class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
+    <!-- NPCs -->
+    <!-- Disabled until Antivenom Ring quest is ready
+    <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
+    -->
+    
+    <!-- Portals -->
     <portal x="33" y="13" ref="lab_exit">
       <destination zone="int_apothecary_cabin" ref="lab_entrance" />
     </portal>
+    
+    <!-- Clock -->
     <entity x="13" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
     </entity>
+    
+    <!-- Stuff to read -->
     <entity x="15" y="10">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />
@@ -204,6 +212,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 3 eggs
 2 flasks of water</attribute>
     </entity>
+    
     <entity x="13" y="1">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
@@ -213,7 +222,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       </implementation>
     </entity>
   </zone>
-
+  
   <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744"
     file="Level 0/semos/mountain_n2.tmx">
     <attributes>
