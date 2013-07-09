@@ -159,8 +159,8 @@ public class TrapsForKlaas extends AbstractQuest {
 		//reward.add(new EquipItemAction("note to apothecary", 1, true));
 		reward.add(new EquipItemAction("greater antidote", 5));
 		reward.add(new IncreaseXPAction(1000));
-		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
+        reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		
 		// Player has all 20 traps
 		npc.add(ConversationStates.IDLE,
