@@ -54,7 +54,8 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li>1000 XP</li>
- * <li>note to apothecary
+ * <li>5 greater antidote
+ * <li>note to apothecary (disabled until Antivenom Ring quest is ready)
  * <li>Can sell rodent traps to Klaas</li>
  * <li>Karma: 10</li>
  * </ul>
@@ -154,7 +155,9 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Reward
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("rodent trap", 20));
-		reward.add(new EquipItemAction("note to apothecary", 1, true));
+		// Replacing "not to apothecary" reward with antidotes until Antivenom Ring quest is done.
+		//reward.add(new EquipItemAction("note to apothecary", 1, true));
+		reward.add(new EquipItemAction("greater antidote", 5));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(10));
@@ -192,24 +195,27 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new PlayerHasItemWithHimCondition("rodent trap", 20),
 				ConversationStates.ATTENDING,
-				"Thanks! I've got to get these set up as quickly as possible. I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
+				// Not mentioning apothecary until Antivenom Ring quest is ready
+				"Thanks! I've got to get these set up as quickly as possible. Take these antidotes as a reward.",// I used to know an old #apothecary. Take this note to him. Maybe he can help you out with something.",
 				new MultipleActions(reward));
 		
+        // Player says did not bring items
+        npc.add(
+            ConversationStates.QUEST_ITEM_BROUGHT,
+            ConversationPhrases.NO_MESSAGES,
+            null,
+            ConversationStates.ATTENDING,
+            "Please hurry! I just found another box of food that's been chewed through.",
+            null);
+        
 		// Player asks about the apothecary
+		/* Disabling until Antivenom Ring quest is ready
 		npc.add(
 			ConversationStates.ATTENDING,
 			"apothecary",
 			null,
 			ConversationStates.ATTENDING,
 			"I used to know an old apothecary, but don't know where he has settled down. Perhaps someone in Ados would know.",
-			null);
-
-		npc.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Please hurry! I just found another box of food that's been chewed through.",
 			null);
 		
 		// Player has lost note
@@ -221,7 +227,7 @@ public class TrapsForKlaas extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"You lost the note? Well, I guess I can write you up another, but be careful this time.",
 				new EquipItemAction("note to apothecary", 1, true));
-
+		*/
 	}
 
 	@Override
