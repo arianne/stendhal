@@ -33,6 +33,17 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 	private String param3;
 	private String param4;
 
+	/**
+	 * creates a simple item log command
+	 *
+	 * @param item item
+	 * @param player player object
+	 * @param event  name of event
+	 * @param param1 param 1
+	 * @param param2 param 2
+	 * @param param3 param 3
+	 * @param param4 param 4
+	 */
 	public LogSimpleItemEventCommand(final RPObject item, final RPEntity player, final String event,
 			final String param1, final String param2, final String param3, final String param4) {
 		this.item = item;

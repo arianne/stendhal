@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2007-2010 - Stendhal                   *
+ *                    (C) Copyright 2007-2013 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -30,6 +30,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  * @author hendrik
  */
 public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
+	/** attribute name of itemid */
 	public static final String ATTR_ITEM_LOGID = "logid";
 
 	@Override
@@ -38,9 +39,20 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 	}
 
 
-
+	/**
+	 * logs the event to the database.
+	 *
+	 * @param transaction DBTransaction
+	 * @throws SQLException in case of an database error
+	 */
 	protected abstract void log(DBTransaction transaction) throws SQLException;
 
+	/**
+	 * gets the quantity from an item; correctly handles non stackable items
+	 *
+	 * @param item Item
+	 * @return quantity
+	 */
 	protected String getQuantity(final RPObject item) {
 		int quantity = 1;
 		if (item.has("quantity")) {
@@ -74,6 +86,7 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 
 	/**
 	 * Logs the name of the item on first.
+	 *
 	 * @param transaction
 	 * @param item
 	 * @throws SQLException
@@ -82,11 +95,37 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 		itemLogWriteEntry(transaction, item, null, "register", getAttribute(item, "name"), getAttribute(item, "quantity"), getAttribute(item, "infostring"), getAttribute(item, "bound"));
 	}
 
+	/**
+	 * writes a log entry
+	 * 
+	 * @param transaction DBTransaction
+	 * @param item item
+	 * @param player player object
+	 * @param event  name of event
+	 * @param param1 param 1
+	 * @param param2 param 2
+	 * @param param3 param 3
+	 * @param param4 param 4
+	 * @throws SQLException in case of an database error
+	 */
 	protected void itemLogWriteEntry(final DBTransaction transaction, final RPObject item, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		int itemid = item.getInt(ATTR_ITEM_LOGID);
 		itemLogWriteEntry(transaction, itemid, player, event, param1, param2, param3, param4);
 	}
 
+	/**
+	 * writes a log entry
+	 *
+	 * @param transaction DBTransaction
+	 * @param itemid itemid of item
+	 * @param player player object
+	 * @param event  name of event
+	 * @param param1 param 1
+	 * @param param2 param 2
+	 * @param param3 param 3
+	 * @param param4 param 4
+	 * @throws SQLException in case of an database error
+	 */
 	protected void itemLogWriteEntry(final DBTransaction transaction, final int itemid, final RPEntity player, final String event, final String param1, final String param2, final String param3, final String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
