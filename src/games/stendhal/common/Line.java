@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -15,7 +15,13 @@ package games.stendhal.common;
 import java.awt.Point;
 import java.util.Vector;
 
+/**
+ * a line consiting of points
+ */
 public class Line {
+
+	// TODO: Don't use stattic mutable attributes
+	// TODO: Don't use Vector but unsynchronized Lists
 
 	private static int deltax;
 	private static int deltay;
@@ -23,11 +29,29 @@ public class Line {
 	private static int y;
 	private static int numsteps;
 
+	/**
+	 * callback which is invoked for each point
+	 */
 	public abstract static class Action {
 
+		/** 
+		 * callback for point (x, y)
+		 *
+		 * @param x x-coordinate
+		 * @param y y-coordinate
+		 */
 		public abstract void fire(int x, int y);
 	}
 
+	/**
+	 * renders a line from (x1, y2) to (x2, y2)
+	 *
+	 * @param x1 x-cooridinate of start point
+	 * @param y1 y-cooridinate of start point
+	 * @param x2 x-cooridinate of end point
+	 * @param y2 y-cooridinate of end point
+	 * @return vector of points
+	 */
 	public static Vector<Point> renderLine(final int x1, final int y1, final int x2, final int y2) {
 		final Vector<Point> points = new Vector<Point>(numsteps);
 		renderLine(x1, y1, x2, y2, new Action() {
@@ -49,6 +73,15 @@ public class Line {
 
 	}
 
+	/**
+	 * renders a line from (x1, y2) to (x2, y2)
+	 *
+	 * @param x1 x-cooridinate of start point
+	 * @param y1 y-cooridinate of start point
+	 * @param x2 x-cooridinate of end point
+	 * @param y2 y-cooridinate of end point
+	 * @param action callback to call for each point
+	 */
 	public static void renderLine(final int x1, final int y1, final int x2, final int y2, final Action action) {
 		preparefields(x1, y1, x2, y2);
 
