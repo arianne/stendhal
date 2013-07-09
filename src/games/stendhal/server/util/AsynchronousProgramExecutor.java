@@ -60,7 +60,7 @@ public class AsynchronousProgramExecutor extends Thread {
 		}
 
 		String cmd = configuration.get("stendhal.program." + account);
-		send(cmd, message);
+		send(cmd);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class AsynchronousProgramExecutor extends Thread {
 	 * @param cmd command
 	 * @param message message to tweet
 	 */
-	private void send(String cmd, String message) {
+	private void send(String cmd) {
 		try {
 			String[] args = new String[2];
 			args[0] = cmd;
