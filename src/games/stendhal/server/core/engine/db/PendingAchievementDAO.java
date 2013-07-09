@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,17 +23,17 @@ import marauroa.server.db.TransactionPool;
 
 /**
  * DAO to gather information on pending achievements
- * @author kymara
  *
+ * @author kymara
  */
 public class PendingAchievementDAO {
 
 	/**
 	 * Delete used records for a pending achievement for a given player
 	 *
-	 * @param transaction
-	 * @param charname
-	 * @throws SQLException
+	 * @param transaction DBTransaction
+	 * @param charname name of player
+	 * @throws SQLException in case of an database error
 	 */
 	public void deletePendingAchievementDetails(DBTransaction transaction, String charname) throws SQLException {
 		String query  = "DELETE FROM pending_achievement " +
@@ -48,10 +47,10 @@ public class PendingAchievementDAO {
 	/**
 	 * Get details on pending achievements for a given player
 	 *
-	 * @param transaction
-	 * @param charname
+	 * @param transaction DBTransaction
+	 * @param charname name of player
 	 * @return details as param and count
-	 * @throws SQLException
+	 * @throws SQLException in case of an database error
 	 */
 	public Map<String, Map<String, Integer>> getPendingAchievementDetails(DBTransaction transaction, String charname) throws SQLException {
 
@@ -75,10 +74,9 @@ public class PendingAchievementDAO {
 	/**
 	 * Get details on pending achievements for a given player
 	 *
-	 * @param charname
-	 * return details as param and count
-	 * @return pending achievements
-	 * @throws SQLException
+	 * @param charname name of player
+	 * @return details as param and count
+	 * @throws SQLException in case of an database error
 	 */
 	public Map<String, Map<String, Integer>> getPendingAchievementDetails(String charname) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
@@ -90,8 +88,9 @@ public class PendingAchievementDAO {
 	/**
 	 * Delete used records for a pending achievement for a given player
 	 *
-	 * @param charname
-	 * @throws SQLException
+	 * @param charname name of player
+	 * @throws SQLException in case of an database error
+
 	 */
 	public void deletePendingAchievementDetails(String charname) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();

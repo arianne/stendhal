@@ -43,7 +43,7 @@ public class StendhalKillLogDAO {
 	 * @param transaction transaction
 	 * @param killed killed entity
 	 * @param killer killer
-	 * @throws SQLException 
+	 * @throws SQLException in case of an database error
 	 */
 	public void logKill(final DBTransaction transaction, final Entity killed, final Entity killer) throws SQLException {
 		// try update in case we already have this combination

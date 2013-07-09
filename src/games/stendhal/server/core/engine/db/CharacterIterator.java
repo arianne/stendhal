@@ -1,5 +1,5 @@
 /***************************************************************************
- *                    (C) Copyright 2003-2009 - Stendhal                   *
+ *                    (C) Copyright 2003-2013 - Stendhal                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -33,6 +33,13 @@ public class CharacterIterator implements Iterator<RPObject>, Iterable<RPObject>
 	private boolean transform;
 	private final DBTransaction transaction;
 
+	/**
+	 * creates a character iterator
+	 *
+	 * @param transaction DBTransaction
+	 * @param transform apply Transformat rules
+	 * @throws SQLException in case of an database error
+	 */
 	public CharacterIterator(DBTransaction transaction, boolean transform) throws SQLException {
 		this.transaction = transaction;
 		this.transform = transform;
