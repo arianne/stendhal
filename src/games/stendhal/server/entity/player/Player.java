@@ -456,6 +456,24 @@ public class Player extends RPEntity implements UseListener {
 		this.karma += karmaToAdd;
 
 		put("karma", this.karma);
+		
+		String karmaMessage = "'s karma has not changed.";
+		NotificationType type = NotificationType.INFORMATION;
+		
+		if (karmaToAdd > 0) {
+		    karmaMessage = "'s karma increases.";
+		    type = NotificationType.POSITIVE;
+		} else if (karmaToAdd < 0) {
+		    karmaMessage = "'s karma decreases.";
+		    type = NotificationType.NEGATIVE;
+		}
+		
+		this.sendPrivateText(type, this.getName() + karmaMessage);
+		
+		// Use debugging to test karma changes
+		if (logger.isDebugEnabled()) {
+		    logger.debug("Karma change: " + Long.toString((long) karmaToAdd));
+		}
 	}
 
 	/**
