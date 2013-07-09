@@ -148,7 +148,7 @@
 
   <!-- Interiors in 0_semos_mountain_n2_w -->
 
-  <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx">
+  <zone name="int_apothecary_cabin" file="interiors/semos/apothecary_cabin.tmx" accessible="false">
 
     <!-- Portals -->
     <portal x="7" y="19" ref="exit">
@@ -187,7 +187,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
 
   </zone>
 
-  <zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx">
+  <zone name="int_apothecary_lab" file="interiors/semos/apothecary_lab.tmx" accessible="false">
     <!-- NPCs -->
     <!-- Disabled until Antivenom Ring quest is ready
     <configurator class-name="games.stendhal.server.maps.semos.apothecary_lab.ApothecaryNPC" />
