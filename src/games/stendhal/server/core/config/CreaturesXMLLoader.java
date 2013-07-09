@@ -180,6 +180,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			description = null;
 			damageType = Nature.CUT;
 			susceptibilities = new EnumMap<Nature, Double>(Nature.class);
+			deathSound = null;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
