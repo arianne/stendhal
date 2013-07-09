@@ -38,7 +38,7 @@ public class ARGB {
 	/**
 	 * Split ARGB color to its 8 bit color components.
 	 * 
-	 * @param rgb
+	 * @param rgb red, green, blue value
 	 * @param result array of length 4. 
 	 */
 	public static void splitRgb(int rgb, int[] result) {
