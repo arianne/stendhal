@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern.market;
 
+import marauroa.server.db.command.DBCommandQueue;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.Sentence;
+import games.stendhal.server.core.engine.dbcommand.LogTradeEventCommand;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -186,6 +188,7 @@ public class PrepareOfferHandler {
 				if (createOffer(player, item, price, quantity)) {
 					TradingUtility.substractTradingFee(player, price);
 					new AsynchronousProgramExecutor("trade", buildTweetMessage(item, quantity, price)).start();
+					DBCommandQueue.get().enqueue(new LogTradeEventCommand(player, item, quantity, price));
 					npc.say("I added your offer to the trading center and took the fee of "+ fee +".");
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				} else {
