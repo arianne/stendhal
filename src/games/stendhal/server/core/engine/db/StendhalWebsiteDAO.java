@@ -36,10 +36,24 @@ import org.apache.log4j.Logger;
 public class StendhalWebsiteDAO {
 	private static Logger logger = Logger.getLogger(StendhalWebsiteDAO.class);
 
+	/**
+	 * clears the online status of all players (used on server startup)
+	 *
+	 * @param transaction DBTransaction
+	 * @throws SQLException in case of an database error
+	 */
 	public void clearOnlineStatus(DBTransaction transaction) throws SQLException {
 		transaction.execute("UPDATE character_stats SET online=0", null);
 	}
 
+	/**
+	 * sets the online status of a particular player
+	 *
+	 * @param transaction DBTransaction
+	 * @param playerName name of player
+	 * @param online true, if the player is online; false otherwise
+	 * @throws SQLException in case of an database error
+	 */
 	public void setOnlineStatus(final DBTransaction transaction, final String playerName, final boolean online) throws SQLException {
 		String onlinestate;
 		if (online) {
@@ -58,6 +72,9 @@ public class StendhalWebsiteDAO {
 		transaction.execute(query, params);
 	}
 
+	/**
+	 * clears the online status of all players (used on server startup)
+	 */
 	public void clearOnlineStatus() {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -68,6 +85,12 @@ public class StendhalWebsiteDAO {
 		}
 	}
 
+	/**
+	 * sets the online status of a particular player
+	 *
+	 * @param playerName name of player
+	 * @param online true, if the player is online; false otherwise
+	 */
 	public void setOnlineStatus(final String playerName, final boolean online) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
@@ -78,7 +101,15 @@ public class StendhalWebsiteDAO {
 		}
 	}
 
-	protected int updateCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
+	/**
+	 * updates the statistics information about a player
+	 *
+	 * @param transaction DBTransaction
+	 * @param player Player
+	 * @return number of updates rows
+	 * @throws SQLException in case of an database error
+	 */
+	protected int updateCharStats(final DBTransaction transaction, final Player player) throws SQLException {
 		final String query = "UPDATE character_stats SET "
 			+ " admin=[admin], sentence='[sentence]', age=[age], level=[level],"
 			+ " outfit=[outfit], outfit_colors='[outfit_colors]', xp=[xp], money='[money]',"
@@ -88,38 +119,44 @@ public class StendhalWebsiteDAO {
 			+ " finger='[finger]', zone='[zone]'"
 			+ " WHERE name='[name]'";
 
-		Map<String, Object> params = getParamsFromPlayer(instance);
+		Map<String, Object> params = getParamsFromPlayer(player);
 		logger.debug("storeCharacter is running: " + query);
 		final int count = transaction.execute(query, params);
 		return count;
 	}
 
-	private Map<String, Object> getParamsFromPlayer(final Player instance) {
+	/**
+	 * gets the attributes from a player object.
+	 *
+	 * @param player Player
+	 * @return Map with key value pairs
+	 */
+	private Map<String, Object> getParamsFromPlayer(final Player player) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("admin", instance.getAdminLevel());
-		params.put("sentence", instance.getSentence());
-		params.put("age", instance.getAge());
-		params.put("level", instance.getLevel());
-		params.put("outfit", instance.getOutfit().getCode());
-		params.put("outfit_colors", getOutfitColors(instance));
-		params.put("xp", instance.getXP());
-		params.put("money", instance.getTotalNumberOf("money"));
-		params.put("married", extractSpouseOrNull(instance));
-		params.put("atk", instance.getAtk());
-		params.put("def", instance.getDef());
-		params.put("hp", instance.getHP());
-		params.put("karma", (int) instance.getKarma());
-		params.put("head", extractName(instance.getHelmet()));
-		params.put("armor", extractName(instance.getArmor()));
-		params.put("lhand", extractHandName(instance, "lhand"));
-		params.put("rhand", extractHandName(instance, "rhand"));
-		params.put("legs", extractName(instance.getLegs()));
-		params.put("feet", extractName(instance.getBoots()));
-		params.put("cloak", extractName(instance.getCloak()));
-		params.put("finger", extractHandName(instance, "finger"));
-		params.put("name", instance.getName());
+		params.put("admin", player.getAdminLevel());
+		params.put("sentence", player.getSentence());
+		params.put("age", player.getAge());
+		params.put("level", player.getLevel());
+		params.put("outfit", player.getOutfit().getCode());
+		params.put("outfit_colors", getOutfitColors(player));
+		params.put("xp", player.getXP());
+		params.put("money", player.getTotalNumberOf("money"));
+		params.put("married", extractSpouseOrNull(player));
+		params.put("atk", player.getAtk());
+		params.put("def", player.getDef());
+		params.put("hp", player.getHP());
+		params.put("karma", (int) player.getKarma());
+		params.put("head", extractName(player.getHelmet()));
+		params.put("armor", extractName(player.getArmor()));
+		params.put("lhand", extractHandName(player, "lhand"));
+		params.put("rhand", extractHandName(player, "rhand"));
+		params.put("legs", extractName(player.getLegs()));
+		params.put("feet", extractName(player.getBoots()));
+		params.put("cloak", extractName(player.getCloak()));
+		params.put("finger", extractHandName(player, "finger"));
+		params.put("name", player.getName());
 		String zoneName = "";
-		StendhalRPZone zone = instance.getZone();
+		StendhalRPZone zone = player.getZone();
 		if (zone != null) {
 			zoneName = zone.getName();
 		}
@@ -128,7 +165,15 @@ public class StendhalWebsiteDAO {
 		return params;
 	}
 
-	protected void insertIntoCharStats(final DBTransaction transaction, final Player instance) throws SQLException {
+	/**
+	 * inserst statistics information about a new player
+	 * 
+	 *
+	 * @param transaction DBTransaction
+	 * @param player Player
+	 * @throws SQLException in case of an database error
+	 */
+	protected void insertIntoCharStats(final DBTransaction transaction, final Player player) throws SQLException {
 		final String query = "INSERT INTO character_stats"
 			+ " (name, admin, sentence, age, level,"
 			+ " outfit, outfit_colors, xp, money, married, atk, def, hp,"
@@ -139,7 +184,7 @@ public class StendhalWebsiteDAO {
 			+ " '[atk]', '[atk]', '[hp]', '[karma]', '[head]', '[armor]',"
 			+ " '[lhand]', '[rhand]', '[legs]', '[feet]', '[cloak]', '[finger]',"
 			+ " '[zone]', '[lastseen]')";
-		Map<String, Object> params = getParamsFromPlayer(instance);
+		Map<String, Object> params = getParamsFromPlayer(player);
 		logger.debug("storeCharacter is running: " + query);
 		transaction.execute(query, params);
 	}
