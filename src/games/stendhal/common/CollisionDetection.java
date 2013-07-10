@@ -22,7 +22,7 @@ import java.awt.geom.Rectangle2D;
  * not with any of the non trespasable areas of the world.
  */
 public class CollisionDetection {
-	CollisionMap map;
+	private CollisionMap map;
 
 	private int width;
 
@@ -70,10 +70,10 @@ public class CollisionDetection {
 	/**
 	 * Fill the collision map from layer data.
 	 * 
-	 * @param collisionLayer
+	 * @param collisionLayer static collision information
 	 */
 	public void setCollisionData(final LayerDefinition collisionLayer) {
-		/* First we build the int array. */
+		// First we build the int array.
 		collisionLayer.build();
 		init(collisionLayer.getWidth(), collisionLayer.getHeight());
 		
@@ -94,9 +94,9 @@ public class CollisionDetection {
 	/**
 	 * Print the area around the (x,y) useful for debugging.
 	 *  
-	 * @param x 
-	 * @param y 
-	 * @param size
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 * @param size size of surroundings
 	 */
 	public void printaround(final int x, final int y, final int size) {
 		for (int j = y - size; j < y + size; j++) {
