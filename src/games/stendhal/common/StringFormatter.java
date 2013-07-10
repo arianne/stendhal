@@ -52,8 +52,11 @@ public class StringFormatter {
 	/** Names/values of the parameter. */
 	private final Map<String, String> parameter;
 
-	/** Creates a new instance of StringFormatter. 
-	 * @param formatString */
+	/**
+	 * Creates a new instance of StringFormatter.
+	 * 
+	 * @param formatString format string
+	 */
 	public StringFormatter(final String formatString) {
 		staticParts = new ArrayList<String>();
 		parameterPositions = new ArrayList<String>();
@@ -90,9 +93,12 @@ public class StringFormatter {
 		staticParts.add(current);
 	}
 
-	/** Sets the value of a parameter. 
-	 * @param param 
-	 * @param value */
+	/**
+	 * Sets the value of a parameter
+	 *
+	 * @param param key 
+	 * @param value value
+	 */
 	public void set(final String param, final String value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, value);
@@ -100,9 +106,12 @@ public class StringFormatter {
 		}
 	}
 
-	/** Sets the value of a parameter. 
-	 * @param param 
-	 * @param value */
+	/**
+	 * Sets the value of a parameter.
+	 *
+	 * @param param key
+	 * @param value value
+	 */
 	public void set(final String param, final int value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, Integer.toString(value));

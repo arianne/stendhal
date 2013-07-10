@@ -24,11 +24,16 @@ public class Outfits {
 	 * Note: Outfits are numbered starting at 0 and these
 	 * variables are the total number of outfits.
 	 */
+
+	/** number of player selectable heads */
 	public static final int HEAD_OUTFITS = 21;
 
+	/** number of player selectable dresses */
 	public static final int CLOTHES_OUTFITS = 57;
 
+	/** number of player selectable hair styles */
 	public static final int HAIR_OUTFITS = 44;
 
+	/** number of player selectable body shapes */
 	public static final int BODY_OUTFITS = 15;
 }

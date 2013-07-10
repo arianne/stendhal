@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -37,6 +36,7 @@ public enum SoundLayer {
 	/** user interface feedback, opening of windows, private message notification */
 	USER_INTERFACE("gui");
 
+	/** the internal name of the sound layer */
 	public final String groupName;
 
 	/**

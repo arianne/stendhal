@@ -23,6 +23,7 @@ package games.stendhal.common;
  * @author hendrik
  */
 public class Version {
+	/** Stendhal version */
 	public final static String VERSION = Debug.VERSION;
 
 	/**

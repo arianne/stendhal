@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -23,10 +22,15 @@ import org.apache.log4j.Logger;
  * to support other kinds of "effects", like slowdown, drop, paralysis, etc.
  */
 public enum Nature {
+	/** physical attack */
 	CUT,
+	/** fire magic */
 	FIRE,
+	/** ice magic */
 	ICE,
+	/** light magic */
 	LIGHT,
+	/** dark magic */
 	DARK;
 
 	/**
