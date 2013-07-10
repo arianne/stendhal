@@ -170,33 +170,33 @@ public enum NotificationType {
 
 	public static final Color COLOR_POSITIVE = Color.green;
 
-	// dark blue
+	/** dark blue */
 	public static final Color COLOR_GROUP = new Color(00, 00, 160);
 
-	// muted purple
+	/** muted purple */
 	public static final Color COLOR_EMOTE = new Color(99, 61, 139);
 
 	public static final Color COLOR_PRIVMSG = Color.darkGray;
 
-	// dark green
+	/** dark green */
 	public static final Color COLOR_RESPONSE = new Color(0x006400);
 	
-	// dark brown 
+	/** dark brown */
 	public static final Color COLOR_SCENE_SETTING = new Color(0x572002);
 
 	public static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
 
-	// bright turquoise blue
+	/** bright turquoise blue */
 	public static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
 			105, 225);
 
-	// purple
+	/** purple */
 	public static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 	
-	// strong bright orange
+	/** strong bright orange */
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
 	
-	// dark red
+	/** dark red */
 	public static final Color COLOR_WARNING = new Color(0x7D0800);
 	
 	// TODO: review thinking here of using constants.
@@ -204,9 +204,9 @@ public enum NotificationType {
 	// so should we tie them together somehow?
 	// also the definitions are crazy.
 	
-	// normal is bold
+	/** normal is bold */
 	public static final String NORMALSTYLE = "normal";
-	// regular is not bold
+	/** regular is not bold */
 	public static final String REGULAR = "regular";
 	// fwiw, "bold" is blue, italic, bigger than normal, bold and blue.
 	
@@ -260,7 +260,7 @@ public enum NotificationType {
 	 * Get notification type for server messages that the client can show
 	 * without problems. Call this instead of using SERVER directly.
 	 * 
-	 * @param clientVersion
+	 * @param clientVersion version of the client
 	 * @return appropriate type
 	 */
 	public static NotificationType getServerNotificationType(String clientVersion) {

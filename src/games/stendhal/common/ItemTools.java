@@ -24,7 +24,7 @@ public class ItemTools {
      * This is used to replace underscore characters in compound item and creature names
      * after loading data from the database.
      * 
-     * @param name
+     * @param name name of item
      * @return transformed String if name contained an underscore,
      * 			or unchanged String object
      * 			or null if name was null

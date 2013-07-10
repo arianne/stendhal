@@ -70,6 +70,11 @@ public class Level {
 		}
 	}
 
+	/**
+	 * prints the level table
+	 *
+	 * @param args ignored
+	 */
 	public static void main(final String[] args) {
 		for (int i = 0; i < LEVELS; i++) {
 			System.out.println("<tr><td>" + i + "</td><td>" + xp[i]
@@ -77,6 +82,11 @@ public class Level {
 		}
 	}
 
+	/**
+	 * gets the highest level
+	 *
+	 * @return highest level
+	 */
 	public static int maxLevel() {
 		return LEVELS - 1;
 	}
@@ -112,7 +122,7 @@ public class Level {
 	/**
 	 * Calculates the experienced needed for a level.
 	 * 
-	 * @param level
+	 * @param level level
 	 * @return experience needed
 	 */
 	public static int getXP(final int level) {

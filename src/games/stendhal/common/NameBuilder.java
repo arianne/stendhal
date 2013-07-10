@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -24,10 +23,18 @@ public class NameBuilder {
 	private boolean first = true;
 	private final String separator;
 
+	/**
+	 * Name Builder
+	 */
 	public NameBuilder() {
 		separator = " ";
 	}
 
+	/**
+	 * Name Builder
+	 *
+	 * @param sep separator character
+	 */
 	public NameBuilder(String sep) {
 		separator = sep;
 	}
@@ -35,7 +42,7 @@ public class NameBuilder {
 	/**
 	 * Append a string, separate by space if not empty.
 	 *
-	 * @param str
+	 * @param str string to add
 	 */
 	public void append(final String str) {
 		if ((str != null) && (str.length() > 0)) {
