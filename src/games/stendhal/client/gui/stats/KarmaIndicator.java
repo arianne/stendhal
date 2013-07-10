@@ -19,20 +19,30 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
 import java.awt.Paint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  * A bar indicator component for karma.
  */
 public final class KarmaIndicator extends StatusDisplayBar implements PropertyChangeListener {
 	private static final long serialVersionUID = 3462088641737184898L;
+	/** Time to display highlighted border after a karma change. */
+	private static final int HIGHLIGHT_TIME = 1000;
 
 	private static KarmaIndicator instance;
+	
+	/** Timer for setting the border color to normal after highlighting. */
+	private final Timer timer;
+	/** Previous karma value. */
+	private double oldValue;
 	
 	/**
 	 * Create the KarmaIndicator instance.
@@ -55,6 +65,13 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	private KarmaIndicator() {
 		super(new KarmaScalingModel());
 		setPainter(new KarmaBarPainter());
+		timer = new Timer(HIGHLIGHT_TIME, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setForeground(Color.BLACK);
+			}
+		});
+		timer.setRepeats(false);
 		setVisible(false);
 	}
 
@@ -136,6 +153,29 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 		}
 	}
 	
+	@Override
+	protected void valueChanged() {
+		// Set the border color according to change direction
+		KarmaScalingModel model = (KarmaScalingModel) getModel();
+		double newValue = model.value;
+		double change = newValue - oldValue;
+		if (Math.abs(change) < 0.0001) {
+			return;
+		}
+		oldValue = newValue;
+		boolean positive = change > 0.0;
+		final Color hl = positive ? Color.BLUE : Color.RED;
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				setForeground(hl);
+				// Restore normal border after delay
+				timer.restart();
+			}
+		});
+	}
+	
 	/**
 	 * Painter for the karma bar gradient.
 	 */
@@ -177,7 +217,11 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 			// Scale to ]0, 1[
 			double normalized = 0.5 + Math.atan(SCALING * value) / Math.PI;
 			// ...and then to ]0, maxRepresentation[
-			setRepresentation((int) Math.round(normalized * maxRepresentation));
+			if (!setRepresentation((int) Math.round(normalized * maxRepresentation))) {
+				// Notify even if the representation didn't change so that the
+				// change direction can be shown to the user.
+				fireChanged();
+			}
 		}
 
 		@Override
