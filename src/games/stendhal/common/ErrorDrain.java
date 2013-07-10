@@ -19,8 +19,25 @@ package games.stendhal.common;
  */
 public interface ErrorDrain {
 
-	void setError(String error);
-	boolean hasError();
-	String getErrorString();
-	
+	/**
+	 * sets an error message
+	 *
+	 * @param error error message
+	 */
+	public void setError(String error);
+
+	/**
+	 * did an error occur?
+	 *
+	 * @return true, if an error occurred; false otherwise 
+	 */
+	public boolean hasError();
+
+	/**
+	 * gets the error message
+	 *
+	 * @return error message or <code>null</code>
+	 */
+	public String getErrorString();
+
 }

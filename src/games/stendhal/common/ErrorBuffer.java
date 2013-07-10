@@ -19,7 +19,7 @@ package games.stendhal.common;
  */
 public class ErrorBuffer implements ErrorDrain {
 
-	// start with no errors
+	/** buffer for error messages */
 	protected String errorBuffer = null;
 
 	/**
