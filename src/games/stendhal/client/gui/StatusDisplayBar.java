@@ -56,7 +56,7 @@ public class StatusDisplayBar extends JComponent {
 		model.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				repaint();
+				valueChanged();
 			}
 		});
 		this.addComponentListener(new ComponentAdapter() {
@@ -103,6 +103,13 @@ public class StatusDisplayBar extends JComponent {
 	 */
 	protected void setPainter(BarPainter painter) {
 		this.painter = painter;
+	}
+	
+	/**
+	 * Called when the model value changes.
+	 */
+	protected void valueChanged() {
+		repaint();
 	}
 	
 	@Override
