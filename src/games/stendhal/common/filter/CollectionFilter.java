@@ -30,7 +30,7 @@ public class CollectionFilter<T> {
 	/**
 	 * Adds a FilterCriteria to be used by the filter.
 	 * 
-	 * @param filterCriteria
+	 * @param filterCriteria criteria for the filter
 	 */
 	public void addFilterCriteria(final FilterCriteria<T> filterCriteria) {
 		allFilterCriteria.add(filterCriteria);
@@ -41,7 +41,7 @@ public class CollectionFilter<T> {
 	 * FilterCriteria are called. Only if the object passes all FilterCriteria
 	 * it remains in the collection. Otherwise, it is removed.
 	 * 
-	 * @param collection
+	 * @param collection collection to filter
 	 */
 	public void filter(final Collection<T> collection) {
 
@@ -62,7 +62,7 @@ public class CollectionFilter<T> {
 	 * remains unchanged and the copy is returned. Only use this method for
 	 * collection classes that define a default constructor
 	 * 
-	 * @param inputCollection
+	 * @param inputCollection collection to copy
 	 * @return a filtered copy of the input collection
 	 */
 	@SuppressWarnings("unchecked")
@@ -105,10 +105,10 @@ public class CollectionFilter<T> {
 	/**
 	 * Call the no arguments constructor of the object passed.
 	 * 
-	 * @param object
+	 * @param object object to use as template
 	 * @return a new Instance of the same type as object passed
 	 */
-	public Object createObjectSameClass(final Object object) {
+	private Object createObjectSameClass(final Object object) {
 
 		final Class<?>[] NO_ARGS = new Class[0];
 		Object sameClassObject = null;

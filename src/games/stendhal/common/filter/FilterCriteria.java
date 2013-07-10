@@ -29,7 +29,7 @@ public interface FilterCriteria<T> {
      * filter.addFilterCriteria(new ColorFilterCriteria());
      * 3) Now filter:
      * filter.filter(carCollection);
-     * @param o
+     * @param o object
      * @return true, if a given object in the collection
      * passes this filter.
      */
