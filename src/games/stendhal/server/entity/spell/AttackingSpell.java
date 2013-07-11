@@ -14,7 +14,7 @@ package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.constants.Nature;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.effect.DamageEffect;
 import marauroa.common.game.RPObject;
@@ -38,7 +38,9 @@ public class AttackingSpell extends Spell {
 
 	@Override
 	protected boolean isTargetValid(Entity caster, Entity target) {
-		return target instanceof RPEntity;
+        final boolean targetIsCreature = target instanceof Creature;
+        final boolean targetIsPlayer = target instanceof Player;
+        return targetIsCreature || targetIsPlayer;
 	}
 
 	@Override
