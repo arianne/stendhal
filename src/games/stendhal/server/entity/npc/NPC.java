@@ -234,6 +234,9 @@ public abstract class NPC extends RPEntity {
 
 	@Override
 	public void logic() {
+	    if (atMovementRadius()) {
+	        onOutsideMovementRadius();
+	    }
 		if (!hasPath()) {
 		    if (logger.isDebugEnabled()) {
 		        String title = getTitle();
