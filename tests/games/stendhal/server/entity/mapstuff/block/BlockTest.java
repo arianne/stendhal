@@ -165,9 +165,9 @@ public class BlockTest {
         // world progresses till timeout reached
         int turnsToWait = SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_TIMEOUT_IN_SECONDS);
         for (int i = 0; i <= turnsToWait; i++) {
+            assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
             SingletonRepository.getRPWorld().nextTurn();
             SingletonRepository.getTurnNotifier().logic(i);
-            System.out.println(SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging() + " " + SingletonRepository.getTurnNotifier().getRemainingSeconds(b1));
         }
         assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(0)));
     }
