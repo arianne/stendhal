@@ -232,7 +232,10 @@ public abstract class NPC extends RPEntity {
 		// sub classes can implement this method
 	}
 	
-	public void onPathCompleted() {
+	/**
+	 * Checks if the NPC should remain stationary or begin walking
+	 */
+	public void checkPause() {
         if (pauseTurnsRemaining == 0) {
             if (hasPath()) {
                 setSpeed(getBaseSpeed());
@@ -263,7 +266,7 @@ public abstract class NPC extends RPEntity {
 		    }
 		}
 	    
-		onPathCompleted();
+		checkPause();
         notifyWorldAboutChanges();
 	}
 
@@ -295,7 +298,8 @@ public abstract class NPC extends RPEntity {
      *         Number of turns entity should stay paused
      */
     public void setPathCompletedPause(final int pause) {
-        setPathCompletedPause(pause, getDirection());
+        //setPathCompletedPause(pause, getDirection());
+        this.pauseTurns = pause;
     }
     
     public void setPathCompletedPause(final int pause, final Direction dir) {
