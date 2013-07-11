@@ -52,7 +52,7 @@ public class RabbitNPC implements ZoneConfigurator {
 	        mammal.setBaseSpeed(0.2);
 	        mammal.moveRandomly();
 	        mammal.setTitle("rabbit");
-	        mammal.setFinishedPathPause(20);
+	        mammal.setPathCompletedPause(20);
 	        zone.add(mammal);
 		}
 	}

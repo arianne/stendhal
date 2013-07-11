@@ -231,6 +231,23 @@ public abstract class NPC extends RPEntity {
 	protected void dropItemsOn(final Corpse corpse) {
 		// sub classes can implement this method
 	}
+	
+	public void onPathCompleted() {
+        if (pauseTurnsRemaining == 0) {
+            if (hasPath()) {
+                setSpeed(getBaseSpeed());
+            }
+            
+            applyMovement();
+        } else {
+            if (!stopped()) {
+                stop();
+                if (pauseDirection != null) setDirection(pauseDirection);
+            }
+            
+            pauseTurnsRemaining -= 1;
+        }
+	}
 
 	@Override
 	public void logic() {
@@ -246,21 +263,7 @@ public abstract class NPC extends RPEntity {
 		    }
 		}
 	    
-        if (pauseTurnsRemaining == 0) {
-            if (hasPath()) {
-                setSpeed(getBaseSpeed());
-            }
-            
-            applyMovement();
-        } else {
-            if (!stopped()) {
-                stop();
-                if (pauseDirection != null) setDirection(pauseDirection);
-            }
-            
-            pauseTurnsRemaining -= 1;
-        }
-        
+		onPathCompleted();
         notifyWorldAboutChanges();
 	}
 
@@ -291,8 +294,12 @@ public abstract class NPC extends RPEntity {
      * @param pause
      *         Number of turns entity should stay paused
      */
-    public void setFinishedPathPause(int pause) {
+    public void setPathCompletedPause(final int pause) {
+        setPathCompletedPause(pause, getDirection());
+    }
+    
+    public void setPathCompletedPause(final int pause, final Direction dir) {
         this.pauseTurns = pause;
-        this.pauseDirection = getDirection();
+        this.pauseDirection = dir;
     }
 }
