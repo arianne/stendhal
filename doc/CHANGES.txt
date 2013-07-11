@@ -5,12 +5,40 @@
 
 *world*
 - Captain of Athor Ferry named Captain Brownbeard now
+- Ogre soldier's front & back facing helmet fixed to match side view
+- Puppy in Semos uses random path
+- Puppy sprite scaled
+- All dark elves now have elf ears
+- Elf ears on many elves made more visible
+- Grobble monster faces backwards in all directions
+- Winged blurble's head is no longer behind wings
+- Fixed north and south facing pigeon sprite so does not wobble
+- Added new harmless corpses to the following creatures:
+    ice giant, elder giant, lord durin, cave troll, imperial general giant, master giant,
+    black giant, amazoness giant, kasarkutominubat
+- Remodeled int_ados_house_70
+- Wishman unlocks door rather than throwing player into dragon lair
+- New quest: Traps for Klaas
+- New achievement: A Bit Xenophobic
+- New item: xeno helmet
+- PassiveNPCs using random paths can be set to have a maximum movement radius
+- Sound effect played when player dies
+- QuestCheckingPortal can now check quest state
+- Pushable blocks now use a timer for resetting position
+- NPCs can be set to reverse their path on collision
+- Added to list of maps where Rose Leigh will not teleport
+- Most blue items moved from Daily Item Quest to Weekly
 
 *client*
+- Karma indicator bar flashes for karma change
 
 *fixes*
 - Alice Farmer answers to "crepes suzette"
 - TeleporterBehaviour badZones table updated
+- Replaced tilesets:
+    table_white_round tileset with table_white, bench_white, orb_table, skull_post
+- Marked apothecary's lab and cabin as inaccessible
+- Player's head no longer shows when walking in minecart tunnels in -2_semos_mine_n_e2
 
 1.08
 
