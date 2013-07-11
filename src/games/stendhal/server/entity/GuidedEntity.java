@@ -9,13 +9,17 @@ package games.stendhal.server.entity;
 //
 //
 
+import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 import games.stendhal.server.core.pathfinder.EntityGuide;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -38,6 +42,12 @@ public abstract class GuidedEntity extends ActiveEntity {
      * The entity is using a random path
      */
     private boolean randomPath = false;
+    private boolean returnToOrigin = false;
+    
+    /**
+     * The radius at which the entity will walk
+     */
+    private int movementRadius = 0;
     
 	/**
 	 * Create a guided entity.
@@ -164,16 +174,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	    return reversiblePath;
 	}
 	
-    /**
-     * Sets or unsets entity's path as random.
-     * 
-     * @param random
-     *      <code>true</code> if entity's path is random
-     */
-    public void setUsesRandomPath(boolean random) {
-    	randomPath = random;
-    }
-    
 	/**
 	 * function return current entity's path.
 	 * @return path
@@ -197,16 +197,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public boolean hasPath() {
 		return (guide.path != null);
-	}
-
-	/**
-	 * Determines whether the entity is using a random path.
-	 * 
-	 * @return <code>true</code> if the entity uses random paths, otherwise
-	 * 	<code>false</code>
-	 */
-	protected boolean usesRandomPath() {
-		return randomPath;
 	}
 
 	/**
@@ -369,4 +359,119 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void updateModifiedAttributes() {
 		//TODO base speed does not get transfered to the client? testing showed, that speed is used at client side
 	}
+
+	//
+	// START - Methods controlling random movement (alphabetical)
+	//
+	
+    /**
+     * Checks if the entity has reached a set radius
+     */
+    public final boolean atMovementRadius() {
+        Point difference = getDistanceFromOrigin();
+        
+        // Set the maximum movement distance at exact radius
+        int max = movementRadius - 1;
+        if (movementRadius > 0 && (difference.getX() > max || difference.getY() > max)) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    protected final Direction getDirectionFromOrigin() {
+        Direction dir;
+        dir = Direction.LEFT;
+        
+        return dir;
+    }
+    /**
+     * Get the distance that the entity has moved away from its starting point
+     * 
+     * @return The distance from entity's starting point
+     */
+    protected final Point getDistanceFromOrigin() {
+        int originX = getOrigin().x;
+        int originY = getOrigin().y;
+        int currentX = getX();
+        int currentY = getY();
+        
+        int Xdiff = Math.abs(currentX - originX);
+        int Ydiff = Math.abs(currentY - originY);
+        
+        return new Point(Xdiff, Ydiff);
+    }
+    
+	/**
+	 * Changed path of entity when radius is reached
+	 * 
+	 * @param returnToOrigin return entity to initial position
+	 */
+    public void onOutsideMovementRadius() {
+        List<Node> nodes = new LinkedList<Node>();
+        
+        if (returnToOrigin) {
+            nodes.add(new Node(getOrigin().x, getOrigin().y));
+        } else {
+            // FIXME: Does not change direction smoothly
+            // Generate a random distanct to walk somwhere within the radius
+            // We should already know from atMovementRadius() that movementRadius is greater than 0
+            int walkBack = Rand.randUniform(1, movementRadius);
+            int newX = getX();
+            int newY = getY();
+            
+            Direction dir = getDirection();
+            if (dir == Direction.RIGHT) {
+                newX -= walkBack;
+            } else if (dir == Direction.LEFT) {
+                newX += walkBack;
+            } else if (dir == Direction.DOWN) {
+                newY -= walkBack;
+            } else if (dir == Direction.UP) {
+                newY += walkBack;
+            }
+            
+            nodes.add(new Node(newX, newY));
+        }
+        
+        this.setPath(new FixedPath(nodes, false));
+    }
+    
+    /**
+     * Sets the maximum distance the entity will move from its origin
+     * 
+     * @param radius max movable distance
+     */
+    public void setRandomMovementRadius(final int radius) {
+        movementRadius = radius;
+    }
+    
+    public void setRandomMovementRadius(final int radius, final boolean origin) {
+        movementRadius = radius;
+        returnToOrigin = origin;
+    }
+    
+    /**
+     * Sets or unsets entity's path as random.
+     * 
+     * @param random
+     *      <code>true</code> if entity's path is random
+     */
+    public void setUsesRandomPath(boolean random) {
+        randomPath = random;
+    }
+    
+	/**
+	 * Determines whether the entity is using a random path.
+	 * 
+	 * @return <code>true</code> if the entity uses random paths, otherwise
+	 *  <code>false</code>
+	 */
+	protected boolean usesRandomPath() {
+	    return randomPath;
+	}
+
+	//
+	// END - Methods controlling random movement
+	//
 }

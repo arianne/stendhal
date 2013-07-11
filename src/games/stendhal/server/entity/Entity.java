@@ -619,7 +619,15 @@ public abstract class Entity extends RPObject {
 			onMoved(oldX, oldY, x, y);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @return The initial position of the entity
+	 */
+	public final Point getOrigin() {
+	    return origin;
+	}
+	
 	/**
 	 * Set resistance this has with other entities.
 	 *
