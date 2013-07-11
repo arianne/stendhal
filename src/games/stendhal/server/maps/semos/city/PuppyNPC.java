@@ -47,6 +47,8 @@ public class PuppyNPC implements ZoneConfigurator {
 		dog.setDescription("You see a playful puppy.");
 		dog.setEntityClass("animal/puppy");
 		dog.setBaseSpeed(0.5);
+		dog.moveRandomly();
+		dog.setRandomMovementRadius(20, true);
 		zone.add(dog);
 	}
 
@@ -54,7 +56,7 @@ public class PuppyNPC implements ZoneConfigurator {
 	 * A puppy that can be petted.
 	 */
 	private static class Puppy extends PassiveNPC implements UseListener {
-		@Override
+		/*@Override
 		protected void createPath() {
 			final List<Node> nodes = new LinkedList<Node>();
 			nodes.add(new Node(23, 54));
@@ -64,7 +66,7 @@ public class PuppyNPC implements ZoneConfigurator {
 			nodes.add(new Node(19, 58));
 			nodes.add(new Node(23, 58));
 			setPath(new FixedPath(nodes, true));
-		}
+		}*/
 
 		@Override
 		public boolean onUsed(RPEntity user) {
