@@ -182,6 +182,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		
 		// sword
 		items.put("assassin dagger",1);
+		items.put("buster",1);
 		items.put("chaos sword",1);
 		items.put("dark dagger",1);
 		items.put("demon sword",1);
