@@ -1,10 +1,13 @@
 package games.stendhal.server.entity.mapstuff.block;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.SoundLayer;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.ZoneEnterExitListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
@@ -29,7 +32,9 @@ import org.apache.log4j.Logger;
  *
  * @author madmetzger
  */
-public class Block extends ActiveEntity implements ZoneEnterExitListener, MovementListener {
+public class Block extends ActiveEntity implements ZoneEnterExitListener, MovementListener, TurnListener {
+
+    static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
 	
     private static final String Z_ORDER = "z";
 
@@ -129,6 +134,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 */
 	public void reset() {
 		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
+        SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
 	}
 
@@ -152,9 +158,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 					}
 				}
 			}
+            SingletonRepository.getTurnNotifier().dontNotify(this);
+            SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
             this.sendSound();
             this.notifyWorldAboutChanges();
-			logger.debug("Block ["+this.getID().toString()+"] pushed to ("+this.getX()+","+this.getY()+").");
+            logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
 		}
 	}
 	
@@ -267,5 +275,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
             this.push((Player) entity, d);
         }
 	}
+
+    @Override
+    public void onTurnReached(int currentTurn) {
+        // Reset Block after a timeout to its initial position
+        this.reset();
+    }
 
 }

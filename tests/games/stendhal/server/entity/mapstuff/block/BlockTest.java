@@ -1,10 +1,12 @@
 package games.stendhal.server.entity.mapstuff.block;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,6 +25,7 @@ public class BlockTest {
 	public static void beforeClass() {
 		BlockTestHelper.generateRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
+        MockStendlRPWorld.get();
 	}
 
 	@Test
@@ -147,5 +150,26 @@ public class BlockTest {
 		b1.push(p, Direction.RIGHT);
 		assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
 	}
+
+    @Test
+    public void testTimeOut() throws Exception {
+        Block b1 = new Block(0, 0, true);
+        StendhalRPZone z = new StendhalRPZone("test", 10, 10);
+        Player p = PlayerTestHelper.createPlayer("pusher");
+        z.add(b1, false);
+
+        // one successful push
+        b1.push(p, Direction.RIGHT);
+        assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
+
+        // world progresses till timeout reached
+        int turnsToWait = SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_TIMEOUT_IN_SECONDS);
+        for (int i = 0; i <= turnsToWait; i++) {
+            SingletonRepository.getRPWorld().nextTurn();
+            SingletonRepository.getTurnNotifier().logic(i);
+            System.out.println(SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging() + " " + SingletonRepository.getTurnNotifier().getRemainingSeconds(b1));
+        }
+        assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(0)));
+    }
 
 }
