@@ -28,6 +28,7 @@
 - NPCs can be set to reverse their path on collision
 - Added to list of maps where Rose Leigh will not teleport
 - Most blue items moved from Daily Item Quest to Weekly
+- Added dwarvish legs to Femme Fatale's shop for 19,000 money
 
 *client*
 - Karma indicator bar flashes for karma change
