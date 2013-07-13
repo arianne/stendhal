@@ -54,7 +54,7 @@ public class FishSource extends PlayerActivityEntity {
 	/**
 	 * Sound effects
 	 */
-	private final String startSound = "splash-small-1";
+	private final String startSound = "fishing-1";
 	private String successSound;
 	private String failSound;
 	private final int SOUND_RADIUS = 20;
