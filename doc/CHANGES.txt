@@ -9,7 +9,7 @@
 - Puppy in Semos uses random path
 - Puppy sprite scaled
 - All dark elves now have elf ears
-- Elf ears on many elves made more visible
+- Elf ears on many elves made more visible and cleaned up
 - Grobble monster faces backwards in all directions
 - Winged blurble's head is no longer behind wings
 - Fixed north and south facing pigeon sprite so does not wobble
@@ -29,6 +29,7 @@
 - Added to list of maps where Rose Leigh will not teleport
 - Most blue items moved from Daily Item Quest to Weekly
 - Added dwarvish legs to Femme Fatale's shop for 19,000 money
+- Sound effects for fishing source and water spring source
 
 *client*
 - Karma indicator bar flashes for karma change
