@@ -50,7 +50,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	 * Sound effects
 	 */
 	private final String startSound = "water-4";
-	private String successSound;
+	private final String successSound = "cork-pop-1";
 	private final String failSound = "glass-break-2";
 	private final int SOUND_RADIUS = 20;
 
@@ -163,8 +163,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 			
 			}
 			
-			// TODO: find a sound effect for success
-            //addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+            addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
 
 			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You were lucky and filled "
