@@ -1063,6 +1063,16 @@
       <parameter name="color_method">time</parameter>
     </attributes>
     
+    <!-- Music/Ambiance -->
+    <entity x="68" y="83">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">bongos</parameter>
+        <parameter name="radius">31</parameter>
+        <parameter name="volume">120</parameter>
+      </implementation>
+    </entity>
+    
   </zone>
   
   
