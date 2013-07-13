@@ -24,6 +24,8 @@ These files are in the public domain:
     elephant-rumble-1:  http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
     fishing-1:          http://www.freesound.org/people/vibe_crc/sounds/50623/ &
                         http://www.freesound.org/people/j1987/sounds/95564/
+    flame-burst-1, flame-burst-2, flame-burst-3:
+                        http://www.freesound.org/people/Nic3_one/sounds/166555/
     glass-break-2:      http://www.freesound.org/people/martinimeniscus/sounds/164462/
     goat-1:             http://soundbible.com/1632-On-The-Farm.html
     goat-2:             http://soundbible.com/1662-Farm.html
