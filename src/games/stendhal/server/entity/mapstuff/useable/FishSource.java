@@ -17,10 +17,12 @@ package games.stendhal.server.entity.mapstuff.useable;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.ImageEffectEvent;
+import games.stendhal.server.events.SoundEvent;
 import marauroa.common.game.RPClass;
 
 /**
@@ -48,6 +50,14 @@ public class FishSource extends PlayerActivityEntity {
 	 * The name of the item to be caught.
 	 */
 	private final String itemName;
+	
+	/**
+	 * Sound effects
+	 */
+	private final String startSound = "splash-small-1";
+	private String successSound;
+	private String failSound;
+	private final int SOUND_RADIUS = 20;
 
 	/**
 	 * Create a fish source.
@@ -155,14 +165,21 @@ public class FishSource extends PlayerActivityEntity {
 		if (successful) {
 			final Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
+			
+			// TODO: find a sound for success
+			//addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
 
 			player.equipOrPutOnGround(item);
 			player.incHarvestedForItem(itemName, 1);
 		    SingletonRepository.getAchievementNotifier().onObtain(player);
 			player.sendPrivateText("You caught a fish.");
 		} else {
+		    // TODO: find a sound for failure
+            //addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+		    
 			player.sendPrivateText("You didn't get a fish.");
 		}
+		notifyWorldAboutChanges();
 	}
 
 	/**
@@ -173,6 +190,10 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onStarted(final Player player) {
+	    // Play a nice fishing sound
+        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+        notifyWorldAboutChanges();
+	    
 		// some feedback is needed.
 		player.sendPrivateText("You have started fishing.");
 		addEvent(new ImageEffectEvent("water_splash", true));
