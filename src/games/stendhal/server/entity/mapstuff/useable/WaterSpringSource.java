@@ -13,10 +13,12 @@
 package games.stendhal.server.entity.mapstuff.useable;
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 import marauroa.common.game.RPClass;
 
 /**
@@ -43,6 +45,14 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	 * How long it takes to fill the bottle (in seconds). 
 	 */
 	private static final int DURATION = 10;
+	
+	/**
+	 * Sound effects
+	 */
+	private final String startSound = "water-4";
+	private String successSound;
+	private final String failSound = "glass-break-2";
+	private final int SOUND_RADIUS = 20;
 
 	/**
 	 * Create a water spring source.
@@ -152,14 +162,20 @@ public class WaterSpringSource extends PlayerActivityEntity {
 				item.setBoundTo(player.getName());
 			
 			}
+			
+			// TODO: find a sound effect for success
+            //addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
 
 			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You were lucky and filled "
 					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
 			
 		} else {
+            addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+            
 			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's broken.");
 		}
+		notifyWorldAboutChanges();
 	}
 
 	/**
@@ -170,6 +186,10 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onStarted(final Player player) {
+	    // Play a nice sound effect
+        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+        notifyWorldAboutChanges();
+	    
 		// remove flask from player as they try to fill it.
 		player.drop("flask");
 		player.sendPrivateText("You started to fill fresh spring water into an empty flask. It will hopefully not slip out of your hand!");
