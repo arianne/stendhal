@@ -14,6 +14,7 @@ These files are in the public domain:
     clang-metallic-1:   http://www.freesound.org/people/lostchocolatelab/sounds/1468/
     click-clack-1 & click-1:
                         http://www.freesound.org/people/satrebor/sounds/113218/
+    cork-pop-1          http://www.freesound.org/people/fryzu82/sounds/142325/
     cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
     cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
     cowbell-1:          http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
