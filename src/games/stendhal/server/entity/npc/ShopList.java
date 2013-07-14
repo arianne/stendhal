@@ -290,7 +290,7 @@ public final class ShopList {
 		shops.add("buy4assassins", "leather boots", 30);
 		shops.add("buy4assassins", "dwarf cloak", 60);
 		shops.add("buy4assassins", "dwarvish armor", 17000);
-		shops.add("buy4assassins", "dwarvish legs", 19000);
+		shops.add("buy4assassins", "dwarvish legs", 15000);
 		shops.add("buy4assassins", "assassin dagger", 7000);
 
 		// mountain dwarf buyer of odds and ends -3 ados abandoned keep)
