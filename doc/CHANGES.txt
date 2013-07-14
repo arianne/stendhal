@@ -12,7 +12,7 @@
 - Elf ears on many elves made more visible and cleaned up
 - Grobble monster faces backwards in all directions
 - Winged blurble's head is no longer behind wings
-- Fixed north and south facing pigeon sprite so does not wobble
+- Re-drew/touched up many creature sprites
 - Added new harmless corpses to the following creatures:
     ice giant, elder giant, lord durin, cave troll, imperial general giant, master giant,
     black giant, amazoness giant, kasarkutominubat
