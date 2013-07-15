@@ -56,14 +56,14 @@ public class Status {
         return name;
     }
     
-    public void attemptToInfclict(final RPEntity target, final int probability) {
+    public void attemptToInfclict(final RPEntity target, final int probability, final RPEntity attacker) {
         if (target.isResistantToStatus(this)) {
             // TODO: Affect probability with resistance
         }
         // Roll dice between 1-100
         int roll = Rand.randUniform(1, 100);
         if (roll <= probability) {
-            target.inflictStatus(this);
+            target.inflictStatus(this, attacker);
         }
     }
 }

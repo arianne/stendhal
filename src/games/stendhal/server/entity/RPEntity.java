@@ -16,6 +16,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
@@ -38,6 +39,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.status.ShockStatus;
 import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -195,8 +197,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private List<String> resistances;
 	
 	/** Entity uses a status attack */
-	private Status statusAttack;
-	private int statusAttackProbability;
+	private Status statusAttack = new ShockStatus();
+	private int statusAttackProbability = 50;
 	
 	//
 	// END: status effect variables
@@ -2805,7 +2807,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				
 				// Try to inflict a status effect
 				if (statusAttack != null) {
-				    statusAttack.attemptToInfclict(defender, statusAttackProbability);
+				    statusAttack.attemptToInfclict(defender, statusAttackProbability, this);
 				}
 
 				result = true;
@@ -3060,9 +3062,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
         // Multiple instances of a status can be inflicted
         statuses.add(status);
         statusChanged = true;
+        ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
+    }
+    
+    public void inflictStatus(final Status status, final RPEntity attacker) {
+        statuses.add(status);
+        statusChanged = true;
         
         if (this instanceof Player) {
-            sendPrivateText("You have been inflicted with " + status.getName());
+            ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\" by " + attacker.getName());
         }
     }
     
