@@ -32,6 +32,7 @@ public class ShockStatus extends Status {
     public ShockStatus() {
         // Give the status a name
         super("shock");
+        super.setTimeout(20);
     }
     
     /**
@@ -41,6 +42,8 @@ public class ShockStatus extends Status {
      */
     @Override
     public void affect(final RPEntity entity) {
+        super.affect(entity);
+        
         int stepsTaken = entity.getStepsTaken();
         if (stepsTaken == stepsDelay) {
             

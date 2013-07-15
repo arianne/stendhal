@@ -27,7 +27,7 @@ public class Status {
     
     /** Number of turns that status is active (less than 0 for indefinate) */
     private int statusTimeout = -1;
-    private int timeoutCounter;
+    protected int timeoutCounter;
     
     public Status(final String name) {
         this.name = name;
@@ -41,19 +41,13 @@ public class Status {
      *          Entity to be affected by the status
      */
     public void affect(final RPEntity entity) {
-        // Sub-classes can use this
-        
-        if (timeoutCounter >= 0) {
+        if (timeoutCounter > 0) {
             timeoutCounter -= 1;
-            if (timeoutCounter == 0) {
-                // Clear the entity of this status when the timeout has expired
-                entity.removeStatus(this);
-            }
         }
-    }
-    
-    public String getName() {
-        return name;
+        if (timeoutCounter == 0) {
+            // Clear the entity of this status when the timeout has expired
+            entity.removeStatus(this);
+        }
     }
     
     public void attemptToInfclict(final RPEntity target, final int probability, final RPEntity attacker) {
@@ -65,5 +59,24 @@ public class Status {
         if (roll <= probability) {
             target.inflictStatus(this, attacker);
         }
+    }
+    
+    /**
+     * @return
+     *      The status's name
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Set the number of turns that the status should affect the entity
+     * 
+     * @param timeout
+     *          Turns before status is removed
+     */
+    public void setTimeout(final int timeout) {
+        statusTimeout = timeout;
+        timeoutCounter = statusTimeout;
     }
 }
