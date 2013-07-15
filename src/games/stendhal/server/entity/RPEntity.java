@@ -197,8 +197,8 @@ public abstract class RPEntity extends GuidedEntity {
 	private List<String> resistances;
 	
 	/** Entity uses a status attack */
-	private Status statusAttack = new ShockStatus();
-	private int statusAttackProbability = 50;
+	private Status statusAttack;
+	private int statusAttackProbability;
 	
 	//
 	// END: status effect variables
