@@ -38,6 +38,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
@@ -181,6 +182,25 @@ public abstract class RPEntity extends GuidedEntity {
 	 * weak enemies
 	 */
 	private static final double WEIGHT_EFFECT = 0.5;
+	
+	//
+	// START: status effect variables
+	// 
+	
+	/** Container for statuses inflicted on entity */
+	private List<Status> statuses;
+	private boolean statusChanged = false;
+	
+	/** Immunities to statuses */
+	private List<String> resistances;
+	
+	/** Entity uses a status attack */
+	private Status statusAttack;
+	private int statusAttackProbability;
+	
+	//
+	// END: status effect variables
+	//
 
 	@Override
 	protected boolean handlePortal(final Portal portal) {
@@ -253,6 +273,8 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
         ignoreCollision = false;
+        statuses = new LinkedList<Status>();
+        resistances = new LinkedList<String>();
 	}
 
 	public RPEntity() {
@@ -263,6 +285,8 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
         ignoreCollision = false;
+        statuses = new LinkedList<Status>();
+        resistances = new LinkedList<String>();
 	}
 
 	/**
@@ -1238,7 +1262,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		} else {
 			kill(attacker);
 		}
-
+		
 		notifyWorldAboutChanges();
 	}
 
@@ -2778,6 +2802,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				defender.onDamaged(this, damage);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + damage);
+				
+				// Try to inflict a status effect
+				if (statusAttack != null) {
+				    statusAttack.attemptToInfclict(defender, statusAttackProbability);
+				}
 
 				result = true;
 			} else {
@@ -2957,4 +2986,145 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     public String getDeathSound() {
         return deathSound;
     }
+    
+    //
+    // START: Status effects
+    //
+    
+    /**
+     * Removes all instances of a status from the entity
+     * 
+     * @param status
+     *          Status to be cured
+     */
+    public void cureStatus(final String statusName) {
+        for (Status status : statuses) {
+            if (status.getName().equals(statusName)) {
+                removeStatus(status);
+            }
+        }
+    }
+    
+    /**
+     * @return
+     *      Type of status attack entity is using
+     */
+    public Status getStatusAttack() {
+        return statusAttack;
+    }
+    
+    /**
+     * @return
+     *      Probability of inflicting status
+     */
+    public int getStatusAttackProbability() {
+        return statusAttackProbability;
+    }
+    
+    /**
+     * Get statuses that are currently inflicted on the entity
+     * 
+     * @return
+     *      List of statuses
+     */
+    public List<Status> getStatuses() {
+        return statuses;
+    }
+    
+    /**
+     * Find if the player has a specified status
+     * 
+     * @param status
+     *          The status to check for
+     * @return
+     *          Entity has status
+     */
+    public boolean hasStatus(final String statusName) {
+        for (Status status : statuses) {
+            if (status.getName().equals(statusName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Add status to entity
+     * 
+     * @param status
+     *          Status to be added
+     * @return
+     *          Successfully inflicted status
+     */
+    public void inflictStatus(final Status status) {
+        // Multiple instances of a status can be inflicted
+        statuses.add(status);
+        statusChanged = true;
+        
+        if (this instanceof Player) {
+            sendPrivateText("You have been inflicted with " + status.getName());
+        }
+    }
+    
+    /**
+     * Status effects that cannot be inflicted on entity
+     * 
+     * @param status
+     *          Immunity to check for
+     * @return
+     *          Entity is immune to status
+     */
+    public boolean isResistantToStatus(final Status status) {
+        if (resistances.contains(status.getName())) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Removes a single instance of a status from entity
+     * 
+     * @param status
+     *          Status to be removed
+     */
+    public void removeStatus(final Status status) {
+        if (hasStatus(status.getName())) {
+            int index = statuses.indexOf(status);
+            statuses.remove(index);
+            statusChanged = true;
+        }
+    }
+    
+    /**
+     * Add a status attack type to the entity
+     * 
+     * @param status
+     *          Status attack type
+     * @param probability
+     *          Probability of inflicting status
+     */
+    public void setStatusAttack(final Status status, final int probability) {
+        statusAttack = status;
+        statusAttackProbability = probability;
+    }
+    
+    /**
+     * @param changed
+     *          A status has been added/removed from the entity
+     */
+    public void setStatusChanged(boolean changed) {
+        statusChanged = changed;
+    }
+    
+    /**
+     * Notifies whether a status has been added/removed from the entity
+     * @return
+     */
+    public boolean statusChanged() {
+        return statusChanged;
+    }
+    
+    //
+    // END: Status effects
+    //
 }

@@ -50,6 +50,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
+import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
@@ -166,7 +167,9 @@ public class Player extends RPEntity implements UseListener {
 	 * detecting quick presses ment to move one tile.
 	 */
 	private int startMoveTurn;
-
+	
+	/** List of status effects inflicted on entity */
+	List<Status> statuses;
 
 	/**
 	 * last client action timestamp
@@ -284,6 +287,8 @@ public class Player extends RPEntity implements UseListener {
 			unstore();
 			logger.error("Player " + getName() + " was marked storable.", new Throwable());
 		}
+		
+		statuses = new LinkedList<Status>();
 		updateModifiedAttributes();
 	}
 
@@ -1767,6 +1772,20 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void logic() {
+	    
+	    /*
+	     * Effects of any statuses entity might have
+	     */
+	    if (statusChanged()) {
+	        setStatusChanged(false);
+    	    statuses = getStatuses();
+	    }
+    	if (statuses.size() > 0) {
+    	    for (Status status : statuses) {
+        	        status.affect(this);
+        	}
+	    }
+	    
 		/*
 		 * TODO: Refactor Most of these things can be handled as RPEvents
 		 */
