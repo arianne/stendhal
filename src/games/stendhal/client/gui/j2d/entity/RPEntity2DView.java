@@ -140,7 +140,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
-				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 12, -13) {
+				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isPoisoned();
