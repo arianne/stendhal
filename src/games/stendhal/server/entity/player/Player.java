@@ -1775,14 +1775,23 @@ public class Player extends RPEntity implements UseListener {
 	    
 	    /*
 	     * Effects of any statuses entity might have
+	     * 
+	     * FIXME: Should be moved to RPEntity
 	     */
 	    if (statusChanged()) {
 	        setStatusChanged(false);
     	    statuses = getStatuses();
 	    }
     	if (statuses.size() > 0) {
+    	    // Only use the first instance of a status
+    	    List<String> usedStatuses = new LinkedList<String>();
+    	    String currentStatus;
     	    for (Status status : statuses) {
-        	        status.affect(this);
+    	        currentStatus = status.getName();
+    	        if (!usedStatuses.contains(currentStatus)) {
+    	            status.affect(this);
+    	            usedStatuses.add(currentStatus);
+    	        }
         	}
 	    }
 	    
