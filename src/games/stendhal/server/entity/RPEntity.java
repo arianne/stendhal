@@ -3096,10 +3096,16 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      *          Status to be removed
      */
     public void removeStatus(final Status status) {
-        if (hasStatus(status.getName())) {
+        String name = status.getName();
+        if (hasStatus(name)) {
             int index = statuses.indexOf(status);
             statuses.remove(index);
             statusChanged = true;
+            
+            if (this instanceof Player && !hasStatus(name)) {
+                ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING,
+                        "You are no longer affected by \"" + name + "\"");
+            }
         }
     }
     
