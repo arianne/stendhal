@@ -46,6 +46,8 @@ public abstract class ActiveEntity extends Entity {
 	 * The amount of uncommitted tile movement.
 	 */
 	private double movementOffset;
+	
+	private int stepsTaken;
 
 	/**
 	 * Create an active entity.
@@ -54,6 +56,7 @@ public abstract class ActiveEntity extends Entity {
 		direction = Direction.STOP;
 		speed = 0.0;
 		movementOffset = 0.0;
+		stepsTaken = 0;
 	}
 
 	/**
@@ -67,6 +70,7 @@ public abstract class ActiveEntity extends Entity {
 
 		direction = Direction.STOP;
 		speed = 0.0;
+		stepsTaken = 0;
 
 		update();
 	}
@@ -81,9 +85,11 @@ public abstract class ActiveEntity extends Entity {
 	public void applyMovement() {
 		// even if we could we would not move;
 		if (speed == 0) {
+		    stepsTaken = 0;
 			return;
 		}
 		if (direction == Direction.STOP) {
+		    stepsTaken = 0;
 			return;
 		}
 		
@@ -137,6 +143,7 @@ public abstract class ActiveEntity extends Entity {
 			}
 
 			move(x, y, nx, ny);
+			stepsTaken += 1;
 		}
 
 		notifyWorldAboutChanges();
@@ -440,5 +447,9 @@ public abstract class ActiveEntity extends Entity {
 			return 0;
 		}
 		return super.getResistance();
+	}
+	
+	public int getStepsTaken() {
+	    return stepsTaken;
 	}
 }
