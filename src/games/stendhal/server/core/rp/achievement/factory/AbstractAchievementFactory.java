@@ -44,8 +44,8 @@ public abstract class AbstractAchievementFactory {
 	 * @param title
 	 * @param description
 	 * @param score
+     * @param active
 	 * @param condition
-	 * @param active
 	 * @return the new Achievement
 	 */
 	protected Achievement createAchievement(String identifier, String title, String description, int score, boolean active, ChatCondition condition) {
