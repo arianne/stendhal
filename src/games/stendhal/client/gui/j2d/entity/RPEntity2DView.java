@@ -116,7 +116,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
-		poisonedSprite = st.getSprite("data/sprites/ideas/poisoned.png");
+		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"),
+		        0, 0, 4, 32, 32, 200);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 	}
 
@@ -139,7 +140,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, -poisonedSprite.getWidth(), 0) {
+				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 12, -13) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isPoisoned();
