@@ -39,8 +39,6 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.entity.status.ConfuseStatus;
-import games.stendhal.server.entity.status.ShockStatus;
 import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -3074,21 +3072,22 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     }
     
     /**
-     * Add status to entity
+     * Add status effect to entity
      * 
      * @param status
      *          Status to be added
-     * @return
-     *          Successfully inflicted status
      */
     public void inflictStatus(final Status status) {
         inflictStatus(status, null);
     }
     
     /**
+     * Add status effect to entity
      * 
      * @param status
+     *          Status to be added
      * @param attacker
+     *          Entity that is inflicting status
      */
     public void inflictStatus(final Status status, final RPEntity attacker) {
         String statusName = status.getName();
@@ -3111,7 +3110,25 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
                 }
             }
         } else {
-            logger.info("Cannot add more occurrences of " + statusName + ". Total occurrences: " + count);
+            logger.debug("Entity \"" + getName() + "\" cannot add more occurrences of " + statusName + ". Total occurrences: " + count);
+            // Reset counter for first instance of status
+            int index;
+            boolean found = false;
+            for (index = 0; index < statuses.size(); index++) {
+                if (statuses.get(index).getName().equals(statusName)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                statuses.remove(index);
+                statuses.add(index, status);
+                if (attacker == null) {
+                    ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
+                } else {
+                    ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"" + statusName + "\" by " + attacker.getName());
+                }
+            }
         }
     }
     
