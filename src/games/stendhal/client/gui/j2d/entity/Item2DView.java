@@ -76,15 +76,12 @@ class Item2DView<T extends Item> extends Entity2DView<T> {
 
 		/*
 		 * Items are always 1x1 (they need to fit in entity slots). Extra
-		 * columns are animation. Extra rows are ignored.
+		 * columns are animation.
 		 */
 		final int width = sprite.getWidth();
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getAnimatedSprite(sprite, 0, 0, width
-					/ IGameScreen.SIZE_UNIT_PIXELS,
-					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
-					100);
+			sprite = store.getAnimatedSprite(sprite, 100);
 		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getTile(sprite, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
 					IGameScreen.SIZE_UNIT_PIXELS);

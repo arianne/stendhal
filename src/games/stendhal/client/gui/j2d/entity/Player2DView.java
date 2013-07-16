@@ -13,7 +13,6 @@
 package games.stendhal.client.gui.j2d.entity;
 
 
-import games.stendhal.client.IGameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
@@ -67,13 +66,9 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 		final Sprite gotAwaySprite = store.getSprite("data/sprites/ideas/away.png");
 		final Sprite gotGrumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
 		final Sprite gotPkSprite = store.getSprite("data/sprites/ideas/pk.png");
-		skullSprite = store.getAnimatedSprite(gotPkSprite , 0, 0, 12, 16, 24, 200);
-		awaySprite = store.getAnimatedSprite(gotAwaySprite, 0, 0, 4,
-				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
-				2000);
-		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 0, 0, 4,
-				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
-				2000);
+		skullSprite = store.getAnimatedSprite(gotPkSprite, 12, 200);
+		awaySprite = store.getAnimatedSprite(gotAwaySprite, 2000);
+		grumpySprite = store.getAnimatedSprite(gotGrumpySprite, 2000);
 	}
 	
 	/**
