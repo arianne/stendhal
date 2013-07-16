@@ -22,14 +22,17 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
@@ -62,13 +65,16 @@ import java.util.List;
  * 
  * REPETITIONS:
  * <ul>
- * <li>None</li>
+ * <li>Every 24 hours</li>
  * </ul>
  */
 public class TrapsForKlaas extends AbstractQuest {
 
 	public final int REQUIRED_TRAPS = 20;
 	
+    // Time player must wait to repeat quest (1 day)
+    private static final int WAIT_TIME = 60 * 24;
+    
 	private static final String QUEST_SLOT = "traps_for_klaas";
 	
 
@@ -89,6 +95,9 @@ public class TrapsForKlaas extends AbstractQuest {
 		if ("done".equals(questState)) {
 			res.add("I gave the rodent traps to Klaas. I got some experience and antidotes.");
 		}
+		if (isRepeatable(player)) {
+		    res.add("I should check if Klaas needs my help again.");
+		}
 		return res;
 	}
 
@@ -98,7 +107,10 @@ public class TrapsForKlaas extends AbstractQuest {
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotStartedCondition(QUEST_SLOT),
+			new AndCondition(
+			        new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+			        new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)
+			        ),
 			ConversationStates.QUEST_OFFERED, 
 			"The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
 			null);
@@ -161,6 +173,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new IncreaseKarmaAction(10));
         reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+        reward.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 		
 		// Player has all 20 traps
 		npc.add(ConversationStates.IDLE,
