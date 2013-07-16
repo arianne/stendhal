@@ -339,7 +339,7 @@ public class Player extends RPEntity implements UseListener {
 
 			// as an effect of the poisoning, the player's controls
 			// are switched to make it difficult to navigate.
-			if (isPoisoned()) {
+			if (isPoisoned() || hasStatus("confuse")) {
 				direction = direction.oppositeDirection();
 			}
 

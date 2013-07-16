@@ -39,6 +39,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.status.ConfuseStatus;
 import games.stendhal.server.entity.status.ShockStatus;
 import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.AttackEvent;
@@ -249,6 +250,10 @@ public abstract class RPEntity extends GuidedEntity {
 			
 			entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
 			entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
+			
+			// Status effects
+			entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
+			entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
 			
 			entity.addRPSlot("head", 1, Definition.PRIVATE);
 			entity.addRPSlot("rhand", 1, Definition.PRIVATE);
@@ -3034,6 +3039,24 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     }
     
     /**
+     * Count how many occurances of a status are inflicted on the entity
+     * 
+     * @param statusName
+     *          Name of the status being checked
+     * @return
+     *          Number of times status is found
+     */
+    public int statusOccurrenceCount(final String statusName) {
+        int count = 0;
+        for (Status status : statuses) {
+            if (status.getName().equals(statusName)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+    
+    /**
      * Find if the player has a specified status
      * 
      * @param status
@@ -3059,18 +3082,36 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      *          Successfully inflicted status
      */
     public void inflictStatus(final Status status) {
-        // Multiple instances of a status can be inflicted
-        statuses.add(status);
-        statusChanged = true;
-        ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
+        inflictStatus(status, null);
     }
     
+    /**
+     * 
+     * @param status
+     * @param attacker
+     */
     public void inflictStatus(final Status status, final RPEntity attacker) {
-        statuses.add(status);
-        statusChanged = true;
+        String statusName = status.getName();
         
-        if (this instanceof Player) {
-            ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\" by " + attacker.getName());
+        int count = statusOccurrenceCount(status.getName());
+        if ((count < status.allowedOccurrences()) ||
+                (status.allowedOccurrences() < 0)) {
+            statuses.add(status);
+            statusChanged = true;
+            
+            if (!has("status_" + statusName)) {
+                put("status_" + statusName, 1);
+            }
+            
+            if (this instanceof Player) {
+                if (attacker == null) {
+                    ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
+                } else {
+                    ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"" + statusName + "\" by " + attacker.getName());
+                }
+            }
+        } else {
+            logger.info("Cannot add more occurrences of " + statusName + ". Total occurrences: " + count);
         }
     }
     
@@ -3096,15 +3137,21 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      *          Status to be removed
      */
     public void removeStatus(final Status status) {
-        String name = status.getName();
-        if (hasStatus(name)) {
+        String statusName = status.getName();
+        if (hasStatus(statusName)) {
             int index = statuses.indexOf(status);
             statuses.remove(index);
             statusChanged = true;
             
-            if (this instanceof Player && !hasStatus(name)) {
-                ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING,
-                        "You are no longer affected by \"" + name + "\"");
+            if (!hasStatus(statusName)) {
+                if (this instanceof Player && !hasStatus(statusName)) {
+                    ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING,
+                            "You are no longer affected by \"" + statusName + "\"");
+                }
+            }
+            
+            if (has("status_" + statusName)) {
+                remove("status_" + statusName);
             }
         }
     }
