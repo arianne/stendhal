@@ -32,7 +32,7 @@ public class ShockStatus extends Status {
     public ShockStatus() {
         // Give the status a name
         super("shock");
-        super.setTimeout(20);
+        super.setTimeout(200);
     }
     
     /**
@@ -50,10 +50,6 @@ public class ShockStatus extends Status {
             // Stop the entity's movement after 5 steps
             entity.stop();
             entity.clearPath();
-            
-            if (entity instanceof Player) {
-                ((Player) entity).sendPrivateText(NotificationType.SCENE_SETTING, "You are affected by \"shock\"");
-            }
         }
     }
 }
