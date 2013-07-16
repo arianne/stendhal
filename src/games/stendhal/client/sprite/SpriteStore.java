@@ -97,6 +97,39 @@ public class SpriteStore {
 		return new AnimatedSprite(getTiles(sprite, x, y, frameCount, width,
 				height), delay, true);
 	}
+	
+	/**
+	 * Get an animated sprite from a sprite. The frames are calculated
+	 * automatically from the dimensions of the origin sprite. The intended
+	 * frames should be in a row. Each frame will have height of the origin
+	 * sprite and the specified width. The number of frames will depend on
+	 * the width of the origin sprite.
+	 *  
+	 * @param sprite Origin sprite
+	 * @param width frame width
+	 * @param delay delay between the frames
+	 * @return animated sprite
+	 */
+	public AnimatedSprite getAnimatedSprite(Sprite sprite, int width, int delay) {
+		int height = sprite.getHeight();
+		int frames = sprite.getWidth() / width;
+		return getAnimatedSprite(sprite, 0, 0, frames, width, height, delay);
+	}
+	
+	/**
+	 * Get an animated sprite from a sprite. The frames are calculated
+	 * automatically from the dimensions of the origin sprite. The intended
+	 * frames should be in a row. Each frame will be a square with the height of
+	 * the origin. The number of frames will depend on the width of the origin
+	 * sprite.
+	 *  
+	 * @param sprite Origin sprite
+	 * @param delay delay between the frames
+	 * @return animated sprite
+	 */
+	public AnimatedSprite getAnimatedSprite(Sprite sprite, int delay) {
+		return getAnimatedSprite(sprite, sprite.getHeight(), delay);
+	}
 
 	/**
 	 * Get sprite tiles from a sprite using pixel units.
