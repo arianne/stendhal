@@ -26,7 +26,7 @@ public class Status {
     private String name;
     
     /** Number of turns that status is active (less than 0 for indefinate) */
-    private int statusTimeout = -1;
+    private int statusTimeout = 0;
     protected int timeoutCounter;
     
     /** Number of times the status can be inflicted on the entity at a single time (-1 for indefinite) */
@@ -46,10 +46,6 @@ public class Status {
     public void affect(final RPEntity entity) {
         if (timeoutCounter > 0) {
             timeoutCounter -= 1;
-        }
-        if (timeoutCounter == 0) {
-            // Clear the entity of this status when the timeout has expired
-            entity.removeStatus(this);
         }
     }
     
@@ -74,6 +70,17 @@ public class Status {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Condition to meet for status to be removed
+     * 
+     * @return
+     *          Counter for timeout has reached 0
+     */
+    public boolean removeConditionMet() {
+        // Override this method to use different condition
+        return timeoutCounter == 0;
     }
     
     public void setMaxOccurrences(final int max) {

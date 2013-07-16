@@ -1782,6 +1782,9 @@ public class Player extends RPEntity implements UseListener {
 	        setStatusChanged(false);
     	    statuses = getStatuses();
 	    }
+	    
+	    // Statuses to be removed
+	    List<String> statusesToRemove = new LinkedList<String>();
     	if (statuses.size() > 0) {
     	    // Only use the first instance of a status
     	    List<String> usedStatuses = new LinkedList<String>();
@@ -1792,8 +1795,14 @@ public class Player extends RPEntity implements UseListener {
     	            status.affect(this);
     	            usedStatuses.add(currentStatus);
     	        }
+    	        if (status.removeConditionMet()) {
+    	            statusesToRemove.add(status.getName());
+    	        }
         	}
 	    }
+    	for (String statusName : statusesToRemove) {
+    	    removeStatus(statusName);
+    	}
 	    
 		/*
 		 * TODO: Refactor Most of these things can be handled as RPEvents

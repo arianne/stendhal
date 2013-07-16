@@ -3003,10 +3003,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      *          Status to be cured
      */
     public void cureStatus(final String statusName) {
-        for (Status status : statuses) {
-            if (status.getName().equals(statusName)) {
-                removeStatus(status);
-            }
+        while (removeStatus(statusName)) {
+            // Do nothing. Just let removeStatus() remove all instances
         }
     }
     
@@ -3034,6 +3032,24 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      */
     public List<Status> getStatuses() {
         return statuses;
+    }
+    
+    /**
+     * Find the index of the first occurance of the status effect
+     * 
+     * @param statusName
+     *          Status effect to search for
+     * @return
+     *          List index of status effect
+     */
+    public int getFirstStatusIndex(final String statusName) {
+        int index;
+        for (index = 0; index < statuses.size(); index++) {
+            if (statuses.get(index).getName() == statusName) {
+                return index;
+            }
+        }
+        return -1;
     }
     
     /**
@@ -3111,16 +3127,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
             }
         } else {
             logger.debug("Entity \"" + getName() + "\" cannot add more occurrences of " + statusName + ". Total occurrences: " + count);
-            // Reset counter for first instance of status
-            int index;
-            boolean found = false;
-            for (index = 0; index < statuses.size(); index++) {
-                if (statuses.get(index).getName().equals(statusName)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found) {
+            if (hasStatus(statusName)) {
+                // Reset counter for first instance of status
+                int index = getFirstStatusIndex(statusName);
                 statuses.remove(index);
                 statuses.add(index, status);
                 if (attacker == null) {
@@ -3152,25 +3161,27 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      * 
      * @param status
      *          Status to be removed
+     * @return
+     *          Entity is still affected by another instance
      */
-    public void removeStatus(final Status status) {
-        String statusName = status.getName();
+    public boolean removeStatus(final String statusName) {
         if (hasStatus(statusName)) {
-            int index = statuses.indexOf(status);
+            int index = getFirstStatusIndex(statusName);
             statuses.remove(index);
             statusChanged = true;
             
             if (!hasStatus(statusName)) {
                 if (this instanceof Player && !hasStatus(statusName)) {
                     ((Player) this).sendPrivateText(NotificationType.SCENE_SETTING,
-                            "You are no longer affected by \"" + statusName + "\"");
+                            "\"" + statusName + "\" has worn off.");
                 }
-            }
-            
-            if (has("status_" + statusName)) {
-                remove("status_" + statusName);
+                if (has("status_" + statusName)) {
+                    remove("status_" + statusName);
+                }
+                return false;
             }
         }
+        return true;
     }
     
     /**
