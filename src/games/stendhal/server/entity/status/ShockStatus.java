@@ -33,6 +33,7 @@ public class ShockStatus extends Status {
         // Give the status a name
         super("shock");
         super.setTimeout(200);
+        super.setMaxOccurrences(6);
     }
     
     /**

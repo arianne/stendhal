@@ -29,6 +29,9 @@ public class Status {
     private int statusTimeout = -1;
     protected int timeoutCounter;
     
+    /** Number of times the status can be inflicted on the entity at a single time (-1 for indefinite) */
+    private int maxOccurrences = -1;
+    
     public Status(final String name) {
         this.name = name;
         timeoutCounter = statusTimeout;
@@ -61,12 +64,20 @@ public class Status {
         }
     }
     
+    public int allowedOccurrences() {
+        return maxOccurrences;
+    }
+    
     /**
      * @return
      *      The status's name
      */
     public String getName() {
         return name;
+    }
+    
+    public void setMaxOccurrences(final int max) {
+        maxOccurrences = max;
     }
     
     /**
