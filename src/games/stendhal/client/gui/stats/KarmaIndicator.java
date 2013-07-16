@@ -41,8 +41,6 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	
 	/** Timer for setting the border color to normal after highlighting. */
 	private final Timer timer;
-	/** Previous karma value. */
-	private double oldValue;
 	
 	/**
 	 * Create the KarmaIndicator instance.
@@ -155,21 +153,11 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 	
 	@Override
 	protected void valueChanged() {
-		// Set the border color according to change direction
-		KarmaScalingModel model = (KarmaScalingModel) getModel();
-		double newValue = model.value;
-		double change = newValue - oldValue;
-		if (Math.abs(change) < 0.0001) {
-			return;
-		}
-		oldValue = newValue;
-		boolean positive = change > 0.0;
-		final Color hl = positive ? Color.BLUE : Color.RED;
-		
+		// Make the border briefly white.
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				setForeground(hl);
+				setForeground(Color.WHITE);
 				// Restore normal border after delay
 				timer.restart();
 			}
@@ -206,22 +194,26 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 
 		@Override
 		public void setValue(double value) {
+			boolean changed = this.value != value;
 			this.value = value;
-			calculateRepresentation();
+			if (!calculateRepresentation() && changed) {
+				// Notify all value changes even if the representation didn't
+				// change so that the bar can be flashed as a sign to the user.
+				fireChanged();
+			}
 		}
 
 		/**
 		 * Calculate the representation value.
+		 * 
+		 * @return <code>true</code> if the representation changed, otherwise
+		 * 	<code>false</code>
 		 */
-		private void calculateRepresentation() {
+		private boolean calculateRepresentation() {
 			// Scale to ]0, 1[
 			double normalized = 0.5 + Math.atan(SCALING * value) / Math.PI;
 			// ...and then to ]0, maxRepresentation[
-			if (!setRepresentation((int) Math.round(normalized * maxRepresentation))) {
-				// Notify even if the representation didn't change so that the
-				// change direction can be shown to the user.
-				fireChanged();
-			}
+			return setRepresentation((int) Math.round(normalized * maxRepresentation));
 		}
 
 		@Override
