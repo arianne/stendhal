@@ -11,10 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.common.Direction;
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * A status effect that causes the entity to stop moving after a set amount of steps
