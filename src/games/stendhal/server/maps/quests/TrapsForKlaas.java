@@ -20,17 +20,15 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -106,23 +104,23 @@ public class TrapsForKlaas extends AbstractQuest {
 		
 		// Player asks for quest
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new AndCondition(
-			        new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-			        new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)
-			        ),
-			ConversationStates.QUEST_OFFERED, 
-			"The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
-			null);
+		        ConversationPhrases.QUEST_MESSAGES, 
+		        new AndCondition(
+		                new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+		                new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)
+		                ),
+		        ConversationStates.QUEST_OFFERED, 
+		        "The rats down here have been getting into the food storage. Would you help me rid us of the varmints?",
+		        null);
 		
-		// Player asks for quest after completed
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
-			"Thanks for the traps. Now the food will be safe.",
-			null);
-		
+        // Player requests quest before wait period ended
+        npc.add(ConversationStates.ATTENDING,
+                ConversationPhrases.QUEST_MESSAGES,
+                new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, WAIT_TIME)),
+                ConversationStates.ATTENDING,
+                null,
+                new SayTimeRemainingAction(QUEST_SLOT, 1, WAIT_TIME, "Thanks for the traps. Now the food will be safe. But I may need your help again in"));
+        
 		// Player asks for quest after already started
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
