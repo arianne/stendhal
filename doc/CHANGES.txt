@@ -18,9 +18,9 @@
     black giant, amazoness giant, kasarkutominubat
 - Remodeled int_ados_house_70
 - Wishman unlocks door rather than throwing player into dragon lair
-- New quest: Traps for Klaas
+- New quests: Traps for Klaas & Help with the Harvest
 - New achievement: A Bit Xenophobic
-- New item: xeno helmet
+- New item: xeno helmet dropped by xenocium
 - PassiveNPCs using random paths can be set to have a maximum movement radius
 - Sound effect played when player dies
 - QuestCheckingPortal can now check quest state
