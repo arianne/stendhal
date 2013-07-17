@@ -108,12 +108,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"This is really nice. I was getting tired of bringing the two carts with straw to Karl. Please #push two stray carts to Karl's #barn and tell me that you are #done afterwards.",
+				"That is really nice. I was getting tired of bringing carts to Karl. Please #push two staw carts to Karl's #barn and tell me that you are #done afterwards.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
-		npc.addReply("push", "You can easily move these carts by pushing them infront of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
+		npc.addReply("push", "You can easily move the carts by pushing them in front of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
 		
-		npc.addReply("barn", "You can find Karl's barn in the north from here. It has a huge shield on which tells you that its his.");
+		npc.addReply("barn", "You can find Karl's barn north of here. It is marked by a huge sign with his name.");
 		
 		/*
 		 * Player refused to help - end the conversation.
@@ -133,7 +133,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("done"),
 				constructHayCartsNotYetCompletedCondition(),
 				ConversationStates.ATTENDING,
-				"You did not bring yet both straw carts next to the straw cart near the barn just north of here.",
+				"You did not yet bring both straw carts next to the cart near the barn just north of here.",
 				null);
 		
 		/*
@@ -143,7 +143,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("done"),
 				createTaskFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Thank you for helping me with the harvest. Here is your reward. Maybe you can bring the grain to #Jenny who can mill #flour from the grain.",
+				"Thank you for helping me with the harvest. Here is your reward. Maybe you can bring the grain to #Jenny who can mill #flour from it.",
 				createReward());
 		/*
 		 * Player has finished the quest and can get additional information
@@ -152,42 +152,42 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				Arrays.asList("jenny"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"You can find #Jenny near Semos at the mill. She mills grain to #flour for you if you bring her a few sheaves of grain.",
+				"You can find #Jenny near Semos at the mill. She mills grain into #flour for you if you bring her a few sheaves.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flour"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"#Jenny will mill the grain I gave you as reward to flour which you maybe could use for #bread?",
+				"#Jenny will mill the grain I gave you as reward to flour which you could maybe use for #bread?",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("bread"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"#Erna did never bake a bread for you yet? It is really worth it, because you can use it to let #Leander make #sandwiches for you.",
+				"#Erna hasn't baked for you yet? It is really worth it, because #Leander can use it to make #sandwiches for you.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("sandwich"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"You did not try a #sandwich made by #Leander yet? They are so tasty.",
+				"You haven't tried a #sandwich made by #Leander yet? They are so tasty.",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("leander"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Leander runs the bakery in Semos City and can make #sandwiches for you if you bring him the ingredients. Why don't you spend him a visit?",
+				"Leander runs the bakery in Semos City and can make #sandwiches for you if you bring him the ingredients. Why don't you give him a visit?",
 				null);
 		
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("erna"),
 				createFinishedCondition(),
 				ConversationStates.ATTENDING,
-				"Erna is the assistant of #Leander in the bakery. If you bring her #flour, she will bake #bread for you.",
+				"Erna is the assistant to #Leander in the bakery. If you bring her #flour, she will bake #bread for you.",
 				null);
 	}
 
