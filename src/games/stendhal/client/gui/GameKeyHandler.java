@@ -126,9 +126,9 @@ class GameKeyHandler implements KeyListener {
 	}
 
 	/**
-	 * Process delayed direction release
+	 * Process delayed direction release.
 	 */
-	void processDelayedDirectionRelease() {
+	synchronized void processDelayedDirectionRelease() {
 		if ((directionRelease != null) && directionRelease.hasExpired()) {
 			client.removeDirection(directionRelease.getDirection(),
 					directionRelease.isFacing());
@@ -169,7 +169,7 @@ class GameKeyHandler implements KeyListener {
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
-	private void processDirectionPress(final Direction direction,
+	private synchronized void processDirectionPress(final Direction direction,
 			final boolean facing) {
 		if (directionRelease != null) {
 			if (directionRelease.check(direction, facing)) {
@@ -201,7 +201,7 @@ class GameKeyHandler implements KeyListener {
 	 * @param direction The direction.
 	 * @param facing If facing only.
 	 */
-	private void processDirectionRelease(final Direction direction,
+	private synchronized void processDirectionRelease(final Direction direction,
 			final boolean facing) {
 		if (directionRelease != null) {
 			if (directionRelease.check(direction, facing)) {
