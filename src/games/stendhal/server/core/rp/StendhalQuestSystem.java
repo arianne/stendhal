@@ -377,7 +377,8 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * if the quest is too dangerous, add a warning
+	 * If the quest is too dangerous, add a warning unless the player has
+	 * already completed it.
 	 *
 	 * @param player Player to get the warning for
 	 * @param questName   quest
@@ -386,10 +387,10 @@ public class StendhalQuestSystem {
 	public String getQuestLevelWarning(Player player, String questName) {
 		for (final IQuest quest : quests) {
 			final QuestInfo questInfo = quest.getQuestInfo(player);
-			if (questInfo.getName().equals(questName)) {
-				if (questInfo.getSuggestedMinLevel() > player.getLevel()) {
-					return "This task may be too dangerous for your level of experience.";
-				}
+			if (questInfo.getName().equals(questName)
+					&& (questInfo.getSuggestedMinLevel() > player.getLevel())
+					&& !quest.isCompleted(player)) {
+				return "This task may be too dangerous for your level of experience.";
 			}
 		}
 		return "";
@@ -504,11 +505,11 @@ public class StendhalQuestSystem {
 	 * @return quest description (there may be more than one)
 	 */
 	public List<String> getQuestDescriptionForUnstartedQuestInRegionFromNPCName(Player player, String region, String name) {
-        final int playerlevel = player.getLevel();
 		List<String> res = new LinkedList<String>();
         if (name == null) {
             return res;
         }
+        final int playerlevel = player.getLevel();
 		for (final IQuest quest : quests) {
 			if (region.equals(quest.getRegion()) && !quest.isStarted(player) && quest.isVisibleOnQuestStatus() && quest.getMinLevel()<playerlevel && name.equals(quest.getNPCName())) {
 				res.add(quest.getQuestInfo(player).getDescription());
