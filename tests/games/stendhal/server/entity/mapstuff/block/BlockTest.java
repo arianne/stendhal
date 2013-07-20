@@ -1,3 +1,14 @@
+/***************************************************************************
+ *               (C) Copyright 2003-2013 - Faiumoni e.V                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.block;
 
 import static org.hamcrest.Matchers.is;
@@ -163,8 +174,9 @@ public class BlockTest {
         assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
 
         // world progresses till timeout reached
-        int turnsToWait = SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_TIMEOUT_IN_SECONDS);
-        for (int i = 0; i <= turnsToWait; i++) {
+        int currentTurn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+        int endTurn = 1 + currentTurn + SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_TIMEOUT_IN_SECONDS);
+        for (int i = 0; i <= endTurn; i++) {
             assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
             SingletonRepository.getRPWorld().nextTurn();
             SingletonRepository.getTurnNotifier().logic(i);
@@ -172,4 +184,41 @@ public class BlockTest {
         assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(0)));
     }
 
+    /**
+     * Test timeout in the situation that a player blocks the return position.
+     */
+    @Test
+    public void testTimeOutBlocked() {
+        Block b1 = new Block(0, 0, true);
+        StendhalRPZone z = new StendhalRPZone("test", 10, 10);
+        Player p = PlayerTestHelper.createPlayer("pusher");
+        z.add(b1, false);
+        z.add(p);
+
+        // one successful push
+        b1.push(p, Direction.RIGHT);
+        assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
+
+        // world progresses till timeout reached
+        int currentTurn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+        int endTurn = 1 + currentTurn + SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_TIMEOUT_IN_SECONDS);
+        for (int i = currentTurn; i <= endTurn; i++) {
+            assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
+            SingletonRepository.getRPWorld().nextTurn();
+            SingletonRepository.getTurnNotifier().logic(i);
+        }
+        // Can't move
+        assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
+        // Move player out of the way so that the block may return to 0, 0
+        p.setPosition(0, 1);
+        // world progresses till timeout reached
+        currentTurn = SingletonRepository.getTurnNotifier().getCurrentTurnForDebugging();
+        endTurn = 1 + currentTurn + SingletonRepository.getRPWorld().getTurnsInSeconds(Block.RESET_AGAIN_DELAY);
+        for (int i = currentTurn; i <= endTurn; i++) {
+            assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(1)));
+            SingletonRepository.getRPWorld().nextTurn();
+            SingletonRepository.getTurnNotifier().logic(i);
+        }
+        assertThat(Integer.valueOf(b1.getX()), is(Integer.valueOf(0)));
+    }
 }
