@@ -35,6 +35,8 @@ import org.apache.log4j.Logger;
 public class Block extends ActiveEntity implements ZoneEnterExitListener, MovementListener, TurnListener {
 
     static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
+
+    static final int RESET_AGAIN_DELAY = 10;
 	
     private static final String Z_ORDER = "z";
 
@@ -251,8 +253,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		final List<Player> playersInZone = zone.getPlayers();
 		int numberOfPlayersInZone = playersInZone.size();
         if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1 && playersInZone.contains(object)) {
-			this.reset();
-            logger.debug("Block [" + this.getID().toString() + "] reset to (" + this.getX() + "," + this.getY() + ").");
+            resetIfInitialPositionFree();
 		}
 	}
 
@@ -278,8 +279,19 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
     @Override
     public void onTurnReached(int currentTurn) {
-        // Reset Block after a timeout to its initial position
-        this.reset();
+        resetIfInitialPositionFree();
+    }
+
+    /**
+     * Reset to initial position if no collision there, try again later if not possible
+     */
+    private void resetIfInitialPositionFree() {
+        if (!this.getZone().collides(this, this.getInt(START_X), this.getInt(START_Y))) {
+            this.reset();
+        } else {
+            // try again in a few moments
+            SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_AGAIN_DELAY, this);
+        }
     }
 
 }
