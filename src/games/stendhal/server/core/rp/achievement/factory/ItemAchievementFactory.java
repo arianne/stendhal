@@ -64,7 +64,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 		itemAchievements.add(createAchievement("item.set.mainio", "Excellent Stuff", "Loot a complete mainio equipment set",
 				Achievement.HARD_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "mainio armor", "mainio helmet", "mainio cloak", "mainio legs", "mainio boots", "mainio shield")));
-		itemAchievements.add(createAchievement("item.set.xeno", "A bit xenophobic?", "Loot a complete xeno equipment set",
+		itemAchievements.add(createAchievement("item.set.xeno", "A Bit Xenophobic?", "Loot a complete xeno equipment set",
 				Achievement.HARD_BASE_SCORE, false,
 				new PlayerLootedNumberOfItemsCondition(1, "xeno armor", "xeno helmet", "xeno cloak", "xeno legs", "xeno boots", "xeno shield")));
 
