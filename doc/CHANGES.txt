@@ -18,9 +18,9 @@
     black giant, amazoness giant, kasarkutominubat
 - Remodeled int_ados_house_70
 - Wishman unlocks door rather than throwing player into dragon lair
-- New quest: Traps for Klaas
+- New quests: Traps for Klaas & Help with the Harvest
 - New achievement: A Bit Xenophobic
-- New item: xeno helmet
+- New item: xeno helmet dropped by xenocium
 - PassiveNPCs using random paths can be set to have a maximum movement radius
 - Sound effect played when player dies
 - QuestCheckingPortal can now check quest state
@@ -33,6 +33,7 @@
 
 *client*
 - Karma indicator bar flashes for karma change
+- Movement prediction when using keyboard adapts to network latency
 
 *fixes*
 - Alice Farmer answers to "crepes suzette"
@@ -41,6 +42,8 @@
     table_white_round tileset with table_white, bench_white, orb_table, skull_post
 - Marked apothecary's lab and cabin as inaccessible
 - Player's head no longer shows when walking in minecart tunnels in -2_semos_mine_n_e2
+- Item names in shop lists are now properly underlined
+- Spurious double click usages on items not meant to be usable removed
 
 1.08
 
