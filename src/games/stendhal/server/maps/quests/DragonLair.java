@@ -86,12 +86,12 @@ public class DragonLair extends AbstractQuest {
 				"Be warned, the dragons have started breathing fire! Anyway, would you like to visit our dragons again?",
 				null);
 		
-		// shouldn't happen
+		// Player asks for quest while quest is already active
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, 
-				"Thanks for stopping by. Come again.",
+				"I have already opened the door to the dragon lair.",
 				null);
 		
 		npc.add(ConversationStates.QUEST_OFFERED,
