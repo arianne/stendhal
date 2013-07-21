@@ -116,7 +116,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
-		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 200);
+		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 	}
 
