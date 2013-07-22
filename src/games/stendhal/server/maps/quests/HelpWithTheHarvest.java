@@ -189,6 +189,11 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Erna is the assistant to #Leander in the bakery. If you bring her #flour, she will bake #bread for you.",
 				null);
+
+        /*
+         * Add a reply on the trigger phrase "quest" after it is finished
+         */
+        npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, createFinishedCondition(), ConversationStates.ATTENDING, "We already brought in the complete harvest, thanks again for your help.", null);
 	}
 
 
