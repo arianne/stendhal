@@ -64,12 +64,16 @@ public class StatusDisplayBar extends JComponent {
 			public void componentResized(ComponentEvent e) {
 				Insets insets = getInsets();
 				int barWidth = getWidth() - insets.left - insets.right - 2;
-				if (painter != null) {
+				if (painter != null && barWidth > 0) {
 					int barHeight = getHeight() - insets.top - insets.bottom;
-					barImage = getGraphicsConfiguration().createCompatibleImage(barWidth, barHeight);
-					Graphics2D g = barImage.createGraphics();
-					painter.paint(g, barWidth, barHeight);
-					g.dispose();
+					if (barHeight > 0) {
+						barImage = getGraphicsConfiguration().createCompatibleImage(barWidth, barHeight);
+						Graphics2D g = barImage.createGraphics();
+						painter.paint(g, barWidth, barHeight);
+						g.dispose();
+					}
+					// Otherwise we can just keep the old image. It does not get
+					// painted anyway
 				}
 				model.setMaxRepresentation(barWidth);
 			}
