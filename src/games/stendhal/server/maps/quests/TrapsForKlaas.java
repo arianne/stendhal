@@ -90,7 +90,7 @@ public class TrapsForKlaas extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to gather " + REQUIRED_TRAPS + " rodent traps and bring them to Klaas.");
 		}
-		if ("done".equals(questState)) {
+		if (player.isQuestInState(QUEST_SLOT, 0, "done")) {
 			res.add("I gave the rodent traps to Klaas. I got some experience and antidotes.");
 		}
 		if (isRepeatable(player)) {
