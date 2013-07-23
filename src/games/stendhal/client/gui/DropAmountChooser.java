@@ -20,14 +20,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
@@ -40,18 +39,18 @@ import org.apache.log4j.Logger;
  * of the drop handling of those drops.
  */
 class DropAmountChooser {
-	/** Space between the popup border and actual content components */
+	/** Space between the popup border and actual content components. */
 	private static final int BORDER = 2;
 	
 	/** Item to be dropped. */
 	private final StackableItem item;
 	/** Target where the user is dropping the item. */
 	private final DropTarget target;
-	/** Drop location within the target component */
+	/** Drop location within the target component. */
 	private final Point location;
-	/** Created selector popup menu */
+	/** Created selector popup menu. */
 	private final JPopupMenu popup;
-	/** Number selector within the popup menu */
+	/** Number selector within the popup menu. */
 	private JSpinner spinner;
 	
 	/**
@@ -76,19 +75,17 @@ class DropAmountChooser {
 		 * selection needs to be pushed to the event queue.
 		 */
 		final JComponent field = getTextField();
-		if (field instanceof JTextComponent) {
-			field.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							((JTextComponent) field).selectAll();
-						}
-					});
-				}
-			});
-		}
+		field.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						((JTextComponent) field).selectAll();
+					}
+				});
+			}
+		});
 	}
 	
 	/**
@@ -122,25 +119,20 @@ class DropAmountChooser {
 		
 		SpinnerModel model = new SpinnerNumberModel(1, 0, item.getQuantity(), 1);
 		spinner = new JSpinner(model);
-		/* 
-		 * Setup a key listener for the editor field so that the drop is
-		 * performed when the user presses enter.
-		 */
-		getTextField().addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-					doDrop();
-				}
-			}
-		});
 		JButton button = new JButton("Drop");
-		button.addActionListener(new ActionListener() {
+		
+		ActionListener dropAction = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				doDrop();
 			}
-		});
+		};
+		/* 
+		 * Drop items at either clicking the drop button, or when enter is
+		 * pressed.
+		 */
+		getTextField().addActionListener(dropAction);
+		button.addActionListener(dropAction);
 		
 		JComponent content = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
 		content.setBorder(BorderFactory.createEmptyBorder(BORDER, BORDER, BORDER, BORDER));
@@ -172,7 +164,7 @@ class DropAmountChooser {
 	 * 
 	 * @return text field
 	 */
-	private JComponent getTextField() {
+	private JTextField getTextField() {
 		// There really seems to be no simpler way to do this
 		JComponent editor = spinner.getEditor();
 		if (editor instanceof JSpinner.DefaultEditor) {
@@ -180,7 +172,7 @@ class DropAmountChooser {
 		} else {
 			Logger.getLogger(DropAmountChooser.class).error("Unknown editor type", new Throwable());
 			// This will not work, but at least it won't crash the client
-			return editor;
+			return new JTextField();
 		}
 	}
 }
