@@ -43,3 +43,5 @@ bin
 build_server_xmlconf
 keystore_bak.ks
 .sonar
+keystore*
+*.ks
