@@ -64,7 +64,7 @@ public class ApothecaryNPC implements ZoneConfigurator {
 	    };
 	
 	    // The NPC sprite from data/sprites/npc/
-	    npc.setEntityClass("investigatornpc");
+	    npc.setEntityClass("apothecarynpc");
 	    // set a description for when a player does 'Look'
 	    npc.setDescription("You see Jameson, he steadily works away.");
 	    // Set the initial position to be the first node on the Path you defined above.
