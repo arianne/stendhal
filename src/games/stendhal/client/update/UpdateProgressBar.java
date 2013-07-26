@@ -12,6 +12,7 @@
 package games.stendhal.client.update;
 
 import java.awt.Dimension;
+import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
 
@@ -68,7 +69,7 @@ class UpdateProgressBar extends JFrame implements
 	 * @param toVersion the version the download leads to
 	 */
 	UpdateProgressBar(final int max, final String urlBase, final String fromVersion, final String toVersion) {
-		super("Downloading...");
+		super("Downloading...", MouseInfo.getPointerInfo().getDevice().getDefaultConfiguration());
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new UpdateProgressBarWindowListener());
 
