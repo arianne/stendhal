@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
-
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -95,9 +94,12 @@ public class DragonLairTest {
 		// [21:59] red dragon has been killed by kymara
 		// [21:59] kymara earns 20700 experience points.
 		
-		// quest slot should now start with done
-		assertTrue(player.isQuestCompleted(questSlot));
-				
+		// quest slot should now start with "start"
+		assertTrue(player.getQuest(questSlot) + " starts with start", player.isQuestInState(questSlot, "start"));
+		
+		// the portal sets the quest slot to  done
+		player.setQuest(questSlot, "done;" + Long.toString(System.currentTimeMillis()));
+
 		en.step(player, "hi");
 		assertEquals("Greetings, my fellow traveler. What may I do for you?", getReply(npc));
 		en.step(player, "task");
