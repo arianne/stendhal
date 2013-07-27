@@ -44,15 +44,14 @@ class UpdateGUIDialogs {
 		// ask user
 		int resCode;
 		if (update) {
-			resCode = JOptionPane.showConfirmDialog(null,
-					new SelectableLabel("There is a new version which is " + sizeString + " KB.\r\n"
-						+ "Should " + ClientGameConfiguration.get("GAME_NAME") + " be updated?"), DIALOG_TITLE,
-					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			resCode = LoneOptionDialog.showConfirmDialog("There is a new version which is "
+					+ sizeString + " KB.\r\n" + "Should "
+					+ ClientGameConfiguration.get("GAME_NAME") + " be updated?",
+					DIALOG_TITLE, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		} else {
-			resCode = JOptionPane.showConfirmDialog(null,
-					new SelectableLabel("We need to download some additional files which are "
-						+ sizeString + " KB.\r\n"
-						+ "Should " + ClientGameConfiguration.get("GAME_NAME") + " be installed?"),
+			resCode = LoneOptionDialog.showConfirmDialog("We need to download some additional files which are "
+						+ sizeString + " KB.\r\n" + "Should "
+					+ ClientGameConfiguration.get("GAME_NAME") + " be installed?",
 					DIALOG_TITLE, JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 		}
