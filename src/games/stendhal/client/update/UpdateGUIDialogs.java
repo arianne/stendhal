@@ -67,8 +67,6 @@ class UpdateGUIDialogs {
 	 *            message to display
 	 */
 	static void messageBox(final String message) {
-		JOptionPane.showMessageDialog(null, new SelectableLabel(message), DIALOG_TITLE,
-				JOptionPane.INFORMATION_MESSAGE);
+		LoneOptionDialog.showMessageDialog(message, DIALOG_TITLE);
 	}
-
 }

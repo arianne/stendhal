@@ -225,9 +225,7 @@ public class Bootstrap {
 			try {
 				saveBootProp();
 			} catch (final IOException e) {
-				JOptionPane.showMessageDialog(
-					null,
-					new SelectableLabel("Sorry, an error occurred while downloading the update. Could not write bootProperties"));
+				LoneOptionDialog.showMessageDialog("Sorry, an error occurred while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -299,11 +297,10 @@ public class Bootstrap {
 				// partly update
 				e.printStackTrace();
 
-				final int res = JOptionPane.showConfirmDialog(
-						null,
-						new SelectableLabel("Sorry an error occurred because of inconsistent code signing.\r\n"
-						+ "Delete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") + "?\r\n"
-						+ "Note: This exception can occur if you include signed jars into a self build client."),
+				int res = LoneOptionDialog.showConfirmDialog("Sorry an error occurred because of inconsistent code signing.\r\n"
+						+ "Delete update files so that they are downloaded again after you restart "
+						+ ClientGameConfiguration.get("GAME_NAME") + "?\r\n"
+						+ "Note: This exception can occur if you include signed jars into a self build client.",
 						ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (res == JOptionPane.YES_OPTION) {
@@ -324,9 +321,8 @@ public class Bootstrap {
 				method.invoke(null, (Object) args);
 			} catch (final Exception err) {
 				err.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null,
-						new SelectableLabel("Something nasty happened while trying to start your self build client: "
-								+ err));
+				LoneOptionDialog.showMessageDialog("Something nasty happened while trying to start your self build client: "
+								+ err);
 			}
 		}
 	}
@@ -347,13 +343,12 @@ public class Bootstrap {
 		e.printStackTrace();
 
 		if (e instanceof OutOfMemoryError) {
-			JOptionPane.showMessageDialog(null,
-					"Sorry, an OutOfMemoryError occurred. Please restart " + ClientGameConfiguration.get("GAME_NAME") + ".");
+			LoneOptionDialog.showMessageDialog("Sorry, an OutOfMemoryError occurred. Please restart "
+					+ ClientGameConfiguration.get("GAME_NAME") + ".");
 		} else if (e instanceof LinkageError || e instanceof SecurityException || e instanceof ClassNotFoundException) {
-			final int res = JOptionPane.showConfirmDialog(
-					null,
-					new SelectableLabel(message
-					+ " Sorry an error occurred because of an inconsistent update state.\r\nDelete update files so that they are downloaded again after you restart " + ClientGameConfiguration.get("GAME_NAME") +"?"),
+			int res = LoneOptionDialog.showConfirmDialog(message
+					+ " Sorry an error occurred because of an inconsistent update state.\r\nDelete update files so that they are downloaded again after you restart "
+					+ ClientGameConfiguration.get("GAME_NAME") +"?",
 					ClientGameConfiguration.get("GAME_NAME"), JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
@@ -361,11 +356,9 @@ public class Bootstrap {
 			}
 		} else {
 			String errorMessage = stacktraceToString(e);
-			JOptionPane.showMessageDialog(
-					null,
-					new SelectableLabel(
-					message + " An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-							+ errorMessage));
+			LoneOptionDialog.showMessageDialog(message
+					+ " An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+					+ errorMessage);
 		}
 		System.exit(1);
 	}
@@ -378,7 +371,7 @@ public class Bootstrap {
 		try {
 			saveBootProp();
 		} catch (final IOException e1) {
-			JOptionPane.showMessageDialog(null, new SelectableLabel("Could not write jar.properties"));
+			LoneOptionDialog.showMessageDialog("Could not write jar.properties");
 		}
 	}
 
