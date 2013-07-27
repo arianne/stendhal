@@ -178,6 +178,7 @@ public class SpeakerNPC extends NPC {
 
 		setName(name);
 		createDialog();
+		createDefaultReplies();
 		put("title_type", "npc");
 
 		setSize(1, 1);
@@ -205,6 +206,10 @@ public class SpeakerNPC extends NPC {
 
 	protected void createDialog() {
 		// sub classes can implement this method
+	}
+
+	private void createDefaultReplies() {
+		addWaitMessage();
 	}
 
 	/**
@@ -740,8 +745,6 @@ public class SpeakerNPC extends NPC {
 		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new GreetingMatchesNameCondition(getName()), true,
 				ConversationStates.ATTENDING, text, action);
-
-		addWaitMessage();
 	}
 
 	/**
@@ -777,8 +780,6 @@ public class SpeakerNPC extends NPC {
 	public void addReply(final String trigger, final String text, final ChatAction action) {
 		add(ConversationStates.ATTENDING, trigger, null,
 				ConversationStates.ATTENDING, text, action);
-
-		addWaitMessage();
 	}
 
 	/**
@@ -791,8 +792,6 @@ public class SpeakerNPC extends NPC {
 	public void addReply(final Collection<String> triggerStrings, final String text, final ChatAction action) {
 		add(ConversationStates.ATTENDING, triggerStrings, null,
 				ConversationStates.ATTENDING, text, action);
-
-		addWaitMessage();
 	}
 
 	public void addQuest(final String text) {
@@ -934,7 +933,7 @@ public class SpeakerNPC extends NPC {
 		this.alternativeImage = alternativeImage;
 	}
 
-	protected void addWaitMessage() {
+	private void addWaitMessage() {
 		addWaitMessage(null, new ChatAction() {
 			@Override
 			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {

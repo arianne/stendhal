@@ -71,15 +71,6 @@ public class ProducerAdder {
 		/* add to producer register */
 		producerRegister.add(npcName, behaviour);		
 
-        /* If the NPC is attending another player, say who they are attending */
-		npc.addWaitMessage(null, new ChatAction() {
-			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-				raiser.say("Please wait! I am attending "
-						+ raiser.getAttending().getName() + ".");
-			}
-		});
-
         /* The Player greets the NPC.
         * The NPC is not currently producing for player (not started, is rejected, or is complete) */
 		engine.add(ConversationStates.IDLE,
