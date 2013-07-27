@@ -59,8 +59,10 @@ public class BoyNPC implements ZoneConfigurator {
 					@Override
 					public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 						final NPCList npcs = SingletonRepository.getNPCList();
-						final SpeakerNPC npc = npcs.get("Anastasia");
-						npc.say("Sh! Please don't wake him!");
+						final SpeakerNPC npcAnastasia = npcs.get("Anastasia");
+						if (npcAnastasia != null) {
+							npcAnastasia.say("Sh! Please don't wake him!");
+						}
 						raiser.setCurrentState(ConversationStates.IDLE);
 					}
 				});
