@@ -78,7 +78,7 @@ public class BareBonesBrowserLaunch {
 						throw new Exception(Arrays.toString(browsers));
 				}
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, errMsg + url);
+				JOptionPane.showMessageDialog(j2DClient.get().getMainFrame(), errMsg + url);
 			}
 		}
 	}
