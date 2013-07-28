@@ -29,12 +29,13 @@ import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -109,7 +110,7 @@ public class StendhalFirstScreen extends JFrame {
 		setContentPane(new JComponent() {
 			{
 				setOpaque(true);
-				setPreferredSize(new Dimension(640, 480));
+				setPreferredSize(new Dimension(background.getWidth(this), background.getHeight(this)));
 			}
 
 			@Override
@@ -121,64 +122,69 @@ public class StendhalFirstScreen extends JFrame {
 		Font font = new Font(FONT_NAME, Font.PLAIN, 16);
 
 		//
-		// loginButton
+		// Login
 		//
-		loginButton = new JButton();
-		loginButton.setFont(font);
-		loginButton.setText("Login to "
-				+ ClientGameConfiguration.get("GAME_NAME"));
-		loginButton.setMnemonic(KeyEvent.VK_L);
-		loginButton.setToolTipText("Press this button to login to a "
-				+ ClientGameConfiguration.get("GAME_NAME") + " server");
-		loginButton.addActionListener(new ActionListener() {
-
+		Action loginAction = new AbstractAction("Login to "
+				+ ClientGameConfiguration.get("GAME_NAME")) {
 			@Override
-			public void actionPerformed(final ActionEvent e) {
-				login();
+			public void actionPerformed(ActionEvent e) {
+				new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
 			}
-		});
+		};
+		loginAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_L);
+		loginAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to login to a "
+				+ ClientGameConfiguration.get("GAME_NAME") + " server");
+		
+		loginButton = new JButton();
+		loginButton.setAction(loginAction);
+		loginButton.setFont(font);
+
 		//
-		// createAccountButton
+		// Create account
 		//
+		Action createAccountAction = new AbstractAction("Create an account") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CreateAccountDialog(StendhalFirstScreen.this, client);
+			}
+		};
+		createAccountAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
+		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to create an account on a "
+				+ ClientGameConfiguration.get("GAME_NAME") + " server.");
+		
 		createAccountButton = new JButton();
 		createAccountButton.setFont(font);
-		createAccountButton.setText("Create an account");
-		createAccountButton.setMnemonic(KeyEvent.VK_A);
-		createAccountButton.setToolTipText("Press this button to create an account on a "
-				+ ClientGameConfiguration.get("GAME_NAME") + " server.");
-		createAccountButton.setEnabled(true);
-		createAccountButton.addActionListener(new ActionListener() {
+		createAccountButton.setAction(createAccountAction);
+
+		//
+		// Help
+		//
+		Action helpAction = new AbstractAction("Help") {
 			@Override
-			public void actionPerformed(final ActionEvent e) {
-				createAccount();
+			public void actionPerformed(ActionEvent e) {
+				BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/Stendhal_Manual");
 			}
-		});
-		//
-		// creaditButton
-		//
+		};
+		helpAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_H);
+		
 		helpButton = new JButton();
 		helpButton.setFont(font);
-		helpButton.setText("Help");
-		helpButton.setMnemonic(KeyEvent.VK_H);
-		helpButton.addActionListener(new ActionListener() {
+		helpButton.setAction(helpAction);
+
+		//
+		// Credits
+		//
+		Action showCreditsAction = new AbstractAction("Credits") {
 			@Override
-			public void actionPerformed(final ActionEvent e) {
-				showHelp();
+			public void actionPerformed(ActionEvent e) {
+				new CreditsDialog(StendhalFirstScreen.this);
 			}
-		});
-		//
-		// creaditButton
-		//
+		};
+		showCreditsAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_C);
+
 		creditButton = new JButton();
 		creditButton.setFont(font);
-		creditButton.setText("Credits");
-		creditButton.setMnemonic(KeyEvent.VK_C);
-		creditButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				showCredits();
-			}
-		});
+		creditButton.setAction(showCreditsAction);
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -207,7 +213,7 @@ public class StendhalFirstScreen extends JFrame {
 		setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
 				+ stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
-		this.setResizable(false);
+		setResizable(false);
 
 		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
@@ -223,25 +229,6 @@ public class StendhalFirstScreen extends JFrame {
 		creditButton.setEnabled(b);
 	}
 
-	private void login() {
-		new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
-	}
-
-	private void showCredits() {
-		new CreditsDialog(StendhalFirstScreen.this);
-	}
-
-	private void showHelp() {
-		BareBonesBrowserLaunch.openURL("http://stendhalgame.org/wiki/Stendhal_Manual");
-	}
-
-	/**
-	 * Opens the create account dialog after checking the server version.
-	 */
-	private void createAccount() {
-		new CreateAccountDialog(StendhalFirstScreen.this, client);
-	}
-
 	/** Adds Component Without a Layout Manager (Absolute Positioning).
 	 * @param container
 	 * @param c
@@ -254,5 +241,4 @@ public class StendhalFirstScreen extends JFrame {
 		c.setBounds(x, y, width, height);
 		container.add(c);
 	}
-
 }
