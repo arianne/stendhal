@@ -21,9 +21,7 @@ import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -40,6 +38,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * Summary description for LoginGUI.
@@ -107,18 +106,9 @@ public class StendhalFirstScreen extends JFrame {
 	 * Setup the window contents.
 	 */
 	private void initializeComponent() {
-		setContentPane(new JComponent() {
-			{
-				setOpaque(true);
-				setPreferredSize(new Dimension(background.getWidth(this), background.getHeight(this)));
-			}
-
-			@Override
-			public void paintComponent(final Graphics g) {
-				g.drawImage(background, 0, 0, this);
-			}
-		});
-
+		JComponent contentPane = new JLabel(new ImageIcon(background));
+		setContentPane(contentPane);
+		
 		Font font = new Font(FONT_NAME, Font.PLAIN, 16);
 
 		//
@@ -193,12 +183,7 @@ public class StendhalFirstScreen extends JFrame {
 			}
 		});
 
-		//
-		// contentPane
-		//
-		final Container contentPane = this.getContentPane();
-		contentPane.setLayout(null);
-
+		// Add the buttons
 		int x = (background.getWidth(null) - BUTTON_WIDTH) / 2;
 		addComponent(contentPane, loginButton, x, 300, BUTTON_WIDTH, BUTTON_HEIGHT);
 		addComponent(contentPane, createAccountButton, x, 340, BUTTON_WIDTH, BUTTON_HEIGHT);
