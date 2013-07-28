@@ -75,6 +75,7 @@ public class SickleingHalfelfNPC implements ZoneConfigurator {
 		npc.setEntityClass("sickleinghalfelfnpc");
 		npc.setPosition(76,97);
 		npc.initHP(100);
+		npc.setReversiblePath(true); // So does not block straw carts
 		npc.setDescription("You see Eheneumniranin, the Half Elf... He has lost his memory and always looks confused.");
 		zone.add(npc);
 	}
