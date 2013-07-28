@@ -42,6 +42,7 @@ class MainFrame {
 		setTitle();
 		setIcon();
 		setDefaultCloseBehaviour();
+		mainFrame.setLocationByPlatform(true);
 		WindowUtils.closeOnEscape(mainFrame);
 	}
 

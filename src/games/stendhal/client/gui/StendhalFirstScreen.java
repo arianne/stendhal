@@ -75,6 +75,7 @@ public class StendhalFirstScreen extends JFrame {
 	 */
 	public StendhalFirstScreen(final StendhalClient client) {
 		super(detectScreen());
+		setLocationByPlatform(true);
 		this.client = client;
 		client.setSplashScreen(this);
 
@@ -84,7 +85,7 @@ public class StendhalFirstScreen extends JFrame {
 
 		initializeComponent();
 
-		this.setVisible(true);
+		setVisible(true);
 	}
 
 	/**

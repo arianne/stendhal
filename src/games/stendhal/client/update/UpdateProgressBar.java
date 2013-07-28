@@ -70,6 +70,7 @@ class UpdateProgressBar extends JFrame implements
 	 */
 	UpdateProgressBar(final int max, final String urlBase, final String fromVersion, final String toVersion) {
 		super("Downloading...", MouseInfo.getPointerInfo().getDevice().getDefaultConfiguration());
+		setLocationByPlatform(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new UpdateProgressBarWindowListener());
 
