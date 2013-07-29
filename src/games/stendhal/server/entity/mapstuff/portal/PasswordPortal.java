@@ -24,6 +24,11 @@ public class PasswordPortal extends Portal {
     private String rejected;
 
     /**
+     * Creates a default PasswordPortal
+     */
+    public PasswordPortal() {
+    }
+    /**
      * creates a portal which requires a password to be said by the player
      *
      * @param password password to say
@@ -59,6 +64,15 @@ public class PasswordPortal extends Portal {
     @SuppressWarnings("hiding")
     public boolean isCorrect(String password) {
         return password.equals(this.password);
+    }
+    
+    /**
+     * Override so portal does not get "used"
+     */
+    @Override
+    public boolean onUsed(final RPEntity user) {
+        user.sendPrivateText("Using this portal is deactivated");
+        return false;
     }
 
     /**
