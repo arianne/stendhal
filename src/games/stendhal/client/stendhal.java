@@ -234,6 +234,11 @@ public final class stendhal {
 			String style = wm.getProperty("ui.style", "Wood (default)");
 			StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(style));
 			UIManager.setLookAndFeel(look);
+			/*
+			 * Prevents the click event at closing a popup menu by clicking
+			 * outside it being passed to the component underneath. 
+			 */
+			UIManager.put("PopupMenu.consumeEventOnClose", Boolean.TRUE);
 			int fontSize = wm.getPropertyInt("ui.font_size", 12);
 			look.setDefaultFontSize(fontSize);
 		} catch (UnsupportedLookAndFeelException e) {
