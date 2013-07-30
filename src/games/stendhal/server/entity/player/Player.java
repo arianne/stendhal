@@ -634,7 +634,7 @@ public class Player extends RPEntity implements UseListener {
 	public void unlockPortal(final int ID) {
 	    if (!unlockedPortals.contains(ID)) {
 	        unlockedPortals.add(ID);
-	        logger.info("Added portal ID " + Integer.toString(ID) + " to unlocked portals for player " + getName() + ".");
+	        logger.debug("Added portal ID " + Integer.toString(ID) + " to unlocked portals for player " + getName() + ".");
 	    }
 	}
 	
