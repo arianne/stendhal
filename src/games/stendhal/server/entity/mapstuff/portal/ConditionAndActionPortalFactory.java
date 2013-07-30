@@ -89,11 +89,11 @@ public class ConditionAndActionPortalFactory extends AccessCheckingPortalFactory
 	 */
 	@Override
 	protected AccessCheckingPortal createPortal(final ConfigurableFactoryContext ctx) {
-		String rejectMessage = getStringValue(ctx, "rejected");
+		String rejectedMessage = getStringValue(ctx, "rejected");
 		ChatCondition condition = getCondition(ctx);
 		ChatAction action = getAction(ctx);
-		if (rejectMessage != null) {
-			return new ConditionAndActionPortal(condition, rejectMessage, action);
+		if (rejectedMessage != null) {
+			return new ConditionAndActionPortal(condition, rejectedMessage, action);
 		} else {
 			return new ConditionAndActionPortal(condition, action);
 		}
