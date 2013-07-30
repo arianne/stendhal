@@ -6,10 +6,14 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * An access checking portal is a special kind of portal which requires some
@@ -66,6 +70,36 @@ abstract class AccessCheckingPortal extends Portal {
 	    return listeningRadius;
 	}
 	
+    /**
+     * Finds players nearby that have spoken.
+     * 
+     * @return
+     *      List of players
+     */
+    private List<Player> getNearbyPlayersThatHaveSpoken() {
+        final int x = getX();
+        final int y = getY();
+
+        final List<Player> players = new LinkedList<Player>();
+
+        for (final Player player : getZone().getPlayers()) {
+            final int px = player.getX();
+            final int py = player.getY();
+
+            if (player.has("text")) {
+                int dx = px - x;
+                int dy = py - y;
+
+                if (Math.abs(dx)<listeningRadius && Math.abs(dy)<listeningRadius) { // check rectangular area
+//              if (dx*dx + dy*dy < range*range) { // optionally we could check a circular area
+                    players.add(player);
+                }
+            }
+        }
+
+        return players;
+    }
+    
 	public String getRejectedMessage() {
 	    return rejectedMessage;
 	}
@@ -90,6 +124,27 @@ abstract class AccessCheckingPortal extends Portal {
 	    return allowed;
 	}
 
+    /**
+     * 
+     */
+    public void logic() {
+        List<Player> players = getNearbyPlayersThatHaveSpoken();
+        
+        String text;
+        
+        for (Player player : players) {
+            text = player.get("text");
+            if (text.equals(requiredPassword)) {
+                if (acceptedMessage != null) {
+                    player.sendPrivateText(acceptedMessage);
+                }
+                usePortal(player);
+            } else if (rejectedMessage != null) {
+                player.sendPrivateText(rejectedMessage);
+            }
+        }
+    }
+    
 	/**
 	 * Called when the user is rejected. This sends a rejection message to the
 	 * user if set.
