@@ -27,24 +27,32 @@ public class PasswordPortalFactory implements ConfigurableFactory {
     public Object create(final ConfigurableFactoryContext ctx) {
         final PasswordPortal portal = new PasswordPortal();
 
-        final String password = getPassword(ctx);
-        final String message = getRejectedMessage(ctx);
+        final String requiredPassword = getStringValue(ctx, "password");
+        final String acceptedMessage = getStringValue(ctx, "accepted");
+        final String rejectedMessage = getStringValue(ctx, "rejected");
+        final int listeningRadius = getIntValue(ctx, "radius");
 
-        if (password != null) {
-            portal.setPassword(password);
+        if (requiredPassword != null) {
+            portal.setPassword(requiredPassword);
         }
-        if (message != null) {
-            portal.setRejectedMessage(message);
+        if (acceptedMessage != null) {
+            portal.setAcceptedMessage(acceptedMessage);
+        }
+        if (rejectedMessage != null) {
+            portal.setRejectedMessage(rejectedMessage);
+        }
+        if (listeningRadius >= 0) {
+            portal.setListeningRadius(listeningRadius);
         }
 
         return portal;
     }
     
-    protected String getPassword(final ConfigurableFactoryContext ctx) {
-        return ctx.getString("password", null);
+    protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
+        return ctx.getString(key, null);
     }
-
-    protected String getRejectedMessage(final ConfigurableFactoryContext ctx) {
-        return ctx.getString("rejected", null);
+    
+    protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
+        return ctx.getInt(key, -1);
     }
 }

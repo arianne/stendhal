@@ -12,6 +12,12 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * a portal which requires a password to pass through
@@ -20,8 +26,14 @@ import games.stendhal.server.entity.RPEntity;
 // PasswordPortal does not extend AccessCheckingPortal because they are not "used".
 public class PasswordPortal extends Portal {
     
-    private String password;
-    private String rejected;
+    // Logger instance
+    private static final Logger logger = Logger.getLogger(PasswordPortal.class);
+    
+    private String requiredPassword;
+    private String acceptedMessage;
+    private String rejectedMessage;
+    
+    private int listeningRadius = 1;
 
     /**
      * Creates a default PasswordPortal
@@ -33,37 +45,77 @@ public class PasswordPortal extends Portal {
      *
      * @param password password to say
      */
-    public PasswordPortal(String password) {
-        this.password = password;
+    public PasswordPortal(final String password) {
+        this.requiredPassword = password;
     }
-
-    /**
-     * sets the password
-     *
-     * @param password new password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    
     /**
      * gets the password
      *
      * @return password
      */
     public String getPassword() {
-        return this.password;
+        return this.requiredPassword;
     }
 
     /**
-     * is the password correct?
-     *
-     * @param password password to check
-     * @return true, if the password is correct, false otherwise
+     * Finds players nearby that have spoken.
+     * 
+     * @return
+     *              List of players
      */
-    @SuppressWarnings("hiding")
-    public boolean isCorrect(String password) {
-        return password.equals(this.password);
+    private List<Player> getNearbyPlayersThatHaveSpoken() {
+        final int x = getX();
+        final int y = getY();
+
+        final List<Player> players = new LinkedList<Player>();
+
+        for (final Player player : getZone().getPlayers()) {
+            final int px = player.getX();
+            final int py = player.getY();
+
+            if (player.has("text")) {
+                int dx = px - x;
+                int dy = py - y;
+
+                if (Math.abs(dx)<listeningRadius && Math.abs(dy)<listeningRadius) { // check rectangular area
+//              if (dx*dx + dy*dy < range*range) { // optionally we could check a circular area
+                    players.add(player);
+                }
+            }
+        }
+
+        return players;
+    }
+    
+    /**
+     * gets the reject message
+     *
+     * @return reject message
+     */
+    public String getRejectedMessage() {
+        return this.rejectedMessage;
+    }
+    
+    /**
+     * 
+     */
+    public void logic() {
+        List<Player> players = getNearbyPlayersThatHaveSpoken();
+        
+        String text;
+        
+        for (Player player : players) {
+            text = player.get("text");
+            if (text.equals(requiredPassword)) {
+                if (acceptedMessage != null) {
+                    player.sendPrivateText(acceptedMessage);
+                }
+                usePortal(player);
+            } else if (rejectedMessage != null) {
+                player.sendPrivateText(rejectedMessage);
+            }
+        }
     }
     
     /**
@@ -71,38 +123,48 @@ public class PasswordPortal extends Portal {
      */
     @Override
     public boolean onUsed(final RPEntity user) {
-        user.sendPrivateText("Using this portal is deactivated");
+        if (logger.isDebugEnabled()) {
+            logger.debug("Using this portal has been disabled.");
+        }
         return false;
     }
 
+    /**
+     * 
+     * @param message
+     *          Message to be sent to player when portal is used
+     */
+    public void setAcceptedMessage(final String message) {
+        this.acceptedMessage = message;
+    }
+
+    /**
+     * 
+     * @param rad
+     *          Radius at which portal will listen for player's speech
+     */
+    public void setListeningRadius(int radius) {
+        if (radius <= 0) {
+            radius = 1; // The portal must have at least 1 listening square
+        }
+        this.listeningRadius = radius;
+    }
+
+    /**
+     * sets the password
+     *
+     * @param password new password
+     */
+    public void setPassword(final String password) {
+        this.requiredPassword = password;
+    }
+    
     /**
      * sets the reject message
      *
      * @param message message informing the player about the failed condition
      */
     public void setRejectedMessage(final String message) {
-        this.rejected = message;
-    }
-
-    /**
-     * gets the reject message
-     *
-     * @return reject message
-     */
-    public String getRejectedMessage() {
-        return this.rejected;
-    }
-    
-    /**
-     * Password portals are "used" by saying the correct password
-     *
-     * @param entity RPEntity trying to use the portal
-     * @param password password said by the entity
-     */
-    @SuppressWarnings("hiding")
-	public void sayPassword(final RPEntity entity, final String password) {
-        if (password.equals(this.password)) {
-            onUsed(entity);
-        }
+        this.rejectedMessage = message;
     }
 }
