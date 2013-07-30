@@ -142,6 +142,10 @@ public class Portal extends Entity implements UseListener {
 	public boolean loaded() {
 		return isDestinationSet;
 	}
+	
+	public void logic() {
+	    // Sub-classes can implement this
+	}
 
 	@Override
 	public String toString() {
