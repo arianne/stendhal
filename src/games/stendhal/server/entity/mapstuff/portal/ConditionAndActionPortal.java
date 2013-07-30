@@ -62,11 +62,6 @@ public class ConditionAndActionPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected boolean isAllowed(final RPEntity user) {
-	    boolean allowed = super.isAllowed(user);
-	    if (!allowed) {
-	        return allowed;
-	    }
-	    
 		Sentence sentence = ConversationParser.parse(user.get("text"));
 		if (condition != null) {
 			return condition.fire((Player) user, sentence, this);
