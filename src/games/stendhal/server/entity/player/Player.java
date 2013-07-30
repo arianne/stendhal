@@ -97,7 +97,10 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	private int tradescore;
 
-	
+	/**
+	 * List of portals that have been "unlocked" for this player.
+	 */
+	private List<Integer> unlockedPortals;
 
 	/**
 	 * A list of away replies sent to players.
@@ -289,6 +292,8 @@ public class Player extends RPEntity implements UseListener {
 		}
 		
 		statuses = new LinkedList<Status>();
+		unlockedPortals = new LinkedList<Integer>();
+		
 		updateModifiedAttributes();
 	}
 
@@ -474,7 +479,7 @@ public class Player extends RPEntity implements UseListener {
 	public double getKarma() {
 		return karma;
 	}
-
+	
 	/**
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
@@ -592,6 +597,47 @@ public class Player extends RPEntity implements UseListener {
 	public int getTradescore() {
 		return this.tradescore;
 	}
+	
+    /**
+     * 
+     * @return
+     *         List of portals that have been unlocked for this player.
+     */
+    public List<Integer> getUnlockedPortals() {
+        return unlockedPortals;
+    }
+    
+    /**
+     * Removes the portal from the list of unlocked portals.
+     * 
+     * @param ID
+     *      Portal's ID
+     */
+    public void lockPortal(final int ID) {
+        int index = unlockedPortals.size() - 1;
+        if (unlockedPortals.contains(ID)) {
+            while (index <= 0) {
+                if (unlockedPortals.get(index) == ID) {
+                    unlockedPortals.remove(index);
+                    logger.info("Removed portal ID " + Integer.toString(ID) + " from player " + getName() + ".");
+                }
+            }
+        }
+    }
+    
+    /**
+     * Adds a portal ID to a list of "unlocked" portals for player.
+     * 
+     * @param ID
+     *      Portal's ID
+     */
+	public void unlockPortal(final int ID) {
+	    if (!unlockedPortals.contains(ID)) {
+	        unlockedPortals.add(ID);
+	        logger.info("Added portal ID " + Integer.toString(ID) + " to unlocked portals for player " + getName() + ".");
+	    }
+	}
+	
 	/**
 	 * Process changes that to the object attributes. This may be called several
 	 * times (unfortunately) due to the requirements of the class's constructor,
