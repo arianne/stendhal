@@ -149,7 +149,7 @@ abstract class AccessCheckingPortal extends Portal {
                 }
                 usePortal(player);
             } else if (rejectedMessage != null) {
-                player.sendPrivateText(rejectedMessage);
+                sendMessage(player, rejectedMessage);
             }
         }
     }
@@ -165,16 +165,16 @@ abstract class AccessCheckingPortal extends Portal {
     public boolean onUsed(final RPEntity user) {
         if (isAllowed(user)) {
             return super.onUsed(user);
-        } else {
-            /*
-             * Supresses sprite bounce-back in the case of non-resistant portals
-             */
-            if (getResistance() != 0) {
-                user.stop();
-            }
-            rejected(user);
-            return false;
         }
+        // Supresses sprite bounce-back in the case of non-resistant portals
+        if (getResistance() != 0) {
+            user.stop();
+        }
+        // Supress rejected message when requiredPassword is set.
+        if (requiredPassword == null) {
+            rejected(user);
+        }
+        return false;
     }
 
 	/**
