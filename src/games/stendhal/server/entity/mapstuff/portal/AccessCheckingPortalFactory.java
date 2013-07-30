@@ -58,10 +58,22 @@ abstract class AccessCheckingPortalFactory implements
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
 
+		final String acceptedMessage = getStringValue(ctx, "accepted");
 		final String rejectedMessage = getStringValue(ctx, "rejected");
-
+		final String requiredPassword = getStringValue(ctx, "password");
+		final int listeningRadius = getIntValue(ctx, "radius");
+		
+		if (acceptedMessage != null) {
+		    portal.setAcceptedMessage(acceptedMessage);
+		}
 		if (rejectedMessage != null) {
 			portal.setRejectedMessage(rejectedMessage);
+		}
+		if (requiredPassword != null) {
+		    portal.setRequiredPassword(requiredPassword);
+		}
+		if (listeningRadius > 0) {
+		    portal.setListeningRadius(listeningRadius);
 		}
 
 		return portal;
