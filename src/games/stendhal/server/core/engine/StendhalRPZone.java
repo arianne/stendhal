@@ -1317,6 +1317,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 				logger.error("Error in npc logic for zone " + getID().getID(), e);
 			}
 		}
+		for (final Portal portal : portals) {
+		    try {
+		        portal.logic();
+		    } catch (final Exception e) {
+		        logger.error("Error in portal logic for zone " + getID().getID(), e);
+		    }
+		}
 	}
 
 	/**
