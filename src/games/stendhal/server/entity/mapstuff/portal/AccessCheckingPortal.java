@@ -82,7 +82,13 @@ abstract class AccessCheckingPortal extends Portal {
 	 * 
 	 * @return <code>true</code> if the user can use the portal.
 	 */
-	protected abstract boolean isAllowed(RPEntity user);
+	protected boolean isAllowed(RPEntity user) {
+	    boolean allowed = true;
+	    if (requiredPassword != null) {
+	        allowed = false;
+	    }
+	    return allowed;
+	}
 
 	/**
 	 * Called when the user is rejected. This sends a rejection message to the
