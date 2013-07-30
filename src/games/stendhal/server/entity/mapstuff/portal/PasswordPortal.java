@@ -43,7 +43,8 @@ public class PasswordPortal extends Portal {
     /**
      * creates a portal which requires a password to be said by the player
      *
-     * @param password password to say
+     * @param
+     *      password password to say
      */
     public PasswordPortal(final String password) {
         this.requiredPassword = password;
@@ -52,7 +53,8 @@ public class PasswordPortal extends Portal {
     /**
      * gets the password
      *
-     * @return password
+     * @return
+     *      password
      */
     public String getPassword() {
         return this.requiredPassword;
@@ -62,7 +64,7 @@ public class PasswordPortal extends Portal {
      * Finds players nearby that have spoken.
      * 
      * @return
-     *              List of players
+     *      List of players
      */
     private List<Player> getNearbyPlayersThatHaveSpoken() {
         final int x = getX();
@@ -91,7 +93,8 @@ public class PasswordPortal extends Portal {
     /**
      * gets the reject message
      *
-     * @return reject message
+     * @return
+     *      reject message
      */
     public String getRejectedMessage() {
         return this.rejectedMessage;
@@ -130,9 +133,10 @@ public class PasswordPortal extends Portal {
     }
 
     /**
+     * Optional message to be sent to player when portal is successfully used
      * 
      * @param message
-     *          Message to be sent to player when portal is used
+     *      Message to be sent
      */
     public void setAcceptedMessage(final String message) {
         this.acceptedMessage = message;
@@ -140,8 +144,8 @@ public class PasswordPortal extends Portal {
 
     /**
      * 
-     * @param rad
-     *          Radius at which portal will listen for player's speech
+     * @param radius
+     *      Radius at which portal will listen for player's speech
      */
     public void setListeningRadius(int radius) {
         if (radius <= 0) {
@@ -151,9 +155,10 @@ public class PasswordPortal extends Portal {
     }
 
     /**
-     * sets the password
+     * sets the required password
      *
-     * @param password new password
+     * @param password
+     *      new password
      */
     public void setPassword(final String password) {
         this.requiredPassword = password;
@@ -162,7 +167,8 @@ public class PasswordPortal extends Portal {
     /**
      * sets the reject message
      *
-     * @param message message informing the player about the failed condition
+     * @param message
+     *      message informing the player about the failed condition
      */
     public void setRejectedMessage(final String message) {
         this.rejectedMessage = message;
