@@ -102,7 +102,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected void rejected(final RPEntity user) {
-		if (rejectMessage != null) {
+		if (rejectedMessage != null) {
 			super.rejected(user);
 		} else if (user.getLevel() < minLevel) {
 			sendMessage(user, "I am too weak to use this portal.");

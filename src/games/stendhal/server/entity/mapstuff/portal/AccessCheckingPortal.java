@@ -16,10 +16,33 @@ import games.stendhal.server.entity.RPEntity;
  * condition to use.
  */
 abstract class AccessCheckingPortal extends Portal {
+    
+    /**
+     * Optional password required to use portal.
+     */
+    protected String requiredPassword;
+    
+    /**
+     * Optional message to show when portal is successfully used.
+     */
+    protected String acceptedMessage;
+    
 	/**
 	 * The message to given when rejected.
 	 */
-	protected String rejectMessage;
+	protected String rejectedMessage;
+	
+	/**
+	 * The radius at which the portal will listed for a password (must be at least 1).
+	 */
+	protected int listeningRadius = 1;
+	
+	/**
+	 * Creates an access checking portal with default values.
+	 */
+	public AccessCheckingPortal() {
+	    this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
+	}
 
 	/**
 	 * Creates an access checking portal.
@@ -28,11 +51,27 @@ abstract class AccessCheckingPortal extends Portal {
 	 *            The message to given when rejected.
 	 */
 	public AccessCheckingPortal(final String rejectMessage) {
-		this.rejectMessage = rejectMessage;
+		this.rejectedMessage = rejectMessage;
 	}
 	
 	public AccessCheckingPortal(final RPObject object) {
 		super(object);
+	}
+	
+	public String getAcceptedMessage() {
+	    return acceptedMessage;
+	}
+	
+	public int getListeningRadius() {
+	    return listeningRadius;
+	}
+	
+	public String getRejectedMessage() {
+	    return rejectedMessage;
+	}
+	
+	public String getRequiredPassword() {
+	    return requiredPassword;
 	}
 
 	/**
@@ -53,8 +92,8 @@ abstract class AccessCheckingPortal extends Portal {
 	 *            The rejected user.
 	 */
 	protected void rejected(final RPEntity user) {
-		if (rejectMessage != null) {
-			sendMessage(user, rejectMessage);
+		if (rejectedMessage != null) {
+			sendMessage(user, rejectedMessage);
 			/*
 			 * Supesses sprite bounce-back in the case of non-resistant portals
 			 */
@@ -78,13 +117,44 @@ abstract class AccessCheckingPortal extends Portal {
 	}
 
 	/**
+	 * Set the accepted message.
+	 * 
+	 * @param message
+	 *             The message to be given when portal successfully used.
+	 */
+	public void setAcceptedMessage(final String message) {
+	    acceptedMessage = message;
+	}
+	
+	/**
 	 * Set the rejection message.
 	 * 
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
-	public void setRejectedMessage(final String rejectMessage) {
-		this.rejectMessage = rejectMessage;
+	public void setRejectedMessage(final String message) {
+		rejectedMessage = message;
+	}
+	
+	/**
+	 * 
+	 * @param password
+	 */
+	public void setRequiredPassword(final String password) {
+	    requiredPassword = password;
+	}
+	
+	/**
+	 * 
+	 * @param radius
+	 *         Distance at wich portal listens for players speaking.
+	 */
+	public void setListeningRadius(int radius) {
+	    // Listening radius must be at least 1.
+	    if (radius <= 0) {
+	        radius = 1;
+	    }
+	    listeningRadius = radius;
 	}
 
 	/**

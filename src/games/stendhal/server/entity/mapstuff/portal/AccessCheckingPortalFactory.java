@@ -35,19 +35,6 @@ abstract class AccessCheckingPortalFactory implements
 	protected abstract AccessCheckingPortal createPortal(
 			ConfigurableFactoryContext ctx);
 
-	/**
-	 * Extract the rejected message from a context.
-	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * @return The rejected message, or <code>null</code> if none.
-	 * @throws IllegalArgumentException
-	 *             If the class attribute is missing.
-	 */
-	protected String getRejectedMessage(final ConfigurableFactoryContext ctx) {
-		return ctx.getString("rejected", null);
-	}
-
 	//
 	// ConfigurableFactory
 	//
@@ -71,12 +58,44 @@ abstract class AccessCheckingPortalFactory implements
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
 
-		final String message = getRejectedMessage(ctx);
+		final String rejectedMessage = getStringValue(ctx, "rejected");
 
-		if (message != null) {
-			portal.setRejectedMessage(message);
+		if (rejectedMessage != null) {
+			portal.setRejectedMessage(rejectedMessage);
 		}
 
 		return portal;
 	}
+	
+    /**
+     * Extract string value from a context.
+     * 
+     * @param ctx
+     *            The configuration context.
+     * @param key
+     *            The key to search for.
+     * @return
+     *            The string value of the key, or <code>null</code> if none.
+     * @throws IllegalArgumentException
+     *             If the class attribute is missing.
+     */
+    protected String getStringValue(final ConfigurableFactoryContext ctx, final String key) {
+        return ctx.getString(key, null);
+    }
+    
+    /**
+     * Extract integer value from a context.
+     * 
+     * @param ctx
+     *            The configuration context.
+     * @param key
+     *            The key to search for.
+     * @return
+     *            The integer value of the key, or <code>null</code> if none.
+     * @throws IllegalArgumentException
+     *             If the class attribute is missing.
+     */
+    protected int getIntValue(final ConfigurableFactoryContext ctx, final String key) {
+        return ctx.getInt(key, -1);
+    }
 }
