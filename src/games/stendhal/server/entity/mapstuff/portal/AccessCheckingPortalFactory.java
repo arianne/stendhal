@@ -57,14 +57,18 @@ abstract class AccessCheckingPortalFactory implements
 	@Override
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
-
-		final String acceptedMessage = getStringValue(ctx, "accepted");
+		
+		final String passwordAcceptedMessage = getStringValue(ctx, "passwordAcceptedMessage");
+		final String passwordRejectedMessage = getStringValue(ctx, "passwordRejectedMessage");
 		final String rejectedMessage = getStringValue(ctx, "rejected");
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
 		
-		if (acceptedMessage != null) {
-		    portal.setAcceptedMessage(acceptedMessage);
+		if (passwordAcceptedMessage != null) {
+		    portal.setPasswordAcceptedMessage(passwordAcceptedMessage);
+		}
+		if (passwordRejectedMessage != null) {
+		    portal.setPasswordRejectedMessage(passwordRejectedMessage);
 		}
 		if (rejectedMessage != null) {
 			portal.setRejectedMessage(rejectedMessage);

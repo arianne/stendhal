@@ -6,16 +6,17 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
-import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * An access checking portal is a special kind of portal which requires some
@@ -27,31 +28,41 @@ abstract class AccessCheckingPortal extends Portal {
     private static final Logger logger = Logger.getLogger(AccessCheckingPortal.class);
 
     /**
-     * Optional password required to use portal.
+     * Immediate execution of action when player says password.
      */
-    protected String requiredPassword;
+    protected boolean instantAction = false;
     
     /**
-     * Optional message to show when portal is successfully used.
+     * Radius at which portal will "listen" for speaking players.
      */
-    protected String acceptedMessage;
+    protected int listeningRadius;
+    
+    /**
+     * Optional message to give when correct password used.
+     */
+    protected String passwordAcceptedMessage;
+    
+    /**
+     * Optional message to give when incorrect password used.
+     */
+    protected String passwordRejectedMessage;
     
 	/**
-	 * The message to given when rejected.
+	 * The message to give when rejected.
 	 */
 	protected String rejectedMessage;
 	
 	/**
-	 * The radius at which the portal will listed for a password (must be at least 1).
+	 * Optional password to use portal.
 	 */
-	protected int listeningRadius = 1;
+	protected String requiredPassword;
 	
-	/**
-	 * Creates an access checking portal with default values.
-	 */
-	public AccessCheckingPortal() {
-	    this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
-	}
+    /**
+     * Creates an access checking portal with default values.
+     */
+    public AccessCheckingPortal() {
+        this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
+    }
 
 	/**
 	 * Creates an access checking portal.
@@ -63,18 +74,41 @@ abstract class AccessCheckingPortal extends Portal {
 		this.rejectedMessage = rejectMessage;
 	}
 	
+	/**
+	 * 
+	 * @param object
+	 */
 	public AccessCheckingPortal(final RPObject object) {
 		super(object);
 	}
-	
-	public String getAcceptedMessage() {
-	    return acceptedMessage;
-	}
-	
-	public int getListeningRadius() {
-	    return listeningRadius;
-	}
-	
+
+	/**
+	 * 
+	 * @return
+	 *      Message when password is accepted.
+	 */
+    public String getPasswordAcceptedMessage() {
+        return passwordAcceptedMessage;
+    }
+    
+    /**
+     * 
+     * @return
+     *      Messager when password is rejected.
+     */
+    public String getPasswordRejectedMessage() {
+        return passwordRejectedMessage;
+    }
+    
+    /**
+     * 
+     * @return
+     *      Radius at which portal detects player speech.
+     */
+    public int getListeningRadius() {
+        return listeningRadius;
+    }
+    
     /**
      * Finds players nearby that have spoken.
      * 
@@ -105,13 +139,13 @@ abstract class AccessCheckingPortal extends Portal {
         return players;
     }
     
-	public String getRejectedMessage() {
-	    return rejectedMessage;
-	}
-	
-	public String getRequiredPassword() {
-	    return requiredPassword;
-	}
+    public String getRejectedMessage() {
+        return rejectedMessage;
+    }
+    
+    public String getRequiredPassword() {
+        return requiredPassword;
+    }
 
 	/**
 	 * Determine if this portal can be used.
@@ -121,35 +155,37 @@ abstract class AccessCheckingPortal extends Portal {
 	 * 
 	 * @return <code>true</code> if the user can use the portal.
 	 */
-	protected boolean isAllowed(RPEntity user) {
-	    boolean allowed = true;
-	    if (requiredPassword != null) {
-	        if (logger.isDebugEnabled()) {
-	            logger.warn("Portal at " + this.getZone().getName() + " (" + Integer.toString(getX()) + ","
-	                    + Integer.toString(getY()) + ") requires password: " + requiredPassword);
-	        }
-	        allowed = false;
+	protected abstract boolean isAllowed(RPEntity user);
+	
+	public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
+	    final int ID = portal.getID().getObjectID();
+	    if (player.getUnlockedPortals().contains(ID)) {
+	        return true;
 	    }
-	    return allowed;
+	    return false;
 	}
 
     /**
      * 
      */
     public void logic() {
-        List<Player> players = getNearbyPlayersThatHaveSpoken();
-        
-        String text;
-        
-        for (Player player : players) {
-            text = player.get("text");
-            if (text.equals(requiredPassword)) {
-                if (acceptedMessage != null) {
-                    player.sendPrivateText(acceptedMessage);
+        // Execute action for password portal if required password is set.
+        if (requiredPassword != null) {
+            List<Player> players = getNearbyPlayersThatHaveSpoken();
+            
+            String text;
+            
+            for (Player player : players) {
+                text = player.get("text");
+                if (text.equals(requiredPassword)) {
+                    if (passwordAcceptedMessage != null) {
+                        sendMessage(player, passwordAcceptedMessage);
+                    }
+                    // Unlock this portal for player.
+                    player.unlockPortal(this.getID().getObjectID());
+                } else if (passwordRejectedMessage != null) {
+                    sendMessage(player, passwordRejectedMessage);
                 }
-                usePortal(player);
-            } else if (rejectedMessage != null) {
-                sendMessage(player, rejectedMessage);
             }
         }
     }
@@ -164,16 +200,21 @@ abstract class AccessCheckingPortal extends Portal {
     @Override
     public boolean onUsed(final RPEntity user) {
         if (isAllowed(user)) {
+            // Check if this is a password portal and player has access.
+            if ((requiredPassword != null) && !playerIsPortalUnlocked((Player) user, this)) {
+                logger.debug("Player " + user.getName() + " does not have access to portal ID "
+                        + Integer.toString(getID().getObjectID()) + " at " + this.getZone().getName()
+                        + " (" + Integer.toString(getX()) + "," + Integer.toString(getY())
+                        + "). Required password: " + requiredPassword);
+                return false;
+            }
             return super.onUsed(user);
         }
         // Supresses sprite bounce-back in the case of non-resistant portals
         if (getResistance() != 0) {
             user.stop();
         }
-        // Supress rejected message when requiredPassword is set.
-        if (requiredPassword == null) {
-            rejected(user);
-        }
+        rejected(user);
         return false;
     }
 
@@ -208,22 +249,46 @@ abstract class AccessCheckingPortal extends Portal {
 	protected void sendMessage(final RPEntity user, final String text) {
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
 	}
-
+	
 	/**
-	 * Set the accepted message.
+	 * Set the password accepted message.
 	 * 
 	 * @param message
-	 *             The message to be given when portal successfully used.
+	 *            Optional message to be given when correct password used.
 	 */
-	public void setAcceptedMessage(final String message) {
-	    acceptedMessage = message;
+	public void setPasswordAcceptedMessage(final String message) {
+	    passwordAcceptedMessage = message;
+	}
+	
+    /**
+     * Set the password rejected message.
+     * 
+     * @param message
+     *            Optional message to be given when incorrect password used.
+     */
+    public void setPasswordRejectedMessage(final String message) {
+        passwordRejectedMessage = message;
+    }
+    
+	
+	/**
+	 * Sets the radius at which the portal will "hear" speaking players.
+	 * 
+	 * @param radius
+	 *         Distance at wich portal listens for players speaking.
+	 */
+	public void setListeningRadius(int radius) {
+	    if (radius <= 0) {
+	        radius = 1;
+	    }
+	    listeningRadius = radius;
 	}
 	
 	/**
 	 * Set the rejection message.
 	 * 
 	 * @param rejectMessage
-	 *            The message to given when rejected.
+	 *            The message to give when rejected.
 	 */
 	public void setRejectedMessage(final String message) {
 		rejectedMessage = message;
@@ -237,19 +302,6 @@ abstract class AccessCheckingPortal extends Portal {
 	    requiredPassword = password;
 	}
 	
-	/**
-	 * 
-	 * @param radius
-	 *         Distance at wich portal listens for players speaking.
-	 */
-	public void setListeningRadius(int radius) {
-	    // Listening radius must be at least 1.
-	    if (radius <= 0) {
-	        radius = 1;
-	    }
-	    listeningRadius = radius;
-	}
-
 	/**
 	 * A turn listener that sends a user message. Once sendPrivateText() is
 	 * fixed (via a queue or something) to always work, this can go away.
