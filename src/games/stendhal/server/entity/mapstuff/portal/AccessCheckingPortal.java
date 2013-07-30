@@ -9,6 +9,8 @@ package games.stendhal.server.entity.mapstuff.portal;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
@@ -21,6 +23,9 @@ import games.stendhal.server.entity.player.Player;
  */
 abstract class AccessCheckingPortal extends Portal {
     
+    /** the logger instance. */
+    private static final Logger logger = Logger.getLogger(AccessCheckingPortal.class);
+
     /**
      * Optional password required to use portal.
      */
@@ -119,6 +124,10 @@ abstract class AccessCheckingPortal extends Portal {
 	protected boolean isAllowed(RPEntity user) {
 	    boolean allowed = true;
 	    if (requiredPassword != null) {
+	        if (logger.isDebugEnabled()) {
+	            logger.warn("Portal at " + this.getZone().getName() + " (" + Integer.toString(getX()) + ","
+	                    + Integer.toString(getY()) + ") requires password: " + requiredPassword);
+	        }
 	        allowed = false;
 	    }
 	    return allowed;
@@ -145,6 +154,29 @@ abstract class AccessCheckingPortal extends Portal {
         }
     }
     
+    /**
+     * Use the portal, if allowed.
+     * 
+     * @param user
+     *            that wants to pass.
+     * @return true if passed , false otherwise.
+     */
+    @Override
+    public boolean onUsed(final RPEntity user) {
+        if (isAllowed(user)) {
+            return super.onUsed(user);
+        } else {
+            /*
+             * Supresses sprite bounce-back in the case of non-resistant portals
+             */
+            if (getResistance() != 0) {
+                user.stop();
+            }
+            rejected(user);
+            return false;
+        }
+    }
+
 	/**
 	 * Called when the user is rejected. This sends a rejection message to the
 	 * user if set.
@@ -216,29 +248,6 @@ abstract class AccessCheckingPortal extends Portal {
 	        radius = 1;
 	    }
 	    listeningRadius = radius;
-	}
-
-	/**
-	 * Use the portal, if allowed.
-	 * 
-	 * @param user
-	 *            that wants to pass.
-	 * @return true if passed , false otherwise.
-	 */
-	@Override
-	public boolean onUsed(final RPEntity user) {
-		if (isAllowed(user)) {
-			return super.onUsed(user);
-		} else {
-			/*
-			 * Supresses sprite bounce-back in the case of non-resistant portals
-			 */
-			if (getResistance() != 0) {
-				user.stop();
-			}
-			rejected(user);
-			return false;
-		}
 	}
 
 	/**
