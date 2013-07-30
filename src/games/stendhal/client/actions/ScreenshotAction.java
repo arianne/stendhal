@@ -20,12 +20,12 @@ import games.stendhal.common.NotificationType;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import javax.imageio.ImageIO;
-import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import org.apache.log4j.Logger;
 
@@ -46,7 +46,7 @@ class ScreenshotAction implements SlashAction {
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", "Taking a screenshot...", NotificationType.CLIENT));
-		// Ming the image needs to be done in EDT.
+		// Drawing the image needs to be done in EDT.
 		GameScreen screen = GameScreen.get();
 		int width = screen.getWidth();
 		int height = screen.getHeight();
@@ -55,28 +55,35 @@ class ScreenshotAction implements SlashAction {
 		screen.paintComponent(g);
 		g.dispose();
 		// Saving at least can be done outside the EDT.
-		new Thread() {
+		final String fileName = getFileName();
+		new SwingWorker<String, Void>() {
 			@Override
-			public void run() {
-				String fileName = getFileName();
-				String message;
-				try {
-				    File file = new File(fileName);
-				    ImageIO.write(img, "png", file);
-				    message = "Screenshot was saved to " + fileName;
-				} catch (IOException e) {
-					message = "Failed to save screenshot to " + fileName;
-					Logger.getLogger(ScreenshotAction.class).error(message, e);
-				}
-				final String msg = message;
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
-					}
-				});
+			protected String doInBackground() throws Exception {
+				File file = new File(fileName);
+				ImageIO.write(img, "png", file);
+				return "Screenshot was saved to " + fileName;
 			}
-		}.start();
+			
+			@Override
+			public void done() {
+				String msg = "";
+				try {
+					msg = get();
+				} catch (InterruptedException e) {
+					Logger.getLogger(ScreenshotAction.class).error(e);
+				} catch (ExecutionException e) {
+					msg = "Failed to save screenshot to " + fileName + " : ";
+		            Throwable cause = e.getCause();
+		            Logger.getLogger(ScreenshotAction.class).error(e);
+		            if (cause != null) {
+		                msg = cause.getMessage();
+		            } else {
+		                msg = e.getMessage();
+		            }
+				}
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", msg, NotificationType.CLIENT));
+			}
+		}.execute();
 		
 		return true;
 	}
