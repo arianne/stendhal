@@ -1,6 +1,19 @@
 ﻿Changelog
 ---------
 
+1.10
+
+*world*
+
+*client*
+
+*fixes*
+- Fixing table entities in Kalavan houses
+- Exchanging white round tables in fado city
+
+*code*
+
+
 1.09
 
 *world*
