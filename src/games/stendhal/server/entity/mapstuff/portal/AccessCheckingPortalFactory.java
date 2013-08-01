@@ -17,6 +17,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
  */
 abstract class AccessCheckingPortalFactory implements
 		ConfigurableFactory {
+    
 	//
 	// AccessCheckingPortalFactory
 	//
@@ -58,12 +59,16 @@ abstract class AccessCheckingPortalFactory implements
 	public Object create(final ConfigurableFactoryContext ctx) {
 		final AccessCheckingPortal portal = createPortal(ctx);
 		
+		final boolean instantAction = ctx.getBoolean("instantAction", false);
 		final String passwordAcceptedMessage = getStringValue(ctx, "passwordAcceptedMessage");
 		final String passwordRejectedMessage = getStringValue(ctx, "passwordRejectedMessage");
 		final String rejectedMessage = getStringValue(ctx, "rejected");
 		final String requiredPassword = getStringValue(ctx, "password");
 		final int listeningRadius = getIntValue(ctx, "radius");
 		
+		if (instantAction) {
+		    portal.setInstantAction(instantAction);
+		}
 		if (passwordAcceptedMessage != null) {
 		    portal.setPasswordAcceptedMessage(passwordAcceptedMessage);
 		}

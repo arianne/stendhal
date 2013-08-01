@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  * An access checking portal is a special kind of portal which requires some
  * condition to use.
  */
-abstract class AccessCheckingPortal extends Portal {
+abstract class AccessCheckingPortalCopy extends Portal {
     
     /** the logger instance. */
     private static final Logger logger = Logger.getLogger(AccessCheckingPortalCopy.class);
@@ -43,17 +43,21 @@ abstract class AccessCheckingPortal extends Portal {
     protected int portalID;
     protected static int portalIDCounter = 100;
     
-    /** The message to give when rejected. */
-    protected String rejectedMessage;
-    
-    /** Optional password to use portal. */
-    protected String requiredPassword;
-    
+	/** The message to give when rejected. */
+	protected String rejectedMessage;
+	
+	/** Optional password to use portal. */
+	protected String requiredPassword;
+	
     /**
      * Creates an access checking portal with default values.
      */
-    public AccessCheckingPortal() {
+    public AccessCheckingPortalCopy() {
         this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
+        
+        // Set the portal's ID
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
     }
 
 	/**
@@ -62,16 +66,24 @@ abstract class AccessCheckingPortal extends Portal {
 	 * @param rejectMessage
 	 *            The message to given when rejected.
 	 */
-	public AccessCheckingPortal(final String rejectMessage) {
+	public AccessCheckingPortalCopy(final String rejectMessage) {
 		this.rejectedMessage = rejectMessage;
+		
+		// Set the portal's ID
+        portalID = portalIDCounter;
+		portalIDCounter += 1;
 	}
 	
 	/**
 	 * 
 	 * @param object
 	 */
-	public AccessCheckingPortal(final RPObject object) {
+	public AccessCheckingPortalCopy(final RPObject object) {
 		super(object);
+        
+        // Set the portal's ID
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
 	}
 
 	/**
@@ -90,6 +102,15 @@ abstract class AccessCheckingPortal extends Portal {
      */
     public String getPasswordRejectedMessage() {
         return passwordRejectedMessage;
+    }
+    
+    /**
+     * 
+     * @return
+     *      ID number for this portal
+     */
+    public int getPortalID() {
+        return portalID;
     }
     
     /**
@@ -131,34 +152,12 @@ abstract class AccessCheckingPortal extends Portal {
         return players;
     }
     
-    /**
-     * Gets the message to send when player is denied access to portal.
-     * 
-     * @return
-     *      Rejected message
-     */
     public String getRejectedMessage() {
         return rejectedMessage;
     }
     
-    /**
-     * Gets the password required to use the portal.
-     * 
-     * @return
-     *      Required password
-     */
     public String getRequiredPassword() {
         return requiredPassword;
-    }
-    
-    /**
-     * Checks if the portal executes an action immediately after password is said.
-     * 
-     * @return
-     *      instantAction
-     */
-    public boolean hasInstanceAction() {
-        return instantAction;
     }
 
 	/**
@@ -171,9 +170,8 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	protected abstract boolean isAllowed(RPEntity user);
 	
-	public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
-	    final int ID = portal.getID().getObjectID();
-	    if (player.getUnlockedPortals().contains(ID)) {
+	public boolean playerIsPortalUnlocked(final Player player) {
+	    if (player.getUnlockedPortals().contains(portalID)) {
 	        return true;
 	    }
 	    return false;
@@ -195,8 +193,15 @@ abstract class AccessCheckingPortal extends Portal {
                     if (passwordAcceptedMessage != null) {
                         sendMessage(player, passwordAcceptedMessage);
                     }
-                    // Unlock this portal for player.
-                    player.unlockPortal(this.getID().getObjectID());
+                    if (instantAction) {
+                        // Use the portal as soon as player says password.
+                        logger.info("Accepted password for player " + player.getName() + ". Attempting to use portal.");
+                        onUsed(player);
+                    }
+                    if (!player.getUnlockedPortals().contains(portalID)){
+                        // Unlock this portal for player.
+                        player.unlockPortal(portalID);
+                    }
                 } else if (passwordRejectedMessage != null) {
                     sendMessage(player, passwordRejectedMessage);
                 }
@@ -215,12 +220,16 @@ abstract class AccessCheckingPortal extends Portal {
     public boolean onUsed(final RPEntity user) {
         if (isAllowed(user)) {
             // Check if this is a password portal and player has access.
-            if ((requiredPassword != null) && !playerIsPortalUnlocked((Player) user, this)) {
-                logger.debug("Player " + user.getName() + " does not have access to portal ID "
-                        + Integer.toString(getID().getObjectID()) + " at " + this.getZone().getName()
-                        + " (" + Integer.toString(getX()) + "," + Integer.toString(getY())
-                        + "). Required password: " + requiredPassword);
-                return false;
+            if (requiredPassword != null) {
+                if (!playerIsPortalUnlocked((Player) user)) {
+                    logger.debug("Player " + user.getName() + " does not have access to portal ID "
+                            + Integer.toString(portalID) + " at " + this.getZone().getName()
+                            + " (" + Integer.toString(getX()) + "," + Integer.toString(getY())
+                            + "). Required password: " + requiredPassword);
+                    return false;
+                }
+                // Re-lock portal so player must say password on next use
+                ((Player) user).lockPortal(portalID);
             }
             return super.onUsed(user);
         }
@@ -264,17 +273,17 @@ abstract class AccessCheckingPortal extends Portal {
 		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
 	}
 	
-    /**
-     * 
-     * @param instant
-     *         Use portal automatically.
-     */
-    public void setInstantAction(final boolean instant) {
-        instantAction = instant;
-//      logger.info("\nSetting instant action to \"" + Boolean.toString(instant) + "\" for portal at "
-//              + getZone().getName() + " (" + Integer.toString(getX()) + "," + Integer.toString(getY()) + "\n");
-    }
-    
+	/**
+	 * 
+	 * @param instant
+	 *         Use portal automatically.
+	 */
+	public void setInstantAction(final boolean instant) {
+	    instantAction = instant;
+//	    logger.info("\nSetting instant action to \"" + Boolean.toString(instant) + "\" for portal at "
+//	            + getZone().getName() + " (" + Integer.toString(getX()) + "," + Integer.toString(getY()) + "\n");
+	}
+	
 	/**
 	 * Set the password accepted message.
 	 * 
@@ -295,7 +304,6 @@ abstract class AccessCheckingPortal extends Portal {
         passwordRejectedMessage = message;
     }
     
-	
 	/**
 	 * Sets the radius at which the portal will "hear" speaking players.
 	 * 
