@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 abstract class AccessCheckingPortal extends Portal {
     
     /** the logger instance. */
-    private static final Logger logger = Logger.getLogger(AccessCheckingPortalCopy.class);
+    private static final Logger logger = Logger.getLogger(AccessCheckingPortal.class);
     
     /** Immediate execution of action when player says password. */
     protected boolean instantAction = false;
@@ -54,6 +54,9 @@ abstract class AccessCheckingPortal extends Portal {
      */
     public AccessCheckingPortal() {
         this.rejectedMessage = "Why should i go down there?. It looks very dangerous.";
+        
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
     }
 
 	/**
@@ -64,6 +67,9 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	public AccessCheckingPortal(final String rejectMessage) {
 		this.rejectedMessage = rejectMessage;
+        
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
 	}
 	
 	/**
@@ -72,6 +78,9 @@ abstract class AccessCheckingPortal extends Portal {
 	 */
 	public AccessCheckingPortal(final RPObject object) {
 		super(object);
+        
+        portalID = portalIDCounter;
+        portalIDCounter += 1;
 	}
 
 	/**
@@ -172,8 +181,7 @@ abstract class AccessCheckingPortal extends Portal {
 	protected abstract boolean isAllowed(RPEntity user);
 	
 	public boolean playerIsPortalUnlocked(final Player player, final Portal portal) {
-	    final int ID = portal.getID().getObjectID();
-	    if (player.getUnlockedPortals().contains(ID)) {
+	    if (player.getUnlockedPortals().contains(portalID)) {
 	        return true;
 	    }
 	    return false;
@@ -195,8 +203,8 @@ abstract class AccessCheckingPortal extends Portal {
                     if (passwordAcceptedMessage != null) {
                         sendMessage(player, passwordAcceptedMessage);
                     }
-                    // Unlock this portal for player.
-                    player.unlockPortal(this.getID().getObjectID());
+                    // Temporarily unlock this portal for player.
+                    player.unlockPortal(portalID);
                 } else if (passwordRejectedMessage != null) {
                     sendMessage(player, passwordRejectedMessage);
                 }
