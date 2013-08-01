@@ -616,11 +616,13 @@ public class Player extends RPEntity implements UseListener {
     public void lockPortal(final int ID) {
         int index = unlockedPortals.size() - 1;
         if (unlockedPortals.contains(ID)) {
-            while (index <= 0) {
+            // Iterate list backwards
+            while (index >= 0) {
                 if (unlockedPortals.get(index) == ID) {
                     unlockedPortals.remove(index);
                     logger.info("Removed portal ID " + Integer.toString(ID) + " from player " + getName() + ".");
                 }
+                index -= 1;
             }
         }
     }
