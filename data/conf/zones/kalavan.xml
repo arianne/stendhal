@@ -511,10 +511,26 @@
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
-      <attribute name="width">4</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="14" y="4">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
       <attribute name="height">2</attribute>
     </entity>
 
+    <entity x="12" y="5">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
     <entity x="15" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -750,9 +766,25 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">5</attribute>
-      <attribute name="height">3</attribute>
+      <attribute name="height">1</attribute>
     </entity>
 
+    <entity x="12" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">5</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="16" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
     <portal x="18" y="23" ref="entrance">
       <destination zone="0_kalavan_city" ref="house_7_entrance" />
     </portal>
@@ -779,7 +811,31 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">3</attribute>
-      <attribute name="height">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="16" y="15">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="16" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="18" y="13">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
     </entity>
 
     <entity x="21" y="15">
@@ -816,9 +872,33 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">4</attribute>
-      <attribute name="height">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="14" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
     </entity>
 
+    <entity x="14" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="17" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
     <entity x="21" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -864,9 +944,33 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">4</attribute>
-      <attribute name="height">4</attribute>
+      <attribute name="height">1</attribute>
     </entity>
-
+    
+    <entity x="14" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="14" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="17" y="17">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">2</attribute>
+    </entity>   
+    
     <entity x="21" y="15">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -1161,9 +1265,33 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">3</attribute>
-      <attribute name="height">3</attribute>
+      <attribute name="height">1</attribute>
     </entity>
 
+    <entity x="15" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="15" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="17" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
     <portal x="6" y="23" ref="entrance">
       <destination zone="0_kalavan_city" ref="house_15_entrance" />
     </portal>
@@ -1205,10 +1333,34 @@
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
-      <attribute name="width">3</attribute>
-      <attribute name="height">3</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="17" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">1</attribute>
     </entity>
 
+    <entity x="17" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+ 
+    <entity x="20" y="18">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>   
+    
     <!-- Piano -->
     <entity x="3" y="1">
       <implementation
@@ -1339,9 +1491,33 @@
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a table for resting your food and drinks on.</attribute>
       <attribute name="width">3</attribute>
-      <attribute name="height">3</attribute>
+      <attribute name="height">1</attribute>
     </entity>
 
+    <entity x="12" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+ 
+    <entity x="12" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+ 
+    <entity x="14" y="19">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for resting your food and drinks on.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>      
+    
     <!-- Clock -->
     <entity x="18" y="0">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
