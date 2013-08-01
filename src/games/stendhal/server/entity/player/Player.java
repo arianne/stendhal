@@ -620,7 +620,7 @@ public class Player extends RPEntity implements UseListener {
             while (index >= 0) {
                 if (unlockedPortals.get(index) == ID) {
                     unlockedPortals.remove(index);
-                    logger.info("Removed portal ID " + Integer.toString(ID) + " from player " + getName() + ".");
+                    logger.debug("Removed portal ID " + Integer.toString(ID) + " from player " + getName() + ".");
                 }
                 index -= 1;
             }
