@@ -180,6 +180,12 @@
 					<xsd:attribute name="value" type="xsd:decimal" />
 				</xsd:complexType>
 			</xsd:element>
+      <xsd:element name="statusattack" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="type" type="xsd:string" />
+          <xsd:attribute name="value" type="xsd:decimal" />
+        </xsd:complexType>
+      </xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 	
