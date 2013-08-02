@@ -20,7 +20,7 @@ import games.stendhal.server.entity.RPEntity;
  * @author AntumDeluge
  *
  */
-public class Status {
+public abstract class Status {
     
     /** The name of the status effect */
     private String name;
