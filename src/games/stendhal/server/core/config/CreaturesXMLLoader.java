@@ -109,6 +109,10 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 	private boolean attributes;
 
 	private boolean abilities;
+	
+	private String statusAttack;
+	
+	private double statusAttackProbability;
 
 	/** Susceptibilities of a creature */
 	private EnumMap<Nature, Double> susceptibilities;
@@ -181,6 +185,8 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			damageType = Nature.CUT;
 			susceptibilities = new EnumMap<Nature, Double>(Nature.class);
 			deathSound = null;
+			statusAttack = null;
+			statusAttackProbability = 0;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
@@ -328,6 +334,9 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			Nature type = Nature.parse(attrs.getValue("type"));
 			Double value = Double.valueOf(attrs.getValue("value"));
 			susceptibilities.put(type, value);
+		} else if (abilities && qName.equals("statusattack")) {
+		    statusAttack = attrs.getValue("type");
+		    statusAttackProbability = Double.valueOf(attrs.getValue("value"));
 		}
 	}
 
@@ -365,6 +374,11 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setCreatureSounds(sounds);
 			creature.setCreatureDeathSound(deathSound);
 			creature.setCreatureMovementSound(movementSound);
+			
+			if (statusAttack != null) {
+			    creature.setStatusAttack(statusAttack, statusAttackProbability);
+			}
+			
 			list.add(creature);
 		} else if (qName.equals("attributes")) {
 			attributes = false;
