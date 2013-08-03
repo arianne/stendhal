@@ -49,7 +49,7 @@ public abstract class Status {
         }
     }
     
-    public void attemptToInfclict(final RPEntity target, final int probability, final RPEntity attacker) {
+    public void attemptToInfclict(final RPEntity target, final double probability, final RPEntity attacker) {
         if (target.isResistantToStatus(this)) {
             // TODO: Affect probability with resistance
         }
