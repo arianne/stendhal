@@ -376,7 +376,7 @@ public final class CreaturesXMLLoader extends DefaultHandler {
 			creature.setCreatureMovementSound(movementSound);
 			
 			if (statusAttack != null) {
-			    creature.setStatusAttack(statusAttack, statusAttackProbability);
+//			    creature.setStatusAttack(statusAttack, statusAttackProbability);
 			}
 			
 			list.add(creature);
