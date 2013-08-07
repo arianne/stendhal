@@ -4,6 +4,7 @@
 1.10
 
 *world*
+- more creature descriptions
 
 *client*
 
