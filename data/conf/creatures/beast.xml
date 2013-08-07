@@ -452,7 +452,7 @@
   
   <creature name="imperial experiment">
     <type class="mutant" subclass="imperial_experiment" tileid="mutant.png:4"/>
-    <description></description>
+    <description>You see an imperial experiment which mirrors the fate of many of science departments test subjects. It's skin glows and standing before it taxes your body.</description>
     <attributes>
       <atk value="572"/>
       <def value="71"/>

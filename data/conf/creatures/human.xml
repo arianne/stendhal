@@ -1923,7 +1923,7 @@
   
   <creature name="emperor dalmung">
     <type class="human" subclass="emperor_dalmung" tileid="human_imperial.png:0"/>
-    <description></description>
+    <description>You see an emperor dalmung who stands before you. Once a powerful warlock trained by a mighty magician, but he disappeared decades ago. Now it seems he's in league with Ivan Abe!</description>
     <attributes>
       <atk value="705"/>
       <def value="91"/>
