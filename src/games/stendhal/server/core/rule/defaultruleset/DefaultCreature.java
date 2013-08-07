@@ -96,6 +96,10 @@ public class DefaultCreature {
 	/** Susceptibilities of the creature */
 	private Map<Nature, Double> susceptibilities;
 	
+	/** Status attack types */
+	private String statusAttack;
+	private double statusAttackProbability;
+	
 	/** Type of damage caused by the creature */
 	private Nature damageType;
 	/** Type of damage caused by the creature when using ranged attacks. if
@@ -268,6 +272,11 @@ public class DefaultCreature {
 		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
 		
+		// Status attack types
+		if (statusAttack != null) {
+		    creature.setStatusAttack(statusAttack, statusAttackProbability);
+		}
+		
 		return creature;
 	}
 
@@ -331,6 +340,16 @@ public class DefaultCreature {
 	 */
 	public void setCreatureMovementSound(String sound) {
 		this.movementSound = sound;
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param probability
+	 */
+	public void setStatusAttack(final String name, final double probability) {
+	    statusAttack = name;
+	    statusAttackProbability = probability;
 	}
 	
 	public boolean verifyItems(final EntityManager defaultEntityManager) {
