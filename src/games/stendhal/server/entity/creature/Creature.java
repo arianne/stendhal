@@ -36,8 +36,6 @@ import games.stendhal.server.entity.creature.impl.heal.HealerBehavior;
 import games.stendhal.server.entity.creature.impl.heal.HealerBehaviourFactory;
 import games.stendhal.server.entity.creature.impl.idle.IdleBehaviour;
 import games.stendhal.server.entity.creature.impl.idle.IdleBehaviourFactory;
-import games.stendhal.server.entity.creature.impl.poison.Attacker;
-import games.stendhal.server.entity.creature.impl.poison.PoisonerFactory;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -45,6 +43,8 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.status.PoisonAttackerFactory;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
 
@@ -145,7 +145,7 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	private Attacker poisoner;
+	private StatusAttacker poisoner;
 	private IdleBehaviour idler;
 
 	private int targetX;
@@ -170,7 +170,7 @@ public class Creature extends NPC {
 	private CounterMap<String> hitPlayers;
 	/** The time stamp of previous sound event. */
 	private long lastSoundTime;
-
+	
 	/**
 	 * creates a new Creature
 	 *
@@ -242,7 +242,7 @@ public class Creature extends NPC {
 		setSounds(copy.sounds);
 		setDeathSound(copy.deathSound);
 		setMovementSound(copy.movementSound);
-
+		
 		for (RPSlot slot : copy.slots()) {
 			this.addSlot((RPSlot) slot.clone());
 		}
@@ -497,7 +497,7 @@ public class Creature extends NPC {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
 		setAttackStrategy(aiProfiles);
-		poisoner = PoisonerFactory.get(aiProfiles.get("poisonous"));
+		poisoner = PoisonAttackerFactory.get(aiProfiles.get("poisonous"));
 		idler = IdleBehaviourFactory.get(aiProfiles);
 
 	}
@@ -818,7 +818,7 @@ public class Creature extends NPC {
 		LOGGER.debug("Antipoison value = " + sumAll);
 		
 		if (sumAll > 0) {
-			poisoner.applyAntipoison(sumAll);
+			poisoner.applyAntistatus(sumAll);
 		}
 		
 		// Checking creatures poison value after antipoison is applied
@@ -1189,4 +1189,20 @@ public class Creature extends NPC {
 		}
 		return getZone() == player.getZone();
 	}
+	
+	//
+	// XXX START: Status
+	//
+	
+	/**
+	 * Check if entity can inflict a status effect
+	 */
+	@Override
+	public boolean usesStatusAttack() {
+	    return (poisoner != null);
+	}
+	
+	//
+	// END: Status
+	//
 }

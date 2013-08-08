@@ -10,14 +10,14 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl.poison;
+package games.stendhal.server.entity.status;
 
 import games.stendhal.server.entity.RPEntity;
 
-public interface Attacker {
+public interface StatusAttacker {
 	boolean attack(RPEntity victim);
 	
-	void applyAntipoison(double antipoison);
+	void applyAntistatus(double antistatus);
 	
 	int getProbability();
 	

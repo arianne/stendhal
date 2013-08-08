@@ -10,28 +10,27 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl.poison;
+package games.stendhal.server.entity.status;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
 
 import org.apache.log4j.Logger;
 
-public class PoisonerFactory {
-	static final Attacker nonpoisonous = new NonPoisoner();
-	private static Logger logger = Logger.getLogger(PoisonerFactory.class);
+public class PoisonAttackerFactory {
+	private static Logger logger = Logger.getLogger(PoisonAttackerFactory.class);
 
-	public static Attacker get(final String profile) {
+	public static StatusAttacker get(final String profile) {
 		if (profile != null) {
-			final String[] poisonparams = profile.split(",");
-			final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisonparams[1]);
+			final String[] statusparams = profile.split(",");
+			final ConsumableItem status = (ConsumableItem) SingletonRepository.getEntityManager().getItem(statusparams[1]);
 
-			if (poison == null) {
-				logger .error("Cannot create poisoner with " + poisonparams[1]);
-				return nonpoisonous;
+			if (status == null) {
+				logger .error("Cannot create status attacker with " + statusparams[1]);
+				return null;
 			}
-			return new Poisoner(Integer.parseInt(poisonparams[0]), poison);
+			return new PoisonAttacker(Integer.parseInt(statusparams[0]), status);
 		}
-		return nonpoisonous;
+		return null;
 	}
 }

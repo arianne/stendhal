@@ -10,12 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.creature.impl.poison;
+package games.stendhal.server.entity.status;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.creature.impl.poison.Poisoner;
+import games.stendhal.server.entity.status.PoisonAttacker;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-public class PoisonerTest {
+public class PoisonAttackerTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -55,7 +55,7 @@ public class PoisonerTest {
 		final String poisontype = "greater poison";
 		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
-		final Poisoner poisoner = new Poisoner(100, poison);
+		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attack(victim);
 		assertTrue(victim.isPoisoned());
@@ -69,7 +69,7 @@ public class PoisonerTest {
 		final String poisontype = "greater poison";
 		final ConsumableItem poison = (ConsumableItem) SingletonRepository.getEntityManager().getItem(poisontype);
 
-		final Poisoner poisoner = new Poisoner(0, poison);
+		final PoisonAttacker poisoner = new PoisonAttacker(0, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attack(victim);
 		assertFalse(victim.isPoisoned());
