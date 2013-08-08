@@ -19,6 +19,10 @@ public interface StatusAttacker {
 	
 	boolean attemptToInflict(RPEntity target);
 	
+	public void clearConsumables(RPEntity target);
+	
+	String getName();
+	
 	int getProbability();
 	
 	void setProbability(int p);

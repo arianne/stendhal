@@ -19,9 +19,11 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
 class PoisonAttacker implements StatusAttacker {
+    final String name = "poison";
+    
 	ConsumableItem poison;
 	private int probability;
-
+	
 	public PoisonAttacker(final int probability, final ConsumableItem poison) {
 		this.probability = probability;
 		this.poison = poison;
@@ -67,6 +69,20 @@ class PoisonAttacker implements StatusAttacker {
             }
         }
         return false;
+    }
+    
+    @Override
+    public void clearConsumables(RPEntity target) {
+        // FIXME: should clear poison for any entity
+        if (target instanceof Player) {
+            Player player = (Player) target;
+            player.clearPoisonToConsume();
+        }
+    }
+    
+    @Override
+    public String getName() {
+        return name;
     }
     
 	@Override
