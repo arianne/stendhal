@@ -1423,6 +1423,13 @@ public class Player extends RPEntity implements UseListener {
 	}
 	
 	/**
+	 * 
+	 */
+	public void clearPoisonToConsume() {
+	    poisonToConsume.clear();
+	}
+	
+	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
 	 * @return true if player still has poisons to consume
