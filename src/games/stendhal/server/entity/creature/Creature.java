@@ -824,7 +824,7 @@ public class Creature extends NPC {
 		// Checking creatures poison value after antipoison is applied
 		LOGGER.debug("Poison probability after: " + poisoner.getProbability());
 		
-		if (poisoner.attack(entity)) {
+		if (poisoner.attemptToInflict(entity)) {
 			new GameEvent(getName(), "poison", entity.getName()).raise();
 			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
 		}

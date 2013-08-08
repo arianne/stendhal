@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
@@ -31,20 +32,6 @@ class PoisonAttacker implements StatusAttacker {
 	}
 
 	@Override
-	public boolean attack(final RPEntity victim) {
-		final int roll = Rand.roll1D100();
-		if (roll <= probability) {
-			if (victim instanceof Player) {
-				final Player player = (Player) victim;
-				if (player.poison(new ConsumableItem(poison))) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	@Override
 	public void applyAntistatus(double antipoison) {
 		/*
 		 * invert the value for multiplying
@@ -53,6 +40,35 @@ class PoisonAttacker implements StatusAttacker {
 		this.probability *= antipoison;
 	}
 	
+	/**
+	 * 
+	 */
+    @Override
+    public boolean attemptToInflict(final RPEntity target) {
+        final int roll = Rand.roll1D100();
+        if (roll <= probability) {
+            if (target instanceof Player) {
+                final Player player = (Player) target;
+                if (player.isImmune()) {
+                    return false;
+                } else {
+                    /*
+                     * Send the client the new poisoning status, but avoid overwriting
+                     * the real value in case the player was already poisoned.
+                     */
+                    if (!player.has("poisoned")) {
+                        player.put("poisoned", "0");
+                        player.notifyWorldAboutChanges();
+                    }
+                    player.addPoisonToConsume(new ConsumableItem(poison));
+                    TutorialNotifier.poisoned(player);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
 	@Override
 	public int getProbability() {
 		return this.probability;

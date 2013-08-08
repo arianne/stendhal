@@ -15,9 +15,9 @@ package games.stendhal.server.entity.status;
 import games.stendhal.server.entity.RPEntity;
 
 public interface StatusAttacker {
-	boolean attack(RPEntity victim);
-	
 	void applyAntistatus(double antistatus);
+	
+	boolean attemptToInflict(RPEntity target);
 	
 	int getProbability();
 	
