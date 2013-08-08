@@ -40,6 +40,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
@@ -191,11 +192,14 @@ public abstract class RPEntity extends GuidedEntity {
 	// START: status effect variables
 	// 
 	
+	/** Immunites to statuses */
+	private List<String> immunities;
+	
 	/** Container for statuses inflicted on entity */
 	private List<Status> statuses;
 	private boolean statusChanged = false;
 	
-	/** Immunities to statuses */
+	/** Resistances to statuses */
 	private List<String> resistances;
 	
 	/** Entity uses a status attack */
@@ -282,6 +286,7 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
         ignoreCollision = false;
+        immunities = new LinkedList<String>();
         statuses = new LinkedList<Status>();
         resistances = new LinkedList<String>();
 	}
@@ -294,6 +299,7 @@ public abstract class RPEntity extends GuidedEntity {
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
         ignoreCollision = false;
+        immunities = new LinkedList<String>();
         statuses = new LinkedList<Status>();
         resistances = new LinkedList<String>();
 	}
@@ -2998,7 +3004,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     }
     
     //
-    // START: Status effects
+    // XXX START: Status effects
     //
     
     /**
@@ -3147,6 +3153,22 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     }
     
     /**
+     * Check if entity is immune to specified status attack.
+     * 
+     * @param attack
+     *          Status attack type
+     * @return
+     *          Entity is immune
+     */
+    public boolean isImmune(final StatusAttacker attack) {
+        final String statusName = attack.getName();
+        if (immunities.contains(statusName)) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
      * Status effects that cannot be inflicted on entity
      * 
      * @param status
@@ -3160,6 +3182,44 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
         }
         return false;
     }
+    
+    /**
+     * Remove any immunity of specified status effect from entity.
+     * 
+     * @param attack
+     *          Status attack type
+     */
+    public void removeImmunity(final StatusAttacker attack) {
+        String statusName = attack.getName();
+        if (immunities.contains(statusName)) {
+            immunities.remove(statusName);
+        }
+        sendPrivateText("You are not immune to " + statusName + " anymore.");
+    }
+
+    /**
+     * Make entity immune to a specified status attack.
+     * 
+     * @param attack
+     *          Status attack type
+     */
+    public void setImmune(final StatusAttacker attack) {
+        String statusName = attack.getName();
+        
+        // Remove any current instances of the status attribute
+        if (has("status_" + statusName)) {
+            remove("status_" + statusName);
+        }
+        
+        // FIXME: should clear any consumable statuses
+        attack.clearConsumables(this);
+        
+        // Add to list of immunities
+        if (!immunities.contains(statusName)) {
+            immunities.add(statusName);
+        }
+    }
+
     
     /**
      * Removes a single instance of a status from entity
