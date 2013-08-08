@@ -3240,6 +3240,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
         return statusChanged;
     }
     
+    /**
+     * Check if entity can inflict a status effect
+     * 
+     * @return
+     */
+    public boolean usesStatusAttack() {
+        return (statusAttack != null);
+    }
+    
     //
     // END: Status effects
     //
