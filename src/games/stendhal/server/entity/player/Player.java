@@ -1415,6 +1415,14 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	/**
+	 * 
+	 * @param item
+	 */
+	public void addPoisonToConsume(ConsumableItem item) {
+        poisonToConsume.add(item);
+	}
+	
+	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
 	 * @return true if player still has poisons to consume
