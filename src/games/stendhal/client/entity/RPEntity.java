@@ -942,7 +942,7 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * Poisoned
 		 */
-		if (object.has("poisoned")) {
+		if (object.has("status_poison")) {
 			// Don't call onPoisoned to avoid adding event lines; just set
 			// poisoned so that views get correctly drawn.
 			setPoisoned(true);
@@ -1092,9 +1092,9 @@ public abstract class RPEntity extends AudibleEntity {
 			/*
 			 * Poisoned
 			 */
-			if (changes.has("poisoned")) {
+			if (changes.has("status_poison")) {
 				// To remove the - sign on poison.
-				onPoisoned(Math.abs(changes.getInt("poisoned")));
+				onPoisoned(Math.abs(changes.getInt("status_poison")));
 			}
 
 			/*
@@ -1347,7 +1347,7 @@ public abstract class RPEntity extends AudibleEntity {
 		/*
 		 * No longer poisoned?
 		 */
-		if (changes.has("poisoned")) {
+		if (changes.has("status_poison")) {
 			setPoisoned(false);
 		}
 

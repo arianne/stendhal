@@ -1456,8 +1456,8 @@ public class Player extends RPEntity implements UseListener {
 			 * Send the client the new poisoning status, but avoid overwriting
 			 * the real value in case the player was already poisoned.
 			 */
-			if (!has("poisoned")) {
-				put("poisoned", "0");
+			if (!has("status_poison")) {
+				put("status_poison", "0");
 				notifyWorldAboutChanges();
 			}
 			poisonToConsume.add(item);
@@ -1488,8 +1488,8 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	public void setImmune() {
-		if (has("poisoned")) {
-			remove("poisoned");
+		if (has("status_poison")) {
+			remove("status_poison");
 		}
 		poisonToConsume.clear();
 		isImmune = true;
@@ -1533,8 +1533,8 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		if ((poisonToConsume.size() == 0)) {
-			if (has("poisoned")) {
-				remove("poisoned");
+			if (has("status_poison")) {
+				remove("status_poison");
 			}
 		} else {
 			final List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
@@ -1549,7 +1549,7 @@ public class Player extends RPEntity implements UseListener {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-						put("poisoned", sum);
+						put("status_poison", sum);
 					}
 				}
 
@@ -2189,6 +2189,21 @@ public class Player extends RPEntity implements UseListener {
 	public boolean isImmune() {
 		return isImmune;
 	}
+	
+	/**
+	 * Not used yet.
+	 * Checks if player is immune to a status effect
+	 * 
+	 * @param status
+	 *         Name of staus effect
+	 *         
+	 * @return
+	 *         Immunity
+	 */
+	public boolean isImmune(final String status) {
+	    return false;
+	}
+	
 	void setLastPlayerKill(final long milliseconds) {
 		put(LAST_PLAYER_KILL_TIME, milliseconds);
 	}
