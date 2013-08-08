@@ -71,7 +71,7 @@ kih*/furniture/chair/throne.png 41
 del*/furniture/clock/stone_clock.png 1
 kih*/furniture/clock/wooden_clock.png 42
 furniture/curtain/blue_green.png 4
-kih furniture/kitchen/cabinets.png 53
+kih*furniture/kitchen/cabinets.png 53
 kih*/furniture/kitchen/warmer_2.png 24
 kih*/furniture/light/iron_lamp.png 71
 furniture/light/lamp_blue.png 10
