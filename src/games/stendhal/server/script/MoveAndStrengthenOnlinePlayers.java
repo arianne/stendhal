@@ -24,6 +24,7 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonAttacker;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -93,7 +94,7 @@ public class MoveAndStrengthenOnlinePlayers extends ScriptImpl {
 					fillBag(player);
 					player.setDefXP(999999999);
 					player.addXP(999999999);
-					player.setImmune();
+					player.setImmune(new PoisonAttacker());
 					StendhalRPZone zone = zones.get(Rand.rand(zones.size()));
 					int x = Rand.rand(zone.getWidth() - 4) + 2;
 					int y = Rand.rand(zone.getHeight() - 5) + 2;

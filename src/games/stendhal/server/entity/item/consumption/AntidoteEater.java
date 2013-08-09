@@ -25,7 +25,7 @@ class AntidoteEater implements TurnListener {
 		if (player == null) {
 			return;
 		}
-		player.removeImmunity();
+		player.removeImmunity("poison");
 	}
 
 	@Override

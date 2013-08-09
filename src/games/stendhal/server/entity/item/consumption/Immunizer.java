@@ -17,12 +17,13 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonAttacker;
 
 class Immunizer implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		player.setImmune();
+		player.setImmune(new PoisonAttacker());
 		
 		// set a timer to remove the immunity effect after some time
 		final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
