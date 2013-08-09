@@ -18,7 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
-class PoisonAttacker implements StatusAttacker {
+public class PoisonAttacker implements StatusAttacker {
     final String name = "poison";
     
 	ConsumableItem poison;
@@ -51,7 +51,7 @@ class PoisonAttacker implements StatusAttacker {
         if (roll <= probability) {
             if (target instanceof Player) {
                 final Player player = (Player) target;
-                if (player.isImmune()) {
+                if (player.isImmune("poison")) {
                     return false;
                 } else {
                     /*
