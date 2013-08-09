@@ -131,13 +131,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	private int age;
 
-
-	/**
-	 * Shows if this player is currently under the influence of an antidote, and
-	 * thus immune from poison.
-	 */
-	private boolean isImmune;
-
 	/**
 	 * The last player who privately talked to this player using the /tell
 	 * command. It needs to be stored non-persistently so that /answer can be
@@ -344,7 +337,7 @@ public class Player extends RPEntity implements UseListener {
 
 			// as an effect of the poisoning, the player's controls
 			// are switched to make it difficult to navigate.
-			if (isPoisoned() || hasStatus("confuse")) {
+			if (isPoisoned() || has("status_confuse")) {
 				direction = direction.oppositeDirection();
 			}
 
@@ -1456,7 +1449,7 @@ public class Player extends RPEntity implements UseListener {
 	 *         immune
 	 */
 	public boolean poison(final ConsumableItem item) {
-		if (isImmune) {
+		if (isImmune("poison")) {
 			return false;
 		} else {
 			/*
@@ -1492,19 +1485,6 @@ public class Player extends RPEntity implements UseListener {
 			put("eating", 0);
 		}
 		itemsToConsume.add(item);
-	}
-
-	public void setImmune() {
-		if (has("status_poison")) {
-			remove("status_poison");
-		}
-		poisonToConsume.clear();
-		isImmune = true;
-	}
-
-	public void removeImmunity() {
-		isImmune = false;
-		sendPrivateText("You are not immune to poison anymore.");
 	}
 
 	private void consume(final int turn) {
@@ -2193,23 +2173,9 @@ public class Player extends RPEntity implements UseListener {
 		}
 	}
 
-	public boolean isImmune() {
-		return isImmune;
-	}
-	
-	/**
-	 * Not used yet.
-	 * Checks if player is immune to a status effect
-	 * 
-	 * @param status
-	 *         Name of staus effect
-	 *         
-	 * @return
-	 *         Immunity
-	 */
-	public boolean isImmune(final String status) {
-	    return false;
-	}
+//	public boolean isImmune() {
+//		return isImmune;
+//	}
 	
 	void setLastPlayerKill(final long milliseconds) {
 		put(LAST_PLAYER_KILL_TIME, milliseconds);
