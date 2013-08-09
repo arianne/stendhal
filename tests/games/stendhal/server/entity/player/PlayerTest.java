@@ -27,6 +27,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.status.PoisonAttacker;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -250,9 +251,9 @@ public class PlayerTest {
 	@Test
 	public void testSetImmune() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.isImmune());
-		bob.setImmune();
-		assertTrue(bob.isImmune());
+		assertFalse(bob.isImmune("poison"));
+		bob.setImmune(new PoisonAttacker());
+		assertTrue(bob.isImmune("poison"));
 	}
 
 	
@@ -262,11 +263,11 @@ public class PlayerTest {
 	@Test
 	public void testRemoveImmunity() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.isImmune());
-		bob.setImmune();
-		assertTrue(bob.isImmune());
-		bob.removeImmunity();
-		assertFalse(bob.isImmune());
+		assertFalse(bob.isImmune("poison"));
+		bob.setImmune(new PoisonAttacker());
+		assertTrue(bob.isImmune("poison"));
+		bob.removeImmunity("poison");
+		assertFalse(bob.isImmune("poison"));
 		
 	}
 	
