@@ -54,6 +54,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final int ICON_OFFSET = 8;
 	private static final int HEALTH_BAR_HEIGHT = 4;
 
+	private static final Sprite confusedSprite;
 	private static final Sprite eatingSprite;
 	private static final Sprite poisonedSprite;
 	private static final Sprite chokingSprite;
@@ -115,6 +116,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
+		
+		// Status sprites
+		confusedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/confuse.png"), 100);
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
@@ -142,9 +146,16 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
 					@Override
 					boolean show(T rpentity) {
-						return rpentity.isPoisoned();
+						return rpentity.hasStatus("poisoned");
 					}
 				});
+		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
+		        HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 0, 0) {
+		            @Override
+		            boolean show(T rpentity) {
+		                return rpentity.hasStatus("status_confuse");
+		            }
+		        });
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
