@@ -57,10 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import marauroa.common.game.Definition;
-import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
@@ -219,64 +216,14 @@ public abstract class RPEntity extends GuidedEntity {
 		return super.handlePortal(portal);
 	}
 
-	public static void generateRPClass() {
-		try {
-			stats = Statistics.getStatistics();
-			final RPClass entity = new RPClass("rpentity");
-			entity.isA("active_entity");
-			entity.addAttribute("name", Type.STRING);
-			entity.addAttribute(ATTR_TITLE, Type.STRING);
-			entity.addAttribute("level", Type.SHORT);
-			entity.addAttribute("xp", Type.INT);
-			entity.addAttribute("mana", Type.INT);
-			entity.addAttribute("base_mana", Type.INT);
-
-			entity.addAttribute("base_hp", Type.SHORT);
-			entity.addAttribute("hp", Type.SHORT);
-
-			entity.addAttribute("atk", Type.SHORT);
-			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
-			entity.addAttribute("def", Type.SHORT);
-			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
-			entity.addAttribute("atk_item", Type.INT,
-					(byte) (Definition.PRIVATE | Definition.VOLATILE));
-			entity.addAttribute("def_item", Type.INT,
-					(byte) (Definition.PRIVATE | Definition.VOLATILE));
-
-			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE); // obsolete, do not use
-			entity.addAttribute("damage", Type.INT, Definition.VOLATILE); // obsolete, do not use
-			entity.addAttribute("heal", Type.INT, Definition.VOLATILE);
-			// TODO: check that the binary representation of old saved players is compatible when this is changed into a list.
-			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
-			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
-			entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
-			
-			entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
-			
-			entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
-			entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
-			
-			// Status effects
-			entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
-			entity.addAttribute("status_poison", Type.SHORT, Definition.VOLATILE);
-			entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
-			
-			entity.addRPSlot("head", 1, Definition.PRIVATE);
-			entity.addRPSlot("rhand", 1, Definition.PRIVATE);
-			entity.addRPSlot("lhand", 1, Definition.PRIVATE);
-			entity.addRPSlot("armor", 1, Definition.PRIVATE);
-			entity.addRPSlot("finger", 1, Definition.PRIVATE);
-			entity.addRPSlot("cloak", 1, Definition.PRIVATE);
-			entity.addRPSlot("legs", 1, Definition.PRIVATE);
-			entity.addRPSlot("feet", 1, Definition.PRIVATE);
-			entity.addRPSlot("bag", 12, Definition.PRIVATE);
-			entity.addRPSlot("keyring", 8, Definition.PRIVATE);
-
-			entity.addRPEvent("attack", Definition.VOLATILE);
-		} catch (final SyntaxException e) {
-			logger.error("cannot generateRPClass", e);
-		}
-	}
+    public static void generateRPClass() {
+        try {
+            stats = Statistics.getStatistics();
+            RPEntityRPClass.generateRPClass(ATTR_TITLE);
+        } catch (final SyntaxException e) {
+            logger.error("cannot generateRPClass", e);
+        }
+    }
 
 	public RPEntity(final RPObject object) {
 		super(object);
