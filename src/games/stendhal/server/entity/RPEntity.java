@@ -3107,8 +3107,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      * @return
      *          Entity is immune
      */
-    public boolean isImmune(final StatusAttacker attack) {
-        final String statusName = attack.getName();
+    public boolean isImmune(final String statusName) {
         if (immunities.contains(statusName)) {
             return true;
         }
@@ -3136,8 +3135,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      * @param attack
      *          Status attack type
      */
-    public void removeImmunity(final StatusAttacker attack) {
-        String statusName = attack.getName();
+    public void removeImmunity(final String statusName) {
         if (immunities.contains(statusName)) {
             immunities.remove(statusName);
         }
@@ -3151,7 +3149,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
      *          Status attack type
      */
     public void setImmune(final StatusAttacker attack) {
-        String statusName = attack.getName();
+        final String statusName = attack.getName();
         
         // Remove any current instances of the status attribute
         if (has("status_" + statusName)) {
