@@ -62,7 +62,7 @@ public class RPEntityRPClass {
         
         // Status effects
         entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
-        entity.addAttribute("status_poison", Type.SHORT, Definition.VOLATILE);
+        entity.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
         
         entity.addRPSlot("head", 1, Definition.PRIVATE);

@@ -1456,8 +1456,8 @@ public class Player extends RPEntity implements UseListener {
 			 * Send the client the new poisoning status, but avoid overwriting
 			 * the real value in case the player was already poisoned.
 			 */
-			if (!has("status_poison")) {
-				put("status_poison", "0");
+			if (!has("poisoned")) {
+				put("poisoned", "0");
 				notifyWorldAboutChanges();
 			}
 			poisonToConsume.add(item);
@@ -1520,8 +1520,8 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		if ((poisonToConsume.size() == 0)) {
-			if (has("status_poison")) {
-				remove("status_poison");
+			if (has("poisoned")) {
+				remove("poisoned");
 			}
 		} else {
 			final List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
@@ -1536,7 +1536,7 @@ public class Player extends RPEntity implements UseListener {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-						put("status_poison", sum);
+						put("poisoned", sum);
 					}
 				}
 
