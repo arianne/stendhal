@@ -58,8 +58,8 @@ public class PoisonAttacker implements StatusAttacker {
                      * Send the client the new poisoning status, but avoid overwriting
                      * the real value in case the player was already poisoned.
                      */
-                    if (!player.has("status_poison")) {
-                        player.put("status_poison", "0");
+                    if (!player.has("poisoned")) {
+                        player.put("poisoned", "0");
                         player.notifyWorldAboutChanges();
                     }
                     player.addPoisonToConsume(new ConsumableItem(poison));
