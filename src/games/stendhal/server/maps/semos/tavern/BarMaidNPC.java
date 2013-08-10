@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		margaret.setDescription("Margaret looks so warm and welcoming that you can't help but want to buy something from her.");
 		margaret.setPosition(11, 4);
 		margaret.initHP(100);
+		margaret.setSounds(Arrays.asList("hiccup-1", "hiccup-2", "hiccup-3"));
 		zone.add(margaret);
 	}
 }

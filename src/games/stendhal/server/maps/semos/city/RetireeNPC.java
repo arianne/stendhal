@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.StoreMessageAction;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,7 @@ public class RetireeNPC implements ZoneConfigurator {
 		npc.setPosition(24, 43);
 		npc.setEntityClass("beggarnpc");
 		npc.setDescription("Diogenes is an elderly man, but sprightly for his age. He looks friendly and helpful.");
+		npc.setSounds(Arrays.asList("laugh-1", "laugh-2"));
 		zone.add(npc);
 	}
 

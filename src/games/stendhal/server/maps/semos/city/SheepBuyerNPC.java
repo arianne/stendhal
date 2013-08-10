@@ -19,6 +19,7 @@ import games.stendhal.server.maps.semos.village.SheepSellerNPC;
 import games.stendhal.server.util.Area;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -175,8 +176,9 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 		new BuyerAdder().addBuyer(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.setPosition(40, 45);
 		npc.setEntityClass("buyernpc");
-		zone.add(npc);
 		npc.setDescription("You see Sato. He loves sheep.");
+		npc.setSounds(Arrays.asList("hiccup-1", "sneeze-1"));
+		zone.add(npc);
 	}
 
 	private static class SheepBuyerBehaviour extends BuyerBehaviour {

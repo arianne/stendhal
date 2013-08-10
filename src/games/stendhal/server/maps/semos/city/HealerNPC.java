@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,7 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.setPosition(5, 46);
 		npc.setDescription("You see kind Carmen. She looks like someone you could ask for help.");
 		npc.setEntityClass("welcomernpc");
+		npc.setSounds(Arrays.asList("giggle-1", "giggle-2"));
 		zone.add(npc);
 	}
 
