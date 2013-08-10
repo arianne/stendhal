@@ -17,11 +17,19 @@ import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 class StatusIconPanel extends JComponent {
+    private static Map<StatusID, JLabel> statusIDMap;
+    
+    /** Status bar icons */
+    private static final String iconFolder = "data/sprites/status/panel/";
+    
 	/**
 	 * serial version uid
 	 */
@@ -29,6 +37,8 @@ class StatusIconPanel extends JComponent {
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
 	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/poisoned.png"));
+	private static final ImageIcon confuseIcon = new ImageIcon(DataLoader.getResource(iconFolder + "confuse.png"));
+	private static final ImageIcon shockIcon = new ImageIcon(DataLoader.getResource(iconFolder + "shock.png"));
 	
 	private final static Sprite awaySprite, grumpySprite;
 	static {
@@ -37,7 +47,7 @@ class StatusIconPanel extends JComponent {
 		grumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
 	}
 
-	final JLabel eating, choking, poison;
+	final JLabel eating, choking, poison, confuse, shock;
 	final AnimatedIcon away, grumpy;
 	
 	protected StatusIconPanel() {
@@ -56,6 +66,14 @@ class StatusIconPanel extends JComponent {
 		add(poison);
 		poison.setVisible(false);
 		
+		confuse = new JLabel(confuseIcon);
+		add(confuse);
+		confuse.setVisible(false);
+		
+		shock = new JLabel(shockIcon);
+		add(shock);
+		shock.setVisible(false);
+		
 		away = new AnimatedIcon(awaySprite, 13, 19, 4, 2000);
 		add(away);
 		away.setVisible(false);
@@ -63,6 +81,13 @@ class StatusIconPanel extends JComponent {
 		grumpy = new AnimatedIcon(grumpySprite, 12, 20, 4, 2000);
 		add(grumpy);
 		grumpy.setVisible(false);
+		
+		/** Initialize map */
+        statusIDMap = new EnumMap<StatusID, JLabel>(StatusID.class); {
+            statusIDMap.put(StatusID.CONFUSE, confuse);
+            statusIDMap.put(StatusID.POISON, poison);
+            statusIDMap.put(StatusID.SHOCK, shock);
+        }
 	}
 	
 	/**
@@ -100,17 +125,21 @@ class StatusIconPanel extends JComponent {
 		}
 	}
 	
-	/**
-	 * Display or hide poisoned icon
-	 * 
-	 * @param poisoned
-	 */
-	protected void setPoisoned(boolean poisoned) {
-		if (poison.isVisible() != poisoned) {
-			poison.setVisible(poisoned);
-		}
-	}
-	
+    /**
+     * Display or hide a status icon.
+     * 
+     * @param ID
+     *      The ID value of the status
+     * @param visible
+     *      Show the icon
+     */
+    void setStatus(final StatusID ID, final boolean visible) {
+        final JLabel status = statusIDMap.get(ID);
+        if (status.isVisible() != visible) {
+            status.setVisible(visible);
+        }
+    }
+    
 	/**
 	 * Set the away status message. null value will hide the icon.
 	 * 
