@@ -27,10 +27,12 @@ import games.stendhal.common.grammar.Grammar;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import marauroa.common.game.RPObject;
@@ -177,7 +179,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private boolean poisoned;
 	
-	private List<String> statuses;
+	private Set<String> statuses;
 
 	private boolean choking;
 	
@@ -233,7 +235,7 @@ public abstract class RPEntity extends AudibleEntity {
 	RPEntity() {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
-		statuses = new LinkedList<String>();
+		statuses = new HashSet<String>();
 	}
 
 	//
@@ -782,16 +784,12 @@ public abstract class RPEntity extends AudibleEntity {
      *         Show status overlay
      */
     private void setStatus(final String status, final boolean show) {
-        if (!statuses.contains(status)) {
-            if (show) {
-                statuses.add(status);
-                fireChange(statusProp.get(status));
-            }
+        if (show) {
+            statuses.add(status);
+            fireChange(statusProp.get(status));
         } else {
-            if (!show) {
-                statuses.remove(status);
-                fireChange(statusProp.get(status));
-            }
+            statuses.remove(status);
+            fireChange(statusProp.get(status));
         }
     }
 
