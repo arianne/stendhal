@@ -609,11 +609,6 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 	
 	public boolean hasStatus(final String status) {
-	    System.out.println("\nChecking for status: " + status);
-	    for (String s : statuses) {
-	        System.out.println(s);
-	    }
-	    System.out.println(Boolean.toString(statuses.contains(status)) + "\n");
 	    return statuses.contains(status);
 	}
 
@@ -802,13 +797,11 @@ public abstract class RPEntity extends AudibleEntity {
         if (!statuses.contains(status)) {
             if (add) {
                 statuses.add(status);
-                System.out.println("\nAdded status: " + status + "\n");
             }
             fireChange(statusProp.get(status));
         } else {
             if (!add) {
                 statuses.remove(status);
-                System.out.println("\nRemoved status: " + status + "\n");
             }
         }
     }
