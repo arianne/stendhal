@@ -19,8 +19,6 @@ import games.stendhal.client.ZoneInfo;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.ActiveEntity;
 import games.stendhal.client.entity.DomesticAnimal;
-import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
-import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -34,7 +32,7 @@ import java.util.Map;
  * 
  * @param <T> type of domestic animal
  */
-abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2DView<T> {
+abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends NPC2DView<T> {
 	/**
 	 * The down facing big state.
 	 */
@@ -54,25 +52,6 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	 * The right facing big state.
 	 */
 	private static final String STATE_BIG_RIGHT = "big:move_right";
-
-	/**
-	 * The idea property changed.
-	 */
-	private volatile boolean ideaChanged;
-	
-	/**
-	 * The current idea sprite.
-	 */
-	private Sprite ideaSprite;
-
-
-	/**
-	 * Create a 2D view of a animal.
-	 */
-	public DomesticAnimal2DView() {
-		ideaSprite = null;
-		ideaChanged = false;
-	}
 
 	//
 	// StateEntity
@@ -111,22 +90,6 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 	 * @return A weight.
 	 */
 	protected abstract int getBigWeight();
-
-	/**
-	 * Get the approriete idea sprite.
-	 * 
-	 * @return The sprite representing the current idea, or null.
-	 */
-	private Sprite getIdeaSprite() {
-		final String idea = entity.getIdea();
-
-		if (idea == null) {
-			return null;
-		}
-
-		return SpriteStore.get().getSprite(
-				"data/sprites/ideas/" + idea + ".png");
-	}
 
 	//
 	// RPEntity2DView
@@ -194,38 +157,11 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 		return 8;
 	}
 
-	//
-	// ActiveEntity2DView
-	//
-
-	//
-	// Entity2DView
-	//
-
-	/**
-	 * Handle updates.
-	 */
-	@Override
-	protected void update() {
-		super.update();
-
-		if (ideaChanged) {
-			ideaChanged = false;
-			detachSprite(ideaSprite);
-			ideaSprite = getIdeaSprite();
-			if (ideaSprite != null) {
-				attachSprite(ideaSprite, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 8, -8);
-			}
-		}
-	}
-
 	@Override
 	void entityChanged(final Object property) {
 		super.entityChanged(property);
 
-		if (property == DomesticAnimal.PROP_IDEA) {
-			ideaChanged = true;
-		} else if (property == DomesticAnimal.PROP_WEIGHT) {
+		if (property == DomesticAnimal.PROP_WEIGHT) {
 			proceedChangedState(entity);
 		}
 	}
@@ -258,7 +194,7 @@ abstract class DomesticAnimal2DView<T extends DomesticAnimal> extends RPEntity2D
 
 
 	/**
-	 * gets the mouse cursor image to use for this entity
+	 * Gets the mouse cursor image to use for this entity.
 	 *
 	 * @return StendhalCursor
 	 */

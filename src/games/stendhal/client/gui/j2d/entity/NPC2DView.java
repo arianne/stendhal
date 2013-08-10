@@ -21,11 +21,12 @@ import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.OutfitColor;
+import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
+import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Graphics2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
@@ -42,7 +43,14 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 	 * Log4J.
 	 */
 	private static final Logger logger = Logger.getLogger(NPC2DView.class);
-	
+	/**
+	 * The idea property changed.
+	 */
+	private volatile boolean ideaChanged = true;
+	/**
+	 * The current idea sprite.
+	 */
+	private Sprite ideaSprite;
 
 	//
 	// RPEntity2DView
@@ -83,6 +91,8 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 
 		if (property == IEntity.PROP_CLASS) {
 			representationChanged = true;
+		} else if (property == NPC.PROP_IDEA) {
+			ideaChanged = true;
 		}
 	}
 
@@ -95,24 +105,40 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 			list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
 		}
 	}
-
+	
 	/**
-	 * Draw the entity.
-	 * 
-	 * @param g2d
-	 *            The graphics to drawn on.
+	 * Handle updates.
 	 */
 	@Override
-	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		super.drawTop(g2d, x, y, width, height);
-        
-		if (entity.getIdea() != null) {
-			Sprite sprite = SpriteStore.get().getSprite("data/sprites/ideas/" + entity.getIdea() + ".png");
-			sprite.draw(g2d, x + (width * 3 / 4), y - 10);
+	protected void update() {
+		super.update();
+
+		if (ideaChanged) {
+			ideaChanged = false;
+			detachSprite(ideaSprite);
+			ideaSprite = getIdeaSprite();
+			if (ideaSprite != null) {
+				attachSprite(ideaSprite, HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 8, -8);
+			}
+		}
+	}
+	
+	/**
+	 * Get the appropriate idea sprite.
+	 * 
+	 * @return The sprite representing the current idea, or null.
+	 */
+	private Sprite getIdeaSprite() {
+		final String idea = entity.getIdea();
+
+		if (idea == null) {
+			return null;
 		}
 
-		
+		return SpriteStore.get().getSprite(
+				"data/sprites/ideas/" + idea + ".png");
 	}
+	
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
@@ -130,7 +156,7 @@ class NPC2DView<T extends NPC> extends RPEntity2DView<T> {
 	}
 
 	/**
-	 * gets the mouse cursor image to use for this entity
+	 * Gets the mouse cursor image to use for this entity.
 	 *
 	 * @return StendhalCursor
 	 */
