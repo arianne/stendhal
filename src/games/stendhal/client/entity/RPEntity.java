@@ -785,11 +785,12 @@ public abstract class RPEntity extends AudibleEntity {
         if (!statuses.contains(status)) {
             if (show) {
                 statuses.add(status);
+                fireChange(statusProp.get(status));
             }
-            fireChange(statusProp.get(status));
         } else {
             if (!show) {
                 statuses.remove(status);
+                fireChange(statusProp.get(status));
             }
         }
     }
