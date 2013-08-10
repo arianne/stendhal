@@ -20,6 +20,13 @@ public enum StatusID {
     POISON,
     SHOCK;
     
+    private static final Map<String, StatusID> map = new HashMap<String, StatusID>();
+    static {
+    	map.put("status_confuse", CONFUSE);
+        map.put("poisoned", POISON);
+        map.put("status_shock", SHOCK);
+    }
+    
     /**
      * Find the status ID using the status name.
      * 
@@ -29,11 +36,6 @@ public enum StatusID {
      *      Status ID
      */
     public static StatusID getStatusID(String status) {
-        Map<String, StatusID> IDMap = new HashMap<String, StatusID>();
-        IDMap.put("status_confuse", CONFUSE);
-        IDMap.put("poisoned", POISON);
-        IDMap.put("status_shock", SHOCK);
-        
-        return IDMap.get(status);
+    	return map.get(status);
     }
 }
