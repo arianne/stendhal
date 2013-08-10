@@ -61,6 +61,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite hitSprite;
 	private static final Sprite blockedSprite;
 	private static final Sprite missedSprite;
+	private static final Sprite shockedSprite;
 	
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
@@ -118,10 +119,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		
 		// Status sprites
-		confusedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/confuse.png"), 100);
+		confusedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/confuse.png"), 200);
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
+		shockedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/shock.png"), 200);
 	}
 
 	/**
@@ -149,13 +151,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.isPoisoned();
 					}
 				});
-//		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
-//		        HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 0, 0) {
-//		            @Override
-//		            boolean show(T rpentity) {
-//		                return rpentity.hasStatus("status_confuse");
-//		            }
-//		        });
+		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
+		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, 0, 0) {
+		            @Override
+		            boolean show(T rpentity) {
+		                return rpentity.hasStatus("status_confuse");
+		            }
+		        });
+        addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
+                HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 0, 0) {
+                    @Override
+                    boolean show(T rpentity) {
+                        return rpentity.hasStatus("status_shock");
+                    }
+                });
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
