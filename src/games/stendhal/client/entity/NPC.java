@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.common.constants.SoundLayer;
 import marauroa.common.game.RPObject;
 
 /**
@@ -59,8 +58,6 @@ public class NPC extends RPEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		final String type = getType();
-		
 		/*
 		 * Idea
 		 */
@@ -69,34 +66,6 @@ public class NPC extends RPEntity {
 		} else {
 			idea = null;
 		}
-		
-		if (type.startsWith("npc")) {
-			if (name.equals("Diogenes")) {
-				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "laugh-1", "laugh-2");
-			} else if (name.equals("Carmen")) {
-				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "giggle-1", "giggle-2");
-			} else if (name.equals("Nishiya")) {
-				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "cough-11", "cough-2", "cough-3");
-			} else if (name.equals("Margaret")) {
-				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "hiccup-1", "hiccup-2", "hiccup-3");
-			} else if (name.equals("Sato")) {
-				addSounds(SoundLayer.CREATURE_NOISE.groupName, "move", "hiccup-1", "sneeze-1");
-			}
-		}
-	}
-
-	/**
-	 * When the entity's position changed.
-	 * 
-	 * @param x
-	 *			  The new X coordinate.
-	 * @param y
-	 *			  The new Y coordinate.
-	 */
-	@Override
-	protected void onPosition(final double x, final double y) {
-		super.onPosition(x, y);
-		playRandomSoundFromGroup(SoundLayer.CREATURE_NOISE.groupName, "move", 20000);
 	}
 	
 	//
@@ -141,10 +110,5 @@ public class NPC extends RPEntity {
 		if (changes.has("idea")) {
 			idea = null;
 		}
-	}
-	
-	@Override
-	public boolean ignoresCollision() {
-		return super.ignoresCollision();
 	}
 }
