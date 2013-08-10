@@ -149,13 +149,13 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.hasStatus("poisoned");
 					}
 				});
-		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
-		        HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 0, 0) {
-		            @Override
-		            boolean show(T rpentity) {
-		                return rpentity.hasStatus("status_confuse");
-		            }
-		        });
+//		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
+//		        HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 0, 0) {
+//		            @Override
+//		            boolean show(T rpentity) {
+//		                return rpentity.hasStatus("status_confuse");
+//		            }
+//		        });
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
