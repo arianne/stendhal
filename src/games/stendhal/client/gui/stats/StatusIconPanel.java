@@ -36,7 +36,7 @@ class StatusIconPanel extends JComponent {
 	private static final long serialVersionUID = -6263002049434805442L;
 	private static final ImageIcon eatingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/eat.png"));
 	private static final ImageIcon chokingIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/choking.png"));
-	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource("data/sprites/ideas/poisoned.png"));
+	private static final ImageIcon poisonIcon = new ImageIcon(DataLoader.getResource(iconFolder + "poison.png"));
 	private static final ImageIcon confuseIcon = new ImageIcon(DataLoader.getResource(iconFolder + "confuse.png"));
 	private static final ImageIcon shockIcon = new ImageIcon(DataLoader.getResource(iconFolder + "shock.png"));
 	
