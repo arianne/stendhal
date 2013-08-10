@@ -410,6 +410,7 @@ public class SpeakerNPC extends NPC {
 			tell(speaker, speaker.get("text"));
 		}
 
+		maybeMakeSound();
 		notifyWorldAboutChanges();
 	}
 

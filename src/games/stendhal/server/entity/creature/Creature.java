@@ -85,19 +85,6 @@ public class Creature extends NPC {
 	 * determined at creatures.xml, just make it 1.
 	 */
 	private static final double SERVER_DROP_GENEROSITY = 1;
-	/**
-	 * Probability of generating a sound event at each turn, if the creature has
-	 * specified sounds.
-	 */
-	private static final int SOUND_PROBABILITY = 20;
-	/**
-	 * Creature sound radius.
-	 */
-	private static final int SOUND_RADIUS = 23;
-	/**
-	 * Minimum delay in milliseconds between playing creature sounds.
-	 */
-	private static final long SOUND_DEAD_TIME = 10000L;
 	
 	private HealerBehavior healer = HealerBehaviourFactory.get(null);
 
@@ -115,10 +102,6 @@ public class Creature extends NPC {
 	 * is always creature specific.
 	 */
 	protected List<Item> dropItemInstances;
-	/**
-	 * Possible sound events.
-	 */
-	private List<String> sounds;
 	
 	/** Sound played on death */
 	private String deathSound;
@@ -168,8 +151,6 @@ public class Creature extends NPC {
 	private final Registrator registrator = new Registrator();
 
 	private CounterMap<String> hitPlayers;
-	/** The time stamp of previous sound event. */
-	private long lastSoundTime;
 	
 	/**
 	 * creates a new Creature
@@ -239,7 +220,7 @@ public class Creature extends NPC {
 		setName(copy.getName());
 
 		setLevel(copy.getLevel());
-		setSounds(copy.sounds);
+		setSounds(copy.getSounds());
 		setDeathSound(copy.deathSound);
 		setMovementSound(copy.movementSound);
 		
@@ -364,15 +345,6 @@ public class Creature extends NPC {
 	 */
 	public Creature getNewInstance() {
 		return new Creature(this);
-	}
-	
-	/**
-	 * Set the possible sound events.
-	 * 
-	 * @param sounds sound name list
-	 */
-	public void setSounds(List<String> sounds) {
-		this.sounds = new ArrayList<String>(sounds);
 	}
 	
 	/**
@@ -975,20 +947,6 @@ public class Creature extends NPC {
 	public void makeNoiseChance(int prob, final String state) {
 		if(Rand.rand(prob)==1) {
 			makeNoise(state);
-		}
-	}
-	
-	/**
-	 * Generate a sound event with the probability of SOUND_PROBABILITY, if
-	 * the previous sound event happened long enough ago. 
-	 */
-	private void maybeMakeSound() {
-		if ((sounds != null) && !sounds.isEmpty() && (Rand.rand(100) < SOUND_PROBABILITY)) {
-			long time = System.currentTimeMillis();
-			if (lastSoundTime + SOUND_DEAD_TIME < time) {
-				lastSoundTime = time;
-				addEvent(new SoundEvent(Rand.rand(sounds), SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE));
-			}
 		}
 	}
 	

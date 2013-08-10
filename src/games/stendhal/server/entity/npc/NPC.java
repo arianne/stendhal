@@ -15,12 +15,14 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Events;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.events.SoundEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,20 @@ import marauroa.common.game.Definition.Type;
 import org.apache.log4j.Logger;
 
 public abstract class NPC extends RPEntity {
-
+	/**
+	 * Probability of generating a sound event at each turn, if the creature has
+	 * specified sounds.
+	 */
+	private static final int SOUND_PROBABILITY = 20;
+	/**
+	 * Creature sound radius.
+	 */
+	protected static final int SOUND_RADIUS = 23;
+	/**
+	 * Minimum delay in milliseconds between playing creature sounds.
+	 */
+	private static final long SOUND_DEAD_TIME = 10000L;
+	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(NPC.class);
 
@@ -61,6 +76,12 @@ public abstract class NPC extends RPEntity {
     public int pauseTurnsRemaining = 0;
     protected Direction pauseDirection;
     
+	/**
+	 * Possible sound events.
+	 */
+	private List<String> sounds;
+	/** The time stamp of previous sound event. */
+	private long lastSoundTime;
 
 	public static void generateRPClass() {
 		try {
@@ -104,6 +125,24 @@ public abstract class NPC extends RPEntity {
 		}
 
 		this.idea = idea;
+	}
+	
+	/**
+	 * Set the possible sound events.
+	 * 
+	 * @param sounds sound name list
+	 */
+	public void setSounds(List<String> sounds) {
+		this.sounds = new ArrayList<String>(sounds);
+	}
+	
+	/**
+	 * Get the list of possible sound events.
+	 * 
+	 * @return list of sound names
+	 */
+	protected List<String> getSounds() {
+		return sounds;
 	}
 
 	/**
@@ -266,6 +305,7 @@ public abstract class NPC extends RPEntity {
 		    }
 		}
 	    
+		maybeMakeSound();
 		checkPause();
         notifyWorldAboutChanges();
 	}
@@ -306,4 +346,18 @@ public abstract class NPC extends RPEntity {
         this.pauseTurns = pause;
         this.pauseDirection = dir;
     }
+    
+    /**
+	 * Generate a sound event with the probability of SOUND_PROBABILITY, if
+	 * the previous sound event happened long enough ago. 
+	 */
+	protected void maybeMakeSound() {
+		if ((sounds != null) && !sounds.isEmpty() && (Rand.rand(100) < SOUND_PROBABILITY)) {
+			long time = System.currentTimeMillis();
+			if (lastSoundTime + SOUND_DEAD_TIME < time) {
+				lastSoundTime = time;
+				addEvent(new SoundEvent(Rand.rand(sounds), SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE));
+			}
+		}
+	}
 }
