@@ -461,12 +461,12 @@ public final class StatsPanelController {
 	 * Listener for status changes.
 	 */
 	private class StatusChangeListener implements PropertyChangeListener {
-	    @Override
-	    public void propertyChange(final PropertyChangeEvent event) {
-	        Object value = null;
-	        if (event != null) {
-	            value = event.getNewValue();
-	        }
+		@Override
+		public void propertyChange(final PropertyChangeEvent event) {
+			if (event == null) {
+				return;
+			}
+			Object value = event.getNewValue();
 	        final StatusID ID = StatusID.getStatusID(event.getPropertyName());
 	        final boolean enabled = value != null;
 	        SwingUtilities.invokeLater(new Runnable() {
