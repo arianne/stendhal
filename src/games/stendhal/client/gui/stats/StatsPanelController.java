@@ -128,8 +128,10 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("eating", listener);
 		pcs.addPropertyChangeListener("choking", listener);
 		
-		listener = new PoisonedChangeListener();
+		listener = new StatusChangeListener();
 		pcs.addPropertyChangeListener("poisoned", listener);
+		pcs.addPropertyChangeListener("status_confuse", listener);
+		pcs.addPropertyChangeListener("status_shock", listener);
 		
 		listener = new AwayChangeListener();
 		pcs.addPropertyChangeListener("away", listener);
@@ -456,25 +458,24 @@ public final class StatsPanelController {
 	}
 	
 	/**
-	 * Listener for poisoned status changes.
+	 * Listener for status changes.
 	 */
-	private class PoisonedChangeListener implements PropertyChangeListener {
-		@Override
-		public void propertyChange(final PropertyChangeEvent event) {
-			// Deleted attribute can raise a null event
-			Object value = null;
-			if (event != null) {
-				value = event.getNewValue();
-			}
-			
-			final boolean poisoned = value != null;
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					panel.setPoisoned(poisoned);
-				}
-			});
-		}
+	private class StatusChangeListener implements PropertyChangeListener {
+	    @Override
+	    public void propertyChange(final PropertyChangeEvent event) {
+	        Object value = null;
+	        if (event != null) {
+	            value = event.getNewValue();
+	        }
+	        final StatusID ID = StatusID.getStatusID(event.getPropertyName());
+	        final boolean enabled = value != null;
+	        SwingUtilities.invokeLater(new Runnable() {
+	            @Override
+	            public void run() {
+	                panel.setStatus(ID, enabled);
+	            }
+	        });
+	    }
 	}
 	
 	/**
