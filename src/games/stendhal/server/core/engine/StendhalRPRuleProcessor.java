@@ -543,7 +543,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 		}
 		if (msg != null) {
-			player.sendPrivateText(msg);
+			/*
+			 * Avoid spamming all client channels. Very old clients do not
+			 * recognize SERVER type, but they just log an error. Client version
+			 * information has not been received yet.
+			 */
+			player.sendPrivateText(NotificationType.SERVER, msg);
 		}
 	}
 
