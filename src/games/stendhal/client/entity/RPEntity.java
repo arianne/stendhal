@@ -786,11 +786,10 @@ public abstract class RPEntity extends AudibleEntity {
     private void setStatus(final String status, final boolean show) {
         if (show) {
             statuses.add(status);
-            fireChange(statusProp.get(status));
         } else {
             statuses.remove(status);
-            fireChange(statusProp.get(status));
         }
+        fireChange(statusProp.get(status));
     }
 
 	/**
