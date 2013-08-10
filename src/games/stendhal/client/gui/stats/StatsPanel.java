@@ -172,12 +172,15 @@ class StatsPanel extends JPanel {
 	}
 	
 	/**
-	 * Show or hide the poisoned status indicator.
+	 * Show or hide status indicator.
 	 * 
-	 * @param poisoned
+	 * @param ID
+	 *         Status ID
+	 * @param visible
+	 *         Show indicator
 	 */
-	void setPoisoned(final boolean poisoned) {
-		statusIcons.setPoisoned(poisoned);
+	void setStatus(final StatusID ID, final boolean visible) {
+	    statusIcons.setStatus(ID, visible);
 	}
 	
 	/**
