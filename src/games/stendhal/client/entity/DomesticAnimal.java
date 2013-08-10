@@ -21,12 +21,7 @@ import marauroa.common.game.RPObject;
 /**
  * A domestic animal entity.
  */
-public abstract class DomesticAnimal extends RPEntity {
-	/**
-	 * DomesticAnimal idea property.
-	 */
-	public static final Property PROP_IDEA = new Property();
-
+public abstract class DomesticAnimal extends NPC {
 	/**
 	 * DomesticAnimal weight property.
 	 */
@@ -37,23 +32,9 @@ public abstract class DomesticAnimal extends RPEntity {
 	 */
 	private int weight;
 
-	/**
-	 * The animal's idea.
-	 */
-	private String idea;
-
 	//
 	// DomesticAnimal
 	//
-
-	/**
-	 * Get the idea setting.
-	 * 
-	 * @return The animal's idea.
-	 */
-	public String getIdea() {
-		return idea;
-	}
 
 	/**
 	 * Get the weight.
@@ -97,15 +78,6 @@ public abstract class DomesticAnimal extends RPEntity {
 		super.initialize(object);
 
 		addSounds(SoundLayer.CREATURE_NOISE.groupName, "eat", "eat-1");
-		
-		/*
-		 * Idea
-		 */
-		if (object.has("idea")) {
-			idea = object.get("idea");
-		} else {
-			idea = null;
-		}
 
 		/*
 		 * Weight
@@ -116,7 +88,7 @@ public abstract class DomesticAnimal extends RPEntity {
 			weight = 0;
 		}
 
-		onIdea(idea);
+		onIdea(getIdea());
 	}
 
 	//
@@ -139,9 +111,7 @@ public abstract class DomesticAnimal extends RPEntity {
 		 * Idea
 		 */
 		if (changes.has("idea")) {
-			idea = changes.get("idea");
-			onIdea(idea);
-			fireChange(PROP_IDEA);
+			onIdea(getIdea());
 		}
 
 		/*
@@ -175,9 +145,7 @@ public abstract class DomesticAnimal extends RPEntity {
 		 * Idea
 		 */
 		if (changes.has("idea")) {
-			idea = null;
-			onIdea(idea);
-			fireChange(PROP_IDEA);
+			onIdea(getIdea());
 		}
 	}
 }

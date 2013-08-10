@@ -18,6 +18,10 @@ import marauroa.common.game.RPObject;
  * An NPC entity.
  */
 public class NPC extends RPEntity {
+	/**
+	 * Idea property for NPCs and domestic animals.
+	 */
+	public static final Property PROP_IDEA = new Property();
 	
 	/**
 	 * The NPC's idea.
@@ -34,7 +38,7 @@ public class NPC extends RPEntity {
 	}
 	
 	/**
-	 * Ask NPC if they are attending
+	 * Ask NPC if they are attending.
 	 * 
 	 * @return true if attending.
 	 */
@@ -89,6 +93,7 @@ public class NPC extends RPEntity {
 		 */
 		if (changes.has("idea")) {
 			idea = changes.get("idea");
+			fireChange(PROP_IDEA);
 		}
 	}
 	
@@ -109,6 +114,7 @@ public class NPC extends RPEntity {
 		 */
 		if (changes.has("idea")) {
 			idea = null;
+			fireChange(PROP_IDEA);
 		}
 	}
 }
