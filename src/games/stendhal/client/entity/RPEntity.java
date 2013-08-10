@@ -763,7 +763,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param amount lost HP
 	 */
 	private void onPoisoned(final int amount) {
-		setPoisoned(true);
+		setStatus("poisoned", true);
 		if ((amount > 0) && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
@@ -773,34 +773,22 @@ public abstract class RPEntity extends AudibleEntity {
 		}
 	}
 	
-	/**
-	 * Set the poisoning status.
-	 * 
-	 * @param poisoned new status
-	 */
-	private void setPoisoned(boolean poisoned) {
-		if (this.poisoned != poisoned) {
-			this.poisoned = poisoned;
-			fireChange(PROP_POISONED);
-		}
-	}
-	
     /**
      * Set the status.
      * 
      * @param status
      *         New status
-     * @param add
-     *         Add or remove status
+     * @param show
+     *         Show status overlay
      */
-    private void setStatus(final String status, final boolean add) {
+    private void setStatus(final String status, final boolean show) {
         if (!statuses.contains(status)) {
-            if (add) {
+            if (show) {
                 statuses.add(status);
             }
             fireChange(statusProp.get(status));
         } else {
-            if (!add) {
+            if (!show) {
                 statuses.remove(status);
             }
         }
@@ -990,15 +978,6 @@ public abstract class RPEntity extends AudibleEntity {
 		 */
 		setEatAndChoke(true, object.has("eating"), object.has("choking"));
 
-		/*
-		 * Poisoned
-		 */
-		if (object.has("poisoned")) {
-			// Don't call onPoisoned to avoid adding event lines; just set
-			// poisoned so that views get correctly drawn.
-			setPoisoned(true);
-		}
-
         /* Statuses */
         for (String status : statuses) {
             if (object.has(status)) {
@@ -1161,7 +1140,7 @@ public abstract class RPEntity extends AudibleEntity {
             for (String status : statuses) {
                 if (changes.has(status)) {
                     if (status.equals("poisoned")) {
-                        onPoisoned(Math.abs(changes.getInt("status_poison")));
+                        onPoisoned(Math.abs(changes.getInt("poisoned")));
                     } else {
                         setStatus(status, true);
                     }
@@ -1413,13 +1392,6 @@ public abstract class RPEntity extends AudibleEntity {
 		if (changes.has("outfit")) {
 			outfit = OUTFIT_UNSET;
 			fireChange(PROP_OUTFIT);
-		}
-
-		/*
-		 * No longer poisoned?
-		 */
-		if (changes.has("poisoned")) {
-			setPoisoned(false);
 		}
 
         /* No longer has status */
