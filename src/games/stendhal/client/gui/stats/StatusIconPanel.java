@@ -48,7 +48,7 @@ class StatusIconPanel extends JComponent {
 		grumpySprite = store.getSprite("data/sprites/ideas/grumpy.png");
 	}
 
-	final JLabel eating, choking, poison, confuse, shock;
+	final JLabel eating, choking;
 	final AnimatedIcon away, grumpy;
 	
 	protected StatusIconPanel() {
@@ -63,15 +63,15 @@ class StatusIconPanel extends JComponent {
 		add(choking);
 		choking.setVisible(false);
 		
-		poison = new JLabel(poisonIcon);
+		JLabel poison = new JLabel(poisonIcon);
 		add(poison);
 		poison.setVisible(false);
 		
-		confuse = new JLabel(confuseIcon);
+		JLabel confuse = new JLabel(confuseIcon);
 		add(confuse);
 		confuse.setVisible(false);
 		
-		shock = new JLabel(shockIcon);
+		JLabel shock = new JLabel(shockIcon);
 		add(shock);
 		shock.setVisible(false);
 		
