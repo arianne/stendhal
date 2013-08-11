@@ -11,31 +11,47 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.util.HashMap;
-import java.util.Map;
 
-/** Status IDs */
+/** Status IDs. */
 public enum StatusID {
-    CONFUSE,
-    POISON,
-    SHOCK;
-    
-    private static final Map<String, StatusID> map = new HashMap<String, StatusID>();
-    static {
-    	map.put("status_confuse", CONFUSE);
-        map.put("poisoned", POISON);
-        map.put("status_shock", SHOCK);
-    }
-    
-    /**
-     * Find the status ID using the status name.
-     * 
-     * @param status
-     *      Name of status
-     * @return
-     *      Status ID
-     */
-    public static StatusID getStatusID(String status) {
-    	return map.get(status);
-    }
+	CONFUSE("status_confuse"),
+	POISON("poisoned"),
+	SHOCK("status_shock");
+
+	/** Attribute corresponding to the status. */
+	private final String attribute;
+
+	/**
+	 * Create a StatusID.
+	 * 
+	 * @param attribute attribute corresponding to the status.
+	 */
+	private StatusID(String attribute) {
+		this.attribute = attribute;
+	}
+
+	/**
+	 * Get the attribute corresponding to the status.
+	 * 
+	 * @return attribute name
+	 */
+	public String getAttribute() {
+		return attribute;
+	}
+
+	/**
+	 * Find the status ID using the status name.
+	 * 
+	 * @param status
+	 *      Name of status
+	 * @return Status ID, or <code>null</code> if no status ID matches the name
+	 */
+	public static StatusID getStatusID(String status) {
+		for (StatusID id : values()) {
+			if (id.attribute.equals(status)) {
+				return id;
+			}
+		}
+		return null;
+	}
 }
