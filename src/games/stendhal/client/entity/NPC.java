@@ -65,11 +65,16 @@ public class NPC extends RPEntity {
 		/*
 		 * Idea
 		 */
-		if (object.has("idea")) {
-			idea = object.get("idea");
-		} else {
-			idea = null;
-		}
+		onIdea(object.get("idea"));
+	}
+	
+	/**
+	 * Called when the idea changes.
+	 * 
+	 * @param idea new idea
+	 */
+	void onIdea(String idea) {
+		this.idea = idea;
 	}
 	
 	//
@@ -92,7 +97,7 @@ public class NPC extends RPEntity {
 		 * Idea
 		 */
 		if (changes.has("idea")) {
-			idea = changes.get("idea");
+			onIdea(changes.get("idea"));
 			fireChange(PROP_IDEA);
 		}
 	}
@@ -113,7 +118,7 @@ public class NPC extends RPEntity {
 		 * Idea
 		 */
 		if (changes.has("idea")) {
-			idea = null;
+			onIdea(null);
 			fireChange(PROP_IDEA);
 		}
 	}

@@ -51,7 +51,9 @@ public abstract class DomesticAnimal extends NPC {
 	 * @param idea
 	 *            The idea, or <code>null</code>.
 	 */
-	protected void onIdea(final String idea) {
+	@Override
+	void onIdea(final String idea) {
+		super.onIdea(idea);
 		if ("eat".equals(idea)) {
 			probableChat(15);
 		} else if ("food".equals(idea) || "walk".equals(idea) || "follow".equals(idea)) {
@@ -87,8 +89,6 @@ public abstract class DomesticAnimal extends NPC {
 		} else {
 			weight = 0;
 		}
-
-		onIdea(getIdea());
 	}
 
 	//
@@ -108,13 +108,6 @@ public abstract class DomesticAnimal extends NPC {
 		super.onChangedAdded(object, changes);
 
 		/*
-		 * Idea
-		 */
-		if (changes.has("idea")) {
-			onIdea(getIdea());
-		}
-
-		/*
 		 * Weight
 		 */
 		if (changes.has("weight")) {
@@ -126,26 +119,6 @@ public abstract class DomesticAnimal extends NPC {
 			}
 
 			fireChange(PROP_WEIGHT);
-		}
-	}
-
-	/**
-	 * The object removed attribute(s).
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 */
-	@Override
-	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		super.onChangedRemoved(object, changes);
-
-		/*
-		 * Idea
-		 */
-		if (changes.has("idea")) {
-			onIdea(getIdea());
 		}
 	}
 }
