@@ -19,6 +19,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.entity.TextIndicator;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2d.entity.helpers.AttackPainter;
@@ -148,21 +149,21 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
 					@Override
 					boolean show(T rpentity) {
-						return rpentity.hasStatus("poisoned");
+						return rpentity.hasStatus(StatusID.POISON);
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
 		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, 0, 0) {
 		            @Override
 		            boolean show(T rpentity) {
-		                return rpentity.hasStatus("status_confuse");
+		                return rpentity.hasStatus(StatusID.CONFUSE);
 		            }
 		        });
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
                 HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0) {
                     @Override
                     boolean show(T rpentity) {
-                        return rpentity.hasStatus("status_shock");
+                        return rpentity.hasStatus(StatusID.SHOCK);
                     }
                 });
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
@@ -178,6 +179,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 		titleChanged = false;
 	}
+	
 	//
 	// RPEntity2DView
 	//

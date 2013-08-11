@@ -26,8 +26,8 @@ import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -105,12 +105,12 @@ public abstract class RPEntity extends AudibleEntity {
     /** Shock property. */
     public static final Property PROP_SHOCK = new Property();
     
-    private static final Map<String, Property> statusProp;
+    private static final Map<StatusID, Property> statusProp;
     static {
-        statusProp = new HashMap<String, Property>();
-        statusProp.put("status_confuse", PROP_CONFUSED);
-        statusProp.put("poisoned", PROP_POISONED);
-        statusProp.put("status_shock", PROP_SHOCK);
+        statusProp = new EnumMap<StatusID, Property>(StatusID.class);
+        statusProp.put(StatusID.CONFUSE, PROP_CONFUSED);
+        statusProp.put(StatusID.POISON, PROP_POISONED);
+        statusProp.put(StatusID.SHOCK, PROP_SHOCK);
     }
     
     // 
@@ -178,7 +178,7 @@ public abstract class RPEntity extends AudibleEntity {
 	private boolean eating;
 	
 	/** Currently active statuses. */
-	private Set<String> statuses;
+	private final Set<StatusID> statuses = EnumSet.noneOf(StatusID.class);
 
 	private boolean choking;
 	
@@ -234,7 +234,6 @@ public abstract class RPEntity extends AudibleEntity {
 	RPEntity() {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
-		statuses = new HashSet<String>();
 	}
 
 	//
@@ -606,17 +605,17 @@ public abstract class RPEntity extends AudibleEntity {
 	 * 	otherwise <code>false</code>
 	 */
 	public boolean isConfused() {
-		return hasStatus("poisoned") || hasStatus("status_confuse");
+		return hasStatus(StatusID.POISON) || hasStatus(StatusID.CONFUSE);
 	}
 	
 	/**
 	 * Check if the entity has a certain status.
 	 * 
-	 * @param status status attribute name
-	 * @return <code>true</code> if the entity has the status corresponding to
-	 * 	the status name, otherwise <code>false</code>.
+	 * @param status status id
+	 * @return <code>true</code> if the entity has the status, otherwise
+	 * 	<code>false</code>.
 	 */
-	public boolean hasStatus(final String status) {
+	public boolean hasStatus(final StatusID status) {
 	    return statuses.contains(status);
 	}
 
@@ -788,7 +787,7 @@ public abstract class RPEntity extends AudibleEntity {
      * @param show
      *         Show status overlay
      */
-    private void setStatus(final String status, final boolean show) {
+    private void setStatus(final StatusID status, final boolean show) {
         if (show) {
             statuses.add(status);
         } else {
@@ -984,7 +983,7 @@ public abstract class RPEntity extends AudibleEntity {
         /* Statuses */
 		for (StatusID id : StatusID.values()) {
 			if (object.has(id.getAttribute())) {
-				setStatus(id.getAttribute(), true);
+				setStatus(id, true);
 			}
 		}
 
@@ -1133,7 +1132,7 @@ public abstract class RPEntity extends AudibleEntity {
 			for (StatusID id : StatusID.values()) {
 				String status = id.getAttribute();
 				if (changes.has(status)) {
-					setStatus(status, true);
+					setStatus(id, true);
 					if (status.equals(StatusID.POISON.getAttribute())) {
 						// To remove the - sign on poison.
 						onPoisoned(Math.abs(changes.getInt(status)));
@@ -1388,12 +1387,15 @@ public abstract class RPEntity extends AudibleEntity {
 			fireChange(PROP_OUTFIT);
 		}
 
-        /* No longer has status */
-        for (String status : statuses) {
-            if (changes.has(status)) {
-                setStatus(status, false);
-            }
-        }
+		/* 
+		 * No longer has status. The iterator of EnumSet is safe despite the
+		 * modification in the loop.
+		 */
+		for (StatusID status : statuses) {
+			if (changes.has(status.getAttribute())) {
+				setStatus(status, false);
+			}
+		}
 
 		/*
 		 * No longer eating or choking?
