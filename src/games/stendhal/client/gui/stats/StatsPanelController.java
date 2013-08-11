@@ -130,9 +130,9 @@ public final class StatsPanelController {
 		pcs.addPropertyChangeListener("choking", listener);
 		
 		listener = new StatusChangeListener();
-		pcs.addPropertyChangeListener("poisoned", listener);
-		pcs.addPropertyChangeListener("status_confuse", listener);
-		pcs.addPropertyChangeListener("status_shock", listener);
+		for (StatusID id : StatusID.values()) {
+			pcs.addPropertyChangeListener(id.getAttribute(), listener);
+		}
 		
 		listener = new AwayChangeListener();
 		pcs.addPropertyChangeListener("away", listener);
