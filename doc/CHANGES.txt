@@ -4,16 +4,24 @@
 1.10
 
 *world*
-- more creature descriptions
+- More creature descriptions
+- Added 3rd frame to cyclops and cave troll for smoother walking effect
+- Animated sprite for diamond
+- Touched up sprites for some creatures
+- NPC Seremela has a new sprite
+- Touched up elf ears for some NPCs
+- Added reversible path on collision to Eheneumniranin
+- Added inactive achievement "A Bit Xenophobic"
 
 *client*
+- Now handles images for multiple status effect icons/animations
 
 *fixes*
 - Fixing table entities in Kalavan houses
 - Exchanging white round tables in fado city
 
 *code*
-
+- NPC sound effecs are handled by server
 
 1.09
 
