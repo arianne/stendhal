@@ -90,8 +90,12 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 * The entity height.
 	 */
 	private double height;
-
-
+	
+	/**
+	 * Entity area rectangle. Kept in memory because it is the most allocated
+	 * resource after the Graphics2D objects we can do nothing about.
+	 */
+	private Rectangle2D.Double area;
 
 	public Entity() {
 		clazz = null;
@@ -152,7 +156,15 @@ public class Entity implements RPObjectChangeListener, IEntity {
 	 */
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
+		if (area == null) {
+			area = new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
+		} else {
+			area.x = getX();
+			area.y = getY();
+			area.width = getWidth();
+			area.height = getHeight();
+		}
+		return area;
 	}
 
 	/* (non-Javadoc)
