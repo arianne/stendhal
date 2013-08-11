@@ -132,6 +132,11 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * before the {@link #changed} flag is toggled.
 	 */
 	private final UpdateListener updateListener = new UpdateListener();
+	/**
+	 * The area rectangle. Reused because it's otherwise one of the most
+	 * allocated objects.
+	 */
+	private final Rectangle area = new Rectangle();;
 
 	@Override
 	public void initialize(final T entity) {
@@ -491,8 +496,8 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 */
 	@Override
 	public Rectangle getArea() {
-		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(),
-				getWidth(), getHeight());
+		area.setBounds(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
+		return area;
 	}
 	
 	/**
