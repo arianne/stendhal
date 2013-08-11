@@ -449,7 +449,7 @@ public class User extends Player {
 		// Only handle the case of starting movement. Prediction when already
 		// moving looks odd.
 		if (stopped()) {
-			if (isPoisoned()) {
+			if (isConfused()) {
 				direction = direction.oppositeDirection();
 			}
 			if (!facing) {

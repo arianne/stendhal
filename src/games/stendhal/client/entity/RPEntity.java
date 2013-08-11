@@ -176,8 +176,6 @@ public abstract class RPEntity extends AudibleEntity {
 	private int level;
 
 	private boolean eating;
-
-	private boolean poisoned;
 	
 	private Set<String> statuses;
 
@@ -601,13 +599,13 @@ public abstract class RPEntity extends AudibleEntity {
 	}
 	
 	/**
-	 * Check if the entity is poisoned.
+	 * Check if the entity is confused or poisoned.
 	 * 
-	 * @return <code>true</code> if the entity is poisoned, otherwise
-	 * 	<code>false</code>
+	 * @return <code>true</code> if the entity is confused or poisoned,
+	 * 	otherwise <code>false</code>
 	 */
-	public boolean isPoisoned() {
-		return poisoned;
+	public boolean isConfused() {
+		return hasStatus("poisoned") || hasStatus("confused");
 	}
 	
 	public boolean hasStatus(final String status) {
