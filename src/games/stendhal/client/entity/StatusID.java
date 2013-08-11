@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.client.gui.stats;
+package games.stendhal.client.entity;
 
 import java.util.HashMap;
 import java.util.Map;

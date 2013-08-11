@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 

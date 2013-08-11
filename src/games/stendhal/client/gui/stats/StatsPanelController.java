@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.stats;
 
+import games.stendhal.client.entity.StatusID;
 import games.stendhal.common.Level;
 import games.stendhal.common.MathHelper;
 
