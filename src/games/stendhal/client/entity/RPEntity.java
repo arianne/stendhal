@@ -93,16 +93,16 @@ public abstract class RPEntity extends AudibleEntity {
     // START: status
     // 
     
-    /** Confused property */
+    /** Confused property. */
     public static final Property PROP_CONFUSED = new Property();
     
-    /** Eating property */
+    /** Eating property. */
     public static final Property PROP_EATING = new Property();
     
-    /** Poisoned property */
+    /** Poisoned property. */
     public static final Property PROP_POISONED = new Property();
     
-    /** Shock property */
+    /** Shock property. */
     public static final Property PROP_SHOCK = new Property();
     
     private static final Map<String, Property> statusProp;
@@ -177,6 +177,7 @@ public abstract class RPEntity extends AudibleEntity {
 
 	private boolean eating;
 	
+	/** Currently active statuses. */
 	private Set<String> statuses;
 
 	private boolean choking;
@@ -608,6 +609,13 @@ public abstract class RPEntity extends AudibleEntity {
 		return hasStatus("poisoned") || hasStatus("status_confuse");
 	}
 	
+	/**
+	 * Check if the entity has a certain status.
+	 * 
+	 * @param status status attribute name
+	 * @return <code>true</code> if the entity has the status corresponding to
+	 * 	the status name, otherwise <code>false</code>.
+	 */
 	public boolean hasStatus(final String status) {
 	    return statuses.contains(status);
 	}
@@ -763,7 +771,6 @@ public abstract class RPEntity extends AudibleEntity {
 	 * @param amount lost HP
 	 */
 	private void onPoisoned(final int amount) {
-		setStatus("poisoned", true);
 		if ((amount > 0) && (User.squaredDistanceTo(x, y) < HEARING_DISTANCE_SQ)) {
 			ClientSingletonRepository.getUserInterface().addEventLine(
 					new HeaderLessEventLine(
@@ -975,13 +982,11 @@ public abstract class RPEntity extends AudibleEntity {
 		setEatAndChoke(true, object.has("eating"), object.has("choking"));
 
         /* Statuses */
-        for (String status : statuses) {
-            if (object.has(status)) {
-                // Don't call onPoisoned to avoid adding event lines; just set
-                // poisoned so that views get correctly drawn.
-                setStatus(status, true);
-            }
-        }
+		for (StatusID id : StatusID.values()) {
+			if (object.has(id.getAttribute())) {
+				setStatus(id.getAttribute(), true);
+			}
+		}
 
 		/*
 		 * Ghost mode feature.
@@ -1124,24 +1129,17 @@ public abstract class RPEntity extends AudibleEntity {
 			 */
 			setEatAndChoke(true, changes.has("eating"), changes.has("choking"));
 
-			/*
-			 * Poisoned
-			 */
-			if (changes.has("poisoned")) {
-				// To remove the - sign on poison.
-				onPoisoned(Math.abs(changes.getInt("poisoned")));
+			/* Statuses */
+			for (StatusID id : StatusID.values()) {
+				String status = id.getAttribute();
+				if (changes.has(status)) {
+					setStatus(status, true);
+					if (status.equals(StatusID.POISON.getAttribute())) {
+						// To remove the - sign on poison.
+						onPoisoned(Math.abs(changes.getInt(status)));
+					}
+				}
 			}
-
-            /* Statuses */
-            for (String status : statuses) {
-                if (changes.has(status)) {
-                    if (status.equals("poisoned")) {
-                        onPoisoned(Math.abs(changes.getInt("poisoned")));
-                    } else {
-                        setStatus(status, true);
-                    }
-                }
-            }
 
 			/*
 			 * Healed
