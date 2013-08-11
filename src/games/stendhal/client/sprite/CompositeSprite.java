@@ -16,7 +16,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -125,7 +124,7 @@ public class CompositeSprite implements Sprite {
 	private CompositeSprite(List<Sprite> slaves, Composite blend, Sprite adj, 
 			CompositeRef reference) {
 		// Get a copy. The caller can modify the list
-		this.slaves = new LinkedList<Sprite>(slaves);
+		this.slaves = new ArrayList<Sprite>(slaves);
 		this.reference = reference;
 		if (blend != null) {
 			this.adjSprite = adj;
@@ -143,8 +142,9 @@ public class CompositeSprite implements Sprite {
 		if (!composited) {
 			composite();
 		}
-		for (Sprite sprite : slaves) {
-			sprite.draw(g, x, y);
+		// Saves allocating the iterator. This gets called a lot.
+		for (int i = 0; i < slaves.size(); i++) {
+			slaves.get(i).draw(g, x, y);
 		}
 	}
 
@@ -154,8 +154,9 @@ public class CompositeSprite implements Sprite {
 		if (!composited) {
 			composite();
 		}
-		for (Sprite sprite : slaves) {
-			sprite.draw(g, destx, desty, x, y, w, h);
+		// Saves allocating the iterator. This gets called a lot.
+		for (int i = 0; i < slaves.size(); i++) {
+			slaves.get(i).draw(g, destx, desty, x, y, w, h);
 		}
 	}
 
@@ -178,7 +179,7 @@ public class CompositeSprite implements Sprite {
 	 * Merge all ImageSprite layers.
 	 */
 	private void composite() {
-		List<Sprite> newSlaves = new LinkedList<Sprite>();
+		ArrayList<Sprite> newSlaves = new ArrayList<Sprite>(slaves.size());
 		ImageSprite floor = null;
 		ListIterator<Sprite> iter = slaves.listIterator();
 		boolean copied = false;
@@ -222,6 +223,7 @@ public class CompositeSprite implements Sprite {
 		if (floor != null) {
 			newSlaves.add(floor);
 		}
+		newSlaves.trimToSize();
 		slaves = newSlaves;
 		
 		// Adjustment effect
