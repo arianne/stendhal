@@ -605,7 +605,7 @@ public abstract class RPEntity extends AudibleEntity {
 	 * 	otherwise <code>false</code>
 	 */
 	public boolean isConfused() {
-		return hasStatus("poisoned") || hasStatus("confused");
+		return hasStatus("poisoned") || hasStatus("status_confuse");
 	}
 	
 	public boolean hasStatus(final String status) {
