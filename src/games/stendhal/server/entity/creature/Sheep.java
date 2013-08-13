@@ -21,6 +21,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -47,6 +48,8 @@ public class Sheep extends DomesticAnimal {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Sheep.class);
+	private static final List<String> largeSheepSounds = Arrays.asList("sheep-2", "sheep-4");
+	private static final List<String> smallSheepSounds = Arrays.asList("sheep-1", "sheep-3");
 
 	/**
 	 * The amount of hunger that indicates hungry.
@@ -111,6 +114,7 @@ public class Sheep extends DomesticAnimal {
 
 		// set the default movement range
 		setMovementRange(20);
+		updateSoundList();
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class Sheep extends DomesticAnimal {
 		}
 		
 		update();
+		updateSoundList();
 		logger.debug("Created Sheep: " + this);
 	}
 
@@ -165,6 +170,7 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		update();
+		updateSoundList();
 		logger.debug("Created Sheep: " + this);
 	}
 
@@ -255,17 +261,18 @@ public class Sheep extends DomesticAnimal {
 			if (food.nextTo(this)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
+				maybeMakeSound(15);
 				eat(food);
 				clearPath();
 				stop();
 				return true;
 			} else {
-
 				final List<Node> path = Path.searchPath(this, food, 6 * 6);
 				if (path.size() != 0) {
 
 					logger.debug("Sheep moves to food");
 					setIdea("food");
+					maybeMakeSound(20);
 
 					setPath(new FixedPath(path, false));
 					return true;
@@ -291,6 +298,7 @@ public class Sheep extends DomesticAnimal {
 			if (((turn % 15) == 0) && isEnemyNear(getPerceptionRange())) {
 				logger.debug("Sheep (ownerless) moves randomly");
 				setIdea("walk");
+				maybeMakeSound(20);
 				moveRandomly();
 			} else {
 				logger.debug("Sheep sleeping");
@@ -301,10 +309,12 @@ public class Sheep extends DomesticAnimal {
 			 * An extremely hungry sheep becomes agitated
 			 */
 			setIdea("food");
+			maybeMakeSound(20);
 			setRandomPathFrom(owner.getX(), owner.getY(), getMovementRange());
 			setSpeed(getBaseSpeed());
 		} else if (!nextTo(owner)) {
 			moveToOwner();
+			maybeMakeSound(20);
 		} else {
 			if ((turn % 100) == 0) {
 				logger.debug("Sheep is bored");
@@ -323,6 +333,7 @@ public class Sheep extends DomesticAnimal {
 	protected void onStarve() {
 		if (weight > 0) {
 			setWeight(weight - 1);
+			updateSoundList();
 		} else {
 			delayedDamage(1, "starvation");
 		}
@@ -344,6 +355,7 @@ public class Sheep extends DomesticAnimal {
 
 			if (weight < MAX_WEIGHT) {
 				setWeight(weight + 1);
+				updateSoundList();
 			}
 
 			heal(5);
@@ -360,18 +372,16 @@ public class Sheep extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-
 		if (!getZone().getPlayers().isEmpty()) {
 			hunger++;
 		}
-		
-		
 
 		/*
 		 * Allow owner to call sheep (will override other reactions)
 		 */
 		if (isOwnerCallingMe()) {
 			moveToOwner();
+			maybeMakeSound(20);
 		} else if (stopped()) {
 			/*
 			 * Hungry?
@@ -399,6 +409,17 @@ public class Sheep extends DomesticAnimal {
 		
 
 		notifyWorldAboutChanges();
+	}
+	
+	/**
+	 * Update the available sound list according to sheep weight.
+	 */
+	private void updateSoundList() {
+		if (getWeight() > 50) {
+			setSounds(largeSheepSounds);
+		} else {
+			setSounds(smallSheepSounds);
+		}
 	}
 
 	//

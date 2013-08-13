@@ -352,7 +352,17 @@ public abstract class NPC extends RPEntity {
 	 * the previous sound event happened long enough ago. 
 	 */
 	protected void maybeMakeSound() {
-		if ((sounds != null) && !sounds.isEmpty() && (Rand.rand(100) < SOUND_PROBABILITY)) {
+		maybeMakeSound(SOUND_PROBABILITY);
+	}
+	
+	/**
+	 * Generate a sound event with the specified probability, if
+	 * the previous sound event happened long enough ago.
+	 * 
+	 * @param probablility sound probability
+	 */
+	protected void maybeMakeSound(int probablility) {
+		if ((sounds != null) && !sounds.isEmpty() && (Rand.rand(100) < probablility)) {
 			long time = System.currentTimeMillis();
 			if (lastSoundTime + SOUND_DEAD_TIME < time) {
 				lastSoundTime = time;
