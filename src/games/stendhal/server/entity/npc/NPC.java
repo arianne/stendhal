@@ -133,7 +133,7 @@ public abstract class NPC extends RPEntity {
 	 * @param sounds sound name list
 	 */
 	public void setSounds(List<String> sounds) {
-		this.sounds = new ArrayList<String>(sounds);
+		this.sounds = sounds;
 	}
 	
 	/**

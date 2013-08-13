@@ -268,7 +268,7 @@ public class DefaultCreature {
 		creature.setCorpse(corpseName, harmlessCorpseName, corpseWidth, corpseHeight);
 		creature.setSusceptibilities(susceptibilities);
 		creature.setDamageTypes(damageType, rangedDamageType);
-		creature.setSounds(sounds);
+		creature.setSounds(Collections.unmodifiableList(sounds));
 		creature.setDeathSound(deathSound);
 		creature.setMovementSound(movementSound);
 		
@@ -335,7 +335,7 @@ public class DefaultCreature {
 	/**
 	 * Set a looped sound effect for creature when moving
 	 * 
-	 * @param movementSound
+	 * @param sound
 	 * 				desired sound effect
 	 */
 	public void setCreatureMovementSound(String sound) {
