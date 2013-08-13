@@ -45,24 +45,6 @@ public abstract class DomesticAnimal extends NPC {
 		return weight;
 	}
 
-	/**
-	 * The idea changed.
-	 * 
-	 * @param idea
-	 *            The idea, or <code>null</code>.
-	 */
-	@Override
-	void onIdea(final String idea) {
-		super.onIdea(idea);
-		if ("eat".equals(idea)) {
-			probableChat(15);
-		} else if ("food".equals(idea) || "walk".equals(idea) || "follow".equals(idea)) {
-			probableChat(20);
-		} 
-	}
-
-	protected abstract void probableChat(final int chance);
-
 	//
 	// Entity
 	//

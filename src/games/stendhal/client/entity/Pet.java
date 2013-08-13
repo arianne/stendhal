@@ -17,9 +17,4 @@ package games.stendhal.client.entity;
  * A Pet entity.
  */
 public class Pet extends DomesticAnimal {
-
-	@Override
-	protected void probableChat(final int chance) {
-		// do not chat
-	}
 }

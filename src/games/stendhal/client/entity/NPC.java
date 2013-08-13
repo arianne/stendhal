@@ -73,7 +73,7 @@ public class NPC extends RPEntity {
 	 * 
 	 * @param idea new idea
 	 */
-	void onIdea(String idea) {
+	private void onIdea(String idea) {
 		this.idea = idea;
 	}
 	
