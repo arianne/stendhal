@@ -36,7 +36,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test the trade center npc
- * 
+ *
  * @author madmetzger
  */
 public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
@@ -73,6 +73,33 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 	}
 
 	/**
+	 * Check that creating offers without a price fails and offers for items not owned by the player
+	 */
+	@Test
+	public void testCreateInvalidOffer() {
+		final SpeakerNPC npc = getNPC("Harold");
+		final Engine en = npc.getEngine();
+		player.addXP(1700);
+
+		PlayerTestHelper.equipWithItem(player, "axe");
+		PlayerTestHelper.equipWithStackableItem(player, "money", 42);
+
+		assertTrue(en.step(player, "hello"));
+		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
+
+		assertTrue(en.step(player, "sell axe"));
+		assertEquals("I did not understand you. Please say \"sell item price\".", getReply(npc));
+
+		assertTrue(en.step(player, "sell vampire cloak 100"));
+		assertEquals("Sorry, but I don't think you have any vampire cloaks.", getReply(npc));
+
+		assertTrue(en.step(player, "bye"));
+		assertEquals(
+				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
+	}
+
+
+	/**
 	 * Tests for successful placement of an offer.
 	 */
 	@Test
@@ -102,7 +129,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(
 				"Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
-	
+
 	/**
 	 * Check that creating offers for zero price cost.
 	 * (Harold needs his provision; we need to charge for those to
@@ -125,7 +152,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("I added your offer to the trading center and took the fee of 1.", getReply(npc));
-		
+
 		assertEquals("Making a free offer should cost", 41, ((StackableItem) player.getFirstEquipped("money")).getQuantity());
 
 		assertTrue(en.step(player, "bye"));
@@ -157,7 +184,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
-	
+
 	/**
 	 * Tests for trying to put multiple non stackable items in one offer.
 	 */
@@ -179,7 +206,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Visit me again to see available offers, make a new offer or fetch your earnings!", getReply(npc));
 	}
-	
+
 	/**
 	 * Test selling a container item.
 	 */
@@ -196,7 +223,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		playersMoney.setQuantity(price);
 		player.equipToInventoryOnly(item);
 		player.equipToInventoryOnly(playersMoney);
-		
+
 		Item key = SingletonRepository.getEntityManager().getItem("dungeon silver key");
 		item.getSlot("content").add(key);
 
@@ -208,7 +235,7 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Please empty your keyring first.", getReply(npc));
 		assertTrue(player.isEquipped("keyring"));
 		assertTrue(player.isEquipped("dungeon silver key"));
-		
+
 		// Then after emptying it
 		item.getSlot("content").clear();
 		assertTrue(en.step(player, "sell keyring 150000"));
