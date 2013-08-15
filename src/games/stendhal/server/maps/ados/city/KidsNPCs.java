@@ -46,13 +46,16 @@ public class KidsNPCs implements ZoneConfigurator {
 	private void buildKids(final StendhalRPZone zone) {
 		final String[] names = { "Jens", "George", "Anna" };
 		final String[] classes = { "kid3npc", "kid4npc", "kid5npc" };
-		final String[] descriptions = {"You see Jens. He seems to be a bit bored.", "You see George. He is a young boy who loves playing.", "You see Anna. She is a sweet girl who searches for toys."};
-		final Node[] start = new Node[] { new Node(40, 29), new Node(40, 41), new Node(45, 29) };
+		final String[] descriptions = {"You see Jens. He seems to be a bit bored.", "You see George who loves playing roughly.", "You see Anna. She is a sweet girl who searches for toys."};
+		final Node[] start = new Node[] {new Node(45, 31), new Node(46, 34), new Node(46, 37)};
 		for (int i = 0; i < 3; i++) {
 			final SpeakerNPC npc = new SpeakerNPC(names[i]) {
 				@Override
 				protected void createPath() {
 					final List<Node> nodes = new LinkedList<Node>();
+					nodes.add(new Node(46, 30));
+					nodes.add(new Node(45, 30));
+					nodes.add(new Node(45, 29));
 					nodes.add(new Node(40, 29));
 					nodes.add(new Node(40, 32));
 					nodes.add(new Node(34, 32));
@@ -66,9 +69,6 @@ public class KidsNPCs implements ZoneConfigurator {
 					nodes.add(new Node(51, 43));
 					nodes.add(new Node(51, 37));
 					nodes.add(new Node(46, 37));
-					nodes.add(new Node(46, 30));
-					nodes.add(new Node(45, 30));
-					nodes.add(new Node(45, 29));
 					setPath(new FixedPath(nodes, true));
 				}
 
@@ -92,6 +92,7 @@ public class KidsNPCs implements ZoneConfigurator {
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
+			npc.setReversiblePath(true);
 			npc.initHP(100);
 			zone.add(npc);
 		}
