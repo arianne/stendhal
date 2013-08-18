@@ -117,13 +117,13 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		GridLayout grid = new GridLayout(0, columns);
 		characterPanel.setLayout(grid);
 		JScrollPane scroll = new JScrollPane(characterPanel);
-		add(scroll, SBoxLayout.constraint(SLayout.EXPAND_X));
+		add(scroll, SLayout.EXPAND_X);
 		
 		addCharacters(characters);
 		
 		// Create area for additional buttons
 		JComponent buttonBar = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
-		add(buttonBar, SBoxLayout.constraint(SLayout.EXPAND_X));
+		add(buttonBar, SLayout.EXPAND_X);
 		
 		// Align the buttons right
 		SBoxLayout.addSpring(buttonBar);

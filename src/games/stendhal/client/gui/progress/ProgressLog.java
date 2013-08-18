@@ -225,7 +225,7 @@ class ProgressLog {
 				((DefaultCaret) caret).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 			}
 
-			panels.add(indexScrollPane, SBoxLayout.constraint(SLayout.EXPAND_Y));
+			panels.add(indexScrollPane, SLayout.EXPAND_Y);
 
 			contentArea = new PrettyEditorPane();
 			// Does not need a listener. There should be no links

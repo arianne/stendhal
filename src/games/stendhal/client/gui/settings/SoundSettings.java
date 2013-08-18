@@ -103,7 +103,7 @@ class SoundSettings {
 
 		// Sliders for the sound channels
 		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		JLabel label = new JLabel("Master");
 		row.add(label);
 		SBoxLayout.addSpring(row);
@@ -114,7 +114,7 @@ class SoundSettings {
 		sliderComponents.add(masterVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		label = new JLabel("GUI");
 		row.add(label);
 		SBoxLayout.addSpring(row);
@@ -125,7 +125,7 @@ class SoundSettings {
 		sliderComponents.add(guiVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		label = new JLabel("Effects");
 		row.add(label);
 		SBoxLayout.addSpring(row);
@@ -136,7 +136,7 @@ class SoundSettings {
 		sliderComponents.add(effectsVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		label =new JLabel("Creatures");
 		row.add(label);
 		SBoxLayout.addSpring(row);
@@ -147,7 +147,7 @@ class SoundSettings {
 		sliderComponents.add(creaturesVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		label = new JLabel("Ambient");
 		row.add(label);
 		SBoxLayout.addSpring(row);
@@ -157,7 +157,7 @@ class SoundSettings {
 		sliderComponents.add(ambientVolume);
 
 		row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
-		page.add(row, SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(row, SLayout.EXPAND_X);
 		label = new JLabel("Music");
 		row.add(label);
 		SBoxLayout.addSpring(row);

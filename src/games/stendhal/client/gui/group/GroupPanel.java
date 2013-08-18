@@ -150,7 +150,7 @@ class GroupPanel {
 		 * space being squeezed out if the panel is too narrow.
 		 */
 		memberListComponent.setBorder(BorderFactory.createEmptyBorder(0, LIST_INDENT, 0, LIST_INDENT));
-		pane.add(memberListComponent, SBoxLayout.constraint(SLayout.EXPAND_X));
+		pane.add(memberListComponent, SLayout.EXPAND_X);
 		
 		// Add a place for the invitation buttons. It will usually be invisible 
 		inviteContainer = SBoxLayout.createContainer(SBoxLayout.VERTICAL, SBoxLayout.COMMON_PADDING);
@@ -290,7 +290,7 @@ class GroupPanel {
 		});
 		invites.put(name, joinButton);
 		joinButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		inviteContainer.add(joinButton, SBoxLayout.constraint(SLayout.EXPAND_X));
+		inviteContainer.add(joinButton, SLayout.EXPAND_X);
 		inviteContainer.revalidate();
 	}
 	

@@ -47,12 +47,12 @@ class StatsPanel extends JPanel {
 		
 		karmaIndicator = KarmaIndicator.create();
 		karmaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		add(karmaIndicator, SBoxLayout.constraint(SLayout.EXPAND_X));
+		add(karmaIndicator, SLayout.EXPAND_X);
 		
 		manaIndicator = ManaIndicator.create();
 		manaIndicator.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		manaIndicator.setToolTipText("Mana");
-		add(manaIndicator, SBoxLayout.constraint(SLayout.EXPAND_X));
+		add(manaIndicator, SLayout.EXPAND_X);
 		
 		hpLabel = new StatLabel();
 		add(hpLabel);

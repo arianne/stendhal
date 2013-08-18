@@ -337,7 +337,7 @@ public class j2DClient implements UserInterface {
 		// Set maximum size to prevent the entry requesting massive widths, but
 		// force expand if there's extra space anyway
 		chatText.getPlayerChatText().setMaximumSize(new Dimension(screenSize.width, Integer.MAX_VALUE));
-		chatBox.add(chatText.getPlayerChatText(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		chatBox.add(chatText.getPlayerChatText(), SLayout.EXPAND_X);
 
 		chatBox.add(chatLogArea, SBoxLayout.constraint(SLayout.EXPAND_X, SLayout.EXPAND_Y));
 
@@ -431,7 +431,7 @@ public class j2DClient implements UserInterface {
 		horizSplit.setBorder(null);
 		
 		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
-		windowContent.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		windowContent.add(containerPanel, SLayout.EXPAND_Y);
 		
 		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
 				new SettingChangeAdapter(SCALE_PREFERENCE_PROPERTY, "true") {
@@ -539,8 +539,8 @@ public class j2DClient implements UserInterface {
 		buddyPane.setBorder(null);
 
 		final JComponent leftColumn = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
-		leftColumn.add(minimap.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
-		leftColumn.add(stats.getComponent(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		leftColumn.add(minimap.getComponent(), SLayout.EXPAND_X);
+		leftColumn.add(stats.getComponent(), SLayout.EXPAND_X);
 
 		// Add a background for the tabs. The column itself has none.
 		JPanel tabBackground = new JPanel();
@@ -578,7 +578,7 @@ public class j2DClient implements UserInterface {
 		 */
 		// The setting bar to the top
 		JComponent settings = new SettingsPanel();
-		containerPanel.add(settings, SBoxLayout.constraint(SLayout.EXPAND_X));
+		containerPanel.add(settings, SLayout.EXPAND_X);
 
 		// Character window
 		character = new Character();

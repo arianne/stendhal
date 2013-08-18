@@ -86,7 +86,7 @@ class VisualSettings {
 		
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		
-		page.add(createStyleTypeSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(createStyleTypeSelector(), SLayout.EXPAND_X);
 		
 		// Disable widgets not in use
 		toggleComponents(page);
@@ -125,7 +125,7 @@ class VisualSettings {
 		
 		// Font stuff
 		page.add(createFontSizeSelector());
-		page.add(createFontSelector(), SBoxLayout.constraint(SLayout.EXPAND_X));
+		page.add(createFontSelector(), SLayout.EXPAND_X);
 	}
 	
 	/**
@@ -366,7 +366,7 @@ class VisualSettings {
 		
 		JComponent fontRow = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, pad);
 		SBoxLayout.addSpring(fontRow);
-		fontBox.add(fontRow, SBoxLayout.constraint(SLayout.EXPAND_X));
+		fontBox.add(fontRow, SLayout.EXPAND_X);
 		final JLabel label = new JLabel("Font:");
 		fontRow.add(label);
 		final JComboBox fontList = new JComboBox();

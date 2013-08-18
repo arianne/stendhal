@@ -67,7 +67,7 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 		
 		infoPanel = new InformationPanel();
 		infoPanel.setBackground(Color.BLACK);
-		container.add(infoPanel, SBoxLayout.constraint(SLayout.EXPAND_X));
+		container.add(infoPanel, SLayout.EXPAND_X);
 		
 		client.getGameObjects().addGameObjectListener(this);
 	}

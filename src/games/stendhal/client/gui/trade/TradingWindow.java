@@ -96,8 +96,7 @@ class TradingWindow extends InternalManagedWindow {
 		
 		slotRow.add(partnerColumn);
 		
-		slotRow.add(new JSeparator(SwingConstants.VERTICAL),
-				SBoxLayout.constraint(SLayout.EXPAND_Y));
+		slotRow.add(new JSeparator(SwingConstants.VERTICAL), SLayout.EXPAND_Y);
 		
 		/*
 		 * Create user offer's side
@@ -130,8 +129,7 @@ class TradingWindow extends InternalManagedWindow {
 		 * Separate the cancel button from the rest of the components to
 		 * highlight its special status.
 		 */
-		content.add(new JSeparator(SwingConstants.HORIZONTAL),
-				SBoxLayout.constraint(SLayout.EXPAND_X));
+		content.add(new JSeparator(SwingConstants.HORIZONTAL), SLayout.EXPAND_X);
 		
 		// Cancel button
 		cancelButton = new JButton("Cancel");

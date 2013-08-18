@@ -57,7 +57,7 @@ class MemberCellRenderer implements ListCellRenderer {
 		}
 		
 		hpBar = new HPBar();
-		renderer.add(hpBar, SBoxLayout.constraint(SLayout.EXPAND_X));
+		renderer.add(hpBar, SLayout.EXPAND_X);
 	}
 
 	@Override

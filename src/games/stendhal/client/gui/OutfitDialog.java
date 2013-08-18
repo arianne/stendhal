@@ -250,7 +250,7 @@ class OutfitDialog extends JDialog {
 		
 		// --------- Color selection column ---------
 		JComponent column = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
-		content.add(column, SBoxLayout.constraint(SLayout.EXPAND_Y));
+		content.add(column, SLayout.EXPAND_Y);
 		JComponent selector = createColorSelector("Hair", OutfitColor.HAIR, hairLabel);
 		selector.setAlignmentX(CENTER_ALIGNMENT);
 		column.add(selector);

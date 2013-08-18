@@ -59,7 +59,7 @@ class ColorSelector extends JPanel {
 		hueSaturationSelector = new HueSaturationSelector(model);
 		add(hueSaturationSelector);
 		lightnessSelector = new LightnessSelector(model);
-		add(lightnessSelector, SBoxLayout.constraint(SLayout.EXPAND_X));
+		add(lightnessSelector, SLayout.EXPAND_X);
 	}
 
 	@Override
