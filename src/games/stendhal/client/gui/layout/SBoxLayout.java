@@ -34,6 +34,12 @@ import javax.swing.JComponent;
  * <p>
  * Component alignment is supported in the direction perpendicular to the
  * layout direction.
+ * <p>
+ * SBoxLayout supports constraints of type {@link SLayout}. A single constraint
+ * flag can passed as the second parameter to
+ * <code>Container.add(Component c, Object constraint)</code>. Constraints can
+ * be combined using the object returned by {@link #constraint(SLayout...)} as
+ * the constraints object.
  */
 public class SBoxLayout implements LayoutManager2 {
 	/*
@@ -142,22 +148,27 @@ public class SBoxLayout implements LayoutManager2 {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
 		if (flags == null) {
 			// nothing to add
-		} else if (flags instanceof EnumSet<?>) {
-			// Type checking within the rather poor limits of generics
-			EnumSet<?> eflags = (EnumSet<?>) flags;
-			// Translate to axial & perpendicular
-			for (SLayout flag : SLayout.values()) {
-				if (eflags.contains(flag)) {
-					flag = d.translate(flag);
-					constraintFlags.add(flag);
+		} else {
+			if (flags instanceof SLayout) {
+				constraintFlags.add(d.translate((SLayout) flags)); 
+			} else if (flags instanceof EnumSet<?> || flags instanceof SLayout) {
+				// Type checking within the rather poor limits of generics
+				EnumSet<?> eflags = (EnumSet<?>) flags;
+				// Translate to axial & perpendicular
+				for (SLayout flag : SLayout.values()) {
+					if (eflags.contains(flag)) {
+						flag = d.translate(flag);
+						constraintFlags.add(flag);
+					}
 				}
+			} else {
+				throw new IllegalArgumentException("Invalid flags: " + flags);
 			}
 			
+			// Keep count of expandable items
 			if (constraintFlags.contains(SLayout.EXPAND_AXIAL)) {
 				expandable++;
 			}
-		} else {
-			throw new IllegalArgumentException("Invalid flags: " + flags);
 		}
 		constraints.put(component, constraintFlags);
 	}
@@ -863,7 +874,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 */
 	public static JComponent addSpring(Container target) {
 		JComponent spring = new Spring();
-		target.add(spring, constraint(SLayout.EXPAND_AXIAL));
+		target.add(spring, SLayout.EXPAND_AXIAL);
 		
 		return spring;
 	}
