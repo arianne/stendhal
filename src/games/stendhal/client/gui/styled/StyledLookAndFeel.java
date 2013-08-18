@@ -64,6 +64,7 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 			"SpinnerUI", pkg + "StyledSpinnerUI",
 			"SplitPaneUI", pkg + "StyledSplitPaneUI",
 			"TabbedPaneUI", pkg + "StyledTabbedPaneUI",
+			"TableUI", pkg + "StyledTableUI",
 			"TextFieldUI", pkg + "StyledTextFieldUI",
 			"ToolTipUI", pkg + "StyledToolTipUI",
 		};
