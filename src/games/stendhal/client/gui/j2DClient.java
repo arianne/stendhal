@@ -31,7 +31,7 @@ import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.chattext.ChatCompletionHelper;
 import games.stendhal.client.gui.chattext.ChatTextController;
 import games.stendhal.client.gui.group.GroupPanelController;
-import games.stendhal.client.gui.layout.FreePlacementLayoutManager;
+import games.stendhal.client.gui.layout.FreePlacementLayout;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.map.MapPanelController;
@@ -231,7 +231,7 @@ public class j2DClient implements UserInterface {
 		 * windows on top of it
 		 */
 		pane = new JLayeredPane();
-		pane.setLayout(new FreePlacementLayoutManager());
+		pane.setLayout(new FreePlacementLayout());
 
 		/*
 		 * Create the main game screen

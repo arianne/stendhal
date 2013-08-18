@@ -21,7 +21,7 @@ import java.awt.LayoutManager;
  * A layout manager that does nothing else but keep the child components inside
  * the parent's borders.
  */
-public class FreePlacementLayoutManager implements LayoutManager {
+public class FreePlacementLayout implements LayoutManager {
 	@Override
 	public void addLayoutComponent(String name, Component comp) {
 	}
@@ -45,9 +45,9 @@ public class FreePlacementLayoutManager implements LayoutManager {
 		Insets insets = parent.getInsets();
 		int maxX = parent.getWidth() - insets.right;
 		int maxY = parent.getHeight() - insets.bottom;
-		for (final Component c : parent.getComponents()) {
-			final int x = Math.max(insets.top, Math.min(c.getX(), maxX - c.getWidth()));
-			final int y = Math.max(insets.left, Math.min(c.getY(), maxY - c.getHeight()));
+		for (Component c : parent.getComponents()) {
+			int x = Math.max(insets.top, Math.min(c.getX(), maxX - c.getWidth()));
+			int y = Math.max(insets.left, Math.min(c.getY(), maxY - c.getHeight()));
 			c.setLocation(x, y);
 		}
 	}
