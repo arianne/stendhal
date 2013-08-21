@@ -11,7 +11,7 @@
 - NPC Seremela has a new sprite
 - Touched up elf ears for some NPCs
 - Added reversible path on collision to Eheneumniranin
-- Added inactive achievement "A Bit Xenophobic"
+- Added achievement "A Bit Xenophobic"
 
 *client*
 - Now handles images for multiple status effect icons/animations
