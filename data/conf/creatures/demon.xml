@@ -242,7 +242,7 @@
   
   <creature name="winged blue imp">
     <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
-    <description></description>
+    <description>You see a winged blue imp. It's endowed with the power of evil. His trident is able to poison even the bravest warriors.</description>
     <attributes>
       <atk value="515"/>
       <def value="86"/>
