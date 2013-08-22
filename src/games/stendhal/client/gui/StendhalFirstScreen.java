@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import static games.stendhal.client.gui.layout.SBoxLayout.COMMON_PADDING;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.login.CreateAccountDialog;
@@ -19,27 +20,29 @@ import games.stendhal.client.gui.login.LoginDialog;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 /**
  * Summary description for LoginGUI.
  *
@@ -47,15 +50,12 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class StendhalFirstScreen extends JFrame {
 	private static final long serialVersionUID = -7825572598938892220L;
-	private static final int BUTTON_WIDTH = 160;
-	private static final int BUTTON_HEIGHT = 32;
 
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
+	private static final int FONT_SIZE = 16;
 
 	private final StendhalClient client;
-
-	private final Image background;
 
 	private JButton loginButton;
 	private JButton createAccountButton;
@@ -78,10 +78,6 @@ public class StendhalFirstScreen extends JFrame {
 		setLocationByPlatform(true);
 		this.client = client;
 		client.setSplashScreen(this);
-
-		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
-		final ImageIcon imageIcon = new ImageIcon(url);
-		background = imageIcon.getImage();
 
 		initializeComponent();
 
@@ -106,16 +102,19 @@ public class StendhalFirstScreen extends JFrame {
 	 * Setup the window contents.
 	 */
 	private void initializeComponent() {
-		JComponent contentPane = new JLabel(new ImageIcon(background));
+		URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
+		ImageIcon icon = new ImageIcon(url);
+		
+		JComponent contentPane = new ResizableLabel(icon);
 		setContentPane(contentPane);
 		
-		Font font = new Font(FONT_NAME, Font.PLAIN, 16);
+		Font font = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 
 		//
 		// Login
 		//
-		Action loginAction = new AbstractAction("Login to "
-				+ ClientGameConfiguration.get("GAME_NAME")) {
+		String gameName = ClientGameConfiguration.get("GAME_NAME");
+		Action loginAction = new AbstractAction("Login to " + gameName) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LoginDialog(StendhalFirstScreen.this, client).setVisible(true);
@@ -123,7 +122,7 @@ public class StendhalFirstScreen extends JFrame {
 		};
 		loginAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_L);
 		loginAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to login to a "
-				+ ClientGameConfiguration.get("GAME_NAME") + " server");
+				+ gameName + " server");
 		
 		loginButton = new JButton();
 		loginButton.setAction(loginAction);
@@ -140,7 +139,7 @@ public class StendhalFirstScreen extends JFrame {
 		};
 		createAccountAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A);
 		createAccountAction.putValue(Action.SHORT_DESCRIPTION, "Press this button to create an account on a "
-				+ ClientGameConfiguration.get("GAME_NAME") + " server.");
+				+ gameName + " server.");
 		
 		createAccountButton = new JButton();
 		createAccountButton.setFont(font);
@@ -176,31 +175,46 @@ public class StendhalFirstScreen extends JFrame {
 		creditButton.setFont(font);
 		creditButton.setAction(showCreditsAction);
 
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(final WindowEvent e) {
-				System.exit(0);
-			}
-		});
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Add the buttons
-		int x = (background.getWidth(null) - BUTTON_WIDTH) / 2;
-		addComponent(contentPane, loginButton, x, 300, BUTTON_WIDTH, BUTTON_HEIGHT);
-		addComponent(contentPane, createAccountButton, x, 340, BUTTON_WIDTH, BUTTON_HEIGHT);
-		addComponent(contentPane, helpButton, x, 380, BUTTON_WIDTH, BUTTON_HEIGHT);
-		addComponent(contentPane, creditButton, x, 420, BUTTON_WIDTH, BUTTON_HEIGHT);
+		contentPane.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		// The buttons should be a bit larger than by default. We have enough
+		// space.
+		gbc.ipadx = 2 * COMMON_PADDING;
+		gbc.ipady = 2;
+		
+		// All extra space should be abobe
+		gbc.weighty = 1.0;
+		contentPane.add(Box.createVerticalGlue(), gbc);
+		gbc.weighty = 0.0;
+		
+		gbc.gridy++;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.insets = new Insets(COMMON_PADDING, COMMON_PADDING, COMMON_PADDING, COMMON_PADDING);
+		
+		contentPane.add(loginButton, gbc);
+		gbc.gridy++;
+		contentPane.add(createAccountButton, gbc);
+		gbc.gridy++;
+		contentPane.add(helpButton, gbc);
+		gbc.gridy++;
+		contentPane.add(creditButton, gbc);
+		gbc.gridy++;
+		contentPane.add(Box.createVerticalStrut(2 * COMMON_PADDING), gbc);
 
 		getRootPane().setDefaultButton(loginButton);
 
 		//
 		// LoginGUI
 		//
-		setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
-				+ stendhal.VERSION
+		setTitle(gameName + " " + stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
-		setResizable(false);
 
-		final URL url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
+		url = DataLoader.getResource(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}
@@ -213,17 +227,45 @@ public class StendhalFirstScreen extends JFrame {
 		helpButton.setEnabled(b);
 		creditButton.setEnabled(b);
 	}
-
-	/** Adds Component Without a Layout Manager (Absolute Positioning).
-	 * @param container
-	 * @param c
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height */
-	private void addComponent(final Container container, final Component c, final int x, final int y,
-			final int width, final int height) {
-		c.setBounds(x, y, width, height);
-		container.add(c);
+	
+	/**
+	 * A Resizable label with an icon.
+	 */
+	private static class ResizableLabel extends JLabel {
+		final Image image;
+		
+		/**
+		 * Create a new ResizableLabel.
+		 *  
+		 * @param icon initial icon. The image of the icon will be used as the
+		 *  template for any scaled versions
+		 */
+		ResizableLabel(ImageIcon icon) {
+			super(icon);
+			this.image = icon.getImage();
+		}
+		
+		/*
+		 * A resize listener is run *after* the actual resizing happens, which
+		 * would result in layout being ready before the image is redrawn. The
+		 * effect looks ugly, so the resizing is done here instead for immediate
+		 * scaling.
+		 */
+		@Override
+		public void setBounds(int x, int y, int width, int height) {
+			if ((width != image.getWidth(this)) || (height != image.getHeight(this))) {
+				double scalingX = width / (double) image.getWidth(this);
+				double scalingY = height / (double) image.getHeight(this);
+				double scaling = Math.max(scalingX, scalingY);
+				BufferedImage copy = getGraphicsConfiguration().createCompatibleImage(width, height);
+				Graphics2D g = copy.createGraphics();
+				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+				g.scale(scaling, scaling);
+				g.drawImage(image, 0, 0, this);
+				g.dispose();
+				setIcon(new ImageIcon(copy));
+			}
+			super.setBounds(x, y, width, height);
+		}
 	}
 }
