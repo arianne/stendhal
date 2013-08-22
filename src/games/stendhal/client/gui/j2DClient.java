@@ -73,6 +73,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -110,7 +111,8 @@ public class j2DClient implements UserInterface {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
-	private MainFrame mainFrame;
+	/** Main window. */
+	private JFrame frame;
 	private QuitDialog quitDialog;
 
 	private GameScreen screen;
@@ -218,8 +220,11 @@ public class j2DClient implements UserInterface {
 	 *
 	 * @param client
 	 * @param userContext
+	 * @param splash splash screen or <code>null</code>. If not
+	 *	<code>null</code>, it will be used as the main window
 	 */
-	public j2DClient(final StendhalClient client, final UserContext userContext) {
+	public j2DClient(final StendhalClient client, final UserContext userContext,
+			JFrame splash) {
 		this.client = client;
 		this.userContext = userContext;
 		setDefault(this);
@@ -319,10 +324,9 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Finally create the window, and place all the components in it
 		 */
-		// Create the main window
-		mainFrame = new MainFrame();
+		frame = MainFrame.prepare(splash);
 		JComponent glassPane = DragLayer.get();
-		mainFrame.getMainFrame().setGlassPane(glassPane);
+		frame.setGlassPane(glassPane);
 		glassPane.setVisible(true);
 
 		// *** Create the layout ***
@@ -354,7 +358,7 @@ public class j2DClient implements UserInterface {
 
 		// Avoid panel drawing overhead
 		final Container windowContent = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL);
-		mainFrame.getMainFrame().setContentPane(windowContent);
+		frame.setContentPane(windowContent);
 
 		// Finally add the left pane, and the games screen + chat combo
 		// Make the panel take any horizontal resize
@@ -463,7 +467,7 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Handle focus assertion and window closing
 		 */
-		mainFrame.getMainFrame().addWindowListener(new WindowAdapter() {
+		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent ev) {
 				chatText.getPlayerChatText().requestFocus();
@@ -485,7 +489,7 @@ public class j2DClient implements UserInterface {
 			}
 		});
 
-		mainFrame.getMainFrame().pack();
+		frame.pack();
 		horizSplit.setDividerLocation(leftColumn.getPreferredSize().width);
 		setInitialWindowStates();
 
@@ -494,20 +498,20 @@ public class j2DClient implements UserInterface {
 		 *  different java versions seem to take the window decorations
 		 *  in account in rather random ways.
 		 */
-		final int width = mainFrame.getMainFrame().getWidth()
+		final int width = frame.getWidth()
 		- minimap.getComponent().getWidth() - containerPanel.getWidth();
-		final int height = mainFrame.getMainFrame().getHeight() - chatLogArea.getHeight();
+		final int height = frame.getHeight() - chatLogArea.getHeight();
 
-		mainFrame.getMainFrame().setMinimumSize(new Dimension(width, height));
-		mainFrame.getMainFrame().setVisible(true);
+		frame.setMinimumSize(new Dimension(width, height));
+		frame.setVisible(true);
 
 		/*
 		 * For small screens. Setting the maximum window size does
 		 * not help - pack() happily ignores it.
 		 */
 		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-		Dimension current = mainFrame.getMainFrame().getSize();
-		mainFrame.getMainFrame().setSize(Math.min(current.width, maxBounds.width),
+		Dimension current = frame.getSize();
+		frame.setSize(Math.min(current.width, maxBounds.width),
 				Math.min(current.height, maxBounds.height));
 
 		/*
@@ -517,10 +521,13 @@ public class j2DClient implements UserInterface {
 		 */
 		splitPane.setDividerLocation(Math.min(screenSize.height,
 				maxBounds.height  - 80));
+		
+		frame.setEnabled(true);
+		chatText.getPlayerChatText().requestFocus();
 
 		checkAndComplainAboutJavaImplementation();
 		positionChangeListener.add(getSoundSystemFacade());
-		WindowUtils.watchFontSize(mainFrame.getMainFrame());
+		WindowUtils.watchFontSize(frame);
 	} // constructor
 
 	/**
@@ -797,9 +804,9 @@ public class j2DClient implements UserInterface {
 	 * game loop frame rate.
 	 */
 	private void triggerPainting() {
-		if (mainFrame.getMainFrame().getState() != Frame.ICONIFIED) {
+		if (frame.getState() != Frame.ICONIFIED) {
 			paintCounter++;
-			if (mainFrame.getMainFrame().isActive() || System.getProperty("stendhal.skip.inactive", "false").equals("false") || paintCounter >= 20) {
+			if (frame.isActive() || System.getProperty("stendhal.skip.inactive", "false").equals("false") || paintCounter >= 20) {
 				paintCounter = 0;
 				logger.debug("Draw screen");
 				minimap.refresh();
@@ -889,8 +896,8 @@ public class j2DClient implements UserInterface {
 		if (outfitDialog == null) {
 			// Here we actually want to call new OutfitColor(). Modifying
 			// OutfitColor.PLAIN would be a bad thing.
-			outfitDialog = new OutfitDialog(mainFrame.getMainFrame(),
-					"Set outfit", outfit, new OutfitColor(player));
+			outfitDialog = new OutfitDialog(frame, "Set outfit", outfit,
+					new OutfitColor(player));
 			outfitDialog.setVisible(true);
 		} else {
 			outfitDialog.setState(outfit, OutfitColor.get(player));
@@ -998,7 +1005,7 @@ public class j2DClient implements UserInterface {
 	 * @return main window
 	 */
 	public Frame getMainFrame() {
-		return mainFrame.getMainFrame();
+		return frame;
 	}
 
 	/**

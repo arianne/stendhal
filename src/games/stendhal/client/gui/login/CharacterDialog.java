@@ -283,9 +283,6 @@ public final class CharacterDialog extends JDialog implements Runnable {
 		try {
 			StendhalClient.get().chooseCharacter(character);
 			setVisible(false);
-			if (getOwner() != null) {
-				getOwner().dispose();
-			}
 			stendhal.setDoLogin();
 			dispose();
 		} catch (TimeoutException e) {

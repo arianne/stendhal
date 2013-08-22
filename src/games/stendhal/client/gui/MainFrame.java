@@ -25,51 +25,64 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-class MainFrame {
-	private final JFrame mainFrame;
+/**
+ * Utility class for preparing the main game window.
+ */
+final class MainFrame {
+	/** Never called. */
+	private MainFrame() {
+	}
 
 	/**
-	 * Create a new MainFrame.
+	 * Set the window icon.
+	 * 
+	 * @param frame window
 	 */
-	public MainFrame() {
-		// Open on the screen where the mouse cursor is
-		GraphicsConfiguration gc = MouseInfo.getPointerInfo().getDevice().getDefaultConfiguration();
-		mainFrame =  new JFrame(gc);
-		initialize();
-	}
-
-	private void initialize() {
-		setTitle();
-		setIcon();
-		setDefaultCloseBehaviour();
-		mainFrame.setLocationByPlatform(true);
-		WindowUtils.closeOnEscape(mainFrame);
-	}
-
-	private void setDefaultCloseBehaviour() {
-		// When the user tries to close the window, don't close immediately,
-		// but show a confirmation dialog.
-		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-	}
-
-	private void setIcon() {
+	private static void setIcon(JFrame frame) {
 		final URL url = DataLoader.getResource(
 				ClientGameConfiguration.get("GAME_ICON"));
-		getMainFrame().setIconImage(new ImageIcon(url).getImage());
+		frame.setIconImage(new ImageIcon(url).getImage());
 	}
 
-	private void setTitle() {
+	/**
+	 * Set the window title.
+	 * 
+	 * @param frame window
+	 */
+	private static void setTitle(JFrame frame) {
 		String preRelease = "";
 		if (Debug.PRE_RELEASE_VERSION != null) {
 			preRelease = " - " + Debug.PRE_RELEASE_VERSION;
 		}
-		mainFrame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
+		frame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
 				+ stendhal.VERSION + preRelease
 				+ " - a multiplayer online game using Arianne");
 	}
 
-	 JFrame getMainFrame() {
-		return mainFrame;
-	}
+	/**
+	 * Prepare a frame for use as the main window, or create a new one if
+	 * needed.
+	 * 
+	 * @param frame frame to be used as the main game window. If
+	 * 	<code>null</code>, then a new frame will be created
+	 * @return frame suitable for use as the main game window
+	 */
+	static JFrame prepare(JFrame frame) {
+		if (frame == null) {
+			// Open on the screen where the mouse cursor is
+			GraphicsConfiguration gc = MouseInfo.getPointerInfo().getDevice().getDefaultConfiguration();
+			frame =  new JFrame(gc);
+			frame.setLocationByPlatform(true);
+		}
+		setTitle(frame);
+		setIcon(frame);
+		/*
+		 * When the user tries to close the window, don't close immediately,
+		 * but let it show a confirmation dialog.
+		 */
+		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		WindowUtils.closeOnEscape(frame);
 
+		return frame;
+	}
 }

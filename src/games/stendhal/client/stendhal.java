@@ -84,7 +84,7 @@ public final class stendhal {
 
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 
-	public static final int FPS_LIMIT = 25;
+	static final int FPS_LIMIT = 25;
 	
 	/**
 	 * Make the class non-instantiable.
@@ -225,54 +225,63 @@ public final class stendhal {
 	public static void main(final String[] args) {
 		startLogSystem();
 		MarauroaUncaughtExceptionHandler.setup(false);
-		final UserContext userContext = new UserContext();
-		final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
-		final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
+		new Startup(args);
+	}
+	
+	private static class Startup {
+		StendhalFirstScreen splash;
 
-		try {
-			WtWindowManager wm = WtWindowManager.getInstance();
-			String style = wm.getProperty("ui.style", "Wood (default)");
-			StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(style));
-			UIManager.setLookAndFeel(look);
-			/*
-			 * Prevents the click event at closing a popup menu by clicking
-			 * outside it being passed to the component underneath. 
-			 */
-			UIManager.put("PopupMenu.consumeEventOnClose", Boolean.TRUE);
-			int fontSize = wm.getPropertyInt("ui.font_size", 12);
-			look.setDefaultFontSize(fontSize);
-		} catch (UnsupportedLookAndFeelException e) {
-			/*
-			 * Should not happen as StyledLookAndFeel always returns true for
-			 * isSupportedLookAndFeel()
-			 */
-			logger.error("Failed to set Look and Feel", e);
-		}
+		Startup(String[] args) {
+			final UserContext userContext = new UserContext();
+			final PerceptionDispatcher perceptionDispatch = new PerceptionDispatcher();
+			final StendhalClient client = new StendhalClient(userContext, perceptionDispatch);
 
-		UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
+			try {
+				WtWindowManager wm = WtWindowManager.getInstance();
+				String style = wm.getProperty("ui.style", "Wood (default)");
+				StyledLookAndFeel look = new StyledLookAndFeel(StyleFactory.createStyle(style));
+				UIManager.setLookAndFeel(look);
+				/*
+				 * Prevents the click event at closing a popup menu by clicking
+				 * outside it being passed to the component underneath. 
+				 */
+				UIManager.put("PopupMenu.consumeEventOnClose", Boolean.TRUE);
+				int fontSize = wm.getPropertyInt("ui.font_size", 12);
+				look.setDefaultFontSize(fontSize);
+			} catch (UnsupportedLookAndFeelException e) {
+				/*
+				 * Should not happen as StyledLookAndFeel always returns true for
+				 * isSupportedLookAndFeel()
+				 */
+				logger.error("Failed to set Look and Feel", e);
+			}
 
-		final Profile profile = Profile.createFromCommandline(args);
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				if (profile.isValid()) {
-					new LoginDialog(null, client).connect(profile);
-				} else {
-					new StendhalFirstScreen(client);
+			UIManager.getLookAndFeelDefaults().put("ClassLoader", stendhal.class.getClassLoader());
+
+			final Profile profile = Profile.createFromCommandline(args);
+			
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					if (profile.isValid()) {
+						new LoginDialog(null, client).connect(profile);
+					} else {
+						splash = new StendhalFirstScreen(client);
+					}
 				}
-			}
-		});
+			});
 
-		waitForLogin();
-		CStatusSender.send();
+			waitForLogin();
+			CStatusSender.send();
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				j2DClient locclient = new j2DClient(client, userContext);
-				perceptionDispatch.register(locclient.getPerceptionListener());
-				locclient.startGameLoop();
-			}
-		});
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					j2DClient locclient = new j2DClient(client, userContext, splash);
+					perceptionDispatch.register(locclient.getPerceptionListener());
+					locclient.startGameLoop();
+				}
+			});
+		}
 	}
 }
