@@ -118,8 +118,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private final GroundContainer ground;
 
-	
-
 	/**
 	 * The text bubbles.
 	 */
@@ -135,8 +133,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	private final List<RemovableSprite> textsToRemove;
 
-	
-	
 	private boolean offline;
 
 	/**
@@ -550,6 +546,18 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	
 	@Override
 	public void paintComponent(final Graphics g) {
+		if (StendhalClient.get().isInTransfer()) {
+			/*
+			 * A hack to prevent proper drawing during zone change when the draw
+			 * request comes from paintChildren() of the parent. Those are not
+			 * caught by the paintImmediately() wrapper. Prevents entity view
+			 * images from being initialized before zone coloring is ready.
+			 */
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, getWidth(), getHeight());
+			return;
+		}
+		
 		Graphics2D g2d = (Graphics2D) g;
 		
 		Graphics2D graphics = (Graphics2D) g2d.create();
