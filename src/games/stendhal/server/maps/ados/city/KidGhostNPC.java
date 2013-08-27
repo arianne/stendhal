@@ -56,17 +56,17 @@ public class KidGhostNPC implements ZoneConfigurator {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(34, 121));
-				nodes.add(new Node(24, 121));
-				nodes.add(new Node(24, 112));
-				nodes.add(new Node(13, 112));
-				nodes.add(new Node(13, 121));
-				nodes.add(new Node(6, 121));
-				nodes.add(new Node(6, 112));
-				nodes.add(new Node(13, 112));
-				nodes.add(new Node(13, 121));
-				nodes.add(new Node(24, 121));
-				nodes.add(new Node(24, 112));
-				nodes.add(new Node(34, 112));
+				nodes.add(new Node(23, 121));
+				nodes.add(new Node(23, 112));
+				nodes.add(new Node(17, 112));
+				nodes.add(new Node(17, 124));
+				nodes.add(new Node(5, 124));
+				nodes.add(new Node(5, 111));
+				nodes.add(new Node(17, 111));
+				nodes.add(new Node(17, 112));
+				nodes.add(new Node(35, 112));
+				nodes.add(new Node(35, 119));
+				nodes.add(new Node(23, 119));
 				setPath(new FixedPath(nodes, true));
 			}
 
