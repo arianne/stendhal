@@ -12,6 +12,7 @@
 - Touched up elf ears for some NPCs
 - Added reversible path on collision to Eheneumniranin
 - Added achievement "A Bit Xenophobic"
+- Reworked area around ghost in Ados city_n
 
 *client*
 - Now handles images for multiple status effect icons/animations
