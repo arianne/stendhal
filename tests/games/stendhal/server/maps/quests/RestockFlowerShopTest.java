@@ -174,7 +174,7 @@ public class RestockFlowerShopTest {
         if (needed.containsKey("rose")) {
         	assertEquals("You don't have a rose with you!", getReply(seremela));
         } else {
-        	assertEquals("I don't need any of those.", getReply(seremela));
+        	assertEquals("I don't need any more of those.", getReply(seremela));
         }
         // Carrying desired item
         checkNeeded(player, en, "daisies");
