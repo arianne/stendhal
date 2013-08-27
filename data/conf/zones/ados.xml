@@ -1048,6 +1048,38 @@ West: Semos
       </implementation>
     </entity>
     
+    <entity x="25" y="120">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
+        <parameter name="min">1</parameter>
+        <parameter name="max">10</parameter>
+        <parameter name="radius">25</parameter>
+        <parameter name="volume">80</parameter>
+      </implementation>
+      <attribute name="description">You see a burning campfire. It's heat is welcoming.</attribute>
+    </entity>
+    
+    <entity x="28" y="118">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">guitar-1</parameter>
+      </implementation>
+      <attribute name="description">You see an ukulele leaning against a tree. Go play relaxing campfire songs with it.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="22" y="118">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">guitar-1</parameter>
+      </implementation>
+      <attribute name="description">You see an ukulele leaning against a tree. Go play relaxing campfire songs with it.</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    
     <portal x="60" y="16" ref="tavern_entrance_left">
       <destination zone="int_ados_tavern_0" ref="entrance_left"/>
     </portal>
