@@ -25,6 +25,7 @@
 - NPC sound effects are handled by server
 
 1.09
+25th July 2013
 
 *world*
 - New quest: Traps for Klaas
@@ -67,6 +68,7 @@
 
 
 1.08
+5th June 2013
 
 *world*
 - New NPC and quest in Nalwor Flower Shop: Restock Flower Shop
