@@ -22,7 +22,7 @@
 - Exchanging white round tables in fado city
 
 *code*
-- NPC sound effecs are handled by server
+- NPC sound effects are handled by server
 
 1.09
 
