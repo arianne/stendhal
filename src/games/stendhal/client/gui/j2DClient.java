@@ -521,13 +521,22 @@ public class j2DClient implements UserInterface {
 		 */
 		splitPane.setDividerLocation(Math.min(screenSize.height,
 				maxBounds.height  - 80));
-		
-		frame.setEnabled(true);
-		chatText.getPlayerChatText().requestFocus();
 
 		checkAndComplainAboutJavaImplementation();
 		positionChangeListener.add(getSoundSystemFacade());
 		WindowUtils.watchFontSize(frame);
+		
+		/*
+		 * On some systems the window may end up occasionally unresponsive
+		 * to keyboard use unless these are delayed.
+		 */
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				frame.setEnabled(true);
+				chatText.getPlayerChatText().requestFocus();
+			}
+		});
 	} // constructor
 
 	/**
