@@ -16,13 +16,19 @@
 
 *client*
 - Now handles images for multiple status effect icons/animations
+- On multi-screen systems updater windows open on the screen with the mouse pointer
+- Shop signs can have animated item images
+- Game opens in the initial window
 
 *fixes*
 - Fixing table entities in Kalavan houses
 - Exchanging white round tables in fado city
+- Clicking the menu button when the menu is open, closes it
 
 *code*
 - NPC sound effects are handled by server
+- Sheep sounds are generated server side
+- Domestic animals and NPCs use the same idea handling code in the client
 
 1.09
 25th July 2013
