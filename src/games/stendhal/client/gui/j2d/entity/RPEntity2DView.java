@@ -101,6 +101,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private final List<StatusIconManager> iconManagers = new ArrayList<StatusIconManager>();
 	private HealthBar healthBar; 
 
+	/** 
+	 * Flag for detecting if any of the icon manager managed icons have
+	 * changed.
+	 */
+	private volatile boolean iconsChanged;
 	/**
 	 * Flag for checking if the entity is attacking. Can be modified by both
 	 * the EDT and the game loop.
@@ -178,6 +183,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			titleSprite = createTitleSprite();
 		}
 		titleChanged = false;
+		iconsChanged = true;
 	}
 	
 	//
@@ -650,17 +656,24 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		
 		/*
 		 * Set icons for a newly created entity.
-		 * These need to be after the main sprite is ready, so that the
-		 * dimensions are correct for the sprite placement.
 		 */
-		for (StatusIconManager handler : iconManagers) {
-			handler.check(entity);
-		}
+		checkIcons();
 		
 		// Prepare the health bar
 		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
 		healthBar = new HealthBar(barWidth, HEALTH_BAR_HEIGHT);
 		healthBar.setHPRatio(entity.getHpRatio());
+	}
+	
+	/**
+	 * Check if icon states have changed.
+	 */
+	private void checkIcons() {
+		for (StatusIconManager handler : iconManagers) {
+			if (handler.check(entity)) {
+				iconsChanged = true;
+			}
+		}
 	}
 
 	//
@@ -806,13 +819,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		super.update();
 
 		if (titleChanged) {
+			titleChanged = false;
 			showTitle = entity.showTitle();
 			if (showTitle) {
 				titleSprite = createTitleSprite();
 			} else {
 				titleSprite = null;
 			}
-			titleChanged = false;
+		}
+		
+		if (iconsChanged) {
+			iconsChanged = false;
+			for (StatusIconManager handler : iconManagers) {
+				handler.apply();
+			}
 		}
 	}
 
@@ -853,9 +873,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			}
 		}
 		
-		for (StatusIconManager handler : iconManagers) {
-			handler.check(property, entity);
-		}
+		checkIcons();
 	}
 
 	/**
@@ -946,6 +964,14 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * as away messages).
 		 */
 		private boolean wasVisible;
+		/**
+		 * Property for telling if the icon should be visible.
+		 */
+		private boolean shouldBeVisible;
+		/**
+		 * Flag for detecting that the visibility status has changed.
+		 */
+		private volatile boolean changed;
 		
 		/**
 		 * Create a new StatusIconManager.
@@ -983,10 +1009,24 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * 
 		 * @param changedProperty
 		 * @param entity
+		 * @return <code>true</code> if the visibility status changed, otherwise
+		 * 	<code>false</code>
 		 */
-		private void check(Object changedProperty, T entity) {
+		boolean check(Object changedProperty, T entity) {
 			if (property == changedProperty) {
-				check(entity);
+				return check(entity);
+			}
+			
+			return false;
+		}
+		
+		/**
+		 * Apply visibility changes if needed.
+		 */
+		void apply() {
+			if (changed) {
+				changed = false;
+				setVisible(shouldBeVisible);
 			}
 		}
 		
@@ -995,9 +1035,18 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * needed.
 		 * 
 		 * @param entity
+		 * @return <code>true</code> if the visibility status changed, otherwise
+		 * 	<code>false</code>
 		 */
-		private void check(T entity) {
-			setVisible(show(entity));
+		private boolean check(T entity) {
+			boolean old = shouldBeVisible;
+			shouldBeVisible = show(entity);
+			boolean tmp = old != shouldBeVisible;
+			if (tmp) {
+				changed = true;
+			}
+			
+			return tmp;
 		}
 		
 		/**
