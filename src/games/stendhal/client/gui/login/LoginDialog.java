@@ -98,6 +98,12 @@ public class LoginDialog extends JDialog {
 	// Object checking that all required fields are filled
 	private DataValidator fieldValidator;
 
+	/**
+	 * Create a new LoginDialog.
+	 * 
+	 * @param owner parent window
+	 * @param client client
+	 */
 	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
 		this.client = client;
@@ -105,6 +111,9 @@ public class LoginDialog extends JDialog {
 		WindowUtils.closeOnEscape(this);
 	}
 
+	/**
+	 * Create the dialog contents.
+	 */
 	private void initializeComponent() {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -264,7 +273,7 @@ public class LoginDialog extends JDialog {
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				loginButton_actionPerformed(e);
+				loginButtonActionPerformed();
 			}
 		});
 
@@ -306,15 +315,9 @@ public class LoginDialog extends JDialog {
 	 * Prepare the field validator and bind it to the relevant text fields.
 	 */
 	private void bindEditListener() {
-		Document[] docs = { serverField.getDocument(),
-				serverPortField.getDocument(),
-				usernameField.getDocument(),
-				passwordField.getDocument()
-				}; 
-		fieldValidator = new DataValidator(loginButton, docs);
-		for (Document doc : docs) {
-			doc.addDocumentListener(fieldValidator);
-		}
+		fieldValidator = new DataValidator(loginButton,
+				serverField.getDocument(), serverPortField.getDocument(),
+				usernameField.getDocument(), passwordField.getDocument());
 	}
 
 	/**
@@ -333,14 +336,17 @@ public class LoginDialog extends JDialog {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				removeButton_actionPerformed(e);
+				removeButtonActionPerformed();
 			}
 		});
 
 		return button;
 	}
 
-	private void loginButton_actionPerformed(final ActionEvent e) {
+	/**
+	 * Called when the login button is activated.
+	 */
+	private void loginButtonActionPerformed() {
 		// If this window isn't enabled, we shouldn't act.
 		if (!isEnabled()) {
 			return;
@@ -393,7 +399,10 @@ public class LoginDialog extends JDialog {
 		t.start();
 	}
 
-	private void removeButton_actionPerformed(final ActionEvent e) {
+	/**
+	 * Called when the remove profile button is activated.
+	 */
+	private void removeButtonActionPerformed() {
 		// If this window isn't enabled, we shouldn't act.
 		if (!isEnabled() || (profiles.profiles.size() == 0)) {
 			return;
@@ -416,7 +425,7 @@ public class LoginDialog extends JDialog {
 			options,
 			options[1]);
 
-		if ( confirmRemoveProfile == 0 ) {
+		if (confirmRemoveProfile == 0) {
 			profiles.remove(profile);
 			saveProfiles(profiles);
 			profiles = loadProfiles();
@@ -433,9 +442,11 @@ public class LoginDialog extends JDialog {
 		fieldValidator.revalidate();
 		removeButton.setEnabled(b);
 	}
+	
 	/**
 	 * Connect to a server using a given profile.
-	 * @param profile
+	 * 
+	 * @param profile profile used for login
 	 */
 	public void connect(final Profile profile) {
 		// We are not in EDT
@@ -480,7 +491,6 @@ public class LoginDialog extends JDialog {
 			return;
 		}
 
-		final JDialog me=this;
 		try {
 			client.setAccountUsername(profile.getUser());
 			client.setCharacter(profile.getCharacter());
@@ -494,7 +504,7 @@ public class LoginDialog extends JDialog {
 						setVisible(false);
 					} catch (NullPointerException npe) {
 						Logger.getLogger(LoginDialog.class).error("Error probably related to bug in JRE occured", npe);
-						me.dispose();
+						LoginDialog.this.dispose();
 					}
 				}
 			});
@@ -572,7 +582,8 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Populate the profiles combobox and select the default.
-	 * @param profiles
+	 * 
+	 * @param profiles profile data
 	 */
 	private void populateProfiles(final ProfileList profiles) {
 		profilesComboBox.removeAllItems();
@@ -634,6 +645,9 @@ public class LoginDialog extends JDialog {
 		DataValidator(JComponent component, Document... docs) {
 			this.component = component;
 			documents = docs;
+			for (Document doc : docs) {
+				doc.addDocumentListener(this);
+			}
 			revalidate();
 		}
 		
@@ -658,7 +672,7 @@ public class LoginDialog extends JDialog {
 		 * Do a full document state check and set the component status according
 		 * to the result. 
 		 */
-		void revalidate() {
+		final void revalidate() {
 			for (Document doc : documents) {
 				if (doc.getLength() == 0) {
 					component.setEnabled(false);
@@ -703,9 +717,14 @@ public class LoginDialog extends JDialog {
 	/**
 	 * Server connect thread runnable.
 	 */
-	private class ConnectRunnable implements Runnable {
+	private final class ConnectRunnable implements Runnable {
 		private final Profile profile;
 
+		/**
+		 * Create a new ConnectRunnable.
+		 * 
+		 * @param profile profile used for connection
+		 */
 		private ConnectRunnable(final Profile profile) {
 			this.profile = profile;
 		}
