@@ -45,12 +45,14 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
@@ -89,12 +91,12 @@ public class LoginDialog extends JDialog {
 
 	private JButton removeButton;
 
-	private JPanel contentPane;
-
 	// End of variables declaration
 	private final StendhalClient client;
 
 	private ProgressBar progressBar;
+	// Object checking that all required fields are filled
+	private DataValidator fieldValidator;
 
 	public LoginDialog(final Frame owner, final StendhalClient client) {
 		super(owner, true);
@@ -123,7 +125,7 @@ public class LoginDialog extends JDialog {
 		//
 		// contentPane
 		//
-		contentPane = (JPanel) this.getContentPane();
+		JComponent contentPane = (JComponent) getContentPane();
 		contentPane.setLayout(new GridBagLayout());
 		final int pad = SBoxLayout.COMMON_PADDING;
 		contentPane.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
@@ -272,6 +274,10 @@ public class LoginDialog extends JDialog {
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
+		
+		// Before loading profiles so that we can catch the data filled from
+		// there
+		bindEditListener();
 
 		/*
 		 * Load saved profiles
@@ -293,6 +299,21 @@ public class LoginDialog extends JDialog {
 		if (getOwner() != null) {
 			getOwner().setEnabled(false);
 			this.setLocationRelativeTo(getOwner());
+		}
+	}
+	
+	/**
+	 * Prepare the field validator and bind it to the relevant text fields.
+	 */
+	private void bindEditListener() {
+		Document[] docs = { serverField.getDocument(),
+				serverPortField.getDocument(),
+				usernameField.getDocument(),
+				passwordField.getDocument()
+				}; 
+		fieldValidator = new DataValidator(loginButton, docs);
+		for (Document doc : docs) {
+			doc.addDocumentListener(fieldValidator);
 		}
 	}
 
@@ -408,7 +429,8 @@ public class LoginDialog extends JDialog {
 	@Override
 	public void setEnabled(final boolean b) {
 		super.setEnabled(b);
-		loginButton.setEnabled(b);
+		// Enabling login button is conditional
+		fieldValidator.revalidate();
 		removeButton.setEnabled(b);
 	}
 	/**
@@ -593,6 +615,59 @@ public class LoginDialog extends JDialog {
 			passwordField.setText("");
 		}
 	}
+	
+	/**
+	 * Checks that a group of Documents (text fields) is not empty, and enables
+	 * or disables a JComponent on that condition. 
+	 */
+	private static class DataValidator implements DocumentListener {
+		private final Document[] documents;
+		private final JComponent component;
+		
+		/**
+		 * Create a new DataValidator.
+		 * 
+		 * @param component component to be enabled depending on the state of
+		 *  documents 
+		 * @param docs documents
+		 */
+		DataValidator(JComponent component, Document... docs) {
+			this.component = component;
+			documents = docs;
+			revalidate();
+		}
+		
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			revalidate();
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			if (e.getDocument().getLength() == 0) {
+				component.setEnabled(false);
+			}
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			// Attribute change - ignore
+		}
+		
+		/**
+		 * Do a full document state check and set the component status according
+		 * to the result. 
+		 */
+		void revalidate() {
+			for (Document doc : documents) {
+				if (doc.getLength() == 0) {
+					component.setEnabled(false);
+					return;
+				}
+			}
+			component.setEnabled(true);
+		}
+	}
 
 	/*
 	 * Author: Da_MusH Description: Methods for saving and loading login
@@ -629,7 +704,7 @@ public class LoginDialog extends JDialog {
 	 * Server connect thread runnable.
 	 */
 	private class ConnectRunnable implements Runnable {
-		private Profile profile;
+		private final Profile profile;
 
 		private ConnectRunnable(final Profile profile) {
 			this.profile = profile;
