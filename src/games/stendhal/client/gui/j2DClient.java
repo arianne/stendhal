@@ -71,6 +71,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -671,7 +673,21 @@ public class j2DClient implements UserInterface {
 	 */
 	private void cleanup() {
 		chatText.saveCache();
+		
+		// Fall back in case sound system hangs. Can happen at least when using
+		// the pulseaudio driver and the sound daemon is shut down while the
+		// client has the line open.
+		Runnable quit = new Runnable() {
+			@Override
+			public void run() {
+				logger.warn("Forced exit, sound system likely locked up");
+				System.exit(1);
+			}
+		};
+		Executors.newSingleThreadScheduledExecutor().schedule(quit, 3, TimeUnit.SECONDS);
 		getSoundSystemFacade().exit();
+		
+		// Normal shutdown
 		logger.debug("Exit");
 		System.exit(0);
 	}
