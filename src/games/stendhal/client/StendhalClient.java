@@ -61,7 +61,7 @@ public class StendhalClient extends ClientFramework {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalClient.class);
 
-	private final Map<RPObject.ID, RPObject> world_objects;
+	private final Map<RPObject.ID, RPObject> worldObjects;
 
 	private final PerceptionHandler handler;
 
@@ -118,7 +118,7 @@ public class StendhalClient extends ClientFramework {
 		client = this;
 		ClientSingletonRepository.setClientFramework(this);
 
-		world_objects = new HashMap<RPObject.ID, RPObject>();
+		worldObjects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
 		this.userContext = userContext;
@@ -127,7 +127,7 @@ public class StendhalClient extends ClientFramework {
 		final PerceptionToObject po = new PerceptionToObject();
 		po.setObjectFactory(new ObjectFactory());
 		perceptionDispatcher.register(po);
-		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, world_objects);
+		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, worldObjects);
 		handler = new PerceptionHandler(stendhalPerceptionListener);
 
 		cache = new Cache();
@@ -164,7 +164,7 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Simulate object disassembly
 		 */
-		for (final RPObject object : world_objects.values()) {
+		for (final RPObject object : worldObjects.values()) {
 			if (object != userContext.getPlayer()) {
 				rpobjDispatcher.dispatchRemoved(object);
 			}
@@ -188,7 +188,7 @@ public class StendhalClient extends ClientFramework {
 				onBeforeSync(message.getRPZoneID().getID());
 			}
 
-			handler.apply(message, world_objects);
+			handler.apply(message, worldObjects);
 		} catch (final Exception e) {
 			logger.error("error processing message " + message, e);
 		}
@@ -288,12 +288,14 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * Determine if we are in the middle of transfering new content.
+	 * Determine if we are in the middle of transferring new content that should
+	 * suppress drawing during the transfer.
 	 *
 	 * @return <code>true</code> if more content is to be transfered.
 	 */
 	public boolean isInTransfer() {
-		return (contentToLoad != 0);
+		// Keep drawing normally during coloring update transfers.
+		return ((contentToLoad != 0) && (currentZone != null) && !currentZone.isUpdate());
 	}
 
 	/**
