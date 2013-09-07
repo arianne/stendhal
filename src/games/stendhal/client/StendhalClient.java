@@ -13,12 +13,14 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.login.CharacterDialog;
 import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Version;
 
 import java.io.ByteArrayInputStream;
@@ -414,7 +416,15 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onPreviousLogins(final List<String> previousLogins) {
-		// TODO: display this to the player
+		GameLoop.get().runOnce(new Runnable() {
+			@Override
+			public void run() {
+				for (String login : previousLogins) {
+					NotificationType type = (login.indexOf("FAILED") != -1) ? NotificationType.WARNING : NotificationType.SERVER;
+					ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine("Previous " + login, type));
+				}
+			}
+		});
 	}
 
 	/**
