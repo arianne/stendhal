@@ -197,7 +197,7 @@ public enum NotificationType {
 	public static final Color COLOR_SUPPORT = new Color(0xff7200);
 	
 	/** dark red */
-	public static final Color COLOR_WARNING = new Color(0x7D0800);
+	public static final Color COLOR_WARNING = new Color(0xa00000);
 	
 	// TODO: review thinking here of using constants.
 	// these are tied to the ones in client.KTextEdit.gui.initStylesForTextPane
