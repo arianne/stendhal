@@ -57,6 +57,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -535,6 +536,25 @@ public class j2DClient implements UserInterface {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				/*
+				 * A massive kludge to ensure that the window position is
+				 * treated properly. Without this popup menus can be misplaced
+				 * and unusable until the user moves the game window. This
+				 * can happen with certain window managers if the window manager
+				 * moves the window as a result of resizing the window.
+				 * 
+				 * Description of the bug:
+				 * 	https://bugzilla.redhat.com/show_bug.cgi?id=698295
+				 * 
+				 * As of 2013-09-07 it is reproducible at least when using
+				 * Mate desktop's marco window manager. Metacity and mutter
+				 * have a workaround for the same issue in AWT.
+				 */
+				Point location = frame.getLocation();
+				frame.setLocation(location.x + 1, location.y);
+				frame.setLocation(location.x, location.y);
+				
+				// The keyboard fix mentioned above
 				frame.setEnabled(true);
 				chatText.getPlayerChatText().requestFocus();
 			}
