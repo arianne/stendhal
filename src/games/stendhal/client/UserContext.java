@@ -89,7 +89,7 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param l
 	 *            The listener.
 	 */
-	void addFeatureChangeListener(final FeatureChangeListener l) {
+	public void addFeatureChangeListener(final FeatureChangeListener l) {
 		featureListeners.add(l);
 	}
 

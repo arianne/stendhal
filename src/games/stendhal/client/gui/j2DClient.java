@@ -635,13 +635,13 @@ public class j2DClient implements UserInterface {
 		keyring.setAcceptedTypes(EntityMap.getClass("item", null, null));
 		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(keyring);
-		client.addFeatureChangeListener(keyring);
+		userContext.addFeatureChangeListener(keyring);
 
 		spells = new Spells();
 		spells.setAcceptedTypes(EntityMap.getClass("spell", null, null));
 		spells.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(spells);
-		client.addFeatureChangeListener(spells);
+		userContext.addFeatureChangeListener(spells);
 
 		return containerPanel;
 	}
