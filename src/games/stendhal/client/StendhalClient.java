@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.chatlog.HeaderLessEventLine;
 import games.stendhal.client.gui.login.CharacterDialog;
-import games.stendhal.client.listener.FeatureChangeListener;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
@@ -77,13 +76,13 @@ public class StendhalClient extends ClientFramework {
 
 	private final Cache cache;
 
-	private final ArrayList<Direction> directions;
+	private final List<Direction> directions;
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
 	private String userName = "";
 
-	private String character = null;
+	private String character;
 
 	private final UserContext userContext;
 
@@ -98,23 +97,36 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Whether the client is in a batch update.
 	 */
-	private boolean inBatchUpdate = false;
+	private boolean inBatchUpdate;
 	private final ReentrantLock drawingSemaphore = new ReentrantLock();
-
-	private final StendhalPerceptionListener stendhalPerceptionListener;
+	
 	/** The zone currently under loading. */
 	private Zone currentZone;
 	
 	private JFrame splashScreen;
 
+	/**
+	 * Get the client instance.
+	 * 
+	 * @return client instance
+	 */
 	public static StendhalClient get() {
 		return client;
 	}
 
+	/**
+	 * Set the client instance to <code>null</code>.
+	 */
 	public static void resetClient() {
 		client = null;
 	}
 
+	/**
+	 * Create a new StendhalClient.
+	 *  
+	 * @param userContext
+	 * @param perceptionDispatcher
+	 */
 	StendhalClient(final UserContext userContext, final PerceptionDispatcher perceptionDispatcher) {
 		super(LOG4J_PROPERTIES);
 		client = this;
@@ -129,8 +141,8 @@ public class StendhalClient extends ClientFramework {
 		final PerceptionToObject po = new PerceptionToObject();
 		po.setObjectFactory(new ObjectFactory());
 		perceptionDispatcher.register(po);
-		stendhalPerceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, worldObjects);
-		handler = new PerceptionHandler(stendhalPerceptionListener);
+		StendhalPerceptionListener perceptionListener = new StendhalPerceptionListener(perceptionDispatcher, rpobjDispatcher, userContext, worldObjects);
+		handler = new PerceptionHandler(perceptionListener);
 
 		cache = new Cache();
 		cache.init();
@@ -148,21 +160,28 @@ public class StendhalClient extends ClientFramework {
 		return stendhal.VERSION;
 	}
 
+	/**
+	 * Get the map layers.
+	 * 
+	 * @return map layers
+	 */
 	public StaticGameLayers getStaticGameLayers() {
 		return staticLayers;
 	}
 
+	/**
+	 * Get the game objects container.
+	 * 
+	 * @return game objects
+	 */
 	public GameObjects getGameObjects() {
 		return gameObjects;
 	}
 
 	/**
 	 * Handle sync events before they are dispatched.
-	 *
-	 * @param zoneid
-	 *            The zone entered.
 	 */
-	private void onBeforeSync(final String zoneid) {
+	private void onBeforeSync() {
 		/*
 		 * Simulate object disassembly
 		 */
@@ -187,7 +206,7 @@ public class StendhalClient extends ClientFramework {
 			}
 
 			if (message.getPerceptionType() == Perception.SYNC) {
-				onBeforeSync(message.getRPZoneID().getID());
+				onBeforeSync();
 			}
 
 			handler.apply(message, worldObjects);
@@ -261,7 +280,6 @@ public class StendhalClient extends ClientFramework {
 					contentHandling(item.name, is);
 					is.close();
 				} catch (final Exception e) {
-					e.printStackTrace();
 					logger.error(e, e);
 
 					// request retransmission
@@ -283,7 +301,7 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Add a listener to be called when the player changes zone.
 	 *
-	 * @param listener
+	 * @param listener added listener
 	 */
 	public void addZoneChangeListener(ZoneChangeListener listener) {
 		zoneChangeListeners.add(listener);
@@ -301,10 +319,10 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * Load layer data
+	 * Load layer data.
 	 *
 	 * @param name name of the layer
-	 * @param in
+	 * @param in data source
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -368,7 +386,7 @@ public class StendhalClient extends ClientFramework {
 	protected void onAvailableCharacterDetails(final Map<String, RPObject> characters) {
 
 		// if there are no characters, create one with the specified name automatically
-		if (characters.size() == 0) {
+		if (characters.isEmpty()) {
 			if (character == null) {
 				character = getAccountUsername();
 			}
@@ -434,7 +452,7 @@ public class StendhalClient extends ClientFramework {
 	 *            The direction.
 	 * @param face If to face direction only.
 	 *         
-	 * @return <code>true</code> if an action was sent, otherwise <code>false</code
+	 * @return <code>true</code> if an action was sent, otherwise <code>false</code>
 	 */
 	public boolean addDirection(final Direction dir, final boolean face) {
 		RPAction action;
@@ -549,22 +567,30 @@ public class StendhalClient extends ClientFramework {
 		send(rpaction);
 	}
 
-	public void addFeatureChangeListener(final FeatureChangeListener l) {
-		userContext.addFeatureChangeListener(l);
-	}
-
-	//
-	//
-
+	/**
+	 * Set the account name.
+	 * 
+	 * @param username account name
+	 */
 	public void setAccountUsername(final String username) {
 		userContext.setName(username);
 		userName = username;
 	}
 
+	/**
+	 * Get the character name.
+	 * 
+	 * @return character name
+	 */
 	public String getCharacter() {
 		return character;
 	}
 
+	/**
+	 * Set the character name.
+	 * 
+	 * @param character name
+	 */
 	public void setCharacter(String character) {
 		this.character = character;
 	}
@@ -578,6 +604,11 @@ public class StendhalClient extends ClientFramework {
 		splashScreen = splash;
 	}
 
+	/**
+	 * Get the account name.
+	 * 
+	 * @return account name
+	 */
 	public String getAccountUsername() {
 		return userName;
 	}
@@ -608,23 +639,44 @@ public class StendhalClient extends ClientFramework {
 	public Cache getCache() {
 		return cache;
 	}
-	private static class MoveRPAction extends RPAction {
+	
+	/**
+	 * Action for moving by direction.
+	 */
+	private static final class MoveRPAction extends RPAction {
+		/**
+		 * Create a MoveRPAction.
+		 * 
+		 * @param dir movement direction
+		 */
 		private MoveRPAction(final Direction dir) {
 			put("type", "move");
 			put("dir", dir.get());
 		}
 	}
 
-	private static class FaceRPAction extends RPAction {
+	/**
+	 * Action for turning the player.
+	 */
+	private static final class FaceRPAction extends RPAction {
+		/**
+		 * Create a FaceRPAction.
+		 * 
+		 * @param dir looking direction
+		 */
 		private FaceRPAction(final Direction dir) {
 			put("type", "face");
 			put("dir", dir.get());
 		}
 	}
 
+	/**
+	 * Get the RPObject of the user.
+	 * 
+	 * @return player object
+	 */
 	public RPObject getPlayer() {
 		return userContext.getPlayer();
-
 	}
 
 	@Override
@@ -638,10 +690,19 @@ public class StendhalClient extends ClientFramework {
 		return res;
 	}
 
+	/**
+	 * Release the drawing semaphore.
+	 */
 	public void releaseDrawingSemaphore() {
 		drawingSemaphore.unlock();
 	}
 
+	/**
+	 * Try to acquire the drawing semaphore.
+	 * 
+	 * @return <code>true</code> if the semaphore was acquired, otherwise
+	 * 	<code>false</code>
+	 */
 	public boolean tryAcquireDrawingSemaphore() {
 		return drawingSemaphore.tryLock();
 	}
@@ -650,7 +711,7 @@ public class StendhalClient extends ClientFramework {
 	 * Interface for listeners that need to be informed when the user is
 	 * changing zone.
 	 */
-	static interface ZoneChangeListener {
+	interface ZoneChangeListener {
 		/**
 		 * Called when the user is changing zone.
 		 */
@@ -708,6 +769,8 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * Connect to the server, and if our version is too outdated, display a message.
 	 *
+	 * @param host host name
+	 * @param port host port
 	 * @throws IOException in case of an input/output error
 	 */
 	@Override
