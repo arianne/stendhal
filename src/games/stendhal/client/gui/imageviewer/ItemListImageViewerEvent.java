@@ -121,9 +121,14 @@ public final class ItemListImageViewerEvent extends ViewPanel {
 		adjustRowHeights(table);
 		
 		ScrolledViewport viewPort = new ScrolledViewport(table);
+		/*
+		 * maxPreferredWidth is incorrect, but java does not seem to support
+		 * max-width property for div's, so all the cells report the same
+		 * preferred width anyway.
+		 */
 		viewPort.getComponent().setPreferredSize(new Dimension(maxPreferredWidth,
 				Math.min(screenSize.height - 100, table.getPreferredSize().height
-						+ hr.getPreferredSize().height + PAD)));
+						+ hr.getPreferredSize().height + 4 * PAD)));
 		viewPort.getComponent().setBackground(table.getBackground());
 		add(viewPort.getComponent(), BorderLayout.CENTER);
 		
