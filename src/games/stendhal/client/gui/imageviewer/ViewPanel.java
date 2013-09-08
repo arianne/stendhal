@@ -31,7 +31,7 @@ abstract class ViewPanel extends JComponent {
 	 */
 	public ViewPanel() {
 		setLayout(new BorderLayout());
-		setOpaque(false);
+		setOpaque(true);
 	}
 
 	/**
