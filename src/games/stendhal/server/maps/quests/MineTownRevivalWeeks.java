@@ -21,6 +21,7 @@ import games.stendhal.server.maps.quests.revivalweeks.LoadableContent;
 import games.stendhal.server.maps.quests.revivalweeks.MakeupArtist;
 import games.stendhal.server.maps.quests.revivalweeks.NineSwitchesGame;
 import games.stendhal.server.maps.quests.revivalweeks.PaperChaseSign;
+import games.stendhal.server.maps.quests.revivalweeks.SokobanGame;
 import games.stendhal.server.maps.quests.revivalweeks.TicTacToeGame;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class MineTownRevivalWeeks extends AbstractQuest {
 		content.add(new PaperChaseSign());
 		content.add(new TicTacToeGame());
 		content.add(new NineSwitchesGame());
+		content.add(new SokobanGame());
 
 		// add it to the world
 		for (LoadableContent loadableContent : content) {
