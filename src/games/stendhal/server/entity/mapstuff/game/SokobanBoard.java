@@ -159,6 +159,7 @@ public class SokobanBoard extends OnePlayerArea {
 	private void box(int x, int y) {
 		Block block = new Block(this.getX() + x, this.getY() + y, true);
 		this.getZone().add(block);
+		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
 	}
 
