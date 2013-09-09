@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.mapstuff.game;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
 
 import java.io.BufferedReader;
@@ -46,15 +47,98 @@ public class SokobanBoard extends OnePlayerArea {
 		}
 	}
 
+	/**
+	 * loads a level
+	 *
+	 * @param level number
+	 */
 	public void loadLevel(int level) {
 		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
 			for (int x = 0; x < WIDTH; x++) {
 				char chr = line.charAt(x);
+				switch (chr) {
+					case 'x': {
+						container(x, y);
+						break;
+					}
+					case '@': {
+						wall(x, y);
+						break;
+					}
+					case 'o': {
+						box(x, y);
+						break;
+					}
+					case '#': {
+						container(x, y);
+						box(x, y);
+						break;
+					}
+					case '<': {
+						player(x, y, Direction.LEFT);
+						break;
+					}
+					case '>': {
+						player(x, y, Direction.RIGHT);
+						break;
+					}
+					case '^': {
+						player(x, y, Direction.UP);
+						break;
+					}
+					case 'v': {
+						player(x, y, Direction.DOWN);
+						break;
+					}
+					case '(': {
+						container(x, y);
+						player(x, y, Direction.LEFT);
+						break;
+					}
+					case ')': {
+						container(x, y);
+						player(x, y, Direction.RIGHT);
+						break;
+					}
+					case 'A': {
+						container(x, y);
+						player(x, y, Direction.UP);
+						break;
+					}
+					case 'V': {
+						container(x, y);
+						player(x, y, Direction.DOWN);
+						break;
+					}
+				}
 				System.out.print(chr);
 			}
 			System.out.println();
+
 		}
+	}
+
+
+	private void wall(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void box(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void container(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void player(int x, int y, Direction right) {
+		// TODO Auto-generated method stub
+		
 	}
 }
