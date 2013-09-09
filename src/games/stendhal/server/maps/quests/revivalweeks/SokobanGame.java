@@ -42,7 +42,7 @@ public class SokobanGame implements LoadableContent {
 	 */
 	private void addBoard() {
 		board = new SokobanBoard();
-		board.setPosition(52, 99);
+		board.setPosition(26, 107);
 		zone.add(board);
 	}
 
@@ -67,7 +67,7 @@ public class SokobanGame implements LoadableContent {
 			}
 		};
 		npc.setEntityClass("paulnpc"); 
-		npc.setPosition(72, 117);
+		npc.setPosition(46, 125);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
