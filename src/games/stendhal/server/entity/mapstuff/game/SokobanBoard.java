@@ -1,7 +1,11 @@
 package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
+import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
+import games.stendhal.server.entity.mapstuff.block.Block;
+import games.stendhal.server.entity.player.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +26,9 @@ public class SokobanBoard extends OnePlayerArea {
 	private String[] levelData = null;
 	private static int WIDTH = 20;
 	private static int HEIGHT = 16;
+	private int level;
+	private Player player;
+	private LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 
 	/**
 	 * creates a SokobanBoard
@@ -120,25 +127,72 @@ public class SokobanBoard extends OnePlayerArea {
 		}
 	}
 
+	/**
+	 * removes all created entities (walls, boxes, containers)
+	 */
+	public void clear() {
+		for (Entity entity : entitiesToCleanup) {
+			this.getZone().remove(entity);
+		}
+		entitiesToCleanup.clear();
+	}
 
+	/**
+	 * creates a wall
+	 *
+	 * @param x x-offset
+	 * @param y y-offset
+	 */
 	private void wall(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		WalkBlocker wall = new WalkBlocker();
+		wall.setPosition(this.getX() + x, this.getY() + y);
+		this.getZone().add(wall);
+		entitiesToCleanup.add(wall);
 	}
 
+	/**
+	 * creates a box
+	 *
+	 * @param x x-offset
+	 * @param y y-offset
+	 */
 	private void box(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		Block block = new Block(this.getX() + x, this.getY() + y, true);
+		this.getZone().add(block);
+		entitiesToCleanup.add(block);
 	}
 
+	/**
+	 * creates a containe 
+	 *
+	 * @param x x-offset
+	 * @param y y-offset
+	 */
 	private void container(int x, int y) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * places the player into the level
+	 *
+	 * @param x x-offset
+	 * @param y y-offset
+	 * @param direction direction to face to
+	 */
+	private void player(int x, int y, Direction direction) {
+		if (player != null) {
+			player.setPosition(this.getX() + x, this.getY() + y);
+			player.setDirection(direction);
+		}
+	}
 
-	private void player(int x, int y, Direction right) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * thes the currently playing player
+	 *
+	 * @param player player
+	 */
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }
