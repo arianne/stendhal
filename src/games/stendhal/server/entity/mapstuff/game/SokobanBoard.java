@@ -3,7 +3,6 @@ package games.stendhal.server.entity.mapstuff.game;
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
-import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.player.Player;
 
@@ -60,6 +59,7 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param level number
 	 */
 	public void loadLevel(int level) {
+		clear();
 		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
@@ -120,10 +120,7 @@ public class SokobanBoard extends OnePlayerArea {
 						break;
 					}
 				}
-				System.out.print(chr);
 			}
-			System.out.println();
-
 		}
 	}
 
@@ -144,8 +141,9 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param y y-offset
 	 */
 	private void wall(int x, int y) {
-		WalkBlocker wall = new WalkBlocker();
-		wall.setPosition(this.getX() + x, this.getY() + y);
+		/*WalkBlocker wall = new WalkBlocker();
+		wall.setPosition(this.getX() + x, this.getY() + y);*/
+		Block wall = new Block(this.getX() + x, this.getY() + y, false, "mine_cart_empty");
 		this.getZone().add(wall);
 		entitiesToCleanup.add(wall);
 	}
@@ -157,7 +155,7 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param y y-offset
 	 */
 	private void box(int x, int y) {
-		Block block = new Block(this.getX() + x, this.getY() + y, true);
+		Block block = new Block(this.getX() + x, this.getY() + y, true, "pumpkin_halloween");
 		this.getZone().add(block);
 		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
@@ -170,8 +168,10 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param y y-offset
 	 */
 	private void container(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		TargetMarker container = new TargetMarker(1, 1);
+		container.setPosition(this.getX() + x, this.getY() + y);
+		this.getZone().add(container);
+		entitiesToCleanup.add(container);
 	}
 
 	/**
