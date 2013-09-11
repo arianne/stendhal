@@ -15,10 +15,12 @@ package games.stendhal.server.script;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -115,9 +117,36 @@ public class DeepInspect extends ScriptImpl {
 			for (final RPObject object : slot) {
 				sb.append("   " + object + "\n");
 			}
-
+			
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 		}
+		
+		// production
+		sb.append("\nProduction:\n   ");
+		final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
+	    final List<String> produceList = new LinkedList<String>();
+	    
+	    for (String food : producerRegister.getProducedItemNames("food")) {
+	    	produceList.add(food);
+	    }
+	    for (String drink : producerRegister.getProducedItemNames("drink")) {
+	    	produceList.add(drink);
+	    }
+	    for (String resource : producerRegister.getProducedItemNames("resource")) {
+	    	produceList.add(resource);
+	    }
+	    
+		//final String[] products = produceList.toArray(new String[produceList.size()]);
+		
+		for (String product : produceList) {
+			int quant = ((Player) player).getQuantityOfProducedItems(product);
+			if (quant > 0) {
+				sb.append("[" + product + "=" + Integer.toString(quant) + "]");
+			}
+		}
+		
+		admin.sendPrivateText(sb.toString());
+		sb.setLength(0);
 	}
 }
