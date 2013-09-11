@@ -41,21 +41,29 @@ class AntidoteEater implements TurnListener {
 		if (entity == null) {
 			return;
 		}
-		entity.removeImmunity("poison");
+		entity.getStatusList().removeImmunity("poison");
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (obj instanceof AntidoteEater) {
-			final AntidoteEater other = (AntidoteEater) obj;
-			return entityReference.get().equals(other.entityReference.get());
-		} else {
+		if (! (obj instanceof AntidoteEater)) {
 			return false;
 		}
+
+		final AntidoteEater other = (AntidoteEater) obj;
+		RPEntity entity = entityReference.get();
+		if (entity == null) {
+			return other.entityReference.get() == null;
+		}
+		return entity.equals(other.entityReference.get());
 	}
 
 	@Override
 	public int hashCode() {
-		return entityReference.hashCode();
+		RPEntity entity = entityReference.get();
+		if (entity == null) {
+			return 3798172;
+		}
+		return entityReference.get().hashCode();
 	}
 }
