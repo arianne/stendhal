@@ -31,24 +31,26 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CreatureTestHelper;
 
+/**
+ * Tests for HandToHand
+ */
 public class HandToHandTest {
 
+	/**
+	 * initialisation
+	 */
 	@BeforeClass
-	public static void setUpbeforeClass() throws Exception {
+	public static void setUpbeforeClass() {
 		MockStendlRPWorld.get();
 		CreatureTestHelper.generateRPClasses();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * Tests for attack.
@@ -60,6 +62,7 @@ public class HandToHandTest {
 		final Creature creature = createMock(Creature.class);
 		expect(creature.isAttackTurn(0)).andReturn(true);
 		expect(creature.attack()).andReturn(true);
+		expect(creature.usesStatusAttack()).andReturn(true);
 		creature.tryToPoison();
 		replay(creature);
 		hth.attack(creature);
@@ -92,12 +95,12 @@ public class HandToHandTest {
 
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
-
+				// empty
 			}
 
 			@Override
 			public void logic() {
-
+				// empty
 			}
 		};
 		victim.put("id", 1);
@@ -258,12 +261,12 @@ public class HandToHandTest {
 
 			@Override
 			protected void dropItemsOn(final Corpse corpse) {
-
+				// empty
 			}
 
 			@Override
 			public void logic() {
-
+				// empty
 			}
 		};
 		victim.put("id", 1);
