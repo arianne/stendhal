@@ -1,43 +1,54 @@
-/**
- *
- */
+/***************************************************************************
+ *                (C) Copyright 2003-2013 - Faiumoni e. V.                 *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.RPEntity;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * timesout antidotes
+ *
+ * @author hendrik
+ */
 class AntidoteEater implements TurnListener {
 
-	WeakReference<Player> ref;
-	private String refName;
+	private WeakReference<RPEntity> entityReference;
 
-	public AntidoteEater(final Player player) {
-		ref = new WeakReference<Player>(player);
-		refName = player.getName();
+	/**
+	 * creates an antidote
+	 *
+	 * @param entity entity
+	 */
+	public AntidoteEater(final RPEntity entity) {
+		entityReference = new WeakReference<RPEntity>(entity);
 	}
 
 	@Override
 	public void onTurnReached(final int currentTurn) {
-		Player player = ref.get();
+		RPEntity entity = entityReference.get();
 		
-		if (player == null) {
+		if (entity == null) {
 			return;
 		}
-		player.removeImmunity("poison");
+		entity.removeImmunity("poison");
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
 		if (obj instanceof AntidoteEater) {
 			final AntidoteEater other = (AntidoteEater) obj;
-			Player player = ref.get();
-			if (player == null) {
-				return other.ref.get() == null;
-			}
-			
-			return player.equals(other.ref.get());
+			return entityReference.get().equals(other.entityReference.get());
 		} else {
 			return false;
 		}
@@ -45,6 +56,6 @@ class AntidoteEater implements TurnListener {
 
 	@Override
 	public int hashCode() {
-		return refName.hashCode();
+		return entityReference.hashCode();
 	}
 }
