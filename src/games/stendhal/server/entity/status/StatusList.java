@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,10 +28,10 @@ public class StatusList {
 	private List<Status> statuses;
 
 	/** Immunites to statuses */
-	private List<StatusType> immunities;
+	private EnumSet<StatusType> immunities;
 
 	/** Resistances to statuses */
-	private List<StatusType> resistances;
+	private EnumSet<StatusType> resistances;
 
 	/**
 	 * Food, drinks etc. that the player wants to consume and has not finished
@@ -46,9 +47,9 @@ public class StatusList {
 
 	public StatusList(RPEntity entity) {
 		this.entity = entity;
-		immunities = new LinkedList<StatusType>();
+		immunities = EnumSet.noneOf(StatusType.class);
+		resistances = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
-		resistances = new LinkedList<StatusType>();
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 	}
@@ -239,9 +240,7 @@ public class StatusList {
 		attack.clearConsumables(entity);
 
 		// Add to list of immunities
-		if (!immunities.contains(StatusType.valueOf(statusName))) {
-			immunities.add(StatusType.valueOf(statusName));
-		}
+		immunities.add(StatusType.valueOf(statusName));
 	}
 
 	/**
