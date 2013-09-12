@@ -23,14 +23,14 @@ public class StatusList {
 
 	private RPEntity entity;
 
-	/** Immunites to statuses */
-	private List<String> immunities;
-
 	/** Container for statuses inflicted on entity */
 	private List<Status> statuses;
 
+	/** Immunites to statuses */
+	private List<StatusType> immunities;
+
 	/** Resistances to statuses */
-	private List<String> resistances;
+	private List<StatusType> resistances;
 
 	/**
 	 * Food, drinks etc. that the player wants to consume and has not finished
@@ -46,9 +46,9 @@ public class StatusList {
 
 	public StatusList(RPEntity entity) {
 		this.entity = entity;
-		immunities = new LinkedList<String>();
+		immunities = new LinkedList<StatusType>();
 		statuses = new LinkedList<Status>();
-		resistances = new LinkedList<String>();
+		resistances = new LinkedList<StatusType>();
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 	}
@@ -197,10 +197,7 @@ public class StatusList {
 	 * @return Entity is immune
 	 */
 	public boolean isImmune(final String statusName) {
-		if (immunities.contains(statusName)) {
-			return true;
-		}
-		return false;
+		return immunities.contains(StatusType.valueOf(statusName));
 	}
 
 	/**
@@ -211,22 +208,16 @@ public class StatusList {
 	 * @return Entity is immune to status
 	 */
 	public boolean isResistantToStatus(final Status status) {
-		if (resistances.contains(status.getName())) {
-			return true;
-		}
-		return false;
+		return resistances.contains(StatusType.valueOf(status.getName()));
 	}
 
 	/**
 	 * Remove any immunity of specified status effect from entity.
 	 * 
-	 * @param attack
-	 *            Status attack type
+	 * @param attack Status attack type
 	 */
 	public void removeImmunity(final String statusName) {
-		if (immunities.contains(statusName)) {
-			immunities.remove(statusName);
-		}
+		immunities.remove(StatusType.valueOf(statusName));
 		entity.sendPrivateText("You are not immune to " + statusName + " anymore.");
 	}
 
@@ -248,8 +239,8 @@ public class StatusList {
 		attack.clearConsumables(entity);
 
 		// Add to list of immunities
-		if (!immunities.contains(statusName)) {
-			immunities.add(statusName);
+		if (!immunities.contains(StatusType.valueOf(statusName))) {
+			immunities.add(StatusType.valueOf(statusName));
 		}
 	}
 
