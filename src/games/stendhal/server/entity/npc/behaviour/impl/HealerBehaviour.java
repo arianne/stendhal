@@ -44,7 +44,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	 */
 	public void heal(final Player player) {
 		player.heal();
-		player.healPoison();
+		player.getStatusList().healPoison();
 		SingletonRepository.getRPWorld().modify(player);
 	}
 }

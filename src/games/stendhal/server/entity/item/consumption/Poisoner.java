@@ -20,7 +20,7 @@ class Poisoner implements Feeder {
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
 
-		return player.poison((ConsumableItem) item.splitOff(1));
+		return player.getStatusList().poison((ConsumableItem) item.splitOff(1));
 
 	}
 

@@ -62,7 +62,7 @@ public class PoisonAttacker implements StatusAttacker {
                         player.put("poisoned", "0");
                         player.notifyWorldAboutChanges();
                     }
-                    player.addPoisonToConsume(new ConsumableItem(poison));
+                    player.getStatusList().addPoisonToConsume(new ConsumableItem(poison));
                     TutorialNotifier.poisoned(player);
                     return true;
                 }
@@ -76,7 +76,7 @@ public class PoisonAttacker implements StatusAttacker {
         // FIXME: should clear poison for any entity
         if (target instanceof Player) {
             Player player = (Player) target;
-            player.clearPoisonToConsume();
+            player.getStatusList().clearPoisonToConsume();
         }
     }
     

@@ -197,7 +197,7 @@ public class Portal extends Entity implements UseListener {
 			// Check that mouse movement is allowed first
 			if (!player.getZone().isMoveToAllowed()) {
 				player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
-			} else if (player.isPoisoned()) {
+			} else if (player.getStatusList().isPoisoned()) {
 				player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			} else {
 				final List<Node> path = Path.searchPath(player, this.getX(), this.getY());

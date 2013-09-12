@@ -23,7 +23,7 @@ class Eater implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		if (player.isChokingToDeath()) {
+		if (player.getStatusList().isChokingToDeath()) {
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand(2 * playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
@@ -31,22 +31,22 @@ class Eater implements Feeder {
 			final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
 			player.getZone().add(sick);
 			sick.setPosition(player.getX(), player.getY() + 1);
-			player.clearFoodList();
+			player.getStatusList().clearFoodList();
 			player.notifyWorldAboutChanges();
 			return false;
 		}
 		
-		if (player.isChoking()) {
+		if (player.getStatusList().isChoking()) {
 			// remove some HP so they know we are serious about this
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand(playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could be very sick.");
 			player.notifyWorldAboutChanges();
-		} else if (player.isFull()) {
+		} else if (player.getStatusList().isFull()) {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");
 		} 
-		player.eat((ConsumableItem) item.splitOff(1));
+		player.getStatusList().eat((ConsumableItem) item.splitOff(1));
 		return true;
 	}
 

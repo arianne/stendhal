@@ -15,14 +15,10 @@ package games.stendhal.server.entity.status;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.status.PoisonAttacker;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -30,21 +26,12 @@ import utilities.PlayerTestHelper;
 
 public class PoisonAttackerTest {
 
+	/**
+	 * initialisation
+	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		MockStendlRPWorld.get();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -58,7 +45,7 @@ public class PoisonAttackerTest {
 		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attemptToInflict(victim);
-		assertTrue(victim.isPoisoned());
+		assertTrue(victim.getStatusList().isPoisoned());
 	}
 
 	/**
@@ -72,6 +59,6 @@ public class PoisonAttackerTest {
 		final PoisonAttacker poisoner = new PoisonAttacker(0, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attemptToInflict(victim);
-		assertFalse(victim.isPoisoned());
+		assertFalse(victim.getStatusList().isPoisoned());
 	}
 }

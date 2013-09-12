@@ -96,8 +96,8 @@ public class KillBlordroughsTest {
 		do {
 			// prevent player killing
 			player.setHP(10000);
-			if(player.isPoisoned()) {
-				player.healPoison();
+			if(player.getStatusList().isPoisoned()) {
+				player.getStatusList().healPoison();
 			}
 			player.teleport(blr.getZone(), blr.getX(), blr.getY(), null, player);
 			player.setTarget(blr);

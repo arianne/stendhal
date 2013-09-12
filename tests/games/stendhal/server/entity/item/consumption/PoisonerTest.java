@@ -66,7 +66,7 @@ public class PoisonerTest {
 		final Poisoner poisoner = new Poisoner();
 		final Player bob = PlayerTestHelper.createPlayer("player");
 		poisoner.feed(c200_1, bob);
-		assertTrue(bob.isPoisoned());
+		assertTrue(bob.getStatusList().isPoisoned());
 	}
 
 }

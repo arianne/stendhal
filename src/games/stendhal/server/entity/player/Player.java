@@ -45,7 +45,6 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
@@ -54,7 +53,6 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -105,18 +103,6 @@ public class Player extends RPEntity implements UseListener {
 	 * A list of away replies sent to players.
 	 */
 	private HashMap<String, Long> awayReplies;
-
-	/**
-	 * Food, drinks etc. that the player wants to consume and has not finished
-	 * with.
-	 */
-	List<ConsumableItem> itemsToConsume;
-
-	/**
-	 * Poisonous items that the player still has to consume. This also includes
-	 * poison that was the result of fighting against a poisonous creature.
-	 */
-	List<ConsumableItem> poisonToConsume;
 
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer  dieer  = new PlayerDieer(this);
@@ -264,8 +250,6 @@ public class Player extends RPEntity implements UseListener {
 
 		setSize(1, 1);
 
-		itemsToConsume = new LinkedList<ConsumableItem>();
-		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
 
@@ -332,7 +316,7 @@ public class Player extends RPEntity implements UseListener {
 
 			// as an effect of the poisoning, the player's controls
 			// are switched to make it difficult to navigate.
-			if (isPoisoned() || has("status_confuse")) {
+			if (getStatusList().isPoisoned() || has("status_confuse")) {
 				direction = direction.oppositeDirection();
 			}
 
@@ -1402,151 +1386,6 @@ public class Player extends RPEntity implements UseListener {
 		return(killRec.getSharedKill(name));
 	}
 
-	/**
-	 * 
-	 * @param item
-	 */
-	public void addPoisonToConsume(ConsumableItem item) {
-        poisonToConsume.add(item);
-	}
-	
-	/**
-	 * 
-	 */
-	public void clearPoisonToConsume() {
-	    poisonToConsume.clear();
-	}
-	
-	/**
-	 * Checks whether the player is still suffering from the effect of a
-	 * poisonous item/creature or not.
-	 * @return true if player still has poisons to consume
-	 */
-	public boolean isPoisoned() {
-		return !(poisonToConsume.size() == 0);
-	}
-
-	/**
-	 * Disburdens the player from the effect of a poisonous item/creature.
-	 */
-	public void healPoison() {
-		poisonToConsume.clear();
-	}
-
-	/**
-	 * Poisons the player with a poisonous item. Note that this method is also
-	 * used when a player has been poisoned while fighting against a poisonous
-	 * creature.
-	 *
-	 * @param item
-	 *            the poisonous item
-	 * @return true iff the poisoning was effective, i.e. iff the player is not
-	 *         immune
-	 */
-	public boolean poison(final ConsumableItem item) {
-		if (getStatusList().isImmune("poison")) {
-			return false;
-		} else {
-			/*
-			 * Send the client the new poisoning status, but avoid overwriting
-			 * the real value in case the player was already poisoned.
-			 */
-			if (!has("poisoned")) {
-				put("poisoned", "0");
-				notifyWorldAboutChanges();
-			}
-			poisonToConsume.add(item);
-			TutorialNotifier.poisoned(this);
-			return true;
-		}
-	}
-
-	public boolean isFull() {
-		return itemsToConsume.size() > 4;
-	}
-
-	public boolean isChoking() {
-		return itemsToConsume.size() > 5;
-	}
-
-	public boolean isChokingToDeath() {
-		return itemsToConsume.size() > 8;
-	}
-
-	public void eat(final ConsumableItem item) {
-		if (isChoking()) {
-			put("choking", 0);
-		} else {
-			put("eating", 0);
-		}
-		itemsToConsume.add(item);
-	}
-
-	private void consume(final int turn) {
-		Collections.sort(itemsToConsume);
-		if (itemsToConsume.size() > 0) {
-			final ConsumableItem food = itemsToConsume.get(0);
-			if (food.consumed()) {
-				itemsToConsume.remove(0);
-			} else {
-				if (turn % food.getFrecuency() == 0) {
-					logger.debug("Consumed item: " + food);
-					final int amount = food.consume();
-					if (isChoking()) {
-						put("choking", amount);
-					} else {
-						if (has("choking")) {
-							remove("choking");
-						}
-						put("eating", amount);
-					}
-					if (heal(amount, true) == 0) {
-						itemsToConsume.clear();
-					}
-				}
-			}
-		} else {
-			if (has("eating")) {
-				remove("eating");
-			}
-			if (has("choking")) {
-				remove("choking");
-			}
-		}
-
-		if ((poisonToConsume.size() == 0)) {
-			if (has("poisoned")) {
-				remove("poisoned");
-			}
-		} else {
-			final List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
-			int sum = 0;
-			int amount = 0;
-			for (final ConsumableItem poison : new LinkedList<ConsumableItem>(
-					poisonToConsume)) {
-				if (turn % poison.getFrecuency() == 0) {
-					if (poison.consumed()) {
-						poisonstoRemove.add(poison);
-					} else {
-						amount = poison.consume();
-						damage(-amount, poison);
-						sum += amount;
-						put("poisoned", sum);
-					}
-				}
-
-			}
-			for (final ConsumableItem poison : poisonstoRemove) {
-				poisonToConsume.remove(poison);
-			}
-		}
-
-		notifyWorldAboutChanges();
-	}
-
-	public void clearFoodList() {
-		itemsToConsume.clear();
-	}
 
 	@Override
 	public String describe() {
@@ -1841,8 +1680,6 @@ public class Player extends RPEntity implements UseListener {
 		}
 
 		agePlayer(turn);
-
-		consume(turn);
 	}
 
 	private void agePlayer(final int turn) {

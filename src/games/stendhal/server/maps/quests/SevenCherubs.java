@@ -150,7 +150,7 @@ public class SevenCherubs extends AbstractQuest {
 									+ raiser.getName());
 
 							player.heal();
-							player.healPoison();
+							player.getStatusList().healPoison();
 
 							if (left > 0) {
 								raiser.say("Well done! You only need to find "

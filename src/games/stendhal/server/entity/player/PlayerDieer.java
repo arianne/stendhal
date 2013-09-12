@@ -220,8 +220,7 @@ public class PlayerDieer {
 
 
 	private void stopEating() {
-		player.itemsToConsume.clear();
-		player.poisonToConsume.clear();
+		player.getStatusList().clear();
 	}
 
 

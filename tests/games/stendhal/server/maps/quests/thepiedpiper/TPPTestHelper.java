@@ -92,8 +92,8 @@ public class TPPTestHelper implements ITPPQuestConstants {
 		do {
 			// prevent player killing
 			player.setHP(10000);
-			if(player.isPoisoned()) {
-				player.healPoison();
+			if(player.getStatusList().isPoisoned()) {
+				player.getStatusList().healPoison();
 			}
 			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);
 			player.setTarget(rat);
