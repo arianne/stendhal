@@ -251,9 +251,9 @@ public class PlayerTest {
 	@Test
 	public void testSetImmune() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.isImmune("poison"));
-		bob.setImmune(new PoisonAttacker());
-		assertTrue(bob.isImmune("poison"));
+		assertFalse(bob.getStatusList().isImmune("poison"));
+		bob.getStatusList().setImmune(new PoisonAttacker());
+		assertTrue(bob.getStatusList().isImmune("poison"));
 	}
 
 	
@@ -263,11 +263,11 @@ public class PlayerTest {
 	@Test
 	public void testRemoveImmunity() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.isImmune("poison"));
-		bob.setImmune(new PoisonAttacker());
-		assertTrue(bob.isImmune("poison"));
-		bob.removeImmunity("poison");
-		assertFalse(bob.isImmune("poison"));
+		assertFalse(bob.getStatusList().isImmune("poison"));
+		bob.getStatusList().setImmune(new PoisonAttacker());
+		assertTrue(bob.getStatusList().isImmune("poison"));
+		bob.getStatusList().removeImmunity("poison");
+		assertFalse(bob.getStatusList().isImmune("poison"));
 		
 	}
 	

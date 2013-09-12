@@ -50,7 +50,6 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
-import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
@@ -163,9 +162,6 @@ public class Player extends RPEntity implements UseListener {
 	 * detecting quick presses ment to move one tile.
 	 */
 	private int startMoveTurn;
-	
-	/** List of status effects inflicted on entity */
-	List<Status> statuses;
 
 	/**
 	 * last client action timestamp
@@ -284,7 +280,6 @@ public class Player extends RPEntity implements UseListener {
 			logger.error("Player " + getName() + " was marked storable.", new Throwable());
 		}
 		
-		statuses = new LinkedList<Status>();
 		unlockedPortals = new LinkedList<Integer>();
 		
 		updateModifiedAttributes();
@@ -1449,7 +1444,7 @@ public class Player extends RPEntity implements UseListener {
 	 *         immune
 	 */
 	public boolean poison(final ConsumableItem item) {
-		if (isImmune("poison")) {
+		if (getStatusList().isImmune("poison")) {
 			return false;
 		} else {
 			/*
@@ -1791,38 +1786,11 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void logic() {
-	    
-	    /*
-	     * Effects of any statuses entity might have
-	     * 
-	     * FIXME: Should be moved to RPEntity
-	     */
-	    if (statusChanged()) {
-	        setStatusChanged(false);
-    	    statuses = getStatuses();
-	    }
-	    
-	    // Statuses to be removed
-	    List<String> statusesToRemove = new LinkedList<String>();
-    	if (statuses.size() > 0) {
-    	    // Only use the first instance of a status
-    	    List<String> usedStatuses = new LinkedList<String>();
-    	    String currentStatus;
-    	    for (Status status : statuses) {
-    	        currentStatus = status.getName();
-    	        if (!usedStatuses.contains(currentStatus)) {
-    	            status.affect(this);
-    	            usedStatuses.add(currentStatus);
-    	        }
-    	        if (status.removeConditionMet()) {
-    	            statusesToRemove.add(status.getName());
-    	        }
-        	}
-	    }
-    	for (String statusName : statusesToRemove) {
-    	    removeStatus(statusName);
-    	}
-	    
+		// Effects of any statuses entity might have
+		if (statusList != null) {
+			statusList.logic();
+		}
+
 		/*
 		 * TODO: Refactor Most of these things can be handled as RPEvents
 		 */

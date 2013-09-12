@@ -79,7 +79,7 @@ public class ContMoveAndStrengthenOnlinePlayers extends ScriptImpl {
 				equipPlayer(player);
 				player.setDefXP(999999999);
 				player.addXP(999999999);
-				player.setImmune(new PoisonAttacker());
+				player.getStatusList().setImmune(new PoisonAttacker());
 				StendhalRPZone zone = zones.get(Rand.rand(zones.size()));
 				int x = Rand.rand(zone.getWidth() - 4) + 2;
 				int y = Rand.rand(zone.getHeight() - 5) + 2;

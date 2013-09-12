@@ -63,8 +63,8 @@ public class MoveToAction implements ActionListener {
 			return;
 		}
 		
-		if (player.hasStatus("confuse")) {
-		    player.sendPrivateText("You are disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
+		if (player.getStatusList().hasStatus("confuse")) {
+			player.sendPrivateText("You are disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 		}
 
 		if (player.hasPath()) {

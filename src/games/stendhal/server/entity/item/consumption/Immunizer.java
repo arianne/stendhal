@@ -23,7 +23,7 @@ class Immunizer implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		player.setImmune(new PoisonAttacker());
+		player.getStatusList().setImmune(new PoisonAttacker());
 		
 		// set a timer to remove the immunity effect after some time
 		final TurnNotifier notifier = SingletonRepository.getTurnNotifier();
