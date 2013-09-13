@@ -167,6 +167,22 @@ public class StatusList {
 	}
 
 	/**
+	 * gets all statuses of the specified status subclass
+	 *
+	 * @param statusClass status subclass
+	 * @return Status or <code>null</code>
+	 */
+	<T extends Status> List<T> getAllStatusByClass(Class<T> statusClass) {
+		List<T> res = new LinkedList<T>();
+		for (Status status : statuses) {
+			if (status.getClass().equals(statusClass)) {
+				res.add(statusClass.cast(status));
+			}
+		}
+		return res;
+	}
+
+	/**
 	 * Find if the player has a specified status
 	 * 
 	 * @param statusName
@@ -536,4 +552,5 @@ public class StatusList {
 	RPEntity getEntity() {
 		return entity;
 	}
+
 }
