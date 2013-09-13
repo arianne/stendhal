@@ -13,10 +13,8 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.player.Player;
 
 public class PoisonAttacker implements StatusAttacker {
     final String name = "poison";
@@ -49,35 +47,15 @@ public class PoisonAttacker implements StatusAttacker {
     public boolean attemptToInflict(final RPEntity target) {
         final int roll = Rand.roll1D100();
         if (roll <= probability) {
-            if (target instanceof Player) {
-                final Player player = (Player) target;
-                if (player.getStatusList().isImmune(StatusType.POISONED)) {
-                    return false;
-                } else {
-                    /*
-                     * Send the client the new poisoning status, but avoid overwriting
-                     * the real value in case the player was already poisoned.
-                     */
-                    if (!player.has("poisoned")) {
-                        player.put("poisoned", "0");
-                        player.notifyWorldAboutChanges();
-                    }
-                    player.getStatusList().addPoisonToConsume(new ConsumableItem(poison));
-                    TutorialNotifier.poisoned(player);
-                    return true;
-                }
-            }
+            target.getStatusList().poison(poison);
+            return true;
         }
         return false;
     }
     
     @Override
     public void clearConsumables(RPEntity target) {
-        // FIXME: should clear poison for any entity
-        if (target instanceof Player) {
-            Player player = (Player) target;
-            player.getStatusList().clearPoisonToConsume();
-        }
+        target.getStatusList().removeAll(PoisonStatus.class);
     }
     
     @Override

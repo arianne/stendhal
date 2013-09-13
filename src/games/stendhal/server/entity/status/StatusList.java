@@ -51,11 +51,6 @@ public class StatusList {
 	 */
 	List<ConsumableItem> itemsToConsume;
 
-	/**
-	 * Poisonous items that the player still has to consume. This also includes
-	 * poison that was the result of fighting against a poisonous creature.
-	 */
-	List<ConsumableItem> poisonToConsume;
 
 	public StatusList(RPEntity entity) {
 		this.entity = entity;
@@ -63,32 +58,10 @@ public class StatusList {
 		resistances = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
 		itemsToConsume = new LinkedList<ConsumableItem>();
-		poisonToConsume = new LinkedList<ConsumableItem>();
 	}
 
 	public void logic() {
 
-		// Statuses to be removed
-		List<String> statusesToRemove = new LinkedList<String>();
-		if (statuses.size() > 0) {
-			// Only use the first instance of a status
-			List<String> usedStatuses = new LinkedList<String>();
-			String currentStatus;
-			for (Status status : statuses) {
-				currentStatus = status.getName();
-				if (!usedStatuses.contains(currentStatus)) {
-					status.affect(entity);
-					usedStatuses.add(currentStatus);
-				}
-				if (status.removeConditionMet()) {
-					statusesToRemove.add(status.getName());
-				}
-			}
-		}
-		for (String statusName : statusesToRemove) {
-			removeStatus(statusName);
-		}
-		
 		consume(SingletonRepository.getRuleProcessor().getTurn());
 	}
 
@@ -182,6 +155,17 @@ public class StatusList {
 		return res;
 	}
 
+	/**
+	 * removes all statuses of this class
+	 *
+	 * @param statusClass status class
+	 */
+	public <T extends Status> void removeAll(Class<T> statusClass) {
+		List<T> interestingStatuses = getAllStatusByClass(statusClass);
+		for (Status status : interestingStatuses) {
+			remove(status);
+		}
+	}
 	/**
 	 * Find if the player has a specified status
 	 * 
@@ -364,38 +348,20 @@ public class StatusList {
 	
 	
 	
-	
-	
-
-	/**
-	 * 
-	 * @param item
-	 */
-	public void addPoisonToConsume(ConsumableItem item) {
-        poisonToConsume.add(item);
-	}
-	
-	/**
-	 * 
-	 */
-	public void clearPoisonToConsume() {
-	    poisonToConsume.clear();
-	}
-	
 	/**
 	 * Checks whether the player is still suffering from the effect of a
 	 * poisonous item/creature or not.
 	 * @return true if player still has poisons to consume
 	 */
 	public boolean isPoisoned() {
-		return !(poisonToConsume.size() == 0);
+		return countStatusByType(StatusType.POISONED) > 0;
 	}
 
 	/**
 	 * Disburdens the player from the effect of a poisonous item/creature.
 	 */
 	public void healPoison() {
-		poisonToConsume.clear();
+		removeAll(PoisonStatus.class);
 	}
 
 	/**
@@ -420,7 +386,8 @@ public class StatusList {
 				entity.put("poisoned", "0");
 				entity.notifyWorldAboutChanges();
 			}
-			poisonToConsume.add(item);
+			PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
+			new PoisonStatusHandler().inflict(status, this);
 			if (entity instanceof Player) {
 				TutorialNotifier.poisoned((Player) entity);
 			}
@@ -481,33 +448,6 @@ public class StatusList {
 			}
 		}
 
-		if ((poisonToConsume.size() == 0)) {
-			if (entity.has("poisoned")) {
-				entity.remove("poisoned");
-			}
-		} else {
-			final List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
-			int sum = 0;
-			int amount = 0;
-			for (final ConsumableItem poison : new LinkedList<ConsumableItem>(
-					poisonToConsume)) {
-				if (turn % poison.getFrecuency() == 0) {
-					if (poison.consumed()) {
-						poisonstoRemove.add(poison);
-					} else {
-						amount = poison.consume();
-						entity.damage(-amount, poison);
-						sum += amount;
-						entity.put("poisoned", sum);
-					}
-				}
-
-			}
-			for (final ConsumableItem poison : poisonstoRemove) {
-				poisonToConsume.remove(poison);
-			}
-		}
-
 		entity.notifyWorldAboutChanges();
 	}
 
@@ -517,12 +457,12 @@ public class StatusList {
 
 	public void clear() {
 		itemsToConsume.clear();
-		poisonToConsume.clear();
+		statuses.clear();
 	}
 
 	public void remove(Status status) {
 		// TODO Auto-generated method stub
-		
+		removeInternal(status);
 	}
 
 	/**
@@ -551,5 +491,6 @@ public class StatusList {
 	RPEntity getEntity() {
 		return entity;
 	}
+
 
 }
