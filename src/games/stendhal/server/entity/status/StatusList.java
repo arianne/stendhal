@@ -136,9 +136,40 @@ public class StatusList {
 	}
 
 	/**
+	 * Count how many occurances of a status are inflicted on the entity
+	 * 
+	 * @param statusType type of status being checked
+	 * @return number of times status is found
+	 */
+	public int countStatusByType(StatusType statusType) {
+		int count = 0;
+		for (Status status : statuses) {
+			if (status.getStatusType() == statusType) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+	/**
+	 * gets the first status of the specified status subclass
+	 *
+	 * @param statusClass status subclass
+	 * @return Status or <code>null</code>
+	 */
+	<T extends Status> T getFirstStatusByClass(Class<T> statusClass) {
+		for (Status status : statuses) {
+			if (status.getClass().equals(statusClass)) {
+				return statusClass.cast(status);
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Find if the player has a specified status
 	 * 
-	 * @param status
+	 * @param statusName
 	 *            The status to check for
 	 * @return Entity has status
 	 */
@@ -220,7 +251,7 @@ public class StatusList {
 	/**
 	 * Check if entity is immune to specified status attack.
 	 * 
-	 * @param attack
+	 * @param statusName
 	 *            Status attack type
 	 * @return Entity is immune
 	 */
@@ -242,7 +273,7 @@ public class StatusList {
 	/**
 	 * Remove any immunity of specified status effect from entity.
 	 * 
-	 * @param attack Status attack type
+	 * @param statusName Status attack type
 	 */
 	public void removeImmunity(final String statusName) {
 		immunities.remove(StatusType.valueOf(statusName));
@@ -273,7 +304,7 @@ public class StatusList {
 	/**
 	 * Removes a single instance of a status from entity
 	 * 
-	 * @param status
+	 * @param statusName
 	 *            Status to be removed
 	 * @return Entity is still affected by another instance
 	 */
@@ -298,7 +329,7 @@ public class StatusList {
 	/**
 	 * Removes all instances of a status from the entity
 	 * 
-	 * @param status Status to be cured
+	 * @param statusName Status to be cured
 	 */
 	public void cureStatus(final String statusName) {
 		while (removeStatus(statusName)) {
@@ -495,5 +526,14 @@ public class StatusList {
 	 */
 	void removeInternal(Status status) {
 		statuses.remove(status);
+	}
+
+	/**
+	 * gets the entity for this StatusList
+	 *
+	 * @return RPEntity
+	 */
+	RPEntity getEntity() {
+		return entity;
 	}
 }
