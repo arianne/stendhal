@@ -638,7 +638,10 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The entity's name.
 	 */
 	public String getName() {
-		return name;
+		if (name != null) {
+			return name;
+		}
+		return super.getName();
 	}
 
 	public void setLevel(final int level) {
@@ -1248,7 +1251,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
-	public int damage(final int amount, final Entity attacker) {
+	public int damage(final int amount, final Killer attacker) {
 		final int taken = damage(amount);
 
 		if (hp <= 0) {
@@ -1390,7 +1393,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @param killer
 	 *            The entity who caused the death
 	 */
-	public final void onDead(final Entity killer) {
+	public final void onDead(final Killer killer) {
 	    onDead(killer, true);
 	}
 
@@ -1404,12 +1407,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *            almost everything remove is true, but not for the players, who
 	 *            are instead moved to afterlife ("reborn").
 	 */
-	public void onDead(final Entity killer, final boolean remove) {
+	public void onDead(final Killer killer, final boolean remove) {
 		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
-		String killerName = killLog.getEntityName(killer);
+		String killerName = killer.getName();
 
 		if (killer instanceof RPEntity) {
-			new GameEvent(killerName, "killed", killLog.getEntityName(this), killLog.entityToType(killer), killLog.entityToType(this)).raise();
+			new GameEvent(killerName, "killed", this.getName(), killLog.entityToType(killer), killLog.entityToType(this)).raise();
 		}
 
 		DBCommandQueue.get().enqueue(new LogKillEventCommand(this, killer));

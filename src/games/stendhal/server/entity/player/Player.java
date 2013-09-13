@@ -40,6 +40,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -998,7 +999,7 @@ public class Player extends RPEntity implements UseListener {
 	}
 
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
+	public void onDead(final Killer killer, final boolean remove) {
 		// Always use remove=false for players, as documented
 		// in RPEntity.onDead()
 		super.onDead(killer, false);

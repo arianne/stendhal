@@ -12,7 +12,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 
@@ -62,7 +62,7 @@ public class ItemChangeGuardCreature extends Creature {
 	}
 
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
+	public void onDead(final Killer killer, final boolean remove) {
 		if (killer instanceof RPEntity) {
 			final RPEntity killerRPEntity = (RPEntity) killer;
 

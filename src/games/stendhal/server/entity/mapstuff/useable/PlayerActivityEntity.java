@@ -39,17 +39,6 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 		setResistance(0);
 	}
 
-	//
-	// PlayerActivityEntity
-	//
-	
-	/**
-	 * Returns source name (type of source).
-	 * 
-	 * @return source name
-	 */
-	protected abstract String getName();
-
 	/**
 	 * Process the results of the activity.
 	 * 
@@ -57,10 +46,8 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 	 *            The player that performed the activity.
 	 */
 	protected void activityDone(final Player player) {
-		/*
-		 * Verify that the player is still standing next to this, else their
-		 * activity fails.
-		 */
+		// Verify that the player is still standing next to this, else their
+		// activity fails.
 		if (nextTo(player)) {
 			if (isPenalized(player)) {
 				onFinished(player, false);
@@ -68,8 +55,7 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 				onFinished(player, isSuccessful(player));
 			}
 		} else {
-			player.sendPrivateText("You are too far away from the "+this.getName()+
-								   ", try to come closer.");
+			player.sendPrivateText("You are too far away from the " + this.getName() + ", try to come closer.");
 			onFinished(player, false);
 		}
 	}
@@ -183,8 +169,6 @@ public abstract class PlayerActivityEntity extends UseableEntity {
 		return true;
 	}
 
-	//
-	//
 
 	/**
 	 * An occurrence of activity.

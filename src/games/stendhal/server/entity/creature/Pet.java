@@ -14,16 +14,16 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -132,10 +132,8 @@ public abstract class Pet extends DomesticAnimal {
 	 * 
 	 */
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
-		
+	public void onDead(final Killer killer, final boolean remove) {
 		cleanUpPet();
-
 		super.onDead(killer, remove);
 	}
 

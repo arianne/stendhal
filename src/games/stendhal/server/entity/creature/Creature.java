@@ -26,6 +26,7 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Registrator;
 import games.stendhal.server.entity.creature.impl.DropItem;
@@ -603,7 +604,7 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
+	public void onDead(final Killer killer, final boolean remove) {
 		if (killer instanceof RPEntity) {
 			circumstances = new CircumstancesOfDeath((RPEntity)killer, this, this.getZone());
 		}

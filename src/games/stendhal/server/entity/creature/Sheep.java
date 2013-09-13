@@ -17,7 +17,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
@@ -29,10 +29,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.game.Definition.Type;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
-import marauroa.common.game.Definition.Type;
 
 import org.apache.log4j.Logger;
 
@@ -179,10 +179,8 @@ public class Sheep extends DomesticAnimal {
 	 *
 	 */
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
-		
+	public void onDead(final Killer killer, final boolean remove) {
 		cleanUpSheep();
-
 		super.onDead(killer, remove);
 	}
 

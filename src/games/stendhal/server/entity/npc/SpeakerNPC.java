@@ -16,7 +16,7 @@ import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.ExpressionMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.action.NPCEmoteAction;
@@ -323,8 +323,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	public void onDead(final Entity killer, final boolean remove) {
-
+	public void onDead(final Killer killer, final boolean remove) {
 		heal();
 		notifyWorldAboutChanges();
 	}

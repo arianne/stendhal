@@ -20,6 +20,7 @@ import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
@@ -64,7 +65,7 @@ public class PlayerDieer {
 	}
 
 
-	public void onDead(final Entity killer) {
+	public void onDead(final Killer killer) {
 		player.put("dead", "");
 		logger.debug("ondeadstart");
 		abondonPetsAndSheep();

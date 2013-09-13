@@ -31,7 +31,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public abstract class Entity extends RPObject {
+public abstract class Entity extends RPObject implements Killer {
 	/**
 	 * The logger.
 	 */
@@ -736,5 +736,14 @@ public abstract class Entity extends RPObject {
 	 */
 	public void setMenu(String menu) {
 		put("menu", menu);
+	}
+
+	/**
+	 * gets the name of this entity
+	 *
+	 * @return name
+	 */
+	public String getName() {
+		return getRPClass().getName();
 	}
 }

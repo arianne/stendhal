@@ -11,10 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.dbcommand;
 
-import java.sql.SQLException;
-
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Killer;
+
+import java.sql.SQLException;
+
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 import marauroa.server.game.db.DAORegister;
@@ -27,7 +29,7 @@ import marauroa.server.game.db.DAORegister;
 public class LogKillEventCommand extends AbstractDBCommand {
 	
 	private Entity frozenKilled;
-	private Entity frozenKiller;
+	private Killer frozenKiller;
 
 	/**
 	 * creates a new LogKillEventCommand
@@ -35,9 +37,9 @@ public class LogKillEventCommand extends AbstractDBCommand {
 	 * @param killed killed entity
 	 * @param killer killer entity
 	 */
-	public LogKillEventCommand(Entity killed, Entity killer) {
+	public LogKillEventCommand(Entity killed, Killer killer) {
 		this.frozenKilled = (Entity) killed.clone();
-		this.frozenKiller = (Entity) killer.clone();
+		this.frozenKiller = (Killer) killer.clone();
 	}
 
 	@Override

@@ -144,7 +144,7 @@ public class StendhalRPAction {
 		}
 
 		StendhalKillLogDAO killLog = DAORegister.get().get(StendhalKillLogDAO.class);
-		new GameEvent(killLog.getEntityName(player), "attack", killLog.getEntityName(victim), killLog.entityToType(player), killLog.entityToType(victim)).raise();
+		new GameEvent(player.getName(), "attack", victim.getName(), killLog.entityToType(player), killLog.entityToType(victim)).raise();
 
 		player.setTarget(victim);
 		player.faceToward(victim);
