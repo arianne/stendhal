@@ -28,6 +28,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.status.PoisonAttacker;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -251,9 +252,9 @@ public class PlayerTest {
 	@Test
 	public void testSetImmune() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.getStatusList().isImmune("poison"));
+		assertFalse(bob.getStatusList().isImmune(StatusType.POISONED));
 		bob.getStatusList().setImmune(new PoisonAttacker());
-		assertTrue(bob.getStatusList().isImmune("poison"));
+		assertTrue(bob.getStatusList().isImmune(StatusType.POISONED));
 	}
 
 	
@@ -263,11 +264,11 @@ public class PlayerTest {
 	@Test
 	public void testRemoveImmunity() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
-		assertFalse(bob.getStatusList().isImmune("poison"));
+		assertFalse(bob.getStatusList().isImmune(StatusType.POISONED));
 		bob.getStatusList().setImmune(new PoisonAttacker());
-		assertTrue(bob.getStatusList().isImmune("poison"));
-		bob.getStatusList().removeImmunity("poison");
-		assertFalse(bob.getStatusList().isImmune("poison"));
+		assertTrue(bob.getStatusList().isImmune(StatusType.POISONED));
+		bob.getStatusList().removeImmunity(StatusType.POISONED);
+		assertFalse(bob.getStatusList().isImmune(StatusType.POISONED));
 		
 	}
 	

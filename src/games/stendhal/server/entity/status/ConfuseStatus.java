@@ -18,7 +18,6 @@ import games.stendhal.server.entity.RPEntity;
  * steps
  * 
  * @author Jordan
- * 
  */
 public class ConfuseStatus extends Status {
 

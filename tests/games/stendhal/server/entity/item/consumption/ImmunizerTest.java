@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -67,9 +68,9 @@ public class ImmunizerTest {
 		ConsumableItem item = ConsumableTestHelper.createImmunizer("antidote");
 		item.put("id", 1);
 		Player player = PlayerTestHelper.createPlayer("herrkules");
-		assertFalse(player.getStatusList().isImmune("poison"));
+		assertFalse(player.getStatusList().isImmune(StatusType.POISONED));
 		assertTrue(immu.feed(item, player));
-		assertTrue(player.getStatusList().isImmune("poison"));
+		assertTrue(player.getStatusList().isImmune(StatusType.POISONED));
 		ConsumableItem item2 = ConsumableTestHelper.createImmunizer("antidote");
 		item2.put("id", 2);
 
@@ -82,21 +83,21 @@ public class ImmunizerTest {
 		assertTrue(immu.feed(item2, player));
 		
 		assertThat(player.events().size(), is(0));
-		assertTrue(player.getStatusList().isImmune("poison"));
+		assertTrue(player.getStatusList().isImmune(StatusType.POISONED));
 		assertEquals(2, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
-		assertTrue(player.getStatusList().isImmune("poison"));
+		assertTrue(player.getStatusList().isImmune(StatusType.POISONED));
 		assertEquals(1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
-		assertFalse(player.getStatusList().isImmune("poison"));
+		assertFalse(player.getStatusList().isImmune(StatusType.POISONED));
 		assertEquals(-1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		assertThat(player.events().size(), is(1));
-		assertThat(player.events().get(0).get("text"), is("You are not immune to poison anymore."));
+		assertThat(player.events().get(0).get("text"), is("You are not immune to being poisoned anymore."));
 		
 		TurnNotifier.get().logic(TurnNotifier.get().getCurrentTurnForDebugging() + 1);
-		assertFalse(player.getStatusList().isImmune("poison"));
+		assertFalse(player.getStatusList().isImmune(StatusType.POISONED));
 		assertEquals(-1, TurnNotifier.get().getRemainingTurns(new AntidoteEater(player)));
 		
 	}

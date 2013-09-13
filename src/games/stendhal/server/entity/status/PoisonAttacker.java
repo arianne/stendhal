@@ -51,7 +51,7 @@ public class PoisonAttacker implements StatusAttacker {
         if (roll <= probability) {
             if (target instanceof Player) {
                 final Player player = (Player) target;
-                if (player.getStatusList().isImmune("poison")) {
+                if (player.getStatusList().isImmune(StatusType.POISONED)) {
                     return false;
                 } else {
                     /*
@@ -93,5 +93,14 @@ public class PoisonAttacker implements StatusAttacker {
 	@Override
 	public void setProbability(int p) {
 		this.probability = p;
+	}
+
+	/**
+	 * returns the status type
+	 *
+	 * @return StatusType
+	 */
+	public StatusType getStatusType() {
+		return StatusType.POISONED;
 	}
 }

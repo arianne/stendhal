@@ -13,6 +13,7 @@ package games.stendhal.server.entity.item.consumption;
 
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.status.StatusType;
 
 import java.lang.ref.WeakReference;
 
@@ -41,7 +42,7 @@ class AntidoteEater implements TurnListener {
 		if (entity == null) {
 			return;
 		}
-		entity.getStatusList().removeImmunity("poison");
+		entity.getStatusList().removeImmunity(StatusType.POISONED);
 	}
 
 	@Override

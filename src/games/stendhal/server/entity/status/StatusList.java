@@ -267,12 +267,11 @@ public class StatusList {
 	/**
 	 * Check if entity is immune to specified status attack.
 	 * 
-	 * @param statusName
-	 *            Status attack type
+	 * @param statusType type of status
 	 * @return Entity is immune
 	 */
-	public boolean isImmune(final String statusName) {
-		return immunities.contains(StatusType.valueOf(statusName.toUpperCase()));
+	public boolean isImmune(final StatusType statusType) {
+		return immunities.contains(statusType);
 	}
 
 	/**
@@ -289,21 +288,21 @@ public class StatusList {
 	/**
 	 * Remove any immunity of specified status effect from entity.
 	 * 
-	 * @param statusName Status attack type
+	 * @param statusType type of status
 	 */
-	public void removeImmunity(final String statusName) {
-		immunities.remove(StatusType.valueOf(statusName.toUpperCase()));
-		entity.sendPrivateText("You are not immune to " + statusName + " anymore.");
+	public void removeImmunity(StatusType statusType) {
+		immunities.remove(statusType);
+		entity.sendPrivateText("You are not immune to being " + statusType.getName() + " anymore.");
 	}
 
 	/**
 	 * Make entity immune to a specified status attack.
 	 * 
-	 * @param attack
+	 * @param attacker
 	 *            Status attack type
 	 */
-	public void setImmune(final StatusAttacker attack) {
-		final String statusName = attack.getName();
+	public void setImmune(final StatusAttacker attacker) {
+		final String statusName = attacker.getName();
 
 		// Remove any current instances of the status attribute
 		if (entity.has("status_" + statusName)) {
@@ -311,10 +310,10 @@ public class StatusList {
 		}
 
 		// FIXME: should clear any consumable statuses
-		attack.clearConsumables(entity);
+		attacker.clearConsumables(entity);
 
 		// Add to list of immunities
-		immunities.add(StatusType.valueOf(statusName.toUpperCase()));
+		immunities.add(attacker.getStatusType());
 	}
 
 	/**
@@ -410,7 +409,7 @@ public class StatusList {
 	 *         immune
 	 */
 	public boolean poison(final ConsumableItem item) {
-		if (isImmune("poison")) {
+		if (isImmune(StatusType.POISONED)) {
 			return false;
 		} else {
 			/*

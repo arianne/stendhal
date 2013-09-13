@@ -27,4 +27,10 @@ public interface StatusAttacker {
 	
 	void setProbability(int p);
 
+	/**
+	 * returns the status type
+	 *
+	 * @return StatusType
+	 */
+	public abstract StatusType getStatusType();
 }

@@ -22,7 +22,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.game.RPObject;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -141,18 +140,6 @@ public class PlayerListTest {
 		assertSame(jack, list.getOnlinePlayer("jack"));
 		assertSame(jack, list.getOnlinePlayer("Jack"));
 		assertSame(jack, list.getOnlinePlayer("jAck"));
-	}
-
-	/**
-	 * Tests for addPlayerWithEqualName.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testAddPlayerWithEqualName() {
-		final PlayerList list = new PlayerList();
-		final Player jack = new Player(new RPObject()) {
-		};
-		list.add(jack);
-
 	}
 
 }
