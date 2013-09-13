@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                   (C) Copyright 2013 - Faiumoni e. V.                   *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
@@ -22,6 +33,7 @@ import org.apache.log4j.Logger;
 public class StatusList {
 	private static Logger logger = Logger.getLogger(StatusList.class);
 
+	// TODO: Use Weak reference
 	private RPEntity entity;
 
 	/** Container for statuses inflicted on entity */
@@ -133,6 +145,21 @@ public class StatusList {
 	public boolean hasStatus(final String statusName) {
 		for (Status status : statuses) {
 			if (status.getName().equals(statusName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Find if the player has a specified status
+	 * 
+	 * @param statusType the status type to check for
+	 * @return Entity has status
+	 */
+	public boolean hasStatus(StatusType statusType) {
+		for (Status status : statuses) {
+			if (status.getStatusType() == statusType) {
 				return true;
 			}
 		}
@@ -445,5 +472,28 @@ public class StatusList {
 	public void clear() {
 		itemsToConsume.clear();
 		poisonToConsume.clear();
+	}
+
+	public void remove(Status status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * interally adds a status to the list of statuses
+	 *
+	 * @param status status to add
+	 */
+	void addInternal(Status status) {
+		statuses.add(status);
+	}
+
+	/**
+	 * internally removes a status from the list of statuses
+	 *
+	 * @param status status to remove
+	 */
+	void removeInternal(Status status) {
+		statuses.remove(status);
 	}
 }
