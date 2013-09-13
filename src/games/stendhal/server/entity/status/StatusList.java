@@ -256,7 +256,7 @@ public class StatusList {
 	 * @return Entity is immune
 	 */
 	public boolean isImmune(final String statusName) {
-		return immunities.contains(StatusType.valueOf(statusName));
+		return immunities.contains(StatusType.valueOf(statusName.toUpperCase()));
 	}
 
 	/**
@@ -267,7 +267,7 @@ public class StatusList {
 	 * @return Entity is immune to status
 	 */
 	public boolean isResistantToStatus(final Status status) {
-		return resistances.contains(StatusType.valueOf(status.getName()));
+		return resistances.contains(status.getStatusType());
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class StatusList {
 	 * @param statusName Status attack type
 	 */
 	public void removeImmunity(final String statusName) {
-		immunities.remove(StatusType.valueOf(statusName));
+		immunities.remove(StatusType.valueOf(statusName.toUpperCase()));
 		entity.sendPrivateText("You are not immune to " + statusName + " anymore.");
 	}
 
@@ -298,7 +298,7 @@ public class StatusList {
 		attack.clearConsumables(entity);
 
 		// Add to list of immunities
-		immunities.add(StatusType.valueOf(statusName));
+		immunities.add(StatusType.valueOf(statusName.toUpperCase()));
 	}
 
 	/**
