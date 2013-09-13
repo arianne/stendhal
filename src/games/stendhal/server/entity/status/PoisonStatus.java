@@ -11,10 +11,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.server.entity.Killer;
+
 /**
  * poison status
  */
-public class PoisonStatus extends Status {
+public class PoisonStatus extends Status implements Killer {
 	private int amount;
 	private int frequency;
 	private int regen;
@@ -91,6 +93,23 @@ public class PoisonStatus extends Status {
 		return left == 0;
 	}
 
+	/**
+	 * closes this PoisonStatus
+	 */
+	@Override
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	/**
+	 * returns the status type
+	 *
+	 * @return StatusType
+	 */
 	@Override
 	public StatusType getStatusType() {
 		return StatusType.POISONED;
