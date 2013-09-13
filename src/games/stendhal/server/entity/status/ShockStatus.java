@@ -23,7 +23,7 @@ import games.stendhal.server.entity.RPEntity;
 public class ShockStatus extends Status {
 
 	/** Entity is "shocked" after taking 5 steps */
-	private final int stepsDelay = 5;
+	private final int STEPS_DELAY = 5;
 
 	/**
 	 * Create the status
@@ -44,13 +44,7 @@ public class ShockStatus extends Status {
 	public void affect(final RPEntity entity) {
 		super.affect(entity);
 
-		int stepsTaken = entity.getStepsTaken();
-		if (stepsTaken == stepsDelay) {
 
-			// Stop the entity's movement after 5 steps
-			entity.stop();
-			entity.clearPath();
-		}
 	}
 
 	/**
@@ -61,5 +55,14 @@ public class ShockStatus extends Status {
 	@Override
 	public StatusType getStatusType() {
 		return StatusType.SHOCKED;
+	}
+
+	/**
+	 * gets the steps delay
+	 *
+	 * @return steps delay
+	 */
+	public int getStepsDelay() {
+		return STEPS_DELAY;
 	}
 }
