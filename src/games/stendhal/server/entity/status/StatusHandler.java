@@ -34,6 +34,6 @@ public interface StatusHandler<T extends Status> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
-	public void remove(ConfuseStatus status, StatusList statusList);
+	public void remove(T status, StatusList statusList);
 
 }
