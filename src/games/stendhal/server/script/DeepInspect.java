@@ -15,6 +15,7 @@ package games.stendhal.server.script;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.player.Player;
 
@@ -104,7 +105,7 @@ public class DeepInspect extends ScriptImpl {
 		admin.sendPrivateText(sb.toString());
 		sb.setLength(0);
 
-		// inspect slots
+		// Inspect slots
 		for (final RPSlot slot : player.slots()) {
 			// don't return buddy-list for privacy reasons
 			if (slot.getName().equals("!buddy")
@@ -118,35 +119,55 @@ public class DeepInspect extends ScriptImpl {
 				sb.append("   " + object + "\n");
 			}
 			
+			sb.append("\n");
 			admin.sendPrivateText(sb.toString());
 			sb.setLength(0);
 		}
 		
-		// production
-		sb.append("\nProduction:\n   ");
-		final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
-	    final List<String> produceList = new LinkedList<String>();
-	    
-	    for (String food : producerRegister.getProducedItemNames("food")) {
-	    	produceList.add(food);
-	    }
-	    for (String drink : producerRegister.getProducedItemNames("drink")) {
-	    	produceList.add(drink);
-	    }
-	    for (String resource : producerRegister.getProducedItemNames("resource")) {
-	    	produceList.add(resource);
-	    }
-	    
-		//final String[] products = produceList.toArray(new String[produceList.size()]);
-		
-		for (String product : produceList) {
-			int quant = ((Player) player).getQuantityOfProducedItems(product);
-			if (quant > 0) {
-				sb.append("[" + product + "=" + Integer.toString(quant) + "]");
+		if (player instanceof Player) {
+			Player p = (Player) player;
+			
+			// Produced items
+			sb.append("Production:\n   ");
+			final ProducerRegister producerRegister = SingletonRepository.getProducerRegister();
+		    final List<String> produceList = new LinkedList<String>();
+		    
+		    for (String food : producerRegister.getProducedItemNames("food")) {
+		    	produceList.add(food);
+		    }
+		    for (String drink : producerRegister.getProducedItemNames("drink")) {
+		    	produceList.add(drink);
+		    }
+		    for (String resource : producerRegister.getProducedItemNames("resource")) {
+		    	produceList.add(resource);
+		    }
+		    
+			for (String product : produceList) {
+				int quant = p.getQuantityOfProducedItems(product);
+				if (quant > 0) {
+					sb.append("[" + product + "=" + Integer.toString(quant) + "]");
+				}
 			}
+			
+			sb.append("\n");
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
+			
+			
+			// Looted items
+			sb.append("Loots:\n   ");
+			
+			int lootCount;
+			for (Item item : SingletonRepository.getEntityManager().getItems()) {
+				lootCount = p.getNumberOfLootsForItem(item.getName());
+				if (lootCount > 0) {
+					sb.append("[" + item.getName() + "=" + Integer.toString(lootCount) + "]");
+				}
+			}
+			
+			sb.append("\n");
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
 		}
-		
-		admin.sendPrivateText(sb.toString());
-		sb.setLength(0);
 	}
 }
