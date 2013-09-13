@@ -25,9 +25,6 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	 * @param statusList StatusList
 	 */
 	public void inflict(ShockStatus status, StatusList statusList) {
-		if (statusList.hasStatus(status.getStatusType())) {
-			return;
-		}
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
