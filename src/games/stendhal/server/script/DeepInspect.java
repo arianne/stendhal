@@ -92,21 +92,21 @@ public class DeepInspect extends ScriptImpl {
 	 * Inspects a player
 	 * 
 	 * @param admin  Inspector
-	 * @param player player being inspected
+	 * @param target player being inspected
 	 */
-	private void inspect(final Player admin, final RPObject player) {
+	private void inspect(final Player admin, final RPObject target) {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("Inspecting " + player.get("name") + "\n");
+		sb.append("Inspecting " + target.get("name") + "\n");
 
-		for (final String value : player) {
-			sb.append(value + ": " + player.get(value) + "\n");
+		for (final String value : target) {
+			sb.append(value + ": " + target.get(value) + "\n");
 		}
 		
 		admin.sendPrivateText(sb.toString());
 		sb.setLength(0);
 
 		// Inspect slots
-		for (final RPSlot slot : player.slots()) {
+		for (final RPSlot slot : target.slots()) {
 			// don't return buddy-list for privacy reasons
 			if (slot.getName().equals("!buddy")
 					|| slot.getName().equals("!ignore")) {
@@ -124,8 +124,8 @@ public class DeepInspect extends ScriptImpl {
 			sb.setLength(0);
 		}
 		
-		if (player instanceof Player) {
-			Player p = (Player) player;
+		if (target instanceof Player) {
+			Player player = (Player) target;
 			
 			// Produced items
 			sb.append("Production:\n   ");
@@ -143,7 +143,7 @@ public class DeepInspect extends ScriptImpl {
 		    }
 		    
 			for (String product : produceList) {
-				int quant = p.getQuantityOfProducedItems(product);
+				int quant = player.getQuantityOfProducedItems(product);
 				if (quant > 0) {
 					sb.append("[" + product + "=" + Integer.toString(quant) + "]");
 				}
@@ -159,7 +159,7 @@ public class DeepInspect extends ScriptImpl {
 			
 			int lootCount;
 			for (Item item : SingletonRepository.getEntityManager().getItems()) {
-				lootCount = p.getNumberOfLootsForItem(item.getName());
+				lootCount = player.getNumberOfLootsForItem(item.getName());
 				if (lootCount > 0) {
 					sb.append("[" + item.getName() + "=" + Integer.toString(lootCount) + "]");
 				}
