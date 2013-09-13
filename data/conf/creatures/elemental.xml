@@ -285,7 +285,7 @@
   
   <creature name="stone golem">
     <type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
-    <description>You see a stone golem, it exists to protect and nothing else. What was it crafted to protect, and what would one do if it lost it's purpose?</description>
+    <description>You see a stone golem, it only exists to protect. What was it crafted for to protect, and what would one do if it lost its purpose?</description>
     <attributes>
       <atk value="297"/>
       <def value="85"/>
