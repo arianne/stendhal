@@ -738,7 +738,7 @@ risecia	OBJ	risecias
 roach	OBJ-FOO-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
-rodent trap OBJ rodent traps
+rodent  OBJ rodents
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
@@ -852,6 +852,7 @@ town	OBJ	towns
 toy	OBJ	toys
 trade	OBJ	trades
 trading	OBJ	tradings
+trap OBJ traps
 treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
@@ -866,7 +867,6 @@ ugmash	OBJ	ugmashes
 url	OBJ	urls
 vault	OBJ	vaults
 venom	OBJ	venoms
-venom gland OBJ venom glands
 vertex	OBJ	vertices
 victory	OBJ	victories
 vigilance	OBJ	vigilances
