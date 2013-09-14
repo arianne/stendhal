@@ -18,6 +18,7 @@ import games.stendhal.server.actions.validator.StandardActionValidations;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import marauroa.common.game.RPAction;
 
 /**
@@ -31,9 +32,13 @@ public class PublicChatAction implements ActionListener {
 			return;
 		}
 
-		final String text = QuoteSpecials.quote(action.get(TEXT));
-		player.put("text", text);
+		String text = QuoteSpecials.quote(action.get(TEXT));
 		new GameEvent(player.getName(), "chat",  null, Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000))).raise();
+
+		if (player.getStatusList().countStatusByType(StatusType.DRUNK) >= 2) {
+			text = text + " *hicks*";
+		}
+		player.put("text", text);
 
 		player.notifyWorldAboutChanges();
 		SingletonRepository.getRuleProcessor().removePlayerText(player);
