@@ -402,6 +402,11 @@ public class StatusList {
 
 		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
 		new EatStatusHandler().inflict(status, this);
+
+		if (item.getName().equals("beer") || item.getName().equals("wine")) {
+			DrunkStatus drunkStatus = new DrunkStatus();
+			new DrunkStatusHandler().inflict(drunkStatus, this);
+		}
 	}
 
 	public boolean isFull() {

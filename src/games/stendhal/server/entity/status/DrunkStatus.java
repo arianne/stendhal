@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2013 - Faiumoni e. V.                   *
+ *                    (C) Copyright 2013 - Faiumoni e. V.                  *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -11,34 +11,28 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+
 /**
- * types of statuses
- *
+ * A status effect that causes the entity to show signs of being drunk
+ * 
  * @author hendrik
  */
-public enum StatusType {
-
-	/** cannot walk streight */
-	CONFUSED,
-
-	/** is consuming food */
-	EATING,
-
-	/** is consuming poison */
-	POISONED,
-
-	/** cannot move */
-	SHOCKED,
-
-	/** drunk and not able to speak clearly */
-	DRUNK;
+public class DrunkStatus extends Status {
 
 	/**
-	 * gets the name of the status type
-	 *
-	 * @return name
+	 * Create the status
 	 */
-	public String getName() {
-		return this.name().toLowerCase();
+	public DrunkStatus() {
+		super("drunk");
+	}
+
+	/**
+	 * returns the status type
+	 *
+	 * @return StatusType
+	 */
+	@Override
+	public StatusType getStatusType() {
+		return StatusType.DRUNK;
 	}
 }

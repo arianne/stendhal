@@ -11,34 +11,34 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.server.core.events.TurnNotifier;
+
 /**
- * types of statuses
- *
- * @author hendrik
+ * handles DrunkStatusHandler
  */
-public enum StatusType {
-
-	/** cannot walk streight */
-	CONFUSED,
-
-	/** is consuming food */
-	EATING,
-
-	/** is consuming poison */
-	POISONED,
-
-	/** cannot move */
-	SHOCKED,
-
-	/** drunk and not able to speak clearly */
-	DRUNK;
+public class DrunkStatusHandler implements StatusHandler<DrunkStatus> {
 
 	/**
-	 * gets the name of the status type
-	 *
-	 * @return name
+	 * inflicts a status
+	 * 
+	 * @param status Status to inflict
+	 * @param statusList StatusList
 	 */
-	public String getName() {
-		return this.name().toLowerCase();
+	public void inflict(DrunkStatus status, StatusList statusList) {
+		int count = statusList.countStatusByType(status.getStatusType());
+		if (count <= 6) {
+			statusList.addInternal(status);
+		}
+		TurnNotifier.get().notifyInSeconds(120, new StatusRemover(statusList, status));
+	}
+
+	/**
+	 * removes a status
+	 * 
+	 * @param status Status to inflict
+	 * @param statusList StatusList
+	 */
+	public void remove(DrunkStatus status, StatusList statusList) {
+		statusList.removeInternal(status);
 	}
 }
