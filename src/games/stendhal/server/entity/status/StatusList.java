@@ -42,9 +42,6 @@ public class StatusList {
 	/** Immunites to statuses */
 	private EnumSet<StatusType> immunities;
 
-	/** Resistances to statuses */
-	private EnumSet<StatusType> resistances;
-
 	/**
 	 * Food, drinks etc. that the player wants to consume and has not finished
 	 * with.
@@ -55,7 +52,6 @@ public class StatusList {
 	public StatusList(RPEntity entity) {
 		this.entityRef = new WeakReference<RPEntity>(entity);
 		immunities = EnumSet.noneOf(StatusType.class);
-		resistances = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
 		itemsToConsume = new LinkedList<ConsumableItem>();
 	}
@@ -263,17 +259,6 @@ public class StatusList {
 	}
 
 	/**
-	 * Status effects that cannot be inflicted on entity
-	 * 
-	 * @param status
-	 *            Immunity to check for
-	 * @return Entity is immune to status
-	 */
-	public boolean isResistantToStatus(final Status status) {
-		return resistances.contains(status.getStatusType());
-	}
-
-	/**
 	 * Remove any immunity of specified status effect from entity.
 	 * 
 	 * @param statusType type of status
@@ -343,18 +328,6 @@ public class StatusList {
 		return true;
 	}
 
-	/**
-	 * Removes all instances of a status from the entity
-	 * 
-	 * @param statusName Status to be cured
-	 */
-	public void cureStatus(final String statusName) {
-		while (removeStatus(statusName)) {
-			// Do nothing. Just let removeStatus() remove all instances
-		}
-	}
-	
-	
 	
 	
 	

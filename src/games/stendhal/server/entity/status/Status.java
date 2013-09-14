@@ -52,11 +52,8 @@ public abstract class Status {
 		}
 	}
 
-	public void attemptToInfclict(final RPEntity target,
-			final double probability, final RPEntity attacker) {
-		if (target.getStatusList().isResistantToStatus(this)) {
-			// TODO: Affect probability with resistance
-		}
+	public void attemptToInfclict(final RPEntity target, final double probability, final RPEntity attacker) {
+
 		// Roll dice between 1-100
 		int roll = Rand.randUniform(1, 100);
 		if (roll <= probability) {
