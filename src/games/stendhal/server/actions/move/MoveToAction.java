@@ -25,6 +25,7 @@ import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class MoveToAction implements ActionListener {
 			return;
 		}
 		
-		if (player.getStatusList().hasStatus("confuse")) {
+		if (player.getStatusList().hasStatus(StatusType.CONFUSED)) {
 			player.sendPrivateText("You are disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 		}
 
