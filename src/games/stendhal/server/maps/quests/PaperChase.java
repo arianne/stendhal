@@ -57,9 +57,9 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
 
-	private List<String> points = Arrays.asList("Will", "Adena", "Valo", "Balduin", "Gaston", "Lobelia", 
-												"Ortiv Milquetoast", "Pam", "Old Mother Helena", 
-												"Imorgen", "Anastasia", "Vulcanus", "Wrvil", "Fidorea");
+	private List<String> points = Arrays.asList("Nishiya", "Marcus", "Eheneumniranin", "Balduin", "Rachel", "Fritz", 
+												"Alice Farmer", "Elisabeth", "Sue", "Old Mother Helena", "Hazel",
+												"Captain Brownbeard", "Jane", "Seremela", "Phalk", "Fidorea");
 
 	private Map<String, String> texts = new HashMap<String, String>();
 
@@ -70,36 +70,41 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 	private void setupGreetings() {
 		// Each greeting is said by the previous NPC to point to the NPC in the key.
-		greetings.put("Adena", "I was waiting for you already :) ");
-		greetings.put("Valo", "Ahh there you are! I guess the lovely fresh smell of my veggies brought you here. ");
-		greetings.put("Balduin", "Oh you found the way up in this beautiful old Ados church. ");
-		greetings.put("Gaston", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
-		greetings.put("Lobelia", "Bonjour! You have made your way through these streets in my hometown Rat city as I see. ");
-		greetings.put("Ortiv Milquetoast", "Aren't these flowers lovely around me, come and take a deeper look at them! ");
-		greetings.put("Pam", "Uh, ah! Phew, it's just you. You got me! ");
-		greetings.put("Old Mother Helena", "I knew someone would find me at the beach! ");
-		greetings.put("Imorgen", "Oh hello, so nice that you found me here. Come and join me again soon to let me cook some nice soup for you. ");
-		greetings.put("Anastasia", "*sing* some herbs into the pot, some more and some more *sing*... ");
-		greetings.put("Vulcanus", "Shhh Hughie tries to sleep... ");
-		greetings.put("Wrvil", "Did you know my name is derived from Greek? ");
-		greetings.put("Fidorea", "*Wroff!* You found me down here, nice!");
+		greetings.put("Marcus", "My sheep knew that you were on the way to me. ");
+		greetings.put("Eheneumniranin", "Long time ago that someone visited me here. Nice that you found me. ");
+		greetings.put("Balduin", "Ahh, you found me while gathering sheaves of grain with my sickle. Great! ");
+		greetings.put("Rachel", "It's windy here, isn't it? Hope the latest hint how to find me wasn't too easy. ");
+		greetings.put("Fritz", "Oh I love customers of Ados bank! They are so sweet! ");
+		greetings.put("Alice Farmer", "Smelling fish here, right? That's the spirit of the ocean! ");
+		greetings.put("Elisabeth", "Fantastic vacation so far and so much to explore! ");
+		greetings.put("Sue", "I love chocolate! You found me, maybe you can bring me a bar next time. ");
+		greetings.put("Old Mother Helena", "All of these flowers around give me a warm feeling. Hope you enjoy it too, thanks for visiting me! ");
+		greetings.put("Hazel", "Oh hello, so nice that you found me here. Come and join me again soon to let me cook some nice soup for you. ");
+		greetings.put("Captain Brownbeard", "The museum really is a lovely place to work at. Wonderful that you found me here. ");
+		greetings.put("Jane", "Yaaarrrr! My boatey will bring you over the sea, the sea! *sing* ");
+		greetings.put("Seremela", "It's hot here at the beach, hope you used some suntan cream. ");
+		greetings.put("Phalk", "Beautiful flowers in this city here! Unfortunately those elves don't appreciate them much. ");
+		greetings.put("Fidorea", "Young warrior, you did great things on your journey! Now return to finish it. You must be thirsty! ");
 	}
 	
 
 	private void setupTexts() {
-		texts.put("Adena", "The next person you should find runs her own business. "
-				  + "She sells fresh vegetables and food from farms near Semos.");
-		texts.put("Valo", "The next person on your trail lives and works in a church. He can concoct some useful drinks for you.");
+		texts.put("Nishiya", "You start your journey with talking to a sheep loving man in Semos Village. He sells them, too!");
+		texts.put("Marcus", "The next person you should find takes care of thieves and other criminals. "
+				  + "He works in a fort near Semos.");
+		texts.put("Eheneumniranin", "You'll have to find the half sickling elf on Ados farm, next. He is always busy while gathering grain.");
 		texts.put("Balduin", "The next person on your trail sits on top of a really windy mountain.");
-		texts.put("Gaston", "The next person is a really good baker and can create lovely food from butter and chocolate. Both his name and the food he creates are in a language foreign to me.");
-		texts.put("Lobelia", "The next mystical person is gazing intently at the flowerbeds around her and knows a lot about your further travels...");
-		texts.put("Ortiv Milquetoast", "You'll need some calm with you, as the next person is really afraid of Assassins and Bandits.");
-		texts.put("Pam", "The next lady loves sunbathing on a special island and is a good friend of Zara."); 
+		texts.put("Rachel", "The next lady to find works in a bank and can tell you all about her job.");
+		texts.put("Fritz", "Please go and find the old fisherman in Ados who can tell you great stories about fish. He also has a daughter named Caroline.");
+		texts.put("Alice Farmer", "The next person you'll have to seek out is on vacation in Ados, together with her whole family. She also knows everything about food and drinks.");
+		texts.put("Elisabeth", "Now you have to find a young girl who plays on a playground in Kirdneh and loves chocolate."); 
+		texts.put("Sue", "Please go and find the nice gardener who owns some greenhouses with tomatoes inside near Kalavan.");
 		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy.");
-		texts.put("Imorgen", "The hobbies of the next person you have to find, are singing and brewing special mystical mixtures. She lives surrounded by trees in a small hut, together with her grandma.");
-		texts.put("Anastasia", "Please go and see after the next lady who is currently taking care of her ill son. They live in a lovely countryside.");
-		texts.put("Vulcanus", "Next you must find the son of a god, who greets you in Greek.");
-		texts.put("Wrvil", "Now go and meet the husband of a barmaid which is famous for her strong torcibud drinks.");
+		texts.put("Hazel", "I know a really nice lady who can help you next. She works in a museum and loves her job.");
+		texts.put("Captain Brownbeard", "Now you have to travel on a ferry to talk to an old salt who will lead you to the next person to meet up with.");
+		texts.put("Jane", "Harrr yarrr the next lady enjoys a sunbath together with her husband on Athor beach.");
+		texts.put("Seremela", "It's not long ago that the next person you have to find opened a beautiful flowershop. I've seen lots of long eared creatures walking around her, hidden in a city which lays in a forest.");
+		texts.put("Phalk", "The next person you have to find is an old warrior who guards the mines, north to Semos.");
 		texts.put("Fidorea", "The final person to talk to, is the one who started all this.");
 	}
 	
