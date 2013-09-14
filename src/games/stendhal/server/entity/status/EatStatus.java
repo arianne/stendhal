@@ -11,21 +11,21 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.Killer;
 
 /**
- * poison status
+ * eat status
  */
-public class PoisonStatus extends ConsumableStatus implements Killer {
+public class EatStatus extends ConsumableStatus {
+
 	/**
-	 * Poison
+	 * eat
 	 *
 	 * @param amount     total amount
 	 * @param frequency  frequency of events
 	 * @param regen      hp change on each event
 	 */
-	public PoisonStatus(int amount, int frequency, int regen) {
-		super("poison", amount, frequency, regen);
+	public EatStatus(int amount, int frequency, int regen) {
+		super("eat", amount, frequency, regen);
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class PoisonStatus extends ConsumableStatus implements Killer {
 	 */
 	@Override
 	public StatusType getStatusType() {
-		return StatusType.POISONED;
+		return StatusType.EATING;
 	}
 
 }
