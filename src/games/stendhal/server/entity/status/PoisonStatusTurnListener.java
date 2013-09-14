@@ -47,11 +47,12 @@ public class PoisonStatusTurnListener implements TurnListener {
 		if (toConsume.isEmpty()) {
 			if (entity.has(ATTRIBUTE_NAME)) {
 				entity.remove(ATTRIBUTE_NAME);
+				entity.notifyWorldAboutChanges();
 			}
 			return;
 		}
 
-		List<PoisonStatus> toRemove = new LinkedList<PoisonStatus>();
+		List<ConsumableStatus> toRemove = new LinkedList<ConsumableStatus>();
 		int sum = 0;
 		int amount = 0;
 		for (final PoisonStatus poison : toConsume) {
@@ -68,8 +69,8 @@ public class PoisonStatusTurnListener implements TurnListener {
 			}
 		}
 
-		for (final PoisonStatus poison : toRemove) {
-			statusList.remove(poison);
+		for (final ConsumableStatus consumable : toRemove) {
+			statusList.remove(consumable);
 		}
 		TurnNotifier.get().notifyInTurns(1, this);
 	}
