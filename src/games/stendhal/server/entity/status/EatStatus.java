@@ -12,8 +12,11 @@
 package games.stendhal.server.entity.status;
 
 
+
 /**
  * eat status
+ *
+ * Note: this class has a natural ordering that is inconsistent with equals.
  */
 public class EatStatus extends ConsumableStatus {
 
@@ -37,5 +40,6 @@ public class EatStatus extends ConsumableStatus {
 	public StatusType getStatusType() {
 		return StatusType.EATING;
 	}
+
 
 }

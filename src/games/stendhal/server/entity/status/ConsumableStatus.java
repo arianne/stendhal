@@ -14,9 +14,11 @@ package games.stendhal.server.entity.status;
 /**
  * a consumable status such as poison or eating
  *
+ * Note: this class has a natural ordering that is inconsistent with equals.
+ *
  * @author hendrik
  */
-abstract class ConsumableStatus extends Status {
+abstract class ConsumableStatus extends Status implements Comparable<ConsumableStatus> {
 
 	private int amount;
 	private int frequency;
@@ -107,4 +109,16 @@ abstract class ConsumableStatus extends Status {
 		}
 	}
 
+	/**
+	 * compares to ComsumableStatus objects to sorts the status with the largest effect first
+	 *
+	 * @param other consumable status
+	 * @return result of comparison
+	 */
+	@Override
+	public int compareTo(final ConsumableStatus other) {
+		final float result = (float) other.getRegen() / (float) other.getFrecuency()
+				- (float) getRegen() / (float) getFrecuency();
+		return (int) Math.signum(result);
+	}
 }
