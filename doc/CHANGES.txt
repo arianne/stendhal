@@ -1,7 +1,20 @@
 ﻿Changelog
 ---------
 
+1.11
+
+*world*
+- Margaret accepts coupons
+
+*client*
+
+*fixes*
+
+*code*
+
+
 1.10
+9th September 2013
 
 *world*
 - More creature descriptions
