@@ -18,6 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
+import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.LinkedList;
@@ -33,8 +34,7 @@ import org.apache.log4j.Logger;
 public class StatusList {
 	private static Logger logger = Logger.getLogger(StatusList.class);
 
-	// TODO: Use Weak reference
-	private RPEntity entity;
+	private WeakReference<RPEntity> entityRef;
 
 	/** Container for statuses inflicted on entity */
 	private List<Status> statuses;
@@ -53,7 +53,7 @@ public class StatusList {
 
 
 	public StatusList(RPEntity entity) {
-		this.entity = entity;
+		this.entityRef = new WeakReference<RPEntity>(entity);
 		immunities = EnumSet.noneOf(StatusType.class);
 		resistances = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
@@ -61,7 +61,6 @@ public class StatusList {
 	}
 
 	public void logic() {
-
 		consume(SingletonRepository.getRuleProcessor().getTurn());
 	}
 
@@ -216,6 +215,11 @@ public class StatusList {
 	 *            Entity that is inflicting status
 	 */
 	public void inflictStatus(final Status status, final RPEntity attacker) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
+
 		String statusName = status.getName();
 
 		int count = statusOccurrenceCount(status.getName());
@@ -275,6 +279,10 @@ public class StatusList {
 	 * @param statusType type of status
 	 */
 	public void removeImmunity(StatusType statusType) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
 		immunities.remove(statusType);
 		entity.sendPrivateText("You are not immune to being " + statusType.getName() + " anymore.");
 	}
@@ -286,6 +294,11 @@ public class StatusList {
 	 *            Status attack type
 	 */
 	public void setImmune(final StatusAttacker attacker) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
+
 		final String statusName = attacker.getName();
 
 		// Remove any current instances of the status attribute
@@ -308,6 +321,11 @@ public class StatusList {
 	 * @return Entity is still affected by another instance
 	 */
 	public boolean removeStatus(final String statusName) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return false;
+		}
+
 		if (hasStatus(statusName)) {
 			int index = getFirstStatusIndex(statusName);
 			statuses.remove(index);
@@ -375,6 +393,11 @@ public class StatusList {
 	 *         immune
 	 */
 	public boolean poison(final ConsumableItem item) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return false;
+		}
+		
 		if (isImmune(StatusType.POISONED)) {
 			return false;
 		} else {
@@ -408,6 +431,11 @@ public class StatusList {
 	}
 
 	public void eat(final ConsumableItem item) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
+
 		if (isChoking()) {
 			entity.put("choking", 0);
 		} else {
@@ -417,6 +445,11 @@ public class StatusList {
 	}
 
 	private void consume(final int turn) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
+
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size() > 0) {
 			final ConsumableItem food = itemsToConsume.get(0);
@@ -486,10 +519,10 @@ public class StatusList {
 	/**
 	 * gets the entity for this StatusList
 	 *
-	 * @return RPEntity
+	 * @return RPEntity or <code>null</code>
 	 */
 	RPEntity getEntity() {
-		return entity;
+		return entityRef.get();
 	}
 
 
