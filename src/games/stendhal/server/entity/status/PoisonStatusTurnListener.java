@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class PoisonStatusTurnListener implements TurnListener {
 	private StatusList statusList;
+	private static final String ATTRIBUTE_NAME = "poisoned";
 
 	/**
 	 * PoisonStatusTurnListener
@@ -35,7 +36,7 @@ public class PoisonStatusTurnListener implements TurnListener {
 
 	public void onTurnReached(int turn) {
 		RPEntity entity = statusList.getEntity();
-		List<PoisonStatus> poisonToConsume = statusList.getAllStatusByClass(PoisonStatus.class);
+		List<PoisonStatus> toConsume = statusList.getAllStatusByClass(PoisonStatus.class);
 
 		// check that the entity exists
 		if (entity == null) {
@@ -43,31 +44,31 @@ public class PoisonStatusTurnListener implements TurnListener {
 		}
 
 		// cleanup poison status
-		if (poisonToConsume.isEmpty()) {
-			if (entity.has("poisoned")) {
-				entity.remove("poisoned");
+		if (toConsume.isEmpty()) {
+			if (entity.has(ATTRIBUTE_NAME)) {
+				entity.remove(ATTRIBUTE_NAME);
 			}
 			return;
 		}
 
-		List<PoisonStatus> poisonsToRemove = new LinkedList<PoisonStatus>();
+		List<PoisonStatus> toRemove = new LinkedList<PoisonStatus>();
 		int sum = 0;
 		int amount = 0;
-		for (final PoisonStatus poison : poisonToConsume) {
+		for (final PoisonStatus poison : toConsume) {
 			if (turn % poison.getFrecuency() == 0) {
 				if (poison.consumed()) {
-					poisonsToRemove.add(poison);
+					toRemove.add(poison);
 				} else {
 					amount = poison.consume();
 					entity.damage(-amount, poison);
 					sum += amount;
-					entity.put("poisoned", sum);
+					entity.put(ATTRIBUTE_NAME, sum);
 				}
 				entity.notifyWorldAboutChanges();
 			}
 		}
 
-		for (final PoisonStatus poison : poisonsToRemove) {
+		for (final PoisonStatus poison : toRemove) {
 			statusList.remove(poison);
 		}
 		TurnNotifier.get().notifyInTurns(1, this);
