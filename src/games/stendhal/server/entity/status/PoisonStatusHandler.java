@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 
 /**
@@ -30,8 +31,13 @@ public class PoisonStatusHandler implements StatusHandler<PoisonStatus> {
 			statusList.addInternal(status);
 		}
 
+		// activate the turnListener, if this is the first instance of this status
+		// note: the turnListener is called one last time after the last instance was comsumed to cleanup attributes.
+		// So even with count==0, there might still be a listener which needs to be removed
 		if (count == 0) {
-			TurnNotifier.get().notifyInTurns(1, new PoisonStatusTurnListener(statusList));
+			TurnListener turnListener = new PoisonStatusTurnListener(statusList);
+			TurnNotifier.get().dontNotify(turnListener);
+			TurnNotifier.get().notifyInTurns(0, turnListener);
 		}
 	}
 

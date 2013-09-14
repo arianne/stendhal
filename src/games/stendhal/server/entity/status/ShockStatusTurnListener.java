@@ -48,7 +48,7 @@ public class ShockStatusTurnListener implements TurnListener {
 			entity.clearPath();
 		}
 
-		TurnNotifier.get().notifyInTurns(1, this);
+		TurnNotifier.get().notifyInTurns(0, this);
 	}
 
 }

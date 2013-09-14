@@ -82,11 +82,28 @@ public class EatStatusTurnListener implements TurnListener {
 			}
 		}
 
-		TurnNotifier.get().notifyInTurns(1, this);
+		TurnNotifier.get().notifyInTurns(0, this);
 	}
 
 	private boolean isChoking(List<EatStatus> toConsume) {
 		return toConsume.size() > 5;
+	}
+
+	@Override
+	public int hashCode() {
+		return statusList.hashCode() * 31;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+		EatStatusTurnListener other = (EatStatusTurnListener) obj;
+		return statusList.equals(other.statusList);
 	}
 
 }

@@ -72,7 +72,24 @@ public class PoisonStatusTurnListener implements TurnListener {
 		for (final ConsumableStatus consumable : toRemove) {
 			statusList.remove(consumable);
 		}
-		TurnNotifier.get().notifyInTurns(1, this);
+		TurnNotifier.get().notifyInTurns(0, this);
+	}
+
+	@Override
+	public int hashCode() {
+		return statusList.hashCode() * 31;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+		PoisonStatusTurnListener other = (PoisonStatusTurnListener) obj;
+		return statusList.equals(other.statusList);
 	}
 
 }

@@ -32,7 +32,7 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 
 		if (count == 0) {
 			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
-			TurnNotifier.get().notifyInTurns(1, new ShockStatusTurnListener(statusList));
+			TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
 		}
 	}
 
