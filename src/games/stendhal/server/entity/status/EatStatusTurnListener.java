@@ -44,7 +44,7 @@ public class EatStatusTurnListener implements TurnListener {
 			return;
 		}
 
-		// cleanup poison status
+		// cleanup status
 		if (toConsume.isEmpty()) {
 			if (entity.has(ATTRIBUTE_NAME)) {
 				entity.remove(ATTRIBUTE_NAME);
