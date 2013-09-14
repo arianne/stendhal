@@ -78,7 +78,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		greetings.put("Alice Farmer", "Smelling fish here, right? That's the spirit of the ocean! ");
 		greetings.put("Elisabeth", "Fantastic vacation so far and so much to explore! ");
 		greetings.put("Sue", "I love chocolate! You found me, maybe you can bring me a bar next time. ");
-		greetings.put("Old Mother Helena", "All of these flowers around give me a warm feeling. Hope you enjoy it too, thanks for visiting me! ");
+		greetings.put("Old Mother Helena", "All of these flowers around give me a warm feeling. Hope you enjoy them too, thanks for visiting me! ");
 		greetings.put("Hazel", "Oh hello, so nice that you found me here. Come and join me again soon to let me cook some nice soup for you. ");
 		greetings.put("Captain Brownbeard", "The museum really is a lovely place to work at. Wonderful that you found me here. ");
 		greetings.put("Jane", "Yaaarrrr! My boatey will bring you over the sea, the sea! *sing* ");
@@ -89,7 +89,6 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 	
 
 	private void setupTexts() {
-		texts.put("Nishiya", "You start your journey with talking to a sheep loving man in Semos Village. He sells them, too!");
 		texts.put("Marcus", "The next person you should find takes care of thieves and other criminals. "
 				  + "He works in a fort near Semos.");
 		texts.put("Eheneumniranin", "You'll have to find the half sickling elf on Ados farm, next. He is always busy while gathering grain.");
@@ -99,9 +98,9 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 		texts.put("Alice Farmer", "The next person you'll have to seek out is on vacation in Ados, together with her whole family. She also knows everything about food and drinks.");
 		texts.put("Elisabeth", "Now you have to find a young girl who plays on a playground in Kirdneh and loves chocolate."); 
 		texts.put("Sue", "Please go and find the nice gardener who owns some greenhouses with tomatoes inside near Kalavan.");
-		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy.");
+		texts.put("Old Mother Helena", "Now please go and try to find a nice old woman who is really famous for her soups which can keep you warm and healthy. She might ask you about them first, just try to put her off for now :)");
 		texts.put("Hazel", "I know a really nice lady who can help you next. She works in a museum and loves her job.");
-		texts.put("Captain Brownbeard", "Now you have to travel on a ferry to talk to an old salt who will lead you to the next person to meet up with.");
+		texts.put("Captain Brownbeard", "Now you have to travel on a ferry and talk to an old salt who will lead you to the next person to meet up with.");
 		texts.put("Jane", "Harrr yarrr the next lady enjoys a sunbath together with her husband on Athor beach.");
 		texts.put("Seremela", "It's not long ago that the next person you have to find opened a beautiful flowershop. I've seen lots of long eared creatures walking around her, hidden in a city which lays in a forest.");
 		texts.put("Phalk", "The next person you have to find is an old warrior who guards the mines, north to Semos.");
@@ -214,7 +213,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			Arrays.asList("paper", "chase"),
 			new SystemPropertyCondition("stendhal.minetown"),
 			ConversationStates.ATTENDING,
-			"You must ask every person on the trail about the #paper #chase. First you must go to Semos Road to find a young boy who warns players about the dangers in Faiumoni."
+			"You must ask every person on the trail about the #paper #chase. Your journey starts in Semos Village, where you find a sheep loving and sheep selling man. "
 			+ "And just a warning: you may teleport on your journey, but every teleport will count as " + TELEPORT_PENALTY_IN_MINUTES + " minutes on the high score sign.",
 			startAction);
 
