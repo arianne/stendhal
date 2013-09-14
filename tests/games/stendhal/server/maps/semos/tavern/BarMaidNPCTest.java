@@ -84,8 +84,9 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "offer"));
 		assertEquals("I sell beer, wine, flask, cheese, apple, carrot, meat, and ham.", getReply(npc));
 
-		// Currently there are no "quest" responses for Margaret.
-		assertFalse(en.step(player, "quest"));
+		assertTrue(en.step(player, "quest"));
+		assertEquals("Oh nice that you ask me. Unfortunately I have nothing to do for you.", getReply(npc));
+
 
 		assertTrue(en.step(player, "buy"));
 		assertEquals("Please tell me what you want to buy.", getReply(npc));
