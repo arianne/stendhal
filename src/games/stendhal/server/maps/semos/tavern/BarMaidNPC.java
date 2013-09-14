@@ -17,10 +17,16 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -62,13 +68,34 @@ public class BarMaidNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addReply("flask", "If you wish to buy a flask please just tell me: #buy #flask. Or, you can ask what else I #offer.");
+				addQuest("Oh nice that you ask me. Unfortunately I have nothing to do for you.");
 				addJob("I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));
+
 				addGoodbye();
 			}
 		};
-
+		
+		//coupon for free beer
+		
+        margaret.add(ConversationStates.ATTENDING,
+                (Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
+                new PlayerHasItemWithHimCondition("coupon"),
+                ConversationStates.ATTENDING,
+                "Oh you found one of the coupons which I spread around some time ago. Enjoy the beer!",
+                new MultipleActions(new DropItemAction("coupon"),
+                					new EquipItemAction("beer"))
+                );
+        
+        margaret.add(ConversationStates.ATTENDING,
+        		(Arrays.asList("coupon", "coupons", "beer coupon", "free beer")),
+                new NotCondition(new PlayerHasItemWithHimCondition("coupon")),
+                ConversationStates.ATTENDING,
+                "Don't lie, you don't own one of the rare coupons. It's hard to run a tavern nowadays, don't lie to me!",
+                null
+                );
+        
 		margaret.setEntityClass("tavernbarmaidnpc");
 		margaret.setDescription("Margaret looks so warm and welcoming that you can't help but want to buy something from her.");
 		margaret.setPosition(11, 4);
