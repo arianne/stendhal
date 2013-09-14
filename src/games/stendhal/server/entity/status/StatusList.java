@@ -19,7 +19,6 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.lang.ref.WeakReference;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,18 +41,11 @@ public class StatusList {
 	/** Immunites to statuses */
 	private EnumSet<StatusType> immunities;
 
-	/**
-	 * Food, drinks etc. that the player wants to consume and has not finished
-	 * with.
-	 */
-	List<ConsumableItem> itemsToConsume;
-
 
 	public StatusList(RPEntity entity) {
 		this.entityRef = new WeakReference<RPEntity>(entity);
 		immunities = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
-		itemsToConsume = new LinkedList<ConsumableItem>();
 	}
 
 	public void logic() {
@@ -373,34 +365,20 @@ public class StatusList {
 		
 		if (isImmune(StatusType.POISONED)) {
 			return false;
-		} else {
-			/*
-			 * Send the client the new poisoning status, but avoid overwriting
-			 * the real value in case the player was already poisoned.
-			 */
-			if (!entity.has("poisoned")) {
-				entity.put("poisoned", "0");
-				entity.notifyWorldAboutChanges();
-			}
-			PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-			new PoisonStatusHandler().inflict(status, this);
-			if (entity instanceof Player) {
-				TutorialNotifier.poisoned((Player) entity);
-			}
-			return true;
 		}
-	}
 
-	public boolean isFull() {
-		return itemsToConsume.size() > 4;
-	}
-
-	public boolean isChoking() {
-		return itemsToConsume.size() > 5;
-	}
-
-	public boolean isChokingToDeath() {
-		return itemsToConsume.size() > 8;
+		// Send the client the new status, but avoid overwriting
+		// the real value in case the player was already poisoned.
+		if (!entity.has("poisoned")) {
+			entity.put("poisoned", "0");
+			entity.notifyWorldAboutChanges();
+		}
+		PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
+		new PoisonStatusHandler().inflict(status, this);
+		if (entity instanceof Player) {
+			TutorialNotifier.poisoned((Player) entity);
+		}
+		return true;
 	}
 
 	public void eat(final ConsumableItem item) {
@@ -409,12 +387,33 @@ public class StatusList {
 			return;
 		}
 
+		// Send the client the new status, but avoid overwriting
+		// the real value in case the player was already poisoned.
 		if (isChoking()) {
-			entity.put("choking", 0);
+			if (!entity.has("choking")) {
+				entity.put("choking", 0);
+			}
 		} else {
-			entity.put("eating", 0);
+			if (!entity.has("eating")) {
+				entity.put("eating", 0);
+			}
 		}
-		itemsToConsume.add(item);
+		entity.notifyWorldAboutChanges();
+
+		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
+		new EatStatusHandler().inflict(status, this);
+	}
+
+	public boolean isFull() {
+		return countStatusByType(StatusType.EATING) > 4;
+	}
+
+	public boolean isChoking() {
+		return countStatusByType(StatusType.EATING) > 5;
+	}
+
+	public boolean isChokingToDeath() {
+		return countStatusByType(StatusType.EATING) > 8;
 	}
 
 	private void consume(final int turn) {
@@ -422,52 +421,17 @@ public class StatusList {
 		if (entity == null) {
 			return;
 		}
-
-		Collections.sort(itemsToConsume);
-		if (itemsToConsume.size() > 0) {
-			final ConsumableItem food = itemsToConsume.get(0);
-			if (food.consumed()) {
-				itemsToConsume.remove(0);
-			} else {
-				if (turn % food.getFrecuency() == 0) {
-					logger.debug("Consumed item: " + food);
-					final int amount = food.consume();
-					if (isChoking()) {
-						entity.put("choking", amount);
-					} else {
-						if (entity.has("choking")) {
-							entity.remove("choking");
-						}
-						entity.put("eating", amount);
-					}
-					if (entity.heal(amount, true) == 0) {
-						itemsToConsume.clear();
-					}
-				}
-			}
-		} else {
-			if (entity.has("eating")) {
-				entity.remove("eating");
-			}
-			if (entity.has("choking")) {
-				entity.remove("choking");
-			}
-		}
-
 		entity.notifyWorldAboutChanges();
 	}
 
-	public void clearFoodList() {
-		itemsToConsume.clear();
-	}
 
 	public void clear() {
-		itemsToConsume.clear();
+		// TODO: notify handler
 		statuses.clear();
 	}
 
 	public void remove(Status status) {
-		// TODO Auto-generated method stub
+		// TODO: notify handler
 		removeInternal(status);
 	}
 

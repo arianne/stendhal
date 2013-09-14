@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.EatStatus;
 
 class Eater implements Feeder {
 
@@ -31,7 +32,7 @@ class Eater implements Feeder {
 			final Item sick = SingletonRepository.getEntityManager().getItem("vomit");
 			player.getZone().add(sick);
 			sick.setPosition(player.getX(), player.getY() + 1);
-			player.getStatusList().clearFoodList();
+			player.getStatusList().removeAll(EatStatus.class);
 			player.notifyWorldAboutChanges();
 			return false;
 		}
