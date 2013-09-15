@@ -18,6 +18,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -386,7 +387,8 @@ public class StatusList {
 		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
 		status.getStatusType().getStatusHandler().inflict(status, this);
 
-		if (item.getName().equals("beer") || item.getName().equals("wine")) {
+		List<String> alcoholicDrinks = Arrays.asList("beer", "pina colada", "wine", "strong koboldish torcibud", "vsop koboldish torcibud");
+		if (alcoholicDrinks.contains(item.getName())) {
 			DrunkStatus drunkStatus = new DrunkStatus();
 			drunkStatus.getStatusType().getStatusHandler().inflict(drunkStatus, this);
 		}
