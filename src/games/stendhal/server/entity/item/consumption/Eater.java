@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -24,6 +21,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.DrunkStatus;
 import games.stendhal.server.entity.status.EatStatus;
 import games.stendhal.server.entity.status.StatusType;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * eats food or drinks
@@ -60,8 +60,9 @@ class Eater implements Feeder {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");
 		}
 
-		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		player.getStatusList().inflictStatus(status, item);
+		ConsumableItem splitOff = (ConsumableItem) item.splitOff(1);
+		EatStatus status = new EatStatus(splitOff.getAmount(), splitOff.getFrecuency(), splitOff.getRegen());
+		player.getStatusList().inflictStatus(status, splitOff);
 
 		List<String> alcoholicDrinks = Arrays.asList("beer", "pina colada", "wine", "strong koboldish torcibud", "vsop koboldish torcibud");
 		if (alcoholicDrinks.contains(item.getName())) {
