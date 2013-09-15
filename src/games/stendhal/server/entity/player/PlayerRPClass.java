@@ -42,9 +42,6 @@ public class PlayerRPClass {
 		player.addRPEvent(Events.TRADE_STATE_CHANGE, Definition.PRIVATE);
 		player.addRPEvent(Events.REACHED_ACHIEVEMENT, Definition.PRIVATE);
 
-		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
-		player.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
-
 		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
 		player.addAttribute("outfit", Type.INT);

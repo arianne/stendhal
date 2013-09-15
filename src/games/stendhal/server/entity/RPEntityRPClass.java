@@ -54,17 +54,19 @@ public class RPEntityRPClass {
         entity.addAttribute("target", Type.INT, Definition.VOLATILE);
         entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
         entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
-        
+
         entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
         
         entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
         entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
-        
+
         // Status effects
+        entity.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_confuse", Type.SHORT, Definition.VOLATILE);
+        entity.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
-        
+
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);
         entity.addRPSlot("lhand", 1, Definition.PRIVATE);
