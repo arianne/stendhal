@@ -41,6 +41,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.status.Status;
 import games.stendhal.server.entity.status.StatusList;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
@@ -3001,7 +3002,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     /**
      * Check if entity can inflict a status effect
      * 
-     * @return
+     * @return true, if a statusAttack is defined; false otherwise
      */
     public boolean usesStatusAttack() {
         return (statusAttack != null);
@@ -3017,5 +3018,18 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			statusList = new StatusList(this);
 		}
 		return statusList;
+	}
+
+	/**
+	 * Find if the entity has a specified status
+	 * 
+	 * @param statusType the status type to check for
+	 * @return true, if the entity has status; false otherwise
+	 */
+	public boolean hasStatus(StatusType statusType) {
+		if (statusList == null) {
+			return false;
+		}
+		return statusList.hasStatus(statusType);
 	}
 }
