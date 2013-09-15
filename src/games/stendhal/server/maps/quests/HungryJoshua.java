@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -20,6 +22,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -30,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.EatStatus;
 import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
@@ -197,6 +201,8 @@ public class HungryJoshua extends AbstractQuest {
 		reward.add(new IncreaseXPAction(150));
 		reward.add(new SetQuestAction(QUEST_SLOT, "joshua"));
 		reward.add(new IncreaseKarmaAction(15));
+		ConsumableItem item = (ConsumableItem) SingletonRepository.getEntityManager().getItem("sandwich");
+		reward.add(new InflictStatusOnNPCAction(new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen())));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 
