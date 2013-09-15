@@ -142,7 +142,7 @@ public abstract class GuidedEntity extends ActiveEntity {
         guide.clearPath();
     }
     
-	/*
+	/**
 	 * Changed the entity's path to walk in the oppisite direction
 	 */
 	public void reversePath() {

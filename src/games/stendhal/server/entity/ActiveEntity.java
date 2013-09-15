@@ -85,11 +85,11 @@ public abstract class ActiveEntity extends Entity {
 	public void applyMovement() {
 		// even if we could we would not move;
 		if (speed == 0) {
-		    stepsTaken = 0;
+			stepsTaken = 0;
 			return;
 		}
 		if (direction == Direction.STOP) {
-		    stepsTaken = 0;
+			stepsTaken = 0;
 			return;
 		}
 		
@@ -145,8 +145,6 @@ public abstract class ActiveEntity extends Entity {
 			move(x, y, nx, ny);
 			stepsTaken += 1;
 		}
-
-		notifyWorldAboutChanges();
 	}
 
 	protected void handleObjectCollision() {
@@ -155,6 +153,7 @@ public abstract class ActiveEntity extends Entity {
 
 	private void move(final int x, final int y, final int nx, final int ny) {
 		setPosition(nx, ny);
+		notifyWorldAboutChanges();
 	}
 
 	protected boolean handlePortal(final Portal portal) {

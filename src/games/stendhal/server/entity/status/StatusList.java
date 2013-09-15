@@ -422,11 +422,6 @@ public class StatusList {
 	}
 
 	private void consume(final int turn) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return;
-		}
-		entity.notifyWorldAboutChanges();
 	}
 
 
