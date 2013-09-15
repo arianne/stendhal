@@ -290,46 +290,15 @@ public class StatusList {
 		immunities.add(attacker.getStatusType());
 	}
 
-	/**
-	 * Removes a single instance of a status from entity
-	 * 
-	 * @param statusName
-	 *            Status to be removed
-	 * @return Entity is still affected by another instance
-	 */
-	public boolean removeStatus(final String statusName) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return false;
-		}
 
-		if (hasStatus(statusName)) {
-			int index = getFirstStatusIndex(statusName);
-			statuses.remove(index);
 
-			if (!hasStatus(statusName)) {
-				if (entity instanceof Player && !hasStatus(statusName)) {
-					((Player) entity).sendPrivateText(NotificationType.SCENE_SETTING, "\"" + statusName + "\" has worn off.");
-				}
-				if (entity.has("status_" + statusName)) {
-					entity.remove("status_" + statusName);
-				}
-				return false;
-			}
-		}
-		return true;
-	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	/**
 	 * Poisons the player with a poisonous item. Note that this method is also
 	 * used when a player has been poisoned while fighting against a poisonous

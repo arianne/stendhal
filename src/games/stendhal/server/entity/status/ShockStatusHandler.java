@@ -11,7 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.RPEntity;
 
 /**
  * handles ShockStatusHandler
@@ -44,9 +46,19 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	 */
 	public void remove(ShockStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
+
+		RPEntity entity = statusList.getEntity();
+		if (entity == null) {
+			return;
+		}
+
 		Status nextStatus = statusList.getFirstStatusByClass(ShockStatus.class);
 		if (nextStatus != null) {
 			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
+		} else {
+			entity.sendPrivateText(NotificationType.SCENE_SETTING, "\"" + status.getStatusType().getName() + "\" has worn off.");
+			entity.remove("status_" + status.getStatusType().getName());
 		}
+
 	}
 }

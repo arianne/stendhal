@@ -11,7 +11,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.RPEntity;
 
 /**
  * handles ConfuseStatus
@@ -41,5 +43,13 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 	 */
 	public void remove(ConfuseStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
+
+		RPEntity entity = statusList.getEntity();
+		if (entity == null) {
+			return;
+		}
+
+		entity.sendPrivateText(NotificationType.SCENE_SETTING, "\"" + status.getStatusType().getName() + "\" has worn off.");
+		entity.remove("status_" + status.getStatusType().getName());
 	}
 }
