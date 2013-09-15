@@ -13,6 +13,7 @@ package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
 /**
@@ -25,12 +26,25 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(ConfuseStatus status, StatusList statusList) {
+	@Override
+	public void inflict(ConfuseStatus status, StatusList statusList, Entity attacker) {
 		if (statusList.hasStatus(status.getStatusType())) {
 			return;
 		}
 
+		RPEntity entity = statusList.getEntity();
+		if (entity == null) {
+			return;
+		}
+		if (attacker == null) {
+			entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are confused.");
+		} else {
+			entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been confused by " + attacker.getName() + ".");
+		}
+
+		statusList.activateStatusAttribute("status_" + status.getName());
 		statusList.addInternal(status);
 		TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
 	}
@@ -41,6 +55,7 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
+	@Override
 	public void remove(ConfuseStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 

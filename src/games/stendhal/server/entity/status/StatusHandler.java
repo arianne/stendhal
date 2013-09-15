@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.server.entity.Entity;
+
 
 /**
  * handles status changes
@@ -25,8 +27,9 @@ public interface StatusHandler<T extends Status> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(T status, StatusList statusList);
+	public void inflict(T status, StatusList statusList, Entity attacker);
 
 	/**
 	 * removes a status

@@ -13,6 +13,7 @@ package games.stendhal.server.entity.status;
 
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 
 /**
  * handles eating
@@ -24,8 +25,10 @@ public class EatStatusHandler implements StatusHandler<EatStatus> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(EatStatus status, StatusList statusList) {
+	@Override
+	public void inflict(EatStatus status, StatusList statusList, Entity attacker) {
 		int count = statusList.countStatusByType(status.getStatusType());
 		statusList.addInternal(status);
 
@@ -45,6 +48,7 @@ public class EatStatusHandler implements StatusHandler<EatStatus> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
+	@Override
 	public void remove(EatStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 	}

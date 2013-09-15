@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 
 /**
  * handles DrunkStatusHandler
@@ -23,8 +24,10 @@ public class DrunkStatusHandler implements StatusHandler<DrunkStatus> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(DrunkStatus status, StatusList statusList) {
+	@Override
+	public void inflict(DrunkStatus status, StatusList statusList, Entity attacker) {
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
@@ -38,6 +41,7 @@ public class DrunkStatusHandler implements StatusHandler<DrunkStatus> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
+	@Override
 	public void remove(DrunkStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 	}

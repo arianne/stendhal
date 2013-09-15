@@ -13,6 +13,7 @@ package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
 /**
@@ -25,14 +26,17 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(ShockStatus status, StatusList statusList) {
+	@Override
+	public void inflict(ShockStatus status, StatusList statusList, Entity attacker) {
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
 		}
 
 		if (count == 0) {
+			statusList.activateStatusAttribute("status_" + status.getName());
 			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
 			TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
 		}
@@ -44,6 +48,7 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
+	@Override
 	public void remove(ShockStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 

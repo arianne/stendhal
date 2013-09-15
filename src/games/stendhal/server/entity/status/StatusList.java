@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
@@ -203,41 +202,7 @@ public class StatusList {
 	 *            Entity that is inflicting status
 	 */
 	public void inflictStatus(final Status status, final RPEntity attacker) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return;
-		}
-
-		String statusName = status.getName();
-
-		int count = statusOccurrenceCount(status.getName());
-		if ((count < status.allowedOccurrences())
-				|| (status.allowedOccurrences() < 0)) {
-			statuses.add(status);
-
-			if (!entity.has("status_" + statusName)) {
-				entity.put("status_" + statusName, 1);
-			}
-
-			if (attacker == null) {
-				entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
-			} else {
-				entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"" + statusName + "\" by " + attacker.getName());
-			}
-		} else {
-			logger.debug("Entity \"" + entity.getName() + "\" cannot add more occurrences of " + statusName + ". Total occurrences: " + count);
-			if (hasStatus(statusName)) {
-				// Reset counter for first instance of status
-				int index = getFirstStatusIndex(statusName);
-				statuses.remove(index);
-				statuses.add(index, status);
-				if (attacker == null) {
-					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"shock\"");
-				} else {
-					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been afflicted with \"" + statusName + "\" by " + attacker.getName());
-				}
-			}
-		}
+		status.getStatusType().getStatusHandler().inflict(status, this, attacker);
 	}
 
 	/**
@@ -290,7 +255,23 @@ public class StatusList {
 		immunities.add(attacker.getStatusType());
 	}
 
+	/**
+	 * activates a status attribute for the client without overriding a potential existing value
+	 *
+	 * @param attributeName name of attribute
+	 */
+	void activateStatusAttribute(String attributeName) {
+		RPEntity entity = entityRef.get();
+		if (entity == null) {
+			return;
+		}
 
+		// do not override an existing value (e. g. the amount of hp lost by another poison instance)
+		if (!entity.has(attributeName)) {
+			entity.put(attributeName, 0);
+			entity.notifyWorldAboutChanges();
+		}
+	}
 
 
 
@@ -321,12 +302,9 @@ public class StatusList {
 
 		// Send the client the new status, but avoid overwriting
 		// the real value in case the player was already poisoned.
-		if (!entity.has("poisoned")) {
-			entity.put("poisoned", "0");
-			entity.notifyWorldAboutChanges();
-		}
+		activateStatusAttribute("poison");
 		PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		status.getStatusType().getStatusHandler().inflict(status, this);
+		status.getStatusType().getStatusHandler().inflict(status, this, null);
 		if (entity instanceof Player) {
 			TutorialNotifier.poisoned((Player) entity);
 		}
@@ -343,23 +321,18 @@ public class StatusList {
 		// Send the client the new status, but avoid overwriting
 		// the real value in case the player was already poisoned.
 		if (countStatusByType(StatusType.EATING) > COUNT_CHOKING) {
-			if (!entity.has("choking")) {
-				entity.put("choking", 0);
-			}
+			activateStatusAttribute("choking");
 		} else {
-			if (!entity.has("eating")) {
-				entity.put("eating", 0);
-			}
+			activateStatusAttribute("eating");
 		}
-		entity.notifyWorldAboutChanges();
 
 		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		status.getStatusType().getStatusHandler().inflict(status, this);
+		status.getStatusType().getStatusHandler().inflict(status, this, null);
 
 		List<String> alcoholicDrinks = Arrays.asList("beer", "pina colada", "wine", "strong koboldish torcibud", "vsop koboldish torcibud");
 		if (alcoholicDrinks.contains(item.getName())) {
 			DrunkStatus drunkStatus = new DrunkStatus();
-			drunkStatus.getStatusType().getStatusHandler().inflict(drunkStatus, this);
+			drunkStatus.getStatusType().getStatusHandler().inflict(drunkStatus, this, null);
 		}
 	}
 

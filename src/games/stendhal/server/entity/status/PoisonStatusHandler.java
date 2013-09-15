@@ -13,6 +13,7 @@ package games.stendhal.server.entity.status;
 
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.entity.Entity;
 
 /**
  * handles ShockStatusHandler
@@ -24,8 +25,10 @@ public class PoisonStatusHandler implements StatusHandler<PoisonStatus> {
 	 * 
 	 * @param status Status to inflict
 	 * @param statusList StatusList
+	 * @param attacker the attacker
 	 */
-	public void inflict(PoisonStatus status, StatusList statusList) {
+	@Override
+	public void inflict(PoisonStatus status, StatusList statusList, Entity attacker) {
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
@@ -47,6 +50,7 @@ public class PoisonStatusHandler implements StatusHandler<PoisonStatus> {
 	 * @param status Status to inflict
 	 * @param statusList StatusList
 	 */
+	@Override
 	public void remove(PoisonStatus status, StatusList statusList) {
 		statusList.removeInternal(status);
 	}
