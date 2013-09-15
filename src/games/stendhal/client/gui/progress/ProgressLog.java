@@ -20,6 +20,7 @@ import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -280,14 +281,25 @@ class ProgressLog {
 		 */
 		void setFontName(String font) {
 			fontName = font;
-			update();
+			updateOnFontChange();
 		}
 		
 		@Override
 		public void setFont(Font font) {
 			super.setFont(font);
 			// The font itself is not used, but the size is
-			update();
+			updateOnFontChange();
+		}
+		
+		/**
+		 * Update only if visible to avoid opening the window just because
+		 * the font setting changed.
+		 */
+		private void updateOnFontChange() {
+			Container top = this.getTopLevelAncestor();
+			if (top != null && top.isVisible()) {
+				update();
+			}
 		}
 
 		/**
