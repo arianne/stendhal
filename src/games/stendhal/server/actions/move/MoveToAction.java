@@ -59,7 +59,7 @@ public class MoveToAction implements ActionListener {
 			return;
 		}
 
-		if (player.getStatusList().isPoisoned()) {
+		if (player.hasStatus(StatusType.POISONED)) {
 			player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			return;
 		}

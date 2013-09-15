@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class PoisonerTest {
 		final Poisoner poisoner = new Poisoner();
 		final Player bob = PlayerTestHelper.createPlayer("player");
 		poisoner.feed(c200_1, bob);
-		assertTrue(bob.getStatusList().isPoisoned());
+		assertTrue(bob.hasStatus(StatusType.POISONED));
 	}
 
 }

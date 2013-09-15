@@ -7,6 +7,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.townhall.MayorNPC;
@@ -14,10 +15,8 @@ import games.stendhal.server.maps.quests.ThePiedPiper;
 import games.stendhal.server.maps.quests.piedpiper.ITPPQuestConstants;
 import games.stendhal.server.maps.quests.piedpiper.TPPQuestHelperFunctions;
 
-
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
-
 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
@@ -92,7 +91,7 @@ public class TPPTestHelper implements ITPPQuestConstants {
 		do {
 			// prevent player killing
 			player.setHP(10000);
-			if(player.getStatusList().isPoisoned()) {
+			if(player.hasStatus(StatusType.POISONED)) {
 				player.getStatusList().healPoison();
 			}
 			player.teleport(rat.getZone(), rat.getX()+1, rat.getY(), null, player);

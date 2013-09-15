@@ -45,7 +45,7 @@ public class PoisonAttackerTest {
 		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attemptToInflict(victim);
-		assertTrue(victim.getStatusList().isPoisoned());
+		assertTrue(victim.hasStatus(StatusType.POISONED));
 	}
 
 	/**
@@ -59,6 +59,6 @@ public class PoisonAttackerTest {
 		final PoisonAttacker poisoner = new PoisonAttacker(0, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
 		poisoner.attemptToInflict(victim);
-		assertFalse(victim.getStatusList().isPoisoned());
+		assertFalse(victim.hasStatus(StatusType.POISONED));
 	}
 }

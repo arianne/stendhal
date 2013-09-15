@@ -21,6 +21,7 @@ import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 
 import java.util.List;
 
@@ -197,7 +198,7 @@ public class Portal extends Entity implements UseListener {
 			// Check that mouse movement is allowed first
 			if (!player.getZone().isMoveToAllowed()) {
 				player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
-			} else if (player.getStatusList().isPoisoned()) {
+			} else if (player.hasStatus(StatusType.POISONED)) {
 				player.sendPrivateText("Poison has disoriented you and you cannot move normally. You only seem able to walk backwards and cannot plan out any route in advance.");
 			} else {
 				final List<Node> path = Path.searchPath(player, this.getX(), this.getY());

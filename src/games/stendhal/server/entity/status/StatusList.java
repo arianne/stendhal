@@ -169,10 +169,10 @@ public class StatusList {
 	}
 
 	/**
-	 * Find if the player has a specified status
+	 * Find if the entity has a specified status
 	 * 
 	 * @param statusType the status type to check for
-	 * @return Entity has status
+	 * @return true, if the entity has status; false otherwise
 	 */
 	public boolean hasStatus(StatusType statusType) {
 		for (Status status : statuses) {
@@ -330,15 +330,6 @@ public class StatusList {
 	
 	
 	
-	/**
-	 * Checks whether the player is still suffering from the effect of a
-	 * poisonous item/creature or not.
-	 * @return true if player still has poisons to consume
-	 */
-	public boolean isPoisoned() {
-		return countStatusByType(StatusType.POISONED) > 0;
-	}
-
 	/**
 	 * Disburdens the player from the effect of a poisonous item/creature.
 	 */

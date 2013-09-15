@@ -19,6 +19,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.mithrilbourgh.throne_room.BuyerNPC;
@@ -31,8 +32,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
+import static org.junit.Assert.assertEquals;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import static utilities.SpeakerNPCTestHelper.getReply;
@@ -96,7 +97,7 @@ public class KillBlordroughsTest {
 		do {
 			// prevent player killing
 			player.setHP(10000);
-			if(player.getStatusList().isPoisoned()) {
+			if(player.hasStatus(StatusType.POISONED)) {
 				player.getStatusList().healPoison();
 			}
 			player.teleport(blr.getZone(), blr.getX(), blr.getY(), null, player);

@@ -50,6 +50,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
+import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
@@ -317,7 +318,7 @@ public class Player extends RPEntity implements UseListener {
 
 			// as an effect of the poisoning, the player's controls
 			// are switched to make it difficult to navigate.
-			if (getStatusList().isPoisoned() || has("status_confuse")) {
+			if (hasStatus(StatusType.POISONED) || has("status_confuse")) {
 				direction = direction.oppositeDirection();
 			}
 
