@@ -20,6 +20,8 @@ import games.stendhal.server.entity.Entity;
  */
 public class EatStatusHandler implements StatusHandler<EatStatus> {
 
+	private static final int COUNT_CHOKING = 5;
+
 	/**
 	 * inflicts a status
 	 * 
@@ -31,6 +33,13 @@ public class EatStatusHandler implements StatusHandler<EatStatus> {
 	public void inflict(EatStatus status, StatusList statusList, Entity attacker) {
 		int count = statusList.countStatusByType(status.getStatusType());
 		statusList.addInternal(status);
+
+		// Send the client the new status
+		if (count > COUNT_CHOKING) {
+			statusList.activateStatusAttribute("choking");
+		} else {
+			statusList.activateStatusAttribute("eating");
+		}
 
 		// activate the turnListener, if this is the first instance of this status
 		// note: the turnListener is called one last time after the last instance was comsumed to cleanup attributes.

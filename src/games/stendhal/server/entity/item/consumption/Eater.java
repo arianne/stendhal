@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,15 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.consumption;
 
+import java.util.Arrays;
+import java.util.List;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.DrunkStatus;
 import games.stendhal.server.entity.status.EatStatus;
 import games.stendhal.server.entity.status.StatusType;
 
+/**
+ * eats food or drinks
+ */
 class Eater implements Feeder {
 	private static final int COUNT_CHOKING_TO_DEATH = 8;
 	private static final int COUNT_CHOKING = 5;
@@ -51,10 +58,17 @@ class Eater implements Feeder {
 			player.notifyWorldAboutChanges();
 		} else if (count > COUNT_FULL) {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");
-		} 
-		player.getStatusList().eat((ConsumableItem) item.splitOff(1));
+		}
+
+		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
+		player.getStatusList().inflictStatus(status, item);
+
+		List<String> alcoholicDrinks = Arrays.asList("beer", "pina colada", "wine", "strong koboldish torcibud", "vsop koboldish torcibud");
+		if (alcoholicDrinks.contains(item.getName())) {
+			DrunkStatus drunkStatus = new DrunkStatus();
+			player.getStatusList().inflictStatus(drunkStatus, item);
+		}
 		return true;
 	}
-
 
 }

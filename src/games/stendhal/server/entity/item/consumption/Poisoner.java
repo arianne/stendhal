@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -14,14 +13,19 @@ package games.stendhal.server.entity.item.consumption;
 
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonStatus;
 
+/**
+ * Poisoner
+ */
 class Poisoner implements Feeder {
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-
-		return player.getStatusList().poison((ConsumableItem) item.splitOff(1));
-
+		ConsumableItem splitOff = (ConsumableItem) item.splitOff(1);
+		PoisonStatus status = new PoisonStatus(splitOff.getAmount(), splitOff.getFrecuency(), splitOff.getRegen());
+		player.getStatusList().inflictStatus(status, splitOff);
+		return true;
 	}
 
 }

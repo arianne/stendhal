@@ -35,15 +35,15 @@ public class PoisonStatusTurnListener implements TurnListener {
 	}
 
 	public void onTurnReached(int turn) {
-		RPEntity entity = statusList.getEntity();
-		List<PoisonStatus> toConsume = statusList.getAllStatusByClass(PoisonStatus.class);
 
 		// check that the entity exists
+		RPEntity entity = statusList.getEntity();
 		if (entity == null) {
 			return;
 		}
 
 		// cleanup poison status
+		List<PoisonStatus> toConsume = statusList.getAllStatusByClass(PoisonStatus.class);
 		if (toConsume.isEmpty()) {
 			if (entity.has(ATTRIBUTE_NAME)) {
 				entity.remove(ATTRIBUTE_NAME);

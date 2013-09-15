@@ -33,9 +33,7 @@ public class PoisonAttacker implements StatusAttacker {
 
 	@Override
 	public void applyAntistatus(double antipoison) {
-		/*
-		 * invert the value for multiplying
-		 */
+		// invert the value for multiplying
 		antipoison = (1 - antipoison);
 		this.probability *= antipoison;
 	}
@@ -43,26 +41,27 @@ public class PoisonAttacker implements StatusAttacker {
 	/**
 	 * 
 	 */
-    @Override
-    public boolean attemptToInflict(final RPEntity target) {
-        final int roll = Rand.roll1D100();
-        if (roll <= probability) {
-            target.getStatusList().poison(poison);
-            return true;
-        }
-        return false;
-    }
-    
-    @Override
-    public void clearConsumables(RPEntity target) {
-        target.getStatusList().removeAll(PoisonStatus.class);
-    }
-    
-    @Override
-    public String getName() {
-        return name;
-    }
-    
+	@Override
+	public boolean attemptToInflict(final RPEntity target) {
+		final int roll = Rand.roll1D100();
+		if (roll <= probability) {
+			PoisonStatus status = new PoisonStatus(poison.getAmount(), poison.getFrecuency(), poison.getRegen());
+			target.getStatusList().inflictStatus(status, poison);
+			return true;
+		}
+	return false;
+	}
+
+	@Override
+	public void clearConsumables(RPEntity target) {
+		target.getStatusList().removeAll(PoisonStatus.class);
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public int getProbability() {
 		return this.probability;

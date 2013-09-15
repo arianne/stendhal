@@ -70,8 +70,8 @@ public class PlayerDieer {
 		logger.debug("ondeadstart");
 		abondonPetsAndSheep();
 
-		stopEating();
-		
+		player.getStatusList().removeAll();
+
 		double penaltyFactor = 1.0;
 
 		// only lose skills if creature is a spawned creature and not one from /summon or Plague
@@ -218,12 +218,6 @@ public class PlayerDieer {
 			}
 		}
 	}
-
-
-	private void stopEating() {
-		player.getStatusList().clear();
-	}
-
 
 	private void abondonPetsAndSheep() {
 		final Sheep sheep = player.getSheep();

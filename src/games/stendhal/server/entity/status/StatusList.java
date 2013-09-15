@@ -11,13 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.player.Player;
 
 import java.lang.ref.WeakReference;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,40 +51,6 @@ public class StatusList {
 	 */
 	public List<Status> getStatuses() {
 		return statuses;
-	}
-
-	/**
-	 * Find the index of the first occurance of the status effect
-	 * 
-	 * @param statusName
-	 *            Status effect to search for
-	 * @return List index of status effect
-	 */
-	public int getFirstStatusIndex(final String statusName) {
-		int index;
-		for (index = 0; index < statuses.size(); index++) {
-			if (statuses.get(index).getName() == statusName) {
-				return index;
-			}
-		}
-		return -1;
-	}
-
-	/**
-	 * Count how many occurances of a status are inflicted on the entity
-	 * 
-	 * @param statusName
-	 *            Name of the status being checked
-	 * @return Number of times status is found
-	 */
-	public int statusOccurrenceCount(final String statusName) {
-		int count = 0;
-		for (Status status : statuses) {
-			if (status.getName().equals(statusName)) {
-				count += 1;
-			}
-		}
-		return count;
 	}
 
 	/**
@@ -149,6 +112,29 @@ public class StatusList {
 		}
 	}
 
+
+	/**
+	 * removes all statuses of this type
+	 *
+	 * @param statusType status type
+	 */
+	public void removeAll(StatusType statusType) {
+		for (Status status : new LinkedList<Status>(statuses)) {
+			if (status.getStatusType() == statusType) {
+				remove(status);
+			}
+		}
+	}
+
+	/**
+	 * removes all statuses (e. g. on death)
+	 */
+	public void removeAll() {
+		for (Status status : new LinkedList<Status>(statuses)) {
+			remove(status);
+		}
+	}
+
 	/**
 	 * Find if the entity has a specified status
 	 * 
@@ -169,20 +155,13 @@ public class StatusList {
 	 * 
 	 * @param status
 	 *            Status to be added
-	 */
-	public void inflictStatus(final Status status) {
-		inflictStatus(status, null);
-	}
-
-	/**
-	 * Add status effect to entity
-	 * 
-	 * @param status
-	 *            Status to be added
 	 * @param attacker
 	 *            Entity that is inflicting status
 	 */
-	public void inflictStatus(final Status status, final RPEntity attacker) {
+	public void inflictStatus(final Status status, final Entity attacker) {
+		if (isImmune(status.getStatusType())) {
+			return;
+		}
 		status.getStatusType().getStatusHandler().inflict(status, this, attacker);
 	}
 
@@ -217,23 +196,8 @@ public class StatusList {
 	 *            Status attack type
 	 */
 	public void setImmune(final StatusAttacker attacker) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return;
-		}
-
-		final String statusName = attacker.getName();
-
-		// Remove any current instances of the status attribute
-		if (entity.has("status_" + statusName)) {
-			entity.remove("status_" + statusName);
-		}
-
-		// FIXME: should clear any consumable statuses
-		attacker.clearConsumables(entity);
-
-		// Add to list of immunities
 		immunities.add(attacker.getStatusType());
+		removeAll(attacker.getStatusType());
 	}
 
 	/**
@@ -252,76 +216,6 @@ public class StatusList {
 			entity.put(attributeName, 0);
 			entity.notifyWorldAboutChanges();
 		}
-	}
-
-
-
-
-
-
-
-
-	/**
-	 * Poisons the player with a poisonous item. Note that this method is also
-	 * used when a player has been poisoned while fighting against a poisonous
-	 * creature.
-	 *
-	 * @param item
-	 *            the poisonous item
-	 * @return true iff the poisoning was effective, i.e. iff the player is not
-	 *         immune
-	 */
-	public boolean poison(final ConsumableItem item) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return false;
-		}
-		
-		if (isImmune(StatusType.POISONED)) {
-			return false;
-		}
-
-		// Send the client the new status, but avoid overwriting
-		// the real value in case the player was already poisoned.
-		activateStatusAttribute("poison");
-		PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		status.getStatusType().getStatusHandler().inflict(status, this, null);
-		if (entity instanceof Player) {
-			TutorialNotifier.poisoned((Player) entity);
-		}
-		return true;
-	}
-
-	private static final int COUNT_CHOKING = 5;
-	public void eat(final ConsumableItem item) {
-		RPEntity entity = entityRef.get();
-		if (entity == null) {
-			return;
-		}
-
-		// Send the client the new status, but avoid overwriting
-		// the real value in case the player was already poisoned.
-		if (countStatusByType(StatusType.EATING) > COUNT_CHOKING) {
-			activateStatusAttribute("choking");
-		} else {
-			activateStatusAttribute("eating");
-		}
-
-		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		status.getStatusType().getStatusHandler().inflict(status, this, null);
-
-		List<String> alcoholicDrinks = Arrays.asList("beer", "pina colada", "wine", "strong koboldish torcibud", "vsop koboldish torcibud");
-		if (alcoholicDrinks.contains(item.getName())) {
-			DrunkStatus drunkStatus = new DrunkStatus();
-			drunkStatus.getStatusType().getStatusHandler().inflict(drunkStatus, this, null);
-		}
-	}
-
-
-
-	public void clear() {
-		// TODO: notify handler
-		statuses.clear();
 	}
 
 	/**
@@ -359,6 +253,5 @@ public class StatusList {
 	RPEntity getEntity() {
 		return entityRef.get();
 	}
-
 
 }

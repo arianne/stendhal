@@ -13,7 +13,10 @@ package games.stendhal.server.entity.status;
 
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * handles ShockStatusHandler
@@ -29,9 +32,19 @@ public class PoisonStatusHandler implements StatusHandler<PoisonStatus> {
 	 */
 	@Override
 	public void inflict(PoisonStatus status, StatusList statusList, Entity attacker) {
+		RPEntity entity = statusList.getEntity();
+		if (entity == null) {
+			return;
+		}
+
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
+		}
+
+		statusList.activateStatusAttribute("poisoned");
+		if (entity instanceof Player) {
+			TutorialNotifier.poisoned((Player) entity);
 		}
 
 		// activate the turnListener, if this is the first instance of this status
