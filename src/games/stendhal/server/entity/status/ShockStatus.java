@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.RPEntity;
 
 /**
  * A status effect that causes the entity to stop moving after a set amount of
@@ -29,22 +28,7 @@ public class ShockStatus extends Status {
 	 * Create the status
 	 */
 	public ShockStatus() {
-		// Give the status a name
 		super("shock");
-		super.setTimeout(200);
-		super.setMaxOccurrences(6);
-	}
-
-	/**
-	 * Called on each turn
-	 * 
-	 * @param entity
-	 */
-	@Override
-	public void affect(final RPEntity entity) {
-		super.affect(entity);
-
-
 	}
 
 	/**

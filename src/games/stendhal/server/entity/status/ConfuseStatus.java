@@ -11,7 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.server.entity.RPEntity;
 
 /**
  * A status effect that causes the entity to stop moving after a set amount of
@@ -25,23 +24,7 @@ public class ConfuseStatus extends Status {
 	 * Create the status
 	 */
 	public ConfuseStatus() {
-		// Give the status a name
 		super("confuse");
-		super.setTimeout(200);
-		super.setMaxOccurrences(1);
-	}
-
-	/**
-	 * Called on each turn
-	 * 
-	 * @param entity
-	 */
-	@Override
-	public void affect(final RPEntity entity) {
-		super.affect(entity);
-
-		// Do nothing. The effects of this status are handled in RPEntity
-		// sub-classes.
 	}
 
 	/**

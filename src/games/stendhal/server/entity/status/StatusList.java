@@ -22,16 +22,12 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 /**
  * handles a list of status for an entity
  * 
  * @author hendrik
  */
 public class StatusList {
-	private static Logger logger = Logger.getLogger(StatusList.class);
-
 	private WeakReference<RPEntity> entityRef;
 
 	/** Container for statuses inflicted on entity */
@@ -151,21 +147,6 @@ public class StatusList {
 		for (Status status : interestingStatuses) {
 			remove(status);
 		}
-	}
-	/**
-	 * Find if the player has a specified status
-	 * 
-	 * @param statusName
-	 *            The status to check for
-	 * @return Entity has status
-	 */
-	private boolean hasStatus(final String statusName) {
-		for (Status status : statuses) {
-			if (status.getName().equals(statusName)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**

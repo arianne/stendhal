@@ -19,6 +19,7 @@ import games.stendhal.server.entity.Killer;
  * Note: this class has a natural ordering that is inconsistent with equals.
  */
 public class PoisonStatus extends ConsumableStatus implements Killer {
+
 	/**
 	 * Poison
 	 *
