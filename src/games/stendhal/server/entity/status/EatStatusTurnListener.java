@@ -14,6 +14,7 @@ package games.stendhal.server.entity.status;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
 import java.util.List;
@@ -73,7 +74,9 @@ public class EatStatusTurnListener implements TurnListener {
 
 			// is full hp?
 			if (entity.heal(amount, true) == 0) {
-				statusList.removeAll(EatStatus.class);
+				if (entity instanceof Player) {
+					statusList.removeAll(EatStatus.class);
+				}
 			}
 
 			// is item used up?

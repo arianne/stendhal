@@ -51,6 +51,18 @@ public abstract class Status {
 	}
 
 	/**
+	 * closes this PoisonStatus
+	 */
+	@Override
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	/**
 	 * returns the status type
 	 *
 	 * @return StatusType

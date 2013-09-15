@@ -98,18 +98,6 @@ abstract class ConsumableStatus extends Status implements Comparable<ConsumableS
 	}
 
 	/**
-	 * closes this PoisonStatus
-	 */
-	@Override
-	public Object clone() {
-		try {
-			return super.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-
-	/**
 	 * compares to ComsumableStatus objects to sorts the status with the largest effect first
 	 *
 	 * @param other consumable status
