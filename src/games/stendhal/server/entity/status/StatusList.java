@@ -12,7 +12,6 @@
 package games.stendhal.server.entity.status;
 
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
@@ -41,15 +40,15 @@ public class StatusList {
 	/** Immunites to statuses */
 	private EnumSet<StatusType> immunities;
 
-
+	/**
+	 * StatusList for an entity
+	 *
+	 * @param entity RPEntity which has the statuses managed by this list.
+	 */
 	public StatusList(RPEntity entity) {
 		this.entityRef = new WeakReference<RPEntity>(entity);
 		immunities = EnumSet.noneOf(StatusType.class);
 		statuses = new LinkedList<Status>();
-	}
-
-	public void logic() {
-		consume(SingletonRepository.getRuleProcessor().getTurn());
 	}
 
 	/**
@@ -419,9 +418,6 @@ public class StatusList {
 
 	public boolean isChokingToDeath() {
 		return countStatusByType(StatusType.EATING) > 8;
-	}
-
-	private void consume(final int turn) {
 	}
 
 

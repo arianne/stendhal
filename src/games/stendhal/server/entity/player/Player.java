@@ -1626,10 +1626,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public void logic() {
-		// Effects of any statuses entity might have
-		if (statusList != null) {
-			statusList.logic();
-		}
 
 		/*
 		 * TODO: Refactor Most of these things can be handled as RPEvents
