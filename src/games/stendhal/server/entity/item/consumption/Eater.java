@@ -19,12 +19,17 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.status.EatStatus;
+import games.stendhal.server.entity.status.StatusType;
 
 class Eater implements Feeder {
+	private static final int COUNT_CHOKING_TO_DEATH = 8;
+	private static final int COUNT_CHOKING = 5;
+	private static final int COUNT_FULL = 4;
 
 	@Override
 	public boolean feed(final ConsumableItem item, final Player player) {
-		if (player.getStatusList().isChokingToDeath()) {
+		int count = player.getStatusList().countStatusByType(StatusType.EATING);
+		if (count > COUNT_CHOKING_TO_DEATH) {
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand(2 * playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
@@ -37,18 +42,19 @@ class Eater implements Feeder {
 			return false;
 		}
 		
-		if (player.getStatusList().isChoking()) {
+		if (count > COUNT_CHOKING) {
 			// remove some HP so they know we are serious about this
 			int playerHP = player.getHP();
 			int chokingDamage = Rand.rand(playerHP / 3);
 			player.setHP(playerHP - chokingDamage);
 			player.sendPrivateText(NotificationType.NEGATIVE, "You eat so much at once that you choke on your food and lose " + Integer.toString(chokingDamage) + " health points. If you eat more you could be very sick.");
 			player.notifyWorldAboutChanges();
-		} else if (player.getStatusList().isFull()) {
+		} else if (count > COUNT_FULL) {
 			player.sendPrivateText("You are now full and shouldn't eat any more.");
 		} 
 		player.getStatusList().eat((ConsumableItem) item.splitOff(1));
 		return true;
 	}
+
 
 }

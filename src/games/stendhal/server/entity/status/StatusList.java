@@ -329,14 +329,6 @@ public class StatusList {
 	
 	
 	
-	
-	/**
-	 * Disburdens the player from the effect of a poisonous item/creature.
-	 */
-	public void healPoison() {
-		removeAll(PoisonStatus.class);
-	}
-
 	/**
 	 * Poisons the player with a poisonous item. Note that this method is also
 	 * used when a player has been poisoned while fighting against a poisonous
@@ -371,6 +363,7 @@ public class StatusList {
 		return true;
 	}
 
+	private static final int COUNT_CHOKING = 5;
 	public void eat(final ConsumableItem item) {
 		RPEntity entity = entityRef.get();
 		if (entity == null) {
@@ -379,7 +372,7 @@ public class StatusList {
 
 		// Send the client the new status, but avoid overwriting
 		// the real value in case the player was already poisoned.
-		if (isChoking()) {
+		if (countStatusByType(StatusType.EATING) > COUNT_CHOKING) {
 			if (!entity.has("choking")) {
 				entity.put("choking", 0);
 			}
@@ -399,17 +392,6 @@ public class StatusList {
 		}
 	}
 
-	public boolean isFull() {
-		return countStatusByType(StatusType.EATING) > 4;
-	}
-
-	public boolean isChoking() {
-		return countStatusByType(StatusType.EATING) > 5;
-	}
-
-	public boolean isChokingToDeath() {
-		return countStatusByType(StatusType.EATING) > 8;
-	}
 
 
 	public void clear() {

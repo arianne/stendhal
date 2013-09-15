@@ -33,6 +33,7 @@ import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TimePassedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonStatus;
 import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
@@ -304,7 +305,7 @@ public class Soup extends AbstractQuest {
 									 * stage
 									 */
 									placeSoupFor(player);
-									player.getStatusList().healPoison();
+									player.getStatusList().removeAll(PoisonStatus.class);
 									npc.say("The soup's on the table for you. It will heal you. "
 											+ "My magical method in making the soup has given you a little karma too.");
 									player.setQuest(QUEST_SLOT, "done;"
@@ -387,7 +388,7 @@ public class Soup extends AbstractQuest {
 			// and no karma
 			player.addXP(20);
 			placeSoupFor(player);
-			player.getStatusList().healPoison();
+			player.getStatusList().removeAll(PoisonStatus.class);
 			npc.say("The soup's on the table for you, it will heal you. Tell me if I can help you with anything else.");
 			player.setQuest(QUEST_SLOT, "done;"
 					+ System.currentTimeMillis());

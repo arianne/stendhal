@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonStatus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,7 +151,7 @@ public class SevenCherubs extends AbstractQuest {
 									+ raiser.getName());
 
 							player.heal();
-							player.getStatusList().healPoison();
+							player.getStatusList().removeAll(PoisonStatus.class);;
 
 							if (left > 0) {
 								raiser.say("Well done! You only need to find "

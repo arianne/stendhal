@@ -19,6 +19,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.status.PoisonStatus;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -98,7 +99,7 @@ public class KillBlordroughsTest {
 			// prevent player killing
 			player.setHP(10000);
 			if(player.hasStatus(StatusType.POISONED)) {
-				player.getStatusList().healPoison();
+				player.getStatusList().removeAll(PoisonStatus.class);
 			}
 			player.teleport(blr.getZone(), blr.getX(), blr.getY(), null, player);
 			player.setTarget(blr);
