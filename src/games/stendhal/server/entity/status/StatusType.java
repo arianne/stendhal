@@ -19,19 +19,31 @@ package games.stendhal.server.entity.status;
 public enum StatusType {
 
 	/** cannot walk streight */
-	CONFUSED,
+	CONFUSED(new ConfuseStatusHandler()),
 
 	/** is consuming food */
-	EATING,
+	EATING(new EatStatusHandler()),
 
 	/** is consuming poison */
-	POISONED,
+	POISONED(new PoisonStatusHandler()),
 
 	/** cannot move */
-	SHOCKED,
+	SHOCKED(new ShockStatusHandler()),
 
 	/** drunk and not able to speak clearly */
-	DRUNK;
+	DRUNK(new DrunkStatusHandler());
+
+	/** the status handler for this StatusType */
+	private final StatusHandler<? extends Status> statusHandler;
+
+	/**
+	 * creates a StatusType
+	 *
+	 * @param statusHandler StatusHandler for this type
+	 */
+	private StatusType(StatusHandler<?> statusHandler) {
+		this.statusHandler = statusHandler;
+	}
 
 	/**
 	 * gets the name of the status type
@@ -40,5 +52,15 @@ public enum StatusType {
 	 */
 	public String getName() {
 		return this.name().toLowerCase();
+	}
+
+	/**
+	 * get status handler
+	 *
+	 * @return StatusHandler
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends Status> StatusHandler<T> getStatusHandler() {
+		return (StatusHandler<T>) statusHandler;
 	}
 }

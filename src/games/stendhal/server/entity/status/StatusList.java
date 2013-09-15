@@ -159,7 +159,7 @@ public class StatusList {
 	 *            The status to check for
 	 * @return Entity has status
 	 */
-	public boolean hasStatus(final String statusName) {
+	private boolean hasStatus(final String statusName) {
 		for (Status status : statuses) {
 			if (status.getName().equals(statusName)) {
 				return true;
@@ -356,7 +356,7 @@ public class StatusList {
 			entity.notifyWorldAboutChanges();
 		}
 		PoisonStatus status = new PoisonStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		new PoisonStatusHandler().inflict(status, this);
+		status.getStatusType().getStatusHandler().inflict(status, this);
 		if (entity instanceof Player) {
 			TutorialNotifier.poisoned((Player) entity);
 		}
@@ -384,11 +384,11 @@ public class StatusList {
 		entity.notifyWorldAboutChanges();
 
 		EatStatus status = new EatStatus(item.getAmount(), item.getFrecuency(), item.getRegen());
-		new EatStatusHandler().inflict(status, this);
+		status.getStatusType().getStatusHandler().inflict(status, this);
 
 		if (item.getName().equals("beer") || item.getName().equals("wine")) {
 			DrunkStatus drunkStatus = new DrunkStatus();
-			new DrunkStatusHandler().inflict(drunkStatus, this);
+			drunkStatus.getStatusType().getStatusHandler().inflict(drunkStatus, this);
 		}
 	}
 
@@ -399,9 +399,13 @@ public class StatusList {
 		statuses.clear();
 	}
 
+	/**
+	 * removes a status
+	 *
+	 * @param status Status to remove
+	 */
 	public void remove(Status status) {
-		// TODO: notify handler
-		removeInternal(status);
+		status.getStatusType().getStatusHandler().remove(status, this);
 	}
 
 	/**
