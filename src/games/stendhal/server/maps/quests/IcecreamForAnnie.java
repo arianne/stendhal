@@ -21,6 +21,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -200,6 +201,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "eating;"));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
 		reward.add(new IncreaseKarmaAction(10.0));
+		reward.add(new InflictStatusOnNPCAction("icecream"));
 		
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, 

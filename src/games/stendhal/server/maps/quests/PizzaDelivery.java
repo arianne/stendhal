@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OutfitCompatibleWithClothesCondition;
@@ -510,12 +511,12 @@ public class PizzaDelivery extends AbstractQuest {
 								npc.say(String.format(data.messageOnHotPizza,
 										data.tip));
 							}
-							final StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
-									.getItem("money");
+							final StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 							money.setQuantity(data.tip);
 							player.equipOrPutOnGround(money);
 							player.addXP(data.xp);
 						}
+						new InflictStatusOnNPCAction("pizza").fire(player, null, npc);
 						player.setQuest(QUEST_SLOT, "done");
 						putOffUniform(player);
 					} else {

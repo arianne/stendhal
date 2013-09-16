@@ -24,6 +24,7 @@ import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -136,8 +137,9 @@ import org.apache.log4j.Logger;
 		actions.add(new DropItemAction("beer",3));
 		actions.add(new DropItemAction("wine",3));
 		// the extra parts in the quest state are for wrvil and mrotho not to give them cloaks and armor twice
-		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "clothes;none;none", 2.0));		
-		
+		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "clothes;none;none", 2.0));
+		actions.add(new InflictStatusOnNPCAction("sandwich"));
+
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION, ConversationPhrases.YES_MESSAGES,
 				new AndCondition(
 						new QuestInStateCondition(QUEST_SLOT, "start"),

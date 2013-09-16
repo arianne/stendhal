@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -173,11 +174,10 @@ public class GoodiesForRudolph extends AbstractQuest {
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(60));
-
-		final List<ChatAction> reward1 = new LinkedList<ChatAction>(reward);
-		reward1.add(new DropItemAction("reindeer moss", 5));
-		reward1.add(new DropItemAction("carrot", 10));
-		reward1.add(new DropItemAction("apple", 10));
+		reward.add(new DropItemAction("reindeer moss", 5));
+		reward.add(new DropItemAction("carrot", 10));
+		reward.add(new DropItemAction("apple", 10));
+		reward.add(new InflictStatusOnNPCAction("apple"));
 
 		
 		
@@ -195,7 +195,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("carrot", 10)),
 
 			ConversationStates.ATTENDING, "Oh, I am so excited! I have wanted to eat these things for so long. Thanks so much. And to borrow a phrase, Ho Ho Ho, Merry Christmas.",
-			new MultipleActions(reward1));
+			new MultipleActions(reward));
 
 
 		npc.add(

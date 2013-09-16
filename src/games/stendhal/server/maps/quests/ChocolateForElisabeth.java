@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -199,13 +200,13 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		reward.add(new DropItemAction("chocolate bar"));
 		reward.add(new ChatAction() {
 			@Override
-			public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
+			public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 				// pick a random flower
 				String rewardClass = Rand.rand(Arrays.asList("daisies","zantedeschia","pansy"));
 				
-				final StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
-				reward.setQuantity(1);
-				player.equipOrPutOnGround(reward);
+				final StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
+				item.setQuantity(1);
+				player.equipOrPutOnGround(item);
 				player.notifyWorldAboutChanges();
 			}
 		});
@@ -213,7 +214,8 @@ public class ChocolateForElisabeth extends AbstractQuest {
 		reward.add(new SetQuestAction(QUEST_SLOT, "eating;"));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
 		reward.add(new IncreaseKarmaAction(10.0));
-						
+		reward.add(new InflictStatusOnNPCAction("chocolate bar"));
+
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, 
 				new PlayerHasItemWithHimCondition("chocolate bar"),

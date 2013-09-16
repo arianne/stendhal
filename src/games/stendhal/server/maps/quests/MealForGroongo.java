@@ -30,6 +30,7 @@ import games.stendhal.server.entity.npc.action.DropInfostringItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -1662,6 +1663,7 @@ public class MealForGroongo extends AbstractQuest {
         normalEndQuestActions.add(new IncrementQuestAction(QUEST_SLOT, 7, 1));
         normalEndQuestActions.add(new IncreaseXPAction(XP_REWARD));
         normalEndQuestActions.add(new IncreaseKarmaAction(50.0));
+        normalEndQuestActions.add(new InflictStatusOnNPCAction("sandwich"));
         normalEndQuestActions.add(
             new ChatAction() {
                 @Override

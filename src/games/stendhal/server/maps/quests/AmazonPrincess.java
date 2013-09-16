@@ -22,6 +22,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -126,7 +127,7 @@ npc.add(ConversationStates.ATTENDING,
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 	}
 
-	/*
+	/**
 	 * Get Drink Step :
 	 * src/games/stendhal/server/maps/athor/cocktail_bar/BarmanNPC.java he
 	 * serves drinks to all, not just those with the quest
@@ -154,7 +155,9 @@ npc.add(ConversationStates.ATTENDING,
 								new SetQuestAndModifyKarmaAction(getSlotName(), "drinking;" 
 																 + System.currentTimeMillis(), 15.0).fire(player, sentence, npc);
 							}
-						}));
+						},
+						new InflictStatusOnNPCAction("pina colada")
+						));
 
 		npc.add(
 			ConversationStates.ATTENDING, triggers,

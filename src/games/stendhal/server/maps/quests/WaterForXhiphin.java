@@ -27,6 +27,7 @@ import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
+import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
@@ -175,7 +176,8 @@ public class WaterForXhiphin extends AbstractQuest {
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT,1));
 		reward.add(new SetQuestAction(QUEST_SLOT, 0, "done"));
 		reward.add(new IncreaseKarmaAction(5.0));
-		
+		reward.add(new InflictStatusOnNPCAction("water"));
+
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, EXTRA_TRIGGER), 
 				new AndCondition(
