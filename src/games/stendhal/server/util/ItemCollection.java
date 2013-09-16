@@ -37,16 +37,23 @@ public class ItemCollection extends TreeMap<String, Integer> {
      * the form "item1=n1;item2=n2;...".
      * @param str
      */
-    public void addFromQuestStateString(final String str) {
+	public void addFromQuestStateString(final String str) {
+		addFromQuestStateString(str, 0);
+	}
+	
+    public void addFromQuestStateString(final String str, final int position) {
 	    if (str != null) {
-	        final List<String> items = Arrays.asList(str.split(";"));
-
-    		for (final String item : items) {
-    			final String[] pair = item.split("=");
-
-    			if (pair.length == 2) {
-        			addItem(pair[0], Integer.parseInt(pair[1]));
-    			}
+	    	final String[] slots = str.split(",");
+	    	if (slots[position] != null) {
+		        final List<String> items = Arrays.asList(slots[position].split(";"));
+	
+	    		for (final String item : items) {
+	    			final String[] pair = item.split("=");
+	
+	    			if (pair.length == 2) {
+	        			addItem(pair[0], Integer.parseInt(pair[1]));
+	    			}
+	    		}
     		}
 		}
 	}
