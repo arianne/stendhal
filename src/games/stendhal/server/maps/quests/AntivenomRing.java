@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -78,14 +78,38 @@ import java.util.Map;
  * <ul>
  * <li>None</li>
  * </ul>
+ * 
+ * 
+ * @author AntumDeluge
  */
 public class AntivenomRing extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "antivenom_ring";
 	
-	public static final String NEEDED_ITEMS = "medicinal ring=1;venom gland=1;mandragora=2;fairy cake=5";
+	//public static final String NEEDED_ITEMS = "medicinal ring=1;venom gland=1;mandragora=2;fairy cake=5";
 	
-	private static final int REQUIRED_MINUTES = 30;
+	/* Items taken to ??? to create cobra venom */
+	public static final String EXTRACTION_ITEMS = "venom gland=1;vial=1";
+	
+	/* Items taken to apothecary to create antivenom */
+	public static final String MIX_ITEMS = "cobra venom=1;mandragora=2;fairy cake=5";
+	
+	/* Items taken to ??? to create antivenom ring */
+	public static final String FUSION_ITEMS = "antivenom=1;medicinal ring=1";
+	
+	//private static final int REQUIRED_MINUTES = 30;
+	
+	private static final int EXTRACTION_TIME = 10;
+	
+	private static final int MIX_TIME = 10;
+	
+	private static final int FUSION_TIME = 30;
+	
+	// NPCs involved in quest
+	private final SpeakerNPC apothecary = npcs.get("Jameson");
+	// FIXME: find NPCs for these roles
+	private final SpeakerNPC extractor = npcs.get("");
+	private final SpeakerNPC fuser = npcs.get("");
 	
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -163,13 +187,11 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 	}
 
-	private void prepareRequestingStep() {
-		final SpeakerNPC npc = npcs.get("Jameson");
-        
+	private void requestAntivenom() {
 		// If player has note to apothecary then quest is offered
-		npc.add(ConversationStates.IDLE,
+		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
@@ -177,28 +199,30 @@ public class AntivenomRing extends AbstractQuest {
 				null);
         
 		// In case player dropped note before speaking to Jameson
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from Klaas. Is that for me?",
 				null);
         
+		// FIXME: Should list items only in 2nd part of quest slot
 		// Player accepts quest
-		npc.add(ConversationStates.QUEST_OFFERED,
+		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-						new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?"),
-						new DropItemAction("note to apothecary")));
+						new SetQuestAction(QUEST_SLOT, 1, MIX_ITEMS),
+						new IncreaseKarmaAction(5.0),
+						new DropItemAction("note to apothecary"),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?")));
 		
 		// Player tries to leave without accepting/rejecting the quest
-		npc.add(ConversationStates.QUEST_OFFERED,
+		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.GOODBYE_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
@@ -206,7 +230,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player rejects quest
-		npc.add(ConversationStates.QUEST_OFFERED,
+		apothecary.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				// NPC walks away
@@ -215,7 +239,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
 		// Player asks for quest without having Klass's note
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("note to apothecary")),
 						new QuestNotStartedCondition(QUEST_SLOT)),
@@ -224,7 +248,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks for quest after it is started
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotCompletedCondition(QUEST_SLOT)),
@@ -233,7 +257,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]. Do you have any of those with you?"));
 		
 		// Quest has previously been completed.
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1, 
@@ -241,7 +265,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player is enjoying the ring
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -249,15 +273,15 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player is not enjoying the ring
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Oh, that's too bad.",
 				null);
-		
+		/*
         // Player asks about required items
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
 				null,
 				ConversationStates.QUESTION_1,
@@ -270,8 +294,8 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
 				null);
-		
-		npc.add(ConversationStates.QUESTION_1,
+		*/
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("cake", "fairy cake"),
 				null,
 				ConversationStates.QUESTION_1,
@@ -279,34 +303,34 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks about rings
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("ring", "rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"There are many types of rings.",
 				null);
 		
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("medicinal ring", "medicinal rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"Some poisonous creatures carry them.",
 				null);
 		
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("antivenom ring", "antivenom rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
 				null);
 		
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"Heh! This is the ultimate protection against poisoning. Good luck getting one!",
 				null);
-		
+		/*
 		// Player asks about snakes
 		npc.add(ConversationStates.QUESTION_1,
 				Arrays.asList("snake", "snakes", "cobra", "cobras"),
@@ -329,8 +353,8 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
 				null);
-		
-		npc.add(ConversationStates.ATTENDING,
+		*/
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("cake", "fairy cake"),
 				null,
 				ConversationStates.ATTENDING,
@@ -338,34 +362,34 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks about rings
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("ring", "rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"There are many types of rings.",
 				null);
 		
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("medicinal ring", "medicinal rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"Some poisonous creatures carry them.",
 				null);
 		
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("antivenom ring", "antivenom rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
 				null);
 		
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"Heh! This is the ultimate protection against poisoning. Good luck getting one!",
 				null);
-		
+		/*
 		// Player asks about snakes
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("snake", "snakes", "cobra", "cobras"),
@@ -373,22 +397,22 @@ public class AntivenomRing extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"I've heard rumor newly discovered pit full of snakes somewhere in Ados. But I've never searched for it myself. That kind of work is better left to adventurers.",
 				null);
+		*/
 	}
 
-	private void prepareBringingStep() {
-		final SpeakerNPC npc = npcs.get("Jameson");
-
-		npc.add(ConversationStates.IDLE,
+	private void mixAntivenom() {
+		// FIXME: Condition must apply to "mixing" state and anything afterward
+		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()), 
+				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()), 
 						new QuestActiveCondition(QUEST_SLOT),
-						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 0, "enhancing"))),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 0, "mixing"))),
 				ConversationStates.ATTENDING,
 				"Hello again! Did you bring me the #items I requested?",
 				null);
 		
 		// player asks what is missing (says "items")
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				Arrays.asList("item", "items", "ingredient", "ingredients"),
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -396,7 +420,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
 		// player says has a required item with him (says "yes")
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
@@ -404,7 +428,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Players says has required items (alternate conversation state)
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
@@ -412,7 +436,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// player says does not have a required item with him (says "no")
-		npc.add(ConversationStates.ATTENDING,
+		apothecary.add(ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -420,7 +444,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Players says does not have required items (alternate conversation state)
-		npc.add(ConversationStates.QUESTION_1,
+		apothecary.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -436,7 +460,7 @@ public class AntivenomRing extends AbstractQuest {
 		}
 		
 		// player says "bye" while listing items
-		npc.add(ConversationStates.QUESTION_2,
+		apothecary.add(ConversationStates.QUESTION_2,
 				GOODBYE_NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -444,14 +468,14 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Returned too early; still working
-		npc.add(ConversationStates.IDLE,
+		apothecary.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
-				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES))),
+				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, MIX_TIME))),
 				ConversationStates.IDLE,
 				null,
-				new SayTimeRemainingAction(QUEST_SLOT, 1, REQUIRED_MINUTES, "I have not finished with the ring. Please check back in "));
+				new SayTimeRemainingAction(QUEST_SLOT, 1, MIX_TIME, "I have not finished with the ring. Please check back in "));
 		
 /*		// player says he didn't bring any items (says no)
 		npc.add(ConversationStates.ATTENDING,
@@ -470,23 +494,23 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		*/
 		// player offers item that isn't in the list.
-		npc.add(ConversationStates.QUESTION_2, "",
+		apothecary.add(ConversationStates.QUESTION_2, "",
 			new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-					new NotCondition(new TriggerInListCondition(NEEDED_ITEMS))),
+					new NotCondition(new TriggerInListCondition(MIX_ITEMS))),
 			ConversationStates.QUESTION_2,
 			"I don't believe I asked for that.", null);
 
-		ChatAction enhanceAction = new MultipleActions (
-		new SetQuestAction(QUEST_SLOT, "enhancing"),
-		new SetQuestToTimeStampAction(QUEST_SLOT, 1),
-		new SayTextAction("Thank you. I'll get to work on your new ring right after I enjoy a few of these fairy cakes. Please come back in " + REQUIRED_MINUTES + " minutes.")
+		ChatAction mixAction = new MultipleActions (
+		new SetQuestAction(QUEST_SLOT, 1, "mixing"),
+		new SetQuestToTimeStampAction(QUEST_SLOT, 4),
+		new SayTextAction("Thank you. I'll get to work on mixing the antivenom right after I enjoy a few of these fairy cakes. Please come back in " + MIX_TIME + " minutes.")
 		);
 		
 		/* add triggers for the item names */
 		final ItemCollection items = new ItemCollection();
-		items.addFromQuestStateString(NEEDED_ITEMS);
+		items.addFromQuestStateString(MIX_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
-			npc.add(ConversationStates.QUESTION_2,
+			apothecary.add(ConversationStates.QUESTION_2,
 					item.getKey(),
 					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.QUESTION_2,
@@ -496,28 +520,57 @@ public class AntivenomRing extends AbstractQuest {
 							QUEST_SLOT,
 							"Excellent! Do you have anything else with you?",
 							"You brought me that already.",
-							enhanceAction,
+							mixAction,
 							ConversationStates.IDLE
 							)
 			);
 		}
 
-		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new IncreaseXPAction(2000));
-		reward.add(new IncreaseKarmaAction(25.0));
-		reward.add(new EquipItemAction("antivenom ring", 1, true));
-		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		final List<ChatAction> mixReward = new LinkedList<ChatAction>();
+		//reward.add(new IncreaseXPAction(2000));
+		//reward.add(new IncreaseKarmaAction(25.0));
+		mixReward.add(new EquipItemAction("antivenom", 1, true));
+		mixReward.add(new SetQuestAction(QUEST_SLOT, 1, "mixing=done"));
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-						new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
-						new TimePassedCondition(QUEST_SLOT, 1, REQUIRED_MINUTES)),
+		apothecary.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
+						new QuestInStateCondition(QUEST_SLOT, 1, "mixing"),
+						new TimePassedCondition(QUEST_SLOT, 1, MIX_TIME)),
 			ConversationStates.IDLE, 
-			"I have finished enhancing your ring. Now I'll finish the rest of my fairy cakes.", 
-			new MultipleActions(reward));
+			"I have finished mixing the antivenom. You will need to find someone who can #fuse this into an #object. Now I'll finish the rest of my fairy cakes if you dont mind.", 
+			new MultipleActions(mixReward));
 		
 	}
-
+	
+	private void requestCobraVenom() {
+		// Greeting while quest is active
+		extractor.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"I can #extract antivenom.",
+				null);
+	}
+	
+	private void extractCobraVenom() {
+		
+	}
+	
+	private void requestAntivenomRing() {
+		// Greeting while quest is active
+		extractor.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"I can #fuse antivenom into a powerful ring.",
+				null);
+	}
+	
+	private void fuseAntivenomRing() {
+		
+	}
+	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
@@ -526,8 +579,12 @@ public class AntivenomRing extends AbstractQuest {
 				"As a favor to an old friend, Jameson the apothecary will strengthen the medicinal ring.",
 				false);
 		prepareHintNPCs();
-		prepareRequestingStep();
-		prepareBringingStep();
+		requestAntivenom();
+		mixAntivenom();
+		requestCobraVenom();
+		extractCobraVenom();
+		requestAntivenomRing();
+		fuseAntivenomRing();
 	}
 
 	@Override
