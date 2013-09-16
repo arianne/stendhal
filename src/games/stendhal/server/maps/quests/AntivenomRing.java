@@ -95,6 +95,7 @@ public class AntivenomRing extends AbstractQuest {
 	public static final String MIX_ITEMS = "cobra venom=1;mandragora=2;fairy cake=5";
 	
 	/* Items taken to ??? to create antivenom ring */
+	public static final int REQUIRED_MONEY = 10000;
 	public static final String FUSION_ITEMS = "antivenom=1;medicinal ring=1";
 	
 	//private static final int REQUIRED_MINUTES = 30;
@@ -109,7 +110,7 @@ public class AntivenomRing extends AbstractQuest {
 	private final SpeakerNPC apothecary = npcs.get("Jameson");
 	// FIXME: find NPCs for these roles
 	private final SpeakerNPC extractor = npcs.get("");
-	private final SpeakerNPC fuser = npcs.get("");
+	private final SpeakerNPC alchemist = npcs.get("");
 	
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -544,13 +545,24 @@ public class AntivenomRing extends AbstractQuest {
 	}
 	
 	private void requestCobraVenom() {
-		// Greeting while quest is active
-		extractor.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT)),
-				ConversationStates.ATTENDING,
-				"I can #extract antivenom.",
+		// Player asks for antivenom
+		extractor.add(ConversationStates.ATTENDING,
+				Arrays.asList("jameson", "antivenom", "extract", "cobra", "venom"),
+				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 2, "extracting=done"))),
+				ConversationStates.QUESTION_1,
+				"What that, you need some venom to create an antivemon? I can extract the venom from a cobra's venom gland, but I will need a vial to hold it in. Would you get me these items?",
 				null);
+		
+		// FIXME: should only list items from 3rd part of quest slot
+		// Player will retrieve items
+		extractor.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				null,
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 2, EXTRACTION_ITEMS),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Good! I will need [items].  Do you have any of those with you?")));
 	}
 	
 	private void extractCobraVenom() {
@@ -558,13 +570,29 @@ public class AntivenomRing extends AbstractQuest {
 	}
 	
 	private void requestAntivenomRing() {
+		// FIXME: should only list items from 4th part of quest slot
 		// Greeting while quest is active
-		extractor.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestActiveCondition(QUEST_SLOT)),
+		alchemist.add(
 				ConversationStates.ATTENDING,
-				"I can #fuse antivenom into a powerful ring.",
-				null);
+				Arrays.asList("jameson", "antivenom", "ring", "fuse"),
+				new AndCondition(
+						new QuestActiveCondition(QUEST_SLOT),
+						new NotCondition(
+								new QuestInStateCondition(QUEST_SLOT, 3, "fusing=done")
+								)
+						),
+				ConversationStates.QUESTION_1,
+				null,
+				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "You need a powerful item that can protect you from poison? I can fuse antivenom into medicinal ring to make it stronger, but it won't be cheep. I will need [items]. My price is " + Integer.toString(REQUIRED_MONEY) + ". Will you get all this for me?"));
+		
+		// Player will retrieve items
+		alchemist.add(ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				null,
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 2, EXTRACTION_ITEMS),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Alright, do you have any of the items that I asked for with you?")));
 	}
 	
 	private void fuseAntivenomRing() {
@@ -598,7 +626,6 @@ public class AntivenomRing extends AbstractQuest {
 	}
 
 	public String getTitle() {
-		
 		return "AntivenomRing";
 	}
 	
