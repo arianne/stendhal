@@ -57,7 +57,7 @@
   </item>
 
   <item name="big bottle">
-    <type class="container" subclass="big_bottle" tileid="-1"/>
+    <type class="container" subclass="bottle_medium" tileid="-1"/>
     <description>You see a big bottle.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
