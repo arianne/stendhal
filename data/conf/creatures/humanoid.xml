@@ -243,7 +243,7 @@
   
   <creature name="red roohako">
     <type class="hybrid" subclass="red_roohako" tileid="hybrid.png:3"/>
-    <description></description>
+    <description>You see a red roohako. It is coming for you in your deepest dreams.</description>
     <attributes>
       <atk value="271"/>
       <def value="48"/>
