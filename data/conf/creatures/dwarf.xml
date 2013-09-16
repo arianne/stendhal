@@ -6,7 +6,7 @@
   
   <creature name="duergar">
     <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
-    <description></description>
+    <description>You see a duergar. It is a close relative to dwarves but with a diabolic tainted blood.</description>
     <attributes>
       <atk value="278"/>
       <def value="49"/>
