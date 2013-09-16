@@ -57,9 +57,27 @@
     </equipable>
   </item>
   
+  <item name="large bottle">
+    <type class="container" subclass="bottle_large" tileid="-1"/>
+    <description>You see a large bottle.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+    <attributes>
+      <quantity value="1"/>
+      <max_quantity value="2147483647"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+
   <item name="medium bottle">
     <type class="container" subclass="bottle_medium" tileid="-1"/>
-    <description>You see a big bottle.</description>
+    <description>You see a medium sized bottle.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
