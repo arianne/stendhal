@@ -222,7 +222,6 @@ public class AntivenomRing extends AbstractQuest {
 				"Oh, a message from Klaas. Is that for me?",
 				null);
         
-		// FIXME: Should list items only in 1st part of quest slot
 		// Player accepts quest
 		mixer.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -571,7 +570,6 @@ public class AntivenomRing extends AbstractQuest {
 				"What that, you need some venom to create an antivemon? I can extract the venom from a cobra's venom gland, but I will need a vial to hold it in. Would you get me these items?",
 				null);
 		
-		// FIXME: should only list items from 2rd part of quest slot
 		// Player will retrieve items
 		extractor.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
@@ -589,7 +587,6 @@ public class AntivenomRing extends AbstractQuest {
 	}
 	
 	private void requestAntivenomRing() {
-		// FIXME: should only list items from 4th part of quest slot
 		// Greeting while quest is active
 		fuser.add(
 				ConversationStates.ATTENDING,
