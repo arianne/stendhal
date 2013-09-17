@@ -5,6 +5,8 @@
 
 *world*
 - Margaret accepts coupons
+- New graveyard look in plains, north of Semos
+- More creature descriptions
 
 *client*
 
