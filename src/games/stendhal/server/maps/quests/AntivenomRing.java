@@ -107,10 +107,10 @@ public class AntivenomRing extends AbstractQuest {
 	private static final int FUSION_TIME = 30;
 	
 	// NPCs involved in quest
-	private final SpeakerNPC apothecary = npcs.get("Jameson");
+	private final SpeakerNPC mixer = npcs.get("Jameson");
 	// FIXME: find NPCs for these roles
 	private final SpeakerNPC extractor = npcs.get("");
-	private final SpeakerNPC alchemist = npcs.get("");
+	private final SpeakerNPC fuser = npcs.get("Hogart");
 	
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -119,20 +119,30 @@ public class AntivenomRing extends AbstractQuest {
 			return res;
 		}
 		res.add("I have found the hermit apothecary's lab in Semos Mountain.");
-		final String questState = player.getQuest(QUEST_SLOT);
+		final String[] questState = player.getQuest(QUEST_SLOT).split(",");
 		if ("done".equals(questState)) {
 			res.add("I gathered all that Jameson asked for. He applied a special mixture to my ring which made it more resistant to poison. I also got some XP and karma.");
 		}
 		else if ("rejected".equals(questState)) {
 			res.add("Poison is too dangerous. I do not want to get hurt.");
 		}
-		else if (player.getQuest(QUEST_SLOT).startsWith("enhancing;")) {
-			res.add("Jameson is enhancing my ring.");
-		}
 		else {
-			final ItemCollection missingItems = new ItemCollection();
-			missingItems.addFromQuestStateString(questState);
-			res.add("I still need to bring Jameson " + Grammar.enumerateCollection(missingItems.toStringList()) + ".");
+			if (questState[0].split("=")[0] == "mixing") {
+				res.add(mixer.getName() + " is mixing the antivenom.");
+			}
+			else {
+				final ItemCollection missingMixItems = new ItemCollection();
+				missingMixItems.addFromQuestStateString(questState[0]);
+				res.add("I still need to bring Jameson " + Grammar.enumerateCollection(missingMixItems.toStringList()) + ".");
+			}
+			
+			if (questState[1].split("=")[0] == "extracting") {
+				res.add(extractor.getName() + " is extracting the venom.");
+			}
+			
+			if (questState[2].split("=")[0] == "fusing") {
+				res.add(fuser.getName() + " is creating my ring.");
+			}
 		}
 		return res;
 	}
@@ -187,12 +197,15 @@ public class AntivenomRing extends AbstractQuest {
 				"He hinted at a secret laboratory that he had built. Something about a hidden doorway.",
 				null);
 	}
-
+    
+	/**
+	 * Quest starting point
+	 */
 	private void requestAntivenom() {
 		// If player has note to apothecary then quest is offered
-		apothecary.add(ConversationStates.IDLE,
+		mixer.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(mixer.getName()),
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
@@ -200,30 +213,31 @@ public class AntivenomRing extends AbstractQuest {
 				null);
         
 		// In case player dropped note before speaking to Jameson
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(mixer.getName()),
 						new PlayerHasItemWithHimCondition("note to apothecary"),
 						new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.QUEST_OFFERED, 
 				"Oh, a message from Klaas. Is that for me?",
 				null);
         
-		// FIXME: Should list items only in 2nd part of quest slot
+		// FIXME: Should list items only in 1st part of quest slot
 		// Player accepts quest
-		apothecary.add(ConversationStates.QUEST_OFFERED,
+		mixer.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
-				new MultipleActions(
-						new SetQuestAction(QUEST_SLOT, 1, MIX_ITEMS),
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, MIX_ITEMS),
 						new IncreaseKarmaAction(5.0),
 						new DropItemAction("note to apothecary"),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?")));
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 0, "Klaas has asked me to assist you. I can make a ring that will increase your resistance to poison. I need you to bring me [items].  Do you have any of those with you?")
+				)
+		);
 		
 		// Player tries to leave without accepting/rejecting the quest
-		apothecary.add(ConversationStates.QUEST_OFFERED,
+		mixer.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.GOODBYE_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
@@ -231,7 +245,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player rejects quest
-		apothecary.add(ConversationStates.QUEST_OFFERED,
+		mixer.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES,
 				null,
 				// NPC walks away
@@ -240,7 +254,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 		
 		// Player asks for quest without having Klass's note
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new NotCondition(new PlayerHasItemWithHimCondition("note to apothecary")),
 						new QuestNotStartedCondition(QUEST_SLOT)),
@@ -249,7 +263,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks for quest after it is started
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new AndCondition(new QuestStartedCondition(QUEST_SLOT),
 						new QuestNotCompletedCondition(QUEST_SLOT)),
@@ -258,7 +272,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I am still waiting for you to bring me [items]. Do you have any of those with you?"));
 		
 		// Quest has previously been completed.
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_1, 
@@ -266,7 +280,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player is enjoying the ring
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -274,7 +288,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player is not enjoying the ring
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -282,7 +296,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		/*
         // Player asks about required items
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("gland", "venom gland", "glands", "venom glands"),
 				null,
 				ConversationStates.QUESTION_1,
@@ -296,7 +310,7 @@ public class AntivenomRing extends AbstractQuest {
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
 				null);
 		*/
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("cake", "fairy cake"),
 				null,
 				ConversationStates.QUESTION_1,
@@ -304,28 +318,28 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks about rings
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("ring", "rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"There are many types of rings.",
 				null);
 		
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("medicinal ring", "medicinal rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"Some poisonous creatures carry them.",
 				null);
 		
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("antivenom ring", "antivenom rings"),
 				null,
 				ConversationStates.QUESTION_1,
 				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
 				null);
 		
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
 				null,
 				ConversationStates.QUESTION_1,
@@ -355,7 +369,7 @@ public class AntivenomRing extends AbstractQuest {
 				"This is my favorite of all herbs and one of the most rare. Out past Kalavan there is a hidden path in the trees. At the end you will find what you are looking for.",
 				null);
 		*/
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("cake", "fairy cake"),
 				null,
 				ConversationStates.ATTENDING,
@@ -363,28 +377,28 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Player asks about rings
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("ring", "rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"There are many types of rings.",
 				null);
 		
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("medicinal ring", "medicinal rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"Some poisonous creatures carry them.",
 				null);
 		
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("antivenom ring", "antivenom rings"),
 				null,
 				ConversationStates.ATTENDING,
 				"If you bring me what I need I may be able to strengthen a #medicinal #ring.",
 				null);
 		
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("antitoxin ring", "antitoxin rings", "gm antitoxin ring", "gm antitoxin rings"),
 				null,
 				ConversationStates.ATTENDING,
@@ -403,9 +417,9 @@ public class AntivenomRing extends AbstractQuest {
 
 	private void mixAntivenom() {
 		// FIXME: Condition must apply to "mixing" state and anything afterward
-		apothecary.add(ConversationStates.IDLE,
+		mixer.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()), 
+				new AndCondition(new GreetingMatchesNameCondition(mixer.getName()), 
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 0, "mixing"))),
 				ConversationStates.ATTENDING,
@@ -413,7 +427,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// player asks what is missing (says "items")
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				Arrays.asList("item", "items", "ingredient", "ingredients"),
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
@@ -421,7 +435,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I need [items]. Did you bring something?"));
 
 		// player says has a required item with him (says "yes")
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
@@ -429,7 +443,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// Players says has required items (alternate conversation state)
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2,
@@ -437,7 +451,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		
 		// player says does not have a required item with him (says "no")
-		apothecary.add(ConversationStates.ATTENDING,
+		mixer.add(ConversationStates.ATTENDING,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -445,7 +459,7 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Players says does not have required items (alternate conversation state)
-		apothecary.add(ConversationStates.QUESTION_1,
+		mixer.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -461,7 +475,7 @@ public class AntivenomRing extends AbstractQuest {
 		}
 		
 		// player says "bye" while listing items
-		apothecary.add(ConversationStates.QUESTION_2,
+		mixer.add(ConversationStates.QUESTION_2,
 				GOODBYE_NO_MESSAGES,
 				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.IDLE,
@@ -469,9 +483,9 @@ public class AntivenomRing extends AbstractQuest {
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Okay. I still need [items]"));
 		
 		// Returned too early; still working
-		apothecary.add(ConversationStates.IDLE,
+		mixer.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(mixer.getName()),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "enhancing;"),
 				new NotCondition(new TimePassedCondition(QUEST_SLOT, 1, MIX_TIME))),
 				ConversationStates.IDLE,
@@ -495,7 +509,7 @@ public class AntivenomRing extends AbstractQuest {
 				null);
 		*/
 		// player offers item that isn't in the list.
-		apothecary.add(ConversationStates.QUESTION_2, "",
+		mixer.add(ConversationStates.QUESTION_2, "",
 			new AndCondition(new QuestActiveCondition(QUEST_SLOT),
 					new NotCondition(new TriggerInListCondition(MIX_ITEMS))),
 			ConversationStates.QUESTION_2,
@@ -511,7 +525,7 @@ public class AntivenomRing extends AbstractQuest {
 		final ItemCollection items = new ItemCollection();
 		items.addFromQuestStateString(MIX_ITEMS);
 		for (final Map.Entry<String, Integer> item : items.entrySet()) {
-			apothecary.add(ConversationStates.QUESTION_2,
+			mixer.add(ConversationStates.QUESTION_2,
 					item.getKey(),
 					new QuestActiveCondition(QUEST_SLOT),
 					ConversationStates.QUESTION_2,
@@ -533,11 +547,12 @@ public class AntivenomRing extends AbstractQuest {
 		mixReward.add(new EquipItemAction("antivenom", 1, true));
 		mixReward.add(new SetQuestAction(QUEST_SLOT, 1, "mixing=done"));
 
-		apothecary.add(ConversationStates.IDLE,
+		mixer.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new GreetingMatchesNameCondition(apothecary.getName()),
+				new AndCondition(new GreetingMatchesNameCondition(mixer.getName()),
 						new QuestInStateCondition(QUEST_SLOT, 1, "mixing"),
-						new TimePassedCondition(QUEST_SLOT, 1, MIX_TIME)),
+						new TimePassedCondition(QUEST_SLOT, 1, MIX_TIME)
+				),
 			ConversationStates.IDLE, 
 			"I have finished mixing the antivenom. You will need to find someone who can #fuse this into an #object. Now I'll finish the rest of my fairy cakes if you dont mind.", 
 			new MultipleActions(mixReward));
@@ -549,20 +564,24 @@ public class AntivenomRing extends AbstractQuest {
 		extractor.add(ConversationStates.ATTENDING,
 				Arrays.asList("jameson", "antivenom", "extract", "cobra", "venom"),
 				new AndCondition(new QuestActiveCondition(QUEST_SLOT),
-						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 2, "extracting=done"))),
+						new NotCondition(new QuestInStateCondition(QUEST_SLOT, 1, "extracting=done")
+						)
+				),
 				ConversationStates.QUESTION_1,
 				"What that, you need some venom to create an antivemon? I can extract the venom from a cobra's venom gland, but I will need a vial to hold it in. Would you get me these items?",
 				null);
 		
-		// FIXME: should only list items from 3rd part of quest slot
+		// FIXME: should only list items from 2rd part of quest slot
 		// Player will retrieve items
 		extractor.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,
-				new MultipleActions(new SetQuestAction(QUEST_SLOT, 2, EXTRACTION_ITEMS),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Good! I will need [items].  Do you have any of those with you?")));
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 1, EXTRACTION_ITEMS),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 1, "Good! I will need [items].  Do you have any of those with you?")
+				)
+		);
 	}
 	
 	private void extractCobraVenom() {
@@ -572,27 +591,32 @@ public class AntivenomRing extends AbstractQuest {
 	private void requestAntivenomRing() {
 		// FIXME: should only list items from 4th part of quest slot
 		// Greeting while quest is active
-		alchemist.add(
+		fuser.add(
 				ConversationStates.ATTENDING,
 				Arrays.asList("jameson", "antivenom", "ring", "fuse"),
 				new AndCondition(
 						new QuestActiveCondition(QUEST_SLOT),
 						new NotCondition(
-								new QuestInStateCondition(QUEST_SLOT, 3, "fusing=done")
+								new QuestInStateCondition(QUEST_SLOT, 2, "fusing=done")
 								)
 						),
 				ConversationStates.QUESTION_1,
 				null,
-				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "You need a powerful item that can protect you from poison? I can fuse antivenom into medicinal ring to make it stronger, but it won't be cheep. I will need [items]. My price is " + Integer.toString(REQUIRED_MONEY) + ". Will you get all this for me?"));
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, 2, FUSION_ITEMS),
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, 2, "You need a powerful item that can protect you from poison? I can fuse antivenom into medicinal ring to make it stronger, but it won't be cheep. I will need [items]. My price is " + Integer.toString(REQUIRED_MONEY) + ". Will you get all this for me?")
+				)
+		);
 		
 		// Player will retrieve items
-		alchemist.add(ConversationStates.QUESTION_1,
+		fuser.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, 2, EXTRACTION_ITEMS),
-						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Alright, do you have any of the items that I asked for with you?")));
+						new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Alright, do you have any of the items that I asked for with you?")
+				)
+		);
 	}
 	
 	private void fuseAntivenomRing() {
