@@ -163,16 +163,16 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		
 		// Defensive copy to avoid modifying the raw coordinates. They're needed
 		// by the caller.
-		Point copy = new Point(point);
+		point = new Point(point);
 		Insets insets = parent.getInsets();
 		// Keep inside parent component
-		copy.x = Math.min(copy.x, parent.getWidth() - getWidth() - insets.right);
-		copy.x = Math.max(copy.x, insets.left);
+		point.x = Math.min(point.x, parent.getWidth() - getWidth() - insets.right);
+		point.x = Math.max(point.x, insets.left);
 
-		copy.y = Math.min(copy.y, parent.getHeight() - getHeight() - insets.bottom);
-		copy.y = Math.max(copy.y, insets.top);
+		point.y = Math.min(point.y, parent.getHeight() - getHeight() - insets.bottom);
+		point.y = Math.max(point.y, insets.top);
 
-		setLocation(copy);
+		setLocation(point);
 		// Store the window location
 		WtWindowManager.getInstance().moveTo(this, getX(), getY());
 	}
