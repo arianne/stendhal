@@ -19,6 +19,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -160,20 +161,18 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 	private void relocate(Point point) {
 		Container parent = getParent();
 		
+		// Defensive copy to avoid modifying the raw coordinates. They're needed
+		// by the caller.
+		Point copy = new Point(point);
+		Insets insets = parent.getInsets();
 		// Keep inside parent component
-		if (point.x < 0) {
-			point.x = 0;
-		} else if ((point.x + getWidth()) > parent.getWidth()) {
-			point.x = parent.getWidth() - getWidth();
-		}
+		copy.x = Math.min(copy.x, parent.getWidth() - getWidth() - insets.right);
+		copy.x = Math.max(copy.x, insets.left);
 
-		if (point.y < 0) {
-			point.y = 0;
-		} else if ((point.y + getHeight()) > parent.getHeight()) {
-			point.y = parent.getHeight() - getHeight();
-		}
+		copy.y = Math.min(copy.y, parent.getHeight() - getHeight() - insets.bottom);
+		copy.y = Math.max(copy.y, insets.top);
 
-		setLocation(point);
+		setLocation(copy);
 		// Store the window location
 		WtWindowManager.getInstance().moveTo(this, getX(), getY());
 	}
@@ -292,7 +291,8 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		 * Called when the user drags a window.
 		 * 
 		 * @param component dragged component
-		 * @param point new location of the window
+		 * @param point the location of the drag. This is not necessarily the
+		 * 	new coordinates of the window.
 		 */
 		void windowDragged(Component component, Point point);
 	}
