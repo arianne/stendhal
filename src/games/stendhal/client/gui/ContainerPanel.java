@@ -19,8 +19,7 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.awt.Point;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -31,7 +30,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A wrapper container for WtPanels outside the game screen.
  */
-class ContainerPanel extends JScrollPane implements Inspector {
+class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWindow.WindowDragListener {
 	/**
 	 * serial version uid
 	 */
@@ -40,11 +39,9 @@ class ContainerPanel extends JScrollPane implements Inspector {
 	/** The actual content panel. */
 	private final JPanel panel;
 	/**
-	 * Components that should be repainted in the game loop. Uses copy-on-write,
-	 * because modifying the list (not a very common operation) is done in the
-	 * event dispatch thread, but it's iterated over in the game loop.
+	 * Temporary position of a dragged internal window in the content panel.
 	 */
-	private final List<JComponent> repaintable = new CopyOnWriteArrayList<JComponent>();
+	private int draggedPosition;
 
 	/**
 	 * Create a ContainerPanel.
@@ -54,24 +51,6 @@ class ContainerPanel extends JScrollPane implements Inspector {
 		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		setViewportView(panel);
 		setBorder(null);
-	}
-	
-	@Override
-	public void remove(Component component) {
-		super.remove(component);
-		repaintable.remove(component);
-	}
-	
-	/**
-	 * Add a JComponent to the ContainerPanel.
-	 * 
-	 * @param child component to be added
-	 * @param constraints packing constraints
-	 */
-	void add(JComponent child, Object constraints) {
-		child.setAlignmentX(LEFT_ALIGNMENT);
-		panel.add(child, constraints);
-		panel.revalidate();
 	}
 	
 	/**
@@ -85,15 +64,10 @@ class ContainerPanel extends JScrollPane implements Inspector {
 	void addRepaintable(JComponent child) {
 		child.setIgnoreRepaint(true);
 		panel.add(child);
-		repaintable.add(child);
 		panel.revalidate();
-		/*
-		 * Prevent moving the window. This may provide a nice way for users to
-		 * reorder the windows eventually. The container would just need to
-		 * reorder the windows based on y-order when the dragging ends. 
-		 */
+		
 		if (child instanceof InternalManagedWindow) {
-			((InternalManagedWindow) child).setMovable(false);
+			((InternalManagedWindow) child).addWindowDragListener(this);
 		}
 		
 		if (child instanceof Inspectable) {
@@ -105,7 +79,7 @@ class ContainerPanel extends JScrollPane implements Inspector {
 	 * Request repainting of all the child panels.
 	 */
 	void repaintChildren() {
-		for (JComponent child : repaintable) {
+		for (Component child : panel.getComponents()) {
 			child.repaint();
 		}
 	}
@@ -149,5 +123,44 @@ class ContainerPanel extends JScrollPane implements Inspector {
 			addRepaintable(window);
 			return window;
 		}
+	}
+	
+	/**
+	 * Get the vertical center point of a component.
+	 * 
+	 * @param component component to be checked
+	 * @return the Y coordinate of the component center point
+	 */
+	private int componentYCenter(Component component) {
+		return component.getY() + component.getHeight() / 2;
+	}
+	
+	@Override
+	public void windowDragged(Component component, Point point) {
+		int centerY = point.y + component.getHeight() / 2;
+		for (int i = 0; i < panel.getComponentCount(); i++) {
+			Component tmp = panel.getComponent(i);
+			if (tmp != component) {
+				if ((draggedPosition < i) && (centerY > componentYCenter(tmp))) {
+					draggedPosition = i;
+					break;
+				} else if ((draggedPosition >= i) && (centerY < componentYCenter(tmp))) {
+					draggedPosition = i - 1;
+					break;
+				}
+			}
+		}
+	}
+
+	@Override
+	public void startDrag(Component component) {
+		draggedPosition = panel.getComponentZOrder(component);
+		panel.setComponentZOrder(component, 0);
+	}
+
+	@Override
+	public void endDrag(Component component) {
+		panel.setComponentZOrder(component, draggedPosition);
+		panel.revalidate();
 	}
 }
