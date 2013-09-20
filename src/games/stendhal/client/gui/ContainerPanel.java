@@ -20,6 +20,9 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -31,13 +34,8 @@ import marauroa.common.game.RPSlot;
  * A wrapper container for WtPanels outside the game screen.
  */
 class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWindow.WindowDragListener {
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = -6660529477793122360L;
-
 	/** The actual content panel. */
-	private final JPanel panel;
+	private final PhantomLayoutPanel panel;
 	/**
 	 * Temporary position of a dragged internal window in the content panel.
 	 */
@@ -47,7 +45,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * Create a ContainerPanel.
 	 */
 	public ContainerPanel() {
-		panel = new JPanel();
+		panel = new PhantomLayoutPanel();
 		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		setViewportView(panel);
 		setBorder(null);
@@ -59,7 +57,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * slots end up being more expensive, and the RepaintManager merges the
 	 * draw request anyway.
 	 * 
-	 * @param child
+	 * @param child component to add
 	 */
 	void addRepaintable(JComponent child) {
 		child.setIgnoreRepaint(true);
@@ -107,6 +105,8 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * 	or <code>null</code> if there's no such window
 	 * @param width number of slot columns
 	 * @param height number of slot rows
+	 * 
+	 * @return inspect window
 	 */
 	@Override
 	public SlotWindow inspectMe(IEntity entity, RPSlot content,
@@ -140,12 +140,16 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		int centerY = point.y + component.getHeight() / 2;
 		for (int i = 0; i < panel.getComponentCount(); i++) {
 			Component tmp = panel.getComponent(i);
-			if (tmp != component) {
+			if (tmp != component && tmp != panel.getPhantom()) {
 				if ((draggedPosition < i) && (centerY > componentYCenter(tmp))) {
 					draggedPosition = i;
+					panel.setComponentZOrder(panel.getPhantom(), draggedPosition);
+					panel.revalidate();
 					break;
 				} else if ((draggedPosition >= i) && (centerY < componentYCenter(tmp))) {
-					draggedPosition = i - 1;
+					draggedPosition = i;
+					panel.setComponentZOrder(panel.getPhantom(), draggedPosition);
+					panel.revalidate();
 					break;
 				}
 			}
@@ -155,12 +159,108 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	@Override
 	public void startDrag(Component component) {
 		draggedPosition = panel.getComponentZOrder(component);
+		panel.hideComponent(component);
 		panel.setComponentZOrder(component, 0);
 	}
 
 	@Override
 	public void endDrag(Component component) {
 		panel.setComponentZOrder(component, draggedPosition);
+		panel.revealComponent();
 		panel.revalidate();
+	}
+	
+	/**
+	 * A container that can hide a contained component from the layout manager,
+	 * or anything else that uses {@link #getComponents} to access the
+	 * subcomponents, and present a {@link PhantomComponent} in its place.
+	 */
+	private static class PhantomLayoutPanel extends JPanel {
+		/**
+		 * Currently hidden component, or <code>null</code> if nothing is
+		 * hidden.
+		 */
+		Component hidden;
+		/**
+		 * The phantom component, or <code>null</code> if nothing is hidden.
+		 */
+		PhantomComponent phantom;
+		
+		/**
+		 * Hide a specific component in {@link #getComponents} and present a
+		 * PhantomComponent in its place.
+		 * 
+		 * @param component component to hide
+		 */
+		void hideComponent(Component component) {
+			hidden = component;
+			phantom = new PhantomComponent(hidden);
+			add(phantom, getComponentZOrder(hidden));
+		}
+		
+		/**
+		 * Restore the visibility of the previously hidden component.
+		 */
+		void revealComponent() {
+			remove(phantom);
+			hidden = null;
+			phantom = null;
+		}
+		
+		/**
+		 * Get the current phantom component.
+		 * 
+		 * @return current phantom or <code>null</code> if nothing is hidden
+		 */
+		Component getPhantom() {
+			return phantom;
+		}
+		
+		@Override
+		public Component[] getComponents() {
+			Component[] components = super.getComponents();
+			if (phantom == null) {
+				return components;
+			}
+			
+			// Very inefficient, but this is not performance critical code
+			List<Component> list = new ArrayList<Component>(Arrays.asList(components));
+			list.remove(hidden);
+			
+			return list.toArray(new Component[list.size()]);
+		}
+	}
+	
+	/**
+	 * A component that does nothing except takes space, with the same minimum,
+	 * maximum and preferred sizes as another component.
+	 */
+	private static class PhantomComponent extends JComponent {
+		private final Component component;
+		
+		/**
+		 * Create a PhantomComponent.
+		 * 
+		 * @param component parent component, whose size constraints this
+		 * 	component should mimic
+		 */
+		PhantomComponent(Component component) {
+			this.component = component;
+		}
+		
+		@Override
+		public Dimension getPreferredSize() {
+			return component.getPreferredSize();
+		}
+		
+		@Override
+		public Dimension getMinimumSize() {
+			return component.getMinimumSize();
+		}
+		
+		@Override
+		public Dimension getMaximumSize() {
+			return component.getMinimumSize();
+		}
 	}
 }
