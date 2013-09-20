@@ -23,6 +23,8 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
@@ -38,6 +40,8 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 	private static final long serialVersionUID = -3389618500246332016L;
 
 	private static CursorRepository cursorRepository = new CursorRepository();
+	/** Window draw listeners. */
+	private final List<WindowDragListener> dragListeners = new ArrayList<WindowDragListener>(1);
 	
 	private Point dragStart; 
 	private boolean movable = true;
@@ -182,6 +186,9 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 	private void startDrag(Point point) {
 		if (movable) {
 			dragStart = point;
+			for (WindowDragListener listener : dragListeners) {
+				listener.startDrag(this);;
+			}
 		}
 	}
 	
@@ -190,6 +197,9 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 	 */
 	private void endDrag() {
 		dragStart = null;
+		for (WindowDragListener listener : dragListeners) {
+			listener.endDrag(this);
+		}
 	}
 	
 	/**
@@ -207,6 +217,9 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 			point.y -= dragStart.y;
 
 			relocate(point);
+			for (WindowDragListener listener : dragListeners) {
+				listener.windowDragged(this, point);
+			}
 		}
 	}
 	
@@ -247,5 +260,40 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		public void mouseDragged(final MouseEvent ev) {
 			drag(ev.getPoint());
 		}
+	}
+
+	/**
+	 * Add a window drag listener. Added listeners will be notified if this
+	 * window is dragged by the user.
+	 * 
+	 * @param listener added listener
+	 */
+	public void addWindowDragListener(WindowDragListener listener) {
+		dragListeners.add(listener);
+	}
+	
+	/**
+	 * Interface for listening to dragging the window by mouse.
+	 */
+	public interface WindowDragListener {
+		/**
+		 * Called when the user initiates a window drag.
+		 * 
+		 * @param component dragged component
+		 */
+		void startDrag(Component component);
+		/**
+		 * Called when the user ends a window drag.
+		 * 
+		 * @param component dragged component
+		 */
+		void endDrag(Component component);
+		/**
+		 * Called when the user drags a window.
+		 * 
+		 * @param component dragged component
+		 * @param point new location of the window
+		 */
+		void windowDragged(Component component, Point point);
 	}
 }
