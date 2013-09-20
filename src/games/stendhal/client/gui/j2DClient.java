@@ -438,7 +438,13 @@ public class j2DClient implements UserInterface {
 		horizSplit.setBorder(null);
 		
 		windowContent.add(horizSplit, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
-		windowContent.add(containerPanel, SLayout.EXPAND_Y);
+		
+		// The contents of the right side
+		JComponent rightSidePanel = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		JComponent settings = new SettingsPanel();
+		rightSidePanel.add(settings, SLayout.EXPAND_X);
+		rightSidePanel.add(containerPanel, SLayout.EXPAND_X);
+		windowContent.add(rightSidePanel, SLayout.EXPAND_Y);
 		
 		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
 				new SettingChangeAdapter(SCALE_PREFERENCE_PROPERTY, "true") {
@@ -614,10 +620,6 @@ public class j2DClient implements UserInterface {
 		/*
 		 * Contents of the containerPanel
 		 */
-		// The setting bar to the top
-		JComponent settings = new SettingsPanel();
-		containerPanel.add(settings, SLayout.EXPAND_X);
-
 		// Character window
 		character = new Character();
 		character.setAlignmentX(Component.LEFT_ALIGNMENT);
