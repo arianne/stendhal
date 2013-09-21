@@ -126,6 +126,9 @@
  <tileset firstgid="672" name="small_lamp" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/light/small_lamp.png" width="128" height="32"/>
  </tileset>
+ <tileset firstgid="676" name="door light" tilewidth="32" tileheight="32">
+  <image source="../../tileset/light/door_light.png" width="96" height="128"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3UzU3DUBCF0SiQThBlpANqoA3KR0gsHGMLG+x3389ZnEWkLObNN8ntcrncBvLMg3QP/fXXX3/t9ddef03111x/3fvun343/++fnp1M//TMZPqnZyXTPz0jx3hakJ6Jc7pulZ6d8s31b9NRzfVvq9GZ0vvqRbrjHteJ9N5al2651nWr9P5aaldj8792H7l/uleJrvrX07pEx577p/v12v6M/tO3t9h9vp8Wm+5RYqctdh9F+v8xLb3/tPT+9dJfe/2PaH+f+Pr8+m36nfcKdl6Tnn6ra/2X7oDz+qfeov/Y9B/bvP+W76ZnRn/056eXGf3HMu//2w3o3xf92eM+87Ziz51QT89S0u9Gf46/l/R86I/+6I/+6A8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEDbPq7tSe+sZuk2ZG86/Q6yN5C6uxLSfVq5AdrhftAf/QEAAAAAAFjyCdS2dAsAAAEA
@@ -168,7 +171,7 @@
  </layer>
  <layer name="blend_ground" width="128" height="128" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SWwqCUBiF0YOjz+h+1ajG2h6CaacI14LvzV+EbSkAAAAAAAAAAAAAAAAAAAAAAAAw3aIppU3Lpu4NdUzZYpWbddqkbdoNeMeYG+qYusU+zx/SMZ3SecD9mBvqmLrFJc9fU5f6dBtwP+aGOj6xxT03j/R843bMDXXYAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgF9YNKW0adn8+kv4tlU2X6dN2qadf2BW9tn7kI7plM72n5VL9r6mLvXpZv/ZuWfzR3raHv7GC8NP1ogAAAEA
+   H4sIAAAAAAAAC+3Sy0rDQAAF0CFf35a+3y1tV6Ioir/oXQRczaJGUyTnwGVKyB0KN6UAAAAAAAAAAAAAAAAAAAAAAABAd6OmlHEyab6fPeX3c3Nfh8fossU0nVkyTxbJsr3jJedr5b5ah/513WKV99fJJtkmu7b/lvO9cletQ/+6brHP+4fkmJySc9v/yPlZuavWoX+/scUlnWtyu6P7kw5/wxYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8wqgpZZxMmkf/E/o2zeazZJ4skqVvYFBW2XudbJJtsrP/oOyz9yE5JqfkbP/BuWTza3KzPfwbXxhhx+EAAAEA
   </data>
  </layer>
  <layer name="blend_roof" width="128" height="128">
