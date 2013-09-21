@@ -256,6 +256,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
+      
     </entity>
 
     <!-- writing on the wooden arch MINE TOWN WEEKS -->
@@ -2013,6 +2014,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>    
     </entity>
 
     <entity x="14" y="4" condition="stendhal.minetown">
@@ -2021,6 +2023,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
+	  <attribute name="resistance">0</attribute>
     </entity>
 
     <entity x="16" y="48" condition="stendhal.minetown">
@@ -2029,6 +2032,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
+	  <attribute name="resistance">0</attribute>
     </entity>
 
     <entity x="58" y="49" condition="stendhal.minetown">
@@ -2037,6 +2041,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="width">2</attribute>
       <attribute name="height">2</attribute>
       <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
     </entity>
 
     <!-- END REMOVE AFTER MINE TOWN WEEKS -->
