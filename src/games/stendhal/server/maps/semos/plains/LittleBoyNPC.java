@@ -46,9 +46,6 @@ public class LittleBoyNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(36, 108));
-				nodes.add(new Node(37, 108));
-				nodes.add(new Node(37, 105));
 				nodes.add(new Node(42, 105));
 				nodes.add(new Node(42, 110));
 				nodes.add(new Node(48, 110));
@@ -59,8 +56,8 @@ public class LittleBoyNPC implements ZoneConfigurator {
 				nodes.add(new Node(49, 93));
 				nodes.add(new Node(49, 98));
 				nodes.add(new Node(46, 98));
-				nodes.add(new Node(46, 99));
-				nodes.add(new Node(36, 99));
+				nodes.add(new Node(46, 100));
+				nodes.add(new Node(38, 100));
 
 				setPath(new FixedPath(nodes, true));
 			}
@@ -79,7 +76,7 @@ public class LittleBoyNPC implements ZoneConfigurator {
 		};
 		npc.setEntityClass("plinknpc");
 		npc.setDescription("You see a young boy called Plink. He is crying and needs some help...");
-		npc.setPosition(36, 108);
+		npc.setPosition(38, 100);
 		npc.initHP(100);
 		zone.add(npc);
 	}
