@@ -86,8 +86,11 @@ public class DailyItemQuest extends AbstractQuest {
 		items = new HashMap<String, Integer>();
 
 		// ammunition
-		items.put("wooden arrow",10);
+		items.put("golden arrow",5);
+		items.put("power arrow",5);
 		items.put("steel arrow",7);
+		items.put("wooden arrow",10);
+
 		
 		// armor
         items.put("blue armor",1);

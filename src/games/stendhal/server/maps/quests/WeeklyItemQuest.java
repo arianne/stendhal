@@ -93,10 +93,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 	private static void buildItemsMap() {
 		items = new HashMap<String, Integer>();
 		
-		// ammunition
-		items.put("golden arrow",5);
-		items.put("power arrow",5);
-		
 		// armor
 		items.put("barbarian armor",1);
 		items.put("chaos armor",1);
