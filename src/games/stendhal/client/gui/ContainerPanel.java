@@ -16,12 +16,14 @@ import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.factory.EntityMap;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -34,6 +36,14 @@ import marauroa.common.game.RPSlot;
  * A wrapper container for WtPanels outside the game screen.
  */
 class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWindow.WindowDragListener {
+	/** Property name of the stored window order. */
+	private static final String WINDOW_ORDER_PROPERTY = "ui.window_order";
+	/**
+	 * Window order by name, including any windows that the user might not
+	 * have open but have stored order.
+	 */
+	private final List<String> windowOrder;
+	
 	/** The actual content panel. */
 	private final PhantomLayoutPanel panel;
 	/**
@@ -49,6 +59,8 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		panel.setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		setViewportView(panel);
 		setBorder(null);
+		String orderProp = WtWindowManager.getInstance().getProperty(WINDOW_ORDER_PROPERTY, "character;bag;keyring");
+		windowOrder = new ArrayList<String>(Arrays.asList(orderProp.split(";")));
 	}
 	
 	/**
@@ -60,16 +72,105 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 	 * @param child component to add
 	 */
 	void addRepaintable(JComponent child) {
-		child.setIgnoreRepaint(true);
-		panel.add(child);
-		panel.revalidate();
-		
+		int position = panel.getComponentCount();
 		if (child instanceof InternalManagedWindow) {
-			((InternalManagedWindow) child).addWindowDragListener(this);
+			InternalManagedWindow window = (InternalManagedWindow) child;
+			window.addWindowDragListener(this);
+			position = findWindowPosition(window.getName());
 		}
 		
 		if (child instanceof Inspectable) {
 			((Inspectable) child).setInspector(this);
+		}
+		
+		child.setIgnoreRepaint(true);
+		panel.add(child, position);
+		panel.revalidate();
+	}
+	
+	/**
+	 * Find the correct position to add a named component.
+	 * 
+	 * @param window component name
+	 * @return component position
+	 */
+	private int findWindowPosition(String window) {
+		int loc = windowOrder.indexOf(window);
+		if (loc != -1) {
+			int i = 0;
+			for (Component c : panel.getComponents()) {
+				if (c instanceof ManagedWindow) {
+					String name = ((ManagedWindow) c).getName();
+					// Added windows always have a valid position (see below)
+					if (loc < windowOrder.indexOf(name)) {
+						return i;
+					}
+				}
+				i++;
+			}
+		} else {
+			// Ensure that all added windows have a valid position
+			windowOrder.add(window);
+			fireWindowOrderChanged();
+		}
+		
+		return panel.getComponentCount();
+	}
+	
+	/**
+	 * Saves the window order as a window manager property. Called when the
+	 * stored window order has changed.
+	 */
+	private void fireWindowOrderChanged() {
+		StringBuilder builder = new StringBuilder();
+		Iterator<String> it = windowOrder.iterator();
+		while (it.hasNext()) {
+			builder.append(it.next());
+			if (it.hasNext()) {
+				builder.append(';');
+			}
+		}
+		
+		WtWindowManager.getInstance().setProperty(WINDOW_ORDER_PROPERTY, builder.toString());
+	}
+	
+	/**
+	 * Check if the stored window order has changed, and call
+	 * {@link #fireWindowOrderChanged} if needed.
+	 * 
+	 * @param movedWindow name of the moved window
+	 */
+	private void checkWindowOrder(String movedWindow) {
+		String previous = null;
+		for (Component c : panel.getComponents()) {
+			if (c instanceof ManagedWindow) {
+				String name = ((ManagedWindow) c).getName();
+				if (movedWindow.equals(name)) {
+					int oldIndex = windowOrder.indexOf(name);
+					int newIndex = 0;
+					if (previous == null) {
+						// Moved to first position
+						newIndex = 0;
+					} else {
+						newIndex = windowOrder.indexOf(previous) + 1;
+					}
+					
+					// Move to new location. Be careful about removing the old
+					// to avoid breaking the order
+					if (newIndex > oldIndex) {
+						windowOrder.add(newIndex, name);	
+						windowOrder.remove(name);
+						fireWindowOrderChanged();
+					} else if (newIndex < oldIndex) {
+						windowOrder.remove(name);
+						windowOrder.add(newIndex, name);
+						fireWindowOrderChanged();
+					}
+					// else old location, no need to change
+					return;
+				}
+				previous = name;
+			}
 		}
 	}
 	
@@ -168,6 +269,9 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		panel.setComponentZOrder(component, draggedPosition);
 		panel.revealComponent();
 		panel.revalidate();
+		if (component instanceof ManagedWindow) {
+			checkWindowOrder(((ManagedWindow) component).getName());
+		}
 	}
 	
 	/**
