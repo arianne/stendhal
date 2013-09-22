@@ -121,7 +121,7 @@ public class CleanAthorsUnderground extends AbstractQuest {
 				new AndCondition(new QuestStateStartsWithCondition(QUEST_SLOT,"killed"),
 						 new TimePassedCondition(QUEST_SLOT, 1, WEEK_IN_MINUTES)),
 				ConversationStates.QUEST_OFFERED,
-				"Those #creatures returned after the last time you helped us. May you help us again please?",
+				"Those #creatures returned after the last time you helped us. Will you help us again please?",
 				null);
 
 	
