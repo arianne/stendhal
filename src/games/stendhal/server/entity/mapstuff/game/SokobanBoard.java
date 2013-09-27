@@ -27,7 +27,7 @@ public class SokobanBoard extends OnePlayerArea {
 	private static int HEIGHT = 16;
 	private int level;
 	private Player player;
-	private LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
+	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 
 	/**
 	 * creates a SokobanBoard
@@ -162,7 +162,7 @@ public class SokobanBoard extends OnePlayerArea {
 	}
 
 	/**
-	 * creates a containe 
+	 * creates a containe
 	 *
 	 * @param x x-offset
 	 * @param y y-offset
@@ -189,11 +189,20 @@ public class SokobanBoard extends OnePlayerArea {
 	}
 
 	/**
-	 * thes the currently playing player
+	 * sets the currently playing player
 	 *
 	 * @param player player
 	 */
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	/**
+	 * gets the number of levels
+	 *
+	 * @return number of levels
+	 */
+	public int getLevelCount() {
+		return levelData.length / HEIGHT;
 	}
 }
