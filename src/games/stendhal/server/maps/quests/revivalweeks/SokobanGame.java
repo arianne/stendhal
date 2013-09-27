@@ -28,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 
 /**
- * A Tic Tac Toe game for two players
+ * A Sokoban game.
  *
  * @author hendrik
  */
@@ -66,14 +66,14 @@ public class SokobanGame implements LoadableContent {
 						new PlayAction(board));
 			}
 		};
-		npc.setEntityClass("paulnpc"); 
+		npc.setEntityClass("paulnpc");
 		npc.setPosition(46, 125);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
 
 	private static class PlayAction implements ChatAction {
-		private SokobanBoard board;
+		private final SokobanBoard board;
 
 		public PlayAction(SokobanBoard board) {
 			this.board = board;
@@ -107,4 +107,25 @@ public class SokobanGame implements LoadableContent {
 		zone.remove(board);
 		return true;
 	}
+
+
+/*
+TODO-List
+- detect successful completion of a level
+- timeout, longer timeout for higher levels
+- "exit" chat command
+- only start a new game, if there is no player already playing
+- prevent login/teleport into gameboard
+- handle highest level
+- sign with hall of fame (highest level, quickest time)
+- reward?
+
+- nice name for npc
+- nice outfit for npc
+- nicer tiles for the game
+
+- larger collisions entities
+- minimap highlight
+*/
+
 }
