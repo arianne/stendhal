@@ -485,7 +485,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Get the area of the zone, excluding static collisions.
-	 * 
+	 *
 	 * @return free area size
 	 */
 	private int getFreeArea() {
@@ -884,6 +884,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 			portals.remove(object);
 		}
 
+		if (object instanceof ZoneEnterExitListener) {
+			removeZoneEnterExitListener((ZoneEnterExitListener) object);
+		}
+		if (object instanceof MovementListener) {
+			removeMovementListener((MovementListener) object);
+		}
+
 		super.remove(id);
 
 		if (object instanceof Item) {
@@ -1174,7 +1181,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 		}
 	}
-	
+
 	public void notifyBeforeMovement(final ActiveEntity entity, final int oldX, final int oldY,
 			final int newX, final int newY) {
 		Rectangle2D neArea;
