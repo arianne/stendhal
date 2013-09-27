@@ -21,11 +21,16 @@ import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A Sokoban game.
@@ -33,6 +38,16 @@ import java.util.Arrays;
  * @author hendrik
  */
 public class SokobanGame implements LoadableContent {
+	// 0: start, done
+	// 1: level
+	// 2: sum of times for past levels
+	// 3: start time of current level
+	private static final String QUEST_SLOT = "sokoban";
+	private static final int QUEST_IDX_STATUS = 0;
+	private static final int QUEST_IDX_LAST_SUCCESSFUL_LEVEL = 1;
+	private static final int QUEST_IDX_SUM_OF_TIMES_FOR_PAST_LEVELS = 2;
+	private static final int QUEST_IDX_START_TIME_OF_CURRENT_LEVEL = 3;
+
 	private StendhalRPZone zone = null;
 	private SokobanBoard board;
 	private SpeakerNPC npc;
@@ -59,11 +74,19 @@ public class SokobanGame implements LoadableContent {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE,
-						Arrays.asList("level"),
+
+				List<ChatAction> playActions = new LinkedList<ChatAction>();
+				playActions.add(new SetQuestAction(QUEST_SLOT, QUEST_IDX_STATUS, "start"));
+				playActions.add(new SetQuestToTimeStampAction(QUEST_SLOT, QUEST_IDX_START_TIME_OF_CURRENT_LEVEL));
+				playActions.add(new PlayAction(board));
+
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("play"),
+						new QuestSmallerThanCondition(
+							QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, board.getLevelCount()),
 						ConversationStates.IDLE,
-						null,
-						new PlayAction(board));
+						"Good luck.",
+						new MultipleActions(playActions));
 			}
 		};
 		npc.setEntityClass("paulnpc");
@@ -82,7 +105,8 @@ public class SokobanGame implements LoadableContent {
 		@Override
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			board.setPlayer(player);
-			board.loadLevel(MathHelper.parseIntDefault(sentence.getNormalized().substring("level ".length()), 1));
+			int level = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL), 0);
+			board.loadLevel(level + 1);
 		}
 	}
 
@@ -101,13 +125,12 @@ public class SokobanGame implements LoadableContent {
 	 */
 	@Override
 	public boolean removeFromWorld() {
-		NPCList.get().remove("TODO");
 		zone.remove(npc);
 		board.clear();
 		zone.remove(board);
 		return true;
 	}
-
+}
 
 /*
 TODO-List
@@ -127,5 +150,3 @@ TODO-List
 - larger collisions entities
 - minimap highlight
 */
-
-}
