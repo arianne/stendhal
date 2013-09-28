@@ -11,8 +11,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
+import marauroa.common.Pair;
 
 import org.apache.log4j.Logger;
 
@@ -29,6 +33,7 @@ public class SokobanBoard extends OnePlayerArea {
 	private int level;
 	private String playerName;
 	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
+	private final Set<Pair<Integer, Integer>> containerLocations = new HashSet<Pair<Integer, Integer>>();
 
 	/**
 	 * creates a SokobanBoard
@@ -61,6 +66,7 @@ public class SokobanBoard extends OnePlayerArea {
 	 */
 	public void loadLevel(int level) {
 		clear();
+		this.level = level;
 		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
@@ -133,6 +139,7 @@ public class SokobanBoard extends OnePlayerArea {
 			this.getZone().remove(entity);
 		}
 		entitiesToCleanup.clear();
+		containerLocations.clear();
 	}
 
 	/**
@@ -163,7 +170,7 @@ public class SokobanBoard extends OnePlayerArea {
 	}
 
 	/**
-	 * creates a containe
+	 * creates a container
 	 *
 	 * @param x x-offset
 	 * @param y y-offset
@@ -173,6 +180,9 @@ public class SokobanBoard extends OnePlayerArea {
 		container.setPosition(this.getX() + x, this.getY() + y);
 		this.getZone().add(container);
 		entitiesToCleanup.add(container);
+		containerLocations.add(new Pair<Integer, Integer>(
+								Integer.valueOf(this.getX() + x),
+								Integer.valueOf(this.getY() + y)));
 	}
 
 	/**
@@ -206,6 +216,24 @@ public class SokobanBoard extends OnePlayerArea {
 	 */
 	public int getLevelCount() {
 		return levelData.length / HEIGHT;
+	}
+
+	private boolean checkLevelCompleted() {
+		for (Entity entity : entitiesToCleanup) {
+			if (entity instanceof Block) {
+				Pair<Integer, Integer> point = new Pair<Integer, Integer>(
+					Integer.valueOf(entity.getX()), Integer.valueOf(entity.getY()));
+
+				// if this block is not on a container position, the level is not completed
+				if (!containerLocations.contains(point)) {
+					return false;
+				}
+			}
+		}
+		// All blocks are on container positions. Since there cannot be
+		// two blocks on the same tile and since the number of blocks
+		// and containers is equal, call containers are filled
+		return true;
 	}
 
 }
