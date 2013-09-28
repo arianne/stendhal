@@ -2,6 +2,8 @@ package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
 import games.stendhal.server.entity.mapstuff.block.Block;
@@ -25,12 +27,13 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class SokobanBoard extends OnePlayerArea {
+public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	private static Logger logger = Logger.getLogger(SokobanBoard.class);
 	private String[] levelData = null;
 	private static int WIDTH = 20;
 	private static int HEIGHT = 16;
 	private int level;
+	private long levelStart;
 	private String playerName;
 	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 	private final Set<Pair<Integer, Integer>> containerLocations = new HashSet<Pair<Integer, Integer>>();
@@ -57,16 +60,19 @@ public class SokobanBoard extends OnePlayerArea {
 		} catch (IOException e) {
 			logger.error(e, e);
 		}
+
+		TurnNotifier.get().notifyInTurns(0, this);
 	}
 
 	/**
 	 * loads a level
 	 *
-	 * @param level number
+	 * @param lvl level number
 	 */
-	public void loadLevel(int level) {
+	public void loadLevel(int lvl) {
 		clear();
-		this.level = level;
+		levelStart = System.currentTimeMillis() / 1000;
+		this.level = lvl;
 		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
@@ -140,6 +146,7 @@ public class SokobanBoard extends OnePlayerArea {
 		}
 		entitiesToCleanup.clear();
 		containerLocations.clear();
+		playerName = null;
 	}
 
 	/**
@@ -218,6 +225,67 @@ public class SokobanBoard extends OnePlayerArea {
 		return levelData.length / HEIGHT;
 	}
 
+	/**
+	 * checks whether a game is active.
+	 *
+	 * @return true, if a game is active, false otherwise
+	 */
+	public boolean isGameActive() {
+		return playerName != null;
+	}
+
+	/**
+	 * checks whether the player is present
+	 *
+	 * @return true, if the player is inside the game field; false otherwise
+	 */
+	public boolean isPlayerPresent() {
+		if (playerName == null) {
+			return false;
+		}
+
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		if (player == null) {
+			return false;
+		}
+
+		if (player.getZone() != this.getZone()) {
+			return false;
+		}
+
+		int x = player.getX();
+		if (x < this.getX() || x > this.getX() + WIDTH) {
+			return false;
+		}
+
+		int y = player.getY();
+		if (y < this.getY() || y > this.getY() + HEIGHT) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * is the timeout reached
+	 *
+	 * @return true, if the timeout was reached, false otherwise
+	 */
+	private boolean isTimeout() {
+		long diff = System.currentTimeMillis() - levelStart;
+		int allowedSec = 3 * 60 + level * 30;
+		if (level == 1) {
+			allowedSec = 60;
+		}
+
+		return diff / 1000 > allowedSec;
+	}
+
+	/**
+	 * checks whether the level was completed successfully.
+	 *
+	 * @return true, if the level was completed; false otherwise.
+	 */
 	private boolean checkLevelCompleted() {
 		for (Entity entity : entitiesToCleanup) {
 			if (entity instanceof Block) {
@@ -236,4 +304,28 @@ public class SokobanBoard extends OnePlayerArea {
 		return true;
 	}
 
+	@Override
+	public void onTurnReached(int currentTurn) {
+		TurnNotifier.get().notifyInTurns(0, this);
+
+		if (!isGameActive()) {
+			return;
+		}
+
+		if (!isPlayerPresent()) {
+			clear();
+			return;
+		}
+
+		if (isTimeout()) {
+			clear();
+			return;
+		}
+
+		// level completed?
+		if (checkLevelCompleted()) {
+			clear();
+			return;
+		}
+	}
 }
