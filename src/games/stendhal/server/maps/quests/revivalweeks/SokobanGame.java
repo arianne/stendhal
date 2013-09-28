@@ -76,6 +76,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 
 			@Override
 			protected void createDialog() {
+				addGreeting("Hello, let's #play a game.");
 
 				List<ChatAction> playActions = new LinkedList<ChatAction>();
 				playActions.add(new SetQuestAction(QUEST_SLOT, QUEST_IDX_STATUS, "start"));
@@ -85,7 +86,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("play"),
 						new QuestSmallerThanCondition(
-							QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, board.getLevelCount()),
+							QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, board.getLevelCount(), true),
 						ConversationStates.IDLE,
 						"Good luck.",
 						new MultipleActions(playActions));
