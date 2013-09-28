@@ -37,13 +37,13 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
     static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
     static final int RESET_AGAIN_DELAY = 10;
-	
+
     private static final String Z_ORDER = "z";
 
     private static final String START_Y = "start-y";
 
     private static final String START_X = "start-x";
-    
+
     private final List<String> sounds;
 
     private static final Logger logger = Logger.getLogger(Block.class);
@@ -75,9 +75,9 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	public Block(int startX, int startY, boolean multiPush) {
 		this(startX, startY, multiPush, "block", null, Arrays.asList("scrape-1", "scrape-2"));
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param startX
 	 * @param startY
 	 * @param multiPush
@@ -86,14 +86,14 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	public Block(int startX, int startY, boolean multiPush, String style) {
 		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
 	}
-	
+
 	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
 		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
 	}
 
 	/**
 	 * Create a new block at startX, startY with a different style at client side
-	 * 
+	 *
 	 * @param startX
 	 *			initial x-coordinate
 	 * @param startY
@@ -102,7 +102,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	 * 			is pushing multiple times allowed
 	 * @param style
 	 * 			what style should the client use?
-	 * @param shape 
+	 * @param shape
 	 * @param sounds
 	 * 			what sounds should be played on push?
 	 */
@@ -129,7 +129,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		}
 		this.reset();
 	}
-	
+
 
 	/**
 	 * Resets the block position to its initial state
@@ -142,7 +142,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
 	/**
 	 * Push this Block into a given direction
-	 * @param p 
+	 * @param p
 	 * @param d
 	 * 			the direction, this block is pushed into
 	 */
@@ -164,11 +164,13 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
             SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
             this.sendSound();
             this.notifyWorldAboutChanges();
-            logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
+            if (logger.isDebugEnabled()) {
+            	logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
+            }
 		}
 	}
-	
-	
+
+
 	private void sendSound() {
 		if(!this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
@@ -176,11 +178,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		}
 	}
 
-	protected int getYAfterPush(Direction d) {
+	public int getYAfterPush(Direction d) {
 		return this.getY() + d.getdy();
 	}
 
-	protected int getXAfterPush(Direction d) {
+	public int getXAfterPush(Direction d) {
 		return this.getX() + d.getdx();
 	}
 
@@ -195,20 +197,20 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		boolean multiPush = this.getBool("multi");
 		int newX = this.getXAfterPush(d);
 		int newY = this.getYAfterPush(d);
-		
+
 		if(!multiPush && pushed) {
 			return false;
 		}
 
 		// additional checks: new position must be free
 		boolean collision = this.getZone().collides(this, newX, newY);
-		
+
 		return !collision;
 	}
-	
+
 	/**
 	 * Get the shape of this Block
-	 * 
+	 *
 	 * @return the shape or null if this Block has no shape
 	 */
 	public String getShape() {
@@ -219,21 +221,20 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	}
 
 	@Override
-	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX,
-			int newY) {
+	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
 		// do nothing
 	}
 
 	@Override
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY) {
-        logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
+        if (logger.isDebugEnabled()) {
+        	logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
+        }
 		resetInPlayerlessZone(zone, entity);
 	}
 
 	@Override
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY, int newX, int newY) {
+	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,	int oldY, int newX, int newY) {
 		// do nothing on move
 	}
 
@@ -244,7 +245,9 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
 	@Override
 	public void onExited(RPObject object, StendhalRPZone zone) {
-        logger.debug("Block [" + this.getID().toString() + "] notified about object [" + object + "] exiting [" + zone.getName() + "].");
+        if (logger.isDebugEnabled()) {
+        	logger.debug("Block [" + this.getID().toString() + "] notified about object [" + object + "] exiting [" + zone.getName() + "].");
+        }
 		resetInPlayerlessZone(zone, object);
 	}
 
