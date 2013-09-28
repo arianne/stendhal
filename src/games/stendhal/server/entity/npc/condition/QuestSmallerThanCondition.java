@@ -31,26 +31,27 @@ public class QuestSmallerThanCondition implements ChatCondition {
 	private final String questname;
 	private final int index;
 	private final int state;
+	private boolean acceptEmpty;
 
 	/**
 	 * Creates a new QuestSmallerThanCondition.
 	 *
 	 * @param questname name of quest-slot
-	 * @param state state
+	 * @param state constant value to compare to
 	 */
 	public QuestSmallerThanCondition(final String questname, final int state) {
 		this.questname = questname;
 		this.index = -1;
 		this.state = state;
+		this.acceptEmpty = false;
 	}
-
 
 	/**
 	 * Creates a new QuestSmallerThanCondition.
 	 *
 	 * @param questname name of quest-slot
 	 * @param index index of sub state
-	 * @param state state
+	 * @param state constant value to compare to
 	 */
 	public QuestSmallerThanCondition(final String questname, final int index, final int state) {
 		this.questname = questname;
@@ -58,10 +59,26 @@ public class QuestSmallerThanCondition implements ChatCondition {
 		this.state = state;
 	}
 
+	/**
+	 * Creates a new QuestSmallerThanCondition.
+	 *
+	 * @param questname name of quest-slot
+	 * @param index index of sub state
+	 * @param state constant value to compare to
+	 * @param acceptEmpty accept an empty quest state
+	 */
+	public QuestSmallerThanCondition(final String questname, final int index, final int state, boolean acceptEmpty) {
+		this.questname = questname;
+		this.index = index;
+		this.state = state;
+		this.acceptEmpty = acceptEmpty;
+	}
+
+
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		if (!player.hasQuest(questname)) {
-			return false;
+			return acceptEmpty;
 		}
 
 		String questState = getQuestState(player);
@@ -69,7 +86,7 @@ public class QuestSmallerThanCondition implements ChatCondition {
 		try {
 			questStateInt = Integer.parseInt(questState);
 		} catch (NumberFormatException e) {
-			return false;
+			return acceptEmpty;
 		}
 
 		return questStateInt < state;
