@@ -37,6 +37,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	private String playerName;
 	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 	private final Set<Pair<Integer, Integer>> containerLocations = new HashSet<Pair<Integer, Integer>>();
+	private final List<Block> boxes = new LinkedList<Block>();
 	private final SokobanListener sokobanListener;
 
 	/**
@@ -74,8 +75,11 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	 * @param lvl level number
 	 */
 	public void loadLevel(int lvl) {
+		String temp = playerName;
 		clear();
-		levelStart = System.currentTimeMillis() / 1000;
+		playerName = temp;
+
+		levelStart = System.currentTimeMillis();
 		this.level = lvl;
 		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
@@ -148,8 +152,9 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 		for (Entity entity : entitiesToCleanup) {
 			this.getZone().remove(entity);
 		}
-		entitiesToCleanup.clear();
+		boxes.clear();
 		containerLocations.clear();
+		entitiesToCleanup.clear();
 		playerName = null;
 	}
 
@@ -178,6 +183,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 		this.getZone().add(block);
 		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
+		boxes.add(block);
 	}
 
 	/**
@@ -277,7 +283,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	 */
 	private boolean isTimeout() {
 		long diff = System.currentTimeMillis() - levelStart;
-		int allowedSec = 3 * 60 + level * 30;
+		int allowedSec = 4 * 60 + level * 60;
 		if (level == 1) {
 			allowedSec = 60;
 		}
@@ -291,15 +297,13 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	 * @return true, if the level was completed; false otherwise.
 	 */
 	private boolean checkLevelCompleted() {
-		for (Entity entity : entitiesToCleanup) {
-			if (entity instanceof Block) {
-				Pair<Integer, Integer> point = new Pair<Integer, Integer>(
-					Integer.valueOf(entity.getX()), Integer.valueOf(entity.getY()));
+		for (Block entity : boxes) {
+			Pair<Integer, Integer> point = new Pair<Integer, Integer>(
+				Integer.valueOf(entity.getX()), Integer.valueOf(entity.getY()));
 
-				// if this block is not on a container position, the level is not completed
-				if (!containerLocations.contains(point)) {
-					return false;
-				}
+			// if this block is not on a container position, the level is not completed
+			if (!containerLocations.contains(point)) {
+				return false;
 			}
 		}
 		// All blocks are on container positions. Since there cannot be
@@ -329,8 +333,8 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 
 		// level completed?
 		if (checkLevelCompleted()) {
-			clear();
 			sokobanListener.onSuccess(playerName, level);
+			clear();
 			return;
 		}
 	}
