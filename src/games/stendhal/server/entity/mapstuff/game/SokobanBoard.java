@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.mapstuff.game;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
 import games.stendhal.server.entity.mapstuff.block.Block;
@@ -26,7 +27,7 @@ public class SokobanBoard extends OnePlayerArea {
 	private static int WIDTH = 20;
 	private static int HEIGHT = 16;
 	private int level;
-	private Player player;
+	private String playerName;
 	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 
 	/**
@@ -182,6 +183,7 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param direction direction to face to
 	 */
 	private void player(int x, int y, Direction direction) {
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
 		if (player != null) {
 			player.setPosition(this.getX() + x, this.getY() + y);
 			player.setDirection(direction);
@@ -194,7 +196,7 @@ public class SokobanBoard extends OnePlayerArea {
 	 * @param player player
 	 */
 	public void setPlayer(Player player) {
-		this.player = player;
+		this.playerName = player.getName();
 	}
 
 	/**
@@ -205,4 +207,5 @@ public class SokobanBoard extends OnePlayerArea {
 	public int getLevelCount() {
 		return levelData.length / HEIGHT;
 	}
+
 }
