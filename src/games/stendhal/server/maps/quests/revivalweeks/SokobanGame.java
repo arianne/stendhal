@@ -1,4 +1,3 @@
-/* $Id$ */
 /***************************************************************************
  *                   (C) Copyright 2003-2010 - Stendhal                    *
  ***************************************************************************
@@ -14,10 +13,12 @@ package games.stendhal.server.maps.quests.revivalweeks;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.MathHelper;
+import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
+import games.stendhal.server.entity.mapstuff.game.SokobanListener;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -27,6 +28,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -37,10 +39,10 @@ import java.util.List;
  *
  * @author hendrik
  */
-public class SokobanGame implements LoadableContent {
+public class SokobanGame implements LoadableContent, SokobanListener {
 	// 0: start, done
 	// 1: level
-	// 2: sum of times for past levels
+	// 2: sum of times for past levels in seconds
 	// 3: start time of current level
 	private static final String QUEST_SLOT = "sokoban";
 	private static final int QUEST_IDX_STATUS = 0;
@@ -130,12 +132,42 @@ public class SokobanGame implements LoadableContent {
 		zone.remove(board);
 		return true;
 	}
+
+	@Override
+	public void onSuccess(String playerName, int level) {
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		if (player == null) {
+			return;
+		}
+		player.setPosition(npc.getX() - 1, npc.getY() + 1);
+		player.setDirection(Direction.RIGHT);
+
+		long startTime = MathHelper.parseLongDefault(player.getQuest(QUEST_SLOT, QUEST_IDX_START_TIME_OF_CURRENT_LEVEL), 0);
+		int totalTime = MathHelper.parseIntDefault(player.getQuest(QUEST_SLOT, QUEST_IDX_SUM_OF_TIMES_FOR_PAST_LEVELS), 0);
+		int timeDiff = (int) ((System.currentTimeMillis() - startTime) / 1000);
+		totalTime = totalTime + timeDiff;
+		player.setQuest(QUEST_SLOT, "done;" + level + ";" + totalTime + ";0");
+
+		npc.say("Congratulations " + playerName + ", you completed the "
+				+ Grammar.ordered(level) + " level in "
+				+ TimeUtil.approxTimeUntil(timeDiff));
+	}
+
+	@Override
+	public void onTimeout(String playerName, int level) {
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		if (player == null) {
+			return;
+		}
+		player.setPosition(npc.getX() - 1, npc.getY() + 1);
+		player.setDirection(Direction.RIGHT);
+
+		npc.say("I am sorry " + playerName + ", you have been too slow.");
+	}
 }
 
 /*
 TODO-List
-- detect successful completion of a level
-- timeout, longer timeout for higher levels
 - "exit" chat command
 - only start a new game, if there is no player already playing
 - prevent login/teleport into gameboard
