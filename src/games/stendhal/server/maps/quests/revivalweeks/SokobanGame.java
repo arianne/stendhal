@@ -67,7 +67,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 	 * adds the NPC which moderates the game to the world.
 	 */
 	private void addNPC() {
-		npc = new SpeakerNPC("TODO") {
+        npc = new SpeakerNPC("Hiro") {
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
