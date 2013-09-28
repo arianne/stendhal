@@ -37,11 +37,14 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 	private String playerName;
 	private final LinkedList<Entity> entitiesToCleanup = new LinkedList<Entity>();
 	private final Set<Pair<Integer, Integer>> containerLocations = new HashSet<Pair<Integer, Integer>>();
+	private final SokobanListener sokobanListener;
 
 	/**
 	 * creates a SokobanBoard
+	 *
+	 * @param sokobanListener SokobanListener
 	 */
-	public SokobanBoard() {
+	public SokobanBoard(SokobanListener sokobanListener) {
 		super(WIDTH, HEIGHT);
 
 		try {
@@ -61,6 +64,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 			logger.error(e, e);
 		}
 
+		this.sokobanListener = sokobanListener;
 		TurnNotifier.get().notifyInTurns(0, this);
 	}
 
@@ -319,12 +323,14 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 
 		if (isTimeout()) {
 			clear();
+			sokobanListener.onTimeout(playerName, level);
 			return;
 		}
 
 		// level completed?
 		if (checkLevelCompleted()) {
 			clear();
+			sokobanListener.onSuccess(playerName, level);
 			return;
 		}
 	}

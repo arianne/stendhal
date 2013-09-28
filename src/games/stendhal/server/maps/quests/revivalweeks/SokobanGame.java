@@ -58,7 +58,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 	 * creates TicTacToeBoard and adds it to the world.
 	 */
 	private void addBoard() {
-		board = new SokobanBoard();
+		board = new SokobanBoard(this);
 		board.setPosition(26, 107);
 		zone.add(board);
 	}
