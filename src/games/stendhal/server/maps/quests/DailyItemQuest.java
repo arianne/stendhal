@@ -188,6 +188,7 @@ public class DailyItemQuest extends AbstractQuest {
 		items.put("collard",5);
 		items.put("courgette",5);
 		items.put("egg",1);
+		items.put("fairy cake", 5);
 		items.put("fish pie",1);
 		items.put("garlic",5);
 		items.put("grapes",5);
