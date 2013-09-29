@@ -30,9 +30,11 @@ import org.apache.log4j.Logger;
  */
 public class SokobanBoard extends OnePlayerArea implements TurnListener, AvailabilityChecker {
 	private static Logger logger = Logger.getLogger(SokobanBoard.class);
-	private String[] levelData = null;
+	private static final int EMPTY_GAMEBOARD_LEVEL = 0;
 	private static int WIDTH = 20;
 	private static int HEIGHT = 16;
+
+	private String[] levelData = null;
 	private int level;
 	private long levelStart;
 	private String playerName;
@@ -82,7 +84,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 
 		levelStart = System.currentTimeMillis();
 		this.level = lvl;
-		int levelOffset = (level - 1) * (HEIGHT + 1) + 1;
+		int levelOffset = level * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
 			for (int x = 0; x < WIDTH; x++) {
@@ -322,20 +324,23 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 		}
 
 		if (!isPlayerPresent()) {
-			clear();
-			return;
+			loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			playerName = null;
+ 			return;
 		}
 
 		if (isTimeout()) {
-			clear();
 			sokobanListener.onTimeout(playerName, level);
+			loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			playerName = null;
 			return;
 		}
 
 		// level completed?
 		if (checkLevelCompleted()) {
 			sokobanListener.onSuccess(playerName, level);
-			clear();
+			loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			playerName = null;
 			return;
 		}
 	}
