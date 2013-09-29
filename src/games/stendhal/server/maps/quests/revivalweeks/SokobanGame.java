@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -26,6 +26,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.AvailabilityCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestSmallerThanCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -67,7 +71,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 	 * adds the NPC which moderates the game to the world.
 	 */
 	private void addNPC() {
-        npc = new SpeakerNPC("Hiro") {
+		npc = new SpeakerNPC("Hiro") {
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
@@ -78,18 +82,37 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 			protected void createDialog() {
 				addGreeting("Hello, let's #play a game.");
 
+				add(ConversationStates.ATTENDING,
+					Arrays.asList("play"),
+					new NotCondition(new AvailabilityCondition(board)),
+					ConversationStates.ATTENDING,
+					"Please wait a little until the current game is completed.",
+					null);
+
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("play"),
+						new AndCondition(
+							new QuestInStateCondition(
+								QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, Integer.toString(board.getLevelCount())),
+							new AvailabilityCondition(board)),
+						ConversationStates.ATTENDING,
+						"Wow! You finished all levels. I have run out of ideas.",
+						null);
+
 				List<ChatAction> playActions = new LinkedList<ChatAction>();
 				playActions.add(new SetQuestAction(QUEST_SLOT, QUEST_IDX_STATUS, "start"));
 				playActions.add(new SetQuestToTimeStampAction(QUEST_SLOT, QUEST_IDX_START_TIME_OF_CURRENT_LEVEL));
 				playActions.add(new PlayAction(board));
 
 				add(ConversationStates.ATTENDING,
-						Arrays.asList("play"),
+					Arrays.asList("play"),
+					new AndCondition(
 						new QuestSmallerThanCondition(
 							QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, board.getLevelCount(), true),
-						ConversationStates.IDLE,
-						"Good luck.",
-						new MultipleActions(playActions));
+						new AvailabilityCondition(board)),
+					ConversationStates.IDLE,
+					"Good luck.",
+					new MultipleActions(playActions));
 			}
 		};
 		npc.setEntityClass("sokobannpc");
@@ -170,9 +193,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 /*
 TODO-List
 - "exit" chat command
-- only start a new game, if there is no player already playing
 - prevent login/teleport into gameboard
-- handle highest level
 - sign with hall of fame (highest level, quickest time)
 - reward?
 
