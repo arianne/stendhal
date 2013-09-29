@@ -7,6 +7,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
 import games.stendhal.server.entity.mapstuff.block.Block;
+import games.stendhal.server.entity.npc.condition.AvailabilityChecker;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class SokobanBoard extends OnePlayerArea implements TurnListener {
+public class SokobanBoard extends OnePlayerArea implements TurnListener, AvailabilityChecker {
 	private static Logger logger = Logger.getLogger(SokobanBoard.class);
 	private String[] levelData = null;
 	private static int WIDTH = 20;
@@ -337,5 +338,10 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener {
 			clear();
 			return;
 		}
+	}
+
+	@Override
+	public boolean isAvailable() {
+		return !isPlayerPresent();
 	}
 }
