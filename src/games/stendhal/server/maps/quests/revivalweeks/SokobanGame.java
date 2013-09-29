@@ -183,7 +183,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 1, npc.getY() + 1);
+		player.setPosition(npc.getX() - 3, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 
 		npc.say("I am sorry " + playerName + ", you have been too slow.");
