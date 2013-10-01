@@ -21,6 +21,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -154,14 +155,31 @@ public class DeepInspect extends ScriptImpl {
 			sb.setLength(0);
 			
 			
+			Collection<Item> itemList = SingletonRepository.getEntityManager().getItems();
+			
 			// Looted items
 			sb.append("Loots:\n   ");
 			
-			int lootCount;
-			for (Item item : SingletonRepository.getEntityManager().getItems()) {
-				lootCount = player.getNumberOfLootsForItem(item.getName());
-				if (lootCount > 0) {
-					sb.append("[" + item.getName() + "=" + Integer.toString(lootCount) + "]");
+			int itemCount = 0;
+			for (Item item : itemList) {
+				itemCount = player.getNumberOfLootsForItem(item.getName());
+				if (itemCount > 0) {
+					sb.append("[" + item.getName() + "=" + Integer.toString(itemCount) + "]");
+				}
+			}
+			
+			sb.append("\n");
+			admin.sendPrivateText(sb.toString());
+			sb.setLength(0);
+			
+			
+			// Harvested items
+			sb.append("Harvested Items (FishSource, FlowerGrower, VegetableGrower):\n   ");
+			itemCount = 0;
+			for (Item item : itemList) {
+				itemCount = player.getQuantityOfHarvestedItems(item.getName());
+				if (itemCount > 0) {
+					sb.append("[" + item.getName() + "=" + Integer.toString(itemCount) + "]");
 				}
 			}
 			
