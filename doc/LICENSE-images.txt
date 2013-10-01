@@ -1,21 +1,22 @@
 The following images are in the public domain:
     crystals:           http://www.clker.com/clipart-purple-amethyst.html
                         http://openclipart.org/detail/173471/minerals-by-qubodup-173471
-    feathered           http://openclipart.org/detail/23073/black-feather-by-beakman
+    feathered:          http://openclipart.org/detail/23073/black-feather-by-beakman
     fire_explosion_2x2: http://opengameart.org/content/explosion-sheet
-    ground_3            http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+    ground_3:           http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
     halo, halo_large, halo_large_red:
                         http://www.clker.com/clipart-horizontal-halo.html
     juice_glass:        http://openclipart.org/detail/12865/juice-glass-by-anonymous-12865
-    myling              http://opengameart.org/content/zombie-and-skeleton-32x48
+    status/merchant:    http://openclipart.org/detail/171507/money-pot-by-gnokii-171507
+    myling:             http://opengameart.org/content/zombie-and-skeleton-32x48
     panel_leather_black_001:
                         http://opengameart.org/content/leather-black
-    snake_skeleton      http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
-    tail_rodent, tail_rodent_large
+    snake_skeleton:     http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
+    tail_rodent, tail_rodent_large:
                         http://www.clker.com/clipart-185713.html
-    toys                http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
-    umbrella_thorn      http://opengameart.org/content/trees-1
-    winged_bat          http://openclipart.org/detail/2699/bat-by-machovka-2699
+    toys:               http://openclipart.org/detail/64909/doll-by-deluge http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
+    umbrella_thorn:     http://opengameart.org/content/trees-1
+    winged_bat:         http://openclipart.org/detail/2699/bat-by-machovka-2699
     wooden:             http://www.clker.com/clipart-25040.html
 
 The following files are released under the terms and conditions of the GPL (see license.txt).
