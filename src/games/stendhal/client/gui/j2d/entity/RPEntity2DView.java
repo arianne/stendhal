@@ -55,13 +55,19 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final int ICON_OFFSET = 8;
 	private static final int HEALTH_BAR_HEIGHT = 4;
 
+	// Battle icons
+	private static final Sprite blockedSprite;
+	private static final Sprite hitSprite;
+	private static final Sprite missedSprite;
+	
+	// Job icons
+	private static final Sprite merchantSprite;
+	
+	// Status icons
+	private static final Sprite chokingSprite;
 	private static final Sprite confusedSprite;
 	private static final Sprite eatingSprite;
 	private static final Sprite poisonedSprite;
-	private static final Sprite chokingSprite;
-	private static final Sprite hitSprite;
-	private static final Sprite blockedSprite;
-	private static final Sprite missedSprite;
 	private static final Sprite shockedSprite;
 	
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
@@ -120,11 +126,15 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	static {
 		final SpriteStore st = SpriteStore.get();
 
+		// Battle icons
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		
-		// Status sprites
+		// Job icons
+		merchantSprite = st.getSprite("data/sprites/status/merchant.png");
+		
+		// Status icons
 		confusedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/confuse.png"), 200);
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
@@ -136,25 +146,21 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Create a new RPEntity2DView.
 	 */
 	public RPEntity2DView() {
-		addIconManager(new StatusIconManager(Player.PROP_EATING, eatingSprite,
+		// Job icons
+		addIconManager(new StatusIconManager(Player.PROP_EATING, merchantSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
 					@Override
 					boolean show(T rpentity) {
-						return rpentity.isEating() && !rpentity.isChoking();
+						return rpentity.hasStatus(StatusID.MERCHANT);
 					}
 				});
+		
+		// Status icons
 		addIconManager(new StatusIconManager(Player.PROP_EATING, chokingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isChoking();
-					}
-				});
-		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
-				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
-					@Override
-					boolean show(T rpentity) {
-						return rpentity.hasStatus(StatusID.POISON);
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
@@ -164,6 +170,20 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		                return rpentity.hasStatus(StatusID.CONFUSE);
 		            }
 		        });
+		addIconManager(new StatusIconManager(Player.PROP_EATING, eatingSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+					@Override
+					boolean show(T rpentity) {
+						return rpentity.isEating() && !rpentity.isChoking();
+					}
+				});
+		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
+				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
+					@Override
+					boolean show(T rpentity) {
+						return rpentity.hasStatus(StatusID.POISON);
+					}
+				});
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
                 HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0) {
                     @Override

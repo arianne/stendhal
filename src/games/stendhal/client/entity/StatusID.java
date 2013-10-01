@@ -14,6 +14,10 @@ package games.stendhal.client.entity;
 
 /** Status IDs. */
 public enum StatusID {
+	// Jobs
+	MERCHANT("job_merchant"),
+	
+	// Statuses
 	CONFUSE("status_confuse"),
 	POISON("poisoned"),
 	SHOCK("status_shock");

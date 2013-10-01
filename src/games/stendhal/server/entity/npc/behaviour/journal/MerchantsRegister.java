@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.journal;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.MerchantBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.LinkedList;
@@ -39,7 +41,7 @@ public class MerchantsRegister {
 		buyers  = new LinkedList<Pair<String, BuyerBehaviour>>();
 		sellers  = new LinkedList<Pair<String, SellerBehaviour>>();
 	}
-
+	
 	/**
 	 * Adds an NPC to the NPCList. Does nothing if an NPC with the same name
 	 * already exists. This makes sure that each NPC can be uniquely identified
@@ -50,16 +52,21 @@ public class MerchantsRegister {
 	 * @param behaviour   
 	 *            The MerchantBehaviour of that NPC
 	 */
-	public void add(final String npcName, final BuyerBehaviour behaviour) {
-		Pair<String, BuyerBehaviour> pair = new Pair<String, BuyerBehaviour>(npcName, behaviour);
-		buyers.add(pair);
+	public void add(final SpeakerNPC npc, final MerchantBehaviour behaviour) {
+		final String npcName = npc.getName();
+		
+		npc.put("job_merchant", 0);
+		
+		if (behaviour instanceof BuyerBehaviour) {
+			Pair<String, BuyerBehaviour> pair = new Pair<String, BuyerBehaviour>(npcName, (BuyerBehaviour) behaviour);
+			buyers.add(pair);
+		}
+		else {
+			Pair<String, SellerBehaviour> pair = new Pair<String, SellerBehaviour>(npcName, (SellerBehaviour) behaviour);
+			sellers.add(pair);
+		}
 	}
-
-	public void add(final String npcName, final SellerBehaviour behaviour) {
-		Pair<String, SellerBehaviour> pair = new Pair<String, SellerBehaviour>(npcName, behaviour);
-		sellers.add(pair);
-	}
-
+	
 	public List<Pair<String, BuyerBehaviour>> getBuyers() {
 		return buyers;
 	}

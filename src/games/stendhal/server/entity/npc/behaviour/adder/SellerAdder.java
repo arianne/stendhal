@@ -56,7 +56,7 @@ public class SellerAdder {
 	public void addSeller(final SpeakerNPC npc, final SellerBehaviour sellerBehaviour, final boolean offer) {
 		final Engine engine = npc.getEngine();
 
-		merchantsRegister.add(npc.getName(), sellerBehaviour);
+		merchantsRegister.add(npc, sellerBehaviour);
 		
 		if (offer) {
 			engine.add(
