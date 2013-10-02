@@ -6,6 +6,7 @@ The following images are in the public domain:
     ground_3:           http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
     halo, halo_large, halo_large_red:
                         http://www.clker.com/clipart-horizontal-halo.html
+    status/healer:      http://openclipart.org/detail/35905/heart-by-anonymous-35905
     juice_glass:        http://openclipart.org/detail/12865/juice-glass-by-anonymous-12865
     status/merchant:    http://openclipart.org/detail/171507/money-pot-by-gnokii-171507
     myling:             http://opengameart.org/content/zombie-and-skeleton-32x48
