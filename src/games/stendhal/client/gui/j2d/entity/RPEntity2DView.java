@@ -1036,8 +1036,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			for (StatusIconManager icon : iconManagers) {
 				if ((icon.xAlign == this.xAlign) && (icon.yAlign == this.yAlign)
 						&& (icon.xOffset == this.xOffset) && (icon.yOffset == this.yOffset)) {
-					int xDiff = icon.sprite.getWidth();
-					int yDiff = icon.sprite.getHeight();
+					int xDiff = this.sprite.getWidth();
+					int yDiff = this.sprite.getHeight();
 					
 					if (offsetDirection == Direction.LEFT) {
 						this.xOffset -= xDiff;
