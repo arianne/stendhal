@@ -89,20 +89,32 @@ public abstract class RPEntity extends AudibleEntity {
 	 */
 	public static final Property PROP_HP_DISPLAY = new Property();
 	
-    // 
-    // START: status
-    // 
-    
-    /** Confused property. */
+	// Job properties
+	/**
+	 * Healer
+	 */
+	public static final Property PROP_HEALER = new Property();
+	/**
+	 * Merchant
+	 */
+	public static final Property PROP_MERCHANT = new Property();
+	
+    // Status properties
+    /**
+     * Confused property
+     */
     public static final Property PROP_CONFUSED = new Property();
-    
-    /** Eating property. */
+    /**
+     * Eating property
+     */
     public static final Property PROP_EATING = new Property();
-    
-    /** Poisoned property. */
+    /** 
+     * Poisoned property
+     */
     public static final Property PROP_POISONED = new Property();
-    
-    /** Shock property. */
+    /**
+     * Shock property
+     */
     public static final Property PROP_SHOCK = new Property();
     
     private static final Map<StatusID, Property> statusProp;
@@ -112,10 +124,6 @@ public abstract class RPEntity extends AudibleEntity {
         statusProp.put(StatusID.POISON, PROP_POISONED);
         statusProp.put(StatusID.SHOCK, PROP_SHOCK);
     }
-    
-    // 
-    // END: status
-    // 
     
 	/**
 	 * Attacking property. (for attack events)
