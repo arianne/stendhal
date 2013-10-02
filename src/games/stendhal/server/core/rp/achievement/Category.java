@@ -45,6 +45,8 @@ public enum Category {
 	/** semos monster quest */
 	QUEST_SEMOS_MONSTER,
 	/** kirdneh item quest */
-	QUEST_KIRDNEH_ITEM;
+	QUEST_KIRDNEH_ITEM,
+	/** mithrilbourgh kill enemy army quest */
+	QUEST_MITHRILBOURGH_ENEMY_ARMY;
 	
 }
