@@ -54,8 +54,7 @@ public class CoalSource extends PlayerActivityEntity {
 	 * Sound effects
 	 */
 	private final String startSound = "pick-metallic-1";
-	//private final String successSound = "";
-	//private final String failSound = "";
+	private final String successSound = "rocks-1";
 	private final int SOUND_RADIUS = 20;
 
 	/**
@@ -143,6 +142,9 @@ public class CoalSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
+	        addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+	        notifyWorldAboutChanges();
+	        
 			final Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
 			if (item != null) {
