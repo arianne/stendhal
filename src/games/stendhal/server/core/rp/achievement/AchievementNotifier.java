@@ -169,6 +169,7 @@ public final class AchievementNotifier {
 		getAndCheckAchievementsInCategory(player, Category.FRIEND);
 		getAndCheckAchievementsInCategory(player, Category.OBTAIN);
 		getAndCheckAchievementsInCategory(player, Category.PRODUCTION);
+		getAndCheckAchievementsInCategory(player, Category.QUEST_MITHRILBOURGH_ENEMY_ARMY);
 	}
 
 	/**
