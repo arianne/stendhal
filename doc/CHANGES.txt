@@ -8,16 +8,22 @@
 - New look for Semos plains
 - More creature descriptions
 - Poisoning and new status effects handled with new system
-- Changed corpse dimensions and sprite for devil monk
 - Added fairy cakes to daily item quest
+- Icons to indicate healer and merchant NPCs
+- Paper chase quest for Mine Town Weeks
+- Pebbles sprite replaced by rocks in some collision areas on maps
+- New achievement: Fisherman
 
 *client*
 - Notifies player of last login attempt
 
 *fixes*
+- Devil monk:
+  - Corpse dimensions and centering
+  - Corpse sprite changed
 
 *code*
-
+- SayRequiredItemsFromCollectionAction can use an index to get items from QUEST_SLOT
 
 1.10
 9th September 2013
