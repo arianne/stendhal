@@ -244,7 +244,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void reroute() {
 		if (getPath().isLoop()) {
 			// If entity cannot be rerouted use reversePath
-			System.out.println("\n\nUses looped path.\n\n");
 			reversePath();
 		} else if (hasPath()) {
 			Node node = guide.path.getDestination();
