@@ -24,6 +24,7 @@
 
 *code*
 - SayRequiredItemsFromCollectionAction can use an index to get items from QUEST_SLOT
+- Optional StatusIconManager which automatically sets X and Y offsets
 
 1.10
 9th September 2013
