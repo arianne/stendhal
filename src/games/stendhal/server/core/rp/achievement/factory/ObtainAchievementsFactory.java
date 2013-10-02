@@ -39,7 +39,7 @@ public class ObtainAchievementsFactory extends AbstractAchievementFactory {
 		
 		// Fishing achievement
 		achievements.add(createAchievement("obtain.fish", "Fisherman", "Catch 15 of each type of fish",
-				Achievement.MEDIUM_BASE_SCORE, false,
+				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerHasHarvestedNumberOfItemsCondition(15, "char", "clownfish", "cod", "mackerel", "perch",
 						"red lionfish", "roach", "surgeonfish", "trout")));
 		
