@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.server.entity.CollisionAction;
+
 
 /**
  * A stripped down SpeakerNPC that does not interact with players
@@ -48,10 +50,14 @@ public class PassiveNPC extends NPC {
 	
     @Override
     protected void handleObjectCollision() {
+    	CollisionAction action = getCollisionAction();
+    	
         if (!ignoresCollision() && usesRandomPath()) {
             setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
-        } else if (hasReversiblePath()) {
+        } else if (action == CollisionAction.REVERSE) {
             reversePath();
+        } else if (action == CollisionAction.REROUTE) {
+            reroute();
         } else {
             stop();
         }
@@ -59,10 +65,12 @@ public class PassiveNPC extends NPC {
     
     @Override
     protected void handleSimpleCollision(final int nx, final int ny) {
+    	CollisionAction action = getCollisionAction();
+    	
         if (!ignoresCollision() && usesRandomPath()) {
             setRandomPathFrom(getX(), getY(), getMovementRange() / 2);
-        } else if (hasReversiblePath()) {
-            reversePath();
+        } else if (action == CollisionAction.REROUTE) {
+            reroute();
         } else {
             stop();
         }

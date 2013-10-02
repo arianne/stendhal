@@ -16,6 +16,7 @@ import games.stendhal.common.parser.ConversationParser;
 import games.stendhal.common.parser.ExpressionMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
@@ -897,8 +898,11 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	protected void handleObjectCollision() {
-	    if (hasReversiblePath()) {
+		CollisionAction action = getCollisionAction();
+	    if (action == CollisionAction.REVERSE) {
 	        reversePath();
+	    } else if (action == CollisionAction.REROUTE) {
+	    	reroute();
 	    }
 	    else {
 	        stop();
@@ -907,11 +911,12 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	protected void handleSimpleCollision(final int nx, final int ny) {
-	    if (hasReversiblePath()) {
-	        reversePath();
+		CollisionAction action = getCollisionAction();
+	    if (action == CollisionAction.REROUTE) {
+	        reroute();
 	    }
 	    else {
-	        stop();
+	        reroute();
 	    }
 	}
 

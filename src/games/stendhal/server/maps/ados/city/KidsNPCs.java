@@ -17,6 +17,7 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.CollisionAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -92,7 +93,7 @@ public class KidsNPCs implements ZoneConfigurator {
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDescription(descriptions[i]);
 			npc.setDirection(Direction.DOWN);
-			npc.setReversiblePath(true);
+			npc.setCollisionAction(CollisionAction.REVERSE);
 			npc.initHP(100);
 			zone.add(npc);
 		}

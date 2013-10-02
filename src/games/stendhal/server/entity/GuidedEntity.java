@@ -35,8 +35,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	public Registrator pathnotifier = new Registrator();
 	
-	/** The entity can reverse its direction after collision */
-	private boolean reversiblePath = false;
+	/** Action entity will take after collision */
+    private CollisionAction collisionAction;
 	
     /**
      * The entity is using a random path
@@ -146,7 +146,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Changed the entity's path to walk in the oppisite direction
 	 */
 	public void reversePath() {
-	    if (!randomPath && reversiblePath && guide.path.isLoop()) {
+	    if (!randomPath && (collisionAction == CollisionAction.REVERSE) && guide.path.isLoop()) {
 	        List<Node> reverseNodes = guide.path.getNodeList();
 	        
 	        // Sets the position for the reversed path
@@ -157,22 +157,30 @@ public abstract class GuidedEntity extends ActiveEntity {
 	        }
 	}
 	
+	public void setCollisionAction(final CollisionAction action) {
+		collisionAction = action;
+		
+/*		if (collisionAction == CollisionAction.REVERSE) {
+			setReversiblePath(true);
+		}*/
+	}
+	
 	/**
 	 * Set the entity's path reversible, or non-reversible.
 	 * 
 	 * @param reversible if <code>true</code> the entity's path can be changed
 	 * 	upon collision to walk in the opposite direction
 	 */
-    public void setReversiblePath(boolean reversible) {
+/*    public void setReversiblePath(boolean reversible) {
         reversiblePath = reversible;
-    }
+    }*/
     
     /**
      * @return Entity's path can be changed upon collision to walk in the opposite direction
      */
-	public boolean hasReversiblePath() {
+/*	public boolean hasReversiblePath() {
 	    return reversiblePath;
-	}
+	}*/
 	
 	/**
 	 * function return current entity's path.
@@ -401,6 +409,13 @@ public abstract class GuidedEntity extends ActiveEntity {
         int Ydiff = Math.abs(currentY - originY);
         
         return new Point(Xdiff, Ydiff);
+    }
+    
+    /**
+     * @return Action to take on collision
+     */
+    public CollisionAction getCollisionAction() {
+    	return collisionAction;
     }
     
 	/**
