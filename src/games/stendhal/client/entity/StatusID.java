@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 /** Status IDs. */
 public enum StatusID {
 	// Jobs
+	HEALER("job_healer"),
 	MERCHANT("job_merchant"),
 	
 	// Statuses
