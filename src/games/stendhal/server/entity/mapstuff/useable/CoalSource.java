@@ -14,12 +14,14 @@ package games.stendhal.server.entity.mapstuff.useable;
 
 
 import games.stendhal.common.Rand;
+import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.SoundEvent;
 
 import org.apache.log4j.Logger;
 
@@ -47,6 +49,14 @@ public class CoalSource extends PlayerActivityEntity {
 	 * The name of the item to be found.
 	 */
 	private final String itemName;
+
+	/**
+	 * Sound effects
+	 */
+	private final String startSound = "pick-metallic-1";
+	//private final String successSound = "";
+	//private final String failSound = "";
+	private final int SOUND_RADIUS = 20;
 
 	/**
 	 * Create a gold source.
@@ -171,6 +181,8 @@ public class CoalSource extends PlayerActivityEntity {
 	@Override
 	protected void onStarted(final Player player) {
 		player.sendPrivateText("You have started to pick for coal.");
+        addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+        notifyWorldAboutChanges();
 	}
 
 	/**
