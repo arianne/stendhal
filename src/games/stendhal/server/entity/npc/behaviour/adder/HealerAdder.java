@@ -57,6 +57,9 @@ public class HealerAdder {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		servicersRegister.add(npc.getName(), healerBehaviour);
 		
+		// Give attribute to healers
+		npc.put("job_healer", 0);
+		
 		final Engine engine = npc.getEngine();
 
 		engine.add(ConversationStates.ATTENDING,
