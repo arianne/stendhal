@@ -48,6 +48,7 @@ These files are in the public domain:
     roar-large-1:       http://www.freesound.org/people/ibm5155/sounds/174913/
     robot-2:            http://commons.wikimedia.org/wiki/File:Alien_technology_scanning_device.ogg
     robot-3:            http://soundbible.com/1758-Door-Entry-Notification.html
+    rocks-1:            http://freesound.org/people/ALLANZ10D/sounds/155934/
     scream-fem-2:       http://soundbible.com/1627-Female-Scream-Horror.html
     scream-wilhelm:     http://archive.org/details/WilhelmScreamSample
     shake-leaves-1:     http://www.freesound.org/people/vibe_crc/sounds/59315/
