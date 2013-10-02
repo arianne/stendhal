@@ -75,11 +75,11 @@ class StatusIconPanel extends JComponent {
 		add(shock);
 		shock.setVisible(false);
 		
-		away = new AnimatedIcon(awaySprite, 13, 19, 4, 2000);
+		away = new AnimatedIcon(awaySprite, 2000);
 		add(away);
 		away.setVisible(false);
 		
-		grumpy = new AnimatedIcon(grumpySprite, 12, 20, 4, 2000);
+		grumpy = new AnimatedIcon(grumpySprite, 2000);
 		add(grumpy);
 		grumpy.setVisible(false);
 		

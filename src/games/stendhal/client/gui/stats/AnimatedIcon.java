@@ -14,12 +14,14 @@ package games.stendhal.client.gui.stats;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
@@ -27,16 +29,8 @@ import javax.swing.Timer;
  * A component that draws an animated sprite.
  */
 class AnimatedIcon extends JComponent {
-	/**
-	 * serial version uid
-	 */
-	private static final long serialVersionUID = 2855060585196386211L;
-
-	private static final int TILE_SIZE = 32;
-
 	private final Sprite[] sprite;
 	private final Timer timer;
-	private final Dimension size;
 	private int current = 0;
 
 	/*
@@ -61,35 +55,47 @@ class AnimatedIcon extends JComponent {
 	};
 
 	/**
-	 * Create an <code>AnimatedIcon</code> from a Sprite.
+	 * Create an <code>AnimatedIcon</code> from a Sprite. Each animation frame
+	 * will be a rectangle of the same height that the original sprite.
 	 * 
 	 * @param baseSprite animation frames image
-	 * @param yOffset empty space from the top of the image
-	 * @param height height of the image
-	 * @param frames number of animation frames
 	 * @param delay delay between the frames
 	 */
-	AnimatedIcon(Sprite baseSprite, int yOffset, int height, int frames, int delay) {
+	AnimatedIcon(Sprite baseSprite, int delay) {
 		setOpaque(false);
+		
+		int height = baseSprite.getHeight();
+		int frames = baseSprite.getWidth() / height;
 
 		this.sprite = new Sprite[frames];
 		timer = new Timer(delay, timerTask);
 
-		size = new Dimension(TILE_SIZE, height);
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
+		setBorder(BorderFactory.createEmptyBorder(0, 2, 0, 2));
 
 		final SpriteStore store = SpriteStore.get();
 
 		for (int i = 0; i < frames; i++) {
-			sprite[i] = store.getTile(baseSprite, i * TILE_SIZE, yOffset, TILE_SIZE, height);
+			sprite[i] = store.getTile(baseSprite, i * height, 0, height, height);
 		}
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+		Insets insets = getInsets();
+		
+		return new Dimension(sprite[0].getWidth() + insets.left + insets.right,
+				sprite[0].getHeight() + insets.top + insets.bottom);
+	}
+	
+	@Override
+	public Dimension getMinimumSize() {
+		return getPreferredSize();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		sprite[current].draw(g, 0, 0);
+		Insets insets = getInsets();
+		sprite[current].draw(g, insets.left, insets.top);
 	}
 
 	@Override
