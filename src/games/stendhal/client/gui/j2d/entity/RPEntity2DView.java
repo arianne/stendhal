@@ -61,6 +61,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite missedSprite;
 	
 	// Job icons
+	private static final Sprite healerSprite;
 	private static final Sprite merchantSprite;
 	
 	// Status icons
@@ -132,6 +133,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		
 		// Job icons
+		healerSprite = st.getSprite("data/sprites/status/healer.png");
 		merchantSprite = st.getSprite("data/sprites/status/merchant.png");
 		
 		// Status icons
@@ -147,8 +149,15 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	public RPEntity2DView() {
 		// Job icons
-		addIconManager(new StatusIconManager(Player.PROP_EATING, merchantSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+		addIconManager(new StatusIconManager(Player.PROP_HEALER, healerSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, Direction.LEFT) {
+			@Override
+			boolean show(T rpentity) {
+				return rpentity.hasStatus(StatusID.HEALER);
+			}
+		});
+		addIconManager(new StatusIconManager(Player.PROP_MERCHANT, merchantSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, Direction.LEFT) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.hasStatus(StatusID.MERCHANT);
@@ -978,7 +987,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		private final Sprite sprite;
 		private final HorizontalAlignment xAlign;
 		private final VerticalAlignment yAlign;
-		private final int xOffset, yOffset;
+		private int xOffset, yOffset;
 		/**
 		 * For tracking changes that can have multiple "true" values (such
 		 * as away messages).
@@ -1012,6 +1021,35 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 			this.yAlign = yAlign;
 			this.xOffset = xOffset;
 			this.yOffset = yOffset;
+		}
+		
+		StatusIconManager(Object property, Sprite sprite,
+				HorizontalAlignment xAlign, VerticalAlignment yAlign,
+				final Direction offsetDirection) {
+			this.property = property;
+			this.sprite = sprite;
+			this.xAlign = xAlign;
+			this.yAlign = yAlign;
+			this.xOffset = 0;
+			this.yOffset = 0;
+			
+			for (StatusIconManager icon : iconManagers) {
+				if ((icon.xAlign == this.xAlign) && (icon.yAlign == this.yAlign)
+						&& (icon.xOffset == this.xOffset) && (icon.yOffset == this.yOffset)) {
+					int xDiff = icon.sprite.getWidth();
+					int yDiff = icon.sprite.getHeight();
+					
+					if (offsetDirection == Direction.LEFT) {
+						this.xOffset -= xDiff;
+					} else if (offsetDirection == Direction.RIGHT) {
+						this.xOffset += xDiff;
+					} else if (offsetDirection == Direction.UP) {
+						this.yOffset -= yDiff;
+					} else if (offsetDirection == Direction.DOWN) {
+						this.yOffset += yDiff;
+					}
+				}
+			}
 		}
 		
 		/**
