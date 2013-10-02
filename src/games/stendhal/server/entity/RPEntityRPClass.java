@@ -62,6 +62,7 @@ public class RPEntityRPClass {
 
         // Jobs
         entity.addAttribute("job_merchant", Type.SHORT, Definition.VOLATILE);
+        entity.addAttribute("job_healer", Type.SHORT, Definition.VOLATILE);
 
         // Status effects
         entity.addAttribute("choking", Type.SHORT, Definition.VOLATILE);
