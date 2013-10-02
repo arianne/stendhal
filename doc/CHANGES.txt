@@ -13,6 +13,7 @@
 - Paper chase quest for Mine Town Weeks
 - Pebbles sprite replaced by rocks in some collision areas on maps
 - New achievement: Fisherman
+- Added reversible path to Rose Leigh
 
 *client*
 - Notifies player of last login attempt
