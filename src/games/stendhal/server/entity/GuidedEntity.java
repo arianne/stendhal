@@ -146,7 +146,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Changed the entity's path to walk in the oppisite direction
 	 */
 	public void reversePath() {
-	    if (!randomPath && (collisionAction == CollisionAction.REVERSE) && guide.path.isLoop()) {
+	    if (!randomPath && guide.path.isLoop()) {
 	        List<Node> reverseNodes = guide.path.getNodeList();
 	        
 	        // Sets the position for the reversed path
@@ -155,6 +155,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 	        Collections.reverse(reverseNodes);
 	        setPath(new FixedPath(reverseNodes, guide.path.isLoop()), reversePosition);
 	        }
+	    else {
+	    	stop();
+	    }
 	}
 	
 	public void setCollisionAction(final CollisionAction action) {
@@ -239,7 +242,11 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Plan a new path to the old destination.
 	 */
 	public void reroute() {
-		if (hasPath()) {
+		if (getPath().isLoop()) {
+			// If entity cannot be rerouted use reversePath
+			System.out.println("\n\nUses looped path.\n\n");
+			reversePath();
+		} else if (hasPath()) {
 			Node node = guide.path.getDestination();
 			final List<Node> path = Path.searchPath(this, node.getX(), node.getY());
 
