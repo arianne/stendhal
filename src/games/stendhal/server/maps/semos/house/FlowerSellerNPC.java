@@ -50,6 +50,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 
 		rose.setEntityClass("gypsywomannpc");
 		rose.initHP(100);
+		rose.setReversiblePath(true);
 		rose.setDescription("You see Rose Leigh. She jumps from place to place with a basket filled with lovely rhosyds.");
 
 		// start in int_semos_house
