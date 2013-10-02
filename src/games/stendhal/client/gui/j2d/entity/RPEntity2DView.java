@@ -105,7 +105,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	protected int width;
 	/** Status icon managers. */
-	private final List<StatusIconManager> iconManagers = new ArrayList<StatusIconManager>();
+	private final List<AbstractStatusIconManager> iconManagers = new ArrayList<AbstractStatusIconManager>();
 	private HealthBar healthBar; 
 
 	/** 
@@ -150,56 +150,31 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	public RPEntity2DView() {
 		// Job icons
 		addIconManager(new StatusIconManager(Player.PROP_HEALER, healerSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, Direction.LEFT) {
-			@Override
-			boolean show(T rpentity) {
-				return rpentity.hasStatus(StatusID.HEALER);
-			}
-		});
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.HEALER));
 		addIconManager(new StatusIconManager(Player.PROP_MERCHANT, merchantSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, Direction.LEFT) {
-					@Override
-					boolean show(T rpentity) {
-						return rpentity.hasStatus(StatusID.MERCHANT);
-					}
-				});
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
 		
 		// Status icons
-		addIconManager(new StatusIconManager(Player.PROP_EATING, chokingSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, chokingSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isChoking();
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
-		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, 0, 0) {
-		            @Override
-		            boolean show(T rpentity) {
-		                return rpentity.hasStatus(StatusID.CONFUSE);
-		            }
-		        });
-		addIconManager(new StatusIconManager(Player.PROP_EATING, eatingSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, 0, 0) {
+		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, StatusID.CONFUSE));
+		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, eatingSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 					@Override
 					boolean show(T rpentity) {
 						return rpentity.isEating() && !rpentity.isChoking();
 					}
 				});
 		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
-				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, 10, -13) {
-					@Override
-					boolean show(T rpentity) {
-						return rpentity.hasStatus(StatusID.POISON);
-					}
-				});
+				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON));
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
-                HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, 0, 0) {
-                    @Override
-                    boolean show(T rpentity) {
-                        return rpentity.hasStatus(StatusID.SHOCK);
-                    }
-                });
+                HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
@@ -319,7 +294,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * 
 	 * @param manager
 	 */
-	void addIconManager(StatusIconManager manager) {
+	void addIconManager(AbstractStatusIconManager manager) {
 		iconManagers.add(manager);
 	}
 
@@ -698,7 +673,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * Check if icon states have changed.
 	 */
 	private void checkIcons() {
-		for (StatusIconManager handler : iconManagers) {
+		for (AbstractStatusIconManager handler : iconManagers) {
 			if (handler.check(entity)) {
 				iconsChanged = true;
 			}
@@ -859,7 +834,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		
 		if (iconsChanged) {
 			iconsChanged = false;
-			for (StatusIconManager handler : iconManagers) {
+			for (AbstractStatusIconManager handler : iconManagers) {
 				handler.apply();
 			}
 		}
@@ -977,15 +952,46 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	}
 	
 	/**
+	 * An icon manager whose visibility check is just checking a status of the
+	 * entity.
+	 */
+	private class StatusIconManager extends AbstractStatusIconManager {
+		/** The followed status. */
+		private final StatusID status;
+		
+		/**
+		 * Create a StatusIconManager.
+		 *
+ 		 * @param property observed property
+		 * @param sprite icon sprite
+		 * @param xAlign horizontal alignment of the sprite
+		 * @param yAlign vertical alignment of the sprite
+		 * @param status status corresponding to the visibility of the icon
+		 */
+		StatusIconManager(Object property, Sprite sprite, HorizontalAlignment xAlign,
+				VerticalAlignment yAlign, StatusID status) {
+			super(property, sprite, xAlign, yAlign);
+			this.status = status;
+		}
+
+		@Override
+		boolean show(T entity) {
+            return entity.hasStatus(status);
+		}
+	}
+	
+	/**
 	 * A manager for a status icon. Observes property changes and shows and
 	 * hides the icon as needed.
 	 */
-	abstract class StatusIconManager {
-		/** Observed property */
+	abstract class AbstractStatusIconManager {
+		/** Observed property. */
 		private final Object property;
-		/** Icon sprite */
+		/** Icon sprite. */
 		private final Sprite sprite;
+		/** Horizontal alignment of the sprite. */
 		private final HorizontalAlignment xAlign;
+		/** Vertical alignment of the sprite. */
 		private final VerticalAlignment yAlign;
 		private int xOffset, yOffset;
 		/**
@@ -1007,55 +1013,23 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * 
 		 * @param property observed property
 		 * @param sprite icon sprite
-		 * @param xAlign
-		 * @param yAlign
-		 * @param xOffset
-		 * @param yOffset
+		 * @param xAlign Horizontal alignment of the sprite related to the
+		 * 	entity view
+		 * @param yAlign Vertical alignment of the sprite related to the
+		 * 	entity view
 		 */
-		StatusIconManager(Object property, Sprite sprite,
-				HorizontalAlignment xAlign, VerticalAlignment yAlign,
-				int xOffset, int yOffset) {
+		AbstractStatusIconManager(Object property, Sprite sprite,
+				HorizontalAlignment xAlign, VerticalAlignment yAlign) {
 			this.property = property;
 			this.sprite = sprite;
 			this.xAlign = xAlign;
 			this.yAlign = yAlign;
-			this.xOffset = xOffset;
-			this.yOffset = yOffset;
-		}
-		
-		StatusIconManager(Object property, Sprite sprite,
-				HorizontalAlignment xAlign, VerticalAlignment yAlign,
-				final Direction offsetDirection) {
-			this.property = property;
-			this.sprite = sprite;
-			this.xAlign = xAlign;
-			this.yAlign = yAlign;
-			this.xOffset = 0;
-			this.yOffset = 0;
-			
-			for (StatusIconManager icon : iconManagers) {
-				if ((icon.xAlign == this.xAlign) && (icon.yAlign == this.yAlign)
-						&& (icon.xOffset == this.xOffset) && (icon.yOffset == this.yOffset)) {
-					int xDiff = this.sprite.getWidth();
-					int yDiff = this.sprite.getHeight();
-					
-					if (offsetDirection == Direction.LEFT) {
-						this.xOffset -= xDiff;
-					} else if (offsetDirection == Direction.RIGHT) {
-						this.xOffset += xDiff;
-					} else if (offsetDirection == Direction.UP) {
-						this.yOffset -= yDiff;
-					} else if (offsetDirection == Direction.DOWN) {
-						this.yOffset += yDiff;
-					}
-				}
-			}
 		}
 		
 		/**
 		 * Check if the icon should be shown.
 		 * 
-		 * @param entity
+		 * @param entity checked entity
 		 * @return <code>true</code> if the icon should be shown,
 		 * 	<code>false</code> otherwise
 		 */
@@ -1065,8 +1039,8 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * Check the entity at a property change. Show or hide the icon if
 		 * needed.
 		 * 
-		 * @param changedProperty
-		 * @param entity
+		 * @param changedProperty property that changed
+		 * @param entity changed entity
 		 * @return <code>true</code> if the visibility status changed, otherwise
 		 * 	<code>false</code>
 		 */
@@ -1092,7 +1066,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * Check the status of an entity, and show or hide the icon if
 		 * needed.
 		 * 
-		 * @param entity
+		 * @param entity checked entity
 		 * @return <code>true</code> if the visibility status changed, otherwise
 		 * 	<code>false</code>
 		 */
@@ -1108,20 +1082,80 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 		
 		/**
+		 * Find the correct location for the icon when it has been set visible.
+		 */
+		private void position() {
+			xOffset = 0;
+			for (int i = 0; i < iconManagers.size(); i++) {
+				AbstractStatusIconManager manager = iconManagers.get(i);
+				if (manager != this) {
+					if (sharesPosition(manager)) {
+						if (xAlign == HorizontalAlignment.LEFT) {
+							xOffset += manager.sprite.getWidth();
+						} else if (xAlign == HorizontalAlignment.RIGHT) {
+							xOffset -= manager.sprite.getWidth();
+						}
+					}
+				} else {
+					// Reposition any icons in the same position after this
+					reposition(i + 1);
+					break;
+				}
+			}
+		}
+
+		/**
+		 * Reposition any visible icons following this when the visibility has
+		 * changed.
+		 * 
+		 * @param startIndex the position of this manager in the iconManagers
+		 * 	list 
+		 */
+		private void reposition(int startIndex) {
+			for (int j = startIndex; j < iconManagers.size(); j++) {
+				AbstractStatusIconManager follower = iconManagers.get(j);
+				if (sharesPosition(follower)) {
+					follower.setVisible(false);
+					follower.position();
+					follower.setVisible(true);
+					// position() above will trigger repositioning of
+					// any icons after follower, so avoid processing any
+					// further.
+					break;
+				}
+			}
+		}
+		
+		/**
+		 * Check if a manager shares position with this, and is in visible
+		 * state.
+		 * 
+		 * @param manager manager to be checked
+		 * @return <code>true</code> if the manages shares alignment properties
+		 * with this, and its icon is visible.
+		 */
+		private boolean sharesPosition(AbstractStatusIconManager manager) {
+			return manager.xAlign == xAlign && manager.yAlign == yAlign
+					&& manager.shouldBeVisible;
+		}
+		
+		/**
 		 * Attach or detach the icon sprite, depending on visibility.
 		 * 
-		 * @param visible
+		 * @param visible new visibility status
 		 */
 		private void setVisible(boolean visible) {
 			if (visible) {
 				// Avoid attaching the sprite more than once
 				if (!wasVisible) {
+					position();
 					attachSprite(sprite, xAlign, yAlign, xOffset, yOffset);
 					wasVisible = true;
 				}
 			} else {
 				wasVisible = false;
 				detachSprite(sprite);
+				reposition(iconManagers.indexOf(this) + 1);
 			}
 		}
 	}

@@ -75,20 +75,20 @@ class Player2DView<T extends Player> extends RPEntity2DView<T> {
 	 * Create a new Player2DView.
 	 */
 	public Player2DView() {
-		addIconManager(new StatusIconManager(Player.PROP_AWAY, awaySprite,
-				HorizontalAlignment.RIGHT, VerticalAlignment.TOP, 20, -10) {
+		addIconManager(new AbstractStatusIconManager(Player.PROP_AWAY, awaySprite,
+				HorizontalAlignment.RIGHT, VerticalAlignment.TOP) {
 					@Override
 					boolean show(T player) {
 						return player.isAway();
 					}} );
-		addIconManager(new StatusIconManager(Player.PROP_GRUMPY, grumpySprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.TOP, -8, -6) {
+		addIconManager(new AbstractStatusIconManager(Player.PROP_GRUMPY, grumpySprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.TOP) {
 					@Override
 					boolean show(T player) {
 						return player.isGrumpy();
 					}} );
-		addIconManager(new StatusIconManager(Player.PROP_PLAYER_KILLER, skullSprite,
-				HorizontalAlignment.LEFT, VerticalAlignment.TOP, 0, 0) {
+		addIconManager(new AbstractStatusIconManager(Player.PROP_PLAYER_KILLER, skullSprite,
+				HorizontalAlignment.LEFT, VerticalAlignment.TOP) {
 					@Override
 					boolean show(T player) {
 						return player.isBadBoy();
