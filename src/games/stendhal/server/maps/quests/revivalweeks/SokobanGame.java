@@ -17,12 +17,15 @@ import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.dbcommand.WriteHallOfFamePointsCommand;
 import games.stendhal.server.entity.mapstuff.game.SokobanBoard;
 import games.stendhal.server.entity.mapstuff.game.SokobanListener;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.LoadSignFromHallOfFameAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
@@ -38,6 +41,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.server.db.command.DBCommandQueue;
+
 /**
  * A Sokoban game.
  *
@@ -45,6 +50,8 @@ import java.util.List;
  */
 public class SokobanGame implements LoadableContent, SokobanListener {
 	private static final String QUEST_SLOT = "sokoban";
+	private static final String FAME_TYPE = "S";
+	
 	/** start, done */
 	private static final int QUEST_IDX_STATUS = 0;
 	/** level */
@@ -57,6 +64,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 	private StendhalRPZone zone = null;
 	private SokobanBoard board;
 	private SpeakerNPC npc;
+	private LoadSignFromHallOfFameAction loadSignFromHallOfFame;
 
 	/**
 	 * creates TicTacToeBoard and adds it to the world.
@@ -66,6 +74,16 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		board.setPosition(26, 107);
 		zone.add(board);
 		board.loadLevel(0);
+	}
+
+	private void addSign() {
+		Sign sign = new Sign();
+		sign.setPosition(49,125);
+		zone.add(sign);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Best pushers:\n", FAME_TYPE, 2000, false);
+		loadSignFromHallOfFame.setSign(sign);
+		loadSignFromHallOfFame.fire(null, null, null);
+
 	}
 
 	/**
@@ -141,6 +159,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 	public void addToWorld() {
 		zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 
+		addSign();
 		addBoard();
 		addNPC();
 	}
@@ -176,6 +195,11 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		npc.say("Congratulations " + playerName + ", you completed the "
 				+ Grammar.ordered(level) + " level in "
 				+ TimeUtil.approxTimeUntil(timeDiff));
+
+		int points = level * 1000000 - totalTime;
+		DBCommandQueue.get().enqueue(new WriteHallOfFamePointsCommand(player.getName(), FAME_TYPE, points, false));
+
+		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
 	@Override
@@ -204,7 +228,6 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 
 /*
 TODO-List
-- sign with hall of fame (highest level, quickest time)
 - reward?
 
 - nicer tiles for the game
