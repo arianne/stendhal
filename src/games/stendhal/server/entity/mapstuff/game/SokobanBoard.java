@@ -293,13 +293,13 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 	 * @return true, if the timeout was reached, false otherwise
 	 */
 	private boolean isTimeout() {
-		long diff = System.currentTimeMillis() - levelStart;
-		int allowedSec = 4 * 60 + level * 60;
-		if (level == 1) {
-			allowedSec = 60;
+		int allowedMin = 4  + level * 2;
+		if (level <= 2) {
+			allowedMin = 2;
 		}
 
-		return diff / 1000 > allowedSec;
+		long diff = System.currentTimeMillis() - levelStart;
+		return diff / 1000 > allowedMin * 60;
 	}
 
 	/**
