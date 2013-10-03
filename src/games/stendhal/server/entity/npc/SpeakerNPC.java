@@ -916,7 +916,7 @@ public class SpeakerNPC extends NPC {
 	        reroute();
 	    }
 	    else {
-	        reroute();
+	        stop();
 	    }
 	}
 
