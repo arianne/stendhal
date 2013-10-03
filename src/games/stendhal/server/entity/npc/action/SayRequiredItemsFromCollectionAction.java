@@ -40,7 +40,7 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 
 	private final String questname;
 	private final String message;
-	private final int slotposition;
+	private final int index;
 
 	/**
 	 * Creates a new SayRequiredItemssFromCollectionAction.
@@ -53,13 +53,22 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	public SayRequiredItemsFromCollectionAction(final String questname, final String message) {
 		this.questname = questname;
 		this.message = message;
-		this.slotposition = 0;
+		this.index = 0;
 	}
 	
-	public SayRequiredItemsFromCollectionAction(final String questname, final int position, final String message) {
+	/**
+	 * Creates a new SayRequiredItemssFromCollectionAction.
+	 *
+	 * @param questname
+	 *            name of quest-slot to check
+	 * @param index index of sub state
+	 * @param message
+	 *            message with substitution [items] for the list of items
+	 */
+	public SayRequiredItemsFromCollectionAction(final String questname, final int index, final String message) {
 		this.questname = questname;
 		this.message = message;
-		this.slotposition = position;
+		this.index = index;
 	}
 
 	@Override
@@ -84,7 +93,7 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	private ItemCollection getMissingItems(final Player player) {
 		final ItemCollection missingItems = new ItemCollection();
 
-		missingItems.addFromQuestStateString(player.getQuest(questname), slotposition);
+		missingItems.addFromQuestStateString(player.getQuest(questname), index);
 
 		return missingItems;
 	}
