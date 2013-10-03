@@ -52,6 +52,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	private final List<String> sounds;
 
 	private boolean resetBlock = true;
+	private boolean wasMoved = false;
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
@@ -172,6 +173,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 				SingletonRepository.getTurnNotifier().dontNotify(this);
 				SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
 			}
+			wasMoved = true;
 			this.sendSound();
 			this.notifyWorldAboutChanges();
 			if (logger.isDebugEnabled()) {
@@ -244,8 +246,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	@Override
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
-			int oldY) {
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
 		}
@@ -272,6 +273,10 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private void resetInPlayerlessZone(StendhalRPZone zone, RPObject object) {
+		if (!resetBlock && !wasMoved) {
+			return;
+		}
+
 		// reset to initial position if zone gets empty of players
 		final List<Player> playersInZone = zone.getPlayers();
 		int numberOfPlayersInZone = playersInZone.size();
@@ -310,14 +315,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * possible
 	 */
 	private void resetIfInitialPositionFree() {
-		if (!this.getZone().collides(this, this.getInt(START_X),
-				this.getInt(START_Y))) {
+		if (!this.getZone().collides(this, this.getInt(START_X), this.getInt(START_Y))) {
 			this.reset();
 		} else {
 			// try again in a few moments
-			SingletonRepository.getTurnNotifier().notifyInSeconds(
-					RESET_AGAIN_DELAY, this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_AGAIN_DELAY, this);
 		}
 	}
-
 }
