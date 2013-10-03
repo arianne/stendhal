@@ -346,6 +346,15 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 			return;
 		}
 
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		String text = player.get("text");
+		if ((text != null) && (text.equals("exit") || text.equals("leave") || text.equals("reset") || text.equals("retry"))) {
+			sokobanListener.onLeave(playerName, level);
+			loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			playerName = null;
+			return;
+		}
+
 		// level completed?
 		if (checkLevelCompleted()) {
 			sokobanListener.onSuccess(playerName, level);

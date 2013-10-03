@@ -112,7 +112,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 							QUEST_SLOT, QUEST_IDX_LAST_SUCCESSFUL_LEVEL, board.getLevelCount(), true),
 						new AvailabilityCondition(board)),
 					ConversationStates.IDLE,
-					"Good luck.",
+					"Good luck. If you get stuck and want to retry, just say #leave.",
 					new MultipleActions(playActions));
 			}
 		};
@@ -189,12 +189,21 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 
 		npc.say("I am sorry " + playerName + ", you have been too slow.");
 	}
+
+
+	@Override
+	public void onLeave(String playerName, int level) {
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(playerName);
+		if (player == null) {
+			return;
+		}
+		player.setPosition(npc.getX() - 3, npc.getY() + 1);
+		player.setDirection(Direction.RIGHT);
+	}
 }
 
 /*
 TODO-List
-- "exit" chat command
-- prevent login/teleport into gameboard
 - sign with hall of fame (highest level, quickest time)
 - reward?
 

@@ -33,4 +33,12 @@ public interface SokobanListener {
 	 * @param level failed level
 	 */
 	public void onTimeout(String playerName, int level);
+
+	/**
+	 * player wants to leave
+	 *
+	 * @param playerName name of player
+	 * @param level failed level
+	 */
+	public void onLeave(String playerName, int level);
 }
