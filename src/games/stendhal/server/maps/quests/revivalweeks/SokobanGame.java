@@ -100,6 +100,9 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello, let's #play a game.");
+				addJob("I am the manager of this game field.");
+				addHelp("Push the pumpins to their target. Say #leave, if you got stuck.");
+				addQuest("Let's #play a game.");
 
 				add(ConversationStates.ATTENDING,
 					Arrays.asList("play"),
