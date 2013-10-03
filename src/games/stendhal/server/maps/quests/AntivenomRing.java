@@ -20,7 +20,6 @@ import games.stendhal.server.entity.npc.action.CollectRequestedItemsAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayRequiredItemsFromCollectionAction;
 import games.stendhal.server.entity.npc.action.SayTextAction;
