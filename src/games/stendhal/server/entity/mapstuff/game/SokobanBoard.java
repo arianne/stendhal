@@ -183,6 +183,8 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 	 */
 	private void box(int x, int y) {
 		Block block = new Block(this.getX() + x, this.getY() + y, true, "pumpkin_halloween");
+		block.setResetBlock(false);
+		block.setDescription("You see a pumpkin, move it to a basket");
 		this.getZone().add(block);
 		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);

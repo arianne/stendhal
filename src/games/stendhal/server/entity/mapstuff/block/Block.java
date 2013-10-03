@@ -35,8 +35,12 @@ import org.apache.log4j.Logger;
 public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		MovementListener, TurnListener {
 
+	private static final Logger logger = Logger.getLogger(Block.class);
+
+	/** number of seconds until a block is reset to its original position */
 	static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
+	/** number of seconds until another attempt to rest the block to its original position is attempted */
 	static final int RESET_AGAIN_DELAY = 10;
 
 	private static final String Z_ORDER = "z";
@@ -47,7 +51,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	private final List<String> sounds;
 
-	private static final Logger logger = Logger.getLogger(Block.class);
+	private boolean resetBlock = true;
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
@@ -87,14 +91,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param style
 	 */
 	public Block(int startX, int startY, boolean multiPush, String style) {
-		this(startX, startY, multiPush, style, null, Collections
-				.<String> emptyList());
+		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
 	}
 
-	public Block(int startX, int startY, boolean multiPush, String style,
-			String shape) {
-		this(startX, startY, multiPush, style, shape, Collections
-				.<String> emptyList());
+	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
+		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
 	}
 
 	/**
@@ -113,8 +114,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	 * @param sounds
 	 *            what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style,
-			String shape, List<String> sounds) {
+	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
 		super();
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
@@ -168,14 +168,25 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 					}
 				}
 			}
-			SingletonRepository.getTurnNotifier().dontNotify(this);
-			SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
+			if (resetBlock) {
+				SingletonRepository.getTurnNotifier().dontNotify(this);
+				SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
+			}
 			this.sendSound();
 			this.notifyWorldAboutChanges();
 			if (logger.isDebugEnabled()) {
 				logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
 			}
 		}
+	}
+
+	/**
+	 * should the block reset to its original position after some time?
+	 *
+	 * @param resetBlock true, if the block should be reset; false otherwise
+	 */
+	public void setResetBlock(boolean resetBlock) {
+		this.resetBlock = resetBlock;
 	}
 
 	private void sendSound() {
