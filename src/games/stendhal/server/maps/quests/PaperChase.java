@@ -53,6 +53,8 @@ import java.util.Map;
  */
 public class PaperChase extends AbstractQuest implements TeleportListener {
 	private static final String QUEST_SLOT = "paper_chase_2013";
+	private static final String FAME_TYPE = QUEST_SLOT.substring(QUEST_SLOT.length() - 1);
+	
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
 
 	private static final List<String> NPC_IDLE = Arrays.asList("Tad", "Haunchy Meatoch", "Pdiddi", "Ketteh Wehoh");
@@ -171,7 +173,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 
 
 	private void createHallOfFameSign() {
-		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behalf of Fidorea:\n", "P", 2000, true);
+		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Those who travelled the world on behalf of Fidorea:\n", FAME_TYPE, 2000, true);
 		loadSignFromHallOfFame.fire(null, null, null);
 	}
 
@@ -240,7 +242,7 @@ public class PaperChase extends AbstractQuest implements TeleportListener {
 			new IncreaseXPAction(400), 
 			new SetQuestAction(QUEST_SLOT, 0, "done"),
 			new EquipItemAction("empty scroll", 5),
-			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, "P"),
+			new SetHallOfFameToAgeDiffAction(QUEST_SLOT, 1, FAME_TYPE),
 			loadSignFromHallOfFame);
 	
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("paper", "chase"), 
