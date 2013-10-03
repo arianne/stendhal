@@ -136,7 +136,6 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (shape != null) {
 			put("shape", shape);
 		}
-		this.reset();
 	}
 
 	/**
