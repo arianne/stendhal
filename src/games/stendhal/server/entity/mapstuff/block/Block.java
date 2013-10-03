@@ -29,88 +29,96 @@ import org.apache.log4j.Logger;
 
 /**
  * A solid, movable block on a map
- *
+ * 
  * @author madmetzger
  */
-public class Block extends ActiveEntity implements ZoneEnterExitListener, MovementListener, TurnListener {
+public class Block extends ActiveEntity implements ZoneEnterExitListener,
+		MovementListener, TurnListener {
 
-    static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
+	static final int RESET_TIMEOUT_IN_SECONDS = 5 * MathHelper.SECONDS_IN_ONE_MINUTE;
 
-    static final int RESET_AGAIN_DELAY = 10;
+	static final int RESET_AGAIN_DELAY = 10;
 
-    private static final String Z_ORDER = "z";
+	private static final String Z_ORDER = "z";
 
-    private static final String START_Y = "start-y";
+	private static final String START_Y = "start-y";
 
-    private static final String START_X = "start-x";
+	private static final String START_X = "start-x";
 
-    private final List<String> sounds;
+	private final List<String> sounds;
 
-    private static final Logger logger = Logger.getLogger(Block.class);
+	private static final Logger logger = Logger.getLogger(Block.class);
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass("block");
 		clazz.isA("area");
-		//start_* denotes the initial place of a block to be able resetting it to that position
+		// start_* denotes the initial place of a block to be able resetting it
+		// to that position
 		clazz.addAttribute(START_X, Type.INT, Definition.HIDDEN);
 		clazz.addAttribute(START_Y, Type.INT, Definition.HIDDEN);
-		//flag denoting if this block is multiple times pushable
+		// flag denoting if this block is multiple times pushable
 		clazz.addAttribute("multi", Type.FLAG, Definition.HIDDEN);
-        // z order to control client side drawing
-        clazz.addAttribute(Z_ORDER, Type.INT);
-        clazz.addAttribute("class", Type.STRING);
-        clazz.addAttribute("shape", Type.STRING);
+		// z order to control client side drawing
+		clazz.addAttribute(Z_ORDER, Type.INT);
+		clazz.addAttribute("class", Type.STRING);
+		clazz.addAttribute("shape", Type.STRING);
 	}
 
 	/**
 	 * Create a new Block with default style at (startX, startY)
-	 *
+	 * 
 	 * @param startX
-	 *			initial x-coordinate
+	 *            initial x-coordinate
 	 * @param startY
-	 * 			initial y-coordinate
+	 *            initial y-coordinate
 	 * @param multiPush
-	 * 			is pushing multiple times allowed
+	 *            is pushing multiple times allowed
 	 */
 	public Block(int startX, int startY, boolean multiPush) {
-		this(startX, startY, multiPush, "block", null, Arrays.asList("scrape-1", "scrape-2"));
+		this(startX, startY, multiPush, "block", null, Arrays.asList(
+				"scrape-1", "scrape-2"));
 	}
 
 	/**
-	 *
+	 * 
 	 * @param startX
 	 * @param startY
 	 * @param multiPush
 	 * @param style
 	 */
 	public Block(int startX, int startY, boolean multiPush, String style) {
-		this(startX, startY, multiPush, style, null, Collections.<String> emptyList());
+		this(startX, startY, multiPush, style, null, Collections
+				.<String> emptyList());
 	}
 
-	public Block(int startX, int startY, boolean multiPush, String style, String shape) {
-		this(startX, startY, multiPush, style, shape, Collections.<String> emptyList());
+	public Block(int startX, int startY, boolean multiPush, String style,
+			String shape) {
+		this(startX, startY, multiPush, style, shape, Collections
+				.<String> emptyList());
 	}
 
 	/**
-	 * Create a new block at startX, startY with a different style at client side
-	 *
+	 * Create a new block at startX, startY with a different style at client
+	 * side
+	 * 
 	 * @param startX
-	 *			initial x-coordinate
+	 *            initial x-coordinate
 	 * @param startY
-	 * 			initial y-coordinate
+	 *            initial y-coordinate
 	 * @param multiPush
-	 * 			is pushing multiple times allowed
+	 *            is pushing multiple times allowed
 	 * @param style
-	 * 			what style should the client use?
+	 *            what style should the client use?
 	 * @param shape
 	 * @param sounds
-	 * 			what sounds should be played on push?
+	 *            what sounds should be played on push?
 	 */
-	public Block(int startX, int startY, boolean multiPush, String style, String shape, List<String> sounds) {
+	public Block(int startX, int startY, boolean multiPush, String style,
+			String shape, List<String> sounds) {
 		super();
 		this.put(START_X, startX);
 		this.put(START_Y, startY);
-        this.put(Z_ORDER, 8000);
+		this.put(Z_ORDER, 8000);
 		this.put("multi", Boolean.valueOf(multiPush).toString());
 		setRPClass("block");
 		put("type", "block");
@@ -118,61 +126,60 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		this.sounds = sounds;
 		// Count as collision for the client and pathfinder
 		setResistance(100);
-        setDescription("You see a solid block of rock. Are you strong enough to push it away?");
-		if(style != null) {
+		setDescription("You see a solid block of rock. Are you strong enough to push it away?");
+		if (style != null) {
 			put("name", style);
 		} else {
 			put("name", "block");
 		}
-		if(shape != null) {
+		if (shape != null) {
 			put("shape", shape);
 		}
 		this.reset();
 	}
-
 
 	/**
 	 * Resets the block position to its initial state
 	 */
 	public void reset() {
 		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
-        SingletonRepository.getTurnNotifier().dontNotify(this);
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
 	}
 
 	/**
 	 * Push this Block into a given direction
+	 * 
 	 * @param p
 	 * @param d
-	 * 			the direction, this block is pushed into
+	 *            the direction, this block is pushed into
 	 */
 	public void push(Player p, Direction d) {
-		if(this.mayBePushed(d)) {
+		if (this.mayBePushed(d)) {
 			int x = getXAfterPush(d);
 			int y = getYAfterPush(d);
 			this.setPosition(x, y);
-            List<Entity> entitiesAt = this.getZone().getEntitiesAt(x, y);
-            for (Entity entity : entitiesAt) {
-				if(entity instanceof BlockTarget) {
+			List<Entity> entitiesAt = this.getZone().getEntitiesAt(x, y);
+			for (Entity entity : entitiesAt) {
+				if (entity instanceof BlockTarget) {
 					BlockTarget t = (BlockTarget) entity;
-					if(t.doesTrigger(this, p)) {
+					if (t.doesTrigger(this, p)) {
 						t.trigger(this, p);
 					}
 				}
 			}
-            SingletonRepository.getTurnNotifier().dontNotify(this);
-            SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
-            this.sendSound();
-            this.notifyWorldAboutChanges();
-            if (logger.isDebugEnabled()) {
-            	logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
-            }
+			SingletonRepository.getTurnNotifier().dontNotify(this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_TIMEOUT_IN_SECONDS, this);
+			this.sendSound();
+			this.notifyWorldAboutChanges();
+			if (logger.isDebugEnabled()) {
+				logger.debug("Block [" + this.getID().toString() + "] pushed to (" + this.getX() + "," + this.getY() + ").");
+			}
 		}
 	}
 
-
 	private void sendSound() {
-		if(!this.sounds.isEmpty()) {
+		if (!this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
 			this.addEvent(e);
 		}
@@ -198,7 +205,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		int newX = this.getXAfterPush(d);
 		int newY = this.getYAfterPush(d);
 
-		if(!multiPush && pushed) {
+		if (!multiPush && pushed) {
 			return false;
 		}
 
@@ -210,11 +217,11 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
 	/**
 	 * Get the shape of this Block
-	 *
+	 * 
 	 * @return the shape or null if this Block has no shape
 	 */
 	public String getShape() {
-		if(this.has("shape")) {
+		if (this.has("shape")) {
 			return this.get("shape");
 		}
 		return null;
@@ -226,15 +233,17 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	}
 
 	@Override
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
-        if (logger.isDebugEnabled()) {
-        	logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
-        }
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
+			int oldY) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("Block [" + this.getID().toString() + "] notified about entity [" + entity + "] exiting [" + zone.getName() + "].");
+		}
 		resetInPlayerlessZone(zone, entity);
 	}
 
 	@Override
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,	int oldY, int newX, int newY) {
+	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
+			int oldY, int newX, int newY) {
 		// do nothing on move
 	}
 
@@ -245,9 +254,9 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 
 	@Override
 	public void onExited(RPObject object, StendhalRPZone zone) {
-        if (logger.isDebugEnabled()) {
-        	logger.debug("Block [" + this.getID().toString() + "] notified about object [" + object + "] exiting [" + zone.getName() + "].");
-        }
+		if (logger.isDebugEnabled()) {
+			logger.debug("Block [" + this.getID().toString() + "] notified about object [" + object + "] exiting [" + zone.getName() + "].");
+		}
 		resetInPlayerlessZone(zone, object);
 	}
 
@@ -255,8 +264,8 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 		// reset to initial position if zone gets empty of players
 		final List<Player> playersInZone = zone.getPlayers();
 		int numberOfPlayersInZone = playersInZone.size();
-        if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1 && playersInZone.contains(object)) {
-            resetIfInitialPositionFree();
+		if (numberOfPlayersInZone == 0 || numberOfPlayersInZone == 1 && playersInZone.contains(object)) {
+			resetIfInitialPositionFree();
 		}
 	}
 
@@ -272,29 +281,32 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener, Moveme
 	@Override
 	public void beforeMove(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY, int newX, int newY) {
-        if (entity instanceof Player) {
-            Rectangle2D oldA = new Rectangle2D.Double(oldX, oldY, entity.getWidth(), entity.getHeight());
-            Rectangle2D newA = new Rectangle2D.Double(newX, newY, entity.getWidth(), entity.getHeight());
-            Direction d = Direction.getAreaDirectionTowardsArea(oldA, newA);
-            this.push((Player) entity, d);
-        }
+		if (entity instanceof Player) {
+			Rectangle2D oldA = new Rectangle2D.Double(oldX, oldY, entity.getWidth(), entity.getHeight());
+			Rectangle2D newA = new Rectangle2D.Double(newX, newY, entity.getWidth(), entity.getHeight());
+			Direction d = Direction.getAreaDirectionTowardsArea(oldA, newA);
+			this.push((Player) entity, d);
+		}
 	}
 
-    @Override
-    public void onTurnReached(int currentTurn) {
-        resetIfInitialPositionFree();
-    }
+	@Override
+	public void onTurnReached(int currentTurn) {
+		resetIfInitialPositionFree();
+	}
 
-    /**
-     * Reset to initial position if no collision there, try again later if not possible
-     */
-    private void resetIfInitialPositionFree() {
-        if (!this.getZone().collides(this, this.getInt(START_X), this.getInt(START_Y))) {
-            this.reset();
-        } else {
-            // try again in a few moments
-            SingletonRepository.getTurnNotifier().notifyInSeconds(RESET_AGAIN_DELAY, this);
-        }
-    }
+	/**
+	 * Reset to initial position if no collision there, try again later if not
+	 * possible
+	 */
+	private void resetIfInitialPositionFree() {
+		if (!this.getZone().collides(this, this.getInt(START_X),
+				this.getInt(START_Y))) {
+			this.reset();
+		} else {
+			// try again in a few moments
+			SingletonRepository.getTurnNotifier().notifyInSeconds(
+					RESET_AGAIN_DELAY, this);
+		}
+	}
 
 }
