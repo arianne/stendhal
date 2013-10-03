@@ -326,7 +326,9 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 		}
 
 		if (!isPlayerPresent()) {
-			loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			if (level != EMPTY_GAMEBOARD_LEVEL) {
+				loadLevel(EMPTY_GAMEBOARD_LEVEL);
+			}
 			playerName = null;
  			return;
 		}

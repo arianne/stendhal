@@ -136,12 +136,14 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (shape != null) {
 			put("shape", shape);
 		}
+		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
 	}
 
 	/**
 	 * Resets the block position to its initial state
 	 */
 	public void reset() {
+		wasMoved = false;
 		this.setPosition(this.getInt(START_X), this.getInt(START_Y));
 		SingletonRepository.getTurnNotifier().dontNotify(this);
 		this.notifyWorldAboutChanges();
@@ -272,7 +274,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	private void resetInPlayerlessZone(StendhalRPZone zone, RPObject object) {
-		if (!resetBlock && !wasMoved) {
+		if (!resetBlock || !wasMoved) {
 			return;
 		}
 
