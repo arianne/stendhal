@@ -44,14 +44,14 @@ import java.util.List;
  * @author hendrik
  */
 public class SokobanGame implements LoadableContent, SokobanListener {
-	// 0: start, done
-	// 1: level
-	// 2: sum of times for past levels in seconds
-	// 3: start time of current level
 	private static final String QUEST_SLOT = "sokoban";
+	/** start, done */
 	private static final int QUEST_IDX_STATUS = 0;
+	/** level */
 	private static final int QUEST_IDX_LAST_SUCCESSFUL_LEVEL = 1;
+	/** sum of times of all past levels in seconds */
 	private static final int QUEST_IDX_SUM_OF_TIMES_FOR_PAST_LEVELS = 2;
+	/** start time of current level */
 	private static final int QUEST_IDX_START_TIME_OF_CURRENT_LEVEL = 3;
 
 	private StendhalRPZone zone = null;
@@ -65,6 +65,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		board = new SokobanBoard(this);
 		board.setPosition(26, 107);
 		zone.add(board);
+		board.loadLevel(0);
 	}
 
 	/**
@@ -197,8 +198,6 @@ TODO-List
 - sign with hall of fame (highest level, quickest time)
 - reward?
 
-- nice name for npc
-- nice outfit for npc
 - nicer tiles for the game
 
 - larger collisions entities
