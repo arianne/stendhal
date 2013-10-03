@@ -5,7 +5,9 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.area.OnePlayerArea;
+import games.stendhal.server.entity.mapstuff.area.AreaEntity;
+import games.stendhal.server.entity.mapstuff.area.NoLoginAreaBehaviour;
+import games.stendhal.server.entity.mapstuff.area.NoTeleportInBehaviour;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.npc.condition.AvailabilityChecker;
 import games.stendhal.server.entity.player.Player;
@@ -28,7 +30,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class SokobanBoard extends OnePlayerArea implements TurnListener, AvailabilityChecker {
+public class SokobanBoard extends AreaEntity implements TurnListener, AvailabilityChecker {
 	private static Logger logger = Logger.getLogger(SokobanBoard.class);
 	private static final int EMPTY_GAMEBOARD_LEVEL = 0;
 	private static int WIDTH = 20;
@@ -50,6 +52,8 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 	 */
 	public SokobanBoard(SokobanListener sokobanListener) {
 		super(WIDTH, HEIGHT);
+		super.addBehaviour(new NoLoginAreaBehaviour(42, 126, "Talk to Hiro to play another game."));
+		super.addBehaviour(new NoTeleportInBehaviour());
 
 		try {
 			int cnt = 0;
@@ -171,6 +175,8 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 		/*WalkBlocker wall = new WalkBlocker();
 		wall.setPosition(this.getX() + x, this.getY() + y);*/
 		Block wall = new Block(this.getX() + x, this.getY() + y, false, "mine_cart_empty");
+		wall.setResetBlock(false);
+		wall.setDescription("You see a wall.");
 		this.getZone().add(wall);
 		entitiesToCleanup.add(wall);
 	}
@@ -184,7 +190,7 @@ public class SokobanBoard extends OnePlayerArea implements TurnListener, Availab
 	private void box(int x, int y) {
 		Block block = new Block(this.getX() + x, this.getY() + y, true, "pumpkin_halloween");
 		block.setResetBlock(false);
-		block.setDescription("You see a pumpkin, move it to a basket");
+		block.setDescription("You see a pumpkin, move it to a basket.");
 		this.getZone().add(block);
 		this.getZone().addMovementListener(block);
 		entitiesToCleanup.add(block);
