@@ -228,13 +228,3 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		player.setDirection(Direction.RIGHT);
 	}
 }
-
-/*
-TODO-List
-- reward?
-
-- nicer tiles for the game
-
-- larger collisions entities
-- minimap highlight
-*/

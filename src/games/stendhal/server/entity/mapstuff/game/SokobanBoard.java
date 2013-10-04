@@ -100,7 +100,15 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 						break;
 					}
 					case '@': {
-						wall(x, y);
+						int xStart = x;
+						while (true) {
+							if ((x >= WIDTH) || (line.charAt(x) != '@')) {
+								x--;
+								break;
+							}
+							x++;
+						}
+						wall(xStart, x - xStart + 1, y);
 						break;
 					}
 					case 'o': {
@@ -170,10 +178,11 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 	 * creates a wall
 	 *
 	 * @param x x-offset
+	 * @param width width
 	 * @param y y-offset
 	 */
-	private void wall(int x, int y) {
-		Wall wall = new Wall(1, 1);
+	private void wall(int x, int width, int y) {
+		Wall wall = new Wall(width, 1);
 		wall.setPosition(this.getX() + x, this.getY() + y);
 		wall.setEntityClass("block/mine_cart_empty");
 		wall.setDescription("You see a wall.");
