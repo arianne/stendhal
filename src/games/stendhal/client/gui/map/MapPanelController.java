@@ -23,6 +23,7 @@ import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WalkBlocker;
+import games.stendhal.client.entity.Wall;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.listener.PositionChangeListener;
@@ -112,6 +113,8 @@ public class MapPanelController implements GameObjects.GameObjectListener, Posit
 			object = new PortalMapObject(entity);
 		} else if (entity instanceof WalkBlocker) {
 			object = new WalkBlockerMapObject(entity);
+		} else if (entity instanceof Wall) {
+			object = new WallMapObject(entity);
 		} else if (entity instanceof DomesticAnimal) {
 			// Only own pets and sheep are drawn but this is checked in the map object so the user status is always up to date
 			object = new DomesticAnimalMapObject((DomesticAnimal) entity);

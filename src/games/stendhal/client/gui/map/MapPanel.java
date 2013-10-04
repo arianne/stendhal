@@ -43,7 +43,7 @@ class MapPanel extends JComponent {
 	/**
 	 * The color of blocked areas (red).
 	 */
-	private static final Color COLOR_BLOCKED = new Color(1.0f, 0.0f, 0.0f);
+	public static final Color COLOR_BLOCKED = new Color(1.0f, 0.0f, 0.0f);
 	/**
 	 * The color of protected areas (palest green).
 	 */
