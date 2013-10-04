@@ -1,6 +1,6 @@
 -- D  deathmatch
 -- M  maze
--- P  paper chase (mine town revival weeks)
+-- P  paper chase (mine town revival weeks) 2012
 -- A  online age
 -- T  ATK
 -- F  DEF
@@ -9,6 +9,10 @@
 -- B  Best (xp and online age)
 -- @  Achievement score
 -- R  Role play score (xp, online age and achievement)
+-- O
+-- 0
+-- 3,4,5,6,7,8,9  Paper Chase 2013 and newer
+-- S  Sokoban score
 
 INSERT INTO halloffame_archive_recent (charname, fametype, rank, points, day) 
 SELECT charname, fametype, @rownum:=@rownum+1 as rank, points, CURRENT_DATE() 
