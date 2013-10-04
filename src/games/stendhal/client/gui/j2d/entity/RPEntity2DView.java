@@ -171,8 +171,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.isEating() && !rpentity.isChoking();
 					}
 				});
-		addIconManager(new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
-				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON));
+		StatusIconManager poisonManager = new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
+				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON);
+		poisonManager.setOffsets(10, -13);
+		addIconManager(poisonManager);
+		
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
                 HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
@@ -1063,6 +1066,18 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		}
 		
 		/**
+		 * Set the icon offsets compared to the normal position determined by
+		 * the alignment. <b>The horizontal offset will be ignored, unless
+		 * the icon is center aligned.</b>
+		 * @param xOffset
+		 * @param yOffset
+		 */
+		void setOffsets(int xOffset, int yOffset) {
+			this.xOffset = xOffset;
+			this.yOffset = yOffset;
+		}
+		
+		/**
 		 * Check the status of an entity, and show or hide the icon if
 		 * needed.
 		 * 
@@ -1085,6 +1100,9 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		 * Find the correct location for the icon when it has been set visible.
 		 */
 		private void position() {
+			if (xAlign == HorizontalAlignment.CENTER) {
+				return;
+			}
 			xOffset = 0;
 			for (int i = 0; i < iconManagers.size(); i++) {
 				AbstractStatusIconManager manager = iconManagers.get(i);
@@ -1092,7 +1110,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 					if (sharesPosition(manager)) {
 						if (xAlign == HorizontalAlignment.LEFT) {
 							xOffset += manager.sprite.getWidth();
-						} else if (xAlign == HorizontalAlignment.RIGHT) {
+						} else {
 							xOffset -= manager.sprite.getWidth();
 						}
 					}
