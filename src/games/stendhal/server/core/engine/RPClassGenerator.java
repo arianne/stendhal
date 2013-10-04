@@ -29,6 +29,7 @@ import games.stendhal.server.entity.mapstuff.ExpirationTracker;
 import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
+import games.stendhal.server.entity.mapstuff.area.Wall;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.game.GameBoard;
@@ -136,11 +137,9 @@ public class RPClassGenerator {
 		if (!RPClass.hasRPClass("gold_source")) {
 			GoldSource.generateRPClass();
 		}
-	
 		if (!RPClass.hasRPClass("water_source")) {
 			WaterSpringSource.generateRPClass();
 		}
-
 		if (!RPClass.hasRPClass("well_source")) {
 			WellSource.generateRPClass();
 		}
@@ -170,6 +169,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("useable_entity")) {
 			UseableEntity.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("wall")) {
+			Wall.generateRPClass();
 		}
 		// ActiveEntity sub-classes
 		if (!RPClass.hasRPClass("rpentity")) {
