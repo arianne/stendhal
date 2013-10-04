@@ -8,6 +8,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.NoLoginAreaBehaviour;
 import games.stendhal.server.entity.mapstuff.area.NoTeleportInBehaviour;
+import games.stendhal.server.entity.mapstuff.area.Wall;
 import games.stendhal.server.entity.mapstuff.block.Block;
 import games.stendhal.server.entity.npc.condition.AvailabilityChecker;
 import games.stendhal.server.entity.player.Player;
@@ -172,10 +173,9 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 	 * @param y y-offset
 	 */
 	private void wall(int x, int y) {
-		/*WalkBlocker wall = new WalkBlocker();
-		wall.setPosition(this.getX() + x, this.getY() + y);*/
-		Block wall = new Block(this.getX() + x, this.getY() + y, false, "mine_cart_empty");
-		wall.setResetBlock(false);
+		Wall wall = new Wall(1, 1);
+		wall.setPosition(this.getX() + x, this.getY() + y);
+		wall.setEntityClass("block/mine_cart_empty");
 		wall.setDescription("You see a wall.");
 		this.getZone().add(wall);
 		entitiesToCleanup.add(wall);
