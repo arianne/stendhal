@@ -120,10 +120,12 @@ public class EntityViewFactory {
 	 */
 	private static void configure() {
 
-		register("blood", null, null, Blood2DView.class);
-		register("creature", "ent", null, BossCreature2DView.class);
+		register("area", null, null, InvisibleEntity2DView.class);
 
-		register("item", "box", null, Box2DView.class);
+		register("block", null, null, LookableEntity2DView.class);
+		register("blood", null, null, Blood2DView.class);
+
+		register("creature", "ent", null, BossCreature2DView.class);
 
 		register("growing_entity_spawner", "items/grower/wood_grower", null, CarrotGrower2DView.class);
 		register("growing_entity_spawner", "items/grower/carrot_grower", null, CarrotGrower2DView.class);
@@ -146,8 +148,7 @@ public class EntityViewFactory {
 
 		register("house_portal", null, null, HousePortal2DView.class);
 
-		register("area", null, null, InvisibleEntity2DView.class);
-
+		register("item", "box", null, Box2DView.class);
 		register("item", "special", "mithril clasp", Item2DView.class);
 		register("item", null, null, Item2DView.class);
 		register("npc", null, null, NPC2DView.class);
@@ -200,10 +201,8 @@ public class EntityViewFactory {
 
 		register("useable_entity", null, null, UseableEntity2DView.class);
 
+		register("wall", null, null, Wall2DView.class);
 		register("walkblocker", null, null, WalkBlocker2DView.class);
-		
-		register("block", null, null, LookableEntity2DView.class);
-		
 		register("well_source", null, null, UseableEntity2DView.class);
 	}
 

@@ -47,6 +47,7 @@ import games.stendhal.client.entity.StatefulEntity;
 import games.stendhal.client.entity.UseableItem;
 import games.stendhal.client.entity.UseableRing;
 import games.stendhal.client.entity.WalkBlocker;
+import games.stendhal.client.entity.Wall;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -159,6 +160,7 @@ public final class EntityMap {
 
 		register("gate", null, null, Gate.class);
 		register("game_board", null, null, GameBoard.class);
+		register("wall", null, null, Wall.class);
 
 		register("looped_sound_source", null, null, LoopedSoundSource.class);
 	}
