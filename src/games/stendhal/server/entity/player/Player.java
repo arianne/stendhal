@@ -99,12 +99,12 @@ public class Player extends RPEntity implements UseListener {
 	/**
 	 * List of portals that have been "unlocked" for this player.
 	 */
-	private List<Integer> unlockedPortals;
+	private final List<Integer> unlockedPortals;
 
 	/**
 	 * A list of away replies sent to players.
 	 */
-	private HashMap<String, Long> awayReplies;
+	private final HashMap<String, Long> awayReplies;
 
 	private final PlayerQuests quests = new PlayerQuests(this);
 	private final PlayerDieer  dieer  = new PlayerDieer(this);
@@ -265,9 +265,9 @@ public class Player extends RPEntity implements UseListener {
 			unstore();
 			logger.error("Player " + getName() + " was marked storable.", new Throwable());
 		}
-		
+
 		unlockedPortals = new LinkedList<Integer>();
-		
+
 		updateModifiedAttributes();
 	}
 
@@ -305,7 +305,7 @@ public class Player extends RPEntity implements UseListener {
 	public void applyClientDirection(final boolean stopOnNone) {
 		int size;
 		Direction direction;
-		
+
 		/*
 		 * For now just take last direction.
 		 *
@@ -337,7 +337,7 @@ public class Player extends RPEntity implements UseListener {
 
 		return super.isObstacle(entity);
 	}
-	
+
 	/**
 	 * Request stopping the player, unless the player started moving the same
 	 * turn. Intended for client initiated stops, that should not prevent the
@@ -345,7 +345,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public void requestStop() {
 		int turn = SingletonRepository.getRuleProcessor().getTurn();
-		
+
 		if (turn != startMoveTurn) {
 			stop();
 		} else {
@@ -453,7 +453,7 @@ public class Player extends RPEntity implements UseListener {
 	public double getKarma() {
 		return karma;
 	}
-	
+
 	/**
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
@@ -571,19 +571,19 @@ public class Player extends RPEntity implements UseListener {
 	public int getTradescore() {
 		return this.tradescore;
 	}
-	
+
     /**
-     * 
+     *
      * @return
      *         List of portals that have been unlocked for this player.
      */
     public List<Integer> getUnlockedPortals() {
         return unlockedPortals;
     }
-    
+
     /**
      * Removes the portal from the list of unlocked portals.
-     * 
+     *
      * @param ID
      *      Portal's ID
      */
@@ -600,10 +600,10 @@ public class Player extends RPEntity implements UseListener {
             }
         }
     }
-    
+
     /**
      * Adds a portal ID to a list of "unlocked" portals for player.
-     * 
+     *
      * @param ID
      *      Portal's ID
      */
@@ -613,7 +613,7 @@ public class Player extends RPEntity implements UseListener {
 	        logger.debug("Added portal ID " + Integer.toString(ID) + " to unlocked portals for player " + getName() + ".");
 	    }
 	}
-	
+
 	/**
 	 * Process changes that to the object attributes. This may be called several
 	 * times (unfortunately) due to the requirements of the class's constructor,
@@ -943,8 +943,9 @@ public class Player extends RPEntity implements UseListener {
 	 * @param text
 	 *            the message.
 	 */
+	@Override
 	public void sendPrivateText(final NotificationType type, final String text) {
-		addEvent(new PrivateTextEvent(type, text));
+		this.addEvent(new PrivateTextEvent(type, text));
 		this.notifyWorldAboutChanges();
 	}
 
@@ -1668,12 +1669,12 @@ public class Player extends RPEntity implements UseListener {
 		if (isAttacking()
 				&& ((turn % getAttackRate()) == 0)) {
 		    RPEntity attackTarget = getAttackTarget();
-		    
+
 		    // Face target if player is not moving
 		    if (stopped() && isInSight(attackTarget) && !isFacingToward(attackTarget)) {
 		        faceToward(attackTarget);
 		    }
-		    
+
 			StendhalRPAction.playerAttack(this, attackTarget);
 		}
 
@@ -1979,7 +1980,7 @@ public class Player extends RPEntity implements UseListener {
 //	public boolean isImmune() {
 //		return isImmune;
 //	}
-	
+
 	void setLastPlayerKill(final long milliseconds) {
 		put(LAST_PLAYER_KILL_TIME, milliseconds);
 	}
@@ -2113,7 +2114,8 @@ public class Player extends RPEntity implements UseListener {
 		// reward players on level up
 		if (oldLevel < level) {
 			AchievementNotifier.get().onLevelChange(this);
-			addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+			this.addEvent(new SoundEvent("tadaa-1", SoundLayer.USER_INTERFACE));
+			this.notifyWorldAboutChanges();
 		}
 	}
 

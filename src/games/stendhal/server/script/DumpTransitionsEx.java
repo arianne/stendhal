@@ -23,7 +23,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
  * display a nice graph.
- * 
+ *
  * @author hendrik
  */
 public class DumpTransitionsEx extends ScriptImpl {
@@ -54,11 +54,12 @@ public class DumpTransitionsEx extends ScriptImpl {
 		String data = dumpedTable.toString();
 		final RPEvent event = new TransitionGraphEvent(data);
 		admin.addEvent(event);
+		admin.notifyWorldAboutChanges();
 	}
 
 	/**
 	 * Returns the transition diagram as string.
-	 * 
+	 *
 	 * @param npc
 	 *            SpeakerNPC
 	 * @return transition diagram

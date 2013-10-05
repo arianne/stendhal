@@ -13,19 +13,20 @@
 package games.stendhal.server.core.config.zone;
 
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TeleportationRules {
 	/** Areas where teleporting out is blocked */
-	private List<Rectangle> leavingBarriers = new LinkedList<Rectangle>();
+	private final List<Shape> leavingBarriers = new LinkedList<Shape>();
 	/** Areas where teleporting in is blocked */
-	private List<Rectangle> arrivingBarriers = new LinkedList<Rectangle>();
+	private final List<Shape> arrivingBarriers = new LinkedList<Shape>();
 
 	/**
 	 * Block teleporting to a rectangular area.
-	 * 
-	 * @param x x coordinate of the blocked area 
+	 *
+	 * @param x x coordinate of the blocked area
 	 * @param y y coordinate of the blocked area
 	 * @param width width of the blocked area
 	 * @param height height of the blocked area
@@ -34,7 +35,7 @@ public class TeleportationRules {
 		Rectangle r = new Rectangle(x, y, width, height);
 		arrivingBarriers.add(r);
 	}
-	
+
 	/**
 	 * Block teleporting in.
 	 */
@@ -47,25 +48,25 @@ public class TeleportationRules {
 
 	/**
 	 * Check if teleporting to a location is allowed.
-	 * 
+	 *
 	 * @param x x coordinate
 	 * @param y y coordinate
-	 * @return <code>true</code> if teleporting to the point is allowed, <code>false</code> otherwise  
+	 * @return <code>true</code> if teleporting to the point is allowed, <code>false</code> otherwise
 	 */
 	public boolean isInAllowed(int x, int y) {
-		for (Rectangle r : arrivingBarriers) {
+		for (Shape r : arrivingBarriers) {
 			if (r.contains(x, y)) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
 	/**
 	 * Block teleporting from a rectangular area.
-	 * 
-	 * @param x x coordinate of the blocked area 
+	 *
+	 * @param x x coordinate of the blocked area
 	 * @param y y coordinate of the blocked area
 	 * @param width width of the blocked area
 	 * @param height height of the blocked area
@@ -74,7 +75,7 @@ public class TeleportationRules {
 		Rectangle r = new Rectangle(x, y, width, height);
 		leavingBarriers.add(r);
 	}
-	
+
 	/**
 	 * Block teleporting out.
 	 */
@@ -87,18 +88,18 @@ public class TeleportationRules {
 
 	/**
 	 * Check if teleporting from a location is allowed.
-	 * 
+	 *
 	 * @param x x coordinate
 	 * @param y y coordinate
-	 * @return <code>true</code> if teleporting to the point is allowed, <code>false</code> otherwise  
+	 * @return <code>true</code> if teleporting to the point is allowed, <code>false</code> otherwise
 	 */
 	public boolean isOutAllowed(int x, int y) {
-		for (Rectangle r : leavingBarriers) {
+		for (Shape r : leavingBarriers) {
 			if (r.contains(x, y)) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 }

@@ -29,7 +29,7 @@ import java.util.Map;
  * level and makes them admins. This is used on test-systems only. Therefore it
  * is disabled in default install and you have to use this parameter:
  * -Dstendhal.testserver=junk as a vm argument.
- * 
+ *
  * As admin uses /script AdminMaker.class to summon her right next to him/her.
  * Please unload it with /script -unload AdminMaker.class
  */
@@ -54,10 +54,11 @@ public class TestShowItemList extends ScriptImpl {
 			}
 		}
 
-		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop", 
+		ShowItemListEvent event = new ShowItemListEvent("Aramyk Shop",
 				"Please talk to Aramyk to buy or sell items.",
 				itemList);
 		admin.addEvent(event);
+		admin.notifyWorldAboutChanges();
 	}
 
 	/**

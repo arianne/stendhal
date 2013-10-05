@@ -86,7 +86,7 @@ public class Creature extends NPC {
 	 * determined at creatures.xml, just make it 1.
 	 */
 	private static final double SERVER_DROP_GENEROSITY = 1;
-	
+
 	private HealerBehavior healer = HealerBehaviourFactory.get(null);
 
 	private AttackStrategy strategy;
@@ -103,10 +103,10 @@ public class Creature extends NPC {
 	 * is always creature specific.
 	 */
 	protected List<Item> dropItemInstances;
-	
+
 	/** Sound played on death */
 	private String deathSound;
-	
+
 	// A looped sound to be played while creature is moving
 	private String movementSound;
 	private SoundEvent movementSoundEvent;
@@ -152,7 +152,7 @@ public class Creature extends NPC {
 	private final Registrator registrator = new Registrator();
 
 	private CounterMap<String> hitPlayers;
-	
+
 	/**
 	 * creates a new Creature
 	 *
@@ -224,7 +224,7 @@ public class Creature extends NPC {
 		setSounds(copy.getSounds());
 		setDeathSound(copy.deathSound);
 		setMovementSound(copy.movementSound);
-		
+
 		for (RPSlot slot : copy.slots()) {
 			this.addSlot((RPSlot) slot.clone());
 		}
@@ -347,10 +347,10 @@ public class Creature extends NPC {
 	public Creature getNewInstance() {
 		return new Creature(this);
 	}
-	
+
 	/**
 	 * Sets the sound played at creature's death
-	 * 
+	 *
 	 * @param sound Name of sound
 	 */
 	@Override
@@ -360,7 +360,7 @@ public class Creature extends NPC {
 	    }
 	    super.setDeathSound(deathSound);
 	}
-	
+
 	/**
 	 * Set looped sound to be played while creature is walking
 	 * @param sound sound effect file name
@@ -529,7 +529,7 @@ public class Creature extends NPC {
 		}
 		return corpseName;
 	}
-	
+
 	@Override
 	public String getHarmlessCorpseName() {
 		if (harmlessCorpseName == null) {
@@ -761,7 +761,7 @@ public class Creature extends NPC {
 	public void tryToPoison() {
 
 		final RPEntity entity = getAttackTarget();
-		
+
 		/*
 		 * Antipoison attributes
 		 */
@@ -770,42 +770,42 @@ public class Creature extends NPC {
 		if (entity.hasRing()) {
 			defenderEquipment.add(entity.getRing());
 		}
-		
+
 		for (final Item equipmentItem : defenderEquipment) {
 			if (equipmentItem.has("antipoison")) {
 				sumAll += equipmentItem.getDouble("antipoison");
 			}
 		}
-		
+
 		// Store the creatures poisoner probability because we will be modifying it if antipoison equipment is used
 		int probability = poisoner.getProbability();
-		
+
 		/*
 		 * Prevent antipoison attribute from surpassing 100%
 		 */
 		if (sumAll > 1) { sumAll = 1; }
-		
+
 		// Checking creatures poison value
 		LOGGER.debug("Poison probability before: " + poisoner.getProbability());
 		// Checking player's antipoison value
 		LOGGER.debug("Antipoison value = " + sumAll);
-		
+
 		if (sumAll > 0) {
 			poisoner.applyAntistatus(sumAll);
 		}
-		
+
 		// Checking creatures poison value after antipoison is applied
 		LOGGER.debug("Poison probability after: " + poisoner.getProbability());
-		
+
 		if (poisoner.attemptToInflict(entity)) {
 			new GameEvent(getName(), "poison", entity.getName()).raise();
 			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
 		}
-		
+
 		// Return the poisoner's probability
 		poisoner.setProbability(probability);
 	}
-	
+
 	public void equip(final List<EquipItem> items) {
 		for (final EquipItem equippedItem : items) {
 			if (!hasSlot(equippedItem.slot)) {
@@ -904,7 +904,7 @@ public class Creature extends NPC {
 				}
 			}
 			maybeMakeSound();
-			
+
 			// FIXME: Play a looped sound for walking creatrue
 			if (movementSound != null && movementSoundEvent == null) {
 				loopMovementSound();
@@ -921,7 +921,7 @@ public class Creature extends NPC {
 			}
 		}
 	}
-    
+
 	/**
 	 * Random sound noises.
 	 * @param state - state for noises
@@ -950,26 +950,27 @@ public class Creature extends NPC {
 			makeNoise(state);
 		}
 	}
-	
+
 	/**
 	 * Generates a looped sound for creature
-	 * 
+	 *
 	 * FIXME: doesn't play sound
 	 */
 	private void loopMovementSound() {
 	    movementSoundEvent = new SoundEvent(movementSound, SOUND_RADIUS, 100, SoundLayer.CREATURE_NOISE);
-	    addEvent(movementSoundEvent);
+	    this.addEvent(movementSoundEvent);
+	    this.notifyWorldAboutChanges();
 	}
-	
+
 	/**
 	 * Stops the looped sound
 	 */
 	public void stopMovementSound() {
 		movementSoundEvent = null;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		true if looped sound is currently playing
 	 */
@@ -1007,16 +1008,16 @@ public class Creature extends NPC {
 
 	/**
 	 * Set the fighting strategy used by the creature.
-	 * 
-	 * @param aiProfiles AI profiles to be used when deciding the strategy 
+	 *
+	 * @param aiProfiles AI profiles to be used when deciding the strategy
 	 */
 	public void setAttackStrategy(final Map<String, String> aiProfiles) {
 		strategy = AttackStrategyFactory.get(aiProfiles);
 	}
-	
+
 	/**
 	 * Get the fighting strategy used by the creature.
-	 * 
+	 *
 	 * @return strategy
 	 */
 	public AttackStrategy getAttackStrategy() {
@@ -1060,7 +1061,7 @@ public class Creature extends NPC {
 	protected Nature getDamageType() {
 		return damageType;
 	}
-	
+
 	@Override
 	protected Nature getRangedDamageType() {
 		return rangedDamageType;
@@ -1068,7 +1069,7 @@ public class Creature extends NPC {
 
 	/**
 	 * Set the damage natures the creature inflicts.
-	 * 
+	 *
 	 * @param type Damage nature.
 	 * @param rangedType Damage nature for ranged attacks, or <code>null</code>
 	 * 	if the creature uses the same type as for the melee.
@@ -1148,11 +1149,11 @@ public class Creature extends NPC {
 		}
 		return getZone() == player.getZone();
 	}
-	
+
 	//
 	// XXX START: Status
 	//
-	
+
 	/**
 	 * Check if entity can inflict a status effect
 	 */
@@ -1160,7 +1161,7 @@ public class Creature extends NPC {
 	public boolean usesStatusAttack() {
 	    return (poisoner != null);
 	}
-	
+
 	//
 	// END: Status
 	//

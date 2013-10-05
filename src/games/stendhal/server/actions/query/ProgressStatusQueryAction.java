@@ -67,6 +67,7 @@ public class ProgressStatusQueryAction implements ActionListener {
 	private void sendProgressTypes(Player player) {
 		List<String> list = Arrays.asList("Open Quests", "Completed Quests", "Production");
 		player.addEvent(new ProgressStatusEvent(list));
+		player.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -86,6 +87,7 @@ public class ProgressStatusQueryAction implements ActionListener {
 			player.addEvent(new ProgressStatusEvent(progressType,
 					SingletonRepository.getProducerRegister().getWorkingProducerNames(player)));
 		}
+		player.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -107,6 +109,6 @@ public class ProgressStatusQueryAction implements ActionListener {
 					SingletonRepository.getProducerRegister().getProductionDescription(player, item),
 					SingletonRepository.getProducerRegister().getProductionDetails(player, item)));
 		}
+		player.notifyWorldAboutChanges();
 	}
-
 }

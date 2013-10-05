@@ -21,9 +21,9 @@ import games.stendhal.server.events.ExamineEvent;
  * A sign (or transparent area) which is placed on the ground and can be looked at closely.
  */
 public class PopupImage extends Sign implements UseListener {
-	private String image;
-	private String title;
-	private String caption;
+	private final String image;
+	private final String title;
+	private final String caption;
 
 	/**
 	 * Creates a new PopupImage
@@ -42,6 +42,7 @@ public class PopupImage extends Sign implements UseListener {
 	@Override
 	public boolean onUsed(RPEntity user) {
 		user.addEvent(new ExamineEvent("examine/" + image, title, caption));
+		user.notifyWorldAboutChanges();
 		return true;
 	}
 

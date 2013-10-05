@@ -31,7 +31,7 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 			handleSentence(player,sentence,npc);
 		}
 	}
-	
+
 	private void handleSentence(Player player, Sentence sentence, EventRaiser npc) {
 		MarketManagerNPC manager = (MarketManagerNPC) npc.getEntity();
 		try {
@@ -54,11 +54,12 @@ public class ExamineOfferChatAction extends KnownOffersChatAction {
 			npc.say("Sorry, please say #accept #number");
 		}
 	}
-	
+
 	private void showImage(Player player, Item item) {
 		String caption = item.getName();
 		String image = "items/" + item.getItemClass() + "/" + item.getItemSubclass() + ".png";
 		ExamineEvent event = new ExamineEvent(image, caption, "");
 		player.addEvent(event);
+		player.notifyWorldAboutChanges();
 	}
 }

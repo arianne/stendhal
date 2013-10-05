@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
 
 /**
  * A solid, movable block on a map
- * 
+ *
  * @author madmetzger
  */
 public class Block extends ActiveEntity implements ZoneEnterExitListener,
@@ -71,7 +71,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	/**
 	 * Create a new Block with default style at (startX, startY)
-	 * 
+	 *
 	 * @param startX
 	 *            initial x-coordinate
 	 * @param startY
@@ -85,7 +85,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	}
 
 	/**
-	 * 
+	 *
 	 * @param startX
 	 * @param startY
 	 * @param multiPush
@@ -102,7 +102,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 	/**
 	 * Create a new block at startX, startY with a different style at client
 	 * side
-	 * 
+	 *
 	 * @param startX
 	 *            initial x-coordinate
 	 * @param startY
@@ -151,7 +151,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	/**
 	 * Push this Block into a given direction
-	 * 
+	 *
 	 * @param p
 	 * @param d
 	 *            the direction, this block is pushed into
@@ -196,6 +196,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 		if (!this.sounds.isEmpty()) {
 			SoundEvent e = new SoundEvent(Rand.rand(sounds), SoundLayer.AMBIENT_SOUND);
 			this.addEvent(e);
+			this.notifyWorldAboutChanges();
 		}
 	}
 
@@ -231,7 +232,7 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	/**
 	 * Get the shape of this Block
-	 * 
+	 *
 	 * @return the shape or null if this Block has no shape
 	 */
 	public String getShape() {

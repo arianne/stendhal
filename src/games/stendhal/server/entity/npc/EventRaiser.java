@@ -23,7 +23,7 @@ import marauroa.common.game.RPEvent;
  * @author hendrik
  */
 public class EventRaiser {
-	private Entity entity;
+	private final Entity entity;
 
 	/**
 	 * creates a new EventRaiser
@@ -102,7 +102,7 @@ public class EventRaiser {
 			((SpeakerNPC) entity).setAttending(rpentity);
 		}
 	}
-	
+
 	/**
 	 * adds an RPEvent
 	 *
@@ -110,6 +110,7 @@ public class EventRaiser {
 	 */
 	public void addEvent(RPEvent event) {
 		entity.addEvent(event);
+		entity.notifyWorldAboutChanges();
 	}
 
 	/**

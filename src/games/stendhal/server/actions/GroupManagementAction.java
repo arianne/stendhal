@@ -284,6 +284,7 @@ public class GroupManagementAction implements ActionListener {
 			// Send an empty event if the player is not a group member, and let
 			// the client sort out that it was not about parting from a group.
 			player.addEvent(new GroupChangeEvent());
+			player.notifyWorldAboutChanges();
 			return;
 		}
 

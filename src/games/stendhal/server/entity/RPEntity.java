@@ -120,7 +120,7 @@ public abstract class RPEntity extends GuidedEntity {
 	private boolean ignoreCollision;
 
 	private String deathSound;
-	
+
 	/** Entity uses a status attack */
 	private Status statusAttack;
 	private double statusAttackProbability;
@@ -638,6 +638,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 *
 	 * @return The entity's name.
 	 */
+	@Override
 	public String getName() {
 		if (name != null) {
 			return name;
@@ -1207,7 +1208,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		} else {
 			kill(attacker);
 		}
-		
+
 		notifyWorldAboutChanges();
 	}
 
@@ -1466,6 +1467,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// that.
 		if (deathSound != null) {
 			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
+			corpse.notifyWorldAboutChanges();
 		}
 
 		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does),
@@ -2309,15 +2311,15 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public Item getCloak() {
 		return getEquippedItemClass("cloak", "cloak");
 	}
-	
+
 	public boolean hasRing() {
 		return isEquippedItemClass("finger", "ring");
 	}
-	
+
 	public Item getRing() {
 		return getEquippedItemClass("finger", "ring");
 	}
-	
+
 	@Override
 	public String describe() {
 		String text = super.describe();
@@ -2759,7 +2761,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				defender.onDamaged(this, damage);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + damage);
-				
+
 				// Try to inflict a status effect
 				//System.out.println(getName() + ": Status attack = " + statusAttack);
 				if (statusAttack != null) {
@@ -2772,12 +2774,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + 0);
 			}
-			addEvent(new AttackEvent(true, damage, nature, isRanged));
+			this.addEvent(new AttackEvent(true, damage, nature, isRanged));
 		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
 					+ defender.getID() + ": Missed");
-			addEvent(new AttackEvent(false, 0, nature, isRanged));
+			this.addEvent(new AttackEvent(false, 0, nature, isRanged));
 		}
 
 		this.notifyWorldAboutChanges();
@@ -2847,7 +2849,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			attacker.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Equips the item in the specified slot.
 	 *
@@ -2905,10 +2907,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public String getLanguage() {
 		return null;
 	}
-    
+
     /**
      * Set entity to ignore collision tiles
-     * 
+     *
      * @param ignore
      */
     public void setIgnoresCollision(boolean ignore) {
@@ -2919,25 +2921,25 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
             remove("ignore_collision");
         }
     }
-    
+
     /**
      * Tells if entity can pass through collision tiles
-     * 
+     *
      * @return ignoreCollision
      */
     public boolean ignoresCollision() {
         return ignoreCollision;
     }
-    
+
     /**
      * Sets the sound played at entity death
-     * 
+     *
      * @param sound Name of sound
      */
     public void setDeathSound(final String sound) {
         deathSound = sound;
     }
-    
+
     /**
      * @return Name of sound played at entity death
      */
@@ -2952,7 +2954,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     public Status getStatusAttack() {
         return statusAttack;
     }
-    
+
     /**
      * @return
      *      Probability of inflicting status
@@ -2961,10 +2963,10 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
         return statusAttackProbability;
     }
 
-    
+
     /**
      * Add a status attack type to the entity
-     * 
+     *
      * @param status
      *          Status attack type
      * @param probability
@@ -2973,14 +2975,14 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     public void setStatusAttack(final Status status, final double probability) {
         statusAttack = status;
         statusAttackProbability = probability;
-        
+
         //System.out.println("Created entity \"" + getName() + "\" with status attack \"" + statusAttack.getName() +
           //      "\". Probability = " + Double.toString(probability) + "%.");
     }
-    
+
     /**
      * Add a status attack type to the entity using a string value.
-     * 
+     *
      * @param status
      *          Status attack type
      * @param probability
@@ -3001,7 +3003,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
     /**
      * Check if entity can inflict a status effect
-     * 
+     *
      * @return true, if a statusAttack is defined; false otherwise
      */
     public boolean usesStatusAttack() {
@@ -3022,7 +3024,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 	/**
 	 * Find if the entity has a specified status
-	 * 
+	 *
 	 * @param statusType the status type to check for
 	 * @return true, if the entity has status; false otherwise
 	 */

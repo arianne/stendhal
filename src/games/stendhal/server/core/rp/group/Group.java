@@ -122,6 +122,7 @@ public class Group {
 				Player invitedPlayer = ruleProcessor.getPlayer(entry.getKey());
 				if (invitedPlayer != null) {
 					invitedPlayer.addEvent(new GroupInviteEvent(leader, true));
+					invitedPlayer.notifyWorldAboutChanges();
 				}
 
 				itr.remove();
@@ -241,6 +242,7 @@ public class Group {
 	public void invite(Player player, Player targetPlayer) {
 		openInvites.put(targetPlayer.getName(), Long.valueOf(System.currentTimeMillis()));
 		targetPlayer.addEvent(new GroupInviteEvent(player.getName(), false));
+		targetPlayer.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -285,6 +287,7 @@ public class Group {
 			Player player = ruleProcessor.getPlayer(playerName);
 			if (player != null) {
 				player.addEvent(event);
+				player.notifyWorldAboutChanges();
 			}
 		}
 	}
@@ -298,6 +301,7 @@ public class Group {
 		List<String> members = new LinkedList<String>(membersAndLastSeen.keySet());
 		RPEvent event = new GroupChangeEvent(leader, members, lootmode);
 		player.addEvent(event);
+		player.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -312,6 +316,7 @@ public class Group {
 			Player player = ruleProcessor.getPlayer(playerName);
 			if (player != null) {
 				player.addEvent(event);
+				player.notifyWorldAboutChanges();
 			}
 		}
 	}

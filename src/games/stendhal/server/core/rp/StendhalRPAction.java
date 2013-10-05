@@ -52,7 +52,7 @@ import org.apache.log4j.Logger;
 public class StendhalRPAction {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
-	
+
 	/**
 	 * The amount to weight ATK and DEF in player strength calculation. Higher
 	 * means more weight to stats vs level. Value 0.73 has been obtained from
@@ -163,10 +163,10 @@ public class StendhalRPAction {
 	private static boolean victimIsStrongEnough(final Player player, final Player victim) {
 		return getPlayerStrength(victim) >= ACCEPTABLE_STRENGTH_RATIO * getPlayerStrength(player);
 	}
-	
+
 	/**
 	 * Get the relative strength of a player, ignoring equipment.
-	 * 
+	 *
 	 * @param player
 	 * @return player strength
 	 */
@@ -227,7 +227,7 @@ public class StendhalRPAction {
 		defender.rememberAttacker(player);
 		if (defender instanceof Player) {
 			player.storeLastPVPActionTime();
-			
+
 			// did the player or victim move into a protected area?
 			if(zone.isInProtectionArea(defender) || zone.isInProtectionArea(player)) {
 				logger.debug("Attack from " + player + " to " + defender
@@ -301,11 +301,13 @@ public class StendhalRPAction {
 				Rand.rand(defenseItems).deteriorate();
 			}
 			player.addEvent(new AttackEvent(true, damage, player.getDamageType(), missileUsed));
+			player.notifyWorldAboutChanges();
 		} else {
 			// Missed
 			logger.debug("attack from " + player.getID() + " to "
 					+ defender.getID() + ": Missed");
 			player.addEvent(new AttackEvent(false, 0, player.getDamageType(), missileUsed));
+			player.notifyWorldAboutChanges();
 		}
 
 		if (missileUsed) {
@@ -373,7 +375,7 @@ public class StendhalRPAction {
 			logger.warn("rpmanager not found");
 		}
 	}
-	
+
 	/**
 	 * Change an entity's zone based on it's global world coordinates.
 	 *

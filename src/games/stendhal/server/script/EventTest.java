@@ -7,13 +7,13 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
-import marauroa.common.game.Definition.DefinitionClass;
 
 /**
  * Tries to add an RPEvent.
- * 
+ *
  * @author hendrik
  */
 public class EventTest extends ScriptImpl {
@@ -31,5 +31,6 @@ public class EventTest extends ScriptImpl {
 		final RPEvent event = new RPEvent("testevent");
 		event.put("arg", args.get(0));
 		admin.addEvent(event);
+		admin.notifyWorldAboutChanges();
 	}
 }

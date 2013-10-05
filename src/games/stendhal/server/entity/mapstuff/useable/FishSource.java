@@ -28,13 +28,13 @@ import marauroa.common.game.RPClass;
 /**
  * A fish source is a spot where a player can fish. He needs a fishing rod, time
  * and luck. Before he catches fish he needs to make a license.
- * 
+ *
  * Fishing takes 5-9 seconds; during this time, the player keep standing next to
  * the fish source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two fish sources
  * are always at least 8 sec of walking away from each other, so that the player
  * can't fish at several sites simultaneously.
- * 
+ *
  * Completion of the Fishermans Collector quest increases the chance of catching fish.
  * Some karma is used to decide the outcome.
  *
@@ -50,7 +50,7 @@ public class FishSource extends PlayerActivityEntity {
 	 * The name of the item to be caught.
 	 */
 	private final String itemName;
-	
+
 	/**
 	 * Sound effects
 	 */
@@ -61,7 +61,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Create a fish source.
-	 * 
+	 *
 	 * @param itemName
 	 *            The name of the item to be caught.
 	 */
@@ -72,7 +72,7 @@ public class FishSource extends PlayerActivityEntity {
 		setMenu("Fish");
 		setDescription("There is something in the water.");
 	}
-	
+
 	/**
 	 * source name.
 	 */
@@ -94,10 +94,10 @@ public class FishSource extends PlayerActivityEntity {
 	 * Calculates the probability that the given player catches a fish. This is
 	 * based on the player's fishing skills, however even players with no skills
 	 * at all have a 5% probability of success, before the karma effect.
-	 * 
+	 *
 	 * @param player
 	 *            The player,
-	 * 
+	 *
 	 * @return The probability of success.
 	 */
 	private double getSuccessProbability(final Player player) {
@@ -118,7 +118,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
@@ -128,7 +128,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity can be done.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -143,7 +143,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity was successful.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -154,7 +154,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -165,9 +165,10 @@ public class FishSource extends PlayerActivityEntity {
 		if (successful) {
 			final Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
-			
+
 			// TODO: find a sound for success
-			//addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			//this.addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			this.notifyWorldAboutChanges();
 
 			player.equipOrPutOnGround(item);
 			player.incHarvestedForItem(itemName, 1);
@@ -175,8 +176,9 @@ public class FishSource extends PlayerActivityEntity {
 			player.sendPrivateText("You caught a fish.");
 		} else {
 		    // TODO: find a sound for failure
-            //addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-		    
+            //this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+			this.notifyWorldAboutChanges();
+
 			player.sendPrivateText("You didn't get a fish.");
 		}
 		notifyWorldAboutChanges();
@@ -184,7 +186,7 @@ public class FishSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */
@@ -193,7 +195,7 @@ public class FishSource extends PlayerActivityEntity {
 	    // Play a nice fishing sound
         addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
         notifyWorldAboutChanges();
-	    
+
 		// some feedback is needed.
 		player.sendPrivateText("You have started fishing.");
 		addEvent(new ImageEffectEvent("water_splash", true));

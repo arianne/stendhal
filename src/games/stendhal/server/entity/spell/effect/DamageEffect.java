@@ -24,24 +24,24 @@ import games.stendhal.server.events.AttackEvent;
 import org.apache.log4j.Logger;
 /**
  * An effect to cause magical damage with a spell
- * 
+ *
  * Used attributes:
  * - amount: How often will this effect hit a player
  * - atk: for usage of the usual damage calcuation acting as a weapon
  * - lifesteal: percentage of health points healed based on damage done
- * 
+ *
  * @author madmetzger
  */
 public class DamageEffect extends AbstractEffect implements TurnListener {
 
 	private static final Logger LOGGER = Logger.getLogger(DamageEffect.class);
-	
+
 	/** the entity getting damaged */
 	private RPEntity rpEntityToDamage;
-	
+
 	/** the player issuing the effect */
 	private Player damageOrigin;
-	
+
 	private int numberOfLeftOverHits;
 
 	public DamageEffect(Nature nature, int amount, int atk, int def,
@@ -57,20 +57,21 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 			LOGGER.error("target is no instance of RPEntitty but: " + target, new Throwable());
 		}
 	}
-	
+
 	@Override
 	public void onTurnReached(int currentTurn) {
 		if(numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
-			
+
 			int damageDone = damageOrigin.damageDone(rpEntityToDamage, getAtk(), getNature());
 			damageDone = Math.min(damageDone, rpEntityToDamage.getBaseHP());
 			int toSteal = (int) Math.ceil(damageDone * Double.valueOf(getLifesteal()));
-			
+
 			if(damageDone > 0) {
 				rpEntityToDamage.onDamaged(damageOrigin, damageDone);
 				damageOrigin.addEvent(new AttackEvent(true, damageDone, getNature(), true));
+				damageOrigin.notifyWorldAboutChanges();
 			}
-			
+
 			damageOrigin.heal(toSteal);
 			numberOfLeftOverHits = numberOfLeftOverHits -1;
 			if (numberOfLeftOverHits > 0 && rpEntityToDamage.getHP() > 0) {
@@ -79,7 +80,7 @@ public class DamageEffect extends AbstractEffect implements TurnListener {
 		}
 	}
 
-	
+
 	private void actInternal(Player caster, RPEntity target) {
 		// remember caster and target
 		rpEntityToDamage = target;

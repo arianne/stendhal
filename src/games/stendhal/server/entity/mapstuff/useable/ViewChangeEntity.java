@@ -23,14 +23,14 @@ import games.stendhal.server.events.ViewChangeEvent;
 public class ViewChangeEntity extends UseableEntity {
 	private static final String QUEST = "learn_scrying";
 	private static final int COST = 5;
-	
+
 	private final int x;
 	private final int y;
-	
+
 	/**
 	 * Create a new ViewChangeEntity.
-	 * 
-	 * @param x x coordinate of the view center 
+	 *
+	 * @param x x coordinate of the view center
 	 * @param y y coordinate of the view center
 	 */
 	public ViewChangeEntity(int x, int y) {
@@ -38,7 +38,7 @@ public class ViewChangeEntity extends UseableEntity {
 		this.y = y;
 		setResistance(0);
 	}
-	
+
 	@Override
 	public String describe() {
 		return "You see a scrying orb. A note on it says \"Using costs " + COST
@@ -56,6 +56,7 @@ public class ViewChangeEntity extends UseableEntity {
 			if (player.hasQuest(QUEST)) {
 				if (player.drop("money", COST)) {
 					player.addEvent(new ViewChangeEvent(x, y));
+					player.notifyWorldAboutChanges();
 					return true;
 				} else {
 					player.sendPrivateText("You do not have enough money.");

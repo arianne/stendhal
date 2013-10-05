@@ -331,7 +331,7 @@ class PlayerTrade {
 	/**
 	 * Move items from a list to any suitable carrying slot of the player,
 	 * merging with existing item stacks, when possible.
-	 * 
+	 *
 	 * @param items item list
 	 * @return <code>true</code> if all the items on the list could be equipped,
 	 * 	<code>false</code> otherwise
@@ -415,7 +415,9 @@ class PlayerTrade {
 		} else {
 			player.addEvent(new TradeStateChangeEvent(partner.getInt("id"), tradeState, partner.getTradeState()));
 			partner.addEvent(new TradeStateChangeEvent(player.getInt("id"), partner.getTradeState(), tradeState));
+			partner.notifyWorldAboutChanges();
 		}
+		player.notifyWorldAboutChanges();
 	}
 
 

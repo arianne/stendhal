@@ -710,13 +710,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			public void execute(final Player player) {
 				if(playerToNotifyAbout.isGhost()) {
 					playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
+					playerToNotifyAbout.notifyWorldAboutChanges();
 					if (player.isGhost()) {
 						player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
+						player.notifyWorldAboutChanges();
 					}
 				} else {
 					player.addEvent(new PlayerLoggedOnEvent(playerToNotifyAbout.getName()));
+					player.notifyWorldAboutChanges();
 					if (!player.isGhost()) {
 						playerToNotifyAbout.addEvent(new PlayerLoggedOnEvent(player.getName()));
+						playerToNotifyAbout.notifyWorldAboutChanges();
 					}
 				}
 			}
@@ -733,6 +737,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			@Override
 			public void execute(final Player player) {
 				player.addEvent(new PlayerLoggedOutEvent(playerToNotifyAbout.getName()));
+				player.notifyWorldAboutChanges();
 			}
 		});
 	}

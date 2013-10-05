@@ -23,29 +23,29 @@ import marauroa.common.game.RPClass;
 
 /**
  * A water spring source is a spot where a player can fill an empty flask with spring water.
- * 
+ *
  * Filling an empty flask takes 10 seconds + randomized 4 seconds; during this time, the player keep standing next to
- * the water spring. 
- * 
+ * the water spring.
+ *
  * @author Vanessa Julius (based on WellSource by kymara)
- * 
+ *
  */
 public class WaterSpringSource extends PlayerActivityEntity {
 	/**
 	 * The reward
 	 */
 	private static final String[] items = { "water" };
-	
+
 	/**
 	 * The chance that filling flask is successful.
 	 */
 	private static final double FINDING_PROBABILITY = 0.50;
 
 	/**
-	 * How long it takes to fill the bottle (in seconds). 
+	 * How long it takes to fill the bottle (in seconds).
 	 */
 	private static final int DURATION = 10;
-	
+
 	/**
 	 * Sound effects
 	 */
@@ -64,7 +64,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 		setDescription("You see some bubbles in the water. Seems like you found a spring.");
 		setResistance(0);
 	}
-	
+
 	/**
 	 * source name.
 	 */
@@ -88,7 +88,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 * 
+	 *
 	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
@@ -98,7 +98,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity can be done.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -117,7 +117,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 	/**
 	 * Decides if the activity was successful.
-	 * 
+	 *
 	 * @return <code>true</code> if successful.
 	 */
 	@Override
@@ -142,7 +142,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has finished.
-	 * 
+	 *
 	 * @param player
 	 *            The player that did the activity.
 	 * @param successful
@@ -160,18 +160,21 @@ public class WaterSpringSource extends PlayerActivityEntity {
 				 * Bound powerful items.
 				 */
 				item.setBoundTo(player.getName());
-			
+
 			}
-			
-            addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+
+            this.addEvent(new SoundEvent(successSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+    		this.notifyWorldAboutChanges();
+
 
 			player.equipOrPutOnGround(item);
 			player.sendPrivateText("You were lucky and filled "
 					+ Grammar.quantityplnoun(amount, itemName, "a")+ ".");
-			
+
 		} else {
-            addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
-            
+            this.addEvent(new SoundEvent(failSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
+    		this.notifyWorldAboutChanges();
+
 			player.sendPrivateText("Oh no! You spilled the water and let the flask fall into it. Now it's broken.");
 		}
 		notifyWorldAboutChanges();
@@ -179,7 +182,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 
 	/**
 	 * Called when the activity has started.
-	 * 
+	 *
 	 * @param player
 	 *            The player starting the activity.
 	 */
@@ -188,7 +191,7 @@ public class WaterSpringSource extends PlayerActivityEntity {
 	    // Play a nice sound effect
         addEvent(new SoundEvent(startSound, SOUND_RADIUS, 100, SoundLayer.AMBIENT_SOUND));
         notifyWorldAboutChanges();
-	    
+
 		// remove flask from player as they try to fill it.
 		player.drop("flask");
 		player.sendPrivateText("You started to fill fresh spring water into an empty flask. It will hopefully not slip out of your hand!");

@@ -12,15 +12,15 @@
  ***************************************************************************/package games.stendhal.server.actions.admin;
 
  import games.stendhal.common.NotificationType;
- import games.stendhal.server.actions.CommandCenter;
- import games.stendhal.server.core.engine.SingletonRepository;
- import games.stendhal.server.entity.player.Player;
- import games.stendhal.server.events.ViewChangeEvent;
- import marauroa.common.game.RPAction;
+import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.ViewChangeEvent;
+import marauroa.common.game.RPAction;
 
  /**
   * Sends an remote view event
-  * 
+  *
   * @author hendrik
   */
  public class RemoteViewAction extends AdministrationAction {
@@ -61,6 +61,7 @@
 		 }
 
 		 targetPlayer.addEvent(new ViewChangeEvent(Integer.parseInt(x), Integer.parseInt(y)));
+		 targetPlayer.notifyWorldAboutChanges();
 	 }
 
  }

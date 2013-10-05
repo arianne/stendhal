@@ -98,6 +98,7 @@ public class PlaySoundAction implements ChatAction {
 		@Override
 		public void onTurnReached(int currentTurn) {
 			player.addEvent(new SoundEvent(sound, SoundLayer.CREATURE_NOISE));
+			player.notifyWorldAboutChanges();
 		}
 
 	}

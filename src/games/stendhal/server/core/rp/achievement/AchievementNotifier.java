@@ -354,6 +354,7 @@ public final class AchievementNotifier {
 		if (achievement.isActive()) {
 			player.addEvent(new ReachedAchievementEvent(achievement));
 			player.addEvent(new SoundEvent("yay-1", SoundLayer.USER_INTERFACE));
+			player.notifyWorldAboutChanges();
 		}
 	}
 
