@@ -77,6 +77,7 @@ public class ShopSign extends Sign implements UseListener {
 		List<Item> itemList = generateItemList();
 		ShowItemListEvent event = new ShowItemListEvent(title, caption, itemList);
 		user.addEvent(event);
+		user.notifyWorldAboutChanges();
 		return true;
 	}
 
