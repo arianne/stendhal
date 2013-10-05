@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 import org.junit.Test;
 
@@ -109,6 +110,64 @@ public class CollisionDetectionTest {
 		assertThat(map.collides(r), is(true));
 		r.x = 2;
 		assertThat(map.collides(r), is(false));
+	}
+	
+	/**
+	 * Test collision for a rectangle. Similar to testCollidesShape(), but
+	 * checks a 1x1 rectangle placed at floating point coordinates
+	 */
+	@Test
+	public void testCollidesShapeFloat() {
+		CollisionDetection map = new CollisionDetection();
+		map.init(3, 3);
+		map.setCollide(0, 1);
+		map.setCollide(1, 0);
+		map.setCollide(2, 1);
+		
+		Rectangle2D r = new Rectangle2D.Double(0, 0, 1, 1);
+		
+		assertThat(map.collides(r), is(false));
+		r.setRect(0.1, 0, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(0.9, 0, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(1.1, 0, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(2.1, 0, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(2.0, 0, 1, 1);
+		assertThat(map.collides(r), is(false));
+		
+		r.setRect(0, 0.1, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(0, 0.9, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(0, 0, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(0, 1.1, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(0, 1.9, 1, 1);
+		assertThat(map.collides(r), is(true));
+		r.setRect(0, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(0, 2.1, 1, 1);
+		assertThat(map.collides(r), is(true));
+		
+		r.setRect(0.1, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(0.9, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(1.1, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(1.9, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(2.1, 2, 1, 1);
+		assertThat(map.collides(r), is(true));
+		
+		r.setRect(1.9, 2, 1, 1);
+		assertThat(map.collides(r), is(false));
+		r.setRect(1.9, 1.9, 1, 1);
+		assertThat(map.collides(r), is(true));
 	}
 	
 	/**
