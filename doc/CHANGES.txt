@@ -17,15 +17,19 @@
 
 *client*
 - Notifies player of last login attempt
+- Subwindows on the right side panel can be arranged by the user
 
 *fixes*
 - Devil monk:
   - Corpse dimensions and centering
   - Corpse sprite changed
+- Screen flashing during zone colouring change has been fixed
+- Resizing karma bar no longer causes it to flash
+- Font setting changes opening travel log window has been fixed
 
 *code*
 - SayRequiredItemsFromCollectionAction can use an index to get items from QUEST_SLOT
-- Optional StatusIconManager which automatically sets X and Y offsets
+- Status icon positions are automatically arranged
 
 1.10
 9th September 2013
