@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -39,7 +40,7 @@ public class DropItemAction implements ChatAction {
 	 *            name of item
 	 */
 	public DropItemAction(final String itemName) {
-		this.itemName = itemName;
+		this.itemName = checkNotNull(itemName);
 		this.amount = 1;
 	}
 
@@ -53,7 +54,7 @@ public class DropItemAction implements ChatAction {
 	 */
 	@Dev
 	public DropItemAction(final String itemName, @Dev(defaultValue="1") final int amount) {
-		this.itemName = itemName;
+		this.itemName = checkNotNull(itemName);
 		this.amount = amount;
 	}
 
@@ -74,41 +75,17 @@ public class DropItemAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + amount;
-		if (itemName == null) {
-			result = PRIME * result;
-
-		} else {
-			result = PRIME * result + itemName.hashCode();
-		}
-		return result;
+		return 5153 * (itemName.hashCode() + 5167 * amount);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!(obj instanceof DropItemAction)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DropItemAction other = (DropItemAction) obj;
-		if (amount != other.amount) {
-			return false;
-		}
-		if (itemName == null) {
-			if (other.itemName != null) {
-				return false;
-			}
-		} else if (!itemName.equals(other.itemName)) {
-			return false;
-		}
-		return true;
+		DropItemAction other = (DropItemAction) obj;
+		return (amount == other.amount)
+			&& itemName.equals(other.itemName);
 	}
 
 }

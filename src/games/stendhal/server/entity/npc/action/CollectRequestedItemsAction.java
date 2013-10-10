@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -24,9 +25,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.ItemCollection;
 
 import java.util.List;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * handles item lists a player has to bring for a quest
@@ -55,12 +53,12 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	 * @param stateAfterCompletion state to change to after completion
 	 */
 	public CollectRequestedItemsAction(String itemName, String quest, String questionForMore, String alreadyBrought, ChatAction completionAction, ConversationStates stateAfterCompletion) {
-		this.itemName = itemName;
-		this.questSlot = quest;
-		this.questionForMore = questionForMore;
-		this.alreadyBrought = alreadyBrought;
-		this.toExecuteOnCompletion = completionAction;
-		this.stateAfterCompletion = stateAfterCompletion;
+		this.itemName = checkNotNull(itemName);
+		this.questSlot = checkNotNull(quest);
+		this.questionForMore = checkNotNull(questionForMore);
+		this.alreadyBrought = checkNotNull(alreadyBrought);
+		this.toExecuteOnCompletion = checkNotNull(completionAction);
+		this.stateAfterCompletion = checkNotNull(stateAfterCompletion);
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public final class CollectRequestedItemsAction implements ChatAction {
 		final Integer missingCount = missingItems.get(itemName);
 
 		if ((missingCount != null) && (missingCount > 0)) {
-			if (dropItems(player, itemName, missingCount)) {
+			if (dropItems(player, missingCount)) {
 				missingItems = getMissingItems(player);
 
 				if (missingItems.size() > 0) {
@@ -90,12 +88,11 @@ public final class CollectRequestedItemsAction implements ChatAction {
 	 * Drop specified amount of given item. If player doesn't have enough items,
 	 * all carried ones will be dropped and number of missing items is updated.
 	 *
-	 * @param player
-	 * @param itemName
-	 * @param itemCount
+	 * @param player    player
+	 * @param itemCount count
 	 * @return true if something was dropped
 	 */
-	boolean dropItems(final Player player, final String itemName, int itemCount) {
+	boolean dropItems(final Player player, int itemCount) {
 		boolean result = false;
 
 		// parse the quest state into a list of still missing items
@@ -158,13 +155,26 @@ public final class CollectRequestedItemsAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5051 * (itemName.hashCode() 
+				+ 5059 * (questSlot.hashCode() 
+				+ 5077 * (questionForMore.hashCode() 
+				+ 5081 * (alreadyBrought.hashCode()
+				+ 5087 * (toExecuteOnCompletion.hashCode()
+				+ 5099 * stateAfterCompletion.hashCode())))));
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				CollectRequestedItemsAction.class);
+		if (!(obj instanceof CollectRequestedItemsAction)) {
+			return false;
+		}
+		CollectRequestedItemsAction other = (CollectRequestedItemsAction) obj;
+		return itemName.equals(other.itemName)
+			&& questSlot.equals(other.questSlot)
+			&& questionForMore.equals(other.questionForMore)
+			&& alreadyBrought.equals(other.alreadyBrought)
+			&& toExecuteOnCompletion.equals(other.toExecuteOnCompletion)
+			&& stateAfterCompletion.equals(other.stateAfterCompletion);
 	}
 
 	@Override

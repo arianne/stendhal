@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * says the specified text, it works just like the normal parameter of add
@@ -36,7 +34,7 @@ public class SayTextAction implements ChatAction {
 	 * @param text text to say
 	 */
 	public SayTextAction(String text) {
-		this.text = text;
+		this.text = checkNotNull(text);
 	}
 
 	@Override
@@ -49,15 +47,17 @@ public class SayTextAction implements ChatAction {
 		return "SayText";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5417 * text.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayTextAction.class);
+		if (!(obj instanceof SayTextAction)) {
+			return false;
+		}
+		SayTextAction other = (SayTextAction) obj;
+		return text.equals(other.text);
 	}
 }

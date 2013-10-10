@@ -7,6 +7,7 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.RepairerBehaviour;
 import games.stendhal.server.entity.player.Player;
+
 /**
  * Behaviour action for repairing npcs
  *

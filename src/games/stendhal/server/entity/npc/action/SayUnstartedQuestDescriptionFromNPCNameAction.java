@@ -22,9 +22,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Gives description for unstarted quest based on npc name
  */
@@ -73,15 +70,17 @@ public class SayUnstartedQuestDescriptionFromNPCNameAction implements ChatAction
 		return "SayUnstartedQuestDescriptionFromNPCNameAction in region <" + regions.toString() +  ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5443 * regions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayUnstartedQuestDescriptionFromNPCNameAction.class);
+		if (!(obj instanceof SayUnstartedQuestDescriptionFromNPCNameAction)) {
+			return false;
+		}
+		SayUnstartedQuestDescriptionFromNPCNameAction other = (SayUnstartedQuestDescriptionFromNPCNameAction) obj;
+		return regions.equals(other.regions);
 	}
 }

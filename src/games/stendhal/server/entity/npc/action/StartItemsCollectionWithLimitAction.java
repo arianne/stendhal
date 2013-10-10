@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
@@ -18,6 +19,7 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -28,12 +30,12 @@ import java.util.List;
 public class StartItemsCollectionWithLimitAction implements ChatAction {
 	private final List<String> items;
 	private final int limit;
-	
+
 	/** Quest slot name. */
 	private final String questSlot;
 	/** Index of sub state. */
 	private int itemIndex = 1;
-	
+
 	/**
 	 * Creates a new StartItemsCollectionWithLimitsAction.
 	 * 
@@ -45,8 +47,8 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	 * 			The sum of all items
 	 */
 	public StartItemsCollectionWithLimitAction(final String quest, final List<String> items, int limit) {
-		this.questSlot = quest;
-		this.items = items;
+		this.questSlot = checkNotNull(quest);
+		this.items = new LinkedList<String>(items);
 		this.limit = limit;
 	}
 	
@@ -63,8 +65,8 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 	 * 			The sum of all items
 	 */
 	public StartItemsCollectionWithLimitAction(final String quest, final int index, final List<String> items, int limit) {
-		this.questSlot = quest;
-		this.items = items;
+		this.questSlot = checkNotNull(quest);
+		this.items = new LinkedList<String>(items);
 		this.limit = limit;
 		this.itemIndex = index;
 	}
@@ -109,4 +111,38 @@ public class StartItemsCollectionWithLimitAction implements ChatAction {
 		}
 		return values;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + itemIndex;
+		result = prime * result + items.hashCode();
+		result = prime * result + limit;
+		result = prime * result + questSlot.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof StartItemsCollectionWithLimitAction)) {
+			return false;
+		}
+		StartItemsCollectionWithLimitAction other = (StartItemsCollectionWithLimitAction) obj;
+		if (itemIndex != other.itemIndex) {
+			return false;
+		}
+		if (!items.equals(other.items)) {
+			return false;
+		}
+		if (limit != other.limit) {
+			return false;
+		}
+		if (!questSlot.equals(other.questSlot)) {
+			return false;
+		}
+		return true;
+	}
+
+	
 }

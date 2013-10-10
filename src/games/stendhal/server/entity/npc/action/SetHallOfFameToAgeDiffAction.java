@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -20,9 +21,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import marauroa.server.db.command.DBCommandQueue;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Write the difference between the players current age and the one stored in the quest slot
@@ -43,9 +41,9 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	 * 			  the type in the hall of fame
 	 */
 	public SetHallOfFameToAgeDiffAction(final String questname, String fametype) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
-		this.fametype = fametype;
+		this.fametype = checkNotNull(fametype);
 	}
 
 	/**
@@ -59,9 +57,9 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 	 * 			  the type in the hall of fame
 	 */
 	public SetHallOfFameToAgeDiffAction(final String questname, final int index, String fametype) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
-		this.fametype = fametype;
+		this.fametype = checkNotNull(fametype);
 	}
 
 	@Override
@@ -82,15 +80,19 @@ public class SetHallOfFameToAgeDiffAction implements ChatAction {
 		return "SetHallOfFameToAgeDiffAction<" + questname + "[" + index + "]," + fametype + ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5477 * (questname.hashCode() + 5479 * (fametype.hashCode() + 5483 * index));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SetHallOfFameToAgeDiffAction.class);
+		if (!(obj instanceof SetHallOfFameToAgeDiffAction)) {
+			return false;
+		}
+		SetHallOfFameToAgeDiffAction other = (SetHallOfFameToAgeDiffAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname)
+			&& fametype.equals(other.fametype);
 	}
 }

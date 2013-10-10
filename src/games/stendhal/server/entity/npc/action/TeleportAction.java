@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -22,8 +23,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
 
 /**
  * Teleports the player to the specified location.
@@ -49,7 +49,7 @@ public class TeleportAction implements ChatAction {
 	 *            facing into this direction
 	 */
 	public TeleportAction(final String zonename, final int x, final int y, final Direction direction) {
-		this.zonename = zonename;
+		this.zonename = checkNotNull(zonename);
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
@@ -64,19 +64,23 @@ public class TeleportAction implements ChatAction {
 
 	@Override
 	public String toString() {
-		return "Teleport<" + zonename + ", " + x + ", " + y + ", " + direction
-				+ ">";
+		return "Teleport<" + zonename + ", " + x + ", " + y + ", " + direction + ">";
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5657 * (zonename.hashCode() + 5659 * (x + 5669 * y));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				TeleportAction.class);
+		if (!(obj instanceof TeleportAction)) {
+			return false;
+		}
+		TeleportAction other = (TeleportAction) obj;
+		return (x == other.x)
+				&& (y == other.y)
+				&& zonename.equals(other.zonename)
+				&& Objects.equal(direction, other.direction);
 	}
-
 }

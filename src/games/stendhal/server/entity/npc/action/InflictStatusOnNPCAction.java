@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
+import com.google.common.base.Objects;
+
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -61,4 +63,24 @@ public class InflictStatusOnNPCAction implements ChatAction {
 		((RPEntity) npc.getEntity()).getStatusList().inflictStatus(myStatus, item);
 	}
 
+	@Override
+	public int hashCode() {
+		if (itemName != null) {
+			return 5237 * itemName.hashCode();
+		}
+		if (status != null) {
+			return 5261 * status.hashCode();
+		}
+		return 5273;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof InflictStatusOnNPCAction)) {
+			return false;
+		}
+		InflictStatusOnNPCAction other = (InflictStatusOnNPCAction) obj;
+		return Objects.equal(itemName, other.itemName)
+			&& Objects.equal(status, other.status);
+	}
 }

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -20,8 +21,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
 
 /**
  * Sends the message as a private text
@@ -39,7 +39,7 @@ public class SendPrivateMessageAction implements ChatAction {
 	 * @param text text to send
 	 */
 	public SendPrivateMessageAction(String text) {
-		this.text = text;
+		this.text = checkNotNull(text);
 		this.type = NotificationType.PRIVMSG;
 	}
 
@@ -52,7 +52,7 @@ public class SendPrivateMessageAction implements ChatAction {
 	 */
 	@Dev
 	public SendPrivateMessageAction(@Dev(defaultValue="SERVER") final NotificationType type, final String text) {
-		this.text = text;
+		this.text = checkNotNull(text);
 		this.type = type;
 	}
 
@@ -69,12 +69,16 @@ public class SendPrivateMessageAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5449 * (text.hashCode() + 5471 * (type == null ? 0 : type.hashCode()));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SendPrivateMessageAction.class);
+		if (!(obj instanceof SendPrivateMessageAction)) {
+			return false;
+		}
+		SendPrivateMessageAction other = (SendPrivateMessageAction) obj;
+		return text.equals(other.text)
+			&& Objects.equal(type, other.type);
 	}
 }

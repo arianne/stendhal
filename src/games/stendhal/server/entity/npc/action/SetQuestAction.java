@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -19,8 +20,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
 
 /**
  * Sets the current state of a quest.
@@ -41,7 +41,7 @@ public class SetQuestAction implements ChatAction {
 	 *            new value
 	 */
 	public SetQuestAction(final String questname, final String state) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 		this.state = state;
 	}
@@ -58,7 +58,7 @@ public class SetQuestAction implements ChatAction {
 	 */
 	@Dev
 	public SetQuestAction(final String questname, final int index, final String state) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.state = state;
 	}
@@ -77,15 +77,19 @@ public class SetQuestAction implements ChatAction {
 		return "SetQuest<" + questname + "[" + index + "] = " + state + ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5501 * (questname.hashCode() + 5503 * index);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SetQuestAction.class);
+		if (!(obj instanceof SetQuestAction)) {
+			return false;
+		}
+		SetQuestAction other = (SetQuestAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname)
+			&& Objects.equal(state, other.state);
 	}
 }

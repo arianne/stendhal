@@ -20,15 +20,19 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * BehaviourAction handles Behaviour requests.
  */
 @Dev(category=Category.IGNORE)
 public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour> {
 
+	/**
+	 * Behaviour action
+	 *
+	 * @param behaviour behaviour
+	 * @param userAction user action
+	 * @param npcAction npc action
+	 */
 	public BehaviourAction(final Behaviour behaviour, String userAction, String npcAction) {
 		super(behaviour, userAction, npcAction);
 	}
@@ -41,17 +45,6 @@ public abstract class BehaviourAction extends AbstractBehaviourAction<Behaviour>
 	@Override
 	public String toString() {
 		return "BehaviourAction";
-	}
-
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				BehaviourAction.class);
 	}
 
 }

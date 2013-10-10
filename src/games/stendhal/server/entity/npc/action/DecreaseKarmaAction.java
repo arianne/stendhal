@@ -59,19 +59,10 @@ public class DecreaseKarmaAction implements ChatAction {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!(obj instanceof DecreaseKarmaAction)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DecreaseKarmaAction other = (DecreaseKarmaAction) obj;
-		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) {
-			return false;
-		}
-		return true;
+		DecreaseKarmaAction other = (DecreaseKarmaAction) obj;
+		return (Double.doubleToLongBits(karmaDiff) == Double.doubleToLongBits(other.karmaDiff));
 	}
 }

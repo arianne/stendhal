@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -25,8 +26,6 @@ import games.stendhal.server.util.StringUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
@@ -51,9 +50,9 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	 *            message with substitution [items] for the list of items
 	 */
 	public SayRequiredItemsFromCollectionAction(final String questname, final String message) {
-		this.questname = questname;
-		this.message = message;
+		this.questname = checkNotNull(questname);
 		this.index = 0;
+		this.message = checkNotNull(message);
 	}
 	
 	/**
@@ -66,9 +65,9 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 	 *            message with substitution [items] for the list of items
 	 */
 	public SayRequiredItemsFromCollectionAction(final String questname, final int index, final String message) {
-		this.questname = questname;
-		this.message = message;
+		this.questname = checkNotNull(questname);
 		this.index = index;
+		this.message = checkNotNull(message);
 	}
 
 	@Override
@@ -103,16 +102,20 @@ public class SayRequiredItemsFromCollectionAction implements ChatAction {
 		return "SayRequiredItemsFromCollectionAction <" + questname +  "\"," + message + ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5393 * (questname.hashCode() + 5407 * (message.hashCode() + 5413 * index));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayRequiredItemsFromCollectionAction.class);
+		if (!(obj instanceof SayRequiredItemsFromCollectionAction)) {
+			return false;
+		}
+		SayRequiredItemsFromCollectionAction other = (SayRequiredItemsFromCollectionAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname)
+			&& message.equals(other.message);
 	}
 
 }

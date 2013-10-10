@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -22,9 +23,6 @@ import games.stendhal.server.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * States the name of the player emitting a text
@@ -44,7 +42,7 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 	 *
 	 */
 	public SayTextWithPlayerNameAction(final String text) {
-		this.text = text;
+		this.text = checkNotNull(text);
 	}
 
 	@Override
@@ -62,13 +60,16 @@ public class SayTextWithPlayerNameAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5417 * text.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayTextWithPlayerNameAction.class);
+		if (!(obj instanceof SayTextWithPlayerNameAction)) {
+			return false;
+		}
+		SayTextWithPlayerNameAction other = (SayTextWithPlayerNameAction) obj;
+		return text.equals(other.text);
 	}
 
 }

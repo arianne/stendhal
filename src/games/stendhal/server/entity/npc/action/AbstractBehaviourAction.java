@@ -68,6 +68,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	/**
 	 * The user input was parsed as a behaviour request.
 	 * fireRequestOK() should check the request and execute an action as appropriate.
+	 *
 	 * @param res
 	 * @param player
 	 * @param sentence
@@ -78,6 +79,7 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	/**
 	 * The user input was parsed as valid Sentence, but could not transformed into a Behaviour request.
 	 * fireRequestError() should inform the player about the problem.
+	 *
 	 * @param res
 	 * @param player
 	 * @param sentence
@@ -85,4 +87,55 @@ abstract class AbstractBehaviourAction<B extends Behaviour> implements ChatActio
 	 */
 	public abstract void fireRequestError(ItemParserResult res, Player player, Sentence sentence, EventRaiser npc);
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((behaviour == null) ? 0 : behaviour.hashCode());
+		result = prime * result
+				+ ((npcAction == null) ? 0 : npcAction.hashCode());
+		result = prime * result
+				+ ((userAction == null) ? 0 : userAction.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		AbstractBehaviourAction<?> other = (AbstractBehaviourAction<?>) obj;
+		if (behaviour == null) {
+			if (other.behaviour != null) {
+				return false;
+			}
+		} else if (!behaviour.equals(other.behaviour)) {
+			return false;
+		}
+		if (npcAction == null) {
+			if (other.npcAction != null) {
+				return false;
+			}
+		} else if (!npcAction.equals(other.npcAction)) {
+			return false;
+		}
+		if (userAction == null) {
+			if (other.userAction != null) {
+				return false;
+			}
+		} else if (!userAction.equals(other.userAction)) {
+			return false;
+		}
+		return true;
+	}
+
+	
 }

@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -18,9 +19,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Tells the time remaining from current system time to a timestamp stored in a quest slot
@@ -43,9 +41,9 @@ public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
 	 * @param message what to say before stating the approximated remaining time
 	 */
 	public SayTimeRemainingUntilTimeReachedAction(final String questname, final String message) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
-		this.message = message;
+		this.message = checkNotNull(message);
 	}
 
 	/**
@@ -58,9 +56,9 @@ public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
 	@Dev
 	public SayTimeRemainingUntilTimeReachedAction(final String questname,
 			@Dev(defaultValue = "1") final int index, final String message) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
-		this.message = message;
+		this.message = checkNotNull(message);
 	}
 
 	@Override
@@ -106,13 +104,17 @@ public class SayTimeRemainingUntilTimeReachedAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5393 * (questname.hashCode() + 5407 * (message.hashCode() + 5413 * index));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayTimeRemainingUntilTimeReachedAction.class);
+		if (!(obj instanceof SayTimeRemainingUntilTimeReachedAction)) {
+			return false;
+		}
+		SayTimeRemainingUntilTimeReachedAction other = (SayTimeRemainingUntilTimeReachedAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname)
+			&& message.equals(other.message);
 	}
-
 }

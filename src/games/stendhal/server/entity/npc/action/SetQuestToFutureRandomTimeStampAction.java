@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
@@ -19,9 +20,6 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Sets the state of a quest to a timestamp,
@@ -48,7 +46,7 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 	 * @param max_delay in minutes
 	 */
 	public SetQuestToFutureRandomTimeStampAction(final String questname, final int min_delay, final int max_delay) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 		this.min_delay = min_delay;
 		this.max_delay = max_delay;
@@ -64,7 +62,7 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 	 */
 	@Dev
 	public SetQuestToFutureRandomTimeStampAction(final String questname, @Dev(defaultValue="1") final int index, final int minDelay, final int maxDelay) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.min_delay = minDelay;
 		this.max_delay = maxDelay;
@@ -72,8 +70,8 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-        String timestamp = Long.toString(
-            System.currentTimeMillis() + ( Rand.randUniform(min_delay, max_delay) * MathHelper.MILLISECONDS_IN_ONE_MINUTE));
+		String timestamp = Long.toString(
+				System.currentTimeMillis() + ( Rand.randUniform(min_delay, max_delay) * MathHelper.MILLISECONDS_IN_ONE_MINUTE));
 		if (index > -1) {
 			player.setQuest(questname, index, timestamp);
 		} else {
@@ -86,15 +84,20 @@ public class SetQuestToFutureRandomTimeStampAction implements ChatAction {
 		return "SetQuestToFutureRandomTimeStampAction<" + questname + "[" + index + "]>";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5507 * (questname.hashCode() + 5519 * index) + min_delay * max_delay;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SetQuestToFutureRandomTimeStampAction.class);
+		if (!(obj instanceof SetQuestToFutureRandomTimeStampAction)) {
+			return false;
+		}
+		SetQuestToFutureRandomTimeStampAction other = (SetQuestToFutureRandomTimeStampAction) obj;
+		return (index == other.index)
+			&& (min_delay == other.min_delay)
+			&& (max_delay == other.max_delay)
+			&& questname.equals(other.questname);
 	}
 }

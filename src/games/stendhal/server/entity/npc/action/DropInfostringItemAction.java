@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -22,7 +23,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
@@ -46,9 +46,9 @@ public class DropInfostringItemAction implements ChatAction {
 	 *            infostring of the dropped item
 	 */
 	public DropInfostringItemAction(final String itemName, final String infostring) {
-		this.itemName = itemName;
+		this.itemName = checkNotNull(itemName);
 		this.amount = 1;
-		this.infostring = infostring;
+		this.infostring = checkNotNull(infostring);
 	}
 
 	/**
@@ -63,9 +63,9 @@ public class DropInfostringItemAction implements ChatAction {
 	 */
 	@Dev
 	public DropInfostringItemAction(final String itemName, @Dev(defaultValue="1") final int amount, final String infostring) {
-		this.itemName = itemName;
+		this.itemName = checkNotNull(itemName);
 		this.amount = amount;
-		this.infostring = infostring;
+		this.infostring = checkNotNull(infostring);
 	}
 
 	@Override
@@ -92,35 +92,18 @@ public class DropInfostringItemAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5113 * (itemName.hashCode() + 5119 * (infostring.hashCode() + 5147 * amount));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!(obj instanceof DropInfostringItemAction)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DropInfostringItemAction other = (DropInfostringItemAction) obj;
-		if (!infostring.equals(other.infostring)) {
-			return false;
-		}
-		if (amount != other.amount) {
-			return false;
-		}
-		if (itemName == null) {
-			if (other.itemName != null) {
-				return false;
-			}
-		} else if (!itemName.equals(other.itemName)) {
-			return false;
-		}
-		return true;
+		DropInfostringItemAction other = (DropInfostringItemAction) obj;
+		return (amount == other.amount)
+			&& itemName.equals(other.itemName)
+			&& infostring.equals(other.infostring);
 	}
 
 }

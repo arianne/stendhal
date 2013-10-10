@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static games.stendhal.common.constants.Actions.JAIL;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -21,9 +22,6 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Action for an NPC to jail a player
@@ -44,7 +42,7 @@ public class JailAction implements ChatAction {
 	 */
 	public JailAction(final int minutes, final String reason) {
 		this.minutes = minutes;
-		this.reason = reason;
+		this.reason = checkNotNull(reason);
 	}
 
 	@Override
@@ -67,15 +65,20 @@ public class JailAction implements ChatAction {
 		return sb.toString();
 	}
 
+
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5279 * (reason.hashCode() + 5281 * minutes);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				JailAction.class);
+		if (!(obj instanceof JailAction)) {
+			return false;
+		}
+		JailAction other = (JailAction) obj;
+		return (minutes == other.minutes)
+			&& reason.equals(other.reason);
 	}
 
 }

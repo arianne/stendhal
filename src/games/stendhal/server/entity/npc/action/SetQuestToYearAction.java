@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -20,9 +21,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Calendar;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Sets the state of a quest to the current year.
@@ -39,7 +37,7 @@ public class SetQuestToYearAction implements ChatAction {
 	 * @param questname name of quest-slot to change
 	 */
 	public SetQuestToYearAction(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 	}
 
@@ -51,7 +49,7 @@ public class SetQuestToYearAction implements ChatAction {
 	 */
 	@Dev
 	public SetQuestToYearAction(final String questname, @Dev(defaultValue="1") final int index) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 	}
 
@@ -70,15 +68,18 @@ public class SetQuestToYearAction implements ChatAction {
 		return "SetQuestToYearAction<" + questname + "[" + index + "]>";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5563 * (questname.hashCode() + 5569 * index);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SetQuestToYearAction.class);
+		if (!(obj instanceof SetQuestToYearAction)) {
+			return false;
+		}
+		SetQuestToYearAction other = (SetQuestToYearAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname);
 	}
 }

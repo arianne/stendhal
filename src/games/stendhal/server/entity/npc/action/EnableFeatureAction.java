@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -19,8 +20,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
 
 /**
  * Enables a client side feature.
@@ -48,7 +48,7 @@ public class EnableFeatureAction implements ChatAction {
 	 */
 	@Dev
 	public EnableFeatureAction(final String feature, final String value) {
-		this.feature = feature;
+		this.feature = checkNotNull(feature);
 		this.value = value;
 	}
 
@@ -71,13 +71,17 @@ public class EnableFeatureAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5171 * feature.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				EnableFeatureAction.class);
+		if (!(obj instanceof EnableFeatureAction)) {
+			return false;
+		}
+		EnableFeatureAction other = (EnableFeatureAction) obj;
+		return feature.equals(other.feature)
+			&& Objects.equal(value, other.value);
 	}
 
 }

@@ -33,17 +33,7 @@ public class NPCEmoteActionTest {
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 	}
-	
-	/**
-	 * Tests for constructor.
-	 */
-	@Test
-	public void testConstructor() {
-		final NPCEmoteAction npcEmoteAction = new NPCEmoteAction("");
-		assertEquals("npcEmoteAction.hashCode()", 629,
-				npcEmoteAction.hashCode());
-	}
-	
+
 	/**
 	 * Tests for equals.
 	 */
@@ -91,8 +81,8 @@ public class NPCEmoteActionTest {
 	 */
 	@Test
 	public void testHashCode() {
-		assertEquals("result", 3214638, new NPCEmoteAction("hugs").hashCode());
-		assertEquals("result", 3292627, new NPCEmoteAction("kill").hashCode());
+		assertEquals("result", new NPCEmoteAction("hugs").hashCode(), new NPCEmoteAction("hugs").hashCode());
+		assertEquals("result", new NPCEmoteAction("kill").hashCode(), new NPCEmoteAction("kill").hashCode());
 	}
 
 	/**

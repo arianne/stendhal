@@ -19,9 +19,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Tells the player that the NPC did not understand the sentence;
  * use it in combination with SentenceHasErrorCondition.
@@ -44,12 +41,11 @@ public class ComplainAboutSentenceErrorAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5101;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				ComplainAboutSentenceErrorAction.class);
+		return (obj instanceof ComplainAboutSentenceErrorAction);
 	}
 }

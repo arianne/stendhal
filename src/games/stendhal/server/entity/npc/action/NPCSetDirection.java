@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.Direction;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -19,9 +20,6 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * sets the direction of an NPC
@@ -39,7 +37,7 @@ public final class NPCSetDirection implements ChatAction {
 	 * @param direction Direction into which the NPC should look
 	 */
 	public NPCSetDirection(Direction direction) {
-		this.direction = direction;
+		this.direction = checkNotNull(direction);
 	}
 
 	@Override
@@ -56,13 +54,16 @@ public final class NPCSetDirection implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5347 * direction.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				NPCSetDirection.class);
+		if (!(obj instanceof NPCSetDirection)) {
+			return false;
+		}
+		final NPCSetDirection other = (NPCSetDirection) obj;
+		return direction.equals(other.direction);
 	}
 
 }

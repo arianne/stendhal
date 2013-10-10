@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
@@ -19,7 +20,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import com.google.common.base.Joiner;
 
 /**
  * Adds an item to a player's quest slot string
@@ -27,14 +28,12 @@ import org.apache.commons.lang.StringUtils;
  * @author AntumDeluge
  */
 public class AddItemToCollectionAction implements ChatAction {
-	
+
 	private String item;
 	private int quantity;
-	
-	private String QUEST_SLOT;
-	
-	private int ITEM_INDEX = -1;
-	
+	private String questname;
+	private int index = -1;
+
 	/**
 	 * Creates a new AddItemToCollectionAction
 	 * 
@@ -46,8 +45,8 @@ public class AddItemToCollectionAction implements ChatAction {
 	 * 			Item quantity
 	 */
 	public AddItemToCollectionAction(final String quest, final String item, int quantity) {
-		this.QUEST_SLOT = quest;
-		this.item = item;
+		this.questname = checkNotNull(quest);
+		this.item = checkNotNull(item);
 		this.quantity = quantity;
 	}
 	
@@ -64,41 +63,54 @@ public class AddItemToCollectionAction implements ChatAction {
 	 * 			Item quantity
 	 */
 	public AddItemToCollectionAction(final String quest, final int index, final String item, int quantity) {
-		this.QUEST_SLOT = quest;
-		this.ITEM_INDEX = index;
-		this.item = item;
+		this.questname = checkNotNull(quest);
+		this.index = index;
+		this.item = checkNotNull(item);
 		this.quantity = quantity;
 	}
 	
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-		int index = ITEM_INDEX;
-		
-		String result = item + "=" + quantity;		
-		
-		String[] itemList = player.getQuest(QUEST_SLOT).split(";");
-		
+		String result = item + "=" + quantity;
+		String[] itemList = player.getQuest(questname).split(";");
+
 		if (index < 0) {
 			index = itemList.length;
-			player.setQuest(QUEST_SLOT, index, result);
+			player.setQuest(questname, index, result);
 		} else {
 			List<String> itemListArray = new ArrayList<String>();
-			
+
 			// add the original elements
 			for (int x = 0; x < itemList.length; x++) {
 				itemListArray.add(itemList[x]);
 			}
-			
+
 			// Add the new element
 			if (index > itemListArray.size()) {
 				itemListArray.add(result);
 			} else {
 				itemListArray.add(index, result);
 			}
-			
+
 			itemList = itemListArray.toArray(itemList);
-			player.setQuest(QUEST_SLOT, StringUtils.join(itemList, ";"));
+			player.setQuest(questname, Joiner.on(";").join(itemList));
 		}
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return 5009 * (item.hashCode() + 5011 * (quantity + 5021 * (questname.hashCode() + 5023 * index)));
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof AddItemToCollectionAction)) {
+			return false;
+		}
+		AddItemToCollectionAction other = (AddItemToCollectionAction) obj;
+		return (quantity == other.quantity)
+			&& (index == other.index)
+			&& questname.equals(other.questname)
+			&& item.equals(other.item);
+	}
 }

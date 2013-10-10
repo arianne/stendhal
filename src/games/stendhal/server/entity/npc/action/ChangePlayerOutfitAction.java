@@ -13,6 +13,7 @@
 
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -20,8 +21,6 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
 /**
@@ -47,7 +46,7 @@ public class ChangePlayerOutfitAction implements ChatAction {
 	 * @param temporaryOutfit is this a temporary outfit or a permanent change?
 	 */
 	public ChangePlayerOutfitAction(Outfit outfit, boolean addOutfit, boolean temporaryOutfit) {
-		this.outfitChange = outfit;
+		this.outfitChange = checkNotNull(outfit);
 		this.addOutfit = addOutfit;
 		this.temporaryOutfit = temporaryOutfit;
 	}
@@ -82,22 +81,16 @@ public class ChangePlayerOutfitAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5039 * outfitChange.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof ChangePlayerOutfitAction)) {
 			return false;
 		}
 		final ChangePlayerOutfitAction other = (ChangePlayerOutfitAction) obj;
-		if (outfitChange != other.outfitChange) {
+		if (!outfitChange.equals(other.outfitChange)) {
 			return false;
 		}
 		if (addOutfit != other.addOutfit) {

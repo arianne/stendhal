@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -39,8 +40,8 @@ public class StoreMessageAction implements ChatAction {
 	 * @param message what the message is
 	 */
 	public StoreMessageAction(String npcName, String message) {
-		this.npcName = npcName;
-		this.message = message;
+		this.npcName = checkNotNull(npcName);
+		this.message = checkNotNull(message);
 	}
 
 	@Override
@@ -48,4 +49,18 @@ public class StoreMessageAction implements ChatAction {
 		DBCommandQueue.get().enqueue(new StoreMessageCommand(npcName, player.getName(), message, "N"));
 	}
 
+	@Override
+	public int hashCode() {
+		return 5651 * (npcName.hashCode() + 5653 * message.hashCode());
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof StoreMessageAction)) {
+			return false;
+		}
+		StoreMessageAction other = (StoreMessageAction) obj;
+		return npcName.equals(other.npcName)
+			&& message.equals(other.message);
+	}
 }

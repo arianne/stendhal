@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -20,7 +21,6 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
@@ -68,7 +68,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 	 */
 	@Dev
 	public EquipRandomAmountOfItemAction(final String item, final int min, final int max, @Dev(defaultValue="1") final int multiplayer) {
-		this.item = item;
+		this.item = checkNotNull(item);
 		this.min = min;
 		this.max = max;
 		this.increment = multiplayer;
@@ -110,7 +110,7 @@ public class EquipRandomAmountOfItemAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5179 * item.hashCode() + min * max * increment;
 	}
 
 	@Override

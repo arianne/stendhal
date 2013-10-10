@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.constants.SoundLayer;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -23,16 +24,13 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.SoundEvent;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * plays the specified sound
  */
 @Dev(category=Category.ENVIRONMENT, label="Sound")
 public class PlaySoundAction implements ChatAction {
 
-	final String sound;
+	private final String sound;
 	private final boolean delay;
 
 	/**
@@ -41,7 +39,7 @@ public class PlaySoundAction implements ChatAction {
 	 * @param sound sound to play
 	 */
 	public PlaySoundAction(String sound) {
-		this.sound = sound;
+		this.sound = checkNotNull(sound);
 		this.delay = false;
 	}
 
@@ -73,13 +71,17 @@ public class PlaySoundAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5381 * sound.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlaySoundAction.class);
+		if (!(obj instanceof PlaySoundAction)) {
+			return false;
+		}
+		final PlaySoundAction other = (PlaySoundAction) obj;
+		return (delay == other.delay)
+			&& sound.equals(other.sound);
 	}
 
 

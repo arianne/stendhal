@@ -20,9 +20,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.MultiProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * BehaviourAction handles ProducerBehaviour requests.
  */
@@ -45,16 +42,6 @@ public abstract class MultiProducerBehaviourAction extends AbstractBehaviourActi
 	@Override
 	public String toString() {
 		return "MultiProducerBehaviourAction";
-	}
-
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, MultiProducerBehaviourAction.class);
 	}
 
 }

@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Sets the state of a quest to the current timestamp.
@@ -40,7 +38,7 @@ public class SetQuestToTimeStampAction implements ChatAction {
 	 * @param questname name of quest-slot to change
 	 */
 	public SetQuestToTimeStampAction(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 	}
 
@@ -52,7 +50,7 @@ public class SetQuestToTimeStampAction implements ChatAction {
 	 */
 	@Dev
 	public SetQuestToTimeStampAction(final String questname, @Dev(defaultValue="1") final int index) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 	}
 
@@ -71,15 +69,18 @@ public class SetQuestToTimeStampAction implements ChatAction {
 		return "SetQuestToTimeStampAction<" + questname + "[" + index + "]>";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5531 * (questname.hashCode() + 5557 * index);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SetQuestToTimeStampAction.class);
+		if (!(obj instanceof SetQuestToTimeStampAction)) {
+			return false;
+		}
+		SetQuestToTimeStampAction other = (SetQuestToTimeStampAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname);
 	}
 }

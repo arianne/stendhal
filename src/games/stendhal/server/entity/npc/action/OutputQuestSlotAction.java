@@ -5,6 +5,7 @@ import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+
 /**
  * Debugging ChatAction that sends a quest slot's content to the firing player
  *  
@@ -29,4 +30,18 @@ public class OutputQuestSlotAction implements ChatAction {
 		}
 	}
 
+
+	@Override
+	public int hashCode() {
+		return 5351 * questSlot.hashCode();
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof OutputQuestSlotAction)) {
+			return false;
+		}
+		final OutputQuestSlotAction other = (OutputQuestSlotAction) obj;
+		return questSlot.equals(other.questSlot);
+	}
 }

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -44,7 +45,7 @@ public class DropRecordedItemAction implements ChatAction {
 	 *            name of quest to get the item and quantity from
 	 */
 	public DropRecordedItemAction(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 	}
 
@@ -58,7 +59,7 @@ public class DropRecordedItemAction implements ChatAction {
 	 */
 	@Dev
 	public DropRecordedItemAction(final String questname, final int index) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 	}
 
@@ -76,13 +77,12 @@ public class DropRecordedItemAction implements ChatAction {
 
 		// some older quests may have stored an item name but not the amount
 		// so we use the initial value of 1 if the string can't be split
-	    if(elements.length > 1) {
+		if(elements.length > 1) {
 			amount=MathHelper.parseIntDefault(elements[1], 1);
-	    }
+		}
 		final boolean res = player.drop(itemname, amount);
 		if (!res) {
-			logger.error("Cannot drop " + amount + " " + itemname,
-					new Throwable());
+			logger.error("Cannot drop " + amount + " " + itemname, new Throwable());
 		}
 		player.notifyWorldAboutChanges();
 	}
@@ -95,40 +95,16 @@ public class DropRecordedItemAction implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + index;
-		if (questname == null) {
-			result = PRIME * result;
-
-		} else {
-			result = PRIME * result + questname.hashCode();
-		}
-		return result;
+		return 5153 * (questname.hashCode() + 5167 * index);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!(obj instanceof DropRecordedItemAction)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DropRecordedItemAction other = (DropRecordedItemAction) obj;
-		if (index != other.index) {
-			return false;
-		}
-		if (questname == null) {
-			if (other.questname != null) {
-				return false;
-			}
-		} else if (!questname.equals(other.questname)) {
-			return false;
-		}
-		return true;
+		DropRecordedItemAction other = (DropRecordedItemAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname);
 	}
 }

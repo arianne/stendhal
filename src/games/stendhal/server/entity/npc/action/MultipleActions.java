@@ -67,34 +67,16 @@ public class MultipleActions implements ChatAction {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		if (actions == null) {
-			return PRIME;
-		} else {
-			return PRIME + actions.hashCode();
-		}
+		return 5323 * actions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof MultipleActions)) {
 			return false;
 		}
 		final MultipleActions other = (MultipleActions) obj;
-		if (actions == null) {
-			if (other.actions != null) {
-				return false;
-			}
-		} else if (!actions.equals(other.actions)) {
-			return false;
-		}
-		return true;
+		return actions.equals(other.actions);
 	}
 
 }

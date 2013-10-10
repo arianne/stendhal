@@ -24,9 +24,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Says the list of the NPC names for unstarted quests in a specified region in the form npc1, npc2, and npc3 all need your help.
  */
@@ -50,7 +47,7 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 	 * @param regions regions of NPC
 	 */
 	public SayNPCNamesForUnstartedQuestsAction(List<String> regions) {
-		this.regions = regions;
+		this.regions = new LinkedList<String>(regions);
 	}
 
 	@Override
@@ -88,15 +85,17 @@ public class SayNPCNamesForUnstartedQuestsAction implements ChatAction {
 		return "SayNPCNamesForUnstartedQuestsAction in region <" + regions.toString() +  ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5393 * regions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				SayNPCNamesForUnstartedQuestsAction.class);
+		if (!(obj instanceof SayNPCNamesForUnstartedQuestsAction)) {
+			return false;
+		}
+		SayNPCNamesForUnstartedQuestsAction other = (SayNPCNamesForUnstartedQuestsAction) obj;
+		return regions.equals(other.regions);
 	}
 }

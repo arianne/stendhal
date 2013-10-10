@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -19,9 +20,6 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Increments by some value the current state or substate of a quest.
@@ -42,7 +40,7 @@ public class IncrementQuestAction implements ChatAction {
 	 *            the increment to the old value
 	 */
 	public IncrementQuestAction(final String questname, final int increment) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 		this.increment = increment;
 	}
@@ -85,15 +83,19 @@ public class IncrementQuestAction implements ChatAction {
 		return "IncrementQuest<" + questname + "[" + index + "] + " + increment + ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5227 * (questname.hashCode() + 5231 * (index + 5233 * increment));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				IncrementQuestAction.class);
+		if (!(obj instanceof IncrementQuestAction)) {
+			return false;
+		}
+		IncrementQuestAction other = (IncrementQuestAction) obj;
+		return (index == other.index)
+			&& (increment == other.increment)
+			&& questname.equals(other.questname);
 	}
 }

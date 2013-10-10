@@ -20,9 +20,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * BehaviourAction handles ProducerBehaviour requests.
  */
@@ -47,14 +44,5 @@ public abstract class ProducerBehaviourAction extends AbstractBehaviourAction<Pr
 		return "ProducerBehaviourAction";
 	}
 
-	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
 
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				ProducerBehaviourAction.class);
-	}
 }

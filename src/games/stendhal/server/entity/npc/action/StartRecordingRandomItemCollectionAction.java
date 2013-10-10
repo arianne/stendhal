@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.parser.Sentence;
@@ -25,8 +26,7 @@ import games.stendhal.server.util.StringUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.collect.ImmutableMap;
 
 /**
  * Start recording random item collection request.
@@ -54,12 +54,11 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 	 * @param message
 	 *            Message which NPC asks for items with. We add the item name and quantity to end of message.
 	 */
-	public StartRecordingRandomItemCollectionAction(final String questname, final Map<String, Integer>
-    items, final String message) {
-		this.questname = questname;
+	public StartRecordingRandomItemCollectionAction(final String questname, final Map<String, Integer> items, final String message) {
+		this.questname = checkNotNull(questname);
 		this.index = -1;
-		this.items = items;
-		this.message = message;
+		this.items = ImmutableMap.copyOf(items);
+		this.message = checkNotNull(message);
 	}
 
 	/**
@@ -77,10 +76,10 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 	@Dev
 	public StartRecordingRandomItemCollectionAction(final String questname, @Dev(defaultValue="1") final int index, final Map<String, Integer>
     items, final String message) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
-		this.items = items;
-		this.message = message;
+		this.items = ImmutableMap.copyOf(items);
+		this.message = checkNotNull(message);
 	}
 
 	@Override
@@ -107,15 +106,20 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 		return "StartRecordingRandomItemCollection<" + items.toString() + ">";
 	}
 
-
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5623 * (questname.hashCode() + 5639 * (index + 5641 * (items.hashCode() + 5647 * message.hashCode())));
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				StartRecordingRandomItemCollectionAction.class);
+		if (!(obj instanceof StartRecordingRandomItemCollectionAction)) {
+			return false;
+		}
+		StartRecordingRandomItemCollectionAction other = (StartRecordingRandomItemCollectionAction) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname)
+			&& items.equals(other.items)
+			&& message.equals(other.message);
 	}
 }
