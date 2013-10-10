@@ -7,9 +7,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Condition to check if a player's mana is greater than a number
  *
@@ -42,12 +39,15 @@ public class PlayerManaGreaterThanCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43997 * mana;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerManaGreaterThanCondition.class);
+		if (!(obj instanceof PlayerManaGreaterThanCondition)) {
+			return false;
+		}
+		PlayerManaGreaterThanCondition other = (PlayerManaGreaterThanCondition) obj;
+		return (mana == other.mana);
 	}
 }

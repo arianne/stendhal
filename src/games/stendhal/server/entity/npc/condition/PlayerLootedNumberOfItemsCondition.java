@@ -10,9 +10,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Checks if a player has looted a minimum number of item(s).
  *
@@ -34,7 +31,7 @@ public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
 	public PlayerLootedNumberOfItemsCondition(int number, String... item) {
 		this.number = number;
 		items = new LinkedList<String>();
-		if(item != null) {
+		if (item != null) {
 			for (String string : item) {
 				items.add(string);
 			}
@@ -43,8 +40,8 @@ public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
-		for(String item : items) {
-			if(player.getNumberOfLootsForItem(item) < number) {
+		for (String item : items) {
+			if (player.getNumberOfLootsForItem(item) < number) {
 				return false;
 			}
 		}
@@ -53,13 +50,17 @@ public class PlayerLootedNumberOfItemsCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43991 * items.hashCode() + number;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerLootedNumberOfItemsCondition.class);
+		if (!(obj instanceof PlayerLootedNumberOfItemsCondition)) {
+			return false;
+		}
+		PlayerLootedNumberOfItemsCondition other = (PlayerLootedNumberOfItemsCondition) obj;
+		return (number == other.number)
+			&& items.equals(other.items);
 	}
 
 	@Override

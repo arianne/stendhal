@@ -11,15 +11,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Check if current system time reached a timestamp stored in a quest slot.
@@ -42,7 +40,7 @@ public class TimeReachedCondition implements ChatCondition {
 	 * @param questname name of the quest slot to check
 	 */
 	public TimeReachedCondition(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 	}
 
@@ -54,7 +52,7 @@ public class TimeReachedCondition implements ChatCondition {
 	 */
 	@Dev
 	public TimeReachedCondition(final String questname, final int index) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 	}
 
@@ -62,9 +60,7 @@ public class TimeReachedCondition implements ChatCondition {
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
 		long timestamp;
 
-        /**
-         * The player never did the quest, assume the time is right for taking it now
-         */
+		// The player never did the quest, assume the time is right for taking it now
 		if (!player.hasQuest(questname)) {
 			return true;
 		}
@@ -97,12 +93,16 @@ public class TimeReachedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5051 * questname.hashCode() + index;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				TimeReachedCondition.class);
+		if (!(obj instanceof TimeReachedCondition)) {
+			return false;
+		}
+		TimeReachedCondition other = (TimeReachedCondition) obj;
+		return (index == other.index)
+			&& questname.equals(other.questname);
 	}
 }

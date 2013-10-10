@@ -74,7 +74,7 @@ public class AlwaysTrueConditionTest {
 	 */
 	@Test
 	public void testHashCode() {
-		assertEquals(17, new AlwaysTrueCondition().hashCode());
+		assertEquals(new AlwaysTrueCondition().hashCode(), new AlwaysTrueCondition().hashCode());
 	}
 
 	/**

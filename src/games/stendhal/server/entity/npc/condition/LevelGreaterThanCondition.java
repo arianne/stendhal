@@ -19,9 +19,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Is the player's level greater than the specified one?
  */
@@ -55,13 +52,16 @@ public class LevelGreaterThanCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43717 * level;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				LevelGreaterThanCondition.class);
+		if (!(obj instanceof LevelGreaterThanCondition)) {
+			return false;
+		}
+		LevelGreaterThanCondition other = (LevelGreaterThanCondition) obj;
+		return level == other.level;
 	}
 
 }

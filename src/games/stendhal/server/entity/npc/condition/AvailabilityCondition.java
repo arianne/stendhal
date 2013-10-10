@@ -42,15 +42,12 @@ public class AvailabilityCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return 31 * checker.hashCode();
+		return 43627 * checker.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof AvailabilityCondition)) {
 			return false;
 		}
 		AvailabilityCondition other = (AvailabilityCondition) obj;

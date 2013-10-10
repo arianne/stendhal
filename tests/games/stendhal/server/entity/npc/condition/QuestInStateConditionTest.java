@@ -101,19 +101,9 @@ public class QuestInStateConditionTest {
 
 		assertTrue(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state)));
-		assertTrue(new QuestInStateCondition(null, state).equals(new QuestInStateCondition(
-				null, state)));
-		assertTrue(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
-				QUESTNAME, null)));
 
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new Object()));
 
-		assertFalse(new QuestInStateCondition(null, state).equals(new QuestInStateCondition(
-				QUESTNAME, state)));
-		assertFalse(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
-				QUESTNAME, state)));
-		assertFalse(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
-				null, state)));
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state + "2")));
 
@@ -134,11 +124,6 @@ public class QuestInStateConditionTest {
 		assertEquals(
 				new QuestInStateCondition("questname", "state").hashCode(),
 				new QuestInStateCondition("questname", "state").hashCode());
-		assertEquals(new QuestInStateCondition(null, "state").hashCode(),
-				new QuestInStateCondition(null, "state").hashCode());
-		assertEquals(new QuestInStateCondition("questname", null).hashCode(),
-				new QuestInStateCondition("questname", null).hashCode());
-
 	}
 
 }

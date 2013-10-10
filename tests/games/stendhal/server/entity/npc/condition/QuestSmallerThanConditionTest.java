@@ -98,13 +98,10 @@ public class QuestSmallerThanConditionTest {
 		assertTrue(obj.equals(obj));
 
 		assertTrue(new QuestSmallerThanCondition(QUESTNAME, value).equals(new QuestSmallerThanCondition(QUESTNAME, value)));
-		assertTrue(new QuestSmallerThanCondition(null, value).equals(new QuestSmallerThanCondition(null, value)));
 
 		assertFalse(new QuestSmallerThanCondition(QUESTNAME, value).equals(new Object()));
 
-		assertFalse(new QuestSmallerThanCondition(null, value).equals(new QuestSmallerThanCondition(QUESTNAME, value)));
 		assertFalse(new QuestSmallerThanCondition(QUESTNAME, 2008).equals(new QuestSmallerThanCondition(QUESTNAME, value)));
-		assertFalse(new QuestSmallerThanCondition(QUESTNAME, 2008).equals(new QuestSmallerThanCondition(null, value)));
 		assertFalse(new QuestSmallerThanCondition(QUESTNAME, value).equals(new QuestSmallerThanCondition(QUESTNAME, value + 2)));
 
 		assertTrue(new QuestSmallerThanCondition(QUESTNAME, value).equals(new QuestSmallerThanCondition(QUESTNAME, value) {
@@ -124,9 +121,6 @@ public class QuestSmallerThanConditionTest {
 		assertEquals(
 				new QuestSmallerThanCondition("questname", 2009).hashCode(),
 				new QuestSmallerThanCondition("questname", 2009).hashCode());
-		assertEquals(
-				new QuestSmallerThanCondition(null, 2009).hashCode(),
-				new QuestSmallerThanCondition(null, 2009).hashCode());
 	}
 
 }

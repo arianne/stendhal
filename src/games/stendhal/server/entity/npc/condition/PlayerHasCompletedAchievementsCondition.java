@@ -73,4 +73,18 @@ public class PlayerHasCompletedAchievementsCondition implements ChatCondition {
 		return false;
 	}
 
+	@Override
+	public int hashCode() {
+		return 43793 * achievements.hashCode() + minimumToComplete;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof PlayerHasCompletedAchievementsCondition)) {
+			return false;
+		}
+		PlayerHasCompletedAchievementsCondition other = (PlayerHasCompletedAchievementsCondition) obj;
+		return (minimumToComplete == other.minimumToComplete)
+			&& achievements.equals(other.achievements);
+	}
 }

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -22,8 +23,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
 
 /**
@@ -41,7 +40,7 @@ import org.apache.log4j.Logger;
 @Dev(category=Category.KILLS, label="Kills?")
 public class KilledForQuestCondition implements ChatCondition {
 	private static Logger logger = Logger.getLogger(KilledForQuestCondition.class);
-	private final String QUEST_SLOT;
+	private final String questSlot;
 	private final int questIndex;
 
 
@@ -53,8 +52,8 @@ public class KilledForQuestCondition implements ChatCondition {
 	 */
 	@Dev
 	public KilledForQuestCondition(String quest, @Dev(defaultValue="1") int index) {
-		this.QUEST_SLOT=quest;
-		this.questIndex=index;
+		this.questSlot = checkNotNull(quest);
+		this.questIndex = index;
 	}
 
 	/**
@@ -62,32 +61,32 @@ public class KilledForQuestCondition implements ChatCondition {
 	 */
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity npc) {
-		final String temp = player.getQuest(QUEST_SLOT, questIndex);
-		if(temp==null) {
+		final String temp = player.getQuest(questSlot, questIndex);
+		if (temp == null) {
 			return false;
 		}
 		final List<String> tokens = Arrays.asList(temp.split(","));
 		// check for size - it should be able to divide by 5 without reminder.
-		if((tokens.size() % 5)!=0) {
+		if ((tokens.size() % 5) != 0) {
 			logger.error("Wrong record in player's "+player.getName()+
-					" quest slot ("+QUEST_SLOT+") : ["+player.getQuest(QUEST_SLOT)+"]");
+					" quest slot ("+questSlot+") : ["+player.getQuest(questSlot)+"]");
 			//npc.say("something wrong with you, i dont see how much monsters you killed.");
 			return false;
 		}
 
-		for(int i=0; i<tokens.size()/5; i++) {
-			final String creatureName=tokens.get(i*5);
+		for (int i = 0; i < tokens.size() / 5; i++) {
+			final String creatureName = tokens.get(i*5);
 			int toKillSolo;
 			int toKillShared;
 			int killedSolo;
 			int killedShared;
 			try {
-				toKillSolo=Integer.parseInt(tokens.get(i*5+1));
-				toKillShared=Integer.parseInt(tokens.get(i*5+2));
-				killedSolo=Integer.parseInt(tokens.get(i*5+3));
-				killedShared=Integer.parseInt(tokens.get(i*5+4));
+				toKillSolo = Integer.parseInt(tokens.get(i*5 + 1));
+				toKillShared = Integer.parseInt(tokens.get(i*5 + 2));
+				killedSolo = Integer.parseInt(tokens.get(i*5 + 3));
+				killedShared = Integer.parseInt(tokens.get(i*5 + 4));
 			} catch (NumberFormatException npe) {
-				logger.error("NumberFormatException while parsing numbers in quest slot "+QUEST_SLOT+
+				logger.error("NumberFormatException while parsing numbers in quest slot "+questSlot+
 						" of player "+player.getName()
 						+" , creature " + i*5);
 				return false;
@@ -95,11 +94,11 @@ public class KilledForQuestCondition implements ChatCondition {
 			final int diffSolo = player.getSoloKill(creatureName) - killedSolo - toKillSolo;
 			final int diffShared = player.getSharedKill(creatureName) - killedShared - toKillShared;
 			// if solo kills less then required, return false
-			if(diffSolo<0) {
+			if(diffSolo < 0) {
 				return false;
 			}
 			// if player killed solo less then required for shared, return false
-			if((diffSolo+diffShared)<0) {
+			if((diffSolo+diffShared) < 0) {
 				return false;
 			}
 		}
@@ -112,14 +111,17 @@ public class KilledForQuestCondition implements ChatCondition {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledForQuestCondition.class);
+	public int hashCode() {
+		return 43669 * questSlot.hashCode() + questIndex;
 	}
 
 	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof KilledForQuestCondition)) {
+			return false;
+		}
+		KilledForQuestCondition other = (KilledForQuestCondition) obj;
+		return (questIndex == other.questIndex) && questSlot.equals(other.questSlot);
 	}
 
 }

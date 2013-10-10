@@ -30,26 +30,6 @@ public class AdminConditionTest extends PlayerTestHelper {
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 	}
-	
-	/**
-	 * Tests for constructor.
-	 */
-	@Test
-	public void testConstructor() {
-		final AdminCondition adminCondition = new AdminCondition();
-		assertEquals("adminCondition.hashCode()", 5629,
-				adminCondition.hashCode());
-	}
-
-	/**
-	 * Tests for constructor1.
-	 */
-	@Test
-	public void testConstructor1() {
-		final AdminCondition adminCondition = new AdminCondition(100);
-		assertEquals("adminCondition.hashCode()", 729,
-				adminCondition.hashCode());
-	}
 
 	/**
 	 * Tests for equals.
@@ -87,8 +67,8 @@ public class AdminConditionTest extends PlayerTestHelper {
 	 */
 	@Test
 	public void testHashCode() {
-		assertEquals("result", 629, new AdminCondition(0).hashCode());
-		assertEquals("result", 729, new AdminCondition(100).hashCode());
+		assertEquals("result", new AdminCondition(0).hashCode(), new AdminCondition(0).hashCode());
+		assertEquals("result", new AdminCondition(100).hashCode(), new AdminCondition(100).hashCode());
 	}
 
 	/**

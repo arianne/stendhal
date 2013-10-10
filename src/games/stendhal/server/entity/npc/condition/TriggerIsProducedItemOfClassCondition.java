@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.common.parser.TriggerList;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -21,9 +22,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.behaviour.journal.ProducerRegister;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Was a trigger phrase said, which is a produced item of this class? (Use with a ""-trigger in npc.add)
@@ -42,7 +40,7 @@ public class TriggerIsProducedItemOfClassCondition implements ChatCondition {
 	 *            produced item class to check for
 	 */
 	public TriggerIsProducedItemOfClassCondition(final String clazz) {
-		this.clazz = clazz;
+		this.clazz = checkNotNull(clazz);
 	}
 
 	@Override
@@ -58,12 +56,15 @@ public class TriggerIsProducedItemOfClassCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5039 * clazz.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				TriggerIsProducedItemOfClassCondition.class);
+		if (!(obj instanceof TriggerIsProducedItemOfClassCondition)) {
+			return false;
+		}
+		TriggerIsProducedItemOfClassCondition other = (TriggerIsProducedItemOfClassCondition) obj;
+		return clazz.equals(other.clazz);
 	}
 }

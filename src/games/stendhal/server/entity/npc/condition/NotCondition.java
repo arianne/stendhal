@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * An inverse condition.
@@ -37,7 +35,7 @@ public class NotCondition implements ChatCondition {
 	 *            condition which result is to be inversed
 	 */
 	public NotCondition(final ChatCondition condition) {
-		this.condition = condition;
+		this.condition = checkNotNull(condition);
 	}
 
 	@Override
@@ -52,12 +50,15 @@ public class NotCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43777 * condition.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				NotCondition.class);
+		if (!(obj instanceof NotCondition)) {
+			return false;
+		}
+		NotCondition other = (NotCondition) obj;
+		return condition.equals(other.condition);
 	}
 }

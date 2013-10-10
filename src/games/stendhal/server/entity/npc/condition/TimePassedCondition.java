@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -19,9 +20,6 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Has 'delay' time passed since the quest was last done?
@@ -49,7 +47,7 @@ public class TimePassedCondition implements ChatCondition {
 	 */
 	@Dev
 	public TimePassedCondition(final String questname, final int index, final int delayInMinutes) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.delay = delayInMinutes;
 		this.index = index;
 	}
@@ -62,7 +60,7 @@ public class TimePassedCondition implements ChatCondition {
 	 *            delay in minutes
 	 */
 	public TimePassedCondition(final String questname, final int delayInMinutes) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.delay = delayInMinutes;
 		this.index = 0;
 	}
@@ -75,22 +73,21 @@ public class TimePassedCondition implements ChatCondition {
 		} else {
 			final String[] tokens = player.getQuest(questname).split(";");
 			final long delayInMilliseconds = delay * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
-		    if (tokens.length - 1 < index) {
-                // old quest status, the split did not work, so we assume enough time is passed.
-                return true;
-            }
-            // timeRemaining is ''time when quest was done +
+			if (tokens.length - 1 < index) {
+				// old quest status, the split did not work, so we assume enough time is passed.
+				return true;
+			}
+			// timeRemaining is ''time when quest was done +
 			// delay - time now''
 			// if this is > 0, the time has not yet passed
-            long questtime;
-            try {
-			    questtime = Long.parseLong(tokens[index]);
-		    } catch (final NumberFormatException e) {
-                // set to 0 if it was no Long, as if this quest was done at the beginning of time.
-			    questtime = 0;
-		    }
-			final long timeRemaining = (questtime + delayInMilliseconds)
-				- System.currentTimeMillis();
+			long questtime;
+			try {
+				questtime = Long.parseLong(tokens[index]);
+			} catch (final NumberFormatException e) {
+				// set to 0 if it was no Long, as if this quest was done at the beginning of time.
+				questtime = 0;
+			}
+			final long timeRemaining = (questtime + delayInMilliseconds) - System.currentTimeMillis();
 		return (timeRemaining <= 0L);
 		}
 	}
@@ -102,12 +99,17 @@ public class TimePassedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5059 * questname.hashCode() + 5077 * index + delay;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				TimePassedCondition.class);
+		if (!(obj instanceof TimePassedCondition)) {
+			return false;
+		}
+		TimePassedCondition other = (TimePassedCondition) obj;
+		return (index == other.index)
+			&& (delay == other.delay)
+			&& questname.equals(other.questname);
 	}
 }

@@ -7,9 +7,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Check if a player is a good boy, e. g. has not recently killed another player.
  *
@@ -30,13 +27,12 @@ public class PlayerIsAGoodBoyCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43973;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerIsAGoodBoyCondition.class);
+		return (obj instanceof PlayerIsAGoodBoyCondition);
 	}
 
 }

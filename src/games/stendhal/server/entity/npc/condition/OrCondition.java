@@ -22,9 +22,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * An or condition.
  */
@@ -61,12 +58,15 @@ public class OrCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43781 * conditions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				OrCondition.class);
+		if (!(obj instanceof OrCondition)) {
+			return false;
+		}
+		OrCondition other = (OrCondition) obj;
+		return conditions.equals(other.conditions);
 	}
 }

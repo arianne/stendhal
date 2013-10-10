@@ -22,9 +22,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Is constructed from a group of conditions. <p>
  * It evaluates to <code>true</code>, iff each condition evaluates to true.
@@ -62,12 +59,14 @@ public class AndCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43613 * conditions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				AndCondition.class);
+		if (!(obj instanceof AndCondition)) {
+			return false;
+		}
+		return conditions.equals(((AndCondition) obj).conditions);
 	}
 }

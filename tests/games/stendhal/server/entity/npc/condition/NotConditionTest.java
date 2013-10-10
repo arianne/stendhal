@@ -84,8 +84,6 @@ public class NotConditionTest {
 	public final void testHashCode() {
 		final NotCondition obj = new NotCondition(trueCondition);
 		assertEquals(obj.hashCode(), obj.hashCode());
-		assertEquals(new NotCondition(null).hashCode(),
-				new NotCondition(null).hashCode());
 		assertEquals(new NotCondition(trueCondition).hashCode(),
 				new NotCondition(trueCondition).hashCode());
 
@@ -131,12 +129,7 @@ public class NotConditionTest {
 
 		final NotCondition obj = new NotCondition(trueCondition);
 		assertTrue(obj.equals(obj));
-		assertTrue(new NotCondition(null).equals(new NotCondition(null)));
 		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(
-				trueCondition)));
-		assertFalse(new NotCondition(trueCondition).equals(new NotCondition(
-				null)));
-		assertFalse(new NotCondition(null).equals(new NotCondition(
 				trueCondition)));
 		assertFalse(new NotCondition(trueCondition).equals(Integer.valueOf(100)));
 		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(

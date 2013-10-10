@@ -20,9 +20,6 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * 	Can this outfit be worn with normal clothes ?
  */
@@ -42,12 +39,11 @@ public class OutfitCompatibleWithClothesCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43783;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				OutfitCompatibleWithClothesCondition.class);
+		return (obj instanceof OutfitCompatibleWithClothesCondition);
 	}
 }

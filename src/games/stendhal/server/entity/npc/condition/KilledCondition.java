@@ -24,9 +24,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Has the player killed at least one of each specified creature, with or without the help of any other player.
  *
@@ -73,14 +70,17 @@ public class KilledCondition implements ChatCondition {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledCondition.class);
+	public int hashCode() {
+		return 43661 * toKill.hashCode();
 	}
 
 	@Override
-	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof KilledCondition)) {
+			return false;
+		}
+		KilledCondition other = (KilledCondition) obj;
+		return toKill.equals(other.toKill);
 	}
 
 }

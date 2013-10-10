@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
@@ -40,7 +41,7 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 	/**
 	 * which quest should be checked
 	 */
-	private final String questSlot;
+	private final String questname;
 
 	/**
 	 * Create a new QuestStateGreaterThanCondition
@@ -49,15 +50,15 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 	 * @param expectedSmallerValue expected smaller value to compare
 	 */
 	public QuestStateGreaterThanCondition(String quest, int index, int expectedSmallerValue) {
-		this.questSlot = quest;
+		this.questname = checkNotNull(quest);
 		this.expectedSmallerValue = expectedSmallerValue;
 		this.index = index;
 	}
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, Entity npc) {
-		if(player.hasQuest(questSlot)) {
-			String questState = player.getQuest(questSlot);
+		if(player.hasQuest(questname)) {
+			String questState = player.getQuest(questname);
 			String[] content = questState.split(";");
 			if (content.length - 1 < index) {
 				return false;
@@ -68,4 +69,19 @@ public class QuestStateGreaterThanCondition implements ChatCondition {
 		return false;
 	}
 
+	@Override
+	public int hashCode() {
+		return 45943 * questname.hashCode() + 45949 * index + 45953 * expectedSmallerValue;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof QuestStateGreaterThanCondition)) {
+			return false;
+		}
+		QuestStateGreaterThanCondition other = (QuestStateGreaterThanCondition) obj;
+		return (index == other.index)
+			&& (expectedSmallerValue == other.expectedSmallerValue)
+			&& questname.equals(other.questname);
+	}
 }

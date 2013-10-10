@@ -38,4 +38,15 @@ public class PlayerHasCorrectGateKey implements ChatCondition {
 		// no matches
 		return false;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return 43801;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return (obj instanceof PlayerHasCorrectGateKey);
+	}
 }

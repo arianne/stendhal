@@ -100,18 +100,9 @@ public class QuestNotActiveConditionTest {
 		assertThat(new QuestNotActiveCondition("questname"), 
 				equalTo(new QuestNotActiveCondition("questname")));
 
-		assertThat(new QuestNotActiveCondition(null), 
-				equalTo(new QuestNotActiveCondition(null)));
-
 		assertThat(new QuestNotActiveCondition("questname"),
 				not(equalTo(new Object())));
 
-		assertThat(new QuestNotActiveCondition(null),
-				not(equalTo(new QuestNotActiveCondition(
-				"questname"))));
-		assertThat(new QuestNotActiveCondition("questname"),
-				not(equalTo(new QuestNotActiveCondition(
-				null))));
 		assertThat(new QuestNotActiveCondition("questname"),
 				not(equalTo(new QuestNotActiveCondition(
 				"questname2"))));
@@ -131,8 +122,6 @@ public class QuestNotActiveConditionTest {
 		assertThat(obj.hashCode(), equalTo(obj.hashCode()));
 		assertThat(new QuestNotActiveCondition("questname").hashCode(),
 				equalTo(new QuestNotActiveCondition("questname").hashCode()));
-		assertThat(new QuestNotActiveCondition(null).hashCode(),
-				equalTo(new QuestNotActiveCondition(null).hashCode()));
 
 	}
 

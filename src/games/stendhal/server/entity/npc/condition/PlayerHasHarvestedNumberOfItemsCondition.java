@@ -10,9 +10,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Checks if a player has harvested a minimum number of an item
  *
@@ -33,8 +30,8 @@ public class PlayerHasHarvestedNumberOfItemsCondition implements ChatCondition {
 	 */
 	public PlayerHasHarvestedNumberOfItemsCondition(int number, String... items) {
 		itemMinedList = new ArrayList<String>();
-		if(items != null) {
-			for(String item : items) {
+		if (items != null) {
+			for (String item : items) {
 				itemMinedList.add(item);
 			}
 		}
@@ -51,15 +48,20 @@ public class PlayerHasHarvestedNumberOfItemsCondition implements ChatCondition {
 		return true;
 	}
 
+
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43853 * itemMinedList.hashCode() + quantity;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerHasHarvestedNumberOfItemsCondition.class);
+		if (!(obj instanceof PlayerHasHarvestedNumberOfItemsCondition)) {
+			return false;
+		}
+		PlayerHasHarvestedNumberOfItemsCondition other = (PlayerHasHarvestedNumberOfItemsCondition) obj;
+		return (quantity == other.quantity)
+			&& itemMinedList.equals(other.itemMinedList);
 	}
 
 	@Override

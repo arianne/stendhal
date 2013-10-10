@@ -11,9 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Checks the current day light phase.
  *
@@ -41,13 +38,16 @@ public class DaylightCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43633 * daylightPhases.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				DaylightCondition.class);
+		if (!(obj instanceof DaylightCondition)) {
+			return false;
+		}
+		DaylightCondition other = (DaylightCondition) obj;
+		return daylightPhases.equals(other.daylightPhases);
 	}
 
 }

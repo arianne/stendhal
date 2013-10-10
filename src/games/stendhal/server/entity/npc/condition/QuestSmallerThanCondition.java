@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Is this quest state smaller than the value in this condition?
@@ -40,7 +38,7 @@ public class QuestSmallerThanCondition implements ChatCondition {
 	 * @param state constant value to compare to
 	 */
 	public QuestSmallerThanCondition(final String questname, final int state) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = -1;
 		this.state = state;
 		this.acceptEmpty = false;
@@ -54,7 +52,7 @@ public class QuestSmallerThanCondition implements ChatCondition {
 	 * @param state constant value to compare to
 	 */
 	public QuestSmallerThanCondition(final String questname, final int index, final int state) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.state = state;
 	}
@@ -68,7 +66,7 @@ public class QuestSmallerThanCondition implements ChatCondition {
 	 * @param acceptEmpty accept an empty quest state
 	 */
 	public QuestSmallerThanCondition(final String questname, final int index, final int state, boolean acceptEmpty) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 		this.index = index;
 		this.state = state;
 		this.acceptEmpty = acceptEmpty;
@@ -115,12 +113,18 @@ public class QuestSmallerThanCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 45863 * questname.hashCode() + 45869 * index + 45887 * state;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestSmallerThanCondition.class);
+		if (!(obj instanceof QuestSmallerThanCondition)) {
+			return false;
+		}
+		QuestSmallerThanCondition other = (QuestSmallerThanCondition) obj;
+		return (index == other.index)
+			&& (state == other.state)
+			&& (acceptEmpty == other.acceptEmpty)
+			&& questname.equals(other.questname);
 	}
 }

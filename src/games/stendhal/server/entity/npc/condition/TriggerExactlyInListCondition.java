@@ -27,9 +27,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Was one of these trigger phrases said exactly ignoring case? (Use with a ""-trigger in npc.add)
  */
@@ -84,11 +81,15 @@ public class TriggerExactlyInListCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5009 * triggers.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,	TriggerExactlyInListCondition.class);
+		if (!(obj instanceof TriggerExactlyInListCondition)) {
+			return false;
+		}
+		TriggerExactlyInListCondition other = (TriggerExactlyInListCondition) obj;
+		return triggers.equals(other.triggers);
 	}
 }

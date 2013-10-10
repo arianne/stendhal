@@ -20,16 +20,13 @@ import games.stendhal.server.entity.mapstuff.office.StorableEntityList;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Is there a storable entity in the specified list that has name
  * of the current player as identifier?
  */
 @Dev(category=Category.IGNORE)
 public class PlayerHasStorableEntityCondition implements ChatCondition {
-	private final StorableEntityList< ? > storeableEntityList;
+	private final StorableEntityList<?> storeableEntityList;
 
 	/**
 	 * creates a PlayerHasStorableEntityCondition
@@ -52,12 +49,15 @@ public class PlayerHasStorableEntityCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43963 * storeableEntityList.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-			PlayerHasStorableEntityCondition.class);
+		if (!(obj instanceof PlayerHasStorableEntityCondition)) {
+			return false;
+		}
+		PlayerHasStorableEntityCondition other = (PlayerHasStorableEntityCondition) obj;
+		return storeableEntityList.equals(other.storeableEntityList);
 	}
 }

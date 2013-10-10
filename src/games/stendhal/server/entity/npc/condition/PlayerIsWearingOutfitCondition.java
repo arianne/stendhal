@@ -20,9 +20,6 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Does the player wear (at least a part of) the specified outfit?
  *
@@ -57,12 +54,15 @@ public class PlayerIsWearingOutfitCondition implements ChatCondition{
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43987 * outfitToCheck.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerIsWearingOutfitCondition.class);
+		if (!(obj instanceof PlayerIsWearingOutfitCondition)) {
+			return false;
+		}
+		PlayerIsWearingOutfitCondition other = (PlayerIsWearingOutfitCondition) obj;
+		return outfitToCheck.equals(other.outfitToCheck);
 	}
 }

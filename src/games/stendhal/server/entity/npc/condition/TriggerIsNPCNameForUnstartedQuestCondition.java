@@ -24,8 +24,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Was the trigger phrase a name of an NPC for an unstarted quest in the region? (Use with a ""-trigger in npc.add)
@@ -38,7 +37,7 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 	/**
 	 * Creates a new TriggerIsNPCNameForUnstartedQuestCondition
 	 *
-	 * @param region
+	 * @param region region
 	 */
 	public TriggerIsNPCNameForUnstartedQuestCondition(final String region) {
 		this.regions=Arrays.asList(region);
@@ -47,10 +46,10 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 	/**
 	 * Creates a new TriggerIsNPCNameForUnstartedQuestCondition
 	 *
-	 * @param regions
+	 * @param regions list of regions
 	 */
 	public TriggerIsNPCNameForUnstartedQuestCondition(final List<String> regions) {
-		this.regions=regions;
+		this.regions = ImmutableList.copyOf(regions);
 	}
 
 	@Override
@@ -69,12 +68,15 @@ public class TriggerIsNPCNameForUnstartedQuestCondition implements ChatCondition
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 5023 * regions.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				TriggerIsNPCNameForUnstartedQuestCondition.class);
+		if (!(obj instanceof TriggerIsNPCNameForUnstartedQuestCondition)) {
+			return false;
+		}
+		TriggerIsNPCNameForUnstartedQuestCondition other = (TriggerIsNPCNameForUnstartedQuestCondition) obj;
+		return regions.equals(other.regions);
 	}
 }

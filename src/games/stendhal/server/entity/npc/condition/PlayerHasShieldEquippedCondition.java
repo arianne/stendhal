@@ -11,9 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
@@ -37,13 +34,12 @@ public class PlayerHasShieldEquippedCondition implements ChatCondition {
 	
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43961;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				PlayerHasShieldEquippedCondition.class);
+		return (obj instanceof PlayerHasShieldEquippedCondition);
 	}
 	
 }

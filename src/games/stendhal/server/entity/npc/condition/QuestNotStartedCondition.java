@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.config.annotations.Dev;
 import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Was this quest not started yet?
@@ -37,7 +35,7 @@ public class QuestNotStartedCondition implements ChatCondition {
 	 *            name of quest slot
 	 */
 	public QuestNotStartedCondition(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 	}
 
 	@Override
@@ -52,12 +50,15 @@ public class QuestNotStartedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 45853 * questname.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestNotStartedCondition.class);
+		if (!(obj instanceof QuestNotStartedCondition)) {
+			return false;
+		}
+		QuestNotStartedCondition other = (QuestNotStartedCondition) obj;
+		return questname.equals(other.questname);
 	}
 }

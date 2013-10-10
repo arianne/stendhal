@@ -40,8 +40,6 @@ public class PlayerHasItemWithHimConditionTest {
 		final PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
 				"itemname");
 		assertEquals(obj.hashCode(), obj.hashCode());
-		assertEquals(new PlayerHasItemWithHimCondition(null).hashCode(),
-				new PlayerHasItemWithHimCondition(null).hashCode());
 		assertEquals(new PlayerHasItemWithHimCondition("itemname").hashCode(),
 				new PlayerHasItemWithHimCondition("itemname").hashCode());
 		assertEquals(
@@ -111,17 +109,11 @@ public class PlayerHasItemWithHimConditionTest {
 		final PlayerHasItemWithHimCondition obj = new PlayerHasItemWithHimCondition(
 				itemName);
 		assertTrue(obj.equals(obj));
-		assertTrue(new PlayerHasItemWithHimCondition(null).equals(new PlayerHasItemWithHimCondition(
-				null)));
 		assertTrue(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(
 				itemName)));
 		assertFalse(new PlayerHasItemWithHimCondition(itemName, 1).equals(new PlayerHasItemWithHimCondition(
 				itemName, 2)));
 
-		assertFalse(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(
-				null)));
-		assertFalse(new PlayerHasItemWithHimCondition(null).equals(new PlayerHasItemWithHimCondition(
-				itemName)));
 		assertFalse(new PlayerHasItemWithHimCondition(itemName).equals(Integer.valueOf(
 				100)));
 		assertTrue(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(

@@ -19,9 +19,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Is the player's age greater than the specified age?
  */
@@ -55,13 +52,15 @@ public class AgeGreaterThanCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 43591 * age;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				AgeGreaterThanCondition.class);
+		if (!(obj instanceof AgeGreaterThanCondition)) {
+			return false;
+		}
+		return age == ((AgeGreaterThanCondition) obj).age;
 	}
 
 }

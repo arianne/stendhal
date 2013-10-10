@@ -95,13 +95,7 @@ public class QuestCompletedConditionTest {
 	public void testEquals() {
 		assertTrue(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
 				"questname")));
-		assertTrue(new QuestCompletedCondition(null).equals(new QuestCompletedCondition(
-				null)));
 
-		assertFalse(new QuestCompletedCondition(null).equals(new QuestCompletedCondition(
-				"questname")));
-		assertFalse(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
-				null)));
 		assertFalse(new QuestCompletedCondition("questname").equals(null));
 
 		final QuestCompletedCondition obj = new QuestCompletedCondition("questname");
@@ -122,8 +116,6 @@ public class QuestCompletedConditionTest {
 	public void testHashCode() {
 		assertEquals(new QuestCompletedCondition("questname").hashCode(),
 				new QuestCompletedCondition("questname").hashCode());
-		assertEquals(new QuestCompletedCondition(null).hashCode(),
-				new QuestCompletedCondition(null).hashCode());
 	}
 
 }

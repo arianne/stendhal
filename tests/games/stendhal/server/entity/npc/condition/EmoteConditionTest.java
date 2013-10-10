@@ -31,16 +31,6 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 	}
-	
-	/**
-	 * Tests for constructor.
-	 */
-	@Test
-	public void testConstructor() {
-		final EmoteCondition emoteCondition = new EmoteCondition("");
-		assertEquals("emoteCondition.hashCode()", 629,
-				emoteCondition.hashCode());
-	}
 
 	/**
 	 * Tests for equals.
@@ -88,8 +78,8 @@ public class EmoteConditionTest extends PlayerTestHelper {
 	 */
 	@Test
 	public void testHashCode() {
-		assertEquals("result", 3214638, new EmoteCondition("hugs").hashCode());
-		assertEquals("result", 3292627, new EmoteCondition("kill").hashCode());
+		assertEquals("result", new EmoteCondition("hugs").hashCode(), new EmoteCondition("hugs").hashCode());
+		assertEquals("result", new EmoteCondition("kill").hashCode(), new EmoteCondition("kill").hashCode());
 	}
 
 	/**

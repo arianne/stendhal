@@ -40,8 +40,8 @@ public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition 
 	/**
 	 * Constructor to use condition with only one creature
 	 *
-	 * @param creature
-	 * @param numberOfKills
+	 * @param creature creature
+	 * @param numberOfKills number of kills
 	 */
 	public PlayerHasKilledNumberOfCreaturesCondition (String creature, Integer numberOfKills) {
 		creatures = new HashMap<String, Integer>();
@@ -86,4 +86,17 @@ public class PlayerHasKilledNumberOfCreaturesCondition implements ChatCondition 
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		return 43913 * creatures.hashCode();
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof PlayerHasKilledNumberOfCreaturesCondition)) {
+			return false;
+		}
+		PlayerHasKilledNumberOfCreaturesCondition other = (PlayerHasKilledNumberOfCreaturesCondition) obj;
+		return creatures.equals(other.creatures);
+	}
 }

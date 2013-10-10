@@ -44,11 +44,6 @@ public class PlayerInAreaConditionTest {
 			// this is an anonymous sub class
 		});
 
-		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
-
-		assertEquals(cond.hashCode(), cond.hashCode());
-		assertEquals((new PlayerInAreaCondition(null)).hashCode(),
-				new PlayerInAreaCondition(null).hashCode());
 		assertEquals((new PlayerInAreaCondition(ar)).hashCode(),
 				new PlayerInAreaCondition(ar).hashCode());
 	}
@@ -83,19 +78,6 @@ public class PlayerInAreaConditionTest {
 	}
 
 	/**
-	 * Tests for playerInAreaCondition.
-	 */
-	@SuppressWarnings("serial")
-	@Test
-	public final void testPlayerInAreaCondition() {
-		new PlayerInAreaCondition(null);
-		new PlayerInAreaCondition(new Area(new StendhalRPZone("test"),
-				new Rectangle() {
-					// this is an anonymous sub class
-			}));
-	}
-
-	/**
 	 * Tests for toString.
 	 */
 	@SuppressWarnings("serial")
@@ -104,8 +86,6 @@ public class PlayerInAreaConditionTest {
 		final Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 			// this is an anonymous sub class
 		});
-		assertEquals("player in <null>",
-				new PlayerInAreaCondition(null).toString());
 		assertEquals("player in <" + ar.toString() + ">",
 				new PlayerInAreaCondition(ar).toString());
 	}
@@ -122,22 +102,8 @@ public class PlayerInAreaConditionTest {
 		final Area ar2 = new Area(new StendhalRPZone("test2"), new Rectangle() {
 			// this is an anonymous sub class
 		});
-		final PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
-
-		assertTrue(cond.equals(cond));
-		assertTrue((new PlayerInAreaCondition(null)).equals(new PlayerInAreaCondition(
-				null)));
-		assertTrue((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(
-				ar)));
-
-		assertFalse((new PlayerInAreaCondition(ar)).equals(null));
-
-		assertFalse((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(
-				ar2)));
-		assertFalse((new PlayerInAreaCondition(null)).equals(new PlayerInAreaCondition(
-				ar2)));
-		assertFalse((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(
-				null)));
+		assertTrue((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(ar)));
+		assertFalse((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(ar2)));
 
 		assertTrue(new PlayerInAreaCondition(ar).equals(new PlayerInAreaCondition(ar) {
 			// this is an anonymous sub class

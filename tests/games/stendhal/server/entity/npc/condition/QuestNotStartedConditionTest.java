@@ -82,15 +82,7 @@ public class QuestNotStartedConditionTest {
 		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname")));
 
-		assertTrue(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
-				null)));
-
 		assertFalse(new QuestNotStartedCondition("questname").equals(new Object()));
-
-		assertFalse(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
-				null)));
-		assertFalse(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
-				"questname")));
 
 		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname") {
@@ -111,11 +103,5 @@ public class QuestNotStartedConditionTest {
 				"questname")));
 		assertEquals(new QuestNotStartedCondition("questname").hashCode(),
 				new QuestNotStartedCondition("questname").hashCode());
-
-		assertTrue(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
-				null)));
-
-		assertEquals(new QuestNotStartedCondition(null).hashCode(),
-				new QuestNotStartedCondition(null).hashCode());
 	}
 }
