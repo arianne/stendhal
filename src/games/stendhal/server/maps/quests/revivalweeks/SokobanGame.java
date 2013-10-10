@@ -138,7 +138,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 			}
 		};
 		npc.setEntityClass("sokobannpc");
-		npc.setPosition(46, 125);
+		npc.setPosition(48, 118);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
