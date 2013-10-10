@@ -18,7 +18,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPEvent;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import com.google.common.html.HtmlEscapers;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
@@ -161,7 +161,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private String captionEntryToString(final Object entry) {
 		final String prefix = "games.stendhal.server.";
 		String entryName = entry.toString();
-		entryName = StringEscapeUtils.escapeHtml(entryName);
+		entryName = HtmlEscapers.htmlEscaper().escape(entryName);
 		if (entryName.startsWith(prefix)) {
 			entryName = entryName.substring(prefix.length());
 		}

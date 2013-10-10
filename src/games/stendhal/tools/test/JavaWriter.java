@@ -14,7 +14,8 @@ package games.stendhal.tools.test;
 
 import java.io.PrintStream;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import com.google.common.escape.Escaper;
+import com.google.common.escape.Escapers;
 
 /**
  * Writes parts of the java file for a chat test case.
@@ -23,15 +24,24 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 class JavaWriter {
 	private final PrintStream out;
+	private Escaper javaStringEscaper = Escapers.builder().addEscape('"', "\"").addEscape('\\', "\\\\").build();
 
+	/**
+	 * creates a JavaWriter
+	 *
+	 * @param out output stream
+	 */
 	JavaWriter(final PrintStream out) {
 		this.out = out;
 	}
 
+	/**
+	 * writes the header
+	 */
 	public void header() {
 		out.println("/* $Id$ */");
 		out.println("/***************************************************************************");
-		out.println(" *                   (C) Copyright 2003-2011 - Stendhal                    *");
+		out.println(" *                   (C) Copyright 2003-2013 - Stendhal                    *");
 		out.println(" ***************************************************************************");
 		out.println(" ***************************************************************************");
 		out.println(" *                                                                         *");
@@ -99,26 +109,49 @@ class JavaWriter {
 		out.println();
 	}
 
+	/**
+	 * an empty line
+	 */
 	public void emptyLine() {
 		out.println();
 		out.println("\t\t// -----------------------------------------------");
 		out.println();
 	}
 
+	/**
+	 * a coment
+	 *
+	 * @param line content of comment
+	 */
 	public void comment(final String line) {
 		out.println("\t\t// " + line);
 	}
 
+	/**
+	 * a player action
+	 *
+	 * @param protagonist the player name
+	 * @param text the text said by the player
+	 */
 	public void player(final String protagonist, final String text) {
 		out.println("\t\ten.step(player, \""
-				+ StringEscapeUtils.escapeJava(text) + "\");");
+				+ javaStringEscaper.escape(text) + "\");");
 	}
 
+	/**
+	 * an npc action
+	 *
+	 * @param protagonist name of npc
+	 * @param text text said by the npc
+	 */
 	public void npc(final String protagonist, final String text) {
-		out.println("\t\tassertEquals(\"" + StringEscapeUtils.escapeJava(text)
+		out.println("\t\tassertEquals(\"" + javaStringEscaper.escape(text)
 				+ "\", getReply(npc));");
 	}
 
+	/**
+	 * writes the footer
+	 */
 	public void footer() {
 		out.println("\t}");
 		out.println("}");
