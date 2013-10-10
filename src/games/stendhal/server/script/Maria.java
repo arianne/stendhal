@@ -164,7 +164,7 @@ public class Maria extends ScriptImpl {
 					new MultipleActions(
 							new SetQuestAction(QUEST_SLOT,0, "seen_naked"),
 							new SetQuestToTimeStampAction(QUEST_SLOT,1),
-							new JailAction(JAIL_TIME,"Maria jailed you for being naked in public!")));
+							new JailAction(JAIL_TIME, "Maria jailed you for being naked in public!")));
 	}
 
 }
