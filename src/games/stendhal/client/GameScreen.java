@@ -40,6 +40,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.VolatileImage;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -127,11 +128,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * Text boxes that are anchored to the screen coordinates.
 	 */
 	private final List<RemovableSprite> staticSprites;
-
-	/**
-	 * The text bubbles to remove.
-	 */
-	private final List<RemovableSprite> textsToRemove;
 
 	private boolean offline;
 
@@ -235,7 +231,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 
 		// Drawing is done in EDT
 		texts = Collections.synchronizedList(new LinkedList<RemovableSprite>());
-		textsToRemove = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 		staticSprites = Collections.synchronizedList(new LinkedList<RemovableSprite>());
 
 		// create ground
@@ -702,10 +697,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 * @param g2d destination graphics
 	 */
 	private void drawText(final Graphics2D g2d) {
-		texts.removeAll(textsToRemove);
-		staticSprites.removeAll(textsToRemove);
-		textsToRemove.clear();
-		
 		/*
 		 * Text objects know their original placement relative to the screen,
 		 * not to the map. Pass them a shifted coordinate system. 
@@ -713,11 +704,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		g2d.translate(-getScreenViewX(), -getScreenViewY());
 		
 		synchronized (texts) {
-			for (final RemovableSprite text : texts) {
+			Iterator<RemovableSprite> it = texts.iterator();
+			while (it.hasNext()) {
+				RemovableSprite text = it.next();
 				if (!text.shouldBeRemoved()) {
 					text.draw(g2d);
 				} else {
-					removeText(text);
+					it.remove();
 				}
 			}
 		}
@@ -727,11 +720,13 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 		// These are anchored to the screen, so they can use the usual proper
 		// coordinates.
 		synchronized (staticSprites) {
-			for (final RemovableSprite text : staticSprites) {
+			Iterator<RemovableSprite> it = staticSprites.iterator();
+			while (it.hasNext()) {
+				RemovableSprite text = it.next();
 				if (!text.shouldBeRemoved()) {
 					text.draw(g2d);
 				} else {
-					removeText(text);
+					it.remove();
 				}
 			}
 		}
@@ -876,7 +871,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	@Override
 	public void removeText(final RemovableSprite entity) {
-		textsToRemove.add(entity);
+		texts.remove(entity);
+		staticSprites.remove(entity);
 	}
 
 	/**
@@ -885,7 +881,6 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	private void removeAllObjects() {
 		logger.debug("CLEANING screen object list");
 		texts.clear();
-		textsToRemove.clear();
 		// staticSprites contents are not zone specific, so don't clear those
 	}
 
@@ -896,16 +891,8 @@ public class GameScreen extends JComponent implements IGameScreen, DropTarget,
 	 */
 	@Override
 	public void clearTexts() {
-		synchronized (texts) {
-			for (final RemovableSprite text : texts) {
-				textsToRemove.add(text);
-			}
-		}
-		synchronized (staticSprites) {
-			for (final RemovableSprite text : staticSprites) {
-				textsToRemove.add(text);
-			}
-		}
+		texts.clear();
+		staticSprites.clear();
 	}
 
 	/*
