@@ -17,8 +17,6 @@ import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.command.AbstractDBCommand;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-
 /**
  * base class for item logging
  *
@@ -55,14 +53,4 @@ public abstract class AbstractLogItemEventCommand extends AbstractDBCommand {
 		return Integer.toString(quantity);
 	}
 
-
-	/**
-	 * returns a string suitable for debug output of this DBCommand.
-	 *
-	 * @return debug string
-	 */
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
-	}
 }

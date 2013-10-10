@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2003-2011 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -19,9 +19,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collection;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Did the player kill all creatures, solo? (excluding rare)
@@ -47,14 +44,14 @@ public class KilledSoloAllCreaturesCondition implements ChatCondition {
 		return "KilledSoloAllCreaturesCondition";
 	}
 
+
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return -1273986;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				KilledSoloAllCreaturesCondition.class);
+		return (obj instanceof KilledSoloAllCreaturesCondition);
 	}
 }

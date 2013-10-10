@@ -8,9 +8,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 /**
  * Were this many quests completed?
  * 
@@ -46,12 +43,15 @@ public class QuestCountCompletedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 47 * count;
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestCountCompletedCondition.class);
+		if (!(obj instanceof QuestCountCompletedCondition)) {
+			return false;
+		}
+		return count == ((QuestCountCompletedCondition) obj).count;
 	}
+
 }

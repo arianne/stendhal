@@ -236,14 +236,14 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 			</classpath>
 		</javac>
 
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.server.StendhalServer"/>
-				<attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} commons-lang.jar log4j.jar groovy.jar ${mysqldriver_jarname} mysql.jar h2.jar"/>
+				<attribute name="Class-path" value=". marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} guava.jar log4j.jar groovy.jar ${mysqldriver_jarname} mysql.jar h2.jar"/>
 			</manifest>
 		</jar>
 		<chmod file="${lib}/${server_jarname}" perm="+x"/>
@@ -264,7 +264,7 @@
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 			</classpath>
 		</javac>
 
@@ -312,7 +312,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${lib}/${server_jarname}"/>
 				<pathelement path="${lib}/${maps_jarname}"/>
 			</classpath>
@@ -365,7 +365,7 @@
 			<fileset file="build/lib/${maps_jarname}"/>
 			<fileset file="libs/marauroa.jar"/>
 			<fileset file="libs/groovy.jar"/>
-			<fileset file="libs/commons-lang.jar"/>
+			<fileset file="libs/guava.jar"/>
 			<fileset file="libs/log4j.jar"/>
 			<fileset file="libs/${mysqldriver_jarname}"/>
 		</copy>
@@ -545,7 +545,7 @@
 		   windowtitle="Stendhal API Documentation Version: ${version}"
 		   sourcepath="${src}">
 			<classpath>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
@@ -577,7 +577,7 @@
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="${commons_lang_jar}"/>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="${guava_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${h2_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
@@ -736,7 +736,7 @@
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<classpath>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${groovy_jar}"/>
@@ -757,7 +757,7 @@
 			<compilerarg value="-Xlint:unchecked"/>
 
 			<classpath>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${groovy_jar}"/>
@@ -967,7 +967,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
 				<pathelement path="${jorbis_jar}"/>
 				<pathelement path="."/>
@@ -1079,7 +1079,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-				<pathelement path="${commons_lang_jar}"/>
+				<pathelement path="${guava_jar}"/>
 				<pathelement path="${mysqldriver_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>

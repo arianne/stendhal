@@ -12,15 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Was a quest with this prefix completed?
@@ -36,7 +34,7 @@ public class QuestWithPrefixCompletedCondition implements ChatCondition {
 	 *            name of quest-slot
 	 */
 	public QuestWithPrefixCompletedCondition(final String questname) {
-		this.questname = questname;
+		this.questname = checkNotNull(questname);
 	}
 
 	@Override
@@ -59,12 +57,14 @@ public class QuestWithPrefixCompletedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 47 * questname.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestWithPrefixCompletedCondition.class);
+		if (!(obj instanceof QuestWithPrefixCompletedCondition)) {
+			return false;
+		}
+		return questname.equals(((QuestWithPrefixCompletedCondition) obj).questname);
 	}
 }

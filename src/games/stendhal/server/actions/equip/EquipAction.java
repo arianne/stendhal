@@ -21,9 +21,10 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.util.Arrays;
+
+import marauroa.common.game.RPAction;
 
 public class EquipAction extends EquipmentAction {
 
@@ -71,7 +72,7 @@ public class EquipAction extends EquipmentAction {
 
 			// Warn about min level
 			if (player.equals(dest.parent)
-					&& ArrayUtils.contains(Constants.CARRYING_SLOTS, dest.slot)
+					&& Arrays.asList(Constants.CARRYING_SLOTS).contains(dest.slot)
 					&& !"bag".equals(dest.slot)) {
 				if(entity instanceof Item) {
 					int minLevel = ((Item) entity).getMinLevel();

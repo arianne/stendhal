@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.rp.achievement.condition;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
@@ -19,9 +20,6 @@ import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Are all the quests in this region completed?
@@ -37,7 +35,7 @@ public class QuestsInRegionCompletedCondition implements ChatCondition {
 	 *            name of Region to check
 	 */
 	public QuestsInRegionCompletedCondition(final String region) {
-		this.region = region;
+		this.region = checkNotNull(region);
 	}
 
 	@Override
@@ -56,12 +54,14 @@ public class QuestsInRegionCompletedCondition implements ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return 47 * region.hashCode();
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestsInRegionCompletedCondition.class);
+		if (!(obj instanceof QuestsInRegionCompletedCondition)) {
+			return false;
+		}
+		return region.equals(((QuestsInRegionCompletedCondition) obj).region);
 	}
 }

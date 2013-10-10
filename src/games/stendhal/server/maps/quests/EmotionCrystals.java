@@ -43,8 +43,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.WordUtils;
-
 /**
  * QUEST: Emotion Crystals
  *
@@ -209,7 +207,7 @@ public class EmotionCrystals extends AbstractQuest {
 
 		// Add the crystals to the NPC list with their riddle
 		for (String color : crystalColors) {
-			npcList.add(npcs.get(WordUtils.capitalize(color) + " Crystal"));
+			npcList.add(npcs.get(Character.toUpperCase(color.charAt(0)) + color.substring(1) + " Crystal"));
 		}
 
 		// Riddles

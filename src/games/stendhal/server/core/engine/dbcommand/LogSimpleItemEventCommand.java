@@ -16,6 +16,8 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.sql.SQLException;
 
+import com.google.common.base.Objects;
+
 import marauroa.common.game.RPObject;
 import marauroa.server.db.DBTransaction;
 import marauroa.server.game.db.DAORegister;
@@ -69,4 +71,13 @@ public class LogSimpleItemEventCommand extends AbstractLogItemEventCommand {
 		stendhalItemDAO.itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
 	}
 
+	/**
+	 * returns a string suitable for debug output of this DBCommand.
+	 *
+	 * @return debug string
+	 */
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("player", player).add("event", event).toString();
+	}
 }
