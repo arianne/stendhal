@@ -4,32 +4,32 @@
 1.11
 
 *world*
+- Mine Town Weeks are celebrated
+  - New Paper chase quest
+  - New Sokoban game
+  - all the games from last years festival are back
 - Margaret accepts coupons
 - New look for Semos plains
 - More creature descriptions
-- Poisoning and new status effects handled with new system
 - Added fairy cakes to daily item quest
 - Icons to indicate healer and merchant NPCs
-- Paper chase quest for Mine Town Weeks
 - Pebbles sprite replaced by rocks in some collision areas on maps
 - New achievement: Fisherman
-- Added reversible path to Rose Leigh
 
 *client*
 - Notifies player of last login attempt
 - Subwindows on the right side panel can be arranged by the user
 
 *fixes*
-- Devil monk:
-  - Corpse dimensions and centering
-  - Corpse sprite changed
 - Screen flashing during zone colouring change has been fixed
 - Resizing karma bar no longer causes it to flash
 - Font setting changes opening travel log window has been fixed
 
 *code*
-- SayRequiredItemsFromCollectionAction can use an index to get items from QUEST_SLOT
 - Status icon positions are automatically arranged
+- Poisoning and new status effects handled with new system
+
+
 
 1.10
 9th September 2013
