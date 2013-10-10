@@ -27,6 +27,7 @@ import java.awt.event.KeyListener;
 class GameKeyHandler implements KeyListener {
 	private final StendhalClient client;
 	private final GameScreen screen;
+	private long lastAction = 0;
 
 	/**
 	 * Delayed direction release holder.
@@ -75,15 +76,18 @@ class GameKeyHandler implements KeyListener {
 			final Direction direction = keyCodeToDirection(e.getKeyCode());
 
 			if (e.isAltGraphDown()) {
-				final User user = User.get();
+				if (System.currentTimeMillis() - lastAction > 1000) {
+					final User user = User.get();
 
-				final EntityView<?> view = screen.getEntityViewAt(user.getX()
-						+ direction.getdx(), user.getY() + direction.getdy());
+					final EntityView<?> view = screen.getEntityViewAt(user.getX()
+							+ direction.getdx(), user.getY() + direction.getdy());
 
-				if (view != null) {
-					final IEntity entity = view.getEntity();
-					if (!entity.equals(user)) {
-						view.onAction();
+					if (view != null) {
+						final IEntity entity = view.getEntity();
+						if (!entity.equals(user)) {
+							view.onAction();
+							lastAction = System.currentTimeMillis();
+						}
 					}
 				}
 			}

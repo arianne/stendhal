@@ -138,7 +138,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 			}
 		};
 		npc.setEntityClass("sokobannpc");
-		npc.setPosition(46, 125);
+		npc.setPosition(48, 118);
 		npc.setDirection(Direction.DOWN);
 		zone.add(npc);
 	}
@@ -211,7 +211,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 3, npc.getY() + 1);
+		player.setPosition(npc.getX() - 2, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 
 		npc.say("I am sorry " + playerName + ", you have been too slow.");
@@ -224,7 +224,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 		if (player == null) {
 			return;
 		}
-		player.setPosition(npc.getX() - 3, npc.getY() + 1);
+		player.setPosition(npc.getX() - 2, npc.getY() + 1);
 		player.setDirection(Direction.RIGHT);
 	}
 }
