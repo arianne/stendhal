@@ -322,8 +322,24 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="width">4</attribute>
       <attribute name="height">2</attribute>
     </entity>
+    
+    <entity x="49" y="110" condition="stendhal.minetown">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+    
+    <entity x="19" y="114" condition="stendhal.minetown">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
 
-    <!-- Round tables -->
+    <!-- Square tables -->
     <entity x="56" y="117" condition="stendhal.minetown">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
@@ -344,7 +360,21 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <attribute name="description">You see a table for setting food and drinks on.</attribute>
       <attribute name="width">2</attribute>
     </entity>
-
+    
+    <entity x="20" y="121" condition="stendhal.minetown">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
+    <entity x="20" y="108" condition="stendhal.minetown">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a table for setting food and drinks on.</attribute>
+      <attribute name="width">2</attribute>
+    </entity>
+    
     <!-- ENDMINE TOWN WEEKS -->
 
   </zone>
