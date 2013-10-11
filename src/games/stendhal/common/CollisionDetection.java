@@ -166,55 +166,20 @@ public class CollisionDetection {
 	 *	trespassable areas of the map, <code>false</code> otherwise
 	 */
 	public boolean collides(final double x, final double y, final double w, final double h) {
+		/*
+		 * CollisionMap does the same tests, but least tests use zones without
+		 * collisions, so it's simplest to do them here too.
+		 */
 		if ((x < 0) || (x + w > width)) {
 			return true;
 		}
-
 		if ((y < 0) || (y + h > height)) {
 			return true;
 		}
 
-		final double startx;
-		if (x >= 0) {
-			startx = x;
-		} else {
-			startx = 0;
-		}
-		final double endx;
-		if (x + w < width) {
-			endx = x + w;
-		} else {
-			endx = width;
-		}
-		final double starty;
-		if (y >= 0) {
-			starty = y;
-		} else {
-			starty = 0;
-		}
-		final double endy;
-		if (y + h < height) {
-			endy = y + h;
-		} else {
-			endy = height;
-		}
-
-		/*
-		 * TODO: the advantages from using bitset in collissionmap are lost here
-		 * the weird behaviour with client side player when using map.collides (x,y,width, height)
-		 * is caused by the delta calculation for 2dviewtiles; 
-		 */
-		
-		for (int k = (int) starty; k < endy; k++) {
-			
-			for (int i = (int) startx; i < endx; i++) {
-				if (map.get(i, k)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
+		int iHeight = (int) Math.ceil(Math.ceil(y + h) - y);
+		int iWidth = (int) Math.ceil(Math.ceil(x + w) - x);
+		return map.collides((int) x, (int) y, iWidth, iHeight);
 	}
 
 	/**
