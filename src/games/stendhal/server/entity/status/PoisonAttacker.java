@@ -27,10 +27,6 @@ public class PoisonAttacker {
 		this.poison = poison;
 	}
 
-	public PoisonAttacker() {
-		// standard constructor
-	}
-
 	public void applyAntistatus(double antipoison) {
 		// invert the value for multiplying
 		antipoison = (1 - antipoison);
@@ -44,15 +40,7 @@ public class PoisonAttacker {
 			target.getStatusList().inflictStatus(status, poison);
 			return true;
 		}
-	return false;
-	}
-
-	public void clearConsumables(RPEntity target) {
-		target.getStatusList().removeAll(PoisonStatus.class);
-	}
-
-	public String getName() {
-		return name;
+		return false;
 	}
 
 	public int getProbability() {
