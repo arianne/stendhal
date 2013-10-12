@@ -11,8 +11,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import games.stendhal.common.Rand;
-import games.stendhal.server.entity.RPEntity;
 
 /**
  * A base class for status effects
@@ -31,16 +29,6 @@ public abstract class Status {
 	 */
 	public Status(final String name) {
 		this.name = name;
-	}
-
-	// TODO: move to StatusAttacker
-	public void attemptToInfclict(final RPEntity target, final double probability, final RPEntity attacker) {
-
-		// Roll dice between 1-100
-		int roll = Rand.randUniform(1, 100);
-		if (roll <= probability) {
-			target.getStatusList().inflictStatus(this, attacker);
-		}
 	}
 
 	/**
