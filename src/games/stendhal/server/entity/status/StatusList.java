@@ -192,12 +192,11 @@ public class StatusList {
 	/**
 	 * Make entity immune to a specified status attack.
 	 * 
-	 * @param attacker
-	 *            Status attack type
+	 * @param statusType Status type
 	 */
-	public void setImmune(final StatusAttacker attacker) {
-		immunities.add(attacker.getStatusType());
-		removeAll(attacker.getStatusType());
+	public void setImmune(final StatusType statusType) {
+		immunities.add(statusType);
+		removeAll(statusType);
 	}
 
 	/**
