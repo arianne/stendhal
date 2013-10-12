@@ -16,8 +16,6 @@ import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.common.constants.Nature;
 import games.stendhal.common.constants.SoundLayer;
-import games.stendhal.common.grammar.Grammar;
-import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -762,51 +760,8 @@ public class Creature extends NPC {
 		if (poisoner == null) {
 			return;
 		}
-
 		final RPEntity entity = getAttackTarget();
-
-		/*
-		 * Antipoison attributes
-		 */
-		double sumAll = 0.0;
-		List<Item> defenderEquipment = entity.getDefenseItems();
-		if (entity.hasRing()) {
-			defenderEquipment.add(entity.getRing());
-		}
-
-		for (final Item equipmentItem : defenderEquipment) {
-			if (equipmentItem.has("antipoison")) {
-				sumAll += equipmentItem.getDouble("antipoison");
-			}
-		}
-
-		// Store the creatures poisoner probability because we will be modifying it if antipoison equipment is used
-		int probability = poisoner.getProbability();
-
-		/*
-		 * Prevent antipoison attribute from surpassing 100%
-		 */
-		if (sumAll > 1) { sumAll = 1; }
-
-		// Checking creatures poison value
-		LOGGER.debug("Poison probability before: " + poisoner.getProbability());
-		// Checking player's antipoison value
-		LOGGER.debug("Antipoison value = " + sumAll);
-
-		if (sumAll > 0) {
-			poisoner.applyAntistatus(sumAll);
-		}
-
-		// Checking creatures poison value after antipoison is applied
-		LOGGER.debug("Poison probability after: " + poisoner.getProbability());
-
-		if (poisoner.attemptToInflict(entity)) {
-			new GameEvent(getName(), "poison", entity.getName()).raise();
-			entity.sendPrivateText("You have been poisoned by " + Grammar.a_noun(getName()) + ".");
-		}
-
-		// Return the poisoner's probability
-		poisoner.setProbability(probability);
+		poisoner.attemptToInflict(entity, this);
 	}
 
 	public void equip(final List<EquipItem> items) {

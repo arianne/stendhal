@@ -12,51 +12,62 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import java.util.List;
+
 import games.stendhal.common.Rand;
+import games.stendhal.common.grammar.Grammar;
+import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
+import games.stendhal.server.entity.item.Item;
 
 public class PoisonAttacker {
-    final String name = "poison";
-    
-	ConsumableItem poison;
+
+	private ConsumableItem poison;
 	private int probability;
 	
 	public PoisonAttacker(final int probability, final ConsumableItem poison) {
 		this.probability = probability;
 		this.poison = poison;
 	}
-
-	public void applyAntistatus(double antipoison) {
-		// invert the value for multiplying
-		antipoison = (1 - antipoison);
-		this.probability *= antipoison;
-	}
 	
-	public boolean attemptToInflict(final RPEntity target) {
+	public boolean attemptToInflict(final RPEntity target, final RPEntity attacker) {
+
+		/*
+		 * Antipoison attributes
+		 */
+		double sumAll = 0.0;
+		List<Item> defenderEquipment = target.getDefenseItems();
+		if (target.hasRing()) {
+			defenderEquipment.add(target.getRing());
+		}
+
+		for (final Item equipmentItem : defenderEquipment) {
+			if (equipmentItem.has("antipoison")) {
+				sumAll += equipmentItem.getDouble("antipoison");
+			}
+		}
+
+		// Prevent antipoison attribute from surpassing 100%
+		if (sumAll > 1) {
+			sumAll = 1;
+		}
+
+		double myProbability = this.probability;
+		if (sumAll > 0) {
+			// invert the value for multiplying
+			double myAntipoison = (1 - sumAll);
+			myProbability *= myAntipoison;
+		}
+
 		final int roll = Rand.roll1D100();
-		if (roll <= probability) {
+		if (roll <= myProbability) {
 			PoisonStatus status = new PoisonStatus(poison.getAmount(), poison.getFrecuency(), poison.getRegen());
 			target.getStatusList().inflictStatus(status, poison);
+			new GameEvent(attacker.getName(), "poison", target.getName()).raise();
+			target.sendPrivateText("You have been poisoned by " + Grammar.a_noun(attacker.getName()) + ".");
 			return true;
 		}
 		return false;
-	}
-
-	public int getProbability() {
-		return this.probability;
-	}
-	
-	public void setProbability(int p) {
-		this.probability = p;
-	}
-
-	/**
-	 * returns the status type
-	 *
-	 * @return StatusType
-	 */
-	public StatusType getStatusType() {
-		return StatusType.POISONED;
 	}
 }

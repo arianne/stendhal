@@ -44,7 +44,7 @@ public class PoisonAttackerTest {
 
 		final PoisonAttacker poisoner = new PoisonAttacker(100, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
-		poisoner.attemptToInflict(victim);
+		poisoner.attemptToInflict(victim, SingletonRepository.getEntityManager().getCreature("snake"));
 		assertTrue(victim.hasStatus(StatusType.POISONED));
 	}
 
@@ -58,7 +58,7 @@ public class PoisonAttackerTest {
 
 		final PoisonAttacker poisoner = new PoisonAttacker(0, poison);
 		final Player victim = PlayerTestHelper.createPlayer("bob");
-		poisoner.attemptToInflict(victim);
+		poisoner.attemptToInflict(victim, SingletonRepository.getEntityManager().getCreature("snake"));
 		assertFalse(victim.hasStatus(StatusType.POISONED));
 	}
 }
