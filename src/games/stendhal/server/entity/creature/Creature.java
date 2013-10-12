@@ -202,6 +202,7 @@ public class Creature extends NPC {
 		// this.dropItemInstances is ignored;
 
 		this.setAIProfiles(copy.getAIProfiles());
+		this.statusAttackers = copy.statusAttackers;
 		this.noises = copy.noises;
 
 		this.respawnTime = copy.respawnTime;

@@ -66,6 +66,9 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+
 public abstract class RPEntity extends GuidedEntity {
 
 	private static final float WEAPON_DEF_MULTIPLIER = 4.0f;
@@ -119,7 +122,7 @@ public abstract class RPEntity extends GuidedEntity {
 	private String deathSound;
 
 	/** Entity uses a status attack */
-	private StatusAttacker statusAttack;
+	protected ImmutableList<StatusAttacker> statusAttackers = ImmutableList.of();
 
 	/** a list of current statuses */
 	protected StatusList statusList;
@@ -2759,8 +2762,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 						+ defender.getID() + ": Damage: " + damage);
 
 				// Try to inflict a status effect
-				if (statusAttack != null) {
-					statusAttack.attemptToInfclict(defender, this);
+				for (StatusAttacker statusAttacker : statusAttackers) {
+					statusAttacker.attemptToInfclict(defender, this);
 				}
 
 				result = true;
@@ -2903,62 +2906,55 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		return null;
 	}
 
-    /**
-     * Set entity to ignore collision tiles
-     *
-     * @param ignore
-     */
-    public void setIgnoresCollision(boolean ignore) {
-        ignoreCollision = ignore;
-        if (ignore) {
-            put("ignore_collision", "");
-        } else {
-            remove("ignore_collision");
-        }
-    }
+	/**
+	 * Set entity to ignore collision tiles
+	 *
+	 * @param ignore
+	 */
+	public void setIgnoresCollision(boolean ignore) {
+		ignoreCollision = ignore;
+		if (ignore) {
+			put("ignore_collision", "");
+		} else {
+			remove("ignore_collision");
+		}
+	}
 
-    /**
-     * Tells if entity can pass through collision tiles
-     *
-     * @return ignoreCollision
-     */
-    public boolean ignoresCollision() {
-        return ignoreCollision;
-    }
+	/**
+	 * Tells if entity can pass through collision tiles
+	 *
+	 * @return ignoreCollision
+	 */
+	public boolean ignoresCollision() {
+		return ignoreCollision;
+	}
 
-    /**
-     * Sets the sound played at entity death
-     *
-     * @param sound Name of sound
-     */
-    public void setDeathSound(final String sound) {
-        deathSound = sound;
-    }
+	/**
+	 * Sets the sound played at entity death
+	 *
+	 * @param sound Name of sound
+	 */
+	public void setDeathSound(final String sound) {
+		deathSound = sound;
+	}
 
-    /**
-     * @return Name of sound played at entity death
-     */
-    public String getDeathSound() {
-        return deathSound;
-    }
+	/**
+	 * @return Name of sound played at entity death
+	 */
+	public String getDeathSound() {
+		return deathSound;
+	}
 
-    /**
-     * Add a status attack type to the entity
-     *
-     * @param statusAttacker Status attacker
-     */
-    public void setStatusAttack(final StatusAttacker statusAttacker) {
-        statusAttack = statusAttacker;
-    }
-
-    /**
-     * Check if entity can inflict a status effect
-     *
-     * @return true, if a statusAttack is defined; false otherwise
-     */
-    public boolean usesStatusAttack() {
-        return (statusAttack != null);
-    }
+	/**
+	 * Add a status attack type to the entity
+	 *
+	 * @param statusAttacker Status attacker
+	 */
+	public void addStatusAttacker(final StatusAttacker statusAttacker) {
+		// the immutable statusAttackers list is shared between multiple instances of Creatures to reduce memory usage
+		Builder<StatusAttacker> builder = ImmutableList.builder();
+		statusAttackers = builder.addAll(statusAttackers).add(statusAttacker).build();
+	}
 
 	/**
 	 * gets the status list

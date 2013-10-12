@@ -284,7 +284,7 @@ public class DefaultCreature {
 			try {
 				String code = "import games.stendhal.server.entity.status.*;\r\n" + statusAttack;
 				StatusAttacker attacker = new StatusAttacker((Status) interp.evaluate(code), statusAttackProbability);
-				creature.setStatusAttack(attacker);
+				creature.addStatusAttacker(attacker);
 			} catch (CompilationFailedException e) {
 				throw new IllegalArgumentException(e);
 			}
