@@ -16,7 +16,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 
-public class PoisonAttacker implements StatusAttacker {
+public class PoisonAttacker {
     final String name = "poison";
     
 	ConsumableItem poison;
@@ -31,17 +31,12 @@ public class PoisonAttacker implements StatusAttacker {
 		// standard constructor
 	}
 
-	@Override
 	public void applyAntistatus(double antipoison) {
 		// invert the value for multiplying
 		antipoison = (1 - antipoison);
 		this.probability *= antipoison;
 	}
 	
-	/**
-	 * 
-	 */
-	@Override
 	public boolean attemptToInflict(final RPEntity target) {
 		final int roll = Rand.roll1D100();
 		if (roll <= probability) {
@@ -52,22 +47,18 @@ public class PoisonAttacker implements StatusAttacker {
 	return false;
 	}
 
-	@Override
 	public void clearConsumables(RPEntity target) {
 		target.getStatusList().removeAll(PoisonStatus.class);
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public int getProbability() {
 		return this.probability;
 	}
 	
-	@Override
 	public void setProbability(int p) {
 		this.probability = p;
 	}

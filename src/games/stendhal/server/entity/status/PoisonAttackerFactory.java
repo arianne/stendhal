@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 public class PoisonAttackerFactory {
 	private static Logger logger = Logger.getLogger(PoisonAttackerFactory.class);
 
-	public static StatusAttacker get(final String profile) {
+	public static PoisonAttacker get(final String profile) {
 		if (profile != null) {
 			final String[] statusparams = profile.split(",");
 			final ConsumableItem status = (ConsumableItem) SingletonRepository.getEntityManager().getItem(statusparams[1]);

@@ -44,8 +44,8 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.status.PoisonAttacker;
 import games.stendhal.server.entity.status.PoisonAttackerFactory;
-import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
 
@@ -129,7 +129,7 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	private StatusAttacker poisoner;
+	private PoisonAttacker poisoner;
 	private IdleBehaviour idler;
 
 	private int targetX;
