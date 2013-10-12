@@ -39,14 +39,12 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusList;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.AttackEvent;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -67,7 +65,6 @@ import marauroa.server.game.Statistics;
 import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
-import org.codehaus.groovy.control.CompilationFailedException;
 
 public abstract class RPEntity extends GuidedEntity {
 
@@ -122,8 +119,7 @@ public abstract class RPEntity extends GuidedEntity {
 	private String deathSound;
 
 	/** Entity uses a status attack */
-	private Status statusAttack;
-	private double statusAttackProbability;
+	private StatusAttacker statusAttack;
 
 	/** a list of current statuses */
 	protected StatusList statusList;
@@ -2763,9 +2759,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 						+ defender.getID() + ": Damage: " + damage);
 
 				// Try to inflict a status effect
-				//System.out.println(getName() + ": Status attack = " + statusAttack);
 				if (statusAttack != null) {
-				    statusAttack.attemptToInfclict(defender, statusAttackProbability, this);
+					statusAttack.attemptToInfclict(defender, this);
 				}
 
 				result = true;
@@ -2948,58 +2943,13 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
     }
 
     /**
-     * @return
-     *      Type of status attack entity is using
-     */
-    public Status getStatusAttack() {
-        return statusAttack;
-    }
-
-    /**
-     * @return
-     *      Probability of inflicting status
-     */
-    public double getStatusAttackProbability() {
-        return statusAttackProbability;
-    }
-
-
-    /**
      * Add a status attack type to the entity
      *
-     * @param status
-     *          Status attack type
-     * @param probability
-     *          Probability of inflicting status
+     * @param statusAttacker Status attacker
      */
-    public void setStatusAttack(final Status status, final double probability) {
-        statusAttack = status;
-        statusAttackProbability = probability;
-
-        //System.out.println("Created entity \"" + getName() + "\" with status attack \"" + statusAttack.getName() +
-          //      "\". Probability = " + Double.toString(probability) + "%.");
+    public void setStatusAttack(final StatusAttacker statusAttacker) {
+        statusAttack = statusAttacker;
     }
-
-    /**
-     * Add a status attack type to the entity using a string value.
-     *
-     * @param status
-     *          Status attack type
-     * @param probability
-     *          Probability of inflicting status
-     */
-    public void setStatusAttack(final String status, final double probability) {
-        Binding groovyBinding = new Binding();
-        final GroovyShell interp = new GroovyShell(groovyBinding);
-        try {
-            String code = "import games.stendhal.server.entity.status.*;\r\n"
-                + status;
-            setStatusAttack((Status) interp.evaluate(code), probability);
-        } catch (CompilationFailedException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
 
     /**
      * Check if entity can inflict a status effect

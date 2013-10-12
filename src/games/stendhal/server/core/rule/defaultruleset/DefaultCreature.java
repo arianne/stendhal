@@ -17,6 +17,10 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
+import games.stendhal.server.entity.status.Status;
+import games.stendhal.server.entity.status.StatusAttacker;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,6 +32,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+import org.codehaus.groovy.control.CompilationFailedException;
 
 public class DefaultCreature {
 
@@ -274,7 +279,15 @@ public class DefaultCreature {
 		
 		// Status attack types
 		if (statusAttack != null) {
-		    creature.setStatusAttack(statusAttack, statusAttackProbability);
+			Binding groovyBinding = new Binding();
+			final GroovyShell interp = new GroovyShell(groovyBinding);
+			try {
+				String code = "import games.stendhal.server.entity.status.*;\r\n" + statusAttack;
+				StatusAttacker attacker = new StatusAttacker((Status) interp.evaluate(code), statusAttackProbability);
+				creature.setStatusAttack(attacker);
+			} catch (CompilationFailedException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
 		
 		return creature;

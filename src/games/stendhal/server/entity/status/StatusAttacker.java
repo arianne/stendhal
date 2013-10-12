@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2013 - Faiumoni e. V.                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -12,25 +11,38 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.entity.RPEntity;
 
-public interface StatusAttacker {
-	void applyAntistatus(double antistatus);
-	
-	boolean attemptToInflict(RPEntity target);
-	
-	public void clearConsumables(RPEntity target);
-	
-	String getName();
-	
-	int getProbability();
-	
-	void setProbability(int p);
+/**
+ * a status attacker
+ *
+ * @author hendrik
+ */
+public class StatusAttacker {
+	private final double probability;
+	private final Status status;
 
 	/**
-	 * returns the status type
+	 * a Status attacker
 	 *
-	 * @return StatusType
+	 * @param status status to attack with
+	 * @param probability probability of an attack in this turn
 	 */
-	public abstract StatusType getStatusType();
+	public StatusAttacker(Status status, double probability) {
+		super();
+		this.probability = probability;
+		this.status = status;
+	}
+
+
+	public void attemptToInfclict(final RPEntity target, final RPEntity attacker) {
+
+		// Roll dice between 1-100
+		int roll = Rand.randUniform(1, 100);
+		if (roll <= probability) {
+			target.getStatusList().inflictStatus(status, attacker);
+		}
+	}
+
 }
