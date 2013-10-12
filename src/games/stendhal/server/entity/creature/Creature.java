@@ -759,6 +759,9 @@ public class Creature extends NPC {
 	 * @throws NullPointerException if attack target is null
 	 */
 	public void tryToPoison() {
+		if (poisoner == null) {
+			return;
+		}
 
 		final RPEntity entity = getAttackTarget();
 
@@ -1150,19 +1153,4 @@ public class Creature extends NPC {
 		return getZone() == player.getZone();
 	}
 
-	//
-	// XXX START: Status
-	//
-
-	/**
-	 * Check if entity can inflict a status effect
-	 */
-	@Override
-	public boolean usesStatusAttack() {
-	    return (poisoner != null);
-	}
-
-	//
-	// END: Status
-	//
 }

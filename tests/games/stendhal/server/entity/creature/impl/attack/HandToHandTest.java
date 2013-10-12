@@ -62,7 +62,6 @@ public class HandToHandTest {
 		final Creature creature = createMock(Creature.class);
 		expect(creature.isAttackTurn(0)).andReturn(true);
 		expect(creature.attack()).andReturn(true);
-		expect(creature.usesStatusAttack()).andReturn(true);
 		creature.tryToPoison();
 		replay(creature);
 		hth.attack(creature);
