@@ -845,11 +845,11 @@ public class Creature extends NPC {
 				if (strategy.canAttackNow(this)) {
 					strategy.attack(this);
 					this.makeNoiseChance(100, "fight");
-		        } else {
-		        	// can't attack and trying to find better position
-		        	// treat it as creature follows player.
-		        	this.makeNoiseChance(100, "follow");
-		        }
+				} else {
+					// can't attack and trying to find better position
+					// treat it as creature follows player.
+					this.makeNoiseChance(100, "follow");
+				}
 			} else {
 				this.stopAttack();
 				strategy.findNewTarget(this);

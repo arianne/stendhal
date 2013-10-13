@@ -2746,6 +2746,11 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			nature = getDamageType();
 		}
 
+		// Try to inflict a status effect
+		for (StatusAttacker statusAttacker : statusAttackers) {
+			statusAttacker.onAttackAttempt(defender, this);
+		}
+
 		if (this.canHit(defender)) {
 			defender.applyDefXP(this);
 
@@ -2760,12 +2765,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 				defender.onDamaged(this, damage);
 				logger.debug("attack from " + this.getID() + " to "
 						+ defender.getID() + ": Damage: " + damage);
-
-				// Try to inflict a status effect
-				for (StatusAttacker statusAttacker : statusAttackers) {
-					statusAttacker.attemptToInfclict(defender, this);
-				}
-
 				result = true;
 			} else {
 				// The attack was too weak, it was blocked
@@ -2773,6 +2772,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 						+ defender.getID() + ": Damage: " + 0);
 			}
 			this.addEvent(new AttackEvent(true, damage, nature, isRanged));
+
+			// Try to inflict a status effect
+			for (StatusAttacker statusAttacker : statusAttackers) {
+				statusAttacker.onHit(defender, this, damage);
+			}
+
 		} else {
 			// Missed
 			logger.debug("attack from " + this.getID() + " to "
@@ -2781,7 +2786,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 
 		this.notifyWorldAboutChanges();
-
 		return result;
 	}
 

@@ -35,9 +35,25 @@ public class StatusAttacker {
 		this.status = status;
 	}
 
+	/**
+	 * an attempt to attack the target, it may succeed or not
+	 *
+	 * @param target   target   defender
+	 * @param attacker attacker attacker
+	 */
+	@SuppressWarnings("unused")
+	public void onAttackAttempt(RPEntity target, RPEntity attacker) {
+		// stub
+	}
 
-	public void attemptToInfclict(final RPEntity target, final RPEntity attacker) {
-
+	/**
+	 * the target was hit, this may or may not have caused damage
+	 *
+	 * @param target   target   defender
+	 * @param attacker attacker attacker
+	 * @param damage   amount of damage
+	 */
+	public void onHit(RPEntity target, RPEntity attacker, @SuppressWarnings("unused") int damage) {
 		// Roll dice between 1-100
 		int roll = Rand.randUniform(1, 100);
 		if (roll <= probability) {
