@@ -92,6 +92,9 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 		int levelOffset = level * (HEIGHT + 1) + 1;
 		for (int y = 0; y < HEIGHT; y++) {
 			String line = levelData[y + levelOffset];
+			if (line.startsWith("--")) {
+				logger.error("Found level seperator within level " + lvl);
+			}
 			for (int x = 0; x < WIDTH; x++) {
 				char chr = line.charAt(x);
 				switch (chr) {
