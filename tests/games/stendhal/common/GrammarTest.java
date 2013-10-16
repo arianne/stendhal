@@ -89,7 +89,31 @@ public class GrammarTest {
 		assertEquals("eighth", Grammar.ordered(8));
 		assertEquals("ninth", Grammar.ordered(9));
 		assertEquals("tenth", Grammar.ordered(10));
-		assertEquals("11", Grammar.ordered(11));
+		
+		assertEquals("11th", Grammar.ordered(11));
+		assertEquals("12th", Grammar.ordered(12));
+		assertEquals("13th", Grammar.ordered(13));
+		assertEquals("14th", Grammar.ordered(14));
+		
+		assertEquals("21st", Grammar.ordered(21));
+		assertEquals("22nd", Grammar.ordered(22));
+		assertEquals("23rd", Grammar.ordered(23));
+		assertEquals("24th", Grammar.ordered(24));
+		
+		assertEquals("101st", Grammar.ordered(101));
+		assertEquals("102nd", Grammar.ordered(102));
+		assertEquals("103rd", Grammar.ordered(103));
+		assertEquals("104th", Grammar.ordered(104));
+		
+		assertEquals("111th", Grammar.ordered(111));
+		assertEquals("112th", Grammar.ordered(112));
+		assertEquals("113th", Grammar.ordered(113));
+		assertEquals("114th", Grammar.ordered(114));
+		
+		assertEquals("131st", Grammar.ordered(131));
+		assertEquals("132nd", Grammar.ordered(132));
+		assertEquals("133rd", Grammar.ordered(133));
+		assertEquals("134th", Grammar.ordered(134));
 	}
 
 	/**

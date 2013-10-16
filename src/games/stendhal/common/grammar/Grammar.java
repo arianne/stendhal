@@ -917,9 +917,34 @@ public class Grammar {
 		case 9:	return "ninth";
 		case 10:return "tenth";
 		default:
+			if (n > 0) {
+				return n + ordinalSuffix(n);
+			}
 			logger.error("Grammar.ordered not implemented for: " + n);
 			return Integer.toString(n);
 		}
+	}
+	
+	/**
+	 * Get ordinal suffix string corresponding to an integer.
+	 * 
+	 * @param n integer whose ordinal's suffix is wanted
+	 * @return ordinal suffix
+	 */
+	private static String ordinalSuffix(int n) {
+		int penultimate = (n % 100) / 10;
+		if (penultimate == 1) {
+			return "th";
+		}
+		int last = n % 10;
+		if (last == 1) {
+			return "st";
+		} else if (last == 2) {
+			return "nd";
+		} else if (last == 3) {
+			return "rd";
+		}
+		return "th";
 	}
 
 	/**
