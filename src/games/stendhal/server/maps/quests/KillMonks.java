@@ -23,6 +23,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -122,6 +124,7 @@ public class KillMonks extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
+		actions.add(new IncreaseKarmaAction(5));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, creaturestokill));
 
 		
@@ -137,7 +140,9 @@ public class KillMonks extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"That is a pity... Maybe you'll change your mind soon and help a sad man then.",
-				new SetQuestAction(QUEST_SLOT, 0, "rejected"));
+				new MultipleActions(
+				        new SetQuestAction(QUEST_SLOT, 0, "rejected"),
+				        new DecreaseKarmaAction(5)));
 	}
 
 	private void step_2() {
