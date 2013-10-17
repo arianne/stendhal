@@ -51,6 +51,7 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li>XP</li>
+ * <li>some karma</li>
  * <li>amusement</li>
  * </ul>
  * 
