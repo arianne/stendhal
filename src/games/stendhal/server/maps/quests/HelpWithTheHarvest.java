@@ -39,6 +39,32 @@ import java.util.List;
  * (proof of concept for pushable blocks)
  * 
  * @author madmetzger
+ * 
+ * 
+ * QUEST: Help with the Harvest
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Eheneumniranin (the half-elf on Ados farm) </li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Eheneumniranin asks you to push some carts full of straw to Karl's barn </li>
+ * <li> Push 2 carts to the designated spots in front of the barn </li> 
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li> 50 XP </li>
+ * <li> some karma (5 + (2 | -2)) </li>
+ * <li> between 10 and 20 <item>grain</item> </li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>None</li>
+ * </ul>
  */
 public class HelpWithTheHarvest extends AbstractQuest {
 	
