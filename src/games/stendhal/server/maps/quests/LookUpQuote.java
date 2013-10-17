@@ -47,7 +47,12 @@ import java.util.Map;
  * to the fisherman and tells him the quote.</ul>
  * 
  * 
- * REWARD: <ul><li>750 XP - A fishing rod.</ul>
+ * REWARD:
+ * <ul>
+ * <li> 750 XP
+ * <li> some karma (10)
+ * <li> A fishing rod
+ * </ul>
  * 
  * REPETITIONS: <ul><li> no repetitions</ul>
  * 
@@ -181,6 +186,7 @@ public class LookUpQuote extends AbstractQuest {
 						fishingRod.setBoundTo(player.getName());
 						player.equipOrPutOnGround(fishingRod);
 						player.addXP(750);
+						player.addKarma(10);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();
 					} else if (ConversationPhrases.GOODBYE_MESSAGES.contains(sentence.getTriggerExpression().getNormalized())) {
