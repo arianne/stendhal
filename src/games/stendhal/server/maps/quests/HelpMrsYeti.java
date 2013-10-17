@@ -72,7 +72,9 @@ import org.apache.log4j.Logger;
  *
  * REWARD:
  * <ul>
-
+ * <li> 1,000 XP </li>
+ * <li> some karma (10 + (10 | -10)) </li>
+ * <li> Can buy <item>roach</item> from Mrs. Yeti </li>
  * </ul>
  *
  * REPETITIONS:
