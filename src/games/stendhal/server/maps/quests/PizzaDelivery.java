@@ -63,6 +63,7 @@ import org.apache.log4j.Logger;
  * <ul>
  * <li> XP (Amount varies depending on customer. You only get half of the XP if
  * the pizza has become cold.)
+ * <li> some karma if delivered on time (5)
  * <li> gold coins (As a tip, if you were fast enough; amount varies depending
  * on customer.)
  * </ul>
@@ -515,6 +516,7 @@ public class PizzaDelivery extends AbstractQuest {
 							money.setQuantity(data.tip);
 							player.equipOrPutOnGround(money);
 							player.addXP(data.xp);
+							player.addKarma(5);
 						}
 						new InflictStatusOnNPCAction("pizza").fire(player, null, npc);
 						player.setQuest(QUEST_SLOT, "done");
