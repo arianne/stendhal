@@ -49,6 +49,7 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li> 2000 XP</li>
+ * <li> some karma (25 + (5 | -5)) </li>
  * <li> The player gets a fisherman's license (i.e. fishing skills increased by
  *      0.2).</li>
  * </ul>
@@ -187,6 +188,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 									raiser.say("This fish is looking very good! Do you have another one for me?");
 								} else {
 									player.addXP(2000);
+									player.addKarma(25);
 									raiser.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 									player.setQuest(QUEST_SLOT, "done");
 									// once there are other ways to increase your
