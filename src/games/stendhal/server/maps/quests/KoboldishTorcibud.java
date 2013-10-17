@@ -73,7 +73,12 @@ import org.apache.log4j.Logger;
  * <li> rejecting the quest wastes some Karma
  * </ul>
  * <p>
- * REWARD: <ul><li>healing V.S.O.P. Koboldish Torcibud <li>500 XP</ul>
+ * REWARD:
+ * <ul>
+ * <li> healing V.S.O.P. Koboldish Torcibud
+ * <li> 500 XP
+ * <li> some karma (20 + (20 | -20))
+ * </ul>
  * <p>
  * REPETITIONS: <ul><li> unlimited
  * <li>once every 3 to 6 days (randomly determined at quest completion time</ul>
@@ -469,6 +474,7 @@ public class KoboldishTorcibud extends AbstractQuest {
             new SetQuestAction(QUEST_SLOT, "done"),
             new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, 1, MIN_DELAY, MAX_DELAY),
             new IncreaseXPAction(XP_REWARD),
+            new IncreaseKarmaAction(20),
             addRewardAction);
 
         // add triggers for the item names
