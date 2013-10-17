@@ -36,12 +36,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Find the seven cherubs that are all around the world. PARTICIPANTS: -
- * Cherubiel - Gabriel - Ophaniel - Raphael - Uriel - Zophiel - Azazel STEPS: -
- * Find them and they will reward you.
+ * QUEST: Find the seven cherubs that are all around the world.
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Cherubiel </li>
+ * <li> Gabriel </li>
+ * <li> Ophaniel </li>
+ * <li> Raphael </li>
+ * <li> Uriel </li>
+ * <li> Zophiel </li>
+ * <li> Azazel </li>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Find them and they will reward you. </li>
+ * </ul>
  *
- * REWARD: -
- *
+ * REWARD:
+ * <ul>
+ * <li> 2,000 XP </li>
+ * <li> some karma (35) </li>
+ * <li> either fire sword, golden boots, golden armor, or golden helmet </li>
+ * </ul>
+ * 
  * REPETITIONS: - Just once.
  */
 public class SevenCherubs extends AbstractQuest {
@@ -196,6 +214,7 @@ public class SevenCherubs extends AbstractQuest {
 								item.setBoundTo(player.getName());
 								player.equipOrPutOnGround(item);
 								player.addXP(2000);
+								player.addKarma(35);
 							}
 						}
 						player.notifyWorldAboutChanges();
