@@ -15,6 +15,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -35,11 +36,21 @@ import java.util.List;
  * 
  * PARTICIPANTS: - Hunel, the guard of the Dwarf Kingdom's Prison
  * 
- * STEPS: - You see Hunel locked in the cell - You get the key by killing the
- * Duergar King - You speak to Hunel when you have the key. - Hunel wants to
- * stay in, he is afraid. - You can then sell chaos equipment to Hunel.
+ * STEPS:
+ * <ul>
+ * <li> You see Hunel locked in the cell. </li>
+ * <li> Gget the key by killing the duergar king. </li>
+ * <li> Speak to Hunel when you have the key. </li>
+ * <li> Hunel wants to stay in, he is afraid. </li>
+ * <li> You can then sell chaos equipment to Hunel. </li>
+ * </ul>
  * 
- * REWARD: - 2000 XP - everlasting place to sell chaos equipment
+ * REWARD:
+ * <ul>
+ * <li> 2,000 XP </li>
+ * <li> some karma (20) </li>
+ * <li> everlasting place to sell chaos equipment </li>
+ * </ul>
  * 
  * REPETITIONS: - None.
  */
@@ -79,7 +90,8 @@ public class JailedDwarf extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ",
 				new MultipleActions(new SetQuestAction(QUEST_SLOT, "done"),
-						 			 new IncreaseXPAction(2000)));
+						 			 new IncreaseXPAction(2000),
+						 			 new IncreaseKarmaAction(20)));
 	}
 
 	@Override
