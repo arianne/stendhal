@@ -40,6 +40,32 @@ import java.util.List;
 
 /**
  * QUEST: Zekiels practical test
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Zekiel, guardian of the wizard's tower </li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Zekiel the guardian asks you to bring him 6 beeswax and 2 iron to make magic candles with. </li>
+ * <li> Bring the items to Zekiel. </li>
+ * <li> You can start the practical test. </li>
+ * <li> Zekiel informs you about the test and wizards. </li>
+ * <li> You will be send to 6 levels now at which you have to choose the right creature. </li>
+ * <li> If you made the right choices, you'll be able to reach the spire everytime you want. </li>  
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li> 9,000 XP total </li>
+ * <li> some karma (20 total) </li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li> None </li>
+ * </ul>
  */
 public class ZekielsPracticalTestQuest extends AbstractQuest {
 
