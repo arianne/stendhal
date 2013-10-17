@@ -81,6 +81,7 @@ import org.apache.log4j.Logger;
  * <ul>
  * <li>Obsidian Knife</li>
  * <li>11500 XP</li>
+ * <li> lots of karma (total 85 + (5 | -5))
  * </ul>
  * 
  * REPETITIONS:
@@ -502,6 +503,7 @@ public class ObsidianKnife extends AbstractQuest {
 		
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(10000));
+		reward.add(new IncreaseKarmaAction(40));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new EquipItemAction("obsidian knife", 1, true));
 		
