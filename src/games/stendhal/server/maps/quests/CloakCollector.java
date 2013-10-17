@@ -46,7 +46,12 @@ import java.util.List;
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
- * REWARD: - black cloak - 10000 XP
+ * REWARD:
+ * <ul>
+ * <li> black cloak </li>
+ * <li> 10,000 XP </li>
+ * <li> 5 karma (+5 for accepting, -5 for rejecting) </li>
+ * </ul>
  * <p>
  * REPETITIONS: - None.
  */

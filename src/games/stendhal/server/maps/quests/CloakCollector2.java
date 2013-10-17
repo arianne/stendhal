@@ -55,7 +55,12 @@ import java.util.List;
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
- * REWARD: - 105 Karma in all - 100000 XP - scent (when ready)
+ * REWARD:
+ * <ul>
+ * <li> 100,000 XP </li>
+ * <li> 100 Karma (+5 for accepting, -5 for rejecting) </li>
+ * <li> scent (when ready) </li>
+ * </ul>
  * <p>
  * REPETITIONS: - None.
  */
