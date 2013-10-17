@@ -54,7 +54,9 @@ import java.util.Map;
  * 
  * REWARD: <ul>
  * <li> You can sell black items to Balduin 
- * <li> 100000 XP </ul>
+ * <li> 100000 XP
+ * <li> 30 karma
+ * </ul>
  * 
  * REPETITIONS: <ul><li> None. </ul>
  */

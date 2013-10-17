@@ -55,6 +55,7 @@ import java.util.List;
  * <ul>
  * <li> rhand sword and lhand sword
  * <li> 3000 XP
+ * <li> 20 karma
  * </ul>
  * REPETITIONS:
  * <ul>

@@ -47,6 +47,7 @@ import java.util.List;
  * <ul>
  * <li> ice sword
  * <li> 5000 XP
+ * <li> 15 karma
  * </ul>
  * <p>
  * REPETITIONS:
