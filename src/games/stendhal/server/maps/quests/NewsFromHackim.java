@@ -34,14 +34,28 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * QUEST: News from Hackim PARTICIPANTS: - Hackim - Xin Blanca
+ * QUEST: News from Hackim
  * 
- * STEPS: - Hackim asks you to give a message to Xin Blanca. - Xin Blanca thanks
- * you with a pair of leather legs.
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Hackim </li>
+ * <li> Xin Blanca </li>
+ * </ul>
  * 
- * REWARD: - 10 XP - a pair of leather legs
+ * STEPS:
+ * <ul>
+ * <li> Hackim asks you to give a message to Xin Blanca. </li>
+ * <li> Xin Blanca thanks you with a pair of leather legs. </li>
+ * </ul>
  * 
- * REPETITIONS: - None.
+ * REWARD:
+ * <ul>
+ * <li> 10 XP </li>
+ * <li> some karma (2) </li>
+ * <li> a pair of leather legs </li>
+ * </ul>
+ * 
+ * REPETITIONS: - None
  */
 public class NewsFromHackim extends AbstractQuest {
 	private static final String QUEST_SLOT = "news_hackim";
@@ -142,6 +156,7 @@ public class NewsFromHackim extends AbstractQuest {
 					final Item item = SingletonRepository.getEntityManager().getItem("leather legs");
 					player.equipOrPutOnGround(item);
 					player.addXP(10);
+					player.addKarma(2);
 
 					player.notifyWorldAboutChanges();
 				}
