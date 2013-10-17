@@ -55,7 +55,7 @@ import java.util.Map;
  * REWARD: <ul>
  * <li> You can sell black items to Balduin 
  * <li> 100000 XP
- * <li> 30 karma
+ * <li> 90 karma
  * </ul>
  * 
  * REPETITIONS: <ul><li> None. </ul>
@@ -271,7 +271,7 @@ public class UltimateCollector extends AbstractQuest {
 				new MultipleActions(new DropRecordedItemAction(QUEST_SLOT), 
 									new SetQuestAction(QUEST_SLOT, "done"),
 									new IncreaseXPAction(100000),
-									new IncreaseKarmaAction(30)));
+									new IncreaseKarmaAction(90)));
 		
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES, 
