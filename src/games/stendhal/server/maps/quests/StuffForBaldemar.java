@@ -58,7 +58,8 @@ import java.util.TreeMap;
  * REWARD:
  * <ul>
  * <li> mithril shield
- * <li>95000 XP
+ * <li> 95000 XP
+ * <li> some karma (25)
  * </ul>
  * 
  * 

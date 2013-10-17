@@ -76,7 +76,8 @@ import java.util.TreeMap;
  * REWARD:
  * <ul>
  * <li>Vampire Sword</li>
- * <li>5000 XP</li>
+ * <li>5,000 XP</li>
+ * <li>some karma</li>
  * </ul>
  * <p>
  * REPETITIONS:

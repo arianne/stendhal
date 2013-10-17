@@ -55,6 +55,7 @@ import java.util.List;
  * <p>
  * REWARD:
  * <li> 1000 XP
+ * <li> some karma (15)
  * <li> The key for a house in Ados where a personal chest with new slots is
  * inside
  * <p>

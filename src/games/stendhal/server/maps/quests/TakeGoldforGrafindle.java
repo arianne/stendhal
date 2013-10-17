@@ -52,6 +52,7 @@ import java.util.List;
  * 
  * REWARD:<ul>
  * <li> 200 XP
+ * <li> some karma (10)
  * <li> key to nalwor bank customer room
  * </ul>
  * REPETITIONS: <ul><li> None.</ul>

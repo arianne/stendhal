@@ -56,7 +56,8 @@ import java.util.List;
  * REWARD:
  * <ul>
  * <li> immortal sword
- * <li>15000 XP
+ * <li> 15000 XP
+ * <li> some karma (25)
  * </ul>
  * 
  * 
