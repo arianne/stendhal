@@ -38,14 +38,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Look book for Ceryl PARTICIPANTS: - Ceryl - Jynath
+ * QUEST: Look for a book for Ceryl
  * 
- * STEPS: - Talk with Ceryl to activate the quest. - Talk with Jynath for the
- * book. - Return the book to Ceryl
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Ceryl </li>
+ * <li> Jynath </li>
+ * </ul>
  * 
- * REWARD: - 100 XP - 50 gold coins
+ * STEPS:
+ * <ul>
+ * <li> Talk with Ceryl to activate the quest. </li>
+ * <li> Talk with Jynath for the book. </li>
+ * <li> Return the book to Ceryl. </li>
+ * </ul>
  * 
- * REPETITIONS: - None.
+ * REWARD:
+ * <ul>
+ * <li> 100 XP </li>
+ * <li> some karma (10 + (5 | -5) </li>
+ * <li> 50 gold coins </li>
+ * </ul>
+ * 
+ * REPETITIONS: None
  */
 public class LookBookforCeryl extends AbstractQuest {
 	private static final String QUEST_SLOT = "ceryl_book";
