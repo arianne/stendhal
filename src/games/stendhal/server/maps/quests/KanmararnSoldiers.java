@@ -84,10 +84,12 @@ import org.apache.log4j.Logger;
  * <p>
  * from Henry:
  * <li> you can keep the IOU paper (for quest MCPeglegIOU)
- * <li> 2500 XP
+ * <li> 2,500 XP
+ * <li> some karma (15)
  * <p>
  * from Sergeant James
  * <li> steel boots
+ * <li> some karma (15)
  *
  * REPETITIONS:
  * <li> None.
