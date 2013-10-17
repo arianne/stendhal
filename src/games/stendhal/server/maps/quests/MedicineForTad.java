@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.ExamineChatAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -59,6 +60,7 @@ import java.util.List;
  * <p>
  * REWARD:<ul>
  * <li> 270 XP
+ * <li> some karma (4)
  * <li> 10 gold coins
  * </ul>
  * <p>
@@ -285,6 +287,7 @@ public class MedicineForTad extends AbstractQuest {
 		final List<ChatAction> processStep = new LinkedList<ChatAction>();
 		processStep.add(new DropItemAction("arandula"));
 		processStep.add(new IncreaseXPAction(50));
+        processStep.add(new IncreaseKarmaAction(4));
 		processStep.add(new SetQuestAction(QUEST_SLOT, "potion"));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
