@@ -105,6 +105,8 @@ public class StendhalQuestSystem {
 		loadQuest(new HelpMrsYeti());
 		loadQuest(new HelpWithTheHarvest());
 		loadQuest(new HerbsForCarmen());
+		/* Disabled, incomplete
+		loadQuest(new HerbsForJynath()); */
 		loadQuest(new HouseBuying());
 		loadQuest(new HungryJoshua());
 		loadQuest(new IcecreamForAnnie());
