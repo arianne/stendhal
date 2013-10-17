@@ -56,8 +56,36 @@ import java.util.List;
  * Get some chocolate and bring it to Elisabeth.
  *
  * @author Vanessa Julius idea by miasma
+ * 
+ * 
+ * QUEST: Chocolate for Elisabeth
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Elisabeth (a young girl who loves chocolate)</li>
+ * <li>Carey (Elisabeth's mother)</li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li>Elisabeth asks you to bring her a chocolate bar.</li>
+ * <li>Get some chocolate .</li>
+ * <li>Ask Carey if she allows you to give the chocolate to her daughter.</li>
+ * <li>Make Elisabeth happy and get a lovely reward.</li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li>a random flower</li>
+ * <li>500 XP</li>
+ * <li>10 karma</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>Every 60 minutes</li>
+ * </ul>
  */
-
 public class ChocolateForElisabeth extends AbstractQuest {
 
 	// constants
