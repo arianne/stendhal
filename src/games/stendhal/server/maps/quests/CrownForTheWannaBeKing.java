@@ -62,6 +62,7 @@ import java.util.Map;
  * REWARD:
  * <ul>
  * <li> 10,000 XP</li>
+ * <li> some karma (10) </li>
  * <li> Player's ATK XP is increased by 0.1% of his/her XP.</li>
  * </ul>
  *
