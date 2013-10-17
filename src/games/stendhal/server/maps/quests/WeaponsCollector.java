@@ -30,28 +30,26 @@ import java.util.List;
  * <p>
  * PARTICIPANTS:
  * <ul>
- * <li> Balduin, a hermit living on a mountain between Semos and Ados
+ * <li> Balduin, a hermit living on a mountain between Semos and Ados </li>
  * </ul>
  * <p>
  * STEPS:
  * <ul>
- * <li> Balduin asks you for some weapons.
- * <li> You get one of the weapons somehow, e.g. by killing a monster.
- * <li> You bring the weapon up the mountain and give it to Balduin.
- * <li> Repeat until Balduin received all weapons. (Of course you can bring up
- * several weapons at the same time.)
- * <li> Balduin gives you an ice sword in exchange.
+ * <li> Balduin asks you for some weapons. </li>
+ * <li> You get one of the weapons somehow, e.g. by killing a monster. </li>
+ * <li> You bring the weapon up the mountain and give it to Balduin. </li>
+ * <li> Repeat until Balduin received all weapons. (Of course you can bring up several weapons at the same time.) </li>
+ * <li> Balduin gives you an ice sword in exchange. </li>
  * </ul>
  * <p>
  * REWARD:
  * <ul>
- * <li> ice sword
- * <li> 5000 XP
- * <li> 15 karma
+ * <li> ice sword </li>
+ * <li> 5000 XP </li>
+ * <li> 30 karma </li>
  * </ul>
  * <p>
- * REPETITIONS:
- * <li> None.
+ * REPETITIONS: None
  */
 public class WeaponsCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
@@ -207,7 +205,7 @@ public class WeaponsCollector extends AbstractQuest implements
 		iceSword.setBoundTo(player.getName());
 		player.equipOrPutOnGround(iceSword);
 		player.addXP(5000);
-		player.addKarma(15);
+		player.addKarma(30);
 	}
 
 	@Override
