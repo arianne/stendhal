@@ -50,8 +50,36 @@ import java.util.List;
  * You have to get approval from her mother before giving it to her
  *
  * @author kymara
+ *
+ *
+ * QUEST: Ice Cream for Annie
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Annie Jones (a little girl playing in Kalavan City Gardens) </li>
+ * <li> Mrs Jones (Annie's mum) </li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Annie asks you for an icecream. </li>
+ * <li> You buy icecream from Sam who is nearby. </li>
+ * <li> Speak to Mrs Jones, Annie's mum. </li>
+ * <li> Now give the icecream to Annie. </li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li>a <item>present</item></li>
+ * <li>500 XP</li>
+ * <li>20 karma</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>Every 60 minutes</li>
+ * </ul>
  */
-
 public class IcecreamForAnnie extends AbstractQuest {
 
 	// constants
