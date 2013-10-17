@@ -55,7 +55,7 @@ import java.util.List;
  * <ul>
  * <li> rhand sword and lhand sword
  * <li> 3000 XP
- * <li> 20 karma
+ * <li> 60 karma
  * </ul>
  * REPETITIONS:
  * <ul>
@@ -248,7 +248,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 									rhandsword.setBoundTo(player.getName());
 									player.equipOrPutOnGround(rhandsword);
 									player.addXP(3000);
-									player.addKarma(20);
+									player.addKarma(60);
 									raiser.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
 									player.setQuest(QUEST_SLOT, "done");
 									player.notifyWorldAboutChanges();
