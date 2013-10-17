@@ -52,6 +52,32 @@ import java.util.List;
  * You have to check it is clean with someone knowledgeable first
  *
  * @author kymara
+ * 
+ * 
+ * QUEST: Water for Xhiphin
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Xhiphin Zohos </li>
+ * <li> Stefan </li>
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Ask Xhiphin Zohos for a quest. </li>
+ * <li> Get some fresh water. </li>
+ * <li> Xhiphin Zohos wants to assure that the water is clean. Show the water to Stefan and he will check it. </li>
+ * <li> Return the water to Xhiphin Zohos who will then enjoy it. </li> 
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li> 100 XP </li>
+ * <li> some karma (5 + (5 | -5)) </li>
+ * <li> 3 potions </li>
+ * </ul>
+ * 
+ * REPEATABLE: 
  */
 
 public class WaterForXhiphin extends AbstractQuest {
@@ -110,7 +136,9 @@ public class WaterForXhiphin extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				"Thank you! Natural spring water is best, the river that runs from Fado to Nal'wor might provide a source.",
-				new SetQuestAction(QUEST_SLOT, 0, "start"));
+				new MultipleActions(
+				        new SetQuestAction(QUEST_SLOT, 0, "start"),
+				        new IncreaseKarmaAction(5.0)));
 		
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,
