@@ -17,6 +17,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.PassiveNPC;
 
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -43,6 +44,7 @@ public class DogNPC implements ZoneConfigurator {
 		dog.setBaseSpeed(0.5);
 		dog.moveRandomly();
 		dog.setRandomMovementRadius(5, true);
+        dog.setSounds(Arrays.asList("dog-small-bark-1", "dog-small-bark-2"));
 		zone.add(dog);
 	}
 
