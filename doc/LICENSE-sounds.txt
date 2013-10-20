@@ -38,6 +38,8 @@ These files are in the public domain:
     horse-1:            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
     horse-2:            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
     kitten-mew-1:       http://freesound.org/people/gcmax/sounds/147351/
+    kiteen-meow-1, kitten-meow-2, kitten-meow-3:
+                        http://freesound.org/people/videog/sounds/149191/
     lion-1:             http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     lion-2:             https://sourceforge.net/projects/myabcs
     loop-drag-slimy-1:  http://www.freesound.org/people/altfuture/sounds/174634/
