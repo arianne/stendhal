@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="TriggerOnce" color="#ffff00">
+    <property type="bool" name="IsTestVarActive" default="true" />
+    <property type="int" name="SomeInt" default="0" />
+    <property type="double" name="Opacity" default="0.5" />
+    <property type="string" name="StringifiedName" default="A name" />
+ </objecttype>
+<!--
+
+ <zone>
+   <property name="color_method" type="enum" values="softlight, time, multiply" default="" />
+   <property name="color" type="color" default="" />
+
+      <parameter name="blend_method">bleach</parameter>
+
+ </zone>
+
+ condition="stendhal.minetown"
+
+ <objecttype name="portal" tileset="objects" tileid="1">
+   <property name="zone" type="string" />
+   <property name="reference" type="string" />
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
+        <parameter name="class">skulldoor_s</parameter>
+        <parameter name="key">golden key</parameter>
+      </implementation>
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination" />
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
+        <parameter name="doorId">kirdneh house 26</parameter>
+        <parameter name="rejected">The door is locked.</parameter>
+      </implementation>
+
+    <portal x="3" y="13" ref="lab_entrance">
+      <destination zone="int_apothecary_lab" ref="lab_exit" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
+        <parameter name="quest">traps_for_klaas</parameter>
+        <parameter name="rejected">You feel a cool breeze coming in from somewhere.</parameter>
+      </implementation>
+      <attribute name="resistance">0</attribute>
+      <attribute name="hidden" />
+    </portal>
+
+    <portal x="13" y="8" ref="orb_right">
+      <destination zone="-1_fado_great_cave_e3" ref="jynath_orb" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+        <parameter name="quest">learn_scrying</parameter>
+        <parameter name="rejected">You must learn to use orb first.</parameter>
+      </implementation>
+      <attribute name="use" />
+    </portal>
+
+    <portal x="27" y="15" ref="east_choice_floor_1">
+      <destination zone="int_semos_wizards_tower_1" ref="choice_floor_1" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.ConditionAndActionPortal">
+        <parameter name="condition">new QuestInStateCondition("zekiels_practical_test","first_step")</parameter>
+        <parameter name="rejected">Zekiel the guardian: 'You have chosen the correct one of Malleus. Now use the candle at the shimmering spot of the hexagram.'</parameter>
+        <parameter name="action">new MultipleActions([new SendPrivateMessageAction("Zekiel the guardian: 'You have chosen the correct one of Malleus. Now use the candle at the shimmering spot of the hexagram.'"), new EquipItemAction("candle"), new SetQuestAction("zekiels_practical_test", "second_step")])</parameter>
+      </implementation>
+    </portal>
+
+    <portal x="23" y="20" ref="portal_to_third_floor">
+      <destination zone="int_semos_wizards_tower_3" ref="portal_from_second_floor" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
+        <parameter name="class">transparent</parameter>
+        <parameter name="key">candle</parameter>
+        <parameter name="rejected">You must hold your candle over this spot, walk here with a candle and it will float.</parameter>
+      </implementation>
+      <attribute name="hidden" />
+    </portal>
+
+    <portal x="26" y="44" ref="to_balrog" replacing="true">
+      <destination zone="-2_semos_mine_w2" ref="exit_balrog" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
+        <parameter name="minimum-level">150</parameter>
+        <parameter name="rejected">Aenihata's barrier is strong. The balrog would kill you instantly, run away!</parameter>
+      </implementation>
+    </portal>
+
+    <portal x="94" y="57" ref="downstairs" replacing="true">
+      <destination zone="-3_semos_catacombs" ref="upstairs" />
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+        <parameter name="key">vampirette entrails</parameter>
+        <parameter name="quantity">7</parameter>
+        <parameter name="rejected">Prove that you killed all vampirettes before you face their lord.</parameter>
+      </implementation>
+    </portal>
+
+ </objecttype>
+
+
+
+ <objecttype name="sign" tileset="objects" tileid="2">
+   <property name="text" type="longstring" />
+
+      <attribute name="class">transparent</attribute>
+
+ </objecttype>
+
+<entity x="15" y="10">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Reader" />
+      <attribute name="text">Kokuda stew recipe:
+1 kokuda
+3 eggs
+2 flasks of water</attribute>
+    </entity>
+
+    <entity x="94" y="118" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">Welcome to the Mine Town Revival Weeks!</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="resistance">0</attribute>
+    </entity>
+
+
+    <entity x="52" y="114">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a mailbox. It says: Ortiv Milquetoast, former teacher.</attribute>
+      <attribute name="class">transparent, signpost</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+
+    <entity x="11" y="81">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+        <parameter name="shop">buyamazoncloaks</parameter>
+        <parameter name="title">Cloaks bought here</parameter>
+        <parameter name="seller">false</parameter>
+        <parameter name="caption">Nicklesworth only buys good quality cloaks:</parameter>
+      </implementation>
+      <attribute name="class">blackboard</attribute>
+    </entity>
+
+    <entity x="9" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.PopupImage">
+        <parameter name="image">map-orril-castle.png</parameter>
+        <parameter name="title">Ancient Or'ril castle</parameter>
+      </implementation>
+      <attribute name="class">map-orril-castle</attribute>
+    </entity>
+
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+      <parameter name="message">You should keep your items safe for now.</parameter>
+    </configurator>
+
+
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
+        <parameter name="sound">a_weird_place</parameter>
+        <parameter name="volume">50</parameter>
+        <parameter name="radius">30</parameter>
+      </implementation>
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
+        <parameter name="sound">bird-1b, bird-2b, bird-3b</parameter>
+        <parameter name="min">5</parameter>
+        <parameter name="max">5</parameter>
+        <parameter name="radius">4</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">clock-1</parameter>
+        <parameter name="radius">15</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+
+    <entity x="3" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
+        <parameter name="sound">piano-1</parameter>
+        <parameter name="radius">40</parameter>
+      </implementation>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
+    </entity>
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+        <parameter name="slot">bank_nalwor</parameter>
+      </implementation>
+
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
+     	  <parameter name="species">red lionfish</parameter>
+    	</implementation>
+
+    </entity>
+    
+    <point-of-interest x="56" y="57">
+      <name>Amazon Tunnel East Entrance</name>
+      <title>Amazon Tunnel</title>
+      <type>dungeon</type>
+      <description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit.</description>
+      <url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
+    </point-of-interest>
+
+    <entity x="0" y="0">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="coversZone">true</parameter>
+        <parameter name="enterMessage">Zekiel the guardian: "This is the first step of the test and the domain of Malleus."</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="14" y="6">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
+        <parameter name="width">3</parameter>
+        <parameter name="height">2</parameter>
+        <parameter name="enterMessage">You step onto a sparkling corner of the hexagram, this must be what Zekiel the guardian was talking about.</parameter>
+        <parameter name="warnPlayer">true</parameter>
+      </implementation>
+    </entity>
+
+
+   <entity x="55" y="110" condition="stendhal.minetown">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
+      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
+      <attribute name="width">4</attribute>
+      <attribute name="height">2</attribute>
+    </entity>
+
+
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+      <parameter name="x">18</parameter>
+      <parameter name="y">13</parameter>
+    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
+      <parameter name="x">5</parameter>
+      <parameter name="y">21</parameter>
+      <parameter name="width">1</parameter>
+       <parameter name="height">3</parameter>
+
+
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">4</parameter>
+      </implementation>
+
+    <entity x="27" y="0">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
+        <parameter name="width">19</parameter>
+        <parameter name="height">19</parameter>
+        <parameter name="new-x">29</parameter>
+        <parameter name="new-y">27</parameter>
+      </implementation>
+      <attribute name="name">dragon lair2</attribute>
+    </entity>
+    
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
+      <parameter name="x">0</parameter>
+      <parameter name="y">0</parameter>
+      <parameter name="width">27</parameter>
+      <parameter name="height">47</parameter>
+    </configurator>
+
+    <entity x="77" y="20">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
+        <parameter name="width">3</parameter>
+        <parameter name="height">3</parameter>
+        <parameter name="interval">2</parameter>
+        <parameter name="damage">50</parameter>
+        <parameter name="probability">30</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">razor sharp spikes</attribute>
+    </entity>
+    <entity x="111" y="80">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
+        <parameter name="width">2</parameter>
+        <parameter name="height">13</parameter>
+        <parameter name="interval">2</parameter>
+        <parameter name="maximum-damage">50</parameter>
+        <parameter name="probability">100</parameter>
+        <parameter name="players-only">true</parameter>
+      </implementation>
+      <attribute name="name">deathmatch spikes</attribute>
+    </entity>
+
+
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+      <parameter name="x">77</parameter>
+      <parameter name="y">47</parameter>
+      <parameter name="image">fence_gate</parameter>
+      <parameter name="orientation">v</parameter>
+      <parameter name="condition">new AlwaysFalseCondition()</parameter>
+      <parameter name="message">The gate is locked.</parameter>
+      <parameter name="autoclose">300</parameter>
+    </configurator>
+
+
+<configurator
+      class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"
+      condition="stendhal.testserver">
+      <parameter name="start-x">44</parameter>
+      <parameter name="start-y">53</parameter>
+      <parameter name="multi">true</parameter>
+      <parameter name="class">mine_cart_empty</parameter>
+    </configurator>
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.block.BlockTargetZoneConfigurator"
+      condition="stendhal.testserver">
+      <parameter name="x">40</parameter>
+      <parameter name="y">53</parameter>
+      <parameter name="action">new IncreaseXPAction(5)</parameter>
+    </configurator>
+
+    <entity x="2" y="16">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
+        <parameter name="npc">Xin Blanca</parameter>
+      </implementation>
+    </entity>
+
+    <entity x="71" y="33">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal" />
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="use" />
+    </entity>
+
+    <entity x="86" y="95">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">100</parameter>
+        <parameter name="y">86</parameter>
+      </implementation>
+    </entity>
+
+-->
+</objecttypes>
