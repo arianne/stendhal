@@ -30,9 +30,26 @@ public class StatusAttacker {
 	 * @param probability probability of an attack in this turn
 	 */
 	public StatusAttacker(Status status, double probability) {
-		super();
 		this.probability = probability;
 		this.status = status;
+	}
+
+	/**
+	 * gets the probability
+	 *
+	 * @return probability
+	 */
+	protected double getProbability() {
+		return probability;
+	}
+
+	/**
+	 * gets the status
+	 *
+	 * @return status
+	 */
+	protected Status getStatus() {
+		return status;
 	}
 
 	/**
@@ -57,7 +74,7 @@ public class StatusAttacker {
 		// Roll dice between 1-100
 		int roll = Rand.randUniform(1, 100);
 		if (roll <= probability) {
-			target.getStatusList().inflictStatus(status, attacker);
+			target.getStatusList().inflictStatus((Status) status.clone(), attacker);
 		}
 	}
 

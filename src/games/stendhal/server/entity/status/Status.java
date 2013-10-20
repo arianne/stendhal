@@ -17,7 +17,7 @@ package games.stendhal.server.entity.status;
  * 
  * @author AntumDeluge
  */
-public abstract class Status {
+public abstract class Status implements Cloneable {
 
 	/** The name of the status effect */
 	private String name;
