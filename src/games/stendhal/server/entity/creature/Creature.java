@@ -42,8 +42,8 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.entity.status.PoisonAttacker;
 import games.stendhal.server.entity.status.PoisonAttackerFactory;
+import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
 
@@ -127,7 +127,6 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	private PoisonAttacker poisoner;
 	private IdleBehaviour idler;
 
 	private int targetX;
@@ -201,7 +200,7 @@ public class Creature extends NPC {
 		}
 		// this.dropItemInstances is ignored;
 
-		this.setAIProfiles(copy.getAIProfiles());
+		this.setAIProfiles(copy.getAIProfiles(), false);
 		this.statusAttackers = copy.statusAttackers;
 		this.noises = copy.noises;
 
@@ -464,16 +463,33 @@ public class Creature extends NPC {
 		}
 	}
 
-
+	/**
+	 * sets  the aiProfile of this creature
+	 *
+	 * @param aiProfiles aiProfile
+	 */
 	public void setAIProfiles(final Map<String, String> aiProfiles) {
+		this.setAIProfiles(aiProfiles, true);
+	}
+	
+	private void setAIProfiles(final Map<String, String> aiProfiles, boolean initStatusAttacker) {
 		this.aiProfiles = aiProfiles;
 		setHealer(aiProfiles.get("heal"));
 		setAttackStrategy(aiProfiles);
-		poisoner = PoisonAttackerFactory.get(aiProfiles.get("poisonous"));
+		if (initStatusAttacker) {
+			StatusAttacker poisoner = PoisonAttackerFactory.get(aiProfiles.get("poisonous"));
+			if (poisoner != null) {
+				this.addStatusAttacker(poisoner);
+			}
+		}
 		idler = IdleBehaviourFactory.get(aiProfiles);
-
 	}
 
+	/**
+	 * gets the aiProfile of this creature
+	 *
+	 * @return aiProfile
+	 */
 	public Map<String, String> getAIProfiles() {
 		return aiProfiles;
 	}
@@ -749,20 +765,6 @@ public class Creature extends NPC {
 	 */
 	public boolean isRare() {
 		return getAIProfiles().keySet().contains("rare");
-	}
-
-	/**
-	 *  poisons attack target with the behavior in Poisoner.
-	 *
-	 *
-	 * @throws NullPointerException if attack target is null
-	 */
-	public void tryToPoison() {
-		if (poisoner == null) {
-			return;
-		}
-		final RPEntity entity = getAttackTarget();
-		poisoner.attemptToInflict(entity, this);
 	}
 
 	public void equip(final List<EquipItem> items) {

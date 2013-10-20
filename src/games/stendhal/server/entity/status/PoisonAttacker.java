@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2013 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -21,21 +20,25 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 
-public class PoisonAttacker {
+/**
+ * a status attacker for poison
+ */
+public class PoisonAttacker extends StatusAttacker {
 
-	private ConsumableItem poison;
-	private int probability;
-	
+	/**
+	 * PoisonAttacker
+	 *
+	 * @param probability probability
+	 * @param poison poison item
+	 */
 	public PoisonAttacker(final int probability, final ConsumableItem poison) {
-		this.probability = probability;
-		this.poison = poison;
+		super(new PoisonStatus(poison.getAmount(), poison.getFrecuency(), poison.getRegen()), probability);
 	}
-	
-	public boolean attemptToInflict(final RPEntity target, final RPEntity attacker) {
 
-		/*
-		 * Antipoison attributes
-		 */
+	@Override
+	public void onAttackAttempt(RPEntity target, RPEntity attacker) {
+
+		// Antipoison attributes
 		double sumAll = 0.0;
 		List<Item> defenderEquipment = target.getDefenseItems();
 		if (target.hasRing()) {
@@ -53,7 +56,7 @@ public class PoisonAttacker {
 			sumAll = 1;
 		}
 
-		double myProbability = this.probability;
+		double myProbability = getProbability();
 		if (sumAll > 0) {
 			// invert the value for multiplying
 			double myAntipoison = (1 - sumAll);
@@ -62,12 +65,15 @@ public class PoisonAttacker {
 
 		final int roll = Rand.roll1D100();
 		if (roll <= myProbability) {
-			PoisonStatus status = new PoisonStatus(poison.getAmount(), poison.getFrecuency(), poison.getRegen());
-			target.getStatusList().inflictStatus(status, poison);
+			target.getStatusList().inflictStatus((Status) getStatus().clone(), attacker);
 			new GameEvent(attacker.getName(), "poison", target.getName()).raise();
 			target.sendPrivateText("You have been poisoned by " + Grammar.a_noun(attacker.getName()) + ".");
-			return true;
 		}
-		return false;
 	}
+
+	@Override
+	public void onHit(RPEntity target, RPEntity attacker, int damage) {
+		// do nothing, especially do not process the logic of the super class
+	}
+
 }
