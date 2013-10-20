@@ -9,7 +9,8 @@ These files are in the public domain:
     bird-pigeon-1, bird-pigeon-flap-1:
                         http://freesound.org/people/winsx87/sounds/152024/
     bongos:             http://www.freesound.org/people/MarleneAyni/sounds/89608/
-    cat-purr-1:         http://en.wikipedia.org/wiki/File:Whiskers%27_purr_edit.ogg
+    cat-purr-1, cat-purr-kitten-1:
+                        http://freesound.org/people/Belhene/sounds/157837/
     chicken-chick-1, chicken-chick-2:
                         http://www.freesound.org/people/Barbamiz/sounds/116135/
     clang-dull-1:       http://www.freesound.org/people/alienistcog/sounds/124711/
