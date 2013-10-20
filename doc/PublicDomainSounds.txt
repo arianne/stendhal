@@ -1,4 +1,5 @@
-These sound files are in the public domain:
+The following sounds are licenses under the Creative Commons 0 license (CC0/Public Domain).
+  See http://creativecommons.org/publicdomain/zero/1.0/legalcode for details.
 
 alligator-1:        http://www.fws.gov/video/sound.htm
 ambiance-church-1:  http://soundbible.com/253-Church-Bells-Ringing.html
@@ -82,5 +83,6 @@ tiger-1:            http://www.mediacollege.com/downloads/sound-effects/animals/
 tiger-2:            http://sounds.simplythebest.net/details/40/Tiger-1-sound.html
 toilet-flush-1:     http://soundbible.com/1657-Toilet-Flushing.html
 undead-5:           http://www.freesound.org/people/ArriGD/sounds/144005/
-water-faucet-1    http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
+water-faucet-1      http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
+water-sloshing-1:   http://freesound.org/people/pawsound/sounds/154879/
 wings-flap-large-1: http://www.freesound.org/people/dave.des/sounds/127197/
