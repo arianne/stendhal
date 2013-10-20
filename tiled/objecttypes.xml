@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
- <objecttype name="TriggerOnce" color="#ffff00">
-    <property type="bool" name="IsTestVarActive" default="true" />
-    <property type="int" name="SomeInt" default="0" />
-    <property type="double" name="Opacity" default="0.5" />
-    <property type="string" name="StringifiedName" default="A name" />
- </objecttype>
+
+	<zone>
+		<property name="color_method" type="enum"  default="" values="softlight, time, multiply" />
+		<property name="color"        type="color" default="" />
+		<property name="blend_method" type="enum"  default="" values=", bleach" />
+	</zone>
+
 <!--
-
- <zone>
-   <property name="color_method" type="enum" values="softlight, time, multiply" default="" />
-   <property name="color" type="color" default="" />
-
-      <parameter name="blend_method">bleach</parameter>
-
- </zone>
 
  condition="stendhal.minetown"
 
@@ -171,38 +164,38 @@
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
 
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.BackgroundMusicSource">
-        <parameter name="sound">a_weird_place</parameter>
-        <parameter name="volume">50</parameter>
-        <parameter name="radius">30</parameter>
-      </implementation>
+-->
 
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
-        <parameter name="sound">bird-1b, bird-2b, bird-3b</parameter>
-        <parameter name="min">5</parameter>
-        <parameter name="max">5</parameter>
-        <parameter name="radius">4</parameter>
-        <parameter name="volume">100</parameter>
-      </implementation>
+	<!-- Music and Sound -->
 
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
-        <parameter name="sound">clock-1</parameter>
-        <parameter name="radius">15</parameter>
-        <parameter name="volume">100</parameter>
-      </implementation>
+	<objecttype name="BackgroundMusicSource" tileset="logic/sound" tileid="1">
+		<property name="sound"  type="string" />
+		<property name="volume" type="int"    default="100" />
+		<property name="radius" type="int"    default="10000" />
+	</objecttype>
 
-    <entity x="3" y="16">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
-        <parameter name="sound">piano-1</parameter>
-        <parameter name="radius">40</parameter>
-      </implementation>
-      <attribute name="width">2</attribute>
-      <attribute name="height">2</attribute>
-      <attribute name="description">You see a beautiful piano. Perhaps you could play it.</attribute>
-    </entity>
+	<objecttype name="LoopedAmbientSoundSource" tileset="logic/sound" tileid="2">
+		<property name="sound"  type="string" />
+		<property name="volume" type="int"    default="100" />
+		<property name="radius" type="int"    default="10000" />
+	</objecttype>
+
+	<objecttype name="PeriodicAmbientSoundSource" tileset="logic/sound" tileid="3">
+		<property name="sound"  type="string" />
+		<property name="min"    type="int"    default="60" />
+		<property name="max"    type="int"    default="300" />
+		<property name="volume" type="int"    default="100" />
+		<property name="radius" type="int"    default="10000" />
+	</objecttype>
+
+	<objecttype name="PlaySoundEntity" color="#FFFF00" tileset="logic/sound" tileid="4">
+		<property name="sound"       type="string" />
+		<property name="volume"      type="int"    default="100" />
+		<property name="radius"      type="int"    default="10000" />
+		<property name="description" type="string" default="You see something." />
+	</objecttype>
+<!--
+
 
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
