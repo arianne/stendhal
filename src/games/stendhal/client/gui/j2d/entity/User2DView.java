@@ -27,8 +27,12 @@ import java.util.List;
 class User2DView<T extends User> extends Player2DView<T> {
 	@Override
 	public void initialize(final T entity) {
+		// A hack to prevent centering on coloring only zone updates
+		boolean updatePosition = this.entity == null;
 		super.initialize(entity);
-		j2DClient.get().setPosition(entity.getX(), entity.getY());
+		if (updatePosition) {
+			j2DClient.get().setPosition(entity.getX(), entity.getY());
+		}
 	}
 	//
 	// RPEntity2DView
