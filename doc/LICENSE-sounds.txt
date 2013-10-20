@@ -37,6 +37,7 @@ These files are in the public domain:
     goat-2:             http://soundbible.com/1662-Farm.html
     horse-1:            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
     horse-2:            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
+    kitten-mew-1:       http://freesound.org/people/gcmax/sounds/147351/
     lion-1:             http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
     lion-2:             https://sourceforge.net/projects/myabcs
     loop-drag-slimy-1:  http://www.freesound.org/people/altfuture/sounds/174634/
