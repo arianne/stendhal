@@ -4,6 +4,8 @@ These files are in the public domain:
     ambiance-demon-1:   http://soundbible.com/1883-Scary-Demon-Haunting.html
     ambiance-restaurant-1:
                         http://soundbible.com/1664-Restaurant-Ambiance.html
+    attack-fire-1, attack-fire-2, attack-fire-3:
+                        http://freesound.org/people/Nic3_one/sounds/166555/
     bat-1, bat-2, bat-3:http://www.freesound.org/people/polymorpheva/sounds/104205/
     bee-1:              http://soundbible.com/971-Bee.html
     bird-pigeon-1, bird-pigeon-flap-1:
