@@ -65,9 +65,10 @@ public class PoisonAttacker extends StatusAttacker {
 
 		final int roll = Rand.roll1D100();
 		if (roll <= myProbability) {
-			target.getStatusList().inflictStatus((Status) getStatus().clone(), attacker);
-			new GameEvent(attacker.getName(), "poison", target.getName()).raise();
-			target.sendPrivateText("You have been poisoned by " + Grammar.a_noun(attacker.getName()) + ".");
+			if (target.getStatusList().inflictStatus((Status) getStatus().clone(), attacker)) {
+				new GameEvent(attacker.getName(), "poison", target.getName()).raise();
+				target.sendPrivateText("You have been poisoned by " + Grammar.a_noun(attacker.getName()) + ".");
+			}
 		}
 	}
 

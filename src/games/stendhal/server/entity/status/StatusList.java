@@ -157,12 +157,14 @@ public class StatusList {
 	 *            Status to be added
 	 * @param attacker
 	 *            Entity that is inflicting status
+	 * @return true, if the was inflected; false if the RPEntity is immune.
 	 */
-	public void inflictStatus(final Status status, final Entity attacker) {
+	public boolean inflictStatus(final Status status, final Entity attacker) {
 		if (isImmune(status.getStatusType())) {
-			return;
+			return false;
 		}
 		status.getStatusType().getStatusHandler().inflict(status, this, attacker);
+		return true;
 	}
 
 	/**
