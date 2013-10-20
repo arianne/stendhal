@@ -30,7 +30,7 @@ public class Grammar {
 
 	/**
 	 * "it" or "them", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "it" or "them" as appropriate
@@ -45,7 +45,7 @@ public class Grammar {
 
 	/**
 	 * Modify a word to upper case notation.
-	 *
+	 * 
 	 * @param word
 	 * @return word with first letter in upper case
 	 */
@@ -62,7 +62,7 @@ public class Grammar {
 
 	/**
 	 * "It" or "Them", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "It" or "Them" as appropriate
@@ -73,7 +73,7 @@ public class Grammar {
 
 	/**
 	 * "it" or "they", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "it" or "they" as appropriate
@@ -88,7 +88,7 @@ public class Grammar {
 
 	/**
 	 * "It" or "They", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "It" or "They" as appropriate
@@ -99,7 +99,7 @@ public class Grammar {
 
 	/**
 	 * "is" or "are", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "is" or "are" as appropriate
@@ -114,7 +114,7 @@ public class Grammar {
 
 	/**
 	 * "Is" or "Are", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "Is" or "Are" as appropriate
@@ -122,10 +122,10 @@ public class Grammar {
 	public static String IsAre(final int quantity) {
 		return makeUpperCaseWord(isare(quantity));
 	}
-
+	
 	/**
 	 * "has" or "have", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "has" or "have" as appropriate
@@ -137,10 +137,10 @@ public class Grammar {
 			return "have";
 		}
 	}
-
+	
 	/**
 	 * "Has" or "Have", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "Has" or "Have" as appropriate
@@ -148,10 +148,10 @@ public class Grammar {
 	public static String HasHave(final int quantity) {
 		return makeUpperCaseWord(hashave(quantity));
 	}
-
+	
 	/**
 	 * "that" or "those", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "that" or "those" as appropriate
@@ -166,7 +166,7 @@ public class Grammar {
 
 	/**
 	 * "That or "Those", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "That" or "Those" as appropriate
@@ -174,10 +174,10 @@ public class Grammar {
 	public static String ThatThose(final int quantity) {
 		return makeUpperCaseWord(thatthose(quantity));
 	}
-
+	
 	/**
 	 * "this" or "these", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "this" or "these" as appropriate
@@ -192,7 +192,7 @@ public class Grammar {
 
 	/**
 	 * "This or "These", depending on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "This" or "These" as appropriate
@@ -203,7 +203,7 @@ public class Grammar {
 
 	/**
 	 * Prefixes a noun with an article.
-	 *
+	 * 
 	 * @param noun
 	 *            noun
 	 * @param definite
@@ -220,7 +220,7 @@ public class Grammar {
 
 	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
@@ -232,11 +232,11 @@ public class Grammar {
 		final String enoun = fullForm(noun);
 		return a_an(enoun) + enoun;
 	}
-
+	
 	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable.
 	 * Method to prevent collision of items and creatures.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
@@ -245,13 +245,13 @@ public class Grammar {
 		if (noun.equals("chicken")) {
 			return "a chicken";
 		}
-
+		
 		return a_noun(noun);
 	}
-
+	
 	/**
 	 * "a " or "an ", depending on the noun
-	 *
+	 * 
 	 * @param noun the noun to be examined
 	 * @return either "a " or "an " as appropriate
 	 */
@@ -263,7 +263,7 @@ public class Grammar {
 		} else {
 			initial = lowerCaseString.charAt(0);
 		}
-
+		
 		if (lowerCaseString.length()==1){
 			if (isVowel(initial) && initial != 'u') {
 				return "an ";
@@ -271,8 +271,8 @@ public class Grammar {
 				return "a ";
 			}
 		}
-
-
+		
+	
 		if ("eu".equals(lowerCaseString.substring(0, 2))){
 			return "a ";
 		}
@@ -282,13 +282,13 @@ public class Grammar {
 		if ((initial == 'y') && isConsonant(lowerCaseString.charAt(1))) {
 			return "an ";
 		}
-
+		
 		return "a ";
 	}
 
 	/**
 	 * Adds a prefix unless it was already added.
-	 *
+	 * 
 	 * @param noun
 	 *            the noun (which may already start with the specified prefix
 	 * @param prefixSingular
@@ -310,7 +310,7 @@ public class Grammar {
 
 	/**
 	 * Prefix a noun with an expression like "piece of".
-	 *
+	 * 
 	 * @param noun
 	 * @return noun with prefix
 	 */
@@ -369,7 +369,7 @@ public class Grammar {
 	/**
 	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ... So this function is just the counter part to fullForm().
-	 *
+	 * 
 	 * @param text
 	 * @return the extracted noun
 	 */
@@ -404,7 +404,7 @@ public class Grammar {
 	/**
 	 * Check if an expression is normalized.
 	 * equivalent to: {return extractNoun(text) == text}
-	 *
+	 * 
 	 * @param text
 	 * @return true if the expression is already normalized
 	 */
@@ -429,7 +429,7 @@ public class Grammar {
 
 	/**
 	 * "A [noun]" or "An [noun]", depending on the first syllable.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "A [noun]" or "An [noun]" as appropriate
@@ -440,7 +440,7 @@ public class Grammar {
 
 	/**
 	 * "[noun]'s" or "[noun]'", depending on the last character.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "[noun]'s" or "[noun]'" as appropriate
@@ -458,7 +458,7 @@ public class Grammar {
 	/**
 	 * Returns the plural form of the given noun if not already given in plural
 	 * form.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return An appropriate plural form
@@ -536,7 +536,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
 		} else if (enoun.endsWith("sis")) {
 			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-		} else if (enoun.endsWith("erinys")) {
+		} else if (enoun.endsWith("erinys")) { 
 			return enoun.substring(0, enoun.length() - 1) + "es" + postfix;
 		} else if (enoun.endsWith("mumak")) {
 			return enoun + "il" + postfix;
@@ -566,11 +566,11 @@ public class Grammar {
 			return enoun + "s" + postfix;
 		}
 	}
-
+	
 	/**
 	 * Returns the plural form of the given noun if not already given in plural
 	 * form. Method to prevent collision of items and creatures.
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return An appropriate plural form
@@ -579,14 +579,14 @@ public class Grammar {
 		if (noun.equals("chicken")) {
 			return "chickens";
 		}
-
+		
 		return plural(noun);
 	}
 
 	/**
 	 * Returns the singular form of the given noun if not already given in
 	 * singular form.
-	 *
+	 * 
 	 * @param enoun
 	 *            The noun to examine
 	 * @return An appropriate singular form
@@ -630,7 +630,7 @@ public class Grammar {
 		} else if ((enoun.length() > 3) && enoun.endsWith("ice")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 4)) > -1)) {
 			return enoun.substring(0, enoun.length() - 3) + "ouse" + postfix;
-		} else if (enoun.endsWith("eese")
+		} else if (enoun.endsWith("eese") 
 				&& !enoun.endsWith("cabeese") && !enoun.endsWith("cheese")) {
 			return enoun.substring(0, enoun.length() - 4) + "oose" + postfix;
 		} else if (enoun.endsWith("eeth")) {
@@ -655,14 +655,14 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 3) + "man" + postfix;
 		} else if (enoun.endsWith("matrices")) {
 			return enoun.substring(0, enoun.length() - 4) + "ix" + postfix;
-		} else if (enoun.endsWith("ices")) {
+		} else if (enoun.endsWith("ices")) { 
 			// indices, vertices, ...
 			return enoun.substring(0, enoun.length() - 4) + "ex" + postfix;
-		} else if (enoun.endsWith("erinyes")) {
+		} else if (enoun.endsWith("erinyes")) { 
 			return enoun.substring(0, enoun.length() - 2) + "s" + postfix;
 		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
 			// singular detected
-			return enoun + postfix;
+			return enoun + postfix; 
 		} else if (enoun.endsWith("mumakil")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
 		} else if (enoun.endsWith("djin")) {
@@ -702,7 +702,7 @@ public class Grammar {
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -717,11 +717,11 @@ public class Grammar {
 			return plural(noun);
 		}
 	}
-
+	
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity. Method to prevent collision of items and creatures.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -736,14 +736,14 @@ public class Grammar {
 				return "chickens";
 			}
 		}
-
+		
 		return plnoun(quantity, noun);
 	}
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity; also prefixes the quantity.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -753,15 +753,15 @@ public class Grammar {
 	 */
 	public static String quantityplnoun(final int quantity, final String noun) {
 		final String end = plnoun(quantity, noun);
-		return Integer.toString(quantity) + " " + end;
+		return Integer.toString(quantity) + " " + end;	
 	}
-
+	
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity; also prefixes the quantity. Method to prevent
 	 * collision of items and creatures
-	 *
-	 *
+	 * 
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -774,7 +774,7 @@ public class Grammar {
 			final String end = plnounCreature(quantity, noun);
 			return Integer.toString(quantity) + " " + end;
 		}
-
+		
 		return quantityplnoun(quantity, noun);
 	}
 
@@ -783,7 +783,7 @@ public class Grammar {
 	 * on the quantity; also prefixes the quantity. In case the quantity is exactly
 	 * 1, the specified prefix is used. Note: There is some additional magic to convert
 	 * "a" and "A" to "an" and "An" in case that is required by the noun.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -806,14 +806,14 @@ public class Grammar {
 				return one + " " + word;
 			}
 		} else {
-			return Integer.toString(quantity) + " " + plural(noun);
+			return Integer.toString(quantity) + " " + plural(noun);	
 		}
 	}
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending on
 	 * the quantity; also prefixes the quantity and prints the noun with a hash prefix.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -844,7 +844,7 @@ public class Grammar {
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity; also prefixes the quantity as number string, if appropriate.
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -876,7 +876,7 @@ public class Grammar {
 
 	/**
 	 * Is the character a vowel?
-	 *
+	 * 
 	 * @param c
 	 *            The character to examine
 	 * @return true if c is a vowel, false otherwise
@@ -888,7 +888,7 @@ public class Grammar {
 
 	/**
 	 * Is the character a consonant?
-	 *
+	 * 
 	 * @param c
 	 *            The character to examine
 	 * @return true if c is a consonant, false otherwise
@@ -899,7 +899,7 @@ public class Grammar {
 
 	/**
 	 * first, second, third, ...
-	 *
+	 * 
 	 * @param n
 	 *            a number
 	 * @return first, second, third, ...
@@ -915,21 +915,13 @@ public class Grammar {
 		case 7:	return "seventh";
 		case 8:	return "eighth";
 		case 9:	return "ninth";
-		case 10: return "tenth";
-		case 11: return "eleventh";
-		case 12: return "twelfth";
-		case 13: return "thirteenth";
-		case 14: return "fourteenth";
-		case 15: return "fifteenth";
-		case 16: return "sixteenth";
-		case 17: return "seventeenth";
-		case 18: return "eighteenth";
-		case 19: return "nineteenth";
+		case 10:return "tenth";
 		default:
 			if (n > 0) {
 				return n + ordinalSuffix(n);
 			}
-			return Integer.toString(n) + ".";
+			logger.error("Grammar.ordered not implemented for: " + n);
+			return Integer.toString(n);
 		}
 	}
 	
@@ -957,10 +949,10 @@ public class Grammar {
 
 	/**
 	 * Helper function to nicely formulate an enumeration of a collection.
-	 * <p>
+	 * <p> 
 	 * For example, for a collection containing the 3 elements x, y, z, returns the
 	 * string "x, y, and z".
-	 *
+	 * 
 	 * @param collection
 	 *            The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection
@@ -993,12 +985,12 @@ public class Grammar {
 	}
 
 	/**
-	 * Helper function to nicely formulate an enumeration of a collection,
+	 * Helper function to nicely formulate an enumeration of a collection, 
 	 * with hashes to colour the words.
-	 * <p>
+	 * <p> 
 	 * For example, for a collection containing the 3 elements x, y, z, returns the
 	 * string "#x, #y, and #z".
-	 *
+	 * 
 	 * @param collection
 	 *            The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection with hashes
@@ -1007,16 +999,16 @@ public class Grammar {
 		if (collection == null) {
 			return "";
 		}
-
+		
 		final List<String> result = new LinkedList<String>();
-
+		
 		for (String entry : collection) {
 			result.add("#" + entry);
 		}
-
+		
 		return enumerateCollection(result);
 	}
-
+	
 
 	/**
 	 * To let the client display compound words like "#battle axe" in blue, we put the whole item name in quotes.
@@ -1038,7 +1030,7 @@ public class Grammar {
 
 	/**
 	 * Converts numbers into their textual representation.
-	 *
+	 * 
 	 * @param n
 	 *            a number
 	 * @return one, two, three, ...
@@ -1078,7 +1070,7 @@ public class Grammar {
 
 	/**
 	 * Interprets number texts.
-	 *
+	 * 
 	 * @param text
 	 *            a number
 	 * @return one, two, three, ...
@@ -1190,7 +1182,7 @@ public class Grammar {
 		return false;
 	}
 
-
+	
 	/**
 	 * Return gerund form, e.g. "making" or "casting".
 	 *
@@ -1227,13 +1219,11 @@ public class Grammar {
 	 */
 	public static boolean isDerivedAdjective(final String word) {
 		if (word.length() > 4) {
-			if (word.endsWith("al") || word.endsWith("ic")) {
+			if (word.endsWith("al") || word.endsWith("ic"))
 				return true;
-			}
 
-			if (word.endsWith("ed")) {
+			if (word.endsWith("ed"))
 				return true;
-			}
 		}
 
 		return false;
@@ -1241,7 +1231,7 @@ public class Grammar {
 
 	/**
 	 * Normalize the given derived adjective, or return null if not applicable.
-	 *
+	 * 
 	 * @param word
 	 * @return normalized string
 	 */
