@@ -109,9 +109,12 @@
 
   <zone name="0_kalavan_city" level="0" x="499616" y="500768"
     file="Level 0/kalavan/city.tmx">
+    
     <attributes>
       <parameter name="color_method">time</parameter>
     </attributes>
+    
+    <!-- Portals -->
     <portal x="80" y="10" ref="house_1_entrance">
       <destination zone="int_kalavan_house_1" ref="entrance" />
       <implementation
@@ -120,6 +123,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="99" y="10" ref="house_2_entrance">
       <destination zone="int_kalavan_house_2" ref="entrance" />
       <implementation
@@ -128,6 +132,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="118" y="10" ref="house_3_entrance">
       <destination zone="int_kalavan_house_3" ref="entrance" />
       <implementation
@@ -136,6 +141,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="117" y="27" ref="house_4_entrance">
       <destination zone="int_kalavan_house_4" ref="entrance" />
       <implementation
@@ -144,6 +150,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="121" y="43" ref="house_5_entrance">
       <destination zone="int_kalavan_house_5" ref="entrance_right" />
       <implementation
@@ -152,6 +159,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="121" y="59" ref="house_6_entrance">
       <destination zone="int_kalavan_house_6" ref="entrance" />
       <implementation
@@ -160,6 +168,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="121" y="74" ref="house_7_entrance">
       <destination zone="int_kalavan_house_7" ref="entrance" />
       <implementation
@@ -168,6 +177,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="118" y="91" ref="house_8_entrance">
       <destination zone="int_kalavan_house_8" ref="entrance" />
       <implementation
@@ -176,6 +186,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="118" y="106" ref="house_9_entrance">
       <destination zone="int_kalavan_house_9" ref="entrance_right" />
       <implementation
@@ -184,6 +195,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="118" y="120" ref="house_10_entrance">
       <destination zone="int_kalavan_house_10" ref="entrance_right" />
       <implementation
@@ -192,6 +204,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="101" y="121" ref="house_11_entrance">
       <destination zone="int_kalavan_house_11" ref="entrance" />
       <implementation
@@ -200,6 +213,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="78" y="121" ref="house_12_entrance">
       <destination zone="int_kalavan_house_12" ref="entrance" />
       <implementation
@@ -208,6 +222,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="61" y="121" ref="house_13_entrance">
       <destination zone="int_kalavan_house_13" ref="entrance" />
       <implementation
@@ -216,6 +231,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="39" y="121" ref="house_14_entrance">
       <destination zone="int_kalavan_house_14" ref="entrance" />
       <implementation
@@ -224,6 +240,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="21" y="121" ref="house_15_entrance">
       <destination zone="int_kalavan_house_15" ref="entrance" />
       <implementation
@@ -232,6 +249,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="9" y="121" ref="house_16_entrance">
       <destination zone="int_kalavan_house_16" ref="entrance" />
       <implementation
@@ -240,6 +258,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="6" y="106" ref="house_17_entrance">
       <destination zone="int_kalavan_house_17" ref="entrance" />
       <implementation
@@ -248,6 +267,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="9" y="91" ref="house_18_entrance">
       <destination zone="int_kalavan_house_18" ref="entrance_right" />
       <implementation
@@ -256,6 +276,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="7" y="74" ref="house_19_entrance">
       <destination zone="int_kalavan_house_19" ref="entrance" />
       <implementation
@@ -264,6 +285,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="9" y="60" ref="house_20_entrance">
       <destination zone="int_kalavan_house_20" ref="entrance" />
       <implementation
@@ -272,6 +294,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="6" y="44" ref="house_21_entrance">
       <destination zone="int_kalavan_house_21" ref="entrance" />
       <implementation
@@ -280,6 +303,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="9" y="27" ref="house_22_entrance">
       <destination zone="int_kalavan_house_22" ref="entrance" />
       <implementation
@@ -288,6 +312,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="7" y="10" ref="house_23_entrance">
       <destination zone="int_kalavan_house_23" ref="entrance" />
       <implementation
@@ -296,6 +321,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="27" y="10" ref="house_24_entrance">
       <destination zone="int_kalavan_house_24" ref="entrance" />
       <implementation
@@ -304,6 +330,7 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
+    
     <portal x="45" y="10" ref="house_25_entrance">
       <destination zone="int_kalavan_house_25" ref="entrance" />
       <implementation
@@ -312,78 +339,101 @@
         <parameter name="rejected">The door to this house is locked.</parameter>
       </implementation>
     </portal>
-
+    
+    <!-- Fishing -->
     <entity x="69" y="47">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">trout</parameter>
       </implementation>
     </entity>
+    
     <entity x="69" y="49">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">char</parameter>
       </implementation>
     </entity>
+    
     <entity x="69" y="51">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">trout</parameter>
       </implementation>
     </entity>
+    
+    <!-- Ambiance on dock -->
+    <entity x="78" y="49">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">ambiance/water-sloshing-1</parameter>
+        <parameter name="radius">13</parameter>
+        <parameter name="volume">100</parameter>
+      </implementation>
+    </entity>
+    
     <entity x="63" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Friends, welcome to Kalavan City.</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
+    
     <entity x="64" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Enemies, beware!</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
+    
     <entity x="65" y="10">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Kalavan City, twinned with Deniran.</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
+    
     <entity x="3" y="29">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a hot grill, for fish, meat or ham.</attribute>
     </entity>
+    
     <entity x="3" y="30">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a barbecue, and wonder where the cook is.</attribute>
     </entity>
+    
     <entity x="123" y="13">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
     </entity>
+    
     <entity x="123" y="14">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a barbecue for grilling meat, just try not to burn it.</attribute>
     </entity>
+    
     <entity x="114" y="44">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
       <attribute name="text">Dear Mr Postman, please leave my mail under the mat, as birds are nesting in this mailbox.</attribute>
       <attribute name="class">transparent</attribute>
     </entity>
+    
     <entity x="57" y="125">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a grill, looks like someone is going to barbecue soon.</attribute>
     </entity>
+    
     <entity x="58" y="125">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
       <attribute name="description">You see a barbecue, ready to grill some ham. Careful, it's very hot!</attribute>
     </entity>
+    
     <!-- The random orb -->
     <entity x="71" y="33">
       <implementation
