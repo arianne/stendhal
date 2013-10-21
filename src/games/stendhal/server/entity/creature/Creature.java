@@ -44,6 +44,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.status.PoisonAttackerFactory;
 import games.stendhal.server.entity.status.StatusAttacker;
+import games.stendhal.server.entity.status.StatusAttackerFactory;
 import games.stendhal.server.events.SoundEvent;
 import games.stendhal.server.util.CounterMap;
 
@@ -480,6 +481,18 @@ public class Creature extends NPC {
 			StatusAttacker poisoner = PoisonAttackerFactory.get(aiProfiles.get("poisonous"));
 			if (poisoner != null) {
 				this.addStatusAttacker(poisoner);
+			}
+			
+			String statusAttackerProfiles = aiProfiles.get("status attackers");
+			if (statusAttackerProfiles != null) {
+    			String[] statusAttackers = aiProfiles.get("status attackers").split(";");
+    			int statusCount = statusAttackers.length;
+    			for (int index = 0; index < statusCount; index++) {
+    			    StatusAttacker statusAttacker = StatusAttackerFactory.get(statusAttackers[index]);
+    			    if (statusAttacker != null) {
+    			        this.addStatusAttacker(statusAttacker);
+    			    }
+    			}
 			}
 		}
 		idler = IdleBehaviourFactory.get(aiProfiles);
