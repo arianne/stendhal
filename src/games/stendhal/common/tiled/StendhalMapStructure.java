@@ -125,4 +125,22 @@ public class StendhalMapStructure {
 			layer.build();
 		}
 	}
+
+	/**
+	 * gets the width
+	 *
+	 * @return width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * gets the height
+	 *
+	 * @return height
+	 */
+	public int getHeight() {
+		return height;
+	}
 }

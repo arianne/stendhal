@@ -10,9 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.common.tiled;
+package games.stendhal.server.core.config.zone;
 
 import games.stendhal.common.Base64;
+import games.stendhal.common.tiled.LayerDefinition;
+import games.stendhal.common.tiled.StendhalMapStructure;
+import games.stendhal.common.tiled.TileSetDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -45,8 +48,8 @@ import org.xml.sax.SAXException;
  * @author miguel
  * 
  */
-public class ServerTMXLoader {
-	private static Logger logger = Logger.getLogger(ServerTMXLoader.class);
+public class TMXLoader {
+	private static Logger logger = Logger.getLogger(TMXLoader.class);
 
 	private StendhalMapStructure stendhalMap;
 
@@ -138,8 +141,8 @@ public class ServerTMXLoader {
 	 * @throws Exception 
 	 */
 	private LayerDefinition readLayer(final Node t) throws Exception {
-		final int layerWidth = getAttribute(t, "width", stendhalMap.width);
-		final int layerHeight = getAttribute(t, "height", stendhalMap.height);
+		final int layerWidth = getAttribute(t, "width", stendhalMap.getWidth());
+		final int layerHeight = getAttribute(t, "height", stendhalMap.getHeight());
 
 		final LayerDefinition layer = new LayerDefinition(layerWidth, layerHeight);
 
@@ -275,23 +278,18 @@ public class ServerTMXLoader {
 		StendhalMapStructure map = null;
 		/*
 		 * long start=System.currentTimeMillis(); for(int i=0;i<90;i++) {
-		 * map=new
-		 * ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
-		 * map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level
-		 * 0/ados/city_n.tmx"); map=new
-		 * ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level
-		 * 0/semos/city.tmx"); map=new
-		 * ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level
-		 * 0/nalwor/city.tmx"); map=new
-		 * ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level
-		 * 0/orril/castle.tmx"); }
+		 * map=new TMXLoader().readMap("tiled/interiors/abstract/afterlife.tmx");
+		 * map=new TMXLoader().readMap("tiled/Level 0/ados/city_n.tmx");
+		 * map=new TMXLoader().readMap("tiled/Level 0/semos/city.tmx");
+		 * map=new TMXLoader().readMap("tiled/Level 0/nalwor/city.tmx");
+		 * map=new TMXLoader().readMap("tiled/Level 0/orril/castle.tmx");
+		 * }
 		 * 
-		 * System.out.println("Time ellapsed (ms):
-		 * "+(System.currentTimeMillis()-start)); /
+		 * System.out.println("Time ellapsed (ms): " + (System.currentTimeMillis()-start)); /
 		 */
-		map = new ServerTMXLoader().readMap("tiled/Level 0/semos/village_w.tmx");
+		map = new TMXLoader().readMap("tiled/Level 0/semos/village_w.tmx");
 		map.build();
-		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
+		System.out.printf("MAP W: %d H:%d\n", map.getWidth(), map.getHeight());
 		final List<TileSetDefinition> tilesets = map.getTilesets();
 		for (final TileSetDefinition set : tilesets) {
 			System.out.printf("TILESET firstGID: '%d' name: '%s'\n",
@@ -321,6 +319,6 @@ public class ServerTMXLoader {
 	}
 
 	public static StendhalMapStructure load(final String filename) throws Exception {
-		return new ServerTMXLoader().readMap(filename);
+		return new TMXLoader().readMap(filename);
 	}
 }
