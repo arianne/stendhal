@@ -626,7 +626,7 @@
     </equipable>
   </item>
   
-  <item name="holy water">
+  <!--<item name="holy water">
     <type class="drink" subclass="holy_water" tileid="-1"/>
     <description>You see a bottle of holy water. Bless the zombies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>
@@ -647,6 +647,6 @@
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
-  </item>
+  </item>-->
   
 </items>
