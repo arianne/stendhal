@@ -954,10 +954,20 @@ below average.
     <attributes>
       <parameter name="color_method">time</parameter>
     </attributes>
+    
     <entity x="57" y="64">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
         <parameter name="species">perch</parameter>
+      </implementation>
+    </entity>
+    
+    <!-- Ambiance on fishing dock -->
+    <entity x="56" y="60">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">ambiance/water-sloshing-1</parameter>
+        <parameter name="radius">6</parameter>
+        <parameter name="volume">100</parameter>
       </implementation>
     </entity>
   </zone>
