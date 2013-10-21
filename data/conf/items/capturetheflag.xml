@@ -3,7 +3,9 @@
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
   <!-- capture-the-flag stuff -->
-
+  
+  <!-- Remove lines with "*****************" to re-enable -->
+  <!-- *************************
   <item name="flag">
     <type class="token" subclass="flag" tileid="-1"/>
     <description>You see a flag.</description>
@@ -24,6 +26,7 @@
       <!-- i think that hand-only is a good policy -->
       <!-- <slot name="content"/> -->
       <!-- <slot name="bag"/>     -->
+<!-- **************************************
     </equipable>
   </item>
 
@@ -31,7 +34,7 @@
   <!-- weapons experiments  -->
   
   <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge --> 
-  
+  <!-- ****************************
   <item name="ctf bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a ctf bow, specially made for use in Capture the Flag games. With this in one hand, and CTF arrows in the other, you may be able to cause fumbles or slow players down.</description>
@@ -162,6 +165,5 @@
       <slot name="rhand"/>
     </equipable>
   </item>
-
+************************* -->
 </items>
-  
