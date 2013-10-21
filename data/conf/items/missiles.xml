@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
-    <item name="snowball">
+  
+  <item name="snowball">
     <type class="missile" subclass="snowballs" tileid="-1"/>
     <description>You see snowballs. You can throw them at your friends or put it in your bag to keep your fish fresh. But be careful, there could be little stones in it.</description>
     <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
@@ -24,7 +25,7 @@
     </equipable>
   </item>
   
-   <item name="vomit">
+  <item name="vomit">
     <type class="missile" subclass="vomit" tileid="-1"/>
     <description>You see a pile of vomit. Gross!</description>
     <implementation class-name="games.stendhal.server.entity.item.NoStatsStackableItem"/>
@@ -46,7 +47,7 @@
     </equipable>
   </item>
   
-  <item name="dart">
+  <!--<item name="dart">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
@@ -67,7 +68,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="power dart">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
@@ -88,8 +89,8 @@
       <slot name="bag"/>
       <slot name="trade"/>
     </equipable>
-  </item>
-
+  </item>-->
+  
   <item name="shuriken">
     <type class="missile" subclass="shuriken" tileid="-1"/>
     <description>You see a shuriken. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
@@ -111,7 +112,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="fire shuriken">
     <type class="missile" subclass="fire_shuriken" tileid="-1"/>
     <description>You see a fire shuriken. Throwing this flaming missile unleashes fiendish power.</description>
@@ -134,7 +135,7 @@
       <slot name="trade"/>
     </equipable>
   </item>
-
+  
   <item name="wooden spear">
     <type class="missile" subclass="wooden_spear" tileid="-1"/>
     <description>You see a wooden spear. You can attack at a distance with this primitive weapon. Stand square on, not diagonally, for the best results.</description>
@@ -156,4 +157,5 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
 </items>
