@@ -10,7 +10,6 @@ package games.stendhal.server.core.config;
 //
 
 import games.stendhal.common.tiled.LayerDefinition;
-import games.stendhal.common.tiled.ServerTMXLoader;
 import games.stendhal.common.tiled.StendhalMapStructure;
 import games.stendhal.server.core.config.zone.AttributesXMLReader;
 import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
@@ -19,6 +18,7 @@ import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
 import games.stendhal.server.core.config.zone.RegionNameSubstitutionHelper;
 import games.stendhal.server.core.config.zone.SetupDescriptor;
 import games.stendhal.server.core.config.zone.SetupXMLReader;
+import games.stendhal.server.core.config.zone.TMXLoader;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -145,7 +145,7 @@ public final class ZonesXMLLoader {
 			logger.info("Loading zone: " + name);
 
 			try {
-				final StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
+				final StendhalMapStructure zonedata = TMXLoader.load(StendhalRPWorld.MAPS_FOLDER
 						+ zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
