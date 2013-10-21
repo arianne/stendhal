@@ -22,7 +22,7 @@
       <slot name="rhand"/>
       <slot name="lhand"/>
       <slot name="ground"/>
-            
+      *************** -->
       <!-- i think that hand-only is a good policy -->
       <!-- <slot name="content"/> -->
       <!-- <slot name="bag"/>     -->
@@ -30,7 +30,7 @@
     </equipable>
   </item>
 
-
+****************** -->
   <!-- weapons experiments  -->
   
   <!-- TODO: maybe have a pretty small max quanity - 50?  100?   to force players to go back, or somehow recharge --> 
