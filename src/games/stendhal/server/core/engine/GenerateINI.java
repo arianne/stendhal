@@ -22,6 +22,8 @@ import java.util.Date;
 
 import marauroa.common.crypto.RSAKey;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * generates a server.ini for Stendhal
@@ -29,6 +31,7 @@ import marauroa.common.crypto.RSAKey;
  * @author hendrik
  */
 public class GenerateINI {
+    private static Logger logger = Logger.getLogger(GenerateINI.class);
 
 	/** The name of the output file. */
 	private static String filename = "server.ini";
@@ -80,7 +83,7 @@ public class GenerateINI {
 		try {
 			ret = input.readLine();
 		} catch (final IOException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 			System.exit(1);
 		}
 		if (ret != null) {
@@ -107,7 +110,7 @@ public class GenerateINI {
 		try {
 			ret = input.readLine();
 		} catch (final IOException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 			System.exit(1);
 		}
 
