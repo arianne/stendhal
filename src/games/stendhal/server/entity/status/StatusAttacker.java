@@ -39,7 +39,7 @@ public class StatusAttacker {
 	 *
 	 * @return probability
 	 */
-	protected double getProbability() {
+	public double getProbability() {
 		return probability;
 	}
 
