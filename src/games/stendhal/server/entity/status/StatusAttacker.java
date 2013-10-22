@@ -77,5 +77,14 @@ public class StatusAttacker {
 			target.getStatusList().inflictStatus((Status) status.clone(), attacker);
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 *     Name of the status that this attacker can inflict
+	 */
+    public String getStatusName() {
+        return status.getName();
+    }
 
 }
