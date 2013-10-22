@@ -241,7 +241,7 @@ public class TMXLoader {
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(in, xmlPath);
 		} catch (final SAXException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 			throw new Exception("Error while parsing map file: " + e.toString());
 		}
 

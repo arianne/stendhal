@@ -266,19 +266,19 @@ public final class ZonesXMLLoader {
 			Constructor<StendhalRPZone> constr = zoneclass.getConstructor(String.class);
 			return constr.newInstance(name);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		}
 		return new StendhalRPZone(name);
 	}
