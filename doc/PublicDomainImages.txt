@@ -14,6 +14,7 @@ status/merchant:    http://openclipart.org/detail/171507/money-pot-by-gnokii-171
 myling:             http://opengameart.org/content/zombie-and-skeleton-32x48
 panel_leather_black_001:
                     http://opengameart.org/content/leather-black
+shovel:             http://openclipart.org/detail/116893/palas-by-laabadon
 snake_skeleton:     http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
 tail_rodent, tail_rodent_large:
                     http://www.clker.com/clipart-185713.html
