@@ -26,15 +26,13 @@ public class StatusAttackerFactory {
             
             String className = "games.stendhal.server.entity.status." + statusName;
             
+            Status status;
             try {
-                Status status = (Status) Class.forName(className).newInstance();
+                status = (Status) Class.forName(className).newInstance();
                 return new StatusAttacker(status, probability);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            } catch (InstantiationException | IllegalAccessException
+                    | ClassNotFoundException e) {
+                logger.error(e, e);
             }
             return null;
 		}
