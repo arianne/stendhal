@@ -483,9 +483,9 @@ public class Creature extends NPC {
 				this.addStatusAttacker(poisoner);
 			}
 			
-			String statusAttackerProfiles = aiProfiles.get("status attackers");
+			String statusAttackerProfiles = aiProfiles.get("status_attackers");
 			if (statusAttackerProfiles != null) {
-    			String[] statusAttackers = aiProfiles.get("status attackers").split(";");
+    			String[] statusAttackers = statusAttackerProfiles.split(";");
     			int statusCount = statusAttackers.length;
     			for (int index = 0; index < statusCount; index++) {
     			    StatusAttacker statusAttacker = StatusAttackerFactory.get(statusAttackers[index]);
