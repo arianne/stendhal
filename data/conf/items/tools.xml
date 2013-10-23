@@ -2,166 +2,185 @@
 <items xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../items.xsd ">
 
-    <item name="food mill">
-      <type class="tool" subclass="foodmill" tileid="-1"/>
-      <description>You see a food mill. It is the traditional tool to mill food.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
+  <item name="food mill">
+    <type class="tool" subclass="foodmill" tileid="-1"/>
+    <description>You see a food mill. It is the traditional tool to mill food.</description>
+    <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
 
-    <item name="sugar mill">
-      <type class="tool" subclass="sugarmill" tileid="-1"/>
-      <description>You see a sugar mill. You can obtain sugar if you grind canes with it.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
-    
-    <item name="scroll eraser">
-      <type class="tool" subclass="scrolleraser" tileid="-1"/>
-      <description>You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.</description>
-      <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
-      <attributes>
-      </attributes>
-      <weight value="3.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
+  <item name="sugar mill">
+    <type class="tool" subclass="sugarmill" tileid="-1"/>
+    <description>You see a sugar mill. You can obtain sugar if you grind canes with it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
   
-    <item name="pestle and mortar">
-      <type class="tool" subclass="pestleandmortar" tileid="-1"/>
-      <description>You see a pestle and mortar. This is the traditional tool to pound herbs, food and other substances.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
+  <item name="scroll eraser">
+    <type class="tool" subclass="scrolleraser" tileid="-1"/>
+    <description>You see a scroll eraser. Put a marked scroll in the opposite hand to clean the scroll.</description>
+    <implementation class-name="games.stendhal.server.entity.item.FoodMill"/>
+    <attributes>
+    </attributes>
+    <weight value="3.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="pestle and mortar">
+    <type class="tool" subclass="pestleandmortar" tileid="-1"/>
+    <description>You see a pestle and mortar. This is the traditional tool to pound herbs, food and other substances.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="gold pan">
+    <type class="tool" subclass="gold_pan" tileid="-1"/>
+    <description>You see a gold pan. It is the traditional tool to prospect for gold.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="fishing rod">
+    <type class="tool" subclass="fishing_rod" tileid="-1"/>
+    <description>You see a fishing rod. If you find a fishing spot you can catch fish with it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="magical scissors">
+    <type class="tool" subclass="magical_scissors" tileid="-1"/>
+    <description>You see a sparkling pair of magical scissors. Just think what they could cut!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="3.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
   
-    <item name="gold pan">
-      <type class="tool" subclass="gold_pan" tileid="-1"/>
-      <description>You see a gold pan. It is the traditional tool to prospect for gold.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
-
-    <item name="fishing rod">
-      <type class="tool" subclass="fishing_rod" tileid="-1"/>
-      <description>You see a fishing rod. If you find a fishing spot you can catch fish with it.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
-
-    <item name="magical scissors">
-      <type class="tool" subclass="magical_scissors" tileid="-1"/>
-      <description>You see a sparkling pair of magical scissors. Just think what they could cut!</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="3.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
-
-    <item name="magical needle">
-      <type class="tool" subclass="magical_needle" tileid="-1"/>
-      <description>You see a magical needle with a very sharp point.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="0.5"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
-
-    <item name="pick">
-      <type class="tool" subclass="pick" tileid="-1"/>
-      <description>You see a pick. It is a tool which helps you to get some coal.</description>
-      <implementation class-name="games.stendhal.server.entity.item.Item"/>
-      <attributes>
-      </attributes>
-      <weight value="10.0"/>
-      <value value="1"/>
-      <equipable>
-        <slot name="ground"/>
-        <slot name="content"/>
-        <slot name="bag"/>
-        <slot name="trade"/>
-        <slot name="lhand"/>
-        <slot name="rhand"/>
-      </equipable>
-    </item>
+  <item name="magical needle">
+    <type class="tool" subclass="magical_needle" tileid="-1"/>
+    <description>You see a magical needle with a very sharp point.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="0.5"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="pick">
+    <type class="tool" subclass="pick" tileid="-1"/>
+    <description>You see a pick. It is a tool which helps you to get some coal.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+  
+  <item name="shovel">
+    <type class="tool" subclass="shovel" tileid="-1"/>
+    <description>You see a shovel, a tool for digging.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Tool"/>
+    <attributes>
+      <menu value="Dig|Use"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
   
 </items>
