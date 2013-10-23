@@ -30,8 +30,11 @@ public class StatusAttackerFactory {
             try {
                 status = (Status) Class.forName(className).newInstance();
                 return new StatusAttacker(status, probability);
-            } catch (InstantiationException | IllegalAccessException
-                    | ClassNotFoundException e) {
+            } catch (InstantiationException e) {
+            	logger.error(e, e);
+            } catch (IllegalAccessException e) {
+            	logger.error(e, e);
+            } catch (ClassNotFoundException e) {
                 logger.error(e, e);
             }
             return null;
