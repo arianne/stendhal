@@ -27,14 +27,12 @@ public class ConditionAndActionArea extends AreaEntity {
     ConditionAndActionArea(final ChatCondition condition, final ChatAction action) {
         this.action = action;
         this.condition = condition;
-        System.out.println("\n\nCREATING!\n\n");
     }
     
     ConditionAndActionArea(final ChatCondition condition, final ChatAction action, final int width, final int height) {
         super(width, height);
         this.action = action;
         this.condition = condition;
-        System.out.println("\n\nCREATING!\n\n");
     }
     
     public boolean use(Player player) {
