@@ -51,25 +51,24 @@
 
 	<complexType name="attributes">
 		<sequence>
-			<element name="infostring" type="Q1:attribute" minOccurs="0"></element>
-			<element name="atk" type="Q1:attribute" minOccurs="0"></element>
-			<element name="def" type="Q1:attribute" minOccurs="0"></element>
-			<element name="amount" type="Q1:attribute" minOccurs="0"></element>
-			<element name="frequency" type="Q1:attribute" minOccurs="0"></element>
-
-			<element name="range" type="Q1:attribute" minOccurs="0"></element>
-			<element name="quantity" type="Q1:attribute" minOccurs="0"></element>
-			<element name="max_quantity" type="Q1:attribute" minOccurs="0"></element>
-			<element name="regen" type="Q1:attribute" minOccurs="0"></element>
-			<element name="rate" type="Q1:attribute" minOccurs="0"></element>
-			<element name="lifesteal" type="Q1:attribute" minOccurs="0"></element>
-			<element name="persistent" type="Q1:attribute" minOccurs="0"></element>
-			<element name="min_level" type="Q1:attribute" minOccurs="0"></element>
-			<element name="slot_name" type="Q1:attribute" minOccurs="0"></element>
-			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"></element>
-			<element name="autobind" type="Q1:attribute" minOccurs="0"></element>
+			<element name="infostring" type="Q1:attribute" minOccurs="0"/>
+			<element name="atk" type="Q1:attribute" minOccurs="0"/>
+			<element name="def" type="Q1:attribute" minOccurs="0"/>
+			<element name="amount" type="Q1:attribute" minOccurs="0"/>
+			<element name="frequency" type="Q1:attribute" minOccurs="0"/>
+			<element name="range" type="Q1:attribute" minOccurs="0"/>
+			<element name="quantity" type="Q1:attribute" minOccurs="0"/>
+			<element name="max_quantity" type="Q1:attribute" minOccurs="0"/>
+			<element name="regen" type="Q1:attribute" minOccurs="0"/>
+			<element name="rate" type="Q1:attribute" minOccurs="0"/>
+			<element name="lifesteal" type="Q1:attribute" minOccurs="0"/>
+			<element name="persistent" type="Q1:attribute" minOccurs="0"/>
+			<element name="min_level" type="Q1:attribute" minOccurs="0"/>
+			<element name="slot_name" type="Q1:attribute" minOccurs="0"/>
+			<element name="undroppableondeath" type="Q1:attribute" minOccurs="0"/>
+			<element name="autobind" type="Q1:attribute" minOccurs="0"/>
 			<element name="antipoison" type="Q1:attribute" minOccurs="0"></element>
-			<element name="menu" type="Q1:attribute" minOccurs="0"></element>
+			<element name="menu" type="Q1:attribute" minOccurs="0"/>
 		</sequence>
 	</complexType>
 
