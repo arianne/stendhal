@@ -370,7 +370,6 @@ public class j2DClient implements UserInterface {
 		 * Fix the container panel size, so that it is always visible
 		 */
 		containerPanel.setMinimumSize(containerPanel.getPreferredSize());
-		containerPanel.setMaximumSize(containerPanel.getPreferredSize());
 		
 		// Splitter between the left column and game screen
 		final JSplitPane horizSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftColumn, splitPane);
@@ -443,7 +442,7 @@ public class j2DClient implements UserInterface {
 		JComponent rightSidePanel = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
 		JComponent settings = new SettingsPanel();
 		rightSidePanel.add(settings, SLayout.EXPAND_X);
-		rightSidePanel.add(containerPanel, SLayout.EXPAND_X);
+		rightSidePanel.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		windowContent.add(rightSidePanel, SLayout.EXPAND_Y);
 		
 		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
