@@ -61,6 +61,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		setBorder(null);
 		String orderProp = WtWindowManager.getInstance().getProperty(WINDOW_ORDER_PROPERTY, "character;bag;keyring");
 		windowOrder = new ArrayList<String>(Arrays.asList(orderProp.split(";")));
+		getVerticalScrollBar().setUnitIncrement(16);
 	}
 	
 	/**
@@ -84,6 +85,7 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 		}
 		
 		child.setIgnoreRepaint(true);
+		child.setAlignmentX(LEFT_ALIGNMENT);
 		panel.add(child, position);
 		panel.revalidate();
 	}
@@ -220,7 +222,6 @@ class ContainerPanel extends JScrollPane implements Inspector, InternalManagedWi
 			window.setSlot(entity, content.getName());
 			window.setAcceptedTypes(EntityMap.getClass("item", null, null));
 			window.setVisible(true);
-			window.setAlignmentX(LEFT_ALIGNMENT);
 			addRepaintable(window);
 			return window;
 		}

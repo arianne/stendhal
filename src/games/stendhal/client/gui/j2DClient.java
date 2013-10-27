@@ -621,7 +621,6 @@ public class j2DClient implements UserInterface {
 		 */
 		// Character window
 		character = new Character();
-		character.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(character);
 
 		// Create the bag window
@@ -634,13 +633,11 @@ public class j2DClient implements UserInterface {
 		// keyring's types are more limited, but it's simpler to let the server
 		// handle those
 		keyring.setAcceptedTypes(EntityMap.getClass("item", null, null));
-		keyring.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(keyring);
 		userContext.addFeatureChangeListener(keyring);
 
 		spells = new Spells();
 		spells.setAcceptedTypes(EntityMap.getClass("spell", null, null));
-		spells.setAlignmentX(Component.LEFT_ALIGNMENT);
 		containerPanel.addRepaintable(spells);
 		userContext.addFeatureChangeListener(spells);
 
