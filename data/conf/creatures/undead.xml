@@ -211,7 +211,7 @@
   
   <creature name="dead lich">
     <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
-    <description></description>
+    <description>You see a dead lich with his huge green and heavy cloak. Although he is dead and bony, he'll seek revenge for his too early passing and will always return fast and ruthless!</description>
     <attributes>
       <atk value="582"/>
       <def value="80"/>
