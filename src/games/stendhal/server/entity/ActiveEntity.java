@@ -339,6 +339,7 @@ public abstract class ActiveEntity extends Entity {
 
 		this.speed = speed;
 		put("speed", speed);
+		notifyWorldAboutChanges();
 	}
 
 	/**
