@@ -23,7 +23,7 @@ import java.util.WeakHashMap;
  * @param <T> type of object
  */
 public class CounterMap<T> {
-	private Map<T, Integer> map = new HashMap<T, Integer>();
+	private final Map<T, Integer> map;
 
 	/**
 	 * creates a new counter map.
