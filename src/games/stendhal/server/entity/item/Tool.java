@@ -26,7 +26,7 @@ public class Tool extends Item {
         super(name, clazz, subclass, attributes);
     }
     
-    public Tool(Item item) {
+    public Tool(Tool item) {
         super(item);
     }
     
