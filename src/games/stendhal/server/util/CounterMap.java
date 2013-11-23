@@ -14,6 +14,8 @@ package games.stendhal.server.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.WeakHashMap;
 
 /**
@@ -115,5 +117,23 @@ public class CounterMap<T> {
 		} else {
 			return highestEntry.getKey();
 		}
+	}
+	
+	/**
+	 * Get the set of counted objects and their counts.
+	 * 
+	 * @return count entries
+	 */
+	public Set<Entry<T, Integer>> entrySet() {
+		return map.entrySet();
+	}
+	
+	/**
+	 * Get the set of counted objects.
+	 * 
+	 * @return counted objects
+	 */
+	public Set<T> keySet() {
+		return map.keySet();
 	}
 }
