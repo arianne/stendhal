@@ -2012,11 +2012,8 @@ public class Player extends RPEntity implements UseListener {
 		// process tutorial event for first player kill
 
 		for (Entity entity : damageReceived.keySet()) {
-			if (!(entity instanceof Player)) {
-				continue;
-			}
-			Player killer = (Player) entity;
-			if (!killer.isDisconnected()) {
+			Player killer = entityAsOnlinePlayer(entity);
+			if (killer != null) {
 				TutorialNotifier.killedPlayer(killer);
 			}
 		}

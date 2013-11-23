@@ -60,12 +60,8 @@ public class DeathMatchCreature extends Creature {
 	@Override
 	protected void rewardKillers(final int oldXP) {
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
-			Entity entity = entry.getKey();
-			if (!(entity instanceof Player)) {
-				continue;
-			}
-			Player killer = (Player) entity;
-			if (killer.isDisconnected()) {
+			Player killer = entityAsOnlinePlayer(entry.getKey());
+			if (killer == null) {
 				continue;
 			}
 			

@@ -1295,6 +1295,27 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		setHP(0);
 		SingletonRepository.getRuleProcessor().killRPEntity(this, killer);
 	}
+	
+	/**
+	 * For rewarding killers. Get the entity as a Player, if the entity is a
+	 * Player. If the player has logged out, try to get the corresponding online
+	 * player.
+	 * 
+	 * @param entity entity to be checked
+	 * @return online Player corresponding to the entity, or {@code null} if the
+	 * 	entity is not a Player, or if the equivalent player is not online
+	 */
+	protected Player entityAsOnlinePlayer(Entity entity) {
+		if (!(entity instanceof Player)) {
+			return null;
+		}
+		Player killer = (Player) entity;
+		if (killer.isDisconnected()) {
+			// Try to get the corresponding online player:
+			killer = SingletonRepository.getRuleProcessor().getPlayer(killer.getName());
+		}
+		return killer;
+	}
 
 	/**
 	 * Gives XP to every player who has helped killing this RPEntity.
@@ -1306,12 +1327,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final int xpReward = (int) (oldXP * 0.05);
 
 		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
-			Entity entity = entry.getKey();
-			if (!(entity instanceof Player)) {
-				continue;
-			}
-			Player killer = (Player) entity;
-			if (killer.isDisconnected()) {
+			Player killer = entityAsOnlinePlayer(entry.getKey());
+			if (killer == null) {
 				continue;
 			}
 				
