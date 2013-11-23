@@ -2011,12 +2011,14 @@ public class Player extends RPEntity implements UseListener {
 		// Don't reward for killing players
 		// process tutorial event for first player kill
 
-		for (final String killerName : playersToReward) {
-            final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
-            // check logout
-            if (killer != null) {
+		for (Entity entity : damageReceived.keySet()) {
+			if (!(entity instanceof Player)) {
+				continue;
+			}
+			Player killer = (Player) entity;
+			if (!killer.isDisconnected()) {
 				TutorialNotifier.killedPlayer(killer);
-            }
+			}
 		}
 	}
 

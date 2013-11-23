@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.deathmatch.DeathmatchState;
+
+import java.util.Map.Entry;
 
 /**
  * <p>A creature that will give no XP to killers.
@@ -57,20 +59,22 @@ public class DeathMatchCreature extends Creature {
 
 	@Override
 	protected void rewardKillers(final int oldXP) {
-	  
-		for (final String killerName : playersToReward) {
-			final Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
-			// check logout
-			if (killer == null) {
+		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			Entity entity = entry.getKey();
+			if (!(entity instanceof Player)) {
+				continue;
+			}
+			Player killer = (Player) entity;
+			if (killer.isDisconnected()) {
 				continue;
 			}
 			
-			int damageDone = damageReceived.getCount(killer);
+			int damageDone = entry.getValue();
 			if (damageDone == 0) {
 				continue;
 			}
 			// set the DM points score only for the player who started the DM
-			if (killerName.equals(playerName)) {
+			if (killer.getName().equals(playerName)) {
 				points = (int) (killer.getLevel()
 					* ((float) damageDone / (float) totalDamageReceived));
 				final DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(killer.getQuest("deathmatch"));
@@ -93,9 +97,7 @@ public class DeathMatchCreature extends Creature {
 			}
 			
 			killer.notifyWorldAboutChanges();
-			
 		}
-		
 	}
 	
 	/**

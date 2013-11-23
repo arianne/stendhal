@@ -48,12 +48,11 @@ import games.stendhal.server.util.CounterMap;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Map.Entry;
 import java.util.WeakHashMap;
 
 import marauroa.common.game.RPAction;
@@ -148,9 +147,6 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected CounterMap<Entity> damageReceived;
 
-	/** list of players which are to reward with xp on killing this creature. */
-	protected Set<String> playersToReward;
-
 	protected int totalDamageReceived;
 
 	/**
@@ -214,7 +210,6 @@ public abstract class RPEntity extends GuidedEntity {
 		super(object);
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new CounterMap<Entity>(true);
-		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
@@ -224,7 +219,6 @@ public abstract class RPEntity extends GuidedEntity {
 		super();
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new CounterMap<Entity>(true);
-		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
@@ -1200,7 +1194,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// remember the damage done so that the attacker can later be rewarded
 		// XP etc.
 		damageReceived.add(attacker, damage);
-		addPlayersToReward(attacker);
 
 		if (leftHP > 0) {
 			setHP(leftHP);
@@ -1209,18 +1202,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 
 		notifyWorldAboutChanges();
-	}
-
-	/**
-	 * Manages a list of players to reward XP in case this creature is killed.
-	 *
-	 * @param player
-	 *            Player
-	 */
-	protected void addPlayersToReward(final Entity player) {
-		if (player instanceof Player) {
-			playersToReward.add(((Player) player).getName());
-		}
 	}
 
 	/**
@@ -1324,17 +1305,19 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	protected void rewardKillers(final int oldXP) {
 		final int xpReward = (int) (oldXP * 0.05);
 
-		for (final String killerName : playersToReward) {
-			final Player killer = SingletonRepository.getRuleProcessor()
-					.getPlayer(killerName);
-			// check logout
-			if (killer == null) {
+		for (Entry<Entity, Integer> entry : damageReceived.entrySet()) {
+			Entity entity = entry.getKey();
+			if (!(entity instanceof Player)) {
 				continue;
 			}
-
+			Player killer = (Player) entity;
+			if (killer.isDisconnected()) {
+				continue;
+			}
+				
 			TutorialNotifier.killedSomething(killer);
 
-			final int damageDone = damageReceived.getCount(killer);
+			final int damageDone = entry.getValue();
 			if (damageDone == 0) {
 				continue;
 			}
@@ -1445,7 +1428,6 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		final Corpse corpse = makeCorpse(killerName);
 
 		damageReceived.clear();
-		playersToReward.clear();
 		totalDamageReceived = 0;
 
 		// Stats about dead
