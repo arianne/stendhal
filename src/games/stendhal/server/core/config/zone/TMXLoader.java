@@ -90,7 +90,7 @@ public class TMXLoader {
 		final String name = getAttributeValue(t, "name");
 		final int firstGid = getAttribute(t, "firstgid", 1);
 
-		final TileSetDefinition set = new TileSetDefinition(name, firstGid);
+		final TileSetDefinition set = new TileSetDefinition(name, null, firstGid);
 
 		final boolean hasTilesetImage = false;
 		final NodeList children = t.getChildNodes();

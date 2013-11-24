@@ -79,6 +79,7 @@ public class LayerDefinition implements Serializable {
 	 */
 	public LayerDefinition(final int layerWidth, final int layerHeight) {
 		raw = new byte[4 * layerWidth * layerHeight];
+		data = new int[layerWidth * layerHeight];
 		width = layerWidth;
 		height = layerHeight;
 	}

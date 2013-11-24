@@ -189,8 +189,7 @@ class TileStore implements Tileset {
 		final int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
-			final TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
-					null, -1));
+			final TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(null, null, -1));
 			tilesets.add(tileset);
 		}
 	}

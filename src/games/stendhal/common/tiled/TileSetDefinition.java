@@ -41,11 +41,14 @@ public class TileSetDefinition implements Serializable {
 	 * 
 	 * @param name
 	 *            the *useless* name of the tileset.
+	 * @param source
+	 *            the image filename
 	 * @param firstGid
 	 *            the id where this tileset begins to number tiles.
 	 */
-	public TileSetDefinition(final String name, final int firstGid) {
+	public TileSetDefinition(final String name, String source, final int firstGid) {
 		this.name = name;
+		this.source = source;
 		this.gid = firstGid;
 	}
 
