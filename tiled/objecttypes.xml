@@ -15,9 +15,9 @@ Note: an objecttype may support both shape based and tile based objects.
 
 <property>   defines a property of an object or zone
      name:    name of property
-     type:    type of property (string, int, double, enum, color)
+     type:    type of property (string, int, double, boolean, enum, enumset, color)
      default: default value; if this attribute is missing, the property is a mandatory field
-     values:  comma-separated list of allowed values for type=enum
+     values:  comma-separated list of allowed values for type=enum and type=enumset
 
 
 Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, easter, minetown). 
@@ -188,10 +188,6 @@ Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, eas
 
 	-->
 
-<!--
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
--->
-
 
 	<!-- Resources -->
 
@@ -247,6 +243,7 @@ Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, eas
 
 
 	<!-- Other -->
+	<objecttype name="Clock"           tileset="logic/clock" tileid="1" />
 
 	<objecttype name="PointOfInterest" tileset="logic/poi" tileid="1">
 		<property name="name"        type="string" />
@@ -256,7 +253,7 @@ Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, eas
 		<property name="url"         type="string" />
 	</objecttype>
 
-	<objecttype name="Gate" tileset="logic/gate" tileid="1">
+	<objecttype name="Gate"            tileset="logic/gate" tileid="1">
 		<property name="image"       type="string" default="fence_gate" />
 		<property name="orientation" type="string" default="v" />
 		<property name="condition"   type="string" default="" />
@@ -264,115 +261,53 @@ Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, eas
 		<property name="autoclose"   type="int"    default="300" />
 	</objecttype>
 
-	<objecttype name="Block" tileset="logic/block" tileid="1">
+	<objecttype name="Block"           tileset="logic/block" tileid="1">
 		<property name="multi"       type="boolean" default="false" />
 		<property name="class"       type="string" />
 		<property name="shape"       type="string" default="" />
 	</objecttype>
-	<objecttype name="BlockTarget" tileset="logic/block" tileid="2">
+	<objecttype name="BlockTarget"     tileset="logic/block" tileid="2">
 		<property name="action"      type="string" default="" />
 		<property name="shape"       type="string" default="" />
 	</objecttype>
-	<objecttype name="ViewChangeOrb" tileset="logic/orb" tileid="1">
+	<objecttype name="ViewChangeOrb"   tileset="logic/orb"   tileid="1">
 		<property name="x"           type="int"/>
 		<property name="y"           type="int"/>
 	</objecttype>
 
 
 	<!--  Areas -->
+	<objecttype name="Area"  color="#FFFF00">
+		<property name="behaviour" type="enumset" values="NoTeleportIn, NoTeleportOut, NoMoveTo, NoItemMove, NoLogin, OnlyOnePlayer, FertileGround" />
+		<property name="message"   type="string"  default="" />
+		<property name="new-x"     type="int"     default="" />
+		<property name="new-y"     type="int"     default="" />
+	</objecttype>
 
-<!--
-    <entity x="0" y="0">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-        <parameter name="coversZone">true</parameter>
-        <parameter name="enterMessage">Zekiel the guardian: "This is the first step of the test and the domain of Malleus."</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="14" y="6">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
-        <parameter name="width">3</parameter>
-        <parameter name="height">2</parameter>
-        <parameter name="enterMessage">You step onto a sparkling corner of the hexagram, this must be what Zekiel the guardian was talking about.</parameter>
-        <parameter name="warnPlayer">true</parameter>
-      </implementation>
-    </entity>
+	<objecttype name="MessagingArea"   color="#FFFFAA">
+		<property name="message"   type="string"  default="Welcome" />
+		<property name="warning"   type="boolean" default="false" />
+	</objecttype>
 
 
-   <entity x="55" y="110" condition="stendhal.minetown">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker" />
-      <attribute name="description">You see a nice clean table for resting your drinks on.</attribute>
-      <attribute name="width">4</attribute>
-      <attribute name="height">2</attribute>
-    </entity>
+	<objecttype name="WalkBlockerArea" color="#AAAAFF">
+		<property name="description"    type="string"  default="You see a nice clean table for resting your drinks on." />
+	</objecttype>
 
+	<objecttype name="DamagingArea"    color="#AA0000">
+		<property name="name"           type="string" />
+		<property name="interval"       type="int"     default="2" />
+		<property name="damage"         type="int"     default="50" />
+		<property name="probability"    type="int"     default="30" />
+		<property name="players-only"   type="boolean" default="true" />
+	</objecttype>
 
-    <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
-      <parameter name="x">5</parameter>
-      <parameter name="y">21</parameter>
-      <parameter name="width">1</parameter>
-       <parameter name="height">3</parameter>
-
-
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
-        <parameter name="width">2</parameter>
-        <parameter name="height">4</parameter>
-      </implementation>
-
-    <entity x="27" y="0">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
-        <parameter name="width">19</parameter>
-        <parameter name="height">19</parameter>
-        <parameter name="new-x">29</parameter>
-        <parameter name="new-y">27</parameter>
-      </implementation>
-      <attribute name="name">dragon lair2</attribute>
-    </entity>
-    
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn">
-      <parameter name="x">0</parameter>
-      <parameter name="y">0</parameter>
-      <parameter name="width">27</parameter>
-      <parameter name="height">47</parameter>
-    </configurator>
-
-    <entity x="77" y="20">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-        <parameter name="width">3</parameter>
-        <parameter name="height">3</parameter>
-        <parameter name="interval">2</parameter>
-        <parameter name="damage">50</parameter>
-        <parameter name="probability">30</parameter>
-        <parameter name="players-only">true</parameter>
-      </implementation>
-      <attribute name="name">razor sharp spikes</attribute>
-    </entity>
-    <entity x="111" y="80">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
-        <parameter name="width">2</parameter>
-        <parameter name="height">13</parameter>
-        <parameter name="interval">2</parameter>
-        <parameter name="maximum-damage">50</parameter>
-        <parameter name="probability">100</parameter>
-        <parameter name="players-only">true</parameter>
-      </implementation>
-      <attribute name="name">deathmatch spikes</attribute>
-    </entity>
--->
-
-	<!-- Zone wide configurations -->
-	<!--
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
-      <parameter name="message">You should keep your items safe for now.</parameter>
-    </configurator>
--->
+	<objecttype name="LifeDrainArea"   color="#CC0000">
+		<property name="name"           type="string" />
+		<property name="interval"       type="int"     default="2" />
+		<property name="maximum-damage" type="int"     default="50" />
+		<property name="probability"    type="int"     default="100" />
+		<property name="players-only"   type="boolean" default="true" />
+	</objecttype>
 
 </objecttypes>
