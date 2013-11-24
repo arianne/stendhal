@@ -14,7 +14,6 @@ package games.stendhal.server.entity.mapstuff.area;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.player.Player;
 
 public class DigArea extends ConditionAndActionArea {
