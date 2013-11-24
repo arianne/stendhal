@@ -91,16 +91,26 @@
       </implementation>
     </portal>
 
+
+    <entity x="71" y="33">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal" />
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+      <attribute name="use" />
+    </entity>
+
  </objecttype>
+-->
 
 
+	<!-- Signs -->
 
- <objecttype name="sign" tileset="objects" tileid="2">
-   <property name="text" type="longstring" />
-
-      <attribute name="class">transparent</attribute>
-
- </objecttype>
+	<!--
+	<objecttype name="sign" tileset="objects" tileid="2">
+		<property name="text" type="string" />
+		<attribute name="class">transparent</attribute>
+	</objecttype>
 
 <entity x="15" y="10">
       <implementation
@@ -149,38 +159,39 @@
       <attribute name="class">map-orril-castle</attribute>
     </entity>
 
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
-    <configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
-      <parameter name="message">You should keep your items safe for now.</parameter>
-    </configurator>
+	-->
 
-
+<!--
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Clock" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WellSource" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.CoalSource" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.GoldSource" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.sound.BellSoundSource" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.WaterSpringSource" />
-
 -->
+
+
+	<!-- Resources -->
+
+	<objecttype name="CoalSource"        tileset="logic/resource.png" tileid="1" />
+	<objecttype name="FishSource"        tileset="logic/resource.png" tileid="1">
+		<property name="species"  type="enum" values="char, cod, mackerel, perch, roach, clown fish, red lionfish, surgeonfish, trout"/>
+	</objecttype>
+	<objecttype name="GoldSource"        tileset="logic/resource.png" tileid="2" />
+	<objecttype name="WaterSpringSource" tileset="logic/resource.png" tileid="3" />
+	<objecttype name="WellSource"        tileset="logic/resource.png" tileid="4" />
+
 
 	<!-- Music and Sound -->
 
-	<objecttype name="BackgroundMusicSource" tileset="logic/sound" tileid="1">
+	<objecttype name="BackgroundMusicSource" tileset="logic/sound.png" tileid="1">
 		<property name="sound"  type="string" />
 		<property name="volume" type="int"    default="100" />
 		<property name="radius" type="int"    default="10000" />
 	</objecttype>
 
-	<objecttype name="LoopedAmbientSoundSource" tileset="logic/sound" tileid="2">
+	<objecttype name="LoopedAmbientSoundSource" tileset="logic/sound.png" tileid="2">
 		<property name="sound"  type="string" />
 		<property name="volume" type="int"    default="100" />
 		<property name="radius" type="int"    default="10000" />
 	</objecttype>
 
-	<objecttype name="PeriodicAmbientSoundSource" tileset="logic/sound" tileid="3">
+	<objecttype name="PeriodicAmbientSoundSource" tileset="logic/sound.png" tileid="3">
 		<property name="sound"  type="string" />
 		<property name="min"    type="int"    default="60" />
 		<property name="max"    type="int"    default="300" />
@@ -188,34 +199,79 @@
 		<property name="radius" type="int"    default="10000" />
 	</objecttype>
 
-	<objecttype name="PlaySoundEntity" color="#FFFF00" tileset="logic/sound" tileid="4">
+	<objecttype name="PlaySoundEntity" tileset="logic/sound.png" tileid="4">
 		<property name="sound"       type="string" />
 		<property name="volume"      type="int"    default="100" />
 		<property name="radius"      type="int"    default="10000" />
 		<property name="description" type="string" default="You see something." />
 	</objecttype>
+
+
+	<!-- Chests -->
+
+	<objecttype name="PersonalChest" tileset="logic/chest.png" tileid="1">
+		<property name="slot"   type="string" default="bank" />
+	</objecttype>
+	<objecttype name="NPCOwnedChest" tileset="logic/chest.png" tileid="2">
+		<property name="npc"    type="string" />
+	</objecttype>
+	<objecttype name="StoredChest"   tileset="logic/chest.png" tileid="3" />
+
+
+	<!-- Other -->
+	<objecttype name="PlaySoundEntity" tileset="logic/sound.png" tileid="4">
+		<property name="name"        type="string" />
+		<property name="title"       type="string"/>
+		<property name="type"        type="enum"  values="bank, dungeon" />
+		<property name="description" type="string" />
+		<property name="url"         type="string" />
+	</objecttype>
+
+
 <!--
 
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
+      <parameter name="x">77</parameter>
+      <parameter name="y">47</parameter>
+      <parameter name="image">fence_gate</parameter>
+      <parameter name="orientation">v</parameter>
+      <parameter name="condition">new AlwaysFalseCondition()</parameter>
+      <parameter name="message">The gate is locked.</parameter>
+      <parameter name="autoclose">300</parameter>
+    </configurator>
 
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
-        <parameter name="slot">bank_nalwor</parameter>
+
+<configurator
+      class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"
+      condition="stendhal.testserver">
+      <parameter name="start-x">44</parameter>
+      <parameter name="start-y">53</parameter>
+      <parameter name="multi">true</parameter>
+      <parameter name="class">mine_cart_empty</parameter>
+    </configurator>
+    <configurator
+      class-name="games.stendhal.server.entity.mapstuff.block.BlockTargetZoneConfigurator"
+      condition="stendhal.testserver">
+      <parameter name="x">40</parameter>
+      <parameter name="y">53</parameter>
+      <parameter name="action">new IncreaseXPAction(5)</parameter>
+    </configurator>
+
+
+    <entity x="86" y="95">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">100</parameter>
+        <parameter name="y">86</parameter>
       </implementation>
-
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.FishSource">
-     	  <parameter name="species">red lionfish</parameter>
-    	</implementation>
-
     </entity>
-    
-    <point-of-interest x="56" y="57">
-      <name>Amazon Tunnel East Entrance</name>
-      <title>Amazon Tunnel</title>
-      <type>dungeon</type>
-      <description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit.</description>
-      <url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
-    </point-of-interest>
 
+-->
+
+
+	<!--  Areas -->
+
+<!--
     <entity x="0" y="0">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.area.MessagingArea">
@@ -244,11 +300,6 @@
     </entity>
 
 
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
-      <parameter name="x">18</parameter>
-      <parameter name="y">13</parameter>
-    </configurator>
     <configurator class-name="games.stendhal.server.maps.semos.city.FertileGrounds">
       <parameter name="x">5</parameter>
       <parameter name="y">21</parameter>
@@ -302,57 +353,16 @@
       </implementation>
       <attribute name="name">deathmatch spikes</attribute>
     </entity>
-
-
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
-      <parameter name="x">77</parameter>
-      <parameter name="y">47</parameter>
-      <parameter name="image">fence_gate</parameter>
-      <parameter name="orientation">v</parameter>
-      <parameter name="condition">new AlwaysFalseCondition()</parameter>
-      <parameter name="message">The gate is locked.</parameter>
-      <parameter name="autoclose">300</parameter>
-    </configurator>
-
-
-<configurator
-      class-name="games.stendhal.server.entity.mapstuff.block.BlockZoneConfigurator"
-      condition="stendhal.testserver">
-      <parameter name="start-x">44</parameter>
-      <parameter name="start-y">53</parameter>
-      <parameter name="multi">true</parameter>
-      <parameter name="class">mine_cart_empty</parameter>
-    </configurator>
-    <configurator
-      class-name="games.stendhal.server.entity.mapstuff.block.BlockTargetZoneConfigurator"
-      condition="stendhal.testserver">
-      <parameter name="x">40</parameter>
-      <parameter name="y">53</parameter>
-      <parameter name="action">new IncreaseXPAction(5)</parameter>
-    </configurator>
-
-    <entity x="2" y="16">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
-        <parameter name="npc">Xin Blanca</parameter>
-      </implementation>
-    </entity>
-
-    <entity x="71" y="33">
-      <implementation
-        class-name="games.stendhal.server.entity.mapstuff.portal.RandomDestinationPortal" />
-      <attribute name="width">2</attribute>
-      <attribute name="height">2</attribute>
-      <attribute name="use" />
-    </entity>
-
-    <entity x="86" y="95">
-      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
-        <parameter name="x">100</parameter>
-        <parameter name="y">86</parameter>
-      </implementation>
-    </entity>
-
 -->
+
+	<!-- Zone wide configurations -->
+	<!--
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleport" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoMoveTo" />
+    <configurator class-name="games.stendhal.server.core.config.zone.NoItemMove">
+      <parameter name="message">You should keep your items safe for now.</parameter>
+    </configurator>
+
+
 </objecttypes>
