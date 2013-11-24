@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+<zone>       defines zone properties
+
+<objecttype> defines object properties
+     name:    name of the object type
+     tileset,
+     tileid:  name of tileset/tileid for tile based objects
+     color:   for shape based objects
+
+Note: an objecttype may support both shape based and tile based objects.
+
+
+<property>   defines a property of an object or zone
+     name:    name of property
+     type:    type of property (string, int, double, enum, color)
+     default: default value; if this attribute is missing, the property is a mandatory field
+     values:  comma-separated list of allowed values for type=enum
+
+
+Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, easter, minetown). 
+      We can use distinct object layers for them, so there is no condition-property.
+-->
+
+
+
 <objecttypes>
 
 	<zone>
