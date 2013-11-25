@@ -60,7 +60,7 @@ Note: In the <zone>.xml, there are conditional entities (e.g. for christmas, eas
 
 	<objecttype name="ShopSign" color="#AAAAAA">
 		<property name="shop"    type="string" />
-		<property name="title"   type="string" default="Shopw view" />
+		<property name="title"   type="string" default="Shop view" />
 		<property name="seller"  type="string" />
 		<property name="caption" type="string" />
 	</objecttype>
