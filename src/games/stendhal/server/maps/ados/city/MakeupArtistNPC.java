@@ -18,6 +18,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 	 */
 	public void buildFidorea(final StendhalRPZone zone, int x, int y) {
 		final SpeakerNPC npc = new SpeakerNPC("Fidorea") {
+			
+			private static final int MINUTES_BEFORE_WEAR_OFF = 5 * 60;
 
 			@Override
 			protected void createPath() {
@@ -59,8 +62,8 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, there. Do you need #help with anything?");
-				addHelp("I sell masks. If you don't like your mask, you can #return and I will remove it, or you can just wait two hours, until it wears off.");
-				
+				addHelp(getHelpDescription());
+
 				// this is a hint that one of the items Anna wants is a dress (goblin dress)
 				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); 
 				addJob("I am a makeup artist.");
@@ -72,9 +75,14 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 
 				final Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 20);
-				// if you change the wear off time, change her Help message too please
-				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 5 * 60, "Your mask has worn off.");
+				final OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, MINUTES_BEFORE_WEAR_OFF, "Your mask has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
+			}
+
+			private String getHelpDescription() {
+				String helpTemplate = "I sell masks. If you don't like your mask, you can #return and I will remove it, or you can just wait %s, until it wears off.";
+				int secondsBeforeWearOff = MINUTES_BEFORE_WEAR_OFF * 60;
+				return String.format(helpTemplate, TimeUtil.timeUntil(secondsBeforeWearOff));
 			}
 		};
 
