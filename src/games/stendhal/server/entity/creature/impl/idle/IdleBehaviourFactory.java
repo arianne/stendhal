@@ -21,7 +21,9 @@ public class IdleBehaviourFactory {
 	public static IdleBehaviour get(final Map<String, String> aiProfiles) {
 		if (aiProfiles.containsKey("patrolling")) {
 			return new Patroller();
-		}
-		return nothing;
+        } else if (aiProfiles.containsKey("camouflage")) {
+            return new CamouflagedIdleBehaviour();
+        }
+        return nothing;
 	}
 }

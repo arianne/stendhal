@@ -21,6 +21,8 @@ public class AttackStrategyFactory {
 	private static final AttackStrategy GANDHI = new Gandhi();
 	private static final AttackStrategy ATTACK_WEAKEST = new AttackWeakest();
 
+    private static final AttackStrategy CAMOUFLAGED = new DecamouflageAttackStrategy(HAND_TO_HAND);
+
 	
 	public static AttackStrategy get(final Map<String, String> aiProfiles) {
 		
@@ -36,6 +38,8 @@ public class AttackStrategyFactory {
 			return ATTACK_WEAKEST;
 		} else if (aiProfiles.containsKey("strategy")) {
 			return CompoundAttackStrategy.create(aiProfiles.get("strategy"));
+        } else if (aiProfiles.containsKey("camouflage")) {
+            return CAMOUFLAGED;
 		}
 
 		return HAND_TO_HAND;
