@@ -1553,6 +1553,8 @@ public class Player extends RPEntity implements UseListener {
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit() {
+		removeOutfitExpireNotification();
+
 		final Outfit originalOutfit = getOriginalOutfit();
 		if (originalOutfit != null) {
 
@@ -1583,6 +1585,13 @@ public class Player extends RPEntity implements UseListener {
 			return true;
 		}
 		return false;
+	}
+
+	private void removeOutfitExpireNotification() {
+	    ExpireOutfit expireOutfit = new ExpireOutfit(getName());
+	    SingletonRepository.getTurnNotifier().dontNotify(expireOutfit);
+
+		remove("outfit_expire_age");
 	}
 
 	//

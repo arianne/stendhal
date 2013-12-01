@@ -172,7 +172,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			}
 			player.sendPrivateText("Your costume has worn off");
 			player.returnToOriginalOutfit();
-			player.remove("outfit_expire_age");
 		}
 	}
 
