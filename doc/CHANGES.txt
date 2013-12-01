@@ -1,6 +1,18 @@
 ﻿Changelog
 ---------
 
+1.12
+*world*
+- New achievement "Dragon Slayer". Loot all dragon cloaks (inactive).
+
+*client*
+- New sounds and images
+
+*website*
+- Display name of ip-address on login history
+
+
+
 1.11
 
 *world*
