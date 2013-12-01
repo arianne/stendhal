@@ -87,9 +87,7 @@ public class StendhalRPAction {
 	 *            The target of attack.
 	 */
 	public static void startAttack(final Player player, final RPEntity victim) {
-		/*
-		 * Player's can't attack themselves
-		 */
+		// Player's can't attack themselves
 		if (player.equals(victim)) {
 			return;
 		}
@@ -99,8 +97,7 @@ public class StendhalRPAction {
 			if ((victim instanceof SpeakerNPC)) {
 				((SpeakerNPC) victim).say(player.getName() + ", if you want my attention, just say #hi.");
 			}
-			logger.info("REJECTED. " + player.getName() + " is attacking "
-					+ victim.getName());
+			logger.info("REJECTED. " + player.getName() + " is attacking " + victim.getName());
 			return;
 		}
 
@@ -311,10 +308,8 @@ public class StendhalRPAction {
 		}
 
 		if (missileUsed) {
-			/*
-			 *  Removing the missile is deferred here so that the weapon
-			 *  information is available when calculating the damage.
-			 */
+			// Removing the missile is deferred here so that the weapon
+			// information is available when calculating the damage.
 			useMissile(player);
 		}
 
@@ -443,6 +438,7 @@ public class StendhalRPAction {
 	 * 36 => 2665 squares
 	 */
 	private static final int maxDisplacement = 36;
+
 	/**
 	 * Places an entity at a specified position in a specified zone. This will
 	 * remove the entity from any existing zone and add it to the target zone if
@@ -510,19 +506,13 @@ public class StendhalRPAction {
 		Sheep sheep = null;
 		Pet pet = null;
 
-		/*
-		 * Remove from old zone (if any) during zone change
-		 */
+		// Remove from old zone (if any) during zone change
 		if (oldZone != null) {
-			/*
-			 * Player specific pre-remove handling
-			 */
+			// Player specific pre-remove handling
 			if (entity instanceof Player) {
 				final Player player = (Player) entity;
 
-				/*
-				 * Remove and remember dependents
-				 */
+				// Remove and remember dependents
 				sheep = player.getSheep();
 
 				if (sheep != null) {
@@ -547,27 +537,19 @@ public class StendhalRPAction {
 			}
 		}
 
-		/*
-		 * [Re]position (possibly while between zones)
-		 */
+		// [Re]position (possibly while between zones)
 		entity.setPosition(x, y);
 
-		/*
-		 * Place in new zone (if needed)
-		 */
+		// Place in new zone (if needed)
 		if (zoneChanged) {
 			zone.add(entity);
 		}
 
-		/*
-		 * Player specific post-change handling
-		 */
+		// Player specific post-change handling
 		if (entity instanceof Player) {
 			final Player player = (Player) entity;
 
-			/*
-			 * Move and re-add removed dependents
-			 */
+			//  Move and re-add removed dependents
 			if (sheep != null) {
 				if (placePet(zone, player, sheep)) {
 					player.setSheep(sheep);
@@ -589,9 +571,7 @@ public class StendhalRPAction {
 			}
 
 			if (zoneChanged) {
-				/*
-				 * Zone change notifications/updates
-				 */
+				// Zone change notifications/updates
 				transferContent(player);
 
 				if (oldZone != null) {
@@ -628,9 +608,8 @@ public class StendhalRPAction {
 	 */
 	private static Point findLocation(final StendhalRPZone zone, final Entity entity,
 			final Shape allowedArea, final int x, final int y, final boolean checkPath) {
-		/*
-		 * Minimum Euclidean distance within minimum walking distance
-		 */
+
+		// Minimum Euclidean distance within minimum walking distance
 		for (int totalShift = 1; totalShift <= maxDisplacement; totalShift++) {
 			for (int tilt = (totalShift + 1) / 2; tilt > 0; tilt--) {
 				final int spread = totalShift - tilt;
@@ -720,10 +699,8 @@ public class StendhalRPAction {
 			final Shape allowedArea, final int oldX, final int oldY,
 			final int newX, final int newY, final boolean checkPath) {
 		if (!zone.collides(entity, newX, newY)) {
-			// Check the possibleArea now. This is a
-			// performance
-			// optimization because the pathfinding
-			// is very expensive.
+			// Check the possibleArea now. This is a performance
+			// optimization because the pathfinding is very expensive.
 			if ((allowedArea != null) && (!allowedArea.contains(newX, newY))) {
 				return false;
 			}
@@ -731,14 +708,10 @@ public class StendhalRPAction {
 				return true;
 			}
 
-			// We verify that there is a walkable path
-			// between the original
-			// spot and the new destination. This is to
-			// prevent players to
-			// enter not allowed places by logging in on top
-			// of other players.
-			// Or monsters to spawn on the other side of a
-			// wall.
+			// We verify that there is a walkable path between the original
+			// spot and the new destination. This is to prevent players to
+			// enter not allowed places by logging in on top of other players.
+			// Or monsters to spawn on the other side of a wall.
 			final List<Node> path = Path.searchPath(entity, zone,
 					oldX, oldY, new Rectangle(newX, newY, 1, 1),
 					400 /* maxDestination * maxDestination */, false);
@@ -779,5 +752,4 @@ public class StendhalRPAction {
 
 		return false;
 	}
-
 }
