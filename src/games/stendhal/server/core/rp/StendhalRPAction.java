@@ -23,6 +23,7 @@ import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.events.ZoneNotifier;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.core.rp.group.Group;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -120,11 +121,9 @@ public class StendhalRPAction {
 			}
 
 			if (victim instanceof Player) {
-				// disable attacking much weaker players, except in
-				// self defense
-				if ((victim.getAttackTarget() != player) && !victimIsStrongEnough(player, (Player) victim)) {
+				// disable attacking much weaker players, except in/ self defense
+				if (!mayAttackPlayer(player, (Player) victim)) {
 					player.sendPrivateText("Your conscience would trouble you if you carried out this attack.");
-
 					return;
 				}
 			} else {
@@ -147,6 +146,38 @@ public class StendhalRPAction {
 		player.faceToward(victim);
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
+	}
+
+	/**
+	 * checks whether a player may attack another player
+	 *
+	 * @param attacker attacker
+	 * @param victim   victim
+	 * @return true, if the attack is acceptable
+	 */
+	private static boolean mayAttackPlayer(final Player attacker, final Player victim) {
+
+		// is the victim is of similar strength
+		if (victimIsStrongEnough(attacker, victim)) {
+			return true;
+		}
+
+		// allow self defence
+		RPEntity victimsTarget = victim.getAttackTarget();
+		if ((victimsTarget == null) || (victimsTarget instanceof Player)) {
+			return false;
+		}
+		if (victimsTarget == attacker) {
+			return true;
+		}
+
+		// allow defence of group members
+		Group group = SingletonRepository.getGroupManager().getGroup(victimsTarget.getName());
+		if (group == null) {
+			return false;
+		}
+
+		return group.hasMember(attacker.getName());
 	}
 
 	/**
