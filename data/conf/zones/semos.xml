@@ -2571,6 +2571,9 @@ Holy mackerel! These chips are tasty.
   </zone>
 
   <zone name="int_semos_bank" file="interiors/semos/bank.tmx">
+    <attributes>
+      <parameter name="file" condition="stendhal.christmas">interiors/semos/bank_xmas.tmx</parameter>
+    </attributes>
     <!-- to disallow making or using marked scrolls for getting to trading 
       table area -->
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
