@@ -2900,6 +2900,9 @@ Holy mackerel! These chips are tasty.
   </zone>
 
   <zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
+  <attributes>
+      <parameter name="file" condition="stendhal.christmas">interiors/semos/townhall_xmas.tmx</parameter>
+    </attributes>
     <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC" />
