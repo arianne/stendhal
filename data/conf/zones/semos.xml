@@ -2546,6 +2546,9 @@ Holy mackerel! These chips are tasty.
   </zone>
 
   <zone name="int_semos_storage_0" file="interiors/semos/storage_0.tmx">
+      <attributes>
+      <parameter name="file" condition="stendhal.christmas">interiors/semos/storage_0_xmas.tmx</parameter>
+    </attributes>
     <configurator
       class-name="games.stendhal.server.maps.semos.storage.HousewifeNPC" />
 
