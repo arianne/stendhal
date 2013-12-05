@@ -44,6 +44,11 @@ class RangeAttack implements AttackStrategy {
 	@Override
 	public boolean canAttackNow(final Creature creature, RPEntity target) {
 		if (target != null) {
+			// Line of sight is only needed if the target is not next to the
+			// attacker
+			if (creature.nextTo(target)) {
+				return true;
+			}
 			return ((creature.squaredDistance(target) <= range * range) && creature.hasLineOfSight(target));
 		} else {
 			return false;
