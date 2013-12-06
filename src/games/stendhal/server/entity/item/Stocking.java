@@ -27,7 +27,7 @@ import java.util.Map;
 public class Stocking extends Box {
 
 	private static final String[] ITEMS = { "mega potion", "love potion", "pomegranate",
-			"fish soup", "mithril nugget", "coal", "empty scroll" , "vsop koboldish torcibud"};
+			"fish soup", "mithril nugget", "empty scroll", "teddy", "crepes suzette", "vsop koboldish torcibud"};
 
 	/**
 	 * Creates a new Stocking.
