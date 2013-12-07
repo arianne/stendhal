@@ -69,9 +69,9 @@ import java.util.List;
  */
 public class GoodiesForRudolph extends AbstractQuest {
 
-	private static final String QUEST_SLOT = "goodies_rudolph";
+	private static final String QUEST_SLOT = "goodies_rudolph_13";
 
-	
+
 
 	@Override
 	public List<String> getHistory(final Player player) {
@@ -103,7 +103,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
+			ConversationStates.QUEST_OFFERED,
 			"I want some delicious goodies only you can help me get. Do you think you can help me?",
 			null);
 
@@ -111,7 +111,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Thank you very much for the goodies, but I don't have any other task for you this year. Have a wonderful holiday season.",
 			null);
 
@@ -153,18 +153,18 @@ public class GoodiesForRudolph extends AbstractQuest {
 					new PlayerHasItemWithHimCondition("reindeer moss", 5),
 					new PlayerHasItemWithHimCondition("apple", 10),
 					new PlayerHasItemWithHimCondition("carrot", 10))),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
+			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Excuse me, please! I see you have delicious goodies. Are they for me?",
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new GreetingMatchesNameCondition(npc.getName()),
-				new QuestInStateCondition(QUEST_SLOT, "start"), 
+				new QuestInStateCondition(QUEST_SLOT, "start"),
 				new NotCondition(new AndCondition(
 					new PlayerHasItemWithHimCondition("reindeer moss", 5),
 					new PlayerHasItemWithHimCondition("apple", 10),
 					new PlayerHasItemWithHimCondition("carrot", 10)))),
-			ConversationStates.ATTENDING, 
+			ConversationStates.ATTENDING,
 			"Oh my. I am so in anticipation of those goodies which I have asked you for. Hopefully it will not be much longer before you can bring them to me.",
 			null);
 
@@ -179,16 +179,16 @@ public class GoodiesForRudolph extends AbstractQuest {
 		reward.add(new DropItemAction("apple", 10));
 		reward.add(new InflictStatusOnNPCAction("apple"));
 
-		
-		
-		
-		
+
+
+
+
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the goodies
 			// away and then saying "yes"
-			
+
 			new AndCondition(
 					new PlayerHasItemWithHimCondition("reindeer moss", 5),
 					new PlayerHasItemWithHimCondition("apple", 10),
@@ -227,17 +227,17 @@ public class GoodiesForRudolph extends AbstractQuest {
 	public String getName() {
 		return "GoodiesForRudolph";
 	}
-	
+
 	@Override
 	public int getMinLevel() {
 		return 0;
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;
 	}
-	
+
 	@Override
 	public String getNPCName() {
 		return "Rudolph";
