@@ -1193,7 +1193,7 @@
      <says>
         <noise state="idle follow fight" value="I will summon chaos and fury upon you!"/>
       </says>
-      <profile name="status_attackers" params="ConfuseStatus,20;ShockStatus,20;"/>
+<!--       <profile name="status_attackers" params="ConfuseStatus,20;ShockStatus,20;"/> -->
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
