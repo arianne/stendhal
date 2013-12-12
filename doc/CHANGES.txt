@@ -3,20 +3,24 @@
 
 1.12
 *world*
-- New achievement "Dragon Slayer". Loot all dragon cloaks (inactive).
 - New Christmas maps for bank, townhall, storage (Eonnas house, all Semos)
+- Meet Santa and Rudolph
+- Dragon now notice small players right in front
 - Reworked normal storage interior
-- more creature descriptions
-- new stocking items, deleting coal
-
-*client*
+- More creature descriptions
+- Mew stocking items, deleting coal
 - New sounds and images
 
 *fixes*
 - Fixing tiles on several maps
+- Sometimes xp reward for killing creatures was too low, if the player logged out during the fight
+- On expire of a special outift, a message was displayed, even when the outfit has been removed beforehand
 
 *website*
 - Display name of ip-address on login history
+
+*developer*
+- Replaced commons-lang.jar with guava.jar (needs to be changed in Eclise: Project | Properties | Build Path | Libraries)
 
 
 
