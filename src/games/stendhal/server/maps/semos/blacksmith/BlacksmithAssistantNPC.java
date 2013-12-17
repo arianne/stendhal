@@ -50,16 +50,20 @@ public class BlacksmithAssistantNPC implements ZoneConfigurator  {
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
                 nodes.add(new Node(5,2));
-                nodes.add(new Node(8,2));
-                nodes.add(new Node(7,2));
-                nodes.add(new Node(7,7));
-                nodes.add(new Node(16,7));
-                nodes.add(new Node(16,2));
+                nodes.add(new Node(5,5));
+                nodes.add(new Node(10,5));
+                nodes.add(new Node(10,9));
+                nodes.add(new Node(7,9));
+                nodes.add(new Node(7,12));
+                nodes.add(new Node(3,12));
+                nodes.add(new Node(3,8));
+                nodes.add(new Node(9,8));
+                nodes.add(new Node(9,5));
+                nodes.add(new Node(12,5));
+                nodes.add(new Node(12,2));
                 nodes.add(new Node(15,2));
-                nodes.add(new Node(16,2));
-                nodes.add(new Node(16,7));
-                nodes.add(new Node(7,7));
-                nodes.add(new Node(7,2));
+                nodes.add(new Node(15,5));
+                nodes.add(new Node(5,5));
 				setPath(new FixedPath(nodes, true));
 			}
 			

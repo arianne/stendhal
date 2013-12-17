@@ -54,11 +54,18 @@ public class BlacksmithNPC implements ZoneConfigurator  {
 				final List<Node> nodes = new LinkedList<Node>();
                 nodes.add(new Node(23,12));
                 nodes.add(new Node(29,12));
-                nodes.add(new Node(29,5));
-                nodes.add(new Node(17,5));
+                nodes.add(new Node(29,9));
                 nodes.add(new Node(17,9));
+                nodes.add(new Node(17,5));
+                nodes.add(new Node(16,5));
+                nodes.add(new Node(16,3));
+                nodes.add(new Node(28,3));
+                nodes.add(new Node(28,5));
+                nodes.add(new Node(23,5));
+                nodes.add(new Node(23,9));
                 nodes.add(new Node(28,9));
-                nodes.add(new Node(28,12));
+                nodes.add(new Node(28,13));
+                nodes.add(new Node(21,12));
 				setPath(new FixedPath(nodes, true));
 			}
 

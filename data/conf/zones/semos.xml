@@ -2349,7 +2349,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       </implementation>
     </entity>
 
-    <entity x="11" y="3">
+    <entity x="7" y="3">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
         <parameter name="sound">fire-sparkes-1, fire-3, fire-8</parameter>
@@ -2359,7 +2359,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
     </entity>
 
 
-    <entity x="11" y="3">
+    <entity x="7" y="3">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
         <parameter name="sound">fire-5</parameter>
@@ -2379,30 +2379,39 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="class">book_blue</attribute>
     </entity>
 
-    <entity x="10" y="3">
+    <entity x="6" y="2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
       <attribute name="text">In this fireplace the smith heats the iron until it is glowing.</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="width">4</attribute>
-      <attribute name="height">2</attribute>
+      <attribute name="height">3</attribute>
     </entity>
 
-    <entity x="3" y="3">
+    <entity x="9" y="12">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
       <attribute name="text">In this fireplace the smith heats the iron until it is glowing.</attribute>
       <attribute name="class">transparent</attribute>
-      <attribute name="width">1</attribute>
+      <attribute name="width">3</attribute>
       <attribute name="height">2</attribute>
     </entity>
 
-    <entity x="6" y="8">
+    <entity x="2" y="2">
       <implementation
         class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
       <attribute name="text">This is the water for cooling the hot iron bars.</attribute>
       <attribute name="class">transparent</attribute>
-      <attribute name="width">2</attribute>
+      <attribute name="width">3</attribute>
+      <attribute name="height">3</attribute>
+    </entity>
+    
+    <entity x="4" y="9">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">This is the water for cooling the hot iron bars.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">3</attribute>
       <attribute name="height">3</attribute>
     </entity>
 
@@ -2442,6 +2451,24 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       <attribute name="text">This seems to be a hammer which is used to forge iron bars.</attribute>
       <attribute name="class">transparent</attribute>
       <attribute name="width">2</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="7" y="6">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a massive anvil for forging tools with. </attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity>
+    
+    <entity x="9" y="10">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a massive anvil for forging tools with. </attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">1</attribute>
       <attribute name="height">1</attribute>
     </entity>
   </zone>
