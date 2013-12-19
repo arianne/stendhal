@@ -105,6 +105,9 @@
  <tileset firstgid="388" name="mistletoe" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mistletoe.png" trans="ff00ff" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="389" name="xmas lights" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/xmas_lights.png" width="128" height="160"/>
+ </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC5NhZGCQGcUMchRgeto/0H4f6PAf6fYPdPobrvZL48Gj9g9/+7FhURqaPVgwAOgaH4sACAAA
@@ -123,6 +126,11 @@
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgwAR3gPgulN3CiEUBENTjEG8EijczotK1WMSacegHgXtAfB+39CggAFLxhC09wQsgfomFP1jcRysw2P032N03FMEZID5LB3tqoXFXhxaH54D4PAXmUpompgPxDDQxXPl/FAweAACAkW2rAAgAAA==
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="32" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgwARtjAwM7YxYJOgE+oB29w+g/aNgFIyCUTAK6Acmjpb3AwIAqN7NYQAIAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="16">

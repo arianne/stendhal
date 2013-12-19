@@ -96,6 +96,9 @@
  <tileset firstgid="290" name="mistletoe" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mistletoe.png" trans="ff00ff" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="291" name="xmas lights" tilewidth="32" tileheight="32">
+  <image source="../../tileset/furniture/light/xmas_lights.png" width="128" height="160"/>
+ </tileset>
  <layer name="0_floor" width="48" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3QsQ3AIBBD0SsQYhCWZkeGoEmbFCcEtvIt/f7JJSKKaSFgwL+vau53/39X4yUXv/v/+D3Cf8b4tds+/Nrh1/a3Q2XsTcifDX++ae53/x8//tvhx4//3/7+pOhfsENdgQAYAAA=
@@ -108,17 +111,17 @@
  </layer>
  <layer name="2_object" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SuwrCQBBFYyU+4j+JqcTK2sq3glqJD9BSUUT0B3zrd3qLWQhhNbJsMipz4DDM7E5yi3UcM/aGZ5+yIV/138oIjuGWDPYLWGFLF84ETuGODPZLvmhWWHEHYES9RdMdk32bqLdoumOyL/Awg/M3vSAIgiDEQQ/2NQ44Q2k4wKPPE81/Jf8ZXnxeaR5X/iqsaWodNjRzRR4W4A3efT4s5wujCVua2oYdzVzhUS3BYVxhLeKFXxH+mGzCcVIwDZMwQ71LfY76bOBc3Xep56LL92sBFLkDWKBMNYq3tI7gmwI/T5aQfn0AGAAA
+   H4sIAAAAAAAAC+2XuwoCMRBFdyvf/pNoJVbWVr4V1Ep8gJaKIqI/4Fu/0wtOYFmiKyHuqMyBQ5jJzuYWaeI4ZmwN995lRT6rv5UBHMI16a9nsMSWLpgRHMMN6a/nfNGssOAOACKu40RhzA33XHUXTWdM5m2i7qLpjMm8wMMETl/UgiAIghAGHdjV2OMMpWEH9x4P1P+V/Ed48nimflj5y7CiWauwpukrMjALL/Dq8WY5XxB12NCsTdjS9BU5WguwH1ZYi+SCPxH+mCS9p+Pu432doDpFdZrqpG9ffZ9ieI97afMdLYA8dwALFGn9xF1afuCfAj93vDZN9AAYAAA=
   </data>
  </layer>
  <layer name="3_roof" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGDyAnZGBgQOIORlRxdD56GpGwSigJpABpi1ZLOlLiRGCiVWPnFYJsakJ5IDmyZNgJqnqydUzHIAA0M+CQ8Df1UBcg4UvBHS78BBw/ygYBcMJtA20A0Y4aB9oB4yCUTCMgRiwTSFORrtisLSnJIBukCTDHdjaU35QejiUOX6ElYyCUTAKRgFdAa4xl8EK0OuCkTp+MgoGFwAArnMwnAAYAAA=
+   H4sIAAAAAAAAC2NgGDyAnZGBgQOIORlRxdD56GpGwSigJpABpi1ZLOlLiRGCiVWPnFbR2TA9MHFqAjmgefIkmEmqenL1DAcgAPSz4BDwdzUQ12DhCwHdLjwE3D8KRsFwAm0D7YARDtoH2gGjYBQMYyAGbFOIk9GuGCztKQmgGyTJcAe29pQflB4OZY4fYSWjYBSMglFAV4BrzGWwAvS6YKSOn4yCwQUA6qYPrgAYAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OIQqAQBCF4dl76I3Fgxi8gNUkFsFoEjFZvIEvbHTDplnx/+BnmPbMytTEUn/p2ljqx79VwawO3isAAADwdb3q1KQ2NfjOybarUy3qUKPvnGxrvLe61Oy4BQAA4M0Da29TAwAYAAA=
+   H4sIAAAAAAAAC+3XMQqAIBiG4d+71FY3jQ7S0AVam6IlaGyKaGrpBn2DEAhRmYbU98BLCFqCi4mEKdMdjUOX647GFK5IicTK33zbNVcleG96491359uu+QKf5/aGv54bERHRl5WoQA0aUPXSd23vRea6Ec2oQxOq3WzvlO29yFzX6+eKFtQ62BsREe34H0703AaILZFXABgAAA==
   </data>
  </layer>
  <layer name="objects" width="48" height="32">
