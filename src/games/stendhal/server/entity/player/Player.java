@@ -184,10 +184,10 @@ public class Player extends RPEntity implements UseListener {
 
 		// define outfit
 		Outfit outfit = null;
-		if ((template != null) && template.has("outfit")) {
+		if (template != null && template.has("outfit")) {
 			outfit = new Outfit(template.getInt("outfit"));
 		}
-		if ((outfit == null) || !outfit.isChoosableByPlayers()) {
+		if (outfit == null || !outfit.isChoosableByPlayers()) {
 			outfit = Outfit.getRandomOutfit();
 		}
 		player.setOutfit(outfit);
@@ -440,6 +440,7 @@ public class Player extends RPEntity implements UseListener {
 		this.karma += karmaToAdd;
 
 		put("karma", this.karma);
+        new GameEvent(this.getName(), "add-karma", Double.valueOf(karmaToAdd).toString()).raise();
 	}
 
 	/**
@@ -534,7 +535,7 @@ public class Player extends RPEntity implements UseListener {
 		/*
 		 * Give at least 20% of possible payout
 		 */
-		score = (0.2 + (KARMA_RANDOMIZER.nextDouble() * 0.8)) * limit;
+		score = (0.2 + KARMA_RANDOMIZER.nextDouble() * 0.8) * limit;
 
 		/*
 		 * Clip to granularity. Use floor() instead of round() so that the player
@@ -658,7 +659,7 @@ public class Player extends RPEntity implements UseListener {
 		final StringBuilder sbuf = new StringBuilder();
 
 		if (duration != 0) {
-			sbuf.append(System.currentTimeMillis() + (duration * 60000L));
+			sbuf.append(System.currentTimeMillis() + duration * 60000L);
 		}
 
 		sbuf.append(';');
@@ -1077,8 +1078,8 @@ public class Player extends RPEntity implements UseListener {
 	 * @return true if it is a new player, false otherwise
 	 */
 	public boolean isNew() {
-		return (getAge() < 2 * 60) || (getAtk() < 15) || (getDef() < 15)
-				|| (getLevel() < 5);
+		return getAge() < 2 * 60 || getAtk() < 15 || getDef() < 15
+				|| getLevel() < 5;
 	}
 
 	/**
@@ -1377,7 +1378,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return number of solo kills
 	 */
 	public int getSoloKill(final String name) {
-		return(killRec.getSoloKill(name));
+		return killRec.getSoloKill(name);
 	}
 
 	/**
@@ -1386,7 +1387,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return number of shared kills
 	 */
 	public int getSharedKill(final String name) {
-		return(killRec.getSharedKill(name));
+		return killRec.getSharedKill(name);
 	}
 
 
@@ -1395,7 +1396,7 @@ public class Player extends RPEntity implements UseListener {
 
 		// A special description was specified
 		if (hasDescription()) {
-			return (getDescription());
+			return getDescription();
 		}
 
 		// default description for player includes their name, level and play
@@ -1418,7 +1419,7 @@ public class Player extends RPEntity implements UseListener {
 			sb.append("\n" +  getTitle() + " is grumpy and has left a message: ");
 			sb.append(grumpyMessage);
 		}
-		return (sb.toString());
+		return sb.toString();
 	}
 
 	/**
@@ -1476,8 +1477,8 @@ public class Player extends RPEntity implements UseListener {
 	 * @return true iff pushing is possible
 	 */
 	public boolean canPush(final RPEntity entity) {
-		return ((this != entity) && (SingletonRepository.getRuleProcessor().getTurn()
-				- turnOfLastPush > 10));
+		return this != entity && SingletonRepository.getRuleProcessor().getTurn()
+				- turnOfLastPush > 10;
 	}
 
 	@Override
@@ -1612,7 +1613,7 @@ public class Player extends RPEntity implements UseListener {
 		final Sheep sheep = getSheep();
 
 		if (sheep != null) {
-			if (squaredDistance(sheep) > (7 * 7)) {
+			if (squaredDistance(sheep) > 7 * 7) {
 				return false;
 			}
 		}
@@ -1620,7 +1621,7 @@ public class Player extends RPEntity implements UseListener {
 		final Pet pet = getPet();
 
 		if (pet != null) {
-			if (squaredDistance(pet) > (7 * 7)) {
+			if (squaredDistance(pet) > 7 * 7) {
 				return false;
 			}
 		}
@@ -1676,7 +1677,7 @@ public class Player extends RPEntity implements UseListener {
 		final int turn = SingletonRepository.getRuleProcessor().getTurn();
 
 		if (isAttacking()
-				&& ((turn % getAttackRate()) == 0)) {
+				&& turn % getAttackRate() == 0) {
 		    RPEntity attackTarget = getAttackTarget();
 
 		    // Face target if player is not moving
@@ -1695,7 +1696,7 @@ public class Player extends RPEntity implements UseListener {
 		 * 200 means 60 seconds x 300mx per turn.
 		 */
 		if (!isGhost()) {
-			if ((turn % 200) == 0) {
+			if (turn % 200 == 0) {
 				setAge(getAge() + 1);
 				notifyWorldAboutChanges();
 			}
@@ -1959,7 +1960,7 @@ public class Player extends RPEntity implements UseListener {
 
     			if (!exactly) {
         			final String type = animal.get("type");
-        			if ((type != null) && ItemTools.itemNameToDisplayName(type).equals(name)) {
+        			if (type != null && ItemTools.itemNameToDisplayName(type).equals(name)) {
         				return animal;
         			}
 
@@ -2487,7 +2488,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return true if there is a use listener registered, false otherwise
 	 */
 	public boolean hasUseListener() {
-		return (this.useListener != null);
+		return this.useListener != null;
 	}
 
 	/**
@@ -2498,7 +2499,7 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public boolean onUsed(RPEntity user) {
-		if ((useListener == null) || (!(user instanceof Player))) {
+		if (useListener == null || !(user instanceof Player)) {
 			return false;
 		}
 		return useListener.onUsed(user);
