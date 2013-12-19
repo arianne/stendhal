@@ -87,7 +87,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("I promised to find goodies for him because he is a nice reindeer.");
 		}
-		if (("start".equals(questState) && (player.isEquipped("reindeer moss", 5)  && player.isEquipped("carrot", 10) && player.isEquipped("apple", 10))) || "done".equals(questState)) {
+		if ("start".equals(questState) && player.isEquipped("reindeer moss", 5)  && player.isEquipped("carrot", 10) && player.isEquipped("apple", 10) || "done".equals(questState)) {
 			res.add("I got all the goodies and will take them to Rudolph.");
 		}
 		if ("done".equals(questState)) {
@@ -169,14 +169,14 @@ public class GoodiesForRudolph extends AbstractQuest {
 			null);
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
+        reward.add(new DropItemAction("reindeer moss", 5));
+        reward.add(new DropItemAction("carrot", 10));
+        reward.add(new DropItemAction("apple", 10));
 		reward.add(new EquipItemAction("money", 50));
 		reward.add(new EquipItemAction("snowglobe"));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		reward.add(new IncreaseKarmaAction(60));
-		reward.add(new DropItemAction("reindeer moss", 5));
-		reward.add(new DropItemAction("carrot", 10));
-		reward.add(new DropItemAction("apple", 10));
 		reward.add(new InflictStatusOnNPCAction("apple"));
 
 
