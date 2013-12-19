@@ -303,7 +303,7 @@ public final class ShopList {
 		shops.add("buyoddsandends", "skull ring", 250);
 		shops.add("buyoddsandends", "greater antidote", 80);
 		shops.add("buyoddsandends", "marbles", 80);
-		shops.add("buyoddsandends", "magical needle", 1000);
+		shops.add("buyoddsandends", "magical needle", 1500);
 		shops.add("buyoddsandends", "snowglobe", 150);
 		shops.add("buyoddsandends", "silk gland", 500);
 
