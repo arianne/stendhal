@@ -440,7 +440,7 @@ public class Player extends RPEntity implements UseListener {
 		this.karma += karmaToAdd;
 
 		put("karma", this.karma);
-        new GameEvent(this.getName(), "add-karma", Double.valueOf(karmaToAdd).toString()).raise();
+		new GameEvent(this.getName(), "added karma", Integer.toString((int) karmaToAdd), Integer.toString((int) karma)).raise();
 	}
 
 	/**
