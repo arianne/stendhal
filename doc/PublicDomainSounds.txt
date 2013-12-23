@@ -1,70 +1,6 @@
 The following sounds are licenses under the Creative Commons 0 license (CC0/Public Domain).
   See http://creativecommons.org/publicdomain/zero/1.0/legalcode for details.
 
-alligator-1:        http://www.fws.gov/video/sound.htm
-ambiance-church-1:  http://soundbible.com/253-Church-Bells-Ringing.html
-ambiance-demon-1:   http://soundbible.com/1883-Scary-Demon-Haunting.html
-ambiance-restaurant-1:
-                    http://soundbible.com/1664-Restaurant-Ambiance.html
-attack-fire-1, attack-fire-2, attack-fire-3:
-                    http://freesound.org/people/Nic3_one/sounds/166555/
-bat-1, bat-2, bat-3:http://www.freesound.org/people/polymorpheva/sounds/104205/
-bee-1:              http://soundbible.com/971-Bee.html
-bird-pigeon-1, bird-pigeon-flap-1:
-                    http://freesound.org/people/winsx87/sounds/152024/
-bones-2:            http://www.freewebs.com/jordansroom/sounds.html
-bongos:             http://www.freesound.org/people/MarleneAyni/sounds/89608/
-cat-purr-1, cat-purr-kitten-1:
-                    http://freesound.org/people/Belhene/sounds/157837/
-chicken-2:          http://www.freewebs.com/jordansroom/sounds.html
-chicken-chick-1, chicken-chick-2:
-                    http://www.freesound.org/people/Barbamiz/sounds/116135/
-clang-dull-1:       http://www.freesound.org/people/alienistcog/sounds/124711/
-clang-metallic-1:   http://www.freesound.org/people/lostchocolatelab/sounds/1468/
-click-clack-1 & click-1:
-                    http://www.freesound.org/people/satrebor/sounds/113218/
-cork-pop-1          http://www.freesound.org/people/fryzu82/sounds/142325/
-cow-1:              http://soundbible.com/1143-Cow-And-Bell.html
-cow-2:              http://freesound.org/people/FunnyMan374/sounds/112068/
-cowbell-1:          http://www.freesound.org/people/cloudyeyetavern/sounds/148931/
-creak-2:      http://soundbible.com/1717-Creaking-Door-Spooky.html
-creak-tree-2:       http://www.freesound.org/people/Department64/sounds/95262/
-dog-angry-low-1, dog-snarl-1, dog-snarl-2:
-                    http://soundbible.com/2034-Growling-Snarling-Dogs.html
-dog-bark-small-1, dog-small-bark-2:
-                    http://freesound.org/people/nfrae/sounds/100032/
-elephant-1, elephant-2:
-                    http://www.freesound.org/people/vataaa/sounds/148873/
-elephant-rumble-1:  http://publicsounds.org/animals/low-frequency-sound-produced-by-elephants/
-fire-1:             http://www.freewebs.com/jordansroom/sounds.html
-fishing-1:          http://www.freesound.org/people/vibe_crc/sounds/50623/ &
-                    http://www.freesound.org/people/j1987/sounds/95564/
-flame-burst-1, flame-burst-2, flame-burst-3:
-                    http://www.freesound.org/people/Nic3_one/sounds/166555/
-glass-break-2:      http://www.freesound.org/people/martinimeniscus/sounds/164462/
-goat-1:             http://soundbible.com/1632-On-The-Farm.html
-goat-2:             http://soundbible.com/1662-Farm.html
-growl-large-3, grunt-large-1, grunt-large-2:
-                    http://www.freesound.org/people/SmallQuadruped/sounds/42201
-horse-1:            http://sounds.simplythebest.net/details/29/Horse-Neigh-sound.html
-horse-2:            http://sounds.simplythebest.net/details/19/Horse-Exhale-sound.html
-kitten-mew-1:       http://freesound.org/people/gcmax/sounds/147351/
-kiteen-meow-1, kitten-meow-2, kitten-meow-3:
-                    http://freesound.org/people/videog/sounds/149191/
-lion-1:             http://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg
-lion-2:             https://sourceforge.net/projects/myabcs
-loop-drag-slimy-1:  http://www.freesound.org/people/altfuture/sounds/174634/
-loop-grind-stone-1: http://www.freesound.org/people/j1987/sounds/95007/
-monster-1, monster-2, monster-11, monster-12, monster-14, monster-16:
-                    http://opengameart.org/content/monster-sound-effects-2
-mouse-2:            http://www.freewebs.com/jordansroom/sounds.html
-penguin-1, penguin-2:
-                    http://www.freesound.org/people/Bidone/sounds/66150/
-piano-1:            
-pick-metallic-1:    http://freesound.org/people/qubodup/sounds/182821/
-pig-3:              http://www.mediacollege.com/downloads/sound-effects/animals/pig/
-rattlesnake-1:      http://soundbible.com/237-Rattlesnake-Rattle.html
-river-1:            http://freesound.org/people/Adam_N/sounds/166310/
 roar-dragon-1:      http://www.freesound.org/people/JoelAudio/sounds/85568/
 roar-dragon-2:      http://www.freesound.org/people/frasbr/sounds/145729/
 roar-large-1:       http://www.freesound.org/people/ibm5155/sounds/174913/
@@ -84,5 +20,4 @@ tiger-2:            http://sounds.simplythebest.net/details/40/Tiger-1-sound.htm
 toilet-flush-1:     http://soundbible.com/1657-Toilet-Flushing.html
 undead-5:           http://www.freesound.org/people/ArriGD/sounds/144005/
 water-faucet-1      http://www.pdsounds.org/audio/download/88/faucet_water_into_sink.mp3
-water-sloshing-1:   http://freesound.org/people/pawsound/sounds/154879/
 wings-flap-large-1: http://www.freesound.org/people/dave.des/sounds/127197/
