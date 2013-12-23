@@ -1,4 +1,4 @@
-For copyright notice see respective text (LICENSE-images.txt, LICENSE-sounds.txt, etc.).
+For copyright notice see respective text (LICENSE-images.txt, LICENSE-audio.txt, etc.).
 All Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

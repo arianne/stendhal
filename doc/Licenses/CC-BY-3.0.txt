@@ -11,7 +11,7 @@ Attribution 3.0 Unported
 
 License
 
-For copyright notice see respective text (LICENSE-images.txt, LICENSE-sounds.txt, etc.).
+For copyright notice see respective text (LICENSE-images.txt, LICENSE-audio.txt, etc.).
 
 THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE
 COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY
