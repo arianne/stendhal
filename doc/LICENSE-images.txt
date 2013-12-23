@@ -1,45 +1,119 @@
-The following files are released under the terms and conditions of the GPL (see license.txt).
-    mimic.png & mimic_idle.png:
-        Copyright 2013 Diligent Dodo
-    rotating_crystals, crystals, crystal_red, crystal_purple, crystal_yellow, crystal_pink, crystal_blue:
-        Copyright qubodup
-        Source: http://opengameart.org/content/rotating-crystal-animation-8-step 
+All files declared in this document do not specify a file extensions and fall under their respective license regarless of file extension.
 
-These images are released under the following BSD license:
-    antivenom_ring                  lt_blue_drapes
-    giant_cobra                     peach_drapes
-    corpse/*huge_leafy              purple_drapes
-    corpse/*puddle*                 red_drapes
-    gnome_homes                     royal_blue_drapes
-    panel_tile_aqua_001             elvish_hat
-    corpse/*rock                    crab_meat
-    torch_2                         butterfly
-    giant_boulder                   table/white
-    elvish_hat
-    corpse/*cloaked
-    rock
-    venom_gland
 
-Copyright (c) 2013, Jordan Irwin
-All rights reserved.
+The following files are released under the terms and conditions of the GPL (see license.txt):
 
-Redistribution and use in source and binary forms, with or without modification, are
-permitted provided that the following conditions are met:
+  Copyright © 2013 Diligent Dodo:
+    • data/sprites/monsters/hybrid/
+        mimic               mimic_idle
+  
+  Copyright © 2013 qubodup:
+    Source: http://opengameart.org/content/rotating-crystal-animation-8-step
+    • data/sprites/items/crystal/
+        crystal_blue        crystal_pink        crystal_purple
+        crystal_red         crystal_yellow      crystals
+    • data/sprites/npc/alternative/
+        crystalbluenpc      crystalpinknpc      crystalpurplenpc
+        crystalrednpc       crystalyellownpc
+    • tiled/tileset/object/
+        rotating_crystal
 
-    - Redistributions of source code must retain the above copyright notice, this list
-      of conditions and the following disclaimer.
-      
-    - Redistributions in binary form must reproduce the above copyright notice, this
-      list of conditions and the following disclaimer in the documentation and/or other
-      materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
-SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
-DAMAGE.
+The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
+
+  Copyright © 2013 Jordan Irwin a.k.a. AntumDeluge:
+    • data/gui/
+        panel_tile_aqua_001
+    • data/sprites/corpse/
+        cloaked             cloaked_black       cloaked_black_2x2
+        cloaked_blue        cloaked_brown       cloaked_brown_2x2
+        cloaked_green_2x2   cloaked_large       cloaked_red_2x2
+        cloaked_white       leafy               leafy_5x3
+        puddle_black        puddle_brown        puddle_green
+        puddle_light_blue   puddle_light_blue_2x2
+        rock
+    • data/sprites/itesm/food/
+        crab_meat
+    • data/sprites/items/helmet/
+        elvish_hat
+    • data/sprites/items/misc/
+        venom_gland
+    • data/sprites/items/ring/
+        antitoxin_ring      antivenom_ring      medicinal_ring
+    • data/sprites/monster/huge_animal/
+        king_cobra
+    • data/sprites/npc/animal/
+        butterfly
+    • tiled/tileset/building/
+        gnome_homes
+    • tiled/tileset/furniture/curtain/
+        lt_blue_drapes      peach_drapes        purple_drapes
+        red_drapes          royal_blue_drapes
+    • tiled/tileset/furniture/light/
+        torch_2
+    • tiled/tileset/furniture/table/
+        white
+    • tiled/tileset/ground/rock/
+        huge_boulder
+
+
+The following files are released into the public domain and can be distributed under the terms and conditions of the Creative Commons 0 license (See Licenses/CC0-1.0.txt). For any areas that do not legally accept the public domain or CC0 these files can be distributed under the terms and conditions of the GPL (See license.txt):
+
+    • data/gui
+        panel_leather_black_001
+        • Sources:
+            http://opengameart.org/content/leather-black
+    • data/sprites/corpse/
+        feathered           halo                halo_2x2
+        halo_3x2            halo_red_2x2        halo_red_3x2
+        tail_rodent         tail_rodent_2x2     winged_bat
+        wooden
+        • Sources:
+            http://www.clker.com/clipart-185713.html
+            http://www.clker.com/clipart-25040.html
+            http://www.clker.com/clipart-horizontal-halo.html
+            http://openclipart.org/detail/23073/black-feather-by-beakman
+            http://openclipart.org/detail/2699/bat-by-machovka-2699
+    • data/sprites/effects/
+        fire_explosion_2x2
+        • Sources:
+            http://opengameart.org/content/explosion-sheet
+    • data/sprites/items/tool/
+        shovel
+        • Sources:
+            http://openclipart.org/detail/116893/palas-by-laabadon
+    • data/sprites/monsters/undead/
+        myling
+        • Sources:
+            http://opengameart.org/content/zombie-and-skeleton-32x48
+    • data/sprites/status/
+        healer              merchant
+        • Sources:
+            http://openclipart.org/detail/171507/money-pot-by-gnokii-171507
+            http://openclipart.org/detail/35905/heart-by-anonymous-35905
+    • tiled/tileset/ground/
+        ground_3
+        • Sources:
+            http://moosader.deviantart.com/art/Public-Domain-Tiles-210769545
+    • tiled/tileset/item/corpse/
+        snake_skeleton
+        • Sources:
+            http://commons.wikimedia.org/wiki/File:Meyer_Zeit-Vertreib_1_Tafel_088.jpg
+    • tiled/tileset/item/drink/
+        juice_glass
+        • Sources:
+            http://openclipart.org/detail/12865/juice-glass-by-anonymous-12865
+    • tiled/tileset/item/toys/
+        toys
+        • Sources:
+            http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
+            http://openclipart.org/detail/64909/doll-by-deluge
+    • tiled/tileset/plant/tree/
+        umbrella_thorn
+        • Sources:
+            http://opengameart.org/content/trees-1
+    • tiled/tileset/rock/
+        crystals (work-in-progress)
+        • Sources:
+            http://www.clker.com/clipart-purple-amethyst.html
+            http://openclipart.org/detail/173471/minerals-by-qubodup-173471
