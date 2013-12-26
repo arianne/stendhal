@@ -1890,7 +1890,7 @@
   
   <creature name="imperial general">
     <type class="human" subclass="imperial_general" tileid="human_imperial.png:8"/>
-    <description></description>
+    <description>You see an imperial general with a huge scar above his eye. He is still strong, don't think that he will not see you!</description>
     <attributes>
       <atk value="631"/>
       <def value="102"/>
