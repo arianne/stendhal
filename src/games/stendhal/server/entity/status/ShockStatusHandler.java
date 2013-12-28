@@ -59,11 +59,10 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 
 		Status nextStatus = statusList.getFirstStatusByClass(ShockStatus.class);
 		if (nextStatus != null) {
-			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
+			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, nextStatus));
 		} else {
-			entity.sendPrivateText(NotificationType.SCENE_SETTING, "\"" + status.getStatusType().getName() + "\" has worn off.");
-			entity.remove("status_" + status.getStatusType().getName());
+			entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer shocked.");
+			entity.remove("status_" + status.getName());
 		}
-
 	}
 }

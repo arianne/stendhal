@@ -64,7 +64,7 @@ public class ConfuseStatusHandler implements StatusHandler<ConfuseStatus> {
 			return;
 		}
 
-		entity.sendPrivateText(NotificationType.SCENE_SETTING, "\"" + status.getStatusType().getName() + "\" has worn off.");
-		entity.remove("status_" + status.getStatusType().getName());
+		entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are no longer confused.");
+		entity.remove("status_" + status.getName());
 	}
 }
