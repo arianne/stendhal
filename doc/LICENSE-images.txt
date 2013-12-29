@@ -17,6 +17,13 @@ The following files are released under the terms and conditions of the GPL (see 
         crystalrednpc       crystalyellownpc
     • tiled/tileset/object/
         rotating_crystal
+  
+  Copyright © 2012-2013 Johann C:
+    Sources:
+      http://opengameart.org/content/lpc-a-shootem-up-complete-graphic-kit
+      http://poufpoufproduction.fr/
+    • tiled/tileset/plant/tree/
+        trees_1
 
 
 The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
