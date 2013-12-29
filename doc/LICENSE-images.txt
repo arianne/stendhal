@@ -24,6 +24,8 @@ The following files are released under the terms and conditions of the GPL (see 
       http://poufpoufproduction.fr/
     • tiled/tileset/plant/tree/
         trees_1
+    • tiled/tileset/object/rock/
+        rocks_pillars
 
 
 The following files are released and can be distributed under the terms and conditions of the BSD-style, MIT-style, or the Creative Commons Attribution 3.0 (or later) licenses provided (See Licenses/BSD.txt, Licenses/MIT.txt, and Licenses/CC-BY-3.0.txt):
