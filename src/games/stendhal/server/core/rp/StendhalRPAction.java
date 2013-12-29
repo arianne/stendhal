@@ -164,7 +164,7 @@ public class StendhalRPAction {
 
 		// allow self defence
 		RPEntity victimsTarget = victim.getAttackTarget();
-		if ((victimsTarget == null) || (victimsTarget instanceof Player)) {
+		if ((victimsTarget == null) || !(victimsTarget instanceof Player)) {
 			return false;
 		}
 		if (victimsTarget == attacker) {
