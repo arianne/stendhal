@@ -19,7 +19,7 @@ building/thatched_roof_cottage1.png 1 -   credit   reiners/check
 building/thatched_roof_cottage2.png 1 -   credit   reiners/check  
 kih*/building/decoration/coal_fire.png 11
 kih*/building/decoration/wood_fire.png 17
-ant* building/decoration/swordfish.png 2
+ant*/building/decoration/swordfish.png 2
 kih*/building/decoration/platform.png 4
 del*/building/decoration/chimney_brick_wood.png 
 del*/building/decoration/chimney_brick.png 
@@ -27,7 +27,7 @@ del*/building/decoration/chimney_tan.png 1
 del*/building/decoration/grey_chimney.png 1
 del*/building/column/moss_pillars.png 4
 del*/building/column/pillar2.png 
-building/column/pillar.png 7
+del*/building/column/pillar.png 7
 building/entrance/int_iron_bars.png 15
 building/entrance/int_broken_bars.png 2
 del*/building/entrance/sandy_rocks_entrance.png 
