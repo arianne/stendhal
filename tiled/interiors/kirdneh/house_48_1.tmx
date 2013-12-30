@@ -93,17 +93,17 @@
  <tileset firstgid="289" name="stairs" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png" width="64" height="192"/>
  </tileset>
- <tileset firstgid="301" name="pillar" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/column/pillar.png" width="32" height="96"/>
- </tileset>
- <tileset firstgid="304" name="chest 2" tilewidth="32" tileheight="32">
+ <tileset firstgid="301" name="chest 2" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_2.png" width="96" height="64"/>
  </tileset>
- <tileset firstgid="310" name="double_peach" tilewidth="32" tileheight="32">
+ <tileset firstgid="307" name="double_peach" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_peach.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="318" name="double_white_pink" tilewidth="32" tileheight="32">
+ <tileset firstgid="315" name="double_white_pink" tilewidth="32" tileheight="32">
   <image source="../../tileset/furniture/bed/double_white_pink.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="333" name="pillars_stone" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/rock/pillars_stone.png" width="192" height="192"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
@@ -112,17 +112,17 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC8XT7aoBURQG4KUYRdSJfEZOh0THR0Soc3z8PHMD7kBuxKXwC8VNuKPz1zu1ppZptr0HZdXTNnvnnVWz9gcRpV4kDXnIQDSARIgoGbrdy0KO8yyo4typMNYIWPwsa8PrH85sPv+BX4h78nTVgjZ0xNqFKcx88v4N8nrQF+u9vJVBj2NhwntzWPjkre/kfEJMo2jYn83vrkFZo2LQn5tXJ/P5c/IiPvPh1hfpZ9I7f89W0PlzqgFNODDn97cibws7OMFZPMtSzfSj/almWpW3hAtbKvLe1d8R9uK/e96TNYChx0jTn/vtgpbMK5D+fpre3xLp76WpClwB9WYfhUAGAAA=
+   H4sIAAAAAAAAC8XT22rCQBAG4AloBMVCqXjEklJFKp5QFBU8tDct+AK+QfFF+ij2SgV9Cd/I2/4LE5iGrLtRwYGPNbv4ZyCzj0T0dCMZKEAWEhGkHaIH5/9eDvKc50IF56piWOPg8rOsH14/cfbF5xOYQiqQZ6omtKAt1g7MYB6Sd7LI60JPrOfyvi16HAlj3nuHj5C81ZmcF0galCz7W/C7q/Bs4Fn05+fVyH7+VF48ZD78eiXzTAbn79qKOn+q3qAOW6Z+NzR5a/iFPRzEsyzdTF/an26mdXlLOLKlJu9e/e1gI/674T1ZfRgEDA39+d8uasm8Ipnvp+39LZP5Xtry4A/YIEwfQAYAAA==
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NggICrQHwNyr6ARQwZJEMxPnAbiO8A8V8g/gfE/5HEYKAFiOOBuAGK4wmYOZJANhFqpkDpaCBOIKA2lSLXYIIcKptHDNgCxNuAuBKIq5D45IJdQLwHiGuBuA6JP1iAPiOENgPS5oyoYpQAC6AZllQwBwasgGZZU8E8bH6jhn9NgGaYUtG/1ARLgHgpEj3UAAAEnOQSQAYAAA==
+   H4sIAAAAAAAAC2NggICrQHwNyr6ARQwZJEMxPnAbiO8A8V8g/gfE/5HEYKAFiOOBuAGK4wmYOZJANhFqpkDpaCBOIKA2lSLXYIIcKptHDNgCxNuAuBKIq5D45IJdQLwHiGuBuA6JP1hAJCOENgbSJoyoYpQAU6AZZlQwBwbMgWZZUME8bH6jhn8NgWYYUdG/1ARLgHgpEj3UAAAUYboaQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgoD2YAcTz6WDPQII0KpuXQWXzcLnPlUzzcLmPXPMGAugyEidGLNCD6l0Fxchi6GAREC8G4g1AvBGJT0sA85sNkLZlRBUjB2DzGy7/kgIMgWYYETBnNZFipALkuMMGFgDxQiR6pAMAg3BbU0AGAAA=
+   H4sIAAAAAAAAC2NgoD2YAcTz6WDPQII0KpuXQWXzcLnPlUzzcLmPXPMGAmQyEidGLMiH6l0Fxchi6GAREC8G4g1AvBGJT0sA85slkLZiRBUjB2DzGy7/kgL0gGboEzBnNZFipALkuMMGFgDxQiR6pAMAQ2eMIUAGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -130,17 +130,17 @@
    H4sIAAAAAAAAC2NgGAWjYBRQA0TiwMPVvFEwCgAxWOZAQAYAAA==
   </data>
  </layer>
- <layer name="objects" width="20" height="20">
+ <layer name="objects" width="20" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBSMAtqDrzjYo2DoAgDkrMjQQAYAAA==
   </data>
  </layer>
- <layer name="collision" width="20" height="20" opacity="0.35">
+ <layer name="collision" width="20" height="20" visible="0" opacity="0.35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC/NnYGDwHwIYBrCJ4QOEzCMVEONGepmHTT055lEaJ9Qwi9rm4QPUNo8YQI556HGKTYxa7qbEv9j04EqbDFjYxIjR2n3oaigNP3LzHrHmDRYMANNHGXdABgAA
   </data>
  </layer>
- <layer name="protection" width="20" height="20">
+ <layer name="protection" width="20" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
