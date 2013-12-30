@@ -25,7 +25,7 @@ del*/building/decoration/chimney_brick_wood.png
 del*/building/decoration/chimney_brick.png 
 del*/building/decoration/chimney_tan.png 1
 del*/building/decoration/grey_chimney.png 1
-building/column/moss_pillars.png 4
+del*/building/column/moss_pillars.png 4
 del*/building/column/pillar2.png 
 building/column/pillar.png 7
 building/entrance/int_iron_bars.png 15
