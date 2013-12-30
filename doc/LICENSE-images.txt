@@ -22,6 +22,8 @@ The following files are released under the terms and conditions of the GPL (see 
     Sources:
       http://opengameart.org/content/lpc-a-shootem-up-complete-graphic-kit
       http://poufpoufproduction.fr/
+    • tiled/tileset/plant/
+        mushroom3
     • tiled/tileset/plant/tree/
         trees_1
     • tiled/tileset/object/rock/
