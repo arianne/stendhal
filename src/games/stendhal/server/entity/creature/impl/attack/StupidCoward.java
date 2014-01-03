@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature.impl.attack;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 
 /**
@@ -25,10 +27,12 @@ import games.stendhal.server.entity.creature.Creature;
  */
 public class StupidCoward extends HandToHand {
 
+	private static final int SCARED_OF_LEVEL = 7;
+
 	@Override
 	public void getBetterAttackPosition(final Creature creature) {
 
-		if (creature.isAttacked()) {
+		if (isAttackedByStrongEnemy(creature)) {
 			creature.clearPath();
 			creature.faceToward(creature.getAttackSources().get(0));
 			creature.setDirection(creature.getDirection().oppositeDirection());
@@ -38,4 +42,22 @@ public class StupidCoward extends HandToHand {
 		}
 	}
 
+	/**
+	 * checks whether the specified entity is attacked by a strong enemy
+	 *
+	 * @param creature creature to check
+	 * @return true, if a strong enemy is attacking; false otherwise
+	 */
+	private boolean isAttackedByStrongEnemy(final Creature creature) {
+		for (Entity entity : creature.getAttackSources()) {
+			if (! (entity instanceof RPEntity)) {
+				continue;
+			}
+
+			if (((RPEntity) entity).getLevel() >= SCARED_OF_LEVEL) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
