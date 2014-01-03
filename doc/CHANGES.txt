@@ -1,6 +1,14 @@
 ﻿Changelog
 ---------
 
+1.12.1
+
+*fixes*
+- disabled reference to an empty item file which broke the website
+- fixed a karma exploit on accepting accpeted quests
+- fixed PVP defense against weaker players 
+
+
 1.12
 *world*
 - New Christmas maps for bank, townhall, storage (Eonnas house, all Semos)
