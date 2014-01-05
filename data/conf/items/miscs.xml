@@ -219,7 +219,7 @@
  
    <item name="canned tuna">
     <type class="misc" subclass="canotuna" tileid="-1"/>
-    <description>You see what appears to be tuna in a can. Too bad you don't have a can opener.</description>
+    <description>You see what appears to be canned tuna. Too bad you don't have a can opener.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
     <attributes>
       <quantity value="1"/>
