@@ -2852,7 +2852,7 @@
   
   <creature name="mithrilbourgh general">
     <type class="human" subclass="soldier_general" tileid="human_soldier.png:4"/>
-    <description></description>
+    <description>You see a mithrilbourgh general. Some call him Hawkeyes. He cast his gaze over the city walls and saw you coming from miles away.</description>
     <attributes>
       <atk value="624"/>
       <def value="83"/>
