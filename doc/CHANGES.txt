@@ -1,6 +1,14 @@
 ﻿Changelog
 ---------
 
+1.13
+
+*world*
+- Reworked christmas maps, adding more sparkling light
+
+*fixes*
+- fixed item description for canned tuna (automatical item name underlining)
+
 1.12.1
 
 *fixes*
@@ -10,6 +18,8 @@
 
 
 1.12
+12th December 2013
+
 *world*
 - New Christmas maps for bank, townhall, storage (Eonnas house, all Semos)
 - Meet Santa and Rudolph
