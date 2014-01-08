@@ -89,7 +89,7 @@ public class ItemAchievementFactory extends AbstractAchievementFactory {
 						"xeno boots", "xeno shield")));
 		
 		itemAchievements.add(createAchievement("item.cloak.dragon", "Dragon Slayer", "Loot all dragon cloaks",
-				Achievement.MEDIUM_BASE_SCORE, false,
+				Achievement.MEDIUM_BASE_SCORE, true,
 				new PlayerLootedNumberOfItemsCondition(1, "black dragon cloak", "blue dragon cloak", "bone dragon cloak",
 						"green dragon cloak", "red dragon cloak")));
 		
