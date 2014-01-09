@@ -64,6 +64,8 @@ The following files are released and can be distributed under the terms and cond
         torch_2
     • tiled/tileset/furniture/table/
         white
+    • tiled/tileset/ground/ladder/
+        rope_ladder
     • tiled/tileset/ground/rock/
         huge_boulder
     • tiled/tileset/terrain/ground/
