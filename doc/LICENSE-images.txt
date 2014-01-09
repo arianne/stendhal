@@ -70,6 +70,8 @@ The following files are released and can be distributed under the terms and cond
         stone
     • tiled/tileset/terrain/stairs/
         stone
+    • tiled/tileset/terrain/wall/
+        stone               stone_red
 
 
 The following files are released into the public domain and can be distributed under the terms and conditions of the Creative Commons 0 license (See Licenses/CC0-1.0.txt). For any areas that do not legally accept the public domain or CC0 these files can be distributed under the terms and conditions of the GPL (See license.txt):
