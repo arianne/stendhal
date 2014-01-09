@@ -42,7 +42,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 				final Player instance = (Player) player;
 				DAORegister.get().get(StendhalHallOfFameDAO.class).setHallOfFamePoints(transaction, instance.getName(), "T", instance.getTradescore());
 				DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
-				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(transaction, character, instance.getBuddies());
+				DAORegister.get().get(StendhalBuddyDAO.class).saveRelations(transaction, character, instance);
 			} else {
 				logger.error("player no instance of Player but: " + player, new Throwable());
 			}
@@ -66,7 +66,7 @@ public class StendhalCharacterDAO extends CharacterDAO {
 				if (count == 0) {
 					DAORegister.get().get(StendhalWebsiteDAO.class).insertIntoCharStats(transaction, instance);
 				}
-				DAORegister.get().get(StendhalBuddyDAO.class).saveBuddyList(transaction, character, instance.getBuddies());
+				DAORegister.get().get(StendhalBuddyDAO.class).saveRelations(transaction, character, instance);
 			} catch (final SQLException sqle) {
 				logger.warn("error storing character", sqle);
 				throw sqle;

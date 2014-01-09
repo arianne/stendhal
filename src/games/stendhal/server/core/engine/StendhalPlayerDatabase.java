@@ -179,6 +179,13 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("character_stats", "zone")) {
 			transaction.execute("ALTER TABLE character_stats ADD COLUMN (zone VARCHAR(50));", null);
 		}
+
+		// 1.13: added relationtype to buddy
+		if (!transaction.doesColumnExist("buddy", "relationtype")) {
+			transaction.execute("ALTER TABLE buddy ADD COLUMN (relationtype VARCHAR(7));", null);
+			transaction.execute("UPDATE buddy SET relationtype = 'buddy' WHERE relationtype IS NULL", null);
+			
+		}
 	}
 
 

@@ -164,13 +164,15 @@ CREATE TABLE IF NOT EXISTS postman (
 /*CREATE INDEX i_postman_name ON postman(name);*/
 
 CREATE TABLE IF NOT EXISTS buddy (
-  id         INTEGER AUTO_INCREMENT NOT NULL,
-  charname   VARCHAR(64),
-  buddy      VARCHAR(64),
+  id           INTEGER AUTO_INCREMENT NOT NULL,
+  charname     VARCHAR(64),
+  relationtype VARCHAR(6),
+  buddy        VARCHAR(64),
   PRIMARY KEY (id)
 );
 
-/* CREATE INDEX i_buddy_charname ON buddy (charname); */
+/* CREATE INDEX i_buddy_charname_relationtype ON buddy (charname, relationtype); */
+
 
 /*
 CREATE TABLE IF NOT EXISTS openid_allowedsites (

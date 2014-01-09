@@ -731,6 +731,36 @@ public class Player extends RPEntity implements UseListener {
 		return setKeyedSlot("!ignore", "_" + name, null);
 	}
 
+
+	/**
+	 * @return all buddy names for this player
+	 */
+	public Set<String> getIgnores() {
+		Set<String> res = new HashSet<String>();
+		RPObject ignoreObject = KeyedSlotUtil.getKeyedSlotObject(this, "!ignore");
+
+		// character names are prefixed with an "_" to tell them apart from generic attributes such as "id".
+		for (String key : ignoreObject) {
+			if (key.charAt(0) != '_') {
+				continue;
+			}
+
+			// skip expired entries
+			String info = ignoreObject.get(key);
+			int i = info.indexOf(';');
+			if (i > 0) {
+				long expiration = Long.parseLong(info.substring(0, i));
+				if (System.currentTimeMillis() >= expiration) {
+					continue;
+				}
+			}
+
+			res.add(key.substring(1));
+		}
+
+		return res;
+	}
+
 	/**
 	 * Get a named skills value.
 	 *
