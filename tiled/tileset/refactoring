@@ -117,15 +117,15 @@ kih*/ground/indoor/floors_3.png 36
 del*/ground/ladder/ladder_1.png 
 del*/ground/ladder/wooden_ladder_down.png 1
 del*/ground/ridge/snowy.png 
-ground/rock/blue_crystal.png 4
-ground/rock/gold_crystal.png 3
-ground/rock/green_crystal2.png 4
-ground/rock/green_crystal3.png 1
+ant /ground/rock/blue_crystal.png 4
+ant /ground/rock/gold_crystal.png 3
+ant /ground/rock/green_crystal2.png 4
+ant /ground/rock/green_crystal3.png 1
 ant /ground/rock/hell.png 8
-ground/rock/icy_crystal.png 1
+ant /ground/rock/icy_crystal.png 1
 del*/ground/rock/mithril.png 
-ground/rock/purple_crystal.png 3
-ground/rock/red_crystal.png 1
+ant /ground/rock/purple_crystal.png 3
+ant /ground/rock/red_crystal.png 1
 kym*/ground/rock/rock_snow.png 1
 ground/rock/rocks.png 22
 kih*/ground/rock/rocks_2.png 52
@@ -214,8 +214,8 @@ object/suspension_bridge.png 12
 object/tan_tent.png 2
 del*/object/trellis_large.png 1
 object/trellis_small.png 3
-plant/cactus_2.png 3
-plant/lily_pads.png 3
+ant /plant/cactus_2.png 3
+ant /plant/lily_pads.png 3
 plant/snowygrass.png 1
 plant/star_shaped_plants.png 6
 plant/flower/flower_bed_1.png 5
