@@ -68,6 +68,8 @@ The following files are released and can be distributed under the terms and cond
         rope_ladder
     • tiled/tileset/ground/rock/
         huge_boulder
+    • tiled/tileset/object/
+        rotating_orbs
     • tiled/tileset/terrain/ground/
         stone
     • tiled/tileset/terrain/stairs/
