@@ -120,7 +120,7 @@ del*/ground/ridge/snowy.png
 ant*/ground/rock/blue_crystal.png 4
 ant*/ground/rock/gold_crystal.png 3
 ant*/ground/rock/green_crystal2.png 4
-ant /ground/rock/green_crystal3.png 1
+ant*/ground/rock/green_crystal3.png 1
 ant /ground/rock/hell.png 8
 ant*/ground/rock/icy_crystal.png 1
 del*/ground/rock/mithril.png 
