@@ -28,7 +28,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -250,7 +249,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 * @return A front view image of the player
 	 */
 	private Image createCharacterImage(EntityView<?> view) {
-		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, Transparency.BITMASK);
+		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, stendhal.TRANSPARENCY);
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		
 		// Adjust the coordinates so that the actual player image gets

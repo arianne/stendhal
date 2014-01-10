@@ -13,6 +13,7 @@ package games.stendhal.client.gui.j2d.entity.helpers;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.MemoryCache;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -27,7 +28,6 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
-import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Locale;
@@ -174,7 +174,7 @@ public final class AttackPainter {
 					double scaling = newWidth / (double) orig.getWidth();
 
 					BufferedImage image = gc.createCompatibleImage(newWidth,
-							(int) (orig.getHeight() * scaling), Transparency.BITMASK);
+							(int) (orig.getHeight() * scaling), stendhal.TRANSPARENCY);
 					Graphics2D g = image.createGraphics();
 					g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 					g.scale(scaling, scaling);

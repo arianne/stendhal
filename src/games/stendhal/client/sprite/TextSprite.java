@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.sprite;
 
+import games.stendhal.client.stendhal;
+
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
-import java.awt.Transparency;
 import java.awt.font.LineMetrics;
 import java.awt.image.BufferedImage;
 
@@ -45,7 +46,7 @@ public class TextSprite extends ImageSprite {
 		FontMetrics metrics = graphics.getFontMetrics();
 		LineMetrics lm = metrics.getLineMetrics(text, graphics);
 		final Image image = gc.createCompatibleImage(metrics.stringWidth(text)
-				+ 2, Math.round(lm.getHeight()) + 2, Transparency.BITMASK);
+				+ 2, Math.round(lm.getHeight()) + 2, stendhal.TRANSPARENCY);
 
 		drawOutlineString(image, textColor, text, 1, Math.round(lm.getAscent()));
 

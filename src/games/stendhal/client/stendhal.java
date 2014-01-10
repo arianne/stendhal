@@ -25,6 +25,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.common.Version;
 
 import java.awt.Dimension;
+import java.awt.Transparency;
 import java.io.File;
 import java.security.AccessControlException;
 import java.util.Locale;
@@ -83,6 +84,9 @@ public final class stendhal {
 	public static final boolean SHOW_EVERYONE_ATTACK_INFO = false;
 
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
+	
+	/** Transparency used for loading and drawing images. */
+	public static final int TRANSPARENCY = Transparency.BITMASK;
 
 	static final int FPS_LIMIT = 25;
 	

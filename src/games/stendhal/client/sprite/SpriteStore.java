@@ -14,6 +14,7 @@ package games.stendhal.client.sprite;
 
 
 import games.stendhal.client.IGameScreen;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.sprite.TileSprite.TSRef;
 
@@ -24,7 +25,6 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
 import java.awt.Image;
-import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -275,7 +275,7 @@ public class SpriteStore {
 		int width = base.getWidth();
 		int height = base.getHeight();
 		BufferedImage image = gc.createCompatibleImage(width, height,
-				Transparency.BITMASK);
+				stendhal.TRANSPARENCY);
 		Graphics2D g = image.createGraphics();
 		base.draw(g, 0, 0);
 		g.setColor(color);
@@ -347,14 +347,8 @@ public class SpriteStore {
 			}
 		}
 
-		// create an accelerated image of the right size to store our sprite in
-		final int mode = Transparency.BITMASK;
-
-		// ALPHA channel makes it runs 30% slower.
-		// mode=Transparency.TRANSLUCENT;
-
 		final Image image = gc.createCompatibleImage(sourceImage.getWidth(),
-				sourceImage.getHeight(), mode);
+				sourceImage.getHeight(), stendhal.TRANSPARENCY);
 
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
