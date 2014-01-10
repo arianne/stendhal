@@ -133,6 +133,10 @@ The following files are released into the public domain and can be distributed u
         • Sources:
             http://openclipart.org/detail/166981/teddy-bear-by-printerkiller
             http://openclipart.org/detail/64909/doll-by-deluge
+    • tiled/tileset/object/
+        creep_large         creep_med
+        • Sources:
+            http://opengameart.org/content/animated-creepy-thing
     • tiled/tileset/plant/tree/
         umbrella_thorn
         • Sources:
