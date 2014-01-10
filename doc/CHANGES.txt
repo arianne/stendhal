@@ -5,6 +5,8 @@
 
 *world*
 - Reworked christmas maps, adding more sparkling light
+- Xeno helmet added to NPC purchasing shops
+- Some reworked tilesets
 
 *fixes*
 - fixed item description for canned tuna (automatical item name underlining)
@@ -26,7 +28,7 @@
 - Dragon now notice small players right in front
 - Reworked normal storage interior
 - More creature descriptions
-- Mew stocking items, deleting coal
+- New stocking items, deleting coal
 - New sounds and images
 
 *fixes*
