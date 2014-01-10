@@ -142,3 +142,7 @@ The following files are released into the public domain and can be distributed u
         • Sources:
             http://www.clker.com/clipart-purple-amethyst.html
             http://openclipart.org/detail/173471/minerals-by-qubodup-173471
+    • tiled/tileset/terrain/wall/
+        brick_wall          brick_wall_red
+        • Sources:
+            http://opengameart.org/content/stone-brick-wall-golgotha-stone1512jpg
