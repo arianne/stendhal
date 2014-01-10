@@ -339,7 +339,7 @@ kih*/furniture/table/grey_plain.png 66
 del*/ground/sand2.png 0
 del*/ground/sandy_patches.png 0
 del*/ground/wooden_patio_planter.png 0
-/ground/yellow_lava.png 2
+del*/ground/yellow_lava.png 0
 /ground/fire/flames.png 9
 tig*/ground/indoor/raised_platform.png 1
 tig*/ground/indoor/raised_platform_blue.png 1

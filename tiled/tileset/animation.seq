@@ -498,9 +498,6 @@ tileset/ground/fire/lava.png * 6:15:24
 tileset/ground/fire/lava.png * 7:16:25
 tileset/ground/fire/lava.png * 8:17:26
 
-# yellow lava
-tileset/ground/yellow_lava.png  * 0:1
-tileset/ground/yellow_lava.png  * 1:0
 # vulcanus swings hammer
 tileset/object/vulcanus.png * 0:4:2
 tileset/object/vulcanus.png * 1:5:3
