@@ -216,6 +216,9 @@ tileset/ground/fire/fire_small.png	3@1000	3:4:5:4
 tileset/ground/fire/fire_small.png	4@1000	3:4:5:4
 tileset/ground/fire/fire_small.png	5@1000	3:4:5:4
 
+tileset/ground/fire/large_flame.png	0@300	0:1:2:3
+tileset/ground/fire/large_flame.png	4@300	4:5:6:7
+
 tileset/ground/fire/fire.png	0@1000	0:9:18:9
 tileset/ground/fire/fire.png	9@1000	0:9:18:9
 tileset/ground/fire/fire.png	18@1000	0:9:18:9
