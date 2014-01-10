@@ -117,7 +117,7 @@ kih*/ground/indoor/floors_3.png 36
 del*/ground/ladder/ladder_1.png 
 del*/ground/ladder/wooden_ladder_down.png 1
 del*/ground/ridge/snowy.png 
-ant /ground/rock/blue_crystal.png 4
+ant*/ground/rock/blue_crystal.png 4
 ant /ground/rock/gold_crystal.png 3
 ant*/ground/rock/green_crystal2.png 4
 ant /ground/rock/green_crystal3.png 1

@@ -67,7 +67,7 @@ The following files are released and can be distributed under the terms and cond
     • tiled/tileset/ground/ladder/
         rope_ladder
     • tiled/tileset/ground/rock/
-        green_crystal2      huge_boulder
+        blue_crystal        green_crystal2      huge_boulder
     • tiled/tileset/object/
         rotating_orbs
     • tiled/tileset/terrain/ground/
