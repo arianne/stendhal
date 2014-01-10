@@ -393,7 +393,7 @@ public class Blend implements Composite {
 
 		@Override
 		public int compose(int[] srcPixel, int[] dstPixel) {
-			int rval = 0xff000000;
+			int rval = 0xff000000 & (dstPixel[ALPHA] << 24);
 			for (int i = RED; i <= BLUE; i++) {
 				// Stupid signed bytes. "& 0xff" is to prevent sign changes in
 				// the result
