@@ -1713,6 +1713,7 @@ public class Player extends RPEntity implements UseListener {
 		    // Face target if player is not moving
 		    if (stopped() && isInSight(attackTarget) && !isFacingToward(attackTarget)) {
 		        faceToward(attackTarget);
+		        notifyWorldAboutChanges();
 		    }
 
 			StendhalRPAction.playerAttack(this, attackTarget);
