@@ -97,17 +97,21 @@ public class StoreMessageAction implements ActionListener, TurnListener {
 		String target = checkcommand.getTarget();
 
 		final Player sourceplayer = SingletonRepository.getRuleProcessor().getPlayer(source);
-
-
-		if (sourceplayer != null) {
-			// incase source player logged out while waiting we want to avoid NPE
-			if(characterExists) {
-				sourceplayer.sendPrivateText("postman tells you: Message accepted for delivery");
-			} else {
-				sourceplayer.sendPrivateText(NotificationType.ERROR, "postman tells you: Sorry, " + target + " could not be found, so your message cannot be stored.");
-			}
-			sourceplayer.setLastPrivateChatter("postman");
+		if (sourceplayer == null) {
+			return;
 		}
+
+		if (!characterExists) {
+			sourceplayer.sendPrivateText(NotificationType.ERROR, "postman tells you: Sorry, " + target + " could not be found, so your message cannot be stored.");
+			return;
+		}
+
+		if (checkcommand.isIgnored()) {
+			sourceplayer.sendPrivateText("postman tells you: I cannot reach " + target + " on your behalf.");
+			return;
+		}
+
+		sourceplayer.sendPrivateText("postman tells you: Message accepted for delivery");
 
 		return;
 	}

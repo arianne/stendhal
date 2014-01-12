@@ -53,6 +53,25 @@ public class StendhalBuddyDAO {
 
 
 	/**
+	 * checks whether a palyer is ignored by another player
+	 *
+	 * @param transaction DBTransaction
+	 *
+	 * @param character character whose ignore list is checked
+	 * @param candidate candidate who might have been ignored
+	 * @return true, if the player is ginored, false otherwise
+	 * @throws SQLException SQLException
+	 */
+	public boolean isIgnored(DBTransaction transaction, String character, String candidate) throws SQLException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("charname", character);
+		params.put("candidate", candidate);
+		int count = transaction.querySingleCellInt("SELECT count(*) FROM buddy WHERE charname='[charname]' AND buddy='[candidate]' AND relationtype='ignore'", params);
+		return count > 0;
+	}
+
+
+	/**
 	 * saves the buddy list for the specified charname
 	 * 
 	 * @param transaction transaction

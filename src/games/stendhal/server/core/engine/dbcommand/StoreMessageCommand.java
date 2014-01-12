@@ -12,6 +12,7 @@
 package games.stendhal.server.core.engine.dbcommand;
 
 import games.stendhal.server.core.engine.db.PostmanDAO;
+import games.stendhal.server.core.engine.db.StendhalBuddyDAO;
 
 import java.sql.SQLException;
 
@@ -33,6 +34,7 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	private final String message;
 	private final String messagetype;
 	private String accountName;
+	private boolean ignored = false;
 
 	/**
 	 * creates a new StoreMessageCommand
@@ -51,12 +53,22 @@ public class StoreMessageCommand extends AbstractDBCommand {
 
 	@Override
 	public void execute(DBTransaction transaction) throws SQLException {
-		CharacterDAO characterdao = DAORegister.get().get(CharacterDAO.class);
-		accountName = characterdao.getAccountName(transaction, target);
-		if (accountName != null) {
-			PostmanDAO postmandao = DAORegister.get().get(PostmanDAO.class);
-			postmandao.storeMessage(transaction, source, target, message, messagetype);
+		CharacterDAO characterDAO = DAORegister.get().get(CharacterDAO.class);
+		accountName = characterDAO.getAccountName(transaction, target);
+		if (accountName == null) {
+			return;
 		}
+
+		if (messagetype.equals("P")) {
+			StendhalBuddyDAO buddyDAO = DAORegister.get().get(StendhalBuddyDAO.class);
+			if (buddyDAO.isIgnored(transaction, target, source)) {
+				ignored = true;
+				return;
+			}
+		}
+
+		PostmanDAO postmanDAO = DAORegister.get().get(PostmanDAO.class);
+		postmanDAO.storeMessage(transaction, source, target, message, messagetype);
 	}
 
 	/**
@@ -66,6 +78,15 @@ public class StoreMessageCommand extends AbstractDBCommand {
 	 */
 	public boolean targetCharacterExists() {
 		return accountName != null;
+	}
+
+	/**
+	 * is ignored
+	 *
+	 * @return ignored
+	 */
+	public boolean isIgnored() {
+		return ignored;
 	}
 
 	/**
