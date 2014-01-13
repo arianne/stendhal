@@ -34,6 +34,14 @@ import org.apache.log4j.Logger;
  */
 public final class StatsPanelController {
 	private static final String[] MONEY_SLOTS = { "bag", "lhand", "rhand" };
+	/**
+	 * A string used as a white space at the status labels. This is a
+	 * combination of carriage return and no-break space, so that a possible
+	 * automatic line break is inserted at the CR, and the next line starts with
+	 * a leading space so that it is clear it belongs together with the previous
+	 * line. In case the text fits in one line, it looks like a normal space.
+	 */
+	private static final String SPC = "\r\u00a0";
 	private final StatsPanel panel;
 	private static	StatsPanelController instance;
 	
@@ -162,7 +170,7 @@ public final class StatsPanelController {
 		// a confusing negative required xp.
 		final String nextS = (next < 0) ? "\u2014" : Integer.toString(next);
 			
-		final String text = "Level: " + level + " (" + nextS + ")";
+		final String text = "Level:" + SPC + level + SPC + "(" + nextS + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -180,7 +188,7 @@ public final class StatsPanelController {
 		if (maxhpModified != 0) {
 			maxhpvalue = maxhpModified;
 		}
-		final String text = "HP: " + hp + "/" + maxhpvalue;
+		final String text = "HP:" + SPC + hp + "/" + maxhpvalue;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -195,7 +203,7 @@ public final class StatsPanelController {
 	private void updateAtk() {
 		// atk uses 10 levels shifted starting point
 		final int next = Level.getXP(atk - 9) - atkxp;
-		final String text = "ATK: " + atk + "×" + (1 + weaponAtk) + " (" + next + ")";
+		final String text = "ATK:" + SPC + atk + "×" + (1 + weaponAtk) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -210,7 +218,7 @@ public final class StatsPanelController {
 	private void updateDef() {
 		// def uses 10 levels shifted starting point
 		final int next = Level.getXP(def - 9) - defxp;
-		final String text = "DEF: " + def + "×" + (1 + itemDef) + " (" + next + ")";
+		final String text = "DEF:" + SPC + def + "×" + (1 + itemDef) + SPC + "(" + next + ")";
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -309,7 +317,7 @@ public final class StatsPanelController {
 				amount += obj.getInt("quantity");
 			}
 		}
-		final String text = "Money: " + amount;
+		final String text = "Money:" + SPC + amount;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -367,7 +375,7 @@ public final class StatsPanelController {
 			}
 			xp = Integer.parseInt((String) event.getNewValue());
 			updateLevel();
-			final String text = "XP: " + xp;
+			final String text = "XP:" + SPC + xp;
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {

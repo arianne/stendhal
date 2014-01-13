@@ -15,12 +15,12 @@ package games.stendhal.client.gui.stats;
 import games.stendhal.client.entity.StatusID;
 import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
-
-import java.awt.Font;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.StyleUtil;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  * Display panel for status icons and player stats. The methods may be safely
@@ -55,22 +55,22 @@ class StatsPanel extends JPanel {
 		add(manaIndicator, SLayout.EXPAND_X);
 		
 		hpLabel = new StatLabel();
-		add(hpLabel);
+		add(hpLabel, SLayout.EXPAND_X);
 		
 		atkLabel = new StatLabel();
-		add(atkLabel);
+		add(atkLabel, SLayout.EXPAND_X);
 		
 		defLabel = new StatLabel();
-		add(defLabel);
+		add(defLabel, SLayout.EXPAND_X);
 		
 		xpLabel = new StatLabel();
-		add(xpLabel);
+		add(xpLabel, SLayout.EXPAND_X);
 		
 		levelLabel = new StatLabel();
-		add(levelLabel);
+		add(levelLabel, SLayout.EXPAND_X);
 		
 		moneyLabel = new StatLabel();
-		add(moneyLabel);
+		add(moneyLabel, SLayout.EXPAND_X);
 	}
 	
 	/**
@@ -202,14 +202,19 @@ class StatsPanel extends JPanel {
 		statusIcons.setGrumpy(message);
 	}
 
-	private static class StatLabel extends JLabel {
-		private static final long serialVersionUID = -6830358556358203566L;
-
+	/**
+	 * A multi line, label like component for the status rows.
+	 */
+	private static class StatLabel extends JTextArea {
 		public StatLabel() {
-			// unbold
-			Font f = getFont();
-			if ((f.getStyle() & Font.BOLD) != 0) {
-				setFont(f.deriveFont(f.getStyle() ^ Font.BOLD));
+			setOpaque(false);
+			setEditable(false);
+			setFocusable(false);
+			setWrapStyleWord(true);
+			setLineWrap(true);
+			Style style = StyleUtil.getStyle();
+			if (style != null) {
+				setForeground(style.getForeground());
 			}
 		}
 	}
