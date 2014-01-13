@@ -146,6 +146,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private int x;
 
 	private int y;
+	
+	/** User representable name of the zone. */
+	private final String readableName;
 
 	public StendhalRPZone(final String name) {
 		super(name);
@@ -167,6 +170,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
+		String readable = describe(name);
+		if (!name.equals(readable)) {
+			readableName = readable;
+			// Ensure that the zone has attribute layer if it has a readable
+			// name that differs from the internal name
+			ZoneAttributes attr = new ZoneAttributes(this);
+			setAttributes(attr);
+		} else {
+			readableName = null;
+		}
 	}
 
 	public StendhalRPZone(final String name, final int width, final int height) {
@@ -358,6 +371,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param attr attributes
 	 */
 	public void setAttributes(ZoneAttributes attr) {
+		if (readableName != null) {
+			attr.put("readable_name", readableName);
+		}
 		attributes = attr;
 	}
 
