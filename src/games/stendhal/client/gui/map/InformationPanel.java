@@ -13,13 +13,18 @@ package games.stendhal.client.gui.map;
 
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.layout.SBoxLayout;
+import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.sprite.DataLoader;
 
-import java.awt.Font;
+import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  * Area for displaying information about a zone.
@@ -48,7 +53,9 @@ class InformationPanel extends JComponent {
 	};
 	
 	/** Zone name display. */
-	private final JLabel nameLabel;
+	private final JTextPane nameField;
+	/** Attribute set needed for centering the zone name text. */
+	private final SimpleAttributeSet center = new SimpleAttributeSet();
 	/** Danger level icons */
 	private final DangerIndicator dangerIndicator;
 	/** Current relative danger level. */
@@ -61,16 +68,15 @@ class InformationPanel extends JComponent {
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
 		
 		// ** Zone name **
-		nameLabel = new JLabel();
-		// "unbold". The label is wide enough as it is
-		Font f = nameLabel.getFont();
-		if ((f.getStyle() & Font.BOLD) != 0) {
-			nameLabel.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD));
-		}
-		nameLabel.setAlignmentX(CENTER_ALIGNMENT);
-		nameLabel.setOpaque(true);
-		nameLabel.setBackground(getBackground());
-		add(nameLabel);
+		nameField = new JTextPane();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		nameField.setAlignmentX(CENTER_ALIGNMENT);
+		nameField.setOpaque(true);
+		nameField.setBackground(getBackground());
+		nameField.setForeground(Color.WHITE);
+		nameField.setFocusable(false);
+		nameField.setEditable(false);
+		add(nameField, SLayout.EXPAND_X);
 		
 		// ** Danger display **
 		dangerIndicator = new DangerIndicator(MAX_SKULLS);
@@ -86,7 +92,9 @@ class InformationPanel extends JComponent {
 	 * @param name
 	 */
 	void setZoneName(String name) {
-		nameLabel.setText(name);
+		nameField.setText(name);
+		StyledDocument doc = nameField.getStyledDocument();
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 	}
 	
 	/**

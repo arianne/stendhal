@@ -39,6 +39,8 @@ import org.apache.log4j.Logger;
 class Zone {
 	/** Name of the zone. */
 	private final String name;
+	/** A name that's suitable for presenting to the user. */
+	private String readableName;
 	/** Renderers for normal layers. */
 	private final Map<String, LayerRenderer> layers = new HashMap<String, LayerRenderer>();
 	/** Global current zone information. */
@@ -173,6 +175,7 @@ class Zone {
 					Logger.getLogger(Zone.class).warn("Invalid danger level: " + danger, e);
 				}
 			}
+			readableName = obj.get("readable_name");
 			// OK to try validating after this
 			requireData = false;
 		} else {
@@ -246,6 +249,18 @@ class Zone {
 	 * @return zone name
 	 */
 	String getName() {
+		return name;
+	}
+	
+	/**
+	 * Get the user representable name of the zone.
+	 * 
+	 * @return user readable name
+	 */
+	String getReadableName() {
+		if (readableName != null) {
+			return readableName;
+		}
 		return name;
 	}
 	

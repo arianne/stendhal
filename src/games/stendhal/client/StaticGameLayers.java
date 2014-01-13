@@ -115,6 +115,15 @@ public class StaticGameLayers {
 	}
 	
 	/**
+	 * Get the user representable name of the current zone.
+	 * 
+	 * @return user readable zone name
+	 */
+	public String getReadableName() {
+		return currentZone.getReadableName();
+	}
+	
+	/**
 	 * Draw a set of layers.
 	 * 
 	 * @param g Graphics
