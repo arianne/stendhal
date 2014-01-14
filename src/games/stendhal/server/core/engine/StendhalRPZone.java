@@ -16,6 +16,7 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.common.tiled.LayerDefinition;
@@ -170,7 +171,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		collisionMap = new CollisionDetection();
 		protectionMap = new CollisionDetection();
-		String readable = describe(name);
+		String readable = createReadableName(name);
 		if (!name.equals(readable)) {
 			readableName = readable;
 			// Ensure that the zone has attribute layer if it has a readable
@@ -1641,6 +1642,65 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 	public String describe() {
 		return StendhalRPZone.translateZoneName(this.getName());
+	}
+	
+	/**
+	 * Generate a precise zone name that can be shown to players (in client
+	 * minimap). For vague zone names, use {@link #describe()}.
+	 * 
+	 * @param zoneName game internal zone name 
+	 * @return human readable zone name
+	 */
+	private String createReadableName(String zoneName) {
+		StringBuilder result = new StringBuilder();
+		final Pattern p = Pattern.compile("^(-?[\\d]|int)_(.+)$");
+		final Matcher m = p.matcher(zoneName);
+		if (m.matches()) {
+			final String level = m.group(1);
+			String remainder = m.group(2);
+			
+			final String[] directions = new String[] {
+					".+_n(\\d?)e(\\d?)($|_).*", "N$1E$2", "_n\\d?e\\d?($|_)", "_",
+					".+_n(\\d?)w(\\d?)($|_).*", "N$1W$2", "_n\\d?w\\d?($|_)", "_",
+					".+_s(\\d?)e(\\d?)($|_).*", "S$1E$2 ", "_s\\d?e\\d?($|_)", "_",
+					".+_s(\\d?)w(\\d?)($|_).*", "S$1W$2", "_s\\d?w\\d?($|_)", "_",
+					".+_n(\\d?)($|_).*", "N$1", "_n\\d?($|_)", "_",
+					".+_s(\\d?)($|_).*", "S$1", "_s\\d?($|_)", "_",
+					".+_w(\\d?)($|_).*", "W$1", "_w\\d?($|_)", "_",
+					".+_e(\\d?)($|_).*", "E$1", "_e\\d?($|_)", "_", };
+			StringBuilder dirBuf = new StringBuilder();
+			for (int i = 0; i < directions.length; i += 4) {
+				Matcher match = Pattern.compile(directions[i]).matcher(remainder);
+				if (match.matches()) {
+					dirBuf.append(match.replaceAll(directions[i + 1]));
+					remainder = remainder.replaceAll(directions[i + 2],
+							directions[i + 3]);
+				}
+			}
+			
+			// here we need to capitalize the city name
+			result.append(Grammar.makeUpperCaseWord(remainder.replaceAll("_", " ")));
+			result.append(dirBuf);
+			if ("int".equals(level)) {
+				result.append(", interior");
+			} else if (level.matches("^-?\\d")) {
+				int levelValue = MathHelper.parseInt(level);
+				if (levelValue != 0) {
+					result.append(", level ");
+					result.append(levelValue);
+				}
+			}
+		} else {
+			// As of this writing (2014-01-15), the few zone names that do not
+			// match produce good results with this. 
+			logger.info("no match: " + zoneName);
+			return Grammar.makeUpperCaseWord(zoneName.replaceAll("_", " "));
+		}
+		if (result.length() == 0) {
+			return null;
+		} else {
+			return result.toString().trim();
+		}
 	}
 
 	/**
