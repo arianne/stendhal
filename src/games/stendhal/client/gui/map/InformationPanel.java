@@ -23,6 +23,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.OverlayLayout;
+import javax.swing.SwingUtilities;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -115,6 +116,13 @@ class InformationPanel extends JComponent {
 		nameField.setText(name);
 		StyledDocument doc = nameField.getStyledDocument();
 		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		// Necessary when the needed space gets smaller.
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				nameField.revalidate();
+			}
+		});
 	}
 	
 	/**
