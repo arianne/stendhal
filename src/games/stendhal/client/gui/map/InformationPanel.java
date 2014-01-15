@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.OverlayLayout;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -60,12 +61,22 @@ class InformationPanel extends JComponent {
 	private final DangerIndicator dangerIndicator;
 	/** Current relative danger level. */
 	private int dangerLevel;
+	/**
+	 * A component overlaying the zone text and the danger indicator. This is 
+	 * for holding a common tool tip for them both. JTextPane consumes mouse
+	 * events so setting a tool tip for the common parent does not work.
+	 */
+	private final JComponent glassPane;
 	
 	/**
 	 * Create a new InformationPanel.
 	 */
 	InformationPanel() {
-		setLayout(new SBoxLayout(SBoxLayout.VERTICAL));
+		setLayout(new OverlayLayout(this));
+		JComponent container = SBoxLayout.createContainer(SBoxLayout.VERTICAL);
+		glassPane = new JComponent(){};
+		add(glassPane);
+		add(container);
 		
 		// ** Zone name **
 		nameField = new JTextPane();
@@ -76,14 +87,23 @@ class InformationPanel extends JComponent {
 		nameField.setForeground(Color.WHITE);
 		nameField.setFocusable(false);
 		nameField.setEditable(false);
-		add(nameField, SLayout.EXPAND_X);
+		container.add(nameField, SLayout.EXPAND_X);
 		
 		// ** Danger display **
 		dangerIndicator = new DangerIndicator(MAX_SKULLS);
 		dangerIndicator.setAlignmentX(CENTER_ALIGNMENT);
-		add(dangerIndicator);
+		container.add(dangerIndicator);
 		// Default to safe, so that we always have a tooltip
-		setToolTipText(dangerLevelStrings[0]);
+		describeDanger(0);
+	}
+	
+	/**
+	 * Set the tool tip describing zone danger level.
+	 * 
+	 * @param dangerLevel zone danger level, value in range [0-5].
+	 */
+	private void describeDanger(int dangerLevel) {
+		glassPane.setToolTipText(dangerLevelStrings[dangerLevel]);
 	}
 	
 	/**
@@ -107,7 +127,7 @@ class InformationPanel extends JComponent {
 		if (this.dangerLevel != skulls) {
 			this.dangerLevel = skulls;
 			dangerIndicator.setRelativeDanger(skulls);
-			setToolTipText(dangerLevelStrings[skulls]);
+			describeDanger(skulls);
 		}
 	}
 	
