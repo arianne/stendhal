@@ -190,6 +190,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public StendhalRPZone(final String name, final StendhalRPZone zone) {
 		this(name);
+		if (attributes != null) {
+			// Try to match the attribute layer name with the rest of the zone
+			attributes.setBaseName(zone.getName());
+		}
 		contents.addAll(zone.contents);
 		collisionMap = zone.collisionMap;
 		protectionMap  = zone.protectionMap;
