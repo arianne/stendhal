@@ -19,9 +19,11 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.HouseKey;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -413,6 +415,56 @@ public abstract class UpdateConverter {
 		// fix Maze
 		fixMazeQuestSlot(player);
 
+	}
+	
+	/**
+	 * Convert keyring feature to keyring item. Moves the contents of the
+	 * keyring to  the newly created item and removes the feature and the legacy
+	 * slot.
+	 * 
+	 * @param player converted player
+	 */
+	public static void updateKeyring(Player player) {
+		if (player.getFeature("keyring") != null) {
+			/*
+			 * There are many things that could go wrong. Try to bail harmlessly
+			 * if that happens. The old keyrings still work.
+			 */
+			Item keyring = SingletonRepository.getEntityManager().getItem("keyring");
+			if (keyring == null) {
+				logger.error("Failed to create keyring item");
+			}
+			keyring.setBoundTo(player.getName());
+			/*
+			 * Belt *should* be empty and working, as this code should not be
+			 * called unless belt is activated, and old keyring feature can no
+			 * longer be set on by the quest. It's best to check it anyway.
+			 */
+			if (!player.equip("belt", keyring)) {
+				logger.error("Failed to place keyring in belt: " + player);
+				return;
+			}
+			
+			RPSlot oldSlot = player.getSlot("keyring");
+			EntitySlot newSlot = keyring.getEntitySlot("content"); 
+			if (!"keyring".equals(newSlot.getContentSlotName())) {
+				logger.error("Keyring has incorrect slot name: "
+						+ newSlot.getContentSlotName() + ", item is: " + keyring);
+				return;
+			}
+			ArrayList<RPObject> contents = new ArrayList<RPObject>(oldSlot.size());
+			for (RPObject item : oldSlot) {
+				contents.add(item);
+			}
+			for (RPObject item : contents) {
+				oldSlot.remove(item.getID());
+				newSlot.add(item);
+			}
+			oldSlot.clear();
+			// Remove the old feature. After this the player won't be able to
+			// use the old style keyring, so everything would better be OK now.
+			player.setFeature("keyring", false);
+		}
 	}
 
 	private static void fixMazeQuestSlot(Player player) {

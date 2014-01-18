@@ -91,6 +91,9 @@ public class PlayerTransformer implements Transformer {
 		StendhalQuestSystem.updatePlayerQuests(player);
 
 		UpdateConverter.updateQuests(player);
+		// Should be at least after converting the features list, as this
+		// depends on checking the keyring feature.
+		//UpdateConverter.updateKeyring(player);
 
 		logger.debug("Finally player is :" + player);
 		return player;
@@ -127,6 +130,7 @@ public class PlayerTransformer implements Transformer {
 			player.remove("features");
 		}
 	}
+	
 	/**
 	 * Loads the items into the slots of the player on login.
 	 * 
