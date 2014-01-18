@@ -15,6 +15,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
@@ -24,6 +25,7 @@ import games.stendhal.client.gui.styled.cursor.CursorRepository;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 import games.stendhal.client.gui.wt.EntityViewCommandList;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.EquipActionConsts;
@@ -33,6 +35,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,7 +101,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	 * @param placeholder image used in an empty panel, or <code>null</code>
 	 */
 	ItemPanel(final String slotName, final Sprite placeholder) {
-		this.placeholder = placeholder;
+		this.placeholder = preparePlaceholder(placeholder);
 		setName(slotName);
 		
 		Dimension size = new Dimension(background.getWidth(), background.getHeight()); 
@@ -109,6 +114,38 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		ItemPanelMouseHandler drag = new ItemPanelMouseHandler();
 		addMouseMotionListener(drag);
 		addMouseListener(drag);
+	}
+	
+	/**
+	 * Prepare a version of the place holder Sprite, that is suitable for the
+	 * transparency mode of the client.
+	 * 
+	 * @param original original placeholder Sprite
+	 * @return an adjusted Sprite, or the original if no adjusting is needed
+	 */
+	private Sprite preparePlaceholder(Sprite original) {
+		if ((original == null) || (stendhal.TRANSPARENCY == Transparency.BITMASK)) {
+			return original;
+		}
+		/*
+		 * Using full alpha in the client.
+		 * 
+		 * Create a black and white, but translucent version of the same image.
+		 * The filtering has been chosen so that the slot images we use become
+		 * suitably B&W, not for any general rule.
+		 * 
+		 * What we'd really want is drawing an opaque B&W image in soft light
+		 * mode, but swing back buffer does not actually support Composites
+		 * despite being accessed via Graphics2D.
+		 */
+		BufferedImage img = new BufferedImage(original.getWidth(), original.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.createGraphics();
+		original.draw(g, 0, 0);
+		RescaleOp rescaleOp = new RescaleOp(new float[] {3.0f, 3.0f, 3.0f, 0.5f }, new float[] {-450f, -450f, -450f, 0f}, null);
+		rescaleOp.filter(img, img);
+		g.dispose();
+		
+		return new ImageSprite(img);
 	}
 	
 	/**
