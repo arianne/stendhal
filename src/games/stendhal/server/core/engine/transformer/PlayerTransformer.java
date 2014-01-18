@@ -144,10 +144,13 @@ public class PlayerTransformer implements Transformer {
 
 		// load items
 		final String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "keyring", "trade" };
+				"legs", "feet", "finger", "cloak", "back", "belt", "keyring", "trade" };
 
 		try {
 			for (final String slotName : slotsItems) {
+				if (!player.hasSlot(slotName)) {
+					continue;
+				}
 				final RPSlot slot = player.getSlot(slotName);
 				final PlayerSlot newSlot;
 				if (slotName.equals("keyring")) {
