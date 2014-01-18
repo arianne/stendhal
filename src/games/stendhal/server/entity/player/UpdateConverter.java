@@ -181,10 +181,18 @@ public abstract class UpdateConverter {
      *            RPObject representing a player
      */
     public static void updatePlayerRPObject(final RPObject object) {
-    	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
-    			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
-    			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-    			"keyring", "trade" };
+    	final String[] slotsNormal;
+    	if (System.getProperty("stendhal.container") != null) {
+    	    slotsNormal = new String[] { "bag", "rhand", "lhand", "head", "armor",
+    	    		"legs", "feet", "finger", "cloak", "bank", "bank_ados",
+    	    		"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+    	    		"keyring", "trade", "belt", "back" };
+    	} else {
+    		slotsNormal = new String[] { "bag", "rhand", "lhand", "head", "armor",
+    				"legs", "feet", "finger", "cloak", "bank", "bank_ados",
+        			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+        			"keyring", "trade" };
+    	}
 
     	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
     			"!visited", "skills", "!tutorial"};
