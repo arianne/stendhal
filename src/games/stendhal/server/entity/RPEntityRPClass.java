@@ -26,7 +26,7 @@ public class RPEntityRPClass {
 	 */
     public static void generateRPClass(String ATTR_TITLE) {
         final RPClass entity = new RPClass("rpentity");
-        
+
         entity.isA("active_entity");
         entity.addAttribute("name", Type.STRING);
         entity.addAttribute(ATTR_TITLE, Type.STRING);
@@ -56,7 +56,7 @@ public class RPEntityRPClass {
         entity.addAttribute("base_speed", Type.FLOAT, Definition.VOLATILE);
 
         entity.addAttribute("ignore_collision", Type.FLAG, Definition.VOLATILE);
-        
+
         entity.addAttribute("unnamed", Type.FLAG, Definition.VOLATILE);
         entity.addAttribute("no_hpbar", Type.FLAG, Definition.VOLATILE);
 
@@ -70,7 +70,7 @@ public class RPEntityRPClass {
         entity.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
-        
+
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);
         entity.addRPSlot("lhand", 1, Definition.PRIVATE);
@@ -79,6 +79,9 @@ public class RPEntityRPClass {
         entity.addRPSlot("cloak", 1, Definition.PRIVATE);
         entity.addRPSlot("legs", 1, Definition.PRIVATE);
         entity.addRPSlot("feet", 1, Definition.PRIVATE);
+        entity.addRPSlot("back", 1, Definition.PRIVATE);
+        entity.addRPSlot("belt", 1, Definition.PRIVATE);
+
         entity.addRPSlot("bag", 12, Definition.PRIVATE);
         entity.addRPSlot("keyring", 8, Definition.PRIVATE);
 
