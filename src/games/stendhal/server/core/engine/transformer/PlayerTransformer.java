@@ -93,7 +93,10 @@ public class PlayerTransformer implements Transformer {
 		UpdateConverter.updateQuests(player);
 		// Should be at least after converting the features list, as this
 		// depends on checking the keyring feature.
-		//UpdateConverter.updateKeyring(player);
+
+		if (System.getProperty("stendhal.container") != null) {
+			UpdateConverter.updateKeyring(player);
+		}
 
 		logger.debug("Finally player is :" + player);
 		return player;
@@ -114,7 +117,7 @@ public class PlayerTransformer implements Transformer {
 			player.remove(GRUMPY);
 		}
 	}
-	
+
 	public void convertOldfeaturesList(final Player player) {
 		if (player.has("features")) {
 			logger.info("Converting features for " + player.getName() + ": "
@@ -130,10 +133,10 @@ public class PlayerTransformer implements Transformer {
 			player.remove("features");
 		}
 	}
-	
+
 	/**
 	 * Loads the items into the slots of the player on login.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -166,10 +169,10 @@ public class PlayerTransformer implements Transformer {
 			logger.error("cannot create player", e);
 		}
 	}
-	
+
 	/**
 	 * Transforms the RPObjects in the spells slots to the real spell objects
-	 * 
+	 *
 	 * @param player
 	 */
 	private void loadSpellsIntoSlots(Player player) {
@@ -197,13 +200,13 @@ public class PlayerTransformer implements Transformer {
 			}
 		}
 	}
-	
+
 	private static Logger logger = Logger.getLogger(PlayerTransformer.class);
-	
+
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on
 	 * login.
-	 * 
+	 *
 	 * @param object
 	 *            RPObject representing the player
 	 * @param player
@@ -310,10 +313,10 @@ public class PlayerTransformer implements Transformer {
 			pet.notifyWorldAboutChanges();
 		}
 	}
-	
+
 	/**
 	 * Loads the items into the slots of the player on login.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param slot
@@ -335,34 +338,34 @@ public class PlayerTransformer implements Transformer {
 		for (final RPObject rpobject : objects) {
 			try {
 				// remove admin items the player does not deserve
-				if (ITEMS_FOR_ADMINS.contains(rpobject.get("name")) 
+				if (ITEMS_FOR_ADMINS.contains(rpobject.get("name"))
 						&& (!player.has("adminlevel") || player.getInt("adminlevel") < 1000)) {
 					logger.warn("removed admin item " + rpobject.get("name") + " from player " + player.getName());
 					new ItemLogger().destroyOnLogin(player, slot, rpobject);
-					
+
 					continue;
 				}
-				
+
 				Item item = transformer.transform(rpobject);
-				
+
 				// log removed items
 				if (item == null) {
 					int quantity = 1;
 					if (rpobject.has("quantity")) {
 						quantity = rpobject.getInt("quantity");
 					}
-					
+
 					logger.warn("Cannot restore " + quantity + " " + rpobject.get("name")
 							+ " on login of " + player.getName()
 							+ " because this item"
 							+ " was removed from items.xml");
 					new ItemLogger().destroyOnLogin(player, slot, rpobject);
-					
+
 					continue;
 				}
-				
+
 				boundOldItemsToPlayer(player, item);
-				
+
 				newSlot.add(item);
 			} catch (final Exception e) {
 				logger.error("Error adding " + rpobject + " to player slot" + slot,
@@ -372,7 +375,7 @@ public class PlayerTransformer implements Transformer {
 	}
 	/**
 	 * binds special items to the player.
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 * @param item
@@ -388,7 +391,7 @@ public class PlayerTransformer implements Transformer {
 	}
 
 
-	
+
 	public static final String DEFAULT_ENTRY_ZONE = "int_semos_guard_house";
 	public static final String RESET_ENTRY_ZONE = "int_semos_townhall";
 
@@ -409,12 +412,12 @@ public class PlayerTransformer implements Transformer {
 	/**
 	 * Places a domestic animal in the world. If it matches it's owner's zone,
 	 * then try to keep it's position.
-	 * 
+	 *
 	 * @param animal
 	 *            The domestic animal.
 	 * @param player
 	 *            The owner.
-	 * 
+	 *
 	 * @return <code>true</code> if placed.
 	 */
 	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal,
