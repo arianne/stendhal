@@ -290,6 +290,7 @@
       <slot name="content"/>
       <slot name="bag"/>
       <slot name="trade"/>
+      <slot name="belt"/>
     </equipable>
   </item>
   
