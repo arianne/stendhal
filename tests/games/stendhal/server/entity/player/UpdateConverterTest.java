@@ -15,7 +15,9 @@ package games.stendhal.server.entity.player;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.item.Item;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -25,6 +27,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 /**
  * Test the UpdateConverter class.
@@ -148,4 +151,29 @@ public class UpdateConverterTest {
 		assertEquals(player.getQuest("kill_dhohr_nuggetcutter"), "start;Dhohr Nuggetcutter,0,1,0,0,mountain dwarf,0,1,0,0,mountain elder dwarf,0,1,0,0,mountain hero dwarf,0,1,0,0,mountain leader dwarf,0,1,0,0");		
 	}
 	
+	/**
+	 * Test updating the keyring feature.
+	 */
+	@Test
+	public void testUpdateKeyring() {
+		final Player player = PlayerTestHelper.createPlayer("player");
+		// First test *not* updating
+		assertNull("Sanity check", player.getFeature("keyring"));
+		UpdateConverter.updateKeyring(player);
+		assertNull("Updating without keyring feature should not create a keyring", player.getFirstEquipped("keyring"));
+		assertNull("Sanity check", player.getFeature("keyring"));
+		
+		// The actual update checks
+		player.setFeature("keyring", true);
+		assertNotNull("Sanity check", player.getFeature("keyring"));
+		Item key = ItemTestHelper.createItem("dungeon silver key");
+		player.equip("keyring", key);
+		UpdateConverter.updateKeyring(player);
+		Item keyring = player.getFirstEquipped("keyring");
+		assertNotNull("Check creating a keyring when updating with the keyring feature", keyring);
+		assertEquals("Check the keyring is bound to the owner", player.getName(), keyring.getBoundTo());
+		assertEquals("Check the key got moved to the created container", keyring, key.getContainer());
+		assertEquals("Check that the keyring got placed in belt slot", player.getSlot("belt"), keyring.getContainerSlot());
+		assertNull("Check that the old keyring feature was turned off", player.getFeature("keyring"));
+	}
 }
