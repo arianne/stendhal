@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.InflictStatusOnNPCAction;
@@ -242,7 +243,11 @@ public class HungryJoshua extends AbstractQuest {
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-		reward.add(new EnableFeatureAction("keyring"));		
+		if (System.getProperty("stendhal.container") != null) {
+			reward.add(new EquipItemAction("keyring", 1, true));
+		} else {
+			reward.add(new EnableFeatureAction("keyring"));
+		}
 		/** Complete the quest */
 		npc.add(
 			ConversationStates.ATTENDING, "Joshua", 
