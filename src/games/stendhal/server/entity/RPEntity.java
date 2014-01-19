@@ -13,7 +13,6 @@
 package games.stendhal.server.entity;
 
 
-import games.stendhal.common.Constants;
 import games.stendhal.common.EquipActionConsts;
 import games.stendhal.common.Level;
 import games.stendhal.common.NotificationType;
@@ -39,6 +38,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusAttacker;
 import games.stendhal.server.entity.status.StatusList;
 import games.stendhal.server.entity.status.StatusType;
@@ -1295,12 +1295,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		setHP(0);
 		SingletonRepository.getRuleProcessor().killRPEntity(this, killer);
 	}
-	
+
 	/**
 	 * For rewarding killers. Get the entity as a Player, if the entity is a
 	 * Player. If the player has logged out, try to get the corresponding online
 	 * player.
-	 * 
+	 *
 	 * @param entity entity to be checked
 	 * @return online Player corresponding to the entity, or {@code null} if the
 	 * 	entity is not a Player, or if the equivalent player is not online
@@ -1331,7 +1331,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			if (killer == null) {
 				continue;
 			}
-				
+
 			TutorialNotifier.killedSomething(killer);
 
 			final int damageDone = entry.getValue();
@@ -1781,8 +1781,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		int toDrop = amount;
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
@@ -1859,8 +1858,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 * @return true iff dropping the item was successful.
 	 */
 	public boolean drop(final Item item) {
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			final Iterator<RPObject> objectsIterator = slot.iterator();
 			while (objectsIterator.hasNext()) {
@@ -1895,8 +1893,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 
 		int found = 0;
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				if (!(object instanceof Item)) {
@@ -1936,8 +1933,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public int getNumberOfEquipped(final String name) {
 		int result = 0;
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				if (object instanceof Item) {
@@ -2006,8 +2002,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *         found
 	 */
 	public Item getFirstEquipped(final String name) {
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				Item item = getFirstNestedEquipped(name, object);
@@ -2060,8 +2055,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public List<Item> getAllEquipped(final String name) {
 		final List<Item> result = new LinkedList<Item>();
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				if (object instanceof Item) {

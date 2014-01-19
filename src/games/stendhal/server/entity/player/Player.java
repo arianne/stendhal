@@ -19,7 +19,6 @@ import static games.stendhal.common.constants.Actions.GHOSTMODE;
 import static games.stendhal.common.constants.Actions.GRUMPY;
 import static games.stendhal.common.constants.Actions.INVISIBLE;
 import static games.stendhal.common.constants.Actions.TELECLICKMODE;
-import games.stendhal.common.Constants;
 import games.stendhal.common.Direction;
 import games.stendhal.common.ItemTools;
 import games.stendhal.common.KeyedSlotUtil;
@@ -50,6 +49,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour.ExpireOutfit;
+import games.stendhal.server.entity.slot.Slots;
 import games.stendhal.server.entity.status.StatusType;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
@@ -1926,8 +1926,7 @@ public class Player extends RPEntity implements UseListener {
 	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
 		final List<RingOfLife> result = new LinkedList<RingOfLife>();
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			final RPSlot slot = getSlot(slotName);
+		for (RPSlot slot : this.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				searchForWorkingRingsOfLife(object, result);

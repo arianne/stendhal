@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import games.stendhal.common.Constants;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.common.grammar.Grammar;
@@ -29,6 +28,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.slot.Slots;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -55,11 +55,11 @@ public class PlayerDieer {
 
 	private List<Item> drops;
 	// it is not crazy to have a number of drops as well as a drops list
-	// because there will be one entry  in the drops list for each item 
+	// because there will be one entry  in the drops list for each item
 	// but could be more than one stackable item per entry
 	// i need the number of drops for saying it/them at the end.
 	private int numberOfDrops;
-	
+
 	public PlayerDieer(final Player player) {
 		this.player = player;
 	}
@@ -100,29 +100,29 @@ public class PlayerDieer {
 					}
 				}
 			}
-			
+
 			logger.debug("ringlist " + ringList);
-	
+
 			if (ringList.isEmpty()) {
 			    // if player has positive karma, then they will lose between 0% and 10% skills - less than if karma was ignored
 			    // if player has negative karma, they lose between 10% and 20% skills - more than if karma was ignored
 			    penaltyFactor = 0.9 + (karma / 10.0);
 			    logger.debug("penaltyFactor: " + penaltyFactor);
 			} else {
-			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored                             
-			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored  
+			    // if player has positive karma, then they will lose between 0% and 1% skills - less than if karma ignored
+			    // if player has negative karma, they lose between 1% and 2% skills - more than if karma was ignored
 				// Use up a random ring
 				Rand.rand(ringList).damage();
 				penaltyFactor = 0.99 + (karma / 100.0);
 			}
-			
+
 			// round to 3 decimal places (i.e as a percentage it will be one decimal place)
 			penaltyFactor = (double) Math.round(penaltyFactor * 1000) / 1000;
 
 			// note on karma: players can only hit the maximums of these ranges if they themselves had over 100 Karma, less than -100 karma, respectively.
-			// and even then, some chance will mean they are not guaranteed to hit the maximum 
+			// and even then, some chance will mean they are not guaranteed to hit the maximum
 			// (just because we call useKarma(-100.0,100.0) doesn't mean that a player with over 100.0 karma will get 100.0 used. He is just more likely to get 100.0 used.)
-			
+
 			// Using subXP() instead of using setXP() directly to get the level
 			// checks correctly done. setXP() can not do the magic unlike setAtkXP()
 			// & setDEFXP() because it's used by creatures as well
@@ -171,7 +171,7 @@ public class PlayerDieer {
 			locationmsg += " in the " + pos + " part";
 		}
 		respawnInAfterLife();
-		
+
 		player.sendPrivateText(NotificationType.INFORMATION, locationmsg +".");
 		if (numberOfDrops > 0) {
 			Collection<String> strings = new LinkedList<String>();
@@ -256,8 +256,8 @@ public class PlayerDieer {
 					if (quantityToDrop > 0) {
 						final StackableItem itemToDrop = item.splitOff(quantityToDrop);
 						new ItemLogger().splitOff(player, item, itemToDrop, quantityToDrop);
-						new ItemLogger().equipAction(player, itemToDrop, 
-							new String[]{"slot", player.getName(), object.second().getName()}, 
+						new ItemLogger().equipAction(player, itemToDrop,
+							new String[]{"slot", player.getName(), object.second().getName()},
 							new String[]{"slot", player.getName(), "content"});
 						corpse.add(itemToDrop);
 						numberOfDrops += quantityToDrop;
@@ -266,8 +266,8 @@ public class PlayerDieer {
 				} else if (object.first() instanceof Item) {
 					Item justItem = (Item) object.first();
 					object.second().remove(object.first().getID());
-					new ItemLogger().equipAction(player, (Entity) object.first(), 
-									new String[]{"slot", player.getName(), object.second().getName()}, 
+					new ItemLogger().equipAction(player, (Entity) object.first(),
+									new String[]{"slot", player.getName(), object.second().getName()},
 									new String[]{"slot", player.getName(), "content"});
 
 					corpse.add((PassiveEntity) object.first());
@@ -279,33 +279,27 @@ public class PlayerDieer {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return a list of all Items in RPEntity carrying slots that can be dropped
 	 */
 	private List<Pair<RPObject, RPSlot>> retrieveAllDroppableObjects() {
 		final List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
-		for (final String slotName : Constants.CARRYING_SLOTS) {
-			if (player.hasSlot(slotName)) {
-				final RPSlot slot = player.getSlot(slotName);
+		for (RPSlot slot : player.slots(Slots.CARRYING)) {
 
-				// a list that will contain the objects that could
-				// be dropped.
-				for (final RPObject objectInSlot : slot) {
-					addDroppableObjects(objectInSlot, objects);
-				}
-			} else {
-				logger.error("CARRYING_SLOTS contains a slot that player "
-						+ player.getName() + " doesn't have.");
+			// a list that will contain the objects that could
+			// be dropped.
+			for (final RPObject objectInSlot : slot) {
+				addDroppableObjects(objectInSlot, objects);
 			}
 		}
 		return objects;
 	}
-	
+
 	/**
 	 * Add any droppable objects inside an object, including the object itself
 	 * if it's droppable and empty. The contents are scanned recursively.
-	 * 
+	 *
 	 * @param obj
 	 * @param list
 	 */
