@@ -288,9 +288,9 @@
     <equipable>
       <slot name="ground"/>
       <slot name="content"/>
+      <slot name="belt"/>
       <slot name="bag"/>
       <slot name="trade"/>
-      <slot name="belt"/>
     </equipable>
   </item>
   
