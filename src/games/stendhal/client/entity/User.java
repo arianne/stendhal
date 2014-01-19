@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * This class identifies the user of this client.
@@ -253,7 +254,11 @@ public class User extends Player {
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
 	public int findItem(final String slotName, final String itemName) {
-		for (final RPObject item : getSlot(slotName)) {
+		RPSlot slot = getSlot(slotName);
+		if (slot == null) {
+			return -1;
+		}
+		for (final RPObject item : slot) {
 			if (item.get("name").equals(itemName)) {
 				final int itemID = item.getID().getObjectID();
 
@@ -428,7 +433,7 @@ public class User extends Player {
 	public String getZoneName() {
 		return rpObject.getID().getZoneID();
 	}
-	
+
 	@Override
 	protected void processPositioning(final RPObject base, final RPObject diff) {
 		if (speedPredictor.isActive() && (diff.has("direction") || diff.has("x") || diff.has("y"))) {
@@ -436,13 +441,13 @@ public class User extends Player {
 		}
 		super.processPositioning(base, diff);
 	}
-	
+
 	/**
 	 * Start movement towards a direction. This is for
 	 * the client side movement prediction to start moving before the server
 	 * responds to the move action.
-	 * 
-	 * @param direction new direction 
+	 *
+	 * @param direction new direction
 	 * @param facing <code>true</code> if the player should just turn
 	 */
 	public void predictMovement(Direction direction, boolean facing) {
