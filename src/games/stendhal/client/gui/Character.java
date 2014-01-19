@@ -184,18 +184,18 @@ Inspectable {
 	 * Updates the player slot panels.
 	 */
 	private void refreshContents() {
-		// traverse all displayed slots
 		for (final Entry<String, ItemPanel> entry : slotPanels.entrySet()) {
-			final RPSlot slot = player.getSlot(entry.getKey());
-			
-			if (slot == null) {
-				continue;
-			}
-
 			final ItemPanel entitySlot = entry.getValue();
 
 			if (entitySlot != null) {
+				// Set the parent entity for all slots, even if they are not
+				// visible. They may become visible without zone changes
 				entitySlot.setParent(player);
+				
+				final RPSlot slot = player.getSlot(entry.getKey());
+				if (slot == null) {
+					continue;
+				}
 
 				final Iterator<RPObject> iter = slot.iterator();
 
@@ -243,6 +243,16 @@ Inspectable {
 				logger.error("Unable to find entity for: " + obj,
 						new Throwable("here"));
 				return;
+			}
+
+			/*
+			 * A hack to set previously invisible slots visible if an item
+			 * is placed in such a slot. Should be bound to the appearance of
+			 * the slot itself, but marauroa does not send that with the
+			 * perceptions.
+			 */
+			if (!panel.getParent().isVisible()) {
+				panel.getParent().setVisible(true);
 			}
 			panel.setEntity(entity);
 		}
