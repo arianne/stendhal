@@ -55,6 +55,7 @@ import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.SoundEvent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -192,7 +193,7 @@ public class Player extends RPEntity implements UseListener {
 		}
 		player.setOutfit(outfit);
 
-		for (final String slot : Constants.CARRYING_SLOTS) {
+		for (final String slot : Arrays.asList("armor", "rhand")) {
 			player.addSlot(slot);
 		}
 
@@ -737,6 +738,11 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public Set<String> getIgnores() {
 		Set<String> res = new HashSet<String>();
+
+		if (!this.hasSlot("!ignore")) {
+			return res;
+		}
+
 		RPObject ignoreObject = KeyedSlotUtil.getKeyedSlotObject(this, "!ignore");
 
 		// character names are prefixed with an "_" to tell them apart from generic attributes such as "id".
