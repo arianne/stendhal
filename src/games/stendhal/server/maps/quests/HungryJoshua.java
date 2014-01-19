@@ -1,6 +1,5 @@
-/* $Id$ */
 /***************************************************************************
- *                   (C) Copyright 2003-2010 - Stendhal                    *
+ *                   (C) Copyright 2003-2014 - Stendhal                    *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -16,6 +15,7 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.CreateSlotAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -39,31 +39,33 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 /**
- * QUEST: Hungry Joshua 
- * 
- * PARTICIPANTS: 
+ * QUEST: Hungry Joshua
+ *
+ * PARTICIPANTS:
  * <ul>
  * <li> Xoderos the blacksmith in Semos</li>
  * <li> Joshua the blacksmith in Ados</li>
  * </ul>
- * 
- * STEPS: 
+ *
+ * STEPS:
  * <ul>
  * <li> Talk with Xoderos to activate the quest.</li>
  * <li> Make 5 sandwiches.</li>
  * <li> Talk with Joshua to give him the sandwiches.</li>
  * <li> Return to Xoderos with a message from Joshua.</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li> 200 XP</li>
  * <li> Karma: 10</li>
  * <li> ability to use the keyring</li>
  * </ul>
- * 
- * REPETITIONS: 
+ *
+ * REPETITIONS:
  * <ul>
  * <li> None.</li>
  * </ul>
@@ -78,7 +80,7 @@ public class HungryJoshua extends AbstractQuest {
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
-	
+
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -110,13 +112,13 @@ public class HungryJoshua extends AbstractQuest {
 	private void step_1() {
 
 		final SpeakerNPC npc = npcs.get("Xoderos");
-		
+
 		/** If quest is not started yet, start it. */
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES, new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, "I'm worried about my brother who lives in Ados. I need someone to take some #food to him.",
 			null);
-		
+
 		/** In case quest is completed */
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
@@ -163,7 +165,7 @@ public class HungryJoshua extends AbstractQuest {
 			null);
 
 		/** Remind player about the quest */
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"), 
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"),
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"#Joshua will be getting hungry! Please hurry!", null);
@@ -172,10 +174,10 @@ public class HungryJoshua extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"My brother, the goldsmith in Ados.", null);
-		
+
 		/** remind to take the sandwiches */
 		npc.add(
-			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"Please don't forget the five #sandwiches for #Joshua!",
@@ -202,14 +204,14 @@ public class HungryJoshua extends AbstractQuest {
 		reward.add(new InflictStatusOnNPCAction("sandwich"));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("sandwich", FOOD_AMOUNT),
 			ConversationStates.ATTENDING,
 			"Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.",
 			new MultipleActions(reward));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
+			ConversationPhrases.YES_MESSAGES,
 			new NotCondition(new PlayerHasItemWithHimCondition("sandwich", FOOD_AMOUNT)),
 			ConversationStates.ATTENDING, "Hey! Where did you put the sandwiches?", null);
 
@@ -222,21 +224,21 @@ public class HungryJoshua extends AbstractQuest {
 
 	private void step_3() {
 		final SpeakerNPC npc = npcs.get("Xoderos");
-		
+
 		/** remind to complete the quest */
 		npc.add(
-			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+			ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "joshua"),
 			ConversationStates.ATTENDING,
 			"I do hope #Joshua is well ....",
 			null);
-		
+
 		/** Remind player about the quest */
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"), 
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"),
 			new QuestInStateCondition(QUEST_SLOT, "joshua"),
 			ConversationStates.ATTENDING,
 			"I wish you could confirm for me that #Joshua is fine ...", null);
-		
+
 		// ideally, make it so that this slot being done means
 		// you get a keyring object instead what we currently
 		// have - a button in the settings panel
@@ -244,13 +246,14 @@ public class HungryJoshua extends AbstractQuest {
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		if (System.getProperty("stendhal.container") != null) {
+			reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
 			reward.add(new EquipItemAction("keyring", 1, true));
 		} else {
 			reward.add(new EnableFeatureAction("keyring"));
 		}
 		/** Complete the quest */
 		npc.add(
-			ConversationStates.ATTENDING, "Joshua", 
+			ConversationStates.ATTENDING, "Joshua",
 			new QuestInStateCondition(QUEST_SLOT, "joshua"),
 			ConversationStates.ATTENDING,
 			"I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!",
@@ -272,7 +275,7 @@ public class HungryJoshua extends AbstractQuest {
 	public String getName() {
 		return "HungryJoshua";
 	}
-	
+
 	@Override
 	public String getRegion() {
 		return Region.SEMOS_CITY;
