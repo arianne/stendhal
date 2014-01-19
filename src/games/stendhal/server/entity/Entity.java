@@ -18,10 +18,13 @@ import games.stendhal.common.constants.Events;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.SlotNameInList;
+import games.stendhal.server.entity.slot.Slots;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.Definition.Type;
@@ -30,6 +33,9 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterators;
 
 public abstract class Entity extends RPObject implements Killer {
 	/**
@@ -140,7 +146,7 @@ public abstract class Entity extends RPObject implements Killer {
 
 		// cursor
 		entity.addAttribute("cursor", Type.STRING);
-		
+
 		// menu (Make a wish,use)
 		entity.addAttribute("menu", Type.STRING, Definition.VOLATILE);
 
@@ -619,15 +625,15 @@ public abstract class Entity extends RPObject implements Killer {
 			onMoved(oldX, oldY, x, y);
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return The initial position of the entity
 	 */
 	public final Point getOrigin() {
 	    return origin;
 	}
-	
+
 	/**
 	 * Set resistance this has with other entities.
 	 *
@@ -724,7 +730,33 @@ public abstract class Entity extends RPObject implements Killer {
 		}
 		return (EntitySlot) slot;
 	}
-	
+
+	/**
+	 * an iterator over slots
+	 *
+	 * @param slotTypes slot types to include in the iteration
+	 * @return Iterator
+	 */
+	public Iterator<RPSlot> slotIterator(Slots slotTypes) {
+		Predicate<RPSlot> p = new SlotNameInList(slotTypes.getNames());
+		return Iterators.filter(slotsIterator(), p);
+	}
+
+	/**
+	 * an Iterable over slots
+	 *
+	 * @param slotTypes slot types to include in the iteration
+	 * @return Iterable
+	 */
+	public Iterable<RPSlot> slots(final Slots slotTypes) {
+		return new Iterable<RPSlot>() {
+			@Override
+			public Iterator<RPSlot> iterator() {
+				return slotIterator(slotTypes);
+			}
+		};
+	}
+
 	/**
 	 * The menu to display on the client in the format:
 	 * <pre>
@@ -743,6 +775,7 @@ public abstract class Entity extends RPObject implements Killer {
 	 *
 	 * @return name
 	 */
+	@Override
 	public String getName() {
 		return getRPClass().getName();
 	}
