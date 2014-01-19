@@ -181,18 +181,10 @@ public abstract class UpdateConverter {
      *            RPObject representing a player
      */
     public static void updatePlayerRPObject(final RPObject object) {
-    	final String[] slotsNormal;
-    	if (System.getProperty("stendhal.container") != null) {
-    	    slotsNormal = new String[] { "bag", "rhand", "lhand", "head", "armor",
-    	    		"legs", "feet", "finger", "cloak", "bank", "bank_ados",
-    	    		"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-    	    		"keyring", "trade", "belt", "back" };
-    	} else {
-    		slotsNormal = new String[] { "bag", "rhand", "lhand", "head", "armor",
-    				"legs", "feet", "finger", "cloak", "bank", "bank_ados",
-        			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-        			"keyring", "trade" };
-    	}
+    	final String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
+    			"legs", "feet", "finger", "cloak", "bank", "bank_ados",
+    			"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+    			"keyring", "trade" };
 
     	final String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
     			"!visited", "skills", "!tutorial"};
@@ -424,12 +416,12 @@ public abstract class UpdateConverter {
 		fixMazeQuestSlot(player);
 
 	}
-	
+
 	/**
 	 * Convert keyring feature to keyring item. Moves the contents of the
 	 * keyring to  the newly created item and removes the feature and the legacy
 	 * slot.
-	 * 
+	 *
 	 * @param player converted player
 	 */
 	public static void updateKeyring(Player player) {
@@ -441,8 +433,15 @@ public abstract class UpdateConverter {
 			Item keyring = SingletonRepository.getEntityManager().getItem("keyring");
 			if (keyring == null) {
 				logger.error("Failed to create keyring item");
+				return;
 			}
 			keyring.setBoundTo(player.getName());
+			if (!player.hasSlot("belt")) {
+				player.addSlot(new PlayerSlot("belt"));
+			}
+			if (!player.hasSlot("back")) {
+				player.addSlot(new PlayerSlot("back"));
+			}
 			/*
 			 * Belt *should* be empty and working, as this code should not be
 			 * called unless belt is activated, and old keyring feature can no
@@ -452,9 +451,9 @@ public abstract class UpdateConverter {
 				logger.error("Failed to place keyring in belt: " + player);
 				return;
 			}
-			
+
 			RPSlot oldSlot = player.getSlot("keyring");
-			EntitySlot newSlot = keyring.getEntitySlot("content"); 
+			EntitySlot newSlot = keyring.getEntitySlot("content");
 			if (!"keyring".equals(newSlot.getContentSlotName())) {
 				logger.error("Keyring has incorrect slot name: "
 						+ newSlot.getContentSlotName() + ", item is: " + keyring);
