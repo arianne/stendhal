@@ -230,6 +230,17 @@ Inspectable {
 			return;
 		}
 		
+		String slotName = added.getName();
+		if (("belt".equals(slotName) || "back".equals(slotName)) && !player.getRPObject().hasSlot(slotName)) {
+			// One of the new slots was added to the player. Set them visible.
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					specialSlots.setVisible(true);
+				}
+			});
+		}
+		
 		for (RPObject obj : added) {
 			ID id = obj.getID();
 			IEntity entity = panel.getEntity();
@@ -245,15 +256,6 @@ Inspectable {
 				return;
 			}
 
-			/*
-			 * A hack to set previously invisible slots visible if an item
-			 * is placed in such a slot. Should be bound to the appearance of
-			 * the slot itself, but marauroa does not send that with the
-			 * perceptions.
-			 */
-			if (!panel.getParent().isVisible()) {
-				panel.getParent().setVisible(true);
-			}
 			panel.setEntity(entity);
 		}
 	}
