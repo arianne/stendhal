@@ -451,6 +451,8 @@
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
 				<attribute name="Class-path" value="."/>
+				<attribute name="Permissions" value="all-permissions"/>
+				<attribute name="Codebase" value="*"/>
 			</manifest>
 		</jar>
 		<antcall target="signjar" />
