@@ -6,23 +6,24 @@
     <title>Stendhal</title>
     <vendor>Miguel Angel Blanch Lardin</vendor>
     <homepage href="http://arianne.sourceforge.net"/>
-    <description>
-Stendhal is a multiplayer online adventures game inspired in Acorn with the 90's Zelda look.
-Your task is to talk with other people in the village and find jobs to do that will drive to interesting quests that will reveal the hidden plot behind the world of stendhal
+    <description>Are you looking for adventure? Want to fight for riches? Develop yourself and your social standing? Meet new people? Do you want to be part of a brave new world?
 
-In Stendhal, you can also just walk around, chat with people, buy and sell items and kill some of them :)
-Some of these people are NPC, they will give you tasks to accomplish and hints to solve your quest.</description>
+Stendhal is a fully fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system.
+
+Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons. You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash. Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your armour and weapons. And for the blood thirsty ones of you; satisfy your killing desires by roaming the world in search of evil monsters!
+
+So what are you waiting for?! A whole new world awaits...</description>
     <description kind="short">A multiplayer online adventures game</description>
-    <icon href="StendhalIcon.gif"/>
-    <icon kind="splash" href="StendhalSplash.jpg"/>
+    <icon href="http://arianne.sourceforge.net/images/stendhal_webstart_icon.png"/>
+    <icon kind="splash" href="http://arianne.sourceforge.net/images/stendhal_splash.jpg"/>
     <offline-allowed/>
   </information>
   <security>
     <all-permissions/>
   </security>
   <resources>
-    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.5+" /> <!--  max-heap-size="120" -->
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-1.00.5.jar" download="eager" main="true" />
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.6+" max-heap-size="200m" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-1.12.1.jar" download="eager" main="true" />
   </resources>
   <application-desc/>
 </jnlp>
