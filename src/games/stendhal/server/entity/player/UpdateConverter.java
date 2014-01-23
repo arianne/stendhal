@@ -299,11 +299,12 @@ public abstract class UpdateConverter {
 		}
 		object.remove("buddies", "db_id");
 
-		//port to 0.86: port keymap to feature map, karama_indicator as feature
+		//port to 0.86: port keymap to feature map, karma_indicator as feature
 		if (object.hasSlot("!features")) {
 			if (KeyedSlotUtil.getKeyedSlot(object, "!features", "keyring") != null) {
 				object.put("features", "keyring", "");
 			}
+			object.removeSlot("!features");
 		}
 		if (KeyedSlotUtil.getKeyedSlot(object, "!quests", "learn_karma") != null) {
 			object.put("features", "karma_indicator", "");
