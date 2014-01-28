@@ -637,6 +637,7 @@
 		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
+		<copy todir="${buildroot}/stendhal-${version}" file="icon.ico"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip">
 			<zipfileset dir="${buildroot}/stendhal-${version}" excludes="stendhal-starter.jar"/>
 			<zipfileset dir="${buildroot}/stendhal-${version}" includes="stendhal-starter.jar" filemode="755"/>
