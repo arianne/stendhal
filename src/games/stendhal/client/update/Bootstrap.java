@@ -264,8 +264,8 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		final URL url = Bootstrap.class.getClassLoader().getResource(
-				ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
+        final URL url = Thread.currentThread().getContextClassLoader().getResource(
+                        ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
 		return url != null;
 	}
 

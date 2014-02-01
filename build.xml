@@ -453,6 +453,7 @@
 				<attribute name="Class-path" value="."/>
 				<attribute name="Permissions" value="all-permissions"/>
 				<attribute name="Codebase" value="*"/>
+				<attribute name="Trusted-Library" value="true" />
 			</manifest>
 		</jar>
 		<antcall target="signjar" />
