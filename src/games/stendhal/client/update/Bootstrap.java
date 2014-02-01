@@ -23,6 +23,8 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivilegedAction;
 import java.security.cert.Certificate;
 import java.util.LinkedList;
@@ -281,12 +283,12 @@ public class Bootstrap {
             Certificate[] certs = (Certificate[]) objects;
             for (Certificate cert : certs) {
                 byte[] key = cert.getPublicKey().getEncoded();
-                String keyStr = Hash.toHexString(Hash.hash(key));
+                String keyStr = toHexString(Hash.hash(key));
                 if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
                     return true;
                 }
+                System.err.println("Skipping unknown signature: " + keyStr);
             }
-            System.err.println("Signed self built client");
             return false;
 
             // Throwable: both errors and exceptions
@@ -295,6 +297,39 @@ public class Bootstrap {
         }
         return false;
     }
+
+
+    /**
+     * Return the hash of an array of bytes.
+     * This method is thread safe.
+     *
+     * @param value an array of bytes.
+     * @return the hash of an array of bytes.
+     * @throws NoSuchAlgorithmException
+     */
+    private static final byte[] hash(final byte[] value) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.reset();
+        md.update(value);
+        return md.digest();
+    }
+
+
+    /**
+     * Convert and array of bytes to a Hex string.
+     * @param bs array of bytes
+     * @return a string representing a hexadecimal number.
+     */
+    private static final String toHexString(final byte[] bs) {
+        String hex = "0123456789ABCDEF";
+        StringBuilder res = new StringBuilder();
+        for (byte b : bs) {
+            res.append(hex.charAt(((b >>> 4) & 0xF)));
+            res.append(hex.charAt((b & 0xF)));
+        }
+        return res.toString();
+    }
+
 
 	/**
 	 * Starts the main-method of specified class after dynamically building the
