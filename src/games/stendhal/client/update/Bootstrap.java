@@ -34,8 +34,6 @@ import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
-import marauroa.common.crypto.Hash;
-
 /**
  * Starts a program after doing some classpath magic.
  *
@@ -283,7 +281,7 @@ public class Bootstrap {
             Certificate[] certs = (Certificate[]) objects;
             for (Certificate cert : certs) {
                 byte[] key = cert.getPublicKey().getEncoded();
-                String keyStr = toHexString(Hash.hash(key));
+                String keyStr = toHexString(hash(key));
                 if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
                     return true;
                 }
