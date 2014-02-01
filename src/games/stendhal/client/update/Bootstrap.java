@@ -24,12 +24,15 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.security.cert.Certificate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
+
+import marauroa.common.crypto.Hash;
 
 /**
  * Starts a program after doing some classpath magic.
@@ -264,9 +267,33 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		final URL url = Bootstrap.class.getClassLoader().getResource(
-				ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
-		return url != null;
+		try {
+			Object[] objects = this.getClass().getSigners();
+			if (objects == null || objects.length == 0) {
+				System.err.println("Unsigned self built client.");
+				return false;
+			}
+			if (! (objects instanceof Certificate[])) {
+				System.err.println("Unknown signer class");
+				return false;
+			}
+
+			Certificate[] certs = (Certificate[]) objects;
+			for (Certificate cert : certs) {
+				byte[] key = cert.getPublicKey().getEncoded();
+				String keyStr = Hash.toHexString(Hash.hash(key));
+				if (keyStr.equals(ClientGameConfiguration.get("UPDATE_SIGNER_KEY"))) {
+					return true;
+				}
+			}
+			System.err.println("Signed self built client");
+			return false;
+
+			// Throwable: both errors and exceptions
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	/**
