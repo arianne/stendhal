@@ -147,7 +147,7 @@ public class HerbsForCarmen extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			null,
-			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
+			new MultipleActions(new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
 								new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh how nice. Please bring me those ingredients: [items].")));
 
 		npc.add(

@@ -214,7 +214,7 @@ public class FruitsForCoralia extends AbstractQuest {
     		ConversationStates.QUESTION_1,
     		null,
 			new MultipleActions(
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
+				new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
 				new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "That's wonderful! I'd like these fresh fruits: [items].")));
     	
     	// reject quest response

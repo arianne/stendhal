@@ -239,10 +239,10 @@ ask for horse hair.
 		 * These actions are part of the reward
 		 */
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("horse hair"));
 		reward.add(new EquipItemAction("scale armor", 1, true));
 		reward.add(new EquipItemAction("chain legs", 1, true));
 		reward.add(new IncreaseXPAction(100));
-		reward.add(new DropItemAction("horse hair"));
 		reward.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 10.0));
 		
 		/*

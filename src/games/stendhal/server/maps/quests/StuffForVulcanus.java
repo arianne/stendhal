@@ -121,7 +121,6 @@ public class StuffForVulcanus extends AbstractQuest {
 						+ REQUIRED_GIANT_HEART
 						+ " giant hearts. Come back when you have them in the same #exact order!");
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0");
-					player.addKarma(10);
 
 				}
 			});

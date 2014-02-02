@@ -149,7 +149,7 @@ public class MixtureForOrtiv extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			null,
-			new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5.0),
+			new MultipleActions(new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
 							    new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "Oh that would be wonderful, stranger! You might save my life! Please bring me [items].")));
 
 		npc.add(

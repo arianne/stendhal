@@ -20,7 +20,6 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.EnableFeatureAction;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -103,7 +102,6 @@ public class LearnAboutKarma extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Wonderful! You must have good #karma.",
 			new MultipleActions(
-					new IncreaseKarmaAction(5.0), 
 					new SetQuestAction(QUEST_SLOT, "done"),
 					new EnableFeatureAction("karma_indicator")));
 

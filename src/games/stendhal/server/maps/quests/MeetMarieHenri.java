@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -139,7 +140,7 @@ public class MeetMarieHenri extends AbstractQuest {
 				null,
 				ConversationStates.IDLE,
 				"Fine! Think about the question and visit me again when you think you know the answer.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player rejects quest
 		npc.add(ConversationStates.QUEST_OFFERED,

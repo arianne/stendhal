@@ -131,7 +131,7 @@ public class EasterGiftsForChildren extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"I need some #sweets for my Easter baskets. If you get 5 #chocolate #bars, a #small #easter #egg, 5 #apples and 5 #cherries, I'll give you a nice Easter reward.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(

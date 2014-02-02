@@ -124,7 +124,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"I need some blue elven cloaks if I'm to survive the winter. Bring me ten of them, and I will give you a reward.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS), 5.0));
+				new SetQuestAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS)));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED, 

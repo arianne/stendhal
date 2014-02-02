@@ -136,7 +136,7 @@ public class TrapsForKlaas extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thanks, I need you to bring me bring me " + REQUIRED_TRAPS + " #rodent #traps. Please hurry! We can't afford to lose anymore food.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 		
 		// Player rejects quest
 		npc.add(

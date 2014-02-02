@@ -130,7 +130,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Thank you very much. I'll be waiting here for your return!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		zara.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,

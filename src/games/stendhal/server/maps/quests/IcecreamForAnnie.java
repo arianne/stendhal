@@ -211,7 +211,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				"Thank you!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 		
 		// Player says no, they've lost karma
 		npc.add(ConversationStates.QUEST_OFFERED,

@@ -146,7 +146,7 @@ public class HungryJoshua extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,

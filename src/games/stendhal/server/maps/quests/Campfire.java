@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -199,7 +200,7 @@ public class Campfire extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,

@@ -19,7 +19,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
-import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -132,7 +132,7 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.IDLE, concreteQuest.respondToQuestAcception(),
-			new SetQuestAndModifyKarmaAction(concreteQuest.getSlotName(), "", concreteQuest.getKarmaDiffForQuestResponse()));
+			new SetQuestAction(concreteQuest.getSlotName(), ""));
 	}
 
 	/**

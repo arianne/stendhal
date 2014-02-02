@@ -105,7 +105,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Great! Please get me it as quickly as possible... there's a huge waiting list!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,

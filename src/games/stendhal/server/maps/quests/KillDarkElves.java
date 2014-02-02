@@ -107,7 +107,6 @@ public class KillDarkElves extends AbstractQuest {
 
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
 		//actions.add(new StartRecordingKillsAction("dark elf archer", "dark elf captain", "thing"));
-		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "started"));
 		actions.add(new ExamineChatAction("dark-elves-wanted.png", "Wanted!", ""));
 

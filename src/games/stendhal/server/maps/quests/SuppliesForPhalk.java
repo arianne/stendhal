@@ -109,7 +109,7 @@ import org.apache.log4j.Logger;
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Oh, great! I am really hungry and thirsty. 3 #sandwiches, 3 bottles of #beer and 3 glasses of #wine should be enough. Please bring it to me and say #food!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -410,7 +410,7 @@ import org.apache.log4j.Logger;
 		actions.add(new IncreaseXPAction(4000));
 		actions.add(new DropInfostringItemAction("golden armor","Phalk"));
 		actions.add(new DropInfostringItemAction("dwarf cloak","Phalk"));
-		actions.add(new SetQuestAndModifyKarmaAction(QUEST_SLOT, "done", 5.0));	
+		actions.add(new SetQuestAction(QUEST_SLOT, "done"));	
 		actions.add(new EquipItemAction("dwarvish armor", 1, true));
 		
 		npc.add(ConversationStates.ATTENDING, "clothes",

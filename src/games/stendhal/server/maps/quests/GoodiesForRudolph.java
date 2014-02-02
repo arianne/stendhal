@@ -122,7 +122,7 @@ public class GoodiesForRudolph extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"I heard about the wonderful #goodies you have here in Semos. If you get 5 reindeer moss, 10 apples and 10 carrots, I'll give you a reward.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(

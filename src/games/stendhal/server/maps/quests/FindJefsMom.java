@@ -127,8 +127,7 @@ public class FindJefsMom extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Thank you so much! I hope that my #mum is ok and will return soon! Please tell her my name, #Jef, to prove that I sent you to her. If you have found her, return to me please and I'll give you something for your efforts.",
-			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "start"),
-								new IncreaseKarmaAction(10.0)));
+			new MultipleActions(new SetQuestAction(QUEST_SLOT, 0, "start")));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,

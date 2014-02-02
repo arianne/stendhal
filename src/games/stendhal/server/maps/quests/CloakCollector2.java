@@ -157,7 +157,6 @@ public class CloakCollector2 extends AbstractQuest {
 					public void fire(final Player player, final Sentence sentence, final EventRaiser entity) {
 						entity.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
-						player.addKarma(5.0);
 					}
 
 					@Override

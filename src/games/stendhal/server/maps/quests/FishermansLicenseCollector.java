@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -124,7 +125,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"You have to bring me one fish of each #species so that I can see what you have learned so far.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "", 5.0));
+			new SetQuestAction(QUEST_SLOT, ""));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,

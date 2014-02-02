@@ -22,10 +22,10 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTimeRemainingAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -205,7 +205,7 @@ public class Snowballs extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING,
 				"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -224,7 +224,6 @@ public class Snowballs extends AbstractQuest {
 		reward.add(new DropItemAction("snowball", REQUIRED_SNOWBALLS));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestToTimeStampAction(QUEST_SLOT));
-		reward.add(new IncreaseKarmaAction(15));
 		// player gets either cod or perch, which we don't have a standard action for
 		// and the npc says the name of the reward, too
 		reward.add(new ChatAction() {

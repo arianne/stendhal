@@ -128,7 +128,6 @@ public class VampireSword extends AbstractQuest {
 
 		final List<ChatAction> gobletactions = new LinkedList<ChatAction>();
 		gobletactions.add(new EquipItemAction("empty goblet"));
-		gobletactions.add(new IncreaseKarmaAction(5.0));
 		gobletactions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		// Player wants to do the quest
 		npc.add(ConversationStates.QUEST_OFFERED,

@@ -103,7 +103,7 @@ import org.apache.log4j.Logger;
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Thank you! First I need a #scythe to cut down these ugly flowers. And beware of bringing me an old one! Let me know if you have one!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,

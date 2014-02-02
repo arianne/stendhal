@@ -120,7 +120,7 @@ public class BeerForHayunn extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thanks! I'll be right here, waiting. And guarding, of course.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,

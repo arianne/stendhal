@@ -313,7 +313,6 @@ public class StuffForBaldemar extends AbstractQuest {
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
 					raiser.say(I_WILL_NEED_MANY_THINGS);
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0;0;0;0;0;0;0;0;0;0;0");
-					player.addKarma(10);
 
 				}
 			});

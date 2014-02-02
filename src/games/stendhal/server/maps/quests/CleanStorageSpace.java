@@ -112,7 +112,6 @@ public class CleanStorageSpace extends AbstractQuest {
 		toKill.put("caverat", new Pair<Integer, Integer>(0,1));
 		toKill.put("snake", new Pair<Integer, Integer>(0,1));
 		
-		start.add(new IncreaseKarmaAction(2.0));
 		start.add(new SetQuestAction(QUEST_SLOT, 0, "start"));		
 		start.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		

@@ -20,10 +20,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropRecordedItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingRandomItemCollectionAction;
-import games.stendhal.server.entity.npc.action.SayRequiredItemAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.OrCondition;
@@ -74,7 +74,7 @@ class InitialSteps {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			null,			
-			new MultipleActions(new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "machine;", 15.0),
+			new MultipleActions(new SetQuestAction(mithrilcloak.getQuestSlot(), "machine;"),
 								new StartRecordingRandomItemCollectionAction(mithrilcloak.getQuestSlot(), 1, items, "Thank you! To fix it, it needs [#item]. I'm ever so grateful for your help.")));
 		
 		// player said no they didn't want to help
@@ -173,7 +173,7 @@ class InitialSteps {
 				   new QuestCompletedCondition(mithrilcloak.getShieldQuestSlot()),
 				   ConversationStates.ATTENDING,		   
 				   "I will make you the most amazing cloak of mithril. You just need to get me the fabric and any tools I need! First please bring me a couple yards of " + mithrilcloak.getFabricName() + ". The expert on fabrics is the wizard #Kampusch.",
-				   new SetQuestAndModifyKarmaAction(mithrilcloak.getQuestSlot(), "need_fabric", 10.0));
+				   new SetQuestAction(mithrilcloak.getQuestSlot(), "need_fabric"));
 					
 
 			// player asks for quest but they haven't completed mithril shield quest

@@ -122,7 +122,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Once I had a nice #'leather cuirass', but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(

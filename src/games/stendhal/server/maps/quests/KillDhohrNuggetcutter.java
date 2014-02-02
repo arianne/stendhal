@@ -21,7 +21,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -120,7 +119,6 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 		toKill.put("mountain leader dwarf", new Pair<Integer, Integer>(0,2));
 		
 		final List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, 0, "start"));
 		actions.add(new StartRecordingKillsAction(QUEST_SLOT, 1, toKill));
 		

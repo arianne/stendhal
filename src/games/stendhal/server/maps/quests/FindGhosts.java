@@ -19,6 +19,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
@@ -134,7 +135,7 @@ public class FindGhosts extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"That's lovely of you. Good luck searching for them.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "looking:said", 5.0));
+			new SetQuestAction(QUEST_SLOT, "looking:said"));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,

@@ -117,7 +117,7 @@ import org.apache.log4j.Logger;
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Thank you for your help! You need to go to Salva Mattori in the magic city for the #potion.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,

@@ -144,7 +144,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null, 
-				new MultipleActions(new SetQuestAndModifyKarmaAction(QUEST_SLOT, NEEDED_ITEMS, 5),
+				new MultipleActions(new SetQuestAction(QUEST_SLOT, NEEDED_ITEMS),
 								    new SayRequiredItemsFromCollectionAction(QUEST_SLOT, "I want my crown to be beautiful and shiny. I need [items]. " +
 								    		"Do you have some of those now with you?")));
 				

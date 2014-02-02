@@ -111,7 +111,7 @@ public class HatForMonogenes extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thanks, my good friend. I'll be waiting here for your return!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		monogenes.add(
 			ConversationStates.QUEST_OFFERED,

@@ -332,7 +332,6 @@ public class KoboldishTorcibud extends AbstractQuest {
             				player.setQuest(QUEST_SLOT, getRequiredItemsCollection(pLevel));
             			}
             		},
-            		new IncreaseKarmaAction(20),
             		// here we have been careful to say the items from the collection only after the quest slot was set, 
             		// because in this quest, the amounts depend on level, above.
             		new SayRequiredItemsFromCollectionAction(

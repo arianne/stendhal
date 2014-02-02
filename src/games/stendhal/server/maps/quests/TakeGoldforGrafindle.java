@@ -135,7 +135,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT,"start", 5.0));
+			new SetQuestAction(QUEST_SLOT,"start"));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.NO_MESSAGES, null,

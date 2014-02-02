@@ -239,7 +239,6 @@ public class ObsidianKnife extends AbstractQuest {
 					npc.say("Thank you! I hope it doesn't take too long to collect. Don't forget to say '"
 						+ food + "' when you have it.");
 					// player.setQuest(QUEST_SLOT, food);
-					player.addKarma(5.0);
 					// set food to null?
 				}
 			});
@@ -327,7 +326,7 @@ public class ObsidianKnife extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				"Thanks. Try asking at a library for a 'gem book'.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "seeking_book", 10.0));
+				new SetQuestAction(QUEST_SLOT, "seeking_book"));
 	}
 
 	private void getBookStep() {
