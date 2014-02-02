@@ -86,7 +86,7 @@ public final class stendhal {
 	public static final boolean FILTER_ATTACK_MESSAGES = true;
 	
 	/** Transparency used for loading and drawing images. */
-	public static final int TRANSPARENCY = Transparency.BITMASK;
+	public static int TRANSPARENCY = Transparency.BITMASK;
 
 	static final int FPS_LIMIT = 25;
 	
