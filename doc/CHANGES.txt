@@ -4,12 +4,25 @@
 1.13
 
 *world*
-- Reworked christmas maps, adding more sparkling light
+- nice zone names
+- dragon slayer achievement
 - Xeno helmet added to NPC purchasing shops
-- Some reworked tilesets
+- improvements to maps
 
 *fixes*
+- fixed webstart on Oracle Java
+- postman messages are now filted by the ignore list
 - fixed item description for canned tuna (automatical item name underlining)
+
+*website*
+- removed myopenid as the site is going to be discontinued
+
+
+*developer's note*
+- If you developed a game based on stendhal and use the automatic updater, 
+  you will need to edit game.properties and add UPDATE_SIGNER_KEY. 
+  The required value will printed in the webstart console.
+
 
 1.12.1
 
