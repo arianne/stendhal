@@ -4,7 +4,7 @@
 <jnlp spec="1.0+" codebase="http://arianne.sourceforge.net/jws" href="stendhal.jnlp">
   <information>
     <title>Stendhal</title>
-    <vendor>Miguel Angel Blanch Lardin</vendor>
+    <vendor>The Arianne Project</vendor>
     <homepage href="http://arianne.sourceforge.net"/>
     <description>Are you looking for adventure? Want to fight for riches? Develop yourself and your social standing? Meet new people? Do you want to be part of a brave new world?
 
@@ -23,7 +23,7 @@ So what are you waiting for?! A whole new world awaits...</description>
   </security>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.6+" max-heap-size="200m" />
-    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-1.12.1.jar" download="eager" main="true" />
+    <jar href="http://arianne.sourceforge.net/jws/stendhal-starter-1.12.5.jar" download="eager" main="true" />
   </resources>
   <application-desc/>
 </jnlp>
