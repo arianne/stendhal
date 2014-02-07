@@ -8,14 +8,15 @@
 - dragon slayer achievement
 - Xeno helmet added to NPC purchasing shops
 - improvements to maps
+- rats are so hungry that they are not scared by weak people anymore
 
 *fixes*
 - fixed webstart on Oracle Java
-- postman messages are now filted by the ignore list
-- fixed item description for canned tuna (automatical item name underlining)
+- postman messages are now filtered by the ignore list
+- fixed item description for canned tuna (item name underlining)
 
 *website*
-- removed myopenid as the site is going to be discontinued
+- removed myopenid as it is going to be discontinued
 
 
 *developer's note*
