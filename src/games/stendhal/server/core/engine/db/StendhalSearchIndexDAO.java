@@ -14,6 +14,7 @@ package games.stendhal.server.core.engine.db;
 import games.stendhal.server.core.rp.SearchIndexEntry;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
@@ -32,6 +33,22 @@ import com.google.common.collect.Sets;
 public class StendhalSearchIndexDAO {
 	private static Logger logger = Logger.getLogger(StendhalSearchIndexDAO.class);
 
+	/**
+	 * reads existing search index entries from the database
+	 *
+	 * @param transaction DBTransaction
+	 * @return set of existing search index entries
+	 * @throws SQLException in case a database error is thrown.
+	 */
+	private Set<SearchIndexEntry> readExistingEntries(DBTransaction transaction) throws SQLException {
+		Set<SearchIndexEntry> res = Sets.newHashSet();
+		String query = "SELECT id, searchterm, entitytype, entityname, searchscore FROM searchindex";
+		ResultSet resultSet = transaction.query(query, null);
+		while (resultSet.next()) {
+			res.add(new SearchIndexEntry(resultSet.getString(2), resultSet.getString(3).charAt(0), resultSet.getString(4), resultSet.getInt(5), resultSet.getInt(1)));
+		}
+		return res;
+	}
 
 	/**
 	 * writes an entry to the search index table
@@ -49,17 +66,13 @@ public class StendhalSearchIndexDAO {
 	}
 
 	/**
-	 * dumps the search index
+	 * deletes obsolte entries
 	 *
-	 * @param transaction DBTransaction
-	 * @throws SQLException in case of an database error
+	 * @param transaction DBTransactions
+	 * @param toDelete entries to delete
+	 * @throws SQLException
 	 */
-	public void dumpSearchIndex(DBTransaction transaction) throws SQLException {
-		long start = System.currentTimeMillis();
-		Set<SearchIndexEntry> toDelete = Sets.newHashSet();
-		Set<SearchIndexEntry> toAdd = Sets.newHashSet();
-
-		// delete obsolte entries
+	private void deleteObsoleteEntries(DBTransaction transaction, Set<SearchIndexEntry> toDelete) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM searchindex WHERE id IN (");
 		boolean first = true;
@@ -73,8 +86,16 @@ public class StendhalSearchIndexDAO {
 		}
 		sql.append(")");
 		transaction.execute(sql.toString(), null);
+	}
 
-		// insert new entries
+	/**
+	 * insert new entries
+	 *
+	 * @param transaction DBTransactions
+	 * @param toAdd entries to add
+	 * @throws SQLException
+	 */
+	private void addNewEntries(DBTransaction transaction, Set<SearchIndexEntry> toAdd) throws SQLException {
 		PreparedStatement stmt = transaction.prepareStatement("INSERT INTO searchindex"
 				+ " (searchterm, entitytype, entityname, searchscore)"
 				+ " VALUES (?, ?, ?, ?)", null);
@@ -82,17 +103,38 @@ public class StendhalSearchIndexDAO {
 			writeEntry(stmt, entry);
 		}
 		stmt.executeBatch();
+	}
+
+	/**
+	 * dumps the search index
+	 *
+	 * @param transaction DBTransaction
+	 * @param entries required entries
+	 * @throws SQLException in case of an database error
+	 */
+	public void dumpSearchIndex(DBTransaction transaction, Set<SearchIndexEntry> entries) throws SQLException {
+		long start = System.currentTimeMillis();
+
+		Set<SearchIndexEntry> oldEntries = readExistingEntries(transaction);
+
+		Set<SearchIndexEntry> toDelete = Sets.difference(oldEntries, entries);
+		Set<SearchIndexEntry> toAdd = Sets.difference(entries, oldEntries);
+
+		deleteObsoleteEntries(transaction, toDelete);
+		addNewEntries(transaction, toAdd);
 
 		logger.info("Completed dumping of search index in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
 	/**
 	 * dumps the search index
+	 *
+	 * @param entries required entries
 	 */
-	public void dumpSearchIndex() {
+	public void dumpSearchIndex(Set<SearchIndexEntry> entries) {
 		DBTransaction transaction = TransactionPool.get().beginWork();
 		try {
-			dumpSearchIndex(transaction);
+			dumpSearchIndex(transaction, entries);
 			TransactionPool.get().commit(transaction);
 		} catch (SQLException e) {
 			logger.error(e, e);
