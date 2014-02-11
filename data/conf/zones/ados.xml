@@ -31,7 +31,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent1n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -45,7 +45,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent2n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -59,7 +59,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent3n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -73,7 +73,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent4n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
