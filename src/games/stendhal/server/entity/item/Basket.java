@@ -63,7 +63,7 @@ public class Basket extends Box {
 			item.setBoundTo(player.getName());
 		}
 		player.sendPrivateText("Congratulations, you've got "
-				+ Grammar.a_noun(itemName));
+				+ Grammar.a_noun(itemName) + "!");
 		player.equipOrPutOnGround(item);
 		player.notifyWorldAboutChanges();
 		return true;

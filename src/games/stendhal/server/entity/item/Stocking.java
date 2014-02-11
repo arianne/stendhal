@@ -59,7 +59,7 @@ public class Stocking extends Box {
 		final Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
 		player.sendPrivateText("Congratulations, you've got "
-				+ Grammar.a_noun(itemName));
+				+ Grammar.a_noun(itemName) + "!");
 		player.equipOrPutOnGround(item);
 		player.notifyWorldAboutChanges();
 		return true;
