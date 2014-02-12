@@ -27,8 +27,13 @@ import com.google.common.collect.Sets;
 public class SearchIndexManager {
 	private final HashSet<SearchIndexEntry> index = Sets.newHashSet();
 
-	public void generate() {
+	/**
+	 * stores the search index
+	 */
+	public void store() {
+		
 		npcs();
+		// TODO: invoke DBCommand
 	}
 
 	private void npcs() {
@@ -47,7 +52,12 @@ public class SearchIndexManager {
 	 */
 	private void addName(String name, SearchIndexEntryType type) {
 		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 30));
-		addDescription(name, name, type, 20 + type.getMinorScore());
+
+		// If the name consists of multiple words, add each word individually
+		// to the index. They will get a lower score to boost exact matches.
+		if (name.indexOf(" ") > -1) {
+			addDescription(name, name, type, 20 + type.getMinorScore());
+		}
 	}
 
 
@@ -62,6 +72,9 @@ public class SearchIndexManager {
 		if (description == null) {
 			return;
 		}
+
+		// add each word individually. it is okay to add the same word multiple
+		// times because index is a hashset
 		StringTokenizer st = new StringTokenizer(description);
 		while (st.hasMoreTokens()) {
 			index.add(new SearchIndexEntry(st.nextToken(), type.getEntityType(), name, baseScore +  + type.getMinorScore()));
