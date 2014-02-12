@@ -12,6 +12,10 @@
 package games.stendhal.server.core.rp.searchindex;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rp.achievement.Achievement;
+import games.stendhal.server.core.rp.achievement.AchievementNotifier;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.HashSet;
@@ -31,9 +35,18 @@ public class SearchIndexManager {
 	 * stores the search index
 	 */
 	public void store() {
-		
+		achievements();
+		creatures();
+		items();
 		npcs();
 		// TODO: invoke DBCommand
+	}
+
+	private void achievements() {
+		for (Achievement achievement : AchievementNotifier.get().getAchievements()) {
+			addName(achievement.getTitle(), SearchIndexEntryType.ITEM);
+			addDescription(achievement.getTitle(), achievement.getDescription(), SearchIndexEntryType.ACHIEVEMENT, 10);
+		}
 	}
 
 	private void npcs() {
@@ -41,6 +54,20 @@ public class SearchIndexManager {
 			addName(npc.getName(), SearchIndexEntryType.NPC);
 			addDescription(npc.getName(), npc.getDescription(), SearchIndexEntryType.NPC, 10);
 			addDescription(npc.getName(), npc.getJob(), SearchIndexEntryType.NPC, 10);
+		}
+	}
+
+	private void items() {
+		for (Item item : SingletonRepository.getEntityManager().getItems()) {
+			addName(item.getName(), SearchIndexEntryType.ITEM);
+			addDescription(item.getName(), item.getDescription(), SearchIndexEntryType.ITEM, 10);
+		}
+	}
+
+	private void creatures() {
+		for (Creature creature : SingletonRepository.getEntityManager().getCreatures()) {
+			addName(creature.getName(), SearchIndexEntryType.CREATURE);
+			addDescription(creature.getName(), creature.getDescription(), SearchIndexEntryType.CREATURE, 10);
 		}
 	}
 
