@@ -11,15 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.common.parser.Expression;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.fsm.Transition;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import marauroa.server.db.DBTransaction;
 import marauroa.server.db.TransactionPool;
@@ -37,7 +33,7 @@ public class StendhalNPCDAO {
 
 	/**
 	 * dumps the properties of the specified SpeakerNPC into the prepared statement as an operation in a batch.
-	 * 
+	 *
 	 * @param stmt PreparedStatement in batch mode
 	 * @param npc  SpeakerNPC
 	 * @throws SQLException in case a database error is thrown.
@@ -54,29 +50,9 @@ public class StendhalNPCDAO {
 		stmt.setInt(9, npc.getY());
 		stmt.setInt(10, npc.getLevel());
 		stmt.setString(11, npc.getDescription());
-		stmt.setString(12, getJob(npc));
+		stmt.setString(12, npc.getJob());
 		stmt.setString(13, npc.getAlternativeImage());
 		stmt.addBatch();
-	}
-
-	/**
-	 * gets the answer to the "job" question in ATTENDING state.
-	 *
-	 * @param npc SpeakerNPC object
-	 * @return the answer to the job question or null in case there is no job specified
-	 */
-	private String getJob(SpeakerNPC npc) {
-		List<Transition> transitions = npc.getEngine().getTransitions();
-		for (Transition transition : transitions) {
-			if (transition.getState() == ConversationStates.ATTENDING) {
-				for(Expression triggerExpr : transition.getTriggers()) {
-					if (triggerExpr.getOriginal().equals("job")) {
-						return transition.getReply();
-					}
-				}
-			}
-		}
-		return null;
 	}
 
 	/**

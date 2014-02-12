@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.parser.ConversationParser;
+import games.stendhal.common.parser.Expression;
 import games.stendhal.common.parser.ExpressionMatcher;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.core.engine.SingletonRepository;
@@ -158,7 +159,7 @@ public class SpeakerNPC extends NPC {
 	 * alternative image for website
 	 */
 	private String alternativeImage;
-	
+
 	/**
 	 * is this speaker can act without players around flag.
 	 * by default switched off.
@@ -188,7 +189,7 @@ public class SpeakerNPC extends NPC {
 		setPerceptionRange(5);
 		updateModifiedAttributes();
 	}
-	
+
 	/**
 	 * allow or disallow for npc to act without players in his zone.
 	 * @param allow - flag for allowing/disallowing npc's acting
@@ -200,7 +201,7 @@ public class SpeakerNPC extends NPC {
 	public boolean isAllowedToActAlone() {
 		return(actingAlone);
 	}
-	
+
 	protected void createPath() {
 		// sub classes can implement this method
 	}
@@ -471,7 +472,7 @@ public class SpeakerNPC extends NPC {
 			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, trigger, condition, false, nextState, reply, action);
 	}
-	
+
 	/**
 	 * Adds a new transition to the FSM.
 	 *
@@ -528,7 +529,7 @@ public class SpeakerNPC extends NPC {
 	 *            a simple text reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
-	 * @param label 
+	 * @param label
 	 */
 	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ChatCondition condition,
 			final ConversationStates nextState, final String reply, final ChatAction action, final String label) {
@@ -556,7 +557,7 @@ public class SpeakerNPC extends NPC {
 			final ConversationStates nextState, final String reply, final ChatAction action) {
 		engine.add(state, triggerStrings, condition, false, nextState, reply, action, "");
 	}
-	
+
 	/**
 	 * Adds a new set of transitions to the FSM.
 	 *
@@ -635,24 +636,24 @@ public class SpeakerNPC extends NPC {
 			final String reply, final ChatAction action) {
 		add(state, triggerStrings, null, nextState, reply, action);
 	}
-	
+
 
 	public void add(final ConversationStates state, final Collection<String> triggerStrings, final ConversationStates nextState,
 			final String reply, final ChatAction action, final String label) {
 		add(state, triggerStrings, null, nextState, reply, action, label);
 	}
-	
+
 	/**
 	 * delete transition that match label
-	 * 
+	 *
 	 * @param label
 	 * @return - deleting state
 	 */
 	public boolean del(final String label) {
 		return(engine.remove(label));
 	}
-	
-	
+
+
 
 	public void listenTo(final Player player, final String text) {
 		tell(player, text);
@@ -947,5 +948,26 @@ public class SpeakerNPC extends NPC {
 						+ npc.getAttending().getTitle() + ".");
 			}
 		});
+	}
+
+
+	/**
+	 * gets the answer to the "job" question in ATTENDING state.
+	 *
+	 * @param npc SpeakerNPC object
+	 * @return the answer to the job question or null in case there is no job specified
+	 */
+	public String getJob() {
+		List<Transition> transitions = engine.getTransitions();
+		for (Transition transition : transitions) {
+			if (transition.getState() == ConversationStates.ATTENDING) {
+				for(Expression triggerExpr : transition.getTriggers()) {
+					if (triggerExpr.getOriginal().equals("job")) {
+						return transition.getReply();
+					}
+				}
+			}
+		}
+		return null;
 	}
 }
