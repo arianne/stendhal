@@ -38,6 +38,9 @@ import marauroa.server.game.db.DAORegister;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+
 /**
  * Checks for reached achievements and marks them as reached for a player if he has fulfilled them
  *
@@ -371,6 +374,19 @@ public final class AchievementNotifier {
 			}
 		}
 		return achievementMap;
+	}
+
+	/**
+	 * gets a list of all Achievements
+	 *
+	 * @return list of achievements
+	 */
+	public ImmutableList<Achievement> getAchievements() {
+		Builder<Achievement> builder = ImmutableList.builder();
+		for (List<Achievement> temp : achievements.values()) {
+			builder.addAll(temp);
+		}
+		return builder.build();
 	}
 
 }
