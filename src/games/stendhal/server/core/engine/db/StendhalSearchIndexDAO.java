@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.core.engine.db;
 
-import games.stendhal.server.core.rp.SearchIndexEntry;
+import games.stendhal.server.core.rp.searchindex.SearchIndexEntry;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
