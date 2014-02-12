@@ -158,7 +158,7 @@ public class HousePortal extends AccessCheckingPortal {
 		// check if the player is carrying a matching HouseKey
 		// HoukeKeys can not be found with getAllEquipped, because they override
 		// getName()
-		for (RPSlot slot : this.slots(Slots.CARRYING)) {
+		for (RPSlot slot : user.slots(Slots.CARRYING)) {
 
 			for (final RPObject object : slot) {
 				if (keyMatches(object)) {
