@@ -19,6 +19,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import com.google.common.collect.Sets;
@@ -39,7 +40,6 @@ public class SearchIndexManager {
 		creatures();
 		items();
 		npcs();
-		// TODO: invoke DBCommand
 	}
 
 	private void achievements() {
@@ -102,9 +102,10 @@ public class SearchIndexManager {
 
 		// add each word individually. it is okay to add the same word multiple
 		// times because index is a hashset
-		StringTokenizer st = new StringTokenizer(description);
+		StringTokenizer st = new StringTokenizer(description.toLowerCase(Locale.ENGLISH), " #;:,.-!\"");
 		while (st.hasMoreTokens()) {
-			index.add(new SearchIndexEntry(st.nextToken(), type.getEntityType(), name, baseScore +  + type.getMinorScore()));
+			String token = st.nextToken();
+			index.add(new SearchIndexEntry(token, type.getEntityType(), name, baseScore +  + type.getMinorScore()));
 		}
 	}
 }
