@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
 /**
@@ -31,6 +32,8 @@ import com.google.common.collect.Sets;
  */
 public class SearchIndexManager {
 	private final HashSet<SearchIndexEntry> index = Sets.newHashSet();
+	private final ImmutableSet<String> STOP_WORDS =
+		ImmutableSet.of("you", "see", "a", "an", "to", "the", "and");
 
 	/**
 	 * stores the search index
@@ -78,7 +81,7 @@ public class SearchIndexManager {
 	 * @param entityType  type of entity
 	 */
 	private void addName(String name, SearchIndexEntryType type) {
-		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 30));
+		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 30 + type.getMinorScore()));
 
 		// If the name consists of multiple words, add each word individually
 		// to the index. They will get a lower score to boost exact matches.
@@ -105,6 +108,11 @@ public class SearchIndexManager {
 		StringTokenizer st = new StringTokenizer(description.toLowerCase(Locale.ENGLISH), " #;:,.-!\"");
 		while (st.hasMoreTokens()) {
 			String token = st.nextToken();
+
+			if (STOP_WORDS.contains(token)) {
+				continue;
+			}
+
 			index.add(new SearchIndexEntry(token, type.getEntityType(), name, baseScore +  + type.getMinorScore()));
 		}
 	}
