@@ -17,13 +17,21 @@ package games.stendhal.server.core.rp.searchindex;
  * @author hendrik
  */
 public enum SearchIndexEntryType {
+	/** achievements */
 	ACHIEVEMENT('A', 9),
+	/** items */
 	ITEM('I', 8),
+	/** creatures */
 	CREATURE('C', 7),
+	/** npcs */
 	NPC('N', 6),
+	/** player characters */
 	PLAYER('P', 5),
+	/** stendhal manual, beginners guide, etc.
 	PLAYER_GUIDE('p', 4),
+	/** in-character guide */
 	WORLD_GUIDE('w', 3),
+	/** guides for contributors and developers */
 	CONTRIBUTOR_GUIDE('c', 2);
 
 	private char entityType;
