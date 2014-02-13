@@ -21,6 +21,7 @@ import games.stendhal.server.core.engine.db.StendhalHallOfFameDAO;
 import games.stendhal.server.core.engine.db.StendhalItemDAO;
 import games.stendhal.server.core.engine.db.StendhalKillLogDAO;
 import games.stendhal.server.core.engine.db.StendhalNPCDAO;
+import games.stendhal.server.core.engine.db.StendhalSearchIndexDAO;
 import games.stendhal.server.core.engine.db.StendhalWebsiteDAO;
 
 import java.sql.SQLException;
@@ -184,7 +185,7 @@ public class StendhalPlayerDatabase {
 		if (!transaction.doesColumnExist("buddy", "relationtype")) {
 			transaction.execute("ALTER TABLE buddy ADD COLUMN (relationtype VARCHAR(7));", null);
 			transaction.execute("UPDATE buddy SET relationtype = 'buddy' WHERE relationtype IS NULL", null);
-			
+
 		}
 	}
 
@@ -207,5 +208,6 @@ public class StendhalPlayerDatabase {
 		DAORegister.get().register(AchievementDAO.class, new AchievementDAO());
 		DAORegister.get().register(PendingAchievementDAO.class, new PendingAchievementDAO());
 		DAORegister.get().register(StendhalItemDAO.class, new StendhalItemDAO());
+		DAORegister.get().register(StendhalSearchIndexDAO.class, new StendhalSearchIndexDAO());
 	}
 }
