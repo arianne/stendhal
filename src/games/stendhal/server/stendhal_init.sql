@@ -251,6 +251,18 @@ create table if not exists trade
   stats     varchar(255),
   timedate timestamp default CURRENT_TIMESTAMP,
   primary key(id)
-  )
- ;
+  );
 /*CREATE INDEX i_trade_timedate ON trade(timedate);*/
+
+
+CREATE TABLE IF NOT EXISTS searchindex
+  (
+  id          INTEGER auto_increment NOT NULL,
+  searchterm  VARCHAR(64),
+  entitytype  CHAR(1),
+  entityname  VARCHAR(64),
+  searchscore INTEGER,
+  PRIMARY KEY(id),
+  INDEX (searchterm),
+  INDEX (entitytype, entityname)
+  );
