@@ -18,8 +18,8 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import com.google.common.collect.ImmutableSet;
@@ -31,23 +31,26 @@ import com.google.common.collect.Sets;
  * @author hendrik
  */
 public class SearchIndexManager {
-	private final HashSet<SearchIndexEntry> index = Sets.newHashSet();
+	private final Set<SearchIndexEntry> index = Sets.newHashSet();
 	private final ImmutableSet<String> STOP_WORDS =
 		ImmutableSet.of("you", "see", "a", "an", "to", "the", "and");
 
 	/**
-	 * stores the search index
+	 * generates the search index
+	 *
+	 * @return searchIndex
 	 */
-	public void store() {
+	public Set<SearchIndexEntry> generateIndex() {
 		achievements();
 		creatures();
 		items();
 		npcs();
+		return index;
 	}
 
 	private void achievements() {
 		for (Achievement achievement : AchievementNotifier.get().getAchievements()) {
-			addName(achievement.getTitle(), SearchIndexEntryType.ITEM);
+			addName(achievement.getTitle(), SearchIndexEntryType.ACHIEVEMENT);
 			addDescription(achievement.getTitle(), achievement.getDescription(), SearchIndexEntryType.ACHIEVEMENT, 10);
 		}
 	}
@@ -62,6 +65,7 @@ public class SearchIndexManager {
 
 	private void items() {
 		for (Item item : SingletonRepository.getEntityManager().getItems()) {
+			System.out.print("'" + item.getName() + "' ");
 			addName(item.getName(), SearchIndexEntryType.ITEM);
 			addDescription(item.getName(), item.getDescription(), SearchIndexEntryType.ITEM, 10);
 		}
@@ -86,7 +90,7 @@ public class SearchIndexManager {
 		// If the name consists of multiple words, add each word individually
 		// to the index. They will get a lower score to boost exact matches.
 		if (name.indexOf(" ") > -1) {
-			addDescription(name, name, type, 20 + type.getMinorScore());
+			addDescription(name, name, type, 20);
 		}
 	}
 
@@ -102,6 +106,7 @@ public class SearchIndexManager {
 		if (description == null) {
 			return;
 		}
+		String lowerCaseName = name.toLowerCase(Locale.ENGLISH);
 
 		// add each word individually. it is okay to add the same word multiple
 		// times because index is a hashset
@@ -109,11 +114,15 @@ public class SearchIndexManager {
 		while (st.hasMoreTokens()) {
 			String token = st.nextToken();
 
+			if (token.equals(lowerCaseName)) {
+				continue;
+			}
+
 			if (STOP_WORDS.contains(token)) {
 				continue;
 			}
 
-			index.add(new SearchIndexEntry(token, type.getEntityType(), name, baseScore +  + type.getMinorScore()));
+			index.add(new SearchIndexEntry(token, type.getEntityType(), name, baseScore + type.getMinorScore()));
 		}
 	}
 }
