@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.util.Set;
 
 import marauroa.server.db.DBTransaction;
-import marauroa.server.db.TransactionPool;
-
-import org.apache.log4j.Logger;
 
 import com.google.common.collect.Sets;
 
@@ -31,7 +28,6 @@ import com.google.common.collect.Sets;
  * @author hendrik
  */
 public class StendhalSearchIndexDAO {
-	private static Logger logger = Logger.getLogger(StendhalSearchIndexDAO.class);
 
 	/**
 	 * reads existing search index entries from the database
@@ -52,7 +48,7 @@ public class StendhalSearchIndexDAO {
 
 	/**
 	 * writes an entry to the search index table
-	 * 
+	 *
 	 * @param stmt PreparedStatement in batch mode
 	 * @param entry SearchEntry
 	 * @throws SQLException in case a database error is thrown.
@@ -85,7 +81,11 @@ public class StendhalSearchIndexDAO {
 			sql.append(String.valueOf(entry.getDbId()));
 		}
 		sql.append(")");
-		transaction.execute(sql.toString(), null);
+
+		// if there is at least one entry to delete
+		if (!first) {
+			transaction.execute(sql.toString(), null);
+		}
 	}
 
 	/**
@@ -112,9 +112,7 @@ public class StendhalSearchIndexDAO {
 	 * @param entries required entries
 	 * @throws SQLException in case of an database error
 	 */
-	public void dumpSearchIndex(DBTransaction transaction, Set<SearchIndexEntry> entries) throws SQLException {
-		long start = System.currentTimeMillis();
-
+	public void updateSearchIndex(DBTransaction transaction, Set<SearchIndexEntry> entries) throws SQLException {
 		Set<SearchIndexEntry> oldEntries = readExistingEntries(transaction);
 
 		Set<SearchIndexEntry> toDelete = Sets.difference(oldEntries, entries);
@@ -122,23 +120,6 @@ public class StendhalSearchIndexDAO {
 
 		deleteObsoleteEntries(transaction, toDelete);
 		addNewEntries(transaction, toAdd);
-
-		logger.info("Completed dumping of search index in " + (System.currentTimeMillis() - start) + " milliseconds.");
 	}
 
-	/**
-	 * dumps the search index
-	 *
-	 * @param entries required entries
-	 */
-	public void dumpSearchIndex(Set<SearchIndexEntry> entries) {
-		DBTransaction transaction = TransactionPool.get().beginWork();
-		try {
-			dumpSearchIndex(transaction, entries);
-			TransactionPool.get().commit(transaction);
-		} catch (SQLException e) {
-			logger.error(e, e);
-			TransactionPool.get().rollback(transaction);
-		}
-	}
 }
