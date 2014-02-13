@@ -184,7 +184,7 @@ public class StendhalQuestSystem {
 			loadQuest(new MineTownRevivalWeeks());
 		}
 
-		TurnNotifier.get().notifyInTurns(10, new DumpSpeakerNPCtoDB());
+		TurnNotifier.get().notifyInTurns(10, new DumpGameInformationForWebsite());
 	}
 
 	/**
