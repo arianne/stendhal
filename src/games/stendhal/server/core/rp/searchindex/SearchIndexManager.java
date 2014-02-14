@@ -32,6 +32,8 @@ import com.google.common.collect.Sets;
  */
 public class SearchIndexManager {
 	private final Set<SearchIndexEntry> index = Sets.newHashSet();
+
+	// keep in sync with search.php
 	private final ImmutableSet<String> STOP_WORDS =
 		ImmutableSet.of("you", "see", "a", "an", "to", "the", "and");
 
