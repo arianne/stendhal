@@ -45,6 +45,20 @@ public interface EntityManager {
 	Collection<Item> getItems();
 
 	/**
+	 * gets a list of all configured creatures
+	 *
+	 * @return list of default creatures
+	 */
+	public Collection<DefaultCreature> getDefaultCreatures();
+
+	/**
+	 * gets a list of all configured items
+	 *
+	 * @return list of default items
+	 */
+	Collection<DefaultItem> getDefaultItems();
+
+	/**
 	 * Returns the entity or <code>null</code> if the class is unknown.
 	 * 
 	 * @param clazz

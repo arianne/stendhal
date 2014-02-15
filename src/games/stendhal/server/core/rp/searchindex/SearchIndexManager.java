@@ -14,8 +14,8 @@ package games.stendhal.server.core.rp.searchindex;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rp.achievement.Achievement;
 import games.stendhal.server.core.rp.achievement.AchievementNotifier;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Locale;
@@ -66,17 +66,16 @@ public class SearchIndexManager {
 	}
 
 	private void items() {
-		for (Item item : SingletonRepository.getEntityManager().getItems()) {
-			System.out.print("'" + item.getName() + "' ");
-			addName(item.getName(), SearchIndexEntryType.ITEM);
-			addDescription(item.getName(), item.getDescription(), SearchIndexEntryType.ITEM, 10);
+		for (DefaultItem item : SingletonRepository.getEntityManager().getDefaultItems()) {
+			addName(item.getItemName(), SearchIndexEntryType.ITEM);
+			addDescription(item.getItemName(), item.getDescription(), SearchIndexEntryType.ITEM, 10);
 		}
 	}
 
 	private void creatures() {
-		for (Creature creature : SingletonRepository.getEntityManager().getCreatures()) {
-			addName(creature.getName(), SearchIndexEntryType.CREATURE);
-			addDescription(creature.getName(), creature.getDescription(), SearchIndexEntryType.CREATURE, 10);
+		for (DefaultCreature creature : SingletonRepository.getEntityManager().getDefaultCreatures()) {
+			addName(creature.getCreatureName(), SearchIndexEntryType.CREATURE);
+			addDescription(creature.getCreatureName(), creature.getDescription(), SearchIndexEntryType.CREATURE, 10);
 		}
 	}
 

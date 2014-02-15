@@ -385,6 +385,16 @@ public class DefaultEntityManager implements EntityManager {
 		return createdSpell.values();
 	}
 
+	@Override
+	public Collection<DefaultCreature> getDefaultCreatures() {
+		return classToCreature.values();
+	}
+
+	@Override
+	public Collection<DefaultItem> getDefaultItems() {
+		return classToItem.values();
+	}
+
 	public Collection<String> getConfiguredItems() {
 		return classToItem.keySet();
 	}
