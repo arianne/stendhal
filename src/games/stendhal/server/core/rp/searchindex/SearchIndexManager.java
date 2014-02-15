@@ -35,7 +35,7 @@ public class SearchIndexManager {
 
 	// keep in sync with search.php
 	private final ImmutableSet<String> STOP_WORDS =
-		ImmutableSet.of("you", "see", "a", "an", "to", "the", "and");
+			ImmutableSet.of("a", "an", "and", "is", "it", "of", "see", "the", "to", "you");
 
 	/**
 	 * generates the search index
