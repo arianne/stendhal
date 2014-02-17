@@ -52,6 +52,9 @@ public class SearchIndexManager {
 
 	private void achievements() {
 		for (Achievement achievement : AchievementNotifier.get().getAchievements()) {
+			if (!achievement.isActive()) {
+				continue;
+			}
 			addName(achievement.getTitle(), SearchIndexEntryType.ACHIEVEMENT);
 			addDescription(achievement.getTitle(), achievement.getDescription(), SearchIndexEntryType.ACHIEVEMENT, 10);
 		}
