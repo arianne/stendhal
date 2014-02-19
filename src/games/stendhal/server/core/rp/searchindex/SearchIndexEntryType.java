@@ -18,21 +18,21 @@ package games.stendhal.server.core.rp.searchindex;
  */
 public enum SearchIndexEntryType {
 	/** achievements */
-	ACHIEVEMENT('A', 9),
+	ACHIEVEMENT('A', 90),
 	/** items */
-	ITEM('I', 8),
+	ITEM('I', 80),
 	/** creatures */
-	CREATURE('C', 7),
+	CREATURE('C', 70),
 	/** npcs */
-	NPC('N', 6),
+	NPC('N', 60),
 	/** player characters */
-	PLAYER('P', 5),
+	PLAYER('P', 50),
 	/** stendhal manual, beginners guide, etc. */
-	PLAYER_GUIDE('G', 4),
+	PLAYER_GUIDE('G', 40),
 	/** in-character guide */
-	WORLD_GUIDE('W', 3),
+	WORLD_GUIDE('W', 30),
 	/** guides for contributors and developers */
-	CONTRIBUTOR_GUIDE('C', 2);
+	CONTRIBUTOR_GUIDE('C', 20);
 
 	private char entityType;
 	private int minorScore;

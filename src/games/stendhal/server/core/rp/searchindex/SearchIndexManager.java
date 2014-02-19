@@ -56,29 +56,29 @@ public class SearchIndexManager {
 				continue;
 			}
 			addName(achievement.getTitle(), SearchIndexEntryType.ACHIEVEMENT);
-			addDescription(achievement.getTitle(), achievement.getDescription(), SearchIndexEntryType.ACHIEVEMENT, 10);
+			addDescription(achievement.getTitle(), achievement.getDescription(), SearchIndexEntryType.ACHIEVEMENT, 1000);
 		}
 	}
 
 	private void npcs() {
 		for (SpeakerNPC npc : SingletonRepository.getNPCList()) {
 			addName(npc.getName(), SearchIndexEntryType.NPC);
-			addDescription(npc.getName(), npc.getDescription(), SearchIndexEntryType.NPC, 10);
-			addDescription(npc.getName(), npc.getJob(), SearchIndexEntryType.NPC, 10);
+			addDescription(npc.getName(), npc.getDescription(), SearchIndexEntryType.NPC, 1000);
+			addDescription(npc.getName(), npc.getJob(), SearchIndexEntryType.NPC, 1000);
 		}
 	}
 
 	private void items() {
 		for (DefaultItem item : SingletonRepository.getEntityManager().getDefaultItems()) {
 			addName(item.getItemName(), SearchIndexEntryType.ITEM);
-			addDescription(item.getItemName(), item.getDescription(), SearchIndexEntryType.ITEM, 10);
+			addDescription(item.getItemName(), item.getDescription(), SearchIndexEntryType.ITEM, 1000);
 		}
 	}
 
 	private void creatures() {
 		for (DefaultCreature creature : SingletonRepository.getEntityManager().getDefaultCreatures()) {
 			addName(creature.getCreatureName(), SearchIndexEntryType.CREATURE);
-			addDescription(creature.getCreatureName(), creature.getDescription(), SearchIndexEntryType.CREATURE, 10);
+			addDescription(creature.getCreatureName(), creature.getDescription(), SearchIndexEntryType.CREATURE, 1000);
 		}
 	}
 
@@ -89,12 +89,12 @@ public class SearchIndexManager {
 	 * @param entityType  type of entity
 	 */
 	private void addName(String name, SearchIndexEntryType type) {
-		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 30 + type.getMinorScore()));
+		index.add(new SearchIndexEntry(name, type.getEntityType(), name, 3000 + type.getMinorScore()));
 
 		// If the name consists of multiple words, add each word individually
 		// to the index. They will get a lower score to boost exact matches.
 		if (name.indexOf(" ") > -1) {
-			addDescription(name, name, type, 20);
+			addDescription(name, name, type, 2000);
 		}
 	}
 
