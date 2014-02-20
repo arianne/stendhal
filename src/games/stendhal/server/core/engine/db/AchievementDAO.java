@@ -68,9 +68,9 @@ public class AchievementDAO {
 	 * @return the id of the stored achievement
 	 * @throws SQLException in case of an database error
 	 */
-	public int saveAchievement(Achievement achievement) throws SQLException {
+	public int insertAchievement(Achievement achievement) throws SQLException {
 		DBTransaction transaction = TransactionPool.get().beginWork();
-		int achievementId = saveAchievement(transaction, achievement);
+		int achievementId = insertAchievement(transaction, achievement);
 		TransactionPool.get().commit(transaction);
 		return achievementId;
 	}
@@ -83,7 +83,7 @@ public class AchievementDAO {
 	 * @return the id of the stored achievement
 	 * @throws SQLException in case of an database error
 	 */
-	public int saveAchievement(DBTransaction transaction, Achievement achievement) throws SQLException {
+	public int insertAchievement(DBTransaction transaction, Achievement achievement) throws SQLException {
 		int achievementId = 0;
 		String query = 	"INSERT INTO achievement " +
 						"(identifier, title, category, description, base_score, active) VALUES " +
@@ -123,11 +123,12 @@ public class AchievementDAO {
 	 */
 	public void updateAchievement(DBTransaction transaction, Integer id, Achievement achievement) throws SQLException {
 		String query = "UPDATE achievement SET " +
-						"identifier='[identifier]', " +
-						"title='[title]', " +
+						"identifier = '[identifier]', " +
+						"title = '[title]', " +
 						"category = '[category]', " +
 						"description = '[description]', " +
-						"base_score=[base_score] " +
+						"base_score = [base_score] " +
+						"active = [active]" +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
@@ -135,6 +136,7 @@ public class AchievementDAO {
 		parameters.put("category", achievement.getCategory().toString());
 		parameters.put("description", achievement.getDescription());
 		parameters.put("base_score", achievement.getBaseScore());
+		parameters.put("active", achievement.isActive() ? 1 : 0);
 		parameters.put("id", id);
 		transaction.execute(query, parameters);
 	}

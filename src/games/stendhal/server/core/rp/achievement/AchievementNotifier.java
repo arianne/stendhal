@@ -113,7 +113,7 @@ public final class AchievementNotifier {
 		//save new achievements and add their identifier and id to the identifierToId map
 		for (Achievement a : allAchievements.values()) {
 			try {
-				Integer id = DAORegister.get().get(AchievementDAO.class).saveAchievement(a);
+				Integer id = DAORegister.get().get(AchievementDAO.class).insertAchievement(a);
 				identifiersToIds.put(a.getIdentifier(), id);
 			} catch (SQLException e) {
 				logger.error("Error while saving new achievement "+a.getTitle(), e);
