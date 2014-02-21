@@ -127,7 +127,7 @@ public class AchievementDAO {
 						"title = '[title]', " +
 						"category = '[category]', " +
 						"description = '[description]', " +
-						"base_score = [base_score] " +
+						"base_score = [base_score], " +
 						"active = [active] " +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
