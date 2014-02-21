@@ -128,7 +128,7 @@ public class AchievementDAO {
 						"category = '[category]', " +
 						"description = '[description]', " +
 						"base_score = [base_score] " +
-						"active = [active]" +
+						"active = [active] " +
 						"WHERE id = [id];";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("identifier", achievement.getIdentifier());
