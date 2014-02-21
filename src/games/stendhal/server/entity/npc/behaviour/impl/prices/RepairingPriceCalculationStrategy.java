@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Special calculation strategy for calculating repair prices
  * 
- * Repairing price is based on value determined by the StendhalEconomy, player
+ * Repairing price is based on value determined by the player
  * level (min level has an effect similar to affecting def or rate) 
  * and player's PK status
  * 
@@ -20,7 +20,7 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 	
 	private static final double PLAYER_KILLER_MALUS = 2d;
 	
-	private Set<String> items;
+	private final Set<String> items;
 	
 	private Item itemToRepair;
 	
@@ -41,7 +41,7 @@ public class RepairingPriceCalculationStrategy implements PriceCalculationStrate
 
 	@Override
 	public int calculatePrice(String item, Player p) {
-		double itemvalue = SingletonRepository.getEconomy().getValue(item);
+		double itemvalue = 0d;
 		double adjustedFactor = adjustFactorBasedOnMinLevel(item);
 		double repairPrice =  itemvalue * adjustedFactor;
 		// consider bad boy flag for price calculation
