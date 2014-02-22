@@ -29,9 +29,14 @@ class UseableRing2DView extends Ring2DView {
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
-		list.add(ActionType.USE.getRepresentation());
+		list.add(0, ActionType.USE.getRepresentation());
 
 		super.buildActions(list);
+	}
+	
+	@Override
+	public void onAction() {
+		onAction(ActionType.USE);
 	}
 
 	@Override
