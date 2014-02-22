@@ -235,7 +235,8 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		
 		@Override
 		public void mouseReleased(final MouseEvent ev) {
-			if (ev.getButton() == MouseEvent.BUTTON1) {
+			// Only call endDrag() if there was actually an active drag
+			if ((ev.getButton() == MouseEvent.BUTTON1) && (dragStart != null)) {
 				endDrag();
 			}
 		}
