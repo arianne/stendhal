@@ -234,7 +234,7 @@ public class RainbowBeans extends AbstractQuest {
 		super.addToWorld();
 		fillQuestInfo(
 				"Rainbow Beans",
-				"Strange beans could be a way to strange places and sometimes dangerous!",
+				"Weird beans could be a way to strange and sometimes dangerous places!",
 				false);
 		step_1();
 
