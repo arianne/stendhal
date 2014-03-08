@@ -13,10 +13,12 @@
 package games.stendhal.client.gui.chattext;
 
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.scripting.ChatLineParser;
+import games.stendhal.common.constants.SoundLayer;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -26,13 +28,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
 
 public class ChatTextController {
+	/** Maximum text length. Public chat is limited to 1000 server side. */
+	private static final int MAX_TEXT_LENGTH = 1000;
+	
 	private final JTextField playerChatText = new JTextField("");
 
 	private ChatCache cache;
 	public ChatTextController() {
 		playerChatText.setFocusTraversalKeysEnabled(false);
+		Document doc = playerChatText.getDocument();
+		if (doc instanceof AbstractDocument) {
+			((AbstractDocument) doc).setDocumentFilter(new SizeFilter(MAX_TEXT_LENGTH));
+		}
 		playerChatText.addKeyListener(new ChatTextKeyListener());
 		addActionListener(new ParserHandler());
 		StendhalClient client = StendhalClient.get();
@@ -115,5 +129,51 @@ public class ChatTextController {
 
 	public void saveCache() {
 		cache.save();
+	}
+	
+	/**
+	 * A document filter that limits the maximum allowed length of a document.
+	 */
+	private static class SizeFilter extends DocumentFilter {
+		/** Sound to play if the user tries to enter too long string. */
+		private static final String sound = "click-10";
+		/** Maximum length of the document. */
+		final int maxSize;
+
+		/**
+		 * Create a new SizeFilter.
+		 * 
+		 * @param maxSize maximum length of the document
+		 */
+		SizeFilter(int maxSize) {
+			this.maxSize = maxSize;
+		}
+		
+		@Override
+		public void insertString(FilterBypass fb, int offs, String str,
+				AttributeSet a) throws BadLocationException {
+			if ((fb.getDocument().getLength() + str.length()) <= maxSize) {
+				super.insertString(fb, offs, str, a);
+			} else {
+				fail();
+			}
+		}
+
+		@Override
+		public void replace(FilterBypass fb, int offs, int length, String str,
+				AttributeSet a) throws BadLocationException {
+			if ((fb.getDocument().getLength() + str.length() - length) <= maxSize) {
+				super.replace(fb, offs, length, str, a);
+			} else {
+				fail();
+			}
+		}
+
+		/**
+		 * Called when the document change is rejected. Notify the user.
+		 */
+		private void fail() {
+			ClientSingletonRepository.getSound().getGroup(SoundLayer.USER_INTERFACE.groupName).play(sound, 0, null, null, false, true);
+		}
 	}
 }
