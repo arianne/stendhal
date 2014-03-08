@@ -275,10 +275,8 @@ public class GenerateINI {
 		out.println("server_contact=https://sourceforge.net/tracker/?atid=514826&group_id=66537&func=browse");
 		out.println();
 		out.println("# Extensions configured on the server. Enable at will.");
-		out.println("#server_extension=groovy,http");
-		out.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
-		out.println("#http=games.stendhal.server.extension.StendhalHttpServer");
-		out.println("#http.port=8080");
+		out.println("#server_extension=xxx");
+		out.println("#xxx=some.package.Classname");
 		out.println();
 		out.println("statistics_filename=" + statisticsFilename);
 		out.println();
