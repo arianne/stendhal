@@ -83,6 +83,7 @@ import marauroa.common.game.RPClass;
  */
 public class RPClassGenerator {
 	private static boolean inited = false;
+	private RPClass action;
 
 	/**
 	 * creates the RPClass definitions, unless this was already done.
@@ -296,7 +297,8 @@ public class RPClassGenerator {
 			ViewChangeEvent.generateRPClass();
 		}
 
-		if (!RPClass.hasRPClass("chat")) {
+		if (!RPClass.hasRPClass("action")) {
+			createActionRPClass();
 			createChatActionRPClass();
 			createCidActionRPClass();
 			createMoveToActionRPClass();
@@ -315,33 +317,41 @@ public class RPClassGenerator {
 		RPClass.bakeAll();
 	}
 
+	private void createActionRPClass() {
+		action = new RPClass("action");
+		action.add(DefinitionClass.ATTRIBUTE, "zone", Type.STRING);
+	}
+
 	private void createChatActionRPClass() {
-		RPClass chatAction = new RPClass("chat");
-		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
-		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
+		RPClass clazz = new RPClass("chat");
+		clazz.isA(action);
+		clazz.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		clazz.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 	}
 
 	private void createCidActionRPClass() {
-		RPClass action = new RPClass("cstatus");
-		action.addAttribute("cid", Type.STRING);
-		action.addAttribute("version", Type.STRING);
-		action.addAttribute("build", Type.STRING);
-		action.addAttribute("dist", Type.STRING);
+		RPClass clazz = new RPClass("cstatus");
+		clazz.isA(action);
+		clazz.addAttribute("cid", Type.STRING);
+		clazz.addAttribute("version", Type.STRING);
+		clazz.addAttribute("build", Type.STRING);
+		clazz.addAttribute("dist", Type.STRING);
 	}
 
 	private void createMoveToActionRPClass() {
-		RPClass action = new RPClass("moveto");
-		action.addAttribute("double_click", Type.FLAG);
-		action.addAttribute("extend", Type.INT);
-		action.addAttribute("x", Type.INT);
-		action.addAttribute("y", Type.INT);
+		RPClass clazz = new RPClass("moveto");
+		clazz.isA(action);
+		clazz.addAttribute("double_click", Type.FLAG);
+		clazz.addAttribute("extend", Type.INT);
+		clazz.addAttribute("x", Type.INT);
+		clazz.addAttribute("y", Type.INT);
 	}
 
 	private void createTellActionRPClass() {
-		RPClass chatAction;
-		chatAction = new RPClass("tell");
-		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
-		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
-		chatAction.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
+		RPClass clazz = new RPClass("tell");
+		clazz.isA(action);
+		clazz.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		clazz.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
+		clazz.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
 	}
 }
