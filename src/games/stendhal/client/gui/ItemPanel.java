@@ -300,6 +300,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 		if (amount >= 1) {
 			action.put(EquipActionConsts.QUANTITY, amount);
 		}
+		action.put("zone", entity.getRPObject().getBaseContainer().get("zoneid"));
 
 		// ** Compatibility. Fill old style object address data **
 		// fill 'moved from' parameters
