@@ -61,7 +61,7 @@ public abstract class EquipmentAction implements ActionListener {
 	@Override
 	public void onAction(final Player player, final RPAction action) {
 
-		if (!isValidAction(action)) {
+		if (!isValidAction(action, player)) {
 			return;
 		}
 
@@ -92,8 +92,15 @@ public abstract class EquipmentAction implements ActionListener {
 
 	protected abstract void execute(final Player player, final RPAction action, final  SourceObject source);
 
-	private boolean isValidAction(final RPAction action) {
-		return action != null;
+	private boolean isValidAction(RPAction action, Player player) {
+		if (action != null) {
+			String actionZone = action.get("zone");
+			// Always accept actions without the zone. Old clients send those.
+			if (actionZone == null || actionZone.equals(player.getZone().getName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
