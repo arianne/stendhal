@@ -227,6 +227,7 @@ public enum ActionType {
 		
 		RPObject rpObject = entity.getRPObject(); 
 		final int id = rpObject.getID().getObjectID();
+		rpaction.put("zone", entity.getRPObject().getBaseContainer().get("zoneid"));
 
 		if (rpObject.isContained()) {
 			/*
