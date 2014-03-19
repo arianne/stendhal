@@ -192,6 +192,7 @@ public class GroundContainer implements Inspector, MouseListener, MouseMotionLis
 		final Point2D location = screen.convertScreenViewToWorld(point);
 		action.put("x", (int) location.getX());
 		action.put("y", (int) location.getY());
+		action.put("zone", entity.getRPObject().getBaseContainer().get("zoneid"));
 
 		client.send(action);
 	}
