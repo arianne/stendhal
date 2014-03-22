@@ -14,7 +14,9 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.common.constants.Actions;
+import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /**
@@ -223,11 +225,23 @@ public enum ActionType {
 	public RPAction fillTargetInfo(final IEntity entity) {
 		RPAction rpaction = new RPAction();
 
-		rpaction.put("type", toString());
+		RPClass rpClass = RPClass.getRPClass(actionCode);
+		boolean includeZone = true;
+		if (rpClass != null) {
+			rpaction.setRPClass(actionCode);
+			if (rpClass.getDefinition(DefinitionClass.ATTRIBUTE, "zone") == null) {
+				includeZone = false;
+			}
+		} else {
+			rpaction.put("type", toString());
+		}
 		
 		RPObject rpObject = entity.getRPObject(); 
 		final int id = rpObject.getID().getObjectID();
-		rpaction.put("zone", entity.getRPObject().getBaseContainer().get("zoneid"));
+		// Compatibility: Don't include zone if the action does not support it
+		if (includeZone) {
+			rpaction.put("zone", entity.getRPObject().getBaseContainer().get("zoneid"));
+		}
 
 		if (rpObject.isContained()) {
 			/*
