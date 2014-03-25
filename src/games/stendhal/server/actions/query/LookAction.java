@@ -22,6 +22,7 @@ import games.stendhal.server.actions.validator.ActionData;
 import games.stendhal.server.actions.validator.ActionValidation;
 import games.stendhal.server.actions.validator.ExtractEntityValidator;
 import games.stendhal.server.actions.validator.SlotVisibleIfEntityContained;
+import games.stendhal.server.actions.validator.ZoneNotChanged;
 import games.stendhal.server.core.engine.GameEvent;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -36,6 +37,7 @@ public class LookAction implements ActionListener {
 	static {
 		VALIDATION.add(new ExtractEntityValidator());
 		VALIDATION.add(new SlotVisibleIfEntityContained());
+		VALIDATION.add(new ZoneNotChanged());
 	}
 
 	/**
