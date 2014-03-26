@@ -12,13 +12,15 @@
 package games.stendhal.server.actions;
 
 import static games.stendhal.common.constants.Actions.KNOCK;
-import static games.stendhal.common.constants.Actions.TARGET;
+import games.stendhal.server.actions.validator.ActionData;
+import games.stendhal.server.actions.validator.ActionValidation;
+import games.stendhal.server.actions.validator.ExtractEntityValidator;
+import games.stendhal.server.actions.validator.ZoneNotChanged;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.portal.HousePortal;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
 /**
@@ -28,6 +30,11 @@ import marauroa.common.game.RPAction;
  * @author kymara
  */
 public class KnockAction implements ActionListener {
+	private static final ActionValidation VALIDATION = new ActionValidation();;
+	static {
+		VALIDATION.add(new ZoneNotChanged());
+		VALIDATION.add(new ExtractEntityValidator());
+	}
 
 	public static void register() {
 		final KnockAction knock = new KnockAction();
@@ -36,11 +43,12 @@ public class KnockAction implements ActionListener {
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
-
-		// evaluate the target parameter
-		final Entity entity = EntityHelper.entityFromTargetName(
-				action.get(TARGET), player);
-
+		ActionData data = new ActionData();
+		if (!VALIDATION.validateAndInformPlayer(player, action, data)) {
+			return;
+		}
+		
+		Entity entity = data.getEntity();
 		if ((entity == null) || !(entity instanceof HousePortal)) {
 			// unlikely to happen since players can only see Knock on HousePortal right click menus, but you never know ...
 			player.sendPrivateText("Hmm, that's not something you can knock on effectively.");

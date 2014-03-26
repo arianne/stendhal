@@ -30,13 +30,17 @@ import marauroa.common.game.RPObject;
  * Uses an item or an other entity that implements Useable
  */
 public class UseAction implements ActionListener {
-
 	public static void register() {
 		CommandCenter.register(USE, new UseAction());
 	}
 
 	@Override
 	public void onAction(final Player player, final RPAction action) {
+		String actionZone = action.get("zone");
+		// Always accept actions without the zone. Old clients send those.
+		if (actionZone != null && !actionZone.equals(player.getZone().getName())) {
+			return;
+		}
 		if (action.has(TARGET_PATH)) {
 			useEntityFromPath(player, action);
 		} else if (isItemInSlot(action)) {
