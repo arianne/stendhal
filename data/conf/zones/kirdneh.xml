@@ -305,7 +305,7 @@
       <name>Kirdneh Bank</name>
       <type>bank</type>
       <description>A place to store your possessions. This one is a branch office of Fado bank.</description>
-      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+      <url>https://stendhalgame.org/player-guide/faq.html#Banking</url>
     </point-of-interest>
 
   </zone>
@@ -1770,7 +1770,7 @@
       <title>Kirdneh Little Dungeon</title>
       <type>dungeon</type>
       <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-      <url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+      <url>http://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
 
     <entity x="52" y="114">
@@ -1803,7 +1803,7 @@
       <title>Kirdneh Little Dungeon</title>
       <type>dungeon</type>
       <description>Are you going to dare entering this dungeon full of bandits, assassins and hunters which is located deep under fado great caves?</description>
-      <url>http://stendhalgame.org/wiki/Kirdneh_Little_Dungeon</url>
+      <url>http://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
 
     <portal x="15" y="30" ref="entrance">

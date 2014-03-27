@@ -59,7 +59,7 @@
       <name>Kikareukin Entrance</name>
       <type>dungeon</type>
       <description>Entrance to Kikareukin and the way up to the sky.</description>
-      <url>http://stendhalgame.org/wiki/Kikareukin</url>
+      <url>https://stendhalgame.org/region/kikareukin.html</url>
     </point-of-interest>
 
   </zone>
@@ -79,7 +79,7 @@
       <name>Semos Yeti Cave</name>
       <type>dungeon</type>
       <description>Better take something warm to dress with you when you walk there. (Player Level 80 - 200)</description>
-      <url>http://stendhalgame.org/wiki/Semos_Yeti_Cave</url>
+      <url>https://stendhalgame.org/dungeon/semos_yeti_cave.html</url>
     </point-of-interest>
 
   </zone>
@@ -234,7 +234,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <name>Semos Mines</name>
       <type>dungeon</type>
       <description>Western entrance to the Semos Mines, the city of Wofol and the huge tunnel system leading through the mountains. (Player Level 6 - 597)</description>
-      <url>http://stendhalgame.org/wiki/Semos_Mines</url>
+      <url>https://stendhalgame.org/dungeon/semos_mines.html</url>
     </point-of-interest>
 
     <!-- Portals -->
@@ -1316,7 +1316,7 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
       <name>Semos Catacombs</name>
       <type>dungeon</type>
       <description>A hole in the ground on Semos graveyard. Prepare yourself well to fight the undead.</description>
-      <url>http://stendhalgame.org/wiki/Semos_Catacombs</url>
+      <url>https://stendhalgame.org/dungeon/semos_catacombs.html</url>
     </point-of-interest>
 
     <entity x="77" y="66">
@@ -1411,7 +1411,7 @@ Southeast: Farmhouse
       <title>Semos Caves</title>
       <type>dungeon</type>
       <description>One of several entrances to the tunnel system below the northern mountains. The way to Mithrilbourgh and connection to Ados caves. (Player Level 15 - 125)</description>
-      <url>http://stendhalgame.org/wiki/Semos_Caves</url>
+      <url>https://stendhalgame.org/dungeon/semos_caves.html</url>
     </point-of-interest>
 
     <point-of-interest x="115" y="36">
@@ -1419,7 +1419,7 @@ Southeast: Farmhouse
       <title>Semos Caves</title>
       <type>dungeon</type>
       <description>One of several entrances to the tunnel system below the northern mountains. The way to Mithrilbourgh and connection to Ados caves. Use with caution, if you are still low level. (Player Level 15 - 125)</description>
-      <url>http://stendhalgame.org/wiki/Semos_Caves</url>
+      <url>https://stendhalgame.org/dungeon/semos_caves.html</url>
     </point-of-interest>
 
   </zone>
@@ -1747,7 +1747,7 @@ Mature sheep wanted: please speak to Sato.
       <name>Semos Dungeon</name>
       <type>dungeon</type>
       <description>A dangerous place right in the center of the city. (Player Level 0 - 50)</description>
-      <url>http://stendhalgame.org/wiki/Semos_Dungeons</url>
+      <url>https://stendhalgame.org/dungeon/semos_dungeons.html</url>
     </point-of-interest>
 
     <portal x="42" y="37" ref="tavern_entrance">
@@ -1784,7 +1784,7 @@ Mature sheep wanted: please speak to Sato.
       <name>Semos Bank</name>
       <type>bank</type>
       <description>A place to store your possessions.</description>
-      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+      <url>https://stendhalgame.org/player-guide/faq.html#Banking</url>
     </point-of-interest>
 
     <portal x="18" y="22" ref="bank_entrance">

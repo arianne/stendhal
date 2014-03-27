@@ -47,7 +47,7 @@
       <name>Kotoch Entrance</name>
       <type>dungeon</type>
       <description>Kotoch is a Dungeon which lies in an area of the Orril Mountains. There are lots of routes which you can choose but be careful and keep your eyes open for danger. (Player Level 20 - 65)</description>
-      <url>http://stendhalgame.org/wiki/Kotoch</url>
+      <url>https://stendhalgame.org/dungeon/kotoch.html</url>
     </point-of-interest>
 
   </zone>
@@ -69,7 +69,7 @@
       <title>Orril Dwarf Mine</title>
       <type>dungeon</type>
       <description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
-      <url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+      <url>https://stendhalgame.org/dungeon/orril_dwarf_mine.html</url>
     </point-of-interest>
 
     <point-of-interest x="108" y="111">
@@ -77,7 +77,7 @@
       <title>Orril Dwarf Mine</title>
       <type>dungeon</type>
       <description>The tunnelsystem of Orril Dwarf Mine is guarded by lots of dwarves and their pet, a green dragon. But it also contains one of the most precious materials of whole Faiumoni, iron ore. (Player Level 30 - 65)</description>
-      <url>http://stendhalgame.org/wiki/Orril_Dwarf_Mine</url>
+      <url>https://stendhalgame.org/dungeon/orril_dwarf_mine.html</url>
     </point-of-interest>
 
   </zone>
@@ -127,7 +127,7 @@
       <name>Orril Castle</name>
       <type>dungeon</type>
       <description>Huge Orril Castle is located in the Orril Mountain area. It includes different floors and creatures which young adventurers have to pass before they find a secret place waiting underneath the castle... (Player Level 40 - 150)</description>
-      <url>http://stendhalgame.org/wiki/Orril_Castle</url>
+      <url>https://stendhalgame.org/dungeon/orril_castle.html</url>
     </point-of-interest>
 
     <portal x="63" y="96" ref="outside_gate_right">
@@ -226,7 +226,7 @@
       <name>Orril Dungeon</name>
       <type>dungeon</type>
       <description>The Orril Dungeon is also known as the "Rat Dungeon". Maybe you will find your way to something special down in the tunnels... (Player Level 5 - 70)</description>
-      <url>http://stendhalgame.org/wiki/Orril_Dungeon</url>
+      <url>https://stendhalgame.org/dungeon/orril_dungeon.html</url>
     </point-of-interest>
 
   </zone>
