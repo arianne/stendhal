@@ -47,7 +47,7 @@ public class MerchantsRegister {
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
 	 * 
-	 * @param npcName
+	 * @param npc
 	 *            The NPC that should be added
 	 * @param behaviour   
 	 *            The MerchantBehaviour of that NPC

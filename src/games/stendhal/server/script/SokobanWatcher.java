@@ -66,6 +66,7 @@ public class SokobanWatcher extends ScriptImpl implements TurnListener {
 		TurnNotifier.get().dontNotify(this);
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_mountain_n2");
 		StendhalRPZone target = SingletonRepository.getRPWorld().getZone("int_semos_townhall");

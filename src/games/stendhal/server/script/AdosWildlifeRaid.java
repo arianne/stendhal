@@ -25,7 +25,8 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates a soldier
-	 *
+	 * 
+	 * @param zone zone
 	 * @param name Name of the NPC
 	 * @param x x-postion
 	 * @param y y-postion
@@ -41,6 +42,8 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates three soldiers to block the entrance
+	 * 
+	 * @param zone zone 
 	 */
 	public void createSoldiers(StendhalRPZone zone) {
 
@@ -55,6 +58,8 @@ public class AdosWildlifeRaid implements TurnListener {
 
 	/**
 	 * Creates a sheep for the Orcs to target
+	 * 
+	 * @param zone zone 
 	 */
 	public void createSheep(StendhalRPZone zone) {
 		Creature creature = new Sheep();
@@ -62,6 +67,7 @@ public class AdosWildlifeRaid implements TurnListener {
 		zone.add(creature);
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		int wait = 6;
 		switch (turnCounter) {

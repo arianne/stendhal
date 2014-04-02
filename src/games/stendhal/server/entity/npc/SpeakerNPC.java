@@ -954,7 +954,6 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * gets the answer to the "job" question in ATTENDING state.
 	 *
-	 * @param npc SpeakerNPC object
 	 * @return the answer to the job question or null in case there is no job specified
 	 */
 	public String getJob() {

@@ -75,7 +75,7 @@ public final class KarmaIndicator extends StatusDisplayBar implements PropertyCh
 
 	/**
 	 * Gets the instance. It is invalid to call this method before the indicator
-	 * instance has been initialized with create()
+	 * instance has been initialized with {@link #create()}.
 	 *
 	 * @return KarmaIndicator
 	 */

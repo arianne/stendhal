@@ -23,6 +23,8 @@ public class RPEntityRPClass {
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
+	 * 
+	 * @param ATTR_TITLE title attribute name 
 	 */
     public static void generateRPClass(String ATTR_TITLE) {
         final RPClass entity = new RPClass("rpentity");

@@ -67,7 +67,6 @@ public class AsynchronousProgramExecutor extends Thread {
 	 * sends the message to the twitter account
 	 *
 	 * @param cmd command
-	 * @param message message to tweet
 	 */
 	private void send(String cmd) {
 		try {

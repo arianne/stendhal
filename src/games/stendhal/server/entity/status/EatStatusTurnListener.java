@@ -36,6 +36,7 @@ public class EatStatusTurnListener implements TurnListener {
 		this.statusList = statusList;
 	}
 
+	@Override
 	public void onTurnReached(int turn) {
 		RPEntity entity = statusList.getEntity();
 		List<EatStatus> toConsume = statusList.getAllStatusByClass(EatStatus.class);

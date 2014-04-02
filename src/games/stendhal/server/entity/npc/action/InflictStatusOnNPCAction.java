@@ -44,6 +44,7 @@ public class InflictStatusOnNPCAction implements ChatAction {
 		this.status = status;
 	}
 
+	@Override
 	public void fire(Player player, Sentence sentence, EventRaiser npc) {
 		if (! (npc.getEntity() instanceof RPEntity)) {
 			return;

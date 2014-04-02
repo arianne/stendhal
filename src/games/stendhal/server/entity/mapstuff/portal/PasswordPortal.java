@@ -100,10 +100,8 @@ public class PasswordPortal extends Portal {
         return this.rejectedMessage;
     }
     
-    /**
-     * 
-     */
-    public void logic() {
+    @Override
+	public void logic() {
         List<Player> players = getNearbyPlayersThatHaveSpoken();
         
         String text;

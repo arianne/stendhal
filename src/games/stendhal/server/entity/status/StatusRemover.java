@@ -34,6 +34,7 @@ public class StatusRemover implements TurnListener {
 		this.status = status;
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		statusList.remove(status);
 	}

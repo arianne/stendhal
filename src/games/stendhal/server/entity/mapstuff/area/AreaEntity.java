@@ -85,6 +85,7 @@ public class AreaEntity extends Entity {
 	 * 
 	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
+	@Override
 	public String getName() {
 		if (has(ATTR_NAME)) {
 			return get(ATTR_NAME);

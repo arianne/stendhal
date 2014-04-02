@@ -187,10 +187,8 @@ abstract class AccessCheckingPortal extends Portal {
 	    return false;
 	}
 
-    /**
-     * 
-     */
-    public void logic() {
+    @Override
+	public void logic() {
         // Execute action for password portal if required password is set.
         if (requiredPassword != null) {
             List<Player> players = getNearbyPlayersThatHaveSpoken();
@@ -320,8 +318,7 @@ abstract class AccessCheckingPortal extends Portal {
 	/**
 	 * Set the rejection message.
 	 * 
-	 * @param rejectMessage
-	 *            The message to give when rejected.
+	 * @param message The message to give when rejected.
 	 */
 	public void setRejectedMessage(final String message) {
 		rejectedMessage = message;

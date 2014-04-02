@@ -381,6 +381,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 	
     /**
      * Checks if the entity has reached a set radius
+     * 
+     * @return <code>true</code> if the entity has moved outside its movement
+     * 	area, othwewise <code>false</code>
      */
     public final boolean atMovementRadius() {
         Point difference = getDistanceFromOrigin();
@@ -426,8 +429,6 @@ public abstract class GuidedEntity extends ActiveEntity {
     
 	/**
 	 * Changed path of entity when radius is reached
-	 * 
-	 * @param returnToOrigin return entity to initial position
 	 */
     public void onOutsideMovementRadius() {
         List<Node> nodes = new LinkedList<Node>();

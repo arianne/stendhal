@@ -274,6 +274,7 @@ public abstract class Spell extends PassiveEntity implements EquipListener, Date
 	 * 
 	 * @return The spell's name, or <code>null</code> if undefined.
 	 */
+	@Override
 	public String getName() {
 		if (has(ATTR_NAME)) {
 			return get(ATTR_NAME);

@@ -32,6 +32,7 @@ public class ShockStatusTurnListener implements TurnListener {
 		this.statusList = statusList;
 	}
 
+	@Override
 	public void onTurnReached(int currentTurn) {
 		RPEntity entity = statusList.getEntity();
 		ShockStatus status = statusList.getFirstStatusByClass(ShockStatus.class);

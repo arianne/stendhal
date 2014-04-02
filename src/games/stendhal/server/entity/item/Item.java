@@ -403,6 +403,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener,
 	 *
 	 * @return The programmatic item name.
 	 */
+	@Override
 	public String getName() {
 		return get("name");
 	}
