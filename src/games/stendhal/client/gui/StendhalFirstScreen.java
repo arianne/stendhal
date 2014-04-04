@@ -29,6 +29,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -232,7 +233,8 @@ public class StendhalFirstScreen extends JFrame {
 	 * A Resizable label with an icon.
 	 */
 	private static class ResizableLabel extends JLabel {
-		final Image image;
+		private final Image image;
+		private Rectangle bounds;
 		
 		/**
 		 * Create a new ResizableLabel.
@@ -253,11 +255,21 @@ public class StendhalFirstScreen extends JFrame {
 		 */
 		@Override
 		public void setBounds(int x, int y, int width, int height) {
-			if ((width != image.getWidth(this)) || (height != image.getHeight(this))) {
-				double scalingX = width / (double) image.getWidth(this);
-				double scalingY = height / (double) image.getHeight(this);
+			super.setBounds(x, y, width, height);
+			scale();
+		}
+		
+		/**
+		 * Scale the image to component size.
+		 */
+		private void scale() {
+			Rectangle newBounds = getBounds();
+			if (!newBounds.equals(bounds)) {
+				bounds = newBounds;
+				double scalingX = bounds.width / (double) image.getWidth(this);
+				double scalingY = bounds.height / (double) image.getHeight(this);
 				double scaling = Math.max(scalingX, scalingY);
-				BufferedImage copy = getGraphicsConfiguration().createCompatibleImage(width, height);
+				BufferedImage copy = getGraphicsConfiguration().createCompatibleImage(bounds.width, bounds.height);
 				Graphics2D g = copy.createGraphics();
 				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 				g.scale(scaling, scaling);
@@ -265,7 +277,6 @@ public class StendhalFirstScreen extends JFrame {
 				g.dispose();
 				setIcon(new ImageIcon(copy));
 			}
-			super.setBounds(x, y, width, height);
 		}
 	}
 }
