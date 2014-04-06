@@ -1,6 +1,19 @@
 ﻿Changelog
 ---------
 
+1.14
+
+*website*
+- unified search
+- integration of wiki pages
+- detail pages for quests, regions and dungeons
+- links from NPC, items and creatures to related quests
+
+*fixes*
+- length of text messages limited
+- wedding ring supports double click
+
+
 1.13
 
 *world*
