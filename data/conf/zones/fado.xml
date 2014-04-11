@@ -80,7 +80,17 @@
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
-
+    
+    <!-- Sounds -->
+    <entity x="57" y="73">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="radius">20</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+     </entity>
+      
     <!-- Portals -->
     <portal x="36" y="17" ref="tavern_entrance_left">
       <destination zone="int_fado_tavern" ref="entrance_left" />
