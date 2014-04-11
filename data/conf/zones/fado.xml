@@ -29,6 +29,7 @@
     file="Level 0/fado/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="file" condition="stendhal.easter">Level 0/fado/city_easter.tmx</parameter>
     </attributes>
 
     <!-- NPCs -->
