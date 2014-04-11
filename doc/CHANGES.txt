@@ -3,6 +3,10 @@
 
 1.14
 
+*world*
+- new park in Fado city, south of church
+- Easter map for Fado city
+
 *website*
 - unified search
 - integration of wiki pages
@@ -15,6 +19,7 @@
 
 
 1.13
+10th February 2014
 
 *world*
 - nice zone names
