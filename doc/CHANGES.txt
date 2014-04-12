@@ -1,6 +1,13 @@
 ﻿Changelog
 ---------
 
+1.13.1
+*world*
+- Fado City joined the group of cities which put up easter decoration
+
+*website*
+- changed link on the Atlas to point to the imported pages on the website instead of the wiki
+
 1.13
 
 *world*
