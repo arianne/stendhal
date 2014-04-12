@@ -31,7 +31,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent1n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -45,7 +45,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent2n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -59,7 +59,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent3n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -73,7 +73,7 @@
       <destination zone="0_ados_mountain_n2_w" ref="ent4n" />
       <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
         <parameter name="minimum-level">100</parameter>
-        <parameter name="rejected">The entwives are NOT babysitters.  Come back when you have some age on you.</parameter>
+        <parameter name="rejected">The entwives are NOT babysitters. Come back when you have some age on you.</parameter>
       </implementation>
       <attribute name="hidden" />
     </portal>
@@ -90,7 +90,7 @@
       <name>Ados Abandoned Keep</name>
       <type>dungeon</type>
       <description>Home of mountain orcs, mountain dwarves and duergars. Prepare well before entering this keep.</description>
-      <url>http://stendhalgame.org/wiki/Ados_Abandoned_Keep</url>
+      <url>https://stendhalgame.org/dungeon/ados_abandoned_keep.html</url>
     </point-of-interest>
     
   </zone>
@@ -105,7 +105,7 @@
       <title>Amazon Tunnel</title>
       <type>dungeon</type>
       <description>The huge tunnel system between Ados mountains and Amazon is quite confusing when you try to find the correct exit. Maybe you will be stranded somewhere... (Player Level 50 - 200)</description>
-      <url>http://stendhalgame.org/wiki/Amazon_Tunnel</url>
+      <url>https://stendhalgame.org/dungeon/amazon_tunnel.html</url>
  	  </point-of-interest>
   </zone>
   
@@ -543,7 +543,7 @@
       <title>Ados Caves</title>
       <type>dungeon</type>
       <description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
-      <url>http://stendhalgame.org/wiki/Ados_Caves</url>
+      <url>https://stendhalgame.org/dungeon/ados_caves.html</url>
     </point-of-interest>
     
     <point-of-interest x="117" y="37">
@@ -551,7 +551,7 @@
       <title>Ados Caves</title>
       <type>dungeon</type>
       <description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. The northern region can be passed by lower leveled players with caution! (Player Level 80 - 597)</description>
-      <url>http://stendhalgame.org/wiki/Ados_Caves</url>
+      <url>https://stendhalgame.org/dungeon/ados_caves.html</url>
     </point-of-interest>
     
     <point-of-interest x="97" y="114">
@@ -559,7 +559,7 @@
       <title>Ados Caves</title>
       <type>dungeon</type>
       <description>The Ados Caves are built up from lots of smaller caves and tunnels. There are many different creatures running around which guard the paths. (Player Level 80 - 597)</description>
-      <url>http://stendhalgame.org/wiki/Ados_Caves</url>
+      <url>https://stendhalgame.org/dungeon/ados_caves.html</url>
     </point-of-interest>
     
   </zone>
@@ -621,7 +621,7 @@ West: Semos
       <name>Ados Caves Naga Hole</name>
       <type>dungeon</type>
       <description>You hear very loud hissing from the hole in the ground. There must be some gigantic snakes within.</description>
-      <url>http://stendhalgame.org/wiki/Ados_Caves</url>
+      <url>https://stendhalgame.org/dungeon/ados_caves.html</url>
     </point-of-interest>
     
   </zone>
@@ -761,7 +761,7 @@ areas.
       <name>Outside Ados</name>
       <type>dungeon</type>
       <description>The Dungeon of Outside Ados can be found close to the Ados Mountains in the west of Ados. The entrance is laying close to the Ados Wildlife Refuge home for endangered animals.</description>
-      <url>http://stendhalgame.org/wiki/Outside_Ados</url>
+      <url>https://stendhalgame.org/dungeon/outside_ados.html</url>
     </point-of-interest>
     
     <entity x="53" y="48">
@@ -1100,7 +1100,7 @@ West: Semos
       <name>Ados Bank</name>
       <type>bank</type>
       <description>A place to store your possessions. This one also houses an affiliate of Semos bank.</description>
-      <url>http://stendhalgame.org/wiki/StendhalFAQ#Banking</url>
+      <url>https://stendhalgame.org/player-guide/faq.html#Banking</url>
     </point-of-interest>
     
     <portal x="27" y="39" ref="10">
@@ -4204,7 +4204,7 @@ Southeast: Docks
       <name>Ados Caves Giant Pit</name>
       <type>dungeon</type>
       <description>You see massive footprints around the entrance.</description>
-      <url>http://stendhalgame.org/wiki/Ados_Caves</url>
+      <url>https://stendhalgame.org/dungeon/ados_caves.html</url>
     </point-of-interest>
     
   </zone>
@@ -4363,7 +4363,7 @@ Southeast: Docks
       <title>Ados Sewers</title>
       <type>dungeon</type>
       <description>A confusing labyrinth underneath the city of Ados.</description>
-      <url>http://stendhalgame.org/wiki/Ados_Sewers</url>
+      <url>https://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
     
     <portal x="102" y="52" ref="barracks_entrance_right">
@@ -4375,7 +4375,7 @@ Southeast: Docks
       <title>Ados Sewers</title>
       <type>dungeon</type>
       <description>A confusing labyrinth underneath the city of Ados.</description>
-      <url>http://stendhalgame.org/wiki/Ados_Sewers</url>
+      <url>https://stendhalgame.org/dungeon.html</url>
     </point-of-interest>
     
   </zone>
@@ -4535,7 +4535,7 @@ Southeast: Docks
       <name>Assassin Tunnel</name>
       <type>dungeon</type>
       <description>The Assassin Tunnel is populated by young, strong assassins, some of whom are trainees who wait for huge tasks which they alone can solve. Other occupants include a group of Blordrough deserters, along with their beloved dragons. (Player Level 60 - 200)</description>
-      <url>http://stendhalgame.org/wiki/Assassin_Tunnel</url>
+      <url>https://stendhalgame.org/dungeon/assassin_tunnel.html</url>
     </point-of-interest>
     
     <entity x="89" y="63">

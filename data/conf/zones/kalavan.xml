@@ -35,7 +35,7 @@
       <title>Fado Great Caves</title>
       <type>dungeon</type>
       <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+      <url>https://stendhalgame.org/dungeon/fado_great_caves.html</url>
     </point-of-interest>
 
     <portal x="63" y="72" ref="castle_entrance_left">
