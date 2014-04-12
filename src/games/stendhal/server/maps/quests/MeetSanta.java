@@ -55,8 +55,8 @@ import java.util.List;
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
 
-	// quest slot changed ready for 2013
-	private static final String QUEST_SLOT = "meet_santa_13";
+	// quest slot changed ready for 2014
+	private static final String QUEST_SLOT = "meet_santa_14";
 
 	public static final String QUEST_NAME = "MeetSanta";
 
