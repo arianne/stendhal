@@ -29,6 +29,7 @@
     file="Level 0/fado/city.tmx">
     <attributes>
       <parameter name="color_method">time</parameter>
+      <parameter name="file" condition="stendhal.easter">Level 0/fado/city_easter.tmx</parameter>
     </attributes>
 
     <!-- NPCs -->
@@ -79,7 +80,17 @@
       <attribute name="class">transparent</attribute>
       <attribute name="resistance">0</attribute>
     </entity>
-
+    
+    <!-- Sounds -->
+    <entity x="57" y="73">
+      <implementation
+        class-name="games.stendhal.server.entity.mapstuff.sound.LoopedAmbientSoundSource">
+        <parameter name="sound">water-2</parameter>
+        <parameter name="radius">20</parameter>
+        <parameter name="volume">60</parameter>
+      </implementation>
+     </entity>
+      
     <!-- Portals -->
     <portal x="36" y="17" ref="tavern_entrance_left">
       <destination zone="int_fado_tavern" ref="entrance_left" />
@@ -1075,7 +1086,7 @@ For example say:  11  if you want the room called Water of Love.
       <title>Fado Great Caves</title>
       <type>dungeon</type>
       <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+      <url>https://stendhalgame.org/dungeon/fado_great_caves.html</url>
     </point-of-interest>
 
   </zone>
@@ -1223,7 +1234,7 @@ For example say:  11  if you want the room called Water of Love.
       <title>Fado Great Caves</title>
       <type>dungeon</type>
       <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+      <url>https://stendhalgame.org/dungeon/fado_great_caves.html</url>
     </point-of-interest>
 
   </zone>
@@ -1241,7 +1252,7 @@ For example say:  11  if you want the room called Water of Love.
       <title>Fado Great Caves</title>
       <type>dungeon</type>
       <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+      <url>https://stendhalgame.org/dungeon/fado_great_caves.html</url>
     </point-of-interest>
 
     <portal x="26" y="42" ref="hut1_entrance">
@@ -1257,7 +1268,7 @@ For example say:  11  if you want the room called Water of Love.
       <title>Fado Great Caves</title>
       <type>dungeon</type>
       <description>Entrance to Fado Great Caves, a huge dungeon that extends over a wide underground area south of Orril river.</description>
-      <url>http://stendhalgame.org/wiki/Fado_Great_Caves</url>
+      <url>https://stendhalgame.org/dungeon/fado_great_caves.html</url>
     </point-of-interest>
 
     <portal x="97" y="85" ref="hut3_entrance">
