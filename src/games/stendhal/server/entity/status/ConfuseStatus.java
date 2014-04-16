@@ -13,8 +13,8 @@ package games.stendhal.server.entity.status;
 
 
 /**
- * A status effect that causes the entity to stop moving after a set amount of
- * steps
+ * A status effect that causes the entity to get confused of directions
+ * 
  * 
  * @author Jordan
  */
