@@ -30,16 +30,29 @@ public class ShockStatusHandler implements StatusHandler<ShockStatus> {
 	 */
 	@Override
 	public void inflict(ShockStatus status, StatusList statusList, Entity attacker) {
+
+		if (!statusList.hasStatus(status.getStatusType())) {	
+			RPEntity entity = statusList.getEntity();
+			if (entity != null) {
+				if (attacker == null) {
+					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You are shocked.");
+				} else {
+					entity.sendPrivateText(NotificationType.SCENE_SETTING, "You have been shocked by " + attacker.getName() + ".");
+				}		
+			}
+		}
+		
 		int count = statusList.countStatusByType(status.getStatusType());
 		if (count <= 6) {
 			statusList.addInternal(status);
 		}
-
+		
 		if (count == 0) {
 			statusList.activateStatusAttribute("status_" + status.getName());
 			TurnNotifier.get().notifyInSeconds(60, new StatusRemover(statusList, status));
 			TurnNotifier.get().notifyInTurns(0, new ShockStatusTurnListener(statusList));
 		}
+
 	}
 
 	/**
