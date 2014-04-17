@@ -262,7 +262,8 @@ CREATE TABLE IF NOT EXISTS searchindex
   entitytype  CHAR(1),
   entityname  VARCHAR(64),
   searchscore INTEGER,
-  PRIMARY KEY(id),
-  INDEX (searchterm),
-  INDEX (entitytype, entityname)
+  PRIMARY KEY(id)
   );
+  
+/* CREATE INDEX i_searchindex_searchterm ON searchindex(searchterm); */
+/* CREATE INDEX i_searchindex_entitytype_entityname ON searchindex(entitytype, entityname); */
