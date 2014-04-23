@@ -12,10 +12,17 @@
 - integration of wiki pages
 - detail pages for quests, regions and dungeons
 - links from NPC, items and creatures to related quests
+- new, cleaner layout with drop down menus
+- galleries e. g. for screenshots
+- website now works on small devices
+
 
 *fixes*
 - length of text messages limited
 - wedding ring supports double click
+- message on shocked
+- code cleanup and documentation improvements
+
 
 
 1.13
