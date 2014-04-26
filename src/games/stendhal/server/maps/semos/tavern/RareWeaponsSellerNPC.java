@@ -12,11 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.tavern;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.pathfinder.FixedPath;
-import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -24,8 +24,6 @@ import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -51,12 +49,8 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				final List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(16, 3));
-				nodes.add(new Node(13, 3));
-				nodes.add(new Node(13, 2));
-				nodes.add(new Node(13, 3));
-				setPath(new FixedPath(nodes, true));
+				// McPegleg doesn't move (room too small)
+				setPath(null);
 			}
 
 			@Override
@@ -76,6 +70,10 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				        "That's none of your business!", null);
 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare")), false);
 			}
+			
+			protected void onGoodbye(RPEntity player) {
+				setDirection(Direction.DOWN);
+			}
 		};
 
 		// Add some atmosphere
@@ -83,7 +81,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 
 		// Add our new NPC to the game world
 		mcpegleg.setEntityClass("pirate_sailornpc");
-		mcpegleg.setPosition(16, 3);
+		mcpegleg.setPosition(15, 4);
 		mcpegleg.initHP(100);
 		zone.add(mcpegleg);
 	}
