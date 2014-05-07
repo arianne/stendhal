@@ -40,13 +40,23 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.BoxView;
 import javax.swing.text.Caret;
+import javax.swing.text.ComponentView;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.IconView;
+import javax.swing.text.LabelView;
+import javax.swing.text.ParagraphView;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import javax.swing.text.StyledEditorKit;
+import javax.swing.text.View;
+import javax.swing.text.ViewFactory;
 
 import org.apache.log4j.Logger;
 
@@ -123,6 +133,7 @@ class KTextEdit extends JComponent {
 	 */
 	protected void buildGUI() {
 		textPane = new JTextPane();
+		textPane.setEditorKit(new WrapEditorKit());
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
 		// Turn off caret following. VerticalScrollBarModel takes care of
@@ -466,6 +477,73 @@ class KTextEdit extends JComponent {
 				setUnreadLinesWarning(true);
 			}
 			super.setRangeProperties(value, extent, min, max, adjusting);
+		}
+	}
+	
+	/**
+	 * This is a workaround to line break behavior change between java versions
+	 * 6 and 7. Long words do not get line breaks and no officially supported
+	 * mechanism to get the old behavior is provided. Java bug <a href=
+	 * "http://bugs.java.com/view_bug.do?bug_id=7125737">7125737</a> was closed
+	 * as "Not an Issue".<p>
+	 *
+	 * The solution here is by StanislavL, published at multiple places,
+	 * including <a href="http://stackoverflow.com/questions/8666727/wrap-long-words-in-jtextpane-java-7">
+	 * here.</a>
+	 */
+	private static class WrapEditorKit extends StyledEditorKit {
+		private final ViewFactory defaultFactory=new WrapColumnFactory();
+
+		@Override
+		public ViewFactory getViewFactory() {
+			return defaultFactory;
+		}
+	}
+
+	/**
+	 * Part of the bug workaround mentioned in {@link WrapEditorKit}.
+	 */
+	private static class WrapColumnFactory implements ViewFactory {
+		@Override
+		public View create(Element elem) {
+			String kind = elem.getName();
+			if (kind != null) {
+				if (kind.equals(AbstractDocument.ContentElementName)) {
+					return new WrapLabelView(elem);
+				} else if (kind.equals(AbstractDocument.ParagraphElementName)) {
+					return new ParagraphView(elem);
+				} else if (kind.equals(AbstractDocument.SectionElementName)) {
+					return new BoxView(elem, View.Y_AXIS);
+				} else if (kind.equals(StyleConstants.ComponentElementName)) {
+					return new ComponentView(elem);
+				} else if (kind.equals(StyleConstants.IconElementName)) {
+					return new IconView(elem);
+				}
+			}
+
+			// default to text display
+			return new LabelView(elem);
+		}
+	}
+
+	/**
+	 * Part of the bug workaround mentioned in {@link WrapEditorKit}.
+	 */
+	private static class WrapLabelView extends LabelView {
+		public WrapLabelView(Element elem) {
+			super(elem);
+		}
+
+		@Override
+		public float getMinimumSpan(int axis) {
+			switch (axis) {
+			case View.X_AXIS:
+				return 0;
+			case View.Y_AXIS:
+				return super.getMinimumSpan(axis);
+			default:
+				throw new IllegalArgumentException("Invalid axis: " + axis);
+			}
 		}
 	}
 }
