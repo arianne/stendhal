@@ -13,6 +13,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -130,9 +131,24 @@ public class HelpTomiTest {
 		en.step(player, "ice");
 		assertEquals("my ice :) :) :) ", getReply(npc));
 		assertFalse(player.isEquipped("ice sword"));
-		assertThat(player.getXP(), greaterThan(xp3));
+		assertThat(player.getXP() - xp3, is(9000));
 		assertTrue(player.isQuestCompleted(questSlot));
 		// [22:07] kymara earns 9000 experience points.
+		en.step(player, "bye");
+		assertEquals("bye", getReply(npc));
+		
+		// check the XP rate change point
+		player.setQuest(questSlot, 1, "11");
+		item = ItemTestHelper.createItem("ice sword");
+		player.getSlot("bag").add(item);
+		final int xp4 = player.getXP();
+		en.step(player, "hi");
+		assertEquals("help!", getReply(npc));
+		en.step(player, "ice");
+		assertEquals("my ice :) :) :) :) :) :) :) :) :) :) :) :) ", getReply(npc));
+		assertFalse(player.isEquipped("ice sword"));
+		assertThat(player.getXP() - xp4, is(10 * 12 * 1000));
+		assertTrue(player.isQuestCompleted(questSlot));
 		en.step(player, "bye");
 		assertEquals("bye", getReply(npc));
 	}

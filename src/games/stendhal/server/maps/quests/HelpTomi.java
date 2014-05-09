@@ -62,6 +62,11 @@ import java.util.List;
  * </ul>
  */
 public class HelpTomi extends AbstractQuest {
+	/**
+	 * Number of repetitions after which the XP growth becomes linear, instead
+	 * of quadratic.
+	 */
+	private static final int N_0 = 10;
 
 	private static final String QUEST_SLOT = "help_tomi";
 	private static final String extraTrigger = "ice";
@@ -144,7 +149,9 @@ public class HelpTomi extends AbstractQuest {
 					player.drop("ice sword");
 						player.addKarma(N * 15.0);
 						player.setQuest(QUEST_SLOT, "done;" + Integer.toString(N));
-						player.addXP(N * N * 1000);
+						// Used to be n * n, but it became a problem when with
+						// overly high rewards when players noticed how it worked
+						player.addXP(N * Math.min(N, N_0) * 1000);
 						// make the number of smilies correspond to how many
 						// times you helped him
 						StringBuffer saybuf = new StringBuffer();
