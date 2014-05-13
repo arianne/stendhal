@@ -18,10 +18,16 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 
 import java.net.URI;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Print creature and item descriptions in a format usable for translations.
+ * Print creature and item data in a format usable for translations.
+ * The included strings are:
+ * - names
+ * - descriptions
+ * - creature sentences
  */
 public class GenerateDescriptions {
 	private static void creatureDescriptions() throws Exception {
@@ -31,6 +37,15 @@ public class GenerateDescriptions {
 		for (final DefaultCreature creature : creatures) {
 			System.out.println(creature.getCreatureName() + "=" + creature.getCreatureName());
 			System.out.println(describe(creature.getDescription(), creature.getCreatureName()));
+			if (!creature.getNoiseLines().isEmpty()) {
+				Set<String> says = new HashSet<String>();
+				for (List<String> lines : creature.getNoiseLines().values()) {
+					says.addAll(lines);
+				}
+				for (String line : says) {
+					System.out.println(line + "=" + line);
+				}
+			}
 		}
 	}
 
