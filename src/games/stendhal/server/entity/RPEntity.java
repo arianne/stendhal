@@ -485,7 +485,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// Defending side
 		final double armor = defender.getItemDef();
-		final int targetDef = defender.getDef();
+		final int targetDef = defender.getCappedDef();
 		// Even strong players are vulnerable without any armor.
 		// Armor def gets much higher with high level players unlike
 		// weapon atk, so it can not be treated similarly. Using geometric
@@ -506,10 +506,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// Attacking
 		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + getAtk() + " and uses a weapon of "
+			logger.debug("attacker has " + getAtk() + " (" + getCappedAtk() + ") and uses a weapon of "
 					+ getItemAtk());
 		}
-		final int sourceAtk = getAtk();
+		final int sourceAtk = getCappedAtk();
 
 		// Make fast weapons efficient against weak enemies, and heavy
 		// better against strong enemies.
@@ -666,6 +666,16 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
+	 * gets the capped atk level, which prevent players from training their atk way beyond what is reasonable for their level
+	 *
+	 * @return capped atk
+	 */
+	public int getCappedAtk() {
+		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		return Math.min(this.atk, (int) (this.level * 0.3) + 20);
+	}
+
+	/**
 	 * Set attack XP.
 	 *
 	 * @param atk the new value
@@ -714,6 +724,16 @@ public abstract class RPEntity extends GuidedEntity {
 
 	public int getDef() {
 		return this.def;
+	}
+
+	/**
+	 * gets the capped def level, which prevent players from training their def way beyond what is reasonable for their level
+	 *
+	 * @return capped atk
+	 */
+	public int getCappedDef() {
+		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		return Math.min(this.def, (int) (this.level * 0.3) + 20);
 	}
 
 	/**
@@ -2620,8 +2640,8 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 */
 	public boolean canHit(final RPEntity defender) {
 		int roll = Rand.roll1D20();
-		final int defenderDEF = defender.getDef();
-		final int attackerATK = this.getAtk();
+		final int defenderDEF = defender.getCappedDef();
+		final int attackerATK = this.getCappedAtk();
 
 		/*
 		 * Use some karma unless attacker is much stronger than defender, in

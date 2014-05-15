@@ -22,7 +22,8 @@
 - wedding ring supports double click
 - message on shocked
 - code cleanup and documentation improvements
-
+- excessly high atk and def level are capped for fighters with little experience 
+  (average players should not notice much of a difference)
 
 
 1.13
