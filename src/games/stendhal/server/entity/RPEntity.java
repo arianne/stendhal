@@ -397,23 +397,15 @@ public abstract class RPEntity extends GuidedEntity {
 
 		if (has("name")) {
 			final String newName = get("name");
-
 			registerNewName(newName, name);
-
 			name = newName;
 		}
 
-		if (has("atk")) {
-			atk = getInt("atk");
-		}
 		if (has("atk_xp")) {
 			atk_xp = getInt("atk_xp");
 			setAtkXpInternal(atk_xp, false);
 		}
 
-		if (has("def")) {
-			def = getInt("def");
-		}
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
 			setDefXpInternal(def_xp, false);
@@ -655,7 +647,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private void setAtkInternal(final int atk, boolean notify) {
 		this.atk = atk;
-		put("atk", atk);
+		put("atk", atk);  // visible atk
 		if(notify) {
 			this.updateModifiedAttributes();
 		}
@@ -716,7 +708,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private void setDefInternal(final int def, boolean notify) {
 		this.def = def;
-		put("def", def);
+		put("def", def);  // visible def
 		if(notify) {
 			this.updateModifiedAttributes();
 		}
