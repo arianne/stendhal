@@ -40,9 +40,9 @@ public class RPEntityRPClass {
         entity.addAttribute("base_hp", Type.SHORT);
         entity.addAttribute("hp", Type.SHORT);
 
-        entity.addAttribute("atk", Type.SHORT);
+        entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
         entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
-        entity.addAttribute("def", Type.SHORT);
+        entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
         entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
         entity.addAttribute("atk_item", Type.INT,
                 (byte) (Definition.PRIVATE | Definition.VOLATILE));
