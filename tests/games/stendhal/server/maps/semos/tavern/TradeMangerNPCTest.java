@@ -169,8 +169,8 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 		player.addXP(1700);
 
-		QuestHelper.equipWithStackableItem(player, "coal", 10);
-		QuestHelper.equipWithMoney(player, 100);
+		PlayerTestHelper.equipWithStackableItem(player, "coal", 10);
+		PlayerTestHelper.equipWithMoney(player, 100);
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));
@@ -194,8 +194,8 @@ public class TradeMangerNPCTest extends ZonePlayerAndNPCTestImpl {
 		final Engine en = npc.getEngine();
 		player.addXP(1700);
 
-		QuestHelper.equipWithItem(player, "dagger");
-		QuestHelper.equipWithMoney(player, 100);
+		PlayerTestHelper.equipWithItem(player, "dagger");
+		PlayerTestHelper.equipWithMoney(player, 100);
 
 		assertTrue(en.step(player, "hello"));
 		assertEquals("Welcome to Semos trading center. How can I #help you?", getReply(npc));

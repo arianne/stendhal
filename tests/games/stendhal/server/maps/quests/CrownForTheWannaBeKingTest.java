@@ -191,14 +191,12 @@ public class CrownForTheWannaBeKingTest {
 	public void testQuestOfferedToQuestion1() {
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
-			final double oldkarma = bob.getKarma();
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
 			assertTrue(new QuestNotStartedCondition(QUEST_SLOT).fire(bob, null, npc));
 
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.QUESTION_1));
 			assertThat(playerSays, bob.hasQuest(QUEST_SLOT), is(true));
-			assertThat(playerSays, bob.getKarma(), greaterThan(oldkarma));
 			assertEquals(
 					"I want my crown to be beautiful and shiny. I need 2 #carbuncles, 2 #diamonds, 4 #emeralds, 2 #'gold bars', an #obsidian, and 3 #sapphires."
 					+ " Do you have some of those now with you?",

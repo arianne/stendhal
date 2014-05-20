@@ -114,14 +114,12 @@ public class ElvishArmorTest {
 			npcEngine.setCurrentState(QUEST_OFFERED);
 
 			assertFalse(player.hasQuest(QUEST_SLOT));
-			final double oldkarma = player.getKarma();
 
 			npcEngine.step(player, playerSays);
 
 			assertThat(playerSays, npcEngine.getCurrentState(), is(IDLE));
 			assertThat(playerSays, getReply(npc), is("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!"));
 			assertTrue(playerSays, player.hasQuest(QUEST_SLOT));
-			assertThat(playerSays, player.getKarma(), greaterThan(oldkarma));
 		}
 	}
 

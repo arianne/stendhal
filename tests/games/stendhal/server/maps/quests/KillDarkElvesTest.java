@@ -350,14 +350,12 @@ public class KillDarkElvesTest {
 		LinkedList<String> questHistory = new LinkedList<String>();
 		for (final String playerSays : ConversationPhrases.YES_MESSAGES) {
 			final Player bob = PlayerTestHelper.createPlayer("bob");
-			final double oldKarma = bob.getKarma();
 			npcEngine.setCurrentState(ConversationStates.QUEST_OFFERED);
 			npcEngine.step(bob, playerSays);
 			assertThat(playerSays, npcEngine.getCurrentState(), is(ConversationStates.ATTENDING));
 			assertEquals(playerSays,
 					"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
 					getReply(npc));
-			assertThat(bob.getKarma(), greaterThan(oldKarma));
 			assertThat(bob.getQuest(QUEST_SLOT), is("started"));
 			questHistory.clear();
 			questHistory.add("I agreed to help Maerion.");

@@ -94,7 +94,6 @@ public class TakeGoldforGrafindleTest {
 		assertThat(player.getQuest(questSlot), is("rejected"));
 		assertThat(player.getKarma(), lessThan(karma));
 		
-		final double karma2 = player.getKarma();
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));
 		en.step(player, "quest");
@@ -107,7 +106,6 @@ public class TakeGoldforGrafindleTest {
 		en.step(player, "yes");
 		assertEquals("Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("start"));
-		assertThat(player.getKarma(), greaterThan(karma2));
 		
 		en.step(player, "hi");
 		assertEquals("Greetings. If you need #help, please ask.", getReply(npc));

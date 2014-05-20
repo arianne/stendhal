@@ -75,8 +75,6 @@ public class IcecreamForAnnieTest {
 	 */
 	@Test
 	public void testQuest() {
-		final double oldkarma = player.getKarma();
-
 		npc = SingletonRepository.getNPCList().get("Annie Jones");
 		en = npc.getEngine();
 
@@ -92,7 +90,6 @@ public class IcecreamForAnnieTest {
 		assertEquals("I'm hungry! I'd like an ice cream, please. Vanilla, with a chocolate flake. Will you get me one?", getReply(npc));
 		en.step(player, "ok");
 		assertEquals("Thank you!", getReply(npc));
-		assertThat(player.getKarma(), greaterThan(oldkarma));
 		assertThat(player.getQuest(questSlot), is("start"));
 		en.step(player, "bye");
 		assertEquals("Ta ta.", getReply(npc));

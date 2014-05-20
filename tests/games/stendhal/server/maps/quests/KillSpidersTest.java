@@ -123,7 +123,6 @@ public class KillSpidersTest extends SpidersCreatures {
 		assertEquals("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?", getReply(npc));		
 		en.step(player, "yes");
 		assertEquals("Fine. Go down to the basement and kill all the creatures there!", getReply(npc));
-		assertThat(player.getKarma(), greaterThan(oldkarma));
 		questHistory.add("I do agree to help Morgrin.");
 		assertEquals(questHistory, quest.getHistory(player));		
 		en.step(player, "bye");

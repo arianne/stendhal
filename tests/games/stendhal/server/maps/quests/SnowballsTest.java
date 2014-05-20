@@ -113,7 +113,6 @@ public class SnowballsTest {
 		PlayerTestHelper.equipWithStackableItem(player, "snowball", 25);
 		
 		final int xp = player.getXP();
-		final double karma = player.getKarma();
 		
 		en.step(player, "hi");
 		assertEquals("Greetings stranger! I see you have the snow I asked for. Are these snowballs for me?", getReply(npc));
@@ -124,7 +123,6 @@ public class SnowballsTest {
 		assertEquals("Bye.", getReply(npc));
 		
 		assertThat(player.getXP(), greaterThan(xp));
-		assertThat(player.getKarma(), greaterThan(karma));
 		assertFalse(player.isEquipped("snowballs", 25));
 		assertTrue(player.isEquipped("perch", 20) || player.isEquipped("cod", 20) );
 		

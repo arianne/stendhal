@@ -163,7 +163,6 @@ public class CloakCollector2Test {
 
 		en.stepTest(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("Brilliant! I'm all excited again! Bye!", getReply(npc));
-		assertEquals(karma + 5.0, player.getKarma(), 0.01);
 		
 		en.stepTest(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals("Welcome back! Have you brought any #cloaks with you?", getReply(npc));

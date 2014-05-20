@@ -171,7 +171,6 @@ public class VampireSwordTest {
 			
 			en.step(player, answer);
 			assertEquals("Then you need this #goblet. Take it to the Semos #Catacombs.", getReply(npc));
-			assertEquals("karma bonus", karma + 5.0, player.getKarma(), 0.01);
 			assertTrue("Player is given a goblet", player.isEquipped("empty goblet"));
 			assertEquals(en.getCurrentState(), ConversationStates.ATTENDING);
 		}

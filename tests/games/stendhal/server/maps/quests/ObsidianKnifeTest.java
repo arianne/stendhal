@@ -121,7 +121,6 @@ public class ObsidianKnifeTest {
 		en.step(player, "yes");
 		assertEquals("Thanks. Try asking at a library for a 'gem book'.", getReply(npc));
 		assertThat(player.getQuest(questSlot), is("seeking_book"));
-		assertThat(player.getKarma(), greaterThan(karma));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 		
