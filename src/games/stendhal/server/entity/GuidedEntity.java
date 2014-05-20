@@ -162,29 +162,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 	
 	public void setCollisionAction(final CollisionAction action) {
 		collisionAction = action;
-		
-/*		if (collisionAction == CollisionAction.REVERSE) {
-			setReversiblePath(true);
-		}*/
 	}
-	
-	/**
-	 * Set the entity's path reversible, or non-reversible.
-	 * 
-	 * @param reversible if <code>true</code> the entity's path can be changed
-	 * 	upon collision to walk in the opposite direction
-	 */
-/*    public void setReversiblePath(boolean reversible) {
-        reversiblePath = reversible;
-    }*/
-    
-    /**
-     * @return Entity's path can be changed upon collision to walk in the opposite direction
-     */
-/*	public boolean hasReversiblePath() {
-	    return reversiblePath;
-	}*/
-	
+
 	/**
 	 * function return current entity's path.
 	 * @return path
