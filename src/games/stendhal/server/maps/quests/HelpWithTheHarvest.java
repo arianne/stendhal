@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -160,6 +161,16 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				constructHayCartsNotYetCompletedCondition(),
 				ConversationStates.ATTENDING,
 				"You did not yet bring both straw carts next to the cart near the barn just north of here.",
+				null);
+		
+		/*
+		 * Player asks for a quest although he has it already open
+		 */
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I already ask you to bring both straw carts next to Karls barn. Tell me if you are already #done with that.",
 				null);
 		
 		/*
