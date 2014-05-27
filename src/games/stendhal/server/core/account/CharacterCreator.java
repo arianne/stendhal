@@ -91,15 +91,13 @@ public class CharacterCreator {
 			}
 
 			final Player object = Player.createZeroLevelPlayer(character, template);
-		       // monitor new account names
-	        final String text = "Support: A new character has just been created called " + character + ".";
-	 
-		    SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
-			
-			/*
-			 * Finally we add it to database.
-			 */
-		    characterDAO.addCharacter(trans, username, character, object);
+
+			// monitor new account names
+			final String text = "Character " + character + " (" + username + ") has been created.";
+			SingletonRepository.getRuleProcessor().sendMessageToSupporters(text);
+
+			// Finally we add it to database.
+			characterDAO.addCharacter(trans, username, character, object);
 			transactionPool.commit(trans);
 
 			return new CharacterResult(Result.OK_CREATED, character, object);
