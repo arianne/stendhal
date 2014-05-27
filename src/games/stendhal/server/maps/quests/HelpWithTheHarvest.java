@@ -17,6 +17,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.ResetBlockChatAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -240,7 +241,6 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	private void placeCartsAndTargets() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_ados_forest_w2");
 		
-		ChatAction a = new IncrementQuestAction(QUEST_SLOT, 1, -1);
 		ChatCondition c = constructHayCartsNotYetCompletedCondition();
 		
 		String cartDescription = "You see a straw cart. Can you manage to push it to Karl's barn?";
@@ -250,6 +250,8 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		Block cartTwo = new Block(79, 106, true, "hay_cart");
 		cartTwo.setDescription(cartDescription);
 		
+        ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
+
 		zone.add(cartOne);
 		zone.add(cartTwo);
 		zone.addMovementListener(cartOne);
@@ -257,12 +259,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		zone.addZoneEnterExitListener(cartOne);
 		zone.addZoneEnterExitListener(cartTwo);
 		
-		BlockTarget targetOne = new BlockTarget(64, 75);
+        BlockTarget targetOne = new BlockTarget(64, 75, "target", true);
 		targetOne.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
 		
-		BlockTarget targetTwo = new BlockTarget(65, 75);
+        BlockTarget targetTwo = new BlockTarget(65, 75, "target", true);
 		targetTwo.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);
