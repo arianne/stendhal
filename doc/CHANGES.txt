@@ -8,7 +8,7 @@
 - Easter map for Fado city
 
 *website*
-- unified search
+- unified search: creatures, items, quests, achievements, players, world guide, player's guide
 - integration of wiki pages
 - detail pages for quests, regions and dungeons
 - links from NPC, items and creatures to related quests
