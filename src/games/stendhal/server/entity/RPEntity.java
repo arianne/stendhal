@@ -664,7 +664,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public int getCappedAtk() {
 		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		return Math.min(this.atk, (int) (this.level * 0.3) + 20);
+		// reduced using median instead of average as reference
+		return Math.min(this.atk, (int) (this.level * 0.3) + 15);
 	}
 
 	/**
@@ -725,7 +726,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public int getCappedDef() {
 		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		return Math.min(this.def, (int) (this.level * 0.3) + 20);
+		// reduced using median instead of average as reference
+		return Math.min(this.def, (int) (this.level * 0.3) + 15);
 	}
 
 	/**
