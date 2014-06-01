@@ -259,12 +259,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		zone.addZoneEnterExitListener(cartOne);
 		zone.addZoneEnterExitListener(cartTwo);
 		
-        BlockTarget targetOne = new BlockTarget(64, 75, "target", true);
+		BlockTarget targetOne = new BlockTarget(64, 75);
 		targetOne.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
 		
-        BlockTarget targetTwo = new BlockTarget(65, 75, "target", true);
+		BlockTarget targetTwo = new BlockTarget(65, 75);
 		targetTwo.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);
