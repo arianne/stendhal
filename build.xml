@@ -449,6 +449,8 @@
 				<include name="games/stendhal/client/update/*"/>
 			</fileset>
 			<manifest>
+				<attribute name="Application-Name" value="Stendhal" />
+				<attribute name="Application-Library-Allowable-Codebase"  value="http://arianne.sf.net http://arianne.sourceforge.net https://arianne.sf.net https://arianne.sourceforge.net https://stendhalgame.org *" />
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
 				<attribute name="Class-path" value="."/>
 				<attribute name="Permissions" value="all-permissions"/>
