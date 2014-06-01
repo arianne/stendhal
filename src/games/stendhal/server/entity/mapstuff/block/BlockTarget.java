@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.entity.mapstuff.block;
 
@@ -12,15 +12,17 @@ import marauroa.common.game.RPClass;
 
 /**
  * An entity representing a target for a pushable block
- * 
+ *
  * @author madmetzger
  */
 public class BlockTarget extends AreaEntity {
-	
+
 	private ChatAction action;
-	
+
 	private ChatCondition condition;
-	
+
+	private boolean reset = false;
+
 	/**
 	 * Generate the RPClass
 	 */
@@ -31,20 +33,20 @@ public class BlockTarget extends AreaEntity {
 		clazz.addAttribute("y", Type.INT);
 		clazz.addAttribute("shape", Type.STRING);
 	}
-	
+
 	/**
 	 * Create a BlockTarget accepting any Block
-	 * 
+	 *
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
 	public BlockTarget(int x, int y) {
 		this.setPosition(x, y);
 	}
-	
+
 	/**
 	 * Create a shaped BlockTarget, that only accepts Blocks of a certain shape
-	 * 
+	 *
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 * @param shape accepted shape
@@ -53,12 +55,26 @@ public class BlockTarget extends AreaEntity {
 		this(x, y);
 		this.put("shape", shape);
 	}
-	
+
+	/**
+	 * Create a shaped BlockTarget, that only accepts Blocks of a certain shape
+	 *
+	 * @param x x-coordinate
+	 * @param y y-coordinate
+	 * @param shape accepted shape
+	 * @param reset reset block on reached target
+	 */
+	public BlockTarget(int x, int y, String shape, boolean reset) {
+		this(x, y);
+		this.put("shape", shape);
+		this.reset = reset;
+	}
+
 	/**
 	 * Check if a Block would trigger this BlockTarget
-	 * 
+	 *
 	 * @param b the Block to check
-	 * @param p 
+	 * @param p
 	 * @return true iff the given Block would trigger this target
 	 */
 	public boolean doesTrigger(Block b, Player p) {
@@ -66,33 +82,36 @@ public class BlockTarget extends AreaEntity {
 		String targetShape = this.getShape();
 		boolean shapeFits = true;
 		boolean conditionMet = true;
-		
+
 		if(targetShape != null) {
 			shapeFits = targetShape.equals(blockShape);
 		}
-		
+
 		if(this.condition != null) {
 			conditionMet = this.condition.fire(p, null, null);
 		}
-		
+
 		return conditionMet && shapeFits;
 	}
-	
+
 	/**
 	 * Trigger this BlockTarget
-	 * 
-	 * @param b The Block that was pushed on this target 
+	 *
+	 * @param b The Block that was pushed on this target
 	 * @param p The Player who has pushed the triggering Block on this target
 	 */
 	public void trigger(Block b, Player p) {
+		if (reset) {
+			b.reset();
+		}
 		if(this.action != null) {
 			this.action.fire(p, null, null);
 		}
 	}
-	
+
 	/**
 	 * Get the shape of this BlockTarget
-	 * 
+	 *
 	 * @return the shape or null if this BlockTarget has no shape
 	 */
 	public String getShape() {
@@ -111,7 +130,7 @@ public class BlockTarget extends AreaEntity {
 
 	/**
 	 * Set the ChatCondition to check
-	 * 
+	 *
 	 * @param condition the condition to set
 	 */
 	public void setCondition(ChatCondition condition) {
