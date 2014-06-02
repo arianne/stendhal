@@ -17,11 +17,9 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
-import games.stendhal.server.entity.npc.action.ResetBlockChatAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -136,7 +134,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-                        "That is really nice. I was getting tired of bringing carts to Karl. Please #push two straw carts to Karl's #barn and tell me that you are #done afterwards.",
+				"That is really nice. I was getting tired of bringing carts to Karl. Please #push two staw carts to Karl's #barn and tell me that you are #done afterwards.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start;2", 2.0));
 
 		npc.addReply("push", "You can easily move the carts by pushing them in front of the barn entrance. Take care to not get them stuck anywhere around or you won't be able to move them away.");
@@ -162,16 +160,6 @@ public class HelpWithTheHarvest extends AbstractQuest {
 				constructHayCartsNotYetCompletedCondition(),
 				ConversationStates.ATTENDING,
 				"You did not yet bring both straw carts next to the cart near the barn just north of here.",
-				null);
-		
-		/*
-		 * Player asks for a quest although he has it already open
-		 */
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestActiveCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"I already ask you to bring both straw carts next to Karls barn. Tell me if you are already #done with that.",
 				null);
 		
 		/*
@@ -241,6 +229,7 @@ public class HelpWithTheHarvest extends AbstractQuest {
 	private void placeCartsAndTargets() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_ados_forest_w2");
 		
+		ChatAction a = new IncrementQuestAction(QUEST_SLOT, 1, -1);
 		ChatCondition c = constructHayCartsNotYetCompletedCondition();
 		
 		String cartDescription = "You see a straw cart. Can you manage to push it to Karl's barn?";
@@ -250,8 +239,6 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		Block cartTwo = new Block(79, 106, true, "hay_cart");
 		cartTwo.setDescription(cartDescription);
 		
-        ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
-
 		zone.add(cartOne);
 		zone.add(cartTwo);
 		zone.addMovementListener(cartOne);
@@ -259,12 +246,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		zone.addZoneEnterExitListener(cartOne);
 		zone.addZoneEnterExitListener(cartTwo);
 		
-        BlockTarget targetOne = new BlockTarget(64, 75, "target", true);
+		BlockTarget targetOne = new BlockTarget(64, 75);
 		targetOne.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetOne.setCondition(c);
 		targetOne.setAction(a);
 		
-        BlockTarget targetTwo = new BlockTarget(65, 75, "target", true);
+		BlockTarget targetTwo = new BlockTarget(65, 75);
 		targetTwo.setDescription("You see a plain point on the ground. Something heavy stood here before.");
 		targetTwo.setAction(a);
 		targetTwo.setCondition(c);
