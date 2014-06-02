@@ -2580,4 +2580,25 @@ public class Player extends RPEntity implements UseListener {
 		return clientVersion;
 	}
 
+
+	/**
+	 * gets the capped atk level, which prevent players from training their atk way beyond what is reasonable for their level
+	 *
+	 * @return capped atk
+	 */
+	public int getCappedAtk() {
+		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// reduced using median instead of average as reference
+		return Math.min(this.atk, (int) (this.level * 0.3) + 15);
+	}
+
+	/**
+	 * gets the capped def level, which prevent players from training their def way beyond what is reasonable for their level
+	 *
+	 * @return capped atk
+	 */
+	public int getCappedDef() {
+		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		return Math.min(this.def, (int) (this.level * 0.3) + 20);
+	}
 }
