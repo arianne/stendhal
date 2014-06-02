@@ -31,6 +31,7 @@ import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.area.WalkBlocker;
 import games.stendhal.server.entity.mapstuff.area.Wall;
 import games.stendhal.server.entity.mapstuff.block.Block;
+import games.stendhal.server.entity.mapstuff.block.BlockTarget;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.game.GameBoard;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
@@ -125,6 +126,9 @@ public class RPClassGenerator {
 		}
 		if (!RPClass.hasRPClass("block")) {
 			Block.generateRPClass();
+		}
+		if (!RPClass.hasRPClass("blocktarget")) {
+			BlockTarget.generateRPClass();
 		}
 		if (!RPClass.hasRPClass("fish_source")) {
 			FishSource.generateRPClass();
