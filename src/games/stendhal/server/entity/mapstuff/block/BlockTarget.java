@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package games.stendhal.server.entity.mapstuff.block;
 
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
@@ -21,8 +19,6 @@ public class BlockTarget extends AreaEntity {
 
 	private ChatCondition condition;
 
-	private boolean reset = false;
-
 	/**
 	 * Generate the RPClass
 	 */
@@ -41,6 +37,8 @@ public class BlockTarget extends AreaEntity {
 	 * @param y y-coordinate
 	 */
 	public BlockTarget(int x, int y) {
+		setRPClass("blocktarget");
+		put("type", "blocktarget");
 		this.setPosition(x, y);
 	}
 
@@ -54,20 +52,6 @@ public class BlockTarget extends AreaEntity {
 	public BlockTarget(int x, int y, String shape) {
 		this(x, y);
 		this.put("shape", shape);
-	}
-
-	/**
-	 * Create a shaped BlockTarget, that only accepts Blocks of a certain shape
-	 *
-	 * @param x x-coordinate
-	 * @param y y-coordinate
-	 * @param shape accepted shape
-	 * @param reset reset block on reached target
-	 */
-	public BlockTarget(int x, int y, String shape, boolean reset) {
-		this(x, y);
-		this.put("shape", shape);
-		this.reset = reset;
 	}
 
 	/**
@@ -101,9 +85,6 @@ public class BlockTarget extends AreaEntity {
 	 * @param p The Player who has pushed the triggering Block on this target
 	 */
 	public void trigger(Block b, Player p) {
-		if (reset) {
-			b.reset();
-		}
 		if(this.action != null) {
 			this.action.fire(p, null, null);
 		}
