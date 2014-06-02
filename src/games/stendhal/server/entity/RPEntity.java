@@ -96,11 +96,11 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private String name;
 
-	private int atk;
+	protected int atk;
 
 	private int atk_xp;
 
-	private int def;
+	protected int def;
 
 	private int def_xp;
 
@@ -110,7 +110,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	private int xp;
 
-	private int level;
+	protected int level;
 
 	private int mana;
 
@@ -663,9 +663,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return capped atk
 	 */
 	public int getCappedAtk() {
-		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		// reduced using median instead of average as reference
-		return Math.min(this.atk, (int) (this.level * 0.3) + 15);
+		return this.atk;
 	}
 
 	/**
@@ -725,9 +723,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return capped atk
 	 */
 	public int getCappedDef() {
-		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		// reduced using median instead of average as reference
-		return Math.min(this.def, (int) (this.level * 0.3) + 15);
+		return this.def;
 	}
 
 	/**

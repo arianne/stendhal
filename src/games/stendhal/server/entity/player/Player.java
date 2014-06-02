@@ -2599,6 +2599,6 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	public int getCappedDef() {
 		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		return Math.min(this.def, (int) (this.level * 0.3) + 20);
+		return Math.min(this.def, (int) (this.level * 0.3) + 15);
 	}
 }
