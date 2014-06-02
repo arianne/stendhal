@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package games.stendhal.server.entity.mapstuff.block;
 
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
@@ -39,6 +37,8 @@ public class BlockTarget extends AreaEntity {
 	 * @param y y-coordinate
 	 */
 	public BlockTarget(int x, int y) {
+		setRPClass("blocktarget");
+		put("type", "blocktarget");
 		this.setPosition(x, y);
 	}
 
