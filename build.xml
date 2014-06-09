@@ -787,6 +787,7 @@
 			<fileset dir="tiled">
 				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
+				<exclude name="**/memory/**" />
 			</fileset>
 		</maprenderer>
 	</target>
