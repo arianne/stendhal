@@ -2580,16 +2580,40 @@ public class Player extends RPEntity implements UseListener {
 		return clientVersion;
 	}
 
-
+	/**
+	 * Get the maximum allowed ATK for a level.
+	 *   
+	 * @param level checked level
+	 * @return maximum ATK
+	 */
+	private int getMaxAtkForLevel(int level) {
+		return 5 * (int) Math.sqrt(level + 10);
+	}
+	
+	/**
+	 * Get the maximum allowed DEF for a level.
+	 *   
+	 * @param level checked level
+	 * @return maximum DEF
+	 */
+	private int getMaxDefForLevel(int level) {
+		if (level >= 150) {
+			// After the stat boost quest
+			return 10 * (int) Math.cbrt(level) + 60;
+		}
+		return getMaxAtkForLevel(level);
+	}
+	
 	/**
 	 * gets the capped atk level, which prevent players from training their atk way beyond what is reasonable for their level
 	 *
 	 * @return capped atk
 	 */
+	@Override
 	public int getCappedAtk() {
-		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		// Blue line in http://sourceforge.net/p/arianne/feature-requests/1330/
 		// reduced using median instead of average as reference
-		return Math.min(this.atk, (int) (this.level * 0.3) + 15);
+		return Math.min(this.atk, getMaxAtkForLevel(level));
 	}
 
 	/**
@@ -2597,8 +2621,9 @@ public class Player extends RPEntity implements UseListener {
 	 *
 	 * @return capped atk
 	 */
+	@Override
 	public int getCappedDef() {
-		// Orange line in http://sourceforge.net/p/arianne/feature-requests/1330/
-		return Math.min(this.def, (int) (this.level * 0.3) + 15);
+		// Red line in http://sourceforge.net/p/arianne/feature-requests/1330/
+		return Math.min(this.def, getMaxDefForLevel(level));
 	}
 }
