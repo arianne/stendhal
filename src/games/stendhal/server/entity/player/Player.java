@@ -2587,7 +2587,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return maximum ATK
 	 */
 	private int getMaxAtkForLevel(int level) {
-		return 5 * (int) Math.sqrt(level + 10);
+		return (int) (5 * Math.sqrt(level + 10));
 	}
 	
 	/**
@@ -2599,7 +2599,7 @@ public class Player extends RPEntity implements UseListener {
 	private int getMaxDefForLevel(int level) {
 		if (level >= 150) {
 			// After the stat boost quest
-			return 10 * (int) Math.cbrt(level) + 60;
+			return (int) (10 * Math.cbrt(level) + 60);
 		}
 		return getMaxAtkForLevel(level);
 	}
