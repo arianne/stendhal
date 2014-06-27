@@ -111,7 +111,6 @@ public class ObsidianKnifeTest {
 		en.step(player, "no");
 		assertEquals("Shame, I would really like to learn more about precious stones. Ah well, good bye.", getReply(npc));
 		
-		final double karma = player.getKarma();
 		en.step(player, "hi");
 		assertEquals("How did you get down here? I usually only see #kobolds.", getReply(npc));
 		en.step(player, "task");

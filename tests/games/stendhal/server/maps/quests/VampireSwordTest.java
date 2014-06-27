@@ -164,7 +164,6 @@ public class VampireSwordTest {
 			final Player player = PlayerTestHelper.createPlayer("me");			
 			final SpeakerNPC npc = vs.npcs.get(DWARF_NPC);
 			final Engine en = vs.npcs.get(DWARF_NPC).getEngine();
-			final double karma = player.getKarma();
 			
 			assertFalse(player.hasQuest(questSlot));
 			en.setCurrentState(ConversationStates.QUEST_OFFERED);

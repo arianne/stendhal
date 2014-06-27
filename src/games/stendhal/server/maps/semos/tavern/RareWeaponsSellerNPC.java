@@ -71,6 +71,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				new BuyerAdder().addBuyer(this, new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 			
+			@Override
 			protected void onGoodbye(RPEntity player) {
 				setDirection(Direction.DOWN);
 			}
