@@ -106,7 +106,7 @@ public class LearnAboutKarmaTest {
 		en.step(player, "yes");
 		assertEquals("Your karma of -10 is not very good. Now you can always see your karma, if you had good karma it would show as blue.", getReply(npc));
 		// add a bit of karma to test different values
-		player.addKarma(10.0);
+		player.addKarma(15.0);
 		en.step(player, "karma");
 		assertEquals(KARMA_ANSWER, getReply(npc));
 		en.step(player, "yes");
