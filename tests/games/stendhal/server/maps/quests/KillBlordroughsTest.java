@@ -79,6 +79,7 @@ public class KillBlordroughsTest {
 		
 		
 		player.setAdminLevel(1000);
+		player.addXP(2000000000);
 		player.setAtkXP(100000000);
 		player.setDefXP(100000000);
 		player.setXP(100000000);
@@ -106,7 +107,6 @@ public class KillBlordroughsTest {
 			MockStendlRPWorld.get().nextTurn();
 			MockStendhalRPRuleProcessor.get().beginTurn();
 			MockStendhalRPRuleProcessor.get().endTurn();
-
 		} while (player.isAttacking());
 		MockStendhalRPRuleProcessor.get().beginTurn();
 		MockStendhalRPRuleProcessor.get().endTurn();
@@ -118,7 +118,7 @@ public class KillBlordroughsTest {
 	 * @param numb - number of creatures for killing
 	 */
 	public void KillRandomBlordroughs(int numb) {
-		for(int i=0; i<numb; i++) {		
+		for(int i=0; i<numb; i++) {
 			KillRandomBlordrough();
 		}
 		logger.debug("killed "+ numb + " creatures.");
