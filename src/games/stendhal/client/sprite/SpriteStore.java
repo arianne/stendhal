@@ -14,7 +14,7 @@ package games.stendhal.client.sprite;
 
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.TransparencyMode;
 import games.stendhal.client.gui.j2d.Blend;
 import games.stendhal.client.sprite.TileSprite.TSRef;
 
@@ -275,7 +275,7 @@ public class SpriteStore {
 		int width = base.getWidth();
 		int height = base.getHeight();
 		BufferedImage image = gc.createCompatibleImage(width, height,
-				stendhal.TRANSPARENCY);
+				TransparencyMode.TRANSPARENCY);
 		Graphics2D g = image.createGraphics();
 		base.draw(g, 0, 0);
 		g.setColor(color);
@@ -348,7 +348,7 @@ public class SpriteStore {
 		}
 
 		final Image image = gc.createCompatibleImage(sourceImage.getWidth(),
-				sourceImage.getHeight(), stendhal.TRANSPARENCY);
+				sourceImage.getHeight(), TransparencyMode.TRANSPARENCY);
 
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);

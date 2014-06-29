@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.TransparencyMode;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sprite.DataLoader;
 import games.stendhal.client.sprite.ImageSprite;
@@ -64,7 +64,7 @@ public class AchievementBoxFactory {
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		// Get the category image
 		// initialize category image with empty image in case loading the image fails
-		BufferedImage categoryImage = gc.createCompatibleImage(32, 32, stendhal.TRANSPARENCY);
+		BufferedImage categoryImage = gc.createCompatibleImage(32, 32, TransparencyMode.TRANSPARENCY);
 		String imageName = ACHIEVEMENT_IMAGE_FOLDER + category.toLowerCase(Locale.ENGLISH) + ".png";
 		try {
 			categoryImage = ImageIO.read(DataLoader.getResourceAsStream(imageName));
@@ -85,7 +85,7 @@ public class AchievementBoxFactory {
 		height += TOP_MARGIN + BOTTOM_MARGIN;
 		
 		// Create the background sprite
-		final BufferedImage image = gc.createCompatibleImage(width, height, stendhal.TRANSPARENCY);
+		final BufferedImage image = gc.createCompatibleImage(width, height, TransparencyMode.TRANSPARENCY);
 		final Graphics2D g2d = image.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setComposite(AlphaComposite.Src);

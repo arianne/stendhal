@@ -13,7 +13,7 @@
 package games.stendhal.client.sprite;
 
 
-import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.TransparencyMode;
 
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
@@ -82,7 +82,7 @@ public class ImageSprite implements Sprite {
 		this.reference = reference;
 
 		image = getGC().createCompatibleImage(sprite.getWidth(),
-				sprite.getHeight(), stendhal.TRANSPARENCY);
+				sprite.getHeight(), TransparencyMode.TRANSPARENCY);
 
 		sprite.draw(image.getGraphics(), 0, 0);
 	}
@@ -146,7 +146,7 @@ public class ImageSprite implements Sprite {
 		final GraphicsConfiguration gc = getGC();
 
 		final Image imageTemp = gc.createCompatibleImage(width, height,
-				stendhal.TRANSPARENCY);
+				TransparencyMode.TRANSPARENCY);
 
 		draw(imageTemp.getGraphics(), 0, 0, x, y, width, height);
 

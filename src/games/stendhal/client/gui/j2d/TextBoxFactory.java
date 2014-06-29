@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.stendhal;
+import games.stendhal.client.gui.TransparencyMode;
 import games.stendhal.client.gui.textformat.AttributedStringBuilder;
 import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.TextAttributeSet;
@@ -109,7 +109,7 @@ public class TextBoxFactory {
 		
 		final int imageHeight = LINE_HEIGHT * numLines + 2 * MARGIN_WIDTH;
 
-		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, stendhal.TRANSPARENCY);
+		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, TransparencyMode.TRANSPARENCY);
 
 		final Graphics2D g2d = image.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -157,7 +157,7 @@ public class TextBoxFactory {
 		final int imageHeight = LINE_HEIGHT * lines.size() + topMargin + bottomMargin;
 
 		final GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, stendhal.TRANSPARENCY);
+		final BufferedImage image = gc.createCompatibleImage(imageWidth, imageHeight, TransparencyMode.TRANSPARENCY);
 
 		final Graphics2D g2d = image.createGraphics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

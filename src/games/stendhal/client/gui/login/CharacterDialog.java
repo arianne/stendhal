@@ -16,6 +16,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.gui.TransparencyMode;
 import games.stendhal.client.gui.WindowUtils;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.j2d.entity.EntityViewFactory;
@@ -249,7 +250,7 @@ public final class CharacterDialog extends JDialog implements Runnable {
 	 * @return A front view image of the player
 	 */
 	private Image createCharacterImage(EntityView<?> view) {
-		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, stendhal.TRANSPARENCY);
+		Image image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(IMAGE_WIDTH, IMAGE_HEIGHT, TransparencyMode.TRANSPARENCY);
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		
 		// Adjust the coordinates so that the actual player image gets

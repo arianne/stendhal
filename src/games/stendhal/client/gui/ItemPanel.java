@@ -15,7 +15,6 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameLoop;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
@@ -124,7 +123,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	 * @return an adjusted Sprite, or the original if no adjusting is needed
 	 */
 	private Sprite preparePlaceholder(Sprite original) {
-		if ((original == null) || (stendhal.TRANSPARENCY == Transparency.BITMASK)) {
+		if ((original == null) || (TransparencyMode.TRANSPARENCY == Transparency.BITMASK)) {
 			return original;
 		}
 		/*
