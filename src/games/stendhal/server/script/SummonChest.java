@@ -37,7 +37,7 @@ public class SummonChest extends ScriptImpl {
 	 * @param player
 	 *            admin who put the chest
 	 * @param args
-	 *            zone x y text
+	 *            zone x y
 	 */
 	public void add(final Player player, final List<String> args) {
 		if (args.size() == 3) {
@@ -89,7 +89,7 @@ public class SummonChest extends ScriptImpl {
 	 * @param player
 	 *            admin
 	 * @param args
-	 *            sign number at index 1
+	 *            chest number at index 1
 	 */
 	public void delete(final Player player, final List<String> args) {
 		int i;
@@ -131,7 +131,7 @@ public class SummonChest extends ScriptImpl {
 	 */
 	public void list(final Player player) {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("Listing signs:");
+		sb.append("Listing chests:");
 
 		int i = 1;
 		while (i <= chestcounter) {
