@@ -1,6 +1,19 @@
 ﻿Changelog
 ---------
 
+1.15
+
+*world*
+- better fitting curves to limit player stats
+- added support for translucency sprites on systems which are fast enough
+
+*website*
+- updated world map
+
+*admins*
+- admins can summon public chests
+
+
 1.14
 
 *world*
