@@ -23,19 +23,24 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.NotificationType;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
@@ -45,6 +50,7 @@ import javax.swing.UIManager;
 class VisualSettings {
 	private static final String STYLE_PROPERTY = "ui.style";
 	private static final String DEFAULT_STYLE = "Wood (default)";
+	private static final String TRANSPARENCY_PROPERTY = "ui.transparency";
 
 	private static final String GAMESCREEN_CREATURESPEECH = "gamescreen.creaturespeech";
 	
@@ -87,6 +93,7 @@ class VisualSettings {
 		page.setBorder(BorderFactory.createEmptyBorder(pad, pad, pad, pad));
 		
 		page.add(createStyleTypeSelector(), SLayout.EXPAND_X);
+		page.add(createTransparencySelector(), SLayout.EXPAND_X);
 		
 		// Disable widgets not in use
 		toggleComponents(page);
@@ -168,6 +175,75 @@ class VisualSettings {
 		return selector;
 	}
 	
+	/**
+	 * Create the transparency mode selector row.
+	 * 
+	 * @return component holding the selector and the related label
+	 */
+	private JComponent createTransparencySelector() {
+		JComponent row = SBoxLayout.createContainer(SBoxLayout.HORIZONTAL, SBoxLayout.COMMON_PADDING);
+		JLabel label = new JLabel("Transparency mode:");
+		row.add(label);
+		final JComboBox selector = new JComboBox();
+		final String[][] data = {
+				{"Automatic (default)", "auto", "The appropriate mode is decided automatically based on the system speed."},
+				{"Full translucency", "translucent", "Use semitransparent images where available. This is slow on some systems."},
+				{"Simple transparency", "bitmask", "Use simple transparency where parts of the image are either fully transparent or fully opaque.<p>Use this setting on old computers, if the game is unresponsive otherwise."}
+		};
+		
+		// Convenience mapping for getting the data rows from either short or
+		// long names
+		final Map<String, String[]> desc2data = new HashMap<String, String[]>();
+		Map<String, String[]> key2data = new HashMap<String, String[]>();
+		
+		for (String s[] : data) {
+			// fill the selector...
+			selector.addItem(s[0]);
+			// ...and prepare the convenience mappings in the same step
+			desc2data.put(s[0], s);
+			key2data.put(s[1], s);
+		}
+		
+		// Find out the current option
+		final WtWindowManager wm = WtWindowManager.getInstance();
+		String currentKey = wm.getProperty(TRANSPARENCY_PROPERTY, "auto");
+		String[] currentData = key2data.get(currentKey);
+		if (currentData == null) {
+			// invalid value; force the default
+			currentData = key2data.get("auto");
+		}
+		selector.setSelectedItem(currentData[0]);
+		selector.setRenderer(new TooltippedRenderer(data));
+		 
+		selector.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object selected = selector.getSelectedItem();
+				String[] selectedData = desc2data.get(selected);
+				wm.setProperty(TRANSPARENCY_PROPERTY, selectedData[1]);
+				ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("",
+						"The new transparency mode will be used the next time you start the game client.",
+						NotificationType.CLIENT));
+			}
+		});
+		row.add(selector);
+		
+		StringBuilder toolTip = new StringBuilder("<html>The transparency mode used for the graphics. The available options are:<dl>");
+		for (String[] optionData : data) {
+			toolTip.append("<dt><b>");
+			toolTip.append(optionData[0]);
+			toolTip.append("</b></dt>");
+			toolTip.append("<dd>");
+			toolTip.append(optionData[2]);
+			toolTip.append("</dd>");
+		}
+		toolTip.append("</dl></html>");
+		row.setToolTipText(toolTip.toString());
+		selector.setToolTipText(toolTip.toString());
+		
+		return row;
+	}
+		
 	/**
 	 * Disables widgets not being used.
 	 * 
@@ -436,4 +512,31 @@ class VisualSettings {
 		return null;
 	}
 	*/
+
+	/**
+	 * A cell renderer for combo boxes that can show different tooltips for the
+	 * options. The implementation is currently dependent on the data being in
+	 * the format used in {@link #createTransparencySelector()}, so if this is
+	 * needed elsewhere it needs to be generalized first.
+	 */
+	private static class TooltippedRenderer extends DefaultListCellRenderer {
+		private final String[][] data;
+		
+		TooltippedRenderer(String[][] data) {
+			this.data = data;
+		}
+		
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+
+			JComponent comp = (JComponent) super.getListCellRendererComponent(list,
+					value, index, isSelected, cellHasFocus);
+
+			if ((index > -1) && (value != null)) {
+				list.setToolTipText("<html>" + data[index][2] + "</html>");
+			}
+			return comp;
+		}
+	}
 }
