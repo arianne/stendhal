@@ -18,6 +18,7 @@ import static org.junit.Assert.assertThat;
 import games.stendhal.client.entity.RPEntity.Resolution;
 import games.stendhal.client.events.AttackEvent;
 import games.stendhal.client.events.Event;
+import games.stendhal.client.util.UserInterfaceTestHelper;
 import marauroa.common.game.RPEvent;
 
 import org.junit.After;
@@ -33,6 +34,7 @@ public class RPEntityTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		UserInterfaceTestHelper.initUserInterface();
 	}
 
 	@AfterClass
