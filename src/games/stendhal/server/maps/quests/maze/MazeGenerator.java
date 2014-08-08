@@ -39,9 +39,11 @@ import games.stendhal.server.util.TimeUtil;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import marauroa.common.game.RPObject;
 import marauroa.server.db.command.DBCommandQueue;
@@ -247,7 +249,7 @@ public class MazeGenerator {
 	 * @param layer Collision layer
 	 */
 	private void burrowCave(Point point, LayerDefinition layer) {
-		LinkedList<Point> branchPoints = new LinkedList<Point>();
+		Queue<Point> branchPoints = new LinkedList<Point>();
 		HashSet<Point> visited = new HashSet<Point>();
 		branchPoints.add(point);
 		List<Point> neighbours = getUnvisitedNeighbours(point, visited);
@@ -259,28 +261,16 @@ public class MazeGenerator {
 				branchPoints.add(next);
 
 				// Knock down the wall between
-				int diffx = next.x - point.x;
-				if (diffx != 0) {
-					diffx /= Math.abs(diffx);
-				}
-				int diffy = next.y - point.y;
-				if (diffy != 0) {
-					diffy /= Math.abs(diffy);
-				}
-
+				int diffx = Integer.signum(next.x - point.x);
+				int diffy = Integer.signum(next.y - point.y);
 				for (int i = 1; i <= WALL_THICKNESS; i++) {
 					setCollide(layer, point.x + i * diffx, point.y + i * diffy, false);
 				}
 
 				point = next;
 			} else {
-				branchPoints.remove(point);
-				if (branchPoints.size() > 0) {
-					// branch from the beginning to make nice and long tunnels
-					point = branchPoints.getFirst();
-				} else {
-					point = null;
-				}
+				// branch from the beginning to make nice and long tunnels
+				point = branchPoints.poll();
 			}
 
 			neighbours = getUnvisitedNeighbours(point, visited);
@@ -299,7 +289,7 @@ public class MazeGenerator {
 			return null;
 		}
 
-		LinkedList<Point> neighbours = new LinkedList<Point>();
+		List<Point> neighbours = new ArrayList<Point>(4);
 
 		Point left = new Point(point.x - (WALL_THICKNESS +1), point.y);
 		if ((left.x > 0) && !visited.contains(left)) {
