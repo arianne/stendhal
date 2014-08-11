@@ -12,9 +12,17 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
+/**
+ * Tests for TriggerMatchesQuestSlotCondition
+ *
+ * @author hendrik
+ */
 public class TriggerMatchesQuestSlotConditionTest {
 	private static final String QUEST_SLOT = "questslot";
 
+	/**
+	 * tests for fire()
+	 */
 	@Test
 	public void testFire() {
 		final Player player = PlayerTestHelper.createPlayer("player");
@@ -33,12 +41,18 @@ public class TriggerMatchesQuestSlotConditionTest {
 			.fire(player, ConversationParser.parse("Banana rests in the building"), null));
 	}
 
+	/**
+	 * tests for toString()
+	 */
 	@Test
 	public void testToString() {
 		assertThat(new TriggerMatchesQuestSlotCondition("questname", 1).toString(),
 			equalTo("questtext? <questname[1]>"));
 	}
 
+	/**
+	 * tests for equals()
+	 */
 	@Test
 	public void testEqualsObject() {
 		assertThat(new TriggerMatchesQuestSlotCondition("questname", 1),
