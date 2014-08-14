@@ -118,6 +118,11 @@ public class ScriptInJava extends ScriptingSandbox {
 			setMessage(e.getMessage());
 			postExecute(admin, args, false);
 			return false;
+		} catch (final Error e) {
+			logger.error(e, e);
+			setMessage(e.getMessage());
+			postExecute(admin, args, false);
+			return false;
 		}
 		postExecute(admin, args, true);
 		return true;
