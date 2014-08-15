@@ -24,17 +24,28 @@ import utilities.PlayerTestHelper;
  */
 public class OfflineClearSentenceTest {
 
+    /**
+     * Setup before running tests in this test class
+     */
 	@BeforeClass
 	public static void beforeClass() {
 		PlayerTestHelper.generateNPCRPClasses();
 		MockStendlRPWorld.get();
 	}
 
+    /**
+     * Clean up environment after running all tests
+     */
 	@AfterClass
 	public static void afterClass() {
 		MockStendlRPWorld.reset();
 	}
 
+    /**
+     * Test for parameter validation with a valid set of parameters
+     * 
+     * @throws Exception
+     */
 	@Test
 	public final void testValidateParametersValid() throws Exception {
         Player admin = createAdmin();
@@ -42,6 +53,11 @@ public class OfflineClearSentenceTest {
 		assertThat(Boolean.valueOf(validity), is(Boolean.TRUE));
 	}
 
+    /**
+     * Test for parameter validation with an invalid empty set of parameters
+     * 
+     * @throws Exception
+     */
 	@Test
 	public final void testValidateParametersInvalidEmptyParameters()
 			throws Exception {
@@ -50,6 +66,11 @@ public class OfflineClearSentenceTest {
 		assertThat(Boolean.valueOf(validity), is(Boolean.FALSE));
 	}
 
+    /**
+     * Test for parameter validation with too many parameters
+     * 
+     * @throws Exception
+     */
     @Test
     public final void testValidateParametersInvalidTooMuchParameters() throws Exception {
         Player admin = createAdmin();
@@ -57,6 +78,11 @@ public class OfflineClearSentenceTest {
         assertThat(Boolean.valueOf(validity), is(Boolean.FALSE));
     }
 
+    /**
+     * Test processing a player object without a sentence
+     * 
+     * @throws Exception
+     */
 	@Test
     public final void testProcessWithoutSentence() throws Exception {
         Player admin = createAdmin();
@@ -66,6 +92,11 @@ public class OfflineClearSentenceTest {
         assertThat(playerToModify, is(playerToCompare));
 	}
 
+    /**
+     * Test processing a player with a sentence
+     * 
+     * @throws Exception
+     */
     @Test
     public final void testProcessWithSentence() throws Exception {
         Player admin = createAdmin();
