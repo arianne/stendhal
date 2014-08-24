@@ -718,6 +718,7 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.bat"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="runserver.sh"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file="icon.ico"/>
 		<copy todir="${buildroot}/stendhal-${version}-src/lib">
 			<fileset dir="libs">
 				<include name="*.txt"/>
