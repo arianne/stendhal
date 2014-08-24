@@ -30,7 +30,7 @@ import marauroa.common.game.RPAction;
  * @author kymara
  */
 public class KnockAction implements ActionListener {
-	private static final ActionValidation VALIDATION = new ActionValidation();;
+	private static final ActionValidation VALIDATION = new ActionValidation();
 	static {
 		VALIDATION.add(new ZoneNotChanged());
 		VALIDATION.add(new ExtractEntityValidator());

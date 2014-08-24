@@ -136,7 +136,7 @@ public abstract class Entity2DView<T extends IEntity> implements EntityView<T> {
 	 * The area rectangle. Reused because it's otherwise one of the most
 	 * allocated objects.
 	 */
-	private final Rectangle area = new Rectangle();;
+	private final Rectangle area = new Rectangle();
 
 	@Override
 	public void initialize(final T entity) {

@@ -66,7 +66,7 @@ public class SummonActionTest {
 			protected String getGameName() {
 				return null;
 			}
-		};;;
+		};
 		ClientSingletonRepository.setClientFramework(clientFramework);
 	}
 

@@ -94,7 +94,7 @@ class ProgressLog {
 				for (Page page : pages) {
 					page.setFontName(newValue);
 				}
-			};
+			}
 		});
 	}
 

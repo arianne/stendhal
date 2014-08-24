@@ -169,7 +169,7 @@ public class SevenCherubs extends AbstractQuest {
 									+ raiser.getName());
 
 							player.heal();
-							player.getStatusList().removeAll(PoisonStatus.class);;
+							player.getStatusList().removeAll(PoisonStatus.class);
 
 							if (left > 0) {
 								raiser.say("Well done! You only need to find "

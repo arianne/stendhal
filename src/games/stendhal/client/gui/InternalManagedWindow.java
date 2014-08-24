@@ -186,7 +186,7 @@ public class InternalManagedWindow extends InternalWindow implements ManagedWind
 		if (movable) {
 			dragStart = point;
 			for (WindowDragListener listener : dragListeners) {
-				listener.startDrag(this);;
+				listener.startDrag(this);
 			}
 		}
 	}
