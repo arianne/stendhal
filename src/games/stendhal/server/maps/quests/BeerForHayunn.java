@@ -82,7 +82,7 @@ public class BeerForHayunn extends AbstractQuest {
 			res.add("I do not want to make Hayunn drunk.");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("I promised to buy him a bear from Margaret in Semos Tavern.");
+			res.add("I promised to buy him a beer from Margaret in Semos Tavern.");
 		}
 		if (("start".equals(questState) && player.isEquipped("beer"))
 				|| "done".equals(questState)) {
