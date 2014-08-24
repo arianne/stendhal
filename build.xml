@@ -345,9 +345,15 @@
 
 		<chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
 
-		<exec dir="." executable="java">
-			<arg line="-Xmx256m -cp run_clnt/*:run_clnt/lib/* games.stendhal.client.stendhal"/>
-		</exec>
+		<java classname="games.stendhal.client.stendhal"
+			fork="true"
+			failonerror="true"
+			maxmemory="128m">
+			<classpath>
+				<pathelement location="run_clnt/*"/>
+				<pathelement location="run_clnt/lib/*"/>
+			</classpath>
+		</java>
 
 		<!-- we've run the program, so delete the jars -->
 		<delete dir="run_clnt"/>
