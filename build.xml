@@ -337,6 +337,7 @@
 			<fileset file="build/lib/${client_data}"/>
 			<fileset file="build/lib/${client_sound_data}"/>
 			<fileset file="build/lib/${client_music_data}"/>
+			<fileset file="build/lib/${client_starter_jarname}"/>
 			<fileset file="${marauroa_jar}"/>
 			<fileset file="${log4j_jar}"/>
 			<fileset file="${jorbis_jar}"/>
@@ -345,7 +346,7 @@
 		<chmod file="run_clnt/lib/${client_jarname}" perm="+x"/>
 
 		<exec dir="." executable="java">
-			<arg line="-Xmx256m -cp run_clnt -jar run_clnt/${client_jarname}"/>
+			<arg line="-Xmx256m -cp run_clnt/*:run_clnt/lib/* games.stendhal.client.stendhal"/>
 		</exec>
 
 		<!-- we've run the program, so delete the jars -->
