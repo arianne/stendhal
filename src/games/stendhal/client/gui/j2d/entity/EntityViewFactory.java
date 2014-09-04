@@ -21,9 +21,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-/**
- *
+/*
+ * The entity views are generic, but we don't simply have sufficient data to
+ * either use excessive casting at places, or using raw types. The latter keeps
+ * the code more readable.
  */
+@SuppressWarnings("rawtypes")
 public class EntityViewFactory {
 	/**
 	 * Log4J.
