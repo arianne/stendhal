@@ -58,7 +58,7 @@ public class SlotWindow extends InternalManagedWindow implements Inspectable {
 	 * 
 	 * @param types
 	 */
-	public void setAcceptedTypes(Class ... types) {
+	public void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		content.setAcceptedTypes(types);
 	}
 	

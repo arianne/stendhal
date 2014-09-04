@@ -69,9 +69,9 @@ public class SlotGrid extends JComponent implements ContentChangeListener, Inspe
 	 * 
 	 * @param types
 	 */
-	public void setAcceptedTypes(Class ... types) {
+	public void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		// Reuse the same set for all the panels
-		List<Class> list = Arrays.asList(types);
+		List<Class<? extends IEntity>> list = Arrays.asList(types);
 		for (ItemPanel panel : panels) {
 			panel.setAcceptedTypes(list);
 		}

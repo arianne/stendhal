@@ -11,6 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
+import games.stendhal.client.entity.IEntity;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.helpers.HorizontalAlignment;
 import games.stendhal.client.gui.j2d.entity.helpers.VerticalAlignment;
@@ -25,7 +26,7 @@ import games.stendhal.client.sprite.SpriteStore;
 public class ImageEffect implements SequenceSprite.SequenceSpriteListener {
 	private final static String IMAGE_LOCATION = "data/sprites/effects/";
 	
-	private final Entity2DView view;
+	private final Entity2DView<? extends IEntity> view;
 	private final Sprite sequence;
 	
 	/**
@@ -34,7 +35,7 @@ public class ImageEffect implements SequenceSprite.SequenceSpriteListener {
 	 * @param view the view where the effect binds itself to
 	 * @param image name of the image that is used for the the animation 
 	 */
-	public ImageEffect(Entity2DView view, String image) {
+	public ImageEffect(Entity2DView<? extends IEntity> view, String image) {
 		this.view = view;
 		SpriteStore store = SpriteStore.get();
 		/*

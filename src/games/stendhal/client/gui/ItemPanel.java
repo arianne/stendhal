@@ -91,7 +91,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	private int itemNumber;
 	
 	/** Object types the panel can accept. */
-	private List<Class> acceptedTypes = new ArrayList<Class>();
+	private List<Class<? extends IEntity>> acceptedTypes = new ArrayList<Class<? extends IEntity>>();
 	
 	/**
 	 * Create a new ItemPanel.
@@ -482,7 +482,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	 * 
 	 * @param types
 	 */
-	void setAcceptedTypes(Class ... types) {
+	void setAcceptedTypes(Class<? extends IEntity> ... types) {
 		acceptedTypes = Arrays.asList(types);
 	}
 	
@@ -491,7 +491,7 @@ class ItemPanel extends JComponent implements DropTarget, Inspectable {
 	 * 
 	 * @param types
 	 */
-	void setAcceptedTypes(List<Class> types) {
+	void setAcceptedTypes(List<Class<? extends IEntity>> types) {
 		acceptedTypes = types;
 	}
 

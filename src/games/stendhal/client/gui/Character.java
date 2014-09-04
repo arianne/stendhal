@@ -108,7 +108,7 @@ Inspectable {
 		row.add(right);
 		content.add(row);
 		
-		Class itemClass = EntityMap.getClass("item", null, null);
+		Class<? extends IEntity> itemClass = EntityMap.getClass("item", null, null);
 		SpriteStore store = SpriteStore.get();
 
 		/*
@@ -172,7 +172,7 @@ Inspectable {
 	 * 
 	 * @return item panel
 	 */
-	private ItemPanel createItemPanel(Class itemClass, SpriteStore store, String id, String image) {
+	private ItemPanel createItemPanel(Class<? extends IEntity> itemClass, SpriteStore store, String id, String image) {
 		ItemPanel panel = new ItemPanel(id, store.getSprite(image));
 		slotPanels.put(id, panel);
 		panel.setAcceptedTypes(itemClass);
