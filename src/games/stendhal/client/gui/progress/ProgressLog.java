@@ -345,13 +345,13 @@ class ProgressLog {
 					text.append(elem);
 					text.append("\">");
 					text.append(elem);
-					// mark any possible repeatable quests
-					if (repeatable.contains(elem)) {
-						text.append(IMAGE);
-					}
 					text.append("</a>");
 				} else {
 					text.append(elem);
+				}
+				// Mark any possible repeatable quests
+				if (repeatable.contains(elem)) {
+					text.append(IMAGE);
 				}
 			}
 			text.append("</html>");
