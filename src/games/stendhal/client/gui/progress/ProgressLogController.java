@@ -17,6 +17,7 @@ import games.stendhal.common.constants.Actions;
 import games.stendhal.common.grammar.Grammar;
 
 import java.awt.Component;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -51,6 +52,19 @@ public class ProgressLogController {
 	private ProgressLogController() {
 	}
 
+	/**
+	 * Set the repeatable quest names.
+	 * 
+	 * @param repeatable repeatable quests
+	 */
+	public void setRepeatable(final Collection<String> repeatable) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				getProgressLog().setRepeatable(repeatable);
+			}
+		});
+	}
 	/**
 	 * Show available progress categories.
 	 *

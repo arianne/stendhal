@@ -34,7 +34,11 @@ class ProgressStatusEvent extends Event<RPEntity> {
 			if (!event.has("progress_type")) {
 				ProgressLogController.get().showCategories(event.getList("data"));
 			} else if (!event.has("item")) {
-				ProgressLogController.get().showCategorySummary(event.get("progress_type"), event.getList("data"));
+				if (event.get("progress_type").equals("repeatable")) {
+					ProgressLogController.get().setRepeatable(event.getList("data"));
+				} else {
+					ProgressLogController.get().showCategorySummary(event.get("progress_type"), event.getList("data"));
+				}
 			} else {
 				ProgressLogController.get().showDescription(event.get("progress_type"), event.get("item"), event.get("description"), event.get("information"), event.getList("data"));
 			}

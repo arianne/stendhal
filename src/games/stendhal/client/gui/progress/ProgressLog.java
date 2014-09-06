@@ -18,6 +18,7 @@ import games.stendhal.client.gui.layout.SBoxLayout;
 import games.stendhal.client.gui.layout.SLayout;
 import games.stendhal.client.gui.wt.core.SettingChangeAdapter;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.sprite.DataLoader;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -27,6 +28,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -59,6 +61,8 @@ class ProgressLog {
 	private static final String BACKGROUND_IMAGE = "data/gui/scroll_background.png";
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
+	/** Image data element for marking repeatable quests. */
+	private static final String IMAGE = "<img src='" + DataLoader.getResource("data/gui/rp.png").toString() + "'/>";
 
 	/** The enclosing window. */
 	private JDialog window;
@@ -68,6 +72,8 @@ class ProgressLog {
 	private final List<Page> pages = new ArrayList<Page>();
 	/** Name of the font used. Defaults to {@link #FONT_NAME}. */
 	private String fontName;
+	/** Repeatable, completed quests. */
+	private Collection<String> repeatable = Collections.EMPTY_SET;
 
 	/**
 	 * Create a new ProgressLog.
@@ -130,7 +136,7 @@ class ProgressLog {
 		if (index != -1) {
 			Component comp = tabs.getComponent(index);
 			if (comp instanceof Page) {
-				((Page) comp).setIndex(subjects, onClick);
+				((Page) comp).setIndex(subjects, onClick, repeatable);
 			}
 		}
 	}
@@ -153,6 +159,16 @@ class ProgressLog {
 				((Page) comp).setContent(header, description, information, contents);
 			}
 		}
+	}
+	
+	/**
+	 * Set the repeatable quests. These will be marked for the player in the
+	 * progress log.
+	 * 
+	 * @param repeatable a collection of quest names
+	 */
+	void setRepeatable(Collection<String> repeatable) {
+		this.repeatable = repeatable;
 	}
 
 	/**
@@ -308,8 +324,9 @@ class ProgressLog {
 		 * @param subjects list of subjects available on this page
 		 * @param onClick query to be used for requesting data for a subject.
 		 *	Subject name will be used as the query parameter
+		 * @param repeatable names of repeatable quests
 		 */
-		void setIndex(List<String> subjects, ProgressStatusQuery onClick) {
+		void setIndex(List<String> subjects, ProgressStatusQuery onClick, Collection<String> repeatable) {
 			/*
 			 * Order the quests alphabetically. The server provides them ordered
 			 * by internal name (and does not really guarantee even that), not
@@ -327,6 +344,10 @@ class ProgressLog {
 					text.append(elem);
 					text.append("\">");
 					text.append(elem);
+					// mark any possible repeatable quests
+					if (repeatable.contains(elem)) {
+						text.append(IMAGE);
+					}
 					text.append("</a>");
 				} else {
 					text.append(elem);
