@@ -156,7 +156,8 @@ class ProgressLog {
 		if (index != -1) {
 			Component comp = tabs.getComponent(index);
 			if (comp instanceof Page) {
-				((Page) comp).setContent(header, description, information, contents);
+				boolean rep = repeatable.contains(header);
+				((Page) comp).setContent(header, description, information, contents, rep);
 			}
 		}
 	}
@@ -381,7 +382,8 @@ class ProgressLog {
 		 * @param information information
 		 * @param contents content paragraphs
 		 */
-		void setContent(String header, String description, String information, List<String> contents) {
+		void setContent(String header, String description, String information,
+				List<String> contents, boolean repeatable) {
 			StringBuilder text = new StringBuilder("<html>");
 			text.append(createStyleDefinition());
 
@@ -390,6 +392,13 @@ class ProgressLog {
 				text.append("<h2>");
 				text.append(header);
 				text.append("</h2>");
+			}
+			
+			if (repeatable) {
+				text.append("<p style=\"font-family:arial; color: #000080\"><b>");
+				text.append(IMAGE);
+				text.append("I can do this quest again.");
+				text.append("</b></p>");
 			}
 
 			// information
