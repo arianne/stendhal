@@ -62,7 +62,7 @@ class ProgressLog {
 	/** Name of the font used for the html areas. Should match the file name without .ttf */
 	private static final String FONT_NAME = "BlackChancery";
 	/** Image data element for marking repeatable quests. */
-	private static final String IMAGE = "<img src='" + DataLoader.getResource("data/gui/rp.png").toString() + "'/>";
+	private static final String IMAGE = "<img border=\"0\" style=\"border-style: none\" src='" + DataLoader.getResource("data/gui/rp.png").toString() + "'/>";
 
 	/** The enclosing window. */
 	private JDialog window;
@@ -345,13 +345,17 @@ class ProgressLog {
 					text.append(elem);
 					text.append("\">");
 					text.append(elem);
+					// Mark any possible repeatable quests
+					if (repeatable.contains(elem)) {
+						text.append(IMAGE);
+					}
 					text.append("</a>");
 				} else {
 					text.append(elem);
-				}
-				// Mark any possible repeatable quests
-				if (repeatable.contains(elem)) {
-					text.append(IMAGE);
+					// Mark any possible repeatable quests
+					if (repeatable.contains(elem)) {
+						text.append(IMAGE);
+					}
 				}
 			}
 			text.append("</html>");
