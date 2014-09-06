@@ -18,7 +18,8 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager2;
 import java.util.EnumSet;
-import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.Map;
 
 import javax.swing.JComponent;
 
@@ -87,7 +88,7 @@ public class SBoxLayout implements LayoutManager2 {
 	/** 
 	 * Layout constraints of the child components.
 	 */
-	private final HashMap<Component, EnumSet<SLayout>> constraints;
+	private final Map<Component, EnumSet<SLayout>> constraints;
 	
 	/**
 	 * The direction object. All the dimension calculations are
@@ -109,7 +110,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 * @param direction layout direction
 	 */
 	public SBoxLayout(boolean direction) {
-		constraints = new HashMap<Component, EnumSet<SLayout>>();
+		constraints = new IdentityHashMap<Component, EnumSet<SLayout>>();
 		if (direction == VERTICAL) {
 			d = verticalDirection;
 		} else {
