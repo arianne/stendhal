@@ -17,6 +17,8 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -345,21 +347,52 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * gets a list of completed quests
+	 * Gets a list of completed quests.
 	 *
 	 * @param player Player to return the list for
 	 * @return list of completed quests
 	 */
 	public List<String> getCompletedQuests(Player player) {
-		List<String> res = new LinkedList<String>();
-		for (final IQuest quest : quests) {
-			if (quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+		Collection<IQuest> tmp = findCompletedQuests(player);
+		List<String> res = new ArrayList<String>(tmp.size());
+		for (IQuest quest : tmp) {
+			res.add(quest.getQuestInfo(player).getName());
+		}
+		return res;
+	}
+	
+	/**
+	 * Get the list of quests a player has completed, and can now do again.
+	 * 
+	 * @param player
+	 * @return list of quest names
+	 */
+	public List<String> getRepeatableQuests(Player player) {
+		Collection<IQuest> tmp = findCompletedQuests(player);
+		List<String> res = new ArrayList<String>();
+		for (IQuest quest : tmp) {
+			if (quest.isRepeatable(player)) {
 				res.add(quest.getQuestInfo(player).getName());
 			}
 		}
 		return res;
 	}
-
+	
+	/**
+	 * Find the quests that a player has completed.
+	 * 
+	 * @param player
+	 * @return completed quests
+	 */
+	private Collection<IQuest> findCompletedQuests(Player player) {
+		List<IQuest> res = new ArrayList<IQuest>();
+		for (IQuest quest : quests) {
+			if (quest.isCompleted(player) && quest.isVisibleOnQuestStatus()) {
+				res.add(quest);
+			}
+		}
+		return res;
+	}
 
 	/**
 	 * gets the description of a quest
