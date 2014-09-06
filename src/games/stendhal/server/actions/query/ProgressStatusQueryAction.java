@@ -81,6 +81,9 @@ public class ProgressStatusQueryAction implements ActionListener {
 			player.addEvent(new ProgressStatusEvent(progressType,
 					SingletonRepository.getStendhalQuestSystem().getOpenQuests(player)));
 		} else if (progressType.equals("Completed Quests")) {
+			// Send first the list of the quests that can be repeated
+			player.addEvent(new ProgressStatusEvent("repeatable",
+					SingletonRepository.getStendhalQuestSystem().getRepeatableQuests(player)));
 			player.addEvent(new ProgressStatusEvent(progressType,
 					SingletonRepository.getStendhalQuestSystem().getCompletedQuests(player)));
 		} else if (progressType.equals("Production")) {
