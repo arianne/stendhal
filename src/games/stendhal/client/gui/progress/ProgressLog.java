@@ -385,6 +385,8 @@ class ProgressLog {
 		 * @param description description of the quest
 		 * @param information information
 		 * @param contents content paragraphs
+		 * @param repeatable <code>true</code> if the quest should be marked
+		 * 	repeatable, otherwise <code>false</code>
 		 */
 		void setContent(String header, String description, String information,
 				List<String> contents, boolean repeatable) {
