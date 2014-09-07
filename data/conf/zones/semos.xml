@@ -249,6 +249,25 @@ Unfortunately I will not be able to visit Athor this year. I have run into a bit
     </entity>
 
     <!-- START MINE TOWN WEEKS -->
+    <!-- Scrying orbs -->
+    <entity x="46" y="107" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">35</parameter>
+        <parameter name="y">115</parameter>
+      </implementation>
+    </entity>
+    <entity x="46" y="113" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">35</parameter>
+        <parameter name="y">115</parameter>
+      </implementation>
+    </entity>
+    <entity x="46" y="120" condition="stendhal.minetown">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.useable.ViewChangeEntity">
+        <parameter name="x">35</parameter>
+        <parameter name="y">115</parameter>
+      </implementation>
+    </entity>
 
     <!-- writing on the wooden arch MINE TOWN WEEKS -->
     <entity x="94" y="118" condition="stendhal.minetown">
