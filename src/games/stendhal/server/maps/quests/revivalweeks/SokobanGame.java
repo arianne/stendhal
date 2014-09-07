@@ -78,7 +78,7 @@ public class SokobanGame implements LoadableContent, SokobanListener {
 
 	private void addSign() {
 		Sign sign = new Sign();
-		sign.setPosition(47, 119);
+		sign.setPosition(50, 119);
 		zone.add(sign);
 		loadSignFromHallOfFame = new LoadSignFromHallOfFameAction(null, "Best pushers:\n", FAME_TYPE, 2000, false);
 		loadSignFromHallOfFame.setSign(sign);
