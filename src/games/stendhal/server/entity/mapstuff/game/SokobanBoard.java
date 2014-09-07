@@ -255,7 +255,7 @@ public class SokobanBoard extends AreaEntity implements TurnListener, Availabili
 	 * @return number of levels
 	 */
 	public int getLevelCount() {
-		return levelData.length / HEIGHT;
+		return levelData.length / (HEIGHT + 1) - 1;
 	}
 
 	/**
