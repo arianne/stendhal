@@ -76,6 +76,9 @@ final class MainFrame {
 		}
 		setTitle(frame);
 		setIcon(frame);
+		// Splash screen uses the same identifier on purpose. It is the same 
+		// window.
+		WindowUtils.trackLocation(frame, "main");
 		/*
 		 * When the user tries to close the window, don't close immediately,
 		 * but let it show a confirmation dialog.

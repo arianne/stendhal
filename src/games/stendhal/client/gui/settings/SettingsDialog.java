@@ -59,6 +59,7 @@ public class SettingsDialog extends JDialog {
 		add(closeButton);
 		WindowUtils.closeOnEscape(this);
 		WindowUtils.watchFontSize(this);
+		WindowUtils.trackLocation(this, "settings");
 		pack();
 	}
 }
