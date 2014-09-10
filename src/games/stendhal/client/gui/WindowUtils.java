@@ -21,6 +21,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -67,6 +69,30 @@ public class WindowUtils {
 		closeOnEscape(frame, frame.getRootPane());
 	}
 	
+	/**
+	 * Track the windows location so that it can be restored at next client
+	 * start.
+	 * 
+	 * @param window tracked window
+	 * @param windowId identifier for the window. This should be unique for
+	 * 	each window type. The restored location is looked up by the identifier.
+	 */
+	public static void trackLocation(final Window window, String windowId) {
+		final ManagedWindow mw = new ManagedWindowDecorator(window, windowId);
+		WtWindowManager manager = WtWindowManager.getInstance();
+		// Avoid specifying any, if the type of the window data has not been
+		// saved before.
+		manager.setDefaultProperties(mw.getName(), false, mw.getX(), mw.getY());
+		manager.formatWindow(mw);
+		
+		window.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				WtWindowManager.getInstance().moveTo(mw, mw.getX(), mw.getY());
+			}
+		});
+	}
+		
 	/**
 	 * Make the window close when the used presses escape. The event will be
 	 * the same as when the user closes the window using the window manager.
@@ -135,6 +161,65 @@ public class WindowUtils {
 			for (Component child : ((Container) component).getComponents()) {
 				scaleComponentFonts(child, size);
 			}
+		}
+	}
+	
+	/**
+	 * A wrapper for system windows that lets the {@link WtWindowManager} store
+	 * and restore their locations.
+	 */
+	private static class ManagedWindowDecorator implements ManagedWindow {
+		/** The actual window. */
+		private final Window window;
+		/** Window identifier. */
+		private final String name;
+		
+		ManagedWindowDecorator(Window window, String windowId) {
+			this.window = window;
+			name = "system." + windowId;
+		}
+		
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public int getX() {
+			return window.getX();
+		}
+
+		@Override
+		public int getY() {
+			return window.getY();
+		}
+
+		@Override
+		public boolean isMinimized() {
+			// Treat as always visible to avoid confusion
+			return false;
+		}
+
+		@Override
+		public boolean isVisible() {
+			// Treat as always visible to avoid confusion
+			return false;
+		}
+
+		@Override
+		public boolean moveTo(int x, int y) {
+			window.setLocation(x, y);
+			return true;
+		}
+
+		@Override
+		public void setMinimized(boolean minimized) {
+			// ignore
+		}
+
+		@Override
+		public void setVisible(boolean visible) {
+			// ignore
 		}
 	}
 }
