@@ -47,6 +47,11 @@ public class WindowUtils {
 	/** Default font point size. */
 	private static final int DEFAULT_FONT_SIZE = 12;
 	
+	/**
+	 * Utility class - no instantiation.
+	 */
+	private WindowUtils() {
+	}
 	// getRootPane() in JDialog and JFrame has no common ancestor
 	
 	/**
@@ -174,6 +179,12 @@ public class WindowUtils {
 		/** Window identifier. */
 		private final String name;
 		
+		/**
+		 * Create a managed window decorator with an identity for a window. 
+		 * 
+		 * @param window window to decorate
+		 * @param windowId identifier of the decorated window
+		 */
 		ManagedWindowDecorator(Window window, String windowId) {
 			this.window = window;
 			name = "system." + windowId;
