@@ -41,22 +41,12 @@ import org.apache.log4j.Logger;
  * Displays a credits dialog box.
  */
 class CreditsDialog extends JDialog {
-
-	private static final long serialVersionUID = 4312205320503928411L;
-
-	private static final Logger logger = Logger.getLogger(CreditsDialog.class);
-
+	/** Logger instance. */
+	private static final Logger LOGGER = Logger.getLogger(CreditsDialog.class);
+	/** Scrolling panel. */
 	private ScrollerPanel sp;
-
-	private final JPanel buttonPane = new JPanel();
-
+	/** Close button. */
 	private final JButton closeButton = new JButton("Close");
-
-	private final Color backgroundColor = Color.white;
-
-	private final Font textFont = new Font("SansSerif", Font.BOLD, 12);
-
-	private final Color textColor = new Color(85, 85, 85);
 
 	/**
 	 * Creates a new credits dialog.
@@ -67,27 +57,28 @@ class CreditsDialog extends JDialog {
 	CreditsDialog(final Frame owner) {
 		super(owner, true);
 		initGUI(owner);
-		logger.debug("about dialog initialized");
+		LOGGER.debug("about dialog initialized");
 		eventHandling();
-		logger.debug("about dialog event handling ready");
+		LOGGER.debug("about dialog event handling ready");
 
 		this.setTitle("Stendhal Credits");
 		// required on Compiz
 		this.pack();
-		if (owner != null) {
-			Dimension size = owner.getSize();
-			size.width -= 50;
-			size.height -= 50;
-			setSize(size);
-			setLocationRelativeTo(owner);
-		} else {
-			this.setLocationByPlatform(true);
-			this.setSize(600, 420);
-		}
+
+		Dimension size = owner.getSize();
+		size.width -= 50;
+		size.height -= 50;
+		setSize(size);
+		setLocationRelativeTo(owner);
 		WindowUtils.closeOnEscape(this);
 		this.setVisible(true);
 	}
 
+	/**
+	 * Create the GUI.
+	 * 
+	 * @param owner parent window
+	 */
 	private void initGUI(final Frame owner) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -101,15 +92,21 @@ class CreditsDialog extends JDialog {
 		if (content instanceof JComponent) {
 			((JComponent) content).setBorder(null);
 		}
+		// Colors
+		Color backgroundColor = Color.white;
+		Color textColor = new Color(85, 85, 85);
+		
 		content.setLayout(new BorderLayout());
 		content.setBackground(backgroundColor);
 
 		// read the credits from an external file because code format gets it
 		// unreadable if inlined
 		final List<String> creditsList = readCredits();
+		Font textFont = new Font("SansSerif", Font.BOLD, 12);
 		sp = new ScrollerPanel(creditsList, textFont, 0, textColor,
 				backgroundColor, 20);
 
+		JPanel buttonPane = new JPanel();
 		buttonPane.add(closeButton);
 
 		content.add(sp, BorderLayout.CENTER);
@@ -170,6 +167,6 @@ class CreditsDialog extends JDialog {
 			getOwner().setEnabled(true);
 		}
 		this.dispose();
-		logger.debug("about dialog closed");
+		LOGGER.debug("about dialog closed");
 	}
 }
