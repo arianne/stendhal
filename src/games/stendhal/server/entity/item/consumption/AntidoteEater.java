@@ -65,6 +65,6 @@ class AntidoteEater implements TurnListener {
 		if (entity == null) {
 			return 3798172;
 		}
-		return entityReference.get().hashCode();
+		return entity.hashCode();
 	}
 }
