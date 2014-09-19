@@ -137,7 +137,7 @@ public class BeerForHayunnTest {
 	
 		player.setQuest("beer_hayunn", "start");
 		history.remove("I do not want to make Hayunn drunk.");
-		history.add("I promised to buy him a bear from Margaret in Semos Tavern.");
+		history.add("I promised to buy him a beer from Margaret in Semos Tavern.");
 		assertEquals(history, bfh.getHistory(player));
 
 		player.equipToInventoryOnly(SingletonRepository.getEntityManager().getItem("beer"));
