@@ -30,7 +30,11 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import javax.swing.text.JTextComponent;
+import javax.swing.text.PlainDocument;
 
 import org.apache.log4j.Logger;
 
@@ -119,8 +123,21 @@ class DropAmountChooser {
 		
 		SpinnerModel model = new SpinnerNumberModel(1, 0, item.getQuantity(), 1);
 		spinner = new JSpinner(model);
+		// Special document for editing numbers
+		PlainDocument doc = new PlainDocument() {
+			private DocumentFilter filter;
+			@Override
+			public DocumentFilter getDocumentFilter() {
+				if (filter == null) {
+					filter = new NumberDocumentFilter(getTextField());
+				}
+				return filter;
+			}
+		};
+		getTextField().setDocument(doc);
+
 		JButton button = new JButton("Drop");
-		
+
 		ActionListener dropAction = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -173,6 +190,46 @@ class DropAmountChooser {
 			Logger.getLogger(DropAmountChooser.class).error("Unknown editor type", new Throwable());
 			// This will not work, but at least it won't crash the client
 			return new JTextField();
+		}
+	}
+	
+	/**
+	 * Special document filter for editing number only content.
+	 */
+	private class NumberDocumentFilter extends DocumentFilter {
+		/** Text component where the editing is done. */
+		private final JTextComponent comp;
+
+		/**
+		 * Create a filter for a text component.
+		 * 
+		 * @param comp text component. This is only used to highlight the "0"
+		 * 	when the user deletes all other text
+		 */
+		NumberDocumentFilter(JTextComponent comp) {
+			this.comp = comp;
+		}
+
+		@Override
+		public void replace(FilterBypass fb, int offset,
+				int len, String str, AttributeSet a) throws BadLocationException {
+			// Allow inserting only numbers
+			str = str.replaceAll("\\D", "");
+			if (!str.isEmpty()) {
+				super.replace(fb, offset, len, str, a);
+			}
+		}
+
+		@Override
+		public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+			super.remove(fb, offset, length);
+			if (fb.getDocument().getLength() == 0) {
+				// Just deleted the entire contents. Place a 0
+				// there that will get automatically overwritten
+				// at new edits
+				fb.insertString(0, "0", null);
+				comp.selectAll();
+			}
 		}
 	}
 }
