@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -91,9 +92,9 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			"the building.",
 			"the hole.",
 			"the city.",
-			"the ship",
-			"the cave",
-			"the forest"
+			"the ship.",
+			"the cave.",
+			"the forest."
 		},
 	};
 
@@ -117,11 +118,18 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("Finn Farmer");
 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
+				ConversationStates.ATTENDING,
+				"Thank you for agreeing to tell George this message:",
+				new SayTextAction("[quest.coded_message:1]"));
+
 		// TODO: check repeatability
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
 				ConversationStates.QUEST_OFFERED,
-				"I have an urgent message for George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
+				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
