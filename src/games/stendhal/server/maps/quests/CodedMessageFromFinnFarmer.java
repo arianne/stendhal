@@ -143,7 +143,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.YES_MESSAGES,
 				ConversationStates.ATTENDING,
-				"",
+				null,
 				new MultipleActions(
 					new CreateAndSayCodedMessage(),
 					new SetQuestAction(QUEST_SLOT, 0, "deliver_to_george")
@@ -176,13 +176,13 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george")
 				), 
 				ConversationStates.ATTENDING,
-				"Oh, thank you. This is indead quite interesting.",
+				"Oh, thank you. This is indeed quite interesting.",
 				reward);
 
 		npc.add(ConversationStates.ATTENDING, 
 				"", 
 				new AndCondition(
-					new QuestInStateCondition(QUEST_SLOT, 0, "deliver"),
+					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
 					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
 					new TriggerMightbeACodedMessageCondition()
 				),
@@ -243,7 +243,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					counter++;
 				}
 			}
-			return counter >= 4;
+			return counter >= 3;
 		}
 
 		@Override
