@@ -3,9 +3,14 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Rand;
 import games.stendhal.common.parser.Sentence;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ChatCondition;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -17,6 +22,33 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 
+/**
+ * QUEST: Coded Message from Finn Farmer
+ *
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Finn Farmer, a little boy playing in the backyard</li>
+ * <li>George, a child in Ados park</li>
+ * </ul>
+ *
+ * STEPS:
+ * <ul>
+ * <li>Finn Farmer tells you a coded message</li>
+ * <li>Repeat the coded message to George</li>
+ * </ul>
+ *
+ * REWARD:
+ * <ul>
+ * <li>XP +200</li>
+ * </ul>
+ *
+ * REPETITIONS:
+ * <ul>
+ * <li>You can repeat it each 2 days.</li>
+ * </ul>
+ * 
+ * @author kymara, hendrik
+ */
 public class CodedMessage extends AbstractQuest {
 
 
@@ -35,7 +67,7 @@ public class CodedMessage extends AbstractQuest {
 
 	@Override
 	public String getName() {
-		return "Coded Message";
+		return "Coded Message from Finn Farmer";
 	}
 
 	private String[][] TEMPLATES = new String[][] {
@@ -51,17 +83,26 @@ public class CodedMessage extends AbstractQuest {
 			"is rising from",
 			"has left",
 			"has entered",
-			"is flying over"
+			"is flying over",
+			"walks to"
 		},
 		new String[] {
 			"the fireplace.",
 			"the building.",
 			"the hole.",
-			"the city."
+			"the city.",
+			"the ship",
+			"the cave",
+			"the forest"
 		},
 	};
-	
-	public String generateRandomMessage() {
+
+	/**
+	 * generates a coded message
+	 *
+	 * @return a coded message
+	 */
+	String generateRandomMessage() {
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < TEMPLATES.length; i++) {
 			res.append(TEMPLATES[i][Rand.rand(TEMPLATES[i].length)]);
@@ -70,37 +111,81 @@ public class CodedMessage extends AbstractQuest {
 		return res.toString().trim();
 	}
 
+	/**
+	 * prepare Finn Farmer
+	 */
 	private void step1() {
-		// TODO
+		final SpeakerNPC npc = npcs.get("Finn Farmer");
+
+		// TODO: check repeatability
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+				ConversationStates.QUEST_OFFERED,
+				"I have an urgent message for George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
+				null);
+
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				"george",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"Just find Tommy. Perhaps in Ados Park. George won't be far away. Could you please deliver a message to her?",
+				null);
+
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES,
+				ConversationStates.IDLE,
+				"Okay, then I better don't tell you no secrets.",
+				new DecreaseKarmaAction(10));
+
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.YES_MESSAGES,
+				ConversationStates.ATTENDING,
+				"",
+				new MultipleActions(
+					new CreateAndSayCodedMessage(),
+					new SetQuestAction(QUEST_SLOT, 0, "deliver_to_george")
+				));
 	}
-	
+
+	/**
+	 * let George accept the 
+	 */
 	private void step2() {
-		final SpeakerNPC npc = npcs.get("lil johnnnny");
+		final SpeakerNPC npc = npcs.get("George");
 
 		MultipleActions reward = new MultipleActions(
-			new SetQuestAction(QUEST_SLOT, 0, "done")
+			new SetQuestAction(QUEST_SLOT, 0, "done"),
+			new IncreaseXPAction(200)
 			// TODO
 		);
-		npc.add(ConversationStates.ATTENDING, 
-			"", 
-			new AndCondition(
-				new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver")
-			), 
-			ConversationStates.ATTENDING,
-			"",
-			reward);
+
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
+				ConversationStates.ATTENDING,
+				"I am not allowed to talk to strangers, but you seem to have something important to says. What is it?",
+				null);
 
 		npc.add(ConversationStates.ATTENDING, 
-			"", 
-			new AndCondition(
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver"),
-				new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
-				new TriggerMightbeACodedMessageCondition()
-			),
-			ConversationStates.ATTENDING,
-			"Oh? That doesn't make any sense at all!",
-			null);
+				"", 
+				new AndCondition(
+					new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
+					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george")
+				), 
+				ConversationStates.ATTENDING,
+				"Oh, thank you. This is indead quite interesting.",
+				reward);
+
+		npc.add(ConversationStates.ATTENDING, 
+				"", 
+				new AndCondition(
+					new QuestInStateCondition(QUEST_SLOT, 0, "deliver"),
+					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
+					new TriggerMightbeACodedMessageCondition()
+				),
+				ConversationStates.ATTENDING,
+				"Oh? That doesn't make any sense at all!",
+				null);
 	}
 
 	@Override
@@ -111,6 +196,34 @@ public class CodedMessage extends AbstractQuest {
 	}
 
 
+	/**
+	 * creates, stores and says a coded message
+	 *
+	 * @author hendrik
+	 */
+	public class CreateAndSayCodedMessage implements ChatAction {
+
+		public void fire(Player player, Sentence sentence, EventRaiser npc) {
+			String codedMessage = generateRandomMessage();
+			player.setQuest(QUEST_SLOT, 1, codedMessage);
+			npc.say(codedMessage);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			return obj instanceof CreateAndSayCodedMessage;
+		}
+
+		@Override
+		public int hashCode() {
+			return -47;
+		}
+
+		@Override
+		public String toString() {
+			return "codedmessage!";
+		}
+	}
 
 	/**
 	 * does the sentence look like a possible coded message?
