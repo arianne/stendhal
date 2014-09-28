@@ -19,9 +19,15 @@ import games.stendhal.server.core.config.annotations.Dev.Category;
 import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.PlayerMapAdapter;
+import games.stendhal.server.util.StringUtils;
 
 /**
- * says the specified text, it works just like the normal parameter of add
+ * says the specified text, it works just like the normal parameter of add.
+ * 
+ * But in addition it add support for [variables]. Most notable [name] will 
+ * be replaced by the players name. And [quest.slotname:1] will be replaced 
+ * by the value stored in the questslot "slotname" at index 1.
  */
 @Dev(category=Category.CHAT, label="\"...\"")
 public class SayTextAction implements ChatAction {
@@ -39,7 +45,8 @@ public class SayTextAction implements ChatAction {
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		raiser.say(text);
+		PlayerMapAdapter map = new PlayerMapAdapter(player);
+		raiser.say(StringUtils.substitute(text, map));
 	}
 
 	@Override
