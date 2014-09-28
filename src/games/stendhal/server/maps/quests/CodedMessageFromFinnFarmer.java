@@ -49,7 +49,7 @@ import java.util.List;
  * 
  * @author kymara, hendrik
  */
-public class CodedMessage extends AbstractQuest {
+public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 
 	private static String QUEST_SLOT = "coded_message";
@@ -135,7 +135,10 @@ public class CodedMessage extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES,
 				ConversationStates.IDLE,
 				"Okay, then I better don't tell you no secrets.",
-				new DecreaseKarmaAction(10));
+				new MultipleActions(
+						new DecreaseKarmaAction(10),
+						new SetQuestAction(QUEST_SLOT, 0, "rejected")
+				));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.YES_MESSAGES,
