@@ -58,10 +58,8 @@ public class HolidayingBoyNPC implements ZoneConfigurator {
 				addHelp("I visited a tavern in the north with my parents yesterday. The apples were really tasty...");
 				addOffer("Ooooh, have you seen the lovely cats from Felina? I hope my parents " +
 						"will buy one for me. Would be a great holiday gift :-)");
-				addQuest("Task? No, not from me."); 
 				addJob("Hey!! I am a little boy!");
 				addGoodbye("Good bye.");
-
 				}
 		};
 
