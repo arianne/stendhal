@@ -10,16 +10,19 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToFutureRandomTimeStampAction;
 import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
+import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerMatchesQuestSlotCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -49,7 +52,7 @@ import java.util.List;
  *
  * REPETITIONS:
  * <ul>
- *   <li>You can repeat it each 2 days.</li>
+ *   <li>You can repeat it once per day.</li>
  * </ul>
  * 
  * @author kymara, hendrik
@@ -58,6 +61,11 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 
 	private static String QUEST_SLOT = "coded_message";
+	private static final int QUEST_INDEX_STATUS = 0;
+	private static final int QUEST_INDEX_MESSAGE = 1;
+	private static final int QUEST_INDEX_REPEATED = 2;
+	private static final int QUEST_INDEX_TIME = 3;
+	private static final int REQUIRED_MINUTES = 24 * 60;
 
 	@Override
 	public String getSlotName() {
@@ -129,15 +137,16 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
+				new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george"),
 				ConversationStates.ATTENDING,
 				"Thank you for agreeing to tell George this message:",
 				new SayTextAction("[quest.coded_message:1]"));
 
-		// TODO: check repeatability
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotActiveCondition(QUEST_SLOT),
+				new AndCondition(
+						new QuestNotActiveCondition(QUEST_SLOT),
+						new TimeReachedCondition(QUEST_SLOT, QUEST_INDEX_TIME)),
 				ConversationStates.QUEST_OFFERED,
 				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
 				null);
@@ -155,7 +164,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"Okay, then I better don't tell you no secrets.",
 				new MultipleActions(
 						new DecreaseKarmaAction(10),
-						new SetQuestAction(QUEST_SLOT, 0, "rejected")
+						new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "rejected")
 				));
 
 		npc.add(ConversationStates.QUEST_OFFERED, 
@@ -164,7 +173,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				null,
 				new MultipleActions(
 					new CreateAndSayCodedMessage(),
-					new SetQuestAction(QUEST_SLOT, 0, "deliver_to_george")
+					new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george")
 				));
 	}
 
@@ -176,14 +185,14 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
+				new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george"),
 				ConversationStates.ATTENDING,
 				"I am not allowed to talk to strangers, but you seem to have something important to says. What is it?",
 				null);
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_finn"),
+				new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_finn"),
 				ConversationStates.IDLE,
 				"Thank you for agreeing to tell Finn this message:",
 				new SayTextAction("[quest.coded_message:1]"));
@@ -191,20 +200,20 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, 
 				"", 
 				new AndCondition(
-					new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
-					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george")
+					new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE),
+					new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george")
 				), 
 				ConversationStates.IDLE,
 				"This is indeed quite interesting. Please let Finn know:",
 				new MultipleActions(
 					new CreateAndSayCodedMessage(),
-					new SetQuestAction(QUEST_SLOT, 0, "deliver_to_finn")
+					new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_finn")
 				));
 
 		npc.add(ConversationStates.ATTENDING, 
 				"", 
 				new AndCondition(
-					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george"),
+					new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_george"),
 					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
 					new TriggerMightbeACodedMessageCondition()
 				),
@@ -221,33 +230,35 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_finn"),
+				new QuestInStateCondition(QUEST_SLOT, QUEST_INDEX_STATUS, "deliver_to_finn"),
 				ConversationStates.QUEST_ITEM_BROUGHT,
 				"And, what did George say?",
 				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
 				"",
-				new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
+				new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE),
 				ConversationStates.ATTENDING,
 				null,
 				new MultipleActions(
-					new SetQuestAction(QUEST_SLOT, 0, "done"),
-					new IncrementQuestAction(QUEST_SLOT, 2, 1),
-					new SetQuestToTimeStampAction(QUEST_SLOT, 3),
+					new SetQuestAction(QUEST_SLOT, QUEST_INDEX_STATUS, "done"),
+					new IncrementQuestAction(QUEST_SLOT, QUEST_INDEX_REPEATED, 1),
+					new SetQuestToTimeStampAction(QUEST_SLOT, QUEST_INDEX_TIME),
+					new SetQuestToFutureRandomTimeStampAction(QUEST_SLOT, QUEST_INDEX_TIME, REQUIRED_MINUTES, REQUIRED_MINUTES),
 					new IncreaseXPAction(200),
+					new IncreaseKarmaAction(10),
 					new SayTextAction("Oh, thank you for telling George!"),
 //					new SayTextAction("/me dances around happily."),                 // TODO: Emote does not work this way
 					new SayTextAction("This was really important!"),
 					new SayTextAction("And her answer is super interesting!"),
-					new SayTextAction("I will be on the watch!")
-					// TODO: indicate when to return to repeat quest
+					new SayTextAction("I will be on the watch!"),
+					new SayTextAction("Perhaps, I have another message for you tomorrow.")
 				));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
 				"", 
 				new AndCondition(
-					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
+					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, QUEST_INDEX_MESSAGE)),
 					new TriggerMightbeACodedMessageCondition()
 				),
 				ConversationStates.QUEST_ITEM_BROUGHT,
@@ -263,6 +274,12 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		step3();
 	}
 
+		@Override
+	public boolean isRepeatable(Player player) {
+		return new TimeReachedCondition(QUEST_SLOT, QUEST_INDEX_TIME).fire(player,null, null);
+	}
+
+
 
 	/**
 	 * creates, stores and says a coded message
@@ -273,7 +290,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 		public void fire(Player player, Sentence sentence, EventRaiser npc) {
 			String codedMessage = generateRandomMessage();
-			player.setQuest(QUEST_SLOT, 1, codedMessage);
+			player.setQuest(QUEST_SLOT, QUEST_INDEX_MESSAGE, codedMessage);
 			npc.say(codedMessage);
 		}
 
