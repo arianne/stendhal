@@ -11,12 +11,15 @@ import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncrementQuestAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SayTextAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestToTimeStampAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.TriggerMatchesQuestSlotCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -35,7 +38,8 @@ import java.util.List;
  * STEPS:
  * <ul>
  * <li>Finn Farmer tells you a coded message</li>
- * <li>Repeat the coded message to George</li>
+ * <li>Relay the coded message to George, who will tell you a new coded message as answer</li>
+ * <li>Relay the answer to Finn Farmer</li>
  * </ul>
  *
  * REWARD:
@@ -45,7 +49,7 @@ import java.util.List;
  *
  * REPETITIONS:
  * <ul>
- * <li>You can repeat it each 2 days.</li>
+ *   <li>You can repeat it each 2 days.</li>
  * </ul>
  * 
  * @author kymara, hendrik
@@ -77,16 +81,21 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 			"The swallow",
 			"The elephant",
 			"The teady bear",
-			"The sun"
+			"The moon",
+			"Jupiter",
+			"Delta"
 		},
+
 		new String[] {
 			"rests in",
 			"is rising from",
 			"has left",
 			"has entered",
 			"is flying over",
-			"walks to"
+			"walks into",
+			"sleeps in"
 		},
+
 		new String[] {
 			"the fireplace.",
 			"the building.",
@@ -113,7 +122,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	}
 
 	/**
-	 * prepare Finn Farmer
+	 * prepare Finn Farmer to start the quest
 	 */
 	private void step1() {
 		final SpeakerNPC npc = npcs.get("Finn Farmer");
@@ -128,6 +137,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		// TODO: check repeatability
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotActiveCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"I have an urgent message for #George! It's really important! But my parents don't let me wander around the city alone. As if I were a small kid! Could you please deliver a message to her?",
 				null);
@@ -159,16 +169,10 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	}
 
 	/**
-	 * let George accept the 
+	 * let George accept the message and answer with a new coded message
 	 */
 	private void step2() {
 		final SpeakerNPC npc = npcs.get("George");
-
-		MultipleActions reward = new MultipleActions(
-			new SetQuestAction(QUEST_SLOT, 0, "done"),
-			new IncreaseXPAction(200)
-			// TODO
-		);
 
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -177,15 +181,25 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				"I am not allowed to talk to strangers, but you seem to have something important to says. What is it?",
 				null);
 
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_finn"),
+				ConversationStates.IDLE,
+				"Thank you for agreeing to tell Finn this message:",
+				new SayTextAction("[quest.coded_message:1]"));
+
 		npc.add(ConversationStates.ATTENDING, 
 				"", 
 				new AndCondition(
 					new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
 					new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_george")
 				), 
-				ConversationStates.ATTENDING,
-				"Oh, thank you. This is indeed quite interesting.",
-				reward);
+				ConversationStates.IDLE,
+				"This is indeed quite interesting. Please let Finn know:",
+				new MultipleActions(
+					new CreateAndSayCodedMessage(),
+					new SetQuestAction(QUEST_SLOT, 0, "deliver_to_finn")
+				));
 
 		npc.add(ConversationStates.ATTENDING, 
 				"", 
@@ -199,11 +213,54 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				null);
 	}
 
+	/**
+	 * let Finn Farmer accept the answer
+	 */
+	private void step3() {
+		final SpeakerNPC npc = npcs.get("Finn Farmer");
+		
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, 0, "deliver_to_finn"),
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"And, what did George say?",
+				null);
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
+				"",
+				new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1),
+				ConversationStates.ATTENDING,
+				null,
+				new MultipleActions(
+					new SetQuestAction(QUEST_SLOT, 0, "done"),
+					new IncrementQuestAction(QUEST_SLOT, 2, 1),
+					new SetQuestToTimeStampAction(QUEST_SLOT, 3),
+					new IncreaseXPAction(200),
+					new SayTextAction("Oh, thank you for telling George!"),
+//					new SayTextAction("/me dances around happily."),                 // TODO: Emote does not work this way
+					new SayTextAction("This was really important!"),
+					new SayTextAction("And her answer is super interesting!"),
+					new SayTextAction("I will be on the watch!")
+					// TODO: indicate when to return to repeat quest
+				));
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, 
+				"", 
+				new AndCondition(
+					new NotCondition(new TriggerMatchesQuestSlotCondition(QUEST_SLOT, 1)),
+					new TriggerMightbeACodedMessageCondition()
+				),
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"Oh? That doesn't make any sense at all!",
+				null);
+	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		step1();
 		step2();
+		step3();
 	}
 
 
