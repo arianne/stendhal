@@ -85,6 +85,7 @@ public class StendhalQuestSystem {
 		loadQuest(new CloaksForBario());
 		loadQuest(new ClubOfThorns());
 		loadQuest(new CoalForHaunchy());
+		loadQuest(new CodedMessageFromFinnFarmer());
 		loadQuest(new CrownForTheWannaBeKing());
 		loadQuest(new DailyItemQuest());
 		loadQuest(new DailyMonsterQuest());
