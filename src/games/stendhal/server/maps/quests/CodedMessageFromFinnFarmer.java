@@ -25,6 +25,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotActiveCondition;
 import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerMatchesQuestSlotCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.Region;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,11 +70,6 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 24 * 60;
 
 	@Override
-	public String getSlotName() {
-		return "coded_message";
-	}
-
-	@Override
 	public List<String> getHistory(Player player) {
 		final List<String> res = new ArrayList<String>();
 		if (!player.hasQuest(QUEST_SLOT)) {
@@ -100,11 +96,6 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		
 		res.add("I completed my mission as messanger. Finn Farmer went almost crazy of join when I told him George's answer.");
 		return res;
-	}
-
-	@Override
-	public String getName() {
-		return "Coded Message from Finn Farmer";
 	}
 
 	private String[][] TEMPLATES = new String[][] {
@@ -307,9 +298,38 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 		step1();
 		step2();
 		step3();
+		fillQuestInfo(
+			"Coded message from Finn Farmer",
+			"Finn Farmer, has imporant, secret information for George.",
+			false);
 	}
 
-		@Override
+	@Override
+	public String getSlotName() {
+		return "coded_message";
+	}
+
+	@Override
+	public String getName() {
+		return "Coded Message from Finn Farmer";
+	}
+
+	@Override
+	public int getMinLevel() {
+		return 0;
+	}
+	
+	@Override
+	public String getRegion() {
+		return Region.ADOS_CITY;
+	}
+
+	@Override
+	public String getNPCName() {
+		return "Finn Farmer";
+	}
+
+	@Override
 	public boolean isRepeatable(Player player) {
 		return new TimeReachedCondition(QUEST_SLOT, QUEST_INDEX_TIME).fire(player,null, null);
 	}
