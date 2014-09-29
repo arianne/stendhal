@@ -26,6 +26,7 @@ import games.stendhal.server.entity.npc.condition.TimeReachedCondition;
 import games.stendhal.server.entity.npc.condition.TriggerMatchesQuestSlotCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,8 +75,31 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 
 	@Override
 	public List<String> getHistory(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		final List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("I talked to a little boy called Finn Farmer in Ados.");
+		res.add("Finn asked me to deliver a secret message to George. I can find her near her dog Tommy in Ados park.");
+
+		final String questState = player.getQuest(QUEST_SLOT, 0);
+		if (questState.equals("rejected")) {
+			res.add("But I rejected his request.");
+			return res;
+		}
+
+		res.add("I aggreed to deliver the message.");
+		if (questState.equals("deliver_to_george")) {
+			return res;
+		}
+
+		res.add("After talking to George she gave me another secret message, which I need to deliver to Finn.");
+		if (questState.equals("deliver_to_finn")) {
+			return res;
+		}
+		
+		res.add("I completed my mission as messanger. Finn Farmer went almost crazy of join when I told him George's answer.");
+		return res;
 	}
 
 	@Override
@@ -141,6 +165,17 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Thank you for agreeing to tell George this message:",
 				new SayTextAction("[quest.coded_message:1]"));
+
+
+		npc.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.QUEST_MESSAGES,
+				new AndCondition(
+						new QuestNotActiveCondition(QUEST_SLOT),
+						new NotCondition(
+							new TimeReachedCondition(QUEST_SLOT, QUEST_INDEX_TIME))),
+				ConversationStates.ATTENDING,
+				"Perhaps, I have another message tomorrow.",
+				null);
 
 		npc.add(ConversationStates.ATTENDING, 
 				ConversationPhrases.QUEST_MESSAGES,
@@ -248,7 +283,7 @@ public class CodedMessageFromFinnFarmer extends AbstractQuest {
 					new IncreaseXPAction(200),
 					new IncreaseKarmaAction(10),
 					new SayTextAction("Oh, thank you for telling George!"),
-//					new SayTextAction("/me dances around happily."),                 // TODO: Emote does not work this way
+					new SayTextAction("!me dances around happily."),
 					new SayTextAction("This was really important!"),
 					new SayTextAction("And her answer is super interesting!"),
 					new SayTextAction("I will be on the watch!"),
