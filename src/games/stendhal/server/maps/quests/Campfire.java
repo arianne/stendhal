@@ -70,7 +70,7 @@ import java.util.List;
  * 
  * REPETITIONS: 
  * <ul>
- * <li> Unlimited, but 5 minutes of waiting are required between repetitions</li>
+ * <li> Unlimited, but 60 minutes of waiting are required between repetitions</li>
  * </ul>
  */
 public class Campfire extends AbstractQuest {
