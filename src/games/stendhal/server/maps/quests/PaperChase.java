@@ -52,7 +52,7 @@ import java.util.Map;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest implements TeleportListener {
-	private static final String QUEST_SLOT = "paper_chase_2013";
+	private static final String QUEST_SLOT = "paper_chase_2014";
 	private static final String FAME_TYPE = QUEST_SLOT.substring(QUEST_SLOT.length() - 1);
 	
 	private static final int TELEPORT_PENALTY_IN_MINUTES = 10;
