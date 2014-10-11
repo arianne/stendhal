@@ -61,21 +61,30 @@ marauroa.rpobjectFactory.rpentity.say = function (text) {
 
 /** draw RPEntities */
 marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
-	var localX = (this.x - offsetX) * 32;
-	var localY = (this.y - offsetY) * 32;
-
 	var filename;
 	if (typeof(this.outfit) != "undefined") {
-		// TODO: draw complete outfit into an outfit cache
 		filename = "/data/sprites/outfit/player_base_" + (this.outfit % 100) + ".png";
+		this.drawSprite(ctx, filename, offsetX, offsetY)
+		filename = "/data/sprites/outfit/dress_" + (Math.floor(this.outfit/100) % 100) + ".png";
+		this.drawSprite(ctx, filename, offsetX, offsetY)
 		filename = "/data/sprites/outfit/head_" + (Math.floor(this.outfit/10000) % 100) + ".png";
+		this.drawSprite(ctx, filename, offsetX, offsetY)
+		filename = "/data/sprites/outfit/hair_" + (Math.floor(this.outfit/1000000) % 100) + ".png";
+		this.drawSprite(ctx, filename, offsetX, offsetY)
 	} else {
 		filename = "/data/sprites/" + this.spritePath + "/" + this["class"];
 		if (typeof(this.subclass) != "undefined") {
 			filename = filename + "/" + this["subclass"];
 		}
 		filename = filename + ".png";
+		this.drawSprite(ctx, filename, offsetX, offsetY)
 	}
+}
+
+
+marauroa.rpobjectFactory.rpentity.drawSprite = function(ctx, filename, offsetX, offsetY) {
+	var localX = (this.x - offsetX) * 32;
+	var localY = (this.y - offsetY) * 32;
 	var image = stendhal.data.sprites.get(filename);
 	if (image.complete) {
 		// TODO: animate
@@ -87,6 +96,8 @@ marauroa.rpobjectFactory.rpentity.draw = function(ctx, offsetX, offsetY) {
 		ctx.drawImage(image, 0, (this.dir - 1) * drawHeight, drawWidth, drawHeight, localX + drawX, localY + drawY, drawWidth, drawHeight);
 	}
 }
+
+
 marauroa.rpobjectFactory.rpentity.drawTop = function(ctx, offsetX, offsetY) {
 	var localX = (this.x - offsetX) * 32;
 	var localY = (this.y - offsetY) * 32;
