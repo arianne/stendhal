@@ -33,6 +33,7 @@
 
 
 	document.onkeydown=stendhal.ui.chatBar.keydown;
+	document.onkeyup=stendhal.ui.chatBar.keyup;
 
 
 function stendhalStartClient() {
