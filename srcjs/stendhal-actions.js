@@ -227,6 +227,19 @@ stendhal.slashActionRepository = {
 		getMaxParams: 4
 	},
 
+	"teleportto": {
+		execute: function(type, params, remainder) {
+			var action = {
+				type: "teleportto",
+				target: remainder,
+			};
+			marauroa.clientFramework.sendAction(action);
+			return true;
+		},
+		getMinParams: 0,
+		getMaxParams: 0
+	},
+
 	"tellall": {
 		execute: function(type, params, remainder) {
 			var action = {
