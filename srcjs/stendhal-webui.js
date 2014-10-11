@@ -1,4 +1,6 @@
-stendhal = {};
+"use strict";
+
+window.stendhal = {};
 
 /**
  * Stendhal User Interface
@@ -47,18 +49,50 @@ stendhal.ui = {
 			if (!event) {
 				event = window.event;
 			}
+			var code;
+			if (event.which) {
+				code = event.which;
+			} else {
+				code = e.keyCode;
+			}
 			if (event.shiftKey) {
-				var code;
-				if (event.which) {
-					code = event.which;
-				} else {
-					code = e.keyCode;
-				}
 				if (code == 38) {
 					stendhal.ui.chatBar.fromHistory(-1);
 				} else if (code == 40){
 					stendhal.ui.chatBar.fromHistory(1);
 				}
+			} else {
+				// Movement
+				if (code >= 37 && code <= 40) {
+					var dir = code - 37;
+					if (dir == 0) {
+						dir = 4;
+					}
+					var action = {"type": "move", "dir": ""+dir};
+					marauroa.clientFramework.sendAction(action);
+				}
+			}
+		},
+		keyup: function(e) {
+			var event = e
+			if (!event) {
+				event = window.event;
+			}
+			var code;
+			if (event.which) {
+				code = event.which;
+			} else {
+				code = e.keyCode;
+			}
+
+			// Movement
+			if (code >= 37 && code <= 40) {
+				var dir = code - 37;
+				if (dir == 0) {
+					dir = 4;
+				}
+				var action = {"type": "stop"};
+				marauroa.clientFramework.sendAction(action);
 			}
 		},
 		remember: function(text) {
@@ -346,6 +380,7 @@ stendhal.ui = {
 
 		// TODO: sort marauroa.currentZone[i] by z-order and position
 		drawEntities: function() {
+			var i;
 			for (i in marauroa.currentZone) {
 				if (typeof(marauroa.currentZone[i].draw) != "undefined") {
 					marauroa.currentZone[i].draw(this.ctx, this.offsetX, this.offsetY);
@@ -355,6 +390,7 @@ stendhal.ui = {
 
 		// TODO: sort marauroa.currentZone[i] by z-order and position
 		drawEntitiesTop: function() {
+			var i;
 			for (i in marauroa.currentZone) {
 				if (typeof(marauroa.currentZone[i].drawTop) != "undefined") {
 					marauroa.currentZone[i].drawTop(this.ctx, this.offsetX, this.offsetY);
