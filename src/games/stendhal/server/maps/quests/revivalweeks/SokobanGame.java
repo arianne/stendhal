@@ -49,7 +49,7 @@ import marauroa.server.db.command.DBCommandQueue;
  * @author hendrik
  */
 public class SokobanGame implements LoadableContent, SokobanListener {
-	private static final String QUEST_SLOT = "sokoban";
+	private static final String QUEST_SLOT = "sokoban_2015";
 	private static final String FAME_TYPE = "S";
 	
 	/** start, done */
