@@ -1445,6 +1445,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	 *            <code>true</code> to remove entity from world.
 	 */
 	protected final void onDead(final String killerName, final boolean remove) {
+		StendhalRPZone zone = this.getZone();
+		if ((zone == null) || !zone.has(this.getID())) {
+			logger.warn("RPEntity died but is not in a zone");
+			return;
+		}
+
 		final int oldXP = this.getXP();
 
 		// Establish how much xp points your are rewarded
@@ -1464,15 +1470,12 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 			stats.add("Killed " + get("type"), 1);
 		}
 
-
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
 		updateItemAtkDef();
 
-		final StendhalRPZone zone = getZone();
+		// Adding to zone clears events, so the sound needs to be added after that.
 		zone.add(corpse);
-		// Adding to zone clears events, so the sound needs to be added after
-		// that.
 		if (deathSound != null) {
 			corpse.addEvent(new SoundEvent(deathSound, 23, 100, SoundLayer.FIGHTING_NOISE));
 			corpse.notifyWorldAboutChanges();
@@ -1481,6 +1484,9 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		// Corpse may want to know who this entity was attacking (RaidCreatureCorpse does),
 		// so defer stopping.
 		stopAttack();
+		if (statusList != null) {
+			statusList.removeAll();
+		}
 		if (remove) {
 			zone.remove(this);
 		}
@@ -2728,6 +2734,7 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 	public boolean attack() {
 		boolean result = false;
 		final RPEntity defender = this.getAttackTarget();
+
 		// isInZoneandNotDead(defender);
 
 		defender.rememberAttacker(this);
@@ -2987,4 +2994,19 @@ System.out.printf("  drop: %2d %2d\n", attackerRoll, defenderRoll);
 		}
 		return statusList.hasStatus(statusType);
 	}
+
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		super.onRemoved(zone);
+
+		// Stop other creatures and players attacks on me.
+		// Probably I am dead, and I don't want to die again with a second corpse.
+		for (Entity attacker : new LinkedList<Entity>(attackSources)) {
+			if (attacker instanceof RPEntity) {
+				((RPEntity) attacker).stopAttack();
+			}
+		}
+	}
+
+
 }
