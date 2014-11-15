@@ -225,6 +225,30 @@ public class OutfitStore {
 	}
 
 	/**
+	 * Get the mouth sprite tileset.
+	 * 
+	 * @param index
+	 *            The resource index.
+	 * @return The sprite, or <code>null</code>
+	 */
+	public Sprite getMouthSprite(final int index) {
+		final String suffix;
+		if ((index > 10) && (index < 100)) {
+			suffix = "0" + index;
+		} else if (index < 10) {
+			suffix = "00" + index;
+		} else {
+			suffix = Integer.toString(index);
+		}
+		final String ref = "data/sprites/outfit/mouth/mouth_" + suffix + ".png";
+		if (!store.existsSprite(ref)) {
+			return null;
+		}
+		
+		return store.getSprite(ref);
+	}
+
+	/**
 	 * Get the head sprite tileset.
 	 * 
 	 * @param index
