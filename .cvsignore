@@ -41,8 +41,10 @@ jmp_dump-*.txt
 statserver_stats.xml
 *.ks
 build_client_data
-nbproject
 bin
 .byecycle
 build_server_xmlconf
 *.umlproject
+manifest.mf
+nbproject
+nbbuild.xml
