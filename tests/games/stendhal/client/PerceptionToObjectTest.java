@@ -311,11 +311,6 @@ public class PerceptionToObjectTest {
 			public void modifiedDeleted(final RPObject changes) {
 				object.add(attribute, 1);
 			}
-			@Override
-			public void modifiedAdded(final RPObject arg0) {
-			
-				
-			}
 		};
 		
 		final RPObject changes = new RPObject();

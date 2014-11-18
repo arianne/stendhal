@@ -161,17 +161,6 @@ public class StyledLookAndFeel extends MetalLookAndFeel {
 	}
 	
 	@Override
-	public boolean isSupportedLookAndFeel() {
-		// supported everywhere
-		return true;
-	}
-	
-	@Override
-	public boolean isNativeLookAndFeel() {
-		return false;
-	}
-	
-	@Override
 	public String getDescription() {
 		return "Stendhal pixmap look and feel";
 	}

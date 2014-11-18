@@ -15,7 +15,6 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.User;
-import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -94,10 +93,4 @@ class Sheep2DView extends DomesticAnimal2DView<Sheep> {
 			break;
 		}
 	}
-
-	@Override
-	public StendhalCursor getCursor() {
-		return StendhalCursor.LOOK;
-	}
-	
 }

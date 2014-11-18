@@ -14,7 +14,6 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Sign;
-import games.stendhal.client.gui.styled.cursor.StendhalCursor;
 
 import java.util.List;
 
@@ -69,16 +68,5 @@ class ShopSign2DView extends Sign2DView<Sign> {
 			super.onAction(at);
 			break;
 		}
-	}
-
-
-	/**
-	 * gets the mouse cursor image to use for this entity
-	 *
-	 * @return StendhalCursor
-	 */
-	@Override
-	public StendhalCursor getCursor() {
-		return StendhalCursor.LOOK;
 	}
 }

@@ -84,12 +84,6 @@ class HousePortal2DView extends InvisibleEntity2DView<IEntity> {
 		}
 	}
 
-
-	@Override
-	public boolean isInteractive() {
-		return false;
-	}
-
 	@Override
 	public StendhalCursor getCursor() {
 		return StendhalCursor.PORTAL;
