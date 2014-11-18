@@ -170,7 +170,7 @@ class Zone {
 			String danger = obj.get("danger_level");
 			if (danger != null) {
 				try {
-					dangerLevel = Double.valueOf(danger);
+					dangerLevel = Double.parseDouble(danger);
 				} catch (NumberFormatException e) {
 					Logger.getLogger(Zone.class).warn("Invalid danger level: " + danger, e);
 				}
