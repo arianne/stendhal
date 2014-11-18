@@ -28,8 +28,6 @@ import javax.swing.JTabbedPane;
  */
 @SuppressWarnings("serial")
 public class SettingsDialog extends JDialog {
-	private JTabbedPane tabs;
-	
 	/**
 	 * Create a new SettingsDialog.
 	 * 
@@ -40,7 +38,7 @@ public class SettingsDialog extends JDialog {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		int pad = SBoxLayout.COMMON_PADDING;
 		setLayout(new SBoxLayout(SBoxLayout.VERTICAL, pad));
-		tabs = new JTabbedPane();
+		JTabbedPane tabs = new JTabbedPane();
 		add(tabs);
 		tabs.add("General", new GeneralSettings().getComponent());
 		tabs.add("Visuals", new VisualSettings().getComponent());

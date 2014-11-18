@@ -544,7 +544,7 @@ public final class StatsPanelController {
 					panel.setMana(mana);
 				}
 			} catch (NumberFormatException e) {
-				Logger.getLogger(StatsPanelController.class).error("Invalid mana value", e);
+				Logger.getLogger(ManaChangeListener.class).error("Invalid mana value", e);
 			}
 		}
 	}

@@ -36,23 +36,16 @@ import org.apache.log4j.Logger;
  * @param <T> grower type
  */
 class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
-	
-	/**
-	 * The number of states.
-	 */
-	private int states;
-	
 	/**
 	 * Log4J.
 	 */
-	private static final Logger LOGGER = Logger.getLogger(RPEntity2DView.class);
+	private static final Logger LOGGER = Logger.getLogger(GrainField2DView.class);
 
 	/**
 	 * Create a 2D view of a grain field.
 	 */
 	public GrainField2DView() {
 		super();
-		states = 0;
 		setSpriteAlignment(HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM);
 	}
 
@@ -82,7 +75,7 @@ class GrainField2DView<T extends GrainField> extends StateEntity2DView<T> {
 		final Sprite tiles = store.getModifiedSprite(translate(clazz.replace(" ", "_")),
 				info.getZoneColor(), info.getColorMethod());
 
-		states = entity.getMaximumRipeness() + 1;
+		int states = entity.getMaximumRipeness() + 1;
 
 		final int tileSetHeight = tiles.getHeight();
 		final int imageHeight = tileSetHeight / states;
