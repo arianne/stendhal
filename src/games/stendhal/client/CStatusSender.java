@@ -124,7 +124,7 @@ public final class CStatusSender {
 	 * @return random string
 	 */
 	private static String generateRandomString() {
-		final StringBuffer res = new StringBuffer();
+		final StringBuilder res = new StringBuilder();
 		final Random rnd = new SecureRandom();
 		for (int i = 0; i < 32; i++) {
 			int pos = (int) (rnd.nextFloat() * CHARS.length());
