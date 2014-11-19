@@ -5,11 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>stendhal-test</name>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.stendhal-test.dir" name="Root"/>
             </source-roots>
-            <test-roots>
-                <root id="test.src.dir"/>
-            </test-roots>
+            <test-roots/>
         </data>
     </configuration>
 </project>
