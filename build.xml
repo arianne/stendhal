@@ -1,134 +1,73 @@
-<?xml version='1.0'?>
-<project name="stendhal" default="compile" basedir=".">
-  <property name="version" value="0.00"/>
-  <property name="src" value="src"/>
-  <property name="maps" value="maps"/>
-  <property name="sprites" value="sprites"/>
-  <property name="build" value="build"/>
-  <property name="lib"  value="lib"/>
-  
-  <property name="marauroa"  value="${libdir}/marauroa.jar"/>
-  <property name="classpath" value="${build};${marauroa}"/>
-  
-  <property name="server_jarname" value="stendhal-server-${version}.jar"/>
-  <property name="client_jarname" value="stendhal-${version}.jar"/>
-  <property name="docs" value="javadocs"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="Stendhal_(Code_CVS_new)" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Stendhal (Code CVS new).</description>
+    <import file="nbproject/build-impl.xml"/>
+    <!--
 
-  <target name="clean">
-    <delete dir="${build}"/>
-    <delete dir="${lib}"/>
-    <delete dir="${docs}"/>
-  </target>
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
 
-  <target name="init">
-    <mkdir dir="${build}" />
-    <mkdir dir="${lib}" />
-    <mkdir dir="${docs}" />
-  </target>
+      -pre-init:                 called before initialization of project properties
+      -post-init:                called after initialization of project properties
+      -pre-compile:              called before javac compilation
+      -post-compile:             called after javac compilation
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-jar:                  called before JAR building
+      -post-jar:                 called after JAR building
+      -post-clean:               called after cleaning build products
 
-  <target name="server_compile" depends="init">
-    <delete dir="${build}"/>
-    <mkdir dir="${build}"/>
+    (Targets beginning with '-' are not intended to be called on their own.)
 
-    <copy todir="${build}/games/stendhal/server/maps">
-      <fileset dir="${maps}"/>
-    </copy>
+    Example of inserting an obfuscator after compilation could look like this:
 
-    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/client/**">
-      <classpath>
-        <pathelement path="${classpath}"/>
-      </classpath>    
-    </javac>
-  </target>
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
 
-  <target name="client_compile" depends="init">
-    <delete dir="${build}"/>
-    <mkdir dir="${build}"/>
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
 
-    <copy todir="${build}/sprites">
-      <fileset dir="${sprites}"/>
-    </copy>
 
-    <javac srcdir="${src}" destdir="${build}" debug="true" debuglevel="source,lines"
-           includes="**/games/**" excludes="**/server/**">
-      <classpath>
-        <pathelement path="${classpath}"/>
-      </classpath>    
-    </javac>
-  </target>
+    Another way to customize the build is by overriding existing main targets.
+    The targets of interest are: 
 
-  <target name="compile" depends="client_compile,server_compile"/>
+      -init-macrodef-javac:     defines macro for javac compilation
+      -init-macrodef-junit:     defines macro for junit execution
+      -init-macrodef-debug:     defines macro for class debugging
+      -init-macrodef-java:      defines macro for class execution
+      -do-jar:                  JAR building
+      run:                      execution of project 
+      -javadoc-build:           Javadoc generation
+      test-report:              JUnit report generation
 
-  <target name="server_jar" depends="server_compile">
-    <jar jarfile="${lib}/${server_jarname}" basedir="${build}/"/>    
-  </target>
+    An example of overriding the target for project execution could look like this:
 
-  <target name="client_jar" depends="client_compile">
-    <jar jarfile="${lib}/${client_jarname}" basedir="${build}/"/>    
-  </target>
+        <target name="run" depends="Stendhal_(Code_CVS_new)-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
 
-  <target name="jar" depends="client_jar,server_jar"/>
+    Notice that the overridden target depends on the jar target and not only on 
+    the compile target as the regular run target does. Again, for a list of available 
+    properties which you can use, check the target you are overriding in the
+    nbproject/build-impl.xml file. 
 
-  <target name="docs" depends="compile">
-    <javadoc packagenames="marauroa.*"           
-           defaultexcludes="yes"
-           destdir="${docs}"
-           author="true"
-           version="true"
-           use="true"
-	   classpath="${classpath}"
-           windowtitle="Marauroa API Documentation Version: ${version}">
-      <fileset dir="${src}">
-          <include name="**/*.java"/>
-      </fileset>
-    </javadoc>
-  </target>
-<!--
-  <target name="release" depends="release_binary,release_source"/>
-  
-  <target name="release_binary" depends="jar">
-    <replaceregexp file="${extras}/marauroad.bat    "
-                   match="set LOCALCLASSPATH=.*"
-                   replace="set LOCALCLASSPATH=.;marauroa-${version}.jar;${jython_jar};${connectorJ_jar}"
-                   byline="true"/>
-    <mkdir dir="marauroa-${version}"/>
-    <copy todir="marauroa-${version}" file="${extras}/marauroad.bat"/>
-    <copy todir="marauroa-${version}" file="${lib}/${jarname}"/>
-    <copy todir="marauroa-${version}" file="${connectorJ}"/>
-    <copy todir="marauroa-${version}" file="${jython}"/>
-    <copy todir="marauroa-${version}" file="${lib}/marauroa.ini"/>
-    <copy todir="marauroa-${version}" file="AUTHORS"/>
-    <copy todir="marauroa-${version}" file="BUGS"/>
-    <copy todir="marauroa-${version}" file="COPYING"/>
-    <copy todir="marauroa-${version}" file="LICENSE"/>
-    <copy todir="marauroa-${version}" file="README"/>
-    <zip destfile="marauroa-${version}.zip" 
-         basedir="marauroa-${version}"/>
-    <delete dir="marauroa-${version}"/>
-  </target>
-
-  <target name="release_source" depends="clean">
-    <mkdir dir="marauroa-${version}"/>
-    <copy todir="marauroa-${version}/src">
-    	<fileset dir="src"/>
-    </copy>
-    <copy todir="marauroa-${version}/extras">
-    	<fileset dir="extras"/>
-    </copy>
-    <copy todir="marauroa-${version}" file="build.xml"/>
-    <copy todir="marauroa-${version}" file="AUTHORS"/>
-    <copy todir="marauroa-${version}" file="BUGS"/>
-    <copy todir="marauroa-${version}" file="COPYING"/>
-    <copy todir="marauroa-${version}" file="LICENSE"/>
-    <copy todir="marauroa-${version}" file="README"/>
-  	
-    <tar destfile="marauroa-${version}-src.tar.gz" compression="gzip">
-       <tarfileset dir="marauroa-${version}" prefix="marauroa-${version}">
-         <exclude name="**/CVS/**"/>
-       </tarfileset>
-     </tar>
-
-    <delete dir="marauroa-${version}"/>
-  </target>
---></project>
+    -->
+</project>
