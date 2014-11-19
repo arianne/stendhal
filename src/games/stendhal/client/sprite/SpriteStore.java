@@ -208,10 +208,23 @@ public class SpriteStore {
 	}
 	
 	/**
+	 * Retrieve a sprite from the "combat" folder
+	 * 
+	 * @param icon
+	 * 		Name of pixmaps without full path
+	 * @return
+	 * 		A sprite instance containing an accelerate
+	 * 		image of the request reference
+	 */
+	public Sprite getCombatSprite(final String icon) {
+		return getSprite("data/sprites/combat/" + icon);
+	}
+	 
+	/**
 	 * Retrieve a sprite from the "status" folder
 	 * 
 	 * @param icon
-	 * 		Name of pixmap without full path
+	 * 		Name of pixmaps without full path
 	 * @return
 	 * 		A sprite instance containing an accelerate
 	 * 		image of the request reference
