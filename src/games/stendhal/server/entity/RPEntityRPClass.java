@@ -72,6 +72,7 @@ public class RPEntityRPClass {
         entity.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
+        entity.addAttribute("status_zombie", Type.SHORT, Definition.VOLATILE);
 
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);

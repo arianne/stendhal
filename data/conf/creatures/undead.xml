@@ -1016,6 +1016,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="status_attackers" params="ZombieStatus,5;" />
     </ai>
   </creature>
   
@@ -1051,6 +1052,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="status_attackers" params="ZombieStatus,10;" />
     </ai>
   </creature>
   
@@ -1118,6 +1120,7 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+      <profile name="status_attackers" params="ZombieStatus,15;" />
     </ai>
   </creature>
   

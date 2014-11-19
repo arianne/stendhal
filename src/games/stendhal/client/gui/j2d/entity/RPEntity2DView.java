@@ -70,6 +70,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite eatingSprite;
 	private static final Sprite poisonedSprite;
 	private static final Sprite shockedSprite;
+	private static final Sprite zombieSprite;
 	
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
@@ -142,6 +143,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
 		shockedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/shock.png"), 38, 200);
+		zombieSprite = st.getSprite("data/sprites/status/zombie.png");
 	}
 
 	/**
@@ -178,6 +180,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
                 HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
+        
+        addIconManager(new StatusIconManager(Player.PROP_ZOMBIE, zombieSprite,
+        		HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.ZOMBIE));
+        
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 

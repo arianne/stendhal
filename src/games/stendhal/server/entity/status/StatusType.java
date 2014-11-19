@@ -31,7 +31,10 @@ public enum StatusType {
 	SHOCKED(new ShockStatusHandler()),
 
 	/** drunk and not able to speak clearly */
-	DRUNK(new DrunkStatusHandler());
+	DRUNK(new DrunkStatusHandler()),
+	
+	/** reduced movement speed */
+	ZOMBIE(new ZombieStatusHandler());
 
 	/** the status handler for this StatusType */
 	private final StatusHandler<? extends Status> statusHandler;
