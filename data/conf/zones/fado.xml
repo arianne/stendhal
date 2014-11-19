@@ -1108,12 +1108,28 @@ For example say:  11  if you want the room called Water of Love.
       <destination zone="0_fado_forest_e" ref="palace_entrance_right" />
     </portal>
     
-    <portal x="6" y="4" ref="upstairs_left">
-      <destination zone="int_oni_palace_1" ref="downstairs_left" />
+    <portal x="5" y="4" ref="upstairs_left_1">
+      <destination zone="int_oni_palace_1" ref="downstairs_left_1" />
     </portal>
     
-    <portal x="25" y="4" ref="upstairs_right">
-      <destination zone="int_oni_palace_1" ref="downstairs_right" />
+    <portal x="6" y="4" ref="upstairs_left_2">
+      <destination zone="int_oni_palace_1" ref="downstairs_left_2" />
+    </portal>
+    
+    <portal x="7" y="4" ref="upstairs_left_3">
+      <destination zone="int_oni_palace_1" ref="downstairs_left_3" />
+    </portal>
+    
+    <portal x="24" y="4" ref="upstairs_right_1">
+      <destination zone="int_oni_palace_1" ref="downstairs_right_1" />
+    </portal>
+    
+    <portal x="25" y="4" ref="upstairs_right_2">
+      <destination zone="int_oni_palace_1" ref="downstairs_right_2" />
+    </portal>
+    
+    <portal x="26" y="4" ref="upstairs_right_3">
+      <destination zone="int_oni_palace_1" ref="downstairs_right_3" />
     </portal>
     
     <portal x="3" y="7" ref="magic_portal1">
@@ -1127,31 +1143,63 @@ For example say:  11  if you want the room called Water of Love.
   </zone>
 
   <zone name="int_oni_palace_1" file="interiors/fado/palace_1.tmx">
-    <portal x="6" y="4" ref="downstairs_left">
-      <destination zone="int_oni_palace_0" ref="upstairs_left" />
+    <portal x="5" y="4" ref="downstairs_left_1">
+      <destination zone="int_oni_palace_0" ref="upstairs_left_1" />
     </portal>
     
-    <portal x="25" y="4" ref="downstairs_right">
-      <destination zone="int_oni_palace_0" ref="upstairs_right" />
+  	<portal x="6" y="4" ref="downstairs_left_2">
+      <destination zone="int_oni_palace_0" ref="upstairs_left_2" />
     </portal>
     
-    <portal x="15" y="0" ref="upstairs_left">
-      <destination zone="int_oni_palace_2" ref="downstairs_left" />
+    <portal x="7" y="4" ref="downstairs_left_3">
+      <destination zone="int_oni_palace_0" ref="upstairs_left_3" />
     </portal>
     
-    <portal x="16" y="0" ref="upstairs_right">
-      <destination zone="int_oni_palace_2" ref="downstairs_right" />
+    <portal x="24" y="4" ref="downstairs_right_1">
+      <destination zone="int_oni_palace_0" ref="upstairs_right_1" />
+    </portal>
+    
+    <portal x="25" y="4" ref="downstairs_right_2">
+      <destination zone="int_oni_palace_0" ref="upstairs_right_2" />
+    </portal>
+    
+    <portal x="26" y="4" ref="downstairs_right_3">
+      <destination zone="int_oni_palace_0" ref="upstairs_right_3" />
+    </portal>
+    
+    <portal x="14" y="0" ref="upstairs_1">
+      <destination zone="int_oni_palace_2" ref="downstairs_1" />
+    </portal>
+    
+    <portal x="15" y="0" ref="upstairs_2">
+      <destination zone="int_oni_palace_2" ref="downstairs_2" />
+    </portal>
+    
+    <portal x="16" y="0" ref="upstairs_3">
+      <destination zone="int_oni_palace_2" ref="downstairs_3" />
+    </portal>
+    
+    <portal x="17" y="0" ref="upstairs_4">
+      <destination zone="int_oni_palace_2" ref="downstairs_4" />
     </portal>
     
   </zone>
 
   <zone name="int_oni_palace_2" file="interiors/fado/palace_2.tmx">
-    <portal x="15" y="0" ref="downstairs_left">
-      <destination zone="int_oni_palace_1" ref="upstairs_left" />
+    <portal x="14" y="0" ref="downstairs_1">
+      <destination zone="int_oni_palace_1" ref="upstairs_1" />
     </portal>
     
-    <portal x="16" y="0" ref="downstairs_right">
-      <destination zone="int_oni_palace_1" ref="upstairs_right" />
+  	<portal x="15" y="0" ref="downstairs_2">
+      <destination zone="int_oni_palace_1" ref="upstairs_2" />
+    </portal>
+    
+    <portal x="16" y="0" ref="downstairs_3">
+      <destination zone="int_oni_palace_1" ref="upstairs_3" />
+    </portal>
+    
+    <portal x="17" y="0" ref="downstairs_4">
+      <destination zone="int_oni_palace_1" ref="upstairs_4" />
     </portal>
     
     <portal x="3" y="7" ref="magic_portal1">
