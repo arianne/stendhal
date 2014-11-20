@@ -1,6 +1,6 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *                      (C) Copyright 2003-2014 - Marauroa                 *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -73,6 +73,7 @@ public class RPEntityRPClass {
         entity.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_shock", Type.SHORT, Definition.VOLATILE);
         entity.addAttribute("status_zombie", Type.SHORT, Definition.VOLATILE);
+        entity.addAttribute("status_heavy", Type.SHORT, Definition.VOLATILE);
 
         entity.addRPSlot("head", 1, Definition.PRIVATE);
         entity.addRPSlot("rhand", 1, Definition.PRIVATE);

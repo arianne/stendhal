@@ -234,19 +234,6 @@ public class SpriteStore {
 	}
 	 
 	/**
-	 * Retrieve a sprite from the "status panel" folder
-	 * 
-	 * @param icon
-	 * 		Name of pixmap without full path
-	 * @return
-	 * 		A sprite instance containing an accelerate
-	 * 		image of the request reference
-	 */
-	public Sprite getStatusPanelSprite(final String icon) {
-		return getSprite("data/sprites/status/panel/" + icon);
-	}
-	 
-	/**
 	 * Get a colored version of a sprite.
 	 * 
 	 * @param ref base sprite reference
