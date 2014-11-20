@@ -41,6 +41,7 @@ class StatusIconPanel extends JComponent {
 	private static final ImageIcon confuseIcon = new ImageIcon(DataLoader.getResource(iconFolder + "confuse.png"));
 	private static final ImageIcon shockIcon = new ImageIcon(DataLoader.getResource(iconFolder + "shock.png"));
 	private static final ImageIcon zombieIcon = new ImageIcon(DataLoader.getResource(iconFolder + "zombie.png"));
+	private static final ImageIcon heavyIcon = new ImageIcon(DataLoader.getResource(iconFolder + "heavy.png"));
 	
 	private final static Sprite awaySprite, grumpySprite;
 	static {
@@ -80,6 +81,10 @@ class StatusIconPanel extends JComponent {
 		add(zombie);
 		zombie.setVisible(false);
 		
+		JLabel heavy = new JLabel(heavyIcon);
+		add(heavy);
+		heavy.setVisible(false);
+		
 		away = new AnimatedIcon(awaySprite, 2000);
 		add(away);
 		away.setVisible(false);
@@ -94,6 +99,7 @@ class StatusIconPanel extends JComponent {
             statusIDMap.put(StatusID.POISON, poison);
             statusIDMap.put(StatusID.SHOCK, shock);
             statusIDMap.put(StatusID.ZOMBIE, zombie);
+            statusIDMap.put(StatusID.HEAVY, heavy);
         }
 	}
 	

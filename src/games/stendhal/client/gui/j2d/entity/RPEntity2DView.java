@@ -52,6 +52,7 @@ import marauroa.common.game.RPAction;
  * @param <T> type of RPEntity
  */
 abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> {
+	
 	private static final int ICON_OFFSET = 8;
 	private static final int HEALTH_BAR_HEIGHT = 4;
 
@@ -71,6 +72,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	private static final Sprite poisonedSprite;
 	private static final Sprite shockedSprite;
 	private static final Sprite zombieSprite;
+	private static final Sprite heavySprite;
 	
 	/** Colors of the ring/circle around the player while attacking or being attacked. */
 	private static final Color RING_COLOR_RED = new Color(230, 10, 10);
@@ -129,21 +131,22 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 		final SpriteStore st = SpriteStore.get();
 
 		// Battle icons
-		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
-		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
-		missedSprite = st.getSprite("data/sprites/combat/missed.png");
+		hitSprite = st.getCombatSprite("hitted.png");
+		blockedSprite = st.getCombatSprite("blocked.png");
+		missedSprite = st.getCombatSprite("missed.png");
 		
 		// Job icons
-		healerSprite = st.getSprite("data/sprites/status/healer.png");
-		merchantSprite = st.getSprite("data/sprites/status/merchant.png");
+		healerSprite = st.getStatusSprite("healer.png");
+		merchantSprite = st.getStatusSprite("merchant.png");
 		
 		// Status icons
-		confusedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/confuse.png"), 200);
+		confusedSprite = st.getAnimatedSprite(st.getStatusSprite("confuse.png"), 200);
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
-		poisonedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/poison.png"), 100);
+		poisonedSprite = st.getAnimatedSprite(st.getStatusSprite("poison.png"), 100);
 		chokingSprite = st.getSprite("data/sprites/ideas/choking.png");
-		shockedSprite = st.getAnimatedSprite(st.getSprite("data/sprites/status/shock.png"), 38, 200);
-		zombieSprite = st.getSprite("data/sprites/status/zombie.png");
+		shockedSprite = st.getAnimatedSprite(st.getStatusSprite("shock.png"), 38, 200);
+		zombieSprite = st.getStatusSprite("zombie.png");
+		heavySprite = st.getAnimatedSprite(st.getStatusSprite("heavy.png"), 200);
 	}
 
 	/**
@@ -157,6 +160,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
 		
 		// Status icons
+		/* choking status */
 		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, chokingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 					@Override
@@ -164,8 +168,12 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.isChoking();
 					}
 				});
+		
+		/* confused status */
 		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
 		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, StatusID.CONFUSE));
+		
+		/* eating status */
 		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, eatingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
 					@Override
@@ -173,16 +181,27 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 						return rpentity.isEating() && !rpentity.isChoking();
 					}
 				});
+		
+		/* poison status */
 		StatusIconManager poisonManager = new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
 				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON);
 		poisonManager.setOffsets(10, -13);
 		addIconManager(poisonManager);
 		
+		/* shock status */
         addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
                 HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
         
+        /* zombie status */
         addIconManager(new StatusIconManager(Player.PROP_ZOMBIE, zombieSprite,
         		HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.ZOMBIE));
+        
+        /* heavy status */
+        StatusIconManager heavyManager = new StatusIconManager(Player.PROP_HEAVY,
+        		heavySprite, HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE,
+        		StatusID.HEAVY);
+        heavyManager.setOffsets(0, 32);
+        addIconManager(heavyManager);
         
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}

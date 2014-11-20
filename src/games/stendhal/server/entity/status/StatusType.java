@@ -1,5 +1,5 @@
 /***************************************************************************
- *                   (C) Copyright 2013 - Faiumoni e. V.                   *
+ *                   (C) Copyright 2014 - Faiumoni e. V.                   *
  ***************************************************************************
  ***************************************************************************
  *                                                                         *
@@ -18,7 +18,7 @@ package games.stendhal.server.entity.status;
  */
 public enum StatusType {
 
-	/** cannot walk streight */
+	/** cannot walk straight */
 	CONFUSED(new ConfuseStatusHandler()),
 
 	/** is consuming food */
@@ -34,7 +34,10 @@ public enum StatusType {
 	DRUNK(new DrunkStatusHandler()),
 	
 	/** reduced movement speed */
-	ZOMBIE(new ZombieStatusHandler());
+	ZOMBIE(new ZombieStatusHandler()),
+	
+	/** reduced movement speed */
+	HEAVY(new HeavyStatusHandler());
 
 	/** the status handler for this StatusType */
 	private final StatusHandler<? extends Status> statusHandler;

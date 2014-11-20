@@ -112,10 +112,11 @@ The following files are released into the public domain and can be distributed u
         • Sources:
             http://opengameart.org/content/zombie-and-skeleton-32x48
     • data/sprites/status/
-        healer              merchant
+        healer              merchant			heavy
         • Sources:
             http://openclipart.org/detail/171507/money-pot-by-gnokii-171507
             http://openclipart.org/detail/35905/heart-by-anonymous-35905
+            http://openclipart.org/detail/190320/1kg-weight-by-migranerp-190320
     • tiled/tileset/ground/
         ground_3
         • Sources:
