@@ -27,10 +27,6 @@ import java.awt.Graphics;
  */
 public class BackgroundPainter {
 	private final Sprite[] images;
-	/** Width of the tiles. */
-	private final int tileWidth;
-	/** Height of the tiles. */
-	private final int tileHeight;
 	
 	/**
 	 * Create a new BackgroundPainter.
@@ -42,8 +38,8 @@ public class BackgroundPainter {
 	public BackgroundPainter(String image) {
 		SpriteStore store = SpriteStore.get();
 		Sprite mother = store.getSprite(image);
-		this.tileWidth = mother.getWidth() / 3;
-		this.tileHeight = mother.getHeight() / 3;
+		int tileWidth = mother.getWidth() / 3;
+		int tileHeight = mother.getHeight() / 3;
 		images = new Sprite[9];
 		int i = 0;
 		for (int y = 0; y < 3 * tileHeight; y += tileHeight) {
@@ -67,8 +63,6 @@ public class BackgroundPainter {
 	 */
 	public BackgroundPainter(String image, int leftWidth, int centerWidth,
 			int topHeight, int centerHeight) {
-		tileWidth = 0;
-		tileHeight = 0;
 		SpriteStore store = SpriteStore.get();
 		Sprite mother = store.getSprite(image);
 		images = new Sprite[9];
