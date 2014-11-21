@@ -20,7 +20,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
 public class CursorRepository {
 	private static Logger logger = Logger.getLogger(CursorRepository.class);
 
-	private Map<StendhalCursor, Cursor> cursorMap = new HashMap<StendhalCursor, Cursor>();
+	private Map<StendhalCursor, Cursor> cursorMap = new EnumMap<StendhalCursor, Cursor>(StendhalCursor.class);
 
 	public Cursor get(StendhalCursor stendhalCursor) {
 		Cursor res = cursorMap.get(stendhalCursor);
