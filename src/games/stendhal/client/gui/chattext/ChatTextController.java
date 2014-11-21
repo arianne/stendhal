@@ -117,7 +117,7 @@ public class ChatTextController {
 		return playerChatText.getText();
 	}
 
-	public void setCache(final ChatCache cache) {
+	private void setCache(final ChatCache cache) {
 		this.cache = cache;
 	}
 

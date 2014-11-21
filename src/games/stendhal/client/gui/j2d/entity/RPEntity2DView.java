@@ -98,14 +98,10 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	private Sprite titleSprite;
 
-	/*
-	 * The drawn height.
-	 */
+	/** The drawn height. */
 	protected int height;
 
-	/*
-	 * The drawn width.
-	 */
+	/** The drawn width. */
 	protected int width;
 	/** Status icon managers. */
 	private final List<AbstractStatusIconManager> iconManagers = new ArrayList<AbstractStatusIconManager>();
@@ -158,51 +154,51 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.HEALER));
 		addIconManager(new StatusIconManager(Player.PROP_MERCHANT, merchantSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM, StatusID.MERCHANT));
-		
+
 		// Status icons
 		/* choking status */
 		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, chokingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
-					@Override
-					boolean show(T rpentity) {
-						return rpentity.isChoking();
-					}
-				});
-		
+			@Override
+			boolean show(T rpentity) {
+				return rpentity.isChoking();
+			}
+		});
+
 		/* confused status */
 		addIconManager(new StatusIconManager(Player.PROP_CONFUSED, confusedSprite,
-		        HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, StatusID.CONFUSE));
-		
+				HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE, StatusID.CONFUSE));
+
 		/* eating status */
 		addIconManager(new AbstractStatusIconManager(Player.PROP_EATING, eatingSprite,
 				HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM) {
-					@Override
-					boolean show(T rpentity) {
-						return rpentity.isEating() && !rpentity.isChoking();
-					}
-				});
-		
+			@Override
+			boolean show(T rpentity) {
+				return rpentity.isEating() && !rpentity.isChoking();
+			}
+		});
+
 		/* poison status */
 		StatusIconManager poisonManager = new StatusIconManager(Player.PROP_POISONED, poisonedSprite,
 				HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE, StatusID.POISON);
 		poisonManager.setOffsets(10, -13);
 		addIconManager(poisonManager);
-		
+
 		/* shock status */
-        addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
-                HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
-        
-        /* zombie status */
-        addIconManager(new StatusIconManager(Player.PROP_ZOMBIE, zombieSprite,
-        		HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.ZOMBIE));
-        
-        /* heavy status */
-        StatusIconManager heavyManager = new StatusIconManager(Player.PROP_HEAVY,
-        		heavySprite, HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE,
-        		StatusID.HEAVY);
-        heavyManager.setOffsets(0, 32);
-        addIconManager(heavyManager);
-        
+		addIconManager(new StatusIconManager(Player.PROP_SHOCK, shockedSprite,
+				HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.SHOCK));
+
+		/* zombie status */
+		addIconManager(new StatusIconManager(Player.PROP_ZOMBIE, zombieSprite,
+				HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM, StatusID.ZOMBIE));
+
+		/* heavy status */
+		StatusIconManager heavyManager = new StatusIconManager(Player.PROP_HEAVY,
+				heavySprite, HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE,
+				StatusID.HEAVY);
+		heavyManager.setOffsets(0, 32);
+		addIconManager(heavyManager);
+
 		setSpriteAlignment(HorizontalAlignment.CENTER, VerticalAlignment.BOTTOM);
 	}
 
@@ -322,7 +318,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 * 
 	 * @param manager
 	 */
-	void addIconManager(AbstractStatusIconManager manager) {
+	final void addIconManager(AbstractStatusIconManager manager) {
 		iconManagers.add(manager);
 	}
 
@@ -383,11 +379,11 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 	 */
 	protected void drawStatusBar(final Graphics2D g2d, final int x,
 			final int y, final int width) {
-	    if (showTitle) {
-	        drawTitle(g2d, x, y, width);
-	    }
+		if (showTitle) {
+			drawTitle(g2d, x, y, width);
+		}
 		if (showHP) {
-		    drawHPbar(g2d, x, y, width);
+			drawHPbar(g2d, x, y, width);
 		}
 	}
 
@@ -1004,7 +1000,7 @@ abstract class RPEntity2DView<T extends RPEntity> extends ActiveEntity2DView<T> 
 
 		@Override
 		boolean show(T entity) {
-            return entity.hasStatus(status);
+			return entity.hasStatus(status);
 		}
 	}
 	

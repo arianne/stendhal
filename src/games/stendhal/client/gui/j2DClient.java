@@ -378,7 +378,7 @@ public class j2DClient implements UserInterface {
 		horizSplit.addComponentListener(new ComponentAdapter() {
 			// Start with a large value, so that the divider is placed as left
 			// as possible
-			int oldWidth = Integer.MAX_VALUE;
+			private int oldWidth = Integer.MAX_VALUE;
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -445,7 +445,7 @@ public class j2DClient implements UserInterface {
 		rightSidePanel.add(containerPanel, SBoxLayout.constraint(SLayout.EXPAND_Y, SLayout.EXPAND_X));
 		windowContent.add(rightSidePanel, SLayout.EXPAND_Y);
 		
-		WtWindowManager.getInstance().registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
+		windowManager.registerSettingChangeListener(SCALE_PREFERENCE_PROPERTY,
 				new SettingChangeAdapter(SCALE_PREFERENCE_PROPERTY, "true") {
 			@Override
 			public void changed(String newValue) {
@@ -507,7 +507,7 @@ public class j2DClient implements UserInterface {
 		 *  in account in rather random ways.
 		 */
 		final int width = frame.getWidth()
-		- minimap.getComponent().getWidth() - containerPanel.getWidth();
+				- minimap.getComponent().getWidth() - containerPanel.getWidth();
 		final int height = frame.getHeight() - chatLogArea.getHeight();
 
 		frame.setMinimumSize(new Dimension(width, height));
@@ -1145,7 +1145,7 @@ public class j2DClient implements UserInterface {
 	}
 
 	@Override
-	public SoundSystemFacade getSoundSystemFacade() {
+	public final SoundSystemFacade getSoundSystemFacade() {
 		if (soundSystemFacade == null) {
 			try {
 				if ((DataLoader.getResource("data/sound/harp-1.ogg") != null)

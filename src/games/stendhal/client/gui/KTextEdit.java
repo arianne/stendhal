@@ -18,6 +18,7 @@ import games.stendhal.client.gui.textformat.StringFormatter;
 import games.stendhal.client.gui.textformat.StyleSet;
 import games.stendhal.common.NotificationType;
 
+import java.awt.Adjustable;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -131,7 +132,7 @@ class KTextEdit extends JComponent {
 	/**
 	 * This method builds the Gui.
 	 */
-	protected void buildGUI() {
+	private void buildGUI() {
 		textPane = new JTextPane();
 		textPane.setEditorKit(new WrapEditorKit());
 		textPane.setEditable(false);
@@ -374,7 +375,7 @@ class KTextEdit extends JComponent {
 	 * @return <code>true</code> if the scrollbar is at its maximum value
 	 * 	location, <code>false</code>otherwise
 	 */
-	private boolean isAtMaximum(JScrollBar bar) {
+	private boolean isAtMaximum(Adjustable bar) {
 		return (bar.getValue() + bar.getVisibleAmount() >= bar.getMaximum());
 	}
 

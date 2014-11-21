@@ -42,7 +42,7 @@ public class OggVorbisDecoder extends SignalProcessor
     private boolean     mDecoderIsOpened = false;
 	private InputStream mIStream         = null;
     
-    protected void init(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
+    protected final void init(InputStream stream, int inputBufferSize, int outputNumSamplesPerChannel) throws IOException
     {
         mOggStreamState  = new StreamState();
         mOggSyncState    = new SyncState();

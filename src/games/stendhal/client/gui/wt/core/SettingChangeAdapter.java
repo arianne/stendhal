@@ -13,7 +13,9 @@ package games.stendhal.client.gui.wt.core;
 
 /**
  * SettingChangeListener that calls changed() with the current property value,
- * or with the default value at creation.
+ * or with the default value at creation. <b>Note that changed() is called from
+ * the SettingChangeAdapter constructor, so it <em>must not</em> rely on a fully
+ * constructed object.</b>
  */
 public abstract class SettingChangeAdapter implements SettingChangeListener {
 	public SettingChangeAdapter(String key, String defaultValue) {

@@ -248,7 +248,7 @@ public class SoundManagerNG {
 		startSoundsystem();
 	}
 
-	protected void startSoundsystem() {
+	protected final void startSoundsystem() {
 		mSoundSystem.setDaemon(true);
 		mSoundSystem.start();
 	}

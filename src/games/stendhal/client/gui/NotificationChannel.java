@@ -11,14 +11,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
+import games.stendhal.client.gui.chatlog.EventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.common.NotificationType;
+
 import java.util.EnumSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-
-import games.stendhal.client.gui.chatlog.EventLine;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
-import games.stendhal.common.NotificationType;
 
 /**
  * A chat log container that allows filtering by event type.
@@ -26,9 +26,9 @@ import games.stendhal.common.NotificationType;
 class NotificationChannel {
 	private static final Logger logger = Logger.getLogger(NotificationChannel.class);
 	
-	/** Name of the channel */
+	/** Name of the channel. */
 	private final String name;
-	/** Chat log where to write allowed content */
+	/** Chat log where to write allowed content. */
 	private final KTextEdit channel;
 	/** Event types that should be displayed at the channel. */
 	private final Set<NotificationType> eventTypes;
@@ -92,7 +92,7 @@ class NotificationChannel {
 	 * @param allow if <code>true</code> then messages of the type are
 	 * 	displayed, otherwise not
 	 */
-	void setTypeFiltering(NotificationType type, boolean allow) {
+	final void setTypeFiltering(NotificationType type, boolean allow) {
 		if (allow) {
 			eventTypes.add(type);
 		} else {

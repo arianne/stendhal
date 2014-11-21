@@ -222,7 +222,7 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 	 * 
 	 * @param title title text
 	 */
-	public void setTitle(String title) {
+	public final void setTitle(String title) {
 		/*
 		 * Work around JLabel drawing ellipsis when it's short of space. To
 		 * avoid titles like "cor..." for corpses. Html labels do not get the
@@ -254,32 +254,6 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		// notify listeners
 		for (CloseListener listener : closeListeners) {
 			listener.windowClosed(this);
-		}
-	}
-	
-	/**
-	 * Handle close button.
-	 */
-	private class CloseActionListener implements ActionListener {
-		@Override
-		public void actionPerformed(final ActionEvent ev) {
-			close();
-			playSound(closeSound);
-		}
-	}
-
-	/**
-	 * Handle minimization button.
-	 */
-	private class MinimizeListener implements ActionListener {
-		@Override
-		public void actionPerformed(final ActionEvent ev) {
-			setMinimized(!isMinimized());
-			if (isMinimized()) {
-				playSound(openSound);
-			} else {
-				playSound(minimizeSound);
-			}
 		}
 	}
 	
@@ -376,6 +350,70 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		g.fillRect(1, TITLEBAR_HEIGHT - 3, TITLEBAR_HEIGHT - 2, 2);
 		
 		return new ImageIcon(image);
+	}
+	
+	/* ********************************************************************
+	 * Speed up the drawing by caching the image of the window. This is done
+	 * because repeatedly drawing the borders makes a noticeable performance
+	 * hit.
+	 */
+	@Override
+	public void paint(Graphics g) {
+		cache.paintComponent(g);
+		paintChildren(g);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+	}
+	
+	@Override
+	public void paintBorder(Graphics g) {
+		super.paintBorder(g);
+	}
+	
+	@Override
+	public void paintChildren(Graphics g) {
+		super.paintChildren(g);
+	}
+	
+	/**
+	 * Listener interface for window close events.
+	 */
+	public interface CloseListener {
+		/**
+		 * Called when the window is closed.
+		 * 
+		 * @param window the closed window
+		 */
+		void windowClosed(InternalWindow window);
+	}
+	
+	/**
+	 * Handle close button.
+	 */
+	private class CloseActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(final ActionEvent ev) {
+			close();
+			playSound(closeSound);
+		}
+	}
+
+	/**
+	 * Handle minimization button.
+	 */
+	private class MinimizeListener implements ActionListener {
+		@Override
+		public void actionPerformed(final ActionEvent ev) {
+			setMinimized(!isMinimized());
+			if (isMinimized()) {
+				playSound(openSound);
+			} else {
+				playSound(minimizeSound);
+			}
+		}
 	}
 	
 	/**
@@ -480,43 +518,5 @@ public class InternalWindow extends JPanel implements ComponentPaintCache.Cachea
 		public void paintChildren(Graphics g) {
 			super.paintChildren(g);
 		}
-	}
-	
-	/**
-	 * Listener interface for window close events.
-	 */
-	public interface CloseListener {
-		/**
-		 * Called when the window is closed.
-		 * 
-		 * @param window the closed window
-		 */
-		void windowClosed(InternalWindow window);
-	}
-	
-	/* ********************************************************************
-	 * Speed up the drawing by caching the image of the window. This is done
-	 * because repeatedly drawing the borders makes a noticeable performance
-	 * hit.
-	 */
-	@Override
-	public void paint(Graphics g) {
-		cache.paintComponent(g);
-		paintChildren(g);
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-	}
-	
-	@Override
-	public void paintBorder(Graphics g) {
-		super.paintBorder(g);
-	}
-	
-	@Override
-	public void paintChildren(Graphics g) {
-		super.paintChildren(g);
 	}
 }

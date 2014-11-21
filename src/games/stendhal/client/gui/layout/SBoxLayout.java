@@ -96,12 +96,12 @@ public class SBoxLayout implements LayoutManager2 {
 	 */
 	private final Direction d;
 	
-	/** Preciously calculated dimension data, or <code>null</code> if it has been invalidated */ 
+	/** Preciously calculated dimension data, or <code>null</code> if it has been invalidated. */ 
 	private Dimension cachedMinimum, cachedMaximum, cachedPreferred;
 	
-	/** Amount of axially expandable components */
+	/** Amount of axially expandable components. */
 	private int expandable;
-	/** Amount of padding between components */
+	/** Amount of padding between components. */
 	private int padding = 0;
 	
 	/**
@@ -136,7 +136,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 * 
 	 * @param padding pixel width of the padding
 	 */
-	public void setPadding(int padding) {
+	public final void setPadding(int padding) {
 		this.padding = padding;
 	}
 
@@ -147,9 +147,7 @@ public class SBoxLayout implements LayoutManager2 {
 	@Override
 	public void addLayoutComponent(Component component, Object flags) {
 		EnumSet<SLayout> constraintFlags = EnumSet.noneOf(SLayout.class);
-		if (flags == null) {
-			// nothing to add
-		} else {
+		if (flags != null) {
 			if (flags instanceof SLayout) {
 				constraintFlags.add(d.translate((SLayout) flags)); 
 			} else if (flags instanceof EnumSet<?> || flags instanceof SLayout) {
@@ -706,7 +704,7 @@ public class SBoxLayout implements LayoutManager2 {
 	 */
 	private interface Direction {
 		/**
-		 * Translate X and Y to axial and perpendicular
+		 * Translate X and Y to axial and perpendicular.
 		 * @param dir
 		 * @return SLayout
 		 */
@@ -762,7 +760,7 @@ public class SBoxLayout implements LayoutManager2 {
 	}
 	
 	/**
-	 * Horizontal direction calculations
+	 * Horizontal direction calculations.
 	 */
 	private static class HDirection implements Direction {
 		@Override

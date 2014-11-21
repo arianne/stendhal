@@ -52,6 +52,10 @@ public class KHtmlEdit extends KTextEdit {
 	private static final long serialVersionUID = -8415450500521691744L;
 
 	private static Logger logger = Logger.getLogger(KHtmlEdit.class);
+	
+	KHtmlEdit() {
+		textPane.addHyperlinkListener(new ActivateLinkCB());
+	}
 
 	//
 	// KHtmlEdit
@@ -369,17 +373,6 @@ public class KHtmlEdit extends KTextEdit {
 	//
 	// KTextEdit
 	//
-
-	/**
-	 * Build the GUI.
-	 */
-	@Override
-	protected void buildGUI() {
-		super.buildGUI();
-
-		textPane.addHyperlinkListener(new ActivateLinkCB());
-	}
-
 	@Override
 	protected void initStylesForTextPane(final JTextPane textPane, int mainTextSize) {
 		textPane.setContentType("text/html");

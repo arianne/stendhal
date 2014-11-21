@@ -144,8 +144,8 @@ public abstract class ActiveEntity extends Entity {
 		double oldy = this.y;
 		setSpeed(direction.getdx() * speed, direction.getdy() * speed);
 
-		if ((Direction.LEFT.equals(direction))
-				|| (Direction.RIGHT.equals(direction))) {
+		if ((Direction.LEFT == direction)
+				|| (Direction.RIGHT == direction)) {
 			this.y = y;
 			if (compareDouble(this.x, x, 1.0)) {
 				// make the movement look more nicely: + this.dx * 0.1
@@ -156,8 +156,8 @@ public abstract class ActiveEntity extends Entity {
 				this.x = x;
 			}
 			this.dy = 0;
-		} else if ((Direction.UP.equals(direction))
-				|| (Direction.DOWN.equals(direction))) {
+		} else if ((Direction.UP == direction)
+				|| (Direction.DOWN == direction)) {
 			this.x = x;
 			this.dx = 0;
 			if (compareDouble(this.y, y, 1.0)) {
@@ -310,7 +310,7 @@ public abstract class ActiveEntity extends Entity {
 		}
 
 		boolean positionChanged = false;
-		if ((Direction.STOP.equals(tempDirection)) || (speed == 0)) {
+		if ((Direction.STOP == tempDirection) || (speed == 0)) {
 			setSpeed(0.0, 0.0);
 			
 			/*
@@ -342,7 +342,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param dx horizontal speed
 	 * @param dy vertical speed
 	 */
-	void setSpeed(double dx, double dy) {
+	final void setSpeed(double dx, double dy) {
 		this.dx = dx;
 		this.dy = dy;
 	}

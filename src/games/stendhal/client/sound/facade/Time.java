@@ -79,12 +79,12 @@ public class Time implements Cloneable
         set(samples, sampleRate);
     }
 
-    public void set(long value, Unit unit)
+    public final void set(long value, Unit unit)
     {
         mNanoSeconds = value * unit.getNanos();
     }
 
-    public void set(long samples, int sampleRate)
+    public final void set(long samples, int sampleRate)
     {
         mNanoSeconds = (samples * Unit.SEC.getNanos()) / sampleRate;
     }
