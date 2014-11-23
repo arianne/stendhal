@@ -11,14 +11,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity.status;
 
-import java.util.Random;
-
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * Handles HeavyStatus
@@ -26,12 +23,12 @@ import games.stendhal.server.entity.player.Player;
  */
 public class HeavyStatusHandler implements StatusHandler<HeavyStatus> {
 	
-	int duration;
+	private int duration;
 	
 	/**
 	 * @param status
 	 * 		Status to inflict
-	 * @param statuslist
+	 * @param statusList
 	 * 		StatusList
 	 * @param attacker
 	 * 		the attacker

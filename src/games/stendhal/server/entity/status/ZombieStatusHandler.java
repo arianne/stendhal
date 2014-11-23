@@ -4,7 +4,6 @@ import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * Handles ZombieStatus
@@ -15,7 +14,7 @@ public class ZombieStatusHandler implements StatusHandler<ZombieStatus> {
 	/**
 	 * @param status
 	 * 		Status to inflict
-	 * @param statuslist
+	 * @param statusList
 	 * 		StatusList
 	 * @param attacker
 	 * 		the attacker
