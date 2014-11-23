@@ -2,6 +2,11 @@
 	marauroa.clientFramework.onDisconnect = function(reason, error){
 		stendhal.ui.chatLog.addLine("error", "Disconnected: " + error);
 	}
+	
+	marauroa.clientFramework.onLoginRequired = function() {
+		window.location = "/index.php?id=content/account/login&url="
+			+ escape(window.location.pathname + window.location.hash);
+	}
 
 	marauroa.clientFramework.onLoginFailed = function(reason, text) {
 		alert("Login failed. Please login on the Stendhal website first and make sure you open the client on an https://-URL");
