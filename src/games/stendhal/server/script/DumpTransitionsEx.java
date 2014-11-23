@@ -95,6 +95,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 				final String transitionName = getExtendedTransitionName(transition, expr.toString());
 
 				dumpedTable.append(" [ label = \"" + transitionName.replace("{", "\\{").replace("}", "\\}") + "\" ];\r\n");
+				break;
 			}
 		}
 	}
