@@ -1,6 +1,18 @@
 ﻿Changelog
 ---------
 
+1.16
+
+*world*
+- Semos city is decorated for Christmas
+
+
+1.15.1
+
+- fixed a bug which caused poisoned summon creates to die multiple times
+
+
+
 1.15
 
 *world*
